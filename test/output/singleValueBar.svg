@@ -16,11 +16,15 @@
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,195)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,195)">0</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,195)">0</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(237.5,0)">
     <path transform="translate(93,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" transform="translate(237.5,9.5)"><text y="0.71em" transform="translate(93,370)">foo</text></g>
+  <g aria-label="x-axis tick text" transform="translate(237.5,9.5)">
+    <text y="0.71em" transform="translate(93,370)">foo</text>
+  </g>
   <g aria-label="bar">
     <rect x="93" width="474" y="20" height="350"></rect>
   </g>

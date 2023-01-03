@@ -14,7 +14,9 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,20)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">WHITE</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(210,28)">WHITE</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
@@ -37,7 +39,9 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,82)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">UNDESIGNATED</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(210,28)">UNDESIGNATED</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
@@ -60,7 +64,9 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,144)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">ASIAN</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(210,28)">ASIAN</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
@@ -83,7 +89,9 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,206)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">OTHER</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(210,28)">OTHER</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
@@ -106,7 +114,9 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,268)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">TWO or MORE RACES</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(210,28)">TWO or MORE RACES</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
@@ -129,7 +139,9 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,330)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">INDIAN AMERICAN or ALASKA NATIVE</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(210,28)">INDIAN AMERICAN or ALASKA NATIVE</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
@@ -152,7 +164,9 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,392)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">BLACK or AFRICAN AMERICAN</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(210,28)">BLACK or AFRICAN AMERICAN</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
@@ -175,7 +189,9 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,454)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">NATIVE HAWAIIAN or PACIFIC ISLANDER</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(210,28)">NATIVE HAWAIIAN or PACIFIC ISLANDER</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
@@ -188,7 +204,12 @@
       <path transform="translate(417.47039952809854,56)" d="M0,0L0,6"></path>
       <path transform="translate(521.2055992921478,56)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(210,56)">0</text><text y="0.71em" transform="translate(313.7351997640493,56)">20</text><text y="0.71em" transform="translate(417.47039952809854,56)">40</text><text y="0.71em" transform="translate(521.2055992921478,56)">60</text></g>
+    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(210,56)">0</text>
+      <text y="0.71em" transform="translate(313.7351997640493,56)">20</text>
+      <text y="0.71em" transform="translate(417.47039952809854,56)">40</text>
+      <text y="0.71em" transform="translate(521.2055992921478,56)">60</text>
+    </g>
     <g aria-label="bar">
       <rect x="210" width="216.11499950843603" y="20" height="16" fill="brown">
         <title>41.7%</title>

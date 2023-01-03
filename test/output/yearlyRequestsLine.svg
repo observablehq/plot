@@ -26,7 +26,19 @@
     <path transform="translate(40,54.99999999999999)" d="M0,0L-6,0"></path>
     <path transform="translate(40,20)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,335)">2</text><text y="0.32em" transform="translate(40,300)">4</text><text y="0.32em" transform="translate(40,265)">6</text><text y="0.32em" transform="translate(40,230)">8</text><text y="0.32em" transform="translate(40,195)">10</text><text y="0.32em" transform="translate(40,160)">12</text><text y="0.32em" transform="translate(40,125.00000000000001)">14</text><text y="0.32em" transform="translate(40,89.99999999999999)">16</text><text y="0.32em" transform="translate(40,54.99999999999999)">18</text><text y="0.32em" transform="translate(40,20)">20</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,335)">2</text>
+    <text y="0.32em" transform="translate(40,300)">4</text>
+    <text y="0.32em" transform="translate(40,265)">6</text>
+    <text y="0.32em" transform="translate(40,230)">8</text>
+    <text y="0.32em" transform="translate(40,195)">10</text>
+    <text y="0.32em" transform="translate(40,160)">12</text>
+    <text y="0.32em" transform="translate(40,125.00000000000001)">14</text>
+    <text y="0.32em" transform="translate(40,89.99999999999999)">16</text>
+    <text y="0.32em" transform="translate(40,54.99999999999999)">18</text>
+    <text y="0.32em" transform="translate(40,20)">20</text>
+  </g>
   <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path d="M60,212.5L91.765,72.5L123.529,160L155.294,282.5L187.059,160L218.824,55L250.588,90L282.353,177.5L314.118,212.5L345.882,230L377.647,212.5L600,20"></path>
   </g>

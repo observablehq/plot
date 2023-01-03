@@ -29,7 +29,22 @@
     <path transform="translate(40,65.76240492575154)" d="M0,0L-6,0"></path>
     <path transform="translate(40,40.40927200289748)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,344.646867077146)">200</text><text y="0.32em" transform="translate(40,319.29373415429194)">400</text><text y="0.32em" transform="translate(40,293.9406012314379)">600</text><text y="0.32em" transform="translate(40,268.5874683085839)">800</text><text y="0.32em" transform="translate(40,243.2343353857298)">1,000</text><text y="0.32em" transform="translate(40,217.88120246287573)">1,200</text><text y="0.32em" transform="translate(40,192.52806954002173)">1,400</text><text y="0.32em" transform="translate(40,167.17493661716767)">1,600</text><text y="0.32em" transform="translate(40,141.82180369431364)">1,800</text><text y="0.32em" transform="translate(40,116.46867077145961)">2,000</text><text y="0.32em" transform="translate(40,91.1155378486056)">2,200</text><text y="0.32em" transform="translate(40,65.76240492575154)">2,400</text><text y="0.32em" transform="translate(40,40.40927200289748)">2,600</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,344.646867077146)">200</text>
+    <text y="0.32em" transform="translate(40,319.29373415429194)">400</text>
+    <text y="0.32em" transform="translate(40,293.9406012314379)">600</text>
+    <text y="0.32em" transform="translate(40,268.5874683085839)">800</text>
+    <text y="0.32em" transform="translate(40,243.2343353857298)">1,000</text>
+    <text y="0.32em" transform="translate(40,217.88120246287573)">1,200</text>
+    <text y="0.32em" transform="translate(40,192.52806954002173)">1,400</text>
+    <text y="0.32em" transform="translate(40,167.17493661716767)">1,600</text>
+    <text y="0.32em" transform="translate(40,141.82180369431364)">1,800</text>
+    <text y="0.32em" transform="translate(40,116.46867077145961)">2,000</text>
+    <text y="0.32em" transform="translate(40,91.1155378486056)">2,200</text>
+    <text y="0.32em" transform="translate(40,65.76240492575154)">2,400</text>
+    <text y="0.32em" transform="translate(40,40.40927200289748)">2,600</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(115.4,370)" d="M0,0L0,6"></path>
@@ -40,7 +55,16 @@
     <path transform="translate(494.0571428571429,370)" d="M0,0L0,6"></path>
     <path transform="translate(570.2857142857143,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,370)">Apr</text><text y="0.71em" transform="translate(115.4,370)">Jul</text><text y="0.71em" transform="translate(191.62857142857143,370)">Oct</text><text y="0.71em" transform="translate(267.85714285714283,370)">Jan</text><text y="0.71em" transform="translate(342.4285714285715,370)">Apr</text><text y="0.71em" transform="translate(417.8285714285714,370)">Jul</text><text y="0.71em" transform="translate(494.0571428571429,370)">Oct</text><text y="0.71em" transform="translate(570.2857142857143,370)">Jan</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">Apr</text>
+    <text y="0.71em" transform="translate(115.4,370)">Jul</text>
+    <text y="0.71em" transform="translate(191.62857142857143,370)">Oct</text>
+    <text y="0.71em" transform="translate(267.85714285714283,370)">Jan</text>
+    <text y="0.71em" transform="translate(342.4285714285715,370)">Apr</text>
+    <text y="0.71em" transform="translate(417.8285714285714,370)">Jul</text>
+    <text y="0.71em" transform="translate(494.0571428571429,370)">Oct</text>
+    <text y="0.71em" transform="translate(570.2857142857143,370)">Jan</text>
+  </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>

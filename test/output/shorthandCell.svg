@@ -22,7 +22,15 @@
     <path transform="translate(40,128)" d="M0,0L-6,0"></path>
     <path transform="translate(40,149)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,10)"><text y="0.32em" transform="translate(40,23)">Ava</text><text y="0.32em" transform="translate(40,44)">Emma</text><text y="0.32em" transform="translate(40,65)">Jacob</text><text y="0.32em" transform="translate(40,86)">Mason</text><text y="0.32em" transform="translate(40,107)">Mia</text><text y="0.32em" transform="translate(40,128)">Noah</text><text y="0.32em" transform="translate(40,149)">Olivia</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,10)">
+    <text y="0.32em" transform="translate(40,23)">Ava</text>
+    <text y="0.32em" transform="translate(40,44)">Emma</text>
+    <text y="0.32em" transform="translate(40,65)">Jacob</text>
+    <text y="0.32em" transform="translate(40,86)">Mason</text>
+    <text y="0.32em" transform="translate(40,107)">Mia</text>
+    <text y="0.32em" transform="translate(40,128)">Noah</text>
+    <text y="0.32em" transform="translate(40,149)">Olivia</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(37,0)">
     <path transform="translate(51,170)" d="M0,0L0,6"></path>
     <path transform="translate(132,170)" d="M0,0L0,6"></path>
@@ -32,7 +40,15 @@
     <path transform="translate(456,170)" d="M0,0L0,6"></path>
     <path transform="translate(537,170)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" transform="translate(37,9.5)"><text y="0.71em" transform="translate(51,170)">Ava</text><text y="0.71em" transform="translate(132,170)">Emma</text><text y="0.71em" transform="translate(213,170)">Jacob</text><text y="0.71em" transform="translate(294,170)">Mason</text><text y="0.71em" transform="translate(375,170)">Mia</text><text y="0.71em" transform="translate(456,170)">Noah</text><text y="0.71em" transform="translate(537,170)">Olivia</text></g>
+  <g aria-label="x-axis tick text" transform="translate(37,9.5)">
+    <text y="0.71em" transform="translate(51,170)">Ava</text>
+    <text y="0.71em" transform="translate(132,170)">Emma</text>
+    <text y="0.71em" transform="translate(213,170)">Jacob</text>
+    <text y="0.71em" transform="translate(294,170)">Mason</text>
+    <text y="0.71em" transform="translate(375,170)">Mia</text>
+    <text y="0.71em" transform="translate(456,170)">Noah</text>
+    <text y="0.71em" transform="translate(537,170)">Olivia</text>
+  </g>
   <g aria-label="cell">
     <rect x="213" width="73" y="149" height="19"></rect>
     <rect x="375" width="73" y="128" height="19"></rect>

@@ -41,7 +41,34 @@
     <path transform="translate(40,558)" d="M0,0L-6,0"></path>
     <path transform="translate(40,580)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,11.5)"><text y="0.32em" transform="translate(40,30)">A</text><text y="0.32em" transform="translate(40,52)">B</text><text y="0.32em" transform="translate(40,74)">C</text><text y="0.32em" transform="translate(40,96)">D</text><text y="0.32em" transform="translate(40,118)">E</text><text y="0.32em" transform="translate(40,140)">F</text><text y="0.32em" transform="translate(40,162)">G</text><text y="0.32em" transform="translate(40,184)">H</text><text y="0.32em" transform="translate(40,206)">I</text><text y="0.32em" transform="translate(40,228)">J</text><text y="0.32em" transform="translate(40,250)">K</text><text y="0.32em" transform="translate(40,272)">L</text><text y="0.32em" transform="translate(40,294)">M</text><text y="0.32em" transform="translate(40,316)">N</text><text y="0.32em" transform="translate(40,338)">O</text><text y="0.32em" transform="translate(40,360)">P</text><text y="0.32em" transform="translate(40,382)">Q</text><text y="0.32em" transform="translate(40,404)">R</text><text y="0.32em" transform="translate(40,426)">S</text><text y="0.32em" transform="translate(40,448)">T</text><text y="0.32em" transform="translate(40,470)">U</text><text y="0.32em" transform="translate(40,492)">V</text><text y="0.32em" transform="translate(40,514)">W</text><text y="0.32em" transform="translate(40,536)">X</text><text y="0.32em" transform="translate(40,558)">Y</text><text y="0.32em" transform="translate(40,580)">Z</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,11.5)">
+    <text y="0.32em" transform="translate(40,30)">A</text>
+    <text y="0.32em" transform="translate(40,52)">B</text>
+    <text y="0.32em" transform="translate(40,74)">C</text>
+    <text y="0.32em" transform="translate(40,96)">D</text>
+    <text y="0.32em" transform="translate(40,118)">E</text>
+    <text y="0.32em" transform="translate(40,140)">F</text>
+    <text y="0.32em" transform="translate(40,162)">G</text>
+    <text y="0.32em" transform="translate(40,184)">H</text>
+    <text y="0.32em" transform="translate(40,206)">I</text>
+    <text y="0.32em" transform="translate(40,228)">J</text>
+    <text y="0.32em" transform="translate(40,250)">K</text>
+    <text y="0.32em" transform="translate(40,272)">L</text>
+    <text y="0.32em" transform="translate(40,294)">M</text>
+    <text y="0.32em" transform="translate(40,316)">N</text>
+    <text y="0.32em" transform="translate(40,338)">O</text>
+    <text y="0.32em" transform="translate(40,360)">P</text>
+    <text y="0.32em" transform="translate(40,382)">Q</text>
+    <text y="0.32em" transform="translate(40,404)">R</text>
+    <text y="0.32em" transform="translate(40,426)">S</text>
+    <text y="0.32em" transform="translate(40,448)">T</text>
+    <text y="0.32em" transform="translate(40,470)">U</text>
+    <text y="0.32em" transform="translate(40,492)">V</text>
+    <text y="0.32em" transform="translate(40,514)">W</text>
+    <text y="0.32em" transform="translate(40,536)">X</text>
+    <text y="0.32em" transform="translate(40,558)">Y</text>
+    <text y="0.32em" transform="translate(40,580)">Z</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(21,1)">
     <path transform="translate(40,30)" d="M0,0L0,-6"></path>
     <path transform="translate(81,30)" d="M0,0L0,-6"></path>
@@ -58,7 +85,22 @@
     <path transform="translate(532,30)" d="M0,0L0,-6"></path>
     <path transform="translate(573,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="x-axis tick text" transform="translate(21,-8.5)"><text transform="translate(40,30)">0</text><text transform="translate(81,30)">1</text><text transform="translate(122,30)">2</text><text transform="translate(163,30)">3</text><text transform="translate(204,30)">4</text><text transform="translate(245,30)">5</text><text transform="translate(286,30)">6</text><text transform="translate(327,30)">7</text><text transform="translate(368,30)">8</text><text transform="translate(409,30)">9</text><text transform="translate(450,30)">10</text><text transform="translate(491,30)">11</text><text transform="translate(532,30)">12</text><text transform="translate(573,30)">13</text></g>
+  <g aria-label="x-axis tick text" transform="translate(21,-8.5)">
+    <text transform="translate(40,30)">0</text>
+    <text transform="translate(81,30)">1</text>
+    <text transform="translate(122,30)">2</text>
+    <text transform="translate(163,30)">3</text>
+    <text transform="translate(204,30)">4</text>
+    <text transform="translate(245,30)">5</text>
+    <text transform="translate(286,30)">6</text>
+    <text transform="translate(327,30)">7</text>
+    <text transform="translate(368,30)">8</text>
+    <text transform="translate(409,30)">9</text>
+    <text transform="translate(450,30)">10</text>
+    <text transform="translate(491,30)">11</text>
+    <text transform="translate(532,30)">12</text>
+    <text transform="translate(573,30)">13</text>
+  </g>
   <g aria-label="cell">
     <rect x="40.5" width="40" y="30.5" height="21" fill="rgb(40, 119, 184)"></rect>
     <rect x="81.5" width="40" y="30.5" height="21" fill="rgb(82, 156, 204)"></rect>

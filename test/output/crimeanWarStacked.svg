@@ -22,7 +22,15 @@
     <path transform="translate(40,93.80050505050505)" d="M0,0L-6,0"></path>
     <path transform="translate(40,38.56060606060605)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,314.760101010101)">500</text><text y="0.32em" transform="translate(40,259.520202020202)">1,000</text><text y="0.32em" transform="translate(40,204.28030303030303)">1,500</text><text y="0.32em" transform="translate(40,149.04040404040404)">2,000</text><text y="0.32em" transform="translate(40,93.80050505050505)">2,500</text><text y="0.32em" transform="translate(40,38.56060606060605)">3,000</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,314.760101010101)">500</text>
+    <text y="0.32em" transform="translate(40,259.520202020202)">1,000</text>
+    <text y="0.32em" transform="translate(40,204.28030303030303)">1,500</text>
+    <text y="0.32em" transform="translate(40,149.04040404040404)">2,000</text>
+    <text y="0.32em" transform="translate(40,93.80050505050505)">2,500</text>
+    <text y="0.32em" transform="translate(40,38.56060606060605)">3,000</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(112.20246238030096,370)" d="M0,0L0,6"></path>
@@ -34,7 +42,17 @@
     <path transform="translate(547.797537619699,370)" d="M0,0L0,6"></path>
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,370)">Apr</text><text y="0.71em" transform="translate(112.20246238030096,370)">Jul</text><text y="0.71em" transform="translate(185.19835841313272,370)">Oct</text><text y="0.71em" transform="translate(258.1942544459644,370)">Jan</text><text y="0.71em" transform="translate(329.60328317373455,370)">Apr</text><text y="0.71em" transform="translate(401.8057455540356,370)">Jul</text><text y="0.71em" transform="translate(474.80164158686733,370)">Oct</text><text y="0.71em" transform="translate(547.797537619699,370)">Jan</text><text y="0.71em" transform="translate(620,370)">Apr</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">Apr</text>
+    <text y="0.71em" transform="translate(112.20246238030096,370)">Jul</text>
+    <text y="0.71em" transform="translate(185.19835841313272,370)">Oct</text>
+    <text y="0.71em" transform="translate(258.1942544459644,370)">Jan</text>
+    <text y="0.71em" transform="translate(329.60328317373455,370)">Apr</text>
+    <text y="0.71em" transform="translate(401.8057455540356,370)">Jul</text>
+    <text y="0.71em" transform="translate(474.80164158686733,370)">Oct</text>
+    <text y="0.71em" transform="translate(547.797537619699,370)">Jan</text>
+    <text y="0.71em" transform="translate(620,370)">Apr</text>
+  </g>
   <g aria-label="rect">
     <rect x="41" y="369.3371212121212" width="22.80300957592339" height="0.11047979797979224" fill="#4e79a7"></rect>
     <rect x="64.8030095759234" y="367.67992424242425" width="23.596443228454184" height="1.3257575757575637" fill="#4e79a7"></rect>

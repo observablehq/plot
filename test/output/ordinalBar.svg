@@ -31,7 +31,15 @@
     <path transform="translate(40,137)" d="M0,0L-6,0"></path>
     <path transform="translate(40,158)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,32)">0</text><text y="0.32em" transform="translate(40,53)">A</text><text y="0.32em" transform="translate(40,74)">B</text><text y="0.32em" transform="translate(40,95)">C</text><text y="0.32em" transform="translate(40,116)">D</text><text y="0.32em" transform="translate(40,137)">E</text><text y="0.32em" transform="translate(40,158)">F</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,32)">0</text>
+    <text y="0.32em" transform="translate(40,53)">A</text>
+    <text y="0.32em" transform="translate(40,74)">B</text>
+    <text y="0.32em" transform="translate(40,95)">C</text>
+    <text y="0.32em" transform="translate(40,116)">D</text>
+    <text y="0.32em" transform="translate(40,137)">E</text>
+    <text y="0.32em" transform="translate(40,158)">F</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(43.5,0)">
     <path transform="translate(50,170)" d="M0,0L0,6"></path>
     <path transform="translate(145,170)" d="M0,0L0,6"></path>
@@ -40,7 +48,14 @@
     <path transform="translate(430,170)" d="M0,0L0,6"></path>
     <path transform="translate(525,170)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" transform="translate(43.5,9.5)"><text y="0.71em" transform="translate(50,170)">0</text><text y="0.71em" transform="translate(145,170)">1</text><text y="0.71em" transform="translate(240,170)">2</text><text y="0.71em" transform="translate(335,170)">3</text><text y="0.71em" transform="translate(430,170)">4</text><text y="0.71em" transform="translate(525,170)">5</text></g>
+  <g aria-label="x-axis tick text" transform="translate(43.5,9.5)">
+    <text y="0.71em" transform="translate(50,170)">0</text>
+    <text y="0.71em" transform="translate(145,170)">1</text>
+    <text y="0.71em" transform="translate(240,170)">2</text>
+    <text y="0.71em" transform="translate(335,170)">3</text>
+    <text y="0.71em" transform="translate(430,170)">4</text>
+    <text y="0.71em" transform="translate(525,170)">5</text>
+  </g>
   <g aria-label="bar">
     <rect x="50" width="86" y="32" height="21"></rect>
     <rect x="145" width="86" y="32" height="42"></rect>

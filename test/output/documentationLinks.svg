@@ -40,7 +40,33 @@
     <path transform="translate(140,486)" d="M0,0L-6,0"></path>
     <path transform="translate(140,506)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,9.5)"><text y="0.32em" transform="translate(140,26)">Observable Plot</text><text y="0.32em" transform="translate(140,46)">Marks</text><text y="0.32em" transform="translate(140,66)">Scales</text><text y="0.32em" transform="translate(140,86)">Transforms</text><text y="0.32em" transform="translate(140,106)">Facets</text><text y="0.32em" transform="translate(140,126)">Area Mark</text><text y="0.32em" transform="translate(140,146)">Bar Mark</text><text y="0.32em" transform="translate(140,166)">Cell Mark</text><text y="0.32em" transform="translate(140,186)">Dot Mark</text><text y="0.32em" transform="translate(140,206)">Image Mark</text><text y="0.32em" transform="translate(140,226)">Line Mark</text><text y="0.32em" transform="translate(140,246)">Link Mark</text><text y="0.32em" transform="translate(140,266)">Rect Mark</text><text y="0.32em" transform="translate(140,286)">Rule Mark</text><text y="0.32em" transform="translate(140,306)">Text Mark</text><text y="0.32em" transform="translate(140,326)">Tick Mark</text><text y="0.32em" transform="translate(140,346)">Frame Mark</text><text y="0.32em" transform="translate(140,366)">Group Transform</text><text y="0.32em" transform="translate(140,386)">Bin Transform</text><text y="0.32em" transform="translate(140,406)">Stack Transform</text><text y="0.32em" transform="translate(140,426)">Map Transform</text><text y="0.32em" transform="translate(140,446)">Window Transform</text><text y="0.32em" transform="translate(140,466)">Select Transform</text><text y="0.32em" transform="translate(140,486)">Interval Transform</text><text y="0.32em" transform="translate(140,506)">Legends</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,9.5)">
+    <text y="0.32em" transform="translate(140,26)">Observable Plot</text>
+    <text y="0.32em" transform="translate(140,46)">Marks</text>
+    <text y="0.32em" transform="translate(140,66)">Scales</text>
+    <text y="0.32em" transform="translate(140,86)">Transforms</text>
+    <text y="0.32em" transform="translate(140,106)">Facets</text>
+    <text y="0.32em" transform="translate(140,126)">Area Mark</text>
+    <text y="0.32em" transform="translate(140,146)">Bar Mark</text>
+    <text y="0.32em" transform="translate(140,166)">Cell Mark</text>
+    <text y="0.32em" transform="translate(140,186)">Dot Mark</text>
+    <text y="0.32em" transform="translate(140,206)">Image Mark</text>
+    <text y="0.32em" transform="translate(140,226)">Line Mark</text>
+    <text y="0.32em" transform="translate(140,246)">Link Mark</text>
+    <text y="0.32em" transform="translate(140,266)">Rect Mark</text>
+    <text y="0.32em" transform="translate(140,286)">Rule Mark</text>
+    <text y="0.32em" transform="translate(140,306)">Text Mark</text>
+    <text y="0.32em" transform="translate(140,326)">Tick Mark</text>
+    <text y="0.32em" transform="translate(140,346)">Frame Mark</text>
+    <text y="0.32em" transform="translate(140,366)">Group Transform</text>
+    <text y="0.32em" transform="translate(140,386)">Bin Transform</text>
+    <text y="0.32em" transform="translate(140,406)">Stack Transform</text>
+    <text y="0.32em" transform="translate(140,426)">Map Transform</text>
+    <text y="0.32em" transform="translate(140,446)">Window Transform</text>
+    <text y="0.32em" transform="translate(140,466)">Select Transform</text>
+    <text y="0.32em" transform="translate(140,486)">Interval Transform</text>
+    <text y="0.32em" transform="translate(140,506)">Legends</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="140" x2="140" y1="20" y2="530"></line>
     <line x1="198.53658536585365" x2="198.53658536585365" y1="20" y2="530"></line>
@@ -63,7 +89,17 @@
     <path transform="translate(549.7560975609756,530)" d="M0,0L0,6"></path>
     <path transform="translate(608.2926829268292,530)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(140,530)">0</text><text y="0.71em" transform="translate(198.53658536585365,530)">5</text><text y="0.71em" transform="translate(257.0731707317073,530)">10</text><text y="0.71em" transform="translate(315.609756097561,530)">15</text><text y="0.71em" transform="translate(374.1463414634146,530)">20</text><text y="0.71em" transform="translate(432.6829268292683,530)">25</text><text y="0.71em" transform="translate(491.2195121951219,530)">30</text><text y="0.71em" transform="translate(549.7560975609756,530)">35</text><text y="0.71em" transform="translate(608.2926829268292,530)">40</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(140,530)">0</text>
+    <text y="0.71em" transform="translate(198.53658536585365,530)">5</text>
+    <text y="0.71em" transform="translate(257.0731707317073,530)">10</text>
+    <text y="0.71em" transform="translate(315.609756097561,530)">15</text>
+    <text y="0.71em" transform="translate(374.1463414634146,530)">20</text>
+    <text y="0.71em" transform="translate(432.6829268292683,530)">25</text>
+    <text y="0.71em" transform="translate(491.2195121951219,530)">30</text>
+    <text y="0.71em" transform="translate(549.7560975609756,530)">35</text>
+    <text y="0.71em" transform="translate(608.2926829268292,530)">40</text>
+  </g>
   <g aria-label="bar"><a fill="inherit" href="https://observablehq.com/@observablehq/plot" target="_blank">
       <rect x="140" width="480" y="26" height="18"></rect>
     </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-marks" target="_blank">
@@ -115,7 +151,33 @@
     </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-legends" target="_blank">
       <rect x="140" width="210.7317073170732" y="506" height="18"></rect>
     </a></g>
-  <g aria-label="text" fill="white" text-anchor="end" transform="translate(-2.5,9.5)"><text y="0.32em" transform="translate(620,26)">⚡︎ 296</text><text y="0.32em" transform="translate(327.3170731707317,46)"> 16</text><text y="0.32em" transform="translate(350.7317073170732,66)"> 18</text><text y="0.32em" transform="translate(210.2439024390244,86)"> 6</text><text y="0.32em" transform="translate(257.0731707317073,106)"> 10</text><text y="0.32em" transform="translate(175.1219512195122,126)"> 3</text><text y="0.32em" transform="translate(245.3658536585366,146)"> 9</text><text y="0.32em" transform="translate(339.0243902439024,166)"> 17</text><text y="0.32em" transform="translate(198.53658536585365,186)"> 5</text><text y="0.32em" transform="translate(268.780487804878,206)"> 11</text><text y="0.32em" transform="translate(233.65853658536588,226)"> 8</text><text y="0.32em" transform="translate(163.41463414634146,246)"> 2</text><text y="0.32em" transform="translate(163.41463414634146,266)"> 2</text><text y="0.32em" transform="translate(186.82926829268294,286)"> 4</text><text y="0.32em" transform="translate(198.53658536585365,306)"> 5</text><text y="0.32em" transform="translate(151.70731707317074,326)"> 1</text><text y="0.32em" transform="translate(175.1219512195122,346)"> 3</text><text y="0.32em" transform="translate(221.9512195121951,366)"> 7</text><text y="0.32em" transform="translate(280.48780487804873,386)"> 12</text><text y="0.32em" transform="translate(292.1951219512195,406)"> 13</text><text y="0.32em" transform="translate(210.2439024390244,426)"> 6</text><text y="0.32em" transform="translate(175.1219512195122,446)"> 3</text><text y="0.32em" transform="translate(210.2439024390244,466)"> 6</text><text y="0.32em" transform="translate(221.9512195121951,486)"> 7</text><text y="0.32em" transform="translate(350.7317073170732,506)"> 18</text></g>
+  <g aria-label="text" fill="white" text-anchor="end" transform="translate(-2.5,9.5)">
+    <text y="0.32em" transform="translate(620,26)">⚡︎ 296</text>
+    <text y="0.32em" transform="translate(327.3170731707317,46)"> 16</text>
+    <text y="0.32em" transform="translate(350.7317073170732,66)"> 18</text>
+    <text y="0.32em" transform="translate(210.2439024390244,86)"> 6</text>
+    <text y="0.32em" transform="translate(257.0731707317073,106)"> 10</text>
+    <text y="0.32em" transform="translate(175.1219512195122,126)"> 3</text>
+    <text y="0.32em" transform="translate(245.3658536585366,146)"> 9</text>
+    <text y="0.32em" transform="translate(339.0243902439024,166)"> 17</text>
+    <text y="0.32em" transform="translate(198.53658536585365,186)"> 5</text>
+    <text y="0.32em" transform="translate(268.780487804878,206)"> 11</text>
+    <text y="0.32em" transform="translate(233.65853658536588,226)"> 8</text>
+    <text y="0.32em" transform="translate(163.41463414634146,246)"> 2</text>
+    <text y="0.32em" transform="translate(163.41463414634146,266)"> 2</text>
+    <text y="0.32em" transform="translate(186.82926829268294,286)"> 4</text>
+    <text y="0.32em" transform="translate(198.53658536585365,306)"> 5</text>
+    <text y="0.32em" transform="translate(151.70731707317074,326)"> 1</text>
+    <text y="0.32em" transform="translate(175.1219512195122,346)"> 3</text>
+    <text y="0.32em" transform="translate(221.9512195121951,366)"> 7</text>
+    <text y="0.32em" transform="translate(280.48780487804873,386)"> 12</text>
+    <text y="0.32em" transform="translate(292.1951219512195,406)"> 13</text>
+    <text y="0.32em" transform="translate(210.2439024390244,426)"> 6</text>
+    <text y="0.32em" transform="translate(175.1219512195122,446)"> 3</text>
+    <text y="0.32em" transform="translate(210.2439024390244,466)"> 6</text>
+    <text y="0.32em" transform="translate(221.9512195121951,486)"> 7</text>
+    <text y="0.32em" transform="translate(350.7317073170732,506)"> 18</text>
+  </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="140" x2="140" y1="20" y2="530"></line>
   </g>

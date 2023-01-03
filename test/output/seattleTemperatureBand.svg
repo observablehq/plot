@@ -33,14 +33,28 @@
     <path transform="translate(40,93.22404371584703)" d="M0,0L-6,0"></path>
     <path transform="translate(40,47.686703096539205)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,366.448087431694)">20</text><text y="0.32em" transform="translate(40,320.91074681238615)">30</text><text y="0.32em" transform="translate(40,275.37340619307827)">40</text><text y="0.32em" transform="translate(40,229.83606557377047)">50</text><text y="0.32em" transform="translate(40,184.2987249544627)">60</text><text y="0.32em" transform="translate(40,138.76138433515487)">70</text><text y="0.32em" transform="translate(40,93.22404371584703)">80</text><text y="0.32em" transform="translate(40,47.686703096539205)">90</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,366.448087431694)">20</text>
+    <text y="0.32em" transform="translate(40,320.91074681238615)">30</text>
+    <text y="0.32em" transform="translate(40,275.37340619307827)">40</text>
+    <text y="0.32em" transform="translate(40,229.83606557377047)">50</text>
+    <text y="0.32em" transform="translate(40,184.2987249544627)">60</text>
+    <text y="0.32em" transform="translate(40,138.76138433515487)">70</text>
+    <text y="0.32em" transform="translate(40,93.22404371584703)">80</text>
+    <text y="0.32em" transform="translate(40,47.686703096539205)">90</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(185.39726027397262,370)" d="M0,0L0,6"></path>
     <path transform="translate(330.3972602739726,370)" d="M0,0L0,6"></path>
     <path transform="translate(475.3972602739726,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,370)">2012</text><text y="0.71em" transform="translate(185.39726027397262,370)">2013</text><text y="0.71em" transform="translate(330.3972602739726,370)">2014</text><text y="0.71em" transform="translate(475.3972602739726,370)">2015</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">2012</text>
+    <text y="0.71em" transform="translate(185.39726027397262,370)">2013</text>
+    <text y="0.71em" transform="translate(330.3972602739726,370)">2014</text>
+    <text y="0.71em" transform="translate(475.3972602739726,370)">2015</text>
+  </g>
   <g aria-label="rule" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="270.81967213114757" y2="206.8852459016394" stroke="rgb(236, 239, 241)"></line>
     <line x1="40.397260273972606" x2="40.397260273972606" y1="288.8524590163935" y2="224.91803278688528" stroke="rgb(200, 224, 237)"></line>

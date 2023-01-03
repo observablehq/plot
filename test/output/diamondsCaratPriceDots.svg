@@ -53,7 +53,26 @@
     <path transform="translate(44,80.26881720430109)" d="M0,0L-6,0"></path>
     <path transform="translate(44,48.548387096774164)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(44,587.7956989247313)">1,000</text><text y="0.32em" transform="translate(44,556.0752688172043)">2,000</text><text y="0.32em" transform="translate(44,524.3548387096774)">3,000</text><text y="0.32em" transform="translate(44,492.63440860215053)">4,000</text><text y="0.32em" transform="translate(44,460.9139784946237)">5,000</text><text y="0.32em" transform="translate(44,429.1935483870968)">6,000</text><text y="0.32em" transform="translate(44,397.47311827956986)">7,000</text><text y="0.32em" transform="translate(44,365.75268817204295)">8,000</text><text y="0.32em" transform="translate(44,334.03225806451616)">9,000</text><text y="0.32em" transform="translate(44,302.31182795698925)">10,000</text><text y="0.32em" transform="translate(44,270.59139784946234)">11,000</text><text y="0.32em" transform="translate(44,238.8709677419355)">12,000</text><text y="0.32em" transform="translate(44,207.15053763440864)">13,000</text><text y="0.32em" transform="translate(44,175.4301075268817)">14,000</text><text y="0.32em" transform="translate(44,143.70967741935485)">15,000</text><text y="0.32em" transform="translate(44,111.98924731182794)">16,000</text><text y="0.32em" transform="translate(44,80.26881720430109)">17,000</text><text y="0.32em" transform="translate(44,48.548387096774164)">18,000</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(44,587.7956989247313)">1,000</text>
+    <text y="0.32em" transform="translate(44,556.0752688172043)">2,000</text>
+    <text y="0.32em" transform="translate(44,524.3548387096774)">3,000</text>
+    <text y="0.32em" transform="translate(44,492.63440860215053)">4,000</text>
+    <text y="0.32em" transform="translate(44,460.9139784946237)">5,000</text>
+    <text y="0.32em" transform="translate(44,429.1935483870968)">6,000</text>
+    <text y="0.32em" transform="translate(44,397.47311827956986)">7,000</text>
+    <text y="0.32em" transform="translate(44,365.75268817204295)">8,000</text>
+    <text y="0.32em" transform="translate(44,334.03225806451616)">9,000</text>
+    <text y="0.32em" transform="translate(44,302.31182795698925)">10,000</text>
+    <text y="0.32em" transform="translate(44,270.59139784946234)">11,000</text>
+    <text y="0.32em" transform="translate(44,238.8709677419355)">12,000</text>
+    <text y="0.32em" transform="translate(44,207.15053763440864)">13,000</text>
+    <text y="0.32em" transform="translate(44,175.4301075268817)">14,000</text>
+    <text y="0.32em" transform="translate(44,143.70967741935485)">15,000</text>
+    <text y="0.32em" transform="translate(44,111.98924731182794)">16,000</text>
+    <text y="0.32em" transform="translate(44,80.26881720430109)">17,000</text>
+    <text y="0.32em" transform="translate(44,48.548387096774164)">18,000</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="77" x2="77" y1="20" y2="610"></line>
     <line x1="137" x2="137" y1="20" y2="610"></line>
@@ -78,7 +97,18 @@
     <path transform="translate(556.9999999999999,610)" d="M0,0L0,6"></path>
     <path transform="translate(616.9999999999999,610)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(77,610)">0.5</text><text y="0.71em" transform="translate(137,610)">1.0</text><text y="0.71em" transform="translate(196.99999999999997,610)">1.5</text><text y="0.71em" transform="translate(256.99999999999994,610)">2.0</text><text y="0.71em" transform="translate(316.99999999999994,610)">2.5</text><text y="0.71em" transform="translate(376.99999999999994,610)">3.0</text><text y="0.71em" transform="translate(436.99999999999994,610)">3.5</text><text y="0.71em" transform="translate(496.9999999999999,610)">4.0</text><text y="0.71em" transform="translate(556.9999999999999,610)">4.5</text><text y="0.71em" transform="translate(616.9999999999999,610)">5.0</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(77,610)">0.5</text>
+    <text y="0.71em" transform="translate(137,610)">1.0</text>
+    <text y="0.71em" transform="translate(196.99999999999997,610)">1.5</text>
+    <text y="0.71em" transform="translate(256.99999999999994,610)">2.0</text>
+    <text y="0.71em" transform="translate(316.99999999999994,610)">2.5</text>
+    <text y="0.71em" transform="translate(376.99999999999994,610)">3.0</text>
+    <text y="0.71em" transform="translate(436.99999999999994,610)">3.5</text>
+    <text y="0.71em" transform="translate(496.9999999999999,610)">4.0</text>
+    <text y="0.71em" transform="translate(556.9999999999999,610)">4.5</text>
+    <text y="0.71em" transform="translate(616.9999999999999,610)">5.0</text>
+  </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="55.999999999999986" cy="597.3118279569892" r="17.549358962651603"></circle>
     <circle cx="55.999999999999986" cy="603.6559139784947" r="14.818906842274163"></circle>

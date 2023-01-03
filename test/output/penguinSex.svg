@@ -24,13 +24,26 @@
     <path transform="translate(40,78.33333333333331)" d="M0,0L-6,0"></path>
     <path transform="translate(40,36.666666666666686)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,328.33333333333337)">20</text><text y="0.32em" transform="translate(40,286.66666666666663)">40</text><text y="0.32em" transform="translate(40,244.99999999999997)">60</text><text y="0.32em" transform="translate(40,203.33333333333334)">80</text><text y="0.32em" transform="translate(40,161.66666666666666)">100</text><text y="0.32em" transform="translate(40,120)">120</text><text y="0.32em" transform="translate(40,78.33333333333331)">140</text><text y="0.32em" transform="translate(40,36.666666666666686)">160</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,328.33333333333337)">20</text>
+    <text y="0.32em" transform="translate(40,286.66666666666663)">40</text>
+    <text y="0.32em" transform="translate(40,244.99999999999997)">60</text>
+    <text y="0.32em" transform="translate(40,203.33333333333334)">80</text>
+    <text y="0.32em" transform="translate(40,161.66666666666666)">100</text>
+    <text y="0.32em" transform="translate(40,120)">120</text>
+    <text y="0.32em" transform="translate(40,78.33333333333331)">140</text>
+    <text y="0.32em" transform="translate(40,36.666666666666686)">160</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(84.5,0)">
     <path transform="translate(59,370)" d="M0,0L0,6"></path>
     <path transform="translate(246,370)" d="M0,0L0,6"></path>
     <path transform="translate(433,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" transform="translate(84.5,9.5)"><text y="0.71em" transform="translate(59,370)">FEMALE</text><text y="0.71em" transform="translate(246,370)">MALE</text></g>
+  <g aria-label="x-axis tick text" transform="translate(84.5,9.5)">
+    <text y="0.71em" transform="translate(59,370)">FEMALE</text>
+    <text y="0.71em" transform="translate(246,370)">MALE</text>
+  </g>
   <g aria-label="bar">
     <rect x="59" width="168" y="26.250000000000018" height="343.75"></rect>
     <rect x="246" width="168" y="20" height="350"></rect>

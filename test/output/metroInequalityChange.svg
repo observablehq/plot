@@ -39,7 +39,19 @@
     <path transform="translate(40,72.77777777777774)" d="M0,0L-6,0"></path>
     <path transform="translate(40,42.222222222222165)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,347.7777777777777)">3.5</text><text y="0.32em" transform="translate(40,317.22222222222223)">4.0</text><text y="0.32em" transform="translate(40,286.66666666666663)">4.5</text><text y="0.32em" transform="translate(40,256.1111111111111)">5.0</text><text y="0.32em" transform="translate(40,225.55555555555554)">5.5</text><text y="0.32em" transform="translate(40,194.99999999999997)">6.0</text><text y="0.32em" transform="translate(40,164.4444444444444)">6.5</text><text y="0.32em" transform="translate(40,133.88888888888886)">7.0</text><text y="0.32em" transform="translate(40,103.33333333333329)">7.5</text><text y="0.32em" transform="translate(40,72.77777777777774)">8.0</text><text y="0.32em" transform="translate(40,42.222222222222165)">8.5</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,347.7777777777777)">3.5</text>
+    <text y="0.32em" transform="translate(40,317.22222222222223)">4.0</text>
+    <text y="0.32em" transform="translate(40,286.66666666666663)">4.5</text>
+    <text y="0.32em" transform="translate(40,256.1111111111111)">5.0</text>
+    <text y="0.32em" transform="translate(40,225.55555555555554)">5.5</text>
+    <text y="0.32em" transform="translate(40,194.99999999999997)">6.0</text>
+    <text y="0.32em" transform="translate(40,164.4444444444444)">6.5</text>
+    <text y="0.32em" transform="translate(40,133.88888888888886)">7.0</text>
+    <text y="0.32em" transform="translate(40,103.33333333333329)">7.5</text>
+    <text y="0.32em" transform="translate(40,72.77777777777774)">8.0</text>
+    <text y="0.32em" transform="translate(40,42.222222222222165)">8.5</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="122.35098938270542" x2="122.35098938270542" y1="20" y2="370"></line>
     <line x1="165.22783869550042" x2="165.22783869550042" y1="20" y2="370"></line>
@@ -82,7 +94,27 @@
     <path transform="translate(536.0369454802747,370)" d="M0,0L0,6"></path>
     <path transform="translate(609.3354035180724,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(122.35098938270542,370)">200k</text><text y="0.71em" transform="translate(165.22783869550042,370)">300k</text><text y="0.71em" transform="translate(195.64944742050344,370)"></text><text y="0.71em" transform="translate(219.2462803747929,370)"></text><text y="0.71em" transform="translate(238.52629673329844,370)"></text><text y="0.71em" transform="translate(254.82731829655242,370)"></text><text y="0.71em" transform="translate(268.9479054583015,370)"></text><text y="0.71em" transform="translate(281.4031460460936,370)"></text><text y="0.71em" transform="translate(292.54473841259096,370)">1M</text><text y="0.71em" transform="translate(365.843196450389,370)">2M</text><text y="0.71em" transform="translate(408.7200457631841,370)">3M</text><text y="0.71em" transform="translate(439.141654488187,370)"></text><text y="0.71em" transform="translate(462.7384874424766,370)"></text><text y="0.71em" transform="translate(482.0185038009821,370)"></text><text y="0.71em" transform="translate(498.3195253642359,370)"></text><text y="0.71em" transform="translate(512.440112525985,370)"></text><text y="0.71em" transform="translate(524.895353113777,370)"></text><text y="0.71em" transform="translate(536.0369454802747,370)">10M</text><text y="0.71em" transform="translate(609.3354035180724,370)">20M</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(122.35098938270542,370)">200k</text>
+    <text y="0.71em" transform="translate(165.22783869550042,370)">300k</text>
+    <text y="0.71em" transform="translate(195.64944742050344,370)"></text>
+    <text y="0.71em" transform="translate(219.2462803747929,370)"></text>
+    <text y="0.71em" transform="translate(238.52629673329844,370)"></text>
+    <text y="0.71em" transform="translate(254.82731829655242,370)"></text>
+    <text y="0.71em" transform="translate(268.9479054583015,370)"></text>
+    <text y="0.71em" transform="translate(281.4031460460936,370)"></text>
+    <text y="0.71em" transform="translate(292.54473841259096,370)">1M</text>
+    <text y="0.71em" transform="translate(365.843196450389,370)">2M</text>
+    <text y="0.71em" transform="translate(408.7200457631841,370)">3M</text>
+    <text y="0.71em" transform="translate(439.141654488187,370)"></text>
+    <text y="0.71em" transform="translate(462.7384874424766,370)"></text>
+    <text y="0.71em" transform="translate(482.0185038009821,370)"></text>
+    <text y="0.71em" transform="translate(498.3195253642359,370)"></text>
+    <text y="0.71em" transform="translate(512.440112525985,370)"></text>
+    <text y="0.71em" transform="translate(524.895353113777,370)"></text>
+    <text y="0.71em" transform="translate(536.0369454802747,370)">10M</text>
+    <text y="0.71em" transform="translate(609.3354035180724,370)">20M</text>
+  </g>
   <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M577.0231512318791,298.88888888888886A219.846341543917,219.846341543917 0,0,1 610,133.88888888888886M602.8217972873439,137.42065980671705L610,133.88888888888886L609.4695019788583,141.87128025047747" stroke="rgb(193, 58, 59)"></path>
     <path d="M529.808311059836,292.77777777777777A205.29848446316504,205.29848446316504 0,0,1 566.5284089581303,139.99999999999994M559.2192119228268,143.25202071012936L566.5284089581303,139.99999999999994L565.6901429890837,147.95596066890337" stroke="rgb(203, 75, 68)"></path>
@@ -280,5 +312,14 @@
     <path d="M52.48584975208373,256.1111111111111A23.95686902620328,23.95686902620328 0,0,1 52.185481987994095,274.4444444444444M57.09470317065009,270.8036683012654L52.185481987994095,274.4444444444444L51.487087949836784,268.37254611587815" stroke="rgb(5, 48, 97)"></path>
     <path d="M102.58341309383286,317.22222222222223A173.8230228048356,173.8230228048356 0,0,1 50.038770403392,194.99999999999997M46.13143145240598,201.98088119954116L50.038770403392,194.99999999999997L54.13072138750283,201.8742953925209" stroke="rgb(225, 121, 97)"></path>
   </g>
-  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" transform="translate(0.5,-7.5)"><text y="0.32em" transform="translate(610,133.88888888888886)">New York</text><text y="0.32em" transform="translate(530.6411534518993,194.99999999999997)">Chicago</text><text y="0.32em" transform="translate(491.7660168841815,127.77777777777777)">Houston</text><text y="0.32em" transform="translate(482.02010762320214,158.33333333333331)">Washington, D.C.</text><text y="0.32em" transform="translate(464.66902514240314,133.88888888888886)">San Francisco</text><text y="0.32em" transform="translate(361.3534076861197,78.88888888888881)">San Jose</text><text y="0.32em" transform="translate(286.81606474956936,30)">Fairfield, Conn.</text><text y="0.32em" transform="translate(138.05603473057374,268.3333333333333)">Binghamton, N.Y.</text></g>
+  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" transform="translate(0.5,-7.5)">
+    <text y="0.32em" transform="translate(610,133.88888888888886)">New York</text>
+    <text y="0.32em" transform="translate(530.6411534518993,194.99999999999997)">Chicago</text>
+    <text y="0.32em" transform="translate(491.7660168841815,127.77777777777777)">Houston</text>
+    <text y="0.32em" transform="translate(482.02010762320214,158.33333333333331)">Washington, D.C.</text>
+    <text y="0.32em" transform="translate(464.66902514240314,133.88888888888886)">San Francisco</text>
+    <text y="0.32em" transform="translate(361.3534076861197,78.88888888888881)">San Jose</text>
+    <text y="0.32em" transform="translate(286.81606474956936,30)">Fairfield, Conn.</text>
+    <text y="0.32em" transform="translate(138.05603473057374,268.3333333333333)">Binghamton, N.Y.</text>
+  </g>
 </svg>

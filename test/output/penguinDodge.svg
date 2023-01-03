@@ -22,7 +22,15 @@
     <path transform="translate(486.6666666666667,170)" d="M0,0L0,6"></path>
     <path transform="translate(569.9999999999999,170)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(70,170)">3,000</text><text y="0.71em" transform="translate(153.33333333333331,170)">3,500</text><text y="0.71em" transform="translate(236.66666666666666,170)">4,000</text><text y="0.71em" transform="translate(320,170)">4,500</text><text y="0.71em" transform="translate(403.3333333333333,170)">5,000</text><text y="0.71em" transform="translate(486.6666666666667,170)">5,500</text><text y="0.71em" transform="translate(569.9999999999999,170)">6,000</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(70,170)">3,000</text>
+    <text y="0.71em" transform="translate(153.33333333333331,170)">3,500</text>
+    <text y="0.71em" transform="translate(236.66666666666666,170)">4,000</text>
+    <text y="0.71em" transform="translate(320,170)">4,500</text>
+    <text y="0.71em" transform="translate(403.3333333333333,170)">5,000</text>
+    <text y="0.71em" transform="translate(486.6666666666667,170)">5,500</text>
+    <text y="0.71em" transform="translate(569.9999999999999,170)">6,000</text>
+  </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="195" cy="166" r="3"></circle>
     <circle cx="203.33333333333334" cy="166" r="3"></circle>

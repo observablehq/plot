@@ -17,7 +17,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Documentary" y2="Documentary"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Documentary</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Documentary</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -44,7 +46,19 @@
       <path transform="translate(858,0)" d="M0,0L0,-6"></path>
       <path transform="translate(940,0)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,-8.5)"><text transform="translate(120,0)">0</text><text transform="translate(202,0)">1</text><text transform="translate(284,0)">2</text><text transform="translate(366,0)">3</text><text transform="translate(448,0)">4</text><text transform="translate(530,0)">5</text><text transform="translate(612,0)">6</text><text transform="translate(694,0)">7</text><text transform="translate(776,0)">8</text><text transform="translate(858,0)">9</text><text transform="translate(940,0)">10</text></g>
+    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+      <text transform="translate(120,0)">0</text>
+      <text transform="translate(202,0)">1</text>
+      <text transform="translate(284,0)">2</text>
+      <text transform="translate(366,0)">3</text>
+      <text transform="translate(448,0)">4</text>
+      <text transform="translate(530,0)">5</text>
+      <text transform="translate(612,0)">6</text>
+      <text transform="translate(694,0)">7</text>
+      <text transform="translate(776,0)">8</text>
+      <text transform="translate(858,0)">9</text>
+      <text transform="translate(940,0)">10</text>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="743.1999999999999" cy="19.5" r="2.5" stroke="#edc949"></circle>
       <circle cx="595.5999999999999" cy="19.5" r="2.5" stroke="#edc949"></circle>
@@ -89,7 +103,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Black Comedy" y2="Black Comedy"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Black Comedy</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Black Comedy</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -142,7 +158,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Drama" y2="Drama"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Drama</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Drama</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -901,7 +919,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Musical" y2="Musical"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Musical</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Musical</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -972,7 +992,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Western" y2="Western"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Western</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Western</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -1025,7 +1047,9 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,227)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">N/A</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">N/A</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -1288,7 +1312,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Adventure" y2="Adventure"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Adventure</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Adventure</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -1560,7 +1586,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Thriller/Suspense" y2="Thriller/Suspense"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Thriller/Suspense</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Thriller/Suspense</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -1814,7 +1842,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Action" y2="Action"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Action</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Action</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -2227,7 +2257,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Concert/Performance" y2="Concert/Performance"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Concert/Performance</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Concert/Performance</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -2252,7 +2284,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Comedy" y2="Comedy"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Comedy</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Comedy</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -2908,7 +2942,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Romantic Comedy" y2="Romantic Comedy"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Romantic Comedy</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Romantic Comedy</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>
@@ -3059,7 +3095,9 @@
     <g aria-label="fy-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="Horror" y2="Horror"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(120,19.5)">Horror</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(120,19.5)">Horror</text>
+    </g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="120" x2="120" y1="0" y2="39"></line>
       <line x1="202" x2="202" y1="0" y2="39"></line>

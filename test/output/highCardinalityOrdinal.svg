@@ -41,7 +41,34 @@
     <path transform="translate(563,30)" d="M0,0L0,6"></path>
     <path transform="translate(585,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" transform="translate(10.5,9.5)"><text y="0.71em" transform="translate(35,30)">0</text><text y="0.71em" transform="translate(57,30)">1</text><text y="0.71em" transform="translate(79,30)">2</text><text y="0.71em" transform="translate(101,30)">3</text><text y="0.71em" transform="translate(123,30)">4</text><text y="0.71em" transform="translate(145,30)">5</text><text y="0.71em" transform="translate(167,30)">6</text><text y="0.71em" transform="translate(189,30)">7</text><text y="0.71em" transform="translate(211,30)">8</text><text y="0.71em" transform="translate(233,30)">9</text><text y="0.71em" transform="translate(255,30)">10</text><text y="0.71em" transform="translate(277,30)">11</text><text y="0.71em" transform="translate(299,30)">12</text><text y="0.71em" transform="translate(321,30)">13</text><text y="0.71em" transform="translate(343,30)">14</text><text y="0.71em" transform="translate(365,30)">15</text><text y="0.71em" transform="translate(387,30)">16</text><text y="0.71em" transform="translate(409,30)">17</text><text y="0.71em" transform="translate(431,30)">18</text><text y="0.71em" transform="translate(453,30)">19</text><text y="0.71em" transform="translate(475,30)">20</text><text y="0.71em" transform="translate(497,30)">21</text><text y="0.71em" transform="translate(519,30)">22</text><text y="0.71em" transform="translate(541,30)">23</text><text y="0.71em" transform="translate(563,30)">24</text><text y="0.71em" transform="translate(585,30)">25</text></g>
+  <g aria-label="x-axis tick text" transform="translate(10.5,9.5)">
+    <text y="0.71em" transform="translate(35,30)">0</text>
+    <text y="0.71em" transform="translate(57,30)">1</text>
+    <text y="0.71em" transform="translate(79,30)">2</text>
+    <text y="0.71em" transform="translate(101,30)">3</text>
+    <text y="0.71em" transform="translate(123,30)">4</text>
+    <text y="0.71em" transform="translate(145,30)">5</text>
+    <text y="0.71em" transform="translate(167,30)">6</text>
+    <text y="0.71em" transform="translate(189,30)">7</text>
+    <text y="0.71em" transform="translate(211,30)">8</text>
+    <text y="0.71em" transform="translate(233,30)">9</text>
+    <text y="0.71em" transform="translate(255,30)">10</text>
+    <text y="0.71em" transform="translate(277,30)">11</text>
+    <text y="0.71em" transform="translate(299,30)">12</text>
+    <text y="0.71em" transform="translate(321,30)">13</text>
+    <text y="0.71em" transform="translate(343,30)">14</text>
+    <text y="0.71em" transform="translate(365,30)">15</text>
+    <text y="0.71em" transform="translate(387,30)">16</text>
+    <text y="0.71em" transform="translate(409,30)">17</text>
+    <text y="0.71em" transform="translate(431,30)">18</text>
+    <text y="0.71em" transform="translate(453,30)">19</text>
+    <text y="0.71em" transform="translate(475,30)">20</text>
+    <text y="0.71em" transform="translate(497,30)">21</text>
+    <text y="0.71em" transform="translate(519,30)">22</text>
+    <text y="0.71em" transform="translate(541,30)">23</text>
+    <text y="0.71em" transform="translate(563,30)">24</text>
+    <text y="0.71em" transform="translate(585,30)">25</text>
+  </g>
   <g aria-label="cell">
     <rect x="35" width="20" y="0" height="30" fill="rgb(35, 23, 27)"></rect>
     <rect x="57" width="20" y="0" height="30" fill="rgb(66, 47, 133)"></rect>

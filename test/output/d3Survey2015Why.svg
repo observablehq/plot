@@ -30,7 +30,23 @@
     <path transform="translate(300,290)" d="M0,0L-6,0"></path>
     <path transform="translate(300,310)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,10.5)"><text y="0.32em" transform="translate(300,30)">For work</text><text y="0.32em" transform="translate(300,50)">For fun</text><text y="0.32em" transform="translate(300,70)">To express myself</text><text y="0.32em" transform="translate(300,90)">To get a job</text><text y="0.32em" transform="translate(300,110)">For school</text><text y="0.32em" transform="translate(300,130)"></text><text y="0.32em" transform="translate(300,150)">I think digital interactive systems tha explain complex systems visually are the future</text><text y="0.32em" transform="translate(300,170)">Tableau to D3</text><text y="0.32em" transform="translate(300,190)">for my own projects</text><text y="0.32em" transform="translate(300,210)">improve as a product designer</text><text y="0.32em" transform="translate(300,230)">to address visual learners</text><text y="0.32em" transform="translate(300,250)">to do vis on the web</text><text y="0.32em" transform="translate(300,270)">to give back to the dataviz community</text><text y="0.32em" transform="translate(300,290)">to understand data better</text><text y="0.32em" transform="translate(300,310)">to work with open data</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,10.5)">
+    <text y="0.32em" transform="translate(300,30)">For work</text>
+    <text y="0.32em" transform="translate(300,50)">For fun</text>
+    <text y="0.32em" transform="translate(300,70)">To express myself</text>
+    <text y="0.32em" transform="translate(300,90)">To get a job</text>
+    <text y="0.32em" transform="translate(300,110)">For school</text>
+    <text y="0.32em" transform="translate(300,130)"></text>
+    <text y="0.32em" transform="translate(300,150)">I think digital interactive systems tha explain complex systems visually are the future</text>
+    <text y="0.32em" transform="translate(300,170)">Tableau to D3</text>
+    <text y="0.32em" transform="translate(300,190)">for my own projects</text>
+    <text y="0.32em" transform="translate(300,210)">improve as a product designer</text>
+    <text y="0.32em" transform="translate(300,230)">to address visual learners</text>
+    <text y="0.32em" transform="translate(300,250)">to do vis on the web</text>
+    <text y="0.32em" transform="translate(300,270)">to give back to the dataviz community</text>
+    <text y="0.32em" transform="translate(300,290)">to understand data better</text>
+    <text y="0.32em" transform="translate(300,310)">to work with open data</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="300" x2="300" y1="30" y2="330"></line>
     <line x1="364" x2="364" y1="30" y2="330"></line>
@@ -57,7 +73,19 @@
     <path transform="translate(876,30)" d="M0,0L0,-6"></path>
     <path transform="translate(940,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,-8.5)"><text transform="translate(300,30)">0</text><text transform="translate(364,30)">10</text><text transform="translate(428,30)">20</text><text transform="translate(492,30)">30</text><text transform="translate(556,30)">40</text><text transform="translate(620,30)">50</text><text transform="translate(684,30)">60</text><text transform="translate(748,30)">70</text><text transform="translate(812,30)">80</text><text transform="translate(876,30)">90</text><text transform="translate(940,30)">100</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+    <text transform="translate(300,30)">0</text>
+    <text transform="translate(364,30)">10</text>
+    <text transform="translate(428,30)">20</text>
+    <text transform="translate(492,30)">30</text>
+    <text transform="translate(556,30)">40</text>
+    <text transform="translate(620,30)">50</text>
+    <text transform="translate(684,30)">60</text>
+    <text transform="translate(748,30)">70</text>
+    <text transform="translate(812,30)">80</text>
+    <text transform="translate(876,30)">90</text>
+    <text transform="translate(940,30)">100</text>
+  </g>
   <g aria-label="bar" fill="steelblue">
     <rect x="300" width="446.2385321100917" y="51" height="19"></rect>
     <rect x="300" width="518.6544342507646" y="31" height="19"></rect>

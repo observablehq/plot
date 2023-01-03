@@ -16,22 +16,29 @@
   <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAZ0lEQVQ4jaVS2wpAIQjT/v+jewmSMefOKRA0bJc0456MiHXydeosNd6r6HoVVtWAGFH6mDaH3+llPEwzyx1P3VvnP3E+DNsNpR9xlQfUxfLJj5rv1z2bvCiMyUunz+H4O5MXPGf3cwMB/wEBfsriPgAAAABJRU5ErkJggg=="></image>
   <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">0.0</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">0.0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(107.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">0.2</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">0.2</text>
     </g>
     <g class="tick" opacity="1" transform="translate(152.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">0.4</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">0.4</text>
     </g>
     <g class="tick" opacity="1" transform="translate(186.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">0.6</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">0.6</text>
     </g>
     <g class="tick" opacity="1" transform="translate(215.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">0.8</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">0.8</text>
     </g>
     <g class="tick" opacity="1" transform="translate(240.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">1.0</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">1.0</text>
     </g>
-  </g><text x="0" y="12" fill="currentColor" font-weight="bold">Sqrt</text>
+  </g>
+  <text x="0" y="12" fill="currentColor" font-weight="bold">Sqrt</text>
 </svg>

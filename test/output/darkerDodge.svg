@@ -25,7 +25,18 @@
     <path transform="translate(553.3333333333333,140)" d="M0,0L0,6"></path>
     <path transform="translate(620,140)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(20,140)">0</text><text y="0.71em" transform="translate(86.66666666666666,140)">1</text><text y="0.71em" transform="translate(153.33333333333331,140)">2</text><text y="0.71em" transform="translate(220,140)">3</text><text y="0.71em" transform="translate(286.66666666666663,140)">4</text><text y="0.71em" transform="translate(353.33333333333337,140)">5</text><text y="0.71em" transform="translate(420,140)">6</text><text y="0.71em" transform="translate(486.6666666666667,140)">7</text><text y="0.71em" transform="translate(553.3333333333333,140)">8</text><text y="0.71em" transform="translate(620,140)">9</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(20,140)">0</text>
+    <text y="0.71em" transform="translate(86.66666666666666,140)">1</text>
+    <text y="0.71em" transform="translate(153.33333333333331,140)">2</text>
+    <text y="0.71em" transform="translate(220,140)">3</text>
+    <text y="0.71em" transform="translate(286.66666666666663,140)">4</text>
+    <text y="0.71em" transform="translate(353.33333333333337,140)">5</text>
+    <text y="0.71em" transform="translate(420,140)">6</text>
+    <text y="0.71em" transform="translate(486.6666666666667,140)">7</text>
+    <text y="0.71em" transform="translate(553.3333333333333,140)">8</text>
+    <text y="0.71em" transform="translate(620,140)">9</text>
+  </g>
   <g aria-label="dot" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="67.40440589222212" cy="70" r="3" fill="rgb(75, 73, 198)" stroke="rgb(0, 0, 101)"></circle>
     <circle cx="74.30805038384736" cy="68.84254903635082" r="3" fill="rgb(75, 81, 211)" stroke="rgb(0, 3, 113)"></circle>
