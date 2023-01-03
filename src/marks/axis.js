@@ -1,9 +1,11 @@
 import {extent, format, utcFormat} from "d3";
+import {create} from "../context.js";
 import {formatDefault} from "../format.js";
+import {Mark} from "../mark.js";
 import {radians} from "../math.js";
 import {range, valueof, arrayify, constant, keyword, identity} from "../options.js";
 import {isNone, isNoneish, isIterable, isTemporal} from "../options.js";
-import {offset} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {textX, textY} from "./text.js";
@@ -55,6 +57,7 @@ function axisKy(
   {
     grid,
     gridOpacity = 0.1,
+    line,
     color = "currentColor",
     opacity = 1,
     stroke = color,
@@ -81,6 +84,14 @@ function axisKy(
           strokeWidth,
           x1: x1 === undefined && anchor === "left" ? x : x1,
           x2: x2 === undefined && anchor === "right" ? x : x2,
+          ...options
+        })
+      : null,
+    k !== "fy" && line && !isNone(line)
+      ? new AxisLine(k, anchor, {
+          stroke: line === true ? stroke : line,
+          strokeOpacity,
+          strokeWidth,
           ...options
         })
       : null,
@@ -147,6 +158,7 @@ function axisKx(
   {
     grid,
     gridOpacity = 0.1,
+    line,
     color = "currentColor",
     opacity = 1,
     stroke = color,
@@ -173,6 +185,14 @@ function axisKx(
           strokeWidth,
           y1: y1 === undefined && anchor === "top" ? y : y1,
           y2: y2 === undefined && anchor === "bottom" ? y : y2,
+          ...options
+        })
+      : null,
+    k !== "fx" && line && !isNone(line)
+      ? new AxisLine(k, anchor, {
+          stroke: line === true ? stroke : line,
+          strokeOpacity,
+          strokeWidth,
           ...options
         })
       : null,
@@ -459,6 +479,34 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
   );
   m.ariaLabel = `${k}-axis ${ariaLabel}`;
   return m;
+}
+
+const axisLineDefaults = {
+  fill: null,
+  stroke: "currentColor"
+};
+
+class AxisLine extends Mark {
+  constructor(k, anchor, {facetAnchor = anchor + "-empty", ...options} = {}) {
+    super(undefined, undefined, {facetAnchor, ...options}, axisLineDefaults);
+    this.anchor = anchor;
+    this.ariaLabel = `${k}-axis line`;
+  }
+  render(index, scales, channels, dimensions, context) {
+    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+    const {anchor} = this;
+    const tx = anchor === "left" ? -0.5 : anchor === "right" ? 0.5 : undefined;
+    const ty = anchor === "top" ? -0.5 : anchor === "bottom" ? 0.5 : undefined;
+    return create("svg:line", context)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyDirectStyles, this)
+      .call(applyTransform, this, {}, tx, ty)
+      .attr("x1", anchor === "right" ? width - marginRight : marginLeft)
+      .attr("y1", anchor === "bottom" ? height - marginBottom : marginTop)
+      .attr("x2", anchor === "left" ? marginLeft : width - marginRight)
+      .attr("y2", anchor === "top" ? marginTop : height - marginBottom)
+      .node();
+  }
 }
 
 function inferTextChannel(scale, ticks, tickFormat) {

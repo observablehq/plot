@@ -1193,6 +1193,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
+    <line aria-label="x-axis line" stroke="currentColor" transform="translate(0.5,0.5)" x1="100" y1="18" x2="620" y2="18"></line>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(136.61971830985914,18)" d="M0,0L0,6"></path>
       <path transform="translate(209.85915492957747,18)" d="M0,0L0,6"></path>

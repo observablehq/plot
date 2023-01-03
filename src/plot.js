@@ -536,6 +536,7 @@ function axisOptions(
   anchor,
   {
     grid: defaultGrid,
+    line: defaultLine,
     marginTop: defaultMarginTop,
     marginRight: defaultMarginRight,
     marginBottom: defaultMarginBottom,
@@ -543,6 +544,7 @@ function axisOptions(
   },
   {
     grid = defaultGrid,
+    line = defaultLine,
     marginTop = defaultMarginTop,
     marginRight = defaultMarginRight,
     marginBottom = defaultMarginBottom,
@@ -560,6 +562,7 @@ function axisOptions(
   return {
     anchor,
     grid,
+    line,
     marginTop,
     marginRight,
     marginBottom,
