@@ -432,17 +432,21 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
         if (isIterable(ticks)) {
           data = arrayify(ticks);
         } else if (scale.ticks) {
-          if (ticks === undefined) {
-            const interval = scale.interval;
-            if (interval !== undefined) {
-              const [min, max] = extent(scale.domain());
-              ticks = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
-            } else {
-              const [min, max] = extent(scale.range());
-              ticks = (max - min) / (k === "x" ? 80 : 35);
-            }
+          if (ticks !== undefined) {
+            data = scale.ticks(ticks);
+          } else if (scale.interval !== undefined) {
+            // For time scales, we could pass the interval directly to
+            // scale.ticks because it’s supported by d3.utcTicks; but
+            // quantitative scales and d3.ticks do not support numeric
+            // intervals for scale.ticks, so we compute them here.
+            const {interval} = scale;
+            const [min, max] = extent(scale.domain());
+            data = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
+          } else {
+            const [min, max] = extent(scale.range());
+            ticks = (max - min) / (k === "x" ? 80 : 35);
+            data = scale.ticks(ticks);
           }
-          data = scale.ticks(ticks);
         } else {
           data = scale.domain();
         }

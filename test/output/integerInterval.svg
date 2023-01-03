@@ -35,6 +35,18 @@
     <text y="0.32em" transform="translate(40,81.76470588235296)">14</text>
     <text y="0.32em" transform="translate(40,40.58823529411765)">16</text>
   </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(233.33333333333331,370)" d="M0,0L0,6"></path>
+    <path transform="translate(426.66666666666663,370)" d="M0,0L0,6"></path>
+    <path transform="translate(620,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">2.0</text>
+    <text y="0.71em" transform="translate(233.33333333333331,370)">3.0</text>
+    <text y="0.71em" transform="translate(426.66666666666663,370)">4.0</text>
+    <text y="0.71em" transform="translate(620,370)">5.0</text>
+  </g>
   <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path d="M40,184.706L233.333,20L233.333,164.118L620,122.941"></path>
   </g>
