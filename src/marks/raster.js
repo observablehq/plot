@@ -157,6 +157,9 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
   if (typeof fill !== "function") (options.fill = fill), (fill = null);
   if (typeof fillOpacity !== "function") (options.fillOpacity = fillOpacity), (fillOpacity = null);
   return initializer(options, (data, facets, {x1, y1, x2, y2}, {x, y}) => {
+    // TODO Allow projections, if invertible.
+    if (!x) throw new Error("missing scale: x");
+    if (!y) throw new Error("missing scale: y");
     let {width: w, height: h} = options;
     (x1 = x(x1.value[0])), (y1 = y(y1.value[0])), (x2 = x(x2.value[0])), (y2 = y(y2.value[0]));
     // Note: this must exactly match the defaults in render above!
