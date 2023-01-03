@@ -61,6 +61,9 @@
     <text y="0.32em" transform="translate(40,52.163360712575106)">8.3</text>
     <text y="0.32em" transform="translate(40,26.535780889795117)">8.4</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,20)">↑ Volume (log₁₀)</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="63.95301139559466" x2="63.95301139559466" y1="20" y2="370"></line>
     <line x1="139.6256868642966" x2="139.6256868642966" y1="20" y2="370"></line>

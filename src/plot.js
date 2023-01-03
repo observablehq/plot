@@ -8,7 +8,7 @@ import {Legends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY} from "./marks/axis.js";
 import {arrayify, isScaleOptions, map, yes} from "./options.js";
-import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
+import {Scales, ScaleFunctions, autoScaleRange, exposeScales, facetDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {maybeInterval} from "./transforms/interval.js";
@@ -141,9 +141,7 @@ export function plot(options = {}) {
   autoScaleLabels(channelsByScale, scaleDescriptors, options);
 
   const {fx, fy} = scales;
-  const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
-  const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
-  const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
+  const subdimensions = facetDimensions(scaleDescriptors, dimensions);
   const context = Context(options, subdimensions, scaleDescriptors);
 
   // Reinitialize; for deriving channels dependent on other channels.
@@ -256,7 +254,7 @@ export function plot(options = {}) {
       .enter()
       .append("g")
       .attr("aria-label", "facet")
-      .attr("transform", facetTranslate(fx, fy))
+      .attr("transform", facetTranslate(fx, fy, dimensions))
       .each(function (f) {
         let empty = true;
         for (const mark of marks) {

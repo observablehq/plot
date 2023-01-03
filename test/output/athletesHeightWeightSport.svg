@@ -79,6 +79,9 @@
     <text y="0.32em" transform="translate(40,55.40000000000003)">2.15</text>
     <text y="0.32em" transform="translate(40,25.899999999999874)">2.20</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,20)">↑ height</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="77.55395683453237" x2="77.55395683453237" y1="20" y2="610"></line>
     <line x1="161.0071942446043" x2="161.0071942446043" y1="20" y2="610"></line>

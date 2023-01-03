@@ -43,6 +43,9 @@
     <text y="0.32em" transform="translate(40,71.22947326924321)">185</text>
     <text y="0.32em" transform="translate(40,29.11633045510343)">190</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,20)">↑ Apple stock price ($)</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="117.03999999999999" x2="117.03999999999999" y1="20" y2="370"></line>
     <line x1="274.3428571428571" x2="274.3428571428571" y1="20" y2="370"></line>

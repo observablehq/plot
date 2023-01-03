@@ -49,6 +49,9 @@
     <text y="0.32em" transform="translate(40,56.320062925587635)">−10%</text>
     <text y="0.32em" transform="translate(40,20)">0%</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,20)">↓ Drop in passenger throughput (2020 vs. 2019)</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(133.31103678929765,370)" d="M0,0L0,6"></path>

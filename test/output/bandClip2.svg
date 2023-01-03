@@ -52,6 +52,9 @@
     <text y="0.32em" transform="translate(40,54.99999999999999)">9</text>
     <text y="0.32em" transform="translate(40,20)">10</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,20)">↑ Count</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(43.5,0)">
     <line x1="50" x2="50" y1="20" y2="370"></line>
     <line x1="145" x2="145" y1="20" y2="370"></line>

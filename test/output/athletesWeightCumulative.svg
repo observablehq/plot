@@ -39,6 +39,9 @@
     <text y="0.32em" transform="translate(44,80.4513282470815)">9,000</text>
     <text y="0.32em" transform="translate(44,48.279253607868355)">10,000</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-43.5,-8.5)">
+    <text transform="translate(44,20)">↑ Frequency</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(84.56338028169014,370)" d="M0,0L0,6"></path>
     <path transform="translate(165.6901408450704,370)" d="M0,0L0,6"></path>

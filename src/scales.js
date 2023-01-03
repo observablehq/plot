@@ -110,8 +110,21 @@ export function ScaleFunctions(scales) {
 export function autoScaleRange({x, y, fx, fy}, dimensions) {
   if (fx) autoScaleRangeX(fx, dimensions);
   if (fy) autoScaleRangeY(fy, dimensions);
-  if (x) autoScaleRangeX(x, fx ? {width: fx.scale.bandwidth()} : dimensions);
-  if (y) autoScaleRangeY(y, fy ? {height: fy.scale.bandwidth()} : dimensions);
+  if (x) autoScaleRangeX(x, facetDimensions({fx}, dimensions));
+  if (y) autoScaleRangeY(y, facetDimensions({fy}, dimensions));
+}
+
+export function facetDimensions({fx, fy}, dimensions) {
+  if (!(fx || fy)) return dimensions;
+  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+  return {
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    width: fx ? fx.scale.bandwidth() + marginLeft + marginRight : width,
+    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height
+  };
 }
 
 function autoScaleRangeX(scale, dimensions) {

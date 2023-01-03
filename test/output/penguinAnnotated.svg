@@ -23,6 +23,9 @@
     <text y="0.32em" transform="translate(75,45)">Gentoo</text>
     <text y="0.32em" transform="translate(75,67)">Chinstrap</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-74.5,-8.5)">
+    <text transform="translate(75,20)">species</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(75,90)" d="M0,0L0,6"></path>
     <path transform="translate(145.39473684210526,90)" d="M0,0L0,6"></path>

@@ -27,6 +27,9 @@
     <text y="0.32em" transform="translate(300,90)">Someone told me I should learn it...</text>
     <text y="0.32em" transform="translate(300,110)"></text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-299.5,-8.5)">
+    <text transform="translate(300,30)">How comfortable are you with d3 now?</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="300" x2="300" y1="30" y2="130"></line>
     <line x1="364" x2="364" y1="30" y2="130"></line>

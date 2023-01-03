@@ -45,6 +45,9 @@
     <text y="0.32em" transform="translate(40,65.76240492575154)">2,400</text>
     <text y="0.32em" transform="translate(40,40.40927200289748)">2,600</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,20)">↑ deaths</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(112.20246238030096,370)" d="M0,0L0,6"></path>

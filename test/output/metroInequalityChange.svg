@@ -52,6 +52,9 @@
     <text y="0.32em" transform="translate(40,72.77777777777774)">8.0</text>
     <text y="0.32em" transform="translate(40,42.222222222222165)">8.5</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,20)">↑ Inequality</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="122.35098938270542" x2="122.35098938270542" y1="20" y2="370"></line>
     <line x1="165.22783869550042" x2="165.22783869550042" y1="20" y2="370"></line>

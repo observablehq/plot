@@ -73,6 +73,9 @@
     <text y="0.32em" transform="translate(44,80.26881720430109)">17,000</text>
     <text y="0.32em" transform="translate(44,48.548387096774164)">18,000</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-43.5,-8.5)">
+    <text transform="translate(44,20)">↑ Price ($)</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="77" x2="77" y1="20" y2="610"></line>
     <line x1="137" x2="137" y1="20" y2="610"></line>

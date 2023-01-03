@@ -103,6 +103,9 @@
     <text y="0.32em" transform="translate(40,578)">27</text>
     <text y="0.32em" transform="translate(40,599)">28</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,30)">Season</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(11.5,0)">
     <line x1="43" x2="43" y1="30" y2="620"></line>
     <line x1="66" x2="66" y1="30" y2="620"></line>

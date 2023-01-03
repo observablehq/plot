@@ -39,6 +39,9 @@
     <text y="0.32em" transform="translate(40,54.99999999999999)">18</text>
     <text y="0.32em" transform="translate(40,20)">20</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,20)">↑ 1</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(15,0)">
     <path transform="translate(44,370)" d="M0,0L0,6"></path>
     <path transform="translate(76,370)" d="M0,0L0,6"></path>

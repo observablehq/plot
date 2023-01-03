@@ -49,6 +49,9 @@
     <text y="0.32em" transform="translate(40,82.7380766223612)">3.0</text>
     <text y="0.32em" transform="translate(40,48.33620015637213)">3.2</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,20)">↑ Cost of gasoline ($ per gallon)</text>
+  </g>
   <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="77.80188410270392" x2="77.80188410270392" y1="20" y2="370"></line>
     <line x1="165.69811067845762" x2="165.69811067845762" y1="20" y2="370"></line>

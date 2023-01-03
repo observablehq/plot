@@ -27,6 +27,9 @@
     <text y="0.32em" transform="translate(40,151.23636363636365)">50</text>
     <text y="0.32em" transform="translate(40,98.50909090909093)">55</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,20)">↑ culmen_length_mm</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(140.5084745762712,370)" d="M0,0L0,6"></path>
     <path transform="translate(228.64406779661016,370)" d="M0,0L0,6"></path>

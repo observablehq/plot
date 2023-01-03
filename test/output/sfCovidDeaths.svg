@@ -37,6 +37,9 @@
     <text y="0.32em" transform="translate(40,78.33333333333331)">40</text>
     <text y="0.32em" transform="translate(40,41.875)">45</text>
   </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <text transform="translate(40,20)">↑ case_count</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(70.38095238095238,370)" d="M0,0L0,6"></path>
     <path transform="translate(170.91428571428568,370)" d="M0,0L0,6"></path>

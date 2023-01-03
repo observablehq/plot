@@ -8,13 +8,8 @@ import {isNone, isNoneish, isIterable, isTemporal} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
-import {textX, textY} from "./text.js";
+import {text, textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
-
-// TODO Remove me without introducing a circular dependency.
-function marks(...marks) {
-  return marks;
-}
 
 function maybeData(data, options) {
   if (arguments.length < 2 && !isIterable(data)) (options = data), (data = null);
@@ -79,7 +74,7 @@ function axisKy(
     ...options
   }
 ) {
-  return marks(
+  return [
     grid && !isNone(grid)
       ? gridKy(k, data, {
           stroke: grid === true ? stroke : grid,
@@ -109,53 +104,44 @@ function axisKy(
         })
       : null,
     !isNoneish(fill)
-      ? axisTextKy(k, anchor, data, {
-          fill,
-          fillOpacity,
-          stroke: textStroke,
-          strokeOpacity: textStrokeOpacity,
-          strokeWidth: textStrokeWidth,
-          tickSize,
-          x,
-          marginTop,
-          marginRight,
-          marginBottom,
-          marginLeft,
-          ...options
-        })
+      ? [
+          axisTextKy(k, anchor, data, {
+            fill,
+            fillOpacity,
+            stroke: textStroke,
+            strokeOpacity: textStrokeOpacity,
+            strokeWidth: textStrokeWidth,
+            tickSize,
+            x,
+            marginTop,
+            marginRight,
+            marginBottom,
+            marginLeft,
+            ...options
+          }),
+          k === "y"
+            ? text(null, {
+                fill,
+                fillOpacity,
+                lineAnchor: "bottom",
+                facetAnchor: `top-${anchor}`, // TODO labelAnchor
+                frameAnchor: `top-${anchor}`,
+                ...options,
+                initializer: function (data, facets, channels, scales, dimensions) {
+                  this.dy = -9;
+                  this.dx = -dimensions.marginLeft;
+                  this.ariaLabel = `${k}-axis label`;
+                  return {
+                    facets: [[0]],
+                    channels: {text: {value: [scales[k].label]}}
+                  };
+                }
+              })
+            : null
+        ]
       : null
-    // new AxisLabel(
-    //   k,
-    //   k === "fy"
-    //     ? {
-    //         dx: 70,
-    //         rotate: -90,
-    //         lineAnchor: "top",
-    //         textAnchor: "middle",
-    //         facetAnchor: `${anchor}-middle`,
-    //         frameAnchor: anchor
-    //       }
-    //     : {
-    //         dy: -20,
-    //         dx: anchor === "right" ? 40 : -40,
-    //         lineAnchor: "bottom",
-    //         facetAnchor: `top-${anchor}`,
-    //         frameAnchor: `top-${anchor}`
-    //       }
-    // )
-  );
+  ];
 }
-
-// class AxisLabel extends Text {
-//   constructor(k, options) {
-//     super(null, options);
-//     this.k = k;
-//   }
-//   render(index, scales, channels, dimensions, context) {
-//     channels.text = [scales[this.k].label];
-//     return super.render([0], scales, channels, dimensions, context);
-//   }
-// }
 
 function axisKx(
   k,
@@ -186,7 +172,7 @@ function axisKx(
     ...options
   }
 ) {
-  return marks(
+  return [
     grid && !isNone(grid)
       ? gridKx(k, data, {
           stroke: grid === true ? stroke : grid,
@@ -231,16 +217,7 @@ function axisKx(
           ...options
         })
       : null
-    // k === "fx"
-    //   ? new AxisLabel(k, {
-    //       dy: -20,
-    //       dx: k === "fx" ? 0 : -30,
-    //       lineAnchor: "bottom",
-    //       facetAnchor: k === "fx" ? "top-middle" : "top-left",
-    //       frameAnchor: k === "fx" ? "top" : "top-left"
-    //     })
-    //   : null
-  );
+  ];
 }
 
 function axisTickKy(
