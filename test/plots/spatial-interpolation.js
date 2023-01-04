@@ -52,7 +52,7 @@ export async function voronoi() {
 }
 
 // this might be faster with a quadtree? or using delaunay.find with the memoization trick
-function interpolateVoronoi(index, canvas, {X, Y, R, G, B, FO}, {r, g, b, a}) {
+function interpolateVoronoi(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) {
   const {width, height} = canvas;
   const context = canvas.getContext("2d");
   const v = d3.Delaunay.from(
@@ -60,17 +60,69 @@ function interpolateVoronoi(index, canvas, {X, Y, R, G, B, FO}, {r, g, b, a}) {
     (i) => X[i],
     (i) => Y[i]
   ).voronoi([0, 0, width, height]);
+  context.strokeStyle = context.fillStyle = `rgb(${r},${g},${b})`;
+  context.globalAlpha = a;
   for (let i = 0; i < index.length; ++i) {
-    const j = index[i];
-    context.fillStyle = `rgba(${R ? R[j] : r},${G ? G[j] : g},${B ? B[j] : b},${FO ? FO[j] : a})`;
     context.beginPath();
     v.renderCell(i, context);
+    const j = index[i];
+    if (F) context.strokeStyle = context.fillStyle = color(F[j]);
+    if (FO) context.globalAlpha = FO[j];
     context.fill();
+    context.stroke();
   }
 }
 
+function interpolateNearest(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) {
+  const {width, height} = canvas;
+  const context2d = canvas.getContext("2d");
+  const image = context2d.createImageData(width, height);
+  const imageData = image.data;
+  const q = d3.quadtree(
+    index,
+    (i) => X[i],
+    (i) => Y[i]
+  );
+  let k = 0;
+  for (let y = 0; y < height; ++y) {
+    for (let x = 0; x < width; ++x, k += 4) {
+      const i = q.find(x, y);
+      if (F) ({r, g, b} = d3.rgb(color(F[i])));
+      imageData[k + 0] = r;
+      imageData[k + 1] = g;
+      imageData[k + 2] = b;
+      imageData[k + 3] = FO ? FO[i] * 255 : a;
+    }
+  }
+  context2d.putImageData(image, 0, 0);
+}
+
+function interpolateDelaunay(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) {
+  const {width, height} = canvas;
+  const context2d = canvas.getContext("2d");
+  const image = context2d.createImageData(width, height);
+  const imageData = image.data;
+  const d = d3.Delaunay.from(
+    index,
+    (i) => X[i],
+    (i) => Y[i]
+  );
+  let k = 0;
+  let i;
+  for (let y = 0; y < height; ++y) {
+    for (let x = 0; x < width; ++x, k += 4) {
+      i = d.find(x, y, i);
+      if (F) ({r, g, b} = d3.rgb(color(F[i])));
+      imageData[k + 0] = r;
+      imageData[k + 1] = g;
+      imageData[k + 2] = b;
+      imageData[k + 3] = FO ? FO[i] * 255 : a;
+    }
+  }
+  context2d.putImageData(image, 0, 0);
+}
 function interpolateBarycentric(extrapolate = true) {
-  return (index, canvas, {X, Y, R, G, B, FO}, {r, g, b, a}) => {
+  return (index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) => {
     const {width, height} = canvas;
     const context2d = canvas.getContext("2d");
     const image = context2d.createImageData(width, height);
@@ -79,9 +131,7 @@ function interpolateBarycentric(extrapolate = true) {
     // renumber/reindex everything, because we're going to add points if extrapolate is true
     X = Array.from(index, (i) => X[i]);
     Y = Array.from(index, (i) => Y[i]);
-    R = R && Array.from(index, (i) => R[i]);
-    G = G && Array.from(index, (i) => G[i]);
-    B = B && Array.from(index, (i) => B[i]);
+    F = F && Array.from(index, (i) => F[i]);
     FO = FO && Array.from(index, (i) => FO[i]);
     index = d3.range(index.length);
 
@@ -89,7 +139,7 @@ function interpolateBarycentric(extrapolate = true) {
     if (extrapolate) {
       let i = 1 + index.length;
       const addPoint = (x, y) => {
-        (X[i] = x), (Y[i] = y), (R[i] = NaN), index.push(i++);
+        (X[i] = x), (Y[i] = y), (F[i] = NaN), index.push(i++);
       };
       for (let k = 0; k < 1.01; k += 0.01) {
         addPoint(k * width, -1);
@@ -111,22 +161,12 @@ function interpolateBarycentric(extrapolate = true) {
     if (extrapolate) {
       for (let c = 0; c < 2; c++) {
         for (let i = 0; i < triangles.length; i += 3) {
-          const [a, b, c] = triangles.subarray(i, i + 3);
-          if (isNaN(R[index[a]])) {
-            R[index[a]] = (R[index[b]] + R[index[c]]) / 2;
-            G[index[a]] = (G[index[b]] + G[index[c]]) / 2;
-            B[index[a]] = (B[index[b]] + B[index[c]]) / 2;
-          }
-          if (isNaN(R[index[b]])) {
-            R[index[b]] = (R[index[c]] + R[index[a]]) / 2;
-            G[index[b]] = (G[index[c]] + G[index[a]]) / 2;
-            B[index[b]] = (B[index[c]] + B[index[a]]) / 2;
-          }
-          if (isNaN(R[index[c]])) {
-            R[index[c]] = (R[index[a]] + R[index[b]]) / 2;
-            G[index[c]] = (G[index[a]] + G[index[b]]) / 2;
-            B[index[c]] = (B[index[a]] + B[index[b]]) / 2;
-          }
+          const a = triangles[i];
+          const b = triangles[i + 1];
+          const c = triangles[i + 2];
+          if (isNaN(F[index[a]])) F[index[a]] = (F[index[b]] + F[index[c]]) / 2;
+          if (isNaN(F[index[b]])) F[index[b]] = (F[index[c]] + F[index[a]]) / 2;
+          if (isNaN(F[index[c]])) F[index[c]] = (F[index[a]] + F[index[b]]) / 2;
         }
       }
     }
@@ -154,9 +194,10 @@ function interpolateBarycentric(extrapolate = true) {
           const gc = 1 - ga - gb;
           if (gc < 0) continue;
           const k = (x + width * y) << 2;
-          imageData[k + 0] = R ? ga * R[ia] + gb * R[ib] + gc * R[ic] : r;
-          imageData[k + 1] = G ? ga * G[ia] + gb * G[ib] + gc * G[ic] : g;
-          imageData[k + 2] = B ? ga * B[ia] + gb * B[ib] + gc * B[ic] : b;
+          if (F) ({r, g, b} = d3.rgb(color(ga * F[ia] + gb * F[ib] + gc * F[ic])));
+          imageData[k + 0] = r;
+          imageData[k + 1] = g;
+          imageData[k + 2] = b;
           imageData[k + 3] = FO ? (ga * FO[ia] + gb * FO[ib] + gc * FO[ic]) * 255 : a;
         }
       }
