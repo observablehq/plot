@@ -41,6 +41,9 @@
     <text y="0.71em" transform="translate(831.8606739448934,270)">2000</text>
     <text y="0.71em" transform="translate(906.087953116877,270)">2020</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(940,270)">First Inauguration Date →</text>
+  </g>
   <g aria-label="image" transform="translate(0.5,0.5)">
     <image x="247.0917812751075" y="40.09994728663307" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Fillmore.jpg/160px-Fillmore.jpg"><title>Millard Fillmore</title></image>
     <image x="227.24703435890166" y="80.4878912777765" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/JKP.jpg/160px-JKP.jpg"><title>James K. Polk</title></image>

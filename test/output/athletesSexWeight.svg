@@ -73,6 +73,9 @@
     <text y="0.71em" transform="translate(479.99999999999994,370)">140</text>
     <text y="0.71em" transform="translate(560,370)">160</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">weight →</text>
+  </g>
   <g aria-label="rect">
     <rect style="mix-blend-mode: multiply;" x="41" y="368.63013698630135" width="19" height="1.369863013698648" fill="#4e79a7"></rect>
     <rect style="mix-blend-mode: multiply;" x="61" y="366.23287671232873" width="19" height="3.767123287671268" fill="#4e79a7"></rect>

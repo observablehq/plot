@@ -109,6 +109,9 @@
     <text y="0.71em" transform="translate(494.8201438848921,610)">140</text>
     <text y="0.71em" transform="translate(578.2733812949641,610)">160</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,610)">weight →</text>
+  </g>
   <g aria-label="dot" transform="translate(0.5,0.5)">
     <circle cx="261.15107913669067" cy="238.29999999999993" r="3" fill="#edc949"></circle>
     <circle cx="273.66906474820144" cy="155.7" r="3" fill="#edc949"></circle>

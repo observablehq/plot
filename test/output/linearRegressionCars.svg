@@ -54,6 +54,9 @@
     <text y="0.71em" transform="translate(514.754749078537,370)">4,500</text>
     <text y="0.71em" transform="translate(596.97760136093,370)">5,000</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">weight (lb) →</text>
+  </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="403.09611567904733" cy="332.7659574468085" r="2"></circle>
     <circle cx="407.86504111142614" cy="314.1489361702128" r="2"></circle>

@@ -62,6 +62,9 @@
     <text y="0.71em" transform="translate(558.927234927235,370)">4.5</text>
     <text y="0.71em" transform="translate(618.8024948024948,370)">5.0</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">carat →</text>
+  </g>
   <g aria-label="dot" transform="translate(0.5,0.5)">
     <circle cx="47.592515592515596" cy="370" r="1"></circle>
     <circle cx="55.975051975051976" cy="369.41341839217165" r="1"></circle>

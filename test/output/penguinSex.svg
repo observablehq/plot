@@ -47,6 +47,9 @@
     <text y="0.71em" transform="translate(59,370)">FEMALE</text>
     <text y="0.71em" transform="translate(246,370)">MALE</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">sex</text>
+  </g>
   <g aria-label="bar">
     <rect x="59" width="168" y="26.250000000000018" height="343.75"></rect>
     <rect x="246" width="168" y="20" height="350"></rect>

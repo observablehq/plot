@@ -276,6 +276,9 @@
       <text y="0.71em" transform="translate(175.71428571428572,290)">5.5k</text>
       <text y="0.71em" transform="translate(198.57142857142858,290)">6k</text>
     </g>
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+      <text y="0.71em" transform="translate(220,290)">body_mass_g →</text>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="30" width="180" height="260"></rect>
     <g aria-label="dot" fill-opacity="0.2" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="141.42857142857144" cy="150.76923076923077" r="4.242640687119285" fill="#e15759" stroke="#e15759"></circle>

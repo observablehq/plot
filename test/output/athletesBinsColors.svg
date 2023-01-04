@@ -64,6 +64,9 @@
     <text y="0.71em" transform="translate(489.2957746478873,370)">140</text>
     <text y="0.71em" transform="translate(570.9859154929577,370)">160</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">weight →</text>
+  </g>
   <g aria-label="rect">
     <rect x="41" y="369.45226917057903" width="7.16901408450704" height="0.5477308294209706" fill="rgb(35, 23, 27)"></rect>
     <rect x="49.16901408450704" y="369.45226917057903" width="7.169014084507047" height="0.5477308294209706" fill="rgb(49, 32, 70)"></rect>

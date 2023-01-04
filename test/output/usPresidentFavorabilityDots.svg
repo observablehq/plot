@@ -83,6 +83,9 @@
     <text y="0.71em" transform="translate(833.6778675740819,570)">2000</text>
     <text y="0.71em" transform="translate(906.1789309513682,570)">2020</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(940,570)">Date of first inauguration</text>
+  </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="940" y1="394.4554455445544" y2="394.4554455445544"></line>
   </g>

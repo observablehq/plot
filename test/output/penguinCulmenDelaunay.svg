@@ -66,6 +66,9 @@
     <text y="0.71em" transform="translate(516.4285714285714,370)">20</text>
     <text y="0.71em" transform="translate(585.4761904761905,370)">21</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">culmen_depth_mm →</text>
+  </g>
   <g aria-label="delaunay link" fill="none" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M330,196.909L330,180.364" stroke="rgb(181, 242, 66)"></path>
     <path d="M330,180.364L316.19,194.364" stroke="rgb(150, 250, 80)"></path>

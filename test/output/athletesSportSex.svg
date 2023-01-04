@@ -112,6 +112,9 @@
     <text y="0.71em" transform="translate(568,590)">90</text>
     <text y="0.71em" transform="translate(620,590)">100</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,590)">Women (%) →</text>
+  </g>
   <g aria-label="bar">
     <rect x="100" width="257.66089965397924" y="326" height="18"></rect>
     <rect x="100" width="260" y="366" height="18"></rect>

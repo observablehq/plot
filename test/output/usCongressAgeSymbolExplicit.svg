@@ -63,6 +63,9 @@
     <text y="0.71em" transform="translate(537.1428571428571,270)">90</text>
     <text y="0.71em" transform="translate(620,270)">100</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,270)">Age →</text>
+  </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <path transform="translate(56.57142857142857,261.93548387096774)" d="M-4.488,0L4.488,0M0,4.488L0,-4.488"><title>Alexandria Ocasio-Cortez</title></path>
     <path transform="translate(64.85714285714286,261.93548387096774)" d="M-4.488,0L4.488,0M0,4.488L0,-4.488"><title>Abby Finkenauer</title></path>

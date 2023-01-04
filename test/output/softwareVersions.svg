@@ -39,6 +39,9 @@
     <text y="0.71em" transform="translate(560,30)">90</text>
     <text y="0.71em" transform="translate(620,30)">100</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,30)">Frequency (%) →</text>
+  </g>
   <g aria-label="bar">
     <rect x="20.5" width="299" y="0" height="30" fill="#c6dbef"></rect>
     <rect x="320.5" width="135.7441860465117" y="0" height="30" fill="#6baed6"></rect>

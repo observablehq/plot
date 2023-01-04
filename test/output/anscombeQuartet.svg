@@ -179,6 +179,9 @@
       <text y="0.71em" transform="translate(124.80000000000001,210)">10</text>
       <text y="0.71em" transform="translate(187.13333333333333,210)">15</text>
     </g>
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+      <text y="0.71em" transform="translate(247,210)">x →</text>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="30" width="207" height="180"></rect>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="99.86666666666667" cy="142.24066390041492" r="3"></circle>

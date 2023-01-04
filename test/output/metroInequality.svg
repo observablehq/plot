@@ -118,6 +118,9 @@
     <text y="0.71em" transform="translate(554.6104656353255,370)"></text>
     <text y="0.71em" transform="translate(566.4492087923477,370)">10M</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">Population →</text>
+  </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="610" cy="216.52173913043475" r="3"></circle>
     <circle cx="559.8308367772046" cy="202.17391304347814" r="3"></circle>

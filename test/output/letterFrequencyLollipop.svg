@@ -117,6 +117,9 @@
     <text y="0.71em" transform="translate(583,370)">Y</text>
     <text y="0.71em" transform="translate(605,370)">Z</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">letter</text>
+  </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="143" x2="143" y1="370" y2="20"></line>
     <line x1="473" x2="473" y1="370" y2="120.46449378050698"></line>

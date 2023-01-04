@@ -81,6 +81,9 @@
     <text y="0.71em" transform="translate(562,370)">0.8</text>
     <text y="0.71em" transform="translate(620,370)">1.0</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">Difference of two uniform random variables</text>
+  </g>
   <g aria-label="rect">
     <rect x="41" y="362.6103646833013" width="13.500000000000014" height="7.389635316698673"></rect>
     <rect x="55.500000000000014" y="344.4721689059501" width="13.499999999999986" height="25.527831094049873"></rect>

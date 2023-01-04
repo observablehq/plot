@@ -46,6 +46,9 @@
     <text y="0.71em" transform="translate(246,370)">Chinstrap</text>
     <text y="0.71em" transform="translate(433,370)">Gentoo</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">species</text>
+  </g>
   <defs>
     <linearGradient id="gradient" gradientTransform="rotate(90)">
       <stop offset="5%" stop-color="purple"></stop>

@@ -63,6 +63,9 @@
     <text y="0.71em" transform="translate(537.1428571428571,270)">90</text>
     <text y="0.71em" transform="translate(620,270)">100</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,270)">Age →</text>
+  </g>
   <g aria-label="dot" transform="translate(0.5,0.5)">
     <circle cx="56.57142857142857" cy="261.93548387096774" r="3" fill="rgb(132, 165, 157)"><title>Alexandria Ocasio-Cortez</title></circle>
     <circle cx="64.85714285714286" cy="261.93548387096774" r="3" fill="rgb(132, 165, 157)"><title>Abby Finkenauer</title></circle>

@@ -82,6 +82,9 @@
     <text y="0.71em" transform="translate(556,370)">2018</text>
     <text y="0.71em" transform="translate(588,370)">2019</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">0</text>
+  </g>
   <g aria-label="bar">
     <rect x="44" width="29" y="212.50000000000003" height="157.49999999999997"></rect>
     <rect x="76" width="29" y="72.5" height="297.5"></rect>

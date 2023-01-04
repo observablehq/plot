@@ -89,6 +89,9 @@
     <text y="0.71em" transform="translate(504,370)">9</text>
     <text y="0.71em" transform="translate(562,370)">10+</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">New stargazers per hour →</text>
+  </g>
   <g aria-label="rect">
     <rect x="41" y="321.2820512820513" width="57" height="48.71794871794867" fill="rgb(35, 23, 27)"><title>S (38)</title></rect>
     <rect x="99" y="354.61538461538464" width="57" height="15.384615384615358" fill="rgb(35, 23, 27)"><title>S (12)</title></rect>

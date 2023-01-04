@@ -66,6 +66,9 @@
     <text y="0.71em" transform="translate(510,370)">20</text>
     <text y="0.71em" transform="translate(576.6666666666666,370)">21</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">culmen_depth_mm →</text>
+  </g>
   <g aria-label="hexgrid" clip-path="url(#plot-clip-1)">
     <clipPath id="plot-clip-1">
       <rect x="40" y="20" width="580" height="350"></rect>

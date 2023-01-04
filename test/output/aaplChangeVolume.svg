@@ -94,6 +94,9 @@
     <text y="0.71em" transform="translate(517.9890642078065,370)">+6</text>
     <text y="0.71em" transform="translate(593.6617396765084,370)">+8</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">Daily change (%) →</text>
+  </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="290.9710378017005" x2="290.9710378017005" y1="20" y2="370"></line>
   </g>

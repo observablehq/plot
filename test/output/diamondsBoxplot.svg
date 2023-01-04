@@ -58,6 +58,9 @@
     <text y="0.71em" transform="translate(531.4807806671351,190)">16,000</text>
     <text y="0.71em" transform="translate(594.1936530248148,190)">18,000</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,190)">price →</text>
+  </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,9.5)">
     <line x1="40.595772287397956" x2="334.78185651727307" y1="146" y2="146"></line>
     <line x1="41.34832675569011" x2="173.89198248364602" y1="26" y2="26"></line>

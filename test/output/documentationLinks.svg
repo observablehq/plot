@@ -100,6 +100,9 @@
     <text y="0.71em" transform="translate(549.7560975609756,530)">35</text>
     <text y="0.71em" transform="translate(608.2926829268292,530)">40</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,530)">likes →</text>
+  </g>
   <g aria-label="bar"><a fill="inherit" href="https://observablehq.com/@observablehq/plot" target="_blank">
       <rect x="140" width="480" y="26" height="18"></rect>
     </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-marks" target="_blank">

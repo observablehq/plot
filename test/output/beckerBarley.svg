@@ -448,6 +448,9 @@
       <text y="0.71em" transform="translate(476.6666666666667,134)">60</text>
       <text y="0.71em" transform="translate(550,134)">70</text>
     </g>
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(90.5,20.5)">
+      <text y="0.71em" transform="translate(550,134)">yield →</text>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="20" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="278.42224666666664" cy="102" r="3" stroke="#4e79a7"></circle>

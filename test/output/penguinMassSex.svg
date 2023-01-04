@@ -120,6 +120,9 @@
       <text y="0.71em" transform="translate(504,153)">6,000</text>
       <text y="0.71em" transform="translate(570,153)">6,500</text>
     </g>
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(70.5,20.5)">
+      <text y="0.71em" transform="translate(570,153)">Body mass (g) →</text>
+    </g>
     <g aria-label="rect">
       <rect x="41" y="150.49056603773585" width="65" height="2.509433962264154"></rect>
       <rect x="107" y="147.9811320754717" width="66" height="5.018867924528308"></rect>

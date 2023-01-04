@@ -74,6 +74,9 @@
     <text y="0.71em" transform="translate(548,370)">6,000</text>
     <text y="0.71em" transform="translate(620,370)">6,500</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">Body mass (g) →</text>
+  </g>
   <g aria-label="rect">
     <rect x="41" y="343.93617021276594" width="72" height="26.063829787234056" fill="#4e79a7"><title>Adelie FEMALE (6)
         Adelie null (1)</title></rect>

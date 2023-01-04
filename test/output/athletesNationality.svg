@@ -81,6 +81,9 @@
     <text y="0.71em" transform="translate(449.1710758377425,430)">400</text>
     <text y="0.71em" transform="translate(551.463844797178,430)">500</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,430)">Frequency →</text>
+  </g>
   <g aria-label="bar">
     <rect x="40" width="228.11287477954141" y="306" height="18"></rect>
     <rect x="40" width="440.88183421516754" y="86" height="18"></rect>

@@ -604,6 +604,9 @@
       <text y="0.71em" transform="translate(507.7697841726619,38)">140</text>
       <text y="0.71em" transform="translate(582.589928057554,38)">160</text>
     </g>
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+      <text y="0.71em" transform="translate(620,38)">weight →</text>
+    </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="197.26618705035972" cy="29" r="5" fill="#d95f02"><title>Abbos Rakhmonov</title></circle>
       <circle cx="223.45323741007195" cy="29" r="5" fill="#d95f02"><title>Ibragim Labazanov</title></circle>

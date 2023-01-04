@@ -88,6 +88,9 @@
     <text y="0.71em" transform="translate(584.4444444444445,60)">26</text>
     <text y="0.71em" transform="translate(600,60)">27</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,60)">date →</text>
+  </g>
   <g aria-label="bar">
     <rect x="41" width="14.555555555555557" y="0" height="60" fill="rgb(110, 64, 170)"></rect>
     <rect x="56.55555555555556" width="14.555555555555557" y="0" height="60" fill="rgb(107, 69, 179)"></rect>

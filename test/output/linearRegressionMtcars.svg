@@ -66,6 +66,9 @@
     <text y="0.71em" transform="translate(482.97110713372535,370)">4.5</text>
     <text y="0.71em" transform="translate(557.120940935822,370)">5.0</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">wt →</text>
+  </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="204.16773203784197" cy="298.2685512367491" r="2"></circle>
     <circle cx="241.98414727691127" cy="298.2685512367491" r="2"></circle>

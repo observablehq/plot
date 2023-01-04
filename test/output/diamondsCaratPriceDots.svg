@@ -112,6 +112,9 @@
     <text y="0.71em" transform="translate(556.9999999999999,610)">4.5</text>
     <text y="0.71em" transform="translate(616.9999999999999,610)">5.0</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,610)">Carats →</text>
+  </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="55.999999999999986" cy="597.3118279569892" r="17.549358962651603"></circle>
     <circle cx="55.999999999999986" cy="603.6559139784947" r="14.818906842274163"></circle>

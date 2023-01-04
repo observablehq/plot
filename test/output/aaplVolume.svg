@@ -69,6 +69,9 @@
     <text y="0.71em" transform="translate(504,370)">8.2</text>
     <text y="0.71em" transform="translate(581,370)">8.4</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,370)">Trade volume (log₁₀) →</text>
+  </g>
   <g aria-label="rect">
     <rect x="41" y="368.3091787439613" width="38" height="1.6908212560387028"></rect>
     <rect x="80" y="349.7101449275362" width="37" height="20.28985507246381"></rect>

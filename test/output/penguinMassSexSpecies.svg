@@ -184,6 +184,9 @@
       <text y="0.71em" transform="translate(102,170)">4,000</text>
       <text y="0.71em" transform="translate(184,170)">6,000</text>
     </g>
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(70.5,20.5)">
+      <text y="0.71em" transform="translate(204,170)">Body mass (g) →</text>
+    </g>
     <g aria-label="rect">
       <rect x="103" y="166.66666666666666" width="19" height="3.333333333333343"></rect>
       <rect x="123" y="160" width="20" height="10"></rect>

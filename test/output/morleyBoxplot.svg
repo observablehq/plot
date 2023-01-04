@@ -63,6 +63,9 @@
     <text y="0.71em" transform="translate(525.6444444444445,130)">1,000</text>
     <text y="0.71em" transform="translate(588.7555555555556,130)">1,050</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,130)">Speed →</text>
+  </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,10)">
     <line x1="197.46666666666664" x2="614" y1="24" y2="24"></line>
     <line x1="222.7111111111111" x2="475.15555555555557" y1="45" y2="45"></line>

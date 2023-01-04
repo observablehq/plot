@@ -206,20 +206,41 @@ function axisKx(
         })
       : null,
     !isNoneish(fill)
-      ? axisTextKx(k, anchor, data, {
-          fill,
-          fillOpacity,
-          stroke: textStroke,
-          strokeOpacity: textStrokeOpacity,
-          strokeWidth: textStrokeWidth,
-          tickSize,
-          y,
-          marginTop,
-          marginRight,
-          marginBottom,
-          marginLeft,
-          ...options
-        })
+      ? [
+          axisTextKx(k, anchor, data, {
+            fill,
+            fillOpacity,
+            stroke: textStroke,
+            strokeOpacity: textStrokeOpacity,
+            strokeWidth: textStrokeWidth,
+            tickSize,
+            y,
+            marginTop,
+            marginRight,
+            marginBottom,
+            marginLeft,
+            ...options
+          }),
+          k === "x"
+            ? text(null, {
+                fill,
+                fillOpacity,
+                lineAnchor: "top",
+                facetAnchor: `${anchor}-right`, // TODO labelAnchor
+                frameAnchor: `${anchor}-right`,
+                ...options,
+                initializer: function (data, facets, channels, scales, dimensions) {
+                  this.dy = 20;
+                  this.dx = dimensions.marginRight;
+                  this.ariaLabel = `${k}-axis label`;
+                  return {
+                    facets: [[0]],
+                    channels: {text: {value: [scales[k].label]}}
+                  };
+                }
+              })
+            : null
+        ]
       : null
   ];
 }

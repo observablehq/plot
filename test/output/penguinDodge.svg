@@ -31,6 +31,9 @@
     <text y="0.71em" transform="translate(486.6666666666667,170)">5,500</text>
     <text y="0.71em" transform="translate(569.9999999999999,170)">6,000</text>
   </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
+    <text y="0.71em" transform="translate(620,170)">body_mass_g →</text>
+  </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="195" cy="166" r="3"></circle>
     <circle cx="203.33333333333334" cy="166" r="3"></circle>
