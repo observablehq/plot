@@ -1,5 +1,6 @@
 import {rgb} from "d3";
 import {create} from "../context.js";
+import {first, second, third} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -149,7 +150,12 @@ export class Raster extends Mark {
 
 export function raster(data, options) {
   if (arguments.length < 2) (options = data), (data = null);
-  return new Raster(data, options);
+  let {x, y, fill, ...rest} = options;
+  if (x === undefined && y === undefined) {
+    (x = first), (y = second);
+    if (fill === undefined) fill = third;
+  }
+  return new Raster(data, {...rest, x, y, fill});
 }
 
 // Evaluates a function at pixel midpoints. TODO Faceting? Optimize linear?

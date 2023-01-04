@@ -30,6 +30,7 @@ export const number = (x) => (x == null ? x : +x);
 export const boolean = (x) => (x == null ? x : !!x);
 export const first = (x) => (x ? x[0] : undefined);
 export const second = (x) => (x ? x[1] : undefined);
+export const third = (x) => (x ? x[2] : undefined);
 export const constant = (x) => () => x;
 
 // Converts a string like “p25” into a function that takes an index I and an
