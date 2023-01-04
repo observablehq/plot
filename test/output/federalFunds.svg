@@ -44,7 +44,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(0.5,-8.5)">
     <text transform="translate(0,20)">↑ Federal funds rate (% per year)</text>
   </g>
-  <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="1.5,1.5" transform="translate(0,0.5)">
+  <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="1.5" transform="translate(0,0.5)">
     <line x1="0" x2="620" y1="370" y2="370"></line>
     <line x1="0" x2="620" y1="309.810834049871" y2="309.810834049871"></line>
     <line x1="0" x2="620" y1="249.6216680997421" y2="249.6216680997421"></line>
