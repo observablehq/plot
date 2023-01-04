@@ -51,9 +51,6 @@ function axisKy(
   anchor,
   data,
   {
-    grid,
-    gridOpacity = 0.1,
-    gridDasharray,
     line,
     color = "currentColor",
     opacity = 1,
@@ -78,17 +75,6 @@ function axisKy(
   }
 ) {
   return [
-    grid && !isNone(grid)
-      ? gridKy(k, data, {
-          stroke: grid === true ? stroke : grid,
-          strokeOpacity: gridOpacity,
-          strokeWidth,
-          strokeDasharray: gridDasharray,
-          x1: x1 === undefined && anchor === "left" ? x : x1,
-          x2: x2 === undefined && anchor === "right" ? x : x2,
-          ...options
-        })
-      : null,
     k !== "fy" && line && !isNone(line)
       ? new AxisLine(k, anchor, {
           stroke: line === true ? stroke : line,
@@ -153,9 +139,6 @@ function axisKx(
   anchor,
   data,
   {
-    grid,
-    gridOpacity = 0.1,
-    gridDasharray,
     line,
     color = "currentColor",
     opacity = 1,
@@ -180,17 +163,6 @@ function axisKx(
   }
 ) {
   return [
-    grid && !isNone(grid)
-      ? gridKx(k, data, {
-          stroke: grid === true ? stroke : grid,
-          strokeOpacity: gridOpacity,
-          strokeWidth,
-          strokeDasharray: gridDasharray,
-          y1: y1 === undefined && anchor === "top" ? y : y1,
-          y2: y2 === undefined && anchor === "bottom" ? y : y2,
-          ...options
-        })
-      : null,
     k !== "fx" && line && !isNone(line)
       ? new AxisLine(k, anchor, {
           stroke: line === true ? stroke : line,
@@ -269,7 +241,7 @@ function axisTickKy(
     ...options
   }
 ) {
-  return axisMark(vectorY, k, "tick", data, {
+  return axisMark(vectorY, k, `${k}-axis tick`, data, {
     strokeWidth,
     strokeLinecap,
     strokeLinejoin,
@@ -303,7 +275,7 @@ function axisTickKx(
     ...options
   }
 ) {
-  return axisMark(vectorX, k, "tick", data, {
+  return axisMark(vectorX, k, `${k}-axis tick`, data, {
     strokeWidth,
     strokeLinejoin,
     strokeLinecap,
@@ -344,7 +316,7 @@ function axisTextKy(
   return axisMark(
     textY,
     k,
-    "tick text",
+    `${k}-axis tick label`,
     data,
     {
       facetAnchor,
@@ -391,7 +363,7 @@ function axisTextKx(
   return axisMark(
     textX,
     k,
-    "tick text",
+    `${k}-axis tick label`,
     data,
     {
       facetAnchor,
@@ -433,11 +405,11 @@ export function gridFx() {
 }
 
 function gridKy(k, data, {x1 = null, x2 = null, ...options}) {
-  return axisMark(ruleY, k, "grid", data, {x1, x2, ...options});
+  return axisMark(ruleY, k, `${k}-grid`, data, {x1, x2, ...options});
 }
 
 function gridKx(k, data, {y1 = null, y2 = null, ...options}) {
-  return axisMark(ruleX, k, "grid", data, {y1, y2, ...options});
+  return axisMark(ruleX, k, `${k}-grid`, data, {y1, y2, ...options});
 }
 
 function gridDefaults({
@@ -503,7 +475,7 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
       };
     })
   );
-  m.ariaLabel = `${k}-axis ${ariaLabel}`;
+  m.ariaLabel = ariaLabel;
   return m;
 }
 

@@ -6,8 +6,8 @@ import {Dimensions} from "./dimensions.js";
 import {Facets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilter} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
-import {axisFx, axisFy, axisX, axisY} from "./marks/axis.js";
-import {arrayify, isScaleOptions, map, yes} from "./options.js";
+import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
+import {arrayify, isNone, isScaleOptions, map, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales, facetDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
@@ -476,64 +476,49 @@ function inferAxes(marks, channelsByScale, options) {
     fx = {},
     fy = {},
     axis = true,
+    line,
     grid,
-    facet: {
-      axis: facetAxis = axis,
-      grid: facetGrid,
-      marginTop: facetMarginTop,
-      marginRight: facetMarginRight,
-      marginBottom: facetMarginBottom,
-      marginLeft: facetMarginLeft
-    } = {},
-    x: {type: xType, axis: xAxis = axis} = x,
-    y: {type: yType, axis: yAxis = axis} = y,
-    fx: {axis: fxAxis = facetAxis} = fx,
-    fy: {axis: fyAxis = facetAxis} = fy
+    facet = {},
+    facet: {axis: facetAxis = axis, grid: facetGrid} = facet,
+    x: {type: xType, axis: xAxis = axis, grid: xGrid = grid} = x,
+    y: {type: yType, axis: yAxis = axis, grid: yGrid = grid} = y,
+    fx: {axis: fxAxis = facetAxis, grid: fxGrid = facetGrid} = fx,
+    fy: {axis: fyAxis = facetAxis, grid: fyGrid = facetGrid} = fy
   } = options;
   xAxis = (xType === undefined && !hasScale(marks, "x")) || projection ? null : xAxis === true ? "bottom" : xAxis;
   yAxis = (yType === undefined && !hasScale(marks, "y")) || projection ? null : yAxis === true ? "left" : yAxis;
   fxAxis = !channelsByScale.has("fx") ? null : fxAxis === true ? (xAxis === "bottom" ? "top" : "bottom") : fxAxis;
   fyAxis = !channelsByScale.has("fy") ? null : fyAxis === true ? (yAxis === "left" ? "right" : "left") : fyAxis;
-  return [
-    fyAxis && !hasAxis(marks, "fy")
-      ? axisFy(
-          axisOptions(
-            fyAxis,
-            {
-              grid: facetGrid,
-              marginTop: facetMarginTop,
-              marginRight: facetMarginRight,
-              marginBottom: facetMarginBottom,
-              marginLeft: facetMarginLeft
-            },
-            fy
-          )
-        )
-      : null,
-    fxAxis && !hasAxis(marks, "fx")
-      ? axisFx(
-          axisOptions(
-            fxAxis,
-            {
-              grid: facetGrid,
-              marginTop: facetMarginTop,
-              marginRight: facetMarginRight,
-              marginBottom: facetMarginBottom,
-              marginLeft: facetMarginLeft
-            },
-            fx
-          )
-        )
-      : null,
-    yAxis && !hasAxis(marks, "y") ? axisY(axisOptions(yAxis, {grid}, y)) : null,
-    xAxis && !hasAxis(marks, "x") ? axisX(axisOptions(xAxis, {grid}, x)) : null
-  ];
+  const axes = [];
+  if (fyAxis && !hasAxis(marks, "fy")) {
+    const fyOptions = axisOptions(fyAxis, facet, fy);
+    if (fyGrid && !isNone(fyGrid)) axes.push(gridFy(fyOptions));
+    axes.push(axisFy(fyOptions));
+  }
+  if (fxAxis && !hasAxis(marks, "fx")) {
+    const fxOptions = axisOptions(fxAxis, facet, fx);
+    if (fxGrid && !isNone(fxGrid)) axes.push(gridFx(fxOptions));
+    axes.push(axisFx(fxOptions));
+  }
+  if (yAxis && !hasAxis(marks, "y")) {
+    const yOptions = axisOptions(yAxis, {line}, y);
+    if (yGrid && !isNone(yGrid)) axes.push(gridY(yOptions));
+    axes.push(axisY(yOptions));
+  }
+  if (xAxis && !hasAxis(marks, "x")) {
+    const xOptions = axisOptions(xAxis, {line}, x);
+    if (xGrid && !isNone(xGrid)) axes.push(gridX(xOptions));
+    axes.push(axisX(xOptions));
+  }
+  return axes;
 }
 
+// TODO I’m not sure it’s right to pass the margins through here: it confuses
+// what we mean by the default margins when we subsequently compute the default
+// height. So… we’re only doing this for facet axes, but it’s probably wrong.
 function axisOptions(
   anchor,
   {
-    grid: defaultGrid,
     line: defaultLine,
     marginTop: defaultMarginTop,
     marginRight: defaultMarginRight,
@@ -541,7 +526,6 @@ function axisOptions(
     marginLeft: defaultMarginLeft
   },
   {
-    grid = defaultGrid,
     line = defaultLine,
     marginTop = defaultMarginTop,
     marginRight = defaultMarginRight,
@@ -559,7 +543,6 @@ function axisOptions(
 ) {
   return {
     anchor,
-    grid,
     line,
     marginTop,
     marginRight,
@@ -580,7 +563,7 @@ function axisOptions(
 // explicit test than looking for the ARIA label, but it does afford some
 // flexibility in axis implementation which is nice.
 function hasAxis(marks, k) {
-  const prefix = `${k}-axis tick`;
+  const prefix = `${k}-axis `;
   return marks.some((m) => m.ariaLabel?.startsWith(prefix));
 }
 

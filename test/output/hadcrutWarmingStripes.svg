@@ -24,7 +24,7 @@
     <path transform="translate(546,30)" d="M0,0L0,6"></path>
     <path transform="translate(616,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(55,30)">1860</text>
     <text y="0.71em" transform="translate(125,30)">1880</text>
     <text y="0.71em" transform="translate(195,30)">1900</text>

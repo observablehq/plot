@@ -22,7 +22,7 @@
     <path transform="translate(40,128)" d="M0,0L-6,0"></path>
     <path transform="translate(40,149)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,10)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10)">
     <text y="0.32em" transform="translate(40,23)">Ava</text>
     <text y="0.32em" transform="translate(40,44)">Emma</text>
     <text y="0.32em" transform="translate(40,65)">Jacob</text>
@@ -40,7 +40,7 @@
     <path transform="translate(456,170)" d="M0,0L0,6"></path>
     <path transform="translate(537,170)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" transform="translate(37,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(37,9.5)">
     <text y="0.71em" transform="translate(51,170)">Ava</text>
     <text y="0.71em" transform="translate(132,170)">Emma</text>
     <text y="0.71em" transform="translate(213,170)">Jacob</text>

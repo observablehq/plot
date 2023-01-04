@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="345.65217391304344" y2="345.65217391304344"></line>
     <line x1="40" x2="620" y1="316.9565217391304" y2="316.9565217391304"></line>
     <line x1="40" x2="620" y1="288.2608695652174" y2="288.2608695652174"></line>
@@ -41,7 +41,7 @@
     <path transform="translate(40,58.69565217391295)" d="M0,0L-6,0"></path>
     <path transform="translate(40,30)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,345.65217391304344)">3.4</text>
     <text y="0.32em" transform="translate(40,316.9565217391304)">3.6</text>
     <text y="0.32em" transform="translate(40,288.2608695652174)">3.8</text>
@@ -58,7 +58,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
     <text transform="translate(40,20)">↑ Inequality</text>
   </g>
-  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="126.8781294704236" x2="126.8781294704236" y1="20" y2="370"></line>
     <line x1="172.43786543086688" x2="172.43786543086688" y1="20" y2="370"></line>
     <line x1="204.76301252579248" x2="204.76301252579248" y1="20" y2="370"></line>
@@ -98,7 +98,7 @@
     <path transform="translate(554.6104656353255,370)" d="M0,0L0,6"></path>
     <path transform="translate(566.4492087923477,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(126.8781294704236,370)">200k</text>
     <text y="0.71em" transform="translate(172.43786543086688,370)">300k</text>
     <text y="0.71em" transform="translate(204.76301252579248,370)"></text>

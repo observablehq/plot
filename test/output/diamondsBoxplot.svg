@@ -23,7 +23,7 @@
     <path transform="translate(40,146)" d="M0,0L-6,0"></path>
     <path transform="translate(40,166)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,9.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
     <text y="0.32em" transform="translate(40,26)">IF</text>
     <text y="0.32em" transform="translate(40,46)">VVS1</text>
     <text y="0.32em" transform="translate(40,66)">VVS2</text>
@@ -47,7 +47,7 @@
     <path transform="translate(531.4807806671351,190)" d="M0,0L0,6"></path>
     <path transform="translate(594.1936530248148,190)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(92.49067416337786,190)">2,000</text>
     <text y="0.71em" transform="translate(155.20354652105746,190)">4,000</text>
     <text y="0.71em" transform="translate(217.9164188787371,190)">6,000</text>

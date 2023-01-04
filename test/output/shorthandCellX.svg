@@ -55,7 +55,7 @@
     <path transform="translate(590.074812967581,30)" d="M0,0L0,6"></path>
     <path transform="translate(605.0374064837905,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" transform="translate(7.233167082294264,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(7.233167082294264,9.5)">
     <text y="0.71em" transform="translate(21.496259351621006,30)">0</text>
     <text y="0.71em" transform="translate(36.45885286783048,30)">1</text>
     <text y="0.71em" transform="translate(51.42144638403995,30)">2</text>

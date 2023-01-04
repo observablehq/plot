@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,21)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Detroit-Livonia-Dearborn, MI Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -28,7 +28,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,43)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Detroit-Warren-Livonia, MI MSA</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -42,7 +42,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,65)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Warren-Troy-Farmington Hills, MI Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -56,7 +56,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,87)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Lawrence-Methuen-Salem, MA-NH NECTA Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -70,7 +70,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,109)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Los Angeles-Long Beach-Glendale, CA Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -84,7 +84,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,131)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Miami-Miami Beach-Kendall, FL Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -98,7 +98,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,153)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Los Angeles-Long Beach-Santa Ana, CA MSA</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -112,7 +112,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,175)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Lake County-Kenosha County, IL-WI Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -126,7 +126,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,197)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">West Palm Beach-Boca Raton-Boynton Beach, FL Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -140,7 +140,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,219)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Chicago-Joliet-Naperville, IL Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -154,7 +154,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,241)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Chicago-Joliet-Naperville, IL-IN-WI MSA</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -168,7 +168,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,263)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Miami-Fort Lauderdale-Pompano Beach, FL MSA</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -182,7 +182,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,285)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Oakland-Fremont-Hayward, CA Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -196,7 +196,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,307)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Gary, IN Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -210,7 +210,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,329)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Tacoma, WA Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -224,7 +224,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,351)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">San Francisco-Oakland-Fremont, CA MSA</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -238,7 +238,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,373)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Camden, NJ Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -252,7 +252,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,395)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Brockton-Bridgewater-Easton, MA NECTA Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -266,7 +266,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,417)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Seattle-Tacoma-Bellevue, WA MSA</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -280,7 +280,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,439)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Fort Lauderdale-Pompano Beach-Deerfield Beach, FL Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -294,7 +294,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,461)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">New York-White Plains-Wayne, NY-NJ Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -308,7 +308,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,483)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Santa Ana-Anaheim-Irvine, CA Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -322,7 +322,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,505)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Seattle-Bellevue-Everett, WA Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -336,7 +336,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,527)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Newark-Union, NJ-PA Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -350,7 +350,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,549)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Taunton-Norton-Raynham, MA NECTA Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -364,7 +364,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,571)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Lowell-Billerica-Chelmsford, MA-NH NECTA Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -378,7 +378,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,593)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">New York-Northern New Jersey-Long Island, NY-NJ-PA MSA</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -392,7 +392,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,615)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">San Francisco-San Mateo-Redwood City, CA Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -406,7 +406,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,637)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Edison-New Brunswick, NJ Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -420,7 +420,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,659)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -434,7 +434,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,681)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Wilmington, DE-MD-NJ Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -448,7 +448,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,703)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Peabody, MA NECTA Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -462,7 +462,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,725)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Philadelphia, PA Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -476,7 +476,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,747)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Fort Worth-Arlington, TX Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -490,7 +490,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,769)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Dallas-Fort Worth-Arlington, TX MSA</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -504,7 +504,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,791)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Dallas-Plano-Irving, TX Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -518,7 +518,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,813)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Haverhill-North Andover-Amesbury, MA-NH NECTA Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -532,7 +532,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,835)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Boston-Cambridge-Quincy, MA-NH Met NECTA</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -546,7 +546,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,857)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Boston-Cambridge-Quincy, MA NECTA Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -560,7 +560,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,879)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Nassau-Suffolk, NY Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -574,7 +574,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,901)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Framingham, MA NECTA Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -588,7 +588,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,923)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Nashua, NH-MA NECTA Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -602,7 +602,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,945)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Washington-Arlington-Alexandria, DC-VA-MD-WV Met Div</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -616,7 +616,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,967)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Washington-Arlington-Alexandria, DC-VA-MD-WV MSA</text>
     </g>
     <g aria-label="area" fill="#eee">
@@ -630,7 +630,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,989)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(300,30)">Bethesda-Rockville-Frederick, MD Met Div</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -642,7 +642,7 @@
       <path transform="translate(765.5356431700518,40)" d="M0,0L0,6"></path>
       <path transform="translate(858.5663082437277,40)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(300,40)">2000</text>
       <text y="0.71em" transform="translate(393.1581043409,40)">2002</text>
       <text y="0.71em" transform="translate(486.18876941457586,40)">2004</text>

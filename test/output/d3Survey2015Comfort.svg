@@ -20,7 +20,7 @@
     <path transform="translate(300,90)" d="M0,0L-6,0"></path>
     <path transform="translate(300,110)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,10.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10.5)">
     <text y="0.32em" transform="translate(300,30)">I looked at some examples!</text>
     <text y="0.32em" transform="translate(300,50)">I've forked a bl.ock or two</text>
     <text y="0.32em" transform="translate(300,70)">selectAll(".answers").enter()</text>
@@ -30,7 +30,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-299.5,-8.5)">
     <text transform="translate(300,30)">How comfortable are you with d3 now?</text>
   </g>
-  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="300" x2="300" y1="30" y2="130"></line>
     <line x1="364" x2="364" y1="30" y2="130"></line>
     <line x1="428" x2="428" y1="30" y2="130"></line>
@@ -56,7 +56,7 @@
     <path transform="translate(876,30)" d="M0,0L0,-6"></path>
     <path transform="translate(940,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
     <text transform="translate(300,30)">0</text>
     <text transform="translate(364,30)">10</text>
     <text transform="translate(428,30)">20</text>

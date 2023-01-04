@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(1,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(159,30)">Biscoe</text>
     </g>
     <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,13.5)">
@@ -22,7 +22,7 @@
       <path transform="translate(75,62)" d="M0,0L-6,0"></path>
       <path transform="translate(75,91)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,13.5)">
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,13.5)">
       <text y="0.32em" transform="translate(75,33)">Adelie</text>
       <text y="0.32em" transform="translate(75,62)">Chinstrap</text>
       <text y="0.32em" transform="translate(75,91)">Gentoo</text>
@@ -35,7 +35,7 @@
       <path transform="translate(138.70967741935482,120)" d="M0,0L0,6"></path>
       <path transform="translate(202.41935483870967,120)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(75,120)">0</text>
       <text y="0.71em" transform="translate(138.70967741935482,120)">50</text>
       <text y="0.71em" transform="translate(202.41935483870967,120)">100</text>
@@ -50,7 +50,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(188,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(159,30)">Dream</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -58,7 +58,7 @@
       <path transform="translate(138.70967741935482,120)" d="M0,0L0,6"></path>
       <path transform="translate(202.41935483870967,120)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(75,120)">0</text>
       <text y="0.71em" transform="translate(138.70967741935482,120)">50</text>
       <text y="0.71em" transform="translate(202.41935483870967,120)">100</text>
@@ -73,7 +73,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(375,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(159,30)">Torgersen</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -81,7 +81,7 @@
       <path transform="translate(138.70967741935482,120)" d="M0,0L0,6"></path>
       <path transform="translate(202.41935483870967,120)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(75,120)">0</text>
       <text y="0.71em" transform="translate(138.70967741935482,120)">50</text>
       <text y="0.71em" transform="translate(202.41935483870967,120)">100</text>

@@ -41,7 +41,7 @@
     <path transform="translate(40,506)" d="M0,0L-6,0"></path>
     <path transform="translate(40,526)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,9.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
     <text y="0.32em" transform="translate(40,26)">Z</text>
     <text y="0.32em" transform="translate(40,46)">Q</text>
     <text y="0.32em" transform="translate(40,66)">X</text>
@@ -69,7 +69,7 @@
     <text y="0.32em" transform="translate(40,506)">T</text>
     <text y="0.32em" transform="translate(40,526)">E</text>
   </g>
-  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="20" y2="550"></line>
     <line x1="131.324200913242" x2="131.324200913242" y1="20" y2="550"></line>
     <line x1="222.64840182648402" x2="222.64840182648402" y1="20" y2="550"></line>
@@ -87,7 +87,7 @@
     <path transform="translate(496.62100456621,550)" d="M0,0L0,6"></path>
     <path transform="translate(587.945205479452,550)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(40,550)">0</text>
     <text y="0.71em" transform="translate(131.324200913242,550)">2</text>
     <text y="0.71em" transform="translate(222.64840182648402,550)">4</text>

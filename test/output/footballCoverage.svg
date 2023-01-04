@@ -14,10 +14,10 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(78,400)">C2</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="116" y1="400" y2="400"></line>
       <line x1="40" x2="116" y1="362" y2="362"></line>
       <line x1="40" x2="116" y1="324" y2="324"></line>
@@ -43,7 +43,7 @@
       <path transform="translate(40,57.99999999999999)" d="M0,0L-6,0"></path>
       <path transform="translate(40,20)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,400)">0%</text>
       <text y="0.32em" transform="translate(40,362)">5%</text>
       <text y="0.32em" transform="translate(40,324)">10%</text>
@@ -93,10 +93,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(84,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(78,400)">C3</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="116" y1="400" y2="400"></line>
       <line x1="40" x2="116" y1="362" y2="362"></line>
       <line x1="40" x2="116" y1="324" y2="324"></line>
@@ -146,10 +146,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(168,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(78,400)">C4</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="116" y1="400" y2="400"></line>
       <line x1="40" x2="116" y1="362" y2="362"></line>
       <line x1="40" x2="116" y1="324" y2="324"></line>
@@ -199,10 +199,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(252,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(78,400)">M0</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="116" y1="400" y2="400"></line>
       <line x1="40" x2="116" y1="362" y2="362"></line>
       <line x1="40" x2="116" y1="324" y2="324"></line>
@@ -252,10 +252,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(336,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(78,400)">M1</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="116" y1="400" y2="400"></line>
       <line x1="40" x2="116" y1="362" y2="362"></line>
       <line x1="40" x2="116" y1="324" y2="324"></line>
@@ -305,10 +305,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(420,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(78,400)">M2</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="116" y1="400" y2="400"></line>
       <line x1="40" x2="116" y1="362" y2="362"></line>
       <line x1="40" x2="116" y1="324" y2="324"></line>
@@ -358,10 +358,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(504,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(78,400)">T2</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="116" y1="400" y2="400"></line>
       <line x1="40" x2="116" y1="362" y2="362"></line>
       <line x1="40" x2="116" y1="324" y2="324"></line>

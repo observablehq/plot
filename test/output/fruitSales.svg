@@ -19,7 +19,7 @@
     <path transform="translate(50,66)" d="M0,0L-6,0"></path>
     <path transform="translate(50,87)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,10)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10)">
     <text y="0.32em" transform="translate(50,24)">bananas</text>
     <text y="0.32em" transform="translate(50,45)">oranges</text>
     <text y="0.32em" transform="translate(50,66)">grapes</text>
@@ -38,7 +38,7 @@
     <path transform="translate(563,110)" d="M0,0L0,6"></path>
     <path transform="translate(620,110)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(50,110)">0</text>
     <text y="0.71em" transform="translate(107,110)">2</text>
     <text y="0.71em" transform="translate(164,110)">4</text>

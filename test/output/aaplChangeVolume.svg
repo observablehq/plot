@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="359.69431858593606" y2="359.69431858593606"></line>
     <line x1="40" x2="620" y1="334.0667387631559" y2="334.0667387631559"></line>
     <line x1="40" x2="620" y1="308.4391589403759" y2="308.4391589403759"></line>
@@ -45,7 +45,7 @@
     <path transform="translate(40,52.163360712575106)" d="M0,0L-6,0"></path>
     <path transform="translate(40,26.535780889795117)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,359.69431858593606)">7.1</text>
     <text y="0.32em" transform="translate(40,334.0667387631559)">7.2</text>
     <text y="0.32em" transform="translate(40,308.4391589403759)">7.3</text>
@@ -64,7 +64,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
     <text transform="translate(40,20)">↑ Volume (log₁₀)</text>
   </g>
-  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="63.95301139559466" x2="63.95301139559466" y1="20" y2="370"></line>
     <line x1="139.6256868642966" x2="139.6256868642966" y1="20" y2="370"></line>
     <line x1="215.29836233299855" x2="215.29836233299855" y1="20" y2="370"></line>
@@ -84,7 +84,7 @@
     <path transform="translate(517.9890642078065,370)" d="M0,0L0,6"></path>
     <path transform="translate(593.6617396765084,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(63.95301139559466,370)">−6</text>
     <text y="0.71em" transform="translate(139.6256868642966,370)">−4</text>
     <text y="0.71em" transform="translate(215.29836233299855,370)">−2</text>

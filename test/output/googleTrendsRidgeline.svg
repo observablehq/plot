@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,30)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Australian bushfires</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
@@ -31,7 +31,7 @@
       <path transform="translate(820,30)" d="M0,0L0,-6"></path>
       <path transform="translate(884.2857142857143,30)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
       <text transform="translate(166.42857142857144,30)">2020</text>
       <text transform="translate(232.85714285714286,30)">February</text>
       <text transform="translate(295,30)">March</text>
@@ -56,7 +56,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,48)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Qasem Soleimani</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -70,7 +70,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,66)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Prince Harry, Meghan</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -84,7 +84,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,84)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Brexit</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -98,7 +98,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,102)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Impeachment</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -112,7 +112,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,120)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Kobe Bryant</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -126,7 +126,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,138)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Wuhan</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -140,7 +140,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,156)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Nancy Pelosi</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -154,7 +154,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,174)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Parasite</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -168,7 +168,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,192)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Roger Stone</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -182,7 +182,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,210)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Democratic primaries</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -196,7 +196,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,228)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Love Is Blind</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -210,7 +210,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,246)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Stock market</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -224,7 +224,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,264)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Tom Hanks</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -238,7 +238,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,282)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Trump coronavirus</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -252,7 +252,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,300)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Locust</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -266,7 +266,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,318)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Martial law</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -280,7 +280,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,336)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Toilet paper</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -294,7 +294,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,354)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Animal Crossing</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -308,7 +308,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,372)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Anthony Fauci</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -322,7 +322,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,390)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">COVID-19</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -336,7 +336,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,408)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Tiger King</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -350,7 +350,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,426)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Zoom Video Communications</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -364,7 +364,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,444)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Masks</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -378,7 +378,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,462)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Stimulus check</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -392,7 +392,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,480)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Sourdough</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -406,7 +406,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,498)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">The Last Dance</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -420,7 +420,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,516)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Kim Jong-un</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -434,7 +434,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,534)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Murder hornet</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -448,7 +448,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,552)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">SpaceX</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -462,7 +462,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,570)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Black Lives Matter</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -476,7 +476,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,588)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">George Floyd</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -490,7 +490,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,606)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Ghislaine Maxwell</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -504,7 +504,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,624)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">TikTok</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -518,7 +518,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,642)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Taylor Swift</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -532,7 +532,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,660)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Hydroxychloroquine</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -546,7 +546,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,678)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">John Lewis</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -560,7 +560,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,696)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Regis Philbin</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -574,7 +574,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,714)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">William Barr</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -588,7 +588,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,732)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Beirut explosion</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -602,7 +602,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,750)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Kamala Harris</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -616,7 +616,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,768)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">QAnon</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -630,7 +630,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,786)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Chadwick Boseman</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -644,7 +644,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,804)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Hurricane Laura</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -658,7 +658,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,822)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Jacob Blake</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -672,7 +672,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,840)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Naomi Osaka</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -686,7 +686,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,858)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Wildfires</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -700,7 +700,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,876)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Hurricane Teddy</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -714,7 +714,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,894)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Ruth Bader Ginsburg</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -728,7 +728,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,912)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Breonna Taylor</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -742,7 +742,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,930)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Presidential debates</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -756,7 +756,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,948)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Proud Boys</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -770,7 +770,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,966)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Eddie Van Halen</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -784,7 +784,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,984)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Amy Coney Barrett</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -798,7 +798,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,1002)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Hunter Biden</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -812,7 +812,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,1020)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Absentee ballot</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -826,7 +826,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,1038)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Joe Biden</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -840,7 +840,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,1056)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Voter turnout</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -854,7 +854,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,1074)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Alex Trebek</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -868,7 +868,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,1092)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Electoral fraud</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -882,7 +882,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,1110)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Four seasons total landscaping</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -896,7 +896,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,1128)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Hurricane Iota</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -910,7 +910,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,1146)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">Rudy Giuliani</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">
@@ -924,7 +924,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,1164)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(160,38)">COVID-19 vaccine</text>
     </g>
     <g aria-label="area" fill-opacity="0.3">

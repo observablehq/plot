@@ -43,7 +43,7 @@
     <path transform="translate(100,546)" d="M0,0L-6,0"></path>
     <path transform="translate(100,566)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,9.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
     <text y="0.32em" transform="translate(100,26)">boxing</text>
     <text y="0.32em" transform="translate(100,46)">wrestling</text>
     <text y="0.32em" transform="translate(100,66)">canoe</text>
@@ -73,7 +73,7 @@
     <text y="0.32em" transform="translate(100,546)">fencing</text>
     <text y="0.32em" transform="translate(100,566)">gymnastics</text>
   </g>
-  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="100" x2="100" y1="20" y2="590"></line>
     <line x1="152" x2="152" y1="20" y2="590"></line>
     <line x1="204" x2="204" y1="20" y2="590"></line>
@@ -99,7 +99,7 @@
     <path transform="translate(568,590)" d="M0,0L0,6"></path>
     <path transform="translate(620,590)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(100,590)">0</text>
     <text y="0.71em" transform="translate(152,590)">10</text>
     <text y="0.71em" transform="translate(204,590)">20</text>

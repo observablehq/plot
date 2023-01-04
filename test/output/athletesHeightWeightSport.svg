@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="586.4" y2="586.4"></line>
     <line x1="40" x2="620" y1="556.8999999999999" y2="556.8999999999999"></line>
     <line x1="40" x2="620" y1="527.3999999999999" y2="527.3999999999999"></line>
@@ -57,7 +57,7 @@
     <path transform="translate(40,55.40000000000003)" d="M0,0L-6,0"></path>
     <path transform="translate(40,25.899999999999874)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,586.4)">1.25</text>
     <text y="0.32em" transform="translate(40,556.8999999999999)">1.30</text>
     <text y="0.32em" transform="translate(40,527.3999999999999)">1.35</text>
@@ -82,7 +82,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
     <text transform="translate(40,20)">↑ height</text>
   </g>
-  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="77.55395683453237" x2="77.55395683453237" y1="20" y2="610"></line>
     <line x1="161.0071942446043" x2="161.0071942446043" y1="20" y2="610"></line>
     <line x1="244.46043165467623" x2="244.46043165467623" y1="20" y2="610"></line>
@@ -100,7 +100,7 @@
     <path transform="translate(494.8201438848921,610)" d="M0,0L0,6"></path>
     <path transform="translate(578.2733812949641,610)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(77.55395683453237,610)">40</text>
     <text y="0.71em" transform="translate(161.0071942446043,610)">60</text>
     <text y="0.71em" transform="translate(244.46043165467623,610)">80</text>

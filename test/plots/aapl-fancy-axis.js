@@ -7,7 +7,8 @@ export default async function () {
     marks: [
       Plot.ruleY([0]),
       Plot.line(AAPL, {x: "Date", y: "Close"}),
-      Plot.axisY({grid: true, x: (y) => AAPL.find((d) => d.Close >= y)?.Date, insetLeft: -6, textStroke: "white"})
+      Plot.gridY({x1: (y) => AAPL.find((d) => d.Close >= y)?.Date, insetLeft: -6}), // TODO x shorthand?
+      Plot.axisY({x: (y) => AAPL.find((d) => d.Close >= y)?.Date, insetLeft: -6, textStroke: "white"})
     ]
   });
 }

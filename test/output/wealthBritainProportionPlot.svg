@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick text" transform="translate(0.5,-8.5)">
+  <g aria-label="x-axis tick label" transform="translate(0.5,-8.5)">
     <text transform="translate(50,30)">Share of population</text>
     <text transform="translate(580,30)">Share of wealth</text>
   </g>

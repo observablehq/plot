@@ -115,7 +115,7 @@
     <path transform="translate(120,1114)" d="M0,0L-6,0"></path>
     <path transform="translate(120,1125)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,5.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,5.5)">
     <text y="0.32em" transform="translate(120,36)">Niger</text>
     <text y="0.32em" transform="translate(120,47)">Chad</text>
     <text y="0.32em" transform="translate(120,58)">Madagascar</text>
@@ -217,7 +217,7 @@
     <text y="0.32em" transform="translate(120,1114)">Vietnam</text>
     <text y="0.32em" transform="translate(120,1125)">Netherlands</text>
   </g>
-  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="120" x2="120" y1="30" y2="1140"></line>
     <line x1="170" x2="170" y1="30" y2="1140"></line>
     <line x1="220" x2="220" y1="30" y2="1140"></line>
@@ -243,7 +243,7 @@
     <path transform="translate(570,30)" d="M0,0L0,-6"></path>
     <path transform="translate(620,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
     <text transform="translate(120,30)">100%</text>
     <text transform="translate(170,30)">80%</text>
     <text transform="translate(220,30)">60%</text>

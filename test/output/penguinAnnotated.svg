@@ -18,7 +18,7 @@
     <path transform="translate(75,45)" d="M0,0L-6,0"></path>
     <path transform="translate(75,67)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,10.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10.5)">
     <text y="0.32em" transform="translate(75,23)">Adelie</text>
     <text y="0.32em" transform="translate(75,45)">Gentoo</text>
     <text y="0.32em" transform="translate(75,67)">Chinstrap</text>
@@ -36,7 +36,7 @@
     <path transform="translate(497.36842105263156,90)" d="M0,0L0,6"></path>
     <path transform="translate(567.7631578947369,90)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(75,90)">0</text>
     <text y="0.71em" transform="translate(145.39473684210526,90)">20</text>
     <text y="0.71em" transform="translate(215.78947368421052,90)">40</text>

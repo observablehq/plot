@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,0)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,31)">B</text>
     </g>
     <g aria-label="vector" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
@@ -37,7 +37,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,24)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,31)">L</text>
     </g>
     <g aria-label="vector" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
@@ -78,7 +78,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,48)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,31)">N</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -90,7 +90,7 @@
       <path transform="translate(505.066889632107,42)" d="M0,0L0,6"></path>
       <path transform="translate(592.3578595317726,42)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(68.61204013377926,42)">06 AM</text>
       <text y="0.71em" transform="translate(155.90301003344482,42)">09 AM</text>
       <text y="0.71em" transform="translate(243.19397993311034,42)">12 PM</text>

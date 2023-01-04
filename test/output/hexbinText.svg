@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(1,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(170,30)">FEMALE</text>
     </g>
     <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
@@ -24,7 +24,7 @@
       <path transform="translate(40,124.98909090909092)" d="M0,0L-6,0"></path>
       <path transform="translate(40,82.80727272727273)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,251.53454545454548)">35</text>
       <text y="0.32em" transform="translate(40,209.35272727272726)">40</text>
       <text y="0.32em" transform="translate(40,167.1709090909091)">45</text>
@@ -40,7 +40,7 @@
       <path transform="translate(189.33333333333334,290)" d="M0,0L0,6"></path>
       <path transform="translate(244.57142857142856,290)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(78.85714285714286,290)">14</text>
       <text y="0.71em" transform="translate(134.0952380952381,290)">16</text>
       <text y="0.71em" transform="translate(189.33333333333334,290)">18</text>
@@ -159,7 +159,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(290,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(170,30)">MALE</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -168,7 +168,7 @@
       <path transform="translate(189.33333333333334,290)" d="M0,0L0,6"></path>
       <path transform="translate(244.57142857142856,290)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(78.85714285714286,290)">14</text>
       <text y="0.71em" transform="translate(134.0952380952381,290)">16</text>
       <text y="0.71em" transform="translate(189.33333333333334,290)">18</text>
@@ -311,7 +311,7 @@
       <path transform="translate(189.33333333333334,290)" d="M0,0L0,6"></path>
       <path transform="translate(244.57142857142856,290)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(78.85714285714286,290)">14</text>
       <text y="0.71em" transform="translate(134.0952380952381,290)">16</text>
       <text y="0.71em" transform="translate(189.33333333333334,290)">18</text>

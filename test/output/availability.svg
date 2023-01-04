@@ -21,7 +21,7 @@
     <path transform="translate(40,45.99999999999999)" d="M0,0L-6,0"></path>
     <path transform="translate(40,20)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,150)">0</text>
     <text y="0.32em" transform="translate(40,124)">1</text>
     <text y="0.32em" transform="translate(40,98)">2</text>
@@ -40,7 +40,7 @@
     <path transform="translate(461.765873015873,150)" d="M0,0L0,6"></path>
     <path transform="translate(565.3373015873017,150)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(40.57539682539683,150)">2020</text>
     <text y="0.71em" transform="translate(145.29761904761904,150)">April</text>
     <text y="0.71em" transform="translate(250.01984126984127,150)">July</text>

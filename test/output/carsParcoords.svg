@@ -22,7 +22,7 @@
     <path transform="translate(104,150)" d="M0,0L-6,0"></path>
     <path transform="translate(104,175)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-14.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-14.5,0.5)">
     <text y="0.32em" transform="translate(104,25)">economy (mpg)</text>
     <text y="0.32em" transform="translate(104,50)">cylinders</text>
     <text y="0.32em" transform="translate(104,75)">displacement (cc)</text>

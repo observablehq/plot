@@ -29,7 +29,7 @@
     <path transform="translate(40,63.923480870217595)" d="M0,0L-6,0"></path>
     <path transform="translate(40,38.417104276069026)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,370)">0</text>
     <text y="0.32em" transform="translate(40,344.4936234058515)">10</text>
     <text y="0.32em" transform="translate(40,318.98724681170296)">20</text>
@@ -61,7 +61,7 @@
     <path transform="translate(564.7619047619048,370)" d="M0,0L0,6"></path>
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(67.61904761904762,370)">Fri 11</text>
     <text y="0.71em" transform="translate(122.85714285714286,370)">Dec 13</text>
     <text y="0.71em" transform="translate(178.0952380952381,370)">Tue 15</text>

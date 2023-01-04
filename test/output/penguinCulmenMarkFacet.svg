@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(120.5,30)">FEMALE</text>
     </g>
     <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
@@ -24,7 +24,7 @@
       <path transform="translate(40,88.29818181818183)" d="M0,0L-6,0"></path>
       <path transform="translate(40,57.93454545454547)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,179.38909090909092)">35</text>
       <text y="0.32em" transform="translate(40,149.02545454545455)">40</text>
       <text y="0.32em" transform="translate(40,118.6618181818182)">45</text>
@@ -390,7 +390,7 @@
       <path transform="translate(40,88.29818181818183)" d="M0,0L-6,0"></path>
       <path transform="translate(40,57.93454545454547)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,179.38909090909092)">35</text>
       <text y="0.32em" transform="translate(40,149.02545454545455)">40</text>
       <text y="0.32em" transform="translate(40,118.6618181818182)">45</text>
@@ -753,7 +753,7 @@
       <path transform="translate(40,88.29818181818183)" d="M0,0L-6,0"></path>
       <path transform="translate(40,57.93454545454547)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,179.38909090909092)">35</text>
       <text y="0.32em" transform="translate(40,149.02545454545455)">40</text>
       <text y="0.32em" transform="translate(40,118.6618181818182)">45</text>
@@ -764,7 +764,7 @@
       <path transform="translate(76.41666666666667,197)" d="M0,0L0,6"></path>
       <path transform="translate(172.25,197)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(76.41666666666667,197)">15</text>
       <text y="0.71em" transform="translate(172.25,197)">20</text>
     </g>
@@ -1117,7 +1117,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(179,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(120.5,30)">MALE</text>
     </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
@@ -1822,7 +1822,7 @@
       <path transform="translate(76.41666666666667,197)" d="M0,0L0,6"></path>
       <path transform="translate(172.25,197)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(76.41666666666667,197)">15</text>
       <text y="0.71em" transform="translate(172.25,197)">20</text>
     </g>
@@ -2175,14 +2175,14 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(358,0)">
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(201,113.5)">Adelie</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(76.41666666666667,197)" d="M0,0L0,6"></path>
       <path transform="translate(172.25,197)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(76.41666666666667,197)">15</text>
       <text y="0.71em" transform="translate(172.25,197)">20</text>
     </g>
@@ -2535,19 +2535,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(358,186)">
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(201,113.5)">Chinstrap</text>
     </g>
   </g>
   <g aria-label="facet" transform="translate(358,372)">
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(201,113.5)">Gentoo</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(76.41666666666667,197)" d="M0,0L0,6"></path>
       <path transform="translate(172.25,197)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(76.41666666666667,197)">15</text>
       <text y="0.71em" transform="translate(172.25,197)">20</text>
     </g>

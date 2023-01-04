@@ -41,7 +41,7 @@
     <path transform="translate(585,30)" d="M0,0L0,6"></path>
     <path transform="translate(608,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(33,30)">A</text>
     <text y="0.71em" transform="translate(56,30)">B</text>
     <text y="0.71em" transform="translate(79,30)">C</text>

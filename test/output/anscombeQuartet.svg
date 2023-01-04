@@ -14,10 +14,10 @@
     }
   </style>
   <g aria-label="facet" transform="translate(2,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(143.5,30)">1</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="247" y1="185.0622406639004" y2="185.0622406639004"></line>
       <line x1="40" x2="247" y1="151.86721991701245" y2="151.86721991701245"></line>
       <line x1="40" x2="247" y1="118.67219917012449" y2="118.67219917012449"></line>
@@ -31,7 +31,7 @@
       <path transform="translate(40,85.47717842323651)" d="M0,0L-6,0"></path>
       <path transform="translate(40,52.28215767634856)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,185.0622406639004)">4</text>
       <text y="0.32em" transform="translate(40,151.86721991701245)">6</text>
       <text y="0.32em" transform="translate(40,118.67219917012449)">8</text>
@@ -41,7 +41,7 @@
     <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
       <text transform="translate(40,30)">↑ y</text>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="62.46666666666666" x2="62.46666666666666" y1="30" y2="210"></line>
       <line x1="124.80000000000001" x2="124.80000000000001" y1="30" y2="210"></line>
       <line x1="187.13333333333333" x2="187.13333333333333" y1="30" y2="210"></line>
@@ -51,7 +51,7 @@
       <path transform="translate(124.80000000000001,210)" d="M0,0L0,6"></path>
       <path transform="translate(187.13333333333333,210)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(62.46666666666666,210)">5</text>
       <text y="0.71em" transform="translate(124.80000000000001,210)">10</text>
       <text y="0.71em" transform="translate(187.13333333333333,210)">15</text>
@@ -72,17 +72,17 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(232,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(143.5,30)">2</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="247" y1="185.0622406639004" y2="185.0622406639004"></line>
       <line x1="40" x2="247" y1="151.86721991701245" y2="151.86721991701245"></line>
       <line x1="40" x2="247" y1="118.67219917012449" y2="118.67219917012449"></line>
       <line x1="40" x2="247" y1="85.47717842323651" y2="85.47717842323651"></line>
       <line x1="40" x2="247" y1="52.28215767634856" y2="52.28215767634856"></line>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="62.46666666666666" x2="62.46666666666666" y1="30" y2="210"></line>
       <line x1="124.80000000000001" x2="124.80000000000001" y1="30" y2="210"></line>
       <line x1="187.13333333333333" x2="187.13333333333333" y1="30" y2="210"></line>
@@ -92,7 +92,7 @@
       <path transform="translate(124.80000000000001,210)" d="M0,0L0,6"></path>
       <path transform="translate(187.13333333333333,210)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(62.46666666666666,210)">5</text>
       <text y="0.71em" transform="translate(124.80000000000001,210)">10</text>
       <text y="0.71em" transform="translate(187.13333333333333,210)">15</text>
@@ -113,17 +113,17 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(462,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(143.5,30)">3</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="247" y1="185.0622406639004" y2="185.0622406639004"></line>
       <line x1="40" x2="247" y1="151.86721991701245" y2="151.86721991701245"></line>
       <line x1="40" x2="247" y1="118.67219917012449" y2="118.67219917012449"></line>
       <line x1="40" x2="247" y1="85.47717842323651" y2="85.47717842323651"></line>
       <line x1="40" x2="247" y1="52.28215767634856" y2="52.28215767634856"></line>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="62.46666666666666" x2="62.46666666666666" y1="30" y2="210"></line>
       <line x1="124.80000000000001" x2="124.80000000000001" y1="30" y2="210"></line>
       <line x1="187.13333333333333" x2="187.13333333333333" y1="30" y2="210"></line>
@@ -133,7 +133,7 @@
       <path transform="translate(124.80000000000001,210)" d="M0,0L0,6"></path>
       <path transform="translate(187.13333333333333,210)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(62.46666666666666,210)">5</text>
       <text y="0.71em" transform="translate(124.80000000000001,210)">10</text>
       <text y="0.71em" transform="translate(187.13333333333333,210)">15</text>
@@ -154,17 +154,17 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(692,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(143.5,30)">4</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="247" y1="185.0622406639004" y2="185.0622406639004"></line>
       <line x1="40" x2="247" y1="151.86721991701245" y2="151.86721991701245"></line>
       <line x1="40" x2="247" y1="118.67219917012449" y2="118.67219917012449"></line>
       <line x1="40" x2="247" y1="85.47717842323651" y2="85.47717842323651"></line>
       <line x1="40" x2="247" y1="52.28215767634856" y2="52.28215767634856"></line>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="62.46666666666666" x2="62.46666666666666" y1="30" y2="210"></line>
       <line x1="124.80000000000001" x2="124.80000000000001" y1="30" y2="210"></line>
       <line x1="187.13333333333333" x2="187.13333333333333" y1="30" y2="210"></line>
@@ -174,7 +174,7 @@
       <path transform="translate(124.80000000000001,210)" d="M0,0L0,6"></path>
       <path transform="translate(187.13333333333333,210)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(62.46666666666666,210)">5</text>
       <text y="0.71em" transform="translate(124.80000000000001,210)">10</text>
       <text y="0.71em" transform="translate(187.13333333333333,210)">15</text>

@@ -24,7 +24,7 @@
     <path transform="translate(544.3835616438356,370)" d="M0,0L0,6"></path>
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(20,370)">2006</text>
     <text y="0.71em" transform="translate(93.97260273972603,370)">April</text>
     <text y="0.71em" transform="translate(168.76712328767124,370)">July</text>

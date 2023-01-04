@@ -14,10 +14,10 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(130,30)">Adelie</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="220" y1="400" y2="400"></line>
       <line x1="40" x2="220" y1="374.6575342465753" y2="374.6575342465753"></line>
       <line x1="40" x2="220" y1="349.3150684931507" y2="349.3150684931507"></line>
@@ -51,7 +51,7 @@
       <path transform="translate(40,70.54794520547945)" d="M0,0L-6,0"></path>
       <path transform="translate(40,45.20547945205482)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,400)">0</text>
       <text y="0.32em" transform="translate(40,374.6575342465753)">5</text>
       <text y="0.32em" transform="translate(40,349.3150684931507)">10</text>
@@ -76,7 +76,7 @@
       <path transform="translate(104,400)" d="M0,0L0,6"></path>
       <path transform="translate(162,400)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" transform="translate(26.5,9.5)">
+    <g aria-label="x-axis tick label" transform="translate(26.5,9.5)">
       <text y="0.71em" transform="translate(46,400)">FEMALE</text>
       <text y="0.71em" transform="translate(104,400)">MALE</text>
       <text y="0.71em" transform="translate(162,400)">N/A</text>
@@ -96,10 +96,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(200,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(130,30)">Chinstrap</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="220" y1="400" y2="400"></line>
       <line x1="40" x2="220" y1="374.6575342465753" y2="374.6575342465753"></line>
       <line x1="40" x2="220" y1="349.3150684931507" y2="349.3150684931507"></line>
@@ -121,7 +121,7 @@
       <path transform="translate(104,400)" d="M0,0L0,6"></path>
       <path transform="translate(162,400)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" transform="translate(26.5,9.5)">
+    <g aria-label="x-axis tick label" transform="translate(26.5,9.5)">
       <text y="0.71em" transform="translate(46,400)">FEMALE</text>
       <text y="0.71em" transform="translate(104,400)">MALE</text>
       <text y="0.71em" transform="translate(162,400)">N/A</text>
@@ -135,10 +135,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(400,0)">
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(130,30)">Gentoo</text>
     </g>
-    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="220" y1="400" y2="400"></line>
       <line x1="40" x2="220" y1="374.6575342465753" y2="374.6575342465753"></line>
       <line x1="40" x2="220" y1="349.3150684931507" y2="349.3150684931507"></line>
@@ -160,7 +160,7 @@
       <path transform="translate(104,400)" d="M0,0L0,6"></path>
       <path transform="translate(162,400)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" transform="translate(26.5,9.5)">
+    <g aria-label="x-axis tick label" transform="translate(26.5,9.5)">
       <text y="0.71em" transform="translate(46,400)">FEMALE</text>
       <text y="0.71em" transform="translate(104,400)">MALE</text>
       <text y="0.71em" transform="translate(162,400)">N/A</text>

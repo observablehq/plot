@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="940" y1="594.9905114324869" y2="594.9905114324869"></line>
     <line x1="40" x2="940" y1="588.1608414033238" y2="588.1608414033238"></line>
     <line x1="40" x2="940" y1="582.136645498858" y2="582.136645498858"></line>
@@ -103,7 +103,7 @@
     <path transform="translate(40,49.48045749287073)" d="M0,0L-6,0"></path>
     <path transform="translate(40,34.766512033796545)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,594.9905114324869)"></text>
     <text y="0.32em" transform="translate(40,588.1608414033238)"></text>
     <text y="0.32em" transform="translate(40,582.136645498858)"></text>
@@ -151,7 +151,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
     <text transform="translate(40,20)">↑ Total number of votes</text>
   </g>
-  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="108.042956836157" x2="108.042956836157" y1="20" y2="610"></line>
     <line x1="202.7858919982453" x2="202.7858919982453" y1="20" y2="610"></line>
     <line x1="297.5288271603336" x2="297.5288271603336" y1="20" y2="610"></line>
@@ -173,7 +173,7 @@
     <path transform="translate(771.2435029707751,610)" d="M0,0L0,6"></path>
     <path transform="translate(865.9864381328634,610)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(108.042956836157,610)">−80</text>
     <text y="0.71em" transform="translate(202.7858919982453,610)">−60</text>
     <text y="0.71em" transform="translate(297.5288271603336,610)">−40</text>

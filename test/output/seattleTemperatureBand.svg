@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="366.448087431694" y2="366.448087431694"></line>
     <line x1="40" x2="620" y1="320.91074681238615" y2="320.91074681238615"></line>
     <line x1="40" x2="620" y1="275.37340619307827" y2="275.37340619307827"></line>
@@ -33,7 +33,7 @@
     <path transform="translate(40,93.22404371584703)" d="M0,0L-6,0"></path>
     <path transform="translate(40,47.686703096539205)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,366.448087431694)">20</text>
     <text y="0.32em" transform="translate(40,320.91074681238615)">30</text>
     <text y="0.32em" transform="translate(40,275.37340619307827)">40</text>
@@ -52,7 +52,7 @@
     <path transform="translate(330.3972602739726,370)" d="M0,0L0,6"></path>
     <path transform="translate(475.3972602739726,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(40,370)">2012</text>
     <text y="0.71em" transform="translate(185.39726027397262,370)">2013</text>
     <text y="0.71em" transform="translate(330.3972602739726,370)">2014</text>

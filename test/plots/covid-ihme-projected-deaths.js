@@ -7,15 +7,15 @@ export default async function () {
   return Plot.plot({
     width: 960,
     height: 600,
-    grid: true,
     y: {
       type: "log",
       label: "↑ Deaths per day to COVID-19 (projected)",
-      tickFormat: ",~f"
+      tickFormat: ",~f",
+      grid: true
     },
     marks: [
+      Plot.gridX(),
       Plot.axisX({
-        grid: true,
         tickFormat: (
           (fm, fd) => (x, i) =>
             i === 0 || d3.utcDay.count(d3.utcMonth(x), x) < 7 ? `${fd(x)}\n${fm(x)}` : fd(x)

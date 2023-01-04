@@ -14,10 +14,10 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,0)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">WHITE</text>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="20" y2="76"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
@@ -33,10 +33,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,62)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">UNDESIGNATED</text>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="20" y2="76"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
@@ -52,10 +52,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,124)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">ASIAN</text>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="20" y2="76"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
@@ -71,10 +71,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,186)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">OTHER</text>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="20" y2="76"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
@@ -90,10 +90,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,248)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">TWO or MORE RACES</text>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="20" y2="76"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
@@ -109,10 +109,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,310)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">INDIAN AMERICAN or ALASKA NATIVE</text>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="20" y2="76"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
@@ -128,10 +128,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,372)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">BLACK or AFRICAN AMERICAN</text>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="20" y2="76"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
@@ -147,10 +147,10 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,434)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">NATIVE HAWAIIAN or PACIFIC ISLANDER</text>
     </g>
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="20" y2="76"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
@@ -162,7 +162,7 @@
       <path transform="translate(417.47039952809854,76)" d="M0,0L0,6"></path>
       <path transform="translate(521.2055992921478,76)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(210,76)">0</text>
       <text y="0.71em" transform="translate(313.7351997640493,76)">20</text>
       <text y="0.71em" transform="translate(417.47039952809854,76)">40</text>

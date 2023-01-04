@@ -20,7 +20,7 @@
     <path transform="translate(40,151.23636363636365)" d="M0,0L-6,0"></path>
     <path transform="translate(40,98.50909090909093)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,309.41818181818184)">35</text>
     <text y="0.32em" transform="translate(40,256.6909090909091)">40</text>
     <text y="0.32em" transform="translate(40,203.9636363636364)">45</text>
@@ -38,7 +38,7 @@
     <path transform="translate(493.0508474576272,370)" d="M0,0L0,6"></path>
     <path transform="translate(581.1864406779661,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(140.5084745762712,370)">180</text>
     <text y="0.71em" transform="translate(228.64406779661016,370)">190</text>
     <text y="0.71em" transform="translate(316.77966101694915,370)">200</text>

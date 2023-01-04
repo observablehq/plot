@@ -17,13 +17,13 @@
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,55)">2</text>
     </g>
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(64,30)">2</text>
     </g>
     <g aria-label="rect">
@@ -40,7 +40,7 @@
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,55)">3</text>
     </g>
     <g aria-label="rect">
@@ -57,7 +57,7 @@
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,55)">4</text>
     </g>
     <g aria-label="rect">
@@ -74,7 +74,7 @@
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,55)">5</text>
     </g>
     <g aria-label="rect">
@@ -91,7 +91,7 @@
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,55)">6</text>
     </g>
     <g aria-label="rect">
@@ -108,7 +108,7 @@
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,55)">7</text>
     </g>
     <g aria-label="rect">
@@ -125,7 +125,7 @@
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,55)">8</text>
     </g>
     <g aria-label="rect">
@@ -142,7 +142,7 @@
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,55)">9</text>
     </g>
     <g aria-label="rect">
@@ -159,7 +159,7 @@
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(64,30)">3</text>
     </g>
     <g aria-label="rect">
@@ -253,7 +253,7 @@
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(64,30)">4</text>
     </g>
     <g aria-label="rect">
@@ -347,7 +347,7 @@
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(64,30)">5</text>
     </g>
     <g aria-label="rect">
@@ -441,7 +441,7 @@
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(64,30)">6</text>
     </g>
     <g aria-label="rect">
@@ -535,7 +535,7 @@
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(64,30)">7</text>
     </g>
     <g aria-label="rect">
@@ -629,7 +629,7 @@
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(64,30)">8</text>
     </g>
     <g aria-label="rect">
@@ -723,7 +723,7 @@
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(64,30)">9</text>
     </g>
     <g aria-label="rect">

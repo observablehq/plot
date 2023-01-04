@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,1)">
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(570,49.5)">Biscoe</text>
     </g>
     <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9)">
@@ -22,7 +22,7 @@
       <path transform="translate(75,41)" d="M0,0L-6,0"></path>
       <path transform="translate(75,60)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,9)">
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9)">
       <text y="0.32em" transform="translate(75,22)">Adelie</text>
       <text y="0.32em" transform="translate(75,41)">Chinstrap</text>
       <text y="0.32em" transform="translate(75,60)">Gentoo</text>
@@ -40,7 +40,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,66)">
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(570,49.5)">Dream</text>
     </g>
     <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9)">
@@ -48,7 +48,7 @@
       <path transform="translate(75,41)" d="M0,0L-6,0"></path>
       <path transform="translate(75,60)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,9)">
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9)">
       <text y="0.32em" transform="translate(75,22)">Adelie</text>
       <text y="0.32em" transform="translate(75,41)">Chinstrap</text>
       <text y="0.32em" transform="translate(75,60)">Gentoo</text>
@@ -63,7 +63,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,131)">
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(570,49.5)">Torgersen</text>
     </g>
     <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9)">
@@ -71,7 +71,7 @@
       <path transform="translate(75,41)" d="M0,0L-6,0"></path>
       <path transform="translate(75,60)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,9)">
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9)">
       <text y="0.32em" transform="translate(75,22)">Adelie</text>
       <text y="0.32em" transform="translate(75,41)">Chinstrap</text>
       <text y="0.32em" transform="translate(75,60)">Gentoo</text>
@@ -85,7 +85,7 @@
       <path transform="translate(466.12903225806446,79)" d="M0,0L0,6"></path>
       <path transform="translate(544.3548387096774,79)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(75,79)">0</text>
       <text y="0.71em" transform="translate(153.2258064516129,79)">20</text>
       <text y="0.71em" transform="translate(231.4516129032258,79)">40</text>

@@ -40,8 +40,8 @@ export function Dimensions(scales, marks, options = {}) {
     height = autoHeight(scales, marks, options, {
       width,
       marginTopDefault,
-      marginBottomDefault,
       marginRightDefault,
+      marginBottomDefault,
       marginLeftDefault
     }) + Math.max(0, marginTop - marginTopDefault + marginBottom - marginBottomDefault)
   } = options;
@@ -64,7 +64,7 @@ function autoHeight(
   {y, fy, fx},
   marks,
   {projection},
-  {width, marginTopDefault, marginBottomDefault, marginRightDefault, marginLeftDefault}
+  {width, marginTopDefault, marginRightDefault, marginBottomDefault, marginLeftDefault}
 ) {
   const nfy = fy ? fy.scale.domain().length : 1;
 

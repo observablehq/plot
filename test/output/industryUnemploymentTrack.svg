@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,6)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Construction</text>
     </g>
     <g aria-label="bar">
@@ -149,7 +149,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,26)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Wholesale and Retail Trade</text>
     </g>
     <g aria-label="bar">
@@ -284,7 +284,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,46)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Manufacturing</text>
     </g>
     <g aria-label="bar">
@@ -419,7 +419,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,66)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Leisure and hospitality</text>
     </g>
     <g aria-label="bar">
@@ -554,7 +554,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,86)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Business services</text>
     </g>
     <g aria-label="bar">
@@ -689,7 +689,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,106)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Education and Health</text>
     </g>
     <g aria-label="bar">
@@ -824,7 +824,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,126)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Government</text>
     </g>
     <g aria-label="bar">
@@ -959,7 +959,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,146)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Self-employed</text>
     </g>
     <g aria-label="bar">
@@ -1094,7 +1094,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,166)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Finance</text>
     </g>
     <g aria-label="bar">
@@ -1229,7 +1229,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,186)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Transportation and Utilities</text>
     </g>
     <g aria-label="bar">
@@ -1364,7 +1364,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,206)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Other</text>
     </g>
     <g aria-label="bar">
@@ -1499,7 +1499,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,226)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Information</text>
     </g>
     <g aria-label="bar">
@@ -1634,7 +1634,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,246)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Agriculture</text>
     </g>
     <g aria-label="bar">
@@ -1769,7 +1769,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,266)">
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Mining and Extraction</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -1780,7 +1780,7 @@
       <path transform="translate(517.844827586207,38)" d="M0,0L0,6"></path>
       <path transform="translate(612.3706896551724,38)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(140,38)">2000</text>
       <text y="0.71em" transform="translate(234.52586206896552,38)">2002</text>
       <text y="0.71em" transform="translate(328.9224137931035,38)">2004</text>

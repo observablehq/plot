@@ -29,7 +29,7 @@
     <path transform="translate(40,57.77777777777779)" d="M0,0L-6,0"></path>
     <path transform="translate(40,32.59259259259261)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,360)">0</text>
     <text y="0.32em" transform="translate(40,334.8148148148148)">2</text>
     <text y="0.32em" transform="translate(40,309.6296296296297)">4</text>
@@ -56,7 +56,7 @@
     <path transform="translate(430,360)" d="M0,0L0,6"></path>
     <path transform="translate(525,360)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" transform="translate(43.5,9.5)">
+  <g aria-label="x-axis tick label" transform="translate(43.5,9.5)">
     <text transform="translate(50,360)"><tspan x="0" y="0.71em">Committed 671</tspan><tspan x="0" y="1.71em">birthdays to</tspan><tspan x="0" y="2.71em">memory</tspan></text>
     <text transform="translate(145,360)"><tspan x="0" y="0.71em">Discovered how</tspan><tspan x="0" y="1.71em">to “like” things</tspan><tspan x="0" y="2.71em">mentally</tspan></text>
     <text transform="translate(240,360)"><tspan x="0" y="0.71em">Ex is doing too</tspan><tspan x="0" y="1.71em">well</tspan></text>
@@ -75,7 +75,7 @@
     <rect x="145" width="86" y="20" height="340"></rect>
     <rect x="525" width="86" y="208.88888888888889" height="151.11111111111111"></rect>
   </g>
-  <g aria-label="y-axis grid" stroke="#eee" stroke-opacity="0.2" transform="translate(0,0.5)">
+  <g aria-label="y-grid" stroke="#eee" stroke-opacity="0.2" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="360" y2="360"></line>
     <line x1="40" x2="620" y1="334.8148148148148" y2="334.8148148148148"></line>
     <line x1="40" x2="620" y1="309.6296296296297" y2="309.6296296296297"></line>

@@ -20,7 +20,7 @@
     <path transform="translate(40,87)" d="M0,0L-6,0"></path>
     <path transform="translate(40,108)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,10)">
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10)">
     <text y="0.32em" transform="translate(40,24)">1</text>
     <text y="0.32em" transform="translate(40,45)">2</text>
     <text y="0.32em" transform="translate(40,66)">3</text>
@@ -30,7 +30,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
     <text transform="translate(40,20)">Expt</text>
   </g>
-  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="83.86666666666667" x2="83.86666666666667" y1="20" y2="130"></line>
     <line x1="146.9777777777778" x2="146.9777777777778" y1="20" y2="130"></line>
     <line x1="210.08888888888887" x2="210.08888888888887" y1="20" y2="130"></line>
@@ -52,7 +52,7 @@
     <path transform="translate(525.6444444444445,130)" d="M0,0L0,6"></path>
     <path transform="translate(588.7555555555556,130)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(83.86666666666667,130)">650</text>
     <text y="0.71em" transform="translate(146.9777777777778,130)">700</text>
     <text y="0.71em" transform="translate(210.08888888888887,130)">750</text>

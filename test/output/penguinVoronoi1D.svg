@@ -22,7 +22,7 @@
     <path transform="translate(481.11111111111114,30)" d="M0,0L0,6"></path>
     <path transform="translate(561.6666666666666,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
     <text y="0.71em" transform="translate(78.33333333333333,30)">3,000</text>
     <text y="0.71em" transform="translate(158.88888888888889,30)">3,500</text>
     <text y="0.71em" transform="translate(239.44444444444443,30)">4,000</text>
