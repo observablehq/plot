@@ -106,6 +106,7 @@ function interpolateVoronoi(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a})
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function interpolateNearest(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
@@ -130,6 +131,7 @@ function interpolateNearest(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a})
   context2d.putImageData(image, 0, 0);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function interpolateDelaunay(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
@@ -154,6 +156,7 @@ function interpolateDelaunay(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}
   }
   context2d.putImageData(image, 0, 0);
 }
+
 function interpolateBarycentric(extrapolate = true) {
   return (index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) => {
     const {width, height} = canvas;
@@ -164,8 +167,8 @@ function interpolateBarycentric(extrapolate = true) {
     // renumber/reindex everything, because we're going to add points if extrapolate is true
     X = Array.from(index, (i) => X[i]);
     Y = Array.from(index, (i) => Y[i]);
-    F = F && Array.from(index, (i) => F[i]);
-    FO = FO && Array.from(index, (i) => FO[i]);
+    F = F && Array.from(index, (i) => +F[i]); // coerce prior to interpolation (e.g., dates)
+    FO = FO && Array.from(index, (i) => +FO[i]);
     index = d3.range(index.length);
 
     // to extrapolate, we need to fill the rectangle; pad the perimeter with vertices all around.
@@ -189,18 +192,19 @@ function interpolateBarycentric(extrapolate = true) {
     );
     const {points, triangles} = delaunay;
 
-    // two rounds of extrapolation are necessary; the first fills the triangles
-    // which have one unknown dot, the second fills the remaining triangles
+    // Some triangles have one undefined value; other triangles have two. Fill
+    // each undefined vertex with an average of the other defined vertices.
     if (extrapolate) {
-      for (let c = 0; c < 2; c++) {
-        for (let i = 0; i < triangles.length; i += 3) {
-          const a = triangles[i];
-          const b = triangles[i + 1];
-          const c = triangles[i + 2];
-          if (isNaN(F[index[a]])) F[index[a]] = (F[index[b]] + F[index[c]]) / 2;
-          if (isNaN(F[index[b]])) F[index[b]] = (F[index[c]] + F[index[a]]) / 2;
-          if (isNaN(F[index[c]])) F[index[c]] = (F[index[a]] + F[index[b]]) / 2;
-        }
+      for (let i = 0; i < triangles.length; i += 3) {
+        const ia = index[triangles[i]];
+        const ib = index[triangles[i + 1]];
+        const ic = index[triangles[i + 2]];
+        const fa = F[ia];
+        const fb = F[ib];
+        const fc = F[ic];
+        if (isNaN(fa)) F[ia] = ((isNaN(fc) ? fb : fc) + (isNaN(fb) ? fc : fb)) / 2;
+        if (isNaN(fb)) F[ib] = ((isNaN(fa) ? fc : fa) + (isNaN(fc) ? fa : fc)) / 2;
+        if (isNaN(fc)) F[ic] = ((isNaN(fb) ? fa : fb) + (isNaN(fa) ? fb : fa)) / 2;
       }
     }
 
