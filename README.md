@@ -1506,39 +1506,48 @@ Returns a new link with the given *data* and *options*.
 
 ### Raster
 
-[Source](./src/marks/raster.js) · [Examples](https://observablehq.com/@observablehq/plot-raster) · Fills a raster image with colored pixels.
+[Source](./src/marks/raster.js) · [Examples](https://observablehq.com/@observablehq/plot-raster) · Fills a raster image with color samples.
 
 #### Plot.raster(*data*, *options*)
 
 <!-- jsdoc raster -->
 
-```js
-Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: volcano.values})
-```
+Returns a new raster with the given *data* and *options*.
 
-```js
-Plot.raster({fill: (x, y) => Math.atan2(y, x)})
-```
+The *data* represents a discrete set of samples in abstract coordinates, bound to the scales *x* and *y*, a **fill** channel bound to the *color* scale, and a **fillOpacity** channel bound to the *opacity* scale.
 
-Returns a new raster with the given *data* and *options*. 
+Each sample is drawn on a rectangular raster image with dimensions that may be specified directly with the following options:
+* **width** - the number of pixels on each horizontal line
+* **height** - the number of lines; a positive integer
 
-The raster image’s geometry can be specified directly as rectangular dimensions:
-* **width** - the number of (data) values on each horizontal line; a positive integer bound to the *x* scale
-* **height** - the number of lines; a positive integer bound to the *y* scale
-
-Alternatively, the horizontal and vertical dimensions can be specified from a starting and ending positions, together with a pixel ratio:
+Alternatively, the width and height of the raster can be imputed from the starting and ending positions for x and y, and a pixel ratio:
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y1** - the starting vertical position; bound to the *y* scale
 * **y2** - the ending vertical position; bound to the *y* scale
-* **pixelRatio** - the density of the raster image; defaults to 1 pixel per value
+* **pixelRatio** - the density of the raster image; defaults to 1
 
-The following channels and options are supported:
-* **fill** - the color; bound to the *color* scale
-* **x** - the horizontal position of the value (needs both x1 and x2 to be specified ??)
-* **y** - the vertical position of the value (needs both y1 and y2 to be specified ??)
-* **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering) attribute of the image; defaults to auto. A typical setting is pixelated, that renders each data point sharply with nearest-neighbor interpolation.
+The abstract coordinates of the raster x1, x2, y1 and y2 must all be defined. If a width has been specified, x1 defaults to 0 and x2 defaults to width; similarly, if a height has been specified, y1 defaults to 0 and y2 defaults to height.
 
+The following options are supported:
+* **fill** - the sample’s color; if a channel, bound to the *color* scale
+* **fillOpacity** - the sample’s opacity; if a channel, bound to the *opacity* scale
+* **x** and **y** - the sample’s coordinates 
+* **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering) attribute of the image; defaults to auto, which blends neighboring samples with bilinear interpolation. A typical setting is pixelated, that asks the browser to render each pixel as a solid rectangle.
+
+The defaults for this mark make it convenient to draw an image from a flat array of values representing a rectangular matrix in row-major order:
+
+```js
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: volcano.values})
+```
+
+When *data* is not specified and *fill* or *fillOpacity* is a function, a sample is taken for every pixel of the raster, which allows to fill an image from a function and a two-dimensional domain:
+
+```js
+Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
+```
+
+Each sample currently affects a single pixel on the raster, at the (rounded) coordinates that correspond to *x* and *y* (unless of course they are outside the canvas). Other interpolation methods might be supported in the future.
 
 <!-- jsdocEnd raster -->
 
