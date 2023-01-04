@@ -33,7 +33,7 @@
     <text y="0.32em" transform="translate(40,81.43617021276597)">40</text>
     <text y="0.32em" transform="translate(40,34.89361702127662)">45</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
     <text transform="translate(40,20)">↑ economy (mpg)</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">

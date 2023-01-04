@@ -119,7 +119,7 @@ function axisKy(
                 frameAnchor: `top-${anchor}`,
                 ...options,
                 initializer: function (data, facets, channels, scales, dimensions) {
-                  this.dy = -9;
+                  this.dy = -10;
                   this.dx = -dimensions.marginLeft;
                   this.ariaLabel = `${k}-axis label`;
                   return {

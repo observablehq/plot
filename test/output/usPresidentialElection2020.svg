@@ -148,7 +148,7 @@
     <text y="0.32em" transform="translate(40,49.48045749287073)">3M</text>
     <text y="0.32em" transform="translate(40,34.766512033796545)"></text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
     <text transform="translate(40,20)">↑ Total number of votes</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">

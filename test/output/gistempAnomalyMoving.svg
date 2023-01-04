@@ -49,7 +49,7 @@
     <text y="0.32em" transform="translate(40,77.51173708920186)">+1.0</text>
     <text y="0.32em" transform="translate(40,44.647887323943664)">+1.2</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
     <text transform="translate(40,20)">↑ Temperature anomaly (°C)</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">

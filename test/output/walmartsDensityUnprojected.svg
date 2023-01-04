@@ -55,7 +55,7 @@
     <text y="0.32em" transform="translate(40,85.28564121308844)">46</text>
     <text y="0.32em" transform="translate(40,38.110390173206525)">48</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
     <text transform="translate(40,20)">↑ latitude</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">

@@ -53,7 +53,7 @@
       <text y="0.32em" transform="translate(110,112)">No. 462</text>
       <text y="0.32em" transform="translate(110,122)">Svansota</text>
     </g>
-    <g aria-label="y-axis label" text-anchor="start" transform="translate(-109.5,-8.5)">
+    <g aria-label="y-axis label" text-anchor="start" transform="translate(-109.5,-9.5)">
       <text transform="translate(110,20)">variety</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">

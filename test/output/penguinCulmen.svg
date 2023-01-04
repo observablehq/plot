@@ -31,7 +31,7 @@
       <text y="0.32em" transform="translate(40,88.29818181818183)">50</text>
       <text y="0.32em" transform="translate(40,57.93454545454547)">55</text>
     </g>
-    <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-8.5)">
+    <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
       <text transform="translate(40,30)">↑ culmen_length_mm</text>
     </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>

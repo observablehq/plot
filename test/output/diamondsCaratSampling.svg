@@ -35,7 +35,7 @@
     <text y="0.32em" transform="translate(44,73.41677028707358)">16,000</text>
     <text y="0.32em" transform="translate(44,35.572795588473795)">18,000</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-43.5,-8.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-43.5,-9.5)">
     <text transform="translate(44,20)">↑ price</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
