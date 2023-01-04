@@ -1,6 +1,6 @@
 import {rgb} from "d3";
 import {create} from "../context.js";
-import {first, second, third} from "../options.js";
+import {first, second, third, isTuples} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -151,7 +151,12 @@ export class Raster extends Mark {
 export function raster(data, options) {
   if (arguments.length < 2) (options = data), (data = null);
   let {x, y, fill, ...rest} = options;
-  if (x === undefined && y === undefined) {
+  // Because we implicit x and y when fill is a function of (x, y), and when
+  // data is a dense grid, we must further disambiguate by testing whether data
+  // contains [x, y, z?] tuples. Hence you can’t use this shorthand with a
+  // transform that lazily generates tuples, but that seems reasonable since
+  // this is just for convenience anyway.
+  if (x === undefined && y === undefined && isTuples(data)) {
     (x = first), (y = second);
     if (fill === undefined) fill = third;
   }

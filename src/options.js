@@ -252,6 +252,14 @@ export function numberChannel(source) {
       };
 }
 
+export function isTuples(data) {
+  if (!isIterable(data)) return false;
+  for (const d of data) {
+    if (d == null) continue;
+    return typeof d === "object" && "0" in d && "1" in d;
+  }
+}
+
 export function isIterable(value) {
   return value && typeof value[Symbol.iterator] === "function";
 }
