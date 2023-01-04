@@ -239,7 +239,8 @@ export {
   default as spatialInterpolationNone,
   barycentric as spatialInterpolationBarycentric,
   barycentricExtra as spatialInterpolationBarycentricExtra,
-  voronoi as spatialInterpolationVoronoi
+  voronoi as spatialInterpolationVoronoi,
+  walmart as spatialInterpolationWalmart
 } from "./spatial-interpolation.js";
 export {default as stackedBar} from "./stacked-bar.js";
 export {default as stackedRect} from "./stacked-rect.js";
