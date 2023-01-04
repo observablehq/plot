@@ -214,6 +214,6 @@ function interpolatePixel(index, canvas, {X, Y, R, G, B, FO}, {r, g, b, a}) {
       imageData[j + 2] = b;
     }
     imageData[j + 3] = FO ? FO[i] * 255 : a;
-    context2d.putImageData(image, 0, 0);
   }
+  context2d.putImageData(image, 0, 0);
 }

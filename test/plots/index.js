@@ -235,6 +235,11 @@ export {default as singleValueBar} from "./single-value-bar.js";
 export {default as singleValueBin} from "./single-value-bin.js";
 export {default as softwareVersions} from "./software-versions.js";
 export {default as sparseCell} from "./sparse-cell.js";
+export {
+  default as spatialInterpolationNone,
+  barycentric as spatialInterpolationBarycentric,
+  voronoi as spatialInterpolationVoronoi
+} from "./spatial-interpolation.js";
 export {default as stackedBar} from "./stacked-bar.js";
 export {default as stackedRect} from "./stacked-rect.js";
 export {default as stargazers} from "./stargazers.js";
@@ -279,7 +284,6 @@ export {default as wordLengthMobyDick} from "./word-length-moby-dick.js";
 export {default as yearlyRequests} from "./yearly-requests.js";
 export {default as yearlyRequestsDot} from "./yearly-requests-dot.js";
 export {default as yearlyRequestsLine} from "./yearly-requests-line.js";
-export {default as zzz} from "./zzz.js";
 
 export * from "./heatmap.js";
 export * from "./legend-color.js";
