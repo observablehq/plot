@@ -238,6 +238,7 @@ export {default as sparseCell} from "./sparse-cell.js";
 export {
   default as spatialInterpolationNone,
   barycentric as spatialInterpolationBarycentric,
+  barycentricExtra as spatialInterpolationBarycentricExtra,
   voronoi as spatialInterpolationVoronoi
 } from "./spatial-interpolation.js";
 export {default as stackedBar} from "./stacked-bar.js";
