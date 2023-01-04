@@ -179,16 +179,10 @@ export function plot(options = {}) {
 
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
-  // Compute value objects, applying scales as needed.
-  for (const state of stateByMark.values()) {
-    state.values = valueObject(state.channels, scales);
-  }
-
-  // Apply projection as needed.
-  if (context.projection) {
-    for (const [mark, state] of stateByMark) {
-      mark.project(state.channels, state.values, context);
-    }
+  // Compute value objects, applying scales and projection as needed.
+  for (const [mark, state] of stateByMark) {
+    state.values = mark.scale(state.channels, scales);
+    if (context.projection) mark.project(state.channels, state.values, context);
   }
 
   const {width, height} = dimensions;
@@ -420,6 +414,9 @@ export class Mark {
     maybeProject("x", "y", channels, values, context);
     maybeProject("x1", "y1", channels, values, context);
     maybeProject("x2", "y2", channels, values, context);
+  }
+  scale(channels, scales) {
+    return valueObject(channels, scales);
   }
   plot({marks = [], ...options} = {}) {
     return plot({...options, marks: [...marks, this]});
