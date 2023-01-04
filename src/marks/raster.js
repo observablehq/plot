@@ -61,8 +61,8 @@ export class Raster extends Mark {
     this.interpolate = interpolate;
   }
   // Ignore the color scale, so F is returned as unscaled values.
-  scale(channels, {color, ...scales}) {
-    return super.scale(channels, scales);
+  scale(channels, {color, ...scales}, context) {
+    return super.scale(channels, scales, context);
   }
   render(index, {color, ...scales}, channels, dimensions, context) {
     let {x: X, y: Y, fill: F, fillOpacity: FO} = channels;

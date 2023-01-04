@@ -181,8 +181,7 @@ export function plot(options = {}) {
 
   // Compute value objects, applying scales and projection as needed.
   for (const [mark, state] of stateByMark) {
-    state.values = mark.scale(state.channels, scales);
-    if (context.projection) mark.project(state.channels, state.values, context);
+    state.values = mark.scale(state.channels, scales, context);
   }
 
   const {width, height} = dimensions;
@@ -415,8 +414,10 @@ export class Mark {
     maybeProject("x1", "y1", channels, values, context);
     maybeProject("x2", "y2", channels, values, context);
   }
-  scale(channels, scales) {
-    return valueObject(channels, scales);
+  scale(channels, scales, context) {
+    const values = valueObject(channels, scales);
+    if (context.projection) this.project(channels, values, context);
+    return values;
   }
   plot({marks = [], ...options} = {}) {
     return plot({...options, marks: [...marks, this]});
