@@ -60,7 +60,11 @@ export class Raster extends Mark {
     this.imageRendering = impliedString(imageRendering, "auto");
     this.interpolate = interpolate;
   }
-  render(index, scales, channels, dimensions, context) {
+  // Ignore the color scale, so F is returned as unscaled values.
+  scale(channels, {color, ...scales}) {
+    return super.scale(channels, scales);
+  }
+  render(index, {color, ...scales}, channels, dimensions, context) {
     let {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
     const {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
     const {document} = context;
@@ -86,20 +90,11 @@ export class Raster extends Mark {
       const ky = height / imageHeight;
       X = X.slice(); // useless copy unless facets are overlapping; could be a Uint16
       Y = Y.slice();
-      const R = F ? new Uint8Array(F.length) : undefined;
-      const G = F ? new Uint8Array(F.length) : undefined;
-      const B = F ? new Uint8Array(F.length) : undefined;
       for (const i of index) {
         X[i] = (X[i] - x1) * kx;
         Y[i] = (Y[i] - y2) * ky;
-        if (F) {
-          const {r, g, b} = rgb(F[i]);
-          R[i] = r;
-          G[i] = g;
-          B[i] = b;
-        }
       }
-      this.interpolate(index, canvas, {X, Y, R, G, B, FO}, {r, g, b, a});
+      this.interpolate(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a});
     } else {
       // Otherwise if X and Y are not given, then assume that F is a dense array
       // of samples covering the entire grid in row-major order.
@@ -115,7 +110,7 @@ export class Raster extends Mark {
               imageData[j + 3] = 0;
               continue;
             }
-            const {r, g, b} = rgb(fi);
+            const {r, g, b} = rgb(color(fi));
             imageData[j + 0] = r;
             imageData[j + 1] = g;
             imageData[j + 2] = b;
@@ -196,7 +191,7 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
   });
 }
 
-function interpolatePixel(index, canvas, {X, Y, R, G, B, FO}, {r, g, b, a}) {
+function interpolatePixel(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.createImageData(width, height);
@@ -204,10 +199,11 @@ function interpolatePixel(index, canvas, {X, Y, R, G, B, FO}, {r, g, b, a}) {
   for (const i of index) {
     if (X[i] < 0 || X[i] >= width || Y[i] < 0 || Y[i] >= height) continue;
     const j = (Math.floor(Y[i]) * width + Math.floor(X[i])) << 2;
-    if (R) {
-      imageData[j + 0] = R[i];
-      imageData[j + 1] = G[i];
-      imageData[j + 2] = B[i];
+    if (F) {
+      const {r, g, b} = rgb(color(F[i]));
+      imageData[j + 0] = r;
+      imageData[j + 1] = g;
+      imageData[j + 2] = b;
     } else {
       imageData[j + 0] = r;
       imageData[j + 1] = g;
