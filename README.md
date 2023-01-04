@@ -1547,7 +1547,7 @@ When *data* is not specified and *fill* or *fillOpacity* is a function, a sample
 Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
 ```
 
-Each sample currently affects a single pixel on the raster, at the (rounded) coordinates that correspond to *x* and *y* (unless of course they are outside the canvas). Other interpolation methods might be supported in the future.
+Each sample currently affects a single pixel on the raster, at the (floor rounded) coordinates that correspond to *x* and *y* (unless of course they are outside the canvas). Other interpolation methods might be supported in the future.
 
 <!-- jsdocEnd raster -->
 
