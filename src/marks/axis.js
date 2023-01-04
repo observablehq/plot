@@ -7,6 +7,7 @@ import {range, valueof, arrayify, constant, keyword, identity} from "../options.
 import {isNone, isNoneish, isIterable, isTemporal} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
+import {maybeInterval} from "../transforms/interval.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
@@ -61,6 +62,7 @@ function axisKy(
     strokeWidth = 1,
     fill = color,
     fillOpacity = opacity,
+    textAnchor,
     textStroke,
     textStrokeOpacity,
     textStrokeWidth,
@@ -113,6 +115,7 @@ function axisKy(
             stroke: textStroke,
             strokeOpacity: textStrokeOpacity,
             strokeWidth: textStrokeWidth,
+            textAnchor,
             tickSize,
             x,
             marginTop,
@@ -161,6 +164,7 @@ function axisKx(
     strokeWidth = 1,
     fill = color,
     fillOpacity = opacity,
+    textAnchor,
     textStroke,
     textStrokeOpacity,
     textStrokeWidth,
@@ -213,6 +217,7 @@ function axisKx(
             stroke: textStroke,
             strokeOpacity: textStrokeOpacity,
             strokeWidth: textStrokeWidth,
+            textAnchor,
             tickSize,
             y,
             marginTop,
@@ -459,18 +464,21 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
         } else if (scale.ticks) {
           if (ticks !== undefined) {
             data = scale.ticks(ticks);
-          } else if (scale.interval !== undefined) {
-            // For time scales, we could pass the interval directly to
-            // scale.ticks because it’s supported by d3.utcTicks; but
-            // quantitative scales and d3.ticks do not support numeric
-            // intervals for scale.ticks, so we compute them here.
-            const {interval} = scale;
-            const [min, max] = extent(scale.domain());
-            data = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
           } else {
-            const [min, max] = extent(scale.range());
-            ticks = (max - min) / (k === "x" ? 80 : 35);
-            data = scale.ticks(ticks);
+            let {interval = scale.interval} = options;
+            interval = maybeInterval(interval);
+            if (interval !== undefined) {
+              // For time scales, we could pass the interval directly to
+              // scale.ticks because it’s supported by d3.utcTicks; but
+              // quantitative scales and d3.ticks do not support numeric
+              // intervals for scale.ticks, so we compute them here.
+              const [min, max] = extent(scale.domain());
+              data = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
+            } else {
+              const [min, max] = extent(scale.range());
+              ticks = (max - min) / (k === "x" ? 80 : 35);
+              data = scale.ticks(ticks);
+            }
           }
         } else {
           data = scale.domain();

@@ -71,6 +71,10 @@ https://observablehq.com/@mbostock/npm-daily-downloads?name=@observablehq/cars
 U.S. Energy Information Administration; monthly energy review, primary energy production by source, Jan. 2022
 https://www.eia.gov/totalenergy/data/monthly/index.php
 
+## federal-funds.csv
+U.S. Federal Reserve, Jan. 2023
+https://www.federalreserve.gov/releases/h15/
+
 ## flare.csv
 Flare visualization toolkit package hierarchy
 https://observablehq.com/@d3/treemap
