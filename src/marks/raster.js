@@ -38,7 +38,8 @@ export class Raster extends Mark {
       imageRendering,
       pixelRatio = 1,
       fill,
-      fillOpacity
+      fillOpacity,
+      interpolate = interpolatePixel
     } = options;
     super(
       data,
@@ -57,9 +58,10 @@ export class Raster extends Mark {
     this.height = height === undefined ? undefined : integer(height, "height");
     this.pixelRatio = number(pixelRatio, "pixelRatio");
     this.imageRendering = impliedString(imageRendering, "auto");
+    this.interpolate = interpolate;
   }
   render(index, scales, channels, dimensions, context) {
-    const {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
+    let {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
     const {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
     const {document} = context;
     const imageWidth = Math.abs(x2 - x1);
@@ -75,9 +77,6 @@ export class Raster extends Mark {
     canvas.height = height;
     const {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
     const a = (this.fillOpacity ?? 1) * 255;
-    const context2d = canvas.getContext("2d");
-    const image = context2d.createImageData(width, height);
-    const imageData = image.data;
     if (X && Y) {
       // If X and Y are given, then assign each sample to the corresponding
       // pixel location. In the future, it would be better to allow different
@@ -85,27 +84,28 @@ export class Raster extends Mark {
       // a sparse image when not every pixel has a corresponding sample.
       const kx = width / imageWidth;
       const ky = height / imageHeight;
+      X = X.slice(); // useless copy unless facets are overlapping; could be a Uint16
+      Y = Y.slice();
+      const R = F ? new Uint8Array(F.length) : undefined;
+      const G = F ? new Uint8Array(F.length) : undefined;
+      const B = F ? new Uint8Array(F.length) : undefined;
       for (const i of index) {
-        const xi = Math.floor((X[i] - x1) * kx);
-        if (xi < 0 || xi >= width) continue;
-        const yi = Math.floor((Y[i] - y2) * ky);
-        if (yi < 0 || yi >= height) continue;
-        const j = (yi * width + xi) << 2;
+        X[i] = (X[i] - x1) * kx;
+        Y[i] = (Y[i] - y2) * ky;
         if (F) {
           const {r, g, b} = rgb(F[i]);
-          imageData[j + 0] = r;
-          imageData[j + 1] = g;
-          imageData[j + 2] = b;
-        } else {
-          imageData[j + 0] = r;
-          imageData[j + 1] = g;
-          imageData[j + 2] = b;
+          R[i] = r;
+          G[i] = g;
+          B[i] = b;
         }
-        imageData[j + 3] = FO ? FO[i] * 255 : a;
       }
+      this.interpolate(index, canvas, {X, Y, R, G, B, FO}, {r, g, b, a});
     } else {
       // Otherwise if X and Y are not given, then assume that F is a dense array
       // of samples covering the entire grid in row-major order.
+      const context2d = canvas.getContext("2d");
+      const image = context2d.createImageData(width, height);
+      const imageData = image.data;
       for (let y = 0, i = 0; y < height; ++y) {
         for (let x = 0; x < width; ++x, ++i) {
           const j = i << 2;
@@ -127,8 +127,8 @@ export class Raster extends Mark {
           imageData[j + 3] = FO ? FO[i] * 255 : a;
         }
       }
+      context2d.putImageData(image, 0, 0);
     }
-    context2d.putImageData(image, 0, 0);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
@@ -194,4 +194,26 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
       }
     };
   });
+}
+
+function interpolatePixel(index, canvas, {X, Y, R, G, B, FO}, {r, g, b, a}) {
+  const {width, height} = canvas;
+  const context2d = canvas.getContext("2d");
+  const image = context2d.createImageData(width, height);
+  const imageData = image.data;
+  for (const i of index) {
+    if (X[i] < 0 || X[i] >= width || Y[i] < 0 || Y[i] >= height) continue;
+    const j = (Math.floor(Y[i]) * width + Math.floor(X[i])) << 2;
+    if (R) {
+      imageData[j + 0] = R[i];
+      imageData[j + 1] = G[i];
+      imageData[j + 2] = B[i];
+    } else {
+      imageData[j + 0] = r;
+      imageData[j + 1] = g;
+      imageData[j + 2] = b;
+    }
+    imageData[j + 3] = FO ? FO[i] * 255 : a;
+    context2d.putImageData(image, 0, 0);
+  }
 }
