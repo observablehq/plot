@@ -1,11 +1,11 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function spatial(interpolate) {
+async function spatial(interpolate) {
   const ca55 = await d3.csv("data/ca55-south.csv", d3.autoType);
   return Plot.plot({
     axis: null,
-    color: {scheme: "blues"},
+    color: {type: "diverging"},
     y: {reverse: true},
     marks: [
       Plot.raster(ca55, {
@@ -24,7 +24,23 @@ export default async function spatial(interpolate) {
   });
 }
 
-export async function walmart() {
+export async function spatialInterpolationNone() {
+  return spatial();
+}
+
+export async function spatialInterpolationBarycentric() {
+  return spatial(interpolateBarycentric(false));
+}
+
+export async function spatialInterpolationBarycentricExtra() {
+  return spatial(interpolateBarycentric(true));
+}
+
+export async function spatialInterpolationVoronoi() {
+  return spatial(interpolateVoronoi);
+}
+
+export async function spatialInterpolationWalmart() {
   const walmarts = await d3.tsv("data/walmarts.tsv", d3.autoType);
   const projection = d3.geoAlbers();
   for (const d of walmarts) [d.x, d.y] = projection([d.longitude, d.latitude]);
@@ -47,28 +63,8 @@ export async function walmart() {
   });
 }
 
-export async function barycentric() {
-  return spatial(interpolateBarycentric(false));
-}
-
-export async function barycentricExtra() {
-  return spatial(interpolateBarycentric(true));
-}
-
-export async function voronoi() {
-  return spatial(interpolateVoronoi);
-}
-
 function Delaunay(index, X, Y) {
   return d3.Delaunay.from(
-    index,
-    (i) => X[i],
-    (i) => Y[i]
-  );
-}
-
-function Quadtree(index, X, Y) {
-  return d3.quadtree(
     index,
     (i) => X[i],
     (i) => Y[i]
@@ -80,65 +76,17 @@ function interpolateVoronoi(index, canvas, {color}, {fill: F, fillOpacity: FO}, 
   const {width, height} = canvas;
   const context = canvas.getContext("2d");
   const voronoi = Delaunay(index, X, Y).voronoi([0, 0, width, height]);
-  context.strokeStyle = context.fillStyle = this.fill;
+  context.fillStyle = this.fill;
   context.globalAlpha = this.fillOpacity;
   for (let i = 0; i < index.length; ++i) {
     context.beginPath();
     voronoi.renderCell(i, context);
     const j = index[i];
-    if (F) context.strokeStyle = context.fillStyle = color(F[j]);
-    if (FO) context.globalAlpha = FO[j];
+    if (F) context.fillStyle = color(F[j]);
+    if (FO) context.globalAlpha = Math.abs(FO[j]);
     context.fill();
-    context.stroke();
+    if (context.globalAlpha === 1) (context.strokeStyle = context.fillStyle), context.stroke();
   }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function interpolateNearest(index, canvas, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
-  const {width, height} = canvas;
-  const context2d = canvas.getContext("2d");
-  const image = context2d.createImageData(width, height);
-  const imageData = image.data;
-  const quadtree = Quadtree(index, X, Y);
-  let {r, g, b} = d3.rgb(this.fill) ?? {r, g, b};
-  let a = (this.fillOpacity ?? 1) * 255;
-  for (let y = 0, k = 0; y < height; ++y) {
-    for (let x = 0; x < width; ++x, k += 4) {
-      const i = quadtree.find(x, y);
-      if (F) ({r, g, b} = d3.rgb(color(F[i])));
-      if (FO) a = FO[i] * 255;
-      imageData[k + 0] = r;
-      imageData[k + 1] = g;
-      imageData[k + 2] = b;
-      imageData[k + 3] = a;
-    }
-  }
-  context2d.putImageData(image, 0, 0);
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function interpolateDelaunay(index, canvas, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
-  const {width, height} = canvas;
-  const context2d = canvas.getContext("2d");
-  const image = context2d.createImageData(width, height);
-  const imageData = image.data;
-  const d = Delaunay(index, X, Y);
-  let k = 0;
-  let i;
-  let {r, g, b} = d3.rgb(this.fill) ?? {r, g, b};
-  let a = (this.fillOpacity ?? 1) * 255;
-  for (let y = 0; y < height; ++y) {
-    for (let x = 0; x < width; ++x, k += 4) {
-      i = d.find(x, y, i);
-      if (F) ({r, g, b} = d3.rgb(color(F[i])));
-      if (FO) a = FO[i] * 255;
-      imageData[k + 0] = r;
-      imageData[k + 1] = g;
-      imageData[k + 2] = b;
-      imageData[k + 3] = a;
-    }
-  }
-  context2d.putImageData(image, 0, 0);
 }
 
 function interpolateBarycentric(extrapolate = true) {
