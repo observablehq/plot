@@ -52,8 +52,8 @@ export class Raster extends Mark {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},
         x1: {value: x1 == null ? nonnull(x, "x") : [number(x1, "x1")], scale: "x", optional: true, filter: null},
-        y1: {value: x2 == null ? nonnull(x, "x") : [number(x2, "x2")], scale: "y", optional: true, filter: null},
-        x2: {value: y1 == null ? nonnull(y, "y") : [number(y1, "y1")], scale: "x", optional: true, filter: null},
+        y1: {value: y1 == null ? nonnull(y, "y") : [number(y1, "y1")], scale: "y", optional: true, filter: null},
+        x2: {value: x2 == null ? nonnull(x, "x") : [number(x2, "x2")], scale: "x", optional: true, filter: null},
         y2: {value: y2 == null ? nonnull(y, "y") : [number(y2, "y2")], scale: "y", optional: true, filter: null}
       },
       data == null && (typeof fill === "function" || typeof fillOpacity === "function") ? sampleFill(options) : options,
