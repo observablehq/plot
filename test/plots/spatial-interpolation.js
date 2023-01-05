@@ -52,8 +52,6 @@ async function walmart(rasterize) {
     )
   ]);
   return Plot.plot({
-    axis: null,
-    y: {reverse: true},
     color: {reverse: true, legend: true, label: "Opening year"},
     projection: "albers",
     marks: [
