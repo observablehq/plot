@@ -6,8 +6,8 @@ async function spatial(rasterize) {
   const ca55 = await d3.csv("data/ca55-south.csv", d3.autoType);
   return Plot.plot({
     axis: null,
-    color: {type: "diverging"},
     y: {reverse: true},
+    color: {type: "diverging"},
     marks: [
       Plot.raster(ca55, {
         pixelSize: rasterize ? 1 : 3,
@@ -81,19 +81,8 @@ async function penguins(rasterize) {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
-      Plot.raster(penguins, {
-        pixelSize: 1,
-        x: "body_mass_g",
-        y: "flipper_length_mm",
-        fill: "island",
-        rasterize
-      }),
-      Plot.dot(penguins, {
-        x: "body_mass_g",
-        y: "flipper_length_mm",
-        fill: "island",
-        stroke: "white"
-      })
+      Plot.raster(penguins, {x: "body_mass_g", y: "flipper_length_mm", fill: "island", rasterize}),
+      Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", fill: "island", stroke: "white"})
     ]
   });
 }
