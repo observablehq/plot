@@ -1362,15 +1362,14 @@ Returns a new grid with the given *data* and *options*.
 The optional *data* is an array of tick values—it defaults to the scale’s ticks. The grid mark draws a line for each tick value, across the whole frame.
 
 The following options are supported:
-* **anchor** - the grid’s anchor (by default, matches the scale’s axis orientation)
 * **strokeDasharray** - the [stroke dasharray](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray) for dashed lines, defaults to null
 
 The following options are supported as constant or data-driven channels:
 * **stroke** - the grid color, defaults to currentColor
 * **strokeWidth** - the grid’s line width, defaults to 1
 * **strokeOpacity** - the stroke opacity, defaults to 0.1
-* **y1** - the start of the line, a channel of y positions, defaults to the grid’s anchor (see axis anchor).
-* **y2** - the end of the line, a channel of y positions, defaults to the opposite of the grid’s anchor (see axis anchor).
+* **y1** - the start of the line, a channel of y positions.
+* **y2** - the end of the line, a channel of y positions.
 
 All the other common options are supported when applicable (e.g., **title**).
 
