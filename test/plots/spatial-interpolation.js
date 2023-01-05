@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {mesh} from "topojson-client";
 
 async function spatial(rasterize) {
   const ca55 = await d3.csv("data/ca55-south.csv", d3.autoType);
@@ -20,7 +21,7 @@ async function spatial(rasterize) {
   });
 }
 
-export async function spatialInterpolationNone() {
+export async function spatialInterpolation() {
   return spatial();
 }
 
@@ -32,23 +33,54 @@ export async function spatialInterpolationBarycentricExtra() {
   return spatial(rasterizeBarycentric(true));
 }
 
+export async function spatialInterpolationSpheres() {
+  return spatial(rasterizeWalkOnSpheres(3));
+}
+
 export async function spatialInterpolationVoronoi() {
   return spatial(rasterizeVoronoi);
 }
 
-export async function spatialInterpolationWalmart() {
-  const walmarts = await d3.tsv("data/walmarts.tsv", d3.autoType);
+async function walmart(rasterize) {
+  const [walmarts, statemesh] = await Promise.all([
+    d3.tsv("data/walmarts.tsv", d3.autoType),
+    d3.json("data/us-counties-10m.json").then((us) =>
+      mesh(us, {
+        type: "GeometryCollection",
+        geometries: us.objects.states.geometries.filter((d) => d.id !== "02" && d.id !== "02" && d.id !== "15")
+      })
+    )
+  ]);
   const projection = d3.geoAlbers();
   for (const d of walmarts) [d[0], d[1]] = projection([d.longitude, d.latitude]);
+  for (const line of statemesh.coordinates) {
+    for (let i = 0; i < line.length; ++i) line[i] = projection(line[i]);
+  }
   return Plot.plot({
     axis: null,
     y: {reverse: true},
     color: {reverse: true, legend: true, label: "Opening year"},
-    marks: [Plot.raster(walmarts, {fill: "date", rasterize: rasterizeBarycentric(true)})]
+    marks: [Plot.raster(walmarts, {fill: "date", rasterize}), Plot.geo(statemesh, {stroke: "white", strokeWidth: 1.5})]
   });
 }
 
-export async function spatialInterpolationPenguins() {
+export async function spatialWalmart() {
+  return walmart(rasterizeBarycentric(true));
+}
+
+export async function spatialWalmartSpheres() {
+  return walmart(rasterizeWalkOnSpheres());
+}
+
+export async function spatialPenguins() {
+  return penguins(rasterizeBarycentric(true));
+}
+
+export async function spatialPenguinsSpheres() {
+  return penguins(rasterizeWalkOnSpheres(6));
+}
+
+async function penguins(rasterize) {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
@@ -57,7 +89,7 @@ export async function spatialInterpolationPenguins() {
         x: "body_mass_g",
         y: "flipper_length_mm",
         fill: "island",
-        rasterize: rasterizeBarycentric(true)
+        rasterize
       }),
       Plot.dot(penguins, {
         x: "body_mass_g",
@@ -185,6 +217,43 @@ function rasterizeBarycentric(extrapolate = true) {
         }
       }
     }
+    context2d.putImageData(image, 0, 0);
+  };
+}
+
+function rasterizeWalkOnSpheres(blur = 0) {
+  return function (canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+    const {width, height} = canvas;
+    const random = d3.randomLcg(42);
+    const context2d = canvas.getContext("2d");
+    const image = context2d.createImageData(width, height);
+    const imageData = image.data;
+    let {r, g, b} = d3.rgb(this.fill) ?? {r, g, b};
+    let a = (this.fillOpacity ?? 1) * 255;
+    const delaunay = Delaunay(index, X, Y);
+    let k = 0;
+    let i;
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++, k += 4) {
+        let cx = x,
+          cy = y;
+        for (let j = 0; j < 4; ++j) {
+          i = delaunay.find(cx, cy, i);
+          const dist = Math.hypot(X[index[i]] - cx, Y[index[i]] - cy);
+          const angle = random() * 2 * Math.PI;
+          cx += Math.cos(angle) * dist;
+          cy += Math.sin(angle) * dist;
+        }
+
+        if (F) ({r, g, b} = d3.rgb(color(F[index[i]])));
+        if (FO) a = FO[i] * 255;
+        imageData[k + 0] = r;
+        imageData[k + 1] = g;
+        imageData[k + 2] = b;
+        imageData[k + 3] = a;
+      }
+    }
+    if (blur) d3.blurImage(image, blur);
     context2d.putImageData(image, 0, 0);
   };
 }
