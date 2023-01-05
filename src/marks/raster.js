@@ -70,7 +70,7 @@ export class Raster extends Mark {
     return super.scale(channels, scales, context);
   }
   render(index, scales, channels, dimensions, context) {
-    let {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
+    const {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
     let {x1, y1, x2, y2} = channels;
     x1 = x1 ? x1[0] : min(X);
     x2 = x2 ? x2[0] : max(X);
