@@ -48,6 +48,27 @@ export async function spatialInterpolationWalmart() {
   });
 }
 
+export async function spatialInterpolationPenguins() {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.raster(penguins, {
+        pixelRatio: 1,
+        x: "body_mass_g",
+        y: "flipper_length_mm",
+        fill: "island",
+        rasterize: rasterizeBarycentric(true)
+      }),
+      Plot.dot(penguins, {
+        x: "body_mass_g",
+        y: "flipper_length_mm",
+        fill: "island",
+        stroke: "white"
+      })
+    ]
+  });
+}
+
 function Delaunay(index, X, Y) {
   return d3.Delaunay.from(
     index,
@@ -74,6 +95,7 @@ function rasterizeVoronoi(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x
 }
 
 function rasterizeBarycentric(extrapolate = true) {
+  const ex = Symbol("extrapolate");
   return function (canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
     const {width, height} = canvas;
     const context2d = canvas.getContext("2d");
@@ -81,20 +103,21 @@ function rasterizeBarycentric(extrapolate = true) {
     const imageData = image.data;
     let {r, g, b} = d3.rgb(this.fill) ?? {r, g, b};
     let a = (this.fillOpacity ?? 1) * 255;
+    const {mix2, mix3} = mixer(F);
 
     // to extrapolate, we need to fill the rectangle; pad the perimeter with vertices all around.
     if (extrapolate) {
       const m = 101; // number of extrapolated points per side
-      let i = index.length;
 
       // renumber/reindex everything because we’re going to add points
-      X = Array.from(index, (i) => X[i]);
+      X = Array.from(index, (i) => X[i]); // take(X, index)
       Y = Array.from(index, (i) => Y[i]);
-      F = F && Array.from(index, (i) => +F[i]); // coerce prior to interpolation
+      F = F && Array.from(index, (i) => F[i]);
       FO = FO && Array.from(index, (i) => FO[i]);
-      index = d3.range(index.length);
+      let i = index.length;
+      index = d3.range(i);
 
-      const addPoint = (x, y) => (index.push(++i), (X[i] = x), (Y[i] = y), (F[i] = NaN));
+      const addPoint = (x, y) => ((X[i] = x), (Y[i] = y), F && (F[i] = ex), FO && (FO[i] = ex), index.push(i++));
       for (let j = 0; j < m; ++j) {
         const k = j / (m - 1);
         addPoint(k * width, -1);
@@ -109,16 +132,16 @@ function rasterizeBarycentric(extrapolate = true) {
     // Some triangles have one undefined value; other triangles have two. Fill
     // each undefined vertex with an average of the other defined vertices.
     if (extrapolate) {
-      for (let i = 0; i < triangles.length; i += 3) {
-        const ia = index[triangles[i]];
-        const ib = index[triangles[i + 1]];
-        const ic = index[triangles[i + 2]];
-        const fa = F[ia];
-        const fb = F[ib];
-        const fc = F[ic];
-        if (isNaN(fa)) F[ia] = ((isNaN(fc) ? fb : fc) + (isNaN(fb) ? fc : fb)) / 2;
-        if (isNaN(fb)) F[ib] = ((isNaN(fa) ? fc : fa) + (isNaN(fc) ? fa : fc)) / 2;
-        if (isNaN(fc)) F[ic] = ((isNaN(fb) ? fa : fb) + (isNaN(fa) ? fb : fa)) / 2;
+      const channels = [F, FO].filter((d) => d);
+      for (const C of channels) {
+        for (let i = 0; i < triangles.length; i += 3) {
+          const a = triangles[i];
+          const b = triangles[i + 1];
+          const c = triangles[i + 2];
+          if (C[a] === ex) C[a] = C[c] === ex ? C[b] : C[b] === ex ? C[c] : mix2(C[c], C[b]);
+          if (C[b] === ex) C[b] = C[a] === ex ? C[c] : C[c] === ex ? C[a] : mix2(C[a], C[c]);
+          if (C[c] === ex) C[c] = C[b] === ex ? C[a] : C[a] === ex ? C[b] : mix2(C[b], C[a]);
+        }
       }
     }
 
@@ -153,7 +176,7 @@ function rasterizeBarycentric(extrapolate = true) {
           const gc = 1 - ga - gb;
           if (gc < nepsilon) continue;
           const k = (x + width * y) << 2;
-          if (F) ({r, g, b} = d3.rgb(color(ga * F[ia] + gb * F[ib] + gc * F[ic])));
+          if (F) ({r, g, b} = d3.rgb(color(mix3(F[ia], ga, F[ib], gb, F[ic], gc))));
           if (FO) a = (ga * FO[ia] + gb * FO[ib] + gc * FO[ic]) * 255;
           imageData[k + 0] = r;
           imageData[k + 1] = g;
@@ -163,5 +186,29 @@ function rasterizeBarycentric(extrapolate = true) {
       }
     }
     context2d.putImageData(image, 0, 0);
+  };
+}
+
+function mixer(F) {
+  // TODO isNumeric
+  if (typeof F[0] === "number")
+    return {
+      mix2: (a, b) => (a + b) / 2,
+      mix3: (a, ca, b, cb, c, cc) => ca * a + cb * b + cc * c
+    };
+  // TODO isTemporal
+  if (F[0] instanceof Date)
+    return {
+      mix2: (a, b) => (+a + +b) / 2,
+      mix3: (a, ca, b, cb, c, cc) => ca * a + cb * b + cc * c
+    };
+  const random = d3.randomLcg(42);
+  return {
+    mix2: (a, b) => (random() < 0.5 ? a : b),
+    mix3: (a, ca, b, cb, c, cc) => {
+      cc; // is ignored
+      const u = random();
+      return u < ca ? a : u < ca + cb ? b : c;
+    }
   };
 }
