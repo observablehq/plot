@@ -1512,27 +1512,28 @@ Returns a new link with the given *data* and *options*.
 
 <!-- jsdoc raster -->
 
-Returns a new raster with the given *data* and *options*.
-
-The *data* represents a discrete set of samples in abstract coordinates, bound to the scales *x* and *y*, a **fill** channel bound to the *color* scale, and a **fillOpacity** channel bound to the *opacity* scale.
+Returns a new raster mark with the given *data* and *options*. The *data* represents a discrete set of samples in abstract coordinates, bound to the scales *x* and *y*, a **fill** channel bound to the *color* scale, and a **fillOpacity** channel bound to the *opacity* scale.
 
 Each sample is drawn on a rectangular raster image with dimensions that may be specified directly with the following options:
+
 * **width** - the number of pixels on each horizontal line
 * **height** - the number of lines; a positive integer
 
-Alternatively, the width and height of the raster can be imputed from the starting and ending positions for x and y, and a pixel ratio:
+Alternatively, the width and height of the raster can be imputed from the starting and ending positions for x and y, and a pixel size:
+
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y1** - the starting vertical position; bound to the *y* scale
 * **y2** - the ending vertical position; bound to the *y* scale
-* **pixelRatio** - the density of the raster image; defaults to 1
+* **pixelSize** - the density of the raster image; defaults to 1
 
 The abstract coordinates of the raster x1, x2, y1 and y2 must all be defined. If a width has been specified, x1 defaults to 0 and x2 defaults to width; similarly, if a height has been specified, y1 defaults to 0 and y2 defaults to height.
 
 The following options are supported:
+
 * **fill** - the sample’s color; if a channel, bound to the *color* scale
 * **fillOpacity** - the sample’s opacity; if a channel, bound to the *opacity* scale
-* **x** and **y** - the sample’s coordinates 
+* **x** and **y** - the sample’s coordinates
 * **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering) attribute of the image; defaults to auto, which blends neighboring samples with bilinear interpolation. A typical setting is pixelated, that asks the browser to render each pixel as a solid rectangle.
 * **rasterize** - the rasterize method.
 

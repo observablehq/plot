@@ -10,7 +10,7 @@ async function spatial(rasterize) {
     y: {reverse: true},
     marks: [
       Plot.raster(ca55, {
-        pixelRatio: rasterize ? 1 : 3,
+        pixelSize: rasterize ? 1 : 3,
         x: "GRID_EAST",
         y: "GRID_NORTH",
         fill: "MAG_IGRF90",
@@ -85,7 +85,7 @@ async function penguins(rasterize) {
   return Plot.plot({
     marks: [
       Plot.raster(penguins, {
-        pixelRatio: 1,
+        pixelSize: 1,
         x: "body_mass_g",
         y: "flipper_length_mm",
         fill: "island",

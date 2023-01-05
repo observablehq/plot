@@ -13,7 +13,7 @@ export default async function () {
         y1: 0,
         x2: 4 * Math.PI,
         y2: 4 * Math.PI * (350 / 580),
-        pixelRatio: 3
+        pixelSize: 3
       }),
       Plot.frame()
     ]
@@ -25,9 +25,9 @@ export async function heatmapArray() {
   const y1 = 0;
   const x2 = 4 * Math.PI;
   const y2 = 4 * Math.PI * (350 / 580);
-  const pixelRatio = 3;
-  const width = Math.round(580 / pixelRatio);
-  const height = Math.round(350 / pixelRatio);
+  const pixelSize = 3;
+  const width = Math.round(580 / pixelSize);
+  const height = Math.round(350 / pixelSize);
   const x = (f => i => f.invert(i % width + 0.5))(d3.scaleLinear([x1, x2], [0, width])); // prettier-ignore
   const y = (f => i => f.invert(Math.floor(i / width) + 0.5))(d3.scaleLinear([y2, y1], [height, 0])); // prettier-ignore
   return Plot.plot({
@@ -66,7 +66,7 @@ export async function heatmapLog() {
         y1: -2.5,
         x2: 2,
         y2: 1.5,
-        pixelRatio: 4
+        pixelSize: 4
       }),
       Plot.ruleX([0], {strokeOpacity: 0.2}),
       Plot.ruleY([0], {strokeOpacity: 0.2}),
@@ -79,7 +79,7 @@ export async function heatmapPartial() {
   return Plot.plot({
     axis: null,
     marks: [
-      Plot.raster({x1: -7, x2: 7, y1: -7, y2: 7, fill: (x, y) => Math.atan2(y, x), pixelRatio: 2}),
+      Plot.raster({x1: -7, x2: 7, y1: -7, y2: 7, fill: (x, y) => Math.atan2(y, x), pixelSize: 2}),
       Plot.rect({length: 1}, {x1: -10, x2: 10, y1: -10, y2: 10, stroke: "currentColor"})
     ]
   });
@@ -96,7 +96,7 @@ export async function heatmapFillOpacity() {
         y2: 1,
         fill: (x, y) => Math.atan2(y, x),
         fillOpacity: (x, y) => Math.PI - Math.atan2(y, x),
-        pixelRatio: 2
+        pixelSize: 2
       })
     ]
   });
@@ -113,7 +113,7 @@ export async function heatmapOpacity() {
         y2: 1,
         fill: "red",
         fillOpacity: (x, y) => Math.PI - Math.atan2(y, x),
-        pixelRatio: 2
+        pixelSize: 2
       })
     ]
   });
@@ -130,7 +130,7 @@ export async function heatmapConstantOpacity() {
         y2: 1,
         fill: (x, y) => Math.atan2(y, x),
         fillOpacity: 0.5,
-        pixelRatio: 2
+        pixelSize: 2
       })
     ]
   });

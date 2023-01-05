@@ -46,7 +46,7 @@ export class Raster extends Mark {
       x2 = x == null ? width : undefined,
       y2 = y == null ? height : undefined,
       imageRendering,
-      pixelRatio = 1,
+      pixelSize = 1,
       fill,
       fillOpacity,
       rasterize = x == null || y == null ? rasterizeDense : rasterizeNull
@@ -66,7 +66,7 @@ export class Raster extends Mark {
     );
     this.width = width === undefined ? undefined : integer(width, "width");
     this.height = height === undefined ? undefined : integer(height, "height");
-    this.pixelRatio = number(pixelRatio, "pixelRatio");
+    this.pixelSize = number(pixelSize, "pixelSize");
     this.imageRendering = impliedString(imageRendering, "auto");
     this.rasterize = maybeRasterize(rasterize);
   }
@@ -85,9 +85,9 @@ export class Raster extends Mark {
     const imageWidth = Math.abs(x2 - x1);
     const imageHeight = Math.abs(y2 - y1);
     const {
-      pixelRatio,
-      width = Math.round(imageWidth / pixelRatio),
-      height = Math.round(imageHeight / pixelRatio),
+      pixelSize,
+      width = Math.round(imageWidth / pixelSize),
+      height = Math.round(imageHeight / pixelSize),
       imageRendering
     } = this;
     const canvas = document.createElement("canvas");
@@ -138,7 +138,7 @@ export function raster(data, options) {
 }
 
 // Evaluates a function at pixel midpoints. TODO Faceting? Optimize linear?
-function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
+function sampleFill({fill, fillOpacity, pixelSize = 1, ...options} = {}) {
   if (typeof fill !== "function") (options.fill = fill), (fill = null);
   if (typeof fillOpacity !== "function") (options.fillOpacity = fillOpacity), (fillOpacity = null);
   return initializer(options, (data, facets, {x1, y1, x2, y2}, {x, y}) => {
@@ -148,8 +148,8 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
     let {width: w, height: h} = options;
     (x1 = x(x1.value[0])), (y1 = y(y1.value[0])), (x2 = x(x2.value[0])), (y2 = y(y2.value[0]));
     // Note: this must exactly match the defaults in render above!
-    if (w === undefined) w = Math.round(Math.abs(x2 - x1) / pixelRatio);
-    if (h === undefined) h = Math.round(Math.abs(y2 - y1) / pixelRatio);
+    if (w === undefined) w = Math.round(Math.abs(x2 - x1) / pixelSize);
+    if (h === undefined) h = Math.round(Math.abs(y2 - y1) / pixelSize);
     const kx = (x2 - x1) / w;
     const ky = (y2 - y1) / h;
     (x1 += kx / 2), (y1 += ky / 2);
