@@ -88,37 +88,36 @@ export class Raster extends Mark {
       const kx = width / imageWidth;
       const ky = height / imageHeight;
       if (x2 < x1) [x2, x1] = [x1, x2];
-      if (y1 < y2) [y2, y1] = [y1, y2];
+      if (y2 < y1) [y2, y1] = [y1, y2];
       this.interpolate(index, canvas, scales, channels, {
         x: map(X, (x) => (x - x1) * kx, Float64Array),
-        y: map(Y, (y) => (y - y2) * ky, Float64Array)
+        y: map(Y, (y) => (y - y1) * ky, Float64Array)
       });
     } else {
       // Otherwise if X and Y are not given, then assume that F is a dense array
-      // of samples covering the entire grid in row-major order.
+      // of samples covering the entire grid in row-major order. In this case,
+      // the order of x1-x2 and y1-y2 matters, as the grid starts in x1, y1.
       const context2d = canvas.getContext("2d");
       const image = context2d.createImageData(width, height);
       const imageData = image.data;
       const {color} = scales;
       let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
       let a = (this.fillOpacity ?? 1) * 255;
-      for (let y = 0, i = 0; y < height; ++y) {
-        for (let x = 0; x < width; ++x, ++i) {
-          const j = i << 2;
-          if (F) {
-            const fi = F[i];
-            if (fi == null) {
-              imageData[j + 3] = 0;
-              continue;
-            }
-            ({r, g, b} = rgb(color(fi)));
+      for (let i = 0, n = width * height; i < n; ++i) {
+        const j = i << 2;
+        if (F) {
+          const fi = F[i];
+          if (fi == null) {
+            imageData[j + 3] = 0;
+            continue;
           }
-          if (FO) a = FO[i] * 255;
-          imageData[j + 0] = r;
-          imageData[j + 1] = g;
-          imageData[j + 2] = b;
-          imageData[j + 3] = a;
+          ({r, g, b} = rgb(color(fi)));
         }
+        if (FO) a = FO[i] * 255;
+        imageData[j + 0] = r;
+        imageData[j + 1] = g;
+        imageData[j + 2] = b;
+        imageData[j + 3] = a;
       }
       context2d.putImageData(image, 0, 0);
     }
@@ -128,7 +127,7 @@ export class Raster extends Mark {
       .call((g) =>
         g
           .append("image")
-          .attr("transform", `translate(${x1},${y2}) scale(${Math.sign(x2 - x1)},${Math.sign(y1 - y2)})`)
+          .attr("transform", `translate(${x1},${y1}) scale(${Math.sign(x2 - x1)},${Math.sign(y2 - y1)})`)
           .attr("width", imageWidth)
           .attr("height", imageHeight)
           .attr("preserveAspectRatio", "none")
@@ -165,20 +164,18 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
     if (!y) throw new Error("missing scale: y");
     let {width: w, height: h} = options;
     (x1 = x(x1.value[0])), (y1 = y(y1.value[0])), (x2 = x(x2.value[0])), (y2 = y(y2.value[0]));
-    if (x2 < x1) [x2, x1] = [x1, x2];
-    if (y1 < y2) [y2, y1] = [y1, y2];
     // Note: this must exactly match the defaults in render above!
-    if (w === undefined) w = Math.round((x2 - x1) / pixelRatio);
-    if (h === undefined) h = Math.round((y1 - y2) / pixelRatio);
+    if (w === undefined) w = Math.round(Math.abs(x2 - x1) / pixelRatio);
+    if (h === undefined) h = Math.round(Math.abs(y2 - y1) / pixelRatio);
     const kx = (x2 - x1) / w;
-    const ky = (y1 - y2) / h;
-    (x1 += kx / 2), (y2 += ky / 2);
+    const ky = (y2 - y1) / h;
+    (x1 += kx / 2), (y1 += ky / 2);
     let F, FO;
     if (fill) {
       F = new Array(w * h);
       for (let yi = 0, i = 0; yi < h; ++yi) {
         for (let xi = 0; xi < w; ++xi, ++i) {
-          F[i] = fill(x.invert(x1 + xi * kx), y.invert(y2 + yi * ky));
+          F[i] = fill(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky));
         }
       }
     }
@@ -186,7 +183,7 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
       FO = new Array(w * h);
       for (let yi = 0, i = 0; yi < h; ++yi) {
         for (let xi = 0; xi < w; ++xi, ++i) {
-          FO[i] = fillOpacity(x.invert(x1 + xi * kx), y.invert(y2 + yi * ky));
+          FO[i] = fillOpacity(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky));
         }
       }
     }
