@@ -26,6 +26,10 @@ https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world
 Bureau of Labor Statistics
 https://www.bls.gov/
 
+## ca55-south.csv
+Great Britain aeromagnetic survey
+https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/
+
 ## cars.csv
 1983 ASA Data Exposition
 http://lib.stat.cmu.edu/datasets/

@@ -1,6 +1,6 @@
 import {rgb} from "d3";
 import {create} from "../context.js";
-import {first, second, third, isTuples} from "../options.js";
+import {map, first, second, third, isTuples} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -39,7 +39,8 @@ export class Raster extends Mark {
       imageRendering,
       pixelRatio = 1,
       fill,
-      fillOpacity
+      fillOpacity,
+      interpolate = interpolateNone
     } = options;
     super(
       data,
@@ -58,10 +59,15 @@ export class Raster extends Mark {
     this.height = height === undefined ? undefined : integer(height, "height");
     this.pixelRatio = number(pixelRatio, "pixelRatio");
     this.imageRendering = impliedString(imageRendering, "auto");
+    this.interpolate = interpolate;
+  }
+  // Ignore the color scale, so the fill channel is returned as unscaled values.
+  scale(channels, {color, ...scales}, context) {
+    return super.scale(channels, scales, context);
   }
   render(index, scales, channels, dimensions, context) {
-    const {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
-    const {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
+    let {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
+    let {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
     const {document} = context;
     const imageWidth = Math.abs(x2 - x1);
     const imageHeight = Math.abs(y2 - y1);
@@ -74,11 +80,6 @@ export class Raster extends Mark {
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
-    const {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
-    const a = (this.fillOpacity ?? 1) * 255;
-    const context2d = canvas.getContext("2d");
-    const image = context2d.createImageData(width, height);
-    const imageData = image.data;
     if (X && Y) {
       // If X and Y are given, then assign each sample to the corresponding
       // pixel location. In the future, it would be better to allow different
@@ -86,27 +87,21 @@ export class Raster extends Mark {
       // a sparse image when not every pixel has a corresponding sample.
       const kx = width / imageWidth;
       const ky = height / imageHeight;
-      for (const i of index) {
-        const xi = Math.floor((X[i] - x1) * kx);
-        if (xi < 0 || xi >= width) continue;
-        const yi = Math.floor((Y[i] - y2) * ky);
-        if (yi < 0 || yi >= height) continue;
-        const j = (yi * width + xi) << 2;
-        if (F) {
-          const {r, g, b} = rgb(F[i]);
-          imageData[j + 0] = r;
-          imageData[j + 1] = g;
-          imageData[j + 2] = b;
-        } else {
-          imageData[j + 0] = r;
-          imageData[j + 1] = g;
-          imageData[j + 2] = b;
-        }
-        imageData[j + 3] = FO ? FO[i] * 255 : a;
-      }
+      if (x2 < x1) [x2, x1] = [x1, x2];
+      if (y1 < y2) [y2, y1] = [y1, y2];
+      this.interpolate(index, canvas, scales, channels, {
+        x: map(X, (x) => (x - x1) * kx, Float64Array),
+        y: map(Y, (y) => (y - y2) * ky, Float64Array)
+      });
     } else {
       // Otherwise if X and Y are not given, then assume that F is a dense array
       // of samples covering the entire grid in row-major order.
+      const context2d = canvas.getContext("2d");
+      const image = context2d.createImageData(width, height);
+      const imageData = image.data;
+      const {color} = scales;
+      let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
+      let a = (this.fillOpacity ?? 1) * 255;
       for (let y = 0, i = 0; y < height; ++y) {
         for (let x = 0; x < width; ++x, ++i) {
           const j = i << 2;
@@ -116,20 +111,17 @@ export class Raster extends Mark {
               imageData[j + 3] = 0;
               continue;
             }
-            const {r, g, b} = rgb(fi);
-            imageData[j + 0] = r;
-            imageData[j + 1] = g;
-            imageData[j + 2] = b;
-          } else {
-            imageData[j + 0] = r;
-            imageData[j + 1] = g;
-            imageData[j + 2] = b;
+            ({r, g, b} = rgb(color(fi)));
           }
-          imageData[j + 3] = FO ? FO[i] * 255 : a;
+          if (FO) a = FO[i] * 255;
+          imageData[j + 0] = r;
+          imageData[j + 1] = g;
+          imageData[j + 2] = b;
+          imageData[j + 3] = a;
         }
       }
+      context2d.putImageData(image, 0, 0);
     }
-    context2d.putImageData(image, 0, 0);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
@@ -173,9 +165,11 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
     if (!y) throw new Error("missing scale: y");
     let {width: w, height: h} = options;
     (x1 = x(x1.value[0])), (y1 = y(y1.value[0])), (x2 = x(x2.value[0])), (y2 = y(y2.value[0]));
+    if (x2 < x1) [x2, x1] = [x1, x2];
+    if (y1 < y2) [y2, y1] = [y1, y2];
     // Note: this must exactly match the defaults in render above!
-    if (w === undefined) w = Math.round(Math.abs(x2 - x1) / pixelRatio);
-    if (h === undefined) h = Math.round(Math.abs(y2 - y1) / pixelRatio);
+    if (w === undefined) w = Math.round((x2 - x1) / pixelRatio);
+    if (h === undefined) h = Math.round((y1 - y2) / pixelRatio);
     const kx = (x2 - x1) / w;
     const ky = (y1 - y2) / h;
     (x1 += kx / 2), (y2 += ky / 2);
@@ -205,4 +199,24 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
       }
     };
   });
+}
+
+function interpolateNone(index, canvas, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+  let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
+  let a = (this.fillOpacity ?? 1) * 255;
+  const {width, height} = canvas;
+  const context2d = canvas.getContext("2d");
+  const image = context2d.createImageData(width, height);
+  const imageData = image.data;
+  for (const i of index) {
+    if (X[i] < 0 || X[i] >= width || Y[i] < 0 || Y[i] >= height) continue;
+    const j = (Math.floor(Y[i]) * width + Math.floor(X[i])) << 2;
+    if (F) ({r, g, b} = rgb(color(F[i])));
+    if (FO) a = FO[i] * 255;
+    imageData[j + 0] = r;
+    imageData[j + 1] = g;
+    imageData[j + 2] = b;
+    imageData[j + 3] = a;
+  }
+  context2d.putImageData(image, 0, 0);
 }
