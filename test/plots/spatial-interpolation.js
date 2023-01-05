@@ -51,16 +51,15 @@ async function walmart(rasterize) {
       })
     )
   ]);
-  const projection = d3.geoAlbers();
-  for (const d of walmarts) [d[0], d[1]] = projection([d.longitude, d.latitude]);
-  for (const line of statemesh.coordinates) {
-    for (let i = 0; i < line.length; ++i) line[i] = projection(line[i]);
-  }
   return Plot.plot({
     axis: null,
     y: {reverse: true},
     color: {reverse: true, legend: true, label: "Opening year"},
-    marks: [Plot.raster(walmarts, {fill: "date", rasterize}), Plot.geo(statemesh, {stroke: "white", strokeWidth: 1.5})]
+    projection: "albers",
+    marks: [
+      Plot.raster(walmarts, {x: "longitude", y: "latitude", fill: "date", rasterize}),
+      Plot.geo(statemesh, {stroke: "white", strokeWidth: 1.5})
+    ]
   });
 }
 

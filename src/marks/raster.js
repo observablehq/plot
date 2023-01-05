@@ -1,4 +1,4 @@
-import {max, min, rgb} from "d3";
+import {rgb} from "d3";
 import {create} from "../context.js";
 import {map, first, second, third, isTuples} from "../options.js";
 import {Mark} from "../plot.js";
@@ -77,10 +77,10 @@ export class Raster extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
     let {x1, y1, x2, y2} = channels;
-    x1 = x1 ? x1[0] : min(X);
-    x2 = x2 ? x2[0] : max(X);
-    y1 = y1 ? y1[0] : min(Y);
-    y2 = y2 ? y2[0] : max(Y);
+    x1 = x1 ? x1[0] : dimensions.marginLeft;
+    x2 = x2 ? x2[0] : dimensions.width - dimensions.marginRight;
+    y1 = y1 ? y1[0] : dimensions.marginTop;
+    y2 = y2 ? y2[0] : dimensions.height - dimensions.marginBottom;
     const {document} = context;
     const imageWidth = Math.abs(x2 - x1);
     const imageHeight = Math.abs(y2 - y1);
