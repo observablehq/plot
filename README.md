@@ -1534,8 +1534,13 @@ The following options are supported:
 * **fillOpacity** - the sample’s opacity; if a channel, bound to the *opacity* scale
 * **x** and **y** - the sample’s coordinates 
 * **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering) attribute of the image; defaults to auto, which blends neighboring samples with bilinear interpolation. A typical setting is pixelated, that asks the browser to render each pixel as a solid rectangle.
+* **rasterize** - the rasterize method.
 
-The defaults for this mark make it convenient to draw an image from a flat array of values representing a rectangular matrix in row-major order:
+The rasterize option supports the following settings:
+* undefined (default) - if the *x* and *y* options are not null, paints the pixel under the (floor rounded) coordinates of each sample (unless it is outside the raster); otherwise, assumes that the data describes every pixel on the raster, from the top-left, in row-major order.
+* a function that receives the canvas, the index, the scales, the channels (with fill unscaled), and additional pixel channels x and y with the pixels’ coordinates in the raster coordinate system.
+
+The defaults for this mark make it convenient to draw an image from a flat array of values representing a rectangular matrix:
 
 ```js
 Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: volcano.values})
@@ -1546,8 +1551,6 @@ When *data* is not specified and *fill* or *fillOpacity* is a function, a sample
 ```js
 Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
 ```
-
-Each sample currently affects a single pixel on the raster, at the (floor rounded) coordinates that correspond to *x* and *y* (unless of course they are outside the canvas). Other interpolation methods might be supported in the future.
 
 <!-- jsdocEnd raster -->
 
