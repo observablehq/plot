@@ -61,7 +61,7 @@ export class Raster extends Mark {
     this.imageRendering = impliedString(imageRendering, "auto");
     this.interpolate = interpolate;
   }
-  // Ignore the color scale, so F is returned as unscaled values.
+  // Ignore the color scale, so the fill channel is returned as unscaled values.
   scale(channels, {color, ...scales}, context) {
     return super.scale(channels, scales, context);
   }

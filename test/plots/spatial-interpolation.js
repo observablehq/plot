@@ -25,32 +25,22 @@ export default async function spatial(interpolate) {
 }
 
 export async function walmart() {
-  const raw = await d3.tsv("data/walmarts.tsv", d3.autoType);
-  const width = 928;
-  const height = 650;
-  const projection = d3.geoAlbersUsa().fitExtent(
-    [
-      [5, 5],
-      [width - 5, height - 5]
-    ],
-    {
-      type: "MultiPoint",
-      coordinates: raw.map((d) => [d.longitude, d.latitude])
-    }
-  );
-  const data = raw.map((d) => [...projection([d.longitude, d.latitude]), d.date]);
+  const walmarts = await d3.tsv("data/walmarts.tsv", d3.autoType);
+  const projection = d3.geoAlbers();
+  for (const d of walmarts) [d.x, d.y] = projection([d.longitude, d.latitude]);
   return Plot.plot({
     axis: null,
-    color: {reverse: true, legend: true, label: "date"},
+    color: {reverse: true, legend: true, label: "Opening year"},
+    y: {reverse: true},
     marks: [
-      Plot.raster(data, {
-        x1: d3.min(data, (d) => d[0]),
-        x2: d3.max(data, (d) => d[0]),
-        y1: d3.min(data, (d) => -d[1]),
-        y2: d3.max(data, (d) => -d[1]),
-        x: "0",
-        y: (d) => -d[1],
-        fill: "2",
+      Plot.raster(walmarts, {
+        x1: d3.min(walmarts, (d) => d.x),
+        x2: d3.max(walmarts, (d) => d.x),
+        y1: d3.min(walmarts, (d) => d.y),
+        y2: d3.max(walmarts, (d) => d.y),
+        x: "x",
+        y: "y",
+        fill: "date",
         interpolate: interpolateBarycentric(true)
       })
     ]
