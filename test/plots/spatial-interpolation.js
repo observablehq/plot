@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-async function spatial(interpolate) {
+async function spatial(rasterize) {
   const ca55 = await d3.csv("data/ca55-south.csv", d3.autoType);
   return Plot.plot({
     axis: null,
@@ -9,12 +9,12 @@ async function spatial(interpolate) {
     y: {reverse: true},
     marks: [
       Plot.raster(ca55, {
-        pixelRatio: interpolate ? 1 : 3,
+        pixelRatio: rasterize ? 1 : 3,
         x: "GRID_EAST",
         y: "GRID_NORTH",
         fill: "MAG_IGRF90",
         imageRendering: "pixelated",
-        interpolate // "nearest", "barycentric"
+        rasterize
       })
     ]
   });
@@ -44,7 +44,7 @@ export async function spatialInterpolationWalmart() {
     axis: null,
     y: {reverse: true},
     color: {reverse: true, legend: true, label: "Opening year"},
-    marks: [Plot.raster(walmarts, {fill: "date", interpolate: interpolateBarycentric(true)})]
+    marks: [Plot.raster(walmarts, {fill: "date", rasterize: interpolateBarycentric(true)})]
   });
 }
 
@@ -57,7 +57,7 @@ function Delaunay(index, X, Y) {
 }
 
 // this might be faster with a quadtree? or using delaunay.find with the memoization trick
-function interpolateVoronoi(index, canvas, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+function interpolateVoronoi(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   const {width, height} = canvas;
   const context = canvas.getContext("2d");
   const voronoi = Delaunay(index, X, Y).voronoi([0, 0, width, height]);
@@ -75,7 +75,7 @@ function interpolateVoronoi(index, canvas, {color}, {fill: F, fillOpacity: FO}, 
 }
 
 function interpolateBarycentric(extrapolate = true) {
-  return function (index, canvas, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+  return function (canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
     const {width, height} = canvas;
     const context2d = canvas.getContext("2d");
     const image = context2d.createImageData(width, height);
