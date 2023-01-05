@@ -10,10 +10,6 @@ async function spatial(interpolate) {
     marks: [
       Plot.raster(ca55, {
         pixelRatio: interpolate ? 1 : 3,
-        x1: d3.min(ca55, (d) => d.GRID_EAST),
-        x2: d3.max(ca55, (d) => d.GRID_EAST),
-        y1: d3.min(ca55, (d) => d.GRID_NORTH),
-        y2: d3.max(ca55, (d) => d.GRID_NORTH),
         x: "GRID_EAST",
         y: "GRID_NORTH",
         fill: "MAG_IGRF90",
@@ -43,23 +39,12 @@ export async function spatialInterpolationVoronoi() {
 export async function spatialInterpolationWalmart() {
   const walmarts = await d3.tsv("data/walmarts.tsv", d3.autoType);
   const projection = d3.geoAlbers();
-  for (const d of walmarts) [d.x, d.y] = projection([d.longitude, d.latitude]);
+  for (const d of walmarts) [d[0], d[1]] = projection([d.longitude, d.latitude]);
   return Plot.plot({
     axis: null,
-    color: {reverse: true, legend: true, label: "Opening year"},
     y: {reverse: true},
-    marks: [
-      Plot.raster(walmarts, {
-        x1: d3.min(walmarts, (d) => d.x),
-        x2: d3.max(walmarts, (d) => d.x),
-        y1: d3.min(walmarts, (d) => d.y),
-        y2: d3.max(walmarts, (d) => d.y),
-        x: "x",
-        y: "y",
-        fill: "date",
-        interpolate: interpolateBarycentric(true)
-      })
-    ]
+    color: {reverse: true, legend: true, label: "Opening year"},
+    marks: [Plot.raster(walmarts, {fill: "date", interpolate: interpolateBarycentric(true)})]
   });
 }
 

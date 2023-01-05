@@ -1,4 +1,4 @@
-import {rgb} from "d3";
+import {max, min, rgb} from "d3";
 import {create} from "../context.js";
 import {map, first, second, third, isTuples} from "../options.js";
 import {Mark} from "../plot.js";
@@ -9,6 +9,10 @@ const defaults = {
   ariaLabel: "raster",
   stroke: null
 };
+
+function nonnull(input, name) {
+  if (input == null) throw new Error(`missing ${name}`);
+}
 
 function number(input, name) {
   const x = +input;
@@ -42,15 +46,19 @@ export class Raster extends Mark {
       fillOpacity,
       interpolate = interpolateNone
     } = options;
+    x1 = x1 == null ? nonnull(x, "x") : [number(x1, "x1")];
+    x2 = x2 == null ? nonnull(x, "x") : [number(x2, "x2")];
+    y1 = y1 == null ? nonnull(y, "y") : [number(y1, "y1")];
+    y2 = y2 == null ? nonnull(y, "y") : [number(y2, "y2")];
     super(
       data,
       {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},
-        x1: {value: [number(x1, "x1")], scale: "x", filter: null},
-        y1: {value: [number(y1, "y1")], scale: "y", filter: null},
-        x2: {value: [number(x2, "x2")], scale: "x", filter: null},
-        y2: {value: [number(y2, "y2")], scale: "y", filter: null}
+        x1: {value: x1, scale: "x", optional: true, filter: null},
+        y1: {value: y1, scale: "y", optional: true, filter: null},
+        x2: {value: x2, scale: "x", optional: true, filter: null},
+        y2: {value: y2, scale: "y", optional: true, filter: null}
       },
       data == null && (typeof fill === "function" || typeof fillOpacity === "function") ? sampleFill(options) : options,
       defaults
@@ -67,7 +75,11 @@ export class Raster extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     let {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
-    let {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
+    let {x1, y1, x2, y2} = channels;
+    x1 = x1 ? x1[0] : min(X);
+    x2 = x2 ? x2[0] : max(X);
+    y1 = y1 ? y1[0] : min(Y);
+    y2 = y2 ? y2[0] : max(Y);
     const {document} = context;
     const imageWidth = Math.abs(x2 - x1);
     const imageHeight = Math.abs(y2 - y1);
