@@ -67,7 +67,7 @@ export class Raster extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     let {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
-    const {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
+    let {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
     const {document} = context;
     const imageWidth = Math.abs(x2 - x1);
     const imageHeight = Math.abs(y2 - y1);
@@ -87,6 +87,8 @@ export class Raster extends Mark {
       // a sparse image when not every pixel has a corresponding sample.
       const kx = width / imageWidth;
       const ky = height / imageHeight;
+      if (x2 < x1) [x2, x1] = [x1, x2];
+      if (y1 < y2) [y2, y1] = [y1, y2];
       this.interpolate(index, canvas, scales, channels, {
         x: map(X, (x) => (x - x1) * kx, Float64Array),
         y: map(Y, (y) => (y - y2) * ky, Float64Array)
@@ -153,9 +155,11 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
     if (!y) throw new Error("missing scale: y");
     let {width: w, height: h} = options;
     (x1 = x(x1.value[0])), (y1 = y(y1.value[0])), (x2 = x(x2.value[0])), (y2 = y(y2.value[0]));
+    if (x2 < x1) [x2, x1] = [x1, x2];
+    if (y1 < y2) [y2, y1] = [y1, y2];
     // Note: this must exactly match the defaults in render above!
-    if (w === undefined) w = Math.round(Math.abs(x2 - x1) / pixelRatio);
-    if (h === undefined) h = Math.round(Math.abs(y2 - y1) / pixelRatio);
+    if (w === undefined) w = Math.round((x2 - x1) / pixelRatio);
+    if (h === undefined) h = Math.round((y1 - y2) / pixelRatio);
     const kx = (x2 - x1) / w;
     const ky = (y1 - y2) / h;
     (x1 += kx / 2), (y2 += ky / 2);

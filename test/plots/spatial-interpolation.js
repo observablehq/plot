@@ -2,36 +2,21 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export default async function spatial(interpolate) {
-  const raw = await d3.csv("data/ca55-south.csv", d3.autoType);
-  const width = 928;
-  const height = 650;
-  const projection = d3
-    .geoIdentity()
-    .reflectY(true)
-    .fitExtent(
-      [
-        [5, 5],
-        [width - 5, height - 5]
-      ],
-      {
-        type: "MultiPoint",
-        coordinates: raw.map((d) => [d.GRID_EAST, d.GRID_NORTH])
-      }
-    );
-  const data = raw.map((d) => [...projection([d.GRID_EAST, d.GRID_NORTH]), d.MAG_IGRF90]);
+  const ca55 = await d3.csv("data/ca55-south.csv", d3.autoType);
   return Plot.plot({
     axis: null,
     color: {scheme: "blues"},
+    y: {reverse: true},
     marks: [
-      Plot.raster(data, {
+      Plot.raster(ca55, {
         pixelRatio: interpolate ? 1 : 3,
-        x1: d3.min(data, (d) => d[0]),
-        x2: d3.max(data, (d) => d[0]),
-        y1: d3.min(data, (d) => d[1]),
-        y2: d3.max(data, (d) => d[1]),
-        x: "0",
-        y: "1",
-        fill: "2",
+        x1: d3.min(ca55, (d) => d.GRID_EAST),
+        x2: d3.max(ca55, (d) => d.GRID_EAST),
+        y1: d3.min(ca55, (d) => d.GRID_NORTH),
+        y2: d3.max(ca55, (d) => d.GRID_NORTH),
+        x: "GRID_EAST",
+        y: "GRID_NORTH",
+        fill: "MAG_IGRF90",
         imageRendering: "pixelated",
         interpolate // "nearest", "barycentric"
       })
