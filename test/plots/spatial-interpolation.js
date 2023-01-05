@@ -56,7 +56,6 @@ function Delaunay(index, X, Y) {
   );
 }
 
-// this might be faster with a quadtree? or using delaunay.find with the memoization trick
 function interpolateVoronoi(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   const {width, height} = canvas;
   const context = canvas.getContext("2d");
