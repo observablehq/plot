@@ -210,19 +210,26 @@ function interpolateBarycentric(extrapolate = true) {
 
     // Interpolate the interior of all triangles with barycentric coordinates
     for (let i = 0; i < triangles.length; i += 3) {
-      const T = triangles.subarray(i, i + 3);
-      let [ia, ib, ic] = Array.from(T, (i) => index[i]);
-
-      const [Ax, Bx, Cx] = Array.from(T, (i) => points[2 * i]);
-      const [Ay, By, Cy] = Array.from(T, (i) => points[2 * i + 1]);
-      const [x0, x1] = d3.extent([Ax, Bx, Cx]);
-      const [y0, y1] = d3.extent([Ay, By, Cy]);
-
+      const ta = triangles[i];
+      const tb = triangles[i + 1];
+      const tc = triangles[i + 2];
+      const Ax = points[2 * ta];
+      const Bx = points[2 * tb];
+      const Cx = points[2 * tc];
+      const Ay = points[2 * ta + 1];
+      const By = points[2 * tb + 1];
+      const Cy = points[2 * tc + 1];
+      const x1 = Math.min(Ax, Bx, Cx);
+      const x2 = Math.max(Ax, Bx, Cx);
+      const y1 = Math.min(Ay, By, Cy);
+      const y2 = Math.max(Ay, By, Cy);
       const z = (By - Cy) * (Ax - Cx) + (Ay - Cy) * (Cx - Bx);
       if (!z) continue;
-
-      for (let x = Math.floor(x0); x < x1; x++) {
-        for (let y = Math.floor(y0); y < y1; y++) {
+      const ia = index[ta];
+      const ib = index[tb];
+      const ic = index[tc];
+      for (let x = Math.floor(x1); x < x2; x++) {
+        for (let y = Math.floor(y1); y < y2; y++) {
           if (x < 0 || x >= width || y < 0 || y >= height) continue;
           const ga = ((By - Cy) * (x - Cx) + (y - Cy) * (Cx - Bx)) / z;
           if (ga < 0) continue;
