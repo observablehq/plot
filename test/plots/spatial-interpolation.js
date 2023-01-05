@@ -25,15 +25,15 @@ export async function spatialInterpolationNone() {
 }
 
 export async function spatialInterpolationBarycentric() {
-  return spatial(interpolateBarycentric(false));
+  return spatial(rasterizeBarycentric(false));
 }
 
 export async function spatialInterpolationBarycentricExtra() {
-  return spatial(interpolateBarycentric(true));
+  return spatial(rasterizeBarycentric(true));
 }
 
 export async function spatialInterpolationVoronoi() {
-  return spatial(interpolateVoronoi);
+  return spatial(rasterizeVoronoi);
 }
 
 export async function spatialInterpolationWalmart() {
@@ -44,7 +44,7 @@ export async function spatialInterpolationWalmart() {
     axis: null,
     y: {reverse: true},
     color: {reverse: true, legend: true, label: "Opening year"},
-    marks: [Plot.raster(walmarts, {fill: "date", rasterize: interpolateBarycentric(true)})]
+    marks: [Plot.raster(walmarts, {fill: "date", rasterize: rasterizeBarycentric(true)})]
   });
 }
 
@@ -56,7 +56,7 @@ function Delaunay(index, X, Y) {
   );
 }
 
-function interpolateVoronoi(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+function rasterizeVoronoi(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   const {width, height} = canvas;
   const context = canvas.getContext("2d");
   const voronoi = Delaunay(index, X, Y).voronoi([0, 0, width, height]);
@@ -73,7 +73,7 @@ function interpolateVoronoi(canvas, index, {color}, {fill: F, fillOpacity: FO}, 
   }
 }
 
-function interpolateBarycentric(extrapolate = true) {
+function rasterizeBarycentric(extrapolate = true) {
   return function (canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
     const {width, height} = canvas;
     const context2d = canvas.getContext("2d");
