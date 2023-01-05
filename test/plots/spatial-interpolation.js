@@ -85,7 +85,7 @@ export async function voronoi() {
 }
 
 // this might be faster with a quadtree? or using delaunay.find with the memoization trick
-function interpolateVoronoi(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}, {r, g, b, a}) {
+function interpolateVoronoi(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}) {
   const {width, height} = canvas;
   const context = canvas.getContext("2d");
   const v = d3.Delaunay.from(
@@ -93,8 +93,8 @@ function interpolateVoronoi(index, canvas, {color}, {x: X, y: Y, fill: F, fillOp
     (i) => X[i],
     (i) => Y[i]
   ).voronoi([0, 0, width, height]);
-  context.strokeStyle = context.fillStyle = `rgb(${r},${g},${b})`;
-  context.globalAlpha = a;
+  context.strokeStyle = context.fillStyle = this.fill;
+  context.globalAlpha = this.fillOpacity;
   for (let i = 0; i < index.length; ++i) {
     context.beginPath();
     v.renderCell(i, context);
@@ -107,7 +107,7 @@ function interpolateVoronoi(index, canvas, {color}, {x: X, y: Y, fill: F, fillOp
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function interpolateNearest(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}, {r, g, b, a}) {
+function interpolateNearest(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.createImageData(width, height);
@@ -117,22 +117,24 @@ function interpolateNearest(index, canvas, {color}, {x: X, y: Y, fill: F, fillOp
     (i) => X[i],
     (i) => Y[i]
   );
-  let k = 0;
-  for (let y = 0; y < height; ++y) {
+  let {r, g, b} = d3.rgb(this.fill) ?? {r, g, b};
+  let a = (this.fillOpacity ?? 1) * 255;
+  for (let y = 0, k = 0; y < height; ++y) {
     for (let x = 0; x < width; ++x, k += 4) {
       const i = q.find(x, y);
       if (F) ({r, g, b} = d3.rgb(color(F[i])));
+      if (FO) a = FO[i] * 255;
       imageData[k + 0] = r;
       imageData[k + 1] = g;
       imageData[k + 2] = b;
-      imageData[k + 3] = FO ? FO[i] * 255 : a;
+      imageData[k + 3] = a;
     }
   }
   context2d.putImageData(image, 0, 0);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function interpolateDelaunay(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}, {r, g, b, a}) {
+function interpolateDelaunay(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.createImageData(width, height);
@@ -144,25 +146,30 @@ function interpolateDelaunay(index, canvas, {color}, {x: X, y: Y, fill: F, fillO
   );
   let k = 0;
   let i;
+  let {r, g, b} = d3.rgb(this.fill) ?? {r, g, b};
+  let a = (this.fillOpacity ?? 1) * 255;
   for (let y = 0; y < height; ++y) {
     for (let x = 0; x < width; ++x, k += 4) {
       i = d.find(x, y, i);
       if (F) ({r, g, b} = d3.rgb(color(F[i])));
+      if (FO) a = FO[i] * 255;
       imageData[k + 0] = r;
       imageData[k + 1] = g;
       imageData[k + 2] = b;
-      imageData[k + 3] = FO ? FO[i] * 255 : a;
+      imageData[k + 3] = a;
     }
   }
   context2d.putImageData(image, 0, 0);
 }
 
 function interpolateBarycentric(extrapolate = true) {
-  return (index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}, {r, g, b, a}) => {
+  return function (index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}) {
     const {width, height} = canvas;
     const context2d = canvas.getContext("2d");
     const image = context2d.createImageData(width, height);
     const imageData = image.data;
+    let {r, g, b} = d3.rgb(this.fill) ?? {r, g, b};
+    let a = (this.fillOpacity ?? 1) * 255;
 
     // renumber/reindex everything, because we're going to add points if extrapolate is true
     X = Array.from(index, (i) => X[i]);
@@ -239,10 +246,11 @@ function interpolateBarycentric(extrapolate = true) {
           if (gc < 0) continue;
           const k = (x + width * y) << 2;
           if (F) ({r, g, b} = d3.rgb(color(ga * F[ia] + gb * F[ib] + gc * F[ic])));
+          if (FO) a = (ga * FO[ia] + gb * FO[ib] + gc * FO[ic]) * 255;
           imageData[k + 0] = r;
           imageData[k + 1] = g;
           imageData[k + 2] = b;
-          imageData[k + 3] = FO ? (ga * FO[ia] + gb * FO[ib] + gc * FO[ic]) * 255 : a;
+          imageData[k + 3] = a;
         }
       }
     }

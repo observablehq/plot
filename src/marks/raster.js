@@ -79,8 +79,6 @@ export class Raster extends Mark {
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
-    const {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
-    const a = (this.fillOpacity ?? 1) * 255;
     if (X && Y) {
       // If X and Y are given, then assign each sample to the corresponding
       // pixel location. In the future, it would be better to allow different
@@ -94,7 +92,7 @@ export class Raster extends Mark {
         X[i] = (X[i] - x1) * kx;
         Y[i] = (Y[i] - y2) * ky;
       }
-      this.interpolate(index, canvas, scales, {...channels, x: X, y: Y}, {r, g, b, a});
+      this.interpolate(index, canvas, scales, {...channels, x: X, y: Y});
     } else {
       // Otherwise if X and Y are not given, then assume that F is a dense array
       // of samples covering the entire grid in row-major order.
@@ -102,6 +100,8 @@ export class Raster extends Mark {
       const image = context2d.createImageData(width, height);
       const imageData = image.data;
       const {color} = scales;
+      let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
+      let a = (this.fillOpacity ?? 1) * 255;
       for (let y = 0, i = 0; y < height; ++y) {
         for (let x = 0; x < width; ++x, ++i) {
           const j = i << 2;
@@ -111,16 +111,13 @@ export class Raster extends Mark {
               imageData[j + 3] = 0;
               continue;
             }
-            const {r, g, b} = rgb(color(fi));
-            imageData[j + 0] = r;
-            imageData[j + 1] = g;
-            imageData[j + 2] = b;
-          } else {
-            imageData[j + 0] = r;
-            imageData[j + 1] = g;
-            imageData[j + 2] = b;
+            ({r, g, b} = rgb(color(fi)));
           }
-          imageData[j + 3] = FO ? FO[i] * 255 : a;
+          if (FO) a = FO[i] * 255;
+          imageData[j + 0] = r;
+          imageData[j + 1] = g;
+          imageData[j + 2] = b;
+          imageData[j + 3] = a;
         }
       }
       context2d.putImageData(image, 0, 0);
@@ -192,7 +189,9 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
   });
 }
 
-function interpolatePixel(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}, {r, g, b, a}) {
+function interpolatePixel(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}) {
+  let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
+  let a = (this.fillOpacity ?? 1) * 255;
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.createImageData(width, height);
@@ -200,17 +199,12 @@ function interpolatePixel(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpac
   for (const i of index) {
     if (X[i] < 0 || X[i] >= width || Y[i] < 0 || Y[i] >= height) continue;
     const j = (Math.floor(Y[i]) * width + Math.floor(X[i])) << 2;
-    if (F) {
-      const {r, g, b} = rgb(color(F[i]));
-      imageData[j + 0] = r;
-      imageData[j + 1] = g;
-      imageData[j + 2] = b;
-    } else {
-      imageData[j + 0] = r;
-      imageData[j + 1] = g;
-      imageData[j + 2] = b;
-    }
-    imageData[j + 3] = FO ? FO[i] * 255 : a;
+    if (F) ({r, g, b} = rgb(color(F[i])));
+    if (FO) a = FO[i] * 255;
+    imageData[j + 0] = r;
+    imageData[j + 1] = g;
+    imageData[j + 2] = b;
+    imageData[j + 3] = a;
   }
   context2d.putImageData(image, 0, 0);
 }
