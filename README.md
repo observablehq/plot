@@ -310,6 +310,8 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**ariaLabel** - a short label representing the axis in the accessibility tree
 * *scale*.**ariaDescription** - a textual description for the axis
 
+Or use independent [axis](#axis) and [grid](#grid) marks for more extensive possibilities.
+
 Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **label**, **axis**, **inset**, **round**, **align**, and **padding**.
 
 ### Projection options
@@ -958,6 +960,46 @@ Returns a new arrow with the given *data* and *options*.
 
 <!-- jsdocEnd arrow -->
 
+### Axis
+
+[Source](./src/marks/axis.js) · [Examples](https://observablehq.com/@observablehq/plot-axis) · Draws an axis.
+
+Plot automatically generates axes for position scales, and draws them below the other marks. Each axis is composed of up to 5 marks: a grid, and an axis mark which might contain a line, ticks, tick labels, and axis label.
+
+When you need more control, you can add axis and grid marks explicitely in the marks options. Note that Plot’s automatic axis for *x* is disabled when a mark’s aria-label property begins by `x-axis `—and likewise for *y*, *fx* and *fy*.
+
+#### Plot.axisX(*data*, *options*)
+
+<!-- jsdoc axisX -->
+
+```js
+Plot.axisX(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015", bend: true})
+```
+
+Returns a new axis with the given *data* and *options*.
+
+The optional *data* is an array of tick values—it defaults to the scale’s ticks.
+
+The axis options described in [position options](#position-options) are all supported, except the **grid** option which is handled by the [grid](#grid) mark. The *axis* option, in this context, is called **anchor** and is one of *top* or *bottom*. The **color** option controls both **stroke** for the ticks, and the **fill** for labels.
+
+The **y** channel, if any, describes the vertical position of the tick. Defaults to the axis anchor.
+
+<!-- jsdocEnd axisX -->
+
+#### Plot.axisY(*data*, *options*)
+
+…same…
+
+
+#### Plot.axisFx(*data*, *options*)
+
+…same…
+
+#### Plot.axisFy(*data*, *options*)
+
+…same…
+
+
 ### Bar
 
 [<img src="./img/bar.png" width="320" height="198" alt="a bar chart">](https://observablehq.com/@observablehq/plot-bar)
@@ -1302,6 +1344,51 @@ Plot.graticule()
 ```
 
 Returns a new geo mark with a [default 10° global graticule](https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule10) geometry object and the given *options*.
+
+### Grid
+
+[Source](./src/marks/axis.js) · [Examples](https://observablehq.com/@observablehq/plot-axis) · Draws an axis-aligned grid.
+
+#### Plot.gridX(*data*, *options*)
+
+<!-- jsdoc gridX -->
+
+```js
+Plot.gridX({ strokeDasharray: "5,3" })
+```
+
+Returns a new grid with the given *data* and *options*.
+
+The optional *data* is an array of tick values—it defaults to the scale’s ticks. The grid mark draws a line for each tick value, across the whole frame.
+
+The following options are supported:
+* **anchor** - the grid’s anchor (by default, matches the scale’s axis orientation)
+* **strokeDasharray** - the [stroke dasharray](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray) for dashed lines, defaults to null
+
+The following options are supported as constant or data-driven channels:
+* **stroke** - the grid color, defaults to currentColor
+* **strokeWidth** - the grid’s line width, defaults to 1
+* **strokeOpacity** - the stroke opacity, defaults to 0.1
+* **y1** - the start of the line, a channel of y positions, defaults to the grid’s anchor (see axis anchor).
+* **y2** - the end of the line, a channel of y positions, defaults to the opposite of the grid’s anchor (see axis anchor).
+
+All the other common options are supported when applicable (e.g., **title**).
+
+<!-- jsdocEnd gridX -->
+
+#### Plot.gridY(*data*, *options*)
+
+…same…
+
+
+#### Plot.gridFx(*data*, *options*)
+
+…same…
+
+#### Plot.gridFy(*data*, *options*)
+
+…same…
+
 
 ### Hexgrid
 

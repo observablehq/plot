@@ -34,6 +34,7 @@ export function axisFy() {
   return axisKy("fy", anchor, data, options);
 }
 
+/** @jsdoc axisX */
 export function axisX() {
   const [data, options] = maybeData(...arguments);
   const anchor = maybeAnchor(options, ["bottom", "top"]);
@@ -394,6 +395,7 @@ export function gridFy() {
   return gridKy("fy", data, gridDefaults({y, ...options}));
 }
 
+/** @jsdoc gridX */
 export function gridX() {
   const [data, options] = maybeData(...arguments);
   return gridKx("x", data, gridDefaults(options));
