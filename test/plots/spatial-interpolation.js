@@ -84,20 +84,32 @@ export async function voronoi() {
   return spatial(interpolateVoronoi);
 }
 
-// this might be faster with a quadtree? or using delaunay.find with the memoization trick
-function interpolateVoronoi(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}) {
-  const {width, height} = canvas;
-  const context = canvas.getContext("2d");
-  const v = d3.Delaunay.from(
+function Delaunay(index, X, Y) {
+  return d3.Delaunay.from(
     index,
     (i) => X[i],
     (i) => Y[i]
-  ).voronoi([0, 0, width, height]);
+  );
+}
+
+function Quadtree(index, X, Y) {
+  return d3.quadtree(
+    index,
+    (i) => X[i],
+    (i) => Y[i]
+  );
+}
+
+// this might be faster with a quadtree? or using delaunay.find with the memoization trick
+function interpolateVoronoi(index, canvas, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+  const {width, height} = canvas;
+  const context = canvas.getContext("2d");
+  const voronoi = Delaunay(index, X, Y).voronoi([0, 0, width, height]);
   context.strokeStyle = context.fillStyle = this.fill;
   context.globalAlpha = this.fillOpacity;
   for (let i = 0; i < index.length; ++i) {
     context.beginPath();
-    v.renderCell(i, context);
+    voronoi.renderCell(i, context);
     const j = index[i];
     if (F) context.strokeStyle = context.fillStyle = color(F[j]);
     if (FO) context.globalAlpha = FO[j];
@@ -107,21 +119,17 @@ function interpolateVoronoi(index, canvas, {color}, {x: X, y: Y, fill: F, fillOp
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function interpolateNearest(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}) {
+function interpolateNearest(index, canvas, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.createImageData(width, height);
   const imageData = image.data;
-  const q = d3.quadtree(
-    index,
-    (i) => X[i],
-    (i) => Y[i]
-  );
+  const quadtree = Quadtree(index, X, Y);
   let {r, g, b} = d3.rgb(this.fill) ?? {r, g, b};
   let a = (this.fillOpacity ?? 1) * 255;
   for (let y = 0, k = 0; y < height; ++y) {
     for (let x = 0; x < width; ++x, k += 4) {
-      const i = q.find(x, y);
+      const i = quadtree.find(x, y);
       if (F) ({r, g, b} = d3.rgb(color(F[i])));
       if (FO) a = FO[i] * 255;
       imageData[k + 0] = r;
@@ -134,16 +142,12 @@ function interpolateNearest(index, canvas, {color}, {x: X, y: Y, fill: F, fillOp
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function interpolateDelaunay(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}) {
+function interpolateDelaunay(index, canvas, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.createImageData(width, height);
   const imageData = image.data;
-  const d = d3.Delaunay.from(
-    index,
-    (i) => X[i],
-    (i) => Y[i]
-  );
+  const d = Delaunay(index, X, Y);
   let k = 0;
   let i;
   let {r, g, b} = d3.rgb(this.fill) ?? {r, g, b};
@@ -163,7 +167,7 @@ function interpolateDelaunay(index, canvas, {color}, {x: X, y: Y, fill: F, fillO
 }
 
 function interpolateBarycentric(extrapolate = true) {
-  return function (index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}) {
+  return function (index, canvas, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
     const {width, height} = canvas;
     const context2d = canvas.getContext("2d");
     const image = context2d.createImageData(width, height);
@@ -171,20 +175,21 @@ function interpolateBarycentric(extrapolate = true) {
     let {r, g, b} = d3.rgb(this.fill) ?? {r, g, b};
     let a = (this.fillOpacity ?? 1) * 255;
 
-    // renumber/reindex everything, because we're going to add points if extrapolate is true
-    X = Array.from(index, (i) => X[i]);
-    Y = Array.from(index, (i) => Y[i]);
-    F = F && Array.from(index, (i) => +F[i]); // coerce prior to interpolation (e.g., dates)
-    FO = FO && Array.from(index, (i) => +FO[i]);
-    index = d3.range(index.length);
-
     // to extrapolate, we need to fill the rectangle; pad the perimeter with vertices all around.
     if (extrapolate) {
-      let i = 1 + index.length;
-      const addPoint = (x, y) => {
-        (X[i] = x), (Y[i] = y), (F[i] = NaN), index.push(i++);
-      };
-      for (let k = 0; k < 1.01; k += 0.01) {
+      const m = 101; // number of extrapolated points per side
+      let i = index.length;
+
+      // renumber/reindex everything because we’re going to add points
+      X = Array.from(index, (i) => X[i]);
+      Y = Array.from(index, (i) => Y[i]);
+      F = F && Array.from(index, (i) => +F[i]); // coerce prior to interpolation
+      FO = FO && Array.from(index, (i) => FO[i]);
+      index = d3.range(index.length);
+
+      const addPoint = (x, y) => (index.push(++i), (X[i] = x), (Y[i] = y), (F[i] = NaN));
+      for (let j = 0; j < m; ++j) {
+        const k = j / (m - 1);
         addPoint(k * width, -1);
         addPoint((1 - k) * width, height + 1);
         addPoint(-1, k * height);
@@ -192,12 +197,7 @@ function interpolateBarycentric(extrapolate = true) {
       }
     }
 
-    const delaunay = d3.Delaunay.from(
-      index,
-      (i) => X[i],
-      (i) => Y[i]
-    );
-    const {points, triangles} = delaunay;
+    const {points, triangles} = Delaunay(index, X, Y);
 
     // Some triangles have one undefined value; other triangles have two. Fill
     // each undefined vertex with an average of the other defined vertices.

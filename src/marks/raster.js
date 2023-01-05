@@ -1,5 +1,6 @@
 import {rgb} from "d3";
 import {create} from "../context.js";
+import {map} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -39,7 +40,7 @@ export class Raster extends Mark {
       pixelRatio = 1,
       fill,
       fillOpacity,
-      interpolate = interpolatePixel
+      interpolate = interpolateNone
     } = options;
     super(
       data,
@@ -86,13 +87,10 @@ export class Raster extends Mark {
       // a sparse image when not every pixel has a corresponding sample.
       const kx = width / imageWidth;
       const ky = height / imageHeight;
-      X = X.slice(); // useless copy unless facets are overlapping; could be a Uint16
-      Y = Y.slice();
-      for (const i of index) {
-        X[i] = (X[i] - x1) * kx;
-        Y[i] = (Y[i] - y2) * ky;
-      }
-      this.interpolate(index, canvas, scales, {...channels, x: X, y: Y});
+      this.interpolate(index, canvas, scales, channels, {
+        x: map(X, (x) => (x - x1) * kx, Float64Array),
+        y: map(Y, (y) => (y - y2) * ky, Float64Array)
+      });
     } else {
       // Otherwise if X and Y are not given, then assume that F is a dense array
       // of samples covering the entire grid in row-major order.
@@ -189,7 +187,7 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
   });
 }
 
-function interpolatePixel(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}) {
+function interpolateNone(index, canvas, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
   let a = (this.fillOpacity ?? 1) * 255;
   const {width, height} = canvas;
