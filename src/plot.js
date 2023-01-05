@@ -536,6 +536,7 @@ function axisOptions(
     tickPadding,
     tickFormat,
     tickRotate,
+    labelAnchor,
     fontVariant,
     ariaLabel,
     ariaDescription
@@ -553,6 +554,7 @@ function axisOptions(
     tickPadding,
     tickFormat,
     tickRotate,
+    labelAnchor,
     fontVariant,
     ariaLabel,
     ariaDescription

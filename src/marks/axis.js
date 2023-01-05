@@ -65,6 +65,7 @@ function axisKy(
     textStrokeOpacity,
     textStrokeWidth,
     tickSize = k === "fy" ? 0 : 6,
+    labelAnchor = "top",
     x1,
     x2,
     x = anchor === "left" ? x1 : x2,
@@ -115,13 +116,22 @@ function axisKy(
             ? text(null, {
                 fill,
                 fillOpacity,
-                lineAnchor: "bottom",
-                facetAnchor: `top-${anchor}`, // TODO labelAnchor
-                frameAnchor: `top-${anchor}`,
                 ...options,
+                dy: labelAnchor === "top" ? -10 : labelAnchor === "bottom" ? 10 : undefined,
+                lineAnchor: (labelAnchor === "middle" ? anchor === "right" : labelAnchor === "top") ? "bottom" : "top",
+                rotate: labelAnchor === "middle" ? -90 : undefined,
+                textAnchor: labelAnchor === "middle" ? labelAnchor : undefined,
+                facetAnchor: labelAnchor === "middle" ? `${anchor}-${labelAnchor}` : `${labelAnchor}-${anchor}`,
+                frameAnchor: labelAnchor === "middle" ? anchor : `${labelAnchor}-${anchor}`,
                 initializer: function (data, facets, channels, scales, dimensions) {
-                  this.dy = -10;
-                  this.dx = -dimensions.marginLeft;
+                  switch (anchor) {
+                    case "left":
+                      this.dx = -dimensions.marginLeft;
+                      break;
+                    case "right":
+                      this.dx = dimensions.marginRight;
+                      break;
+                  }
                   this.ariaLabel = `${k}-axis label`;
                   return {
                     facets: [[0]],
@@ -153,6 +163,7 @@ function axisKx(
     textStrokeOpacity,
     textStrokeWidth,
     tickSize = k === "fx" ? 0 : 6,
+    labelAnchor = "right",
     y1,
     y2,
     y = anchor === "bottom" ? y2 : y1,
@@ -203,13 +214,20 @@ function axisKx(
             ? text(null, {
                 fill,
                 fillOpacity,
-                lineAnchor: "top",
-                facetAnchor: `${anchor}-right`, // TODO labelAnchor
-                frameAnchor: `${anchor}-right`,
                 ...options,
+                dy: anchor === "top" ? -20 : 20,
+                lineAnchor: anchor === "top" ? "bottom" : "top",
+                facetAnchor: `${anchor}-${labelAnchor}`,
+                frameAnchor: labelAnchor === "middle" ? anchor : `${anchor}-${labelAnchor}`,
                 initializer: function (data, facets, channels, scales, dimensions) {
-                  this.dy = 20;
-                  this.dx = dimensions.marginRight;
+                  switch (labelAnchor) {
+                    case "right":
+                      this.dx = dimensions.marginRight;
+                      break;
+                    case "left":
+                      this.dx = -dimensions.marginLeft;
+                      break;
+                  }
                   this.ariaLabel = `${k}-axis label`;
                   return {
                     facets: [[0]],

@@ -6,12 +6,15 @@ export default async function () {
   return Plot.plot({
     grid: true,
     padding: 0.05,
+    style: "overflow: visible;",
     x: {
+      axis: "top",
       label: "Episode",
-      axis: "top"
+      labelAnchor: "middle" // TODO default since ordinal scale
     },
     y: {
-      label: "Season"
+      label: "Season",
+      labelAnchor: "middle" // TODO default since ordinal scale
     },
     color: {
       type: "linear",
