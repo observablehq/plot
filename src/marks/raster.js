@@ -64,7 +64,7 @@ export class Raster extends Mark {
   scale(channels, {color, ...scales}, context) {
     return super.scale(channels, scales, context);
   }
-  render(index, {color, ...scales}, channels, dimensions, context) {
+  render(index, scales, channels, dimensions, context) {
     let {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
     const {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
     const {document} = context;
@@ -94,13 +94,14 @@ export class Raster extends Mark {
         X[i] = (X[i] - x1) * kx;
         Y[i] = (Y[i] - y2) * ky;
       }
-      this.interpolate(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a});
+      this.interpolate(index, canvas, scales, {...channels, x: X, y: Y}, {r, g, b, a});
     } else {
       // Otherwise if X and Y are not given, then assume that F is a dense array
       // of samples covering the entire grid in row-major order.
       const context2d = canvas.getContext("2d");
       const image = context2d.createImageData(width, height);
       const imageData = image.data;
+      const {color} = scales;
       for (let y = 0, i = 0; y < height; ++y) {
         for (let x = 0; x < width; ++x, ++i) {
           const j = i << 2;
@@ -191,7 +192,7 @@ function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
   });
 }
 
-function interpolatePixel(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) {
+function interpolatePixel(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}, {r, g, b, a}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.createImageData(width, height);

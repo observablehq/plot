@@ -85,7 +85,7 @@ export async function voronoi() {
 }
 
 // this might be faster with a quadtree? or using delaunay.find with the memoization trick
-function interpolateVoronoi(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) {
+function interpolateVoronoi(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}, {r, g, b, a}) {
   const {width, height} = canvas;
   const context = canvas.getContext("2d");
   const v = d3.Delaunay.from(
@@ -107,7 +107,7 @@ function interpolateVoronoi(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a})
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function interpolateNearest(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) {
+function interpolateNearest(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}, {r, g, b, a}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.createImageData(width, height);
@@ -132,7 +132,7 @@ function interpolateNearest(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a})
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function interpolateDelaunay(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) {
+function interpolateDelaunay(index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}, {r, g, b, a}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.createImageData(width, height);
@@ -158,7 +158,7 @@ function interpolateDelaunay(index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}
 }
 
 function interpolateBarycentric(extrapolate = true) {
-  return (index, canvas, {color}, {X, Y, F, FO}, {r, g, b, a}) => {
+  return (index, canvas, {color}, {x: X, y: Y, fill: F, fillOpacity: FO}, {r, g, b, a}) => {
     const {width, height} = canvas;
     const context2d = canvas.getContext("2d");
     const image = context2d.createImageData(width, height);
