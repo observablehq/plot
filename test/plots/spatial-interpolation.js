@@ -123,6 +123,7 @@ function rasterizeBarycentric(extrapolate = true) {
     }
 
     // Interpolate the interior of all triangles with barycentric coordinates
+    const nepsilon = -1e-12; // tolerance for points that are on a triangle's edge
     for (let i = 0; i < triangles.length; i += 3) {
       const ta = triangles[i];
       const tb = triangles[i + 1];
@@ -146,11 +147,11 @@ function rasterizeBarycentric(extrapolate = true) {
         for (let y = Math.floor(y1); y < y2; y++) {
           if (x < 0 || x >= width || y < 0 || y >= height) continue;
           const ga = ((By - Cy) * (x - Cx) + (y - Cy) * (Cx - Bx)) / z;
-          if (ga < 0) continue;
+          if (ga < nepsilon) continue;
           const gb = ((Cy - Ay) * (x - Cx) + (y - Cy) * (Ax - Cx)) / z;
-          if (gb < 0) continue;
+          if (gb < nepsilon) continue;
           const gc = 1 - ga - gb;
-          if (gc < 0) continue;
+          if (gc < nepsilon) continue;
           const k = (x + width * y) << 2;
           if (F) ({r, g, b} = d3.rgb(color(ga * F[ia] + gb * F[ib] + gc * F[ic])));
           if (FO) a = (ga * FO[ia] + gb * FO[ib] + gc * FO[ic]) * 255;
