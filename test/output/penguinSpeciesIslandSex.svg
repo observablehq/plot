@@ -81,6 +81,9 @@
       <text y="0.71em" transform="translate(104,400)">MALE</text>
       <text y="0.71em" transform="translate(162,400)">N/A</text>
     </g>
+    <g aria-label="x-axis label" transform="translate(0.5,20.5)">
+      <text y="0.71em" transform="translate(130,400)">sex</text>
+    </g>
     <g aria-label="bar">
       <rect x="46" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4e79a7"></rect>
       <rect x="104" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4e79a7"></rect>
@@ -126,6 +129,9 @@
       <text y="0.71em" transform="translate(104,400)">MALE</text>
       <text y="0.71em" transform="translate(162,400)">N/A</text>
     </g>
+    <g aria-label="x-axis label" transform="translate(0.5,20.5)">
+      <text y="0.71em" transform="translate(130,400)">sex</text>
+    </g>
     <g aria-label="bar">
       <rect x="46" width="52" y="227.67123287671234" height="172.32876712328766" fill="#f28e2c"></rect>
       <rect x="104" width="52" y="227.67123287671234" height="172.32876712328766" fill="#f28e2c"></rect>
@@ -165,8 +171,8 @@
       <text y="0.71em" transform="translate(104,400)">MALE</text>
       <text y="0.71em" transform="translate(162,400)">N/A</text>
     </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-      <text y="0.71em" transform="translate(220,400)">sex</text>
+    <g aria-label="x-axis label" transform="translate(0.5,20.5)">
+      <text y="0.71em" transform="translate(130,400)">sex</text>
     </g>
     <g aria-label="bar">
       <rect x="46" width="52" y="106.027397260274" height="293.97260273972597" fill="#4e79a7"></rect>

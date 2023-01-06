@@ -223,7 +223,7 @@ function axisKx(
                 initializer: function (data, facets, channels, scales, dimensions) {
                   // duck typing ordinal scales to position the label, lazily
                   const l = options.labelAnchor ?? (typeof scales[k].bandwidth === "function" ? "center" : "right");
-                  this.facetAnchor = l === "center" ? anchor : `${anchor}-${l}`;
+                  this.facetAnchor = maybeFacetAnchor(l === "center" ? anchor : `${anchor}-${l}`);
                   this.frameAnchor = l === "center" ? anchor : `${anchor}-${l}`;
                   this.textAnchor = l === "left" ? "start" : l === "right" ? "end" : undefined;
                   switch (l) {
