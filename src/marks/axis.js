@@ -119,11 +119,11 @@ function axisKy(
                 fillOpacity,
                 ...options,
                 dy: labelAnchor === "top" ? -10 : labelAnchor === "bottom" ? 10 : undefined,
-                lineAnchor: (labelAnchor === "middle" ? anchor === "right" : labelAnchor === "top") ? "bottom" : "top",
-                rotate: labelAnchor === "middle" ? -90 : undefined,
-                textAnchor: labelAnchor === "middle" ? labelAnchor : undefined,
-                facetAnchor: labelAnchor === "middle" ? `${anchor}-${labelAnchor}` : `${labelAnchor}-${anchor}`,
-                frameAnchor: labelAnchor === "middle" ? anchor : `${labelAnchor}-${anchor}`,
+                lineAnchor: (labelAnchor === "center" ? anchor === "right" : labelAnchor === "top") ? "bottom" : "top",
+                rotate: labelAnchor === "center" ? -90 : undefined,
+                textAnchor: labelAnchor === "center" ? "middle" : undefined,
+                facetAnchor: labelAnchor === "center" ? `${anchor}-middle` : `${labelAnchor}-${anchor}`,
+                frameAnchor: labelAnchor === "center" ? anchor : `${labelAnchor}-${anchor}`,
                 initializer: function (data, facets, channels, scales, dimensions) {
                   switch (anchor) {
                     case "left":
@@ -219,8 +219,8 @@ function axisKx(
                 ...options,
                 dy: anchor === "top" ? -20 : 20,
                 lineAnchor: anchor === "top" ? "bottom" : "top",
-                facetAnchor: `${anchor}-${labelAnchor}`,
-                frameAnchor: labelAnchor === "middle" ? anchor : `${anchor}-${labelAnchor}`,
+                facetAnchor: labelAnchor === "center" ? anchor : `${anchor}-${labelAnchor}`,
+                frameAnchor: labelAnchor === "center" ? anchor : `${anchor}-${labelAnchor}`,
                 initializer: function (data, facets, channels, scales, dimensions) {
                   switch (labelAnchor) {
                     case "right":

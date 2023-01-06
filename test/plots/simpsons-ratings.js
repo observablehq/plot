@@ -10,11 +10,11 @@ export default async function () {
     x: {
       axis: "top",
       label: "Episode",
-      labelAnchor: "middle" // TODO default since ordinal scale
+      labelAnchor: "center" // TODO default since ordinal scale
     },
     y: {
       label: "Season",
-      labelAnchor: "middle" // TODO default since ordinal scale
+      labelAnchor: "center" // TODO default since ordinal scale
     },
     color: {
       type: "linear",
