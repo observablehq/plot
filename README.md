@@ -1534,7 +1534,7 @@ The following options are supported:
 * **fill** - the sample’s color; if a channel, bound to the *color* scale
 * **fillOpacity** - the sample’s opacity; if a channel, bound to the *opacity* scale
 * **x** and **y** - the sample’s coordinates
-* **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering) attribute of the image; defaults to auto, which blends neighboring samples with bilinear interpolation. A typical setting is pixelated, that asks the browser to render each pixel as a solid rectangle.
+* **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering) attribute of the image; defaults to auto, which blends neighboring samples with bilinear interpolation. A typical setting is pixelated, that asks the browser to render each pixel as a solid rectangle (unfortunately not supported by Webkit).
 * **rasterize** - the rasterize method.
 
 The rasterize option supports the following settings:
