@@ -7,15 +7,8 @@ export default async function () {
     grid: true,
     padding: 0.05,
     style: "overflow: visible;",
-    x: {
-      axis: "top",
-      label: "Episode"
-      // labelAnchor: "center" // TODO default since ordinal scale
-    },
-    y: {
-      label: "Season"
-      //labelAnchor: "center" // TODO default since ordinal scale
-    },
+    x: {axis: "top", label: "Episode"},
+    y: {label: "Season"},
     color: {
       type: "linear",
       scheme: "PiYG",

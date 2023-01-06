@@ -101,8 +101,8 @@
     <text transform="translate(532,30)">12</text>
     <text transform="translate(573,30)">13</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,-19.5)">
-    <text transform="translate(620,30)">Position within word</text>
+  <g aria-label="x-axis label" transform="translate(0.5,-19.5)">
+    <text transform="translate(330,30)">Position within word</text>
   </g>
   <g aria-label="cell">
     <rect x="40.5" width="40" y="30.5" height="21" fill="rgb(40, 119, 184)"></rect>

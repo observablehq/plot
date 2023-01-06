@@ -167,7 +167,6 @@ function axisKx(
     textStrokeWidth,
     tickSize = k === "fx" ? 0 : 6,
     label,
-    labelAnchor = "right",
     y1,
     y2,
     y = anchor === "bottom" ? y2 : y1,
@@ -221,10 +220,13 @@ function axisKx(
                 ...options,
                 dy: anchor === "top" ? -20 : 20,
                 lineAnchor: anchor === "top" ? "bottom" : "top",
-                facetAnchor: labelAnchor === "center" ? anchor : `${anchor}-${labelAnchor}`,
-                frameAnchor: labelAnchor === "center" ? anchor : `${anchor}-${labelAnchor}`,
                 initializer: function (data, facets, channels, scales, dimensions) {
-                  switch (labelAnchor) {
+                  // duck typing ordinal scales to position the label, lazily
+                  const l = options.labelAnchor ?? (typeof scales[k].bandwidth === "function" ? "center" : "right");
+                  this.facetAnchor = l === "center" ? anchor : `${anchor}-${l}`;
+                  this.frameAnchor = l === "center" ? anchor : `${anchor}-${l}`;
+                  this.textAnchor = l === "left" ? "start" : l === "right" ? "end" : undefined;
+                  switch (l) {
                     case "right":
                       this.dx = dimensions.marginRight;
                       break;
