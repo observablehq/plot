@@ -284,13 +284,15 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
   FO = FO && Array.from(index, (i) => FO[i]);
   index = range(i);
 
-  // to extrapolate, we need to fill the rectangle; pad the perimeter with vertices all around.
-  const m = 101; // number of extrapolated points per side; TODO allow configuration?
+  // to extrapolate, we need to fill the rectangle; pad the perimeter with vertices all around
   const addPoint = (x, y) => ((X[i] = x), (Y[i] = y), F && (F[i] = ex), FO && (FO[i] = ex), index.push(i++));
-  for (let j = 0; j < m; ++j) {
-    const k = j / (m - 1);
+  for (let j = 0, m = (width >> 2) - 1; j <= m; ++j) {
+    const k = j / m;
     addPoint(k * width, -1);
     addPoint((1 - k) * width, height + 1);
+  }
+  for (let j = 0, m = (height >> 2) - 1; j <= m; ++j) {
+    const k = j / m;
     addPoint(-1, k * height);
     addPoint(width + 1, (1 - k) * height);
   }
