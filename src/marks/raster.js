@@ -361,6 +361,8 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
   context2d.putImageData(image, 0, 0);
 }
 
+// TODO adaptive supersampling in areas of high variance?
+// TODO configurable iterations per sample (currently 2)
 function rasterizeWalkOnSpheres(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   const {width, height} = canvas;
   const random = randomLcg(42); // TODO allow configurable rng?
@@ -377,34 +379,22 @@ function rasterizeWalkOnSpheres(canvas, index, {color}, {fill: F, fillOpacity: F
   let k = 0;
   for (let y = 0, i; y < height; y++) {
     for (let x = 0; x < width; x++, k += 4) {
-      if (F) r = g = b = 0;
-      if (FO) a = 0;
-      const pp = 1; // TODO configurable samples per pixel
-      for (let p = 0; p < pp; ++p) {
-        for (let j = 0, cx = x, cy = y; j < 4; ++j) {
-          i = delaunay.find(cx, cy, i);
-          const dist = Math.hypot(X[index[i]] - cx, Y[index[i]] - cy);
-          const angle = random() * 2 * Math.PI;
-          cx += Math.cos(angle) * dist;
-          cy += Math.sin(angle) * dist;
-        }
-        if (F) {
-          const c = rgb(color(F[index[i]]));
-          r += c.r;
-          g += c.g;
-          b += c.b;
-        }
-        if (FO) {
-          a += FO[i];
-        }
+      i = delaunay.find(x, y, i);
+      for (let j = 0, cx = x, cy = y; j < 2; ++j) {
+        const radius = Math.hypot(X[index[i]] - cx, Y[index[i]] - cy);
+        const angle = random() * 2 * Math.PI;
+        cx += Math.cos(angle) * radius;
+        cy += Math.sin(angle) * radius;
+        i = delaunay.find(cx, cy, i);
       }
-      imageData[k + 0] = r / pp;
-      imageData[k + 1] = g / pp;
-      imageData[k + 2] = b / pp;
-      imageData[k + 3] = (a * 255) / pp;
+      if (F) ({r, g, b} = rgb(color(F[index[i]])));
+      if (FO) a = FO[i] * 255;
+      imageData[k + 0] = r;
+      imageData[k + 1] = g;
+      imageData[k + 2] = b;
+      imageData[k + 3] = a;
     }
   }
-  // TODO blur? or better, adaptive supersampling?
   context2d.putImageData(image, 0, 0);
 }
 
