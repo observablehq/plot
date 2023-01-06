@@ -65,6 +65,7 @@ function axisKy(
     textStrokeOpacity,
     textStrokeWidth,
     tickSize = k === "fy" ? 0 : 6,
+    label,
     labelAnchor = "top",
     x1,
     x2,
@@ -135,7 +136,7 @@ function axisKy(
                   this.ariaLabel = `${k}-axis label`;
                   return {
                     facets: [[0]],
-                    channels: {text: {value: [scales[k].label]}}
+                    channels: {text: {value: [label === undefined ? scales[k].label : label]}}
                   };
                 }
               })
@@ -163,6 +164,7 @@ function axisKx(
     textStrokeOpacity,
     textStrokeWidth,
     tickSize = k === "fx" ? 0 : 6,
+    label,
     labelAnchor = "right",
     y1,
     y2,
@@ -231,7 +233,7 @@ function axisKx(
                   this.ariaLabel = `${k}-axis label`;
                   return {
                     facets: [[0]],
-                    channels: {text: {value: [scales[k].label]}}
+                    channels: {text: {value: [label === undefined ? scales[k].label : label]}}
                   };
                 }
               })
