@@ -40,7 +40,7 @@ export async function spatialInterpolationBarycentricExtra() {
 }
 
 export async function spatialInterpolationSpheres() {
-  return spatial(rasterizeWalkOnSpheres(3));
+  return spatial(rasterizeWalkOnSpheres());
 }
 
 export async function spatialInterpolationVoronoi() {
@@ -80,7 +80,7 @@ export async function spatialPenguins() {
 }
 
 export async function spatialPenguinsSpheres() {
-  return penguins(rasterizeWalkOnSpheres(6));
+  return penguins(rasterizeWalkOnSpheres());
 }
 
 async function penguins(rasterize) {
@@ -213,7 +213,7 @@ function rasterizeBarycentric(extrapolate = true) {
   };
 }
 
-function rasterizeWalkOnSpheres(blur = 0) {
+function rasterizeWalkOnSpheres() {
   return function (canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
     const {width, height} = canvas;
     const random = d3.randomLcg(42);
@@ -227,14 +227,15 @@ function rasterizeWalkOnSpheres(blur = 0) {
     let i;
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++, k += 4) {
-        let cx = x,
-          cy = y;
-        for (let j = 0; j < 4; ++j) {
-          i = delaunay.find(cx, cy, i);
+        let cx = x;
+        let cy = y;
+        i = delaunay.find(cx, cy, i);
+        for (let j = 0; j < 2; ++j) {
           const dist = Math.hypot(X[index[i]] - cx, Y[index[i]] - cy);
           const angle = random() * 2 * Math.PI;
           cx += Math.cos(angle) * dist;
           cy += Math.sin(angle) * dist;
+          i = delaunay.find(cx, cy, i);
         }
 
         if (F) ({r, g, b} = d3.rgb(color(F[index[i]])));
@@ -245,7 +246,6 @@ function rasterizeWalkOnSpheres(blur = 0) {
         imageData[k + 3] = a;
       }
     }
-    if (blur) d3.blurImage(image, blur);
     context2d.putImageData(image, 0, 0);
   };
 }
