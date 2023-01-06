@@ -70,7 +70,7 @@ export class Raster extends Mark {
     this.imageRendering = impliedString(imageRendering, "auto");
     this.rasterize = maybeRasterize(rasterize);
   }
-  // Ignore the color scale, so the fill channel is returned as unscaled values.
+  // Ignore the color scale, so the fill channel is returned unscaled.
   scale(channels, {color, ...scales}, context) {
     return super.scale(channels, scales, context);
   }

@@ -5,7 +5,13 @@ import {mesh} from "topojson-client";
 async function spatial(rasterize) {
   const ca55 = await d3.csv("data/ca55-south.csv", d3.autoType);
   return Plot.plot({
-    axis: null,
+    width: 640,
+    height: 484,
+    projection: {
+      type: "identity",
+      inset: 3,
+      domain: {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])}
+    },
     y: {reverse: true},
     color: {type: "diverging"},
     marks: [
@@ -14,7 +20,7 @@ async function spatial(rasterize) {
         x: "GRID_EAST",
         y: "GRID_NORTH",
         fill: "MAG_IGRF90",
-        imageRendering: "pixelated",
+        imageRendering: rasterize ? undefined : "pixelated",
         rasterize
       })
     ]
@@ -96,6 +102,7 @@ function Delaunay(index, X, Y) {
 }
 
 function rasterizeVoronoi(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+  console.warn(arguments);
   const {width, height} = canvas;
   const context = canvas.getContext("2d");
   const voronoi = Delaunay(index, X, Y).voronoi([0, 0, width, height]);
