@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function () {
+export async function heatmap() {
   return Plot.plot({
     color: {
       type: "diverging"
@@ -91,8 +91,8 @@ export async function heatmapFillOpacity() {
     marks: [
       Plot.raster({
         x1: -1,
-        x2: 1,
         y1: -1,
+        x2: 1,
         y2: 1,
         fill: (x, y) => Math.atan2(y, x),
         fillOpacity: (x, y) => Math.PI - Math.atan2(y, x),
@@ -108,8 +108,8 @@ export async function heatmapOpacity() {
     marks: [
       Plot.raster({
         x1: -1,
-        x2: 1,
         y1: -1,
+        x2: 1,
         y2: 1,
         fill: "red",
         fillOpacity: (x, y) => Math.PI - Math.atan2(y, x),
@@ -125,8 +125,8 @@ export async function heatmapConstantOpacity() {
     marks: [
       Plot.raster({
         x1: -1,
-        x2: 1,
         y1: -1,
+        x2: 1,
         y2: 1,
         fill: (x, y) => Math.atan2(y, x),
         fillOpacity: 0.5,

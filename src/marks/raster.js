@@ -1,6 +1,6 @@
-import {rgb} from "d3";
+import {Delaunay, randomLcg, range, rgb} from "d3";
 import {create} from "../context.js";
-import {map, first, second, third, isTuples} from "../options.js";
+import {map, first, second, third, isTuples, isNumeric, isTemporal} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -26,11 +26,6 @@ function integer(input, name) {
   return x;
 }
 
-function maybeRasterize(rasterize) {
-  if (typeof rasterize !== "function") throw new Error(`invalid rasterize: ${rasterize}`);
-  return rasterize;
-}
-
 export class Raster extends Mark {
   constructor(data, options = {}) {
     let {
@@ -49,7 +44,7 @@ export class Raster extends Mark {
       pixelSize = 1,
       fill,
       fillOpacity,
-      rasterize = x == null || y == null ? rasterizeDense : rasterizeNull
+      rasterize = x == null || y == null ? rasterizeDense : rasterizeNone
     } = options;
     super(
       data,
@@ -181,9 +176,27 @@ function sampleFill({fill, fillOpacity, pixelSize = 1, ...options} = {}) {
   });
 }
 
+function maybeRasterize(rasterize) {
+  if (typeof rasterize === "function") return rasterize;
+  if (rasterize == null) return rasterizeNone;
+  switch (`${rasterize}`.toLowerCase()) {
+    case "none":
+      return rasterizeNone;
+    case "dense":
+      return rasterizeDense;
+    case "nearest":
+      return rasterizeNearest;
+    case "barycentric":
+      return rasterizeBarycentric;
+    case "walk-on-spheres":
+      return rasterizeWalkOnSpheres;
+  }
+  throw new Error(`invalid rasterize: ${rasterize}`);
+}
+
 // Applies a simple forward mapping of samples, binning them into pixels without
 // any blending or interpolation.
-function rasterizeNull(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+function rasterizeNone(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.createImageData(width, height);
@@ -229,4 +242,184 @@ function rasterizeDense(canvas, index, {color}, {fill: F, fillOpacity: FO}) {
     imageData[j + 3] = a;
   }
   context2d.putImageData(image, 0, 0);
+}
+
+function rasterizeNearest(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+  const {width, height} = canvas;
+  const context = canvas.getContext("2d");
+  const voronoi = Delaunay.from(
+    index,
+    (i) => X[i],
+    (i) => Y[i]
+  ).voronoi([0, 0, width, height]);
+  context.fillStyle = this.fill;
+  context.globalAlpha = this.fillOpacity;
+  for (let i = 0; i < index.length; ++i) {
+    context.beginPath();
+    voronoi.renderCell(i, context);
+    const j = index[i];
+    if (F) context.fillStyle = color(F[j]);
+    if (FO) context.globalAlpha = Math.abs(FO[j]);
+    context.fill();
+    if (context.globalAlpha === 1) (context.strokeStyle = context.fillStyle), context.stroke();
+  }
+}
+
+const ex = Symbol("extrapolate");
+
+function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+  const random = randomLcg(42); // TODO allow configurable rng?
+  const {width, height} = canvas;
+  const context2d = canvas.getContext("2d");
+  const image = context2d.createImageData(width, height);
+  const imageData = image.data;
+  let {r, g, b} = rgb(this.fill) ?? {r, g, b};
+  let a = (this.fillOpacity ?? 1) * 255;
+
+  // renumber/reindex everything because we’re going to add points
+  let i = index.length;
+  X = Array.from(index, (i) => X[i]); // take(X, index)
+  Y = Array.from(index, (i) => Y[i]);
+  F = F && Array.from(index, (i) => F[i]);
+  FO = FO && Array.from(index, (i) => FO[i]);
+  index = range(i);
+
+  // to extrapolate, we need to fill the rectangle; pad the perimeter with vertices all around.
+  const m = 101; // number of extrapolated points per side; TODO allow configuration?
+  const addPoint = (x, y) => ((X[i] = x), (Y[i] = y), F && (F[i] = ex), FO && (FO[i] = ex), index.push(i++));
+  for (let j = 0; j < m; ++j) {
+    const k = j / (m - 1);
+    addPoint(k * width, -1);
+    addPoint((1 - k) * width, height + 1);
+    addPoint(-1, k * height);
+    addPoint(width + 1, (1 - k) * height);
+  }
+
+  const {points, triangles} = Delaunay.from(
+    index,
+    (i) => X[i],
+    (i) => Y[i]
+  );
+
+  // Some triangles have one undefined value; other triangles have two. Fill
+  // each undefined vertex with an average of the other defined vertices.
+  const mix2 = mixer2(F, random);
+  for (const C of [F, FO].filter((d) => d)) {
+    for (let i = 0; i < triangles.length; i += 3) {
+      const a = triangles[i];
+      const b = triangles[i + 1];
+      const c = triangles[i + 2];
+      if (C[a] === ex) C[a] = C[c] === ex ? C[b] : C[b] === ex ? C[c] : mix2(C[c], C[b]);
+      if (C[b] === ex) C[b] = C[a] === ex ? C[c] : C[c] === ex ? C[a] : mix2(C[a], C[c]);
+      if (C[c] === ex) C[c] = C[b] === ex ? C[a] : C[a] === ex ? C[b] : mix2(C[b], C[a]);
+    }
+  }
+
+  // Interpolate the interior of all triangles with barycentric coordinates
+  const mix3 = mixer3(F, random);
+  const nepsilon = -1e-12; // tolerance for points that are on a triangle's edge
+  for (let i = 0; i < triangles.length; i += 3) {
+    const ta = triangles[i];
+    const tb = triangles[i + 1];
+    const tc = triangles[i + 2];
+    const Ax = points[2 * ta];
+    const Bx = points[2 * tb];
+    const Cx = points[2 * tc];
+    const Ay = points[2 * ta + 1];
+    const By = points[2 * tb + 1];
+    const Cy = points[2 * tc + 1];
+    const x1 = Math.min(Ax, Bx, Cx);
+    const x2 = Math.max(Ax, Bx, Cx);
+    const y1 = Math.min(Ay, By, Cy);
+    const y2 = Math.max(Ay, By, Cy);
+    const z = (By - Cy) * (Ax - Cx) + (Ay - Cy) * (Cx - Bx);
+    if (!z) continue;
+    const ia = index[ta];
+    const ib = index[tb];
+    const ic = index[tc];
+    for (let x = Math.floor(x1); x < x2; x++) {
+      for (let y = Math.floor(y1); y < y2; y++) {
+        if (x < 0 || x >= width || y < 0 || y >= height) continue;
+        const ga = ((By - Cy) * (x - Cx) + (y - Cy) * (Cx - Bx)) / z;
+        if (ga < nepsilon) continue;
+        const gb = ((Cy - Ay) * (x - Cx) + (y - Cy) * (Ax - Cx)) / z;
+        if (gb < nepsilon) continue;
+        const gc = 1 - ga - gb;
+        if (gc < nepsilon) continue;
+        const k = (x + width * y) << 2;
+        if (F) ({r, g, b} = rgb(color(mix3(F[ia], ga, F[ib], gb, F[ic], gc))));
+        if (FO) a = (ga * FO[ia] + gb * FO[ib] + gc * FO[ic]) * 255;
+        imageData[k + 0] = r;
+        imageData[k + 1] = g;
+        imageData[k + 2] = b;
+        imageData[k + 3] = a;
+      }
+    }
+  }
+
+  context2d.putImageData(image, 0, 0);
+}
+
+// TODO adaptive supersampling in areas of high variance?
+// TODO configurable iterations per sample (currently 2)
+function rasterizeWalkOnSpheres(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+  const random = randomLcg(42); // TODO allow configurable rng?
+  const {width, height} = canvas;
+  const context2d = canvas.getContext("2d");
+  const image = context2d.createImageData(width, height);
+  const imageData = image.data;
+  let {r, g, b} = rgb(this.fill) ?? {r, g, b};
+  let a = (this.fillOpacity ?? 1) * 255;
+  const delaunay = Delaunay.from(
+    index,
+    (i) => X[i],
+    (i) => Y[i]
+  );
+  let k = 0;
+  for (let y = 0, i; y < height; y++) {
+    for (let x = 0; x < width; x++, k += 4) {
+      i = delaunay.find(x, y, i);
+      for (let j = 0, cx = x, cy = y; j < 2; ++j) {
+        const radius = Math.hypot(X[index[i]] - cx, Y[index[i]] - cy);
+        const angle = random() * 2 * Math.PI;
+        cx += Math.cos(angle) * radius;
+        cy += Math.sin(angle) * radius;
+        i = delaunay.find(cx, cy, i);
+      }
+      if (F) ({r, g, b} = rgb(color(F[index[i]])));
+      if (FO) a = FO[i] * 255;
+      imageData[k + 0] = r;
+      imageData[k + 1] = g;
+      imageData[k + 2] = b;
+      imageData[k + 3] = a;
+    }
+  }
+  context2d.putImageData(image, 0, 0);
+}
+
+function blend2(a, b) {
+  return (+a + +b) / 2; // coerce in case dates
+}
+
+function blend3(a, ca, b, cb, c, cc) {
+  return ca * a + cb * b + cc * c;
+}
+
+function pick2(random = Math.random) {
+  return (a, b) => (random() < 0.5 ? a : b);
+}
+
+function pick3(random = Math.random) {
+  return (a, ca, b, cb, c) => {
+    const u = random();
+    return u < ca ? a : u < ca + cb ? b : c;
+  };
+}
+
+function mixer2(F, random) {
+  return isNumeric(F) || isTemporal(F) ? blend2 : pick2(random);
+}
+
+function mixer3(F, random) {
+  return isNumeric(F) || isTemporal(F) ? blend3 : pick3(random);
 }
