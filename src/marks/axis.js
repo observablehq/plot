@@ -2,6 +2,7 @@ import {extent, format, utcFormat} from "d3";
 import {create} from "../context.js";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
+import {maybeFacetAnchor} from "../facet.js";
 import {radians} from "../math.js";
 import {range, valueof, arrayify, constant, keyword, identity} from "../options.js";
 import {isNone, isNoneish, isIterable, isTemporal} from "../options.js";
@@ -66,7 +67,6 @@ function axisKy(
     textStrokeWidth,
     tickSize = k === "fy" ? 0 : 6,
     label,
-    labelAnchor = "top",
     x1,
     x2,
     x = anchor === "left" ? x1 : x2,
@@ -118,13 +118,15 @@ function axisKy(
                 fill,
                 fillOpacity,
                 ...options,
-                dy: labelAnchor === "top" ? -10 : labelAnchor === "bottom" ? 10 : undefined,
-                lineAnchor: (labelAnchor === "center" ? anchor === "right" : labelAnchor === "top") ? "bottom" : "top",
-                rotate: labelAnchor === "center" ? -90 : undefined,
-                textAnchor: labelAnchor === "center" ? "middle" : undefined,
-                facetAnchor: labelAnchor === "center" ? `${anchor}-middle` : `${labelAnchor}-${anchor}`,
-                frameAnchor: labelAnchor === "center" ? anchor : `${labelAnchor}-${anchor}`,
                 initializer: function (data, facets, channels, scales, dimensions) {
+                  // duck typing ordinal scales to position the label, lazily
+                  const l = options.labelAnchor ?? (typeof scales[k].bandwidth === "function" ? "center" : "top");
+                  this.dy = l === "top" ? -10 : l === "bottom" ? 10 : 0;
+                  this.lineAnchor = (l === "center" ? anchor === "right" : l === "top") ? "bottom" : "top";
+                  this.rotate = l === "center" ? -90 : undefined;
+                  this.textAnchor = l === "center" ? "middle" : "start";
+                  this.facetAnchor = maybeFacetAnchor(l === "center" ? `${anchor}-middle` : `${l}-${anchor}`);
+                  this.frameAnchor = l === "center" ? anchor : `${l}-${anchor}`;
                   switch (anchor) {
                     case "left":
                       this.dx = -dimensions.marginLeft;

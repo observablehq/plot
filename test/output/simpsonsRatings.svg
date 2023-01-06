@@ -103,7 +103,7 @@
     <text y="0.32em" transform="translate(40,578)">27</text>
     <text y="0.32em" transform="translate(40,599)">28</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-39.5,0.5)">
+  <g aria-label="y-axis label" text-anchor="middle" transform="translate(-39.5,0.5)">
     <text y="0.71em" transform="translate(40,325) rotate(-90)">Season</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(11.5,0)">
@@ -187,8 +187,8 @@
     <text transform="translate(572,30)">24</text>
     <text transform="translate(595,30)">25</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,-19.5)">
-    <text transform="translate(330,30)">Episode</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,-19.5)">
+    <text transform="translate(620,30)">Episode</text>
   </g>
   <g aria-label="cell">
     <rect x="250" width="22" y="32" height="20" fill="rgb(219, 240, 192)"></rect>

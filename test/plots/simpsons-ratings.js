@@ -9,12 +9,12 @@ export default async function () {
     style: "overflow: visible;",
     x: {
       axis: "top",
-      label: "Episode",
-      labelAnchor: "center" // TODO default since ordinal scale
+      label: "Episode"
+      // labelAnchor: "center" // TODO default since ordinal scale
     },
     y: {
-      label: "Season",
-      labelAnchor: "center" // TODO default since ordinal scale
+      label: "Season"
+      //labelAnchor: "center" // TODO default since ordinal scale
     },
     color: {
       type: "linear",

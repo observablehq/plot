@@ -46,8 +46,8 @@
     <text y="0.32em" transform="translate(50,176)">70-79</text>
     <text y="0.32em" transform="translate(50,196)">≥80</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-49.5,-9.5)">
-    <text transform="translate(50,30)">Age</text>
+  <g aria-label="y-axis label" text-anchor="middle" transform="translate(-49.5,0.5)">
+    <text y="0.71em" transform="translate(50,125) rotate(-90)">Age</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="50" x2="50" y1="30" y2="220"></line>
