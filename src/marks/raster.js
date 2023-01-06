@@ -1,6 +1,7 @@
 import {rgb} from "d3";
 import {create} from "../context.js";
-import {map, first, second, third, isTuples} from "../options.js";
+import {first, second, third, isTuples, range, valueof} from "../options.js";
+import {Position} from "../projection.js";
 import {Mark} from "../plot.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -20,15 +21,73 @@ function number(input, name) {
   return x;
 }
 
+// TODO integer width and height
 function integer(input, name) {
   const x = Math.floor(input);
   if (isNaN(x)) throw new Error(`invalid ${name}: ${input}`);
   return x;
 }
 
-function maybeRasterize(rasterize) {
-  if (typeof rasterize !== "function") throw new Error(`invalid rasterize: ${rasterize}`);
-  return rasterize;
+function maybeRasterize({rasterize, ...options} = {}) {
+  if (options.x == null && options.y == null) {
+    if (rasterize != null) throw new Error(`rasterizers are not supported with the shorthand`); // todo?
+    return options;
+  }
+  if (rasterize == null) return nullDraw(options);
+  if (typeof rasterize !== "function") throw new Error(`unsupported rasterize: ${rasterize}`);
+}
+
+function nullDraw(options) {
+  return rasterizer(options, function (facets, {x: X, y: Y, fill}, {width, height}) {
+    const n = width * height;
+    const F = new Array(n * facets.length);
+    let k = 0;
+    for (const index of facets) {
+      for (const i of index) {
+        const x = Math.floor(X[i]);
+        const y = Math.floor(Y[i]);
+        F[k + x + width * y] = fill[i];
+      }
+      k += n;
+    }
+    return F;
+  });
+}
+
+export function rasterizer({pixelSize = 1, ...options}, draw) {
+  if (options.initializer) return options; // TODO allow external definitions such as those in spatial-interpolation.js
+  return initializer(options, function (data, facets, channels, scales, dimensions, context) {
+    const {x: X, y: Y} = Position(channels, scales, context);
+    let {x1, y1, x2, y2} = channels;
+    x1 = x1 ? x1[0] : dimensions.marginLeft;
+    x2 = x2 ? x2[0] : dimensions.width - dimensions.marginRight;
+    y1 = y1 ? y1[0] : dimensions.marginTop;
+    y2 = y2 ? y2[0] : dimensions.height - dimensions.marginBottom;
+    const imageWidth = Math.abs(x2 - x1);
+    const imageHeight = Math.abs(y2 - y1);
+    const {width = Math.round(imageWidth / pixelSize), height = Math.round(imageHeight / pixelSize)} = this;
+    const F = draw(
+      facets,
+      {
+        x: X.map((d) => d / pixelSize),
+        y: Y.map((d) => d / pixelSize),
+        fill: channels.fill.value
+      },
+      {width, height}
+    );
+    console.warn(F, width, height);
+    data = range(facets);
+    facets = Array.from(data, (i) => [i]);
+    return {
+      data,
+      facets,
+      channels: {
+        fill: {value: F, scale: "color"},
+        width: {value: valueof(data, width)},
+        height: {value: valueof(data, height)}
+      }
+    };
+  });
 }
 
 export class Raster extends Mark {
@@ -56,6 +115,8 @@ export class Raster extends Mark {
       {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},
+        width: {value: width, optional: true},
+        height: {value: height, optional: true},
         x1: {value: x1 == null ? nonnull(x, "x") : [number(x1, "x1")], scale: "x", optional: true, filter: null},
         y1: {value: y1 == null ? nonnull(y, "y") : [number(y1, "y1")], scale: "y", optional: true, filter: null},
         x2: {value: x2 == null ? nonnull(x, "x") : [number(x2, "x2")], scale: "x", optional: true, filter: null},
@@ -64,18 +125,22 @@ export class Raster extends Mark {
       data == null && (typeof fill === "function" || typeof fillOpacity === "function") ? sampleFill(options) : options,
       defaults
     );
-    this.width = width === undefined ? undefined : integer(width, "width");
-    this.height = height === undefined ? undefined : integer(height, "height");
+    //    this.width = width === undefined ? undefined : integer(width, "width");
+    //    this.height = height === undefined ? undefined : integer(height, "height");
     this.pixelSize = number(pixelSize, "pixelSize");
     this.imageRendering = impliedString(imageRendering, "auto");
-    this.rasterize = maybeRasterize(rasterize);
   }
   // Ignore the color scale, so the fill channel is returned unscaled.
   scale(channels, {color, ...scales}, context) {
     return super.scale(channels, scales, context);
   }
   render(index, scales, channels, dimensions, context) {
-    const {x: X, y: Y} = channels;
+    const {
+      x: X,
+      y: Y,
+      width: [width],
+      height: [height]
+    } = channels;
     let {x1, y1, x2, y2} = channels;
     x1 = x1 ? x1[0] : dimensions.marginLeft;
     x2 = x2 ? x2[0] : dimensions.width - dimensions.marginRight;
@@ -84,12 +149,7 @@ export class Raster extends Mark {
     const {document} = context;
     const imageWidth = Math.abs(x2 - x1);
     const imageHeight = Math.abs(y2 - y1);
-    const {
-      pixelSize,
-      width = Math.round(imageWidth / pixelSize),
-      height = Math.round(imageHeight / pixelSize),
-      imageRendering
-    } = this;
+    const {imageRendering} = this;
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
@@ -100,10 +160,7 @@ export class Raster extends Mark {
     if (Y && y2 < y1) [y2, y1] = [y1, y2];
     const kx = width / imageWidth;
     const ky = height / imageHeight;
-    this.rasterize(canvas, index, scales, channels, {
-      x: X && map(X, (x) => (x - x1) * kx, Float64Array),
-      y: Y && map(Y, (y) => (y - y1) * ky, Float64Array)
-    });
+    rasterizeDense(this, canvas, index, scales, channels);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
@@ -134,7 +191,7 @@ export function raster(data, options) {
     (x = first), (y = second);
     if (fill === undefined) fill = third;
   }
-  return new Raster(data, {...rest, x, y, fill});
+  return new Raster(data, maybeRasterize({...rest, x, y, fill}));
 }
 
 // Evaluates a function at pixel midpoints. TODO Faceting? Optimize linear?
@@ -205,24 +262,27 @@ function rasterizeNull(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X
 
 // Assumes that the fill and/or fillOpacity channels are a dense grid of values
 // that correspond to the size of the given canvas, in row-major order.
-function rasterizeDense(canvas, index, {color}, {fill: F, fillOpacity: FO}) {
+function rasterizeDense(mark, canvas, [facet], {color}, {fill: F, fillOpacity: FO}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.createImageData(width, height);
   const imageData = image.data;
-  let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
-  let a = (this.fillOpacity ?? 1) * 255;
-  for (let i = 0, n = width * height; i < n; ++i) {
+  let {r, g, b} = rgb(mark.fill) ?? {r: 0, g: 0, b: 0};
+  let a = (mark.fillOpacity ?? 1) * 255;
+
+  const n = width * height;
+  const N = (facet ?? 0) * n;
+  for (let i = 0; i < n; ++i) {
     const j = i << 2;
     if (F) {
-      const fi = F[i];
+      const fi = F[N + i];
       if (fi == null) {
         imageData[j + 3] = 0;
         continue;
       }
       ({r, g, b} = rgb(color(fi)));
     }
-    if (FO) a = FO[i] * 255;
+    if (FO) a = FO[N + i] * 255;
     imageData[j + 0] = r;
     imageData[j + 1] = g;
     imageData[j + 2] = b;
