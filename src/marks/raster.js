@@ -261,8 +261,8 @@ function rasterizeNearest(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x
     const j = index[i];
     if (F) context.fillStyle = color(F[j]);
     if (FO) context.globalAlpha = Math.abs(FO[j]);
+    else (context.strokeStyle = context.fillStyle), context.stroke();
     context.fill();
-    if (context.globalAlpha === 1) (context.strokeStyle = context.fillStyle), context.stroke();
   }
 }
 
