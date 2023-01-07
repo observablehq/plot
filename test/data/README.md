@@ -170,13 +170,13 @@ https://www.census.gov/retail/mrts/historic_releases.html
 U.S. Census Bureau (?)
 https://observablehq.com/@d3/diverging-bar-chart
 
-## vapor.json
-NASA Earth Observatory
-https://earthobservatory.nasa.gov/global-maps/MYDAL2_M_SKY_WV
-
 ## walmarts.tsv
 Thomas J. Holmes, University of Minnesota, Federal Reserve Bank of Minneapolis, and NBER
 https://users.econ.umn.edu/~holmes/data/WalMart/
+
+## water-vapor.csv
+NASA Earth Observations
+https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV
 
 ## wealth-britain.csv
 U.K. Office for National Statistics

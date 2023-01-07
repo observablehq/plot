@@ -230,12 +230,12 @@ function rasterizeDense(canvas, index, {color}, {fill: F, fillOpacity: FO}) {
   for (let i = 0, n = width * height; i < n; ++i) {
     const j = i << 2;
     if (F) {
-      const fi = F[i];
+      const fi = color(F[i]);
       if (fi == null) {
         imageData[j + 3] = 0;
         continue;
       }
-      ({r, g, b} = rgb(color(fi)));
+      ({r, g, b} = rgb(fi));
     }
     if (FO) a = FO[i] * 255;
     imageData[j + 0] = r;
