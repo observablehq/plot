@@ -38,7 +38,7 @@ export async function rasterCa55Barycentric() {
   return rasterCa55("barycentric");
 }
 
-export async function rasterCa55Walk() {
+export async function rasterCa55RandomWalk() {
   return rasterCa55("random-walk");
 }
 

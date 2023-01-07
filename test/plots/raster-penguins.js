@@ -15,6 +15,6 @@ export async function rasterPenguinsBarycentric() {
   return rasterPenguins("barycentric");
 }
 
-export async function rasterPenguinsWalk() {
+export async function rasterPenguinsRandomWalk() {
   return rasterPenguins("random-walk");
 }

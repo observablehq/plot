@@ -34,7 +34,7 @@ export async function rasterWalmartBarycentricOpacity() {
   return rasterWalmart("barycentric", true);
 }
 
-export async function rasterWalmartWalk() {
+export async function rasterWalmartRandomWalk() {
   return rasterWalmart("random-walk");
 }
 
