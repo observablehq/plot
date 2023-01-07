@@ -246,6 +246,9 @@ function rasterizeDense(canvas, index, {color}, {fill: F, fillOpacity: FO}) {
   context2d.putImageData(image, 0, 0);
 }
 
+// Note: the stroke that is applied here to eliminate antialiasing seams between
+// cells can introduce a half-pixel bias if the points are not in random order.
+// You can use Plot.shuffle to randomize the input order to remove this bias.
 function rasterizeNearest(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   const {width, height} = canvas;
   const context = canvas.getContext("2d");
@@ -320,7 +323,6 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
 
   // Interpolate the interior of all triangles with barycentric coordinates
   const mix3 = F && mixer3(F, random);
-  const nepsilon = -1e-12; // tolerance for points that are on a triangle's edge
   for (let i = 0; i < triangles.length; i += 3) {
     const ta = triangles[i];
     const tb = triangles[i + 1];
@@ -346,11 +348,11 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
         const xp = x + 0.5; // sample pixel centroids
         const yp = y + 0.5;
         const ga = ((By - Cy) * (xp - Cx) + (yp - Cy) * (Cx - Bx)) / z;
-        if (ga < nepsilon) continue;
+        if (ga < 0) continue;
         const gb = ((Cy - Ay) * (xp - Cx) + (yp - Cy) * (Ax - Cx)) / z;
-        if (gb < nepsilon) continue;
+        if (gb < 0) continue;
         const gc = 1 - ga - gb;
-        if (gc < nepsilon) continue;
+        if (gc < 0) continue;
         const k = (x + width * y) << 2;
         if (F) ({r, g, b} = rgb(color(mix3(F[ia], ga, F[ib], gb, F[ic], gc))));
         if (FO) a = (ga * FO[ia] + gb * FO[ib] + gc * FO[ic]) * 255;
@@ -378,9 +380,9 @@ function rasterizeRandomWalk(canvas, index, {color}, {fill: F, fillOpacity: FO},
   let a = 255;
   // memoization of delaunay.find for the line start (iy), pixel (ix), and wos step (iw)
   let iy, ix, iw, delaunay;
-  for (let y = 0.5, k = 0; y < height; y++) {
+  for (let y = 0.5, k = 0; y < height; ++y) {
     ix = iy;
-    for (let x = 0.5; x < width; x++, k += 4) {
+    for (let x = 0.5; x < width; ++x, k += 4) {
       // skip points that have been directly painted
       if (imageData[k + 3] > 0) continue;
       // lazily compute the Delaunay the first time we need it
@@ -390,7 +392,7 @@ function rasterizeRandomWalk(canvas, index, {color}, {fill: F, fillOpacity: FO},
         (i) => Y[i]
       );
       iw = ix = delaunay.find(x, y, ix);
-      if (x === 0) iy = ix;
+      if (x === 0.5) iy = ix;
       for (let j = 0, cx = x, cy = y; j < 2; ++j) {
         const radius = Math.hypot(X[index[iw]] - cx, Y[index[iw]] - cy);
         const angle = random() * 2 * Math.PI;

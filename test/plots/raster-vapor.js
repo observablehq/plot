@@ -24,8 +24,8 @@ export async function rasterVaporEqualEarth() {
     marks: [
       Plot.raster(await vapor(), {
         fill: (d) => d,
-        x: (d, i) => (i % 360) - 180,
-        y: (d, i) => 90 - ((i / 360) | 0),
+        x: (d, i) => (i % 360) - 180 + 0.5,
+        y: (d, i) => 90 - ((i / 360) | 0) + 0.5,
         rasterize: "random-walk",
         clip: "sphere"
       }),
