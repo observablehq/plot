@@ -11,7 +11,8 @@ async function vapor() {
 export async function rasterVapor() {
   return Plot.plot({
     color: {scheme: "blues"},
-    y: {reverse: true},
+    x: {transform: (x) => x - 180},
+    y: {transform: (y) => 90 - y},
     marks: [Plot.raster({fill: await vapor(), width: 360, height: 180})]
   });
 }
