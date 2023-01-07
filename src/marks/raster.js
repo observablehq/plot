@@ -359,7 +359,6 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
       }
     }
   }
-
   context2d.putImageData(image, 0, 0);
 }
 
@@ -367,31 +366,40 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
 // TODO configurable iterations per sample (currently 1 + 2)
 // see https://observablehq.com/@observablehq/walk-on-spheres-precision
 function rasterizeWalk(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+  rasterizeNone.apply(this, arguments);
   const random = randomLcg(42); // TODO allow configurable rng?
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
-  const image = context2d.createImageData(width, height);
+  const image = context2d.getImageData(0, 0, width, height);
   const imageData = image.data;
   let {r, g, b} = rgb(this.fill) ?? {r, g, b};
   let a = 255;
-  const delaunay = Delaunay.from(
-    index,
-    (i) => X[i],
-    (i) => Y[i]
-  );
   let k = 0;
-  for (let y = 0, i; y < height; y++) {
+  // memoization of delaunay.find for the line start (iy), pixel (ix), and wos step (iw)
+  let iy, ix, iw;
+  let delaunay;
+  for (let y = 0; y < height; y++) {
+    ix = iy;
     for (let x = 0; x < width; x++, k += 4) {
-      i = delaunay.find(x, y, i);
+      // skip points that have been directly painted
+      if (imageData[k + 3] > 0) continue;
+      // lazily compute the Delaunay the first time we need it
+      delaunay ??= Delaunay.from(
+        index,
+        (i) => X[i],
+        (i) => Y[i]
+      );
+      iw = ix = delaunay.find(x, y, ix);
+      if (x === 0) iy = ix;
       for (let j = 0, cx = x, cy = y; j < 2; ++j) {
-        const radius = Math.hypot(X[index[i]] - cx, Y[index[i]] - cy);
+        const radius = Math.hypot(X[index[iw]] - cx, Y[index[iw]] - cy);
         const angle = random() * 2 * Math.PI;
         cx += Math.cos(angle) * radius;
         cy += Math.sin(angle) * radius;
-        i = delaunay.find(cx, cy, i);
+        iw = delaunay.find(cx, cy, iw);
       }
-      if (F) ({r, g, b} = rgb(color(F[index[i]])));
-      if (FO) a = FO[index[i]] * 255;
+      if (F) ({r, g, b} = rgb(color(F[index[iw]])));
+      if (FO) a = FO[index[iw]] * 255;
       imageData[k + 0] = r;
       imageData[k + 1] = g;
       imageData[k + 2] = b;
