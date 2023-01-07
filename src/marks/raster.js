@@ -64,6 +64,8 @@ export class Raster extends Mark {
     this.pixelSize = number(pixelSize, "pixelSize");
     this.imageRendering = impliedString(imageRendering, "auto");
     this.rasterize = maybeRasterize(rasterize);
+    this.opacity ??= this.fillOpacity;
+    delete this.fillOpacity;
   }
   // Ignore the color scale, so the fill channel is returned unscaled.
   scale(channels, {color, ...scales}, context) {
@@ -202,7 +204,7 @@ function rasterizeNone(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X
   const image = context2d.createImageData(width, height);
   const imageData = image.data;
   let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
-  let a = (this.fillOpacity ?? 1) * 255;
+  let a = 255;
   for (const i of index) {
     if (X[i] < 0 || X[i] >= width || Y[i] < 0 || Y[i] >= height) continue;
     const j = (Math.floor(Y[i]) * width + Math.floor(X[i])) << 2;
@@ -224,7 +226,7 @@ function rasterizeDense(canvas, index, {color}, {fill: F, fillOpacity: FO}) {
   const image = context2d.createImageData(width, height);
   const imageData = image.data;
   let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
-  let a = (this.fillOpacity ?? 1) * 255;
+  let a = 255;
   for (let i = 0, n = width * height; i < n; ++i) {
     const j = i << 2;
     if (F) {
@@ -253,7 +255,6 @@ function rasterizeNearest(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x
     (i) => Y[i]
   ).voronoi([0, 0, width, height]);
   context.fillStyle = this.fill;
-  context.globalAlpha = this.fillOpacity;
   for (let i = 0; i < index.length; ++i) {
     context.beginPath();
     voronoi.renderCell(i, context);
@@ -274,7 +275,7 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
   const image = context2d.createImageData(width, height);
   const imageData = image.data;
   let {r, g, b} = rgb(this.fill) ?? {r, g, b};
-  let a = (this.fillOpacity ?? 1) * 255;
+  let a = 255;
 
   // renumber/reindex everything because we’re going to add points
   let i = index.length;
@@ -372,7 +373,7 @@ function rasterizeWalk(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X
   const image = context2d.createImageData(width, height);
   const imageData = image.data;
   let {r, g, b} = rgb(this.fill) ?? {r, g, b};
-  let a = (this.fillOpacity ?? 1) * 255;
+  let a = 255;
   const delaunay = Delaunay.from(
     index,
     (i) => X[i],
