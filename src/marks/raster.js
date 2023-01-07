@@ -370,27 +370,23 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
 // TODO configurable iterations per sample (currently 1 + 2)
 // see https://observablehq.com/@observablehq/walk-on-spheres-precision
 function rasterizeRandomWalk(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
-  rasterizeNone.apply(this, arguments);
   const random = randomLcg(42); // TODO allow configurable rng?
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
   const image = context2d.getImageData(0, 0, width, height);
   const imageData = image.data;
+  const delaunay = Delaunay.from(
+    index,
+    (i) => X[i],
+    (i) => Y[i]
+  );
   let {r, g, b} = rgb(this.fill) ?? {r, g, b};
   let a = 255;
   // memoization of delaunay.find for the line start (iy), pixel (ix), and wos step (iw)
-  let iy, ix, iw, delaunay;
+  let iy, ix, iw;
   for (let y = 0.5, k = 0; y < height; ++y) {
     ix = iy;
     for (let x = 0.5; x < width; ++x, k += 4) {
-      // skip points that have been directly painted
-      if (imageData[k + 3] > 0) continue;
-      // lazily compute the Delaunay the first time we need it
-      delaunay ??= Delaunay.from(
-        index,
-        (i) => X[i],
-        (i) => Y[i]
-      );
       iw = ix = delaunay.find(x, y, ix);
       if (x === 0.5) iy = ix;
       for (let j = 0, cx = x, cy = y; j < 2; ++j) {
