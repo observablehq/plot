@@ -191,7 +191,7 @@ function maybeRasterize(rasterize) {
     case "barycentric":
       return rasterizeBarycentric;
     case "random-walk":
-      return rasterizeWalk;
+      return rasterizeRandomWalk;
   }
   throw new Error(`invalid rasterize: ${rasterize}`);
 }
@@ -340,12 +340,14 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
     const ia = index[ta];
     const ib = index[tb];
     const ic = index[tc];
-    for (let x = Math.floor(x1); x < x2; x++) {
-      for (let y = Math.floor(y1); y < y2; y++) {
+    for (let x = Math.floor(x1); x < x2; ++x) {
+      for (let y = Math.floor(y1); y < y2; ++y) {
         if (x < 0 || x >= width || y < 0 || y >= height) continue;
-        const ga = ((By - Cy) * (x - Cx) + (y - Cy) * (Cx - Bx)) / z;
+        const xp = x + 0.5; // sample pixel centroids
+        const yp = y + 0.5;
+        const ga = ((By - Cy) * (xp - Cx) + (yp - Cy) * (Cx - Bx)) / z;
         if (ga < nepsilon) continue;
-        const gb = ((Cy - Ay) * (x - Cx) + (y - Cy) * (Ax - Cx)) / z;
+        const gb = ((Cy - Ay) * (xp - Cx) + (yp - Cy) * (Ax - Cx)) / z;
         if (gb < nepsilon) continue;
         const gc = 1 - ga - gb;
         if (gc < nepsilon) continue;
@@ -365,7 +367,7 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
 // TODO adaptive supersampling in areas of high variance?
 // TODO configurable iterations per sample (currently 1 + 2)
 // see https://observablehq.com/@observablehq/walk-on-spheres-precision
-function rasterizeWalk(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+function rasterizeRandomWalk(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   rasterizeNone.apply(this, arguments);
   const random = randomLcg(42); // TODO allow configurable rng?
   const {width, height} = canvas;
@@ -374,13 +376,11 @@ function rasterizeWalk(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X
   const imageData = image.data;
   let {r, g, b} = rgb(this.fill) ?? {r, g, b};
   let a = 255;
-  let k = 0;
   // memoization of delaunay.find for the line start (iy), pixel (ix), and wos step (iw)
-  let iy, ix, iw;
-  let delaunay;
-  for (let y = 0; y < height; y++) {
+  let iy, ix, iw, delaunay;
+  for (let y = 0.5, k = 0; y < height; y++) {
     ix = iy;
-    for (let x = 0; x < width; x++, k += 4) {
+    for (let x = 0.5; x < width; x++, k += 4) {
       // skip points that have been directly painted
       if (imageData[k + 3] > 0) continue;
       // lazily compute the Delaunay the first time we need it
