@@ -373,7 +373,7 @@ function rasterizeRandomWalk(canvas, index, {color}, {fill: F, fillOpacity: FO},
   const random = randomLcg(42); // TODO allow configurable rng?
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
-  const image = context2d.getImageData(0, 0, width, height);
+  const image = context2d.createImageData(width, height);
   const imageData = image.data;
   const delaunay = Delaunay.from(
     index,
@@ -387,14 +387,18 @@ function rasterizeRandomWalk(canvas, index, {color}, {fill: F, fillOpacity: FO},
   for (let y = 0.5, k = 0; y < height; ++y) {
     ix = iy;
     for (let x = 0.5; x < width; ++x, k += 4) {
-      iw = ix = delaunay.find(x, y, ix);
+      let cx = x;
+      let cy = y;
+      iw = ix = delaunay.find(cx, cy, ix);
       if (x === 0.5) iy = ix;
-      for (let j = 0, cx = x, cy = y; j < 2; ++j) {
-        const radius = Math.hypot(X[index[iw]] - cx, Y[index[iw]] - cy);
+      let distance; // distance to closest sample
+      let step = 0; // count of steps for this walk
+      while ((distance = Math.hypot(X[index[iw]] - cx, Y[index[iw]] - cy)) > 0.5 && step < 2) {
         const angle = random() * 2 * Math.PI;
-        cx += Math.cos(angle) * radius;
-        cy += Math.sin(angle) * radius;
+        cx += Math.cos(angle) * distance;
+        cy += Math.sin(angle) * distance;
         iw = delaunay.find(cx, cy, iw);
+        ++step;
       }
       if (F) ({r, g, b} = rgb(color(F[index[iw]])));
       if (FO) a = FO[index[iw]] * 255;
