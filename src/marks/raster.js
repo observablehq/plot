@@ -65,7 +65,7 @@ export class Raster extends Mark {
     this.imageRendering = impliedString(imageRendering, "auto");
     this.rasterize = maybeRasterize(rasterize);
     this.opacity ??= this.fillOpacity;
-    delete this.fillOpacity;
+    this.fillOpacity = undefined;
   }
   // Ignore the color scale, so the fill channel is returned unscaled.
   scale(channels, {color, ...scales}, context) {
