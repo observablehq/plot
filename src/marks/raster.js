@@ -305,8 +305,8 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
 
   // Some triangles have one undefined value; other triangles have two. Fill
   // each undefined vertex with an average of the other defined vertices.
-  const mix2 = mixer2(F, random);
   for (const C of [F, FO].filter((d) => d)) {
+    const mix2 = mixer2(C, random);
     for (let i = 0; i < triangles.length; i += 3) {
       const a = triangles[i];
       const b = triangles[i + 1];
@@ -318,7 +318,7 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
   }
 
   // Interpolate the interior of all triangles with barycentric coordinates
-  const mix3 = mixer3(F, random);
+  const mix3 = F && mixer3(F, random);
   const nepsilon = -1e-12; // tolerance for points that are on a triangle's edge
   for (let i = 0; i < triangles.length; i += 3) {
     const ta = triangles[i];
@@ -363,7 +363,8 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
 }
 
 // TODO adaptive supersampling in areas of high variance?
-// TODO configurable iterations per sample (currently 2)
+// TODO configurable iterations per sample (currently 1 + 2)
+// see https://observablehq.com/@observablehq/walk-on-spheres-precision
 function rasterizeWalkOnSpheres(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   const random = randomLcg(42); // TODO allow configurable rng?
   const {width, height} = canvas;
@@ -389,7 +390,7 @@ function rasterizeWalkOnSpheres(canvas, index, {color}, {fill: F, fillOpacity: F
         i = delaunay.find(cx, cy, i);
       }
       if (F) ({r, g, b} = rgb(color(F[index[i]])));
-      if (FO) a = FO[i] * 255;
+      if (FO) a = FO[index[i]] * 255;
       imageData[k + 0] = r;
       imageData[k + 1] = g;
       imageData[k + 2] = b;
