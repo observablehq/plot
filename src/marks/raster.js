@@ -102,7 +102,7 @@ export class Raster extends Mark {
       y: Y && map(Y, (y) => (y - y1) * ky, Float64Array)
     });
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales)
       .call((g) =>
         g

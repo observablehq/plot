@@ -264,6 +264,7 @@ export {default as usRetailSales} from "./us-retail-sales.js";
 export {default as usStateCapitals} from "./us-state-capitals.js";
 export {default as usStateCapitalsVoronoi} from "./us-state-capitals-voronoi.js";
 export {default as usStatePopulationChange} from "./us-state-population-change.js";
+export {default as vapor} from "./vapor.js";
 export {default as vectorField} from "./vector-field.js";
 export {default as vectorFrame} from "./vector-frame.js";
 export {default as volcano} from "./volcano.js";
