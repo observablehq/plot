@@ -64,6 +64,10 @@ export class Raster extends Mark {
     this.pixelSize = number(pixelSize, "pixelSize");
     this.imageRendering = impliedString(imageRendering, "auto");
     this.rasterize = maybeRasterize(rasterize);
+    // When a constant fillOpacity is specified, treat it as if a constant
+    // opacity had been specified instead; this will produce an equivalent
+    // result, but simplifies rasterization (and in the case of the nearest
+    // rasterization method, allows a stroke to fill antialiasing seams).
     this.opacity ??= this.fillOpacity;
     this.fillOpacity = undefined;
   }
