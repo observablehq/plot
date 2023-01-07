@@ -38,8 +38,8 @@ export async function rasterCa55Barycentric() {
   return rasterCa55("barycentric");
 }
 
-export async function rasterCa55Spheres() {
-  return rasterCa55("walk-on-spheres");
+export async function rasterCa55Walk() {
+  return rasterCa55("random-walk");
 }
 
 export async function rasterCa55Nearest() {

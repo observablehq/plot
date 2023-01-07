@@ -1538,7 +1538,11 @@ The following options are supported:
 * **rasterize** - the rasterize method.
 
 The rasterize option supports the following settings:
-* undefined (default) - if the *x* and *y* options are not null, paints the pixel under the (floor rounded) coordinates of each sample (unless it is outside the raster); otherwise, assumes that the data describes every pixel on the raster, from the top-left, in row-major order.
+* none - default if the *x* and *y* options are not null: paints the pixel under the (floor rounded) coordinates of each sample—if inside the raster
+* dense - default otherwise; assumes that the data describes every pixel on the raster of dimensions width × height, starting from the top left, in row-major order
+* nearest - colors each pixel with the value of the closest sample, resulting in Voronoi cells
+* barycentric - does a Delaunay triangulation of the samples, then colors each triangle’s interior with a mix of the values of its vertices, weighted by distance; points outside the convex hull are colored by extrapolation
+* random-walk - colors a pixel by walking randomly and picking the value of the first sample reached
 * a function that receives the canvas, the index, the scales, the channels (with fill unscaled), and additional pixel channels x and y with the pixels’ coordinates in the raster coordinate system.
 
 The defaults for this mark make it convenient to draw an image from a flat array of values representing a rectangular matrix:

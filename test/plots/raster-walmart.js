@@ -34,10 +34,10 @@ export async function rasterWalmartBarycentricOpacity() {
   return rasterWalmart("barycentric", true);
 }
 
-export async function rasterWalmartSpheres() {
-  return rasterWalmart("walk-on-spheres");
+export async function rasterWalmartWalk() {
+  return rasterWalmart("random-walk");
 }
 
-export async function rasterWalmartSpheresOpacity() {
-  return rasterWalmart("walk-on-spheres", true);
+export async function rasterWalmartWalkOpacity() {
+  return rasterWalmart("random-walk", true);
 }

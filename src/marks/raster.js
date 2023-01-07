@@ -188,8 +188,8 @@ function maybeRasterize(rasterize) {
       return rasterizeNearest;
     case "barycentric":
       return rasterizeBarycentric;
-    case "walk-on-spheres":
-      return rasterizeWalkOnSpheres;
+    case "random-walk":
+      return rasterizeWalk;
   }
   throw new Error(`invalid rasterize: ${rasterize}`);
 }
@@ -365,7 +365,7 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
 // TODO adaptive supersampling in areas of high variance?
 // TODO configurable iterations per sample (currently 1 + 2)
 // see https://observablehq.com/@observablehq/walk-on-spheres-precision
-function rasterizeWalkOnSpheres(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+function rasterizeWalk(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   const random = randomLcg(42); // TODO allow configurable rng?
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
