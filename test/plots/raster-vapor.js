@@ -17,7 +17,7 @@ export async function rasterVapor() {
   });
 }
 
-export async function rasterVaporEqualWearth() {
+export async function rasterVaporEqualEarth() {
   return Plot.plot({
     projection: "equal-earth",
     color: {scheme: "blues"},
