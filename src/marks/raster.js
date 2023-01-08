@@ -42,8 +42,6 @@ export class Raster extends Mark {
       y2 = y == null ? height : undefined,
       imageRendering,
       pixelSize = 1,
-      fill,
-      fillOpacity,
       rasterize = x == null || y == null ? rasterizeDense : rasterizeNone
     } = options;
     super(
@@ -56,7 +54,7 @@ export class Raster extends Mark {
         x2: {value: x2 == null ? nonnull(x, "x") : [number(x2, "x2")], scale: "x", optional: true, filter: null},
         y2: {value: y2 == null ? nonnull(y, "y") : [number(y2, "y2")], scale: "y", optional: true, filter: null}
       },
-      data == null && (typeof fill === "function" || typeof fillOpacity === "function") ? sampleFill(options) : options,
+      data == null ? sampler("fill", sampler("fillOpacity", options)) : options,
       defaults
     );
     this.width = width === undefined ? undefined : integer(width, "width");
@@ -123,7 +121,7 @@ export class Raster extends Mark {
   }
 }
 
-export function raster(data, options) {
+export function maybeTuples(data, options) {
   if (arguments.length < 2) (options = data), (data = null);
   let {x, y, fill, ...rest} = options;
   // Because we implicit x and y when fill is a function of (x, y), and when
@@ -135,18 +133,22 @@ export function raster(data, options) {
     (x = first), (y = second);
     if (fill === undefined) fill = third;
   }
-  return new Raster(data, {...rest, x, y, fill});
+  return [data, {...rest, x, y, fill}];
 }
 
-// Evaluates a function at pixel midpoints. TODO Faceting? Optimize linear?
-function sampleFill({fill, fillOpacity, pixelSize = 1, ...options} = {}) {
-  if (typeof fill !== "function") (options.fill = fill), (fill = null);
-  if (typeof fillOpacity !== "function") (options.fillOpacity = fillOpacity), (fillOpacity = null);
-  return initializer(options, (data, facets, {x1, y1, x2, y2}, {x, y}) => {
+export function raster() {
+  return new Raster(...maybeTuples(...arguments));
+}
+
+export function sampler(name, options = {}) {
+  const {[name]: value} = options;
+  if (typeof value !== "function") return options;
+  return initializer({...options, [name]: undefined}, function (data, facets, {x1, y1, x2, y2}, {x, y}) {
     // TODO Allow projections, if invertible.
     if (!x) throw new Error("missing scale: x");
     if (!y) throw new Error("missing scale: y");
     let {width: w, height: h} = options;
+    const {pixelSize} = this;
     (x1 = x(x1.value[0])), (y1 = y(y1.value[0])), (x2 = x(x2.value[0])), (y2 = y(y2.value[0]));
     // Note: this must exactly match the defaults in render above!
     if (w === undefined) w = Math.round(Math.abs(x2 - x1) / pixelSize);
@@ -154,31 +156,13 @@ function sampleFill({fill, fillOpacity, pixelSize = 1, ...options} = {}) {
     const kx = (x2 - x1) / w;
     const ky = (y2 - y1) / h;
     (x1 += kx / 2), (y1 += ky / 2);
-    let F, FO;
-    if (fill) {
-      F = new Array(w * h);
-      for (let yi = 0, i = 0; yi < h; ++yi) {
-        for (let xi = 0; xi < w; ++xi, ++i) {
-          F[i] = fill(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky));
-        }
+    const V = new Array(w * h);
+    for (let yi = 0, i = 0; yi < h; ++yi) {
+      for (let xi = 0; xi < w; ++xi, ++i) {
+        V[i] = value(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky));
       }
     }
-    if (fillOpacity) {
-      FO = new Array(w * h);
-      for (let yi = 0, i = 0; yi < h; ++yi) {
-        for (let xi = 0; xi < w; ++xi, ++i) {
-          FO[i] = fillOpacity(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky));
-        }
-      }
-    }
-    return {
-      data: F ?? FO,
-      facets,
-      channels: {
-        ...(F && {fill: {value: F, scale: "color"}}),
-        ...(FO && {fillOpacity: {value: FO, scale: "opacity"}})
-      }
-    };
+    return {data: V, facets, channels: {[name]: {value: V, scale: true}}};
   });
 }
 
