@@ -2,68 +2,24 @@ import {contours, geoPath, thresholdSturges} from "d3";
 import {create} from "../context.js";
 import {range, valueof, identity} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel} from "../options.js";
-import {Mark} from "../plot.js";
+import {Position} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {initializer} from "../transforms/basic.js";
-import {maybeTuples, sampler} from "./raster.js";
+import {sampler, maybeTuples, AbstractRaster} from "./raster.js";
 
 const defaults = {
   ariaLabel: "contour",
   fill: "value",
   stroke: "currentColor",
-  strokeMiterlimit: 1
+  strokeMiterlimit: 1,
+  pixelSize: 2
 };
 
-function nonnull(input, name) {
-  if (input == null) throw new Error(`missing ${name}`);
-}
-
-function number(input, name) {
-  const x = +input;
-  if (isNaN(x)) throw new Error(`invalid ${name}: ${input}`);
-  return x;
-}
-
-function integer(input, name) {
-  const x = Math.floor(input);
-  if (isNaN(x)) throw new Error(`invalid ${name}: ${input}`);
-  return x;
-}
-
-export class Contour extends Mark {
+export class Contour extends AbstractRaster {
   constructor(data, options = {}) {
-    let {
-      width,
-      height,
-      x,
-      y,
-      // If X and Y are not given, we assume that F is a dense array of samples
-      // covering the entire grid in row-major order. These defaults allow
-      // further shorthand where x and y represent grid column and row index.
-      x1 = x == null ? 0 : undefined,
-      y1 = y == null ? 0 : undefined,
-      x2 = x == null ? width : undefined,
-      y2 = y == null ? height : undefined,
-      pixelSize = 2,
-      value = data != null ? identity : undefined
-    } = options;
-    super(
-      data ?? [], // TODO
-      {
-        x: {value: x, scale: "x", optional: true},
-        y: {value: y, scale: "y", optional: true},
-        x1: {value: x1 == null ? nonnull(x, "x") : [number(x1, "x1")], scale: "x", optional: true, filter: null},
-        y1: {value: y1 == null ? nonnull(y, "y") : [number(y1, "y1")], scale: "y", optional: true, filter: null},
-        x2: {value: x2 == null ? nonnull(x, "x") : [number(x2, "x2")], scale: "x", optional: true, filter: null},
-        y2: {value: y2 == null ? nonnull(y, "y") : [number(y2, "y2")], scale: "y", optional: true, filter: null},
-        value: {value, optional: true}
-      },
-      contourGeometry(data == null ? sampler("value", options) : options),
-      defaults
-    );
-    this.width = width === undefined ? undefined : integer(width, "width");
-    this.height = height === undefined ? undefined : integer(height, "height");
-    this.pixelSize = number(pixelSize, "pixelSize");
+    const {value = data != null ? identity : undefined} = options;
+    options = contourGeometry(data == null ? sampler("value", options) : options);
+    super(data, {value: {value, optional: true}}, options, defaults);
   }
   render(index, scales, channels, dimensions, context) {
     const {geometry: G} = channels;
@@ -90,20 +46,22 @@ function contourGeometry(options) {
   const [vfillOpacity] = maybeNumberChannel(fillOpacity);
   const [vstroke] = maybeColorChannel(stroke, defaults.stroke);
   const [vstrokeOpacity] = maybeNumberChannel(strokeOpacity);
-  return initializer(options, function (data, facets, channels, {x, y}, dimensions) {
+  const {thresholds = thresholdSturges} = options;
+  return initializer(options, function (data, facets, channels, scales, dimensions, context) {
     // TODO thresholdAuto; compute min and max, too
     // TODO match the behavior of the density mark
-    const {thresholds = thresholdSturges} = options;
-    const {value: V} = channels;
     let {x1, y1, x2, y2} = channels;
-    x1 = x1 ? x(x1.value[0]) : dimensions.marginLeft;
-    x2 = x2 ? x(x2.value[0]) : dimensions.width - dimensions.marginRight;
-    y1 = y1 ? y(y1.value[0]) : dimensions.marginTop;
-    y2 = y2 ? y(y2.value[0]) : dimensions.height - dimensions.marginBottom;
-    const imageWidth = Math.abs(x2 - x1);
-    const imageHeight = Math.abs(y2 - y1);
-    const {pixelSize, width = Math.round(imageWidth / pixelSize), height = Math.round(imageHeight / pixelSize)} = this;
-    const geometries = contours().thresholds(thresholds).size([width, height])(V.value);
+    ({x: [x1], y: [y1]} = Position({x: x1, y: y1}, scales, context)); // prettier-ignore
+    ({x: [x2], y: [y2]} = Position({x: x2, y: y2}, scales, context)); // prettier-ignore
+    const {
+      value: {value: V}
+    } = channels;
+    const {
+      pixelSize,
+      width = Math.round(Math.abs(x2 - x1) / pixelSize),
+      height = Math.round(Math.abs(y2 - y1) / pixelSize)
+    } = this;
+    const geometries = contours().thresholds(thresholds).size([width, height])(V);
     for (const {coordinates} of geometries) {
       for (const rings of coordinates) {
         for (const ring of rings) {

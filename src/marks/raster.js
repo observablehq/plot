@@ -7,7 +7,8 @@ import {initializer} from "../transforms/basic.js";
 
 const defaults = {
   ariaLabel: "raster",
-  stroke: null
+  stroke: null,
+  pixelSize: 1
 };
 
 function nonnull(input, name) {
@@ -26,8 +27,8 @@ function integer(input, name) {
   return x;
 }
 
-export class Raster extends Mark {
-  constructor(data, options = {}) {
+export class AbstractRaster extends Mark {
+  constructor(data, channels, options = {}, defaults) {
     let {
       width,
       height,
@@ -40,26 +41,32 @@ export class Raster extends Mark {
       y1 = y == null ? 0 : undefined,
       x2 = x == null ? width : undefined,
       y2 = y == null ? height : undefined,
-      imageRendering,
-      pixelSize = 1,
-      rasterize = x == null || y == null ? rasterizeDense : rasterizeNone
+      pixelSize = defaults.pixelSize
     } = options;
     super(
-      data,
+      data ?? [], // TODO
       {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},
         x1: {value: x1 == null ? nonnull(x, "x") : [number(x1, "x1")], scale: "x", optional: true, filter: null},
         y1: {value: y1 == null ? nonnull(y, "y") : [number(y1, "y1")], scale: "y", optional: true, filter: null},
         x2: {value: x2 == null ? nonnull(x, "x") : [number(x2, "x2")], scale: "x", optional: true, filter: null},
-        y2: {value: y2 == null ? nonnull(y, "y") : [number(y2, "y2")], scale: "y", optional: true, filter: null}
+        y2: {value: y2 == null ? nonnull(y, "y") : [number(y2, "y2")], scale: "y", optional: true, filter: null},
+        ...channels
       },
-      data == null ? sampler("fill", sampler("fillOpacity", options)) : options,
+      data == null ? options : framer(options),
       defaults
     );
     this.width = width === undefined ? undefined : integer(width, "width");
     this.height = height === undefined ? undefined : integer(height, "height");
     this.pixelSize = number(pixelSize, "pixelSize");
+  }
+}
+
+export class Raster extends AbstractRaster {
+  constructor(data, options = {}) {
+    const {x, y, imageRendering, rasterize = x == null || y == null ? rasterizeDense : rasterizeNone} = options;
+    super(data, undefined, data == null ? sampler("fill", sampler("fillOpacity", options)) : options, defaults);
     this.imageRendering = impliedString(imageRendering, "auto");
     this.rasterize = maybeRasterize(rasterize);
     // When a constant fillOpacity is specified, treat it as if a constant
@@ -75,11 +82,7 @@ export class Raster extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
-    let {x1, y1, x2, y2} = channels;
-    x1 = x1 ? x1[0] : dimensions.marginLeft;
-    x2 = x2 ? x2[0] : dimensions.width - dimensions.marginRight;
-    y1 = y1 ? y1[0] : dimensions.marginTop;
-    y2 = y2 ? y2[0] : dimensions.height - dimensions.marginBottom;
+    let {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
     const {document} = context;
     const imageWidth = Math.abs(x2 - x1);
     const imageHeight = Math.abs(y2 - y1);
@@ -140,6 +143,22 @@ export function raster() {
   return new Raster(...maybeTuples(...arguments));
 }
 
+// If any of x1, y1, x2, or y2 are undefined, infers the corresponding value
+// from the frame dimensions.
+function framer(options) {
+  return initializer(options, function (data, facets, {x1, y1, x2, y2}, scales, dimensions) {
+    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+    const channels = {};
+    if (x1 === undefined) channels.x1 = {value: [marginLeft], filter: null};
+    if (y1 === undefined) channels.y1 = {value: [marginTop], filter: null};
+    if (x2 === undefined) channels.x2 = {value: [width - marginRight], filter: null};
+    if (y2 === undefined) channels.y2 = {value: [height - marginBottom], filter: null};
+    return {channels};
+  });
+}
+
+// Evaluates the function with the given name, if it exists, on the raster grid,
+// generating a channel of the same name.
 export function sampler(name, options = {}) {
   const {[name]: value} = options;
   if (typeof value !== "function") return options;
