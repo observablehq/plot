@@ -46,28 +46,22 @@ function contourGeometry(options) {
   const [vfillOpacity] = maybeNumberChannel(fillOpacity);
   const [vstroke] = maybeColorChannel(stroke, defaults.stroke);
   const [vstrokeOpacity] = maybeNumberChannel(strokeOpacity);
-  const {thresholds = thresholdSturges} = options;
+  const {thresholds = thresholdSturges} = options; // TODO thresholdAuto; match density mark
   return initializer(options, function (data, facets, channels, scales, dimensions, context) {
-    // TODO thresholdAuto; compute min and max, too
-    // TODO match the behavior of the density mark
     let {x1, y1, x2, y2} = channels;
     ({x: [x1], y: [y1]} = Position({x: x1, y: y1}, scales, context)); // prettier-ignore
     ({x: [x2], y: [y2]} = Position({x: x2, y: y2}, scales, context)); // prettier-ignore
-    const {
-      value: {value: V}
-    } = channels;
-    const {
-      pixelSize,
-      width = Math.round(Math.abs(x2 - x1) / pixelSize),
-      height = Math.round(Math.abs(y2 - y1) / pixelSize)
-    } = this;
+    const V = channels.value.value;
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const {pixelSize: k, width = Math.round(Math.abs(dx) / k), height = Math.round(Math.abs(dy) / k)} = this;
     const geometries = contours().thresholds(thresholds).size([width, height])(V);
     for (const {coordinates} of geometries) {
       for (const rings of coordinates) {
         for (const ring of rings) {
           for (const point of ring) {
-            point[0] = (point[0] / width) * (x2 - x1) + x1;
-            point[1] = (point[1] / height) * (y2 - y1) + y1;
+            point[0] = (point[0] / width) * dx + x1;
+            point[1] = (point[1] / height) * dy + y1;
           }
         }
       }
