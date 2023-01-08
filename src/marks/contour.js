@@ -1,6 +1,6 @@
 import {blur2, contours, geoPath, map, thresholdSturges} from "d3";
 import {create} from "../context.js";
-import {range, valueof, identity, number} from "../options.js";
+import {range, valueof, identity} from "../options.js";
 import {Position} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -16,13 +16,12 @@ const defaults = {
 
 export class Contour extends AbstractRaster {
   constructor(data, options = {}) {
-    const {blur, value = data != null ? identity : undefined} = options;
+    const {value = data != null ? identity : undefined} = options;
     // If the data is null, then the value channel is constructed using the
     // sampler initializer; it is not passed to super because we don’t want to
     // compute it before there’s data.
     options = contourGeometry(data == null ? sampler("value", options) : framer(options));
     super(data, data == null ? undefined : {value: {value}}, options, defaults);
-    this.blur = number(blur);
     // With the exception of the x, y, and value channels, this mark’s channels
     // are not evaluated on the initial data, but rather on on the generated
     // contour multipolygons! Here we redefine any channels (e.g., fill) as a

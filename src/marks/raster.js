@@ -1,4 +1,4 @@
-import {Delaunay, randomLcg, rgb} from "d3";
+import {blurImage, Delaunay, randomLcg, rgb} from "d3";
 import {create} from "../context.js";
 import {map, first, second, third, isTuples, isNumeric, isTemporal, take} from "../options.js";
 import {Mark} from "../plot.js";
@@ -42,6 +42,7 @@ export class AbstractRaster extends Mark {
       x2 = x == null ? width : undefined,
       y2 = y == null ? height : undefined,
       pixelSize = defaults.pixelSize,
+      blur = 0,
       interpolate
     } = options;
     super(
@@ -61,6 +62,7 @@ export class AbstractRaster extends Mark {
     this.width = width === undefined ? undefined : integer(width, "width");
     this.height = height === undefined ? undefined : integer(height, "height");
     this.pixelSize = number(pixelSize, "pixelSize");
+    this.blur = number(blur, "blur");
     this.interpolate = interpolate === undefined && (x == null || y == null) ? null : maybeInterpolate(interpolate);
   }
 }
@@ -132,6 +134,7 @@ export class Raster extends AbstractRaster {
       imageData[j + 2] = b;
       imageData[j + 3] = a;
     }
+    if (this.blur) blurImage(image, this.blur);
     context2d.putImageData(image, 0, 0);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)

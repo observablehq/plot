@@ -51,8 +51,8 @@ export async function contourCa55() {
         x: "GRID_EAST",
         y: "GRID_NORTH",
         value: "MAG_IGRF90",
-        interpolate: "random-walk",
-        blur: 1
+        interpolate: "barycentric",
+        blur: 3
       })
     ]
   });
