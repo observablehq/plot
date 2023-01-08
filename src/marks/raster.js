@@ -201,7 +201,9 @@ function maybeRasterize(rasterize) {
 }
 
 // Applies a simple forward mapping of samples, binning them into pixels without
-// any blending or interpolation.
+// any blending or interpolation. Note: if multiple samples map to the same
+// pixel, the last one wins; this can introduce bias if the points are not in
+// random order, so use Plot.shuffle to randomize the input if needed.
 function rasterizeNone(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
   const {width, height} = canvas;
   const context2d = canvas.getContext("2d");
