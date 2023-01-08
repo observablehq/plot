@@ -1,6 +1,6 @@
-import {contours, geoPath, map, thresholdSturges} from "d3";
+import {blur2, contours, geoPath, map, thresholdSturges} from "d3";
 import {create} from "../context.js";
-import {range, valueof, identity} from "../options.js";
+import {range, valueof, identity, number} from "../options.js";
 import {Position} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -16,7 +16,7 @@ const defaults = {
 
 export class Contour extends AbstractRaster {
   constructor(data, options = {}) {
-    const {value = data != null ? identity : undefined} = options;
+    const {blur, value = data != null ? identity : undefined} = options;
     // If the data is null, then the value channel is constructed using the
     // sampler initializer; it is not passed to super because we don’t want to
     // compute it before there’s data.
@@ -35,6 +35,7 @@ export class Contour extends AbstractRaster {
         this.channels[key].value = {transform: () => [], defer: value};
       }
     }
+    this.blur = number(blur);
   }
   render(index, scales, channels, dimensions, context) {
     const {geometry: G} = channels;
@@ -74,6 +75,11 @@ function contourGeometry(options) {
       const IX = X && map(X, (x) => (x - x1) * kx, Float64Array);
       const IY = Y && map(Y, (y) => (y - y1) * ky, Float64Array);
       V = this.interpolate(facets[0], width, height, IX, IY, V); // TODO faceting?
+    }
+
+    // Blur the raster grid, if desired.
+    if (this.blur > 0) {
+      blur2({data: V, width, height}, this.blur);
     }
 
     // Compute the contours.
