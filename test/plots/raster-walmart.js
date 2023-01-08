@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
-async function rasterWalmart(interpolate, opacity) {
+async function rasterWalmart(options) {
   const [walmarts, [outline, statemesh]] = await Promise.all([
     d3.tsv("data/walmarts.tsv", d3.autoType),
     d3
@@ -14,12 +14,9 @@ async function rasterWalmart(interpolate, opacity) {
   ]);
   return Plot.plot({
     projection: "albers",
-    color: {
-      scheme: "spectral",
-      label: "Opening year"
-    },
+    color: {scheme: "spectral"},
     marks: [
-      Plot.raster(walmarts, {x: "longitude", y: "latitude", [opacity ? "fillOpacity" : "fill"]: "date", interpolate}),
+      Plot.raster(walmarts, {x: "longitude", y: "latitude", ...options}),
       Plot.geo({type: "Polygon", coordinates: [d3.reverse(outline)]}, {fill: "white"}),
       Plot.geo(statemesh)
     ]
@@ -27,17 +24,17 @@ async function rasterWalmart(interpolate, opacity) {
 }
 
 export async function rasterWalmartBarycentric() {
-  return rasterWalmart("barycentric");
+  return rasterWalmart({interpolate: "barycentric", fill: "date"});
 }
 
 export async function rasterWalmartBarycentricOpacity() {
-  return rasterWalmart("barycentric", true);
+  return rasterWalmart({interpolate: "barycentric", fillOpacity: "date"});
 }
 
 export async function rasterWalmartRandomWalk() {
-  return rasterWalmart("random-walk");
+  return rasterWalmart({interpolate: "random-walk", fill: "date"});
 }
 
 export async function rasterWalmartWalkOpacity() {
-  return rasterWalmart("random-walk", true);
+  return rasterWalmart({interpolate: "random-walk", fillOpacity: "date"});
 }
