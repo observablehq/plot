@@ -77,9 +77,7 @@ function contourGeometry(options) {
     }
 
     // Blur the raster grid, if desired.
-    if (this.blur > 0) {
-      blur2({data: V, width, height}, this.blur);
-    }
+    if (this.blur > 0) blur2({data: V, width, height}, this.blur);
 
     // Compute the contours.
     const geometries = contours().thresholds(thresholds).size([width, height])(V);

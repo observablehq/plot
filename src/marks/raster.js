@@ -134,7 +134,7 @@ export class Raster extends AbstractRaster {
       imageData[j + 2] = b;
       imageData[j + 3] = a;
     }
-    if (this.blur) blurImage(image, this.blur);
+    if (this.blur > 0) blurImage(image, this.blur);
     context2d.putImageData(image, 0, 0);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
