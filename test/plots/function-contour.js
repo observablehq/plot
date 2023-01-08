@@ -11,8 +11,7 @@ export async function functionContour() {
         x1: 0,
         y1: 0,
         x2: 4 * Math.PI,
-        y2: 4 * Math.PI * (350 / 580),
-        fill: "value"
+        y2: 4 * Math.PI * (350 / 580)
       })
     ]
   });

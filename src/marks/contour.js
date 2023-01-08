@@ -1,6 +1,6 @@
 import {contours, geoPath, thresholdSturges} from "d3";
 import {create} from "../context.js";
-import {first, second, third, isTuples, range, valueof} from "../options.js";
+import {first, second, third, isTuples, range, valueof, identity} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
@@ -8,7 +8,7 @@ import {initializer} from "../transforms/basic.js";
 
 const defaults = {
   ariaLabel: "contour",
-  fill: "none",
+  fill: "value",
   stroke: "currentColor",
   strokeMiterlimit: 1
 };
@@ -43,19 +43,21 @@ export class Contour extends Mark {
       y1 = y == null ? 0 : undefined,
       x2 = x == null ? width : undefined,
       y2 = y == null ? height : undefined,
-      pixelSize = 2
+      pixelSize = 2,
+      value = data != null ? identity : undefined
     } = options;
     super(
-      [], // TODO
+      data ?? [], // TODO
       {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},
         x1: {value: x1 == null ? nonnull(x, "x") : [number(x1, "x1")], scale: "x", optional: true, filter: null},
         y1: {value: y1 == null ? nonnull(y, "y") : [number(y1, "y1")], scale: "y", optional: true, filter: null},
         x2: {value: x2 == null ? nonnull(x, "x") : [number(x2, "x2")], scale: "x", optional: true, filter: null},
-        y2: {value: y2 == null ? nonnull(y, "y") : [number(y2, "y2")], scale: "y", optional: true, filter: null}
+        y2: {value: y2 == null ? nonnull(y, "y") : [number(y2, "y2")], scale: "y", optional: true, filter: null},
+        value: {value, optional: true}
       },
-      contourGeometry(sampleValue(options)),
+      contourGeometry(data == null ? sampleValue(options) : options),
       defaults
     );
     this.width = width === undefined ? undefined : integer(width, "width");
@@ -100,9 +102,9 @@ function contourGeometry(options) {
     const imageWidth = Math.abs(x2 - x1);
     const imageHeight = Math.abs(y2 - y1);
     const {pixelSize, width = Math.round(imageWidth / pixelSize), height = Math.round(imageHeight / pixelSize)} = this;
-    const geometry = contours().thresholds(thresholds).size([width, height])(V.value);
-    for (const multiPolygon of geometry) {
-      for (const rings of multiPolygon.coordinates) {
+    const geometries = contours().thresholds(thresholds).size([width, height])(V.value);
+    for (const {coordinates} of geometries) {
+      for (const rings of coordinates) {
         for (const ring of rings) {
           for (const point of ring) {
             point[0] = (point[0] / width) * (x2 - x1) + x1;
@@ -112,14 +114,14 @@ function contourGeometry(options) {
       }
     }
     return {
-      data: geometry,
-      facets: [range(geometry)],
+      data: geometries,
+      facets: [range(geometries)],
       channels: {
-        geometry: {value: geometry},
-        ...(vfill && {fill: {value: valueof(geometry, vfill), scale: true}}),
-        ...(vfillOpacity && {fillOpacity: {value: valueof(geometry, vfillOpacity), scale: true}}),
-        ...(vstroke && {stroke: {value: valueof(geometry, vstroke), scale: true}}),
-        ...(vstrokeOpacity && {strokeOpacity: {value: valueof(geometry, vstrokeOpacity), scale: true}})
+        geometry: {value: geometries},
+        ...(vfill && {fill: {value: valueof(geometries, vfill), scale: true}}),
+        ...(vfillOpacity && {fillOpacity: {value: valueof(geometries, vfillOpacity), scale: true}}),
+        ...(vstroke && {stroke: {value: valueof(geometries, vstroke), scale: true}}),
+        ...(vstrokeOpacity && {strokeOpacity: {value: valueof(geometries, vstrokeOpacity), scale: true}})
       }
     };
   });
