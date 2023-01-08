@@ -44,7 +44,7 @@ export class AbstractRaster extends Mark {
       pixelSize = defaults.pixelSize
     } = options;
     super(
-      data ?? [], // TODO
+      data,
       {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},

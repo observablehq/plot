@@ -1,7 +1,6 @@
 import {contours, geoPath, thresholdSturges} from "d3";
 import {create} from "../context.js";
 import {range, valueof, identity} from "../options.js";
-import {maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {Position} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -18,8 +17,23 @@ const defaults = {
 export class Contour extends AbstractRaster {
   constructor(data, options = {}) {
     const {value = data != null ? identity : undefined} = options;
+    // If the data is null, then the value channel is constructed using the
+    // sampler initializer; it is not passed to super because we don’t want to
+    // compute it before there’s data.
     options = contourGeometry(data == null ? sampler("value", options) : options);
-    super(data, {value: {value, optional: true}}, options, defaults);
+    super(data, data == null ? undefined : {value: {value}}, options, defaults);
+    // With the exception of the value channel, this mark’s channels are not
+    // evaluated on the initial data, but rather on on the generated contour
+    // multipolygons! Here we redefine any channels (e.g., fill) as a transform
+    // that initially returns the empty array, while recording the value
+    // definition so that it can be evaluated in the initializer.
+    for (const key in this.channels) {
+      const value = this.channels[key].value;
+      const valueType = typeof value;
+      if (valueType === "string" || valueType === "function") {
+        this.channels[key].value = {transform: () => [], defer: value};
+      }
+    }
   }
   render(index, scales, channels, dimensions, context) {
     const {geometry: G} = channels;
@@ -41,11 +55,6 @@ export class Contour extends AbstractRaster {
 }
 
 function contourGeometry(options) {
-  const {fill, fillOpacity, stroke, strokeOpacity} = options;
-  const [vfill] = maybeColorChannel(fill, defaults.fill);
-  const [vfillOpacity] = maybeNumberChannel(fillOpacity);
-  const [vstroke] = maybeColorChannel(stroke, defaults.stroke);
-  const [vstrokeOpacity] = maybeNumberChannel(strokeOpacity);
   const {thresholds = thresholdSturges} = options; // TODO thresholdAuto; match density mark
   return initializer(options, function (data, facets, channels, scales, dimensions, context) {
     let {x1, y1, x2, y2} = channels;
@@ -56,6 +65,8 @@ function contourGeometry(options) {
     const dy = y2 - y1;
     const {pixelSize: k, width = Math.round(Math.abs(dx) / k), height = Math.round(Math.abs(dy) / k)} = this;
     const geometries = contours().thresholds(thresholds).size([width, height])(V);
+
+    // Rescale the contour multipolygon from grid to screen coordinates.
     for (const {coordinates} of geometries) {
       for (const rings of coordinates) {
         for (const ring of rings) {
@@ -66,17 +77,17 @@ function contourGeometry(options) {
         }
       }
     }
-    return {
-      data: geometries,
-      facets: [range(geometries)],
-      channels: {
-        geometry: {value: geometries},
-        ...(vfill && {fill: {value: valueof(geometries, vfill), scale: true}}),
-        ...(vfillOpacity && {fillOpacity: {value: valueof(geometries, vfillOpacity), scale: true}}),
-        ...(vstroke && {stroke: {value: valueof(geometries, vstroke), scale: true}}),
-        ...(vstrokeOpacity && {strokeOpacity: {value: valueof(geometries, vstrokeOpacity), scale: true}})
-      }
-    };
+
+    // Compute any deferred channels.
+    const newChannels = {geometry: {value: geometries}};
+    for (const key in this.channels) {
+      if (key === "value") continue;
+      const value = this.channels[key].value;
+      if (!value.defer) continue;
+      newChannels[key] = {value: valueof(geometries, value.defer), scale: true};
+    }
+
+    return {data: geometries, facets: [range(geometries)], channels: newChannels};
   });
 }
 
