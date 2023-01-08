@@ -1,6 +1,6 @@
-import {Delaunay, randomLcg, range, rgb} from "d3";
+import {Delaunay, randomLcg, rgb} from "d3";
 import {create} from "../context.js";
-import {map, first, second, third, isTuples, isNumeric, isTemporal} from "../options.js";
+import {map, first, second, third, isTuples, isNumeric, isTemporal, take} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -41,7 +41,8 @@ export class AbstractRaster extends Mark {
       y1 = y == null ? 0 : undefined,
       x2 = x == null ? width : undefined,
       y2 = y == null ? height : undefined,
-      pixelSize = defaults.pixelSize
+      pixelSize = defaults.pixelSize,
+      interpolate
     } = options;
     super(
       data,
@@ -54,21 +55,21 @@ export class AbstractRaster extends Mark {
         y2: {value: y2 == null ? nonnull(y, "y") : [number(y2, "y2")], scale: "y", optional: true, filter: null},
         ...channels
       },
-      data == null ? options : framer(options),
+      options,
       defaults
     );
     this.width = width === undefined ? undefined : integer(width, "width");
     this.height = height === undefined ? undefined : integer(height, "height");
     this.pixelSize = number(pixelSize, "pixelSize");
+    this.interpolate = interpolate === undefined && (x == null || y == null) ? null : maybeInterpolate(interpolate);
   }
 }
 
 export class Raster extends AbstractRaster {
   constructor(data, options = {}) {
-    const {x, y, imageRendering, rasterize = x == null || y == null ? rasterizeDense : rasterizeNone} = options;
-    super(data, undefined, data == null ? sampler("fill", sampler("fillOpacity", options)) : options, defaults);
+    const {imageRendering} = options;
+    super(data, undefined, data == null ? sampler("fill", sampler("fillOpacity", options)) : framer(options), defaults);
     this.imageRendering = impliedString(imageRendering, "auto");
-    this.rasterize = maybeRasterize(rasterize);
     // When a constant fillOpacity is specified, treat it as if a constant
     // opacity had been specified instead; this will produce an equivalent
     // result, but simplifies rasterization (and in the case of the nearest
@@ -81,6 +82,7 @@ export class Raster extends AbstractRaster {
     return super.scale(channels, scales, context);
   }
   render(index, scales, channels, dimensions, context) {
+    const {color} = scales;
     const {x: X, y: Y} = channels;
     let {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
     const {document} = context;
@@ -102,10 +104,35 @@ export class Raster extends AbstractRaster {
     if (Y && y2 < y1) [y2, y1] = [y1, y2];
     const kx = width / imageWidth;
     const ky = height / imageHeight;
-    this.rasterize(canvas, index, scales, channels, {
-      x: X && map(X, (x) => (x - x1) * kx, Float64Array),
-      y: Y && map(Y, (y) => (y - y1) * ky, Float64Array)
-    });
+    let {fill: F, fillOpacity: FO} = channels;
+    if (this.interpolate) {
+      const IX = X && map(X, (x) => (x - x1) * kx, Float64Array);
+      const IY = Y && map(Y, (y) => (y - y1) * ky, Float64Array);
+      if (F) F = this.interpolate(index, width, height, IX, IY, F);
+      if (FO) FO = this.interpolate(index, width, height, IX, IY, FO);
+    }
+    const context2d = canvas.getContext("2d");
+    const image = context2d.createImageData(width, height);
+    const imageData = image.data;
+    let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
+    let a = 255;
+    for (let i = 0, n = width * height; i < n; ++i) {
+      const j = i << 2;
+      if (F) {
+        const fi = color(F[i]);
+        if (fi == null) {
+          imageData[j + 3] = 0;
+          continue;
+        }
+        ({r, g, b} = rgb(fi));
+      }
+      if (FO) a = FO[i] * 255;
+      imageData[j + 0] = r;
+      imageData[j + 1] = g;
+      imageData[j + 2] = b;
+      imageData[j + 3] = a;
+    }
+    context2d.putImageData(image, 0, 0);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales)
@@ -145,7 +172,7 @@ export function raster() {
 
 // If any of x1, y1, x2, or y2 are undefined, infers the corresponding value
 // from the frame dimensions.
-function framer(options) {
+export function framer(options) {
   return initializer(options, function (data, facets, {x1, y1, x2, y2}, scales, dimensions) {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const channels = {};
@@ -185,120 +212,49 @@ export function sampler(name, options = {}) {
   });
 }
 
-function maybeRasterize(rasterize) {
-  if (typeof rasterize === "function") return rasterize;
-  if (rasterize == null) return rasterizeNone;
-  switch (`${rasterize}`.toLowerCase()) {
+function maybeInterpolate(interpolate) {
+  if (typeof interpolate === "function") return interpolate;
+  if (interpolate == null) return interpolateNone;
+  switch (`${interpolate}`.toLowerCase()) {
     case "none":
-      return rasterizeNone;
-    case "dense":
-      return rasterizeDense;
+      return interpolateNone;
     case "nearest":
-      return rasterizeNearest;
+      return interpolateNearest;
     case "barycentric":
-      return rasterizeBarycentric;
+      return interpolateBarycentric;
     case "random-walk":
-      return rasterizeRandomWalk;
+      return interpolateRandomWalk;
   }
-  throw new Error(`invalid rasterize: ${rasterize}`);
+  throw new Error(`invalid interpolate: ${interpolate}`);
 }
 
 // Applies a simple forward mapping of samples, binning them into pixels without
 // any blending or interpolation. Note: if multiple samples map to the same
 // pixel, the last one wins; this can introduce bias if the points are not in
 // random order, so use Plot.shuffle to randomize the input if needed.
-function rasterizeNone(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
-  const {width, height} = canvas;
-  const context2d = canvas.getContext("2d");
-  const image = context2d.createImageData(width, height);
-  const imageData = image.data;
-  let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
-  let a = 255;
+function interpolateNone(index, width, height, X, Y, V) {
+  const W = new Array(width * height);
   for (const i of index) {
     if (X[i] < 0 || X[i] >= width || Y[i] < 0 || Y[i] >= height) continue;
-    const j = (Math.floor(Y[i]) * width + Math.floor(X[i])) << 2;
-    if (F) ({r, g, b} = rgb(color(F[i])));
-    if (FO) a = FO[i] * 255;
-    imageData[j + 0] = r;
-    imageData[j + 1] = g;
-    imageData[j + 2] = b;
-    imageData[j + 3] = a;
+    W[Math.floor(Y[i]) * width + Math.floor(X[i])] = V[i];
   }
-  context2d.putImageData(image, 0, 0);
-}
-
-// Assumes that the fill and/or fillOpacity channels are a dense grid of values
-// that correspond to the size of the given canvas, in row-major order.
-function rasterizeDense(canvas, index, {color}, {fill: F, fillOpacity: FO}) {
-  const {width, height} = canvas;
-  const context2d = canvas.getContext("2d");
-  const image = context2d.createImageData(width, height);
-  const imageData = image.data;
-  let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
-  let a = 255;
-  for (let i = 0, n = width * height; i < n; ++i) {
-    const j = i << 2;
-    if (F) {
-      const fi = color(F[i]);
-      if (fi == null) {
-        imageData[j + 3] = 0;
-        continue;
-      }
-      ({r, g, b} = rgb(fi));
-    }
-    if (FO) a = FO[i] * 255;
-    imageData[j + 0] = r;
-    imageData[j + 1] = g;
-    imageData[j + 2] = b;
-    imageData[j + 3] = a;
-  }
-  context2d.putImageData(image, 0, 0);
-}
-
-// Note: the stroke that is applied here to eliminate antialiasing seams between
-// cells can introduce a half-pixel bias if the points are not in random order.
-// You can use Plot.shuffle to randomize the input order to remove this bias.
-function rasterizeNearest(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
-  const {width, height} = canvas;
-  const context = canvas.getContext("2d");
-  const voronoi = Delaunay.from(
-    index,
-    (i) => X[i],
-    (i) => Y[i]
-  ).voronoi([0, 0, width, height]);
-  context.fillStyle = this.fill;
-  for (let i = 0; i < index.length; ++i) {
-    context.beginPath();
-    voronoi.renderCell(i, context);
-    const j = index[i];
-    if (F) context.fillStyle = color(F[j]);
-    if (FO) context.globalAlpha = Math.abs(FO[j]);
-    else (context.strokeStyle = context.fillStyle), context.stroke();
-    context.fill();
-  }
+  return W;
 }
 
 const ex = Symbol("extrapolate");
 
-function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
+function interpolateBarycentric(index, width, height, X, Y, V) {
   const random = randomLcg(42); // TODO allow configurable rng?
-  const {width, height} = canvas;
-  const context2d = canvas.getContext("2d");
-  const image = context2d.createImageData(width, height);
-  const imageData = image.data;
-  let {r, g, b} = rgb(this.fill) ?? {r, g, b};
-  let a = 255;
 
   // renumber/reindex everything because we’re going to add points
+  index = Array.from(index);
   let i = index.length;
-  X = Array.from(index, (i) => X[i]); // take(X, index)
-  Y = Array.from(index, (i) => Y[i]);
-  F = F && Array.from(index, (i) => F[i]);
-  FO = FO && Array.from(index, (i) => FO[i]);
-  index = range(i);
+  X = take(X, index);
+  Y = take(Y, index);
+  V = take(V, index);
 
   // to extrapolate, we need to fill the rectangle; pad the perimeter with vertices all around
-  const addPoint = (x, y) => ((X[i] = x), (Y[i] = y), F && (F[i] = ex), FO && (FO[i] = ex), index.push(i++));
+  const addPoint = (x, y) => ((X[i] = x), (Y[i] = y), (V[i] = ex), index.push(i++));
   for (let j = 0, m = (width >> 2) - 1; j <= m; ++j) {
     const k = j / m;
     addPoint(k * width, -1);
@@ -318,20 +274,19 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
 
   // Some triangles have one undefined value; other triangles have two. Fill
   // each undefined vertex with an average of the other defined vertices.
-  for (const C of [F, FO].filter((d) => d)) {
-    const mix2 = mixer2(C, random);
-    for (let i = 0; i < triangles.length; i += 3) {
-      const a = triangles[i];
-      const b = triangles[i + 1];
-      const c = triangles[i + 2];
-      if (C[a] === ex) C[a] = C[c] === ex ? C[b] : C[b] === ex ? C[c] : mix2(C[c], C[b]);
-      if (C[b] === ex) C[b] = C[a] === ex ? C[c] : C[c] === ex ? C[a] : mix2(C[a], C[c]);
-      if (C[c] === ex) C[c] = C[b] === ex ? C[a] : C[a] === ex ? C[b] : mix2(C[b], C[a]);
-    }
+  const mix2 = mixer2(V, random);
+  for (let i = 0; i < triangles.length; i += 3) {
+    const a = triangles[i];
+    const b = triangles[i + 1];
+    const c = triangles[i + 2];
+    if (V[a] === ex) V[a] = V[c] === ex ? V[b] : V[b] === ex ? V[c] : mix2(V[c], V[b]);
+    if (V[b] === ex) V[b] = V[a] === ex ? V[c] : V[c] === ex ? V[a] : mix2(V[a], V[c]);
+    if (V[c] === ex) V[c] = V[b] === ex ? V[a] : V[a] === ex ? V[b] : mix2(V[b], V[a]);
   }
 
   // Interpolate the interior of all triangles with barycentric coordinates
-  const mix3 = F && mixer3(F, random);
+  const W = new Array(width * height);
+  const mix3 = mixer3(V, random);
   for (let i = 0; i < triangles.length; i += 3) {
     const ta = triangles[i];
     const tb = triangles[i + 1];
@@ -362,40 +317,49 @@ function rasterizeBarycentric(canvas, index, {color}, {fill: F, fillOpacity: FO}
         if (gb < 0) continue;
         const gc = 1 - ga - gb;
         if (gc < 0) continue;
-        const k = (x + width * y) << 2;
-        if (F) ({r, g, b} = rgb(color(mix3(F[ia], ga, F[ib], gb, F[ic], gc))));
-        if (FO) a = (ga * FO[ia] + gb * FO[ib] + gc * FO[ic]) * 255;
-        imageData[k + 0] = r;
-        imageData[k + 1] = g;
-        imageData[k + 2] = b;
-        imageData[k + 3] = a;
+        W[x + width * y] = mix3(V[ia], ga, V[ib], gb, V[ic], gc);
       }
     }
   }
-  context2d.putImageData(image, 0, 0);
+  return W;
 }
 
-// TODO adaptive supersampling in areas of high variance?
-// TODO configurable iterations per sample (currently 1 + 2)
-// see https://observablehq.com/@observablehq/walk-on-spheres-precision
-function rasterizeRandomWalk(canvas, index, {color}, {fill: F, fillOpacity: FO}, {x: X, y: Y}) {
-  const random = randomLcg(42); // TODO allow configurable rng?
-  const {width, height} = canvas;
-  const context2d = canvas.getContext("2d");
-  const image = context2d.createImageData(width, height);
-  const imageData = image.data;
+function interpolateNearest(index, width, height, X, Y, V) {
+  const W = new Array(width * height);
   const delaunay = Delaunay.from(
     index,
     (i) => X[i],
     (i) => Y[i]
   );
-  let {r, g, b} = rgb(this.fill) ?? {r, g, b};
-  let a = 255;
+  // memoization of delaunay.find for the line start (iy) and pixel (ix)
+  let iy, ix;
+  for (let y = 0.5, k = 0; y < height; ++y) {
+    ix = iy;
+    for (let x = 0.5; x < width; ++x, ++k) {
+      ix = delaunay.find(x, y, ix);
+      if (x === 0.5) iy = ix;
+      W[k] = V[index[ix]];
+    }
+  }
+  return W;
+}
+
+// TODO adaptive supersampling in areas of high variance?
+// TODO configurable iterations per sample (currently 1 + 2)
+// see https://observablehq.com/@observablehq/walk-on-spheres-precision
+function interpolateRandomWalk(index, width, height, X, Y, V) {
+  const W = new Array(width * height);
+  const random = randomLcg(42); // TODO allow configurable rng?
+  const delaunay = Delaunay.from(
+    index,
+    (i) => X[i],
+    (i) => Y[i]
+  );
   // memoization of delaunay.find for the line start (iy), pixel (ix), and wos step (iw)
   let iy, ix, iw;
   for (let y = 0.5, k = 0; y < height; ++y) {
     ix = iy;
-    for (let x = 0.5; x < width; ++x, k += 4) {
+    for (let x = 0.5; x < width; ++x, ++k) {
       let cx = x;
       let cy = y;
       iw = ix = delaunay.find(cx, cy, ix);
@@ -409,15 +373,10 @@ function rasterizeRandomWalk(canvas, index, {color}, {fill: F, fillOpacity: FO},
         iw = delaunay.find(cx, cy, iw);
         ++step;
       }
-      if (F) ({r, g, b} = rgb(color(F[index[iw]])));
-      if (FO) a = FO[index[iw]] * 255;
-      imageData[k + 0] = r;
-      imageData[k + 1] = g;
-      imageData[k + 2] = b;
-      imageData[k + 3] = a;
+      W[k] = V[index[iw]];
     }
   }
-  context2d.putImageData(image, 0, 0);
+  return W;
 }
 
 function blend2(a, b) {

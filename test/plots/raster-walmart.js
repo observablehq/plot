@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
-async function rasterWalmart(rasterize, opacity) {
+async function rasterWalmart(interpolate, opacity) {
   const [walmarts, [outline, statemesh]] = await Promise.all([
     d3.tsv("data/walmarts.tsv", d3.autoType),
     d3
@@ -19,7 +19,7 @@ async function rasterWalmart(rasterize, opacity) {
       label: "Opening year"
     },
     marks: [
-      Plot.raster(walmarts, {x: "longitude", y: "latitude", [opacity ? "fillOpacity" : "fill"]: "date", rasterize}),
+      Plot.raster(walmarts, {x: "longitude", y: "latitude", [opacity ? "fillOpacity" : "fill"]: "date", interpolate}),
       Plot.geo({type: "Polygon", coordinates: [d3.reverse(outline)]}, {fill: "white"}),
       Plot.geo(statemesh)
     ]

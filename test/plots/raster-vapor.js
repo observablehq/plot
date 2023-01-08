@@ -26,7 +26,7 @@ export async function rasterVaporEqualEarth() {
         fill: (d) => d,
         x: (d, i) => (i % 360) - 180 + 0.5,
         y: (d, i) => 90 - ((i / 360) | 0) + 0.5,
-        rasterize: "random-walk",
+        interpolate: "random-walk",
         clip: "sphere"
       }),
       Plot.sphere()

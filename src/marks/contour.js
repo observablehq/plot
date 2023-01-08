@@ -1,10 +1,10 @@
-import {contours, geoPath, thresholdSturges} from "d3";
+import {contours, geoPath, map, thresholdSturges} from "d3";
 import {create} from "../context.js";
 import {range, valueof, identity} from "../options.js";
 import {Position} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {initializer} from "../transforms/basic.js";
-import {sampler, maybeTuples, AbstractRaster} from "./raster.js";
+import {sampler, maybeTuples, AbstractRaster, framer} from "./raster.js";
 
 const defaults = {
   ariaLabel: "contour",
@@ -20,14 +20,15 @@ export class Contour extends AbstractRaster {
     // If the data is null, then the value channel is constructed using the
     // sampler initializer; it is not passed to super because we don’t want to
     // compute it before there’s data.
-    options = contourGeometry(data == null ? sampler("value", options) : options);
+    options = contourGeometry(data == null ? sampler("value", options) : framer(options));
     super(data, data == null ? undefined : {value: {value}}, options, defaults);
-    // With the exception of the value channel, this mark’s channels are not
-    // evaluated on the initial data, but rather on on the generated contour
-    // multipolygons! Here we redefine any channels (e.g., fill) as a transform
-    // that initially returns the empty array, while recording the value
-    // definition so that it can be evaluated in the initializer.
+    // With the exception of the x, y, and value channels, this mark’s channels
+    // are not evaluated on the initial data, but rather on on the generated
+    // contour multipolygons! Here we redefine any channels (e.g., fill) as a
+    // transform that initially returns the empty array, while recording the
+    // value definition so that it can be evaluated in the initializer.
     for (const key in this.channels) {
+      if (key === "x" || key === "y" || key === "value") continue;
       const value = this.channels[key].value;
       const valueType = typeof value;
       if (valueType === "string" || valueType === "function") {
@@ -60,10 +61,22 @@ function contourGeometry(options) {
     let {x1, y1, x2, y2} = channels;
     ({x: [x1], y: [y1]} = Position({x: x1, y: y1}, scales, context)); // prettier-ignore
     ({x: [x2], y: [y2]} = Position({x: x2, y: y2}, scales, context)); // prettier-ignore
-    const V = channels.value.value;
+    let V = channels.value.value;
     const dx = x2 - x1;
     const dy = y2 - y1;
     const {pixelSize: k, width = Math.round(Math.abs(dx) / k), height = Math.round(Math.abs(dy) / k)} = this;
+
+    // Interpolate the raster grid, as needed.
+    if (this.interpolate) {
+      const kx = width / Math.abs(dx);
+      const ky = height / Math.abs(dy);
+      const {x: X, y: Y} = Position(channels, scales, context);
+      const IX = X && map(X, (x) => (x - x1) * kx, Float64Array);
+      const IY = Y && map(Y, (y) => (y - y1) * ky, Float64Array);
+      V = this.interpolate(facets[0], width, height, IX, IY, V); // TODO faceting?
+    }
+
+    // Compute the contours.
     const geometries = contours().thresholds(thresholds).size([width, height])(V);
 
     // Rescale the contour multipolygon from grid to screen coordinates.
