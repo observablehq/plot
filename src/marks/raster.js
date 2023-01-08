@@ -325,7 +325,7 @@ function interpolateBarycentric(index, width, height, X, Y, V) {
 }
 
 function interpolateNearest(index, width, height, X, Y, V) {
-  const W = new Array(width * height);
+  const W = new V.constructor(width * height);
   const delaunay = Delaunay.from(
     index,
     (i) => X[i],
@@ -348,7 +348,7 @@ function interpolateNearest(index, width, height, X, Y, V) {
 // TODO configurable iterations per sample (currently 1 + 2)
 // see https://observablehq.com/@observablehq/walk-on-spheres-precision
 function interpolateRandomWalk(index, width, height, X, Y, V) {
-  const W = new Array(width * height);
+  const W = new V.constructor(width * height);
   const random = randomLcg(42); // TODO allow configurable rng?
   const delaunay = Delaunay.from(
     index,
