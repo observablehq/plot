@@ -241,52 +241,34 @@ function interpolateNone(index, width, height, X, Y, V) {
   return W;
 }
 
-const ex = Symbol("extrapolate");
-
 function interpolateBarycentric(index, width, height, X, Y, V) {
   const random = randomLcg(42); // TODO allow configurable rng?
 
-  // renumber/reindex everything because we’re going to add points
-  index = Array.from(index);
-  let i = index.length;
-  X = take(X, index);
-  Y = take(Y, index);
+  // Flatten the input coordinates to prepare to insert extrapolated points
+  // along the perimeter of the grid (so there’s no blank output).
+  const n = index.length;
+  const nw = width >> 2;
+  const nh = (height >> 2) - 1;
+  const m = n + nw * 2 + nh * 2;
+  const XY = new Float64Array(m * 2);
+  for (let i = 0; i < n; ++i) (XY[i * 2] = X[i]), (XY[i * 2 + 1] = Y[i]);
+
+  // Add points along each edge, making sure to include the four corners for
+  // complete coverage (with no chamfered edges).
+  let i = n;
+  const addPoint = (x, y) => ((XY[i * 2] = x), (XY[i * 2 + 1] = y), i++);
+  for (let j = 0; j <= nw; ++j) addPoint((j / nw) * width, 0), addPoint((j / nw) * width, height);
+  for (let j = 0; j < nh; ++j) addPoint(width, (j / nh) * height), addPoint(0, (j / nh) * height);
+
+  // To each edge point, assign the closest (non-extrapolated) value.
   V = take(V, index);
-
-  // to extrapolate, we need to fill the rectangle; pad the perimeter with vertices all around
-  const addPoint = (x, y) => ((X[i] = x), (Y[i] = y), (V[i] = ex), index.push(i++));
-  for (let j = 0, m = (width >> 2) - 1; j <= m; ++j) {
-    const k = j / m;
-    addPoint(k * width, -1);
-    addPoint((1 - k) * width, height + 1);
-  }
-  for (let j = 0, m = (height >> 2) - 1; j <= m; ++j) {
-    const k = j / m;
-    addPoint(-1, k * height);
-    addPoint(width + 1, (1 - k) * height);
-  }
-
-  const {points, triangles} = Delaunay.from(
-    index,
-    (i) => X[i],
-    (i) => Y[i]
-  );
-
-  // Some triangles have one undefined value; other triangles have two. Fill
-  // each undefined vertex with an average of the other defined vertices.
-  const mix2 = mixer2(V, random);
-  for (let i = 0; i < triangles.length; i += 3) {
-    const a = triangles[i];
-    const b = triangles[i + 1];
-    const c = triangles[i + 2];
-    if (V[a] === ex) V[a] = V[c] === ex ? V[b] : V[b] === ex ? V[c] : mix2(V[c], V[b]);
-    if (V[b] === ex) V[b] = V[a] === ex ? V[c] : V[c] === ex ? V[a] : mix2(V[a], V[c]);
-    if (V[c] === ex) V[c] = V[b] === ex ? V[a] : V[a] === ex ? V[b] : mix2(V[b], V[a]);
-  }
+  const delaunay = new Delaunay(XY.subarray(0, n * 2));
+  for (let j = n, ij; j < m; ++j) V[j] = V[(ij = delaunay.find(XY[j * 2], XY[j * 2 + 1], ij))];
 
   // Interpolate the interior of all triangles with barycentric coordinates
-  const W = new Array(width * height);
-  const mix3 = mixer3(V, random);
+  const {points, triangles} = new Delaunay(XY);
+  const W = new V.constructor(width * height);
+  const mix = mixer(V, random);
   for (let i = 0; i < triangles.length; i += 3) {
     const ta = triangles[i];
     const tb = triangles[i + 1];
@@ -303,9 +285,9 @@ function interpolateBarycentric(index, width, height, X, Y, V) {
     const y2 = Math.max(Ay, By, Cy);
     const z = (By - Cy) * (Ax - Cx) + (Ay - Cy) * (Cx - Bx);
     if (!z) continue;
-    const ia = index[ta];
-    const ib = index[tb];
-    const ic = index[tc];
+    const va = V[ta];
+    const vb = V[tb];
+    const vc = V[tc];
     for (let x = Math.floor(x1); x < x2; ++x) {
       for (let y = Math.floor(y1); y < y2; ++y) {
         if (x < 0 || x >= width || y < 0 || y >= height) continue;
@@ -317,7 +299,7 @@ function interpolateBarycentric(index, width, height, X, Y, V) {
         if (gb < 0) continue;
         const gc = 1 - ga - gb;
         if (gc < 0) continue;
-        W[x + width * y] = mix3(V[ia], ga, V[ib], gb, V[ic], gc);
+        W[x + width * y] = mix(va, ga, vb, gb, vc, gc);
       }
     }
   }
@@ -379,29 +361,17 @@ function interpolateRandomWalk(index, width, height, X, Y, V) {
   return W;
 }
 
-function blend2(a, b) {
-  return (+a + +b) / 2; // coerce in case dates
-}
-
-function blend3(a, ca, b, cb, c, cc) {
+function blend(a, ca, b, cb, c, cc) {
   return ca * a + cb * b + cc * c;
 }
 
-function pick2(random = Math.random) {
-  return (a, b) => (random() < 0.5 ? a : b);
-}
-
-function pick3(random = Math.random) {
+function pick(random = Math.random) {
   return (a, ca, b, cb, c) => {
     const u = random();
     return u < ca ? a : u < ca + cb ? b : c;
   };
 }
 
-function mixer2(F, random) {
-  return isNumeric(F) || isTemporal(F) ? blend2 : pick2(random);
-}
-
-function mixer3(F, random) {
-  return isNumeric(F) || isTemporal(F) ? blend3 : pick3(random);
+function mixer(F, random) {
+  return isNumeric(F) || isTemporal(F) ? blend : pick(random);
 }
