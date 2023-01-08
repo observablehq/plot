@@ -22,6 +22,7 @@ export class Contour extends AbstractRaster {
     // compute it before there’s data.
     options = contourGeometry(data == null ? sampler("value", options) : framer(options));
     super(data, data == null ? undefined : {value: {value}}, options, defaults);
+    this.blur = number(blur);
     // With the exception of the x, y, and value channels, this mark’s channels
     // are not evaluated on the initial data, but rather on on the generated
     // contour multipolygons! Here we redefine any channels (e.g., fill) as a
@@ -35,7 +36,6 @@ export class Contour extends AbstractRaster {
         this.channels[key].value = {transform: () => [], defer: value};
       }
     }
-    this.blur = number(blur);
   }
   render(index, scales, channels, dimensions, context) {
     const {geometry: G} = channels;
@@ -100,7 +100,6 @@ function contourGeometry(options) {
     // Compute any deferred channels.
     const newChannels = {geometry: {value: geometries}};
     for (const key in this.channels) {
-      if (key === "value") continue;
       const value = this.channels[key].value;
       if (!value.defer) continue;
       newChannels[key] = {value: valueof(geometries, value.defer), scale: true};
