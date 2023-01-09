@@ -56,12 +56,11 @@ export class Contour extends AbstractRaster {
 
     // Otherwise if data was provided, it represents a discrete set of spatial
     // samples (often a grid, but not necessarily). If no interpolation method
-    // was specified, and the input points have x and y positions and thus are
-    // not likely to be a dense grid, default to barycentric.
+    // was specified, default to nearest.
     else {
-      let {x, y, interpolate} = options;
+      let {interpolate} = options;
       if (value === undefined) value = identity;
-      if (interpolate === undefined && (x != null || y != null)) options.interpolate = "barycentric";
+      if (interpolate === undefined) options.interpolate = "nearest";
     }
 
     // Wrap the options in our initializer that computes the contour geometries;

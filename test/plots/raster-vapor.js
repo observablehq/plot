@@ -17,6 +17,30 @@ export async function rasterVapor() {
   });
 }
 
+export async function contourVapor() {
+  return Plot.plot({
+    width: 960,
+    projection: "equal-earth",
+    color: {scheme: "blues"},
+    marks: [
+      Plot.contour(await vapor(), {
+        fill: Plot.identity,
+        width: 360,
+        height: 180,
+        x1: -180,
+        y1: 90,
+        x2: 180,
+        y2: -90,
+        blur: 0.5,
+        stroke: "currentColor",
+        strokeWidth: 0.5,
+        clip: "sphere"
+      }),
+      Plot.sphere()
+    ]
+  });
+}
+
 export async function rasterVaporSqrt() {
   return Plot.plot({
     color: {scheme: "blues"},
