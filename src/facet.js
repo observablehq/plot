@@ -116,11 +116,11 @@ function facetAnchorRight(facets, {x: X}, {x}) {
 }
 
 function facetAnchorXMid(facets, {x: X}, {x}) {
-  return X ? X.indexOf(x) === X.length >> 1 : false;
+  return X ? X.indexOf(x) === X.length >> 1 : true;
 }
 
 function facetAnchorYMid(facets, {y: Y}, {y}) {
-  return Y ? Y.indexOf(y) === Y.length >> 1 : false;
+  return Y ? Y.indexOf(y) === Y.length >> 1 : true;
 }
 
 function facetAnchorTopEmpty(facets, {y: Y}, {x, y}) {

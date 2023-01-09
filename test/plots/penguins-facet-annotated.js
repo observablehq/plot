@@ -7,7 +7,6 @@ export default async function () {
     marginLeft: 75,
     marginRight: 70,
     x: {insetRight: 10},
-    facet: {marginRight: 70},
     marks: [
       Plot.frame(),
       Plot.barX(penguins, Plot.groupY({x: "count"}, {fy: "island", y: "species", fill: "sex"})),
