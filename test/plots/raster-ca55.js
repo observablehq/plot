@@ -38,8 +38,8 @@ export async function contourCa55() {
     Plot.contour(ca55, {
       x: "GRID_EAST",
       y: "GRID_NORTH",
-      value: "MAG_IGRF90",
-      interpolate: "barycentric",
+      fill: "MAG_IGRF90",
+      stroke: "currentColor",
       blur: 3
     })
   );

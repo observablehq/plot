@@ -7,7 +7,8 @@ export async function functionContour() {
     },
     marks: [
       Plot.contour({
-        value: (x, y) => x * y * Math.sin(x) * Math.cos(y),
+        fill: (x, y) => x * y * Math.sin(x) * Math.cos(y),
+        stroke: "currentColor",
         x1: 0,
         y1: 0,
         x2: 4 * Math.PI,

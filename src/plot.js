@@ -168,15 +168,18 @@ export function plot(options = {}) {
         throw new Error(`initializers cannot declare position scales: ${key}`);
       }
     }
-    const newScaleDescriptors = Scales(
-      addScaleChannels(new Map(), stateByMark, (key) => newByScale.has(key)),
-      options
-    );
+    const newChannelsByScale = new Map();
+    addScaleChannels(newChannelsByScale, stateByMark, (key) => newByScale.has(key));
+    addScaleChannels(channelsByScale, stateByMark, (key) => newByScale.has(key));
+    const newScaleDescriptors = Scales(newChannelsByScale, options);
     const newScales = ScaleFunctions(newScaleDescriptors);
     Object.assign(scaleDescriptors, newScaleDescriptors);
     Object.assign(scales, newScales);
   }
 
+  // Compute the scale labels. Note that with initializers, this may include
+  // both old channels (no longer used) and new channels for redefined scales;
+  // we include both because initializers don’t always propagate labels.
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
   // Compute value objects, applying scales and projection as needed.

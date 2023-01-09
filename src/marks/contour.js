@@ -1,40 +1,86 @@
 import {blur2, contours, geoPath, map, thresholdSturges} from "d3";
+import {Channels} from "../channel.js";
 import {create} from "../context.js";
-import {range, valueof, identity} from "../options.js";
+import {labelof, range, identity} from "../options.js";
 import {Position} from "../projection.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, styles} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import {sampler, maybeTuples, AbstractRaster, framer} from "./raster.js";
 
 const defaults = {
   ariaLabel: "contour",
-  fill: "value",
+  fill: "none",
   stroke: "currentColor",
   strokeMiterlimit: 1,
   pixelSize: 2
 };
 
 export class Contour extends AbstractRaster {
-  constructor(data, options = {}) {
-    const {value = data != null ? identity : undefined} = options;
-    // If the data is null, then the value channel is constructed using the
-    // sampler initializer; it is not passed to super because we don’t want to
-    // compute it before there’s data.
-    options = contourGeometry(data == null ? sampler("value", options) : framer(options));
-    super(data, data == null ? undefined : {value: {value}}, options, defaults);
-    // With the exception of the x, y, and value channels, this mark’s channels
-    // are not evaluated on the initial data, but rather on on the generated
-    // contour multipolygons! Here we redefine any channels (e.g., fill) as a
-    // transform that initially returns the empty array, while recording the
-    // value definition so that it can be evaluated in the initializer.
-    for (const key in this.channels) {
-      if (key === "x" || key === "y" || key === "value") continue;
-      const value = this.channels[key].value;
-      const valueType = typeof value;
-      if (valueType === "string" || valueType === "function") {
-        this.channels[key].value = {transform: () => [], defer: value};
+  constructor(data, {value, ...options} = {}) {
+    const channels = styles({}, options, defaults);
+
+    // If value is not specified explicitly, look for a channel to promote. If
+    // more than one channel is present, throw an error. (To disambiguate,
+    // specify the value option explicitly.)
+    if (value === undefined) {
+      for (const key in channels) {
+        if (channels[key].value != null) {
+          if (value !== undefined) throw new Error("ambiguous contour value");
+          value = options[key];
+          options[key] = "value";
+        }
       }
     }
+
+    // For any channel specified as the literal (contour threshold) "value"
+    // (maybe because of the promotion above), propagate the label from the
+    // original value definition.
+    if (value !== undefined) {
+      const v = {transform: (D) => D.map((d) => d.value), label: labelof(value)};
+      for (const key in channels) {
+        if (options[key] === "value") {
+          options[key] = v;
+        }
+      }
+    }
+
+    // If the data is null, then we’ll construct the raster grid by evaluating a
+    // function for each point in a dense grid. The value channel is populated
+    // by the sampler initializer, and hence is not passed to super to avoid
+    // computing it before there’s data.
+    if (data == null) {
+      if (typeof value !== "function") throw new Error("invalid contour value");
+      options = sampler("value", {value, ...options});
+      value = null;
+    }
+
+    // Otherwise if data was provided, it represents a discrete set of spatial
+    // samples (often a grid, but not necessarily). If no interpolation method
+    // was specified, and the input points have x and y positions and thus are
+    // not likely to be a dense grid, default to barycentric.
+    else {
+      let {x, y, interpolate} = options;
+      if (value === undefined) value = identity;
+      if (interpolate === undefined && x != null && y != null) options.interpolate = "barycentric";
+      options = framer(options);
+    }
+
+    // Wrap the options in our initializer that computes the contour geometries;
+    // this runs after any other initializers (and transforms).
+    super(data, {value: {value, optional: true}}, contourGeometry(options), defaults);
+
+    // With the exception of the x, y, x1, y1, x2, y2, and value channels, this
+    // mark’s channels are not evaluated on the initial data but rather on the
+    // contour multipolygons generated in the initializer.
+    const contourChannels = {geometry: {value: identity}};
+    for (const key in this.channels) {
+      const channel = this.channels[key];
+      const {scale} = channel;
+      if (scale === "x" || scale === "y" || key === "value") continue;
+      contourChannels[key] = channel;
+      delete this.channels[key];
+    }
+    this.contourChannels = contourChannels;
   }
   render(index, scales, channels, dimensions, context) {
     const {geometry: G} = channels;
@@ -95,16 +141,12 @@ function contourGeometry(options) {
       }
     }
 
-    // Compute any deferred channels. X and Y are set to as many zeroes as there
-    // are geometries, in order to pass the filter.
-    const newChannels = {geometry: {value: geometries}};
-    for (const key in this.channels) {
-      const value = this.channels[key].value;
-      if (value.defer) newChannels[key] = {value: valueof(geometries, value.defer), scale: true};
-      else if (key === "x" || key === "y") newChannels[key] = {value: valueof(geometries, 0)};
-    }
-
-    return {data: geometries, facets: [range(geometries)], channels: newChannels};
+    // Compute the deferred channels.
+    return {
+      data: geometries,
+      facets: [range(geometries)],
+      channels: Channels(this.contourChannels, geometries)
+    };
   });
 }
 
