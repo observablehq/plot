@@ -124,9 +124,9 @@ function contourGeometry(options) {
       const {x: X, y: Y} = Position(channels, scales, context);
       const IX = X && map(X, (x) => (x - x1) * kx, Float64Array);
       const IY = Y && map(Y, (y) => (y - y1) * ky, Float64Array);
-      // Since the contour mark normally skips filtering on x and y, here we’re
-      // careful to use different names to apply filtering.
-      const index = this.filter(facets[0], {ix: channels.x, iy: channels.y}, {ix: IX, iy: IY});
+      // The contour mark normally skips filtering on x, y, and value, so here
+      // we’re careful to use different names (0, 1, 2) to apply filtering.
+      const index = this.filter(facets[0], [channels.x, channels.y, channels.value], [IX, IY, V]);
       V = this.interpolate(index, width, height, IX, IY, V); // TODO faceting?
     }
 
