@@ -13,7 +13,7 @@ Not enough politics\t.12
   return Plot.plot({
     margin: 20,
     marginLeft: 40,
-    marginBottom: 40,
+    marginBottom: 45,
     height: 400,
     y: {percent: true, label: "↑ Responses (%)"},
     marks: [

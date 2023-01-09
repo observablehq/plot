@@ -3,15 +3,17 @@ import {formatIsoDate} from "./format.js";
 import {constant, isTemporal, string} from "./options.js";
 import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
 
-// Mutates scale.label!
+// Mutates scale.label, scale.labelOffset!
 export function autoScaleLabels(channels, scales, options) {
   for (const [key, scale] of Object.entries(scales)) {
     if (scale.label === undefined) {
       const {label = inferScaleLabel(channels.get(key), scale, key)} = options[key] ?? {};
       scale.label = label;
     }
+    // TODO cleaner way of exposing scale
     if (scale.scale) {
-      scale.scale.label = scale.label; // TODO cleaner way of exposing scale
+      scale.scale.label = scale.label;
+      scale.scale.labelOffset = options[key]?.labelOffset;
     }
   }
 }

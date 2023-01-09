@@ -127,12 +127,13 @@ function axisKy(
                   this.textAnchor = l === "center" ? "middle" : "start";
                   this.facetAnchor = maybeFacetAnchor(l === "center" ? `${anchor}-middle` : `${l}-${anchor}`);
                   this.frameAnchor = l === "center" ? anchor : `${l}-${anchor}`;
+                  const {labelOffset} = scales[k] ?? {};
                   switch (anchor) {
                     case "left":
-                      this.dx = -dimensions.marginLeft;
+                      this.dx = -(labelOffset ?? dimensions.marginLeft);
                       break;
                     case "right":
-                      this.dx = dimensions.marginRight;
+                      this.dx = labelOffset ?? dimensions.marginRight;
                       break;
                   }
                   this.ariaLabel = `${k}-axis label`;
@@ -218,7 +219,6 @@ function axisKx(
                 fill,
                 fillOpacity,
                 ...options,
-                dy: anchor === "top" ? -20 : 20,
                 lineAnchor: anchor === "top" ? "bottom" : "top",
                 initializer: function (data, facets, channels, scales, dimensions) {
                   // duck typing ordinal scales to position the label, lazily
@@ -232,6 +232,15 @@ function axisKx(
                       break;
                     case "left":
                       this.dx = -dimensions.marginLeft;
+                      break;
+                  }
+                  const {labelOffset} = scales[k] ?? {};
+                  switch (anchor) {
+                    case "bottom":
+                      this.dy = (labelOffset ?? dimensions.marginBottom) - 10;
+                      break;
+                    case "top":
+                      this.dy = 10 - (labelOffset ?? dimensions.marginTop);
                       break;
                   }
                   this.ariaLabel = `${k}-axis label`;
