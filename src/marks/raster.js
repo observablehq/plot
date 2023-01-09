@@ -54,7 +54,7 @@ export class AbstractRaster extends Mark {
       // covering the entire grid in row-major order. These defaults allow
       // further shorthand where x and y represent grid column and row index.
       // TODO If we know that the x and y scales are linear, then we could avoid
-      // materializing these columns and
+      // materializing these columns to improve performance.
       if (x === undefined && x1 != null && x2 != null) x = denseX(x1, x2, width, height);
       if (y === undefined && y1 != null && y2 != null) y = denseY(y1, y2, width, height);
     }
