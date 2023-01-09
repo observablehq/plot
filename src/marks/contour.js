@@ -5,7 +5,7 @@ import {labelof, range, identity} from "../options.js";
 import {Position} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, styles} from "../style.js";
 import {initializer} from "../transforms/basic.js";
-import {sampler, maybeTuples, AbstractRaster, framer} from "./raster.js";
+import {AbstractRaster, maybeTuples, rasterBounds, sampler} from "./raster.js";
 
 const defaults = {
   ariaLabel: "contour",
@@ -61,8 +61,7 @@ export class Contour extends AbstractRaster {
     else {
       let {x, y, interpolate} = options;
       if (value === undefined) value = identity;
-      if (interpolate === undefined && x != null && y != null) options.interpolate = "barycentric";
-      options = framer(options);
+      if (interpolate === undefined && (x != null || y != null)) options.interpolate = "barycentric";
     }
 
     // Wrap the options in our initializer that computes the contour geometries;
@@ -109,40 +108,39 @@ export class Contour extends AbstractRaster {
 function contourGeometry(options) {
   const {thresholds = thresholdSturges} = options; // TODO thresholdAuto; match density mark
   return initializer(options, function (data, facets, channels, scales, dimensions, context) {
-    let {x1, y1, x2, y2} = channels;
-    ({x: [x1], y: [y1]} = Position({x: x1, y: y1}, scales, context)); // prettier-ignore
-    ({x: [x2], y: [y2]} = Position({x: x2, y: y2}, scales, context)); // prettier-ignore
-    let V = channels.value.value;
+    const [x1, y1, x2, y2] = rasterBounds(channels, scales, dimensions, context);
     const dx = x2 - x1;
     const dy = y2 - y1;
-    const {pixelSize: k, width = Math.round(Math.abs(dx) / k), height = Math.round(Math.abs(dy) / k)} = this;
+    const {pixelSize: k, width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = this;
+    const kx = w / dx;
+    const ky = h / dy;
 
     // Interpolate the raster grid, as needed.
+    let V = channels.value.value;
     if (this.interpolate) {
-      const kx = width / Math.abs(dx);
-      const ky = height / Math.abs(dy);
       const {x: X, y: Y} = Position(channels, scales, context);
-      const IX = X && map(X, (x) => (x - x1) * kx, Float64Array);
-      const IY = Y && map(Y, (y) => (y - y1) * ky, Float64Array);
+      // Convert scaled (screen) coordinates to grid (canvas) coordinates.
+      const IX = map(X, (x) => (x - x1) * kx, Float64Array);
+      const IY = map(Y, (y) => (y - y1) * ky, Float64Array);
       // The contour mark normally skips filtering on x, y, and value, so here
-      // we’re careful to use different names (0, 1, 2) to apply filtering.
+      // we’re careful to use different names (0, 1, 2) when filtering.
       const index = this.filter(facets[0], [channels.x, channels.y, channels.value], [IX, IY, V]);
-      V = this.interpolate(index, width, height, IX, IY, V); // TODO faceting?
+      V = this.interpolate(index, w, h, IX, IY, V); // TODO faceting?
     }
 
     // Blur the raster grid, if desired.
-    if (this.blur > 0) blur2({data: V, width, height}, this.blur);
+    if (this.blur > 0) blur2({data: V, width: w, height: h}, this.blur);
 
     // Compute the contours.
-    const geometries = contours().thresholds(thresholds).size([width, height])(V);
+    const geometries = contours().thresholds(thresholds).size([w, h])(V);
 
     // Rescale the contour multipolygon from grid to screen coordinates.
     for (const {coordinates} of geometries) {
       for (const rings of coordinates) {
         for (const ring of rings) {
           for (const point of ring) {
-            point[0] = (point[0] / width) * dx + x1;
-            point[1] = (point[1] / height) * dy + y1;
+            point[0] = point[0] / kx + x1;
+            point[1] = point[1] / ky + y1;
           }
         }
       }

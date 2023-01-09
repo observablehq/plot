@@ -1,6 +1,6 @@
 import {blurImage, Delaunay, randomLcg, rgb} from "d3";
 import {create} from "../context.js";
-import {map, first, second, third, isTuples, isNumeric, isTemporal, take} from "../options.js";
+import {map, first, second, third, isTuples, isNumeric, isTemporal, take, identity} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -10,10 +10,6 @@ const defaults = {
   stroke: null,
   pixelSize: 1
 };
-
-function nonnull(input, name) {
-  if (input == null) throw new Error(`missing ${name}`);
-}
 
 function number(input, name) {
   const x = +input;
@@ -34,9 +30,6 @@ export class AbstractRaster extends Mark {
       height,
       x,
       y,
-      // If X and Y are not given, we assume that F is a dense array of samples
-      // covering the entire grid in row-major order. These defaults allow
-      // further shorthand where x and y represent grid column and row index.
       x1 = x == null ? 0 : undefined,
       y1 = y == null ? 0 : undefined,
       x2 = x == null ? width : undefined,
@@ -45,37 +38,58 @@ export class AbstractRaster extends Mark {
       blur = 0,
       interpolate
     } = options;
+    if (width != null) width = integer(width, "width");
+    if (height != null) height = integer(height, "height");
+    // These represent the (minimum) bounds of the raster; they are not
+    // evaluated for each datum. Also, if x and y are not specified explicitly,
+    // then these bounds are used to compute the dense linear grid.
+    if (x1 != null) x1 = number(x1, "x1");
+    if (y1 != null) y1 = number(y1, "y1");
+    if (x2 != null) x2 = number(x2, "x2");
+    if (y2 != null) y2 = number(y2, "y2");
+    if (x == null && (x1 == null || x2 == null)) throw new Error("missing x");
+    if (y == null && (y1 == null || y2 == null)) throw new Error("missing y");
+    if (data != null && width != null && height != null) {
+      // If x and y are not given, assume the data is a dense array of samples
+      // covering the entire grid in row-major order. These defaults allow
+      // further shorthand where x and y represent grid column and row index.
+      // TODO If we know that the x and y scales are linear, then we could avoid
+      // materializing these columns and
+      if (x === undefined && x1 != null && x2 != null) x = denseX(x1, x2, width, height);
+      if (y === undefined && y1 != null && y2 != null) y = denseY(y1, y2, width, height);
+    }
     super(
       data,
       {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},
-        x1: {value: x1 == null ? nonnull(x, "x") : [number(x1, "x1")], scale: "x", optional: true, filter: null},
-        y1: {value: y1 == null ? nonnull(y, "y") : [number(y1, "y1")], scale: "y", optional: true, filter: null},
-        x2: {value: x2 == null ? nonnull(x, "x") : [number(x2, "x2")], scale: "x", optional: true, filter: null},
-        y2: {value: y2 == null ? nonnull(y, "y") : [number(y2, "y2")], scale: "y", optional: true, filter: null},
+        x1: {value: x1 == null ? null : [x1], scale: "x", optional: true, filter: null},
+        y1: {value: y1 == null ? null : [y1], scale: "y", optional: true, filter: null},
+        x2: {value: x2 == null ? null : [x2], scale: "x", optional: true, filter: null},
+        y2: {value: y2 == null ? null : [y2], scale: "y", optional: true, filter: null},
         ...channels
       },
       options,
       defaults
     );
-    this.width = width === undefined ? undefined : integer(width, "width");
-    this.height = height === undefined ? undefined : integer(height, "height");
+    this.width = width;
+    this.height = height;
     this.pixelSize = number(pixelSize, "pixelSize");
     this.blur = number(blur, "blur");
-    this.interpolate = interpolate === undefined && (x == null || y == null) ? null : maybeInterpolate(interpolate);
+    this.interpolate = interpolate === undefined && x == null && y == null ? null : maybeInterpolate(interpolate);
   }
 }
 
 export class Raster extends AbstractRaster {
   constructor(data, options = {}) {
     const {imageRendering} = options;
-    super(data, undefined, data == null ? sampler("fill", sampler("fillOpacity", options)) : framer(options), defaults);
+    super(data, undefined, data == null ? sampler("fill", sampler("fillOpacity", options)) : options, defaults);
     this.imageRendering = impliedString(imageRendering, "auto");
     // When a constant fillOpacity is specified, treat it as if a constant
     // opacity had been specified instead; this will produce an equivalent
     // result, but simplifies rasterization (and in the case of the nearest
-    // rasterization method, allows a stroke to fill antialiasing seams).
+    // rasterization method, allows a stroke to fill antialiasing seams). TODO
+    // Remove this because it’s no longer needed; we don’t antialias.
     this.opacity ??= this.fillOpacity;
     this.fillOpacity = undefined;
   }
@@ -85,40 +99,45 @@ export class Raster extends AbstractRaster {
   }
   render(index, scales, channels, dimensions, context) {
     const {color} = scales;
-    const {x: X, y: Y} = channels;
-    let {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
-    const {document} = context;
-    const imageWidth = Math.abs(x2 - x1);
-    const imageHeight = Math.abs(y2 - y1);
-    const {
-      pixelSize,
-      width = Math.round(imageWidth / pixelSize),
-      height = Math.round(imageHeight / pixelSize),
-      imageRendering
-    } = this;
-    const canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    // If either X or Y are not given, then assume that F is a dense array of
-    // samples covering the entire grid in row-major order; in this case, the
-    // order of x1-x2 and y1-y2 matters, as the grid starts in x1, y1.
-    if (X && x2 < x1) [x2, x1] = [x1, x2];
-    if (Y && y2 < y1) [y2, y1] = [y1, y2];
-    const kx = width / imageWidth;
-    const ky = height / imageHeight;
+    const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
+    const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
+    const {projection, document} = context;
+
+    // If x1, y1, x2, y2 were specified, and a projection is in use (and thus
+    // the raster grid is necessarily an axis-aligned rectangle), then we can
+    // compute tighter bounds for the image, improving resolution. Note: this
+    // must match rasterBounds below exactly!
+    const x1 = projection == null && X1 ? X1[0] : marginLeft;
+    const y1 = projection == null && Y1 ? Y1[0] : marginTop;
+    const x2 = projection == null && X2 ? X2[0] : width - marginRight;
+    const y2 = projection == null && Y2 ? Y2[0] : height - marginBottom;
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const {pixelSize: k, width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = this;
+
+    // Interpolate the samples to fill the raster grid. If interpolate is null,
+    // then a continuous function is being sampled, and the raster grid is
+    // already aligned with the canvas.
     let {fill: F, fillOpacity: FO} = channels;
     if (this.interpolate) {
-      const IX = X && map(X, (x) => (x - x1) * kx, Float64Array);
-      const IY = Y && map(Y, (y) => (y - y1) * ky, Float64Array);
-      if (F) F = this.interpolate(index, width, height, IX, IY, F);
-      if (FO) FO = this.interpolate(index, width, height, IX, IY, FO);
+      const kx = w / dx;
+      const ky = h / dy;
+      const IX = map(X, (x) => (x - x1) * kx, Float64Array);
+      const IY = map(Y, (y) => (y - y1) * ky, Float64Array);
+      if (F) F = this.interpolate(index, w, h, IX, IY, F);
+      if (FO) FO = this.interpolate(index, w, h, IX, IY, FO);
     }
+
+    // Render the raster grid to the canvas, blurring if needed.
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
     const context2d = canvas.getContext("2d");
-    const image = context2d.createImageData(width, height);
+    const image = context2d.createImageData(w, h);
     const imageData = image.data;
     let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
     let a = 255;
-    for (let i = 0, n = width * height; i < n; ++i) {
+    for (let i = 0, n = w * h; i < n; ++i) {
       const j = i << 2;
       if (F) {
         const fi = color(F[i]);
@@ -136,6 +155,7 @@ export class Raster extends AbstractRaster {
     }
     if (this.blur > 0) blurImage(image, this.blur);
     context2d.putImageData(image, 0, 0);
+
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales)
@@ -143,10 +163,10 @@ export class Raster extends AbstractRaster {
         g
           .append("image")
           .attr("transform", `translate(${x1},${y1}) scale(${Math.sign(x2 - x1)},${Math.sign(y2 - y1)})`)
-          .attr("width", imageWidth)
-          .attr("height", imageHeight)
+          .attr("width", Math.abs(dx))
+          .attr("height", Math.abs(dy))
           .attr("preserveAspectRatio", "none")
-          .call(applyAttr, "image-rendering", imageRendering)
+          .call(applyAttr, "image-rendering", this.imageRendering)
           .call(applyDirectStyles, this)
           .attr("xlink:href", canvas.toDataURL())
       )
@@ -173,18 +193,17 @@ export function raster() {
   return new Raster(...maybeTuples(...arguments));
 }
 
-// If any of x1, y1, x2, or y2 are undefined, infers the corresponding value
-// from the frame dimensions.
-export function framer(options) {
-  return initializer(options, function (data, facets, {x1, y1, x2, y2}, scales, dimensions) {
-    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
-    const channels = {};
-    if (x1 === undefined) channels.x1 = {value: [marginLeft], filter: null};
-    if (y1 === undefined) channels.y1 = {value: [marginTop], filter: null};
-    if (x2 === undefined) channels.x2 = {value: [width - marginRight], filter: null};
-    if (y2 === undefined) channels.y2 = {value: [height - marginBottom], filter: null};
-    return {channels};
-  });
+// If x1, y1, x2, y2 were specified, and no projection is in use (and thus the
+// raster grid is necessarily an axis-aligned rectangle), then we can compute
+// tighter bounds for the image, improving resolution.
+export function rasterBounds({x1, y1, x2, y2}, scales, dimensions, {projection}) {
+  const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
+  return [
+    x1 && projection == null ? map(x1.value, scales[x1.scale] || identity)[0] : marginLeft,
+    y1 && projection == null ? map(y1.value, scales[y1.scale] || identity)[0] : marginTop,
+    x2 && projection == null ? map(x2.value, scales[x2.scale] || identity)[0] : width - marginRight,
+    y2 && projection == null ? map(y2.value, scales[y2.scale] || identity)[0] : height - marginBottom
+  ];
 }
 
 // Evaluates the function with the given name, if it exists, on the raster grid,
@@ -192,22 +211,22 @@ export function framer(options) {
 export function sampler(name, options = {}) {
   const {[name]: value} = options;
   if (typeof value !== "function") return options;
-  return initializer({...options, [name]: undefined}, function (data, facets, {x1, y1, x2, y2}, {x, y}) {
+  return initializer({...options, [name]: undefined}, function (data, facets, channels, scales, dimensions, context) {
     // TODO Allow projections, if invertible.
+    const {x, y} = scales;
     if (!x) throw new Error("missing scale: x");
     if (!y) throw new Error("missing scale: y");
-    let {width: w, height: h} = options;
-    const {pixelSize} = this;
-    (x1 = x(x1.value[0])), (y1 = y(y1.value[0])), (x2 = x(x2.value[0])), (y2 = y(y2.value[0]));
+    const [x1, y1, x2, y2] = rasterBounds(channels, scales, dimensions, context);
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const {pixelSize: k} = this;
     // Note: this must exactly match the defaults in render above!
-    if (w === undefined) w = Math.round(Math.abs(x2 - x1) / pixelSize);
-    if (h === undefined) h = Math.round(Math.abs(y2 - y1) / pixelSize);
-    const kx = (x2 - x1) / w;
-    const ky = (y2 - y1) / h;
-    (x1 += kx / 2), (y1 += ky / 2);
+    const {width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = options;
     const V = new Array(w * h);
-    for (let yi = 0, i = 0; yi < h; ++yi) {
-      for (let xi = 0; xi < w; ++xi, ++i) {
+    const kx = dx / w;
+    const ky = dy / h;
+    for (let yi = 0.5, i = 0; yi < h; ++yi) {
+      for (let xi = 0.5; xi < w; ++xi, ++i) {
         V[i] = value(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky));
       }
     }
@@ -377,4 +396,18 @@ function pick(random = Math.random) {
 
 function mixer(F, random) {
   return isNumeric(F) || isTemporal(F) ? blend : pick(random);
+}
+
+function denseX(x1, x2, width, height) {
+  const X = new Float64Array(width * height);
+  const X0 = X.subarray(0, width);
+  for (let i = 0; i < width; ++i) X[i] = ((x2 - x1) * (i + 0.5)) / width + x1;
+  for (let j = 1; j < height; ++j) X.set(X0, j * width);
+  return X;
+}
+
+function denseY(y1, y2, width, height) {
+  const Y = new Float64Array(width * height);
+  for (let j = 0; j < height; ++j) Y.fill(((y2 - y1) * (j + 0.5)) / height + y1, j * width, (j + 1) * width);
+  return Y;
 }

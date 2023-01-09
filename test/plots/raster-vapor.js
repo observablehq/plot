@@ -17,6 +17,25 @@ export async function rasterVapor() {
   });
 }
 
+export async function rasterVaporSqrt() {
+  return Plot.plot({
+    color: {scheme: "blues"},
+    y: {type: "sqrt"},
+    marks: [
+      Plot.raster(await vapor(), {
+        fill: (d) => d,
+        width: 360,
+        height: 180,
+        x1: -180,
+        y1: 90,
+        x2: 180,
+        y2: -90,
+        interpolate: "nearest"
+      })
+    ]
+  });
+}
+
 export async function rasterVaporEqualEarth() {
   return Plot.plot({
     projection: "equal-earth",
@@ -24,8 +43,12 @@ export async function rasterVaporEqualEarth() {
     marks: [
       Plot.raster(await vapor(), {
         fill: (d) => d,
-        x: (d, i) => (i % 360) - 180 + 0.5,
-        y: (d, i) => 90 - ((i / 360) | 0) + 0.5,
+        width: 360,
+        height: 180,
+        x1: -180,
+        y1: 90,
+        x2: 180,
+        y2: -90,
         interpolate: "random-walk",
         clip: "sphere"
       }),
@@ -41,8 +64,12 @@ export async function rasterVaporEqualEarthBarycentric() {
     marks: [
       Plot.raster(await vapor(), {
         fill: (d) => d,
-        x: (d, i) => (i % 360) - 180 + 0.5,
-        y: (d, i) => 90 - ((i / 360) | 0) + 0.5,
+        width: 360,
+        height: 180,
+        x1: -180,
+        y1: 90,
+        x2: 180,
+        y2: -90,
         interpolate: "barycentric",
         clip: "sphere"
       }),
