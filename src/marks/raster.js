@@ -254,7 +254,7 @@ function interpolateBarycentric(index, width, height, X, Y, V) {
   const nh = (height >> 2) - 1;
   const m = n + nw * 2 + nh * 2;
   const XY = new Float64Array(m * 2);
-  for (let i = 0; i < n; ++i) (XY[i * 2] = X[i]), (XY[i * 2 + 1] = Y[i]);
+  for (let i = 0; i < n; ++i) (XY[i * 2] = X[index[i]]), (XY[i * 2 + 1] = Y[index[i]]);
 
   // Add points along each edge, making sure to include the four corners for
   // complete coverage (with no chamfered edges).

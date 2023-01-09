@@ -33,3 +33,20 @@ export async function rasterVaporEqualEarth() {
     ]
   });
 }
+
+export async function rasterVaporEqualEarthBarycentric() {
+  return Plot.plot({
+    projection: "equal-earth",
+    color: {scheme: "blues"},
+    marks: [
+      Plot.raster(await vapor(), {
+        fill: (d) => d,
+        x: (d, i) => (i % 360) - 180 + 0.5,
+        y: (d, i) => 90 - ((i / 360) | 0) + 0.5,
+        interpolate: "barycentric",
+        clip: "sphere"
+      }),
+      Plot.sphere()
+    ]
+  });
+}
