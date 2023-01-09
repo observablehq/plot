@@ -73,7 +73,8 @@ function contourGeometry(options) {
       const {x: X, y: Y} = Position(channels, scales, context);
       const IX = X && map(X, (x) => (x - x1) * kx, Float64Array);
       const IY = Y && map(Y, (y) => (y - y1) * ky, Float64Array);
-      V = this.interpolate(facets[0], width, height, IX, IY, V); // TODO faceting?
+      const index = this.filter(facets[0], {x: channels.x, y: channels.y}, {x: IX, y: IY});
+      V = this.interpolate(index, width, height, IX, IY, V); // TODO faceting?
     }
 
     // Blur the raster grid, if desired.
@@ -94,12 +95,13 @@ function contourGeometry(options) {
       }
     }
 
-    // Compute any deferred channels.
+    // Compute any deferred channels. X and Y are set to as many zeroes as there
+    // are geometries, in order to pass the filter.
     const newChannels = {geometry: {value: geometries}};
     for (const key in this.channels) {
       const value = this.channels[key].value;
-      if (!value.defer) continue;
-      newChannels[key] = {value: valueof(geometries, value.defer), scale: true};
+      if (value.defer) newChannels[key] = {value: valueof(geometries, value.defer), scale: true};
+      else if (key === "x" || key === "y") newChannels[key] = {value: valueof(geometries, 0)};
     }
 
     return {data: geometries, facets: [range(geometries)], channels: newChannels};
