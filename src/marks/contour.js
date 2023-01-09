@@ -82,6 +82,11 @@ export class Contour extends AbstractRaster {
     }
     this.contourChannels = contourChannels;
   }
+  filter(index, {x, y, value, ...channels}, values) {
+    // Only filter channels constructed by the contourGeometry initializer; the
+    // x, y, and value channels must be filtered by the initializer itself.
+    return super.filter(index, channels, values);
+  }
   render(index, scales, channels, dimensions, context) {
     const {geometry: G} = channels;
     const path = geoPath();
@@ -119,7 +124,9 @@ function contourGeometry(options) {
       const {x: X, y: Y} = Position(channels, scales, context);
       const IX = X && map(X, (x) => (x - x1) * kx, Float64Array);
       const IY = Y && map(Y, (y) => (y - y1) * ky, Float64Array);
-      const index = this.filter(facets[0], {x: channels.x, y: channels.y}, {x: IX, y: IY});
+      // Since the contour mark normally skips filtering on x and y, here we’re
+      // careful to use different names to apply filtering.
+      const index = this.filter(facets[0], {ix: channels.x, iy: channels.y}, {ix: IX, iy: IY});
       V = this.interpolate(index, width, height, IX, IY, V); // TODO faceting?
     }
 
