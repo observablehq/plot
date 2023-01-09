@@ -85,13 +85,6 @@ export class Raster extends AbstractRaster {
     const {imageRendering} = options;
     super(data, undefined, data == null ? sampler("fill", sampler("fillOpacity", options)) : options, defaults);
     this.imageRendering = impliedString(imageRendering, "auto");
-    // When a constant fillOpacity is specified, treat it as if a constant
-    // opacity had been specified instead; this will produce an equivalent
-    // result, but simplifies rasterization (and in the case of the nearest
-    // rasterization method, allows a stroke to fill antialiasing seams). TODO
-    // Remove this because it’s no longer needed; we don’t antialias.
-    this.opacity ??= this.fillOpacity;
-    this.fillOpacity = undefined;
   }
   // Ignore the color scale, so the fill channel is returned unscaled.
   scale(channels, {color, ...scales}, context) {
@@ -136,7 +129,7 @@ export class Raster extends AbstractRaster {
     const image = context2d.createImageData(w, h);
     const imageData = image.data;
     let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
-    let a = 255;
+    let a = (this.fillOpacity ?? 1) * 255;
     for (let i = 0, n = w * h; i < n; ++i) {
       const j = i << 2;
       if (F) {
