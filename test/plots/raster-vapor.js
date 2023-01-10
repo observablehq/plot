@@ -3,9 +3,9 @@ import * as d3 from "d3";
 
 async function vapor() {
   return d3
-    .csvParseRows(await d3.text("data/water-vapor.csv"), d3.autoType)
+    .csvParseRows(await d3.text("data/water-vapor.csv"))
     .flat()
-    .map((x) => (x === 99999 ? null : x));
+    .map((x) => (x === "99999.0" ? NaN : +x));
 }
 
 export async function rasterVapor() {
