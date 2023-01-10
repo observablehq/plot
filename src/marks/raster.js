@@ -1,6 +1,7 @@
 import {blurImage, Delaunay, randomLcg, rgb} from "d3";
+import {valueObject} from "../channel.js";
 import {create} from "../context.js";
-import {map, first, second, third, isTuples, isNumeric, isTemporal, take, identity} from "../options.js";
+import {map, first, second, third, isTuples, isNumeric, isTemporal, take} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -92,18 +93,9 @@ export class Raster extends AbstractRaster {
   }
   render(index, scales, channels, dimensions, context) {
     const {color} = scales;
-    const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
-    const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
-    const {projection, document} = context;
-
-    // If x1, y1, x2, y2 were specified, and a projection is in use (and thus
-    // the raster grid is necessarily an axis-aligned rectangle), then we can
-    // compute tighter bounds for the image, improving resolution. Note: this
-    // must match rasterBounds below exactly!
-    const x1 = projection == null && X1 ? X1[0] : marginLeft;
-    const y1 = projection == null && Y1 ? Y1[0] : marginTop;
-    const x2 = projection == null && X2 ? X2[0] : width - marginRight;
-    const y2 = projection == null && Y2 ? Y2[0] : height - marginBottom;
+    const {x: X, y: Y} = channels;
+    const {document} = context;
+    const [x1, y1, x2, y2] = renderBounds(channels, dimensions, context);
     const dx = x2 - x1;
     const dy = y2 - y1;
     const {pixelSize: k, width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = this;
@@ -186,17 +178,27 @@ export function raster() {
   return new Raster(...maybeTuples(...arguments));
 }
 
+// See rasterBounds; this version is called during render.
+function renderBounds({x1, y1, x2, y2}, dimensions, {projection}) {
+  const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
+  return [
+    x1 && projection == null ? x1[0] : marginLeft,
+    y1 && projection == null ? y1[0] : marginTop,
+    x2 && projection == null ? x2[0] : width - marginRight,
+    y2 && projection == null ? y2[0] : height - marginBottom
+  ];
+}
+
 // If x1, y1, x2, y2 were specified, and no projection is in use (and thus the
 // raster grid is necessarily an axis-aligned rectangle), then we can compute
 // tighter bounds for the image, improving resolution.
-export function rasterBounds({x1, y1, x2, y2}, scales, dimensions, {projection}) {
-  const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
-  return [
-    x1 && projection == null ? map(x1.value, scales[x1.scale] || identity)[0] : marginLeft,
-    y1 && projection == null ? map(y1.value, scales[y1.scale] || identity)[0] : marginTop,
-    x2 && projection == null ? map(x2.value, scales[x2.scale] || identity)[0] : width - marginRight,
-    y2 && projection == null ? map(y2.value, scales[y2.scale] || identity)[0] : height - marginBottom
-  ];
+export function rasterBounds({x1, y1, x2, y2}, scales, dimensions, context) {
+  const channels = {};
+  if (x1) channels.x1 = x1;
+  if (y1) channels.y1 = y1;
+  if (x2) channels.x2 = x2;
+  if (y2) channels.y2 = y2;
+  return renderBounds(valueObject(channels, scales), dimensions, context);
 }
 
 // Evaluates the function with the given name, if it exists, on the raster grid,
