@@ -161,18 +161,18 @@ export function ScaleQuantile(
     reverse
   }
 ) {
-  if (range === undefined)
+  if (range === undefined) {
     range =
       interpolate !== undefined
         ? quantize(interpolate, n)
         : registry.get(key) === color
         ? ordinalRange(scheme, n)
         : undefined;
-  return ScaleThreshold(key, channels, {
-    domain: scaleQuantile(domain, range === undefined ? {length: n} : range).quantiles(),
-    range,
-    reverse
-  });
+  }
+  if (domain.length > 0) {
+    domain = scaleQuantile(domain, range === undefined ? {length: n} : range).quantiles();
+  }
+  return ScaleThreshold(key, channels, {domain, range, reverse});
 }
 
 export function ScaleQuantize(
