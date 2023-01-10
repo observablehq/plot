@@ -1,4 +1,4 @@
-import {blurImage, Delaunay, randomLcg, rgb} from "d3";
+import {blurImage, Delaunay, randomLcg, range, rgb} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {map, first, second, third, isTuples, isNumeric, isTemporal, take} from "../options.js";
@@ -77,7 +77,7 @@ export class AbstractRaster extends Mark {
     this.height = height;
     this.pixelSize = number(pixelSize, "pixelSize");
     this.blur = number(blur, "blur");
-    this.interpolate = interpolate === undefined && x == null && y == null ? null : maybeInterpolate(interpolate);
+    this.interpolate = x == null || y == null ? null : maybeInterpolate(interpolate); // interpolation requires x & y
   }
 }
 
@@ -99,11 +99,13 @@ export class Raster extends AbstractRaster {
     const dx = x2 - x1;
     const dy = y2 - y1;
     const {pixelSize: k, width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = this;
+    const n = w * h;
 
     // Interpolate the samples to fill the raster grid. If interpolate is null,
     // then a continuous function is being sampled, and the raster grid is
     // already aligned with the canvas.
     let {fill: F, fillOpacity: FO} = channels;
+    let offset = 0;
     if (this.interpolate) {
       const kx = w / dx;
       const ky = h / dy;
@@ -112,6 +114,10 @@ export class Raster extends AbstractRaster {
       if (F) F = this.interpolate(index, w, h, IX, IY, F);
       if (FO) FO = this.interpolate(index, w, h, IX, IY, FO);
     }
+
+    // When faceting without interpolation, as when sampling a continuous
+    // function, offset into the dense raster grid based on the current facet.
+    else if (this.data == null && index) offset = index[0] * n;
 
     // Render the raster grid to the canvas, blurring if needed.
     const canvas = document.createElement("canvas");
@@ -122,17 +128,17 @@ export class Raster extends AbstractRaster {
     const imageData = image.data;
     let {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
     let a = (this.fillOpacity ?? 1) * 255;
-    for (let i = 0, n = w * h; i < n; ++i) {
+    for (let i = 0; i < n; ++i) {
       const j = i << 2;
       if (F) {
-        const fi = color(F[i]);
+        const fi = color(F[i + offset]);
         if (fi == null) {
           imageData[j + 3] = 0;
           continue;
         }
         ({r, g, b} = rgb(fi));
       }
-      if (FO) a = FO[i] * 255;
+      if (FO) a = FO[i + offset] * 255;
       imageData[j + 0] = r;
       imageData[j + 1] = g;
       imageData[j + 2] = b;
@@ -207,8 +213,10 @@ export function sampler(name, options = {}) {
   const {[name]: value} = options;
   if (typeof value !== "function") return options;
   return initializer({...options, [name]: undefined}, function (data, facets, channels, scales, dimensions, context) {
-    // TODO Allow projections, if invertible.
+    const FX = channels.fx?.value;
+    const FY = channels.fy?.value;
     const {x, y} = scales;
+    // TODO Allow projections, if invertible.
     if (!x) throw new Error("missing scale: x");
     if (!y) throw new Error("missing scale: y");
     const [x1, y1, x2, y2] = rasterBounds(channels, scales, dimensions, context);
@@ -217,12 +225,19 @@ export function sampler(name, options = {}) {
     const {pixelSize: k} = this;
     // Note: this must exactly match the defaults in render above!
     const {width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = options;
-    const V = new Array(w * h);
+    const m = facets ? Math.min(FX ? FX.length : Infinity, FY ? FY.length : Infinity) : 1;
+    const V = new Array(w * h * m);
     const kx = dx / w;
     const ky = dy / h;
-    for (let yi = 0.5, i = 0; yi < h; ++yi) {
-      for (let xi = 0.5; xi < w; ++xi, ++i) {
-        V[i] = value(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky));
+    let i = 0;
+    for (const fi of range(m)) {
+      const f = facets ? {} : undefined;
+      if (FX) f.fx = FX[fi];
+      if (FY) f.fy = FY[fi];
+      for (let yi = 0.5; yi < h; ++yi) {
+        for (let xi = 0.5; xi < w; ++xi, ++i) {
+          V[i] = value(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky), f);
+        }
       }
     }
     return {data: V, facets, channels: {[name]: {value: V, scale: true}}};

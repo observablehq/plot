@@ -144,7 +144,7 @@ export function plot(options = {}) {
       const {facets, channels} = mark.initializer(
         state.data,
         state.facets,
-        state.channels,
+        facetStateByMark.has(mark) ? {...facetStateByMark.get(mark).channels, ...state.channels} : state.channels,
         scales,
         subdimensions,
         context
@@ -593,8 +593,7 @@ function maybeTopFacet(facet, options) {
   if (facet == null) return;
   const {x, y} = facet;
   if (x == null && y == null) return;
-  const data = arrayify(facet.data);
-  if (data == null) throw new Error(`missing facet data`);
+  const data = arrayify(facet.data ?? x ?? y);
   const channels = {};
   if (x != null) channels.fx = Channel(data, {value: x, scale: "fx"});
   if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});
@@ -618,8 +617,7 @@ function maybeMarkFacet(mark, topFacetState, options) {
   // here with maybeTopFacet that we could reduce.
   const {fx: x, fy: y} = mark;
   if (x != null || y != null) {
-    const data = arrayify(mark.data);
-    if (data == null) throw new Error(`missing facet data in ${mark.ariaLabel}`);
+    const data = arrayify(mark.data ?? x ?? y);
     const channels = {};
     if (x != null) channels.fx = Channel(data, {value: x, scale: "fx"});
     if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});

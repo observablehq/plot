@@ -73,7 +73,7 @@ export function density(data, options = {}) {
   return new Density(data, {...remainingOptions, x, y});
 }
 
-const dropChannels = new Set(["x", "y", "z", "weight"]);
+const dropChannels = new Set(["x", "y", "z", "weight", "fx", "fy"]);
 
 function densityInitializer(options, fillDensity, strokeDensity) {
   const k = 100; // arbitrary scale factor for readability
