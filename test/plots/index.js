@@ -64,6 +64,7 @@ export {default as downloads} from "./downloads.js";
 export {default as downloadsOrdinal} from "./downloads-ordinal.js";
 export {default as driving} from "./driving.js";
 export {default as empty} from "./empty.js";
+export {default as emptyFacet} from "./empty-facet.js";
 export {default as emptyLegend} from "./empty-legend.js";
 export {default as emptyX} from "./empty-x.js";
 export {default as energyProduction} from "./energy-production.js";

@@ -89,7 +89,7 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
       const Y2 = setY2(new Float64Array(n));
       const facetstacks = [];
       for (const facet of facets) {
-        const stacks = X ? Array.from(group(facet, (i) => X[i]).values()) : [facet];
+        const stacks = X ? Array.from(group(facet ?? [], (i) => X[i]).values()) : [facet];
         if (O) applyOrder(stacks, O);
         for (const stack of stacks) {
           let yn = 0,
