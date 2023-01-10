@@ -46,11 +46,15 @@ export async function rasterVaporPeters() {
   const radians = Math.PI / 180;
   return Plot.plot({
     color: {scheme: "blues"},
-    x: {transform: (t) => t * radians},
-    y: {transform: (t) => 2 * Math.sin(t * radians)},
-    width: 500 * 1.5637,
-    height: 500,
-    axis: null,
+    y: {
+      transform: (t) => Math.sin(t * radians),
+      ticks: d3.range(-60, 90, 20).map((t) => Math.sin(t * radians)),
+      tickFormat: (d) => Math.round(Math.asin(d) / radians)
+    },
+    width: Math.floor(30 + (500 * Math.PI) / 2),
+    height: 500 + 20,
+    marginLeft: 30,
+    marginBottom: 20,
     marks: [
       Plot.raster(await vapor(), {
         fill: (d) => d,
