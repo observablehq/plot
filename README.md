@@ -2888,6 +2888,18 @@ Plot.column is typically used by options transforms to define new channels; the 
 
 <!-- jsdocEnd column -->
 
+#### Plot.identity
+
+<!-- jsdoc identity -->
+
+This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data:
+
+```js
+Plot.raster(await readValues(), {width: 300, height: 200, fill: Plot.identity})
+```
+
+<!-- jsdocEnd identity -->
+
 ## Initializers
 
 Initializers can be used to transform and derive new channels prior to rendering. Unlike transforms which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. Initializers are invoked *after* the initial scales are constructed and can modify the channels or derive new channels; these in turn may (or may not, as desired) be passed to scales.
