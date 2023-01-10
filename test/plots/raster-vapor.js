@@ -48,7 +48,7 @@ export async function rasterVaporPeters() {
     color: {scheme: "blues"},
     y: {
       transform: (t) => Math.sin(t * radians),
-      ticks: d3.range(-60, 90, 20).map((t) => Math.sin(t * radians)),
+      ticks: d3.range(-80, 90, 20).map((t) => Math.sin(t * radians)),
       tickFormat: (d) => Math.round(Math.asin(d) / radians)
     },
     width: Math.floor(30 + (500 * Math.PI) / 2),
