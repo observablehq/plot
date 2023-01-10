@@ -42,10 +42,15 @@ export async function contourVapor() {
   });
 }
 
-export async function rasterVaporSqrt() {
+export async function rasterVaporPeters() {
+  const radians = Math.PI / 180;
   return Plot.plot({
     color: {scheme: "blues"},
-    y: {type: "sqrt"},
+    x: {transform: (t) => t * radians},
+    y: {transform: (t) => 2 * Math.sin(t * radians)},
+    width: 500 * 1.5637,
+    height: 500,
+    axis: null,
     marks: [
       Plot.raster(await vapor(), {
         fill: (d) => d,
