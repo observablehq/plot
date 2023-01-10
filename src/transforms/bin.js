@@ -4,6 +4,7 @@ import {
   range,
   identity,
   maybeColumn,
+  maybeInterval,
   maybeTuple,
   maybeColorChannel,
   maybeValue,
@@ -28,7 +29,6 @@ import {
   reduceIdentity
 } from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
-import {maybeInterval} from "./interval.js";
 
 /** @jsdoc binX */
 export function binX(outputs = {y: "count"}, options = {}) {

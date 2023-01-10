@@ -1,25 +1,5 @@
-import {range} from "d3";
-import {isTemporal, labelof, map, maybeValue, valueof} from "../options.js";
+import {isTemporal, labelof, map, maybeInterval, maybeValue, valueof} from "../options.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
-
-// TODO Allow the interval to be specified as a string, e.g. “day” or “hour”?
-// This will require the interval knowing the type of the associated scale to
-// chose between UTC and local time (or better, an explicit timeZone option).
-export function maybeInterval(interval) {
-  if (interval == null) return;
-  if (typeof interval === "number") {
-    const n = interval;
-    // Note: this offset doesn’t support the optional step argument for simplicity.
-    return {
-      floor: (d) => n * Math.floor(d / n),
-      offset: (d) => d + n,
-      range: (lo, hi) => range(Math.ceil(lo / n), hi / n).map((x) => n * x)
-    };
-  }
-  if (typeof interval.floor !== "function" || typeof interval.offset !== "function")
-    throw new Error("invalid interval; missing floor or offset function");
-  return interval;
-}
 
 // The interval may be specified either as x: {value, interval} or as {x,
 // interval}. The former is used, for example, for Plot.rect.

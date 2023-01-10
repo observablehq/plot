@@ -5,13 +5,13 @@ import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, where, yes} from "./options.js";
+import {arrayify, isDomainSort, isScaleOptions, keyword, map, range, where, yes} from "./options.js";
+import {maybeNamed, maybeInterval} from "./options.js";
 import {maybeProject} from "./projection.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
-import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 /** @jsdoc plot */
