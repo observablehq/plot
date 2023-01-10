@@ -36,7 +36,7 @@ export class Contour extends AbstractRaster {
     // For any channel specified as the literal (contour threshold) "value"
     // (maybe because of the promotion above), propagate the label from the
     // original value definition.
-    if (value !== undefined) {
+    if (value != null) {
       const v = {transform: (D) => D.map((d) => d.value), label: labelof(value)};
       for (const key in channels) {
         if (options[key] === "value") {
