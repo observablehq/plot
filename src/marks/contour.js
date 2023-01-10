@@ -1,10 +1,11 @@
-import {blur2, contours, geoPath, map, thresholdSturges} from "d3";
+import {blur2, contours, extent, geoPath, map, thresholdSturges} from "d3";
 import {Channels} from "../channel.js";
 import {create} from "../context.js";
 import {labelof, range, identity} from "../options.js";
 import {Position} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, styles} from "../style.js";
 import {initializer} from "../transforms/basic.js";
+import {maybeThresholds} from "../transforms/bin.js";
 import {AbstractRaster, maybeTuples, rasterBounds, sampler} from "./raster.js";
 
 const defaults = {
@@ -104,8 +105,8 @@ export class Contour extends AbstractRaster {
   }
 }
 
-function contourGeometry(options) {
-  const {thresholds = thresholdSturges} = options; // TODO thresholdAuto; match density mark
+function contourGeometry({thresholds = thresholdSturges, interval, ...options}) {
+  thresholds = maybeThresholds(thresholds, interval);
   return initializer(options, function (data, facets, channels, scales, dimensions, context) {
     const [x1, y1, x2, y2] = rasterBounds(channels, scales, dimensions, context);
     const dx = x2 - x1;
@@ -130,8 +131,17 @@ function contourGeometry(options) {
     // Blur the raster grid, if desired.
     if (this.blur > 0) blur2({data: V, width: w, height: h}, this.blur);
 
+    // Compute the contour thresholds; d3-contour unlike d3-array doesn’t pass
+    // the min and max automatically, so we do that here to normalize.
+    const t =
+      typeof thresholds?.range === "function"
+        ? thresholds.range(...finiteExtent(V))
+        : typeof thresholds === "function"
+        ? thresholds(V, ...finiteExtent(V))
+        : thresholds;
+
     // Compute the contours.
-    const geometries = contours().thresholds(thresholds).size([w, h])(V);
+    const geometries = contours().thresholds(t).size([w, h])(V);
 
     // Rescale the contour multipolygon from grid to screen coordinates.
     for (const {coordinates} of geometries) {
@@ -156,4 +166,8 @@ function contourGeometry(options) {
 
 export function contour() {
   return new Contour(...maybeTuples(...arguments));
+}
+
+function finiteExtent(V) {
+  return extent(V, (x) => (isFinite(x) ? x : NaN));
 }

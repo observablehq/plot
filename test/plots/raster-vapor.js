@@ -31,6 +31,7 @@ export async function contourVapor() {
         y1: 90,
         x2: 180,
         y2: -90,
+        interval: 0.25,
         blur: 0.5,
         stroke: "currentColor",
         strokeWidth: 0.5,

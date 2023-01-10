@@ -262,7 +262,7 @@ function maybeBin(options) {
   return bin;
 }
 
-function maybeThresholds(thresholds, interval) {
+export function maybeThresholds(thresholds, interval) {
   if (thresholds === undefined) {
     return interval === undefined ? thresholdAuto : maybeRangeInterval(interval);
   }
