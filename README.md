@@ -1112,6 +1112,66 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 <!-- jsdocEnd cellY -->
 
+
+### Contour
+
+[Source](./src/marks/contour.js) · [Examples](https://observablehq.com/@observablehq/plot-contour) · Renders contour polygons from two-dimensional samples.
+
+#### Plot.contour(*data*, *options*)
+
+<!-- jsdoc contour -->
+
+Returns a new contour mark with the given *data* and *options*. The *data* represents a discrete set of samples in abstract coordinates, bound to the scales *x* and *y*, and a **value** channel.
+
+Most of the options are identical to the [raster](#raster) mark’s options, which is used internally to compute a rectangular grid of numeric values. Marching squares are then applied to derive the contour polygons for each threshold value.
+
+The following options define the value channel and the aesthetics of the contours:
+* **value** - the sample’s value (a channel); as a shorthand notation, it can be defined by setting either fill, fillOpacity or stroke
+* **fill** - the contour’s fill color; if a channel, bound to the *color* scale
+* **fillOpacity** - the contour’s opacity; if a channel, bound to the *opacity* scale
+* **stroke** - the contour’s stroke color; if a channel, bound to the *color* scale; defaults to currentColor
+* **strokeOpacity** - the (constant or variable) contour’s stroke opacity; if a channel, bound to the *opacity* scale; defaults to 1
+* **strokeWidth** - the (constant or variable) contour’s stroke width; defaults to 1
+* **thresholds** - the thresholds — an array of threshold values; if a *count* is specified instead of an array of thresholds, then the input values’ extent will be uniformly divided into approximately *count* bins. Defaults to [Sturges’s formula](https://github.com/d3/d3-contour/blob/main/README.md#contours_thresholds).
+* **x** and **y** - the sample’s coordinates.
+* **interpolate** - the interpolate method (see [raster](#raster) for details).
+* **blur** - the blur radius, a non-negative number of pixels, that defaults to 0.
+
+Each sample is projected onto the coordinate system of a rectangle with dimensions that may be specified directly with the following options:
+
+* **width** - the number of pixels on each horizontal line
+* **height** - the number of lines; a positive integer
+
+Alternatively, the width and height of the raster can be imputed from the starting and ending positions for x and y, and a pixel size:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+* **pixelSize** - the density of the raster image; defaults to 1
+
+If a width has been specified, x1 defaults to 0 and x2 defaults to width; similarly, if a height has been specified, y1 defaults to 0 and y2 defaults to height. Otherwise, if data has been specified, x1, y1, x2, and y2 respectively default to the frame’s left, top, right, and bottom, coordinates. Lastly, if no data has been specified, and fill is a function of x and y, you must specify all of x1, x2, y1 and y2 to define the domain (see below).
+
+The defaults for this mark make it convenient to draw thresholds from a flat array of values representing a rectangular matrix:
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: volcano.values, thresholds: 5})
+```
+
+When *data* is not specified and *value* is a function, a sample is taken for every pixel of the raster, which allows to draw contours from a function and a two-dimensional domain:
+
+```js
+Plot.contour({
+  fill: (x, y) => x * y * Math.sin(x) * Math.sin(y),
+  x1: 0,
+  x2: 2 * Math.PI,
+  y1: 0,
+  y2: 2 * Math.PI
+})
+```
+
+<!-- jsdocEnd contour -->
+
 ### Delaunay
 
 [<img src="./img/voronoi.png" width="320" height="198" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
@@ -1527,7 +1587,8 @@ Alternatively, the width and height of the raster can be imputed from the starti
 * **y2** - the ending vertical position; bound to the *y* scale
 * **pixelSize** - the density of the raster image; defaults to 1
 
-The abstract coordinates of the raster x1, x2, y1 and y2 must all be defined. If a width has been specified, x1 defaults to 0 and x2 defaults to width; similarly, if a height has been specified, y1 defaults to 0 and y2 defaults to height.
+If a width has been specified, x1 defaults to 0 and x2 defaults to width; similarly, if a height has been specified, y1 defaults to 0 and y2 defaults to height. Otherwise, if data has been specified, x1, y1, x2, and y2 respectively default to the frame’s left, top, right, and bottom, coordinates. Lastly, if no data has been specified, and fill is a function of x and y, you must specify all of x1, x2, y1 and y2 to define the domain (see below).
+
 
 The following options are supported:
 
@@ -1535,15 +1596,16 @@ The following options are supported:
 * **fillOpacity** - the sample’s opacity; if a channel, bound to the *opacity* scale
 * **x** and **y** - the sample’s coordinates
 * **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering) attribute of the image; defaults to auto, which blends neighboring samples with bilinear interpolation. A typical setting is pixelated, that asks the browser to render each pixel as a solid rectangle (unfortunately not supported by Webkit).
-* **rasterize** - the rasterize method.
+* **interpolate** - the interpolate method.
+* **blur** - the blur radius, a non-negative number of pixels, that defaults to 0.
 
-The rasterize option supports the following settings:
-* none - default if the *x* and *y* options are not null: paints the pixel under the (floor rounded) coordinates of each sample—if inside the raster
+The interpolate option supports the following settings:
+* none - default if the *x* and *y* options are not null: assigns the value to the pixel under the (floor rounded) coordinates of each sample—if inside the raster
 * dense - default otherwise; assumes that the data describes every pixel on the raster of dimensions width × height, starting from the top left, in row-major order
-* nearest - colors each pixel with the value of the closest sample, resulting in Voronoi cells
-* barycentric - does a Delaunay triangulation of the samples, then colors each triangle’s interior with a mix of the values of its vertices, weighted by distance; points outside the convex hull are colored by extrapolation
-* random-walk - colors a pixel by walking randomly and picking the value of the first sample reached
-* a function that receives the canvas, the index, the scales, the channels (with fill unscaled), and additional pixel channels x and y with the pixels’ coordinates in the raster coordinate system.
+* nearest - evaluates each pixel with the closest sample, resulting in Voronoi cells
+* barycentric - does a Delaunay triangulation of the samples, then evaluates each triangle’s interior with a mix of the values of its vertices, weighted by the distance to each of the vertices; points outside the convex hull are extrapolated
+* random-walk - evaluates a pixel by simulating a random walk, and picking the value of the first sample reached
+* a function that receives a sample index, width and height of the raster, the *x* and *y* positions of the samples (in the coordinate system of the raster), and an array of (unscaled) values, and must return a dense array of width * height values, organized in row-major order.
 
 The defaults for this mark make it convenient to draw an image from a flat array of values representing a rectangular matrix:
 
