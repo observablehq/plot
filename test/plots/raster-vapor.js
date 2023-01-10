@@ -44,17 +44,21 @@ export async function contourVapor() {
 
 export async function rasterVaporPeters() {
   const radians = Math.PI / 180;
+  const sin = (y) => Math.sin(y * radians);
+  const asin = (y) => Math.asin(y) / radians;
   return Plot.plot({
-    color: {scheme: "blues"},
-    y: {
-      transform: (t) => Math.sin(t * radians),
-      ticks: d3.range(-80, 90, 20).map((t) => Math.sin(t * radians)),
-      tickFormat: (d) => Math.round(Math.asin(d) / radians)
-    },
     width: Math.floor(30 + (500 * Math.PI) / 2),
     height: 500 + 20,
     marginLeft: 30,
     marginBottom: 20,
+    y: {
+      transform: sin,
+      ticks: d3.ticks(-80, 80, 10).map(sin),
+      tickFormat: (y) => Math.round(asin(y))
+    },
+    color: {
+      scheme: "blues"
+    },
     marks: [
       Plot.raster(await vapor(), {
         fill: (d) => d,
