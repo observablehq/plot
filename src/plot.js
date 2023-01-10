@@ -303,7 +303,7 @@ export function plot(options = {}) {
           if (facets) {
             const fi = facetPosition.get(key);
             facet = facets[fi] ?? facets[0];
-            if (!facet) continue;
+            if (!facet?.length) continue;
             facet = mark.filter(facet, channels, values);
             facet.fi = fi;
           }
@@ -655,8 +655,8 @@ function maybeMarkFacet(mark, topFacetState, options) {
 // Facet filter, by mark; for now only the "eq" filter is provided.
 function filterFacets(facets, {channels: {fx, fy}, groups}) {
   return fx && fy
-    ? facets.map(({x, y}) => groups.get(x)?.get(y))
+    ? facets.map(({x, y}) => groups.get(x)?.get(y) ?? [])
     : fx
-    ? facets.map(({x}) => groups.get(x))
-    : facets.map(({y}) => groups.get(y));
+    ? facets.map(({x}) => groups.get(x) ?? [])
+    : facets.map(({y}) => groups.get(y) ?? []);
 }
