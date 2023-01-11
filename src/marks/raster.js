@@ -1,10 +1,11 @@
-import {blurImage, Delaunay, randomLcg, rgb} from "d3";
+import {blurImage, Delaunay, rgb} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {map, first, second, third, isTuples, isNumeric, isTemporal, take} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
+import {noise} from "../noise.js";
 
 const defaults = {
   ariaLabel: "raster",
@@ -269,7 +270,7 @@ function interpolateNone(index, width, height, X, Y, V) {
 }
 
 function interpolateBarycentric(index, width, height, X, Y, V) {
-  const random = randomLcg(42); // TODO allow configurable rng?
+  const random = noise(); // TODO allow configurable rng?
 
   // Flatten the input coordinates to prepare to insert extrapolated points
   // along the perimeter of the grid (so there’s no blank output).
@@ -326,7 +327,7 @@ function interpolateBarycentric(index, width, height, X, Y, V) {
         if (gb < 0) continue;
         const gc = 1 - ga - gb;
         if (gc < 0) continue;
-        W[x + width * y] = mix(va, ga, vb, gb, vc, gc);
+        W[x + width * y] = mix(va, ga, vb, gb, vc, gc, x, y, 0);
       }
     }
   }
@@ -358,7 +359,7 @@ function interpolateNearest(index, width, height, X, Y, V) {
 // see https://observablehq.com/@observablehq/walk-on-spheres-precision
 function interpolateRandomWalk(index, width, height, X, Y, V) {
   const W = new V.constructor(width * height);
-  const random = randomLcg(42); // TODO allow configurable rng?
+  const random = noise(); // TODO allow configurable rng?
   const delaunay = Delaunay.from(
     index,
     (i) => X[i],
@@ -376,7 +377,7 @@ function interpolateRandomWalk(index, width, height, X, Y, V) {
       let distance; // distance to closest sample
       let step = 0; // count of steps for this walk
       while ((distance = Math.hypot(X[index[iw]] - cx, Y[index[iw]] - cy)) > 0.5 && step < 2) {
-        const angle = random() * 2 * Math.PI;
+        const angle = random(x, y, step) * 2 * Math.PI;
         cx += Math.cos(angle) * distance;
         cy += Math.sin(angle) * distance;
         iw = delaunay.find(cx, cy, iw);
@@ -393,8 +394,8 @@ function blend(a, ca, b, cb, c, cc) {
 }
 
 function pick(random = Math.random) {
-  return (a, ca, b, cb, c) => {
-    const u = random();
+  return (a, ca, b, cb, c, cc, x, y, z) => {
+    const u = random(x, y, z);
     return u < ca ? a : u < ca + cb ? b : c;
   };
 }
