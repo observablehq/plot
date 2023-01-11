@@ -1126,9 +1126,7 @@ The *value* channel may alternatively be specified as a continuous function *f*(
 Plot.contour({x1: 0, y1: 0, x2: 4, y2: 4, value: (x, y) => Math.sin(x) * Math.cos(y)})
 ```
 
-The contour mark shares many options with the [raster](#raster) mark, including the **interpolate** option to specify the [spatial interpolation method](#spatial-interpolation). The interpolation method is ignored when the *value* channel is a function of *x* and *y*, and otherwise defaults to *nearest*.
-
-For smoother contours, the **blur** option (default 0) specifies a non-negative pixel radius for smoothing prior to applying marching squares. The **smooth** option (default true) specifies whether to apply linear interpolation after marching squares when computing contour polygons. The **thresholds** and **interval** options specify the contour thresholds; see the [bin transform](#bin) for details.
+The contour mark shares many options with the [raster](#raster) mark, including the **interpolate** option to specify the [spatial interpolation method](#spatial-interpolation). The interpolation method is ignored when the *value* channel is a function of *x* and *y*, and otherwise defaults to *nearest*. For smoother contours, the **blur** option (default 0) specifies a non-negative pixel radius for smoothing prior to applying marching squares. The **smooth** option (default true) specifies whether to apply linear interpolation after marching squares when computing contour polygons. The **thresholds** and **interval** options specify the contour thresholds; see the [bin transform](#bin) for details.
 
 The resolution of the raster grid may be specified with the following options:
 
