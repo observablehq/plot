@@ -267,6 +267,7 @@ export {default as usStateCapitalsVoronoi} from "./us-state-capitals-voronoi.js"
 export {default as usStatePopulationChange} from "./us-state-population-change.js";
 export {default as vectorField} from "./vector-field.js";
 export {default as vectorFrame} from "./vector-frame.js";
+export {default as volcano} from "./volcano.js";
 export {default as walmarts} from "./walmarts.js";
 export {default as walmartsDecades} from "./walmarts-decades.js";
 export {default as walmartsDensity} from "./walmarts-density.js";
@@ -279,6 +280,13 @@ export {default as yearlyRequests} from "./yearly-requests.js";
 export {default as yearlyRequestsDot} from "./yearly-requests-dot.js";
 export {default as yearlyRequestsLine} from "./yearly-requests-line.js";
 
+export * from "./function-contour.js";
+export * from "./heatmap.js";
 export * from "./legend-color.js";
 export * from "./legend-opacity.js";
 export * from "./legend-symbol.js";
+export * from "./raster-ca55.js";
+export * from "./raster-penguins.js";
+export * from "./raster-vapor.js";
+export * from "./raster-walmart.js";
+export * from "./volcano-contour.js";

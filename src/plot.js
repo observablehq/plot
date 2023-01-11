@@ -1,17 +1,17 @@
-import {cross, group, sum, select, sort, InternMap} from "d3";
+import {cross, group, sum, select, sort, InternMap, rollup} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, where, yes} from "./options.js";
+import {arrayify, isDomainSort, isScaleOptions, keyword, map, range, where, yes} from "./options.js";
+import {maybeNamed, maybeInterval} from "./options.js";
 import {maybeProject} from "./projection.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
-import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 /** @jsdoc plot */
@@ -168,27 +168,23 @@ export function plot(options = {}) {
         throw new Error(`initializers cannot declare position scales: ${key}`);
       }
     }
-    const newScaleDescriptors = Scales(
-      addScaleChannels(new Map(), stateByMark, (key) => newByScale.has(key)),
-      options
-    );
+    const newChannelsByScale = new Map();
+    addScaleChannels(newChannelsByScale, stateByMark, (key) => newByScale.has(key));
+    addScaleChannels(channelsByScale, stateByMark, (key) => newByScale.has(key));
+    const newScaleDescriptors = Scales(newChannelsByScale, options);
     const newScales = ScaleFunctions(newScaleDescriptors);
     Object.assign(scaleDescriptors, newScaleDescriptors);
     Object.assign(scales, newScales);
   }
 
+  // Compute the scale labels. Note that with initializers, this may include
+  // both old channels (no longer used) and new channels for redefined scales;
+  // we include both because initializers don’t always propagate labels.
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
-  // Compute value objects, applying scales as needed.
-  for (const state of stateByMark.values()) {
-    state.values = valueObject(state.channels, scales);
-  }
-
-  // Apply projection as needed.
-  if (context.projection) {
-    for (const [mark, state] of stateByMark) {
-      mark.project(state.channels, state.values, context);
-    }
+  // Compute value objects, applying scales and projection as needed.
+  for (const [mark, state] of stateByMark) {
+    state.values = mark.scale(state.channels, scales, context);
   }
 
   const {width, height} = dimensions;
@@ -305,9 +301,11 @@ export function plot(options = {}) {
         for (const [mark, {channels, values, facets}] of stateByMark) {
           let facet = null;
           if (facets) {
-            facet = facets[facetPosition.get(key)] ?? facets[0];
+            const fi = facetPosition.get(key);
+            facet = facets[fi] ?? facets[0];
             if (!facet) continue;
             facet = mark.filter(facet, channels, values);
+            facet.fi = fi;
           }
           const node = mark.render(facet, scales, values, subdimensions, context);
           if (node != null) this.appendChild(node);
@@ -420,6 +418,11 @@ export class Mark {
     maybeProject("x", "y", channels, values, context);
     maybeProject("x1", "y1", channels, values, context);
     maybeProject("x2", "y2", channels, values, context);
+  }
+  scale(channels, scales, context) {
+    const values = valueObject(channels, scales);
+    if (context.projection) this.project(channels, values, context);
+    return values;
   }
   plot({marks = [], ...options} = {}) {
     return plot({...options, marks: [...marks, this]});
@@ -545,20 +548,27 @@ function facetKeys(facets, fx, fy) {
 // Returns a (possibly nested) Map of [[key1, index1], [key2, index2], …]
 // representing the data indexes associated with each facet.
 function facetGroups(data, {fx, fy}) {
-  const index = range(data);
-  return fx && fy ? facetGroup2(index, fx, fy) : fx ? facetGroup1(index, fx) : facetGroup1(index, fy);
-}
-
-function facetGroup1(index, {value: F}) {
-  return group(index, (i) => F[i]);
-}
-
-function facetGroup2(index, {value: FX}, {value: FY}) {
-  return group(
-    index,
-    (i) => FX[i],
-    (i) => FY[i]
-  );
+  const I = range(data);
+  const FX = fx?.value;
+  const FY = fy?.value;
+  return fx && fy
+    ? rollup(
+        I,
+        (G) => ((G.fx = FX[G[0]]), (G.fy = FY[G[0]]), G),
+        (i) => FX[i],
+        (i) => FY[i]
+      )
+    : fx
+    ? rollup(
+        I,
+        (G) => ((G.fx = FX[G[0]]), G),
+        (i) => FX[i]
+      )
+    : rollup(
+        I,
+        (G) => ((G.fy = FY[G[0]]), G),
+        (i) => FY[i]
+      );
 }
 
 function facetTranslate(fx, fy) {
@@ -592,8 +602,8 @@ function maybeTopFacet(facet, options) {
   if (facet == null) return;
   const {x, y} = facet;
   if (x == null && y == null) return;
-  const data = arrayify(facet.data);
-  if (data == null) throw new Error(`missing facet data`);
+  const data = arrayify(facet.data ?? x ?? y);
+  if (data === undefined) throw new Error(`missing facet data`);
   const channels = {};
   if (x != null) channels.fx = Channel(data, {value: x, scale: "fx"});
   if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});
@@ -617,8 +627,8 @@ function maybeMarkFacet(mark, topFacetState, options) {
   // here with maybeTopFacet that we could reduce.
   const {fx: x, fy: y} = mark;
   if (x != null || y != null) {
-    const data = arrayify(mark.data);
-    if (data == null) throw new Error(`missing facet data in ${mark.ariaLabel}`);
+    const data = arrayify(mark.data ?? x ?? y);
+    if (data === undefined) throw new Error(`missing facet data in ${mark.ariaLabel}`);
     const channels = {};
     if (x != null) channels.fx = Channel(data, {value: x, scale: "fx"});
     if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});

@@ -26,6 +26,10 @@ https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world
 Bureau of Labor Statistics
 https://www.bls.gov/
 
+## ca55-south.csv
+Great Britain aeromagnetic survey
+https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/
+
 ## cars.csv
 1983 ASA Data Exposition
 http://lib.stat.cmu.edu/datasets/
@@ -169,6 +173,10 @@ https://observablehq.com/@d3/diverging-bar-chart
 ## walmarts.tsv
 Thomas J. Holmes, University of Minnesota, Federal Reserve Bank of Minneapolis, and NBER
 https://users.econ.umn.edu/~holmes/data/WalMart/
+
+## water-vapor.csv
+NASA Earth Observations
+https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV
 
 ## wealth-britain.csv
 U.K. Office for National Statistics

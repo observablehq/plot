@@ -24,9 +24,8 @@ import {
   ticks
 } from "d3";
 import {positive, negative, finite} from "../defined.js";
-import {arrayify, constant, order, slice} from "../options.js";
+import {arrayify, constant, order, slice, maybeInterval} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
-import {maybeInterval} from "../transforms/interval.js";
 import {registry, radius, opacity, color, length} from "./index.js";
 
 export const flip = (i) => (t) => i(1 - t);
@@ -162,18 +161,18 @@ export function ScaleQuantile(
     reverse
   }
 ) {
-  if (range === undefined)
+  if (range === undefined) {
     range =
       interpolate !== undefined
         ? quantize(interpolate, n)
         : registry.get(key) === color
         ? ordinalRange(scheme, n)
         : undefined;
-  return ScaleThreshold(key, channels, {
-    domain: scaleQuantile(domain, range === undefined ? {length: n} : range).quantiles(),
-    range,
-    reverse
-  });
+  }
+  if (domain.length > 0) {
+    domain = scaleQuantile(domain, range === undefined ? {length: n} : range).quantiles();
+  }
+  return ScaleThreshold(key, channels, {domain, range, reverse});
 }
 
 export function ScaleQuantize(

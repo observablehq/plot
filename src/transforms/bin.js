@@ -4,6 +4,7 @@ import {
   range,
   identity,
   maybeColumn,
+  maybeInterval,
   maybeTuple,
   maybeColorChannel,
   maybeValue,
@@ -28,7 +29,6 @@ import {
   reduceIdentity
 } from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
-import {maybeInterval} from "./interval.js";
 
 /** @jsdoc binX */
 export function binX(outputs = {y: "count"}, options = {}) {
@@ -262,9 +262,9 @@ function maybeBin(options) {
   return bin;
 }
 
-function maybeThresholds(thresholds, interval) {
+export function maybeThresholds(thresholds, interval, defaultThresholds = thresholdAuto) {
   if (thresholds === undefined) {
-    return interval === undefined ? thresholdAuto : maybeRangeInterval(interval);
+    return interval === undefined ? defaultThresholds : maybeRangeInterval(interval);
   }
   if (typeof thresholds === "string") {
     switch (thresholds.toLowerCase()) {
