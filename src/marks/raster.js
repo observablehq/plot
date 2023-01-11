@@ -248,9 +248,9 @@ function maybeInterpolate(interpolate) {
     case "nearest":
       return interpolateNearest;
     case "barycentric":
-      return interpolateBarycentric;
+      return interpolatorBarycentric();
     case "random-walk":
-      return interpolateRandomWalk;
+      return interpolatorRandomWalk();
   }
   throw new Error(`invalid interpolate: ${interpolate}`);
 }
@@ -259,7 +259,7 @@ function maybeInterpolate(interpolate) {
 // any blending or interpolation. Note: if multiple samples map to the same
 // pixel, the last one wins; this can introduce bias if the points are not in
 // random order, so use Plot.shuffle to randomize the input if needed.
-function interpolateNone(index, width, height, X, Y, V) {
+export function interpolateNone(index, width, height, X, Y, V) {
   const W = new Array(width * height);
   for (const i of index) {
     if (X[i] < 0 || X[i] >= width || Y[i] < 0 || Y[i] >= height) continue;
@@ -268,72 +268,72 @@ function interpolateNone(index, width, height, X, Y, V) {
   return W;
 }
 
-function interpolateBarycentric(index, width, height, X, Y, V) {
-  const random = randomLcg(42); // TODO allow configurable rng?
+export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
+  return (index, width, height, X, Y, V) => {
+    // Flatten the input coordinates to prepare to insert extrapolated points
+    // along the perimeter of the grid (so there’s no blank output).
+    const n = index.length;
+    const nw = width >> 2;
+    const nh = (height >> 2) - 1;
+    const m = n + nw * 2 + nh * 2;
+    const XY = new Float64Array(m * 2);
+    for (let i = 0; i < n; ++i) (XY[i * 2] = X[index[i]]), (XY[i * 2 + 1] = Y[index[i]]);
 
-  // Flatten the input coordinates to prepare to insert extrapolated points
-  // along the perimeter of the grid (so there’s no blank output).
-  const n = index.length;
-  const nw = width >> 2;
-  const nh = (height >> 2) - 1;
-  const m = n + nw * 2 + nh * 2;
-  const XY = new Float64Array(m * 2);
-  for (let i = 0; i < n; ++i) (XY[i * 2] = X[index[i]]), (XY[i * 2 + 1] = Y[index[i]]);
+    // Add points along each edge, making sure to include the four corners for
+    // complete coverage (with no chamfered edges).
+    let i = n;
+    const addPoint = (x, y) => ((XY[i * 2] = x), (XY[i * 2 + 1] = y), i++);
+    for (let j = 0; j <= nw; ++j) addPoint((j / nw) * width, 0), addPoint((j / nw) * width, height);
+    for (let j = 0; j < nh; ++j) addPoint(width, (j / nh) * height), addPoint(0, (j / nh) * height);
 
-  // Add points along each edge, making sure to include the four corners for
-  // complete coverage (with no chamfered edges).
-  let i = n;
-  const addPoint = (x, y) => ((XY[i * 2] = x), (XY[i * 2 + 1] = y), i++);
-  for (let j = 0; j <= nw; ++j) addPoint((j / nw) * width, 0), addPoint((j / nw) * width, height);
-  for (let j = 0; j < nh; ++j) addPoint(width, (j / nh) * height), addPoint(0, (j / nh) * height);
+    // To each edge point, assign the closest (non-extrapolated) value.
+    V = take(V, index);
+    const delaunay = new Delaunay(XY.subarray(0, n * 2));
+    for (let j = n, ij; j < m; ++j) V[j] = V[(ij = delaunay.find(XY[j * 2], XY[j * 2 + 1], ij))];
 
-  // To each edge point, assign the closest (non-extrapolated) value.
-  V = take(V, index);
-  const delaunay = new Delaunay(XY.subarray(0, n * 2));
-  for (let j = n, ij; j < m; ++j) V[j] = V[(ij = delaunay.find(XY[j * 2], XY[j * 2 + 1], ij))];
-
-  // Interpolate the interior of all triangles with barycentric coordinates
-  const {points, triangles} = new Delaunay(XY);
-  const W = new V.constructor(width * height);
-  const mix = mixer(V, random);
-  for (let i = 0; i < triangles.length; i += 3) {
-    const ta = triangles[i];
-    const tb = triangles[i + 1];
-    const tc = triangles[i + 2];
-    const Ax = points[2 * ta];
-    const Bx = points[2 * tb];
-    const Cx = points[2 * tc];
-    const Ay = points[2 * ta + 1];
-    const By = points[2 * tb + 1];
-    const Cy = points[2 * tc + 1];
-    const x1 = Math.min(Ax, Bx, Cx);
-    const x2 = Math.max(Ax, Bx, Cx);
-    const y1 = Math.min(Ay, By, Cy);
-    const y2 = Math.max(Ay, By, Cy);
-    const z = (By - Cy) * (Ax - Cx) + (Ay - Cy) * (Cx - Bx);
-    if (!z) continue;
-    const va = V[ta];
-    const vb = V[tb];
-    const vc = V[tc];
-    for (let x = Math.floor(x1); x < x2; ++x) {
-      for (let y = Math.floor(y1); y < y2; ++y) {
-        if (x < 0 || x >= width || y < 0 || y >= height) continue;
-        const xp = x + 0.5; // sample pixel centroids
-        const yp = y + 0.5;
-        const ga = ((By - Cy) * (xp - Cx) + (yp - Cy) * (Cx - Bx)) / z;
-        if (ga < 0) continue;
-        const gb = ((Cy - Ay) * (xp - Cx) + (yp - Cy) * (Ax - Cx)) / z;
-        if (gb < 0) continue;
-        const gc = 1 - ga - gb;
-        if (gc < 0) continue;
-        W[x + width * y] = mix(va, ga, vb, gb, vc, gc);
+    // Interpolate the interior of all triangles with barycentric coordinates
+    const {points, triangles} = new Delaunay(XY);
+    const W = new V.constructor(width * height);
+    const mix = mixer(V, random);
+    for (let i = 0; i < triangles.length; i += 3) {
+      const ta = triangles[i];
+      const tb = triangles[i + 1];
+      const tc = triangles[i + 2];
+      const Ax = points[2 * ta];
+      const Bx = points[2 * tb];
+      const Cx = points[2 * tc];
+      const Ay = points[2 * ta + 1];
+      const By = points[2 * tb + 1];
+      const Cy = points[2 * tc + 1];
+      const x1 = Math.min(Ax, Bx, Cx);
+      const x2 = Math.max(Ax, Bx, Cx);
+      const y1 = Math.min(Ay, By, Cy);
+      const y2 = Math.max(Ay, By, Cy);
+      const z = (By - Cy) * (Ax - Cx) + (Ay - Cy) * (Cx - Bx);
+      if (!z) continue;
+      const va = V[ta];
+      const vb = V[tb];
+      const vc = V[tc];
+      for (let x = Math.floor(x1); x < x2; ++x) {
+        for (let y = Math.floor(y1); y < y2; ++y) {
+          if (x < 0 || x >= width || y < 0 || y >= height) continue;
+          const xp = x + 0.5; // sample pixel centroids
+          const yp = y + 0.5;
+          const ga = ((By - Cy) * (xp - Cx) + (yp - Cy) * (Cx - Bx)) / z;
+          if (ga < 0) continue;
+          const gb = ((Cy - Ay) * (xp - Cx) + (yp - Cy) * (Ax - Cx)) / z;
+          if (gb < 0) continue;
+          const gc = 1 - ga - gb;
+          if (gc < 0) continue;
+          W[x + width * y] = mix(va, ga, vb, gb, vc, gc, x, y);
+        }
       }
     }
-  }
-  return W;
+    return W;
+  };
 }
 
-function interpolateNearest(index, width, height, X, Y, V) {
+export function interpolateNearest(index, width, height, X, Y, V) {
   const W = new V.constructor(width * height);
   const delaunay = Delaunay.from(
     index,
@@ -353,48 +353,47 @@ function interpolateNearest(index, width, height, X, Y, V) {
   return W;
 }
 
-// TODO adaptive supersampling in areas of high variance?
-// TODO configurable iterations per sample (currently 1 + 2)
-// see https://observablehq.com/@observablehq/walk-on-spheres-precision
-function interpolateRandomWalk(index, width, height, X, Y, V) {
-  const W = new V.constructor(width * height);
-  const random = randomLcg(42); // TODO allow configurable rng?
-  const delaunay = Delaunay.from(
-    index,
-    (i) => X[i],
-    (i) => Y[i]
-  );
-  // memoization of delaunay.find for the line start (iy), pixel (ix), and wos step (iw)
-  let iy, ix, iw;
-  for (let y = 0.5, k = 0; y < height; ++y) {
-    ix = iy;
-    for (let x = 0.5; x < width; ++x, ++k) {
-      let cx = x;
-      let cy = y;
-      iw = ix = delaunay.find(cx, cy, ix);
-      if (x === 0.5) iy = ix;
-      let distance; // distance to closest sample
-      let step = 0; // count of steps for this walk
-      while ((distance = Math.hypot(X[index[iw]] - cx, Y[index[iw]] - cy)) > 0.5 && step < 2) {
-        const angle = random() * 2 * Math.PI;
-        cx += Math.cos(angle) * distance;
-        cy += Math.sin(angle) * distance;
-        iw = delaunay.find(cx, cy, iw);
-        ++step;
+// https://observablehq.com/@observablehq/walk-on-spheres-precision
+export function interpolatorRandomWalk({random = randomLcg(42), minDistance = 0.5, maxSteps = 2} = {}) {
+  return (index, width, height, X, Y, V) => {
+    const W = new V.constructor(width * height);
+    const delaunay = Delaunay.from(
+      index,
+      (i) => X[i],
+      (i) => Y[i]
+    );
+    // memoization of delaunay.find for the line start (iy), pixel (ix), and wos step (iw)
+    let iy, ix, iw;
+    for (let y = 0.5, k = 0; y < height; ++y) {
+      ix = iy;
+      for (let x = 0.5; x < width; ++x, ++k) {
+        let cx = x;
+        let cy = y;
+        iw = ix = delaunay.find(cx, cy, ix);
+        if (x === 0.5) iy = ix;
+        let distance; // distance to closest sample
+        let step = 0; // count of steps for this walk
+        while ((distance = Math.hypot(X[index[iw]] - cx, Y[index[iw]] - cy)) > minDistance && step < maxSteps) {
+          const angle = random() * 2 * Math.PI;
+          cx += Math.cos(angle) * distance;
+          cy += Math.sin(angle) * distance;
+          iw = delaunay.find(cx, cy, iw);
+          ++step;
+        }
+        W[k] = V[index[iw]];
       }
-      W[k] = V[index[iw]];
     }
-  }
-  return W;
+    return W;
+  };
 }
 
 function blend(a, ca, b, cb, c, cc) {
   return ca * a + cb * b + cc * c;
 }
 
-function pick(random = Math.random) {
-  return (a, ca, b, cb, c) => {
-    const u = random();
+function pick(random) {
+  return (a, ca, b, cb, c, cc, x, y) => {
+    const u = random(x, y);
     return u < ca ? a : u < ca + cb ? b : c;
   };
 }
