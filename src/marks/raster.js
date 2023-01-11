@@ -374,7 +374,7 @@ export function interpolatorRandomWalk({random = randomLcg(42), minDistance = 0.
         let distance; // distance to closest sample
         let step = 0; // count of steps for this walk
         while ((distance = Math.hypot(X[index[iw]] - cx, Y[index[iw]] - cy)) > minDistance && step < maxSteps) {
-          const angle = random() * 2 * Math.PI;
+          const angle = random(x, y, step) * 2 * Math.PI;
           cx += Math.cos(angle) * distance;
           cy += Math.sin(angle) * distance;
           iw = delaunay.find(cx, cy, iw);
