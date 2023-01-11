@@ -1,4 +1,4 @@
-import {blurImage, Delaunay, randomLcg, range, rgb} from "d3";
+import {blurImage, Delaunay, randomLcg, rgb} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {map, first, second, third, isTuples, isNumeric, isTemporal, take} from "../options.js";
@@ -116,8 +116,8 @@ export class Raster extends AbstractRaster {
     }
 
     // When faceting without interpolation, as when sampling a continuous
-    // function, offset into the dense raster grid based on the current facet.
-    else if (this.data == null && index) offset = index[0] * n;
+    // function, offset into the dense grid based on the current facet index.
+    else if (this.data == null && index) offset = index.fi * n;
 
     // Render the raster grid to the canvas, blurring if needed.
     const canvas = document.createElement("canvas");
@@ -213,8 +213,6 @@ export function sampler(name, options = {}) {
   const {[name]: value} = options;
   if (typeof value !== "function") return options;
   return initializer({...options, [name]: undefined}, function (data, facets, channels, scales, dimensions, context) {
-    const FX = channels.fx?.value;
-    const FY = channels.fy?.value;
     const {x, y} = scales;
     // TODO Allow projections, if invertible.
     if (!x) throw new Error("missing scale: x");
@@ -225,18 +223,15 @@ export function sampler(name, options = {}) {
     const {pixelSize: k} = this;
     // Note: this must exactly match the defaults in render above!
     const {width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = options;
-    const m = facets ? Math.min(FX ? FX.length : Infinity, FY ? FY.length : Infinity) : 1;
-    const V = new Array(w * h * m);
+    // TODO Hint to use a typed array when possible?
+    const V = new Array(w * h * (facets ? facets.length : 1));
     const kx = dx / w;
     const ky = dy / h;
     let i = 0;
-    for (const fi of range(m)) {
-      const f = facets ? {} : undefined;
-      if (FX) f.fx = FX[fi];
-      if (FY) f.fy = FY[fi];
+    for (const facet of facets ?? [undefined]) {
       for (let yi = 0.5; yi < h; ++yi) {
         for (let xi = 0.5; xi < w; ++xi, ++i) {
-          V[i] = value(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky), f);
+          V[i] = value(x.invert(x1 + xi * kx), y.invert(y1 + yi * ky), facet);
         }
       }
     }
@@ -408,16 +403,28 @@ function mixer(F, random) {
   return isNumeric(F) || isTemporal(F) ? blend : pick(random);
 }
 
-function denseX(x1, x2, width, height) {
-  const X = new Float64Array(width * height);
-  const X0 = X.subarray(0, width);
-  for (let i = 0; i < width; ++i) X[i] = ((x2 - x1) * (i + 0.5)) / width + x1;
-  for (let j = 1; j < height; ++j) X.set(X0, j * width);
-  return X;
+function denseX(x1, x2, width) {
+  return {
+    transform(data) {
+      const n = data.length;
+      const X = new Float64Array(n);
+      const kx = (x2 - x1) / width;
+      const x0 = x1 + kx / 2;
+      for (let i = 0; i < n; ++i) X[i] = (i % width) * kx + x0;
+      return X;
+    }
+  };
 }
 
 function denseY(y1, y2, width, height) {
-  const Y = new Float64Array(width * height);
-  for (let j = 0; j < height; ++j) Y.fill(((y2 - y1) * (j + 0.5)) / height + y1, j * width, (j + 1) * width);
-  return Y;
+  return {
+    transform(data) {
+      const n = data.length;
+      const Y = new Float64Array(n);
+      const ky = (y2 - y1) / height;
+      const y0 = y1 + ky / 2;
+      for (let i = 0; i < n; ++i) Y[i] = (Math.floor(i / width) % height) * ky + y0;
+      return Y;
+    }
+  };
 }

@@ -262,9 +262,9 @@ function maybeBin(options) {
   return bin;
 }
 
-export function maybeThresholds(thresholds, interval) {
+export function maybeThresholds(thresholds, interval, defaultThresholds = thresholdAuto) {
   if (thresholds === undefined) {
-    return interval === undefined ? thresholdAuto : maybeRangeInterval(interval);
+    return interval === undefined ? defaultThresholds : maybeRangeInterval(interval);
   }
   if (typeof thresholds === "string") {
     switch (thresholds.toLowerCase()) {
