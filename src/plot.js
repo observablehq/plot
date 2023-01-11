@@ -603,6 +603,7 @@ function maybeTopFacet(facet, options) {
   const {x, y} = facet;
   if (x == null && y == null) return;
   const data = arrayify(facet.data ?? x ?? y);
+  if (data === undefined) throw new Error(`missing facet data`);
   const channels = {};
   if (x != null) channels.fx = Channel(data, {value: x, scale: "fx"});
   if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});
@@ -627,6 +628,7 @@ function maybeMarkFacet(mark, topFacetState, options) {
   const {fx: x, fy: y} = mark;
   if (x != null || y != null) {
     const data = arrayify(mark.data ?? x ?? y);
+    if (data === undefined) throw new Error(`missing facet data in ${mark.ariaLabel}`);
     const channels = {};
     if (x != null) channels.fx = Channel(data, {value: x, scale: "fx"});
     if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});
