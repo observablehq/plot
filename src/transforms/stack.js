@@ -325,6 +325,7 @@ function orderGiven(domain) {
 // O that can be used with applyOrder to sort stacks. Note that this is a series
 // order: it will be consistent across stacks.
 function orderZDomain(Z, domain) {
+  if (!Z) throw new Error("missing channel: z");
   domain = new InternMap(domain.map((d, i) => [d, i]));
   return Z.map((z) => domain.get(z));
 }
