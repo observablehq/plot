@@ -1572,52 +1572,40 @@ Returns a new link with the given *data* and *options*.
 
 <!-- jsdoc raster -->
 
-Returns a new raster mark with the given *data* and *options*. The *data* represents a discrete set of samples in abstract coordinates, bound to the scales *x* and *y*, a **fill** channel bound to the *color* scale, and a **fillOpacity** channel bound to the *opacity* scale.
+Returns a new raster mark with the given (optional) *data* and *options*. If *data* is specified, it represents a discrete set of spatial samples in abstract coordinates given by the **x** and **y** channels; the **fill** and **fillOpacity** channels can then be used to construct a raster image.
 
-Each sample is drawn on a rectangular raster image with dimensions that may be specified directly with the following options:
+```js
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+Otherwise, the **fill** or **fillOpacity** (or both) may be specified as a continuous function f(*x*, *y*) which will be evaluated at each pixel centroid of the raster grid.
+
+```js
+Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
+```
+
+The resolution of the rectangular raster image may be specified with the following options:
 
 * **width** - the number of pixels on each horizontal line
 * **height** - the number of lines; a positive integer
 
-Alternatively, the width and height of the raster can be imputed from the starting and ending positions for x and y, and a pixel size:
+Alternatively, the raster dimensions may be imputed from the extent of *x* and *y* and a pixel size:
 
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y1** - the starting vertical position; bound to the *y* scale
 * **y2** - the ending vertical position; bound to the *y* scale
-* **pixelSize** - the density of the raster image; defaults to 1
+* **pixelSize** - the screen size of a raster pixel; defaults to 1
 
-If a width has been specified, x1 defaults to 0 and x2 defaults to width; similarly, if a height has been specified, y1 defaults to 0 and y2 defaults to height. Otherwise, if data has been specified, x1, y1, x2, and y2 respectively default to the frame’s left, top, right, and bottom, coordinates. Lastly, if no data has been specified, and fill is a function of x and y, you must specify all of x1, x2, y1 and y2 to define the domain (see below).
+If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**; likewise, if **height** is specified, **y1** defaults to 0 and **y2** defaults to **height**. Otherwise, if **data** is specified, **x1**, **y1**, **x2**, and **y2** respectively default to the frame’s left, top, right, and bottom coordinates. Lastly, if **data** is not specified (as when **fill** or **fillOpacity** is a function of *x* and *y*), you must specify all of **x1**, **x2**, **y1**, and **y2** to define the raster domain (see below). The **pixelSize** may be set to the inverse of the devicePixelRatio for a sharper image.
 
+The following constant options are supported:
 
-The following options are supported:
+* **interpolate** - the [spatial interpolation method](#spatial-interpolation)
+* **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering) attribute; defaults to *auto* (bilinear)
+* **blur** - a non-negative pixel radius for smoothing; defaults to 0
 
-* **fill** - the sample’s color; if a channel, bound to the *color* scale
-* **fillOpacity** - the sample’s opacity; if a channel, bound to the *opacity* scale
-* **x** and **y** - the sample’s coordinates
-* **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering) attribute of the image; defaults to auto, which blends neighboring samples with bilinear interpolation. A typical setting is pixelated, that asks the browser to render each pixel as a solid rectangle (unfortunately not supported by Webkit).
-* **interpolate** - the interpolate method.
-* **blur** - the blur radius, a non-negative number of pixels, that defaults to 0.
-
-The interpolate option supports the following settings:
-* none - default if the *x* and *y* options are not null: assigns the value to the pixel under the (floor rounded) coordinates of each sample—if inside the raster
-* dense - default otherwise; assumes that the data describes every pixel on the raster of dimensions width × height, starting from the top left, in row-major order
-* nearest - evaluates each pixel with the closest sample, resulting in Voronoi cells
-* barycentric - does a Delaunay triangulation of the samples, then evaluates each triangle’s interior with a mix of the values of its vertices, weighted by the distance to each of the vertices; points outside the convex hull are extrapolated
-* random-walk - evaluates a pixel by simulating a random walk, and picking the value of the first sample reached
-* a function that receives a sample index, width and height of the raster, the *x* and *y* positions of the samples (in the coordinate system of the raster), and an array of (unscaled) values, and must return a dense array of width * height values, organized in row-major order.
-
-The defaults for this mark make it convenient to draw an image from a flat array of values representing a rectangular matrix:
-
-```js
-Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: volcano.values})
-```
-
-When *data* is not specified and *fill* or *fillOpacity* is a function, a sample is taken for every pixel of the raster, which allows to fill an image from a function and a two-dimensional domain:
-
-```js
-Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
-```
+The **imageRendering** option may be sent to *pixelated* to disable bilinear interpolation for a sharper image; however, note that this is not supported in WebKit. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
 
 <!-- jsdocEnd raster -->
 
