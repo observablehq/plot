@@ -4,11 +4,27 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
+The new [raster mark](./README.md#raster) generates a raster image from spatial samples. For example, here is a gridded digital elevation model (DEM) of Maungawhau (R’s `volcano` dataset):
+
+```js
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+The *fill* and *fillOpacity* channels may alternatively be specified as continuous functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
+
+```js
+Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
+```
+
+[spatially interpolated](#spatial-interpolation) to produce an image.
+
+The new contour mark…
+
 The [vector mark](./README.md#vector) now supports the **shape** constant option. The built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](./README.md#plotspikedata-options) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to further customize the shape.
 
 The new [geoCentroid transform](./README.md#plotgeocentroidoptions) and [centroid initializer](./README.md#plotcentroidoptions) compute the spherical and projected planar centroids of geometry, respectively.
 
-Diverging scales now correctly handle descending domains.
+Diverging scales now correctly handle descending domains. When the stack **order** option is used without a *z* channel, a helpful error message is now thrown. The **clip** option *frame* now correctly handles band scales. Using D3 7.8.1, generated SVG path data is now rounded to three decimal points to reduce output size.
 
 ## 0.6.1
 
