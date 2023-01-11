@@ -17,7 +17,7 @@ const defaults = {
 };
 
 export class Contour extends AbstractRaster {
-  constructor(data, {value, ...options} = {}) {
+  constructor(data, {smooth = true, value, ...options} = {}) {
     const channels = styles({}, options, defaults);
 
     // If value is not specified explicitly, look for a channel to promote. If
@@ -80,6 +80,7 @@ export class Contour extends AbstractRaster {
       delete this.channels[key];
     }
     this.contourChannels = contourChannels;
+    this.smooth = !!smooth;
   }
   filter(index, {x, y, value, ...channels}, values) {
     // Only filter channels constructed by the contourGeometry initializer; the
@@ -160,7 +161,7 @@ function contourGeometry({thresholds, interval, ...options}) {
         : thresholds;
 
     // Compute the (maybe faceted) contours.
-    const contour = contours().thresholds(T).size([w, h]);
+    const contour = contours().thresholds(T).size([w, h]).smooth(this.smooth);
     const contourData = [];
     const contourFacets = [];
     for (const V of VV) contourFacets.push(range(contourData.length, contourData.push(...contour(V))));

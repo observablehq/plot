@@ -1112,7 +1112,6 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 <!-- jsdocEnd cellY -->
 
-
 ### Contour
 
 [Source](./src/marks/contour.js) · [Examples](https://observablehq.com/@observablehq/plot-contour) · Renders contour polygons from two-dimensional samples.
@@ -1121,54 +1120,52 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 <!-- jsdoc contour -->
 
-Returns a new contour mark with the given *data* and *options*. The *data* represents a discrete set of samples in abstract coordinates, bound to the scales *x* and *y*, and a **value** channel.
+Returns a new contour mark with the given (optional) *data* and *options*. If *data* is specified, it represents a discrete set of spatial samples in abstract coordinates given by the **x** and **y** channels. The **value** channel is then used to construct an underlying [raster grid](#raster) of quantitative values, and lastly contours are computed via marching squares.
 
-Most of the options are identical to the [raster](#raster) mark’s options, which is used internally to compute a rectangular grid of numeric values. Marching squares are then applied to derive the contour polygons for each threshold value.
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity})
+```
 
-The following options define the value channel and the aesthetics of the contours:
-* **value** - the sample’s value (a channel); as a shorthand notation, it can be defined by setting either fill, fillOpacity or stroke
-* **fill** - the contour’s fill color; if a channel, bound to the *color* scale
-* **fillOpacity** - the contour’s opacity; if a channel, bound to the *opacity* scale
-* **stroke** - the contour’s stroke color; if a channel, bound to the *color* scale; defaults to currentColor
-* **strokeOpacity** - the (constant or variable) contour’s stroke opacity; if a channel, bound to the *opacity* scale; defaults to 1
-* **strokeWidth** - the (constant or variable) contour’s stroke width; defaults to 1
-* **thresholds** - the thresholds — an array of threshold values; if a *count* is specified instead of an array of thresholds, then the input values’ extent will be uniformly divided into approximately *count* bins. Defaults to [Sturges’s formula](https://github.com/d3/d3-contour/blob/main/README.md#contours_thresholds).
-* **x** and **y** - the sample’s coordinates.
-* **interpolate** - the interpolate method (see [raster](#raster) for details).
-* **blur** - the blur radius, a non-negative number of pixels, that defaults to 0.
+Otherwise, the **value** may be specified as a continuous function f(*x*, *y*) which will be evaluated at each pixel centroid of the raster grid.
 
-Each sample is projected onto the coordinate system of a rectangle with dimensions that may be specified directly with the following options:
+```js
+Plot.contour({x1: 0, y1: 0, x2: 4, y2: 4, value: (x, y) => Math.sin(x) * Math.cos(y)})
+```
+
+The contour mark shares many options with the [raster](#raster) mark, including the **interpolate** option to specify the [spatial interpolation method](#spatial-interpolation). The interpolation method is ignored when **value** is a function of *x* and *y*, and otherwise defaults to *nearest*.
+
+For smoother contours, the **blur** option (default 0) specifies a non-negative pixel radius for smoothing prior to applying marching squares. The **smooth** option (default true) specifies whether to apply linear interpolation after marching squares when computing contour polygons.
+
+The resolution of the raster grid may be specified with the following options:
 
 * **width** - the number of pixels on each horizontal line
 * **height** - the number of lines; a positive integer
 
-Alternatively, the width and height of the raster can be imputed from the starting and ending positions for x and y, and a pixel size:
+Alternatively, the raster dimensions may be imputed from the extent of *x* and *y* and a pixel size:
 
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y1** - the starting vertical position; bound to the *y* scale
 * **y2** - the ending vertical position; bound to the *y* scale
-* **pixelSize** - the density of the raster image; defaults to 1
+* **pixelSize** - the screen size of a raster pixel; defaults to 1
 
-If a width has been specified, x1 defaults to 0 and x2 defaults to width; similarly, if a height has been specified, y1 defaults to 0 and y2 defaults to height. Otherwise, if data has been specified, x1, y1, x2, and y2 respectively default to the frame’s left, top, right, and bottom, coordinates. Lastly, if no data has been specified, and fill is a function of x and y, you must specify all of x1, x2, y1 and y2 to define the domain (see below).
+If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**; likewise, if **height** is specified, **y1** defaults to 0 and **y2** defaults to **height**. Otherwise, if **data** is specified, **x1**, **y1**, **x2**, and **y2** respectively default to the frame’s left, top, right, and bottom coordinates. Lastly, if **data** is not specified (as when **value** is a function of *x* and *y*), you must specify all of **x1**, **x2**, **y1**, and **y2** to define the raster domain (see below).
 
-The defaults for this mark make it convenient to draw thresholds from a flat array of values representing a rectangular matrix:
-
-```js
-Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: volcano.values, thresholds: 5})
-```
-
-When *data* is not specified and *value* is a function, a sample is taken for every pixel of the raster, which allows to draw contours from a function and a two-dimensional domain:
+With the exception of the *x*, *y*, *x1*, *y1*, *x2*, *y2*, and *value* channels, the contour mark’s channels are not evaluated on the initial *data* but rather on the contour multipolygons generated in the initializer. For example, to generate filled contours where the color corresponds to the contour threshold value:
 
 ```js
-Plot.contour({
-  fill: (x, y) => x * y * Math.sin(x) * Math.sin(y),
-  x1: 0,
-  x2: 2 * Math.PI,
-  y1: 0,
-  y2: 2 * Math.PI
-})
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity, fill: "value"})
 ```
+
+As shorthand, a single channel may be specified, in which case it is promoted to the **value** option.
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+* **thresholds** - the thresholds — an array of threshold values; if a *count* is specified instead of an array of thresholds, then the input values’ extent will be uniformly divided into approximately *count* bins. Defaults to [Sturges’s formula](https://github.com/d3/d3-contour/blob/main/README.md#contours_thresholds).
+* **interpolate** - the interpolate method (see [raster](#raster) for details).
+* **blur** - the blur radius, a non-negative number of pixels, that defaults to 0.
 
 <!-- jsdocEnd contour -->
 
