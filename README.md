@@ -1149,7 +1149,7 @@ With the exception of the *x*, *y*, *x1*, *y1*, *x2*, *y2*, and *value* channels
 Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity, fill: "value"})
 ```
 
-As shorthand, a single channel may be specified, in which case it is promoted to the **value** option.
+As shorthand, a single channel may be specified, in which case it is promoted to the *value* channel.
 
 ```js
 Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
