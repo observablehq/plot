@@ -1114,27 +1114,21 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 ### Contour
 
-[Source](./src/marks/contour.js) · [Examples](https://observablehq.com/@observablehq/plot-contour) · Renders contour polygons from two-dimensional samples.
-
-#### Plot.contour(*data*, *options*)
-
-<!-- jsdoc contour -->
-
-Returns a new contour mark with the given (optional) *data* and *options*. If *data* is specified, it represents a discrete set of spatial samples in abstract coordinates given by the **x** and **y** channels. The **value** channel is then used to construct an underlying [raster grid](#raster) of quantitative values, and lastly contours are computed via marching squares.
+[Source](./src/marks/contour.js) · [Examples](https://observablehq.com/@observablehq/plot-contour) · Renders contour polygons from spatial samples. If data is provided, it represents discrete samples in abstract coordinates *x* and *y*; the *value* channel specifies further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](#spatial-interpolation) to produce a [raster grid](#raster) of quantitative values, and lastly contours via marching squares.
 
 ```js
 Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity})
 ```
 
-Otherwise, the **value** may be specified as a continuous function f(*x*, *y*) which will be evaluated at each pixel centroid of the raster grid.
+The *value* channel may alternatively be specified as a continuous function *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
 
 ```js
 Plot.contour({x1: 0, y1: 0, x2: 4, y2: 4, value: (x, y) => Math.sin(x) * Math.cos(y)})
 ```
 
-The contour mark shares many options with the [raster](#raster) mark, including the **interpolate** option to specify the [spatial interpolation method](#spatial-interpolation). The interpolation method is ignored when **value** is a function of *x* and *y*, and otherwise defaults to *nearest*.
+The contour mark shares many options with the [raster](#raster) mark, including the **interpolate** option to specify the [spatial interpolation method](#spatial-interpolation). The interpolation method is ignored when the *value* channel is a function of *x* and *y*, and otherwise defaults to *nearest*.
 
-For smoother contours, the **blur** option (default 0) specifies a non-negative pixel radius for smoothing prior to applying marching squares. The **smooth** option (default true) specifies whether to apply linear interpolation after marching squares when computing contour polygons.
+For smoother contours, the **blur** option (default 0) specifies a non-negative pixel radius for smoothing prior to applying marching squares. The **smooth** option (default true) specifies whether to apply linear interpolation after marching squares when computing contour polygons. The **thresholds** and **interval** options specify the contour thresholds; see the [bin transform](#bin) for details.
 
 The resolution of the raster grid may be specified with the following options:
 
@@ -1163,9 +1157,15 @@ As shorthand, a single channel may be specified, in which case it is promoted to
 Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
 ```
 
-* **thresholds** - the thresholds — an array of threshold values; if a *count* is specified instead of an array of thresholds, then the input values’ extent will be uniformly divided into approximately *count* bins. Defaults to [Sturges’s formula](https://github.com/d3/d3-contour/blob/main/README.md#contours_thresholds).
-* **interpolate** - the interpolate method (see [raster](#raster) for details).
-* **blur** - the blur radius, a non-negative number of pixels, that defaults to 0.
+#### Plot.contour(*data*, *options*)
+
+<!-- jsdoc contour -->
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+Returns a new contour mark with the given (optional) *data* and *options*.
 
 <!-- jsdocEnd contour -->
 
@@ -1563,19 +1563,13 @@ Returns a new link with the given *data* and *options*.
 
 ### Raster
 
-[Source](./src/marks/raster.js) · [Examples](https://observablehq.com/@observablehq/plot-raster) · Fills a raster image with color samples.
-
-#### Plot.raster(*data*, *options*)
-
-<!-- jsdoc raster -->
-
-Returns a new raster mark with the given (optional) *data* and *options*. If *data* is specified, it represents a discrete set of spatial samples in abstract coordinates given by the **x** and **y** channels; the **fill** and **fillOpacity** channels can then be used to construct a raster image.
+[Source](./src/marks/raster.js) · [Examples](https://observablehq.com/@observablehq/plot-raster) · Renders a raster image from spatial samples. If data is provided, it represents discrete samples in abstract coordinates *x* and *y*; the *fill* and *fillOpacity* channels specify further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](#spatial-interpolation) to produce an image.
 
 ```js
 Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
 ```
 
-Otherwise, the **fill** or **fillOpacity** (or both) may be specified as a continuous function f(*x*, *y*) which will be evaluated at each pixel centroid of the raster grid.
+The *fill* and *fillOpacity* channels may alternatively be specified as continuous functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
 
 ```js
 Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
@@ -1586,7 +1580,7 @@ The resolution of the rectangular raster image may be specified with the followi
 * **width** - the number of pixels on each horizontal line
 * **height** - the number of lines; a positive integer
 
-Alternatively, the raster dimensions may be imputed from the extent of *x* and *y* and a pixel size:
+The raster dimensions may also be imputed from the extent of *x* and *y* and a pixel size:
 
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
@@ -1596,13 +1590,23 @@ Alternatively, the raster dimensions may be imputed from the extent of *x* and *
 
 If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**; likewise, if **height** is specified, **y1** defaults to 0 and **y2** defaults to **height**. Otherwise, if **data** is specified, **x1**, **y1**, **x2**, and **y2** respectively default to the frame’s left, top, right, and bottom coordinates. Lastly, if **data** is not specified (as when **fill** or **fillOpacity** is a function of *x* and *y*), you must specify all of **x1**, **x2**, **y1**, and **y2** to define the raster domain (see below). The **pixelSize** may be set to the inverse of the devicePixelRatio for a sharper image.
 
-The following constant options are supported:
+The following raster-specific constant options are supported:
 
 * **interpolate** - the [spatial interpolation method](#spatial-interpolation)
-* **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering) attribute; defaults to *auto* (bilinear)
+* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
 * **blur** - a non-negative pixel radius for smoothing; defaults to 0
 
 The **imageRendering** option may be sent to *pixelated* to disable bilinear interpolation for a sharper image; however, note that this is not supported in WebKit. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
+
+#### Plot.raster(*data*, *options*)
+
+<!-- jsdoc raster -->
+
+```js
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+Returns a new raster mark with the given (optional) *data* and *options*.
 
 <!-- jsdocEnd raster -->
 
