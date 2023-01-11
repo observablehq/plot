@@ -376,7 +376,7 @@ function interpolateRandomWalk(index, width, height, X, Y, V) {
       if (x === 0.5) iy = ix;
       let distance; // distance to closest sample
       let step = 0; // count of steps for this walk
-      while ((distance = Math.hypot(X[index[iw]] - cx, Y[index[iw]] - cy)) > 0.5 && step < 2) {
+      while ((distance = Math.hypot(X[index[iw]] - cx, Y[index[iw]] - cy)) > 0.5 && step < 3) {
         const angle = random(x, y, step) * 2 * Math.PI;
         cx += Math.cos(angle) * distance;
         cy += Math.sin(angle) * distance;
