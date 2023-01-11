@@ -61,7 +61,6 @@ export async function rasterVaporPeters() {
     },
     marks: [
       Plot.raster(await vapor(), {
-        fill: (d) => d,
         width: 360,
         height: 180,
         x1: -180,
@@ -80,7 +79,6 @@ export async function rasterVaporEqualEarth() {
     color: {scheme: "blues"},
     marks: [
       Plot.raster(await vapor(), {
-        fill: (d) => d,
         width: 360,
         height: 180,
         x1: -180,
@@ -101,7 +99,6 @@ export async function rasterVaporEqualEarthBarycentric() {
     color: {scheme: "blues"},
     marks: [
       Plot.raster(await vapor(), {
-        fill: (d) => d,
         width: 360,
         height: 180,
         x1: -180,

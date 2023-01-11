@@ -1564,7 +1564,7 @@ Returns a new link with the given *data* and *options*.
 [Source](./src/marks/raster.js) · [Examples](https://observablehq.com/@observablehq/plot-raster) · Renders a raster image from spatial samples. If data is provided, it represents discrete samples in abstract coordinates *x* and *y*; the *fill* and *fillOpacity* channels specify further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](#spatial-interpolation) to produce an image.
 
 ```js
-Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height})
 ```
 
 The *fill* and *fillOpacity* channels may alternatively be specified as continuous functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).

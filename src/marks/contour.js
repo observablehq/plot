@@ -188,7 +188,7 @@ function contourGeometry({thresholds, interval, ...options}) {
 }
 
 export function contour() {
-  return new Contour(...maybeTuples(...arguments));
+  return new Contour(...maybeTuples("value", ...arguments));
 }
 
 function finiteExtent(VV) {

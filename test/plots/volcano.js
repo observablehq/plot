@@ -4,25 +4,7 @@ import * as d3 from "d3";
 export async function volcano() {
   const volcano = await d3.json("data/volcano.json");
   return Plot.plot({
-    marks: [
-      Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: volcano.values}),
-      Plot.frame()
-    ]
-  });
-}
-
-export async function volcanoContour() {
-  const volcano = await d3.json("data/volcano.json");
-  return Plot.plot({
-    marks: [
-      Plot.contour(volcano.values, {
-        width: volcano.width,
-        height: volcano.height,
-        fill: volcano.values,
-        stroke: "currentColor"
-      }),
-      Plot.frame()
-    ]
+    marks: [Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}), Plot.frame()]
   });
 }
 
@@ -37,7 +19,23 @@ export async function volcanoTerrain() {
       ])
     },
     marks: [
-      Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: volcano.values}),
+      Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}),
+      Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, stroke: "white"}),
+      Plot.frame()
+    ]
+  });
+}
+
+export async function volcanoContour() {
+  const volcano = await d3.json("data/volcano.json");
+  return Plot.plot({
+    marks: [
+      Plot.contour(volcano.values, {
+        width: volcano.width,
+        height: volcano.height,
+        fill: Plot.identity,
+        stroke: "currentColor"
+      }),
       Plot.frame()
     ]
   });
