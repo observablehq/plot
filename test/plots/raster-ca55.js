@@ -7,7 +7,7 @@ async function plotCa55(mark) {
   return Plot.plot({
     width: 640,
     height: 484,
-    projection: {type: "identity", inset: 3, domain},
+    projection: {type: "reflect-y", inset: 3, domain},
     color: {type: "diverging"},
     marks: [mark(ca55)]
   });
