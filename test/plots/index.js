@@ -284,6 +284,7 @@ export * from "./heatmap.js";
 export * from "./legend-color.js";
 export * from "./legend-opacity.js";
 export * from "./legend-symbol.js";
+export * from "./raster-blue-noise.js";
 export * from "./raster-ca55.js";
 export * from "./raster-penguins.js";
 export * from "./raster-vapor.js";
