@@ -4,19 +4,44 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [raster mark](./README.md#raster) generates a raster image from spatial samples. For example, here is a gridded digital elevation model (DEM) of Maungawhau (R’s `volcano` dataset):
+The new [raster mark](./README.md#raster) generates a raster image from spatial samples. For example, here is a gridded digital elevation model (DEM) of Maungawhau, R’s `volcano` dataset:
+
+[<img src="./img/volcano.png" width="640" alt="A heatmap of Maungawhau’s topography">](https://observablehq.com/@observablehq/plot-raster)
 
 ```js
-Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}).plot()
 ```
+
+For non-gridded or sparse data, Plot provides a variety of spatial interpolation methods to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), blends using barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
+
+[<img src="./img/ca55.png" width="650" alt="A heatmap of Maungawhau’s topography">](https://observablehq.com/@observablehq/plot-raster)
+
+```js
+Plot.plot({
+  width: 640,
+  height: 484,
+  inset: 4,
+  x: {tickFormat: "s"},
+  y: {reverse: true, tickFormat: "s", ticks: 5},
+  color: {type: "diverging", legend: true},
+  marks: [
+    Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "barycentric"}),
+    Plot.dot(ca55, {x: "GRID_EAST", y: "GRID_NORTH", r: 0.75, fill: "currentColor"})
+  ]
+})
+```
+
+TK vapor projection.
+
+TK random-walk for interpolating categorical data.
 
 The *fill* and *fillOpacity* channels may alternatively be specified as continuous functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
 
-```js
-Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
-```
+[<img src="./img/heatmap.png" width="640" alt="A heatmap of the trigonometric function atan2(y, x)">](https://observablehq.com/@observablehq/plot-raster)
 
-[spatially interpolated](#spatial-interpolation) to produce an image.
+```js
+Plot.raster({fill: (x, y) => Math.atan2(y, x), x1: -1.66, y1: -1, x2: 1.66, y2: 1}).plot()
+```
 
 The new contour mark…
 
