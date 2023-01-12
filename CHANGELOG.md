@@ -6,15 +6,15 @@
 
 The new [raster mark](./README.md#raster) generates a raster image from spatial samples. For example, here is a gridded digital elevation model (DEM) of Maungawhau, R’s `volcano` dataset:
 
-[<img src="./img/volcano.png" width="640" alt="A heatmap of Maungawhau’s topography">](https://observablehq.com/@observablehq/plot-raster)
+[<img src="./img/volcano.png" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/@observablehq/plot-raster)
 
 ```js
 Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}).plot()
 ```
 
-For non-gridded or sparse data, Plot provides a variety of spatial interpolation methods to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), blends using barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
+For non-gridded or sparse data, the raster mark implements a variety of spatial interpolation methods to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
 
-[<img src="./img/ca55.png" width="650" alt="A heatmap of Maungawhau’s topography">](https://observablehq.com/@observablehq/plot-raster)
+[<img src="./img/ca55.png" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-raster)
 
 ```js
 Plot.plot({
@@ -31,7 +31,33 @@ Plot.plot({
 })
 ```
 
-TK vapor projection.
+Naturally, the raster mark works with Plot’s [projection system](./README.md#projection-options), allowing spatial samples to be shown in any geographic projections and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded water vapor data from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
+
+[<img src="./img/water-vapor.png" width="650" alt="A map of global atmospheric water vapor, showing a higher concentration of water vapor near the equator">](https://observablehq.com/@observablehq/plot-raster)
+
+```js
+Plot.plot({
+  projection: "equirectangular",
+  color: {
+    scheme: "ylgnbu",
+    unknown: "#ccc",
+    legend: true,
+    label: "Water vapor (cm)"
+  },
+  marks: [
+    Plot.raster(vapor, {
+      x1: -180,
+      y1: 90,
+      x2: 180,
+      y2: -90,
+      width: 720,
+      height: 360
+    }),
+    Plot.graticule(),
+    Plot.frame()
+  ]
+})
+```
 
 TK random-walk for interpolating categorical data.
 
