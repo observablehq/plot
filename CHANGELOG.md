@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [raster mark](./README.md#raster) generates a raster image from spatial samples. For example, here is a gridded digital elevation model of Maungawhau, R’s [`volcano` dataset](./test/data/volcano.json):
+The new [raster mark](./README.md#raster) and [contour mark](./README.md#contour) generate a raster image and smooth contours, respectively, from spatial samples. For example, the plot below shows a gridded digital elevation model of Maungawhau (R’s [`volcano` dataset](./test/data/volcano.json)) with contours every 10 meters:
 
 [<img src="./img/volcano.webp" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/@observablehq/plot-raster)
 
@@ -13,12 +13,12 @@ Plot.plot({
   color: {legend: true, label: "Height (m)"},
   marks: [
     Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}),
-    Plot.frame()
+    Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, interval: 10})
   ]
 })
 ```
 
-For non-gridded or sparse data, the raster mark implements a variety of spatial interpolation methods to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
+For non-gridded or sparse data, the raster and contour marks implement a variety of spatial interpolation methods to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
 
 [<img src="./img/ca55.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-raster)
 
@@ -37,7 +37,9 @@ Plot.plot({
 })
 ```
 
-Naturally, the raster mark works with Plot’s [projection system](./README.md#projection-options), allowing spatial samples to be shown in any geographic projections and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded water vapor data from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
+TK, alternate visualization as contours.
+
+Naturally, the raster and contour mark work with Plot’s [projection system](./README.md#projection-options), allowing spatial samples to be shown in any geographic projections and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded water vapor data from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
 
 [<img src="./img/water-vapor.png" width="650" alt="A map of global atmospheric water vapor, showing a higher concentration of water vapor near the equator">](https://observablehq.com/@observablehq/plot-raster)
 
@@ -67,7 +69,7 @@ Plot.plot({
 
 TK random-walk for interpolating categorical data.
 
-The *fill* and *fillOpacity* channels may alternatively be specified as continuous functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
+The *fill* and *fillOpacity* channels may alternatively be specified as continuous functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation). TODO Show Mandelbrot instead.
 
 [<img src="./img/heatmap.png" width="640" alt="A heatmap of the trigonometric function atan2(y, x)">](https://observablehq.com/@observablehq/plot-raster)
 
@@ -75,7 +77,7 @@ The *fill* and *fillOpacity* channels may alternatively be specified as continuo
 Plot.raster({fill: (x, y) => Math.atan2(y, x), x1: -1.66, y1: -1, x2: 1.66, y2: 1}).plot()
 ```
 
-The new contour mark…
+TODO show spike map example.
 
 The [vector mark](./README.md#vector) now supports the **shape** constant option. The built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](./README.md#plotspikedata-options) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to further customize the shape.
 
