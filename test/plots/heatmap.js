@@ -161,7 +161,7 @@ export async function heatmapFaceted() {
   });
 }
 
-export function mandlebrot() {
+export function mandelbrot() {
   return Plot.plot({
     height: 500,
     marks: [
