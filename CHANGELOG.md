@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [raster mark](./README.md#raster) generates a raster image from spatial samples. For example, here is a gridded digital elevation model (DEM) of Maungawhau, R’s `volcano` dataset:
+The new [raster mark](./README.md#raster) generates a raster image from spatial samples. For example, here is a gridded digital elevation model of Maungawhau, R’s [`volcano` dataset](./test/data/volcano.json):
 
 [<img src="./img/volcano.png" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/@observablehq/plot-raster)
 
@@ -14,7 +14,7 @@ Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}).plot
 
 For non-gridded or sparse data, the raster mark implements a variety of spatial interpolation methods to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
 
-[<img src="./img/ca55.png" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-raster)
+[<img src="./img/ca55.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-raster)
 
 ```js
 Plot.plot({
@@ -22,11 +22,11 @@ Plot.plot({
   height: 484,
   inset: 4,
   x: {tickFormat: "s"},
-  y: {reverse: true, tickFormat: "s", ticks: 5},
+  y: {tickFormat: "s", ticks: 5},
   color: {type: "diverging", legend: true},
   marks: [
-    Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "barycentric"}),
-    Plot.dot(ca55, {x: "GRID_EAST", y: "GRID_NORTH", r: 0.75, fill: "currentColor"})
+    Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "barycentric"}),
+    Plot.dot(ca55, {x: "LONGITUDE", y: "LATITUDE", r: 0.75, fill: "currentColor"})
   ]
 })
 ```
