@@ -6,10 +6,16 @@
 
 The new [raster mark](./README.md#raster) generates a raster image from spatial samples. For example, here is a gridded digital elevation model of Maungawhau, R’s [`volcano` dataset](./test/data/volcano.json):
 
-[<img src="./img/volcano.png" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/@observablehq/plot-raster)
+[<img src="./img/volcano.webp" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/@observablehq/plot-raster)
 
 ```js
-Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}).plot()
+Plot.plot({
+  color: {legend: true, label: "Height (m)"},
+  marks: [
+    Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}),
+    Plot.frame()
+  ]
+})
 ```
 
 For non-gridded or sparse data, the raster mark implements a variety of spatial interpolation methods to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
