@@ -37,7 +37,7 @@ Plot.plot({
 })
 ```
 
-The same data, as filled contours in projected coordinates:
+The same data, with a smidge of blur, as filled contours in projected coordinates:
 
 [<img src="./img/ca55-contours.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-raster)
 
@@ -51,7 +51,7 @@ Plot.plot({
 })
 ```
 
-Naturally, the raster and contour mark support Plot’s [projection system](./README.md#projection-options), allowing spatial samples to be shown in any geographic projection and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded global water vapor dataset from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
+Naturally, the raster and contour mark are compatible with Plot’s [projection system](./README.md#projection-options), allowing spatial samples to be shown in any geographic projection and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded global water vapor dataset from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
 
 [<img src="./img/water-vapor.png" width="650" alt="A map of global atmospheric water vapor, showing a higher concentration of water vapor near the equator">](https://observablehq.com/@observablehq/plot-raster)
 
@@ -79,23 +79,54 @@ Plot.plot({
 })
 ```
 
-TK random-walk for interpolating categorical data.
+The raster and contour mark also support sampling continuous spatial functions *f*(*x*, *y*). For example, here is the famous Mandelbrot set, with color encoding the number of iterations before the point escapes:
 
-The *fill* and *fillOpacity* channels may alternatively be specified as continuous functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation). TODO Show Mandelbrot instead.
-
-[<img src="./img/heatmap.png" width="640" alt="A heatmap of the trigonometric function atan2(y, x)">](https://observablehq.com/@observablehq/plot-raster)
+[<img src="./img/mandelbrot.webp" width="640" alt="The Mandelbrot set">](https://observablehq.com/@observablehq/plot-raster)
 
 ```js
-Plot.raster({fill: (x, y) => Math.atan2(y, x), x1: -1.66, y1: -1, x2: 1.66, y2: 1}).plot()
+Plot.plot({
+  height: 500,
+  marks: [
+    Plot.raster({
+      fill: (x, y) => {
+        for (let n = 0, zr = 0, zi = 0; n < 80; ++n) {
+          [zr, zi] = [zr * zr - zi * zi + x, 2 * zr * zi + y];
+          if (zr * zr + zi * zi > 4) return n;
+        }
+      },
+      x1: -2,
+      y1: -1.164,
+      x2: 1,
+      y2: 1.164,
+      pixelSize: 0.5
+    })
+  ]
+})
 ```
 
-TODO show spike map example.
+The [vector mark](./README.md#vector) now supports the **shape** constant option; the built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](./README.md#plotspikedata-options) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to set the shape radius.
 
-The [vector mark](./README.md#vector) now supports the **shape** constant option. The built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](./README.md#plotspikedata-options) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to further customize the shape.
+[<img src="./img/spike-map.webp" width="640" alt="A spike map of U.S. county population">](https://observablehq.com/@observablehq/plot-vector)
+
+```js
+Plot.plot({
+  width: 960,
+  height: 600,
+  projection: "albers-usa",
+  length: {
+    range: [0, 200]
+  },
+  marks: [
+    Plot.geo(nation, {fill: "#e0e0e0"}),
+    Plot.geo(statemesh, {stroke: "white"}),
+    Plot.spike(counties.features, Plot.geoCentroid({stroke: "red", length: (d) => population.get(d.id)}))
+  ]
+});
+```
 
 The new [geoCentroid transform](./README.md#plotgeocentroidoptions) and [centroid initializer](./README.md#plotcentroidoptions) compute the spherical and projected planar centroids of geometry, respectively.
 
-Diverging scales now correctly handle descending domains. When the stack **order** option is used without a *z* channel, a helpful error message is now thrown. The **clip** option *frame* now correctly handles band scales. Using D3 7.8.1, generated SVG path data is now rounded to three decimal points to reduce output size.
+Diverging scales now correctly handle descending domains. When the stack **order** option is used without a *z* channel, a helpful error message is now thrown. The **clip** option *frame* now correctly handles band scales. Using D3 7.8, generated SVG path data is now rounded to three decimal points to reduce output size.
 
 ## 0.6.1
 
