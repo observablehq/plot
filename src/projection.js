@@ -256,9 +256,13 @@ export function projectionAspectRatio(projection, geometry) {
 // Extract the (possibly) scaled values for the x and y channels, and apply the
 // projection if any.
 export function Position(channels, scales, context) {
-  const position = valueObject({...(channels.x && {x: channels.x}), ...(channels.y && {y: channels.y})}, scales);
+  const {x, y} = channels;
+  let position = {};
+  if (x) position.x = x;
+  if (y) position.y = y;
+  position = valueObject(position, scales);
   if (context.projection) maybeProject("x", "y", channels, position, context);
-  if (position.x) position.x = coerceNumbers(position.x);
-  if (position.y) position.y = coerceNumbers(position.y);
+  if (x) position.x = coerceNumbers(position.x);
+  if (y) position.y = coerceNumbers(position.y);
   return position;
 }

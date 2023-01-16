@@ -92,7 +92,7 @@ export class Vector extends Mark {
     const {length, rotate, anchor, shape, r} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
         g

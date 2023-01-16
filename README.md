@@ -1112,6 +1112,61 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 <!-- jsdocEnd cellY -->
 
+### Contour
+
+[Source](./src/marks/contour.js) · [Examples](https://observablehq.com/@observablehq/plot-contour) · Renders contour polygons from spatial samples. If data is provided, it represents discrete samples in abstract coordinates *x* and *y*; the *value* channel specifies further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](#spatial-interpolation) to produce a [raster grid](#raster) of quantitative values, and lastly contours via marching squares.
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity})
+```
+
+The *value* channel may alternatively be specified as a continuous function *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
+
+```js
+Plot.contour({x1: 0, y1: 0, x2: 4, y2: 4, value: (x, y) => Math.sin(x) * Math.cos(y)})
+```
+
+The contour mark shares many options with the [raster](#raster) mark, including the **interpolate** option to specify the [spatial interpolation method](#spatial-interpolation). The interpolation method is ignored when the *value* channel is a function of *x* and *y*, and otherwise defaults to *nearest*. For smoother contours, the **blur** option (default 0) specifies a non-negative pixel radius for smoothing prior to applying marching squares. The **smooth** option (default true) specifies whether to apply linear interpolation after marching squares when computing contour polygons. The **thresholds** and **interval** options specify the contour thresholds; see the [bin transform](#bin) for details.
+
+The resolution of the raster grid may be specified with the following options:
+
+* **width** - the number of pixels on each horizontal line
+* **height** - the number of lines; a positive integer
+
+Alternatively, the raster dimensions may be imputed from the extent of *x* and *y* and a pixel size:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+* **pixelSize** - the screen size of a raster pixel; defaults to 1
+
+If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**; likewise, if **height** is specified, **y1** defaults to 0 and **y2** defaults to **height**. Otherwise, if **data** is specified, **x1**, **y1**, **x2**, and **y2** respectively default to the frame’s left, top, right, and bottom coordinates. Lastly, if **data** is not specified (as when **value** is a function of *x* and *y*), you must specify all of **x1**, **x2**, **y1**, and **y2** to define the raster domain (see below).
+
+With the exception of the *x*, *y*, *x1*, *y1*, *x2*, *y2*, and *value* channels, the contour mark’s channels are not evaluated on the initial *data* but rather on the contour multipolygons generated in the initializer. For example, to generate filled contours where the color corresponds to the contour threshold value:
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity, fill: "value"})
+```
+
+As shorthand, a single channel may be specified, in which case it is promoted to the *value* channel.
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+#### Plot.contour(*data*, *options*)
+
+<!-- jsdoc contour -->
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+Returns a new contour mark with the given (optional) *data* and *options*.
+
+<!-- jsdocEnd contour -->
+
 ### Delaunay
 
 [<img src="./img/voronoi.png" width="320" height="198" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
@@ -1503,6 +1558,55 @@ Plot.link(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R
 Returns a new link with the given *data* and *options*.
 
 <!-- jsdocEnd link -->
+
+### Raster
+
+[Source](./src/marks/raster.js) · [Examples](https://observablehq.com/@observablehq/plot-raster) · Renders a raster image from spatial samples. If data is provided, it represents discrete samples in abstract coordinates *x* and *y*; the *fill* and *fillOpacity* channels specify further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](#spatial-interpolation) to produce an image.
+
+```js
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height})
+```
+
+The *fill* and *fillOpacity* channels may alternatively be specified as continuous functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
+
+```js
+Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
+```
+
+The resolution of the rectangular raster image may be specified with the following options:
+
+* **width** - the number of pixels on each horizontal line
+* **height** - the number of lines; a positive integer
+
+The raster dimensions may also be imputed from the extent of *x* and *y* and a pixel size:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+* **pixelSize** - the screen size of a raster pixel; defaults to 1
+
+If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**; likewise, if **height** is specified, **y1** defaults to 0 and **y2** defaults to **height**. Otherwise, if **data** is specified, **x1**, **y1**, **x2**, and **y2** respectively default to the frame’s left, top, right, and bottom coordinates. Lastly, if **data** is not specified (as when **fill** or **fillOpacity** is a function of *x* and *y*), you must specify all of **x1**, **x2**, **y1**, and **y2** to define the raster domain (see below). The **pixelSize** may be set to the inverse of the devicePixelRatio for a sharper image.
+
+The following raster-specific constant options are supported:
+
+* **interpolate** - the [spatial interpolation method](#spatial-interpolation)
+* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
+* **blur** - a non-negative pixel radius for smoothing; defaults to 0
+
+The **imageRendering** option may be sent to *pixelated* to disable bilinear interpolation for a sharper image; however, note that this is not supported in WebKit. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
+
+#### Plot.raster(*data*, *options*)
+
+<!-- jsdoc raster -->
+
+```js
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+Returns a new raster mark with the given (optional) *data* and *options*.
+
+<!-- jsdocEnd raster -->
 
 ### Rect
 
@@ -2771,6 +2875,18 @@ Plot.column is typically used by options transforms to define new channels; the 
 
 <!-- jsdocEnd column -->
 
+#### Plot.identity
+
+<!-- jsdoc identity -->
+
+This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data:
+
+```js
+Plot.raster(await readValues(), {width: 300, height: 200, fill: Plot.identity})
+```
+
+<!-- jsdocEnd identity -->
+
 ## Initializers
 
 Initializers can be used to transform and derive new channels prior to rendering. Unlike transforms which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. Initializers are invoked *after* the initial scales are constructed and can modify the channels or derive new channels; these in turn may (or may not, as desired) be passed to scales.
@@ -2899,6 +3015,42 @@ The following named curve methods are supported:
 If *curve* is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://github.com/d3/d3-shape/blob/main/README.md#custom-curves). The *auto* curve is only available for the [line mark](#line) and is typically used in conjunction with a spherical [projection](#projection-options) to interpolate along [geodesics](https://en.wikipedia.org/wiki/Geodesic).
 
 The tension option only has an effect on bundle, cardinal and Catmull–Rom splines (*bundle*, *cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For bundle splines, it corresponds to [beta](https://github.com/d3/d3-shape/blob/main/README.md#curveBundle_beta); for cardinal splines, [tension](https://github.com/d3/d3-shape/blob/main/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/main/README.md#curveCatmullRom_alpha).
+
+## Spatial interpolation
+
+The [raster](#raster) and [contour](#contour) marks use spatial interpolation to populate a raster grid from a discrete set of (often ungridded) spatial samples. The **interpolate** option controls how these marks compute the raster grid. The following built-in methods are provided:
+
+* *none* (or null) - assign each sample to the containing pixel
+* *nearest* - assign each pixel to the closest sample’s value (Voronoi diagram)
+* *barycentric* - apply barycentric interpolation over the Delaunay triangulation
+* *random-walk* - apply a random walk from each pixel, stopping when near a sample
+
+The **interpolate** option can also be specified as a function with the following arguments:
+
+* *index* - an array of numeric indexes into the channels *x*, *y*, *value*
+* *width* - the width of the raster grid; a positive integer
+* *height* - the height of the raster grid; a positive integer
+* *x* - an array of values representing the *x*-position of samples
+* *y* - an array of values representing the *y*-position of samples
+* *value* - an array of values representing the sample’s observed value
+
+So, *x*[*index*[0]] represents the *x*-position of the first sample, *y*[*index*[0]] its *y*-position, and *value*[*index*[0]] its value (*e.g.*, the observed height for a topographic map).
+
+#### Plot.interpolateNone(*index*, *width*, *height*, *x*, *y*, *value*)
+
+Applies a simple forward mapping of samples, binning them into pixels in the raster grid without any blending or interpolation. If multiple samples map to the same pixel, the last one wins; this can introduce bias if the points are not in random order, so use [Plot.shuffle](#plotshuffleoptions) to randomize the input if needed.
+
+#### Plot.interpolateNearest(*index*, *width*, *height*, *x*, *y*, *value*)
+
+Assigns each pixel in the raster grid the value of the closest sample; effectively a Voronoi diagram.
+
+#### Plot.interpolatorBarycentric({*random*})
+
+Constructs a Delaunay triangulation of the samples, and then for each pixel in the raster grid, determines the triangle that covers the pixel’s centroid and interpolates the values associated with the triangle’s vertices using [barycentric coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system). If the interpolated values are ordinal or categorical (_i.e._, anything other than numbers or dates), then one of the three values will be picked randomly weighted by the barycentric coordinates; the given *random* number generator will be used, which defaults to a [linear congruential generator](https://github.com/d3/d3-random/blob/main/README.md#randomLcg) with a fixed seed (for deterministic results).
+
+#### Plot.interpolatorRandomWalk({*random*, *minDistance* = 0.5, *maxSteps* = 2})
+
+For each pixel in the raster grid, initiates a random walk, stopping when either the walk is within a given distance (*minDistance*) of a sample or the maximum allowable number of steps (*maxSteps*) have been taken, and then assigning the current pixel the closest sample’s value. The random walk uses the “walk on spheres” algorithm in two dimensions described by [Sawhney and Crane](https://www.cs.cmu.edu/~kmcrane/Projects/MonteCarloGeometryProcessing/index.html), SIGGRAPH 2020.
 
 ## Markers
 

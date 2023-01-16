@@ -88,7 +88,7 @@ export class Text extends Mark {
     const {rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this, T, dimensions)
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
