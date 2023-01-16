@@ -160,9 +160,7 @@ function contourGeometry({thresholds, interval, ...options}) {
         ? thresholds(V, ...finiteExtent(VV))
         : typeof thresholds === "number"
         ? ticks(...nice(...finiteExtent(VV), thresholds), thresholds)
-        : isIterable(thresholds)
-        ? [...thresholds]
-        : null;
+        : arrayify(thresholds, Array);
     if (T === null) throw new Error(`Unsupported thresholds: ${thresholds}`);
 
     // Compute the (maybe faceted) contours.
