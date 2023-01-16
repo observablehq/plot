@@ -271,10 +271,10 @@ function maybeBin(options) {
               t = new Float64Array(n);
               for (let i = 0; i < n; ++i) t[i] = (r0 + i) / step;
             } else {
-              t = [];
+              t = [min];
             }
           } else {
-            t = [];
+            t = [min];
           }
         } else {
           t = ticks(min, max, t);
@@ -289,7 +289,8 @@ function maybeBin(options) {
       T = t;
     }
     const extents = [];
-    for (let i = 1; i < T.length; ++i) extents.push([T[i - 1], T[i]]);
+    if (T.length === 1) extents.push([T[0], T[0]]); // collapsed domain
+    else for (let i = 1; i < T.length; ++i) extents.push([T[i - 1], T[i]]);
     T = T.map(coerceNumber); // for faster bisection
     extents.bin = (i) => bisect(T, V[i]) - 1; // TODO test for null? respect domain? quantization?
     return extents;
