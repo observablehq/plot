@@ -96,7 +96,7 @@ function binn(
 
   // Compute the outputs.
   outputs = maybeOutputs(outputs, inputs);
-  reduceData = reduceData == null ? undefined : maybeReduce(reduceData, identity);
+  reduceData = maybeReduce(reduceData, identity);
   sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
   filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
 
