@@ -160,7 +160,7 @@ function binn(
       const BX2 = bx && setBX2([]);
       const BY1 = by && setBY1([]);
       const BY2 = by && setBY2([]);
-      const bin = Bin(bx?.(data), by?.(data), cumulative > 0 ? bin1cp : cumulative < 0 ? bin1cn : bin1);
+      const bin = Bin(bx?.(data), by?.(data));
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
@@ -225,7 +225,7 @@ function maybeBinValueTuple(options) {
 
 function maybeBin(options) {
   if (options == null) return;
-  const {value, domain = extent, thresholds} = options;
+  const {value, cumulative, domain = extent, thresholds} = options;
   const bin = (data) => {
     let V = valueof(data, value);
     let T; // bin thresholds
@@ -288,12 +288,11 @@ function maybeBin(options) {
       }
       T = t;
     }
-    const extents = [];
-    if (T.length === 1) extents.push([T[0], T[0]]); // collapsed domain
-    else for (let i = 1; i < T.length; ++i) extents.push([T[i - 1], T[i]]);
-    T = T.map(coerceNumber); // for faster bisection
-    extents.bin = (i) => bisect(T, V[i]) - 1; // TODO test for null? respect domain? quantization?
-    return extents;
+    const E = [];
+    if (T.length === 1) E.push([T[0], T[0]]); // collapsed domain
+    else for (let i = 1; i < T.length; ++i) E.push([T[i - 1], T[i]]);
+    E.bin = (cumulative < 0 ? bin1cn : cumulative > 0 ? bin1cp : bin1)(E, T, V);
+    return E;
   };
   bin.label = labelof(value);
   return bin;
@@ -342,12 +341,12 @@ function isInterval(t) {
   return t ? typeof t.range === "function" : false;
 }
 
-function Bin(EX, EY, bin) {
+function Bin(EX, EY) {
   return EX && EY
     ? function* (I) {
-        const X = bin(EX, I); // first bin on x
+        const X = EX.bin(I); // first bin on x
         for (const [ix, [x1, x2]] of EX.entries()) {
-          const Y = bin(EY, X[ix]); // then bin on y
+          const Y = EY.bin(X[ix]); // then bin on y
           for (const [iy, [y1, y2]] of EY.entries()) {
             yield [Y[iy], {x1, y1, x2, y2}];
           }
@@ -355,13 +354,13 @@ function Bin(EX, EY, bin) {
       }
     : EX
     ? function* (I) {
-        const X = bin(EX, I);
+        const X = EX.bin(I);
         for (const [i, [x1, x2]] of EX.entries()) {
           yield [X[i], {x1, x2}];
         }
       }
     : function* (I) {
-        const Y = bin(EY, I);
+        const Y = EY.bin(I);
         for (const [i, [y1, y2]] of EY.entries()) {
           yield [Y[i], {y1, y2}];
         }
@@ -369,23 +368,39 @@ function Bin(EX, EY, bin) {
 }
 
 // non-cumulative distribution
-function bin1(E, I) {
-  const B = E.map(() => []);
-  for (const i of I) B[E.bin(i)]?.push(i);
-  return B;
+function bin1(E, T, V) {
+  T = T.map(coerceNumber); // for faster bisection; TODO skip if already typed
+  return (I) => {
+    const B = E.map(() => []);
+    for (const i of I) B[bisect(T, V[i]) - 1]?.push(i); // TODO quantization?
+    return B;
+  };
 }
 
 // cumulative distribution
-function bin1cp(E, I) {
-  const B = E.map(() => []);
-  const n = B.length;
-  for (const i of I) for (let j = E.bin(i); j < n; ++j) B[j]?.push(j);
-  return B;
+function bin1cp(E, T, V) {
+  const bin = bin1(E, T, V);
+  return (I) => {
+    const B = bin(I);
+    for (let i = 1, n = B.length; i < n; ++i) {
+      const C = B[i - 1];
+      const b = B[i];
+      for (const j of C) b.push(j);
+    }
+    return B;
+  };
 }
 
 // complementary cumulative distribution
-function bin1cn(E, I) {
-  const B = E.map(() => []);
-  for (const i of I) for (let j = E.bin(i); j >= 0; --j) B[j]?.push(j);
-  return B;
+function bin1cn(E, T, V) {
+  const bin = bin1(E, T, V);
+  return (I) => {
+    const B = bin(I);
+    for (let i = B.length - 2; i >= 0; --i) {
+      const C = B[i + 1];
+      const b = B[i];
+      for (const j of C) b.push(j);
+    }
+    return B;
+  };
 }
