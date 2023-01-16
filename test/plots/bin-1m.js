@@ -9,6 +9,6 @@ for (let i = 0; i < dates.length; ++i) dates[i] = new Date(random() * (end - sta
 
 export async function bin1m() {
   return Plot.plot({
-    marks: [Plot.rectY(dates, Plot.binX())]
+    marks: [Plot.rectY(dates, Plot.binX({y: "count", data: "first"}))]
   });
 }
