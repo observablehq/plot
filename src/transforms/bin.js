@@ -237,9 +237,9 @@ function maybeBin(options) {
       if (isInterval(t)) {
         if (domain === extent) {
           min = t.floor(min);
-          max = t.ceil(new Date(+max + 1));
+          max = t.offset(t.floor(max));
         }
-        t = t.range(min, max);
+        t = t.range(min, t.offset(max));
       }
       T = t;
     } else {
