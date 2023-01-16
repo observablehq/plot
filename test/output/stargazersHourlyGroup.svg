@@ -18,55 +18,55 @@
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,344.85897435897436)">
+    <g class="tick" opacity="1" transform="translate(0,344.764705882353)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,319.2179487179487)">
+    <g class="tick" opacity="1" transform="translate(0,319.02941176470586)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,293.57692307692304)">
+    <g class="tick" opacity="1" transform="translate(0,293.29411764705884)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,267.9358974358974)">
+    <g class="tick" opacity="1" transform="translate(0,267.5588235294117)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,242.2948717948718)">
+    <g class="tick" opacity="1" transform="translate(0,241.8235294117647)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,216.65384615384616)">
+    <g class="tick" opacity="1" transform="translate(0,216.08823529411765)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">120</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,191.01282051282053)">
+    <g class="tick" opacity="1" transform="translate(0,190.3529411764706)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">140</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,165.37179487179486)">
+    <g class="tick" opacity="1" transform="translate(0,164.61764705882354)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,139.73076923076923)">
+    <g class="tick" opacity="1" transform="translate(0,138.88235294117646)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">180</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,114.08974358974362)">
+    <g class="tick" opacity="1" transform="translate(0,113.14705882352939)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,88.44871794871794)">
+    <g class="tick" opacity="1" transform="translate(0,87.41176470588235)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">220</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,62.807692307692314)">
+    <g class="tick" opacity="1" transform="translate(0,61.676470588235304)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">240</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,37.166666666666686)">
+    <g class="tick" opacity="1" transform="translate(0,35.94117647058822)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">260</text>
     </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
@@ -104,118 +104,118 @@
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">New stargazers per hour →</text>
   </g>
   <g aria-label="rect">
-    <rect x="41" y="321.2820512820513" width="63.44444444444444" height="48.71794871794867" fill="rgb(35, 23, 27)">
+    <rect x="41" y="321.1029411764706" width="63.44444444444444" height="48.89705882352939" fill="rgb(35, 23, 27)">
       <title>S (38)</title>
     </rect>
-    <rect x="105.44444444444444" y="354.61538461538464" width="63.44444444444444" height="15.384615384615358" fill="rgb(35, 23, 27)">
+    <rect x="105.44444444444444" y="354.55882352941177" width="63.44444444444444" height="15.441176470588232" fill="rgb(35, 23, 27)">
       <title>S (12)</title>
     </rect>
-    <rect x="169.88888888888889" y="364.87179487179486" width="63.44444444444443" height="5.128205128205138" fill="rgb(35, 23, 27)">
+    <rect x="169.88888888888889" y="364.8529411764706" width="63.44444444444443" height="5.147058823529392" fill="rgb(35, 23, 27)">
       <title>S (4)</title>
     </rect>
-    <rect x="41" y="254.61538461538464" width="63.44444444444444" height="66.66666666666669" fill="rgb(57, 135, 249)">
+    <rect x="41" y="254.19117647058826" width="63.44444444444444" height="66.91176470588235" fill="rgb(57, 135, 249)">
       <title>M (52)</title>
     </rect>
-    <rect x="105.44444444444444" y="335.38461538461536" width="63.44444444444444" height="19.230769230769283" fill="rgb(57, 135, 249)">
+    <rect x="105.44444444444444" y="335.25735294117646" width="63.44444444444444" height="19.301470588235304" fill="rgb(57, 135, 249)">
       <title>M (15)</title>
     </rect>
-    <rect x="169.88888888888889" y="363.5897435897436" width="63.44444444444443" height="1.2820512820512704" fill="rgb(57, 135, 249)">
+    <rect x="169.88888888888889" y="363.56617647058823" width="63.44444444444443" height="1.2867647058823763" fill="rgb(57, 135, 249)">
       <title>M (1)</title>
     </rect>
-    <rect x="234.33333333333331" y="368.71794871794873" width="63.44444444444446" height="1.2820512820512704" fill="rgb(57, 135, 249)">
+    <rect x="234.33333333333331" y="368.7132352941176" width="63.44444444444446" height="1.2867647058823763" fill="rgb(57, 135, 249)">
       <title>M (1)</title>
     </rect>
-    <rect x="41" y="199.48717948717947" width="63.44444444444444" height="55.12820512820517" fill="rgb(46, 229, 174)">
+    <rect x="41" y="198.86029411764704" width="63.44444444444444" height="55.33088235294122" fill="rgb(46, 229, 174)">
       <title>T (43)</title>
     </rect>
-    <rect x="105.44444444444444" y="326.4102564102564" width="63.44444444444444" height="8.97435897435895" fill="rgb(46, 229, 174)">
+    <rect x="105.44444444444444" y="326.25" width="63.44444444444444" height="9.007352941176464" fill="rgb(46, 229, 174)">
       <title>T (7)</title>
     </rect>
-    <rect x="169.88888888888889" y="355.8974358974359" width="63.44444444444443" height="7.692307692307679" fill="rgb(46, 229, 174)">
+    <rect x="169.88888888888889" y="355.84558823529414" width="63.44444444444443" height="7.7205882352940876" fill="rgb(46, 229, 174)">
       <title>T (6)</title>
     </rect>
-    <rect x="298.77777777777777" y="368.71794871794873" width="63.44444444444446" height="1.2820512820512704" fill="rgb(46, 229, 174)">
+    <rect x="298.77777777777777" y="368.7132352941176" width="63.44444444444446" height="1.2867647058823763" fill="rgb(46, 229, 174)">
       <title>T (1)</title>
     </rect>
-    <rect x="363.22222222222223" y="368.71794871794873" width="63.4444444444444" height="1.2820512820512704" fill="rgb(46, 229, 174)">
+    <rect x="363.22222222222223" y="368.7132352941176" width="63.4444444444444" height="1.2867647058823763" fill="rgb(46, 229, 174)">
       <title>T (1)</title>
     </rect>
-    <rect x="427.66666666666663" y="368.71794871794873" width="63.444444444444514" height="1.2820512820512704" fill="rgb(46, 229, 174)">
+    <rect x="427.66666666666663" y="368.7132352941176" width="63.444444444444514" height="1.2867647058823763" fill="rgb(46, 229, 174)">
       <title>T (1)</title>
     </rect>
-    <rect x="41" y="153.33333333333331" width="63.44444444444444" height="46.15384615384616" fill="rgb(149, 251, 81)">
+    <rect x="41" y="152.53676470588235" width="63.44444444444444" height="46.323529411764696" fill="rgb(149, 251, 81)">
       <title>W (36)</title>
     </rect>
-    <rect x="105.44444444444444" y="316.1538461538462" width="63.44444444444444" height="10.25641025641022" fill="rgb(149, 251, 81)">
+    <rect x="105.44444444444444" y="315.95588235294116" width="63.44444444444444" height="10.29411764705884" fill="rgb(149, 251, 81)">
       <title>W (8)</title>
     </rect>
-    <rect x="169.88888888888889" y="352.05128205128204" width="63.44444444444443" height="3.846153846153868" fill="rgb(149, 251, 81)">
+    <rect x="169.88888888888889" y="351.985294117647" width="63.44444444444443" height="3.860294117647129" fill="rgb(149, 251, 81)">
       <title>W (3)</title>
     </rect>
-    <rect x="298.77777777777777" y="366.15384615384613" width="63.44444444444446" height="2.5641025641025976" fill="rgb(149, 251, 81)">
+    <rect x="298.77777777777777" y="366.139705882353" width="63.44444444444446" height="2.573529411764639" fill="rgb(149, 251, 81)">
       <title>W (2)</title>
     </rect>
-    <rect x="363.22222222222223" y="366.15384615384613" width="63.4444444444444" height="2.5641025641025976" fill="rgb(149, 251, 81)">
+    <rect x="363.22222222222223" y="366.139705882353" width="63.4444444444444" height="2.573529411764639" fill="rgb(149, 251, 81)">
       <title>W (2)</title>
     </rect>
-    <rect x="427.66666666666663" y="366.15384615384613" width="63.444444444444514" height="2.5641025641025976" fill="rgb(149, 251, 81)">
+    <rect x="427.66666666666663" y="366.139705882353" width="63.444444444444514" height="2.573529411764639" fill="rgb(149, 251, 81)">
       <title>W (2)</title>
     </rect>
-    <rect x="492.11111111111114" y="366.15384615384613" width="63.4444444444444" height="3.846153846153868" fill="rgb(149, 251, 81)">
+    <rect x="492.11111111111114" y="366.139705882353" width="63.4444444444444" height="3.8602941176470154" fill="rgb(149, 251, 81)">
       <title>W (3)</title>
     </rect>
-    <rect x="556.5555555555555" y="367.43589743589746" width="63.44444444444446" height="2.564102564102541" fill="rgb(149, 251, 81)">
+    <rect x="556.5555555555555" y="367.4264705882353" width="63.44444444444446" height="2.573529411764696" fill="rgb(149, 251, 81)">
       <title>W (2)</title>
     </rect>
-    <rect x="41" y="116.15384615384617" width="63.44444444444444" height="37.17948717948714" fill="rgb(254, 185, 39)">
-      <title>T (29)</title>
+    <rect x="41" y="116.50735294117648" width="63.44444444444444" height="36.02941176470587" fill="rgb(254, 185, 39)">
+      <title>T (28)</title>
     </rect>
-    <rect x="105.44444444444444" y="296.9230769230769" width="63.44444444444444" height="19.230769230769283" fill="rgb(254, 185, 39)">
+    <rect x="105.44444444444444" y="296.65441176470586" width="63.44444444444444" height="19.301470588235304" fill="rgb(254, 185, 39)">
       <title>T (15)</title>
     </rect>
-    <rect x="169.88888888888889" y="344.35897435897436" width="63.44444444444443" height="7.692307692307679" fill="rgb(254, 185, 39)">
+    <rect x="169.88888888888889" y="344.264705882353" width="63.44444444444443" height="7.720588235294031" fill="rgb(254, 185, 39)">
       <title>T (6)</title>
     </rect>
-    <rect x="234.33333333333331" y="362.3076923076923" width="63.44444444444446" height="6.410256410256409" fill="rgb(254, 185, 39)">
+    <rect x="234.33333333333331" y="362.27941176470586" width="63.44444444444446" height="6.433823529411768" fill="rgb(254, 185, 39)">
       <title>T (5)</title>
     </rect>
-    <rect x="298.77777777777777" y="363.5897435897436" width="63.44444444444446" height="2.564102564102541" fill="rgb(254, 185, 39)">
+    <rect x="298.77777777777777" y="363.56617647058823" width="63.44444444444446" height="2.5735294117647527" fill="rgb(254, 185, 39)">
       <title>T (2)</title>
     </rect>
-    <rect x="363.22222222222223" y="364.87179487179486" width="63.4444444444444" height="1.2820512820512704" fill="rgb(254, 185, 39)">
+    <rect x="363.22222222222223" y="364.8529411764706" width="63.4444444444444" height="1.2867647058823763" fill="rgb(254, 185, 39)">
       <title>T (1)</title>
     </rect>
-    <rect x="427.66666666666663" y="364.87179487179486" width="63.444444444444514" height="1.2820512820512704" fill="rgb(254, 185, 39)">
+    <rect x="427.66666666666663" y="364.8529411764706" width="63.444444444444514" height="1.2867647058823763" fill="rgb(254, 185, 39)">
       <title>T (1)</title>
     </rect>
-    <rect x="41" y="78.97435897435896" width="63.44444444444444" height="37.17948717948721" fill="rgb(229, 72, 19)">
+    <rect x="41" y="79.19117647058822" width="63.44444444444444" height="37.31617647058826" fill="rgb(229, 72, 19)">
       <title>F (29)</title>
     </rect>
-    <rect x="105.44444444444444" y="275.12820512820514" width="63.44444444444444" height="21.794871794871767" fill="rgb(229, 72, 19)">
+    <rect x="105.44444444444444" y="274.7794117647059" width="63.44444444444444" height="21.874999999999943" fill="rgb(229, 72, 19)">
       <title>F (17)</title>
     </rect>
-    <rect x="169.88888888888889" y="334.1025641025641" width="63.44444444444443" height="10.256410256410277" fill="rgb(229, 72, 19)">
+    <rect x="169.88888888888889" y="333.97058823529414" width="63.44444444444443" height="10.29411764705884" fill="rgb(229, 72, 19)">
       <title>F (8)</title>
     </rect>
-    <rect x="234.33333333333331" y="355.8974358974359" width="63.44444444444446" height="6.410256410256409" fill="rgb(229, 72, 19)">
+    <rect x="234.33333333333331" y="355.84558823529414" width="63.44444444444446" height="6.433823529411711" fill="rgb(229, 72, 19)">
       <title>F (5)</title>
     </rect>
-    <rect x="298.77777777777777" y="361.025641025641" width="63.44444444444446" height="2.5641025641025976" fill="rgb(229, 72, 19)">
+    <rect x="298.77777777777777" y="360.99264705882354" width="63.44444444444446" height="2.573529411764696" fill="rgb(229, 72, 19)">
       <title>F (2)</title>
     </rect>
-    <rect x="363.22222222222223" y="363.5897435897436" width="63.4444444444444" height="1.2820512820512704" fill="rgb(229, 72, 19)">
+    <rect x="363.22222222222223" y="363.56617647058823" width="63.4444444444444" height="1.2867647058823763" fill="rgb(229, 72, 19)">
       <title>F (1)</title>
     </rect>
-    <rect x="492.11111111111114" y="364.87179487179486" width="63.4444444444444" height="1.2820512820512704" fill="rgb(229, 72, 19)">
+    <rect x="492.11111111111114" y="364.8529411764706" width="63.4444444444444" height="1.2867647058823763" fill="rgb(229, 72, 19)">
       <title>F (1)</title>
     </rect>
-    <rect x="41" y="20" width="63.44444444444444" height="58.974358974358964" fill="rgb(144, 12, 0)">
+    <rect x="41" y="20" width="63.44444444444444" height="59.19117647058822" fill="rgb(144, 12, 0)">
       <title>S (46)</title>
     </rect>
-    <rect x="105.44444444444444" y="264.87179487179486" width="63.44444444444444" height="10.256410256410277" fill="rgb(144, 12, 0)">
+    <rect x="105.44444444444444" y="264.485294117647" width="63.44444444444444" height="10.294117647058897" fill="rgb(144, 12, 0)">
       <title>S (8)</title>
     </rect>
-    <rect x="169.88888888888889" y="331.53846153846155" width="63.44444444444443" height="2.564102564102541" fill="rgb(144, 12, 0)">
+    <rect x="169.88888888888889" y="331.3970588235294" width="63.44444444444443" height="2.5735294117647527" fill="rgb(144, 12, 0)">
       <title>S (2)</title>
     </rect>
   </g>

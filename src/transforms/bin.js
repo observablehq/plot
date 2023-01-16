@@ -1,4 +1,13 @@
-import {bisect, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, ticks, utcTickInterval} from "d3";
+import {
+  bisect,
+  extent,
+  thresholdFreedmanDiaconis,
+  thresholdScott,
+  thresholdSturges,
+  ticks,
+  tickIncrement,
+  utcTickInterval
+} from "d3";
 import {
   valueof,
   identity,
@@ -237,8 +246,40 @@ function maybeBin(options) {
       V = map(V, coerceNumber, Float64Array); // TODO deduplicate with code above
       let [min, max] = typeof domain === "function" ? domain(V) : domain;
       let t = typeof thresholds === "function" && !isInterval(thresholds) ? thresholds(V, min, max) : thresholds;
-      if (typeof t === "number") t = ticks(min, max, t);
-      else if (isInterval(t)) {
+      if (typeof t === "number") {
+        // This differs from d3.ticks with regard to exclusive bounds: we want a
+        // first threshold less than or equal to the minimum, and a last
+        // threshold (strictly) greater than the maximum.
+        if (domain === extent) {
+          let step = tickIncrement(min, max, t);
+          if (isFinite(step)) {
+            if (step > 0) {
+              let r0 = Math.round(min / step);
+              let r1 = Math.round(max / step);
+              if (!(r0 * step <= min)) --r0;
+              if (!(r1 * step > max)) ++r1;
+              let n = r1 - r0 + 1;
+              t = new Float64Array(n);
+              for (let i = 0; i < n; ++i) t[i] = (r0 + i) * step;
+            } else if (step < 0) {
+              step = -step;
+              let r0 = Math.round(min * step);
+              let r1 = Math.round(max * step);
+              if (!(r0 / step <= min)) --r0;
+              if (!(r1 / step > max)) ++r1;
+              let n = r1 - r0 + 1;
+              t = new Float64Array(n);
+              for (let i = 0; i < n; ++i) t[i] = (r0 + i) / step;
+            } else {
+              t = [];
+            }
+          } else {
+            t = [];
+          }
+        } else {
+          t = ticks(min, max, t);
+        }
+      } else if (isInterval(t)) {
         if (domain === extent) {
           min = t.floor(min);
           max = t.offset(t.floor(max));
@@ -248,9 +289,9 @@ function maybeBin(options) {
       T = t;
     }
     const extents = [];
-    for (let i = 0; i <= T.length; ++i) extents.push([T[i - 1], T[i]]);
+    for (let i = 1; i < T.length; ++i) extents.push([T[i - 1], T[i]]);
     T = T.map(coerceNumber); // for faster bisection
-    extents.bin = (i) => bisect(T, V[i]); // TODO test for null? respect domain?
+    extents.bin = (i) => bisect(T, V[i]) - 1; // TODO test for null? respect domain? quantization?
     return extents;
   };
   bin.label = labelof(value);
@@ -329,7 +370,7 @@ function Bin(EX, EY, bin) {
 // non-cumulative distribution
 function bin1(E, I) {
   const B = E.map(() => []);
-  for (const i of I) B[E.bin(i)].push(i);
+  for (const i of I) B[E.bin(i)]?.push(i);
   return B;
 }
 
@@ -337,13 +378,13 @@ function bin1(E, I) {
 function bin1cp(E, I) {
   const B = E.map(() => []);
   const n = B.length;
-  for (const i of I) for (let j = E.bin(i); j < n; ++j) B[j].push(j);
+  for (const i of I) for (let j = E.bin(i); j < n; ++j) B[j]?.push(j);
   return B;
 }
 
 // complementary cumulative distribution
 function bin1cn(E, I) {
   const B = E.map(() => []);
-  for (const i of I) for (let j = E.bin(i); j >= 0; --j) B[j].push(j);
+  for (const i of I) for (let j = E.bin(i); j >= 0; --j) B[j]?.push(j);
   return B;
 }

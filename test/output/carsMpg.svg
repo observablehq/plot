@@ -18,39 +18,39 @@
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,331.6111111111111)">
+    <g class="tick" opacity="1" transform="translate(0,333.2659574468085)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">5</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,292.72222222222223)">
+    <g class="tick" opacity="1" transform="translate(0,296.031914893617)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,253.83333333333334)">
+    <g class="tick" opacity="1" transform="translate(0,258.79787234042556)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">15</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,214.94444444444446)">
+    <g class="tick" opacity="1" transform="translate(0,221.56382978723406)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,176.05555555555554)">
+    <g class="tick" opacity="1" transform="translate(0,184.32978723404256)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">25</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,137.16666666666669)">
+    <g class="tick" opacity="1" transform="translate(0,147.09574468085103)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">30</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,98.27777777777777)">
+    <g class="tick" opacity="1" transform="translate(0,109.86170212765958)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">35</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,59.38888888888891)">
+    <g class="tick" opacity="1" transform="translate(0,72.62765957446808)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,20.5)">
+    <g class="tick" opacity="1" transform="translate(0,35.39361702127658)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">45</text>
     </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ economy (mpg)</text>
@@ -97,185 +97,187 @@
     </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">year</text>
   </g>
   <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-    <path stroke="rgb(35, 23, 27)" d="M154,222.222L161.333,223.519C168.667,224.815,183.333,227.407,220,224.167C256.667,220.926,315.333,211.852,366.667,204.463C418,197.074,462,191.37,484,188.519L506,185.667"></path>
-    <path stroke="rgb(38, 188, 225)" d="M66,173.333L73.333,170.513C80.667,167.692,95.333,162.051,110,164.459C124.667,166.866,139.333,177.322,154,183.459C168.667,189.596,183.333,191.414,198,185.747C212.667,180.081,227.333,166.929,242,163.659C256.667,160.389,271.333,167,286,168.34C300.667,169.679,315.333,165.747,330,160.747C344.667,155.747,359.333,149.679,374,146.037C388.667,142.394,403.333,141.178,418,138.043C432.667,134.909,447.333,129.857,462,123.33C476.667,116.802,491.333,108.799,506,107.128C520.667,105.456,535.333,110.117,550,113.41C564.667,116.704,579.333,118.63,586.667,119.593L594,120.556"></path>
-    <path stroke="rgb(149, 251, 81)" d="M418,212.111L425.333,205.5C432.667,198.889,447.333,185.667,462,164.796C476.667,143.926,491.333,115.407,498.667,101.148L506,86.889"></path>
-    <path stroke="rgb(255, 130, 29)" d="M66,210.556L73.333,213.796C80.667,217.037,95.333,223.519,117.333,225.463C139.333,227.407,168.667,224.815,190.667,225C212.667,225.185,227.333,228.148,242,229.985C256.667,231.821,271.333,232.531,286,229.753C300.667,226.975,315.333,220.71,330,218.225C344.667,215.741,359.333,217.037,374,218.247C388.667,219.457,403.333,220.58,418,216.108C432.667,211.636,447.333,201.568,462,192.71C476.667,183.852,491.333,176.204,506,175.583C520.667,174.963,535.333,181.37,550,178.216C564.667,175.062,579.333,162.346,586.667,155.988L594,149.63"></path>
-    <path stroke="rgb(144, 12, 0)" d="M66,260.247L73.333,261.132C80.667,262.016,95.333,263.786,110,264.429C124.667,265.071,139.333,264.587,154,264.883C168.667,265.179,183.333,266.256,198,265.499C212.667,264.741,227.333,262.148,242,258.951C256.667,255.753,271.333,251.951,286,251.346C300.667,250.741,315.333,253.333,330,252.901C344.667,252.469,359.333,249.012,374,243.33C388.667,237.648,403.333,229.741,418,226.331C432.667,222.922,447.333,224.011,469.333,214.224C491.333,204.437,520.667,183.774,535.333,173.443L550,163.111"></path>
+    <path stroke="rgb(35, 23, 27)" d="M154,228.511L161.333,229.752C168.667,230.993,183.333,233.475,220,230.372C256.667,227.27,315.333,218.582,366.667,211.507C418,204.433,462,198.972,484,196.241L506,193.511"></path>
+    <path stroke="rgb(38, 188, 225)" d="M66,181.702L73.333,179.002C80.667,176.301,95.333,170.9,110,173.205C124.667,175.51,139.333,185.521,154,191.397C168.667,197.273,183.333,199.014,198,193.588C212.667,188.162,227.333,175.571,242,172.44C256.667,169.309,271.333,175.638,286,176.921C300.667,178.203,315.333,174.439,330,169.651C344.667,164.864,359.333,159.054,374,155.567C388.667,152.08,403.333,150.915,418,147.914C432.667,144.913,447.333,140.076,462,133.826C476.667,127.577,491.333,119.914,506,118.314C520.667,116.713,535.333,121.176,550,124.329C564.667,127.482,579.333,129.326,586.667,130.248L594,131.17"></path>
+    <path stroke="rgb(149, 251, 81)" d="M418,218.83L425.333,212.5C432.667,206.17,447.333,193.511,462,173.528C476.667,153.546,491.333,126.241,498.667,112.589L506,98.936"></path>
+    <path stroke="rgb(255, 130, 29)" d="M66,217.34L73.333,220.443C80.667,223.546,95.333,229.752,117.333,231.613C139.333,233.475,168.667,230.993,190.667,231.17C212.667,231.348,227.333,234.184,242,235.943C256.667,237.701,271.333,238.381,286,235.721C300.667,233.061,315.333,227.063,330,224.684C344.667,222.305,359.333,223.546,374,224.704C388.667,225.863,403.333,226.939,418,222.657C432.667,218.375,447.333,208.735,462,200.254C476.667,191.773,491.333,184.45,506,183.856C520.667,183.262,535.333,189.397,550,186.377C564.667,183.357,579.333,171.182,586.667,165.095L594,159.007"></path>
+    <path stroke="rgb(144, 12, 0)" d="M66,264.917L73.333,265.764C80.667,266.612,95.333,268.306,110,268.921C124.667,269.536,139.333,269.073,154,269.356C168.667,269.64,183.333,270.671,198,269.945C212.667,269.22,227.333,266.738,242,263.676C256.667,260.615,271.333,256.974,286,256.395C300.667,255.816,315.333,258.298,330,257.884C344.667,257.47,359.333,254.161,374,248.72C388.667,243.28,403.333,235.709,418,232.445C432.667,229.181,447.333,230.223,469.333,220.853C491.333,211.482,520.667,191.699,535.333,181.807L550,171.915"></path>
   </g>
   <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="198" cy="268.8888888888889" r="9.9498743710662" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="66" cy="253.33333333333334" r="9.486832980505138" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="594" cy="82.22222222222223" r="7.348469228349533" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="110" cy="222.22222222222223" r="7.348469228349533" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="154" cy="268.8888888888889" r="7.348469228349533" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="198" cy="253.33333333333334" r="7.348469228349533" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="242" cy="160" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="286" cy="191.11111111111114" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="330" cy="144.44444444444443" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="374" cy="128.88888888888889" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="550" cy="113.33333333333336" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="550" cy="97.77777777777777" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="594" cy="160" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="286" cy="222.22222222222223" r="6.708203932499369" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="418" cy="206.66666666666669" r="6.708203932499369" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="154" cy="253.33333333333334" r="6.708203932499369" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="66" cy="175.55555555555554" r="6" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="154" cy="191.11111111111114" r="6" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="286" cy="175.55555555555554" r="6" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="462" cy="97.77777777777777" r="6" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="113.33333333333336" r="6" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="198" cy="222.22222222222223" r="6" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="418" cy="222.22222222222223" r="6" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="110" cy="253.33333333333334" r="6" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="330" cy="268.8888888888889" r="6" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="374" cy="253.33333333333334" r="6" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="374" cy="237.77777777777777" r="6" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="418" cy="222.22222222222223" r="6" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="462" cy="237.77777777777777" r="6" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="66" cy="160" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="110" cy="160" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="110" cy="128.88888888888889" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="154" cy="206.66666666666669" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="198" cy="206.66666666666669" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="242" cy="175.55555555555554" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="242" cy="128.88888888888889" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="330" cy="175.55555555555554" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="330" cy="160" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="374" cy="175.55555555555554" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="418" cy="191.11111111111114" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="418" cy="128.88888888888889" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="144.44444444444443" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="51.111111111111114" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="594" cy="144.44444444444443" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="594" cy="128.88888888888889" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="594" cy="113.33333333333336" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="594" cy="66.66666666666666" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="286" cy="253.33333333333334" r="5.196152422706632" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="330" cy="222.22222222222223" r="5.196152422706632" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="330" cy="191.11111111111114" r="5.196152422706632" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="418" cy="237.77777777777777" r="5.196152422706632" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="462" cy="206.66666666666669" r="5.196152422706632" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="66" cy="284.44444444444446" r="5.196152422706632" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="110" cy="268.8888888888889" r="5.196152422706632" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="242" cy="253.33333333333334" r="5.196152422706632" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="330" cy="237.77777777777777" r="5.196152422706632" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="462" cy="222.22222222222223" r="5.196152422706632" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="110" cy="191.11111111111114" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="110" cy="175.55555555555554" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="110" cy="144.44444444444443" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="154" cy="175.55555555555554" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="154" cy="160" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="154" cy="144.44444444444443" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="198" cy="222.22222222222223" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="198" cy="175.55555555555554" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="198" cy="160" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="242" cy="144.44444444444443" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="242" cy="113.33333333333336" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="286" cy="144.44444444444443" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="330" cy="113.33333333333336" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="374" cy="113.33333333333336" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="418" cy="206.66666666666669" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="418" cy="160" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="418" cy="82.22222222222223" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="462" cy="160" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="462" cy="128.88888888888889" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="160" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="128.88888888888889" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="97.77777777777777" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="82.22222222222223" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="20" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="550" cy="160" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="550" cy="144.44444444444443" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="550" cy="128.88888888888889" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="550" cy="82.22222222222223" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="550" cy="66.66666666666666" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="594" cy="97.77777777777777" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="66" cy="206.66666666666669" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="110" cy="237.77777777777777" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="198" cy="206.66666666666669" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="242" cy="237.77777777777777" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="242" cy="222.22222222222223" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="242" cy="206.66666666666669" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="286" cy="237.77777777777777" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="286" cy="206.66666666666669" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="330" cy="237.77777777777777" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="374" cy="222.22222222222223" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="550" cy="191.11111111111114" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="550" cy="175.55555555555554" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="66" cy="237.77777777777777" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="66" cy="222.22222222222223" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="198" cy="284.44444444444446" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="286" cy="253.33333333333334" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="286" cy="237.77777777777777" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="330" cy="253.33333333333334" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="462" cy="191.11111111111114" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="154" cy="222.22222222222223" r="3" stroke="rgb(35, 23, 27)"></circle>
-    <circle cx="198" cy="222.22222222222223" r="3" stroke="rgb(35, 23, 27)"></circle>
-    <circle cx="374" cy="206.66666666666669" r="3" stroke="rgb(35, 23, 27)"></circle>
-    <circle cx="506" cy="191.11111111111114" r="3" stroke="rgb(35, 23, 27)"></circle>
-    <circle cx="110" cy="97.77777777777777" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="154" cy="222.22222222222223" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="198" cy="191.11111111111114" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="198" cy="144.44444444444443" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="286" cy="113.33333333333336" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="330" cy="222.22222222222223" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="330" cy="206.66666666666669" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="374" cy="206.66666666666669" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="374" cy="160" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="374" cy="144.44444444444443" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="374" cy="82.22222222222223" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="418" cy="175.55555555555554" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="418" cy="144.44444444444443" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="418" cy="113.33333333333336" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="418" cy="66.66666666666666" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="418" cy="35.55555555555554" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="462" cy="191.11111111111114" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="462" cy="144.44444444444443" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="462" cy="113.33333333333336" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="462" cy="82.22222222222223" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="191.11111111111114" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="175.55555555555554" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="66.66666666666666" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="506" cy="35.55555555555554" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="550" cy="175.55555555555554" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="594" cy="191.11111111111114" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="594" cy="175.55555555555554" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="594" cy="20" r="3" stroke="rgb(38, 188, 225)"></circle>
-    <circle cx="418" cy="206.66666666666669" r="3" stroke="rgb(149, 251, 81)"></circle>
-    <circle cx="462" cy="175.55555555555554" r="3" stroke="rgb(149, 251, 81)"></circle>
-    <circle cx="506" cy="82.22222222222223" r="3" stroke="rgb(149, 251, 81)"></circle>
-    <circle cx="66" cy="222.22222222222223" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="66" cy="191.11111111111114" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="198" cy="237.77777777777777" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="198" cy="191.11111111111114" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="242" cy="253.33333333333334" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="330" cy="206.66666666666669" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="330" cy="175.55555555555554" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="374" cy="237.77777777777777" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="374" cy="206.66666666666669" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="374" cy="191.11111111111114" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="462" cy="222.22222222222223" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="462" cy="160" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="462" cy="144.44444444444443" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="506" cy="222.22222222222223" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="506" cy="113.33333333333336" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="550" cy="237.77777777777777" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="550" cy="206.66666666666669" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="550" cy="128.88888888888889" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="594" cy="191.11111111111114" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="594" cy="175.55555555555554" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="594" cy="66.66666666666666" r="3" stroke="rgb(255, 130, 29)"></circle>
-    <circle cx="154" cy="284.44444444444446" r="3" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="154" cy="237.77777777777777" r="3" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="198" cy="237.77777777777777" r="3" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="242" cy="268.8888888888889" r="3" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="242" cy="237.77777777777777" r="3" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="286" cy="268.8888888888889" r="3" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="286" cy="206.66666666666669" r="3" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="418" cy="237.77777777777777" r="3" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="418" cy="206.66666666666669" r="3" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="462" cy="253.33333333333334" r="3" stroke="rgb(144, 12, 0)"></circle>
-    <circle cx="550" cy="160" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="198" cy="273.19148936170205" r="9.9498743710662" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="66" cy="258.29787234042556" r="9.486832980505138" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="594" cy="94.46808510638297" r="7.348469228349533" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="110" cy="228.51063829787233" r="7.348469228349533" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="154" cy="273.19148936170205" r="7.348469228349533" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="198" cy="258.29787234042556" r="7.348469228349533" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="242" cy="168.93617021276594" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="286" cy="198.72340425531917" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="330" cy="154.04255319148936" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="374" cy="139.14893617021278" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="550" cy="124.25531914893617" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="550" cy="109.36170212765958" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="594" cy="168.93617021276594" r="6.708203932499369" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="286" cy="228.51063829787233" r="6.708203932499369" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="418" cy="213.61702127659575" r="6.708203932499369" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="154" cy="258.29787234042556" r="6.708203932499369" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="66" cy="183.82978723404256" r="6" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="154" cy="198.72340425531917" r="6" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="286" cy="183.82978723404256" r="6" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="462" cy="109.36170212765958" r="6" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="124.25531914893617" r="6" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="198" cy="228.51063829787233" r="6" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="418" cy="228.51063829787233" r="6" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="110" cy="258.29787234042556" r="6" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="330" cy="273.19148936170205" r="6" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="374" cy="258.29787234042556" r="6" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="374" cy="243.40425531914897" r="6" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="418" cy="228.51063829787233" r="6" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="462" cy="243.40425531914897" r="6" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="66" cy="168.93617021276594" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="110" cy="168.93617021276594" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="110" cy="139.14893617021278" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="154" cy="213.61702127659575" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="198" cy="213.61702127659575" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="242" cy="183.82978723404256" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="242" cy="139.14893617021278" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="330" cy="183.82978723404256" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="330" cy="168.93617021276594" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="374" cy="183.82978723404256" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="418" cy="198.72340425531917" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="418" cy="139.14893617021278" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="154.04255319148936" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="64.68085106382978" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="594" cy="154.04255319148936" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="594" cy="139.14893617021278" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="594" cy="124.25531914893617" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="594" cy="79.57446808510639" r="5.196152422706632" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="286" cy="258.29787234042556" r="5.196152422706632" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="330" cy="228.51063829787233" r="5.196152422706632" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="330" cy="198.72340425531917" r="5.196152422706632" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="418" cy="243.40425531914897" r="5.196152422706632" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="462" cy="213.61702127659575" r="5.196152422706632" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="66" cy="288.0851063829787" r="5.196152422706632" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="110" cy="273.19148936170205" r="5.196152422706632" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="242" cy="258.29787234042556" r="5.196152422706632" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="330" cy="243.40425531914897" r="5.196152422706632" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="462" cy="228.51063829787233" r="5.196152422706632" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="110" cy="198.72340425531917" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="110" cy="183.82978723404256" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="110" cy="154.04255319148936" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="154" cy="183.82978723404256" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="154" cy="168.93617021276594" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="154" cy="154.04255319148936" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="198" cy="228.51063829787233" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="198" cy="183.82978723404256" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="198" cy="168.93617021276594" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="242" cy="154.04255319148936" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="242" cy="124.25531914893617" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="286" cy="154.04255319148936" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="330" cy="124.25531914893617" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="374" cy="124.25531914893617" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="418" cy="213.61702127659575" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="418" cy="168.93617021276594" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="418" cy="94.46808510638297" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="462" cy="168.93617021276594" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="462" cy="139.14893617021278" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="168.93617021276594" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="139.14893617021278" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="109.36170212765958" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="94.46808510638297" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="34.89361702127658" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="550" cy="168.93617021276594" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="550" cy="154.04255319148936" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="550" cy="139.14893617021278" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="550" cy="94.46808510638297" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="550" cy="79.57446808510639" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="594" cy="109.36170212765958" r="4.242640687119286" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="66" cy="213.61702127659575" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="110" cy="243.40425531914897" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="198" cy="213.61702127659575" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="242" cy="243.40425531914897" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="242" cy="228.51063829787233" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="242" cy="213.61702127659575" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="286" cy="243.40425531914897" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="286" cy="213.61702127659575" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="330" cy="243.40425531914897" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="374" cy="228.51063829787233" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="550" cy="198.72340425531917" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="550" cy="183.82978723404256" r="4.242640687119286" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="66" cy="243.40425531914897" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="66" cy="228.51063829787233" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="198" cy="288.0851063829787" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="286" cy="258.29787234042556" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="286" cy="243.40425531914897" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="330" cy="258.29787234042556" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="462" cy="198.72340425531917" r="4.242640687119286" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="154" cy="228.51063829787233" r="3" stroke="rgb(35, 23, 27)"></circle>
+    <circle cx="198" cy="228.51063829787233" r="3" stroke="rgb(35, 23, 27)"></circle>
+    <circle cx="374" cy="213.61702127659575" r="3" stroke="rgb(35, 23, 27)"></circle>
+    <circle cx="506" cy="198.72340425531917" r="3" stroke="rgb(35, 23, 27)"></circle>
+    <circle cx="110" cy="109.36170212765958" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="154" cy="228.51063829787233" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="198" cy="198.72340425531917" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="198" cy="154.04255319148936" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="286" cy="124.25531914893617" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="330" cy="228.51063829787233" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="330" cy="213.61702127659575" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="374" cy="213.61702127659575" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="374" cy="168.93617021276594" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="374" cy="154.04255319148936" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="374" cy="94.46808510638297" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="418" cy="183.82978723404256" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="418" cy="154.04255319148936" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="418" cy="124.25531914893617" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="418" cy="79.57446808510639" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="418" cy="49.787234042553195" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="462" cy="198.72340425531917" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="462" cy="154.04255319148936" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="462" cy="124.25531914893617" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="462" cy="94.46808510638297" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="198.72340425531917" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="183.82978723404256" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="79.57446808510639" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="49.787234042553195" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="506" cy="20" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="550" cy="183.82978723404256" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="594" cy="198.72340425531917" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="594" cy="183.82978723404256" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="594" cy="34.89361702127658" r="3" stroke="rgb(38, 188, 225)"></circle>
+    <circle cx="418" cy="213.61702127659575" r="3" stroke="rgb(149, 251, 81)"></circle>
+    <circle cx="462" cy="183.82978723404256" r="3" stroke="rgb(149, 251, 81)"></circle>
+    <circle cx="506" cy="94.46808510638297" r="3" stroke="rgb(149, 251, 81)"></circle>
+    <circle cx="66" cy="228.51063829787233" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="66" cy="198.72340425531917" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="198" cy="243.40425531914897" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="198" cy="198.72340425531917" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="242" cy="258.29787234042556" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="330" cy="213.61702127659575" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="330" cy="183.82978723404256" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="374" cy="243.40425531914897" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="374" cy="213.61702127659575" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="374" cy="198.72340425531917" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="462" cy="228.51063829787233" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="462" cy="168.93617021276594" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="462" cy="154.04255319148936" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="506" cy="228.51063829787233" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="506" cy="124.25531914893617" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="550" cy="243.40425531914897" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="550" cy="213.61702127659575" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="550" cy="139.14893617021278" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="594" cy="198.72340425531917" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="594" cy="183.82978723404256" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="594" cy="79.57446808510639" r="3" stroke="rgb(255, 130, 29)"></circle>
+    <circle cx="66" cy="302.97872340425533" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="154" cy="288.0851063829787" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="154" cy="243.40425531914897" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="198" cy="243.40425531914897" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="242" cy="273.19148936170205" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="242" cy="243.40425531914897" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="286" cy="273.19148936170205" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="286" cy="213.61702127659575" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="418" cy="243.40425531914897" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="418" cy="213.61702127659575" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="462" cy="258.29787234042556" r="3" stroke="rgb(144, 12, 0)"></circle>
+    <circle cx="550" cy="168.93617021276594" r="3" stroke="rgb(144, 12, 0)"></circle>
   </g>
 </svg>
