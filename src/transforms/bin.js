@@ -284,7 +284,7 @@ function maybeBin(options) {
           min = t.floor(min);
           max = t.offset(t.floor(max));
         }
-        t = t.range(min, max);
+        t = t.range(min, t.offset(max));
       }
       T = t;
     }
