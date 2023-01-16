@@ -25,7 +25,8 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: |
           echo ::add-matcher::.github/eslint.json
-          yarn run eslint . --format=compact
+          yarn run eslint src test --format=compact
+      - run: yarn run prettier --check src test
       - run: yarn test
       - name: Test artifacts
         uses: actions/upload-artifact@v3
