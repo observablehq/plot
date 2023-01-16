@@ -1,7 +1,7 @@
 import {blur2, contours, geoPath, map, max, min, nice, range, ticks, thresholdSturges} from "d3";
 import {Channels} from "../channel.js";
 import {create} from "../context.js";
-import {labelof, identity, isIterable} from "../options.js";
+import {labelof, identity, arrayify} from "../options.js";
 import {Position} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, styles} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -157,17 +157,17 @@ function contourGeometry({thresholds, interval, ...options}) {
       typeof thresholds?.range === "function"
         ? thresholds.range(...(([min, max]) => [thresholds.floor(min), max])(finiteExtent(VV)))
         : typeof thresholds === "function"
-        ? thresholds(V, ...finiteExtent(VV))
+        ? maybeNiceTicks(thresholds, finiteExtent(VV), V)
         : typeof thresholds === "number"
-        ? ticks(...nice(...finiteExtent(VV), thresholds), thresholds)
+        ? niceTicks(thresholds, finiteExtent(VV))
         : arrayify(thresholds, Array);
     if (T === null) throw new Error(`Unsupported thresholds: ${thresholds}`);
 
     // Compute the (maybe faceted) contours.
-    const contour = contours().thresholds(T).size([w, h]).smooth(this.smooth);
+    const {contour} = contours().size([w, h]).smooth(this.smooth);
     const contourData = [];
     const contourFacets = [];
-    for (const V of VV) contourFacets.push(range(contourData.length, contourData.push(...contour(V))));
+    for (const V of VV) contourFacets.push(range(contourData.length, contourData.push(...T.map((t) => contour(V, t)))));
 
     // Rescale the contour multipolygon from grid to screen coordinates.
     for (const {coordinates} of contourData) {
@@ -188,6 +188,20 @@ function contourGeometry({thresholds, interval, ...options}) {
       channels: Channels(this.contourChannels, contourData)
     };
   });
+}
+
+// Convert number of thresholds into uniform thresholds.
+function niceTicks(thresholds, e) {
+  const tz = ticks(...nice(...e, thresholds), thresholds);
+  while (tz[tz.length - 1] >= e[1]) tz.pop();
+  while (tz[1] < e[0]) tz.shift();
+  return tz;
+}
+
+// Apply the thresholds function and return an array of ticks.
+function maybeNiceTicks(thresholds, e, V) {
+  thresholds = thresholds(V, ...e);
+  return Array.isArray(thresholds) ? thresholds : niceTicks(thresholds, e);
 }
 
 export function contour() {
