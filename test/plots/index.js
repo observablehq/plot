@@ -280,6 +280,7 @@ export {default as yearlyRequests} from "./yearly-requests.js";
 export {default as yearlyRequestsDot} from "./yearly-requests-dot.js";
 export {default as yearlyRequestsLine} from "./yearly-requests-line.js";
 
+export * from "./bin-1m.js";
 export * from "./function-contour.js";
 export * from "./heatmap.js";
 export * from "./legend-color.js";

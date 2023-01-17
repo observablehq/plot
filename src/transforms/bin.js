@@ -1,7 +1,15 @@
-import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
+import {
+  bisect,
+  extent,
+  thresholdFreedmanDiaconis,
+  thresholdScott,
+  thresholdSturges,
+  ticks,
+  tickIncrement,
+  utcTickInterval
+} from "d3";
 import {
   valueof,
-  range,
   identity,
   maybeColumn,
   maybeInterval,
@@ -11,7 +19,8 @@ import {
   mid,
   labelof,
   isTemporal,
-  isIterable
+  isIterable,
+  map
 } from "../options.js";
 import {coerceDate, coerceNumber} from "../scales.js";
 import {basic} from "./basic.js";
@@ -74,7 +83,7 @@ function binn(
   gx, // optionally group on x (exclusive with bx and gy)
   gy, // optionally group on y (exclusive with by and gx)
   {
-    data: reduceData = reduceIdentity,
+    data: reduceData = reduceIdentity, // TODO avoid materializing when unused?
     filter = reduceCount, // return only non-empty bins by default
     sort,
     reverse,
@@ -147,12 +156,11 @@ function binn(
       const GZ = Z && setGZ([]);
       const GF = F && setGF([]);
       const GS = S && setGS([]);
-      const BX = bx ? bx(data) : [[, , (I) => I]];
-      const BY = by ? by(data) : [[, , (I) => I]];
       const BX1 = bx && setBX1([]);
       const BX2 = bx && setBX2([]);
       const BY1 = by && setBY1([]);
       const BY2 = by && setBY2([]);
+      const bin = Bin(bx?.(data), by?.(data));
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
@@ -164,23 +172,18 @@ function binn(
         if (filter) filter.scope("facet", facet);
         for (const [f, I] of maybeGroup(facet, G)) {
           for (const [k, g] of maybeGroup(I, K)) {
-            for (const [x1, x2, fx] of BX) {
-              const bb = fx(g);
-              for (const [y1, y2, fy] of BY) {
-                const extent = {x1, x2, y1, y2};
-                const b = fy(bb);
-                if (filter && !filter.reduce(b, extent)) continue;
-                groupFacet.push(i++);
-                groupData.push(reduceData.reduce(b, data, extent));
-                if (K) GK.push(k);
-                if (Z) GZ.push(G === Z ? f : Z[b[0]]);
-                if (F) GF.push(G === F ? f : F[b[0]]);
-                if (S) GS.push(G === S ? f : S[b[0]]);
-                if (BX1) BX1.push(x1), BX2.push(x2);
-                if (BY1) BY1.push(y1), BY2.push(y2);
-                for (const o of outputs) o.reduce(b, extent);
-                if (sort) sort.reduce(b);
-              }
+            for (const [b, extent] of bin(g)) {
+              if (filter && !filter.reduce(b, extent)) continue;
+              groupFacet.push(i++);
+              groupData.push(reduceData.reduce(b, data, extent));
+              if (K) GK.push(k);
+              if (Z) GZ.push(G === Z ? f : Z[b[0]]);
+              if (F) GF.push(G === F ? f : F[b[0]]);
+              if (S) GS.push(G === S ? f : S[b[0]]);
+              if (BX1) BX1.push(extent.x1), BX2.push(extent.x2);
+              if (BY1) BY1.push(extent.y1), BY2.push(extent.y2);
+              for (const o of outputs) o.reduce(b, extent);
+              if (sort) sort.reduce(b);
             }
           }
         }
@@ -224,39 +227,72 @@ function maybeBin(options) {
   if (options == null) return;
   const {value, cumulative, domain = extent, thresholds} = options;
   const bin = (data) => {
-    let V = valueof(data, value, Array); // d3.bin prefers Array input
-    const bin = binner().value((i) => V[i]);
+    let V = valueof(data, value);
+    let T; // bin thresholds
     if (isTemporal(V) || isTimeThresholds(thresholds)) {
-      V = V.map(coerceDate);
+      V = map(V, coerceDate, Float64Array);
       let [min, max] = typeof domain === "function" ? domain(V) : domain;
       let t = typeof thresholds === "function" && !isInterval(thresholds) ? thresholds(V, min, max) : thresholds;
       if (typeof t === "number") t = utcTickInterval(min, max, t);
       if (isInterval(t)) {
         if (domain === extent) {
           min = t.floor(min);
-          max = t.ceil(new Date(+max + 1));
+          max = t.offset(t.floor(max));
         }
-        t = t.range(min, max);
+        t = t.range(min, t.offset(max));
       }
-      bin.thresholds(t).domain([min, max]);
+      T = t;
     } else {
-      V = V.map(coerceNumber);
-      let d = domain;
-      let t = thresholds;
-      if (isInterval(t)) {
-        let [min, max] = typeof d === "function" ? d(V) : d;
-        if (d === extent) {
+      V = map(V, coerceNumber, Float64Array); // TODO deduplicate with code above
+      let [min, max] = typeof domain === "function" ? domain(V) : domain;
+      let t = typeof thresholds === "function" && !isInterval(thresholds) ? thresholds(V, min, max) : thresholds;
+      if (typeof t === "number") {
+        // This differs from d3.ticks with regard to exclusive bounds: we want a
+        // first threshold less than or equal to the minimum, and a last
+        // threshold (strictly) greater than the maximum.
+        if (domain === extent) {
+          let step = tickIncrement(min, max, t);
+          if (isFinite(step)) {
+            if (step > 0) {
+              let r0 = Math.round(min / step);
+              let r1 = Math.round(max / step);
+              if (!(r0 * step <= min)) --r0;
+              if (!(r1 * step > max)) ++r1;
+              let n = r1 - r0 + 1;
+              t = new Float64Array(n);
+              for (let i = 0; i < n; ++i) t[i] = (r0 + i) * step;
+            } else if (step < 0) {
+              step = -step;
+              let r0 = Math.round(min * step);
+              let r1 = Math.round(max * step);
+              if (!(r0 / step <= min)) --r0;
+              if (!(r1 / step > max)) ++r1;
+              let n = r1 - r0 + 1;
+              t = new Float64Array(n);
+              for (let i = 0; i < n; ++i) t[i] = (r0 + i) / step;
+            } else {
+              t = [min];
+            }
+          } else {
+            t = [min];
+          }
+        } else {
+          t = ticks(min, max, t);
+        }
+      } else if (isInterval(t)) {
+        if (domain === extent) {
           min = t.floor(min);
           max = t.offset(t.floor(max));
-          d = [min, max];
         }
-        t = t.range(min, max);
+        t = t.range(min, t.offset(max));
       }
-      bin.thresholds(t).domain(d);
+      T = t;
     }
-    let bins = bin(range(data)).map(binset);
-    if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
-    return bins.map(binfilter);
+    const E = [];
+    if (T.length === 1) E.push([T[0], T[0]]); // collapsed domain
+    else for (let i = 1; i < T.length; ++i) E.push([T[i - 1], T[i]]);
+    E.bin = (cumulative < 0 ? bin1cn : cumulative > 0 ? bin1cp : bin1)(E, T, V);
+    return E;
   };
   bin.label = labelof(value);
   return bin;
@@ -305,38 +341,66 @@ function isInterval(t) {
   return t ? typeof t.range === "function" : false;
 }
 
-function binset(bin) {
-  return [bin, new Set(bin)];
-}
-
-function bincumset([bin], j, bins) {
-  return [
-    bin,
-    {
-      get size() {
-        for (let k = 0; k <= j; ++k) {
-          if (bins[k][1].size) {
-            return 1; // a non-empty value
+function Bin(EX, EY) {
+  return EX && EY
+    ? function* (I) {
+        const X = EX.bin(I); // first bin on x
+        for (const [ix, [x1, x2]] of EX.entries()) {
+          const Y = EY.bin(X[ix]); // then bin on y
+          for (const [iy, [y1, y2]] of EY.entries()) {
+            yield [Y[iy], {x1, y1, x2, y2}];
           }
         }
-        return 0;
-      },
-      has(i) {
-        for (let k = 0; k <= j; ++k) {
-          if (bins[k][1].has(i)) {
-            return true;
-          }
-        }
-        return false;
       }
+    : EX
+    ? function* (I) {
+        const X = EX.bin(I);
+        for (const [i, [x1, x2]] of EX.entries()) {
+          yield [X[i], {x1, x2}];
+        }
+      }
+    : function* (I) {
+        const Y = EY.bin(I);
+        for (const [i, [y1, y2]] of EY.entries()) {
+          yield [Y[i], {y1, y2}];
+        }
+      };
+}
+
+// non-cumulative distribution
+function bin1(E, T, V) {
+  T = T.map(coerceNumber); // for faster bisection; TODO skip if already typed
+  return (I) => {
+    const B = E.map(() => []);
+    for (const i of I) B[bisect(T, V[i]) - 1]?.push(i); // TODO quantization?
+    return B;
+  };
+}
+
+// cumulative distribution
+function bin1cp(E, T, V) {
+  const bin = bin1(E, T, V);
+  return (I) => {
+    const B = bin(I);
+    for (let i = 1, n = B.length; i < n; ++i) {
+      const C = B[i - 1];
+      const b = B[i];
+      for (const j of C) b.push(j);
     }
-  ];
+    return B;
+  };
 }
 
-function binfilter([{x0, x1}, set]) {
-  return [x0, x1, set.size ? (I) => I.filter(set.has, set) : binempty];
-}
-
-function binempty() {
-  return new Uint32Array(0);
+// complementary cumulative distribution
+function bin1cn(E, T, V) {
+  const bin = bin1(E, T, V);
+  return (I) => {
+    const B = bin(I);
+    for (let i = B.length - 2; i >= 0; --i) {
+      const C = B[i + 1];
+      const b = B[i];
+      for (const j of C) b.push(j);
+    }
+    return B;
+  };
 }
