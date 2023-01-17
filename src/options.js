@@ -243,20 +243,15 @@ export function maybeInterval(interval) {
   if (interval == null) return;
   if (typeof interval === "number") {
     const n = interval;
-    // Note: this offset doesn’t support the optional step argument for simplicity.
     return {
       floor: (d) => n * Math.floor(d / n),
-      offset: (d) => d + n,
+      offset: (d) => d + n, // note: no optional step for simplicity
       range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => n * x)
     };
   }
-  // TODO local time intervals (or better, an explicit timeZone option).
-  if (typeof interval === "string") {
-    return maybeUtcInterval(interval);
-  }
-  if (typeof interval.floor !== "function" || typeof interval.offset !== "function") {
-    throw new Error("invalid interval; missing floor or offset method");
-  }
+  if (typeof interval === "string") return maybeUtcInterval(interval); // TODO local time, or timeZone option
+  if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
+  if (typeof interval.offset !== "function") throw new Error("invalid interval; missing offset method");
   return interval;
 }
 
