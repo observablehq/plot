@@ -2,6 +2,7 @@ import {blurImage, Delaunay, randomLcg, rgb} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {map, first, second, third, isTuples, isNumeric, isTemporal, take, identity} from "../options.js";
+import {maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -84,7 +85,12 @@ export class AbstractRaster extends Mark {
 export class Raster extends AbstractRaster {
   constructor(data, options = {}) {
     const {imageRendering} = options;
-    super(data, undefined, data == null ? sampler("fill", sampler("fillOpacity", options)) : options, defaults);
+    if (data == null) {
+      const {fill, fillOpacity} = options;
+      if (maybeNumberChannel(fillOpacity)[0] !== undefined) options = sampler("fillOpacity", options);
+      if (maybeColorChannel(fill)[0] !== undefined) options = sampler("fill", options);
+    }
+    super(data, undefined, options, defaults);
     this.imageRendering = impliedString(imageRendering, "auto");
   }
   // Ignore the color scale, so the fill channel is returned unscaled.
@@ -217,7 +223,7 @@ export function rasterBounds({x1, y1, x2, y2}, scales, dimensions, context) {
 // generating a channel of the same name.
 export function sampler(name, options = {}) {
   const {[name]: value} = options;
-  if (typeof value !== "function") return options;
+  if (typeof value !== "function") throw new Error(`invalid ${name}: not a function`);
   return initializer({...options, [name]: undefined}, function (data, facets, channels, scales, dimensions, context) {
     const {x, y} = scales;
     // TODO Allow projections, if invertible.

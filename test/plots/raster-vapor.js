@@ -13,7 +13,7 @@ export async function rasterVapor() {
     color: {scheme: "blues"},
     x: {transform: (x) => x - 180},
     y: {transform: (y) => 90 - y},
-    marks: [Plot.raster({fill: await vapor(), width: 360, height: 180})]
+    marks: [Plot.raster(await vapor(), {width: 360, height: 180})]
   });
 }
 
