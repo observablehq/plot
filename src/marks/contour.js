@@ -50,7 +50,7 @@ export class Contour extends AbstractRaster {
     // by the sampler initializer, and hence is not passed to super to avoid
     // computing it before there’s data.
     if (data == null) {
-      if (typeof value !== "function") throw new Error("invalid contour value");
+      if (value == null) throw new Error("missing contour value");
       options = sampler("value", {value, ...options});
       value = null;
     }
