@@ -343,9 +343,7 @@
       <rect x="489.169014084507" width="6.323943661971839" y="0" height="18" fill="rgb(251, 254, 209)"></rect>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,126)">
-    <g aria-label="bar"></g>
-  </g>
+  <g aria-label="facet" transform="translate(0,126)"></g>
   <g aria-label="facet" transform="translate(0,146)">
     <g aria-label="bar">
       <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(249, 253, 204)"></rect>

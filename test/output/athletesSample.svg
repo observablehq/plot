@@ -290,9 +290,7 @@
       </circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,126)">
-    <g aria-label="dot" transform="translate(0.5,0.5)"></g>
-  </g>
+  <g aria-label="facet" transform="translate(0,126)"></g>
   <g aria-label="facet" transform="translate(0,146)">
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="302.01438848920867" cy="9" r="5" fill="#d95f02">

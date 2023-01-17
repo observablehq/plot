@@ -303,8 +303,8 @@ export function plot(options = {}) {
           if (facets) {
             const fi = facetPosition.get(key);
             facet = facets[fi] ?? facets[0];
-            if (!facet) continue;
             facet = mark.filter(facet, channels, values);
+            if (!facet.length) continue;
             facet.fi = fi;
           }
           const node = mark.render(facet, scales, values, subdimensions, context);
@@ -316,8 +316,8 @@ export function plot(options = {}) {
       let facet = null;
       if (facets) {
         facet = facets[0];
-        if (!facet) continue;
         facet = mark.filter(facet, channels, values);
+        if (!facet.length) continue;
       }
       const node = mark.render(facet, scales, values, dimensions, context);
       if (node != null) svg.appendChild(node);
@@ -655,8 +655,8 @@ function maybeMarkFacet(mark, topFacetState, options) {
 // Facet filter, by mark; for now only the "eq" filter is provided.
 function filterFacets(facets, {channels: {fx, fy}, groups}) {
   return fx && fy
-    ? facets.map(({x, y}) => groups.get(x)?.get(y))
+    ? facets.map(({x, y}) => groups.get(x)?.get(y) ?? [])
     : fx
-    ? facets.map(({x}) => groups.get(x))
-    : facets.map(({y}) => groups.get(y));
+    ? facets.map(({x}) => groups.get(x) ?? [])
+    : facets.map(({y}) => groups.get(y) ?? []);
 }
