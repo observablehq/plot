@@ -16,7 +16,7 @@ export default async function () {
         stargazers,
         Plot.binX(
           {y: "count", interval: 1},
-          Plot.binX({x: (d) => Math.min(10, d.length), thresholds: d3.utcHour}, {x: "date"})
+          Plot.binX({x: (d) => Math.min(10, d.length), thresholds: "hour"}, {x: "date"})
         )
       ),
       Plot.ruleY([0])

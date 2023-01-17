@@ -1,4 +1,3 @@
-import * as d3 from "d3";
 import * as Plot from "@observablehq/plot";
 
 export default async function () {
@@ -11,7 +10,7 @@ export default async function () {
     label: null,
     x: {
       type: "utc",
-      interval: d3.utcYear,
+      interval: "year",
       inset: 40,
       grid: true
     },

@@ -1,5 +1,6 @@
 import {parse as isoParse} from "isoformat";
 import {color, descending, range as rangei, quantile} from "d3";
+import {maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -248,6 +249,7 @@ export function maybeInterval(interval) {
       range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => n * x)
     };
   }
+  if (typeof interval === "string") return maybeUtcInterval(interval); // TODO local time, or timeZone option
   if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
   if (typeof interval.offset !== "function") throw new Error("invalid interval; missing offset method");
   return interval;

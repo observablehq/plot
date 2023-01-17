@@ -10,7 +10,7 @@ export default async function () {
   return Plot.plot({
     marginBottom: 65,
     x: {
-      interval: d3.utcDay,
+      interval: "day",
       transform: (d) => d3.utcDay.floor(d3.isoParse(d)),
       tickRotate: -40,
       label: null

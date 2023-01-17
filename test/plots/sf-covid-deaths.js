@@ -18,7 +18,7 @@ export default async function () {
             filter: (d) => d.case_disposition === "Death",
             fill: "transmission_category",
             curve: "step",
-            thresholds: d3.utcWeek
+            thresholds: "week"
           }
         )
       ),

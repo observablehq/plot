@@ -313,6 +313,8 @@ export function maybeThresholds(thresholds, interval, defaultThresholds = thresh
       case "auto":
         return thresholdAuto;
     }
+    const interval = maybeInterval(thresholds);
+    if (interval !== undefined) return interval;
     throw new Error(`invalid thresholds: ${thresholds}`);
   }
   return thresholds; // pass array, count, or function to bin.thresholds

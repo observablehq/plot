@@ -1,5 +1,5 @@
 import {pathRound as path} from "d3";
-import {inferFontVariant} from "../axes.js";
+import {inferFontVariant} from "../axis.js";
 import {maybeAutoTickFormat} from "../axis.js";
 import {Context, create} from "../context.js";
 import {isNoneish, maybeColorChannel, maybeNumberChannel} from "../options.js";

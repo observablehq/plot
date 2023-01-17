@@ -29,7 +29,7 @@ export default async function () {
     x: {
       type: "utc",
       domain: times,
-      ticks: d3.utcDay,
+      ticks: "day",
       tickFormat: "%d",
       inset: 20,
       label: "date →"
@@ -41,7 +41,7 @@ export default async function () {
       scheme: "cool"
     },
     marks: [
-      Plot.barX(d3.utcDays(...d3.extent(times)), {interval: d3.utcDay, fill: (d) => d}),
+      Plot.barX(d3.utcDays(...d3.extent(times)), {interval: "day", fill: (d) => d}),
       Plot.dotX(events, {x: "date", fill: "white"}),
       Plot.textX(events, {x: "date", text: "text", dx: -5, dy: -10, fill: "white", textAnchor: "start"})
     ],

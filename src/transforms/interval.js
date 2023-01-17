@@ -2,7 +2,8 @@ import {isTemporal, labelof, map, maybeInterval, maybeValue, valueof} from "../o
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
 // The interval may be specified either as x: {value, interval} or as {x,
-// interval}. The former is used, for example, for Plot.rect.
+// interval}. The former can be used to specify separate intervals for x and y,
+// for example with Plot.rect.
 function maybeIntervalValue(value, {interval}) {
   value = {...maybeValue(value)};
   value.interval = maybeInterval(value.interval === undefined ? interval : value.interval);

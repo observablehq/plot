@@ -31,28 +31,10 @@ export function Axes(
   if (!fyScale) fyAxis = null;
   else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
   return {
-    ...(xAxis && {x: new AxisX({grid, line, label, fontVariant: inferFontVariant(xScale), ...x, axis: xAxis})}),
-    ...(yAxis && {y: new AxisY({grid, line, label, fontVariant: inferFontVariant(yScale), ...y, axis: yAxis})}),
-    ...(fxAxis && {
-      fx: new AxisX({
-        name: "fx",
-        grid: facetGrid,
-        label: facetLabel,
-        fontVariant: inferFontVariant(fxScale),
-        ...fx,
-        axis: fxAxis
-      })
-    }),
-    ...(fyAxis && {
-      fy: new AxisY({
-        name: "fy",
-        grid: facetGrid,
-        label: facetLabel,
-        fontVariant: inferFontVariant(fyScale),
-        ...fy,
-        axis: fyAxis
-      })
-    })
+    ...(xAxis && {x: new AxisX(xScale, {grid, line, label, ...x, axis: xAxis})}),
+    ...(yAxis && {y: new AxisY(yScale, {grid, line, label, ...y, axis: yAxis})}),
+    ...(fxAxis && {fx: new AxisX(fxScale, {name: "fx", grid: facetGrid, label: facetLabel, ...fx, axis: fxAxis})}),
+    ...(fyAxis && {fy: new AxisY(fyScale, {name: "fy", grid: facetGrid, label: facetLabel, ...fy, axis: fyAxis})})
   };
 }
 
@@ -187,8 +169,4 @@ function inferLabel(channels = [], scale, axis, key) {
     }
   }
   return candidate;
-}
-
-export function inferFontVariant(scale) {
-  return isOrdinalScale(scale) && scale.interval === undefined ? undefined : "tabular-nums";
 }
