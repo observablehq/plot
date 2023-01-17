@@ -148,20 +148,9 @@ function contourGeometry({thresholds, interval, ...options}) {
     // Blur the raster grid, if desired.
     if (this.blur > 0) for (const V of VV) blur2({data: V, width: w, height: h}, this.blur);
 
-    // Compute the contour thresholds; d3-contour unlike d3-array doesn’t pass
-    // the min and max automatically, so we do that here to normalize, and also
-    // so we can share consistent thresholds across facets. When an interval is
-    // used, note that the lowest threshold should be below (or equal) to the
-    // lowest value, or else some data will be missing.
-    const T =
-      typeof thresholds?.range === "function"
-        ? thresholds.range(...(([min, max]) => [thresholds.floor(min), max])(finiteExtent(VV)))
-        : typeof thresholds === "function"
-        ? maybeNiceTicks(thresholds, finiteExtent(VV), V)
-        : typeof thresholds === "number"
-        ? niceTicks(thresholds, finiteExtent(VV))
-        : arrayify(thresholds, Array);
-    if (T === null) throw new Error(`Unsupported thresholds: ${thresholds}`);
+    // Compute the contour thresholds.
+    const T = maybeTicks(thresholds, V, ...finiteExtent(VV));
+    if (T === null) throw new Error(`unsupported thresholds: ${thresholds}`);
 
     // Compute the (maybe faceted) contours.
     const {contour} = contours().size([w, h]).smooth(this.smooth);
@@ -190,18 +179,20 @@ function contourGeometry({thresholds, interval, ...options}) {
   });
 }
 
-// Convert number of thresholds into uniform thresholds.
-function niceTicks(thresholds, e) {
-  const tz = ticks(...nice(...e, thresholds), thresholds);
-  while (tz[tz.length - 1] >= e[1]) tz.pop();
-  while (tz[1] < e[0]) tz.shift();
+// Apply the thresholds interval, function, or count, and return an array of
+// ticks. d3-contour unlike d3-array doesn’t pass the min and max automatically,
+// so we do that here to normalize, and also so we can share consistent
+// thresholds across facets. When an interval is used, note that the lowest
+// threshold should be below (or equal) to the lowest value, or else some data
+// will be missing.
+function maybeTicks(thresholds, V, min, max) {
+  if (typeof thresholds?.range === "function") return thresholds.range(thresholds.floor(min), max);
+  if (typeof thresholds === "function") thresholds = thresholds(V, min, max);
+  if (typeof thresholds !== "number") return arrayify(thresholds, Array);
+  const tz = ticks(...nice(min, max, thresholds), thresholds);
+  while (tz[tz.length - 1] >= max) tz.pop();
+  while (tz[1] < min) tz.shift();
   return tz;
-}
-
-// Apply the thresholds function and return an array of ticks.
-function maybeNiceTicks(thresholds, e, V) {
-  thresholds = thresholds(V, ...e);
-  return Array.isArray(thresholds) ? thresholds : niceTicks(thresholds, e);
 }
 
 export function contour() {
