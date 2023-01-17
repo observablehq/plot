@@ -218,7 +218,7 @@ export function rasterBounds({x1, y1, x2, y2}, scales, dimensions, context) {
 export function sampler(name, options = {}) {
   const {[name]: value} = options;
   if (value == null) return options;
-  if (typeof value !== "function") throw new Error(`${name} is not a function: ${value}`);
+  if (typeof value !== "function") throw new Error(`invalid ${name}: not a function`);
   return initializer({...options, [name]: undefined}, function (data, facets, channels, scales, dimensions, context) {
     const {x, y} = scales;
     // TODO Allow projections, if invertible.
