@@ -303,8 +303,8 @@ export function plot(options = {}) {
           if (facets) {
             const fi = facetPosition.get(key);
             facet = facets[fi] ?? facets[0];
-            if (!facet?.length) continue;
             facet = mark.filter(facet, channels, values);
+            if (!facet.length) continue;
             facet.fi = fi;
           }
           const node = mark.render(facet, scales, values, subdimensions, context);
@@ -316,8 +316,8 @@ export function plot(options = {}) {
       let facet = null;
       if (facets) {
         facet = facets[0];
-        if (!facet) continue;
         facet = mark.filter(facet, channels, values);
+        if (!facet.length) continue;
       }
       const node = mark.render(facet, scales, values, dimensions, context);
       if (node != null) svg.appendChild(node);
