@@ -170,7 +170,7 @@ export function hasOutput(outputs, ...names) {
 }
 
 export function maybeOutputs(outputs, inputs) {
-  const entries = Object.entries(outputs);
+  const entries = Object.entries(outputs).filter(([, value]) => value !== undefined);
   // Propagate standard mark channels by default.
   if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
   if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
