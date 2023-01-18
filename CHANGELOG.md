@@ -2,7 +2,7 @@
 
 ## 0.6.2
 
-*Not yet released. These are forthcoming changes in the main branch.*
+[Released January 18, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.2)
 
 The new [raster mark](./README.md#raster) and [contour mark](./README.md#contour) generate a raster image and smooth contours, respectively, from spatial samples. For example, the plot below shows a gridded digital elevation model of Maungawhau (R’s [`volcano` dataset](./test/data/volcano.json)) with contours every 10 meters:
 
