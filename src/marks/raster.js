@@ -186,6 +186,7 @@ export function maybeTuples(k, data, options) {
   return [data, {...rest, x, y, [k]: z}];
 }
 
+/** @jsdoc raster */
 export function raster() {
   const [data, options] = maybeTuples("fill", ...arguments);
   return new Raster(

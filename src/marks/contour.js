@@ -195,6 +195,7 @@ function maybeTicks(thresholds, V, min, max) {
   return tz;
 }
 
+/** @jsdoc contour */
 export function contour() {
   return new Contour(...maybeTuples("value", ...arguments));
 }
