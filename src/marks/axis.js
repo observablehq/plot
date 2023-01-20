@@ -111,7 +111,7 @@ function axisKy(
             ...options
           }),
           k === "y"
-            ? text(null, {
+            ? text([], {
                 fill,
                 fillOpacity,
                 lineAnchor: "bottom",
@@ -199,7 +199,7 @@ function axisKx(
             ...options
           }),
           k === "x"
-            ? text(null, {
+            ? text([], {
                 fill,
                 fillOpacity,
                 lineAnchor: "top",
@@ -330,9 +330,9 @@ function axisTextKy(
       ...options,
       dx: anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight
     },
-    function (scale, ticks) {
+    function (scale, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
-      if (text === undefined) this.channels.text = inferTextChannel(scale, ticks, tickFormat);
+      if (text === undefined) channels.text = inferTextChannel(scale, ticks, tickFormat);
     }
   );
 }
@@ -377,9 +377,9 @@ function axisTextKx(
       ...options,
       dy: anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop
     },
-    function (scale, ticks) {
+    function (scale, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
-      if (text === undefined) this.channels.text = inferTextChannel(scale, ticks, tickFormat);
+      if (text === undefined) channels.text = inferTextChannel(scale, ticks, tickFormat);
     }
   );
 }
@@ -425,9 +425,10 @@ function gridDefaults({
 }
 
 function axisMark(mark, k, ariaLabel, data, options, initialize) {
+  let channels;
   const m = mark(
     data,
-    initializer(options, function (data, facets, channels, scales) {
+    initializer(options, function (data, facets, _channels, scales) {
       const {[k]: scale} = scales;
       if (!scale) throw new Error(`missing scale: ${k}`);
       let {ticks} = options;
@@ -458,25 +459,24 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
         }
       }
       if (k === "fy" || k === "fx") {
-        this.channels[k] = {scale: k, value: identity};
+        channels[k] = {scale: k, value: identity};
         facets = undefined; // computed automatically by plot
       } else {
         facets = [range(data)]; // TODO allow faceted ticks?
       }
-      initialize?.call(this, scale, ticks);
+      initialize?.call(this, scale, ticks, channels);
       return {
         data,
         facets,
         channels: Object.fromEntries(
-          Object.entries(this.channels).map(([name, channel]) => [
-            name,
-            {...channel, value: valueof(data, channel.value)}
-          ])
+          Object.entries(channels).map(([name, channel]) => [name, {...channel, value: valueof(data, channel.value)}])
         )
       };
     })
   );
+  channels = m.channels;
   m.ariaLabel = ariaLabel;
+  m.channels = {};
   return m;
 }
 

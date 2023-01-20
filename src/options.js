@@ -9,7 +9,6 @@ const objectToString = Object.prototype.toString;
 /** @jsdoc valueof */
 export function valueof(data, value, type) {
   const valueType = typeof value;
-  if (data == null) data = []; // TODO
   return valueType === "string"
     ? map(data, field(value), type)
     : valueType === "function"
