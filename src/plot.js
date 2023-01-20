@@ -471,7 +471,7 @@ function inferAxes(marks, channelsByScale, options) {
     y = {},
     fx = {},
     fy = {},
-    axis = true,
+    axis,
     line,
     grid,
     facet = {},
@@ -481,27 +481,42 @@ function inferAxes(marks, channelsByScale, options) {
     fx: {axis: fxAxis = facetAxis, grid: fxGrid = facetGrid} = fx,
     fy: {axis: fyAxis = facetAxis, grid: fyGrid = facetGrid} = fy
   } = options;
-  xAxis = (xType === undefined && !hasScale(marks, "x")) || projection ? null : xAxis === true ? "bottom" : xAxis;
-  yAxis = (yType === undefined && !hasScale(marks, "y")) || projection ? null : yAxis === true ? "left" : yAxis;
-  fxAxis = !channelsByScale.has("fx") ? null : fxAxis === true ? (xAxis === "bottom" ? "top" : "bottom") : fxAxis;
-  fyAxis = !channelsByScale.has("fy") ? null : fyAxis === true ? (yAxis === "left" ? "right" : "left") : fyAxis;
+
+  // Disable axes if the corresponding scale is not present.
+  if ((xType === undefined && !hasScale(marks, "x")) || projection) xAxis = null;
+  if ((yType === undefined && !hasScale(marks, "y")) || projection) yAxis = null;
+  if (!channelsByScale.has("fx")) fxAxis = null;
+  if (!channelsByScale.has("fy")) fyAxis = null;
+
+  // Resolve the default implicit axes by checking for explicit ones.
+  if (xAxis === undefined) xAxis = !hasAxis(marks, "x");
+  if (yAxis === undefined) yAxis = !hasAxis(marks, "y");
+  if (fxAxis === undefined) fxAxis = !hasAxis(marks, "fx");
+  if (fyAxis === undefined) fyAxis = !hasAxis(marks, "fy");
+
+  // Resolve the default orientation of axes.
+  if (xAxis === true) xAxis = "bottom";
+  if (yAxis === true) yAxis = "left";
+  if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
+  if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
+
   const axes = [];
-  if (fyAxis && !hasAxis(marks, "fy")) {
+  if (fyAxis) {
     const fyOptions = axisOptions(fyAxis, facet, fy);
     if (fyGrid && !isNone(fyGrid)) axes.push(gridFy(fyOptions));
     axes.push(axisFy(fyOptions));
   }
-  if (fxAxis && !hasAxis(marks, "fx")) {
+  if (fxAxis) {
     const fxOptions = axisOptions(fxAxis, facet, fx);
     if (fxGrid && !isNone(fxGrid)) axes.push(gridFx(fxOptions));
     axes.push(axisFx(fxOptions));
   }
-  if (yAxis && !hasAxis(marks, "y")) {
+  if (yAxis) {
     const yOptions = axisOptions(yAxis, {line}, y);
     if (yGrid && !isNone(yGrid)) axes.push(gridY(yOptions));
     axes.push(axisY(yOptions));
   }
-  if (xAxis && !hasAxis(marks, "x")) {
+  if (xAxis) {
     const xOptions = axisOptions(xAxis, {line}, x);
     if (xGrid && !isNone(xGrid)) axes.push(gridX(xOptions));
     axes.push(axisX(xOptions));
