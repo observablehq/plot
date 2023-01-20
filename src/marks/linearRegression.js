@@ -1,7 +1,7 @@
 import {extent, range, sum, area as shapeArea, namespaces} from "d3";
 import {create} from "../context.js";
 import {identity, indexOf, isNone, isNoneish, maybeZ} from "../options.js";
-import {Mark} from "../plot.js";
+import {Mark} from "../mark.js";
 import {qt} from "../stats.js";
 import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";

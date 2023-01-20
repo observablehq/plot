@@ -39,7 +39,9 @@
   "_moduleAliases": {
     "@observablehq/plot": "./src/index.js"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "./src/plot.js"
+  ],
   "devDependencies": {
     "@esbuild-kit/core-utils": "^2.0.2",
     "@rollup/plugin-commonjs": "^23.0.4",

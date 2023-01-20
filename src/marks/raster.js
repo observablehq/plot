@@ -3,7 +3,7 @@ import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {map, first, second, third, isTuples, isNumeric, isTemporal, take, identity} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel} from "../options.js";
-import {Mark} from "../plot.js";
+import {Mark} from "../mark.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 
