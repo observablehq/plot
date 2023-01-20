@@ -1,4 +1,4 @@
-import {Channels, channelDomain} from "./channel.js";
+import {Channels, channelDomain, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
 import {arrayify, isDomainSort, range} from "./options.js";
@@ -85,5 +85,10 @@ export class Mark {
     maybeProject("x", "y", channels, values, context);
     maybeProject("x1", "y1", channels, values, context);
     maybeProject("x2", "y2", channels, values, context);
+  }
+  scale(channels, scales, context) {
+    const values = valueObject(channels, scales);
+    if (context.projection) this.project(channels, values, context);
+    return values;
   }
 }

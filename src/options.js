@@ -1,5 +1,6 @@
 import {parse as isoParse} from "isoformat";
-import {color, descending, quantile} from "d3";
+import {color, descending, range as rangei, quantile} from "d3";
+import {maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -8,6 +9,7 @@ const objectToString = Object.prototype.toString;
 /** @jsdoc valueof */
 export function valueof(data, value, type) {
   const valueType = typeof value;
+  if (data == null) data = []; // TODO
   return valueType === "string"
     ? map(data, field(value), type)
     : valueType === "function"
@@ -30,6 +32,7 @@ export const number = (x) => (x == null ? x : +x);
 export const boolean = (x) => (x == null ? x : !!x);
 export const first = (x) => (x ? x[0] : undefined);
 export const second = (x) => (x ? x[1] : undefined);
+export const third = (x) => (x ? x[2] : undefined);
 export const constant = (x) => () => x;
 
 // Converts a string like “p25” into a function that takes an index I and an
@@ -234,6 +237,25 @@ export function mid(x1, x2) {
   };
 }
 
+// TODO Allow the interval to be specified as a string, e.g. “day” or “hour”?
+// This will require the interval knowing the type of the associated scale to
+// chose between UTC and local time (or better, an explicit timeZone option).
+export function maybeInterval(interval) {
+  if (interval == null) return;
+  if (typeof interval === "number") {
+    const n = interval;
+    return {
+      floor: (d) => n * Math.floor(d / n),
+      offset: (d) => d + n, // note: no optional step for simplicity
+      range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => n * x)
+    };
+  }
+  if (typeof interval === "string") return maybeUtcInterval(interval); // TODO local time, or timeZone option
+  if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
+  if (typeof interval.offset !== "function") throw new Error("invalid interval; missing offset method");
+  return interval;
+}
+
 // This distinguishes between per-dimension options and a standalone value.
 export function maybeValue(value) {
   return value === undefined || isOptions(value) ? value : {value};
@@ -249,6 +271,14 @@ export function numberChannel(source) {
         transform: (data) => valueof(data, source, Float64Array),
         label: labelof(source)
       };
+}
+
+export function isTuples(data) {
+  if (!isIterable(data)) return false;
+  for (const d of data) {
+    if (d == null) continue;
+    return typeof d === "object" && "0" in d && "1" in d;
+  }
 }
 
 export function isIterable(value) {

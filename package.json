@@ -1,7 +1,7 @@
 {
   "name": "@observablehq/plot",
   "description": "A JavaScript library for exploratory data visualization.",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "author": {
     "name": "Observable, Inc.",
     "url": "https://observablehq.com"
@@ -61,7 +61,7 @@
     "glob": "^8.0.3",
     "htl": "^0.3.0",
     "js-beautify": "1",
-    "jsdom": "^20.0.3",
+    "jsdom": "^21.0.0",
     "mkdirp": "^1.0.4",
     "mocha": "^10.0.0",
     "module-alias": "^2.0.0",

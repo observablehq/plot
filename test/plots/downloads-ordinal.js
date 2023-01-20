@@ -9,7 +9,7 @@ export default async function () {
     width: 960,
     marginBottom: 55,
     x: {
-      interval: d3.utcDay,
+      interval: "day",
       tickRotate: -90,
       tickFormat: "%b %d"
     },

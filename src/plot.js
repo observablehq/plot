@@ -1,17 +1,16 @@
 import {select} from "d3";
 import {autoScaleLabels} from "./axes.js";
-import {Channel, valueObject} from "./channel.js";
+import {Channel} from "./channel.js";
 import {Context, create} from "./context.js";
 import {Dimensions} from "./dimensions.js";
 import {Facets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilter} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
-import {arrayify, isNone, isScaleOptions, map, yes} from "./options.js";
+import {arrayify, isNone, isScaleOptions, map, yes, maybeInterval} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales, facetDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
-import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 /** @jsdoc plot */
@@ -188,23 +187,18 @@ export function plot(options = {}) {
   // Reconstruct scales if new scaled channels were created during
   // reinitialization. Preserve existing scale labels, if any.
   if (newByScale.size) {
-    const newChannelsByScale = addScaleChannels(new Map(), stateByMark, (key) => newByScale.has(key));
+    const newChannelsByScale = new Map();
+    addScaleChannels(newChannelsByScale, stateByMark, (key) => newByScale.has(key));
+    addScaleChannels(channelsByScale, stateByMark, (key) => newByScale.has(key));
     const newScaleDescriptors = inheritScaleLabels(Scales(newChannelsByScale, options), scaleDescriptors);
     const newScales = ScaleFunctions(newScaleDescriptors);
     Object.assign(scaleDescriptors, newScaleDescriptors);
     Object.assign(scales, newScales);
   }
 
-  // Compute value objects, applying scales as needed.
-  for (const state of stateByMark.values()) {
-    state.values = valueObject(state.channels, scales);
-  }
-
-  // Apply projection as needed.
-  if (context.projection) {
-    for (const [mark, state] of stateByMark) {
-      mark.project(state.channels, state.values, context);
-    }
+  // Compute value objects, applying scales and projection as needed.
+  for (const [mark, state] of stateByMark) {
+    state.values = mark.scale(state.channels, scales, context);
   }
 
   const {width, height} = dimensions;
@@ -260,11 +254,12 @@ export function plot(options = {}) {
         for (const mark of marks) {
           const {channels, values, facets: indexes} = stateByMark.get(mark);
           if (!(mark.facetAnchor?.(facets, facetDomains, f) ?? !f.empty)) continue;
-          let index;
+          let index = null; // TODO null or undefined?
           if (indexes) {
             if (!facetStateByMark.has(mark)) index = indexes[0];
-            else if (!(index = indexes[f.i])) continue;
+            else if (!(index = indexes[f.i])) continue; // TODO is this ever falsey?
             if ((index = mark.filter(index, channels, values)).length === 0) continue;
+            index.fi = f.i; // TODO cleaner?
           }
           const node = mark.render(index, scales, values, subdimensions, context);
           if (node == null) continue;
@@ -276,9 +271,9 @@ export function plot(options = {}) {
   } else {
     for (const mark of marks) {
       const {channels, values, facets: indexes} = stateByMark.get(mark);
-      let index = null;
+      let index = null; // TODO null or undefined?
       if (indexes) {
-        if (!(index = indexes[0])) continue;
+        if (!(index = indexes[0])) continue; // TODO is this ever falsey?
         if ((index = mark.filter(index, channels, values)).length === 0) continue;
       }
       const node = mark.render(index, scales, values, dimensions, context);
@@ -414,8 +409,8 @@ function maybeTopFacet(facet, options) {
   if (facet == null) return;
   const {x, y} = facet;
   if (x == null && y == null) return;
-  const data = arrayify(facet.data);
-  if (data == null) throw new Error(`missing facet data`);
+  const data = arrayify(facet.data ?? x ?? y);
+  if (data === undefined) throw new Error(`missing facet data`);
   const channels = {};
   if (x != null) channels.fx = Channel(data, {value: x, scale: "fx"});
   if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});
@@ -433,8 +428,9 @@ function maybeMarkFacet(mark, topFacetState, options) {
   // here with maybeTopFacet that we could reduce.
   const {fx, fy} = mark;
   if (fx != null || fy != null) {
-    const data = arrayify(mark.data);
-    if (data == null) return; // ignore channel definitions if no data is provided
+    const data = arrayify(mark.data ?? fx ?? fy);
+    if (data === undefined) throw new Error(`missing facet data in ${mark.ariaLabel}`);
+    if (data === null) return; // ignore channel definitions if no data is provided TODO this right?
     const channels = {};
     if (fx != null) channels.fx = Channel(data, {value: fx, scale: "fx"});
     if (fy != null) channels.fy = Channel(data, {value: fy, scale: "fy"});

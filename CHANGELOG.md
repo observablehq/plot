@@ -2,13 +2,133 @@
 
 ## 0.6.2
 
-*Not yet released. These are forthcoming changes in the main branch.*
+[Released January 18, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.2)
 
-The [vector mark](./README.md#vector) now supports the **shape** constant option. The built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](./README.md#plotspikedata-options) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to further customize the shape.
+The new [raster mark](./README.md#raster) and [contour mark](./README.md#contour) generate a raster image and smooth contours, respectively, from spatial samples. For example, the plot below shows a gridded digital elevation model of Maungawhau (R’s [`volcano` dataset](./test/data/volcano.json)) with contours every 10 meters:
+
+[<img src="./img/volcano.webp" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/@observablehq/plot-raster)
+
+```js
+Plot.plot({
+  color: {legend: true, label: "Height (m)"},
+  marks: [
+    Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}),
+    Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, interval: 10})
+  ]
+})
+```
+
+For non-gridded or sparse data, the raster and contour marks implement a variety of [spatial interpolation methods](./README.md#spatial-interpolation) to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
+
+[<img src="./img/ca55.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-raster)
+
+```js
+Plot.plot({
+  width: 640,
+  height: 484,
+  inset: 4,
+  x: {tickFormat: "s"},
+  y: {tickFormat: "s", ticks: 5},
+  color: {type: "diverging", legend: true},
+  marks: [
+    Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "barycentric"}),
+    Plot.dot(ca55, {x: "LONGITUDE", y: "LATITUDE", r: 0.75, fill: "currentColor"})
+  ]
+})
+```
+
+The same data, with a smidge of blur, as filled contours in projected coordinates:
+
+[<img src="./img/ca55-contours.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-contour)
+
+```js
+Plot.plot({
+  width: 640,
+  height: 484,
+  color: {type: "diverging", legend: true},
+  projection: {type: "reflect-y", domain: {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])}},
+  marks: [Plot.contour(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", stroke: "currentColor", blur: 2})]
+})
+```
+
+Naturally, the raster and contour mark are compatible with Plot’s [projection system](./README.md#projection-options), allowing spatial samples to be shown in any geographic projection and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded global water vapor dataset from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
+
+[<img src="./img/water-vapor.png" width="650" alt="A map of global atmospheric water vapor, showing a higher concentration of water vapor near the equator">](https://observablehq.com/@observablehq/plot-raster)
+
+```js
+Plot.plot({
+  projection: "equirectangular",
+  color: {
+    scheme: "ylgnbu",
+    unknown: "#ccc",
+    legend: true,
+    label: "Water vapor (cm)"
+  },
+  marks: [
+    Plot.raster(vapor, {
+      x1: -180,
+      y1: 90,
+      x2: 180,
+      y2: -90,
+      width: 720,
+      height: 360
+    }),
+    Plot.graticule(),
+    Plot.frame()
+  ]
+})
+```
+
+The raster and contour mark also support sampling continuous spatial functions *f*(*x*, *y*). For example, here is the famous Mandelbrot set, with color encoding the number of iterations before the point escapes:
+
+[<img src="./img/mandelbrot.webp" width="640" alt="The Mandelbrot set">](https://observablehq.com/@observablehq/plot-raster)
+
+```js
+Plot.plot({
+  height: 500,
+  marks: [
+    Plot.raster({
+      fill: (x, y) => {
+        for (let n = 0, zr = 0, zi = 0; n < 80; ++n) {
+          [zr, zi] = [zr * zr - zi * zi + x, 2 * zr * zi + y];
+          if (zr * zr + zi * zi > 4) return n;
+        }
+      },
+      x1: -2,
+      y1: -1.164,
+      x2: 1,
+      y2: 1.164,
+      pixelSize: 0.5
+    })
+  ]
+})
+```
+
+The [vector mark](./README.md#vector) now supports the **shape** constant option; the built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](./README.md#plotspikedata-options) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to set the shape radius.
+
+[<img src="./img/spike-map.webp" width="640" alt="A spike map of U.S. county population">](https://observablehq.com/@observablehq/plot-spike)
+
+```js
+Plot.plot({
+  width: 960,
+  height: 600,
+  projection: "albers-usa",
+  length: {
+    range: [0, 200]
+  },
+  marks: [
+    Plot.geo(nation, {fill: "#e0e0e0"}),
+    Plot.geo(statemesh, {stroke: "white"}),
+    Plot.spike(counties.features, Plot.geoCentroid({stroke: "red", length: (d) => population.get(d.id)}))
+  ]
+});
+```
 
 The new [geoCentroid transform](./README.md#plotgeocentroidoptions) and [centroid initializer](./README.md#plotcentroidoptions) compute the spherical and projected planar centroids of geometry, respectively.
 
-Diverging scales now correctly handle descending domains.
+The **interval** option now supports named time intervals such as “sunday” and “hour”, equivalent to the corresponding d3-time interval (_e.g._, d3.utcSunday and d3.utcHour). The [bin transform](./README.md#bin) is now many times faster, especially when there are many bins and when binning temporal data.
+
+Diverging scales now correctly handle descending domains. When the stack **order** option is used without a *z* channel, a helpful error message is now thrown. The **clip** option *frame* now correctly handles band scales. Using D3 7.8, generated SVG path data is now rounded to three decimal points to reduce output size. Fix a crash when a facet scale’s domain includes a value for which there is no corresponding facet data. The bin, group, and hexbin transforms now correctly ignore undefined outputs. Upgrade D3 to 7.8.2.
 
 ## 0.6.1
 

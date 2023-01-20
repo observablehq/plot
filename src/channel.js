@@ -16,9 +16,10 @@ export function Channel(data, {scale, type, value, filter, hint}) {
 }
 
 export function Channels(descriptors, data) {
-  return data == null
-    ? {} // ignore channel definitions if no data is provided
-    : Object.fromEntries(Object.entries(descriptors).map(([name, channel]) => [name, Channel(data, channel)]));
+  return Object.fromEntries(Object.entries(descriptors).map(([name, channel]) => [name, Channel(data, channel)]));
+  // return data == null
+  //   ? {} // ignore channel definitions if no data is provided
+  //   : Object.fromEntries(Object.entries(descriptors).map(([name, channel]) => [name, Channel(data, channel)]));
 }
 
 // TODO Use Float64Array for scales with numeric ranges, e.g. position?

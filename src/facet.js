@@ -1,4 +1,4 @@
-import {cross, group, sum} from "d3";
+import {cross, rollup, sum} from "d3";
 import {range} from "./options.js";
 import {Scales} from "./scales.js";
 
@@ -31,20 +31,27 @@ export function facetOrder({x: X, y: Y}) {
 // Returns a (possibly nested) Map of [[key1, index1], [key2, index2], …]
 // representing the data indexes associated with each facet.
 export function facetGroups(data, {fx, fy}) {
-  const index = range(data);
-  return fx && fy ? facetGroup2(index, fx, fy) : fx ? facetGroup1(index, fx) : facetGroup1(index, fy);
-}
-
-function facetGroup1(index, {value: F}) {
-  return group(index, (i) => F[i]);
-}
-
-function facetGroup2(index, {value: FX}, {value: FY}) {
-  return group(
-    index,
-    (i) => FX[i],
-    (i) => FY[i]
-  );
+  const I = range(data);
+  const FX = fx?.value;
+  const FY = fy?.value;
+  return fx && fy
+    ? rollup(
+        I,
+        (G) => ((G.fx = FX[G[0]]), (G.fy = FY[G[0]]), G),
+        (i) => FX[i],
+        (i) => FY[i]
+      )
+    : fx
+    ? rollup(
+        I,
+        (G) => ((G.fx = FX[G[0]]), G),
+        (i) => FX[i]
+      )
+    : rollup(
+        I,
+        (G) => ((G.fy = FY[G[0]]), G),
+        (i) => FY[i]
+      );
 }
 
 export function facetTranslate(fx, fy, {marginTop, marginLeft}) {

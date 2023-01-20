@@ -10,8 +10,8 @@ export default async function () {
       label: "↑ Daily trade volume (millions)"
     },
     marks: [
-      Plot.rectY(AAPL, {x: "Date", interval: d3.utcDay, y: "Volume", fill: "#ccc"}),
-      Plot.ruleY(AAPL, {x: "Date", interval: d3.utcDay, y: "Volume"}),
+      Plot.rectY(AAPL, {x: "Date", interval: "day", y: "Volume", fill: "#ccc"}),
+      Plot.ruleY(AAPL, {x: "Date", interval: "day", y: "Volume"}),
       Plot.ruleY([0])
     ]
   });

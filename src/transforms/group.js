@@ -174,9 +174,11 @@ export function maybeOutputs(outputs, inputs) {
   // Propagate standard mark channels by default.
   if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
   if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
-  return entries.map(([name, reduce]) => {
-    return reduce == null ? {name, initialize() {}, scope() {}, reduce() {}} : maybeOutput(name, reduce, inputs);
-  });
+  return entries
+    .filter(([, reduce]) => reduce !== undefined)
+    .map(([name, reduce]) => {
+      return reduce === null ? {name, initialize() {}, scope() {}, reduce() {}} : maybeOutput(name, reduce, inputs);
+    });
 }
 
 export function maybeOutput(name, reduce, inputs) {

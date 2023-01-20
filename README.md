@@ -198,7 +198,7 @@ The default range depends on the scale: for [position scales](#position-options)
 
 The behavior of the *scale*.**unknown** option depends on the scale type. For quantitative and temporal scales, the unknown value is used whenever the input value is undefined, null, or NaN. For ordinal or categorical scales, the unknown value is returned for any input value outside the domain. For band or point scales, the unknown option has no effect; it is effectively always equal to undefined. If the unknown option is set to undefined (the default), or null or NaN, then the affected input values will be considered undefined and filtered from the output.
 
-For data at regular intervals, such as integer values or daily samples, the *scale*.**interval** option can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
+For data at regular intervals, such as integer values or daily samples, the *scale*.**interval** option can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. The option can alternatively be specified as a string (second, minute, hour, day, week, month, year, monday, tuesday, wednesday, thursday, friday, saturday, sunday) naming the corresponding UTC interval. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
 
 Quantitative scales can be further customized with additional options:
 
@@ -712,8 +712,8 @@ A mark’s data is most commonly an array of objects representing a tabular data
 
 ```js
 sales = [
-  {units: 10, fruit: "fig"},
-  {units: 20, fruit: "date"},
+  {units: 10, fruit: "peach"},
+  {units: 20, fruit: "pear"},
   {units: 40, fruit: "plum"},
   {units: 30, fruit: "plum"}
 ]
@@ -737,7 +737,7 @@ index = [0, 1, 2, 3]
 units = [10, 20, 40, 30]
 ```
 ```js
-fruits = ["fig", "date", "plum", "plum"]
+fruits = ["peach", "pear", "plum", "plum"]
 ```
 ```js
 Plot.dot(index, {x: units, y: fruits}).plot()
@@ -895,10 +895,10 @@ Returns a new area with the given *data* and *options*. This constructor is used
 If the **interval** option is specified, the [binY transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *x* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
-Plot.areaX(observations, {y: "date", x: "temperature", interval: d3.utcDay})
+Plot.areaX(observations, {y: "date", x: "temperature", interval: "day"})
 ```
 
-The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use d3.utcDay as the interval.
+The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
 <!-- jsdocEnd areaX -->
 
@@ -915,10 +915,10 @@ Returns a new area with the given *data* and *options*. This constructor is used
 If the **interval** option is specified, the [binX transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
-Plot.areaY(observations, {x: "date", y: "temperature", interval: d3.utcDay)
+Plot.areaY(observations, {x: "date", y: "temperature", interval: "day")
 ```
 
-The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use d3.utcDay as the interval.
+The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
 <!-- jsdocEnd areaY -->
 
@@ -1153,6 +1153,61 @@ Plot.cellY(simpsons.map(d => d.imdb_rating))
 Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 <!-- jsdocEnd cellY -->
+
+### Contour
+
+[Source](./src/marks/contour.js) · [Examples](https://observablehq.com/@observablehq/plot-contour) · Renders contour polygons from spatial samples. If data is provided, it represents discrete samples in abstract coordinates *x* and *y*; the *value* channel specifies further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](#spatial-interpolation) to produce a [raster grid](#raster) of quantitative values, and lastly contours via marching squares.
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity})
+```
+
+The *value* channel may alternatively be specified as a continuous function *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
+
+```js
+Plot.contour({x1: 0, y1: 0, x2: 4, y2: 4, value: (x, y) => Math.sin(x) * Math.cos(y)})
+```
+
+The contour mark shares many options with the [raster](#raster) mark, including the **interpolate** option to specify the [spatial interpolation method](#spatial-interpolation). The interpolation method is ignored when the *value* channel is a function of *x* and *y*, and otherwise defaults to *nearest*. For smoother contours, the **blur** option (default 0) specifies a non-negative pixel radius for smoothing prior to applying marching squares. The **smooth** option (default true) specifies whether to apply linear interpolation after marching squares when computing contour polygons. The **thresholds** and **interval** options specify the contour thresholds; see the [bin transform](#bin) for details.
+
+The resolution of the raster grid may be specified with the following options:
+
+* **width** - the number of pixels on each horizontal line
+* **height** - the number of lines; a positive integer
+
+Alternatively, the raster dimensions may be imputed from the extent of *x* and *y* and a pixel size:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+* **pixelSize** - the screen size of a raster pixel; defaults to 1
+
+If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**; likewise, if **height** is specified, **y1** defaults to 0 and **y2** defaults to **height**. Otherwise, if **data** is specified, **x1**, **y1**, **x2**, and **y2** respectively default to the frame’s left, top, right, and bottom coordinates. Lastly, if **data** is not specified (as when **value** is a function of *x* and *y*), you must specify all of **x1**, **x2**, **y1**, and **y2** to define the raster domain (see below).
+
+With the exception of the *x*, *y*, *x1*, *y1*, *x2*, *y2*, and *value* channels, the contour mark’s channels are not evaluated on the initial *data* but rather on the contour multipolygons generated in the initializer. For example, to generate filled contours where the color corresponds to the contour threshold value:
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity, fill: "value"})
+```
+
+As shorthand, a single channel may be specified, in which case it is promoted to the *value* channel.
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+#### Plot.contour(*data*, *options*)
+
+<!-- jsdoc contour -->
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+Returns a new contour mark with the given (optional) *data* and *options*.
+
+<!-- jsdocEnd contour -->
 
 ### Delaunay
 
@@ -1532,10 +1587,10 @@ Similar to [Plot.line](#plotlinedata-options) except that if the **x** option is
 If the **interval** option is specified, the [binY transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *x* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
-Plot.lineX(observations, {y: "date", x: "temperature", interval: d3.utcDay})
+Plot.lineX(observations, {y: "date", x: "temperature", interval: "day"})
 ```
 
-The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use d3.utcDay as the interval.
+The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
 <!-- jsdocEnd lineX -->
 
@@ -1552,10 +1607,10 @@ Similar to [Plot.line](#plotlinedata-options) except that if the **y** option is
 If the **interval** option is specified, the [binX transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
-Plot.lineY(observations, {x: "date", y: "temperature", interval: d3.utcDay})
+Plot.lineY(observations, {x: "date", y: "temperature", interval: "day"})
 ```
 
-The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use d3.utcDay as the interval.
+The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
 <!-- jsdocEnd lineY -->
 
@@ -1589,6 +1644,55 @@ Plot.link(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R
 Returns a new link with the given *data* and *options*.
 
 <!-- jsdocEnd link -->
+
+### Raster
+
+[Source](./src/marks/raster.js) · [Examples](https://observablehq.com/@observablehq/plot-raster) · Renders a raster image from spatial samples. If data is provided, it represents discrete samples in abstract coordinates *x* and *y*; the *fill* and *fillOpacity* channels specify further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](#spatial-interpolation) to produce an image.
+
+```js
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height})
+```
+
+The *fill* and *fillOpacity* channels may alternatively be specified as continuous functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
+
+```js
+Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
+```
+
+The resolution of the rectangular raster image may be specified with the following options:
+
+* **width** - the number of pixels on each horizontal line
+* **height** - the number of lines; a positive integer
+
+The raster dimensions may also be imputed from the extent of *x* and *y* and a pixel size:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+* **pixelSize** - the screen size of a raster pixel; defaults to 1
+
+If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**; likewise, if **height** is specified, **y1** defaults to 0 and **y2** defaults to **height**. Otherwise, if **data** is specified, **x1**, **y1**, **x2**, and **y2** respectively default to the frame’s left, top, right, and bottom coordinates. Lastly, if **data** is not specified (as when **fill** or **fillOpacity** is a function of *x* and *y*), you must specify all of **x1**, **x2**, **y1**, and **y2** to define the raster domain (see below). The **pixelSize** may be set to the inverse of the devicePixelRatio for a sharper image.
+
+The following raster-specific constant options are supported:
+
+* **interpolate** - the [spatial interpolation method](#spatial-interpolation)
+* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
+* **blur** - a non-negative pixel radius for smoothing; defaults to 0
+
+The **imageRendering** option may be sent to *pixelated* to disable bilinear interpolation for a sharper image; however, note that this is not supported in WebKit. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
+
+#### Plot.raster(*data*, *options*)
+
+<!-- jsdoc raster -->
+
+```js
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+Returns a new raster mark with the given (optional) *data* and *options*.
+
+<!-- jsdocEnd raster -->
 
 ### Rect
 
@@ -2118,7 +2222,7 @@ The **thresholds** option may be specified as a named method or a variety of oth
 * an interval or time interval (for temporal binning; see below)
 * a function that returns an array, count, or time interval
 
-If the **thresholds** option is specified as a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/main/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/main/README.md#ticks) is used to choose suitable nice thresholds. If an interval, it must expose an *interval*.floor(*value*), *interval*.ceil(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) methods. If the interval is a time interval such as d3.utcDay, or if the thresholds are specified as an array of dates, then the binned values are implicitly coerced to dates. Time intervals are intervals that are also functions that return a Date instance when called with no arguments.
+If the **thresholds** option is specified as a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/main/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/main/README.md#ticks) is used to choose suitable nice thresholds. If an interval, it must expose an *interval*.floor(*value*), *interval*.ceil(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) methods. If the interval is a time interval such as "day" (equivalently, d3.utcDay), or if the thresholds are specified as an array of dates, then the binned values are implicitly coerced to dates. Time intervals are intervals that are also functions that return a Date instance when called with no arguments.
 
 If the **interval** option is used instead of **thresholds**, it may be either an interval, a time interval, or a number. If a number *n*, threshold values are consecutive multiples of *n* that span the domain; otherwise, the **interval** option is equivalent to the **thresholds** option. When the thresholds are specified as an interval, and the default **domain** is used, the domain will automatically be extended to start and end to align with the interval.
 
@@ -2857,6 +2961,18 @@ Plot.column is typically used by options transforms to define new channels; the 
 
 <!-- jsdocEnd column -->
 
+#### Plot.identity
+
+<!-- jsdoc identity -->
+
+This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data:
+
+```js
+Plot.raster(await readValues(), {width: 300, height: 200, fill: Plot.identity})
+```
+
+<!-- jsdocEnd identity -->
+
 ## Initializers
 
 Initializers can be used to transform and derive new channels prior to rendering. Unlike transforms which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. Initializers are invoked *after* the initial scales are constructed and can modify the channels or derive new channels; these in turn may (or may not, as desired) be passed to scales.
@@ -2985,6 +3101,42 @@ The following named curve methods are supported:
 If *curve* is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://github.com/d3/d3-shape/blob/main/README.md#custom-curves). The *auto* curve is only available for the [line mark](#line) and is typically used in conjunction with a spherical [projection](#projection-options) to interpolate along [geodesics](https://en.wikipedia.org/wiki/Geodesic).
 
 The tension option only has an effect on bundle, cardinal and Catmull–Rom splines (*bundle*, *cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For bundle splines, it corresponds to [beta](https://github.com/d3/d3-shape/blob/main/README.md#curveBundle_beta); for cardinal splines, [tension](https://github.com/d3/d3-shape/blob/main/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/main/README.md#curveCatmullRom_alpha).
+
+## Spatial interpolation
+
+The [raster](#raster) and [contour](#contour) marks use spatial interpolation to populate a raster grid from a discrete set of (often ungridded) spatial samples. The **interpolate** option controls how these marks compute the raster grid. The following built-in methods are provided:
+
+* *none* (or null) - assign each sample to the containing pixel
+* *nearest* - assign each pixel to the closest sample’s value (Voronoi diagram)
+* *barycentric* - apply barycentric interpolation over the Delaunay triangulation
+* *random-walk* - apply a random walk from each pixel, stopping when near a sample
+
+The **interpolate** option can also be specified as a function with the following arguments:
+
+* *index* - an array of numeric indexes into the channels *x*, *y*, *value*
+* *width* - the width of the raster grid; a positive integer
+* *height* - the height of the raster grid; a positive integer
+* *x* - an array of values representing the *x*-position of samples
+* *y* - an array of values representing the *y*-position of samples
+* *value* - an array of values representing the sample’s observed value
+
+So, *x*[*index*[0]] represents the *x*-position of the first sample, *y*[*index*[0]] its *y*-position, and *value*[*index*[0]] its value (*e.g.*, the observed height for a topographic map).
+
+#### Plot.interpolateNone(*index*, *width*, *height*, *x*, *y*, *value*)
+
+Applies a simple forward mapping of samples, binning them into pixels in the raster grid without any blending or interpolation. If multiple samples map to the same pixel, the last one wins; this can introduce bias if the points are not in random order, so use [Plot.shuffle](#plotshuffleoptions) to randomize the input if needed.
+
+#### Plot.interpolateNearest(*index*, *width*, *height*, *x*, *y*, *value*)
+
+Assigns each pixel in the raster grid the value of the closest sample; effectively a Voronoi diagram.
+
+#### Plot.interpolatorBarycentric({*random*})
+
+Constructs a Delaunay triangulation of the samples, and then for each pixel in the raster grid, determines the triangle that covers the pixel’s centroid and interpolates the values associated with the triangle’s vertices using [barycentric coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system). If the interpolated values are ordinal or categorical (_i.e._, anything other than numbers or dates), then one of the three values will be picked randomly weighted by the barycentric coordinates; the given *random* number generator will be used, which defaults to a [linear congruential generator](https://github.com/d3/d3-random/blob/main/README.md#randomLcg) with a fixed seed (for deterministic results).
+
+#### Plot.interpolatorRandomWalk({*random*, *minDistance* = 0.5, *maxSteps* = 2})
+
+For each pixel in the raster grid, initiates a random walk, stopping when either the walk is within a given distance (*minDistance*) of a sample or the maximum allowable number of steps (*maxSteps*) have been taken, and then assigning the current pixel the closest sample’s value. The random walk uses the “walk on spheres” algorithm in two dimensions described by [Sawhney and Crane](https://www.cs.cmu.edu/~kmcrane/Projects/MonteCarloGeometryProcessing/index.html), SIGGRAPH 2020.
 
 ## Markers
 
