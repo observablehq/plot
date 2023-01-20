@@ -2190,7 +2190,7 @@ Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or *stroke*, i
 
 <!-- jsdoc centroid -->
 
-The centroid initializer derives **x** and **y** channels representing the planar (projected) centroids for the the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
+The centroid initializer derives **x** and **y** channels representing the planar (projected) centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
 
 ```js
 Plot.dot(regions.features, Plot.centroid()).plot({projection: "reflect-y"})
@@ -2202,7 +2202,7 @@ Plot.dot(regions.features, Plot.centroid()).plot({projection: "reflect-y"})
 
 <!-- jsdoc geoCentroid -->
 
-The geoCentroid transform derives **x** and **y** channels representing the spherical centroids for the the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
+The geoCentroid transform derives **x** and **y** channels representing the spherical centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
 
 ```js
 Plot.dot(counties.features, Plot.geoCentroid()).plot({projection: "albers-usa"})
