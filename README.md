@@ -710,8 +710,8 @@ A mark’s data is most commonly an array of objects representing a tabular data
 
 ```js
 sales = [
-  {units: 10, fruit: "fig"},
-  {units: 20, fruit: "date"},
+  {units: 10, fruit: "peach"},
+  {units: 20, fruit: "pear"},
   {units: 40, fruit: "plum"},
   {units: 30, fruit: "plum"}
 ]
@@ -735,7 +735,7 @@ index = [0, 1, 2, 3]
 units = [10, 20, 40, 30]
 ```
 ```js
-fruits = ["fig", "date", "plum", "plum"]
+fruits = ["peach", "pear", "plum", "plum"]
 ```
 ```js
 Plot.dot(index, {x: units, y: fruits}).plot()
