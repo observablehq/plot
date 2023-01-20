@@ -1,6 +1,6 @@
 import {create} from "../context.js";
 import {number} from "../options.js";
-import {Mark} from "../plot.js";
+import {Mark} from "../mark.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 const defaults = {

@@ -1,7 +1,7 @@
 import {create} from "../context.js";
 import {radians} from "../math.js";
 import {constant} from "../options.js";
-import {Mark} from "../plot.js";
+import {Mark} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSameValue} from "./link.js";
 

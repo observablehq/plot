@@ -2,7 +2,7 @@ import {area as shapeArea} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {first, indexOf, maybeZ, second} from "../options.js";
-import {Mark} from "../plot.js";
+import {Mark} from "../mark.js";
 import {
   applyDirectStyles,
   applyIndirectStyles,
