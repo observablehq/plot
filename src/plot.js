@@ -330,6 +330,13 @@ export function marks(...marks) {
   return marks;
 }
 
+function flatMarks(marks) {
+  return marks
+    .flat(Infinity)
+    .filter((mark) => mark != null)
+    .map(markify);
+}
+
 function markify(mark) {
   return typeof mark.render === "function" ? mark : new Render(mark);
 }
@@ -455,13 +462,6 @@ function maybeMarkFacet(mark, topFacetState, options) {
       `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
     );
   }
-}
-
-function flatMarks(marks) {
-  return marks
-    .flat(Infinity)
-    .filter((mark) => mark != null)
-    .map(markify);
 }
 
 function inferAxes(marks, channelsByScale, options) {
