@@ -19,7 +19,7 @@ export function plot(options = {}) {
   const {facet, style, caption, ariaLabel, ariaDescription} = options;
 
   // className for inline styles
-  const className = maybeClassName(options.className);
+  const className = maybeClassName(options.className, true);
 
   // Flatten any nested marks.
   const marks = options.marks === undefined ? [] : options.marks.flat(Infinity).map(markify);
@@ -387,6 +387,7 @@ export class Mark {
     this.dx = +dx || 0;
     this.dy = +dy || 0;
     this.clip = maybeClip(clip);
+    this.className = maybeClassName(options.className, false);
   }
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
