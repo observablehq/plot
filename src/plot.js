@@ -501,27 +501,25 @@ function inferAxes(marks, channelsByScale, options) {
   if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
 
   const axes = [];
-  if (fyAxis) {
-    const fyOptions = axisOptions(fyAxis, facet, fy);
-    if (fyGrid && !isNone(fyGrid)) axes.push(gridFy(fyOptions));
-    axes.push(axisFy(fyOptions));
-  }
-  if (fxAxis) {
-    const fxOptions = axisOptions(fxAxis, facet, fx);
-    if (fxGrid && !isNone(fxGrid)) axes.push(gridFx(fxOptions));
-    axes.push(axisFx(fxOptions));
-  }
-  if (yAxis) {
-    const yOptions = axisOptions(yAxis, {line}, y);
-    if (yGrid && !isNone(yGrid)) axes.push(gridY(yOptions));
-    axes.push(axisY(yOptions));
-  }
-  if (xAxis) {
-    const xOptions = axisOptions(xAxis, {line}, x);
-    if (xGrid && !isNone(xGrid)) axes.push(gridX(xOptions));
-    axes.push(axisX(xOptions));
-  }
+  const defaults = {line};
+  maybeAxis(axes, fyAxis, axisFy, fyGrid, gridFy, "right", "left", facet, fy);
+  maybeAxis(axes, fxAxis, axisFx, fxGrid, gridFx, "top", "bottom", facet, fx);
+  maybeAxis(axes, yAxis, axisY, yGrid, gridY, "left", "right", defaults, y);
+  maybeAxis(axes, xAxis, axisX, xGrid, gridX, "bottom", "top", defaults, x);
   return axes;
+}
+
+function maybeAxis(axes, axis, axisType, grid, gridType, primary, secondary, defaults, options) {
+  if (!axis) return;
+  const both = isBoth(axis);
+  options = axisOptions(both ? primary : axis, defaults, options);
+  if (grid && !isNone(grid)) axes.push(gridType(options));
+  axes.push(axisType(options));
+  if (both) axes.push(axisType(axisOptions(secondary, defaults, options)));
+}
+
+function isBoth(value) {
+  return /^\s*both\s*$/i.test(value);
 }
 
 // TODO I’m not sure it’s right to pass the margins through here: it confuses
