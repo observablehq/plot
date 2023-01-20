@@ -44,7 +44,7 @@ export function plot(options = {}) {
   if (topFacetState) addScaleChannels(channelsByScale, [topFacetState]);
   addScaleChannels(channelsByScale, facetStateByMark);
 
-  // Add implicit axis marks. This this happens after faceting (because it
+  // Add implicit axis marks. Because this happens after faceting (because it
   // depends on whether faceting is present), we must initialize the facet state
   // of any implicit axes, too.
   const axes = flatMarks(inferAxes(marks, channelsByScale, options));
