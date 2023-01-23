@@ -2190,7 +2190,7 @@ Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or *stroke*, i
 
 <!-- jsdoc centroid -->
 
-The centroid initializer derives **x** and **y** channels representing the planar (projected) centroids for the the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
+The centroid initializer derives **x** and **y** channels representing the planar (projected) centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
 
 ```js
 Plot.dot(regions.features, Plot.centroid()).plot({projection: "reflect-y"})
@@ -2202,7 +2202,7 @@ Plot.dot(regions.features, Plot.centroid()).plot({projection: "reflect-y"})
 
 <!-- jsdoc geoCentroid -->
 
-The geoCentroid transform derives **x** and **y** channels representing the spherical centroids for the the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
+The geoCentroid transform derives **x** and **y** channels representing the spherical centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
 
 ```js
 Plot.dot(counties.features, Plot.geoCentroid()).plot({projection: "albers-usa"})
@@ -3038,19 +3038,35 @@ So, *x*[*index*[0]] represents the *x*-position of the first sample, *y*[*index*
 
 #### Plot.interpolateNone(*index*, *width*, *height*, *x*, *y*, *value*)
 
+<!-- jsdoc interpolateNone -->
+
 Applies a simple forward mapping of samples, binning them into pixels in the raster grid without any blending or interpolation. If multiple samples map to the same pixel, the last one wins; this can introduce bias if the points are not in random order, so use [Plot.shuffle](#plotshuffleoptions) to randomize the input if needed.
+
+<!-- jsdocEnd interpolateNone -->
 
 #### Plot.interpolateNearest(*index*, *width*, *height*, *x*, *y*, *value*)
 
+<!-- jsdoc interpolateNearest -->
+
 Assigns each pixel in the raster grid the value of the closest sample; effectively a Voronoi diagram.
+
+<!-- jsdocEnd interpolateNearest -->
 
 #### Plot.interpolatorBarycentric({*random*})
 
+<!-- jsdoc interpolatorBarycentric -->
+
 Constructs a Delaunay triangulation of the samples, and then for each pixel in the raster grid, determines the triangle that covers the pixel’s centroid and interpolates the values associated with the triangle’s vertices using [barycentric coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system). If the interpolated values are ordinal or categorical (_i.e._, anything other than numbers or dates), then one of the three values will be picked randomly weighted by the barycentric coordinates; the given *random* number generator will be used, which defaults to a [linear congruential generator](https://github.com/d3/d3-random/blob/main/README.md#randomLcg) with a fixed seed (for deterministic results).
+
+<!-- jsdocEnd interpolatorBarycentric -->
 
 #### Plot.interpolatorRandomWalk({*random*, *minDistance* = 0.5, *maxSteps* = 2})
 
+<!-- jsdoc interpolatorRandomWalk -->
+
 For each pixel in the raster grid, initiates a random walk, stopping when either the walk is within a given distance (*minDistance*) of a sample or the maximum allowable number of steps (*maxSteps*) have been taken, and then assigning the current pixel the closest sample’s value. The random walk uses the “walk on spheres” algorithm in two dimensions described by [Sawhney and Crane](https://www.cs.cmu.edu/~kmcrane/Projects/MonteCarloGeometryProcessing/index.html), SIGGRAPH 2020.
+
+<!-- jsdocEnd interpolatorRandomWalk -->
 
 ## Markers
 

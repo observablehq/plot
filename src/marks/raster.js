@@ -186,6 +186,7 @@ export function maybeTuples(k, data, options) {
   return [data, {...rest, x, y, [k]: z}];
 }
 
+/** @jsdoc raster */
 export function raster() {
   const [data, options] = maybeTuples("fill", ...arguments);
   return new Raster(
@@ -271,6 +272,7 @@ function maybeInterpolate(interpolate) {
 // any blending or interpolation. Note: if multiple samples map to the same
 // pixel, the last one wins; this can introduce bias if the points are not in
 // random order, so use Plot.shuffle to randomize the input if needed.
+/** @jsdoc interpolateNone */
 export function interpolateNone(index, width, height, X, Y, V) {
   const W = new Array(width * height);
   for (const i of index) {
@@ -280,6 +282,7 @@ export function interpolateNone(index, width, height, X, Y, V) {
   return W;
 }
 
+/** @jsdoc interpolatorBarycentric */
 export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
   return (index, width, height, X, Y, V) => {
     // Flatten the input coordinates to prepare to insert extrapolated points
@@ -345,6 +348,7 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
   };
 }
 
+/** @jsdoc interpolateNearest */
 export function interpolateNearest(index, width, height, X, Y, V) {
   const W = new V.constructor(width * height);
   const delaunay = Delaunay.from(
@@ -366,6 +370,7 @@ export function interpolateNearest(index, width, height, X, Y, V) {
 }
 
 // https://observablehq.com/@observablehq/walk-on-spheres-precision
+/** @jsdoc interpolatorRandomWalk */
 export function interpolatorRandomWalk({random = randomLcg(42), minDistance = 0.5, maxSteps = 2} = {}) {
   return (index, width, height, X, Y, V) => {
     const W = new V.constructor(width * height);

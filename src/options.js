@@ -22,6 +22,7 @@ export function valueof(data, value, type) {
 
 export const field = (name) => (d) => d[name];
 export const indexOf = (d, i) => i;
+/** @jsdoc identity */
 export const identity = {transform: (d) => d};
 export const zero = () => 0;
 export const one = () => 1;
