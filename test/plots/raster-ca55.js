@@ -33,6 +33,24 @@ export async function rasterCa55Nearest() {
   return rasterCa55({interpolate: "nearest"});
 }
 
+export async function rasterCa55Color() {
+  const ca55 = await d3.csv("data/ca55-south.csv", d3.autoType);
+  const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])};
+  return Plot.plot({
+    width: 640,
+    height: 484,
+    projection: {type: "reflect-y", inset: 3, domain},
+    marks: [
+      Plot.raster(ca55, {
+        x: "GRID_EAST",
+        y: "GRID_NORTH",
+        interpolate: "random-walk",
+        fill: (d) => d3.hcl(d.MAG_IGRF90, 120, 80).formatHex()
+      })
+    ]
+  });
+}
+
 export async function contourCa55() {
   return plotCa55((ca55) =>
     Plot.contour(ca55, {
