@@ -20,7 +20,7 @@ function random(x, y, z = 0) {
   return v / (1 << (s << 1));
 }
 
-export async function rasterPenguinsBlueNoise() {
+export async function rasterPenguinsPseudoblue() {
   const interpolate = Plot.interpolatorBarycentric({random});
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.plot({
