@@ -45,7 +45,7 @@ export async function rasterCa55Color() {
         x: "GRID_EAST",
         y: "GRID_NORTH",
         interpolate: "random-walk",
-        fill: (d) => d3.hcl(d.MAG_IGRF90, 120, 80).hex()
+        fill: (d) => d3.hcl(d.MAG_IGRF90, 120, 80).formatHex()
       })
     ]
   });
