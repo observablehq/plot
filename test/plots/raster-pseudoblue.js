@@ -2,9 +2,8 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 // https://observablehq.com/@fil/pseudoblue
-function mix(x, y) {
-  return ((x * 212274 + y * 384811) & 0x5555555) / 300;
-}
+const d = 1 / 307;
+const mix = (x, y) => ((x * 212281 + y * 384817) & 0x5555555) * d;
 const s = 8;
 let a, b;
 function random(x, y, z = 0) {
