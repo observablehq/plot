@@ -114,13 +114,14 @@ function axisKy(
             ? text([], {
                 fill,
                 fillOpacity,
-                lineAnchor: "bottom",
+                textAnchor: anchor === "right" ? "end" : "start",
+                lineAnchor: "bottom", // TODO labelAnchor
                 facetAnchor: `top-${anchor}`, // TODO labelAnchor
                 frameAnchor: `top-${anchor}`,
                 ...options,
                 initializer: function (data, facets, channels, scales, dimensions) {
-                  this.dy = -10;
-                  this.dx = -dimensions.marginLeft;
+                  this.dy = -10; // TODO labelAnchor
+                  this.dx = anchor === "right" ? dimensions.marginRight : -dimensions.marginLeft;
                   this.ariaLabel = `${k}-axis label`;
                   return {
                     facets: [[0]],
@@ -202,13 +203,14 @@ function axisKx(
             ? text([], {
                 fill,
                 fillOpacity,
-                lineAnchor: "top",
+                lineAnchor: anchor === "top" ? "bottom" : "top",
                 facetAnchor: `${anchor}-right`, // TODO labelAnchor
-                frameAnchor: `${anchor}-right`,
+                frameAnchor: `${anchor}-right`, // TODO labelAnchor
+                textAnchor: "end", // TODO labelAnchor
                 ...options,
                 initializer: function (data, facets, channels, scales, dimensions) {
-                  this.dy = 20;
-                  this.dx = dimensions.marginRight;
+                  this.dy = anchor === "top" ? -20 : 20; // TODO combine with dy option?
+                  this.dx = dimensions.marginRight; // TODO labelAnchor
                   this.ariaLabel = `${k}-axis label`;
                   return {
                     facets: [[0]],

@@ -89,8 +89,8 @@
     <text transform="translate(876,30)">90</text>
     <text transform="translate(940,30)">100</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(940,30)">Frequency (%) →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,-19.5)">
+    <text transform="translate(940,30)">Frequency (%) →</text>
   </g>
   <g aria-label="bar" fill="steelblue">
     <rect x="300" width="446.2385321100917" y="51" height="19"></rect>

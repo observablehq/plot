@@ -178,8 +178,8 @@
     <text transform="translate(565,30)">21</text>
     <text transform="translate(591,30)">22</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,30)">Episode</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,-19.5)">
+    <text transform="translate(620,30)">Episode</text>
   </g>
   <g aria-label="cell">
     <rect x="45" width="25" y="32" height="20" fill="rgb(155, 206, 100)"></rect>
