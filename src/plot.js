@@ -547,7 +547,9 @@ function axisOptions(
     tickRotate,
     fontVariant,
     ariaLabel,
-    ariaDescription
+    ariaDescription,
+    label,
+    labelAnchor
   }
 ) {
   return {
@@ -564,7 +566,9 @@ function axisOptions(
     tickRotate,
     fontVariant,
     ariaLabel,
-    ariaDescription
+    ariaDescription,
+    label,
+    labelAnchor
   };
 }
 
