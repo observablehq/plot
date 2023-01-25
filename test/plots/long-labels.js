@@ -15,6 +15,7 @@ Not enough politics\t.12
     marginLeft: 40,
     marginBottom: 40,
     height: 400,
+    x: {label: null},
     y: {percent: true, label: "↑ Responses (%)"},
     marks: [
       Plot.axisX({lineWidth: 8}),
