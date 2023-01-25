@@ -8,11 +8,11 @@ export async function axisLabelX() {
     marks: [
       Plot.frame(),
       Plot.axisX({anchor: "top", label: "top-left", labelAnchor: "left"}),
-      Plot.axisX({anchor: "top", label: "top-center", labelAnchor: "center"}),
-      Plot.axisX({anchor: "top", label: "top-right", labelAnchor: "right"}),
+      Plot.axisX({anchor: "top", label: "top-center", labelAnchor: "center", ticks: []}),
+      Plot.axisX({anchor: "top", label: "top-right", labelAnchor: "right", ticks: []}),
       Plot.axisX({anchor: "bottom", label: "bottom-left", labelAnchor: "left"}),
-      Plot.axisX({anchor: "bottom", label: "bottom-center", labelAnchor: "center"}),
-      Plot.axisX({anchor: "bottom", label: "bottom-right", labelAnchor: "right"})
+      Plot.axisX({anchor: "bottom", label: "bottom-center", labelAnchor: "center", ticks: []}),
+      Plot.axisX({anchor: "bottom", label: "bottom-right", labelAnchor: "right", ticks: []})
     ]
   });
 }
@@ -25,11 +25,11 @@ export async function axisLabelY() {
     marks: [
       Plot.frame(),
       Plot.axisY({anchor: "left", label: "left-top", labelAnchor: "top"}),
-      Plot.axisY({anchor: "left", label: "left-center", labelAnchor: "center"}),
-      Plot.axisY({anchor: "left", label: "left-bottom", labelAnchor: "bottom"}),
+      Plot.axisY({anchor: "left", label: "left-center", labelAnchor: "center", ticks: []}),
+      Plot.axisY({anchor: "left", label: "left-bottom", labelAnchor: "bottom", ticks: []}),
       Plot.axisY({anchor: "right", label: "right-top", labelAnchor: "top"}),
-      Plot.axisY({anchor: "right", label: "right-center", labelAnchor: "center"}),
-      Plot.axisY({anchor: "right", label: "right-bottom", labelAnchor: "bottom"})
+      Plot.axisY({anchor: "right", label: "right-center", labelAnchor: "center", ticks: []}),
+      Plot.axisY({anchor: "right", label: "right-bottom", labelAnchor: "bottom", ticks: []})
     ]
   });
 }

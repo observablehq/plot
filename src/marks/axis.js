@@ -1,5 +1,6 @@
 import {extent, format, utcFormat} from "d3";
 import {create} from "../context.js";
+import {maybeFacetAnchor} from "../facet.js";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
 import {radians} from "../math.js";
@@ -72,11 +73,11 @@ function axisKy(
     marginBottom = 20,
     marginLeft = anchor === "left" ? 40 : 0,
     label,
-    labelAnchor = "top", // TODO smarter default
+    labelAnchor,
     ...options
   }
 ) {
-  labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
+  if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
   return [
     k !== "fy" && line && !isNone(line)
       ? new AxisLine(k, anchor, {
@@ -117,20 +118,32 @@ function axisKy(
             ? text([], {
                 fill,
                 fillOpacity,
-                textAnchor: labelAnchor === "center" ? "middle" : anchor === "right" ? "end" : "start",
-                lineAnchor: labelAnchor === "center" ? "top" : labelAnchor === "top" ? "bottom" : "top",
-                facetAnchor: labelAnchor === "center" ? `${anchor}-middle` : `${labelAnchor}-${anchor}`,
-                frameAnchor: labelAnchor === "center" ? anchor : `${labelAnchor}-${anchor}`,
                 ...options,
-                rotate: labelAnchor === "center" ? (anchor === "right" ? 90 : -90) : 0,
+                x: null,
+                y: null,
                 initializer: function (data, facets, channels, scales, dimensions) {
+                  const scale = scales[k];
                   const {marginRight, marginLeft} = dimensions;
-                  this.dy = labelAnchor === "top" ? -10 : labelAnchor === "bottom" ? 10 : 0;
+                  const cla = labelAnchor ?? (scale?.bandwidth ? "center" : "top");
+                  if (cla === "center") {
+                    this.textAnchor = undefined; // middle
+                    this.lineAnchor = "top";
+                    this.facetAnchor = maybeFacetAnchor(`${anchor}-middle`);
+                    this.frameAnchor = anchor;
+                    this.rotate = anchor === "right" ? 90 : -90;
+                  } else {
+                    this.textAnchor = anchor === "right" ? "end" : "start";
+                    this.lineAnchor = cla === "top" ? "bottom" : "top";
+                    this.facetAnchor = maybeFacetAnchor(`${cla}-${anchor}`);
+                    this.frameAnchor = `${cla}-${anchor}`;
+                    this.rotate = 0;
+                  }
+                  this.dy = cla === "top" ? -10 : cla === "bottom" ? 10 : 0;
                   this.dx = anchor === "right" ? marginRight : -marginLeft;
                   this.ariaLabel = `${k}-axis label`;
                   return {
                     facets: [[0]],
-                    channels: {text: {value: [label === undefined ? scales[k].label : label]}}
+                    channels: {text: {value: [label === undefined ? scale.label : label]}}
                   };
                 }
               })
@@ -166,11 +179,11 @@ function axisKx(
     marginBottom = anchor === "bottom" ? 30 : 0,
     marginLeft = 20,
     label,
-    labelAnchor = "right", // TODO smarter default
+    labelAnchor,
     ...options
   }
 ) {
-  labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
+  if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
   return [
     k !== "fx" && line && !isNone(line)
       ? new AxisLine(k, anchor, {
@@ -211,19 +224,29 @@ function axisKx(
             ? text([], {
                 fill,
                 fillOpacity,
-                lineAnchor: anchor === "top" ? "bottom" : "top",
-                facetAnchor: labelAnchor === "center" ? `${anchor}-middle` : `${anchor}-${labelAnchor}`,
-                frameAnchor: labelAnchor === "center" ? anchor : `${anchor}-${labelAnchor}`,
-                textAnchor: labelAnchor === "center" ? "middle" : labelAnchor === "right" ? "end" : "start",
                 ...options,
+                x: null,
+                y: null,
                 initializer: function (data, facets, channels, scales, dimensions) {
+                  const scale = scales[k];
                   const {marginRight, marginLeft} = dimensions;
+                  const cla = labelAnchor ?? (scale?.bandwidth ? "center" : "right");
+                  if (cla === "center") {
+                    this.facetAnchor = maybeFacetAnchor(`${anchor}-middle`);
+                    this.frameAnchor = anchor;
+                    this.textAnchor = undefined; // middle
+                  } else {
+                    this.facetAnchor = maybeFacetAnchor(`${anchor}-${cla}`);
+                    this.frameAnchor = `${anchor}-${cla}`;
+                    this.textAnchor = cla === "right" ? "end" : "start";
+                  }
+                  this.lineAnchor = anchor === "top" ? "bottom" : "top";
                   this.dy = anchor === "top" ? -20 : 20;
-                  this.dx = labelAnchor === "right" ? marginRight : labelAnchor === "left" ? -marginLeft : 0;
+                  this.dx = cla === "right" ? marginRight : cla === "left" ? -marginLeft : 0;
                   this.ariaLabel = `${k}-axis label`;
                   return {
                     facets: [[0]],
-                    channels: {text: {value: [label === undefined ? scales[k].label : label]}}
+                    channels: {text: {value: [label === undefined ? scale.label : label]}}
                   };
                 }
               })

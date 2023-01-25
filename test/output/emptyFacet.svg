@@ -47,8 +47,8 @@
       <text y="0.71em" transform="translate(54,400)">1</text>
       <text y="0.71em" transform="translate(184,400)">2</text>
     </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-      <text y="0.71em" transform="translate(315,400)">PERIOD</text>
+    <g aria-label="x-axis label" transform="translate(0.5,20.5)">
+      <text y="0.71em" transform="translate(177.5,400)">PERIOD</text>
     </g>
   </g>
 </svg>
