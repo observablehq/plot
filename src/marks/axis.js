@@ -6,7 +6,9 @@ import {Mark} from "../mark.js";
 import {radians} from "../math.js";
 import {range, valueof, arrayify, constant, keyword, identity} from "../options.js";
 import {isNone, isNoneish, isIterable, isTemporal, maybeInterval} from "../options.js";
+import {isTemporalScale} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {maybeTimeInterval, maybeUtcInterval} from "../time.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
@@ -466,6 +468,12 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
       const {[k]: scale} = scales;
       if (!scale) throw new Error(`missing scale: ${k}`);
       let {ticks} = options;
+      // TODO Again, here we need the full scale descriptor rather than just the
+      // scale function: we need to know the type of the scale which cannot be
+      // inferred from the function alone.
+      if (isTemporalScale(scale) && typeof ticks === "string") {
+        ticks = (scale.type === "time" ? maybeTimeInterval : maybeUtcInterval)(ticks);
+      }
       if (data == null) {
         if (isIterable(ticks)) {
           data = arrayify(ticks);
