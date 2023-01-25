@@ -243,7 +243,7 @@ function axisKx(
                     this.textAnchor = cla === "right" ? "end" : "start";
                   }
                   this.lineAnchor = anchor === "top" ? "bottom" : "top";
-                  this.dy = anchor === "top" ? -20 : 20;
+                  this.dy = anchor === "top" ? -20 : 20; // TODO marginTop, marginBottom
                   this.dx = cla === "right" ? marginRight : cla === "left" ? -marginLeft : 0;
                   this.ariaLabel = `${k}-axis label`;
                   return {
