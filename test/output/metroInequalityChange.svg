@@ -52,8 +52,8 @@
     <text y="0.32em" transform="translate(40,72.77777777777774)">8.0</text>
     <text y="0.32em" transform="translate(40,42.222222222222165)">8.5</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ Inequality</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Inequality</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="122.35098938270542" x2="122.35098938270542" y1="20" y2="370"></line>
@@ -118,8 +118,8 @@
     <text y="0.71em" transform="translate(536.0369454802747,370)">10M</text>
     <text y="0.71em" transform="translate(609.3354035180724,370)">20M</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,370)">Population →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,370)">Population →</text>
   </g>
   <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M577.0231512318791,298.88888888888886A219.846341543917,219.846341543917 0,0,1 610,133.88888888888886M602.8217972873439,137.42065980671705L610,133.88888888888886L609.4695019788583,141.87128025047747" stroke="rgb(193, 58, 59)"></path>

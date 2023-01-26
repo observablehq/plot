@@ -83,8 +83,8 @@
       <text y="0.71em" transform="translate(138.70967741935482,120)">50</text>
       <text y="0.71em" transform="translate(202.41935483870967,120)">100</text>
     </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-      <text y="0.71em" transform="translate(243,120)">Frequency →</text>
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+      <text transform="translate(243,120)">Frequency →</text>
     </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="75" y="30" width="168" height="90"></rect>
     <g aria-label="bar">

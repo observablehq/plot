@@ -33,8 +33,8 @@
     <text y="0.32em" transform="translate(40,81.43617021276597)">40</text>
     <text y="0.32em" transform="translate(40,34.89361702127662)">45</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ economy (mpg)</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ economy (mpg)</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(103.64048766657217,370)" d="M0,0L0,6"></path>
@@ -54,8 +54,8 @@
     <text y="0.71em" transform="translate(514.754749078537,370)">4,500</text>
     <text y="0.71em" transform="translate(596.97760136093,370)">5,000</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,370)">weight (lb) →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,370)">weight (lb) →</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="403.09611567904733" cy="332.7659574468085" r="2"></circle>

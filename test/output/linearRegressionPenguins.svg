@@ -43,8 +43,8 @@
     <text y="0.32em" transform="translate(40,82.50000000000001)">20</text>
     <text y="0.32em" transform="translate(40,40.83333333333334)">21</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ culmen_depth_mm</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ culmen_depth_mm</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="101.16363636363633" x2="101.16363636363633" y1="20" y2="370"></line>
@@ -67,8 +67,8 @@
     <text y="0.71em" transform="translate(417.5272727272727,370)">50</text>
     <text y="0.71em" transform="translate(522.9818181818182,370)">55</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,370)">culmen_length_mm →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,370)">culmen_length_mm →</text>
   </g>
   <g aria-label="dot" transform="translate(0.5,0.5)">
     <circle cx="187.63636363636363" cy="136.66666666666669" r="3" fill="#4e79a7"></circle>

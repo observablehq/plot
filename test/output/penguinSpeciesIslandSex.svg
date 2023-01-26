@@ -68,8 +68,8 @@
       <text y="0.32em" transform="translate(40,70.54794520547945)">65</text>
       <text y="0.32em" transform="translate(40,45.20547945205482)">70</text>
     </g>
-    <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-      <text transform="translate(40,30)">↑ Frequency</text>
+    <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-26.5)">
+      <text y="0.71em" transform="translate(40,30)">↑ Frequency</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(26.5,0)">
       <path transform="translate(46,400)" d="M0,0L0,6"></path>
@@ -126,8 +126,8 @@
       <text y="0.71em" transform="translate(104,400)">MALE</text>
       <text y="0.71em" transform="translate(162,400)">N/A</text>
     </g>
-    <g aria-label="x-axis label" transform="translate(0.5,20.5)">
-      <text y="0.71em" transform="translate(130,400)">sex</text>
+    <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+      <text transform="translate(130,400)">sex</text>
     </g>
     <g aria-label="bar">
       <rect x="46" width="52" y="227.67123287671234" height="172.32876712328766" fill="#f28e2c"></rect>

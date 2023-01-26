@@ -61,8 +61,8 @@
     <text y="0.32em" transform="translate(40,52.163360712575106)">8.3</text>
     <text y="0.32em" transform="translate(40,26.535780889795117)">8.4</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ Volume (log₁₀)</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Volume (log₁₀)</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="63.95301139559466" x2="63.95301139559466" y1="20" y2="370"></line>
@@ -94,8 +94,8 @@
     <text y="0.71em" transform="translate(517.9890642078065,370)">+6</text>
     <text y="0.71em" transform="translate(593.6617396765084,370)">+8</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,370)">Daily change (%) →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,370)">Daily change (%) →</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="290.9710378017005" x2="290.9710378017005" y1="20" y2="370"></line>

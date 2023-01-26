@@ -148,8 +148,8 @@
     <text y="0.32em" transform="translate(40,49.48045749287073)">3M</text>
     <text y="0.32em" transform="translate(40,34.766512033796545)"></text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ Total number of votes</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Total number of votes</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="108.042956836157" x2="108.042956836157" y1="20" y2="610"></line>
@@ -184,8 +184,8 @@
     <text y="0.71em" transform="translate(771.2435029707751,610)">+60</text>
     <text y="0.71em" transform="translate(865.9864381328634,610)">+80</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,20.5)">
-    <text y="0.71em" transform="translate(490,610)">← Biden · Vote margin (%) · Trump →</text>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(490,610)">← Biden · Vote margin (%) · Trump →</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="487.0146974845102" x2="487.0146974845102" y1="20" y2="610"></line>

@@ -67,8 +67,8 @@
     <text y="0.71em" transform="translate(527.6283185840707,290)">800</text>
     <text y="0.71em" transform="translate(614,290)">1,000</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,290)">Profit ($M) →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,290)">Profit ($M) →</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="182.141592920354" x2="182.141592920354" y1="20" y2="290"></line>

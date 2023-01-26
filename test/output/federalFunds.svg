@@ -41,8 +41,8 @@
     <text transform="translate(0,129.2433361994841)">8 </text>
     <text transform="translate(0,69.05417024935514)">10%</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(0.5,-9.5)">
-    <text transform="translate(0,20)">↑ Federal funds rate (% per year)</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(0.5,-16.5)">
+    <text y="0.71em" transform="translate(0,20)">↑ Federal funds rate (% per year)</text>
   </g>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.4" stroke-dasharray="1.5" transform="translate(0,0.5)">
     <line x1="0" x2="620" y1="370" y2="370"></line>

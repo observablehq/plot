@@ -59,8 +59,8 @@
       <text transform="translate(858,30)">9</text>
       <text transform="translate(940,30)">10</text>
     </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,-19.5)">
-      <text transform="translate(940,30)">IMDB Rating →</text>
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,-26.5)">
+      <text y="0.71em" transform="translate(940,30)">IMDB Rating →</text>
     </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="743.1999999999999" cy="49.5" r="2.5" stroke="#edc949"></circle>

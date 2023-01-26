@@ -33,8 +33,8 @@
     <text y="0.32em" transform="translate(40,93.68421052631578)">120</text>
     <text y="0.32em" transform="translate(40,47.631578947368425)">140</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ Frequency</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(84.5,0)">
     <path transform="translate(59,370)" d="M0,0L0,6"></path>
@@ -46,8 +46,8 @@
     <text y="0.71em" transform="translate(246,370)">Chinstrap</text>
     <text y="0.71em" transform="translate(433,370)">Gentoo</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,20.5)">
-    <text y="0.71em" transform="translate(330,370)">species</text>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,370)">species</text>
   </g>
   <defs>
     <linearGradient id="gradient" gradientTransform="rotate(90)">

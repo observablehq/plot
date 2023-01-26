@@ -55,8 +55,8 @@
     <text y="0.32em" transform="translate(40,58.69565217391295)">5.4</text>
     <text y="0.32em" transform="translate(40,30)">5.6</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ Inequality</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Inequality</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="126.8781294704236" x2="126.8781294704236" y1="20" y2="370"></line>
@@ -118,8 +118,8 @@
     <text y="0.71em" transform="translate(554.6104656353255,370)"></text>
     <text y="0.71em" transform="translate(566.4492087923477,370)">10M</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,370)">Population →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,370)">Population →</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="610" cy="216.52173913043475" r="3"></circle>

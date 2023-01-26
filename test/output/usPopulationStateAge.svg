@@ -88,8 +88,8 @@
     <text transform="translate(543.6216811704239,30)">18</text>
     <text transform="translate(598.4685346338044,30)">20</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,-19.5)">
-    <text transform="translate(620,30)">Percent (%) →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,-26.5)">
+    <text y="0.71em" transform="translate(620,30)">Percent (%) →</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="50" x2="50" y1="30" y2="220"></line>

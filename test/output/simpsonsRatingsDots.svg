@@ -37,8 +37,8 @@
     <text y="0.32em" transform="translate(40,72.12765957446804)">8.5</text>
     <text y="0.32em" transform="translate(40,34.89361702127654)">9.0</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ IMDb rating</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ IMDb rating</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(60,370)" d="M0,0L0,6"></path>
@@ -100,8 +100,8 @@
     <text y="0.71em" transform="translate(580,370)">27</text>
     <text y="0.71em" transform="translate(600,370)">28</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,370)">Season →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,370)">Season →</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="60" x2="60" y1="154.0425531914893" y2="87.02127659574458"></line>

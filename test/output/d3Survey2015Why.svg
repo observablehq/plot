@@ -47,8 +47,8 @@
     <text y="0.32em" transform="translate(300,290)">to understand data better</text>
     <text y="0.32em" transform="translate(300,310)">to work with open data</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-299.5,-9.5)">
-    <text transform="translate(300,30)">Why do you want to learn d3?</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-299.5,-26.5)">
+    <text y="0.71em" transform="translate(300,30)">Why do you want to learn d3?</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="300" x2="300" y1="30" y2="330"></line>
@@ -89,8 +89,8 @@
     <text transform="translate(876,30)">90</text>
     <text transform="translate(940,30)">100</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,-19.5)">
-    <text transform="translate(940,30)">Frequency (%) →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,-26.5)">
+    <text y="0.71em" transform="translate(940,30)">Frequency (%) →</text>
   </g>
   <g aria-label="bar" fill="steelblue">
     <rect x="300" width="446.2385321100917" y="51" height="19"></rect>

@@ -55,8 +55,8 @@
     <text y="0.32em" transform="translate(44,51.38297872340427)">18,000</text>
     <text y="0.32em" transform="translate(44,20)">19,000</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-43.5,-9.5)">
-    <text transform="translate(44,20)">↑ price</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-43.5,-16.5)">
+    <text y="0.71em" transform="translate(44,20)">↑ price</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(79.62886597938144,610)" d="M0,0L0,6"></path>
@@ -82,8 +82,8 @@
     <text y="0.71em" transform="translate(554.680412371134,610)">4.5</text>
     <text y="0.71em" transform="translate(614.0618556701031,610)">5.0</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,610)">carat →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,610)">carat →</text>
   </g>
   <g aria-label="rect">
     <rect x="45" y="604.7234042553191" width="4.938144329896907" height="5.27659574468089" fill="rgb(143, 151, 199)"></rect>

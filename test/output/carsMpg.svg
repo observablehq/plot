@@ -49,8 +49,8 @@
     <text y="0.32em" transform="translate(40,72.12765957446808)">40</text>
     <text y="0.32em" transform="translate(40,34.89361702127658)">45</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ economy (mpg)</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ economy (mpg)</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(66,370)" d="M0,0L0,6"></path>
@@ -82,8 +82,8 @@
     <text y="0.71em" transform="translate(550,370)">81</text>
     <text y="0.71em" transform="translate(594,370)">82</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,20.5)">
-    <text y="0.71em" transform="translate(330,370)">year</text>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,370)">year</text>
   </g>
   <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path stroke="rgb(35, 23, 27)" d="M154,228.511L161.333,229.752C168.667,230.993,183.333,233.475,220,230.372C256.667,227.27,315.333,218.582,366.667,211.507C418,204.433,462,198.972,484,196.241L506,193.511"></path>

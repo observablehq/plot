@@ -69,8 +69,8 @@
     <text y="0.71em" transform="translate(585,30)">Y</text>
     <text y="0.71em" transform="translate(608,30)">Z</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,20.5)">
-    <text y="0.71em" transform="translate(320,30)">letter</text>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(320,30)">letter</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="125" cy="15" r="8.449436326695164"></circle>

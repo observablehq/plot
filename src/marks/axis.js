@@ -125,7 +125,7 @@ function axisKy(
                 y: null,
                 initializer: function (data, facets, channels, scales, dimensions) {
                   const scale = scales[k];
-                  const {marginRight, marginLeft} = dimensions;
+                  const {marginTop, marginRight, marginBottom, marginLeft} = dimensions;
                   const cla = labelAnchor ?? (scale?.bandwidth ? "center" : "top");
                   if (cla === "center") {
                     this.textAnchor = undefined; // middle
@@ -135,12 +135,12 @@ function axisKy(
                     this.rotate = anchor === "right" ? 90 : -90;
                   } else {
                     this.textAnchor = anchor === "right" ? "end" : "start";
-                    this.lineAnchor = cla === "top" ? "bottom" : "top";
+                    this.lineAnchor = cla;
                     this.facetAnchor = maybeFacetAnchor(`${cla}-${anchor}`);
                     this.frameAnchor = `${cla}-${anchor}`;
                     this.rotate = 0;
                   }
-                  this.dy = cla === "top" ? -10 : cla === "bottom" ? 10 : 0;
+                  this.dy = cla === "top" ? 3 - marginTop : cla === "bottom" ? marginBottom - 3 : 0;
                   this.dx = anchor === "right" ? marginRight : -marginLeft;
                   this.ariaLabel = `${k}-axis label`;
                   return {
@@ -231,7 +231,7 @@ function axisKx(
                 y: null,
                 initializer: function (data, facets, channels, scales, dimensions) {
                   const scale = scales[k];
-                  const {marginRight, marginLeft} = dimensions;
+                  const {marginTop, marginRight, marginBottom, marginLeft} = dimensions;
                   const cla = labelAnchor ?? (scale?.bandwidth ? "center" : "right");
                   if (cla === "center") {
                     this.facetAnchor = maybeFacetAnchor(`${anchor}-middle`);
@@ -242,8 +242,8 @@ function axisKx(
                     this.frameAnchor = `${anchor}-${cla}`;
                     this.textAnchor = cla === "right" ? "end" : "start";
                   }
-                  this.lineAnchor = anchor === "top" ? "bottom" : "top";
-                  this.dy = anchor === "top" ? -20 : 20; // TODO marginTop, marginBottom
+                  this.lineAnchor = anchor;
+                  this.dy = anchor === "top" ? 3 - marginTop : marginBottom - 3;
                   this.dx = cla === "right" ? marginRight : cla === "left" ? -marginLeft : 0;
                   this.ariaLabel = `${k}-axis label`;
                   return {

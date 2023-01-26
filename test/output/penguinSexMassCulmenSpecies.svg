@@ -62,8 +62,8 @@
       <text y="0.32em" transform="translate(40,67.69230769230771)">56</text>
       <text y="0.32em" transform="translate(40,49.230769230769226)">58</text>
     </g>
-    <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-      <text transform="translate(40,30)">↑ culmen_length_mm</text>
+    <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-26.5)">
+      <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="61.42857142857143" x2="61.42857142857143" y1="30" y2="290"></line>
@@ -276,8 +276,8 @@
       <text y="0.71em" transform="translate(175.71428571428572,290)">5.5k</text>
       <text y="0.71em" transform="translate(198.57142857142858,290)">6k</text>
     </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-      <text y="0.71em" transform="translate(220,290)">body_mass_g →</text>
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+      <text transform="translate(220,290)">body_mass_g →</text>
     </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="30" width="180" height="260"></rect>
     <g aria-label="dot" fill-opacity="0.2" stroke-width="1.5" transform="translate(0.5,0.5)">

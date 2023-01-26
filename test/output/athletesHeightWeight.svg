@@ -79,8 +79,8 @@
     <text y="0.32em" transform="translate(40,55.40000000000003)">2.15</text>
     <text y="0.32em" transform="translate(40,25.899999999999874)">2.20</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ height</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ height</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="77.55395683453237" x2="77.55395683453237" y1="20" y2="610"></line>
@@ -109,8 +109,8 @@
     <text y="0.71em" transform="translate(494.8201438848921,610)">140</text>
     <text y="0.71em" transform="translate(578.2733812949641,610)">160</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,610)">weight →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,610)">weight →</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="177.6978417266187" cy="309.09999999999997" r="3"></circle>

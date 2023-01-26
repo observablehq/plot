@@ -45,8 +45,8 @@
     <text y="0.32em" transform="translate(40,57.77777777777779)">24</text>
     <text y="0.32em" transform="translate(40,32.59259259259261)">26</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ Responses (%)</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Responses (%)</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(43.5,0)">
     <path transform="translate(50,360)" d="M0,0L0,6"></path>

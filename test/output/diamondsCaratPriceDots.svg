@@ -73,8 +73,8 @@
     <text y="0.32em" transform="translate(44,80.26881720430109)">17,000</text>
     <text y="0.32em" transform="translate(44,48.548387096774164)">18,000</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-43.5,-9.5)">
-    <text transform="translate(44,20)">↑ Price ($)</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-43.5,-16.5)">
+    <text y="0.71em" transform="translate(44,20)">↑ Price ($)</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="77" x2="77" y1="20" y2="610"></line>
@@ -112,8 +112,8 @@
     <text y="0.71em" transform="translate(556.9999999999999,610)">4.5</text>
     <text y="0.71em" transform="translate(616.9999999999999,610)">5.0</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,610)">Carats →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,610)">Carats →</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="55.999999999999986" cy="597.3118279569892" r="17.549358962651603"></circle>

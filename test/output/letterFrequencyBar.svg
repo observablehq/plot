@@ -96,8 +96,8 @@
     <text y="0.71em" transform="translate(496.62100456621,550)">10</text>
     <text y="0.71em" transform="translate(587.945205479452,550)">12</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,550)">Frequency (%) →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,550)">Frequency (%) →</text>
   </g>
   <g aria-label="bar">
     <rect x="40" width="580" y="526" height="18" aria-label="E 12.7%"></rect>

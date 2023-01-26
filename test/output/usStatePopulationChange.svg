@@ -208,8 +208,8 @@
     <text transform="translate(515,30)">+3.0</text>
     <text transform="translate(573,30)">+3.5</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,-19.5)">
-    <text transform="translate(360,30)">← decrease · Change in population, 2010–2019 (millions) · increase →</text>
+  <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(360,30)">← decrease · Change in population, 2010–2019 (millions) · increase →</text>
   </g>
   <g aria-label="bar">
     <rect x="168" width="261" y="70" height="13" fill="rgb(78, 121, 167)"></rect>

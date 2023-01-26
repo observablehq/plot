@@ -31,8 +31,8 @@
     <text y="0.71em" transform="translate(481.11111111111114,30)">5,500</text>
     <text y="0.71em" transform="translate(561.6666666666666,30)">6,000</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,30)">body_mass_g →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,30)">body_mass_g →</text>
   </g>
   <g aria-label="voronoi" fill-opacity="0.5" transform="translate(0.5,0.5)">
     <path d="M201.18058288361422,0L201.18052546327405,30L197.15277792861423,30L197.15278257771692,0Z" fill="#4e79a7"><title>Adelie (MALE)

@@ -49,8 +49,8 @@
     <text y="0.32em" transform="translate(40,72.12765957446808)">80</text>
     <text y="0.32em" transform="translate(40,34.89361702127658)">90</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-9.5)">
-    <text transform="translate(40,20)">↑ Frequency</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
@@ -74,8 +74,8 @@
     <text y="0.71em" transform="translate(548,370)">6,000</text>
     <text y="0.71em" transform="translate(620,370)">6,500</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,20.5)">
-    <text y="0.71em" transform="translate(620,370)">Body mass (g) →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <text transform="translate(620,370)">Body mass (g) →</text>
   </g>
   <g aria-label="rect">
     <rect x="41" y="336.48936170212767" width="72" height="33.51063829787233"></rect>
