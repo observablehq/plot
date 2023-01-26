@@ -184,11 +184,17 @@ export async function autoDotFacet() {
 
 export async function autoDotFacet2() {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  return Plot.auto(penguins, {x: "body_mass_g", y: "culmen_length_mm", fx: "island", fy: "species", color: "sex"}).plot();
+  return Plot.auto(penguins, {
+    x: "body_mass_g",
+    y: "culmen_length_mm",
+    fx: "island",
+    fy: "species",
+    color: "sex"
+  }).plot();
 }
 
 export async function autoShorthandContinuous() {
-  return Plot.auto([1,1,2,3,5]).plot();
+  return Plot.auto([1, 1, 2, 3, 5]).plot();
 }
 
 export async function autoShorthandOrdinal() {
