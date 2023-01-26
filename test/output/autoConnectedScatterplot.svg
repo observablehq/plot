@@ -1,0 +1,74 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" aria-description="↑ gas" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,368.3290330987751)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,331.84219442272604)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,295.35535574667705)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,258.86851707062806)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,222.38167839457907)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,185.89483971853014)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,149.40800104248106)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,112.92116236643213)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,76.4343236903831)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">3.0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,39.94748501433408)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">3.2</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ gas</text>
+  </g>
+  <g aria-label="x-axis" aria-description="miles →" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(69.29480853494334,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(160.33018605983114,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(251.36556358471893,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(342.40094110960666,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">7,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(433.43631863449446,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">8,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(524.4716961593823,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">9,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(615.50707368427,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10,000</text>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">miles →</text>
+  </g>
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <path d="M40,188.514L43.557,184.921L48.481,212.048L60.792,202.197L63.528,209.878L67.358,212.286L76.934,218.999L89.792,235.801L103.745,239.414L118.519,233.412L130.83,232.445L145.057,232.682L164.208,235.327L179.528,244.923L194.849,256.216L219.198,270.847L249.019,281.41L265.434,276.138L246.009,195.483L261.604,202.197L287.321,199.315L308.66,192.838L331.915,216.628L319.604,133.784L311.943,21.678L318.509,21.916L326.991,90.584L336.292,138.582L353.528,171.712L371.585,192.364L392.377,302.062L412.623,303.01L441.075,315.981L468.981,304.47L481.84,280.936L481.019,298.942L494.425,315.744L509.745,331.817L515.491,334.225L537.104,331.579L540.66,317.897L560.906,322.932L576.5,370L586.623,349.823L588.264,277.579L586.349,301.095L597.019,324.391L601.67,284.055L614.255,232.445L620,161.149L617.811,113.625L616.17,85.293L603.311,20L583.34,189.481L577.868,147.704"></path>
+  </g>
+</svg>

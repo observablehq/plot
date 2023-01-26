@@ -1,0 +1,77 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" aria-description="↑ Frequency" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,346.3181818181818)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,320.8636363636363)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,295.40909090909093)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,269.95454545454544)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,244.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,219.04545454545453)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">120</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,193.59090909090907)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">140</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,168.13636363636365)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,142.68181818181822)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">180</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,117.22727272727272)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,91.77272727272727)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">220</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,66.31818181818181)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">240</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,40.863636363636374)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">260</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis" aria-description="Volume →" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(121.70000000000002,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">50,000,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(237.70000000000002,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100,000,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(353.7,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">150,000,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(469.7,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">200,000,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(585.6999999999999,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">250,000,000</text>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Volume →</text>
+  </g>
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <path d="M40,288.545L63.2,20L86.4,69.636L109.6,130.727L132.8,186.727L156,223.636L179.2,274.545L202.4,308.909L225.6,324.182L248.8,347.091L272,349.636L295.2,359.818L318.4,364.909L341.6,364.909L364.8,368.727L388,367.455L411.2,370L434.4,364.909L457.6,370L527.2,368.727L620,370"></path>
+  </g>
+</svg>
