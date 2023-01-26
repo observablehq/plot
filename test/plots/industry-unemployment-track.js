@@ -4,7 +4,7 @@ import * as d3 from "d3";
 export default async function () {
   const data = await d3.csv("data/bls-industry-unemployment.csv", d3.autoType);
   return Plot.plot({
-    facet: {data, y: "industry", marginLeft: 140},
+    facet: {data, y: "industry"},
     marginLeft: 140,
     marks: [
       Plot.barX(data, {
