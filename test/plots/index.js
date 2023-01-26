@@ -291,3 +291,4 @@ export * from "./raster-penguins.js";
 export * from "./raster-vapor.js";
 export * from "./raster-walmart.js";
 export * from "./volcano.js";
+export * from "./autoplot.js";
