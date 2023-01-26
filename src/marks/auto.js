@@ -15,11 +15,10 @@ import {ascending} from "d3";
 // https://github.com/observablehq/stdlib/blob/main/src/table.js
 const nChecks = 20; // number of values to check in each array
 
-export function auto(data, { x, y, fx, fy, color, size, mark } = {}) {
-
+export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   // Shorthand: array of primitives should result in a histogram
-  if (x === undefined && y === undefined && arrayIsPrimitive(data)) x = d => d;
-  
+  if (x === undefined && y === undefined && arrayIsPrimitive(data)) x = (d) => d;
+
   // Allow x and y and other dimensions to be specified as shorthand
   // field names (but note that they can also be specified as a
   // {transform} object such as Plot.identity).
@@ -30,30 +29,24 @@ export function auto(data, { x, y, fx, fy, color, size, mark } = {}) {
   if (!isOptions(color)) color = makeOptions(color);
   if (!isOptions(size)) size = makeOptions(size);
 
-  const { value: xValue } = x;
-  const { value: yValue } = y;
+  const {value: xValue} = x;
+  const {value: yValue} = y;
 
-  const { value: sizeValue, reduce: sizeReduce } = size;
+  const {value: sizeValue, reduce: sizeReduce} = size;
 
   // Determine the default reducer, if any.
-  let { reduce: xReduce } = x;
-  let { reduce: yReduce } = y;
+  let {reduce: xReduce} = x;
+  let {reduce: yReduce} = y;
   if (xReduce === undefined)
-    xReduce =
-      yReduce == null && xValue == null && sizeValue == null && yValue != null
-        ? "count"
-        : null;
+    xReduce = yReduce == null && xValue == null && sizeValue == null && yValue != null ? "count" : null;
   if (yReduce === undefined)
-    yReduce =
-      xReduce == null && yValue == null && sizeValue == null && xValue != null
-        ? "count"
-        : null;
+    yReduce = xReduce == null && yValue == null && sizeValue == null && xValue != null ? "count" : null;
 
-  const { zero: xZero } = x;
-  const { zero: yZero } = y;
-  const { value: colorValue, reduce: colorReduce } = color;
-  const { value: fxValue } = fx;
-  const { value: fyValue } = fy;
+  const {zero: xZero} = x;
+  const {zero: yZero} = y;
+  const {value: colorValue, reduce: colorReduce} = color;
+  const {value: fxValue} = fx;
+  const {value: fyValue} = fy;
 
   // TODO Default sizeReduce for ordinal/ordinal case?
   // TODO Allow x: {field: "red"}, too?
@@ -94,9 +87,7 @@ export function auto(data, { x, y, fx, fy, color, size, mark } = {}) {
         : xReduce != null || yReduce != null || colorReduce != null
         ? "bar"
         : xValue != null && yValue != null
-        ? isContinuous(x) &&
-          isContinuous(y) &&
-          (isMonotonic(x) || isMonotonic(y))
+        ? isContinuous(x) && isContinuous(y) && (isMonotonic(x) || isMonotonic(y))
           ? "line"
           : (isContinuous(x) && xZero) || (isContinuous(y) && yZero)
           ? "bar"
@@ -178,7 +169,7 @@ export function auto(data, { x, y, fx, fy, color, size, mark } = {}) {
   }
 
   // Determine the mark options.
-  let options = { x, y, fill, stroke, z, r: size, fx, fy };
+  let options = {x, y, fill, stroke, z, r: size, fx, fy};
   let transformOptions = {
     fill: fillReduce,
     stroke: strokeReduce,
@@ -189,12 +180,12 @@ export function auto(data, { x, y, fx, fy, color, size, mark } = {}) {
     throw new Error(`cannot reduce both x and y`); // for now at least
   } else if (yReduce != null) {
     options = isOrdinal(x)
-      ? groupX({ y: yReduce, ...transformOptions }, options)
-      : binX({ y: yReduce, ...transformOptions }, options);
+      ? groupX({y: yReduce, ...transformOptions}, options)
+      : binX({y: yReduce, ...transformOptions}, options);
   } else if (xReduce != null) {
     options = isOrdinal(y)
-      ? groupY({ x: xReduce, ...transformOptions }, options)
-      : binY({ x: xReduce, ...transformOptions }, options);
+      ? groupY({x: xReduce, ...transformOptions}, options)
+      : binY({x: xReduce, ...transformOptions}, options);
   } else if (colorReduce != null || sizeReduce != null) {
     if (isOrdinal(x) && isOrdinal(y)) {
       options = group(transformOptions, options);
@@ -212,10 +203,10 @@ export function auto(data, { x, y, fx, fy, color, size, mark } = {}) {
     // y: { zero: yZero },
     // color: colorValue == null && colorReduce == null ? null : { legend: true },
     // marks: [
-      fx || fy ? frame({ stroke: "#eee" }) : null,
-      xZero ? ruleX([0]) : null,
-      yZero ? ruleY([0]) : null,
-      mark(data, options)
+    fx || fy ? frame({stroke: "#eee"}) : null,
+    xZero ? ruleX([0]) : null,
+    yZero ? ruleY([0]) : null,
+    mark(data, options)
     // ]
   );
 }
@@ -230,7 +221,10 @@ function isMonotonic(values) {
   let previousOrder;
   for (const value of values) {
     if (value == null) continue;
-    if (previous === undefined) { previous = value; continue; }
+    if (previous === undefined) {
+      previous = value;
+      continue;
+    }
     const order = Math.sign(ascending(previous, value));
     if (!order) continue; // skip zero, NaN
     if (previousOrder !== undefined && order !== previousOrder) return false;
@@ -241,16 +235,12 @@ function isMonotonic(values) {
 }
 
 function makeOptions(value) {
-  return isReducer(value) ? { reduce: value } : { value };
+  return isReducer(value) ? {reduce: value} : {value};
 }
 
 // https://github.com/observablehq/stdlib/blob/main/src/table.js
 function arrayIsPrimitive(value) {
-  return (
-    isTypedArray(value) ||
-    arrayContainsPrimitives(value) ||
-    arrayContainsDates(value)
-  );
+  return isTypedArray(value) || arrayContainsPrimitives(value) || arrayContainsDates(value);
 }
 
 // https://github.com/observablehq/stdlib/blob/main/src/table.js
@@ -316,25 +306,25 @@ function arrayContainsDates(value) {
 
 // https://github.com/observablehq/plot/blob/818562649280e155136f730fc496e0b3d15ae464/src/transforms/group.js#L236
 function isReducer(reduce) {
-    if (typeof reduce?.reduce === "function") return true;
-    if (/^p\d{2}$/i.test(reduce)) return true;
-    switch (`${reduce}`.toLowerCase()) {
-      case "first":
-      case "last":
-      case "count":
-      case "distinct":
-      case "sum":
-      case "proportion":
-      case "proportion-facet": // TODO remove me?
-      case "deviation":
-      case "min":
-      case "min-index": // TODO remove me?
-      case "max":
-      case "max-index": // TODO remove me?
-      case "mean":
-      case "median":
-      case "variance":
-      case "mode":
+  if (typeof reduce?.reduce === "function") return true;
+  if (/^p\d{2}$/i.test(reduce)) return true;
+  switch (`${reduce}`.toLowerCase()) {
+    case "first":
+    case "last":
+    case "count":
+    case "distinct":
+    case "sum":
+    case "proportion":
+    case "proportion-facet": // TODO remove me?
+    case "deviation":
+    case "min":
+    case "min-index": // TODO remove me?
+    case "max":
+    case "max-index": // TODO remove me?
+    case "mean":
+    case "median":
+    case "variance":
+    case "mode":
       // These are technically reducers, but I think we’d want to treat them as fields?
       // case "x":
       // case "x1":
@@ -342,7 +332,7 @@ function isReducer(reduce) {
       // case "y":
       // case "y1":
       // case "y2":
-        return true;
-    }
-    return false;
+      return true;
   }
+  return false;
+}
