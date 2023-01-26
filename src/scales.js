@@ -107,23 +107,49 @@ export function ScaleFunctions(scales) {
 }
 
 // Mutates scale.range!
-export function autoScaleRange({x, y, fx, fy}, dimensions) {
-  if (fx) autoScaleRangeX(fx, dimensions);
-  if (fy) autoScaleRangeY(fy, dimensions);
-  if (x) autoScaleRangeX(x, facetDimensions({fx}, dimensions));
-  if (y) autoScaleRangeY(y, facetDimensions({fy}, dimensions));
+export function autoScaleRange(scales, dimensions, facet) {
+  const {x, y, fx, fy} = scales;
+  const submargins = fx || fy ? facetMargins(dimensions, facet) : null;
+  if (fx) autoScaleRangeX(fx, submargins);
+  if (fy) autoScaleRangeY(fy, submargins);
+  const subdimensions = fx || fy ? facetDimensions(scales, dimensions, facet) : dimensions;
+  if (x) autoScaleRangeX(x, subdimensions);
+  if (y) autoScaleRangeY(y, subdimensions);
 }
 
-export function facetDimensions({fx, fy}, dimensions) {
-  if (!(fx || fy)) return dimensions;
+function facetMargins(dimensions, facet = {}) {
   const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+  const {
+    marginTop: facetMarginTop = 0,
+    marginRight: facetMarginRight = 0,
+    marginBottom: facetMarginBottom = 0,
+    marginLeft: facetMarginLeft = 0
+  } = facet;
+  return {
+    marginTop: marginTop + facetMarginTop,
+    marginRight: marginRight + facetMarginRight,
+    marginBottom: marginBottom + facetMarginBottom,
+    marginLeft: marginLeft + facetMarginLeft,
+    width,
+    height
+  };
+}
+
+export function facetDimensions({fx, fy}, dimensions, facet = {}) {
+  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+  const {
+    marginTop: facetMarginTop = 0,
+    marginRight: facetMarginRight = 0,
+    marginBottom: facetMarginBottom = 0,
+    marginLeft: facetMarginLeft = 0
+  } = facet;
   return {
     marginTop,
     marginRight,
     marginBottom,
     marginLeft,
-    width: fx ? fx.scale.bandwidth() + marginLeft + marginRight : width,
-    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height
+    width: fx ? fx.scale.bandwidth() + marginLeft + marginRight : width - facetMarginRight - facetMarginLeft,
+    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height - facetMarginTop - facetMarginBottom
   };
 }
 

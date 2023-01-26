@@ -136,11 +136,11 @@ export function plot(options = {}) {
   const scales = ScaleFunctions(scaleDescriptors);
   const dimensions = Dimensions(scaleDescriptors, marks, options);
 
-  autoScaleRange(scaleDescriptors, dimensions);
+  autoScaleRange(scaleDescriptors, dimensions, facet);
   autoScaleLabels(channelsByScale, scaleDescriptors, options);
 
   const {fx, fy} = scales;
-  const subdimensions = facetDimensions(scaleDescriptors, dimensions);
+  const subdimensions = facetDimensions(scaleDescriptors, dimensions, facet);
   const context = Context(options, subdimensions, scaleDescriptors);
 
   // Reinitialize; for deriving channels dependent on other channels.
@@ -248,7 +248,7 @@ export function plot(options = {}) {
       .enter()
       .append("g")
       .attr("aria-label", "facet")
-      .attr("transform", facetTranslate(fx, fy, dimensions))
+      .attr("transform", facetTranslate(fx, fy, dimensions, facet))
       .each(function (f) {
         let empty = true;
         for (const mark of marks) {
@@ -502,8 +502,8 @@ function inferAxes(marks, channelsByScale, options) {
 
   const axes = [];
   const defaults = {line};
-  maybeAxis(axes, fyAxis, axisFy, fyGrid, gridFy, "right", "left", facet, fy);
-  maybeAxis(axes, fxAxis, axisFx, fxGrid, gridFx, "top", "bottom", facet, fx);
+  maybeAxis(axes, fyAxis, axisFy, fyGrid, gridFy, "right", "left", null, fy);
+  maybeAxis(axes, fxAxis, axisFx, fxGrid, gridFx, "top", "bottom", null, fx);
   maybeAxis(axes, yAxis, axisY, yGrid, gridY, "left", "right", defaults, y);
   maybeAxis(axes, xAxis, axisX, xGrid, gridX, "bottom", "top", defaults, x);
   return axes;
@@ -522,24 +522,11 @@ function isBoth(value) {
   return /^\s*both\s*$/i.test(value);
 }
 
-// TODO I’m not sure it’s right to pass the margins through here: it confuses
-// what we mean by the default margins when we subsequently compute the default
-// height. So… we’re only doing this for facet axes, but it’s probably wrong.
 function axisOptions(
   anchor,
+  defaults,
   {
-    line: defaultLine,
-    marginTop: defaultMarginTop,
-    marginRight: defaultMarginRight,
-    marginBottom: defaultMarginBottom,
-    marginLeft: defaultMarginLeft
-  },
-  {
-    line = defaultLine,
-    marginTop = defaultMarginTop,
-    marginRight = defaultMarginRight,
-    marginBottom = defaultMarginBottom,
-    marginLeft = defaultMarginLeft,
+    line = defaults?.line,
     ticks,
     tickSize,
     tickPadding,
@@ -555,10 +542,6 @@ function axisOptions(
   return {
     anchor,
     line,
-    marginTop,
-    marginRight,
-    marginBottom,
-    marginLeft,
     ticks,
     tickSize,
     tickPadding,

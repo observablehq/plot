@@ -13,606 +13,606 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="facet" transform="translate(0,6)">
+  <g aria-label="facet" transform="translate(100,6)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">aquatics</text>
+      <text y="0.32em" transform="translate(40,29)">aquatics</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="358.12949640287775" cy="29" r="5" fill="#d95f02"><title>Aaron Younger</title></circle>
-      <circle cx="324.46043165467626" cy="29" r="5" fill="#d95f02"><title>Bjorn Hornikel</title></circle>
-      <circle cx="376.8345323741007" cy="29" r="5" fill="#d95f02"><title>Dusan Mandic</title></circle>
-      <circle cx="219.71223021582733" cy="29" r="5" fill="#d95f02"><title>Ilia Druzhinin</title></circle>
-      <circle cx="249.64028776978418" cy="29" r="5" fill="#d95f02"><title>Kosuke Hagino</title></circle>
-      <circle cx="316.9784172661871" cy="29" r="5" fill="#d95f02"><title>Miguel Ortiz Canavate Ozeki</title></circle>
-      <circle cx="350.64748201438846" cy="29" r="5" fill="#d95f02"><title>Ryan Pini</title></circle>
-      <circle cx="215.97122302158272" cy="29" r="5" fill="#d95f02"><title>Yaaqoub Alsaadi</title></circle>
-      <circle cx="238.41726618705036" cy="29" r="5" fill="#1b9e77"><title>Abbey Weitzeil</title></circle>
-      <circle cx="201.0071942446043" cy="29" r="5" fill="#1b9e77"><title>Bronte Barratt</title></circle>
-      <circle cx="208.48920863309354" cy="29" r="5" fill="#1b9e77"><title>Evangelia Papazoglou</title></circle>
-      <circle cx="215.97122302158272" cy="29" r="5" fill="#1b9e77"><title>Jing Zhang</title></circle>
-      <circle cx="174.8201438848921" cy="29" r="5" fill="#1b9e77"><title>Lorena Molinos</title></circle>
-      <circle cx="193.5251798561151" cy="29" r="5" fill="#1b9e77"><title>Natalia Ishchenko</title></circle>
-      <circle cx="249.64028776978418" cy="29" r="5" fill="#1b9e77"><title>Shiwen Ye</title></circle>
-      <circle cx="253.38129496402877" cy="29" r="5" fill="#1b9e77"><title>Yue Cao</title></circle>
+      <circle cx="278.273381294964" cy="29" r="5" fill="#d95f02"><title>Aaron Younger</title></circle>
+      <circle cx="247.19424460431654" cy="29" r="5" fill="#d95f02"><title>Bjorn Hornikel</title></circle>
+      <circle cx="295.53956834532374" cy="29" r="5" fill="#d95f02"><title>Dusan Mandic</title></circle>
+      <circle cx="150.50359712230215" cy="29" r="5" fill="#d95f02"><title>Ilia Druzhinin</title></circle>
+      <circle cx="178.1294964028777" cy="29" r="5" fill="#d95f02"><title>Kosuke Hagino</title></circle>
+      <circle cx="240.28776978417267" cy="29" r="5" fill="#d95f02"><title>Miguel Ortiz Canavate Ozeki</title></circle>
+      <circle cx="271.36690647482015" cy="29" r="5" fill="#d95f02"><title>Ryan Pini</title></circle>
+      <circle cx="147.0503597122302" cy="29" r="5" fill="#d95f02"><title>Yaaqoub Alsaadi</title></circle>
+      <circle cx="167.76978417266187" cy="29" r="5" fill="#1b9e77"><title>Abbey Weitzeil</title></circle>
+      <circle cx="133.23741007194246" cy="29" r="5" fill="#1b9e77"><title>Bronte Barratt</title></circle>
+      <circle cx="140.14388489208633" cy="29" r="5" fill="#1b9e77"><title>Evangelia Papazoglou</title></circle>
+      <circle cx="147.0503597122302" cy="29" r="5" fill="#1b9e77"><title>Jing Zhang</title></circle>
+      <circle cx="109.06474820143885" cy="29" r="5" fill="#1b9e77"><title>Lorena Molinos</title></circle>
+      <circle cx="126.33093525179856" cy="29" r="5" fill="#1b9e77"><title>Natalia Ishchenko</title></circle>
+      <circle cx="178.1294964028777" cy="29" r="5" fill="#1b9e77"><title>Shiwen Ye</title></circle>
+      <circle cx="181.58273381294964" cy="29" r="5" fill="#1b9e77"><title>Yue Cao</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,26)">
+  <g aria-label="facet" transform="translate(100,26)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">archery</text>
+      <text y="0.32em" transform="translate(40,29)">archery</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="268.3453237410072" cy="29" r="5" fill="#d95f02"><title>Adrian Andres Puentes Perez</title></circle>
-      <circle cx="227.19424460431657" cy="29" r="5" fill="#1b9e77"><title>Adriana Martin</title></circle>
+      <circle cx="195.39568345323738" cy="29" r="5" fill="#d95f02"><title>Adrian Andres Puentes Perez</title></circle>
+      <circle cx="157.41007194244605" cy="29" r="5" fill="#1b9e77"><title>Adriana Martin</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,46)">
+  <g aria-label="facet" transform="translate(100,46)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">athletics</text>
+      <text y="0.32em" transform="translate(40,29)">athletics</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="223.45323741007195" cy="29" r="5" fill="#d95f02"><title>A Jesus Garcia</title></circle>
-      <circle cx="253.38129496402877" cy="29" r="5" fill="#d95f02"><title>Anthony Zambrano</title></circle>
-      <circle cx="215.97122302158272" cy="29" r="5" fill="#d95f02"><title>Carl Dohmann</title></circle>
-      <circle cx="257.1223021582734" cy="29" r="5" fill="#d95f02"><title>Dmitry Kroyter</title></circle>
-      <circle cx="287.0503597122302" cy="29" r="5" fill="#d95f02"><title>Gil Roberts</title></circle>
-      <circle cx="287.0503597122302" cy="29" r="5" fill="#d95f02"><title>James Ellington</title></circle>
-      <circle cx="245.89928057553954" cy="29" r="5" fill="#d95f02"><title>Kapririel Kitson</title></circle>
-      <circle cx="395.53956834532374" cy="29" r="5" fill="#d95f02"><title>Lukas Melich</title></circle>
-      <circle cx="294.53237410071944" cy="29" r="5" fill="#d95f02"><title>Miguel Francis</title></circle>
-      <circle cx="212.23021582733813" cy="29" r="5" fill="#d95f02"><title>Paulo Amotun</title></circle>
-      <circle cx="335.68345323741005" cy="29" r="5" fill="#d95f02"><title>Ronnie Ash</title></circle>
-      <circle cx="208.48920863309354" cy="29" r="5" fill="#d95f02"><title>Tarik Langat Akdag</title></circle>
-      <circle cx="253.38129496402877" cy="29" r="5" fill="#d95f02"><title>Yordan L. O'Farrill</title></circle>
-      <circle cx="215.97122302158272" cy="29" r="5" fill="#1b9e77"><title>Aauri Lorena Bokesa</title></circle>
-      <circle cx="197.26618705035972" cy="29" r="5" fill="#1b9e77"><title>Anna Kornuta</title></circle>
-      <circle cx="227.19424460431657" cy="29" r="5" fill="#1b9e77"><title>Chrisann Gordon</title></circle>
-      <circle cx="156.11510791366908" cy="29" r="5" fill="#1b9e77"><title>Eliane Saholinirina</title></circle>
-      <circle cx="215.97122302158272" cy="29" r="5" fill="#1b9e77"><title>Hanna Knyazyeva-Minenko</title></circle>
-      <circle cx="182.30215827338128" cy="29" r="5" fill="#1b9e77"><title>Julia Takacs</title></circle>
-      <circle cx="156.11510791366908" cy="29" r="5" fill="#1b9e77"><title>Marisol Romero</title></circle>
-      <circle cx="159.85611510791367" cy="29" r="5" fill="#1b9e77"><title>Natthaya Thanaronnawat</title></circle>
-      <circle cx="171.0791366906475" cy="29" r="5" fill="#1b9e77"><title>Rosemary Quispe</title></circle>
-      <circle cx="167.33812949640287" cy="29" r="5" fill="#1b9e77"><title>Yasemin Can</title></circle>
+      <circle cx="153.9568345323741" cy="29" r="5" fill="#d95f02"><title>A Jesus Garcia</title></circle>
+      <circle cx="181.58273381294964" cy="29" r="5" fill="#d95f02"><title>Anthony Zambrano</title></circle>
+      <circle cx="147.0503597122302" cy="29" r="5" fill="#d95f02"><title>Carl Dohmann</title></circle>
+      <circle cx="185.0359712230216" cy="29" r="5" fill="#d95f02"><title>Dmitry Kroyter</title></circle>
+      <circle cx="212.6618705035971" cy="29" r="5" fill="#d95f02"><title>Gil Roberts</title></circle>
+      <circle cx="212.6618705035971" cy="29" r="5" fill="#d95f02"><title>James Ellington</title></circle>
+      <circle cx="174.67625899280574" cy="29" r="5" fill="#d95f02"><title>Kapririel Kitson</title></circle>
+      <circle cx="312.80575539568343" cy="29" r="5" fill="#d95f02"><title>Lukas Melich</title></circle>
+      <circle cx="219.56834532374103" cy="29" r="5" fill="#d95f02"><title>Miguel Francis</title></circle>
+      <circle cx="143.59712230215828" cy="29" r="5" fill="#d95f02"><title>Paulo Amotun</title></circle>
+      <circle cx="257.55395683453236" cy="29" r="5" fill="#d95f02"><title>Ronnie Ash</title></circle>
+      <circle cx="140.14388489208633" cy="29" r="5" fill="#d95f02"><title>Tarik Langat Akdag</title></circle>
+      <circle cx="181.58273381294964" cy="29" r="5" fill="#d95f02"><title>Yordan L. O'Farrill</title></circle>
+      <circle cx="147.0503597122302" cy="29" r="5" fill="#1b9e77"><title>Aauri Lorena Bokesa</title></circle>
+      <circle cx="129.7841726618705" cy="29" r="5" fill="#1b9e77"><title>Anna Kornuta</title></circle>
+      <circle cx="157.41007194244605" cy="29" r="5" fill="#1b9e77"><title>Chrisann Gordon</title></circle>
+      <circle cx="91.79856115107913" cy="29" r="5" fill="#1b9e77"><title>Eliane Saholinirina</title></circle>
+      <circle cx="147.0503597122302" cy="29" r="5" fill="#1b9e77"><title>Hanna Knyazyeva-Minenko</title></circle>
+      <circle cx="115.97122302158273" cy="29" r="5" fill="#1b9e77"><title>Julia Takacs</title></circle>
+      <circle cx="91.79856115107913" cy="29" r="5" fill="#1b9e77"><title>Marisol Romero</title></circle>
+      <circle cx="95.25179856115108" cy="29" r="5" fill="#1b9e77"><title>Natthaya Thanaronnawat</title></circle>
+      <circle cx="105.61151079136691" cy="29" r="5" fill="#1b9e77"><title>Rosemary Quispe</title></circle>
+      <circle cx="102.15827338129496" cy="29" r="5" fill="#1b9e77"><title>Yasemin Can</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,66)">
+  <g aria-label="facet" transform="translate(100,66)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">badminton</text>
+      <text y="0.32em" transform="translate(40,29)">badminton</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="287.0503597122302" cy="29" r="5" fill="#d95f02"><title>Adam Cwalina</title></circle>
-      <circle cx="189.7841726618705" cy="29" r="5" fill="#1b9e77"><title>Akane Yamaguchi</title></circle>
+      <circle cx="212.6618705035971" cy="29" r="5" fill="#d95f02"><title>Adam Cwalina</title></circle>
+      <circle cx="122.87769784172663" cy="29" r="5" fill="#1b9e77"><title>Akane Yamaguchi</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,86)">
+  <g aria-label="facet" transform="translate(100,86)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">basketball</text>
+      <text y="0.32em" transform="translate(40,29)">basketball</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="320.71942446043164" cy="29" r="5" fill="#d95f02"><title>Adas Juskevicius</title></circle>
-      <circle cx="313.23741007194246" cy="29" r="5" fill="#d95f02"><title>Nicolas Laprovittola</title></circle>
-      <circle cx="227.19424460431657" cy="29" r="5" fill="#1b9e77"><title>Adriana Moises</title></circle>
-      <circle cx="238.41726618705036" cy="29" r="5" fill="#1b9e77"><title>Oumoul Thiam</title></circle>
+      <circle cx="243.74100719424462" cy="29" r="5" fill="#d95f02"><title>Adas Juskevicius</title></circle>
+      <circle cx="236.83453237410072" cy="29" r="5" fill="#d95f02"><title>Nicolas Laprovittola</title></circle>
+      <circle cx="157.41007194244605" cy="29" r="5" fill="#1b9e77"><title>Adriana Moises</title></circle>
+      <circle cx="167.76978417266187" cy="29" r="5" fill="#1b9e77"><title>Oumoul Thiam</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,106)">
+  <g aria-label="facet" transform="translate(100,106)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">boxing</text>
+      <text y="0.32em" transform="translate(40,29)">boxing</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,126)">
+  <g aria-label="facet" transform="translate(100,126)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">canoe</text>
+      <text y="0.32em" transform="translate(40,29)">canoe</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="302.01438848920867" cy="29" r="5" fill="#d95f02"><title>Adam van Koeverden</title></circle>
-      <circle cx="275.8273381294964" cy="29" r="5" fill="#d95f02"><title>Jordan Wood</title></circle>
-      <circle cx="305.75539568345323" cy="29" r="5" fill="#d95f02"><title>Stephen Bird</title></circle>
-      <circle cx="208.48920863309354" cy="29" r="5" fill="#1b9e77"><title>Afef Ben Ismail</title></circle>
-      <circle cx="193.5251798561151" cy="29" r="5" fill="#1b9e77"><title>Ursa Kragelj</title></circle>
+      <circle cx="226.4748201438849" cy="29" r="5" fill="#d95f02"><title>Adam van Koeverden</title></circle>
+      <circle cx="202.3021582733813" cy="29" r="5" fill="#d95f02"><title>Jordan Wood</title></circle>
+      <circle cx="229.92805755395682" cy="29" r="5" fill="#d95f02"><title>Stephen Bird</title></circle>
+      <circle cx="140.14388489208633" cy="29" r="5" fill="#1b9e77"><title>Afef Ben Ismail</title></circle>
+      <circle cx="126.33093525179856" cy="29" r="5" fill="#1b9e77"><title>Ursa Kragelj</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,146)">
+  <g aria-label="facet" transform="translate(100,146)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">cycling</text>
+      <text y="0.32em" transform="translate(40,29)">cycling</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="249.64028776978418" cy="29" r="5" fill="#d95f02"><title>Aaron Gate</title></circle>
-      <circle cx="245.89928057553954" cy="29" r="5" fill="#d95f02"><title>Georg Preidler</title></circle>
-      <circle cx="272.0863309352518" cy="29" r="5" fill="#d95f02"><title>Michael Hepburn</title></circle>
-      <circle cx="245.89928057553954" cy="29" r="5" fill="#d95f02"><title>Toms Skujins</title></circle>
-      <circle cx="189.7841726618705" cy="29" r="5" fill="#1b9e77"><title>Ahreum Na</title></circle>
-      <circle cx="193.5251798561151" cy="29" r="5" fill="#1b9e77"><title>Katrin Garfoot</title></circle>
+      <circle cx="178.1294964028777" cy="29" r="5" fill="#d95f02"><title>Aaron Gate</title></circle>
+      <circle cx="174.67625899280574" cy="29" r="5" fill="#d95f02"><title>Georg Preidler</title></circle>
+      <circle cx="198.84892086330936" cy="29" r="5" fill="#d95f02"><title>Michael Hepburn</title></circle>
+      <circle cx="174.67625899280574" cy="29" r="5" fill="#d95f02"><title>Toms Skujins</title></circle>
+      <circle cx="122.87769784172663" cy="29" r="5" fill="#1b9e77"><title>Ahreum Na</title></circle>
+      <circle cx="126.33093525179856" cy="29" r="5" fill="#1b9e77"><title>Katrin Garfoot</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,166)">
+  <g aria-label="facet" transform="translate(100,166)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">equestrian</text>
+      <text y="0.32em" transform="translate(40,29)">equestrian</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="234.67625899280577" cy="29" r="5" fill="#d95f02"><title>Abdelkebir Ouaddar</title></circle>
-      <circle cx="275.8273381294964" cy="29" r="5" fill="#d95f02"><title>Pedro Tavares de Almeida</title></circle>
-      <circle cx="189.7841726618705" cy="29" r="5" fill="#1b9e77"><title>Adelinde Cornelissen</title></circle>
+      <circle cx="164.31654676258992" cy="29" r="5" fill="#d95f02"><title>Abdelkebir Ouaddar</title></circle>
+      <circle cx="202.3021582733813" cy="29" r="5" fill="#d95f02"><title>Pedro Tavares de Almeida</title></circle>
+      <circle cx="122.87769784172663" cy="29" r="5" fill="#1b9e77"><title>Adelinde Cornelissen</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,186)">
+  <g aria-label="facet" transform="translate(100,186)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">fencing</text>
+      <text y="0.32em" transform="translate(40,29)">fencing</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="193.5251798561151" cy="29" r="5" fill="#1b9e77"><title>A Lam Shin</title></circle>
-      <circle cx="189.7841726618705" cy="29" r="5" fill="#1b9e77"><title>Seona Hwang</title></circle>
-      <circle cx="298.27338129496405" cy="29" r="5" fill="#d95f02"><title>Richard Kruse</title></circle>
+      <circle cx="126.33093525179856" cy="29" r="5" fill="#1b9e77"><title>A Lam Shin</title></circle>
+      <circle cx="122.87769784172663" cy="29" r="5" fill="#1b9e77"><title>Seona Hwang</title></circle>
+      <circle cx="223.02158273381295" cy="29" r="5" fill="#d95f02"><title>Richard Kruse</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,206)">
+  <g aria-label="facet" transform="translate(100,206)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">football</text>
+      <text y="0.32em" transform="translate(40,29)">football</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="223.45323741007195" cy="29" r="5" fill="#d95f02"><title>Abbubaker Mobara</title></circle>
-      <circle cx="253.38129496402877" cy="29" r="5" fill="#d95f02"><title>Filipe Baravilala</title></circle>
-      <circle cx="298.27338129496405" cy="29" r="5" fill="#d95f02"><title>Mathias Hebo Rasmussen</title></circle>
-      <circle cx="238.41726618705036" cy="29" r="5" fill="#1b9e77"><title>Abby Erceg</title></circle>
-      <circle cx="197.26618705035972" cy="29" r="5" fill="#1b9e77"><title>Isabel Kerschowski</title></circle>
-      <circle cx="230.93525179856113" cy="29" r="5" fill="#1b9e77"><title>Rebecca Quinn</title></circle>
+      <circle cx="153.9568345323741" cy="29" r="5" fill="#d95f02"><title>Abbubaker Mobara</title></circle>
+      <circle cx="181.58273381294964" cy="29" r="5" fill="#d95f02"><title>Filipe Baravilala</title></circle>
+      <circle cx="223.02158273381295" cy="29" r="5" fill="#d95f02"><title>Mathias Hebo Rasmussen</title></circle>
+      <circle cx="167.76978417266187" cy="29" r="5" fill="#1b9e77"><title>Abby Erceg</title></circle>
+      <circle cx="129.7841726618705" cy="29" r="5" fill="#1b9e77"><title>Isabel Kerschowski</title></circle>
+      <circle cx="160.863309352518" cy="29" r="5" fill="#1b9e77"><title>Rebecca Quinn</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,226)">
+  <g aria-label="facet" transform="translate(100,226)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">golf</text>
+      <text y="0.32em" transform="translate(40,29)">golf</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="279.568345323741" cy="29" r="5" fill="#d95f02"><title>Adilson da Silva</title></circle>
-      <circle cx="197.26618705035972" cy="29" r="5" fill="#1b9e77"><title>Aditi Ashok</title></circle>
+      <circle cx="205.75539568345326" cy="29" r="5" fill="#d95f02"><title>Adilson da Silva</title></circle>
+      <circle cx="129.7841726618705" cy="29" r="5" fill="#1b9e77"><title>Aditi Ashok</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,246)">
+  <g aria-label="facet" transform="translate(100,246)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">gymnastics</text>
+      <text y="0.32em" transform="translate(40,29)">gymnastics</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="114.96402877697841" cy="29" r="5" fill="#1b9e77"><title>Aiko Sugihara</title></circle>
-      <circle cx="144.89208633093526" cy="29" r="5" fill="#1b9e77"><title>Laura Zeng</title></circle>
-      <circle cx="152.37410071942446" cy="29" r="5" fill="#1b9e77"><title>Yeon Jae Son</title></circle>
-      <circle cx="245.89928057553954" cy="29" r="5" fill="#d95f02"><title>Alexander Naddour</title></circle>
-      <circle cx="186.0431654676259" cy="29" r="5" fill="#d95f02"><title>Se Gwang Ri</title></circle>
+      <circle cx="53.81294964028777" cy="29" r="5" fill="#1b9e77"><title>Aiko Sugihara</title></circle>
+      <circle cx="81.43884892086331" cy="29" r="5" fill="#1b9e77"><title>Laura Zeng</title></circle>
+      <circle cx="88.34532374100719" cy="29" r="5" fill="#1b9e77"><title>Yeon Jae Son</title></circle>
+      <circle cx="174.67625899280574" cy="29" r="5" fill="#d95f02"><title>Alexander Naddour</title></circle>
+      <circle cx="119.42446043165467" cy="29" r="5" fill="#d95f02"><title>Se Gwang Ri</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,266)">
+  <g aria-label="facet" transform="translate(100,266)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">handball</text>
+      <text y="0.32em" transform="translate(40,29)">handball</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="272.0863309352518" cy="29" r="5" fill="#d95f02"><title>Abdulrazzaq Murad</title></circle>
-      <circle cx="350.64748201438846" cy="29" r="5" fill="#d95f02"><title>Makrem Missaoui</title></circle>
-      <circle cx="242.15827338129498" cy="29" r="5" fill="#1b9e77"><title>Ailly Luciano</title></circle>
-      <circle cx="215.97122302158272" cy="29" r="5" fill="#1b9e77"><title>Louise Sand</title></circle>
+      <circle cx="198.84892086330936" cy="29" r="5" fill="#d95f02"><title>Abdulrazzaq Murad</title></circle>
+      <circle cx="271.36690647482015" cy="29" r="5" fill="#d95f02"><title>Makrem Missaoui</title></circle>
+      <circle cx="171.22302158273382" cy="29" r="5" fill="#1b9e77"><title>Ailly Luciano</title></circle>
+      <circle cx="147.0503597122302" cy="29" r="5" fill="#1b9e77"><title>Louise Sand</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,286)">
+  <g aria-label="facet" transform="translate(100,286)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">hockey</text>
+      <text y="0.32em" transform="translate(40,29)">hockey</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="245.89928057553954" cy="29" r="5" fill="#d95f02"><title>Adam Dixon</title></circle>
-      <circle cx="324.46043165467626" cy="29" r="5" fill="#d95f02"><title>Juan Gilardi</title></circle>
-      <circle cx="249.64028776978418" cy="29" r="5" fill="#d95f02"><title>Thomas Briels</title></circle>
-      <circle cx="189.7841726618705" cy="29" r="5" fill="#1b9e77"><title>Agustina Albertarrio</title></circle>
-      <circle cx="186.0431654676259" cy="29" r="5" fill="#1b9e77"><title>Kathleen Bam</title></circle>
-      <circle cx="245.89928057553954" cy="29" r="5" fill="#1b9e77"><title>Victoria Zuloaga</title></circle>
+      <circle cx="174.67625899280574" cy="29" r="5" fill="#d95f02"><title>Adam Dixon</title></circle>
+      <circle cx="247.19424460431654" cy="29" r="5" fill="#d95f02"><title>Juan Gilardi</title></circle>
+      <circle cx="178.1294964028777" cy="29" r="5" fill="#d95f02"><title>Thomas Briels</title></circle>
+      <circle cx="122.87769784172663" cy="29" r="5" fill="#1b9e77"><title>Agustina Albertarrio</title></circle>
+      <circle cx="119.42446043165467" cy="29" r="5" fill="#1b9e77"><title>Kathleen Bam</title></circle>
+      <circle cx="174.67625899280574" cy="29" r="5" fill="#1b9e77"><title>Victoria Zuloaga</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,306)">
+  <g aria-label="facet" transform="translate(100,306)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">judo</text>
+      <text y="0.32em" transform="translate(40,29)">judo</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="320.71942446043164" cy="29" r="5" fill="#d95f02"><title>Abderrahmane Benamadi</title></circle>
-      <circle cx="208.48920863309354" cy="29" r="5" fill="#d95f02"><title>Simon Yacoub</title></circle>
-      <circle cx="268.3453237410072" cy="29" r="5" fill="#1b9e77"><title>Abigel Joo</title></circle>
-      <circle cx="219.71223021582733" cy="29" r="5" fill="#1b9e77"><title>Miku Tashiro</title></circle>
+      <circle cx="243.74100719424462" cy="29" r="5" fill="#d95f02"><title>Abderrahmane Benamadi</title></circle>
+      <circle cx="140.14388489208633" cy="29" r="5" fill="#d95f02"><title>Simon Yacoub</title></circle>
+      <circle cx="195.39568345323738" cy="29" r="5" fill="#1b9e77"><title>Abigel Joo</title></circle>
+      <circle cx="150.50359712230215" cy="29" r="5" fill="#1b9e77"><title>Miku Tashiro</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,326)">
+  <g aria-label="facet" transform="translate(100,326)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">modern pentathlon</text>
+      <text y="0.32em" transform="translate(40,29)">modern pentathlon</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="264.60431654676256" cy="29" r="5" fill="#d95f02"><title>Adam Marosi</title></circle>
-      <circle cx="182.30215827338128" cy="29" r="5" fill="#1b9e77"><title>Alice Sotero</title></circle>
+      <circle cx="191.94244604316546" cy="29" r="5" fill="#d95f02"><title>Adam Marosi</title></circle>
+      <circle cx="115.97122302158273" cy="29" r="5" fill="#1b9e77"><title>Alice Sotero</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,346)">
+  <g aria-label="facet" transform="translate(100,346)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">rowing</text>
+      <text y="0.32em" transform="translate(40,29)">rowing</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="339.42446043165467" cy="29" r="5" fill="#d95f02"><title>Abdelkhalek Elbanna</title></circle>
-      <circle cx="384.31654676258995" cy="29" r="5" fill="#d95f02"><title>Georgi Bozhilov</title></circle>
-      <circle cx="331.94244604316543" cy="29" r="5" fill="#d95f02"><title>Matt Langridge</title></circle>
-      <circle cx="245.89928057553954" cy="29" r="5" fill="#d95f02"><title>Thibault Colard</title></circle>
-      <circle cx="264.60431654676256" cy="29" r="5" fill="#1b9e77"><title>Adelina Bogus</title></circle>
-      <circle cx="201.0071942446043" cy="29" r="5" fill="#1b9e77"><title>Katherine Copeland</title></circle>
-      <circle cx="245.89928057553954" cy="29" r="5" fill="#1b9e77"><title>Weiwei Zhu</title></circle>
+      <circle cx="261.0071942446043" cy="29" r="5" fill="#d95f02"><title>Abdelkhalek Elbanna</title></circle>
+      <circle cx="302.44604316546764" cy="29" r="5" fill="#d95f02"><title>Georgi Bozhilov</title></circle>
+      <circle cx="254.10071942446044" cy="29" r="5" fill="#d95f02"><title>Matt Langridge</title></circle>
+      <circle cx="174.67625899280574" cy="29" r="5" fill="#d95f02"><title>Thibault Colard</title></circle>
+      <circle cx="191.94244604316546" cy="29" r="5" fill="#1b9e77"><title>Adelina Bogus</title></circle>
+      <circle cx="133.23741007194246" cy="29" r="5" fill="#1b9e77"><title>Katherine Copeland</title></circle>
+      <circle cx="174.67625899280574" cy="29" r="5" fill="#1b9e77"><title>Weiwei Zhu</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,366)">
+  <g aria-label="facet" transform="translate(100,366)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">rugby sevens</text>
+      <text y="0.32em" transform="translate(40,29)">rugby sevens</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="249.64028776978418" cy="29" r="5" fill="#1b9e77"><title>Abbie Brown</title></circle>
-      <circle cx="238.41726618705036" cy="29" r="5" fill="#1b9e77"><title>Marina Bravo</title></circle>
-      <circle cx="406.76258992805754" cy="29" r="5" fill="#d95f02"><title>Akira Ioane</title></circle>
-      <circle cx="268.3453237410072" cy="29" r="5" fill="#d95f02"><title>Nicolas Bruzzone</title></circle>
+      <circle cx="178.1294964028777" cy="29" r="5" fill="#1b9e77"><title>Abbie Brown</title></circle>
+      <circle cx="167.76978417266187" cy="29" r="5" fill="#1b9e77"><title>Marina Bravo</title></circle>
+      <circle cx="323.1654676258993" cy="29" r="5" fill="#d95f02"><title>Akira Ioane</title></circle>
+      <circle cx="195.39568345323738" cy="29" r="5" fill="#d95f02"><title>Nicolas Bruzzone</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,386)">
+  <g aria-label="facet" transform="translate(100,386)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">sailing</text>
+      <text y="0.32em" transform="translate(40,29)">sailing</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="201.0071942446043" cy="29" r="5" fill="#1b9e77"><title>Afrodite Zegers</title></circle>
-      <circle cx="287.0503597122302" cy="29" r="5" fill="#d95f02"><title>Ahmed Ragab</title></circle>
-      <circle cx="283.3093525179856" cy="29" r="5" fill="#d95f02"><title>Juozas Bernotas</title></circle>
-      <circle cx="287.0503597122302" cy="29" r="5" fill="#d95f02"><title>Tonci Stipanovic</title></circle>
+      <circle cx="133.23741007194246" cy="29" r="5" fill="#1b9e77"><title>Afrodite Zegers</title></circle>
+      <circle cx="212.6618705035971" cy="29" r="5" fill="#d95f02"><title>Ahmed Ragab</title></circle>
+      <circle cx="209.20863309352515" cy="29" r="5" fill="#d95f02"><title>Juozas Bernotas</title></circle>
+      <circle cx="212.6618705035971" cy="29" r="5" fill="#d95f02"><title>Tonci Stipanovic</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,406)">
+  <g aria-label="facet" transform="translate(100,406)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">shooting</text>
+      <text y="0.32em" transform="translate(40,29)">shooting</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="283.3093525179856" cy="29" r="5" fill="#d95f02"><title>Abdel Aziz Mehelba</title></circle>
-      <circle cx="223.45323741007195" cy="29" r="5" fill="#d95f02"><title>Jitu Rai</title></circle>
-      <circle cx="264.60431654676256" cy="29" r="5" fill="#d95f02"><title>Song Guk Kim</title></circle>
-      <circle cx="208.48920863309354" cy="29" r="5" fill="#1b9e77"><title>Adela Bruns</title></circle>
-      <circle cx="283.3093525179856" cy="29" r="5" fill="#1b9e77"><title>Natallia Kalnysh</title></circle>
+      <circle cx="209.20863309352515" cy="29" r="5" fill="#d95f02"><title>Abdel Aziz Mehelba</title></circle>
+      <circle cx="153.9568345323741" cy="29" r="5" fill="#d95f02"><title>Jitu Rai</title></circle>
+      <circle cx="191.94244604316546" cy="29" r="5" fill="#d95f02"><title>Song Guk Kim</title></circle>
+      <circle cx="140.14388489208633" cy="29" r="5" fill="#1b9e77"><title>Adela Bruns</title></circle>
+      <circle cx="209.20863309352515" cy="29" r="5" fill="#1b9e77"><title>Natallia Kalnysh</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,426)">
+  <g aria-label="facet" transform="translate(100,426)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">table tennis</text>
+      <text y="0.32em" transform="translate(40,29)">table tennis</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="249.64028776978418" cy="29" r="5" fill="#d95f02"><title>Adam Pattantyus</title></circle>
-      <circle cx="171.0791366906475" cy="29" r="5" fill="#1b9e77"><title>Adriana Diaz</title></circle>
+      <circle cx="178.1294964028777" cy="29" r="5" fill="#d95f02"><title>Adam Pattantyus</title></circle>
+      <circle cx="105.61151079136691" cy="29" r="5" fill="#1b9e77"><title>Adriana Diaz</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,446)">
+  <g aria-label="facet" transform="translate(100,446)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">taekwondo</text>
+      <text y="0.32em" transform="translate(40,29)">taekwondo</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="283.3093525179856" cy="29" r="5" fill="#d95f02"><title>Aaron Cook</title></circle>
-      <circle cx="167.33812949640287" cy="29" r="5" fill="#1b9e77"><title>Ainur Yesbergenova</title></circle>
+      <circle cx="209.20863309352515" cy="29" r="5" fill="#d95f02"><title>Aaron Cook</title></circle>
+      <circle cx="102.15827338129496" cy="29" r="5" fill="#1b9e77"><title>Ainur Yesbergenova</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,466)">
+  <g aria-label="facet" transform="translate(100,466)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">tennis</text>
+      <text y="0.32em" transform="translate(40,29)">tennis</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="204.74820143884892" cy="29" r="5" fill="#1b9e77"><title>Agnieszka Radwanska</title></circle>
-      <circle cx="283.3093525179856" cy="29" r="5" fill="#d95f02"><title>Albert Ramos-Vinolas</title></circle>
-      <circle cx="309.49640287769785" cy="29" r="5" fill="#d95f02"><title>Vasek Pospisil</title></circle>
+      <circle cx="136.69064748201438" cy="29" r="5" fill="#1b9e77"><title>Agnieszka Radwanska</title></circle>
+      <circle cx="209.20863309352515" cy="29" r="5" fill="#d95f02"><title>Albert Ramos-Vinolas</title></circle>
+      <circle cx="233.38129496402877" cy="29" r="5" fill="#d95f02"><title>Vasek Pospisil</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,486)">
+  <g aria-label="facet" transform="translate(100,486)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">triathlon</text>
+      <text y="0.32em" transform="translate(40,29)">triathlon</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="234.67625899280577" cy="29" r="5" fill="#d95f02"><title>Aaron Royle</title></circle>
-      <circle cx="204.74820143884892" cy="29" r="5" fill="#1b9e77"><title>Agnieszka Jerzyk</title></circle>
+      <circle cx="164.31654676258992" cy="29" r="5" fill="#d95f02"><title>Aaron Royle</title></circle>
+      <circle cx="136.69064748201438" cy="29" r="5" fill="#1b9e77"><title>Agnieszka Jerzyk</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,506)">
+  <g aria-label="facet" transform="translate(100,506)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">volleyball</text>
+      <text y="0.32em" transform="translate(40,29)">volleyball</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="350.64748201438846" cy="29" r="5" fill="#d95f02"><title>Aaron Russell</title></circle>
-      <circle cx="343.1654676258993" cy="29" r="5" fill="#d95f02"><title>Kostyantyn Bakun</title></circle>
-      <circle cx="234.67625899280577" cy="29" r="5" fill="#1b9e77"><title>Abdoulkarim Fawziya</title></circle>
-      <circle cx="197.26618705035972" cy="29" r="5" fill="#1b9e77"><title>Kotoki Zayasu</title></circle>
+      <circle cx="271.36690647482015" cy="29" r="5" fill="#d95f02"><title>Aaron Russell</title></circle>
+      <circle cx="264.46043165467626" cy="29" r="5" fill="#d95f02"><title>Kostyantyn Bakun</title></circle>
+      <circle cx="164.31654676258992" cy="29" r="5" fill="#1b9e77"><title>Abdoulkarim Fawziya</title></circle>
+      <circle cx="129.7841726618705" cy="29" r="5" fill="#1b9e77"><title>Kotoki Zayasu</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,526)">
+  <g aria-label="facet" transform="translate(100,526)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">weightlifting</text>
+      <text y="0.32em" transform="translate(40,29)">weightlifting</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="335.68345323741005" cy="29" r="5" fill="#d95f02"><title>Adrian Edward Zielinski</title></circle>
-      <circle cx="215.97122302158272" cy="29" r="5" fill="#d95f02"><title>Myeongmok Han</title></circle>
-      <circle cx="264.60431654676256" cy="29" r="5" fill="#1b9e77"><title>Alejandra Garza Garza</title></circle>
-      <circle cx="201.0071942446043" cy="29" r="5" fill="#1b9e77"><title>Yuderqui Maridalia Contreras</title></circle>
+      <circle cx="257.55395683453236" cy="29" r="5" fill="#d95f02"><title>Adrian Edward Zielinski</title></circle>
+      <circle cx="147.0503597122302" cy="29" r="5" fill="#d95f02"><title>Myeongmok Han</title></circle>
+      <circle cx="191.94244604316546" cy="29" r="5" fill="#1b9e77"><title>Alejandra Garza Garza</title></circle>
+      <circle cx="133.23741007194246" cy="29" r="5" fill="#1b9e77"><title>Yuderqui Maridalia Contreras</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,546)">
+  <g aria-label="facet" transform="translate(100,546)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(100,29)">wrestling</text>
+      <text y="0.32em" transform="translate(40,29)">wrestling</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="133.66906474820144" x2="133.66906474820144" y1="20" y2="38"></line>
-      <line x1="208.48920863309354" x2="208.48920863309354" y1="20" y2="38"></line>
-      <line x1="283.3093525179856" x2="283.3093525179856" y1="20" y2="38"></line>
-      <line x1="358.12949640287775" x2="358.12949640287775" y1="20" y2="38"></line>
-      <line x1="432.9496402877698" x2="432.9496402877698" y1="20" y2="38"></line>
-      <line x1="507.7697841726619" x2="507.7697841726619" y1="20" y2="38"></line>
-      <line x1="582.589928057554" x2="582.589928057554" y1="20" y2="38"></line>
+      <line x1="71.07913669064747" x2="71.07913669064747" y1="20" y2="38"></line>
+      <line x1="140.14388489208633" x2="140.14388489208633" y1="20" y2="38"></line>
+      <line x1="209.20863309352515" x2="209.20863309352515" y1="20" y2="38"></line>
+      <line x1="278.273381294964" x2="278.273381294964" y1="20" y2="38"></line>
+      <line x1="347.33812949640287" x2="347.33812949640287" y1="20" y2="38"></line>
+      <line x1="416.40287769784175" x2="416.40287769784175" y1="20" y2="38"></line>
+      <line x1="485.46762589928056" x2="485.46762589928056" y1="20" y2="38"></line>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(133.66906474820144,38)" d="M0,0L0,6"></path>
-      <path transform="translate(208.48920863309354,38)" d="M0,0L0,6"></path>
-      <path transform="translate(283.3093525179856,38)" d="M0,0L0,6"></path>
-      <path transform="translate(358.12949640287775,38)" d="M0,0L0,6"></path>
-      <path transform="translate(432.9496402877698,38)" d="M0,0L0,6"></path>
-      <path transform="translate(507.7697841726619,38)" d="M0,0L0,6"></path>
-      <path transform="translate(582.589928057554,38)" d="M0,0L0,6"></path>
+      <path transform="translate(71.07913669064747,38)" d="M0,0L0,6"></path>
+      <path transform="translate(140.14388489208633,38)" d="M0,0L0,6"></path>
+      <path transform="translate(209.20863309352515,38)" d="M0,0L0,6"></path>
+      <path transform="translate(278.273381294964,38)" d="M0,0L0,6"></path>
+      <path transform="translate(347.33812949640287,38)" d="M0,0L0,6"></path>
+      <path transform="translate(416.40287769784175,38)" d="M0,0L0,6"></path>
+      <path transform="translate(485.46762589928056,38)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(133.66906474820144,38)">40</text>
-      <text y="0.71em" transform="translate(208.48920863309354,38)">60</text>
-      <text y="0.71em" transform="translate(283.3093525179856,38)">80</text>
-      <text y="0.71em" transform="translate(358.12949640287775,38)">100</text>
-      <text y="0.71em" transform="translate(432.9496402877698,38)">120</text>
-      <text y="0.71em" transform="translate(507.7697841726619,38)">140</text>
-      <text y="0.71em" transform="translate(582.589928057554,38)">160</text>
+      <text y="0.71em" transform="translate(71.07913669064747,38)">40</text>
+      <text y="0.71em" transform="translate(140.14388489208633,38)">60</text>
+      <text y="0.71em" transform="translate(209.20863309352515,38)">80</text>
+      <text y="0.71em" transform="translate(278.273381294964,38)">100</text>
+      <text y="0.71em" transform="translate(347.33812949640287,38)">120</text>
+      <text y="0.71em" transform="translate(416.40287769784175,38)">140</text>
+      <text y="0.71em" transform="translate(485.46762589928056,38)">160</text>
     </g>
     <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
-      <text transform="translate(620,38)">weight →</text>
+      <text transform="translate(520,38)">weight →</text>
     </g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="197.26618705035972" cy="29" r="5" fill="#d95f02"><title>Abbos Rakhmonov</title></circle>
-      <circle cx="223.45323741007195" cy="29" r="5" fill="#d95f02"><title>Ibragim Labazanov</title></circle>
-      <circle cx="227.19424460431657" cy="29" r="5" fill="#d95f02"><title>Soslan Ramonov</title></circle>
-      <circle cx="234.67625899280577" cy="29" r="5" fill="#1b9e77"><title>Adela Hanzlickova</title></circle>
-      <circle cx="201.0071942446043" cy="29" r="5" fill="#1b9e77"><title>Valeriia Koblova Zholobova</title></circle>
+      <circle cx="129.7841726618705" cy="29" r="5" fill="#d95f02"><title>Abbos Rakhmonov</title></circle>
+      <circle cx="153.9568345323741" cy="29" r="5" fill="#d95f02"><title>Ibragim Labazanov</title></circle>
+      <circle cx="157.41007194244605" cy="29" r="5" fill="#d95f02"><title>Soslan Ramonov</title></circle>
+      <circle cx="164.31654676258992" cy="29" r="5" fill="#1b9e77"><title>Adela Hanzlickova</title></circle>
+      <circle cx="133.23741007194246" cy="29" r="5" fill="#1b9e77"><title>Valeriia Koblova Zholobova</title></circle>
     </g>
   </g>
 </svg>
