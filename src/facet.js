@@ -63,8 +63,8 @@ export function facetTranslate(
   return fx && fy
     ? ({x, y}) => `translate(${fx(x) - marginLeft},${fy(y) - marginTop})`
     : fx
-    ? ({x}) => `translate(${fx(x) - marginLeft},${facetMarginTop})`
-    : ({y}) => `translate(${facetMarginLeft},${fy(y) - marginTop})`;
+    ? ({x}) => `translate(${fx(x) - marginLeft},${Math.max(facetMarginTop - marginTop, 0)})`
+    : ({y}) => `translate(${Math.max(facetMarginLeft - marginLeft, 0)},${fy(y) - marginTop})`;
 }
 
 // Returns an index that for each facet lists all the elements present in other

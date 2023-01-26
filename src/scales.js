@@ -109,15 +109,17 @@ export function ScaleFunctions(scales) {
 // Mutates scale.range!
 export function autoScaleRange(scales, dimensions, facet) {
   const {x, y, fx, fy} = scales;
-  const submargins = fx || fy ? facetMargins(dimensions, facet) : null;
+  const submargins = fx || fy ? outerDimensions(dimensions, facet) : dimensions;
   if (fx) autoScaleRangeX(fx, submargins);
   if (fy) autoScaleRangeY(fy, submargins);
-  const subdimensions = fx || fy ? facetDimensions(scales, dimensions, facet) : dimensions;
+  const subdimensions = fx || fy ? facetDimensions(scales, dimensions, facet) : submargins;
   if (x) autoScaleRangeX(x, subdimensions);
   if (y) autoScaleRangeY(y, subdimensions);
 }
 
-function facetMargins(dimensions, facet = {}) {
+// Returns the dimensions of the outer frame; this will be subdivided into
+// facets with the margins of each facet collapsing into the outer margins.
+function outerDimensions(dimensions, facet = {}) {
   const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
   const {
     marginTop: facetMarginTop = 0,
@@ -135,6 +137,7 @@ function facetMargins(dimensions, facet = {}) {
   };
 }
 
+// Returns the dimensions of each facet.
 export function facetDimensions({fx, fy}, dimensions, facet = {}) {
   const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
   const {
@@ -148,8 +151,12 @@ export function facetDimensions({fx, fy}, dimensions, facet = {}) {
     marginRight,
     marginBottom,
     marginLeft,
-    width: fx ? fx.scale.bandwidth() + marginLeft + marginRight : width - facetMarginRight - facetMarginLeft,
-    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height - facetMarginTop - facetMarginBottom
+    width: fx
+      ? fx.scale.bandwidth() + marginLeft + marginRight
+      : width - Math.max(facetMarginRight - marginRight, 0) - Math.max(facetMarginLeft - marginLeft, 0),
+    height: fy
+      ? fy.scale.bandwidth() + marginTop + marginBottom
+      : height - Math.max(facetMarginTop - marginTop, 0) - Math.max(facetMarginBottom - marginBottom, 0)
   };
 }
 
