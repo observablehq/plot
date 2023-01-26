@@ -5,6 +5,7 @@ export default async function () {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.plot({
     height: 600,
+    grid: true,
     facet: {
       data: penguins,
       x: "sex",
