@@ -27,7 +27,7 @@
     <text y="0.71em" transform="translate(430.9433962264151,70)">80</text>
     <text y="0.71em" transform="translate(536.6037735849056,70)">90</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,70)">waiting →</text>
   </g>
   <g aria-label="density" fill="none" stroke="steelblue" stroke-width="0.25" stroke-miterlimit="1" transform="translate(0.5,0.5)">

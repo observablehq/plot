@@ -31,7 +31,7 @@
       <text y="0.32em" transform="translate(40,70)">30</text>
       <text y="0.32em" transform="translate(40,36.66666666666667)">40</text>
     </g>
-    <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-26.5)">
+    <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
       <text y="0.71em" transform="translate(40,30)">↑ Frequency</text>
     </g>
     <g aria-label="rect">
@@ -184,7 +184,7 @@
       <text y="0.71em" transform="translate(102,170)">4,000</text>
       <text y="0.71em" transform="translate(184,170)">6,000</text>
     </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(70.5,27.5)">
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(67.5,27.5)">
       <text transform="translate(204,170)">Body mass (g) →</text>
     </g>
     <g aria-label="rect">

@@ -272,7 +272,7 @@
       <text y="0.32em" transform="translate(110,112)">No. 462</text>
       <text y="0.32em" transform="translate(110,122)">Svansota</text>
     </g>
-    <g aria-label="y-axis label" transform="translate(-109.5,0.5)">
+    <g aria-label="y-axis label" transform="translate(-106.5,0.5)">
       <text y="0.71em" transform="translate(110,77) rotate(-90)">variety</text>
     </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
@@ -448,7 +448,7 @@
       <text y="0.71em" transform="translate(476.6666666666667,134)">60</text>
       <text y="0.71em" transform="translate(550,134)">70</text>
     </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(90.5,27.5)">
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(87.5,27.5)">
       <text transform="translate(550,134)">yield →</text>
     </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="20" width="440" height="114"></rect>

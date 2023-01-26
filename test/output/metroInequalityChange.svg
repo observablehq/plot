@@ -52,7 +52,7 @@
     <text y="0.32em" transform="translate(40,72.77777777777774)">8.0</text>
     <text y="0.32em" transform="translate(40,42.222222222222165)">8.5</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Inequality</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
@@ -118,7 +118,7 @@
     <text y="0.71em" transform="translate(536.0369454802747,370)">10M</text>
     <text y="0.71em" transform="translate(609.3354035180724,370)">20M</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,370)">Population →</text>
   </g>
   <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">

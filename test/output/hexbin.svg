@@ -43,7 +43,7 @@
     <text y="0.32em" transform="translate(40,65.81818181818184)">56</text>
     <text y="0.32em" transform="translate(40,40.363636363636374)">58</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ culmen_length_mm</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -66,7 +66,7 @@
     <text y="0.71em" transform="translate(516.4285714285714,370)">20</text>
     <text y="0.71em" transform="translate(585.4761904761905,370)">21</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,370)">culmen_depth_mm →</text>
   </g>
   <g aria-label="hexgrid" clip-path="url(#plot-clip-1)">

@@ -519,7 +519,7 @@
       <text y="0.71em" transform="translate(491.6666666666667,97)">5,500</text>
       <text y="0.71em" transform="translate(567.5,97)">6,000</text>
     </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
       <text transform="translate(620,97)">body_mass_g →</text>
     </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="60" y="20" width="560" height="77"></rect>

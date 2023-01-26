@@ -23,7 +23,7 @@
     <text y="0.32em" transform="translate(75,45)">Gentoo</text>
     <text y="0.32em" transform="translate(75,67)">Chinstrap</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-74.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-71.5,0.5)">
     <text y="0.71em" transform="translate(75,55) rotate(-90)">species</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -46,7 +46,7 @@
     <text y="0.71em" transform="translate(497.36842105263156,90)">120</text>
     <text y="0.71em" transform="translate(567.7631578947369,90)">140</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,90)">Frequency →</text>
   </g>
   <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="75" y="20" width="545" height="70"></rect>

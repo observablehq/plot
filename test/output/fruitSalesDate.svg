@@ -31,7 +31,7 @@
     <text y="0.32em" transform="translate(40,96.5625)">25</text>
     <text y="0.32em" transform="translate(40,41.875)">30</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ units</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(124.5,0)">

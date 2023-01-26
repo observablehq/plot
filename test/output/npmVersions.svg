@@ -55,7 +55,7 @@
     <text y="0.71em" transform="translate(488.67852570425123,110)">1,200,000</text>
     <text y="0.71em" transform="translate(563.4582799882932,110)">1,400,000</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,110)">downloads →</text>
   </g>
   <g aria-label="bar">

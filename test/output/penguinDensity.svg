@@ -27,7 +27,7 @@
     <text y="0.32em" transform="translate(40,151.23636363636365)">50</text>
     <text y="0.32em" transform="translate(40,98.50909090909093)">55</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ culmen_length_mm</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -46,7 +46,7 @@
     <text y="0.71em" transform="translate(493.0508474576272,370)">220</text>
     <text y="0.71em" transform="translate(581.1864406779661,370)">230</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,370)">flipper_length_mm →</text>
   </g>
   <g aria-label="density" fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(0.5,0.5)">

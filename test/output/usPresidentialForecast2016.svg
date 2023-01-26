@@ -29,7 +29,7 @@
     <text y="0.32em" transform="translate(40,96.88255950058527)">2.0</text>
     <text y="0.32em" transform="translate(40,28.60319937573158)">2.5</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ probability (%)</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -48,7 +48,7 @@
     <text y="0.71em" transform="translate(471.2267657992565,370)">400</text>
     <text y="0.71em" transform="translate(579.0334572490706,370)">500</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,370)">Electoral votes for Hillary Clinton →</text>
   </g>
   <g aria-label="rule" stroke-width="1.5" shape-rendering="crispEdges" transform="translate(0.5,0)">

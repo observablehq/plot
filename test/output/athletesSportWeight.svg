@@ -1268,7 +1268,7 @@
       <text y="0.71em" transform="translate(502.8169014084507,38)">140</text>
       <text y="0.71em" transform="translate(576.056338028169,38)">160</text>
     </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+    <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
       <text transform="translate(620,38)">weight →</text>
     </g>
     <g aria-label="bar">

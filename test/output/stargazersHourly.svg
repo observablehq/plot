@@ -61,7 +61,7 @@
     <text y="0.32em" transform="translate(40,62.307692307692314)">240</text>
     <text y="0.32em" transform="translate(40,36.666666666666686)">260</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -89,7 +89,7 @@
     <text y="0.71em" transform="translate(504,370)">9</text>
     <text y="0.71em" transform="translate(562,370)">10+</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,370)">New stargazers per hour →</text>
   </g>
   <g aria-label="rect">

@@ -43,7 +43,7 @@
     <text y="0.32em" transform="translate(40,72.63157894736841)">20</text>
     <text y="0.32em" transform="translate(40,39.736842105263165)">25</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-39.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
     <text y="0.71em" transform="translate(40,145) rotate(-90)">← Women · Men →</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -66,7 +66,7 @@
     <text y="0.71em" transform="translate(537.1428571428571,270)">90</text>
     <text y="0.71em" transform="translate(620,270)">100</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,270)">Age →</text>
   </g>
   <g aria-label="dot" transform="translate(0.5,0.5)">

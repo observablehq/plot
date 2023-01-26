@@ -40,7 +40,7 @@
     <text y="0.32em" transform="translate(40,68.38709677419357)">25</text>
     <text y="0.32em" transform="translate(40,28.06451612903225)">30</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-39.5,-16.5)">
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
@@ -63,7 +63,7 @@
     <text y="0.71em" transform="translate(537.1428571428571,270)">90</text>
     <text y="0.71em" transform="translate(620,270)">100</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(20.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,270)">Age →</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
