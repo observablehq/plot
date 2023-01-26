@@ -1,0 +1,61 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" aria-description="↑ Frequency" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,370.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,328.83333333333337)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,287.16666666666663)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,245.49999999999997)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,203.83333333333334)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,162.16666666666666)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,120.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">120</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,78.83333333333331)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">140</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,37.166666666666686)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis" aria-description="island" transform="translate(0,370)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(143.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Biscoe</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(330.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Dream</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(517.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Torgersen</text>
+    </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">island</text>
+  </g>
+  <g aria-label="bar">
+    <rect x="59" width="168" y="20" height="350"></rect>
+    <rect x="246" width="168" y="111.66666666666664" height="258.33333333333337"></rect>
+    <rect x="433" width="168" y="261.6666666666667" height="108.33333333333331"></rect>
+  </g>
+</svg>
