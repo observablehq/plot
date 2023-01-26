@@ -126,10 +126,10 @@ function facetMargins(dimensions, facet = {}) {
     marginLeft: facetMarginLeft = 0
   } = facet;
   return {
-    marginTop: marginTop + facetMarginTop,
-    marginRight: marginRight + facetMarginRight,
-    marginBottom: marginBottom + facetMarginBottom,
-    marginLeft: marginLeft + facetMarginLeft,
+    marginTop: Math.max(marginTop, facetMarginTop),
+    marginRight: Math.max(marginRight, facetMarginRight),
+    marginBottom: Math.max(marginBottom, facetMarginBottom),
+    marginLeft: Math.max(marginLeft, facetMarginLeft),
     width,
     height
   };

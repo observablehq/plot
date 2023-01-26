@@ -6,6 +6,7 @@ export default async function () {
   return Plot.plot({
     height: 600,
     grid: true,
+    // marginRight: 80,
     facet: {
       data: penguins,
       x: "sex",
