@@ -232,7 +232,6 @@ export function plot(options = {}) {
 
   // Render (possibly faceted) marks.
   if (facets !== undefined) {
-    // const selection = select(svg);
     const facetDomains = {x: fx?.domain(), y: fy?.domain()};
 
     // Sort the facets to match the fx and fy domains; this is needed because
