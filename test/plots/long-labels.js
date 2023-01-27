@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function () {
+export async function longLabels() {
   const responses = d3.tsvParse(`name\tvalue
 Family in feud with Zucker\u00adbergs\t.17
 Committed 671 birthdays to memory\t.19
