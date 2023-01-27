@@ -111,12 +111,12 @@ export function ScaleFunctions(scales) {
 }
 
 // Mutates scale.range!
-export function autoScaleRange(scales, dimensions, facet) {
+export function autoScaleRange(scales, dimensions) {
   const {x, y, fx, fy} = scales;
-  const submargins = fx || fy ? outerDimensions(dimensions, facet) : dimensions;
+  const submargins = fx || fy ? outerDimensions(dimensions) : dimensions;
   if (fx) autoScaleRangeX(fx, submargins);
   if (fy) autoScaleRangeY(fy, submargins);
-  const subdimensions = fx || fy ? innerDimensions(scales, dimensions, facet) : submargins;
+  const subdimensions = fx || fy ? innerDimensions(scales, dimensions) : submargins;
   if (x) autoScaleRangeX(x, subdimensions);
   if (y) autoScaleRangeY(y, subdimensions);
 }
@@ -144,14 +144,21 @@ function inferScaleLabel(channels = [], scale) {
 
 // Returns the dimensions of the outer frame; this will be subdivided into
 // facets with the margins of each facet collapsing into the outer margins.
-function outerDimensions(dimensions, facet = {}) {
-  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+function outerDimensions(dimensions) {
   const {
-    marginTop: facetMarginTop = 0,
-    marginRight: facetMarginRight = 0,
-    marginBottom: facetMarginBottom = 0,
-    marginLeft: facetMarginLeft = 0
-  } = facet;
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    width,
+    height,
+    facet: {
+      marginTop: facetMarginTop,
+      marginRight: facetMarginRight,
+      marginBottom: facetMarginBottom,
+      marginLeft: facetMarginLeft
+    }
+  } = dimensions;
   return {
     marginTop: Math.max(marginTop, facetMarginTop),
     marginRight: Math.max(marginRight, facetMarginRight),
@@ -163,19 +170,28 @@ function outerDimensions(dimensions, facet = {}) {
 }
 
 // Returns the dimensions of each facet.
-export function innerDimensions({fx, fy}, dimensions, facet = {}) {
-  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+export function innerDimensions({fx, fy}, dimensions) {
   const {
-    marginTop: facetMarginTop = 0,
-    marginRight: facetMarginRight = 0,
-    marginBottom: facetMarginBottom = 0,
-    marginLeft: facetMarginLeft = 0
-  } = facet;
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    width,
+    height,
+    facet,
+    facet: {
+      marginTop: facetMarginTop,
+      marginRight: facetMarginRight,
+      marginBottom: facetMarginBottom,
+      marginLeft: facetMarginLeft
+    }
+  } = dimensions;
   return {
     marginTop,
     marginRight,
     marginBottom,
     marginLeft,
+    facet,
     width: fx
       ? fx.scale.bandwidth() + marginLeft + marginRight
       : width - Math.max(facetMarginRight - marginRight, 0) - Math.max(facetMarginLeft - marginLeft, 0),

@@ -236,7 +236,7 @@
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(550,77)">University Farm</text>
     </g>
-    <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
+    <g aria-label="fy-axis label" transform="translate(87.5,0.5)">
       <text transform="translate(550,77) rotate(-90)">site</text>
     </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">

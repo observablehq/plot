@@ -2541,7 +2541,7 @@
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(201,113.5)">Chinstrap</text>
     </g>
-    <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
+    <g aria-label="fy-axis label" transform="translate(77.5,0.5)">
       <text transform="translate(201,113.5) rotate(-90)">species</text>
     </g>
   </g>

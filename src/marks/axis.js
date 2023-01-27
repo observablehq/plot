@@ -125,7 +125,7 @@ function axisKy(
             y: null,
             initializer: function (data, facets, channels, scales, dimensions) {
               const scale = scales[k];
-              const {marginTop, marginRight, marginBottom, marginLeft} = dimensions;
+              const {marginTop, marginRight, marginBottom, marginLeft} = k === "fy" ? dimensions.facet : dimensions;
               const cla = labelAnchor ?? (scale.bandwidth ? "center" : "top");
               const clo = labelOffset ?? (anchor === "right" ? marginRight : marginLeft) - 3;
               if (cla === "center") {
@@ -235,7 +235,7 @@ function axisKx(
             y: null,
             initializer: function (data, facets, channels, scales, dimensions) {
               const scale = scales[k];
-              const {marginTop, marginRight, marginBottom, marginLeft} = dimensions;
+              const {marginTop, marginRight, marginBottom, marginLeft} = k === "fx" ? dimensions.facet : dimensions;
               const cla = labelAnchor ?? (scale.bandwidth ? "center" : "right");
               const clo = labelOffset ?? (anchor === "top" ? marginTop : marginBottom) - 3;
               if (cla === "center") {

@@ -50,7 +50,7 @@ export function Dimensions(scales, marks, options = {}) {
   width = +width;
   height = +height;
 
-  return {
+  const dimensions = {
     width,
     height,
     marginTop,
@@ -58,6 +58,32 @@ export function Dimensions(scales, marks, options = {}) {
     marginBottom,
     marginLeft
   };
+
+  // Compute the facet margins.
+  if (scales.fx || scales.fy) {
+    let {
+      margin: facetMargin,
+      marginTop: facetMarginTop = facetMargin !== undefined ? facetMargin : marginTop,
+      marginRight: facetMarginRight = facetMargin !== undefined ? facetMargin : marginRight,
+      marginBottom: facetMarginBottom = facetMargin !== undefined ? facetMargin : marginBottom,
+      marginLeft: facetMarginLeft = facetMargin !== undefined ? facetMargin : marginLeft
+    } = options.facet ?? {};
+
+    // Coerce the facet margin options to numbers.
+    facetMarginTop = +facetMarginTop;
+    facetMarginRight = +facetMarginRight;
+    facetMarginBottom = +facetMarginBottom;
+    facetMarginLeft = +facetMarginLeft;
+
+    dimensions.facet = {
+      marginTop: facetMarginTop,
+      marginRight: facetMarginRight,
+      marginBottom: facetMarginBottom,
+      marginLeft: facetMarginLeft
+    };
+  }
+
+  return dimensions;
 }
 
 function autoHeight(

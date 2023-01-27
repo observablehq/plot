@@ -135,10 +135,10 @@ export function plot(options = {}) {
   const scales = ScaleFunctions(scaleDescriptors);
   const dimensions = Dimensions(scaleDescriptors, marks, options);
 
-  autoScaleRange(scaleDescriptors, dimensions, facet);
+  autoScaleRange(scaleDescriptors, dimensions);
 
   const {fx, fy} = scales;
-  const subdimensions = innerDimensions(scaleDescriptors, dimensions, facet);
+  const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const context = Context(options, subdimensions, scaleDescriptors);
 
   // Reinitialize; for deriving channels dependent on other channels.
@@ -246,7 +246,7 @@ export function plot(options = {}) {
       .enter()
       .append("g")
       .attr("aria-label", "facet")
-      .attr("transform", facetTranslate(fx, fy, dimensions, facet))
+      .attr("transform", facetTranslate(fx, fy, dimensions))
       .each(function (f) {
         let empty = true;
         for (const mark of marks) {
