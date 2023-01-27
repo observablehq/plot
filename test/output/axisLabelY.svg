@@ -79,7 +79,7 @@
     <text y="0.71em" transform="translate(600,20)">right-top</text>
   </g>
   <g aria-label="y-axis label" transform="translate(37.5,0.5)">
-    <text y="0.71em" transform="translate(600,200) rotate(90)">right-center</text>
+    <text transform="translate(600,200) rotate(-90)">right-center</text>
   </g>
   <g aria-label="y-axis label" text-anchor="end" transform="translate(37.5,17.5)">
     <text transform="translate(600,380)">right-bottom</text>

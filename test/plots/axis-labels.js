@@ -33,3 +33,21 @@ export async function axisLabelY() {
     ]
   });
 }
+
+export async function axisLabelBoth() {
+  return Plot.plot({
+    inset: 6,
+    x: {type: "linear", axis: "both", labelAnchor: "center"},
+    y: {type: "linear", axis: "both", labelAnchor: "center"},
+    marks: [Plot.ruleX([{x: 0}, {x: 1}], {x: "x"}), Plot.ruleY([{y: 0}, {y: 1}], {y: "y"})]
+  });
+}
+
+export async function axisLabelBothReverse() {
+  return Plot.plot({
+    inset: 6,
+    x: {type: "linear", reverse: true, axis: "both", labelAnchor: "center"},
+    y: {type: "linear", reverse: true, axis: "both", labelAnchor: "center"},
+    marks: [Plot.ruleX([{x: 0}, {x: 1}], {x: "x"}), Plot.ruleY([{y: 0}, {y: 1}], {y: "y"})]
+  });
+}

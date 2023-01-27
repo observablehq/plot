@@ -1,5 +1,4 @@
 import {select} from "d3";
-import {autoScaleLabels} from "./axes.js";
 import {Channel} from "./channel.js";
 import {Context, create} from "./context.js";
 import {Dimensions} from "./dimensions.js";
@@ -8,7 +7,7 @@ import {Legends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {arrayify, isNone, isScaleOptions, map, yes, maybeInterval} from "./options.js";
-import {Scales, ScaleFunctions, autoScaleRange, exposeScales, facetDimensions} from "./scales.js";
+import {Scales, ScaleFunctions, autoScaleRange, exposeScales, innerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {consumeWarnings, warn} from "./warnings.js";
@@ -137,10 +136,9 @@ export function plot(options = {}) {
   const dimensions = Dimensions(scaleDescriptors, marks, options);
 
   autoScaleRange(scaleDescriptors, dimensions, facet);
-  autoScaleLabels(channelsByScale, scaleDescriptors, options);
 
   const {fx, fy} = scales;
-  const subdimensions = facetDimensions(scaleDescriptors, dimensions, facet);
+  const subdimensions = innerDimensions(scaleDescriptors, dimensions, facet);
   const context = Context(options, subdimensions, scaleDescriptors);
 
   // Reinitialize; for deriving channels dependent on other channels.

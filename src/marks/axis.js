@@ -5,7 +5,7 @@ import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
 import {radians} from "../math.js";
 import {range, valueof, arrayify, constant, keyword, identity} from "../options.js";
-import {isNone, isNoneish, isIterable, isTemporal, maybeInterval} from "../options.js";
+import {isNone, isNoneish, isIterable, isTemporal, maybeInterval, orderof} from "../options.js";
 import {isTemporalScale} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {maybeTimeInterval, maybeUtcInterval} from "../time.js";
@@ -127,14 +127,14 @@ function axisKy(
                 initializer: function (data, facets, channels, scales, dimensions) {
                   const scale = scales[k];
                   const {marginTop, marginRight, marginBottom, marginLeft} = dimensions;
-                  const cla = labelAnchor ?? (scale?.bandwidth ? "center" : "top");
+                  const cla = labelAnchor ?? (scale.bandwidth ? "center" : "top");
                   const clo = labelOffset ?? (anchor === "right" ? marginRight : marginLeft) - 3;
                   if (cla === "center") {
                     this.textAnchor = undefined; // middle
-                    this.lineAnchor = "top";
+                    this.lineAnchor = anchor === "right" ? "bottom" : "top";
                     this.facetAnchor = maybeFacetAnchor(`${anchor}-middle`);
                     this.frameAnchor = anchor;
-                    this.rotate = anchor === "right" ? 90 : -90;
+                    this.rotate = -90;
                   } else {
                     this.textAnchor = anchor === "right" ? "end" : "start";
                     this.lineAnchor = cla;
@@ -147,7 +147,11 @@ function axisKy(
                   this.ariaLabel = `${k}-axis label`;
                   return {
                     facets: [[0]],
-                    channels: {text: {value: [label === undefined ? scale.label : label]}}
+                    channels: {
+                      text: {
+                        value: [label === undefined ? inferAxisLabel(k, scale, cla) : label]
+                      }
+                    }
                   };
                 }
               })
@@ -235,7 +239,7 @@ function axisKx(
                 initializer: function (data, facets, channels, scales, dimensions) {
                   const scale = scales[k];
                   const {marginTop, marginRight, marginBottom, marginLeft} = dimensions;
-                  const cla = labelAnchor ?? (scale?.bandwidth ? "center" : "right");
+                  const cla = labelAnchor ?? (scale.bandwidth ? "center" : "right");
                   const clo = labelOffset ?? (anchor === "top" ? marginTop : marginBottom) - 3;
                   if (cla === "center") {
                     this.facetAnchor = maybeFacetAnchor(`${anchor}-middle`);
@@ -252,7 +256,11 @@ function axisKx(
                   this.ariaLabel = `${k}-axis label`;
                   return {
                     facets: [[0]],
-                    channels: {text: {value: [label === undefined ? scale.label : label]}}
+                    channels: {
+                      text: {
+                        value: [label === undefined ? inferAxisLabel(k, scale, cla) : label]
+                      }
+                    }
                   };
                 }
               })
@@ -604,4 +612,19 @@ const shapeTickRight = {
 // function rather than a scale descriptor.
 function inferFontVariant(scale) {
   return scale.bandwidth && scale.interval === undefined ? undefined : "tabular-nums";
+}
+
+// Takes the scale label, and if this is not an ordinal scale and the label was
+// inferred from an associated channel, adds an orientation-appropriate arrow.
+function inferAxisLabel(key, scale, labelAnchor) {
+  const label = scale.label;
+  if (scale.bandwidth || !label?.inferred) return label;
+  const order = Math.sign(orderof(scale.domain())) * Math.sign(orderof(scale.range()));
+  return order
+    ? key === "x" || labelAnchor === "center"
+      ? (key === "x") === order < 0
+        ? `← ${label}`
+        : `${label} →`
+      : `${order < 0 ? "↑ " : "↓ "}${label}`
+    : label;
 }
