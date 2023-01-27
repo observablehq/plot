@@ -17,7 +17,6 @@ export {default as athletesHeightWeightBinStroke} from "./athletes-height-weight
 export {default as athletesHeightWeightSex} from "./athletes-height-weight-sex.js";
 export {default as athletesHeightWeightSport} from "./athletes-height-weight-sport.js";
 export {default as athletesNationality} from "./athletes-nationality.js";
-export {default as athletesSample} from "./athletes-sample.js";
 export {default as athletesSexWeight} from "./athletes-sex-weight.js";
 export {default as athletesSportSex} from "./athletes-sport-sex.js";
 export {default as athletesSportWeight} from "./athletes-sport-weight.js";
@@ -281,6 +280,7 @@ export {default as yearlyRequestsDot} from "./yearly-requests-dot.js";
 export {default as yearlyRequestsLine} from "./yearly-requests-line.js";
 
 export * from "./aapl-fancy-axis.js";
+export * from "./athletes-sample.js";
 export * from "./axis-labels.js";
 export * from "./bin-1m.js";
 export * from "./electricity-demand.js";
