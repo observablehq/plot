@@ -536,7 +536,8 @@ function axisOptions(
     ariaLabel,
     ariaDescription,
     label,
-    labelAnchor
+    labelAnchor,
+    labelOffset
   }
 ) {
   return {
@@ -551,7 +552,8 @@ function axisOptions(
     ariaLabel,
     ariaDescription,
     label,
-    labelAnchor
+    labelAnchor,
+    labelOffset
   };
 }
 
