@@ -647,6 +647,9 @@
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(40,29)">hockey</text>
     </g>
+    <g aria-label="fy-axis label" transform="translate(-36.5,0.5)">
+      <text y="0.71em" transform="translate(40,29) rotate(-90)">sport</text>
+    </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="76.61971830985917" x2="76.61971830985917" y1="20" y2="38"></line>
       <line x1="149.85915492957747" x2="149.85915492957747" y1="20" y2="38"></line>

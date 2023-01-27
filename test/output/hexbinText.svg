@@ -162,6 +162,9 @@
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(170,30)">MALE</text>
     </g>
+    <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+      <text y="0.71em" transform="translate(170,30)">sex</text>
+    </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(78.85714285714286,290)" d="M0,0L0,6"></path>
       <path transform="translate(134.0952380952381,290)" d="M0,0L0,6"></path>

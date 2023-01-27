@@ -1120,6 +1120,9 @@
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(120.5,30)">MALE</text>
     </g>
+    <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+      <text y="0.71em" transform="translate(120.5,30)">sex</text>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
       <circle cx="122.41666666666664" cy="152.06181818181818" r="2"></circle>
@@ -2537,6 +2540,9 @@
   <g aria-label="facet" transform="translate(358,186)">
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(201,113.5)">Chinstrap</text>
+    </g>
+    <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
+      <text transform="translate(201,113.5) rotate(-90)">species</text>
     </g>
   </g>
   <g aria-label="facet" transform="translate(358,372)">

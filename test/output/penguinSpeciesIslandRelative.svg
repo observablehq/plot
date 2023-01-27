@@ -65,6 +65,9 @@
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(130,400)">Chinstrap</text>
     </g>
+    <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
+      <text transform="translate(130,400)">species</text>
+    </g>
     <g aria-label="bar">
       <rect x="40" width="180" y="20" height="380" fill="#f28e2c"></rect>
     </g>

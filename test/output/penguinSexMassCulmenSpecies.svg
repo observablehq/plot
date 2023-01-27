@@ -145,6 +145,9 @@
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(130,30)">MALE</text>
     </g>
+    <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+      <text y="0.71em" transform="translate(130,30)">sex</text>
+    </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="220" y1="270.7692307692308" y2="270.7692307692308"></line>
       <line x1="40" x2="220" y1="252.3076923076923" y2="252.3076923076923"></line>

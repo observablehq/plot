@@ -156,6 +156,9 @@
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(89.5,320)">Asia</text>
     </g>
+    <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
+      <text transform="translate(89.5,320)">continent</text>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="20" width="99" height="300"></rect>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="89.5" cy="121.5384615384616" r="3"><title>AZE</title></circle>

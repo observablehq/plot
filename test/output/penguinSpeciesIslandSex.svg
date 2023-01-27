@@ -99,6 +99,9 @@
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(130,30)">Chinstrap</text>
     </g>
+    <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+      <text y="0.71em" transform="translate(130,30)">species</text>
+    </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="220" y1="400" y2="400"></line>
       <line x1="40" x2="220" y1="374.6575342465753" y2="374.6575342465753"></line>

@@ -116,6 +116,9 @@
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(143.5,30)">3</text>
     </g>
+    <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+      <text y="0.71em" transform="translate(143.5,30)">series</text>
+    </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="247" y1="185.0622406639004" y2="185.0622406639004"></line>
       <line x1="40" x2="247" y1="151.86721991701245" y2="151.86721991701245"></line>
