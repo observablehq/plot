@@ -252,12 +252,12 @@ export function plot(options = {}) {
         for (const mark of marks) {
           const {channels, values, facets: indexes} = stateByMark.get(mark);
           if (!(mark.facetAnchor?.(facets, facetDomains, f) ?? !f.empty)) continue;
-          let index = null; // TODO null or undefined?
+          let index = null;
           if (indexes) {
-            if (!facetStateByMark.has(mark)) index = indexes[0];
-            else if (!(index = indexes[f.i])) continue; // TODO is this ever falsey?
-            if ((index = mark.filter(index, channels, values)).length === 0) continue;
-            index.fi = f.i; // TODO cleaner?
+            index = indexes[facetStateByMark.has(mark) ? f.i : 0];
+            index = mark.filter(index, channels, values);
+            if (index.length === 0) continue;
+            index.fi = f.i; // TODO cleaner way of exposing the current facet index?
           }
           const node = mark.render(index, scales, values, subdimensions, context);
           if (node == null) continue;
@@ -269,10 +269,11 @@ export function plot(options = {}) {
   } else {
     for (const mark of marks) {
       const {channels, values, facets: indexes} = stateByMark.get(mark);
-      let index = null; // TODO null or undefined?
+      let index = null;
       if (indexes) {
-        if (!(index = indexes[0])) continue; // TODO is this ever falsey?
-        if ((index = mark.filter(index, channels, values)).length === 0) continue;
+        index = indexes[0];
+        index = mark.filter(index, channels, values);
+        if (index.length === 0) continue;
       }
       const node = mark.render(index, scales, values, dimensions, context);
       if (node != null) svg.appendChild(node);
