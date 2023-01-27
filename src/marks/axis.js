@@ -4,7 +4,7 @@ import {maybeFacetAnchor} from "../facet.js";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
 import {radians} from "../math.js";
-import {range, valueof, arrayify, constant, keyword, identity} from "../options.js";
+import {range, valueof, arrayify, constant, keyword, identity, number} from "../options.js";
 import {isNone, isNoneish, isIterable, isTemporal, maybeInterval, orderof} from "../options.js";
 import {isTemporalScale} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
@@ -67,6 +67,8 @@ function axisKy(
     textStrokeOpacity,
     textStrokeWidth,
     tickSize = k === "fy" ? 0 : 6,
+    tickPadding,
+    tickRotate,
     x1,
     x2,
     x = anchor === "left" ? x1 : x2,
@@ -80,6 +82,9 @@ function axisKy(
     ...options
   }
 ) {
+  tickSize = number(tickSize);
+  tickPadding = number(tickPadding);
+  tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
   return [
     k !== "fy" && line && !isNone(line)
@@ -96,6 +101,8 @@ function axisKy(
           strokeOpacity,
           strokeWidth,
           tickSize,
+          tickPadding,
+          tickRotate,
           x,
           ...options
         })
@@ -110,6 +117,8 @@ function axisKy(
             strokeWidth: textStrokeWidth,
             textAnchor,
             tickSize,
+            tickPadding,
+            tickRotate,
             x,
             marginTop,
             marginRight,
@@ -177,6 +186,8 @@ function axisKx(
     textStrokeOpacity,
     textStrokeWidth,
     tickSize = k === "fx" ? 0 : 6,
+    tickPadding,
+    tickRotate,
     y1,
     y2,
     y = anchor === "bottom" ? y2 : y1,
@@ -190,6 +201,9 @@ function axisKx(
     ...options
   }
 ) {
+  tickSize = number(tickSize);
+  tickPadding = number(tickPadding);
+  tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
   return [
     k !== "fx" && line && !isNone(line)
@@ -206,6 +220,8 @@ function axisKx(
           strokeOpacity,
           strokeWidth,
           tickSize,
+          tickPadding,
+          tickRotate,
           y,
           ...options
         })
@@ -220,6 +236,8 @@ function axisKx(
             strokeWidth: textStrokeWidth,
             textAnchor,
             tickSize,
+            tickPadding,
+            tickRotate,
             y,
             marginTop,
             marginRight,
