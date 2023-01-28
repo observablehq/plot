@@ -88,11 +88,6 @@ const facetAnchors = new Map([
   ["top-right", and(facetAnchorTop, facetAnchorRight)],
   ["bottom-left", and(facetAnchorBottom, facetAnchorLeft)],
   ["bottom-right", and(facetAnchorBottom, facetAnchorRight)],
-  ["top-middle", and(facetAnchorTop, facetAnchorXMid)],
-  ["right-middle", and(facetAnchorRight, facetAnchorYMid)],
-  ["bottom-middle", and(facetAnchorBottom, facetAnchorXMid)],
-  ["left-middle", and(facetAnchorLeft, facetAnchorYMid)],
-  ["middle", and(facetAnchorXMid, facetAnchorYMid)],
   ["top-empty", facetAnchorTopEmpty],
   ["right-empty", facetAnchorRightEmpty],
   ["bottom-empty", facetAnchorBottomEmpty],
@@ -120,14 +115,6 @@ function facetAnchorLeft(facets, {x: X}, {x}) {
 
 function facetAnchorRight(facets, {x: X}, {x}) {
   return X ? X.indexOf(x) === X.length - 1 : true;
-}
-
-function facetAnchorXMid(facets, {x: X}, {x}) {
-  return X ? X.indexOf(x) === X.length >> 1 : false;
-}
-
-function facetAnchorYMid(facets, {y: Y}, {y}) {
-  return Y ? Y.indexOf(y) === Y.length >> 1 : false;
 }
 
 function facetAnchorTopEmpty(facets, {y: Y}, {x, y}) {
