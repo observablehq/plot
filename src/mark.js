@@ -10,6 +10,7 @@ import {basic, initializer} from "./transforms/basic.js";
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
     const {
+      super: supe,
       facet = "auto",
       facetAnchor,
       fx,
@@ -29,7 +30,7 @@ export class Mark {
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
-    if (facet === null || facet === false) {
+    if (facet === null || facet === false || supe) {
       this.facet = null;
     } else {
       this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
@@ -39,7 +40,7 @@ export class Mark {
     this.facetAnchor = maybeFacetAnchor(facetAnchor);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
-    channels = maybeSuperChannels(channels, options);
+    channels = supe ? superChannels(channels, options) : channels;
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
     this.channels = Object.fromEntries(
       Object.entries(channels).filter(([name, {value, optional}]) => {
@@ -55,6 +56,7 @@ export class Mark {
     this.marginBottom = +marginBottom;
     this.marginLeft = +marginLeft;
     this.clip = maybeClip(clip);
+    this.super = !!supe;
   }
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
@@ -96,8 +98,8 @@ export class Mark {
 
 // For any channel bound to the x or y scale, allow the channel to be optionally
 // specified in facet coordinates using the fx or fy scale in addition to the
-// normal coordinates, or both; this is intended for “super” marks.
-function maybeSuperChannels(channels, options) {
+// normal coordinates, or both.
+function superChannels(channels, options) {
   let superChannels = channels;
   for (const name in channels) {
     const channel = channels[name];

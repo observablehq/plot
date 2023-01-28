@@ -20,8 +20,7 @@ export function plot(options = {}) {
   const className = maybeClassName(options.className);
 
   // Flatten any nested marks.
-  const submarks = options.marks === undefined ? [] : flatMarks(options.marks);
-  const supermarks = options.supermarks === undefined ? [] : flatMarks(options.supermarks);
+  const marks = options.marks === undefined ? [] : flatMarks(options.marks);
 
   // Compute the top-level facet state. This has roughly the same structure as
   // mark-specific facet state, except there isn’t a facetsIndex, and there’s a
@@ -34,7 +33,7 @@ export function plot(options = {}) {
   // groups - a possibly-nested map from facet values to indexes in the data array
   // facetsIndex - a sparse nested array of indices corresponding to the valid facets
   const facetStateByMark = new Map();
-  for (const mark of submarks) {
+  for (const mark of marks) {
     const facetState = maybeMarkFacet(mark, topFacetState, options);
     if (facetState) facetStateByMark.set(mark, facetState);
   }
@@ -47,12 +46,12 @@ export function plot(options = {}) {
   // Add implicit axis marks. Because this happens after faceting (because it
   // depends on whether faceting is present), we must initialize the facet state
   // of any implicit axes, too.
-  const axes = flatMarks(inferAxes(submarks, channelsByScale, options));
+  const axes = flatMarks(inferAxes(marks, channelsByScale, options));
   for (const mark of axes) {
     const facetState = maybeMarkFacet(mark, topFacetState, options);
     if (facetState) facetStateByMark.set(mark, facetState);
   }
-  submarks.unshift(...axes);
+  marks.unshift(...axes);
 
   // All the possible facets are given by the domains of the fx or fy scales, or
   // the cross-product of these domains if we facet by both x and y. We sort
@@ -65,7 +64,7 @@ export function plot(options = {}) {
     // Compute a facet index for each mark, parallel to the facets array. For
     // mark-level facets, compute an index for that mark’s data and options.
     // Otherwise, use the top-level facet index.
-    for (const mark of submarks) {
+    for (const mark of marks) {
       if (mark.facet === null) continue;
       const facetState = facetStateByMark.get(mark);
       if (facetState === undefined) continue;
@@ -97,7 +96,7 @@ export function plot(options = {}) {
     );
 
     // For any mark using the “exclude” facet mode, invert the index.
-    for (const mark of submarks) {
+    for (const mark of marks) {
       if (mark.facet === "exclude") {
         const facetState = facetStateByMark.get(mark);
         facetState.facetsIndex = facetExclude(facetState.facetsIndex);
@@ -121,9 +120,6 @@ export function plot(options = {}) {
   // faceted - a boolean indicating whether this mark is faceted
   // values - an object of scaled values e.g. {x: [40, 32, …], …}
   const stateByMark = new Map();
-
-  // Combine submarks and supermarks, as needed.
-  const marks = supermarks.length ? submarks.concat(supermarks) : submarks;
 
   // Initialize the marks’ state.
   for (const mark of marks) {
@@ -201,23 +197,21 @@ export function plot(options = {}) {
   // Compute value objects, applying scales and projection as needed.
   for (const [mark, state] of stateByMark) {
     state.values = mark.scale(state.channels, scales, context);
-  }
-
-  // TODO
-  for (const mark of supermarks) {
-    const state = stateByMark.get(mark);
-    for (const fkey in state.channels) {
-      const channel = state.channels[fkey];
-      const {scale} = channel;
-      if (scale !== "fx" && scale !== "fy") continue;
-      const key = fkey.slice(1);
-      const O = state.values[key];
-      if (O) {
-        const o = scale === "fx" ? -dimensions.marginLeft : -dimensions.marginTop;
-        state.values[key] = state.values[fkey].map((v, i) => v + o + O[i]);
-      } else {
-        const o = scales[scale].bandwidth() / 2;
-        state.values[key] = state.values[fkey].map((v) => v + o);
+    if (mark.super) {
+      const state = stateByMark.get(mark);
+      for (const fkey in state.channels) {
+        const channel = state.channels[fkey];
+        const {scale} = channel;
+        if (scale !== "fx" && scale !== "fy") continue;
+        const key = fkey.slice(1);
+        const O = state.values[key];
+        if (O) {
+          const o = scale === "fx" ? -dimensions.marginLeft : -dimensions.marginTop;
+          state.values[key] = state.values[fkey].map((v, i) => v + o + O[i]);
+        } else {
+          const o = scales[scale].bandwidth() / 2;
+          state.values[key] = state.values[fkey].map((v) => v + o);
+        }
       }
     }
   }
@@ -271,7 +265,8 @@ export function plot(options = {}) {
       .attr("transform", facetTranslate(fx, fy, dimensions))
       .each(function (f) {
         let empty = true;
-        for (const mark of submarks) {
+        for (const mark of marks) {
+          if (mark.super) continue;
           const {channels, values, facets: indexes} = stateByMark.get(mark);
           if (!(mark.facetAnchor?.(facets, facetDomains, f) ?? !f.empty)) continue;
           let index = null;
@@ -292,7 +287,8 @@ export function plot(options = {}) {
 
   // Render non-faceted marks.
   const renderDimensions = facets === undefined ? dimensions : outerDimensions(scales, dimensions);
-  for (const mark of facets === undefined ? marks : supermarks) {
+  for (const mark of marks) {
+    if (facets !== undefined && !mark.super) continue;
     const {channels, values, facets: indexes} = stateByMark.get(mark);
     let index = null;
     if (indexes) {
