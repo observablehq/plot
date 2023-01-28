@@ -44,9 +44,6 @@
       <text y="0.32em" transform="translate(40,59.65116279069767)">1,000</text>
       <text y="0.32em" transform="translate(40,30.581395348837212)">1,200</text>
     </g>
-    <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
-      <text y="0.71em" transform="translate(40,30)">↑ Frequency</text>
-    </g>
     <g aria-label="bar">
       <rect x="53" width="9" y="186.97674418604652" height="18.023255813953483"></rect>
       <rect x="63" width="9" y="174.7674418604651" height="30.232558139534888"></rect>
@@ -287,5 +284,8 @@
     <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
       <line x1="40" x2="305" y1="205" y2="205"></line>
     </g>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37.5,-27.5)">
+    <text y="0.71em" transform="translate(41,31)">↑ Frequency</text>
   </g>
 </svg>

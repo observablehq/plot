@@ -68,9 +68,6 @@
       <text y="0.32em" transform="translate(40,70.54794520547945)">65</text>
       <text y="0.32em" transform="translate(40,45.20547945205482)">70</text>
     </g>
-    <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
-      <text y="0.71em" transform="translate(40,30)">↑ Frequency</text>
-    </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(26.5,0)">
       <path transform="translate(46,400)" d="M0,0L0,6"></path>
       <path transform="translate(104,400)" d="M0,0L0,6"></path>
@@ -99,9 +96,6 @@
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(130,30)">Chinstrap</text>
     </g>
-    <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
-      <text y="0.71em" transform="translate(130,30)">species</text>
-    </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="220" y1="400" y2="400"></line>
       <line x1="40" x2="220" y1="374.6575342465753" y2="374.6575342465753"></line>
@@ -128,9 +122,6 @@
       <text y="0.71em" transform="translate(46,400)">FEMALE</text>
       <text y="0.71em" transform="translate(104,400)">MALE</text>
       <text y="0.71em" transform="translate(162,400)">N/A</text>
-    </g>
-    <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-      <text transform="translate(130,400)">sex</text>
     </g>
     <g aria-label="bar">
       <rect x="46" width="52" y="227.67123287671234" height="172.32876712328766" fill="#f28e2c"></rect>
@@ -179,5 +170,14 @@
     <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
       <line x1="40" x2="220" y1="400" y2="400"></line>
     </g>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(330,30)">species</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
+    <text y="0.71em" transform="translate(40,30)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,400)">sex</text>
   </g>
 </svg>

@@ -113,10 +113,10 @@ export function ScaleFunctions(scales) {
 // Mutates scale.range!
 export function autoScaleRange(scales, dimensions) {
   const {x, y, fx, fy} = scales;
-  const submargins = fx || fy ? outerDimensions(dimensions) : dimensions;
-  if (fx) autoScaleRangeX(fx, submargins);
-  if (fy) autoScaleRangeY(fy, submargins);
-  const subdimensions = fx || fy ? innerDimensions(scales, dimensions) : submargins;
+  const superdimensions = fx || fy ? outerDimensions(dimensions) : dimensions;
+  if (fx) autoScaleRangeX(fx, superdimensions);
+  if (fy) autoScaleRangeY(fy, superdimensions);
+  const subdimensions = fx || fy ? innerDimensions(scales, dimensions) : dimensions;
   if (x) autoScaleRangeX(x, subdimensions);
   if (y) autoScaleRangeY(y, subdimensions);
 }
@@ -142,9 +142,10 @@ function inferScaleLabel(channels = [], scale) {
   return {inferred: true, toString: () => label};
 }
 
-// Returns the dimensions of the outer frame; this will be subdivided into
-// facets with the margins of each facet collapsing into the outer margins.
-function outerDimensions(dimensions) {
+// Returns the dimensions of the outer frame; this is subdivided into facets
+// with the margins of each facet collapsing into the outer margins. TODO Super
+// marks need the smaller margins to place axis labels closer to the axes.
+export function outerDimensions(dimensions) {
   const {
     marginTop,
     marginRight,
@@ -171,33 +172,14 @@ function outerDimensions(dimensions) {
 
 // Returns the dimensions of each facet.
 export function innerDimensions({fx, fy}, dimensions) {
-  const {
-    marginTop,
-    marginRight,
-    marginBottom,
-    marginLeft,
-    width,
-    height,
-    facet,
-    facet: {
-      marginTop: facetMarginTop,
-      marginRight: facetMarginRight,
-      marginBottom: facetMarginBottom,
-      marginLeft: facetMarginLeft
-    }
-  } = dimensions;
+  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = outerDimensions(dimensions);
   return {
     marginTop,
     marginRight,
     marginBottom,
     marginLeft,
-    facet,
-    width: fx
-      ? fx.scale.bandwidth() + marginLeft + marginRight
-      : width - Math.max(facetMarginRight - marginRight, 0) - Math.max(facetMarginLeft - marginLeft, 0),
-    height: fy
-      ? fy.scale.bandwidth() + marginTop + marginBottom
-      : height - Math.max(facetMarginTop - marginTop, 0) - Math.max(facetMarginBottom - marginBottom, 0)
+    width: fx ? fx.scale.bandwidth() + marginLeft + marginRight : width,
+    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height
   };
 }
 

@@ -31,9 +31,6 @@
       <text y="0.32em" transform="translate(40,124.98909090909092)">50</text>
       <text y="0.32em" transform="translate(40,82.80727272727273)">55</text>
     </g>
-    <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
-      <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
-    </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(78.85714285714286,290)" d="M0,0L0,6"></path>
       <path transform="translate(134.0952380952381,290)" d="M0,0L0,6"></path>
@@ -161,9 +158,6 @@
   <g aria-label="facet" transform="translate(290,0)">
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(170,30)">MALE</text>
-    </g>
-    <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
-      <text y="0.71em" transform="translate(170,30)">sex</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(78.85714285714286,290)" d="M0,0L0,6"></path>
@@ -320,9 +314,6 @@
       <text y="0.71em" transform="translate(189.33333333333334,290)">18</text>
       <text y="0.71em" transform="translate(244.57142857142856,290)">20</text>
     </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
-      <text transform="translate(300,290)">culmen_depth_mm →</text>
-    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="30" width="260" height="260"></rect>
     <g aria-label="dot" fill="brown" stroke="black" stroke-width="0.5" transform="translate(0.5,0.5)">
       <path transform="translate(190.5,259.8076211353316)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z" fill-opacity="0.08333333333333333"></path>
@@ -344,5 +335,14 @@
       <text y="0.32em" transform="translate(70.5,155.88457268119896)">1</text>
       <text y="0.32em" transform="translate(120.5,173.20508075688775)">1</text>
     </g>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(460,30)">sex</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-37.5,-26.5)">
+    <text y="0.71em" transform="translate(41,30)">↑ culmen_length_mm</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(78.5,27.5)">
+    <text transform="translate(879,290)">culmen_depth_mm →</text>
   </g>
 </svg>

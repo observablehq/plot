@@ -962,9 +962,6 @@
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Self-employed</text>
     </g>
-    <g aria-label="fy-axis label" transform="translate(-136.5,0.5)">
-      <text y="0.71em" transform="translate(140,29) rotate(-90)">industry</text>
-    </g>
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#fcd025"><title>239</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#fdcb26"><title>262</title></rect>
@@ -1921,5 +1918,8 @@
     <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
       <circle cx="411.551724137931" cy="29" r="3"><title>2</title></circle>
     </g>
+  </g>
+  <g aria-label="fy-axis label" transform="translate(-136.5,0.5)">
+    <text y="0.71em" transform="translate(140,165) rotate(-90)">industry</text>
   </g>
 </svg>

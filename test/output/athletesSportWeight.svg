@@ -647,9 +647,6 @@
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(100,29)">hockey</text>
     </g>
-    <g aria-label="fy-axis label" transform="translate(-96.5,0.5)">
-      <text y="0.71em" transform="translate(100,29) rotate(-90)">sport</text>
-    </g>
     <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="20" y2="38"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="20" y2="38"></line>
@@ -1271,9 +1268,6 @@
       <text y="0.71em" transform="translate(502.8169014084507,38)">140</text>
       <text y="0.71em" transform="translate(576.056338028169,38)">160</text>
     </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
-      <text transform="translate(620,38)">weight →</text>
-    </g>
     <g aria-label="bar">
       <rect x="130.29577464788733" width="6.323943661971811" y="20" height="18" fill="rgb(252, 254, 211)"></rect>
       <rect x="159.59154929577466" width="6.323943661971811" y="20" height="18" fill="rgb(252, 254, 211)"></rect>
@@ -1316,5 +1310,11 @@
       <rect x="459.8732394366197" width="6.323943661971839" y="20" height="18" fill="rgb(252, 254, 211)"></rect>
       <rect x="467.19718309859155" width="6.323943661971839" y="20" height="18" fill="rgb(214, 239, 179)"></rect>
     </g>
+  </g>
+  <g aria-label="fy-axis label" transform="translate(-96.5,0.5)">
+    <text y="0.71em" transform="translate(100,305) rotate(-90)">sport</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,33.5)">
+    <text transform="translate(620,584)">weight →</text>
   </g>
 </svg>

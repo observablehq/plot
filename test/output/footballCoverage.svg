@@ -202,9 +202,6 @@
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(78,400)">M0</text>
     </g>
-    <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
-      <text transform="translate(78,400)">coverage</text>
-    </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="116" y1="400" y2="400"></line>
       <line x1="40" x2="116" y1="362" y2="362"></line>
@@ -412,5 +409,8 @@
       <circle cx="78" cy="194.8" r="3"></circle>
       <circle cx="82.75" cy="179.60000000000002" r="3"></circle>
     </g>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,400)">coverage</text>
   </g>
 </svg>

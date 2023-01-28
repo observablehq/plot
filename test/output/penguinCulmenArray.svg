@@ -1312,9 +1312,6 @@
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(120.5,30)">MALE</text>
     </g>
-    <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
-      <text y="0.71em" transform="translate(120.5,30)">sex</text>
-    </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="201" y1="179.38909090909092" y2="179.38909090909092"></line>
       <line x1="40" x2="201" y1="149.02545454545455" y2="149.02545454545455"></line>
@@ -2946,9 +2943,6 @@
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(201,113.5)">Chinstrap</text>
     </g>
-    <g aria-label="fy-axis label" transform="translate(77.5,0.5)">
-      <text transform="translate(201,113.5) rotate(-90)">species</text>
-    </g>
   </g>
   <g aria-label="facet" transform="translate(358,372)">
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
@@ -3323,5 +3317,11 @@
       <circle cx="53.416666666666686" cy="104.69454545454548" r="3"></circle>
       <circle cx="89.83333333333333" cy="121.69818181818182" r="3"></circle>
     </g>
+  </g>
+  <g aria-label="fy-axis label" transform="translate(78.5,0.5)">
+    <text transform="translate(559,299.5) rotate(-90)">species</text>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(299.5,30)">sex</text>
   </g>
 </svg>

@@ -1,4 +1,4 @@
-import {extent, max, min, select} from "d3";
+import {select} from "d3";
 import {Channel} from "./channel.js";
 import {Context, create} from "./context.js";
 import {Dimensions} from "./dimensions.js";
@@ -7,7 +7,7 @@ import {Legends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {arrayify, isNone, isScaleOptions, map, yes, maybeInterval} from "./options.js";
-import {Scales, ScaleFunctions, autoScaleRange, exposeScales, innerDimensions} from "./scales.js";
+import {Scales, ScaleFunctions, autoScaleRange, exposeScales, innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {consumeWarnings, warn} from "./warnings.js";
@@ -139,13 +139,15 @@ export function plot(options = {}) {
 
   const {fx, fy} = scales;
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
+  const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
   const context = Context(options, subdimensions, scaleDescriptors);
 
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
   for (const [mark, state] of stateByMark) {
     if (mark.initializer != null) {
-      const update = mark.initializer(state.data, state.facets, state.channels, scales, subdimensions, context);
+      const dimensions = mark.super ? superdimensions : subdimensions;
+      const update = mark.initializer(state.data, state.facets, state.channels, scales, dimensions, context);
       if (update.data !== undefined) {
         state.data = update.data;
       }
@@ -197,6 +199,7 @@ export function plot(options = {}) {
   // Compute value objects, applying scales and projection as needed.
   for (const [mark, state] of stateByMark) {
     state.values = mark.scale(state.channels, scales, context);
+    // TODO Clean this up.
     if (mark.super) {
       const state = stateByMark.get(mark);
       for (const fkey in state.channels) {
@@ -286,7 +289,6 @@ export function plot(options = {}) {
   }
 
   // Render non-faceted marks.
-  const renderDimensions = facets === undefined ? dimensions : outerDimensions(scales, dimensions);
   for (const mark of marks) {
     if (facets !== undefined && !mark.super) continue;
     const {channels, values, facets: indexes} = stateByMark.get(mark);
@@ -296,7 +298,7 @@ export function plot(options = {}) {
       index = mark.filter(index, channels, values);
       if (index.length === 0) continue;
     }
-    const node = mark.render(index, scales, values, renderDimensions, context);
+    const node = mark.render(index, scales, values, superdimensions, context);
     if (node != null) svg.appendChild(node);
   }
 
@@ -609,8 +611,8 @@ function inheritScaleLabels(newScales, scales) {
 // This differs from the other outerDimensions in that it accounts for rounding
 // and outer padding in the fact scales; we want the frame to align exactly with
 // the actual range, not the desired range.
-function outerDimensions({fx, fy}, dimensions) {
-  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+function actualDimensions({fx, fy}, dimensions) {
+  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = outerDimensions(dimensions);
   const fxr = fx && outerRange(fx);
   const fyr = fy && outerRange(fy);
   return {

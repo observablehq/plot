@@ -31,9 +31,6 @@
       <text y="0.32em" transform="translate(40,88.29818181818183)">50</text>
       <text y="0.32em" transform="translate(40,57.93454545454547)">55</text>
     </g>
-    <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
-      <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
-    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
       <circle cx="131.99999999999997" cy="109.55272727272728" r="2"></circle>
@@ -1119,9 +1116,6 @@
   <g aria-label="facet" transform="translate(179,0)">
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(120.5,30)">MALE</text>
-    </g>
-    <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
-      <text y="0.71em" transform="translate(120.5,30)">sex</text>
     </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
@@ -2541,9 +2535,6 @@
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(201,113.5)">Chinstrap</text>
     </g>
-    <g aria-label="fy-axis label" transform="translate(77.5,0.5)">
-      <text transform="translate(201,113.5) rotate(-90)">species</text>
-    </g>
   </g>
   <g aria-label="facet" transform="translate(358,372)">
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
@@ -2556,9 +2547,6 @@
     <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(76.41666666666667,197)">15</text>
       <text y="0.71em" transform="translate(172.25,197)">20</text>
-    </g>
-    <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
-      <text transform="translate(201,197)">culmen_depth_mm →</text>
     </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
@@ -2907,5 +2895,17 @@
       <circle cx="53.416666666666686" cy="104.69454545454548" r="3"></circle>
       <circle cx="89.83333333333333" cy="121.69818181818182" r="3"></circle>
     </g>
+  </g>
+  <g aria-label="fy-axis label" transform="translate(78.5,0.5)">
+    <text transform="translate(559,299.5) rotate(-90)">species</text>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(299.5,30)">sex</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
+    <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(78.5,28.5)">
+    <text transform="translate(559,569)">culmen_depth_mm →</text>
   </g>
 </svg>
