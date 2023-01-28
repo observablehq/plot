@@ -31,9 +31,6 @@ export class Mark {
     this.transform = this.initializer ? options.transform : basic(options).transform;
     if (facet === null || facet === false) {
       this.facet = null;
-    } else if (isCross(facet)) {
-      channels = crossFacetChannels(channels);
-      this.facet = "cross";
     } else {
       this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
       this.fx = fx;
@@ -42,6 +39,7 @@ export class Mark {
     this.facetAnchor = maybeFacetAnchor(facetAnchor);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
+    channels = maybeSuperChannels(channels, options);
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
     this.channels = Object.fromEntries(
       Object.entries(channels).filter(([name, {value, optional}]) => {
@@ -96,15 +94,21 @@ export class Mark {
   }
 }
 
-function isCross(facet) {
-  return /^\s*cross\s*$/i.test(facet);
-}
-
-function crossFacetChannels(channels) {
-  return Object.fromEntries(Object.entries(channels).map(([name, channel]) => [name, crossFacetChannel(channel)]));
-}
-
-function crossFacetChannel(channel) {
-  const {scale} = channel;
-  return scale === "x" ? {...channel, scale: "fx"} : scale === "y" ? {...channel, scale: "fy"} : channel;
+// For any channel bound to the x or y scale, allow the channel to be optionally
+// specified in facet coordinates using the fx or fy scale in addition to the
+// normal coordinates, or both; this is intended for “super” marks.
+function maybeSuperChannels(channels, options) {
+  let superChannels = channels;
+  for (const name in channels) {
+    const channel = channels[name];
+    const {scale} = channel;
+    if (scale !== "x" && scale !== "y") continue;
+    const fname = `f${name}`;
+    if (options[fname] != null) {
+      if (superChannels === channels) superChannels = {...channels};
+      superChannels[fname] = {...channel, value: options[fname], scale: `f${scale}`};
+      superChannels[name] = {...channel, optional: true}; // never required
+    }
+  }
+  return superChannels;
 }
