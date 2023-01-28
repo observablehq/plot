@@ -1,4 +1,4 @@
-import {select} from "d3";
+import {extent, max, min, select} from "d3";
 import {Channel} from "./channel.js";
 import {Context, create} from "./context.js";
 import {Dimensions} from "./dimensions.js";
@@ -65,7 +65,7 @@ export function plot(options = {}) {
     // mark-level facets, compute an index for that mark’s data and options.
     // Otherwise, use the top-level facet index.
     for (const mark of marks) {
-      if (mark.facet === null) continue;
+      if (mark.facet === null || mark.facet === "cross") continue;
       const facetState = facetStateByMark.get(mark);
       if (facetState === undefined) continue;
       facetState.facetsIndex = mark.fx != null || mark.fy != null ? facetFilter(facets, facetState) : topFacetsIndex;
@@ -141,7 +141,8 @@ export function plot(options = {}) {
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const context = Context(options, subdimensions, scaleDescriptors);
 
-  // Reinitialize; for deriving channels dependent on other channels.
+  // Reinitialize; for deriving channels dependent on other channels. TODO This
+  // is sending the wrong scales and subdimensions to cross-facet marks…
   const newByScale = new Set();
   for (const [mark, state] of stateByMark) {
     if (mark.initializer != null) {
@@ -230,7 +231,7 @@ export function plot(options = {}) {
     .call(applyInlineStyles, style)
     .node();
 
-  // Render (possibly faceted) marks.
+  // Render facets.
   if (facets !== undefined) {
     const facetDomains = {x: fx?.domain(), y: fy?.domain()};
 
@@ -249,6 +250,7 @@ export function plot(options = {}) {
       .each(function (f) {
         let empty = true;
         for (const mark of marks) {
+          if (mark.facet === "cross") continue; // rendered below
           const {channels, values, facets: indexes} = stateByMark.get(mark);
           if (!(mark.facetAnchor?.(facets, facetDomains, f) ?? !f.empty)) continue;
           let index = null;
@@ -265,18 +267,25 @@ export function plot(options = {}) {
         }
         if (empty) this.remove();
       });
-  } else {
-    for (const mark of marks) {
-      const {channels, values, facets: indexes} = stateByMark.get(mark);
-      let index = null;
-      if (indexes) {
-        index = indexes[0];
-        index = mark.filter(index, channels, values);
-        if (index.length === 0) continue;
-      }
-      const node = mark.render(index, scales, values, dimensions, context);
-      if (node != null) svg.appendChild(node);
+  }
+
+  // Render non-faceted marks. TODO Perhaps cross-facet marks should be listed
+  // separately from the other marks, since their z-order with respect to the
+  // other marks is ignored. And also, we want to ignore them when computing the
+  // facet state (we do?), so it might be helpful to separate them out.
+  const renderScales = facets === undefined ? scales : outerScales(scales);
+  const renderDimensions = facets === undefined ? dimensions : outerDimensions(scales, dimensions);
+  for (const mark of marks) {
+    if (facets !== undefined && mark.facet !== "cross") continue;
+    const {channels, values, facets: indexes} = stateByMark.get(mark);
+    let index = null;
+    if (indexes) {
+      index = indexes[0];
+      index = mark.filter(index, channels, values);
+      if (index.length === 0) continue;
     }
+    const node = mark.render(index, renderScales, values, renderDimensions, context);
+    if (node != null) svg.appendChild(node);
   }
 
   // Wrap the plot in a figure with a caption, if desired.
@@ -427,7 +436,7 @@ function maybeTopFacet(facet, options) {
 // Returns the facet groups, and possibly fx and fy channels, associated with a
 // mark, either through top-level faceting or mark-level facet options {fx, fy}.
 function maybeMarkFacet(mark, topFacetState, options) {
-  if (mark.facet === null) return;
+  if (mark.facet === null || mark.facet === "cross") return;
 
   // This mark defines a mark-level facet. TODO There’s some code duplication
   // here with maybeTopFacet that we could reduce.
@@ -583,4 +592,37 @@ function inheritScaleLabels(newScales, scales) {
     }
   }
   return newScales;
+}
+
+// TODO This is muddling things a bit: we need it to so that the mark applies
+// the expected transform (see applyTransform’s use of the x and y scales), but
+// maybe it would be cleaner for applyTransform to check whether the mark’s
+// facet is “cross” and pull out the fx and fy scales instead.
+function outerScales({x, y, fx, fy, ...scales}) {
+  return {...scales, x: fx, y: fy};
+}
+
+// This differs from the other outerDimensions in that it accounts for rounding
+// and outer padding in the fact scales; we want the frame to align exactly with
+// the actual range, not the desired range.
+function outerDimensions({fx, fy}, dimensions) {
+  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+  const fxr = fx && outerRange(fx);
+  const fyr = fy && outerRange(fy);
+  return {
+    marginTop: fy ? fyr[0] : marginTop,
+    marginRight: fx ? width - fxr[1] : marginRight,
+    marginBottom: fy ? height - fyr[1] : marginBottom,
+    marginLeft: fx ? fxr[0] : marginLeft,
+    width,
+    height
+  };
+}
+
+function outerRange(scale) {
+  const domain = scale.domain();
+  let x1 = scale(domain[0]);
+  let x2 = scale(domain[domain.length - 1]);
+  if (x2 < x1) [x1, x2] = [x2, x1];
+  return [x1, x2 + scale.bandwidth()];
 }

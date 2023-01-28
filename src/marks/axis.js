@@ -130,28 +130,29 @@ function axisKy(
             fill,
             fillOpacity,
             ...options,
+            facet: "cross",
             x: null,
             y: null,
             initializer: function (data, facets, channels, scales, dimensions) {
               const scale = scales[k];
-              const {marginTop, marginRight, marginBottom, marginLeft} = k === "fy" ? dimensions.facet : dimensions;
+              // const {marginTop, marginRight, marginBottom, marginLeft} = k === "fy" ? dimensions.facet : dimensions;
               const cla = labelAnchor ?? (scale.bandwidth ? "center" : "top");
-              const clo = labelOffset ?? (anchor === "right" ? marginRight : marginLeft) - 3;
+              // const clo = labelOffset ?? (anchor === "right" ? marginRight : marginLeft) - 3;
               if (cla === "center") {
                 this.textAnchor = undefined; // middle
                 this.lineAnchor = anchor === "right" ? "bottom" : "top";
-                this.facetAnchor = maybeFacetAnchor(`${anchor}-middle`);
                 this.frameAnchor = anchor;
                 this.rotate = -90;
               } else {
                 this.textAnchor = anchor === "right" ? "end" : "start";
                 this.lineAnchor = cla;
-                this.facetAnchor = maybeFacetAnchor(`${cla}-${anchor}`);
                 this.frameAnchor = `${cla}-${anchor}`;
                 this.rotate = 0;
               }
-              this.dy = cla === "top" ? 3 - marginTop : cla === "bottom" ? marginBottom - 3 : 0;
-              this.dx = anchor === "right" ? clo : -clo;
+              // TODO This is wrong; we’re being passed the wrong dimensions
+              // during initialization now that this is a cross-facet mark.
+              // this.dy = cla === "top" ? 3 - marginTop : cla === "bottom" ? marginBottom - 3 : 0;
+              // this.dx = anchor === "right" ? clo : -clo;
               this.ariaLabel = `${k}-axis label`;
               return {
                 facets: [[0]],
@@ -249,25 +250,26 @@ function axisKx(
             fill,
             fillOpacity,
             ...options,
+            facet: "cross",
             x: null,
             y: null,
             initializer: function (data, facets, channels, scales, dimensions) {
               const scale = scales[k];
-              const {marginTop, marginRight, marginBottom, marginLeft} = k === "fx" ? dimensions.facet : dimensions;
+              // const {marginTop, marginRight, marginBottom, marginLeft} = k === "fx" ? dimensions.facet : dimensions;
               const cla = labelAnchor ?? (scale.bandwidth ? "center" : "right");
-              const clo = labelOffset ?? (anchor === "top" ? marginTop : marginBottom) - 3;
+              // const clo = labelOffset ?? (anchor === "top" ? marginTop : marginBottom) - 3;
               if (cla === "center") {
-                this.facetAnchor = maybeFacetAnchor(`${anchor}-middle`);
                 this.frameAnchor = anchor;
                 this.textAnchor = undefined; // middle
               } else {
-                this.facetAnchor = maybeFacetAnchor(`${anchor}-${cla}`);
                 this.frameAnchor = `${anchor}-${cla}`;
                 this.textAnchor = cla === "right" ? "end" : "start";
               }
               this.lineAnchor = anchor;
-              this.dy = anchor === "top" ? -clo : clo;
-              this.dx = cla === "right" ? marginRight - 3 : cla === "left" ? 3 - marginLeft : 0;
+              // TODO This is wrong; we’re being passed the wrong dimensions
+              // during initialization now that this is a cross-facet mark.
+              // this.dy = anchor === "top" ? -clo : clo;
+              // this.dx = cla === "right" ? marginRight - 3 : cla === "left" ? 3 - marginLeft : 0;
               this.ariaLabel = `${k}-axis label`;
               return {
                 facets: [[0]],

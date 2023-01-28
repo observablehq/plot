@@ -31,6 +31,9 @@ export class Mark {
     this.transform = this.initializer ? options.transform : basic(options).transform;
     if (facet === null || facet === false) {
       this.facet = null;
+    } else if (isCross(facet)) {
+      channels = crossFacetChannels(channels);
+      this.facet = "cross";
     } else {
       this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
       this.fx = fx;
@@ -91,4 +94,17 @@ export class Mark {
     if (context.projection) this.project(channels, values, context);
     return values;
   }
+}
+
+function isCross(facet) {
+  return /^\s*cross\s*$/i.test(facet);
+}
+
+function crossFacetChannels(channels) {
+  return Object.fromEntries(Object.entries(channels).map(([name, channel]) => [name, crossFacetChannel(channel)]));
+}
+
+function crossFacetChannel(channel) {
+  const {scale} = channel;
+  return scale === "x" ? {...channel, scale: "fx"} : scale === "y" ? {...channel, scale: "fy"} : channel;
 }
