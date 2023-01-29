@@ -129,7 +129,7 @@ function axisKy(
             fill,
             fillOpacity,
             ...options,
-            super: true,
+            facet: "super",
             x: null,
             y: null,
             initializer: function (data, facets, channels, scales, dimensions) {
@@ -247,7 +247,7 @@ function axisKx(
             fill,
             fillOpacity,
             ...options,
-            super: true,
+            facet: "super",
             x: null,
             y: null,
             initializer: function (data, facets, channels, scales, dimensions) {

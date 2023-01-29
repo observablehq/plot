@@ -65,7 +65,7 @@ export function plot(options = {}) {
     // mark-level facets, compute an index for that mark’s data and options.
     // Otherwise, use the top-level facet index.
     for (const mark of marks) {
-      if (mark.facet === null) continue;
+      if (mark.facet === null || mark.facet === "super") continue;
       const facetState = facetStateByMark.get(mark);
       if (facetState === undefined) continue;
       facetState.facetsIndex = mark.fx != null || mark.fy != null ? facetFilter(facets, facetState) : topFacetsIndex;
@@ -146,7 +146,7 @@ export function plot(options = {}) {
   const newByScale = new Set();
   for (const [mark, state] of stateByMark) {
     if (mark.initializer != null) {
-      const dimensions = mark.super ? superdimensions : subdimensions;
+      const dimensions = mark.facet === "super" ? superdimensions : subdimensions;
       const update = mark.initializer(state.data, state.facets, state.channels, scales, dimensions, context);
       if (update.data !== undefined) {
         state.data = update.data;
@@ -251,7 +251,7 @@ export function plot(options = {}) {
       .each(function (f) {
         let empty = true;
         for (const mark of marks) {
-          if (mark.super) continue;
+          if (mark.facet === "super") continue; // rendered below
           const {channels, values, facets: indexes} = stateByMark.get(mark);
           if (!(mark.facetAnchor?.(facets, facetDomains, f) ?? !f.empty)) continue;
           let index = null;
@@ -272,7 +272,7 @@ export function plot(options = {}) {
 
   // Render non-faceted marks.
   for (const mark of marks) {
-    if (facets !== undefined && !mark.super) continue;
+    if (facets !== undefined && mark.facet !== "super") continue;
     const {channels, values, facets: indexes} = stateByMark.get(mark);
     let index = null;
     if (indexes) {
@@ -432,7 +432,7 @@ function maybeTopFacet(facet, options) {
 // Returns the facet groups, and possibly fx and fy channels, associated with a
 // mark, either through top-level faceting or mark-level facet options {fx, fy}.
 function maybeMarkFacet(mark, topFacetState, options) {
-  if (mark.facet === null) return;
+  if (mark.facet === null || mark.facet === "super") return;
 
   // This mark defines a mark-level facet. TODO There’s some code duplication
   // here with maybeTopFacet that we could reduce.

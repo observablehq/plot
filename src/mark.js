@@ -10,7 +10,6 @@ import {basic, initializer} from "./transforms/basic.js";
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
     const {
-      super: supe,
       facet = "auto",
       facetAnchor,
       fx,
@@ -30,36 +29,27 @@ export class Mark {
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
-    if (facet === null || facet === false) {
-      this.facet = null;
+    channels = maybeNamed(channels);
+    if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
+    if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
+    if (facet === null || facet === false) this.facet = null;
+    else if (isSuper(facet)) {
+      // Super-faceted marks currently disallow position channels; in the
+      // future, we could allow position to be specified in fx and fy in
+      // addition to (or instead of) x and y.
+      this.facet = "super";
+      if (fx || fy) throw new Error(`super-faceted marks cannot use fx or fy`);
+      for (const name in channels) {
+        const {scale, value} = channels[name];
+        if (value == null || (scale !== "x" && scale !== "y")) continue;
+        throw new Error(`super-faceted marks cannot use x or y`);
+      }
     } else {
       this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
       this.fx = fx;
       this.fy = fy;
     }
     this.facetAnchor = maybeFacetAnchor(facetAnchor);
-    channels = maybeNamed(channels);
-    if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
-    // Currently super marks disallow position channels; in the future, we could
-    // allow position to be specified in fx and fy in addition to (or instead
-    // of) x and y.
-    if (supe) {
-      if (this.facet === "auto" && !fx && !fy) this.facet = null;
-      if (this.facet !== null) throw new Error(`super marks cannot use fx or fy`);
-      for (const name in channels) {
-        const {scale, value} = channels[name];
-        if (value == null || (scale !== "x" && scale !== "y")) continue;
-        throw new Error(`super marks cannot use x or y`);
-      }
-    }
-    if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
-    this.channels = Object.fromEntries(
-      Object.entries(channels).filter(([name, {value, optional}]) => {
-        if (value != null) return true;
-        if (optional) return false;
-        throw new Error(`missing channel value: ${name}`);
-      })
-    );
     this.dx = +dx;
     this.dy = +dy;
     this.marginTop = +marginTop;
@@ -67,7 +57,13 @@ export class Mark {
     this.marginBottom = +marginBottom;
     this.marginLeft = +marginLeft;
     this.clip = maybeClip(clip);
-    this.super = !!supe;
+    this.channels = Object.fromEntries(
+      Object.entries(channels).filter(([name, {value, optional}]) => {
+        if (value != null) return true;
+        if (optional) return false;
+        throw new Error(`missing channel value: ${name}`);
+      })
+    );
   }
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
@@ -105,4 +101,8 @@ export class Mark {
     if (context.projection) this.project(channels, values, context);
     return values;
   }
+}
+
+function isSuper(value) {
+  return /^\s*super\s*$/i.test(value);
 }
