@@ -29,34 +29,17 @@ export class Mark {
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
-    channels = maybeNamed(channels);
-    if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
-    if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
-    if (facet === null || facet === false) this.facet = null;
-    else if (isSuper(facet)) {
-      // Super-faceted marks currently disallow position channels; in the
-      // future, we could allow position to be specified in fx and fy in
-      // addition to (or instead of) x and y.
-      this.facet = "super";
-      if (fx || fy) throw new Error(`super-faceted marks cannot use fx or fy`);
-      for (const name in channels) {
-        const {scale, value} = channels[name];
-        if (value == null || (scale !== "x" && scale !== "y")) continue;
-        throw new Error(`super-faceted marks cannot use x or y`);
-      }
+    if (facet === null || facet === false) {
+      this.facet = null;
     } else {
-      this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
+      this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude", "super"]);
       this.fx = fx;
       this.fy = fy;
     }
     this.facetAnchor = maybeFacetAnchor(facetAnchor);
-    this.dx = +dx;
-    this.dy = +dy;
-    this.marginTop = +marginTop;
-    this.marginRight = +marginRight;
-    this.marginBottom = +marginBottom;
-    this.marginLeft = +marginLeft;
-    this.clip = maybeClip(clip);
+    channels = maybeNamed(channels);
+    if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
+    if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
     this.channels = Object.fromEntries(
       Object.entries(channels).filter(([name, {value, optional}]) => {
         if (value != null) return true;
@@ -64,6 +47,24 @@ export class Mark {
         throw new Error(`missing channel value: ${name}`);
       })
     );
+    this.dx = +dx;
+    this.dy = +dy;
+    this.marginTop = +marginTop;
+    this.marginRight = +marginRight;
+    this.marginBottom = +marginBottom;
+    this.marginLeft = +marginLeft;
+    this.clip = maybeClip(clip);
+    // Super-faceting currently disallow position channels; in the future, we
+    // could allow position to be specified in fx and fy in addition to (or
+    // instead of) x and y.
+    if (this.facet === "super") {
+      if (fx || fy) throw new Error(`super-faceting cannot use fx or fy`);
+      for (const name in this.channels) {
+        const {scale} = channels[name];
+        if (scale !== "x" && scale !== "y") continue;
+        throw new Error(`super-faceting cannot use x or y`);
+      }
+    }
   }
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
@@ -101,8 +102,4 @@ export class Mark {
     if (context.projection) this.project(channels, values, context);
     return values;
   }
-}
-
-function isSuper(value) {
-  return /^\s*super\s*$/i.test(value);
 }
