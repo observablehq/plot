@@ -10,12 +10,9 @@ export default async function () {
     color: {
       legend: true
     },
-    facet: {
-      data: penguins,
-      x: "island"
-    },
     marks: [
       Plot.density(penguins, {
+        fx: "island",
         x: "flipper_length_mm",
         y: "culmen_length_mm",
         stroke: "species",
