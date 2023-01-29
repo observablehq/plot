@@ -96,10 +96,10 @@
   <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
     <text y="0.71em" transform="translate(347,30)">island</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-72.5,0.5)">
+  <g aria-label="y-axis label" transform="translate(-71.5,0.5)">
     <text y="0.71em" transform="translate(76,75) rotate(-90)">species</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(19.5,27.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(618,120)">Frequency →</text>
   </g>
 </svg>

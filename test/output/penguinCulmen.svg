@@ -2993,32 +2993,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(78.5,28.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
     <text transform="translate(559,569)">culmen_depth_mm →</text>
-  </g>
-  <rect aria-label="frame" fill="none" stroke="red" transform="translate(0.5,0.5)" x="40" y="30" width="519" height="539"></rect>
-  <g aria-label="text" fill="red" transform="translate(0.5,10.5)">
-    <text y="0.71em" transform="translate(299.5,30)">top</text>
-  </g>
-  <g aria-label="text" fill="red" text-anchor="end" transform="translate(-9.5,0.5)">
-    <text y="0.32em" transform="translate(559,299.5)">right</text>
-  </g>
-  <g aria-label="text" fill="red" transform="translate(0.5,-9.5)">
-    <text transform="translate(299.5,569)">bottom</text>
-  </g>
-  <g aria-label="text" fill="red" text-anchor="start" transform="translate(10.5,0.5)">
-    <text y="0.32em" transform="translate(40,299.5)">left</text>
-  </g>
-  <g aria-label="text" fill="red" text-anchor="end" transform="translate(-9.5,10.5)">
-    <text y="0.71em" transform="translate(559,30)">top-right</text>
-  </g>
-  <g aria-label="text" fill="red" text-anchor="start" transform="translate(10.5,10.5)">
-    <text y="0.71em" transform="translate(40,30)">top-left</text>
-  </g>
-  <g aria-label="text" fill="red" text-anchor="end" transform="translate(-9.5,-9.5)">
-    <text transform="translate(559,569)">bottom-right</text>
-  </g>
-  <g aria-label="text" fill="red" text-anchor="start" transform="translate(10.5,-9.5)">
-    <text transform="translate(40,569)">bottom-left</text>
   </g>
 </svg>

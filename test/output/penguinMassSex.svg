@@ -134,7 +134,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(67.5,28.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
     <text transform="translate(570,449)">Body mass (g) →</text>
   </g>
 </svg>

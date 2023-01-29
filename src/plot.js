@@ -602,6 +602,14 @@ function actualDimensions({fx, fy}, dimensions) {
     marginRight: fx ? width - fxr[1] : marginRight,
     marginBottom: fy ? height - fyr[1] : marginBottom,
     marginLeft: fx ? fxr[0] : marginLeft,
+    // Some marks, namely the x- and y-axis labels, want to know what the
+    // desired (rather than actual) margins are for positioning.
+    inset: {
+      marginTop: dimensions.marginTop,
+      marginRight: dimensions.marginRight,
+      marginBottom: dimensions.marginBottom,
+      marginLeft: dimensions.marginLeft
+    },
     width,
     height
   };

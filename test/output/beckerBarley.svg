@@ -475,7 +475,7 @@
   <g aria-label="y-axis label" transform="translate(-106.5,0.5)">
     <text y="0.71em" transform="translate(110,394.5) rotate(-90)">variety</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(87.5,28.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
     <text transform="translate(550,769)">yield →</text>
   </g>
 </svg>

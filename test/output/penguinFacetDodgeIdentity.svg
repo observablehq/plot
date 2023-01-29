@@ -421,7 +421,7 @@
       <circle cx="480" cy="46.5" r="2.5"></circle>
     </g>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,28.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,269)">body_mass_g →</text>
   </g>
 </svg>

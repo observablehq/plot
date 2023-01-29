@@ -2905,7 +2905,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(78.5,28.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
     <text transform="translate(559,569)">culmen_depth_mm →</text>
   </g>
 </svg>

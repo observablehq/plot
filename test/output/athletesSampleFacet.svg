@@ -583,7 +583,7 @@
   <g aria-label="fy-axis label" transform="translate(-96.5,0.5)">
     <text y="0.71em" transform="translate(100,305) rotate(-90)">sport</text>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,33.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,584)">weight →</text>
   </g>
 </svg>

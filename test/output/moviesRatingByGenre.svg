@@ -3326,7 +3326,7 @@
       <circle cx="595.5999999999999" cy="37.5" r="2.5" stroke="#ff9da7"></circle>
     </g>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-28.5)">
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-26.5)">
     <text y="0.71em" transform="translate(940,32)">IMDB Rating →</text>
   </g>
 </svg>
