@@ -3021,7 +3021,4 @@
   <g aria-label="text" fill="red" text-anchor="start" transform="translate(10.5,-9.5)">
     <text transform="translate(40,569)">bottom-left</text>
   </g>
-  <g aria-label="arrow" fill="none" stroke="red" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
-    <path d="M143.5,135.66545454545454A310.4696270243639,310.4696270243639 0,0,1 380,112.58909090909091M374.5365667320173,106.74521403442114L380,112.58909090909091L372.20733753595624,114.39862447371004"></path>
-  </g>
 </svg>

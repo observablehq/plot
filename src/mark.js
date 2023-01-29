@@ -30,7 +30,7 @@ export class Mark {
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
-    if (facet === null || facet === false || supe) {
+    if (facet === null || facet === false) {
       this.facet = null;
     } else {
       this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
@@ -40,7 +40,18 @@ export class Mark {
     this.facetAnchor = maybeFacetAnchor(facetAnchor);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
-    channels = supe ? superChannels(channels, options) : channels;
+    // Currently super marks disallow position channels; in the future, we could
+    // allow position to be specified in fx and fy in addition to (or instead
+    // of) x and y.
+    if (supe) {
+      if (this.facet === "auto" && !fx && !fy) this.facet = null;
+      if (this.facet !== null) throw new Error(`super marks cannot use fx or fy`);
+      for (const name in channels) {
+        const {scale, value} = channels[name];
+        if (value == null || (scale !== "x" && scale !== "y")) continue;
+        throw new Error(`super marks cannot use x or y`);
+      }
+    }
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
     this.channels = Object.fromEntries(
       Object.entries(channels).filter(([name, {value, optional}]) => {
@@ -94,23 +105,4 @@ export class Mark {
     if (context.projection) this.project(channels, values, context);
     return values;
   }
-}
-
-// For any channel bound to the x or y scale, allow the channel to be optionally
-// specified in facet coordinates using the fx or fy scale in addition to the
-// normal coordinates, or both.
-function superChannels(channels, options) {
-  let superChannels = channels;
-  for (const name in channels) {
-    const channel = channels[name];
-    const {scale} = channel;
-    if (scale !== "x" && scale !== "y") continue;
-    const fname = `f${name}`;
-    if (options[fname] != null) {
-      if (superChannels === channels) superChannels = {...channels};
-      superChannels[fname] = {...channel, value: options[fname], scale: `f${scale}`};
-      superChannels[name] = {...channel, optional: true}; // never required
-    }
-  }
-  return superChannels;
 }

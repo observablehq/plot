@@ -199,24 +199,6 @@ export function plot(options = {}) {
   // Compute value objects, applying scales and projection as needed.
   for (const [mark, state] of stateByMark) {
     state.values = mark.scale(state.channels, scales, context);
-    // TODO Clean this up.
-    if (mark.super) {
-      const state = stateByMark.get(mark);
-      for (const fkey in state.channels) {
-        const channel = state.channels[fkey];
-        const {scale} = channel;
-        if (scale !== "fx" && scale !== "fy") continue;
-        const key = fkey.slice(1);
-        const O = state.values[key];
-        if (O) {
-          const o = scale === "fx" ? -dimensions.marginLeft : -dimensions.marginTop;
-          state.values[key] = state.values[fkey].map((v, i) => v + o + O[i]);
-        } else {
-          const o = scales[scale].bandwidth() / 2;
-          state.values[key] = state.values[fkey].map((v) => v + o);
-        }
-      }
-    }
   }
 
   const {width, height} = dimensions;
