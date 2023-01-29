@@ -76,7 +76,7 @@ function axisKy(
     textStroke,
     textStrokeOpacity,
     textStrokeWidth,
-    tickSize = k === "fy" ? 0 : 6,
+    tickSize = k === "y" ? 6 : 0,
     tickPadding,
     tickRotate,
     x,
@@ -95,7 +95,7 @@ function axisKy(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
   return [
-    k !== "fy" && line && !isNone(line)
+    k === "y" && line && !isNone(line)
       ? new AxisLine(k, anchor, {
           stroke: line === true ? stroke : line,
           strokeOpacity,
@@ -192,7 +192,7 @@ function axisKx(
     textStroke,
     textStrokeOpacity,
     textStrokeWidth,
-    tickSize = k === "fx" ? 0 : 6,
+    tickSize = k === "x" ? 6 : 0,
     tickPadding,
     tickRotate,
     y,
@@ -211,7 +211,7 @@ function axisKx(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
   return [
-    k !== "fx" && line && !isNone(line)
+    k === "x" && line && !isNone(line)
       ? new AxisLine(k, anchor, {
           stroke: line === true ? stroke : line,
           strokeOpacity,
@@ -296,14 +296,14 @@ function axisTickKy(
     strokeWidth = 1,
     strokeLinecap = null,
     strokeLinejoin = null,
-    facetAnchor = anchor + (k === "fy" ? "" : "-empty"),
+    facetAnchor = anchor + (k === "y" ? "-empty" : ""),
     frameAnchor = anchor,
     tickSize,
     inset = 0,
     insetLeft = inset,
     insetRight = inset,
     dx = 0,
-    y = k === "fy" ? null : undefined,
+    y = k === "y" ? undefined : null,
     ...options
   }
 ) {
@@ -330,14 +330,14 @@ function axisTickKx(
     strokeWidth = 1,
     strokeLinecap = null,
     strokeLinejoin = null,
-    facetAnchor = anchor + (k === "fx" ? "" : "-empty"),
+    facetAnchor = anchor + (k === "x" ? "-empty" : ""),
     frameAnchor = anchor,
     tickSize,
     inset = 0,
     insetTop = inset,
     insetBottom = inset,
     dy = 0,
-    x = k === "fx" ? null : undefined,
+    x = k === "x" ? undefined : null,
     ...options
   }
 ) {
@@ -361,7 +361,7 @@ function axisTextKy(
   anchor,
   data,
   {
-    facetAnchor = anchor + (k === "fy" ? "" : "-empty"),
+    facetAnchor = anchor + (k === "y" ? "-empty" : ""),
     frameAnchor = anchor,
     tickSize,
     tickRotate = 0,
@@ -375,7 +375,7 @@ function axisTextKy(
     insetLeft = inset,
     insetRight = inset,
     dx = 0,
-    y = k === "fy" ? null : undefined,
+    y = k === "y" ? undefined : null,
     ...options
   }
 ) {
@@ -408,7 +408,7 @@ function axisTextKx(
   anchor,
   data,
   {
-    facetAnchor = anchor + (k === "fx" ? "" : "-empty"),
+    facetAnchor = anchor + (k === "x" ? "-empty" : ""),
     frameAnchor = anchor,
     tickSize,
     tickRotate = 0,
@@ -422,7 +422,7 @@ function axisTextKx(
     insetTop = inset,
     insetBottom = inset,
     dy = 0,
-    x = k === "fx" ? null : undefined,
+    x = k === "x" ? undefined : null,
     ...options
   }
 ) {
@@ -546,11 +546,11 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
           data = scale.domain();
         }
       }
-      if (k === "fy" || k === "fx") {
+      if (k === "y" || k === "x") {
+        facets = [range(data)]; // TODO allow faceted ticks?
+      } else {
         channels[k] = {scale: k, value: identity};
         facets = undefined; // computed automatically by plot
-      } else {
-        facets = [range(data)]; // TODO allow faceted ticks?
       }
       initialize?.call(this, scale, ticks, channels);
       return {
