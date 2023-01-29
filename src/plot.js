@@ -476,7 +476,6 @@ function inferAxes(marks, channelsByScale, options) {
     fx = {},
     fy = {},
     axis,
-    line,
     grid,
     facet = {},
     facet: {axis: facetAxis = axis, grid: facetGrid} = facet,
@@ -505,11 +504,10 @@ function inferAxes(marks, channelsByScale, options) {
   if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
 
   const axes = [];
-  const defaults = {line};
-  maybeAxis(axes, fyAxis, axisFy, fyGrid, gridFy, "right", "left", null, fy);
-  maybeAxis(axes, fxAxis, axisFx, fxGrid, gridFx, "top", "bottom", null, fx);
-  maybeAxis(axes, yAxis, axisY, yGrid, gridY, "left", "right", defaults, y);
-  maybeAxis(axes, xAxis, axisX, xGrid, gridX, "bottom", "top", defaults, x);
+  maybeAxis(axes, fyAxis, axisFy, fyGrid, gridFy, "right", "left", facet, fy);
+  maybeAxis(axes, fxAxis, axisFx, fxGrid, gridFx, "top", "bottom", facet, fx);
+  maybeAxis(axes, yAxis, axisY, yGrid, gridY, "left", "right", options, y);
+  maybeAxis(axes, xAxis, axisX, xGrid, gridX, "bottom", "top", options, x);
   return axes;
 }
 
@@ -530,7 +528,7 @@ function axisOptions(
   anchor,
   defaults,
   {
-    line = defaults?.line,
+    line = defaults.line,
     ticks,
     tickSize,
     tickPadding,
@@ -539,7 +537,7 @@ function axisOptions(
     fontVariant,
     ariaLabel,
     ariaDescription,
-    label,
+    label = defaults.label,
     labelAnchor,
     labelOffset
   }

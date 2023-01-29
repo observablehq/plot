@@ -116,61 +116,61 @@ function axisKy(
         })
       : null,
     !isNoneish(fill)
-      ? [
-          axisTextKy(k, anchor, data, {
-            fill,
-            fillOpacity,
-            stroke: textStroke,
-            strokeOpacity: textStrokeOpacity,
-            strokeWidth: textStrokeWidth,
-            textAnchor,
-            tickSize,
-            tickPadding,
-            tickRotate,
-            x,
-            marginTop,
-            marginRight,
-            marginBottom,
-            marginLeft,
-            ...options
-          }),
-          text([], {
-            fill,
-            fillOpacity,
-            ...options,
-            facet: "super",
-            x: null,
-            y: null,
-            initializer: function (data, facets, channels, scales, dimensions) {
-              const scale = scales[k];
-              const {marginTop, marginRight, marginBottom, marginLeft} = (k === "y" && dimensions.inset) || dimensions;
-              const cla = labelAnchor ?? (scale.bandwidth ? "center" : "top");
-              const clo = labelOffset ?? (anchor === "right" ? marginRight : marginLeft) - 3;
-              if (cla === "center") {
-                this.textAnchor = undefined; // middle
-                this.lineAnchor = anchor === "right" ? "bottom" : "top";
-                this.frameAnchor = anchor;
-                this.rotate = -90;
-              } else {
-                this.textAnchor = anchor === "right" ? "end" : "start";
-                this.lineAnchor = cla;
-                this.frameAnchor = `${cla}-${anchor}`;
-                this.rotate = 0;
-              }
-              this.dy = cla === "top" ? 3 - marginTop : cla === "bottom" ? marginBottom - 3 : 0;
-              this.dx = anchor === "right" ? clo : -clo;
-              this.ariaLabel = `${k}-axis label`;
-              return {
-                facets: [[0]],
-                channels: {
-                  text: {
-                    value: [label === undefined ? inferAxisLabel(k, scale, cla) : label]
-                  }
-                }
-              };
+      ? axisTextKy(k, anchor, data, {
+          fill,
+          fillOpacity,
+          stroke: textStroke,
+          strokeOpacity: textStrokeOpacity,
+          strokeWidth: textStrokeWidth,
+          textAnchor,
+          tickSize,
+          tickPadding,
+          tickRotate,
+          x,
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
+          ...options
+        })
+      : null,
+    !isNoneish(fill) && label !== null
+      ? text([], {
+          fill,
+          fillOpacity,
+          ...options,
+          facet: "super",
+          x: null,
+          y: null,
+          initializer: function (data, facets, channels, scales, dimensions) {
+            const scale = scales[k];
+            const {marginTop, marginRight, marginBottom, marginLeft} = (k === "y" && dimensions.inset) || dimensions;
+            const cla = labelAnchor ?? (scale.bandwidth ? "center" : "top");
+            const clo = labelOffset ?? (anchor === "right" ? marginRight : marginLeft) - 3;
+            if (cla === "center") {
+              this.textAnchor = undefined; // middle
+              this.lineAnchor = anchor === "right" ? "bottom" : "top";
+              this.frameAnchor = anchor;
+              this.rotate = -90;
+            } else {
+              this.textAnchor = anchor === "right" ? "end" : "start";
+              this.lineAnchor = cla;
+              this.frameAnchor = `${cla}-${anchor}`;
+              this.rotate = 0;
             }
-          })
-        ]
+            this.dy = cla === "top" ? 3 - marginTop : cla === "bottom" ? marginBottom - 3 : 0;
+            this.dx = anchor === "right" ? clo : -clo;
+            this.ariaLabel = `${k}-axis label`;
+            return {
+              facets: [[0]],
+              channels: {
+                text: {
+                  value: [label === undefined ? inferAxisLabel(k, scale, cla) : label]
+                }
+              }
+            };
+          }
+        })
       : null
   ];
 }
@@ -232,58 +232,58 @@ function axisKx(
         })
       : null,
     !isNoneish(fill)
-      ? [
-          axisTextKx(k, anchor, data, {
-            fill,
-            fillOpacity,
-            stroke: textStroke,
-            strokeOpacity: textStrokeOpacity,
-            strokeWidth: textStrokeWidth,
-            textAnchor,
-            tickSize,
-            tickPadding,
-            tickRotate,
-            y,
-            marginTop,
-            marginRight,
-            marginBottom,
-            marginLeft,
-            ...options
-          }),
-          text([], {
-            fill,
-            fillOpacity,
-            ...options,
-            facet: "super",
-            x: null,
-            y: null,
-            initializer: function (data, facets, channels, scales, dimensions) {
-              const scale = scales[k];
-              const {marginTop, marginRight, marginBottom, marginLeft} = (k === "x" && dimensions.inset) || dimensions;
-              const cla = labelAnchor ?? (scale.bandwidth ? "center" : "right");
-              const clo = labelOffset ?? (anchor === "top" ? marginTop : marginBottom) - 3;
-              if (cla === "center") {
-                this.frameAnchor = anchor;
-                this.textAnchor = undefined; // middle
-              } else {
-                this.frameAnchor = `${anchor}-${cla}`;
-                this.textAnchor = cla === "right" ? "end" : "start";
-              }
-              this.lineAnchor = anchor;
-              this.dy = anchor === "top" ? -clo : clo;
-              this.dx = cla === "right" ? marginRight - 3 : cla === "left" ? 3 - marginLeft : 0;
-              this.ariaLabel = `${k}-axis label`;
-              return {
-                facets: [[0]],
-                channels: {
-                  text: {
-                    value: [label === undefined ? inferAxisLabel(k, scale, cla) : label]
-                  }
-                }
-              };
+      ? axisTextKx(k, anchor, data, {
+          fill,
+          fillOpacity,
+          stroke: textStroke,
+          strokeOpacity: textStrokeOpacity,
+          strokeWidth: textStrokeWidth,
+          textAnchor,
+          tickSize,
+          tickPadding,
+          tickRotate,
+          y,
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
+          ...options
+        })
+      : null,
+    !isNoneish(fill) && label !== null
+      ? text([], {
+          fill,
+          fillOpacity,
+          ...options,
+          facet: "super",
+          x: null,
+          y: null,
+          initializer: function (data, facets, channels, scales, dimensions) {
+            const scale = scales[k];
+            const {marginTop, marginRight, marginBottom, marginLeft} = (k === "x" && dimensions.inset) || dimensions;
+            const cla = labelAnchor ?? (scale.bandwidth ? "center" : "right");
+            const clo = labelOffset ?? (anchor === "top" ? marginTop : marginBottom) - 3;
+            if (cla === "center") {
+              this.frameAnchor = anchor;
+              this.textAnchor = undefined; // middle
+            } else {
+              this.frameAnchor = `${anchor}-${cla}`;
+              this.textAnchor = cla === "right" ? "end" : "start";
             }
-          })
-        ]
+            this.lineAnchor = anchor;
+            this.dy = anchor === "top" ? -clo : clo;
+            this.dx = cla === "right" ? marginRight - 3 : cla === "left" ? 3 - marginLeft : 0;
+            this.ariaLabel = `${k}-axis label`;
+            return {
+              facets: [[0]],
+              channels: {
+                text: {
+                  value: [label === undefined ? inferAxisLabel(k, scale, cla) : label]
+                }
+              }
+            };
+          }
+        })
       : null
   ];
 }
