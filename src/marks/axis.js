@@ -7,7 +7,6 @@ import {range, valueof, arrayify, constant, keyword, identity, number} from "../
 import {isNone, isNoneish, isIterable, isTemporal, maybeInterval, orderof} from "../options.js";
 import {isTemporalScale} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
-import {maybeTimeInterval, maybeUtcInterval} from "../time.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
@@ -490,13 +489,8 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
     initializer(options, function (data, facets, _channels, scales) {
       const {[k]: scale} = scales;
       if (!scale) throw new Error(`missing scale: ${k}`);
-      let {ticks} = options;
-      // TODO Again, here we need the full scale descriptor rather than just the
-      // scale function: we need to know the type of the scale which cannot be
-      // inferred from the function alone.
-      if (isTemporalScale(scale) && typeof ticks === "string") {
-        ticks = (scale.type === "time" ? maybeTimeInterval : maybeUtcInterval)(ticks);
-      }
+      let {ticks, interval} = options;
+      if (isTemporalScale(scale) && typeof ticks === "string") (interval = ticks), (ticks = undefined);
       if (data == null) {
         if (isIterable(ticks)) {
           data = arrayify(ticks);
@@ -504,8 +498,7 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
           if (ticks !== undefined) {
             data = scale.ticks(ticks);
           } else {
-            let {interval = scale.interval} = options;
-            interval = maybeInterval(interval);
+            interval = maybeInterval(interval === undefined ? scale.interval : interval, scale.type);
             if (interval !== undefined) {
               // For time scales, we could pass the interval directly to
               // scale.ticks because it’s supported by d3.utcTicks; but
@@ -579,8 +572,7 @@ function inferTextChannel(scale, ticks, tickFormat) {
 
 // D3’s ordinal scales simply use toString by default, but if the ordinal scale
 // domain (or ticks) are numbers or dates (say because we’re applying a time
-// interval to the ordinal scale), we want Plot’s default formatter. TODO Remove
-// maybeAutoTickFormat.
+// interval to the ordinal scale), we want Plot’s default formatter.
 function inferTickFormat(scale, ticks, tickFormat) {
   return scale.tickFormat
     ? scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)
@@ -625,12 +617,19 @@ function inferFontVariant(scale) {
   return scale.bandwidth && scale.interval === undefined ? undefined : "tabular-nums";
 }
 
+// Determines whether the scale points in the “positive” (right or down) or
+// “negative” (left or up) direction; if the scale order cannot be determined,
+// returns NaN; used to assign an appropriate label arrow.
+function inferScaleOrder(scale) {
+  return Math.sign(orderof(scale.domain())) * Math.sign(orderof(scale.range()));
+}
+
 // Takes the scale label, and if this is not an ordinal scale and the label was
 // inferred from an associated channel, adds an orientation-appropriate arrow.
 function inferAxisLabel(key, scale, labelAnchor) {
   const label = scale.label;
   if (scale.bandwidth || !label?.inferred) return label;
-  const order = Math.sign(orderof(scale.domain())) * Math.sign(orderof(scale.range()));
+  const order = inferScaleOrder(scale);
   return order
     ? key === "x" || labelAnchor === "center"
       ? (key === "x") === order < 0

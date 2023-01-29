@@ -102,11 +102,14 @@ export function Scales(
 
 export function ScaleFunctions(scales) {
   return Object.fromEntries(
-    Object.entries(scales).map(([name, {scale, interval, label}]) => {
-      if (interval != null) scale.interval = interval; // for axis
-      if (label != null) scale.label = label; // for axis
-      return [name, scale];
-    })
+    Object.entries(scales)
+      .filter(([, {scale}]) => scale) // drop identity scales
+      .map(([name, {scale, type, interval, label}]) => {
+        scale.type = type; // for axis
+        if (interval != null) scale.interval = interval; // for axis
+        if (label != null) scale.label = label; // for axis
+        return [name, scale];
+      })
   );
 }
 
@@ -143,8 +146,7 @@ function inferScaleLabel(channels = [], scale) {
 }
 
 // Returns the dimensions of the outer frame; this is subdivided into facets
-// with the margins of each facet collapsing into the outer margins. TODO Super
-// marks need the smaller margins to place axis labels closer to the axes.
+// with the margins of each facet collapsing into the outer margins.
 export function outerDimensions(dimensions) {
   const {
     marginTop,

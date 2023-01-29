@@ -79,7 +79,7 @@ export function ScaleQ(
     reverse
   }
 ) {
-  interval = maybeInterval(interval);
+  interval = maybeInterval(interval, type);
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   reverse = !!reverse;
 

@@ -364,9 +364,10 @@ function applyScaleTransform(channel, options) {
   const {scale} = channel;
   if (scale == null) return;
   const {
+    type,
     percent,
     interval,
-    transform = percent ? (x) => x * 100 : maybeInterval(interval)?.floor
+    transform = percent ? (x) => x * 100 : maybeInterval(interval, type)?.floor
   } = options[scale] ?? {};
   if (transform != null) channel.value = map(channel.value, transform);
 }

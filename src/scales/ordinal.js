@@ -13,7 +13,7 @@ import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js
 export const ordinalImplicit = Symbol("ordinal");
 
 function ScaleO(key, scale, channels, {type, interval, domain, range, reverse, hint}) {
-  interval = maybeInterval(interval);
+  interval = maybeInterval(interval, type);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
@@ -27,7 +27,7 @@ function ScaleO(key, scale, channels, {type, interval, domain, range, reverse, h
 }
 
 export function ScaleOrdinal(key, channels, {type, interval, domain, range, scheme, unknown, ...options}) {
-  interval = maybeInterval(interval);
+  interval = maybeInterval(interval, type);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   let hint;
   if (registry.get(key) === symbol) {
