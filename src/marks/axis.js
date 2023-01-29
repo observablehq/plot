@@ -22,29 +22,41 @@ function maybeAnchor({anchor} = {}, anchors) {
   return anchor === undefined ? anchors[0] : keyword(anchor, "anchor", anchors);
 }
 
+function anchorY(options) {
+  return maybeAnchor(options, ["left", "right"]);
+}
+
+function anchorFy(options) {
+  return maybeAnchor(options, ["right", "left"]);
+}
+
+function anchorX(options) {
+  return maybeAnchor(options, ["bottom", "top"]);
+}
+
+function anchorFx(options) {
+  return maybeAnchor(options, ["top", "bottom"]);
+}
+
 export function axisY() {
   const [data, options] = maybeData(...arguments);
-  const anchor = maybeAnchor(options, ["left", "right"]);
-  return axisKy("y", anchor, data, options);
+  return axisKy("y", anchorY(options), data, options);
 }
 
 export function axisFy() {
   const [data, options] = maybeData(...arguments);
-  const anchor = maybeAnchor(options, ["right", "left"]);
-  return axisKy("fy", anchor, data, options);
+  return axisKy("fy", anchorFy(options), data, options);
 }
 
 /** @jsdoc axisX */
 export function axisX() {
   const [data, options] = maybeData(...arguments);
-  const anchor = maybeAnchor(options, ["bottom", "top"]);
-  return axisKx("x", anchor, data, options);
+  return axisKx("x", anchorX(options), data, options);
 }
 
 export function axisFx() {
   const [data, options] = maybeData(...arguments);
-  const anchor = maybeAnchor(options, ["top", "bottom"]);
-  return axisKx("fx", anchor, data, options);
+  return axisKx("fx", anchorFx(options), data, options);
 }
 
 function axisKy(
@@ -67,9 +79,7 @@ function axisKy(
     tickSize = k === "fy" ? 0 : 6,
     tickPadding,
     tickRotate,
-    x1,
-    x2,
-    x = anchor === "left" ? x1 : x2,
+    x,
     marginTop = 20,
     marginRight = anchor === "right" ? 40 : 0,
     marginBottom = 20,
@@ -185,9 +195,7 @@ function axisKx(
     tickSize = k === "fx" ? 0 : 6,
     tickPadding,
     tickRotate,
-    y1,
-    y2,
-    y = anchor === "bottom" ? y2 : y1,
+    y,
     marginTop = anchor === "top" ? 30 : 0,
     marginRight = 20,
     marginBottom = anchor === "bottom" ? 30 : 0,
@@ -444,31 +452,53 @@ function axisTextKx(
 
 export function gridY() {
   const [data, options] = maybeData(...arguments);
-  return gridKy("y", data, gridDefaults(options));
+  return gridKy("y", anchorY(options), data, options);
 }
 
 export function gridFy() {
-  const [data, {y = null, ...options}] = maybeData(...arguments);
-  return gridKy("fy", data, gridDefaults({y, ...options}));
+  const [data, options] = maybeData(...arguments);
+  return gridKy("fy", anchorFy(options), data, options);
 }
 
 /** @jsdoc gridX */
 export function gridX() {
   const [data, options] = maybeData(...arguments);
-  return gridKx("x", data, gridDefaults(options));
+  return gridKx("x", anchorX(options), data, options);
 }
 
 export function gridFx() {
-  const [data, {x = null, ...options}] = maybeData(...arguments);
-  return gridKx("fx", data, gridDefaults({x, ...options}));
+  const [data, options] = maybeData(...arguments);
+  return gridKx("fx", anchorFx(options), data, options);
 }
 
-function gridKy(k, data, {x1 = null, x2 = null, ...options}) {
-  return axisMark(ruleY, k, `${k}-grid`, data, {x1, x2, ...options});
+function gridKy(
+  k,
+  anchor,
+  data,
+  {
+    y = k === "y" ? undefined : null,
+    x = null,
+    x1 = anchor === "left" ? x : null,
+    x2 = anchor === "right" ? x : null,
+    ...options
+  }
+) {
+  return axisMark(ruleY, k, `${k}-grid`, data, {y, x1, x2, ...gridDefaults(options)});
 }
 
-function gridKx(k, data, {y1 = null, y2 = null, ...options}) {
-  return axisMark(ruleX, k, `${k}-grid`, data, {y1, y2, ...options});
+function gridKx(
+  k,
+  anchor,
+  data,
+  {
+    x = k === "x" ? undefined : null,
+    y = null,
+    y1 = anchor === "top" ? y : null,
+    y2 = anchor === "bottom" ? y : null,
+    ...options
+  }
+) {
+  return axisMark(ruleX, k, `${k}-grid`, data, {x, y1, y2, ...gridDefaults(options)});
 }
 
 function gridDefaults({
@@ -477,9 +507,9 @@ function gridDefaults({
   stroke = color,
   strokeOpacity = opacity,
   strokeWidth = 1,
-  ...rest
+  ...options
 }) {
-  return {stroke, strokeOpacity, strokeWidth, ...rest};
+  return {stroke, strokeOpacity, strokeWidth, ...options};
 }
 
 function axisMark(mark, k, ariaLabel, data, options, initialize) {

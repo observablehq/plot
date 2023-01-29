@@ -7,7 +7,7 @@ export async function aaplFancyAxis() {
     marks: [
       Plot.ruleY([0]),
       Plot.line(AAPL, {x: "Date", y: "Close"}),
-      Plot.gridY({x1: (y) => AAPL.find((d) => d.Close >= y)?.Date, insetLeft: -6}), // TODO x shorthand?
+      Plot.gridY({x: (y) => AAPL.find((d) => d.Close >= y)?.Date, insetLeft: -6}),
       Plot.axisY({x: (y) => AAPL.find((d) => d.Close >= y)?.Date, insetLeft: -6, textStroke: "white"})
     ]
   });
