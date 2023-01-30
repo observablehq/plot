@@ -535,7 +535,7 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
               // quantitative scales and d3.ticks do not support numeric
               // intervals for scale.ticks, so we compute them here.
               const [min, max] = extent(scale.domain());
-              data = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
+              data = interval.range(min, interval.offset(interval.floor(max))); // inclusive max
             } else {
               const [min, max] = extent(scale.range());
               ticks = (max - min) / (tickSpacing === undefined ? (k === "x" ? 80 : 35) : tickSpacing);
