@@ -519,7 +519,7 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
     initializer(options, function (data, facets, _channels, scales) {
       const {[k]: scale} = scales;
       if (!scale) throw new Error(`missing scale: ${k}`);
-      let {ticks, interval} = options;
+      let {ticks, tickSpacing, interval} = options;
       if (isTemporalScale(scale) && typeof ticks === "string") (interval = ticks), (ticks = undefined);
       if (data == null) {
         if (isIterable(ticks)) {
@@ -538,7 +538,7 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
               data = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
             } else {
               const [min, max] = extent(scale.range());
-              ticks = (max - min) / (k === "x" ? 80 : 35);
+              ticks = (max - min) / (tickSpacing === undefined ? (k === "x" ? 80 : 35) : tickSpacing);
               data = scale.ticks(ticks);
             }
           }
