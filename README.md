@@ -966,7 +966,7 @@ Returns a new arrow with the given *data* and *options*.
 
 Plot automatically generates axes for position scales, and draws them below the other marks. Each axis is composed of up to 5 marks: a grid, and an axis mark which might contain a line, ticks, tick labels, and axis label.
 
-When you need more control, you can add axis and grid marks explicitely in the marks options. Note that Plot’s automatic axis for *x* is disabled when a mark’s aria-label property begins by `x-axis `—and likewise for *y*, *fx* and *fy*.
+When you need more control, you can add axis and grid marks explicitly in the marks options. Note that Plot’s automatic axis for *x* is disabled when a mark’s aria-label property begins by `x-axis `—and likewise for *y*, *fx* and *fy*.
 
 #### Plot.axisX(*data*, *options*)
 
