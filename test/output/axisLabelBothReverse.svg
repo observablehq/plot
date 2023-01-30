@@ -68,9 +68,6 @@
     <text y="0.32em" transform="translate(600,68.8)">0.1</text>
     <text y="0.32em" transform="translate(600,36)">0.0</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(37.5,0.5)">
-    <text transform="translate(600,200) rotate(-90)">← y</text>
-  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(46,370)" d="M0,0L0,6"></path>
     <path transform="translate(155.59999999999997,370)" d="M0,0L0,6"></path>
@@ -105,9 +102,6 @@
     <text transform="translate(374.79999999999995,30)">0.4</text>
     <text transform="translate(484.40000000000003,30)">0.2</text>
     <text transform="translate(594,30)">0.0</text>
-  </g>
-  <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
-    <text y="0.71em" transform="translate(320,30)">← x</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="594" x2="594" y1="30" y2="370"></line>

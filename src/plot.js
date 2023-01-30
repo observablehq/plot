@@ -517,7 +517,7 @@ function maybeAxis(axes, axis, axisType, grid, gridType, primary, secondary, def
   options = axisOptions(both ? primary : axis, defaults, options);
   if (grid && !isNone(grid)) axes.push(gridType(options));
   axes.push(axisType(options));
-  if (both) axes.push(axisType(axisOptions(secondary, defaults, options)));
+  if (both) axes.push(axisType(axisOptions(secondary, defaults, {...options, label: null})));
 }
 
 function isBoth(value) {
