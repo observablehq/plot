@@ -479,17 +479,17 @@ function inferAxes(marks, channelsByScale, options) {
     grid,
     facet = {},
     facet: {axis: facetAxis = axis, grid: facetGrid} = facet,
-    x: {type: xType, axis: xAxis = axis, grid: xGrid = grid} = x,
-    y: {type: yType, axis: yAxis = axis, grid: yGrid = grid} = y,
-    fx: {axis: fxAxis = facetAxis, grid: fxGrid = facetGrid} = fx,
-    fy: {axis: fyAxis = facetAxis, grid: fyGrid = facetGrid} = fy
+    x: {type: xType, axis: xAxis = axis, grid: xGrid = xAxis === null ? null : grid} = x,
+    y: {type: yType, axis: yAxis = axis, grid: yGrid = yAxis === null ? null : grid} = y,
+    fx: {axis: fxAxis = facetAxis, grid: fxGrid = fxAxis === null ? null : facetGrid} = fx,
+    fy: {axis: fyAxis = facetAxis, grid: fyGrid = fyAxis === null ? null : facetGrid} = fy
   } = options;
 
   // Disable axes if the corresponding scale is not present.
-  if ((xType === undefined && !hasScale(marks, "x")) || projection) xAxis = null;
-  if ((yType === undefined && !hasScale(marks, "y")) || projection) yAxis = null;
-  if (!channelsByScale.has("fx")) fxAxis = null;
-  if (!channelsByScale.has("fy")) fyAxis = null;
+  if ((xType === undefined && !hasScale(marks, "x")) || projection) xAxis = xGrid = null;
+  if ((yType === undefined && !hasScale(marks, "y")) || projection) yAxis = yGrid = null;
+  if (!channelsByScale.has("fx")) fxAxis = fxGrid = null;
+  if (!channelsByScale.has("fy")) fyAxis = fyGrid = null;
 
   // Resolve the default implicit axes by checking for explicit ones.
   if (xAxis === undefined) xAxis = !hasAxis(marks, "x");
@@ -504,20 +504,28 @@ function inferAxes(marks, channelsByScale, options) {
   if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
 
   const axes = [];
-  maybeAxis(axes, fyAxis, axisFy, fyGrid, gridFy, "right", "left", facet, fy);
-  maybeAxis(axes, fxAxis, axisFx, fxGrid, gridFx, "top", "bottom", facet, fx);
-  maybeAxis(axes, yAxis, axisY, yGrid, gridY, "left", "right", options, y);
-  maybeAxis(axes, xAxis, axisX, xGrid, gridX, "bottom", "top", options, x);
+  maybeGrid(axes, fyGrid, gridFy, fy);
+  maybeAxis(axes, fyAxis, axisFy, "right", "left", facet, fy);
+  maybeGrid(axes, fxGrid, gridFx, fx);
+  maybeAxis(axes, fxAxis, axisFx, "top", "bottom", facet, fx);
+  maybeGrid(axes, yGrid, gridY, y);
+  maybeAxis(axes, yAxis, axisY, "left", "right", options, y);
+  maybeGrid(axes, xGrid, gridX, x);
+  maybeAxis(axes, xAxis, axisX, "bottom", "top", options, x);
   return axes;
 }
 
-function maybeAxis(axes, axis, axisType, grid, gridType, primary, secondary, defaults, options) {
+function maybeAxis(axes, axis, axisType, primary, secondary, defaults, options) {
   if (!axis) return;
   const both = isBoth(axis);
   options = axisOptions(both ? primary : axis, defaults, options);
-  if (grid && !isNone(grid)) axes.push(gridType(options));
   axes.push(axisType(options));
-  if (both) axes.push(axisType(axisOptions(secondary, defaults, {...options, label: null})));
+  if (both) axes.push(axisType({...options, anchor: secondary, label: null}));
+}
+
+function maybeGrid(axes, grid, gridType, options) {
+  if (!grid || isNone(grid)) return;
+  axes.push(gridType(gridOptions(options)));
 }
 
 function isBoth(value) {
@@ -558,6 +566,15 @@ function axisOptions(
     label,
     labelAnchor,
     labelOffset
+  };
+}
+
+function gridOptions({ticks, tickSpacing, ariaLabel, ariaDescription}) {
+  return {
+    ticks,
+    tickSpacing,
+    ariaLabel,
+    ariaDescription
   };
 }
 
