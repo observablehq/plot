@@ -90,7 +90,7 @@
     </g><text fill="currentColor" transform="translate(200,30)" dy="-0.32em" text-anchor="end">body_mass_g →</text>
   </g>
   <g aria-label="facet" transform="translate(40,0)">
-    <rect aria-label="frame" fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="370"></rect>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="370"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="35" cy="323.30909090909097" r="3" stroke="#4e79a7"></circle>
       <circle cx="45" cy="324.6545454545454" r="3" stroke="#f28e2c"></circle>
@@ -262,7 +262,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(240,0)">
-    <rect aria-label="frame" fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="370"></rect>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="370"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="27.500000000000004" cy="300.43636363636364" r="3" stroke="#4e79a7"></circle>
       <circle cx="60" cy="331.3818181818181" r="3" stroke="#f28e2c"></circle>
@@ -391,7 +391,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(440,0)">
-    <rect aria-label="frame" fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="370"></rect>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="370"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="52.5" cy="305.8181818181818" r="3" stroke="#f28e2c"></circle>
       <circle cx="55.00000000000001" cy="300.43636363636364" r="3" stroke="#4e79a7"></circle>

@@ -170,6 +170,7 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
 
   // Determine the mark options.
   let options = {x, y, fill, stroke, z, r: size, fx, fy};
+  let transform;
   let transformOptions = {
     fill: fillReduce,
     stroke: strokeReduce,
@@ -179,35 +180,24 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   if (xReduce != null && yReduce != null) {
     throw new Error(`cannot reduce both x and y`); // for now at least
   } else if (yReduce != null) {
-    options = isOrdinal(x)
-      ? groupX({y: yReduce, ...transformOptions}, options)
-      : binX({y: yReduce, ...transformOptions}, options);
+    transformOptions.y = yReduce;
+    transform = isOrdinal(x) ? groupX : binX;
   } else if (xReduce != null) {
-    options = isOrdinal(y)
-      ? groupY({x: xReduce, ...transformOptions}, options)
-      : binY({x: xReduce, ...transformOptions}, options);
+    transformOptions.x = xReduce;
+    transform = isOrdinal(y) ? groupY : binY;
   } else if (colorReduce != null || sizeReduce != null) {
-    if (isOrdinal(x) && isOrdinal(y)) {
-      options = group(transformOptions, options);
-    } else if (!isOrdinal(x) && !isOrdinal(y)) {
-      options = bin(transformOptions, options);
-    } else if (isOrdinal(x) && !isOrdinal(y)) {
-      options = binY(transformOptions, options); // bin y, group x
-    } else if (!isOrdinal(x) && isOrdinal(y)) {
-      options = binX(transformOptions, options); // bin x, group y
-    }
+    if (isOrdinal(x) && isOrdinal(y)) transform = group; 
+    else if (!isOrdinal(x) && !isOrdinal(y)) transform = bin; 
+    else if (isOrdinal(x) && !isOrdinal(y)) transform = binY; 
+    else if (!isOrdinal(x) && isOrdinal(y)) transform = binX;
   }
+  if (transform) options = transform(transformOptions, options);
 
   return marks(
-    // x: { zero: xZero },
-    // y: { zero: yZero },
-    // color: colorValue == null && colorReduce == null ? null : { legend: true },
-    // marks: [
-    fx || fy ? frame({stroke: "#eee"}) : null,
+    fx || fy ? frame({strokeOpacity: 0.1}) : null,
     xZero ? ruleX([0]) : null,
     yZero ? ruleY([0]) : null,
     mark(data, options)
-    // ]
   );
 }
 
