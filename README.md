@@ -808,6 +808,12 @@ Insets are specified in pixels. Corner radii are specified in either pixels or p
 
 For marks that support the <a name="frameanchor">**frameAnchor**</a> option, it may be specified as one of the four sides (*top*, *right*, *bottom*, *left*), one of the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the *middle* of the frame.
 
+The <a name="facetanchor">**facetAnchor**</a> option supports the following settings:
+* null - display the mark on each non-empty facet (default for all marks, with the exception of axis marks)
+* *top*, *right*, *bottom*, or *left* - display the mark on facets on the specified side
+* *top-empty*, *right-empty*, *bottom-empty*, or *left-empty* - display the mark on facets that have an empty space on the specified side (the empty space being either the margin, or an empty facet); this is the default for axis marks
+
+
 #### *mark*.plot(*options*)
 
 Given a *mark*, such as the result of calling [Plot.barY](#plotbarydata-options), you can call *mark*.plot to render a plot. This is [shorthand](https://observablehq.com/@observablehq/plot-shorthand?collection=@observablehq/plot) for calling [Plot.plot](#plotplotoptions) where the *marks* option specifies this single mark.
@@ -973,16 +979,22 @@ When you need more control, you can add axis and grid marks explicitly in the ma
 <!-- jsdoc axisX -->
 
 ```js
-Plot.axisX(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015", bend: true})
+Plot.axisX({anchor: "bottom"})
 ```
 
-Returns a new axis with the given *data* and *options*.
+Returns a new axis with the given *data* and *options* for the *x* scale.
 
 The optional *data* is an array of tick values—it defaults to the scale’s ticks.
 
-The axis options described in [position options](#position-options) are all supported, except the **grid** option which is handled by the [grid](#grid) mark. The *axis* option, in this context, is called **anchor** and is one of *top* or *bottom*. The **color** option controls both **stroke** for the ticks, and the **fill** for labels.
+The axis options described in [position options](#position-options) are all supported, except the **grid** option which is handled by the [grid](#grid) mark. The **y** channel, if any, describes the vertical position of the tick and defaults to the axis anchor.
 
-The **y** channel, if any, describes the vertical position of the tick. Defaults to the axis anchor.
+The **axis** option, in this context, is called **anchor** and is one of *top* or *bottom*.
+
+The **color** option controls both **stroke** for the ticks, and the **fill** for labels. It defaults to currentColor.
+
+The (rarely used) text label’s stroke is controlled by the **textStroke**,**textStrokeOpacity**, and **textStrokeWidth** options.
+
+The **facetAnchor** option defaults to *bottom-empty* if anchor is bottom, and *top-empty* if anchor is top. This ensures the proper positioning of the axes with respect to empty facets.
 
 <!-- jsdocEnd axisX -->
 
