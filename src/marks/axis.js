@@ -545,12 +545,12 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
         } else {
           data = scale.domain();
         }
-      }
-      if (k === "y" || k === "x") {
-        facets = [range(data)]; // TODO allow faceted ticks?
-      } else {
-        channels[k] = {scale: k, value: identity};
-        facets = undefined; // computed automatically by plot
+        if (k === "y" || k === "x") {
+          facets = [range(data)];
+        } else {
+          channels[k] = {scale: k, value: identity};
+          facets = undefined; // computed automatically by plot
+        }
       }
       initialize?.call(this, scale, ticks, channels);
       return {
@@ -562,9 +562,13 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
       };
     })
   );
-  channels = m.channels;
+  if (data == null) {
+    channels = m.channels;
+    m.channels = {};
+  } else {
+    channels = {};
+  }
   m.ariaLabel = ariaLabel;
-  m.channels = {};
   return m;
 }
 

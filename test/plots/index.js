@@ -1,6 +1,5 @@
 export {default as aaplCandlestick} from "./aapl-candlestick.js";
 export {default as aaplChangeVolume} from "./aapl-change-volume.js";
-export {default as aaplClose} from "./aapl-close.js";
 export {default as aaplCloseUntyped} from "./aapl-close-untyped.js";
 export {default as aaplMonthly} from "./aapl-monthly.js";
 export {default as aaplVolume} from "./aapl-volume.js";
@@ -279,6 +278,7 @@ export {default as yearlyRequestsDot} from "./yearly-requests-dot.js";
 export {default as yearlyRequestsLine} from "./yearly-requests-line.js";
 
 export * from "./aapl-bollinger.js";
+export * from "./aapl-close.js";
 export * from "./aapl-fancy-axis.js";
 export * from "./athletes-sample.js";
 export * from "./axis-labels.js";
