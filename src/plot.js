@@ -479,15 +479,15 @@ function inferAxes(marks, channelsByScale, options) {
     grid,
     facet = {},
     facet: {axis: facetAxis = axis, grid: facetGrid} = facet,
-    x: {type: xType, axis: xAxis = axis, grid: xGrid = xAxis === null ? null : grid} = x,
-    y: {type: yType, axis: yAxis = axis, grid: yGrid = yAxis === null ? null : grid} = y,
+    x: {type: xType = hasScale(marks, "x"), axis: xAxis = axis, grid: xGrid = xAxis === null ? null : grid} = x,
+    y: {type: yType = hasScale(marks, "y"), axis: yAxis = axis, grid: yGrid = yAxis === null ? null : grid} = y,
     fx: {axis: fxAxis = facetAxis, grid: fxGrid = fxAxis === null ? null : facetGrid} = fx,
     fy: {axis: fyAxis = facetAxis, grid: fyGrid = fyAxis === null ? null : facetGrid} = fy
   } = options;
 
   // Disable axes if the corresponding scale is not present.
-  if ((xType === undefined && !hasScale(marks, "x")) || projection) xAxis = xGrid = null;
-  if ((yType === undefined && !hasScale(marks, "y")) || projection) yAxis = yGrid = null;
+  if (projection || !xType) xAxis = xGrid = null;
+  if (projection || !yType) yAxis = yGrid = null;
   if (!channelsByScale.has("fx")) fxAxis = fxGrid = null;
   if (!channelsByScale.has("fy")) fyAxis = fyGrid = null;
 
@@ -500,8 +500,8 @@ function inferAxes(marks, channelsByScale, options) {
   // Resolve the default orientation of axes.
   if (xAxis === true) xAxis = "bottom";
   if (yAxis === true) yAxis = "left";
-  if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
-  if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
+  if (fxAxis === true) fxAxis = xAxis === "top" || xAxis === null ? "bottom" : "top";
+  if (fyAxis === true) fyAxis = yAxis === "right" || yAxis === null ? "left" : "right";
 
   const axes = [];
   maybeGrid(axes, fyGrid, gridFy, fy);
