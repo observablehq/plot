@@ -82,7 +82,7 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   // Determine the default mark type.
   if (mark === undefined) {
     mark =
-      sizeValue || sizeReduce
+      sizeValue != null || sizeReduce != null
         ? "dot"
         : xReduce != null || yReduce != null || colorReduce != null
         ? "bar"
