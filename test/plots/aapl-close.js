@@ -25,14 +25,27 @@ export async function aaplCloseDataTicks() {
 export async function aaplCloseImplicitGrid() {
   const AAPL = await d3.csv("data/aapl.csv", d3.autoType);
   return Plot.plot({
-    y: {
-      grid: true
-    },
-    marks: [
-      Plot.axisY({anchor: "left"}),
-      Plot.areaY(AAPL, {x: "Date", y: "Close", fillOpacity: 0.1}),
-      Plot.lineY(AAPL, {x: "Date", y: "Close"}),
-      Plot.ruleY([0])
-    ]
+    y: {grid: true}, // appears even though there’s an explicit axis
+    marks: [Plot.axisY({anchor: "left"}), Plot.lineY(AAPL, {x: "Date", y: "Close"})]
   });
+}
+
+export async function aaplCloseGridColor() {
+  const AAPL = await d3.csv("data/aapl.csv", d3.autoType);
+  return Plot.lineY(AAPL, {x: "Date", y: "Close"}).plot({y: {grid: "red"}});
+}
+
+export async function aaplCloseGridInterval() {
+  const AAPL = await d3.csv("data/aapl.csv", d3.autoType);
+  return Plot.lineY(AAPL, {x: "Date", y: "Close"}).plot({x: {grid: d3.utcMonth.every(3)}});
+}
+
+export async function aaplCloseGridIntervalName() {
+  const AAPL = await d3.csv("data/aapl.csv", d3.autoType);
+  return Plot.lineY(AAPL, {x: "Date", y: "Close"}).plot({x: {grid: "month"}});
+}
+
+export async function aaplCloseGridIterable() {
+  const AAPL = await d3.csv("data/aapl.csv", d3.autoType);
+  return Plot.lineY(AAPL, {x: "Date", y: "Close"}).plot({y: {grid: [100, 120, 140]}});
 }

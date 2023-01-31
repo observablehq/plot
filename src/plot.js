@@ -6,7 +6,7 @@ import {Facets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilt
 import {Legends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
-import {arrayify, isNone, isScaleOptions, map, yes, maybeInterval} from "./options.js";
+import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeInterval} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales, innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
@@ -525,7 +525,7 @@ function maybeAxis(axes, axis, axisType, primary, secondary, defaults, options) 
 
 function maybeGrid(axes, grid, gridType, options) {
   if (!grid || isNone(grid)) return;
-  axes.push(gridType(gridOptions(options)));
+  axes.push(gridType(gridOptions(grid, options)));
 }
 
 function isBoth(value) {
@@ -569,13 +569,33 @@ function axisOptions(
   };
 }
 
-function gridOptions({ticks, tickSpacing, ariaLabel, ariaDescription}) {
+function gridOptions(
+  grid,
+  {
+    stroke = isColor(grid) ? grid : undefined,
+    ticks = isGridTicks(grid) ? grid : undefined,
+    tickSpacing,
+    ariaLabel,
+    ariaDescription
+  }
+) {
   return {
+    stroke,
     ticks,
     tickSpacing,
     ariaLabel,
     ariaDescription
   };
+}
+
+function isGridTicks(grid) {
+  switch (typeof grid) {
+    case "number":
+      return true;
+    case "string":
+      return !isColor(grid);
+  }
+  return isIterable(grid) || typeof grid?.range === "function";
 }
 
 // Is there an explicit axis already present? TODO We probably want a more
