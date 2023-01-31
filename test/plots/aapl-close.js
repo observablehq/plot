@@ -18,11 +18,6 @@ export async function aaplClose() {
 export async function aaplCloseDataTicks() {
   const AAPL = await d3.csv("data/aapl.csv", d3.autoType);
   return Plot.plot({
-    marks: [
-      Plot.axisY(d3.ticks(0, 200, 10), {anchor: "left"}),
-      Plot.areaY(AAPL, {x: "Date", y: "Close", fillOpacity: 0.1}),
-      Plot.lineY(AAPL, {x: "Date", y: "Close"}),
-      Plot.ruleY([0])
-    ]
+    marks: [Plot.axisY(d3.ticks(0, 200, 10), {anchor: "left"}), Plot.lineY(AAPL, {x: "Date", y: "Close"})]
   });
 }
