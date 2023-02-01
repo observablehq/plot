@@ -1,6 +1,6 @@
 import {create} from "../context.js";
-import {identity, indexOf, number} from "../options.js";
 import {Mark} from "../mark.js";
+import {identity, indexOf, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
 import {
   applyDirectStyles,

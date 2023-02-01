@@ -71,9 +71,17 @@ https://archive.nytimes.com/www.nytimes.com/imagepages/2010/05/02/business/02met
 Daily downloads of the npm “@observablehq/cars” package
 https://observablehq.com/@mbostock/npm-daily-downloads?name=@observablehq/cars
 
+## electricity-demand.csv
+Hourly electricity demand for California from the U.S. Energy Information Administration, Jan. 2021
+https://www.eia.gov/opendata/
+
 ## energy-production.csv
 U.S. Energy Information Administration; monthly energy review, primary energy production by source, Jan. 2022
 https://www.eia.gov/totalenergy/data/monthly/index.php
+
+## federal-funds.csv
+U.S. Federal Reserve, Jan. 2023
+https://www.federalreserve.gov/releases/h15/
 
 ## flare.csv
 Flare visualization toolkit package hierarchy

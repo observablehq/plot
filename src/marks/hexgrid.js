@@ -1,6 +1,6 @@
 import {create} from "../context.js";
-import {number} from "../options.js";
 import {Mark} from "../mark.js";
+import {number} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {sqrt4_3} from "../symbols.js";
 import {ox, oy} from "../transforms/hexbin.js";

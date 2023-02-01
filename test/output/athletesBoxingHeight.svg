@@ -13,894 +13,343 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ height" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,297.4230769230769)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.5</text>
+  <g aria-label="facet" transform="translate(1,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(89.5,320)">Africa</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,251.26923076923072)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.6</text>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,296.9230769230769)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,250.76923076923072)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,204.6153846153846)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,158.46153846153848)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,112.30769230769238)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,66.15384615384619)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,20)" d="M0,0L-6,0"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,205.1153846153846)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.7</text>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,296.9230769230769)">1.5</text>
+      <text y="0.32em" transform="translate(40,250.76923076923072)">1.6</text>
+      <text y="0.32em" transform="translate(40,204.6153846153846)">1.7</text>
+      <text y="0.32em" transform="translate(40,158.46153846153848)">1.8</text>
+      <text y="0.32em" transform="translate(40,112.30769230769238)">1.9</text>
+      <text y="0.32em" transform="translate(40,66.15384615384619)">2.0</text>
+      <text y="0.32em" transform="translate(40,20)">2.1</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,158.96153846153848)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,112.80769230769238)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.9</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,66.65384615384619)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,20.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.1</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ height</text>
-  </g>
-  <g aria-label="fx-axis" aria-description="continent" transform="translate(0,320)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(90.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="9" dy="0.71em">Africa</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(200.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="9" dy="0.71em">Americas</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(310.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="9" dy="0.71em">Asia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(420.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="9" dy="0.71em">Europe</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(530.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="9" dy="0.71em">Oceania</text>
-    </g><text fill="currentColor" transform="translate(310,30)" dy="-0.32em" text-anchor="middle">continent</text>
-  </g>
-  <g aria-label="facet" transform="translate(41,0)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="99" height="300"></rect>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="20" width="99" height="300"></rect>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="49.5" cy="130.76923076923075" r="3">
-        <title>ALG</title>
-      </circle>
-      <circle cx="49.5" cy="167.6923076923077" r="3">
-        <title>ALG</title>
-      </circle>
-      <circle cx="44.23708969750854" cy="135.3846153846154" r="3">
-        <title>EGY</title>
-      </circle>
-      <circle cx="49.5" cy="250.76923076923072" r="3">
-        <title>MAR</title>
-      </circle>
-      <circle cx="49.5" cy="181.53846153846155" r="3">
-        <title>SEY</title>
-      </circle>
-      <circle cx="49.5" cy="213.8461538461539" r="3">
-        <title>KEN</title>
-      </circle>
-      <circle cx="44.237089697508516" cy="176.92307692307693" r="3">
-        <title>TUN</title>
-      </circle>
-      <circle cx="49.5" cy="149.2307692307692" r="3">
-        <title>ALG</title>
-      </circle>
-      <circle cx="49.5" cy="121.5384615384616" r="3">
-        <title>CPV</title>
-      </circle>
-      <circle cx="44.237089697508516" cy="144.61538461538458" r="3">
-        <title>CMR</title>
-      </circle>
-      <circle cx="49.5" cy="112.30769230769238" r="3">
-        <title>NGR</title>
-      </circle>
-      <circle cx="42.5" cy="167.6923076923077" r="3">
-        <title>ALG</title>
-      </circle>
-      <circle cx="49.5" cy="232.30769230769235" r="3">
-        <title>MAR</title>
-      </circle>
-      <circle cx="56.5" cy="149.2307692307692" r="3">
-        <title>CMR</title>
-      </circle>
-      <circle cx="37.237089697508516" cy="144.61538461538458" r="3">
-        <title>MAR</title>
-      </circle>
-      <circle cx="49.5" cy="158.46153846153848" r="3">
-        <title>TUN</title>
-      </circle>
-      <circle cx="42.5" cy="158.46153846153848" r="3">
-        <title>EGY</title>
-      </circle>
-      <circle cx="54.76291030249146" cy="135.3846153846154" r="3">
-        <title>ALG</title>
-      </circle>
-      <circle cx="37.23708969750854" cy="153.84615384615384" r="3">
-        <title>NAM</title>
-      </circle>
-      <circle cx="49.5" cy="296.9230769230769" r="3">
-        <title>CAF</title>
-      </circle>
-      <circle cx="54.762910302491484" cy="176.92307692307693" r="3">
-        <title>UGA</title>
-      </circle>
-      <circle cx="56.5" cy="158.46153846153848" r="3">
-        <title>MRI</title>
-      </circle>
-      <circle cx="61.762910302491484" cy="144.61538461538458" r="3">
-        <title>MAR</title>
-      </circle>
-      <circle cx="56.5" cy="167.6923076923077" r="3">
-        <title>CMR</title>
-      </circle>
-      <circle cx="61.762910302491484" cy="176.92307692307693" r="3">
-        <title>EGY</title>
-      </circle>
-      <circle cx="42.5" cy="250.76923076923072" r="3">
-        <title>NAM</title>
-      </circle>
-      <circle cx="63.5" cy="167.6923076923077" r="3">
-        <title>MRI</title>
-      </circle>
-      <circle cx="44.237089697508516" cy="186.15384615384616" r="3">
-        <title>ALG</title>
-      </circle>
-      <circle cx="44.237089697508516" cy="218.4615384615385" r="3">
-        <title>MAR</title>
-      </circle>
-      <circle cx="60.025820604982925" cy="130.76923076923075" r="3">
-        <title>MAR</title>
-      </circle>
-      <circle cx="63.5" cy="158.46153846153848" r="3">
-        <title>MAR</title>
-      </circle>
-      <circle cx="49.5" cy="204.6153846153846" r="3">
-        <title>CGO</title>
-      </circle>
-      <circle cx="31.974179395017078" cy="158.46153846153848" r="3">
-        <title>KEN</title>
-      </circle>
-      <circle cx="37.23708969750854" cy="135.3846153846154" r="3">
-        <title>ALG</title>
-      </circle>
-      <circle cx="49.5" cy="278.46153846153845" r="3">
-        <title>CMR</title>
-      </circle>
-      <circle cx="54.762910302491484" cy="218.4615384615385" r="3">
-        <title>EGY</title>
-      </circle>
-      <circle cx="35.5" cy="167.6923076923077" r="3">
-        <title>ALG</title>
-      </circle>
-      <circle cx="44.23708969750849" cy="227.69230769230776" r="3">
-        <title>MAR</title>
-      </circle>
+      <circle cx="89.5" cy="130.76923076923075" r="3"><title>ALG</title></circle>
+      <circle cx="89.5" cy="167.6923076923077" r="3"><title>ALG</title></circle>
+      <circle cx="84.23708969750854" cy="135.3846153846154" r="3"><title>EGY</title></circle>
+      <circle cx="89.5" cy="250.76923076923072" r="3"><title>MAR</title></circle>
+      <circle cx="89.5" cy="181.53846153846155" r="3"><title>SEY</title></circle>
+      <circle cx="89.5" cy="213.8461538461539" r="3"><title>KEN</title></circle>
+      <circle cx="84.23708969750851" cy="176.92307692307693" r="3"><title>TUN</title></circle>
+      <circle cx="89.5" cy="149.2307692307692" r="3"><title>ALG</title></circle>
+      <circle cx="89.5" cy="121.5384615384616" r="3"><title>CPV</title></circle>
+      <circle cx="84.23708969750851" cy="144.61538461538458" r="3"><title>CMR</title></circle>
+      <circle cx="89.5" cy="112.30769230769238" r="3"><title>NGR</title></circle>
+      <circle cx="82.5" cy="167.6923076923077" r="3"><title>ALG</title></circle>
+      <circle cx="89.5" cy="232.30769230769235" r="3"><title>MAR</title></circle>
+      <circle cx="96.5" cy="149.2307692307692" r="3"><title>CMR</title></circle>
+      <circle cx="77.23708969750851" cy="144.61538461538458" r="3"><title>MAR</title></circle>
+      <circle cx="89.5" cy="158.46153846153848" r="3"><title>TUN</title></circle>
+      <circle cx="82.5" cy="158.46153846153848" r="3"><title>EGY</title></circle>
+      <circle cx="94.76291030249146" cy="135.3846153846154" r="3"><title>ALG</title></circle>
+      <circle cx="77.23708969750854" cy="153.84615384615384" r="3"><title>NAM</title></circle>
+      <circle cx="89.5" cy="296.9230769230769" r="3"><title>CAF</title></circle>
+      <circle cx="94.76291030249149" cy="176.92307692307693" r="3"><title>UGA</title></circle>
+      <circle cx="96.5" cy="158.46153846153848" r="3"><title>MRI</title></circle>
+      <circle cx="101.76291030249149" cy="144.61538461538458" r="3"><title>MAR</title></circle>
+      <circle cx="96.5" cy="167.6923076923077" r="3"><title>CMR</title></circle>
+      <circle cx="101.76291030249149" cy="176.92307692307693" r="3"><title>EGY</title></circle>
+      <circle cx="82.5" cy="250.76923076923072" r="3"><title>NAM</title></circle>
+      <circle cx="103.5" cy="167.6923076923077" r="3"><title>MRI</title></circle>
+      <circle cx="84.23708969750851" cy="186.15384615384616" r="3"><title>ALG</title></circle>
+      <circle cx="84.23708969750851" cy="218.4615384615385" r="3"><title>MAR</title></circle>
+      <circle cx="100.02582060498293" cy="130.76923076923075" r="3"><title>MAR</title></circle>
+      <circle cx="103.5" cy="158.46153846153848" r="3"><title>MAR</title></circle>
+      <circle cx="89.5" cy="204.6153846153846" r="3"><title>CGO</title></circle>
+      <circle cx="71.97417939501707" cy="158.46153846153848" r="3"><title>KEN</title></circle>
+      <circle cx="77.23708969750854" cy="135.3846153846154" r="3"><title>ALG</title></circle>
+      <circle cx="89.5" cy="278.46153846153845" r="3"><title>CMR</title></circle>
+      <circle cx="94.76291030249149" cy="218.4615384615385" r="3"><title>EGY</title></circle>
+      <circle cx="75.5" cy="167.6923076923077" r="3"><title>ALG</title></circle>
+      <circle cx="84.2370896975085" cy="227.69230769230776" r="3"><title>MAR</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(151,0)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="99" height="300"></rect>
+  <g aria-label="facet" transform="translate(111,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(89.5,320)">Americas</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="20" width="99" height="300"></rect>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="49.5" cy="218.4615384615385" r="3">
-        <title>BRA</title>
-      </circle>
-      <circle cx="49.5" cy="149.2307692307692" r="3">
-        <title>VEN</title>
-      </circle>
-      <circle cx="49.5" cy="204.6153846153846" r="3">
-        <title>ARG</title>
-      </circle>
-      <circle cx="49.5" cy="181.53846153846155" r="3">
-        <title>ARG</title>
-      </circle>
-      <circle cx="44.23708969750854" cy="209.23076923076925" r="3">
-        <title>BRA</title>
-      </circle>
-      <circle cx="54.762910302491484" cy="213.8461538461539" r="3">
-        <title>USA</title>
-      </circle>
-      <circle cx="42.5" cy="181.53846153846155" r="3">
-        <title>CAN</title>
-      </circle>
-      <circle cx="49.5" cy="167.6923076923077" r="3">
-        <title>CUB</title>
-      </circle>
-      <circle cx="54.762910302491484" cy="186.15384615384616" r="3">
-        <title>CAN</title>
-      </circle>
-      <circle cx="60.02582060498297" cy="181.53846153846155" r="3">
-        <title>PAN</title>
-      </circle>
-      <circle cx="49.5" cy="126.1538461538461" r="3">
-        <title>ECU</title>
-      </circle>
-      <circle cx="49.5" cy="269.23076923076917" r="3">
-        <title>ECU</title>
-      </circle>
-      <circle cx="54.762910302491484" cy="176.92307692307693" r="3">
-        <title>USA</title>
-      </circle>
-      <circle cx="49.5" cy="236.92307692307696" r="3">
-        <title>COL</title>
-      </circle>
-      <circle cx="37.237089697508516" cy="176.92307692307693" r="3">
-        <title>USA</title>
-      </circle>
-      <circle cx="65.28873090747446" cy="176.92307692307693" r="3">
-        <title>USA</title>
-      </circle>
-      <circle cx="49.5" cy="139.99999999999997" r="3">
-        <title>VEN</title>
-      </circle>
-      <circle cx="49.5" cy="227.69230769230776" r="3">
-        <title>MEX</title>
-      </circle>
-      <circle cx="49.5" cy="158.46153846153848" r="3">
-        <title>VEN</title>
-      </circle>
-      <circle cx="49.5" cy="103.07692307692315" r="3">
-        <title>CUB</title>
-      </circle>
-      <circle cx="42.5" cy="227.69230769230776" r="3">
-        <title>ARG</title>
-      </circle>
-      <circle cx="44.23708969750854" cy="163.07692307692307" r="3">
-        <title>VEN</title>
-      </circle>
-      <circle cx="49.5" cy="190.76923076923075" r="3">
-        <title>USA</title>
-      </circle>
-      <circle cx="42.5" cy="190.76923076923075" r="3">
-        <title>DOM</title>
-      </circle>
-      <circle cx="54.762910302491434" cy="195.38461538461542" r="3">
-        <title>ARG</title>
-      </circle>
-      <circle cx="49.5" cy="250.76923076923072" r="3">
-        <title>COL</title>
-      </circle>
-      <circle cx="44.23708969750849" cy="200.00000000000003" r="3">
-        <title>PUR</title>
-      </circle>
-      <circle cx="49.5" cy="287.6923076923077" r="3">
-        <title>CUB</title>
-      </circle>
-      <circle cx="37.237089697508566" cy="195.38461538461542" r="3">
-        <title>BRA</title>
-      </circle>
-      <circle cx="61.762910302491434" cy="195.38461538461542" r="3">
-        <title>COL</title>
-      </circle>
-      <circle cx="54.762910302491484" cy="232.30769230769235" r="3">
-        <title>MEX</title>
-      </circle>
-      <circle cx="42.5" cy="139.99999999999997" r="3">
-        <title>COL</title>
-      </circle>
-      <circle cx="44.23708969750854" cy="130.76923076923075" r="3">
-        <title>BRA</title>
-      </circle>
-      <circle cx="56.5" cy="158.46153846153848" r="3">
-        <title>MEX</title>
-      </circle>
-      <circle cx="60.025820604983" cy="227.69230769230776" r="3">
-        <title>BRA</title>
-      </circle>
-      <circle cx="54.762910302491484" cy="144.61538461538458" r="3">
-        <title>ECU</title>
-      </circle>
-      <circle cx="42.5" cy="149.2307692307692" r="3">
-        <title>CUB</title>
-      </circle>
-      <circle cx="67.02582060498287" cy="190.76923076923075" r="3">
-        <title>CUB</title>
-      </circle>
-      <circle cx="35.5" cy="227.69230769230776" r="3">
-        <title>ARG</title>
-      </circle>
-      <circle cx="42.5" cy="103.07692307692315" r="3">
-        <title>CUB</title>
-      </circle>
-      <circle cx="56.5" cy="204.6153846153846" r="3">
-        <title>DOM</title>
-      </circle>
-      <circle cx="37.237089697508516" cy="186.15384615384616" r="3">
-        <title>MEX</title>
-      </circle>
-      <circle cx="30.237089697508516" cy="176.92307692307693" r="3">
-        <title>VEN</title>
-      </circle>
-      <circle cx="37.23708969750854" cy="163.07692307692307" r="3">
-        <title>VEN</title>
-      </circle>
-      <circle cx="42.5" cy="250.76923076923072" r="3">
-        <title>CAN</title>
-      </circle>
-      <circle cx="60.02582060498297" cy="139.99999999999997" r="3">
-        <title>ECU</title>
-      </circle>
-      <circle cx="60.02582060498297" cy="149.2307692307692" r="3">
-        <title>BRA</title>
-      </circle>
-      <circle cx="72.28873090747446" cy="176.92307692307693" r="3">
-        <title>USA</title>
-      </circle>
-      <circle cx="56.5" cy="167.6923076923077" r="3">
-        <title>MEX</title>
-      </circle>
-      <circle cx="54.76291030249146" cy="223.07692307692312" r="3">
-        <title>USA</title>
-      </circle>
-      <circle cx="49.5" cy="93.84615384615388" r="3">
-        <title>TTO</title>
-      </circle>
-      <circle cx="65.2887309074745" cy="232.30769230769235" r="3">
-        <title>BRA</title>
-      </circle>
-      <circle cx="44.23708969750849" cy="172.3076923076923" r="3">
-        <title>MEX</title>
-      </circle>
-      <circle cx="44.23708969750844" cy="241.5384615384615" r="3">
-        <title>CUB</title>
-      </circle>
-      <circle cx="65.28873090747446" cy="223.07692307692312" r="3">
-        <title>BRA</title>
-      </circle>
-      <circle cx="24.974179395017032" cy="181.53846153846155" r="3">
-        <title>BRA</title>
-      </circle>
-      <circle cx="35.5" cy="149.2307692307692" r="3">
-        <title>CUB</title>
-      </circle>
-      <circle cx="31.974179395017128" cy="190.76923076923075" r="3">
-        <title>USA</title>
-      </circle>
-      <circle cx="42.5" cy="218.4615384615385" r="3">
-        <title>VEN</title>
-      </circle>
-      <circle cx="56.5" cy="103.07692307692315" r="3">
-        <title>ARG</title>
-      </circle>
-      <circle cx="77.55164120996594" cy="181.53846153846155" r="3">
-        <title>CUB</title>
-      </circle>
-      <circle cx="61.762910302491484" cy="213.8461538461539" r="3">
-        <title>VEN</title>
-      </circle>
-      <circle cx="56.5" cy="250.76923076923072" r="3">
-        <title>CUB</title>
-      </circle>
-      <circle cx="28.5" cy="227.69230769230776" r="3">
-        <title>COL</title>
-      </circle>
+      <circle cx="89.5" cy="218.4615384615385" r="3"><title>BRA</title></circle>
+      <circle cx="89.5" cy="149.2307692307692" r="3"><title>VEN</title></circle>
+      <circle cx="89.5" cy="204.6153846153846" r="3"><title>ARG</title></circle>
+      <circle cx="89.5" cy="181.53846153846155" r="3"><title>ARG</title></circle>
+      <circle cx="84.23708969750854" cy="209.23076923076925" r="3"><title>BRA</title></circle>
+      <circle cx="94.76291030249149" cy="213.8461538461539" r="3"><title>USA</title></circle>
+      <circle cx="82.5" cy="181.53846153846155" r="3"><title>CAN</title></circle>
+      <circle cx="89.5" cy="167.6923076923077" r="3"><title>CUB</title></circle>
+      <circle cx="94.76291030249149" cy="186.15384615384616" r="3"><title>CAN</title></circle>
+      <circle cx="100.02582060498297" cy="181.53846153846155" r="3"><title>PAN</title></circle>
+      <circle cx="89.5" cy="126.1538461538461" r="3"><title>ECU</title></circle>
+      <circle cx="89.5" cy="269.23076923076917" r="3"><title>ECU</title></circle>
+      <circle cx="94.76291030249149" cy="176.92307692307693" r="3"><title>USA</title></circle>
+      <circle cx="89.5" cy="236.92307692307696" r="3"><title>COL</title></circle>
+      <circle cx="77.23708969750851" cy="176.92307692307693" r="3"><title>USA</title></circle>
+      <circle cx="105.28873090747446" cy="176.92307692307693" r="3"><title>USA</title></circle>
+      <circle cx="89.5" cy="139.99999999999997" r="3"><title>VEN</title></circle>
+      <circle cx="89.5" cy="227.69230769230776" r="3"><title>MEX</title></circle>
+      <circle cx="89.5" cy="158.46153846153848" r="3"><title>VEN</title></circle>
+      <circle cx="89.5" cy="103.07692307692315" r="3"><title>CUB</title></circle>
+      <circle cx="82.5" cy="227.69230769230776" r="3"><title>ARG</title></circle>
+      <circle cx="84.23708969750854" cy="163.07692307692307" r="3"><title>VEN</title></circle>
+      <circle cx="89.5" cy="190.76923076923075" r="3"><title>USA</title></circle>
+      <circle cx="82.5" cy="190.76923076923075" r="3"><title>DOM</title></circle>
+      <circle cx="94.76291030249143" cy="195.38461538461542" r="3"><title>ARG</title></circle>
+      <circle cx="89.5" cy="250.76923076923072" r="3"><title>COL</title></circle>
+      <circle cx="84.2370896975085" cy="200.00000000000003" r="3"><title>PUR</title></circle>
+      <circle cx="89.5" cy="287.6923076923077" r="3"><title>CUB</title></circle>
+      <circle cx="77.23708969750857" cy="195.38461538461542" r="3"><title>BRA</title></circle>
+      <circle cx="101.76291030249143" cy="195.38461538461542" r="3"><title>COL</title></circle>
+      <circle cx="94.76291030249149" cy="232.30769230769235" r="3"><title>MEX</title></circle>
+      <circle cx="82.5" cy="139.99999999999997" r="3"><title>COL</title></circle>
+      <circle cx="84.23708969750854" cy="130.76923076923075" r="3"><title>BRA</title></circle>
+      <circle cx="96.5" cy="158.46153846153848" r="3"><title>MEX</title></circle>
+      <circle cx="100.025820604983" cy="227.69230769230776" r="3"><title>BRA</title></circle>
+      <circle cx="94.76291030249149" cy="144.61538461538458" r="3"><title>ECU</title></circle>
+      <circle cx="82.5" cy="149.2307692307692" r="3"><title>CUB</title></circle>
+      <circle cx="107.02582060498287" cy="190.76923076923075" r="3"><title>CUB</title></circle>
+      <circle cx="75.5" cy="227.69230769230776" r="3"><title>ARG</title></circle>
+      <circle cx="82.5" cy="103.07692307692315" r="3"><title>CUB</title></circle>
+      <circle cx="96.5" cy="204.6153846153846" r="3"><title>DOM</title></circle>
+      <circle cx="77.23708969750851" cy="186.15384615384616" r="3"><title>MEX</title></circle>
+      <circle cx="70.23708969750851" cy="176.92307692307693" r="3"><title>VEN</title></circle>
+      <circle cx="77.23708969750854" cy="163.07692307692307" r="3"><title>VEN</title></circle>
+      <circle cx="82.5" cy="250.76923076923072" r="3"><title>CAN</title></circle>
+      <circle cx="100.02582060498297" cy="139.99999999999997" r="3"><title>ECU</title></circle>
+      <circle cx="100.02582060498297" cy="149.2307692307692" r="3"><title>BRA</title></circle>
+      <circle cx="112.28873090747446" cy="176.92307692307693" r="3"><title>USA</title></circle>
+      <circle cx="96.5" cy="167.6923076923077" r="3"><title>MEX</title></circle>
+      <circle cx="94.76291030249146" cy="223.07692307692312" r="3"><title>USA</title></circle>
+      <circle cx="89.5" cy="93.84615384615388" r="3"><title>TTO</title></circle>
+      <circle cx="105.2887309074745" cy="232.30769230769235" r="3"><title>BRA</title></circle>
+      <circle cx="84.2370896975085" cy="172.3076923076923" r="3"><title>MEX</title></circle>
+      <circle cx="84.23708969750844" cy="241.5384615384615" r="3"><title>CUB</title></circle>
+      <circle cx="105.28873090747446" cy="223.07692307692312" r="3"><title>BRA</title></circle>
+      <circle cx="64.97417939501703" cy="181.53846153846155" r="3"><title>BRA</title></circle>
+      <circle cx="75.5" cy="149.2307692307692" r="3"><title>CUB</title></circle>
+      <circle cx="71.97417939501713" cy="190.76923076923075" r="3"><title>USA</title></circle>
+      <circle cx="82.5" cy="218.4615384615385" r="3"><title>VEN</title></circle>
+      <circle cx="96.5" cy="103.07692307692315" r="3"><title>ARG</title></circle>
+      <circle cx="117.55164120996594" cy="181.53846153846155" r="3"><title>CUB</title></circle>
+      <circle cx="101.76291030249149" cy="213.8461538461539" r="3"><title>VEN</title></circle>
+      <circle cx="96.5" cy="250.76923076923072" r="3"><title>CUB</title></circle>
+      <circle cx="68.5" cy="227.69230769230776" r="3"><title>COL</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(261,0)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="99" height="300"></rect>
+  <g aria-label="facet" transform="translate(221,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(89.5,320)">Asia</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="20" width="99" height="300"></rect>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="49.5" cy="121.5384615384616" r="3">
-        <title>AZE</title>
-      </circle>
-      <circle cx="49.5" cy="181.53846153846155" r="3">
-        <title>KAZ</title>
-      </circle>
-      <circle cx="49.5" cy="158.46153846153848" r="3">
-        <title>KAZ</title>
-      </circle>
-      <circle cx="49.5" cy="195.38461538461542" r="3">
-        <title>RUS</title>
-      </circle>
-      <circle cx="44.237089697508516" cy="200.00000000000003" r="3">
-        <title>AZE</title>
-      </circle>
-      <circle cx="44.23708969750852" cy="116.92307692307698" r="3">
-        <title>TUR</title>
-      </circle>
-      <circle cx="49.5" cy="232.30769230769235" r="3">
-        <title>THA</title>
-      </circle>
-      <circle cx="44.237089697508566" cy="190.76923076923075" r="3">
-        <title>RUS</title>
-      </circle>
-      <circle cx="49.5" cy="149.2307692307692" r="3">
-        <title>RUS</title>
-      </circle>
-      <circle cx="49.5" cy="209.23076923076925" r="3">
-        <title>TJK</title>
-      </circle>
-      <circle cx="54.762910302491434" cy="190.76923076923075" r="3">
-        <title>ARM</title>
-      </circle>
-      <circle cx="44.237089697508516" cy="176.92307692307693" r="3">
-        <title>JPN</title>
-      </circle>
-      <circle cx="49.5" cy="172.3076923076923" r="3">
-        <title>TKM</title>
-      </circle>
-      <circle cx="49.5" cy="139.99999999999997" r="3">
-        <title>RUS</title>
-      </circle>
-      <circle cx="49.5" cy="250.76923076923072" r="3">
-        <title>ARM</title>
-      </circle>
-      <circle cx="49.5" cy="75.38461538461542" r="3">
-        <title>UZB</title>
-      </circle>
-      <circle cx="38.97417939501713" cy="195.38461538461542" r="3">
-        <title>TUR</title>
-      </circle>
-      <circle cx="56.5" cy="172.3076923076923" r="3">
-        <title>UZB</title>
-      </circle>
-      <circle cx="44.23708969750849" cy="227.69230769230776" r="3">
-        <title>KAZ</title>
-      </circle>
-      <circle cx="54.76291030249151" cy="227.69230769230776" r="3">
-        <title>CHN</title>
-      </circle>
-      <circle cx="44.237089697508516" cy="236.92307692307696" r="3">
-        <title>KAZ</title>
-      </circle>
-      <circle cx="44.23708969750854" cy="213.8461538461539" r="3">
-        <title>CHN</title>
-      </circle>
-      <circle cx="54.76291030249146" cy="213.8461538461539" r="3">
-        <title>PHI</title>
-      </circle>
-      <circle cx="49.5" cy="223.07692307692312" r="3">
-        <title>THA</title>
-      </circle>
-      <circle cx="38.97417939501705" cy="186.15384615384616" r="3">
-        <title>MGL</title>
-      </circle>
-      <circle cx="61.76291030249146" cy="213.8461538461539" r="3">
-        <title>TPE</title>
-      </circle>
-      <circle cx="60.02582060498287" cy="195.38461538461542" r="3">
-        <title>JPN</title>
-      </circle>
-      <circle cx="44.23708969750849" cy="167.6923076923077" r="3">
-        <title>KAZ</title>
-      </circle>
-      <circle cx="67.02582060498287" cy="195.38461538461542" r="3">
-        <title>KAZ</title>
-      </circle>
-      <circle cx="42.5" cy="139.99999999999997" r="3">
-        <title>IRI</title>
-      </circle>
-      <circle cx="56.5" cy="139.99999999999997" r="3">
-        <title>UZB</title>
-      </circle>
-      <circle cx="37.23708969750849" cy="227.69230769230776" r="3">
-        <title>AZE</title>
-      </circle>
-      <circle cx="54.76291030249146" cy="204.6153846153846" r="3">
-        <title>MGL</title>
-      </circle>
-      <circle cx="49.5" cy="112.30769230769238" r="3">
-        <title>KGZ</title>
-      </circle>
-      <circle cx="49.5" cy="84.61538461538466" r="3">
-        <title>RUS</title>
-      </circle>
-      <circle cx="38.974179395017075" cy="209.23076923076925" r="3">
-        <title>UZB</title>
-      </circle>
-      <circle cx="49.5" cy="98.46153846153851" r="3">
-        <title>CHN</title>
-      </circle>
-      <circle cx="49.5" cy="241.5384615384615" r="3">
-        <title>MGL</title>
-      </circle>
-      <circle cx="33.71126909252564" cy="200.00000000000003" r="3">
-        <title>QAT</title>
-      </circle>
-      <circle cx="49.5" cy="269.23076923076917" r="3">
-        <title>UZB</title>
-      </circle>
-      <circle cx="33.71126909252569" cy="190.76923076923075" r="3">
-        <title>ARM</title>
-      </circle>
-      <circle cx="28.448358790034256" cy="195.38461538461542" r="3">
-        <title>UZB</title>
-      </circle>
-      <circle cx="42.5" cy="158.46153846153848" r="3">
-        <title>JOR</title>
-      </circle>
-      <circle cx="61.76291030249146" cy="204.6153846153846" r="3">
-        <title>RUS</title>
-      </circle>
-      <circle cx="49.5" cy="38.46153846153847" r="3">
-        <title>KAZ</title>
-      </circle>
-      <circle cx="68.76291030249146" cy="204.6153846153846" r="3">
-        <title>AZE</title>
-      </circle>
-      <circle cx="33.71126909252562" cy="213.8461538461539" r="3">
-        <title>CHN</title>
-      </circle>
-      <circle cx="74.02582060498287" cy="195.38461538461542" r="3">
-        <title>CHN</title>
-      </circle>
-      <circle cx="21.448358790034256" cy="195.38461538461542" r="3">
-        <title>CHN</title>
-      </circle>
-      <circle cx="38.9741793950171" cy="218.4615384615385" r="3">
-        <title>CHN</title>
-      </circle>
-      <circle cx="61.76291030249151" cy="227.69230769230776" r="3">
-        <title>KAZ</title>
-      </circle>
-      <circle cx="56.5" cy="158.46153846153848" r="3">
-        <title>AZE</title>
-      </circle>
-      <circle cx="38.97417939501705" cy="172.3076923076923" r="3">
-        <title>IND</title>
-      </circle>
-      <circle cx="61.76291030249151" cy="135.3846153846154" r="3">
-        <title>AZE</title>
-      </circle>
-      <circle cx="56.5" cy="112.30769230769238" r="3">
-        <title>AZE</title>
-      </circle>
-      <circle cx="56.5" cy="181.53846153846155" r="3">
-        <title>IND</title>
-      </circle>
-      <circle cx="61.76291030249146" cy="153.84615384615384" r="3">
-        <title>TUR</title>
-      </circle>
-      <circle cx="37.23708969750849" cy="135.3846153846154" r="3">
-        <title>CHN</title>
-      </circle>
-      <circle cx="68.76291030249152" cy="227.69230769230776" r="3">
-        <title>RUS</title>
-      </circle>
-      <circle cx="30.237089697508488" cy="227.69230769230776" r="3">
-        <title>UZB</title>
-      </circle>
-      <circle cx="24.974179395017025" cy="223.07692307692312" r="3">
-        <title>ARM</title>
-      </circle>
-      <circle cx="28.448358790034156" cy="209.23076923076925" r="3">
-        <title>TPE</title>
-      </circle>
-      <circle cx="74.02582060498298" cy="223.07692307692312" r="3">
-        <title>JOR</title>
-      </circle>
-      <circle cx="42.5" cy="250.76923076923072" r="3">
-        <title>KAZ</title>
-      </circle>
-      <circle cx="63.5" cy="181.53846153846155" r="3">
-        <title>TUR</title>
-      </circle>
-      <circle cx="81.02582060498287" cy="195.38461538461542" r="3">
-        <title>TUR</title>
-      </circle>
-      <circle cx="75.76291030249146" cy="204.6153846153846" r="3">
-        <title>MGL</title>
-      </circle>
-      <circle cx="63.5" cy="172.3076923076923" r="3">
-        <title>AZE</title>
-      </circle>
-      <circle cx="54.762910302491484" cy="236.92307692307696" r="3">
-        <title>THA</title>
-      </circle>
-      <circle cx="14.448358790034256" cy="195.38461538461542" r="3">
-        <title>RUS</title>
-      </circle>
-      <circle cx="35.5" cy="158.46153846153848" r="3">
-        <title>CHN</title>
-      </circle>
-      <circle cx="33.71126909252554" cy="167.6923076923077" r="3">
-        <title>CHN</title>
-      </circle>
-      <circle cx="79.28873090747445" cy="227.69230769230776" r="3">
-        <title>PHI</title>
-      </circle>
-      <circle cx="23.185448487542693" cy="204.6153846153846" r="3">
-        <title>AZE</title>
-      </circle>
-      <circle cx="49.5" cy="130.76923076923075" r="3">
-        <title>UZB</title>
-      </circle>
-      <circle cx="68.76291030249146" cy="213.8461538461539" r="3">
-        <title>KOR</title>
-      </circle>
-      <circle cx="33.71126909252557" cy="181.53846153846155" r="3">
-        <title>THA</title>
-      </circle>
-      <circle cx="81.02582060498293" cy="209.23076923076925" r="3">
-        <title>TUR</title>
-      </circle>
-      <circle cx="17.92253818505123" cy="209.23076923076925" r="3">
-        <title>UZB</title>
-      </circle>
-      <circle cx="68.76291030249149" cy="186.15384615384616" r="3">
-        <title>UZB</title>
-      </circle>
-      <circle cx="88.02582060498293" cy="209.23076923076925" r="3">
-        <title>IND</title>
-      </circle>
-      <circle cx="42.5" cy="84.61538461538466" r="3">
-        <title>AZE</title>
-      </circle>
-      <circle cx="68.76291030249152" cy="167.6923076923077" r="3">
-        <title>QAT</title>
-      </circle>
-      <circle cx="61.762910302491484" cy="236.92307692307696" r="3">
-        <title>MGL</title>
-      </circle>
-      <circle cx="28.44835879003418" cy="186.15384615384616" r="3">
-        <title>MGL</title>
-      </circle>
-      <circle cx="56.5" cy="250.76923076923072" r="3">
-        <title>RUS</title>
-      </circle>
-      <circle cx="30.237089697508488" cy="135.3846153846154" r="3">
-        <title>KAZ</title>
-      </circle>
-      <circle cx="75.76291030249149" cy="186.15384615384616" r="3">
-        <title>RUS</title>
-      </circle>
-      <circle cx="88.02582060498287" cy="195.38461538461542" r="3">
-        <title>ARM</title>
-      </circle>
-      <circle cx="19.711269092525562" cy="227.69230769230776" r="3">
-        <title>RUS</title>
-      </circle>
-      <circle cx="26.71126909252554" cy="167.6923076923077" r="3">
-        <title>IRQ</title>
-      </circle>
-      <circle cx="23.185448487542693" cy="181.53846153846155" r="3">
-        <title>CHN</title>
-      </circle>
-      <circle cx="81.02582060498297" cy="181.53846153846155" r="3">
-        <title>THA</title>
-      </circle>
-      <circle cx="10.92253818505123" cy="209.23076923076925" r="3">
-        <title>AZE</title>
-      </circle>
-      <circle cx="35.5" cy="250.76923076923072" r="3">
-        <title>UZB</title>
-      </circle>
-      <circle cx="49.5" cy="278.46153846153845" r="3">
-        <title>KAZ</title>
-      </circle>
-      <circle cx="42.5" cy="149.2307692307692" r="3">
-        <title>KAZ</title>
-      </circle>
+      <circle cx="89.5" cy="121.5384615384616" r="3"><title>AZE</title></circle>
+      <circle cx="89.5" cy="181.53846153846155" r="3"><title>KAZ</title></circle>
+      <circle cx="89.5" cy="158.46153846153848" r="3"><title>KAZ</title></circle>
+      <circle cx="89.5" cy="195.38461538461542" r="3"><title>RUS</title></circle>
+      <circle cx="84.23708969750851" cy="200.00000000000003" r="3"><title>AZE</title></circle>
+      <circle cx="84.23708969750852" cy="116.92307692307698" r="3"><title>TUR</title></circle>
+      <circle cx="89.5" cy="232.30769230769235" r="3"><title>THA</title></circle>
+      <circle cx="84.23708969750857" cy="190.76923076923075" r="3"><title>RUS</title></circle>
+      <circle cx="89.5" cy="149.2307692307692" r="3"><title>RUS</title></circle>
+      <circle cx="89.5" cy="209.23076923076925" r="3"><title>TJK</title></circle>
+      <circle cx="94.76291030249143" cy="190.76923076923075" r="3"><title>ARM</title></circle>
+      <circle cx="84.23708969750851" cy="176.92307692307693" r="3"><title>JPN</title></circle>
+      <circle cx="89.5" cy="172.3076923076923" r="3"><title>TKM</title></circle>
+      <circle cx="89.5" cy="139.99999999999997" r="3"><title>RUS</title></circle>
+      <circle cx="89.5" cy="250.76923076923072" r="3"><title>ARM</title></circle>
+      <circle cx="89.5" cy="75.38461538461542" r="3"><title>UZB</title></circle>
+      <circle cx="78.97417939501713" cy="195.38461538461542" r="3"><title>TUR</title></circle>
+      <circle cx="96.5" cy="172.3076923076923" r="3"><title>UZB</title></circle>
+      <circle cx="84.2370896975085" cy="227.69230769230776" r="3"><title>KAZ</title></circle>
+      <circle cx="94.7629103024915" cy="227.69230769230776" r="3"><title>CHN</title></circle>
+      <circle cx="84.23708969750851" cy="236.92307692307696" r="3"><title>KAZ</title></circle>
+      <circle cx="84.23708969750854" cy="213.8461538461539" r="3"><title>CHN</title></circle>
+      <circle cx="94.76291030249146" cy="213.8461538461539" r="3"><title>PHI</title></circle>
+      <circle cx="89.5" cy="223.07692307692312" r="3"><title>THA</title></circle>
+      <circle cx="78.97417939501705" cy="186.15384615384616" r="3"><title>MGL</title></circle>
+      <circle cx="101.76291030249146" cy="213.8461538461539" r="3"><title>TPE</title></circle>
+      <circle cx="100.02582060498287" cy="195.38461538461542" r="3"><title>JPN</title></circle>
+      <circle cx="84.2370896975085" cy="167.6923076923077" r="3"><title>KAZ</title></circle>
+      <circle cx="107.02582060498287" cy="195.38461538461542" r="3"><title>KAZ</title></circle>
+      <circle cx="82.5" cy="139.99999999999997" r="3"><title>IRI</title></circle>
+      <circle cx="96.5" cy="139.99999999999997" r="3"><title>UZB</title></circle>
+      <circle cx="77.2370896975085" cy="227.69230769230776" r="3"><title>AZE</title></circle>
+      <circle cx="94.76291030249146" cy="204.6153846153846" r="3"><title>MGL</title></circle>
+      <circle cx="89.5" cy="112.30769230769238" r="3"><title>KGZ</title></circle>
+      <circle cx="89.5" cy="84.61538461538466" r="3"><title>RUS</title></circle>
+      <circle cx="78.97417939501707" cy="209.23076923076925" r="3"><title>UZB</title></circle>
+      <circle cx="89.5" cy="98.46153846153851" r="3"><title>CHN</title></circle>
+      <circle cx="89.5" cy="241.5384615384615" r="3"><title>MGL</title></circle>
+      <circle cx="73.71126909252564" cy="200.00000000000003" r="3"><title>QAT</title></circle>
+      <circle cx="89.5" cy="269.23076923076917" r="3"><title>UZB</title></circle>
+      <circle cx="73.7112690925257" cy="190.76923076923075" r="3"><title>ARM</title></circle>
+      <circle cx="68.44835879003426" cy="195.38461538461542" r="3"><title>UZB</title></circle>
+      <circle cx="82.5" cy="158.46153846153848" r="3"><title>JOR</title></circle>
+      <circle cx="101.76291030249146" cy="204.6153846153846" r="3"><title>RUS</title></circle>
+      <circle cx="89.5" cy="38.46153846153847" r="3"><title>KAZ</title></circle>
+      <circle cx="108.76291030249146" cy="204.6153846153846" r="3"><title>AZE</title></circle>
+      <circle cx="73.71126909252561" cy="213.8461538461539" r="3"><title>CHN</title></circle>
+      <circle cx="114.02582060498287" cy="195.38461538461542" r="3"><title>CHN</title></circle>
+      <circle cx="61.448358790034256" cy="195.38461538461542" r="3"><title>CHN</title></circle>
+      <circle cx="78.9741793950171" cy="218.4615384615385" r="3"><title>CHN</title></circle>
+      <circle cx="101.7629103024915" cy="227.69230769230776" r="3"><title>KAZ</title></circle>
+      <circle cx="96.5" cy="158.46153846153848" r="3"><title>AZE</title></circle>
+      <circle cx="78.97417939501705" cy="172.3076923076923" r="3"><title>IND</title></circle>
+      <circle cx="101.7629103024915" cy="135.3846153846154" r="3"><title>AZE</title></circle>
+      <circle cx="96.5" cy="112.30769230769238" r="3"><title>AZE</title></circle>
+      <circle cx="96.5" cy="181.53846153846155" r="3"><title>IND</title></circle>
+      <circle cx="101.76291030249146" cy="153.84615384615384" r="3"><title>TUR</title></circle>
+      <circle cx="77.2370896975085" cy="135.3846153846154" r="3"><title>CHN</title></circle>
+      <circle cx="108.76291030249152" cy="227.69230769230776" r="3"><title>RUS</title></circle>
+      <circle cx="70.23708969750848" cy="227.69230769230776" r="3"><title>UZB</title></circle>
+      <circle cx="64.97417939501702" cy="223.07692307692312" r="3"><title>ARM</title></circle>
+      <circle cx="68.44835879003415" cy="209.23076923076925" r="3"><title>TPE</title></circle>
+      <circle cx="114.02582060498298" cy="223.07692307692312" r="3"><title>JOR</title></circle>
+      <circle cx="82.5" cy="250.76923076923072" r="3"><title>KAZ</title></circle>
+      <circle cx="103.5" cy="181.53846153846155" r="3"><title>TUR</title></circle>
+      <circle cx="121.02582060498287" cy="195.38461538461542" r="3"><title>TUR</title></circle>
+      <circle cx="115.76291030249146" cy="204.6153846153846" r="3"><title>MGL</title></circle>
+      <circle cx="103.5" cy="172.3076923076923" r="3"><title>AZE</title></circle>
+      <circle cx="94.76291030249149" cy="236.92307692307696" r="3"><title>THA</title></circle>
+      <circle cx="54.448358790034256" cy="195.38461538461542" r="3"><title>RUS</title></circle>
+      <circle cx="75.5" cy="158.46153846153848" r="3"><title>CHN</title></circle>
+      <circle cx="73.71126909252554" cy="167.6923076923077" r="3"><title>CHN</title></circle>
+      <circle cx="119.28873090747445" cy="227.69230769230776" r="3"><title>PHI</title></circle>
+      <circle cx="63.18544848754269" cy="204.6153846153846" r="3"><title>AZE</title></circle>
+      <circle cx="89.5" cy="130.76923076923075" r="3"><title>UZB</title></circle>
+      <circle cx="108.76291030249146" cy="213.8461538461539" r="3"><title>KOR</title></circle>
+      <circle cx="73.71126909252557" cy="181.53846153846155" r="3"><title>THA</title></circle>
+      <circle cx="121.02582060498293" cy="209.23076923076925" r="3"><title>TUR</title></circle>
+      <circle cx="57.92253818505123" cy="209.23076923076925" r="3"><title>UZB</title></circle>
+      <circle cx="108.76291030249149" cy="186.15384615384616" r="3"><title>UZB</title></circle>
+      <circle cx="128.02582060498293" cy="209.23076923076925" r="3"><title>IND</title></circle>
+      <circle cx="82.5" cy="84.61538461538466" r="3"><title>AZE</title></circle>
+      <circle cx="108.76291030249152" cy="167.6923076923077" r="3"><title>QAT</title></circle>
+      <circle cx="101.76291030249149" cy="236.92307692307696" r="3"><title>MGL</title></circle>
+      <circle cx="68.44835879003418" cy="186.15384615384616" r="3"><title>MGL</title></circle>
+      <circle cx="96.5" cy="250.76923076923072" r="3"><title>RUS</title></circle>
+      <circle cx="70.23708969750848" cy="135.3846153846154" r="3"><title>KAZ</title></circle>
+      <circle cx="115.76291030249149" cy="186.15384615384616" r="3"><title>RUS</title></circle>
+      <circle cx="128.02582060498287" cy="195.38461538461542" r="3"><title>ARM</title></circle>
+      <circle cx="59.71126909252556" cy="227.69230769230776" r="3"><title>RUS</title></circle>
+      <circle cx="66.71126909252554" cy="167.6923076923077" r="3"><title>IRQ</title></circle>
+      <circle cx="63.18544848754269" cy="181.53846153846155" r="3"><title>CHN</title></circle>
+      <circle cx="121.02582060498297" cy="181.53846153846155" r="3"><title>THA</title></circle>
+      <circle cx="50.92253818505123" cy="209.23076923076925" r="3"><title>AZE</title></circle>
+      <circle cx="75.5" cy="250.76923076923072" r="3"><title>UZB</title></circle>
+      <circle cx="89.5" cy="278.46153846153845" r="3"><title>KAZ</title></circle>
+      <circle cx="82.5" cy="149.2307692307692" r="3"><title>KAZ</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(371,0)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="99" height="300"></rect>
+  <g aria-label="facet" transform="translate(331,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(89.5,320)">Europe</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="20" width="99" height="300"></rect>
     <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="49.5" cy="139.99999999999997" r="3">
-        <title>SWE</title>
-      </circle>
-      <circle cx="49.5" cy="163.07692307692307" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="44.23708969750849" cy="158.46153846153848" r="3">
-        <title>GER</title>
-      </circle>
-      <circle cx="49.5" cy="195.38461538461542" r="3">
-        <title>GER</title>
-      </circle>
-      <circle cx="49.5" cy="218.4615384615385" r="3">
-        <title>IRL</title>
-      </circle>
-      <circle cx="42.5" cy="218.4615384615385" r="3">
-        <title>ITA</title>
-      </circle>
-      <circle cx="49.5" cy="181.53846153846155" r="3">
-        <title>FRA</title>
-      </circle>
-      <circle cx="49.5" cy="153.84615384615384" r="3">
-        <title>ITA</title>
-      </circle>
-      <circle cx="49.5" cy="236.92307692307696" r="3">
-        <title>BUL</title>
-      </circle>
-      <circle cx="49.5" cy="107.69230769230775" r="3">
-        <title>GER</title>
-      </circle>
-      <circle cx="44.237089697508516" cy="200.00000000000003" r="3">
-        <title>IRL</title>
-      </circle>
-      <circle cx="56.5" cy="163.07692307692307" r="3">
-        <title>UKR</title>
-      </circle>
-      <circle cx="44.237089697508566" cy="190.76923076923075" r="3">
-        <title>UKR</title>
-      </circle>
-      <circle cx="44.237089697508516" cy="176.92307692307693" r="3">
-        <title>BLR</title>
-      </circle>
-      <circle cx="54.762910302491434" cy="190.76923076923075" r="3">
-        <title>LTU</title>
-      </circle>
-      <circle cx="49.5" cy="204.6153846153846" r="3">
-        <title>FRA</title>
-      </circle>
-      <circle cx="56.5" cy="153.84615384615384" r="3">
-        <title>NED</title>
-      </circle>
-      <circle cx="42.5" cy="107.69230769230775" r="3">
-        <title>GER</title>
-      </circle>
-      <circle cx="54.762910302491484" cy="213.8461538461539" r="3">
-        <title>FRA</title>
-      </circle>
-      <circle cx="44.237089697508516" cy="232.30769230769235" r="3">
-        <title>LTU</title>
-      </circle>
-      <circle cx="49.5" cy="80.00000000000006" r="3">
-        <title>CRO</title>
-      </circle>
-      <circle cx="49.5" cy="259.99999999999994" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="44.23708969750854" cy="75.38461538461542" r="3">
-        <title>ITA</title>
-      </circle>
-      <circle cx="56.5" cy="204.6153846153846" r="3">
-        <title>GER</title>
-      </circle>
-      <circle cx="44.237089697508516" cy="144.61538461538458" r="3">
-        <title>FRA</title>
-      </circle>
-      <circle cx="56.5" cy="181.53846153846155" r="3">
-        <title>CRO</title>
-      </circle>
-      <circle cx="56.5" cy="139.99999999999997" r="3">
-        <title>POL</title>
-      </circle>
-      <circle cx="49.5" cy="172.3076923076923" r="3">
-        <title>HUN</title>
-      </circle>
-      <circle cx="38.97417939501705" cy="186.15384615384616" r="3">
-        <title>ITA</title>
-      </circle>
-      <circle cx="56.5" cy="80.00000000000006" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="63.5" cy="181.53846153846155" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="49.5" cy="130.76923076923075" r="3">
-        <title>IRL</title>
-      </circle>
-      <circle cx="44.23708969750854" cy="167.6923076923077" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="44.23708969750854" cy="135.3846153846154" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="44.23708969750844" cy="241.5384615384615" r="3">
-        <title>IRL</title>
-      </circle>
-      <circle cx="49.5" cy="89.23076923076928" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="61.762910302491484" cy="213.8461538461539" r="3">
-        <title>ITA</title>
-      </circle>
-      <circle cx="37.23708969750854" cy="135.3846153846154" r="3">
-        <title>FRA</title>
-      </circle>
-      <circle cx="38.974179395017" cy="204.6153846153846" r="3">
-        <title>IRL</title>
-      </circle>
-      <circle cx="61.76291030249146" cy="158.46153846153848" r="3">
-        <title>IRL</title>
-      </circle>
-      <circle cx="37.23708969750849" cy="158.46153846153848" r="3">
-        <title>ROU</title>
-      </circle>
-      <circle cx="56.5" cy="172.3076923076923" r="3">
-        <title>BLR</title>
-      </circle>
-      <circle cx="49.5" cy="227.69230769230776" r="3">
-        <title>FIN</title>
-      </circle>
-      <circle cx="61.762910302491434" cy="190.76923076923075" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="63.5" cy="204.6153846153846" r="3">
-        <title>UKR</title>
-      </circle>
-      <circle cx="54.762910302491484" cy="232.30769230769235" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="68.76291030249146" cy="158.46153846153848" r="3">
-        <title>NED</title>
-      </circle>
-      <circle cx="38.97417939501703" cy="149.2307692307692" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="60.02582060498297" cy="236.92307692307696" r="3">
-        <title>IRL</title>
-      </circle>
-      <circle cx="49.5" cy="116.92307692307698" r="3">
-        <title>FRA</title>
-      </circle>
-      <circle cx="37.237089697508516" cy="176.92307692307693" r="3">
-        <title>BLR</title>
-      </circle>
-      <circle cx="61.762910302491484" cy="144.61538461538458" r="3">
-        <title>NED</title>
-      </circle>
-      <circle cx="31.974179395017003" cy="204.6153846153846" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="54.76291030249141" cy="241.5384615384615" r="3">
-        <title>ESP</title>
-      </circle>
-      <circle cx="44.23708969750854" cy="264.6153846153846" r="3">
-        <title>FRA</title>
-      </circle>
-      <circle cx="31.97417939501703" cy="153.84615384615384" r="3">
-        <title>GBR</title>
-      </circle>
-      <circle cx="74.02582060498293" cy="153.84615384615384" r="3">
-        <title>GER</title>
-      </circle>
-      <circle cx="26.71126909252557" cy="158.46153846153848" r="3">
-        <title>BUL</title>
-      </circle>
-      <circle cx="31.974179395017053" cy="186.15384615384616" r="3">
-        <title>FRA</title>
-      </circle>
-      <circle cx="31.97417939501708" cy="163.07692307692307" r="3">
-        <title>FRA</title>
-      </circle>
-      <circle cx="70.5" cy="204.6153846153846" r="3">
-        <title>BUL</title>
-      </circle>
-      <circle cx="79.28873090747439" cy="158.46153846153848" r="3">
-        <title>IRL</title>
-      </circle>
-      <circle cx="30.237089697508516" cy="176.92307692307693" r="3">
-        <title>HON</title>
-      </circle>
-      <circle cx="49.5" cy="246.1538461538461" r="3">
-        <title>UKR</title>
-      </circle>
-      <circle cx="37.237089697508544" cy="167.6923076923077" r="3">
-        <title>POL</title>
-      </circle>
-      <circle cx="49.5" cy="66.15384615384619" r="3">
-        <title>FRA</title>
-      </circle>
-      <circle cx="19.71126909252557" cy="158.46153846153848" r="3">
-        <title>ITA</title>
-      </circle>
-      <circle cx="24.974179395017003" cy="204.6153846153846" r="3">
-        <title>ITA</title>
-      </circle>
-      <circle cx="75.76291030249152" cy="200.00000000000003" r="3">
-        <title>UKR</title>
-      </circle>
-      <circle cx="67.02582060498297" cy="149.2307692307692" r="3">
-        <title>ESP</title>
-      </circle>
-      <circle cx="67.02582060498297" cy="139.99999999999997" r="3">
-        <title>HUN</title>
-      </circle>
+      <circle cx="89.5" cy="139.99999999999997" r="3"><title>SWE</title></circle>
+      <circle cx="89.5" cy="163.07692307692307" r="3"><title>GBR</title></circle>
+      <circle cx="84.2370896975085" cy="158.46153846153848" r="3"><title>GER</title></circle>
+      <circle cx="89.5" cy="195.38461538461542" r="3"><title>GER</title></circle>
+      <circle cx="89.5" cy="218.4615384615385" r="3"><title>IRL</title></circle>
+      <circle cx="82.5" cy="218.4615384615385" r="3"><title>ITA</title></circle>
+      <circle cx="89.5" cy="181.53846153846155" r="3"><title>FRA</title></circle>
+      <circle cx="89.5" cy="153.84615384615384" r="3"><title>ITA</title></circle>
+      <circle cx="89.5" cy="236.92307692307696" r="3"><title>BUL</title></circle>
+      <circle cx="89.5" cy="107.69230769230775" r="3"><title>GER</title></circle>
+      <circle cx="84.23708969750851" cy="200.00000000000003" r="3"><title>IRL</title></circle>
+      <circle cx="96.5" cy="163.07692307692307" r="3"><title>UKR</title></circle>
+      <circle cx="84.23708969750857" cy="190.76923076923075" r="3"><title>UKR</title></circle>
+      <circle cx="84.23708969750851" cy="176.92307692307693" r="3"><title>BLR</title></circle>
+      <circle cx="94.76291030249143" cy="190.76923076923075" r="3"><title>LTU</title></circle>
+      <circle cx="89.5" cy="204.6153846153846" r="3"><title>FRA</title></circle>
+      <circle cx="96.5" cy="153.84615384615384" r="3"><title>NED</title></circle>
+      <circle cx="82.5" cy="107.69230769230775" r="3"><title>GER</title></circle>
+      <circle cx="94.76291030249149" cy="213.8461538461539" r="3"><title>FRA</title></circle>
+      <circle cx="84.23708969750851" cy="232.30769230769235" r="3"><title>LTU</title></circle>
+      <circle cx="89.5" cy="80.00000000000006" r="3"><title>CRO</title></circle>
+      <circle cx="89.5" cy="259.99999999999994" r="3"><title>GBR</title></circle>
+      <circle cx="84.23708969750854" cy="75.38461538461542" r="3"><title>ITA</title></circle>
+      <circle cx="96.5" cy="204.6153846153846" r="3"><title>GER</title></circle>
+      <circle cx="84.23708969750851" cy="144.61538461538458" r="3"><title>FRA</title></circle>
+      <circle cx="96.5" cy="181.53846153846155" r="3"><title>CRO</title></circle>
+      <circle cx="96.5" cy="139.99999999999997" r="3"><title>POL</title></circle>
+      <circle cx="89.5" cy="172.3076923076923" r="3"><title>HUN</title></circle>
+      <circle cx="78.97417939501705" cy="186.15384615384616" r="3"><title>ITA</title></circle>
+      <circle cx="96.5" cy="80.00000000000006" r="3"><title>GBR</title></circle>
+      <circle cx="103.5" cy="181.53846153846155" r="3"><title>GBR</title></circle>
+      <circle cx="89.5" cy="130.76923076923075" r="3"><title>IRL</title></circle>
+      <circle cx="84.23708969750854" cy="167.6923076923077" r="3"><title>GBR</title></circle>
+      <circle cx="84.23708969750854" cy="135.3846153846154" r="3"><title>GBR</title></circle>
+      <circle cx="84.23708969750844" cy="241.5384615384615" r="3"><title>IRL</title></circle>
+      <circle cx="89.5" cy="89.23076923076928" r="3"><title>GBR</title></circle>
+      <circle cx="101.76291030249149" cy="213.8461538461539" r="3"><title>ITA</title></circle>
+      <circle cx="77.23708969750854" cy="135.3846153846154" r="3"><title>FRA</title></circle>
+      <circle cx="78.974179395017" cy="204.6153846153846" r="3"><title>IRL</title></circle>
+      <circle cx="101.76291030249146" cy="158.46153846153848" r="3"><title>IRL</title></circle>
+      <circle cx="77.2370896975085" cy="158.46153846153848" r="3"><title>ROU</title></circle>
+      <circle cx="96.5" cy="172.3076923076923" r="3"><title>BLR</title></circle>
+      <circle cx="89.5" cy="227.69230769230776" r="3"><title>FIN</title></circle>
+      <circle cx="101.76291030249143" cy="190.76923076923075" r="3"><title>GBR</title></circle>
+      <circle cx="103.5" cy="204.6153846153846" r="3"><title>UKR</title></circle>
+      <circle cx="94.76291030249149" cy="232.30769230769235" r="3"><title>GBR</title></circle>
+      <circle cx="108.76291030249146" cy="158.46153846153848" r="3"><title>NED</title></circle>
+      <circle cx="78.97417939501703" cy="149.2307692307692" r="3"><title>GBR</title></circle>
+      <circle cx="100.02582060498297" cy="236.92307692307696" r="3"><title>IRL</title></circle>
+      <circle cx="89.5" cy="116.92307692307698" r="3"><title>FRA</title></circle>
+      <circle cx="77.23708969750851" cy="176.92307692307693" r="3"><title>BLR</title></circle>
+      <circle cx="101.76291030249149" cy="144.61538461538458" r="3"><title>NED</title></circle>
+      <circle cx="71.974179395017" cy="204.6153846153846" r="3"><title>GBR</title></circle>
+      <circle cx="94.7629103024914" cy="241.5384615384615" r="3"><title>ESP</title></circle>
+      <circle cx="84.23708969750854" cy="264.6153846153846" r="3"><title>FRA</title></circle>
+      <circle cx="71.97417939501703" cy="153.84615384615384" r="3"><title>GBR</title></circle>
+      <circle cx="114.02582060498293" cy="153.84615384615384" r="3"><title>GER</title></circle>
+      <circle cx="66.71126909252557" cy="158.46153846153848" r="3"><title>BUL</title></circle>
+      <circle cx="71.97417939501705" cy="186.15384615384616" r="3"><title>FRA</title></circle>
+      <circle cx="71.97417939501707" cy="163.07692307692307" r="3"><title>FRA</title></circle>
+      <circle cx="110.5" cy="204.6153846153846" r="3"><title>BUL</title></circle>
+      <circle cx="119.28873090747439" cy="158.46153846153848" r="3"><title>IRL</title></circle>
+      <circle cx="70.23708969750851" cy="176.92307692307693" r="3"><title>HON</title></circle>
+      <circle cx="89.5" cy="246.1538461538461" r="3"><title>UKR</title></circle>
+      <circle cx="77.23708969750854" cy="167.6923076923077" r="3"><title>POL</title></circle>
+      <circle cx="89.5" cy="66.15384615384619" r="3"><title>FRA</title></circle>
+      <circle cx="59.71126909252557" cy="158.46153846153848" r="3"><title>ITA</title></circle>
+      <circle cx="64.974179395017" cy="204.6153846153846" r="3"><title>ITA</title></circle>
+      <circle cx="115.76291030249152" cy="200.00000000000003" r="3"><title>UKR</title></circle>
+      <circle cx="107.02582060498297" cy="149.2307692307692" r="3"><title>ESP</title></circle>
+      <circle cx="107.02582060498297" cy="139.99999999999997" r="3"><title>HUN</title></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(481,0)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="99" height="300"></rect>
-    <g aria-label="dot" transform="translate(0.5,0.5)">
-      <circle cx="49.5" cy="167.6923076923077" r="3">
-        <title>AUS</title>
-      </circle>
-      <circle cx="49.5" cy="84.61538461538466" r="3">
-        <title>AUS</title>
-      </circle>
-      <circle cx="49.5" cy="246.1538461538461" r="3">
-        <title>FSM</title>
-      </circle>
-      <circle cx="49.5" cy="232.30769230769235" r="3">
-        <title>AUS</title>
-      </circle>
-      <circle cx="49.5" cy="218.4615384615385" r="3">
-        <title>PNG</title>
-      </circle>
+  <g aria-label="facet" transform="translate(441,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(89.5,320)">Oceania</text>
     </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="20" width="99" height="300"></rect>
+    <g aria-label="dot" transform="translate(0.5,0.5)">
+      <circle cx="89.5" cy="167.6923076923077" r="3"><title>AUS</title></circle>
+      <circle cx="89.5" cy="84.61538461538466" r="3"><title>AUS</title></circle>
+      <circle cx="89.5" cy="246.1538461538461" r="3"><title>FSM</title></circle>
+      <circle cx="89.5" cy="232.30769230769235" r="3"><title>AUS</title></circle>
+      <circle cx="89.5" cy="218.4615384615385" r="3"><title>PNG</title></circle>
+    </g>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(310.5,320)">continent</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(41,20)">↑ height</text>
   </g>
 </svg>

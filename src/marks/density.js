@@ -1,6 +1,6 @@
 import {contourDensity, create, geoPath} from "d3";
-import {isTypedArray, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../mark.js";
+import {isTypedArray, maybeTuple, maybeZ} from "../options.js";
 import {Position} from "../projection.js";
 import {coerceNumbers} from "../scales.js";
 import {

@@ -13,69 +13,53 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,558.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,516.0806451612904)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,473.66129032258067)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,431.241935483871)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,388.82258064516134)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,346.4032258064516)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,303.98387096774195)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">3.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,261.5645161290323)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">3.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,219.1451612903226)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,176.7258064516129)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,134.30645161290326)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">5.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,91.88709677419355)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">5.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,49.467741935483915)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6.0</text>
-    </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,558)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,515.5806451612904)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,473.16129032258067)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,430.741935483871)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,388.32258064516134)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,345.9032258064516)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,303.48387096774195)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,261.0645161290323)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,218.6451612903226)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,176.2258064516129)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,133.80645161290326)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,91.38709677419355)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,48.967741935483915)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(52.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(142.17741935483872,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(231.8548387096774,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(321.5322580645161,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(411.2096774193548,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(500.88709677419354,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(590.5645161290322,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6</text>
-    </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,558)">0.0</text>
+    <text y="0.32em" transform="translate(40,515.5806451612904)">0.5</text>
+    <text y="0.32em" transform="translate(40,473.16129032258067)">1.0</text>
+    <text y="0.32em" transform="translate(40,430.741935483871)">1.5</text>
+    <text y="0.32em" transform="translate(40,388.32258064516134)">2.0</text>
+    <text y="0.32em" transform="translate(40,345.9032258064516)">2.5</text>
+    <text y="0.32em" transform="translate(40,303.48387096774195)">3.0</text>
+    <text y="0.32em" transform="translate(40,261.0645161290323)">3.5</text>
+    <text y="0.32em" transform="translate(40,218.6451612903226)">4.0</text>
+    <text y="0.32em" transform="translate(40,176.2258064516129)">4.5</text>
+    <text y="0.32em" transform="translate(40,133.80645161290326)">5.0</text>
+    <text y="0.32em" transform="translate(40,91.38709677419355)">5.5</text>
+    <text y="0.32em" transform="translate(40,48.967741935483915)">6.0</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(52,570)" d="M0,0L0,6"></path>
+    <path transform="translate(141.67741935483872,570)" d="M0,0L0,6"></path>
+    <path transform="translate(231.3548387096774,570)" d="M0,0L0,6"></path>
+    <path transform="translate(321.0322580645161,570)" d="M0,0L0,6"></path>
+    <path transform="translate(410.7096774193548,570)" d="M0,0L0,6"></path>
+    <path transform="translate(500.38709677419354,570)" d="M0,0L0,6"></path>
+    <path transform="translate(590.0645161290322,570)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(52,570)">0</text>
+    <text y="0.71em" transform="translate(141.67741935483872,570)">1</text>
+    <text y="0.71em" transform="translate(231.3548387096774,570)">2</text>
+    <text y="0.71em" transform="translate(321.0322580645161,570)">3</text>
+    <text y="0.71em" transform="translate(410.7096774193548,570)">4</text>
+    <text y="0.71em" transform="translate(500.38709677419354,570)">5</text>
+    <text y="0.71em" transform="translate(590.0645161290322,570)">6</text>
   </g>
   <g aria-label="vector" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path transform="translate(52,558) rotate(0) translate(0,0.8333333333333334)" d="M0,0L0,-1.667M-0.333,-1.333L0,-1.667L0.333,-1.333"></path>

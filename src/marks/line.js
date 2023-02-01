@@ -1,8 +1,8 @@
 import {curveLinear, geoPath, line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
-import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../mark.js";
+import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {coerceNumbers} from "../scales.js";
 import {
   applyDirectStyles,

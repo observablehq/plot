@@ -13,93 +13,76 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,35.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">USA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,55.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BRA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,75.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GER</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,95.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">AUS</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,115.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">FRA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,135.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CHN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,155.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GBR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,175.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">JPN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,195.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CAN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,215.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ESP</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,235.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ITA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,255.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">RUS</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,275.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NED</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,295.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">POL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,315.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ARG</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,335.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">KOR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,355.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NZL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,375.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">UKR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,395.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SWE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,415.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">COL</text>
-    </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+    <path transform="translate(40,26)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,46)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,66)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,86)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,106)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,126)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,146)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,166)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,186)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,206)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,226)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,246)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,266)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,286)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,306)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,326)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,346)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,366)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,386)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,406)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="Frequency →" transform="translate(0,430)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(40.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(142.79276895943562,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(245.08553791887124,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">200</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(347.3783068783069,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">300</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(449.6710758377425,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">400</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(551.963844797178,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">500</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
+    <text y="0.32em" transform="translate(40,26)">USA</text>
+    <text y="0.32em" transform="translate(40,46)">BRA</text>
+    <text y="0.32em" transform="translate(40,66)">GER</text>
+    <text y="0.32em" transform="translate(40,86)">AUS</text>
+    <text y="0.32em" transform="translate(40,106)">FRA</text>
+    <text y="0.32em" transform="translate(40,126)">CHN</text>
+    <text y="0.32em" transform="translate(40,146)">GBR</text>
+    <text y="0.32em" transform="translate(40,166)">JPN</text>
+    <text y="0.32em" transform="translate(40,186)">CAN</text>
+    <text y="0.32em" transform="translate(40,206)">ESP</text>
+    <text y="0.32em" transform="translate(40,226)">ITA</text>
+    <text y="0.32em" transform="translate(40,246)">RUS</text>
+    <text y="0.32em" transform="translate(40,266)">NED</text>
+    <text y="0.32em" transform="translate(40,286)">POL</text>
+    <text y="0.32em" transform="translate(40,306)">ARG</text>
+    <text y="0.32em" transform="translate(40,326)">KOR</text>
+    <text y="0.32em" transform="translate(40,346)">NZL</text>
+    <text y="0.32em" transform="translate(40,366)">UKR</text>
+    <text y="0.32em" transform="translate(40,386)">SWE</text>
+    <text y="0.32em" transform="translate(40,406)">COL</text>
+  </g>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="40" x2="40" y1="20" y2="430"></line>
+    <line x1="142.29276895943562" x2="142.29276895943562" y1="20" y2="430"></line>
+    <line x1="244.58553791887124" x2="244.58553791887124" y1="20" y2="430"></line>
+    <line x1="346.8783068783069" x2="346.8783068783069" y1="20" y2="430"></line>
+    <line x1="449.1710758377425" x2="449.1710758377425" y1="20" y2="430"></line>
+    <line x1="551.463844797178" x2="551.463844797178" y1="20" y2="430"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,430)" d="M0,0L0,6"></path>
+    <path transform="translate(142.29276895943562,430)" d="M0,0L0,6"></path>
+    <path transform="translate(244.58553791887124,430)" d="M0,0L0,6"></path>
+    <path transform="translate(346.8783068783069,430)" d="M0,0L0,6"></path>
+    <path transform="translate(449.1710758377425,430)" d="M0,0L0,6"></path>
+    <path transform="translate(551.463844797178,430)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,430)">0</text>
+    <text y="0.71em" transform="translate(142.29276895943562,430)">100</text>
+    <text y="0.71em" transform="translate(244.58553791887124,430)">200</text>
+    <text y="0.71em" transform="translate(346.8783068783069,430)">300</text>
+    <text y="0.71em" transform="translate(449.1710758377425,430)">400</text>
+    <text y="0.71em" transform="translate(551.463844797178,430)">500</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,430)">Frequency →</text>
   </g>
   <g aria-label="bar">
     <rect x="40" width="228.11287477954141" y="306" height="18"></rect>

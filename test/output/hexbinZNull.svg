@@ -13,72 +13,61 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ culmen_length_mm" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,337.7)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">34</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,313.70000000000005)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">36</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,289.70000000000005)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">38</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,265.70000000000005)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,241.70000000000005)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">42</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,217.70000000000002)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">44</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,193.70000000000002)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">46</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,169.70000000000002)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">48</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,145.70000000000002)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">50</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,121.70000000000002)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">52</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,97.70000000000003)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">54</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,73.70000000000002)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">56</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,49.70000000000002)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">58</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ culmen_length_mm</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,337.2)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,313.20000000000005)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,289.20000000000005)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,265.20000000000005)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,241.20000000000005)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,217.20000000000002)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,193.20000000000002)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,169.20000000000002)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,145.20000000000002)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,121.20000000000002)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,97.20000000000003)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,73.20000000000002)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,49.20000000000002)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="culmen_depth_mm →" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(110.50000000000001,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">14</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(177.16666666666669,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(243.83333333333337,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">16</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(310.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">17</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(377.1666666666667,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">18</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(443.8333333333333,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">19</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(510.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(577.1666666666666,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">21</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">culmen_depth_mm →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,337.2)">34</text>
+    <text y="0.32em" transform="translate(40,313.20000000000005)">36</text>
+    <text y="0.32em" transform="translate(40,289.20000000000005)">38</text>
+    <text y="0.32em" transform="translate(40,265.20000000000005)">40</text>
+    <text y="0.32em" transform="translate(40,241.20000000000005)">42</text>
+    <text y="0.32em" transform="translate(40,217.20000000000002)">44</text>
+    <text y="0.32em" transform="translate(40,193.20000000000002)">46</text>
+    <text y="0.32em" transform="translate(40,169.20000000000002)">48</text>
+    <text y="0.32em" transform="translate(40,145.20000000000002)">50</text>
+    <text y="0.32em" transform="translate(40,121.20000000000002)">52</text>
+    <text y="0.32em" transform="translate(40,97.20000000000003)">54</text>
+    <text y="0.32em" transform="translate(40,73.20000000000002)">56</text>
+    <text y="0.32em" transform="translate(40,49.20000000000002)">58</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ culmen_length_mm</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(110.00000000000001,370)" d="M0,0L0,6"></path>
+    <path transform="translate(176.66666666666669,370)" d="M0,0L0,6"></path>
+    <path transform="translate(243.33333333333337,370)" d="M0,0L0,6"></path>
+    <path transform="translate(310,370)" d="M0,0L0,6"></path>
+    <path transform="translate(376.6666666666667,370)" d="M0,0L0,6"></path>
+    <path transform="translate(443.3333333333333,370)" d="M0,0L0,6"></path>
+    <path transform="translate(510,370)" d="M0,0L0,6"></path>
+    <path transform="translate(576.6666666666666,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(110.00000000000001,370)">14</text>
+    <text y="0.71em" transform="translate(176.66666666666669,370)">15</text>
+    <text y="0.71em" transform="translate(243.33333333333337,370)">16</text>
+    <text y="0.71em" transform="translate(310,370)">17</text>
+    <text y="0.71em" transform="translate(376.6666666666667,370)">18</text>
+    <text y="0.71em" transform="translate(443.3333333333333,370)">19</text>
+    <text y="0.71em" transform="translate(510,370)">20</text>
+    <text y="0.71em" transform="translate(576.6666666666666,370)">21</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">culmen_depth_mm →</text>
   </g>
   <g aria-label="hexgrid" clip-path="url(#plot-clip-1)">
     <clipPath id="plot-clip-1">

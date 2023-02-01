@@ -13,57 +13,51 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ case_count" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,334.0416666666667)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,297.5833333333333)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,261.125)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">15</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,224.66666666666666)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,188.20833333333331)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">25</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,151.75)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">30</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,115.29166666666667)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">35</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,78.83333333333331)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,42.375)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">45</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ case_count</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,333.5416666666667)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,297.0833333333333)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,260.625)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,224.16666666666666)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,187.70833333333331)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,151.25)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,114.79166666666667)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,78.33333333333331)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,41.875)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="specimen_collection_date →" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(70.88095238095238,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">April</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(171.41428571428568,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">July</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(273.05238095238093,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">October</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(374.69047619047615,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2021</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(474.1190476190476,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">April</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(574.652380952381,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">July</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">specimen_collection_date →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,333.5416666666667)">5</text>
+    <text y="0.32em" transform="translate(40,297.0833333333333)">10</text>
+    <text y="0.32em" transform="translate(40,260.625)">15</text>
+    <text y="0.32em" transform="translate(40,224.16666666666666)">20</text>
+    <text y="0.32em" transform="translate(40,187.70833333333331)">25</text>
+    <text y="0.32em" transform="translate(40,151.25)">30</text>
+    <text y="0.32em" transform="translate(40,114.79166666666667)">35</text>
+    <text y="0.32em" transform="translate(40,78.33333333333331)">40</text>
+    <text y="0.32em" transform="translate(40,41.875)">45</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ case_count</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(70.38095238095238,370)" d="M0,0L0,6"></path>
+    <path transform="translate(170.91428571428568,370)" d="M0,0L0,6"></path>
+    <path transform="translate(272.55238095238093,370)" d="M0,0L0,6"></path>
+    <path transform="translate(374.19047619047615,370)" d="M0,0L0,6"></path>
+    <path transform="translate(473.6190476190476,370)" d="M0,0L0,6"></path>
+    <path transform="translate(574.152380952381,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(70.38095238095238,370)">April</text>
+    <text y="0.71em" transform="translate(170.91428571428568,370)">July</text>
+    <text y="0.71em" transform="translate(272.55238095238093,370)">October</text>
+    <text y="0.71em" transform="translate(374.19047619047615,370)">2021</text>
+    <text y="0.71em" transform="translate(473.6190476190476,370)">April</text>
+    <text y="0.71em" transform="translate(574.152380952381,370)">July</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">specimen_collection_date →</text>
   </g>
   <g aria-label="area">
     <path fill="#4e79a7" d="M40,370L43.867,370L43.867,370L51.6,370L51.6,370L59.333,370L59.333,340.833L67.067,340.833L67.067,340.833L74.8,340.833L74.8,340.833L82.533,340.833L82.533,348.125L90.267,348.125L90.267,348.125L98,348.125L98,362.708L105.733,362.708L105.733,355.417L113.467,355.417L113.467,370L121.2,370L121.2,370L128.933,370L128.933,362.708L136.667,362.708L136.667,362.708L144.4,362.708L144.4,362.708L152.133,362.708L152.133,362.708L159.867,362.708L159.867,370L167.6,370L167.6,370L175.333,370L175.333,362.708L183.067,362.708L183.067,333.542L190.8,333.542L190.8,348.125L198.533,348.125L198.533,318.958L206.267,318.958L206.267,348.125L214,348.125L214,326.25L221.733,326.25L221.733,362.708L229.467,362.708L229.467,355.417L237.2,355.417L237.2,333.542L244.933,333.542L244.933,326.25L252.667,326.25L252.667,340.833L260.4,340.833L260.4,348.125L268.133,348.125L268.133,333.542L275.867,333.542L275.867,304.375L283.6,304.375L283.6,362.708L291.333,362.708L291.333,340.833L299.067,340.833L299.067,370L306.8,370L306.8,370L314.533,370L314.533,355.417L322.267,355.417L322.267,370L330,370L330,355.417L337.733,355.417L337.733,348.125L345.467,348.125L345.467,348.125L353.2,348.125L353.2,340.833L360.933,340.833L360.933,333.542L368.667,333.542L368.667,333.542L376.4,333.542L376.4,340.833L384.133,340.833L384.133,340.833L391.867,340.833L391.867,348.125L399.6,348.125L399.6,348.125L407.333,348.125L407.333,340.833L415.067,340.833L415.067,348.125L422.8,348.125L422.8,355.417L430.533,355.417L430.533,362.708L438.267,362.708L438.267,370L446,370L446,370L453.733,370L453.733,370L461.467,370L461.467,370L469.2,370L469.2,370L476.933,370L476.933,370L484.667,370L484.667,370L492.4,370L492.4,370L500.133,370L500.133,370L507.867,370L507.867,362.708L515.6,362.708L515.6,370L523.333,370L523.333,370L531.067,370L531.067,370L538.8,370L538.8,362.708L546.533,362.708L546.533,370L554.267,370L554.267,370L562,370L562,370L569.733,370L569.733,370L577.467,370L577.467,370L585.2,370L585.2,370L592.933,370L592.933,370L600.667,370L600.667,370L608.4,370L608.4,370L616.133,370L616.133,370L620,370L620,370L616.133,370L616.133,370L608.4,370L608.4,370L600.667,370L600.667,370L592.933,370L592.933,370L585.2,370L585.2,370L577.467,370L577.467,370L569.733,370L569.733,370L562,370L562,370L554.267,370L554.267,370L546.533,370L546.533,370L538.8,370L538.8,370L531.067,370L531.067,370L523.333,370L523.333,370L515.6,370L515.6,370L507.867,370L507.867,370L500.133,370L500.133,370L492.4,370L492.4,370L484.667,370L484.667,370L476.933,370L476.933,370L469.2,370L469.2,370L461.467,370L461.467,370L453.733,370L453.733,370L446,370L446,370L438.267,370L438.267,370L430.533,370L430.533,370L422.8,370L422.8,370L415.067,370L415.067,370L407.333,370L407.333,370L399.6,370L399.6,370L391.867,370L391.867,370L384.133,370L384.133,370L376.4,370L376.4,370L368.667,370L368.667,370L360.933,370L360.933,370L353.2,370L353.2,370L345.467,370L345.467,370L337.733,370L337.733,370L330,370L330,370L322.267,370L322.267,370L314.533,370L314.533,370L306.8,370L306.8,370L299.067,370L299.067,370L291.333,370L291.333,370L283.6,370L283.6,370L275.867,370L275.867,370L268.133,370L268.133,370L260.4,370L260.4,370L252.667,370L252.667,370L244.933,370L244.933,370L237.2,370L237.2,370L229.467,370L229.467,370L221.733,370L221.733,370L214,370L214,370L206.267,370L206.267,370L198.533,370L198.533,370L190.8,370L190.8,370L183.067,370L183.067,370L175.333,370L175.333,370L167.6,370L167.6,370L159.867,370L159.867,370L152.133,370L152.133,370L144.4,370L144.4,370L136.667,370L136.667,370L128.933,370L128.933,370L121.2,370L121.2,370L113.467,370L113.467,370L105.733,370L105.733,370L98,370L98,370L90.267,370L90.267,370L82.533,370L82.533,370L74.8,370L74.8,370L67.067,370L67.067,370L59.333,370L59.333,370L51.6,370L51.6,370L43.867,370L43.867,370L40,370Z"></path>

@@ -13,57 +13,48 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ unemployment" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,329.3235294117647)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,288.1470588235294)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,246.9705882352941)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,205.7941176470588)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,164.61764705882354)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,123.44117647058823)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,82.26470588235296)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,41.08823529411765)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ unemployment</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,328.8235294117647)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,287.6470588235294)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,246.4705882352941)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,205.2941176470588)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,164.11764705882354)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,122.94117647058823)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,81.76470588235296)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,40.58823529411765)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(40.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(124.92453205894066,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2002</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(209.23357228195937,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2004</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(293.6581043409,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2006</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(377.96714456391874,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2008</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(462.3916766228594,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2010</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(546.7007168458781,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2012</text>
-    </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,328.8235294117647)">2</text>
+    <text y="0.32em" transform="translate(40,287.6470588235294)">4</text>
+    <text y="0.32em" transform="translate(40,246.4705882352941)">6</text>
+    <text y="0.32em" transform="translate(40,205.2941176470588)">8</text>
+    <text y="0.32em" transform="translate(40,164.11764705882354)">10</text>
+    <text y="0.32em" transform="translate(40,122.94117647058823)">12</text>
+    <text y="0.32em" transform="translate(40,81.76470588235296)">14</text>
+    <text y="0.32em" transform="translate(40,40.58823529411765)">16</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ unemployment</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(124.42453205894066,370)" d="M0,0L0,6"></path>
+    <path transform="translate(208.73357228195937,370)" d="M0,0L0,6"></path>
+    <path transform="translate(293.1581043409,370)" d="M0,0L0,6"></path>
+    <path transform="translate(377.46714456391874,370)" d="M0,0L0,6"></path>
+    <path transform="translate(461.8916766228594,370)" d="M0,0L0,6"></path>
+    <path transform="translate(546.2007168458781,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">2000</text>
+    <text y="0.71em" transform="translate(124.42453205894066,370)">2002</text>
+    <text y="0.71em" transform="translate(208.73357228195937,370)">2004</text>
+    <text y="0.71em" transform="translate(293.1581043409,370)">2006</text>
+    <text y="0.71em" transform="translate(377.46714456391874,370)">2008</text>
+    <text y="0.71em" transform="translate(461.8916766228594,370)">2010</text>
+    <text y="0.71em" transform="translate(546.2007168458781,370)">2012</text>
   </g>
   <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path d="M40,316.471L43.58,316.471L46.93,316.471L50.51,316.471L53.975,314.412L57.555,314.412L61.02,314.412L64.6,316.471L68.18,316.471L71.645,316.471L75.225,316.471L78.69,316.471L82.27,314.412L85.85,314.412L89.084,312.353L92.664,312.353L96.129,310.294L99.709,308.235L103.174,306.176L106.754,302.059L110.335,300L113.799,297.941L117.38,297.941L120.844,295.882L124.425,295.882L128.005,295.882L131.239,295.882L134.819,295.882L138.284,295.882L141.864,297.941L145.329,297.941L148.909,300L152.489,300L155.954,300L159.534,300L162.999,300L166.579,300L170.159,300L173.393,300L176.973,300L180.438,300L184.018,300L187.483,300L191.063,302.059L194.644,302.059L198.108,302.059L201.689,302.059L205.153,302.059L208.734,304.118L212.314,304.118L215.663,304.118L219.243,304.118L222.708,304.118L226.288,304.118L229.753,304.118L233.333,304.118L236.914,304.118L240.378,304.118L243.959,304.118L247.423,302.059L251.004,302.059L254.584,302.059L257.818,302.059L261.398,304.118L264.863,304.118L268.443,306.176L271.908,306.176L275.488,308.235L279.068,308.235L282.533,308.235L286.113,310.294L289.578,310.294L293.158,312.353L296.738,312.353L299.972,312.353L303.552,312.353L307.017,310.294L310.597,308.235L314.062,308.235L317.642,308.235L321.223,310.294L324.687,310.294L328.268,310.294L331.732,310.294L335.313,312.353L338.893,312.353L342.127,314.412L345.707,314.412L349.172,316.471L352.752,316.471L356.217,316.471L359.797,316.471L363.377,316.471L366.842,316.471L370.422,316.471L373.887,318.529L377.467,318.529L381.047,316.471L384.397,314.412L387.977,312.353L391.442,310.294L395.022,306.176L398.487,304.118L402.067,300L405.647,295.882L409.112,289.706L412.692,283.529L416.157,277.353L419.737,269.118L423.317,262.941L426.551,256.765L430.131,252.647L433.596,250.588L437.176,248.529L440.641,246.471L444.221,246.471L447.802,244.412L451.266,242.353L454.847,242.353L458.311,240.294L461.892,240.294L465.472,240.294L468.706,242.353L472.286,244.412L475.751,246.471L479.331,248.529L482.796,248.529L486.376,248.529L489.956,248.529L493.421,248.529L497.001,250.588L500.466,250.588L504.046,252.647L507.626,254.706L510.86,256.765L514.44,256.765L517.905,256.765L521.485,254.706L524.95,254.706L528.53,254.706L532.111,254.706L535.575,256.765L539.156,258.824L542.62,258.824L546.201,260.882L549.781,260.882L553.13,260.882L556.71,260.882L560.175,260.882L563.755,260.882L567.22,260.882L570.8,260.882L574.381,262.941L577.845,262.941L581.426,262.941L584.89,262.941L588.471,262.941L592.051,262.941L595.285,265L598.865,262.941L602.33,260.882L605.91,256.765L609.375,256.765L612.955,260.882L616.535,262.941L620,262.941"></path>

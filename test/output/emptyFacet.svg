@@ -13,35 +13,45 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="VALUE" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,215.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,30)" dy="-1em" text-anchor="start">VALUE</text>
-  </g>
-  <g aria-label="fx-axis" aria-description="TYPE" transform="translate(0,30)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(177.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">a</text>
+  <g aria-label="facet" transform="translate(0,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+      <text transform="translate(177.5,30)">a</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(482.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">b</text>
-    </g><text fill="currentColor" transform="translate(330,-30)" dy="1em" text-anchor="middle">TYPE</text>
-  </g>
-  <g aria-label="x-axis" transform="translate(40,400)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(72.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1</text>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,215)" d="M0,0L-6,0"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(202.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,215)">0</text>
+    </g>
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(59,0)">
+      <path transform="translate(54,400)" d="M0,0L0,6"></path>
+      <path transform="translate(184,400)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="x-axis tick label" transform="translate(59,9.5)">
+      <text y="0.71em" transform="translate(54,400)">1</text>
+      <text y="0.71em" transform="translate(184,400)">2</text>
     </g>
   </g>
-  <g aria-label="x-axis" aria-description="PERIOD" transform="translate(345,400)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(72.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1</text>
+  <g aria-label="facet" transform="translate(305,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+      <text transform="translate(177.5,30)">b</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(202.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
-    </g><text fill="currentColor" transform="translate(137.5,30)" dy="-0.32em" text-anchor="middle">PERIOD</text>
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(59,0)">
+      <path transform="translate(54,400)" d="M0,0L0,6"></path>
+      <path transform="translate(184,400)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="x-axis tick label" transform="translate(59,9.5)">
+      <text y="0.71em" transform="translate(54,400)">1</text>
+      <text y="0.71em" transform="translate(184,400)">2</text>
+    </g>
   </g>
-  <g aria-label="facet" transform="translate(40,0)"></g>
-  <g aria-label="facet" transform="translate(345,0)"></g>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(330,30)">TYPE</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
+    <text y="0.71em" transform="translate(40,30)">VALUE</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,400)">PERIOD</text>
+  </g>
 </svg>

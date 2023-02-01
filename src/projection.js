@@ -242,10 +242,10 @@ function project(cx, cy, values, projection) {
 // construct the projection), we have to test the raw projection option rather
 // than the materialized projection; therefore we must be extremely careful that
 // the logic of this function exactly matches Projection above!
-export function projectionAspectRatio(projection, geometry) {
+export function projectionAspectRatio(projection, marks) {
   if (typeof projection?.stream === "function") return defaultAspectRatio;
   if (isObject(projection)) projection = projection.type;
-  if (projection == null) return geometry ? defaultAspectRatio : undefined;
+  if (projection == null) return hasGeometry(marks) ? defaultAspectRatio : undefined;
   if (typeof projection !== "function") {
     const {aspectRatio} = namedProjection(projection);
     if (aspectRatio) return aspectRatio;
@@ -265,4 +265,9 @@ export function Position(channels, scales, context) {
   if (x) position.x = coerceNumbers(position.x);
   if (y) position.y = coerceNumbers(position.y);
   return position;
+}
+
+function hasGeometry(marks) {
+  for (const mark of marks) if (mark.channels.geometry) return true;
+  return false;
 }

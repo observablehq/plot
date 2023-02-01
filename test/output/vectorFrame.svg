@@ -26,5 +26,7 @@
   <g aria-label="vector" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(-9.5,-9.5)">
     <path transform="translate(199,199) rotate(-45)" d="M0,0L0,-100M-20,-80L0,-100L20,-80"></path>
   </g>
-  <g aria-label="text" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(99.5,99.5)">Ο</text></g>
+  <g aria-label="text" transform="translate(0.5,0.5)">
+    <text y="0.32em" transform="translate(99.5,99.5)">Ο</text>
+  </g>
 </svg>

@@ -13,22 +13,60 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(24.65647921760361,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">155</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(146.90586797065987,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">160</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(269.15525672371615,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">165</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(391.40464547677243,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">170</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(513.6540342298288,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">175</text>
-    </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(24.15647921760361,30)" d="M0,0L0,6"></path>
+    <path transform="translate(146.40586797065987,30)" d="M0,0L0,6"></path>
+    <path transform="translate(268.65525672371615,30)" d="M0,0L0,6"></path>
+    <path transform="translate(390.90464547677243,30)" d="M0,0L0,6"></path>
+    <path transform="translate(513.1540342298288,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(394.8166259168701,15)">170.16</text><text y="0.32em" transform="translate(452.76283618581897,15)">172.53</text><text y="0.32em" transform="translate(453.0073349633248,15)">172.54</text><text y="0.32em" transform="translate(475.0122249388751,15)">173.44</text><text y="0.32em" transform="translate(497.2616136919313,15)">174.35</text><text y="0.32em" transform="translate(502.15158924205394,15)">174.55</text><text y="0.32em" transform="translate(468.16625916870396,15)">173.16</text><text y="0.32em" transform="translate(503.1295843520782,15)">174.59</text><text y="0.32em" transform="translate(542.0048899755501,15)">176.18</text><text y="0.32em" transform="translate(584.0586797066015,15)">177.9</text><text y="0.32em" transform="translate(541.2713936430318,15)">176.15</text><text y="0.32em" transform="translate(620,15)">179.37</text><text y="0.32em" transform="translate(601.4180929095357,15)">178.61</text><text y="0.32em" transform="translate(569.3887530562348,15)">177.3</text><text y="0.32em" transform="translate(569.3887530562348,15)">177.3</text><text y="0.32em" transform="translate(568.166259168704,15)">177.25</text><text y="0.32em" transform="translate(501.17359413202894,15)">174.51</text><text y="0.32em" transform="translate(439.80440097799493,15)">172</text><text y="0.32em" transform="translate(394.8166259168701,15)">170.16</text><text y="0.32em" transform="translate(281.61369193154013,15)">165.53</text><text y="0.32em" transform="translate(314.3765281173593,15)">166.87</text><text y="0.32em" transform="translate(321.71149144254224,15)">167.17</text><text y="0.32em" transform="translate(293.1051344743274,15)">166</text><text y="0.32em" transform="translate(124.4009779951096,15)">159.1</text><text y="0.32em" transform="translate(20,15)">154.83</text><text y="0.32em" transform="translate(221.95599022004873,15)">163.09</text><text y="0.32em" transform="translate(153.49633251833697,15)">160.29</text><text y="0.32em" transform="translate(74.76772616136874,15)">157.07</text><text y="0.32em" transform="translate(109.73105134474301,15)">158.5</text><text y="0.32em" transform="translate(194.08312958435155,15)">161.95</text><text y="0.32em" transform="translate(220.73349633251792,15)">163.04</text><text y="0.32em" transform="translate(385.7701711491439,15)">169.79</text><text y="0.32em" transform="translate(448.6063569682153,15)">172.36</text><text y="0.32em" transform="translate(441.0268948655258,15)">172.05</text><text y="0.32em" transform="translate(460.0977995110026,15)">172.83</text><text y="0.32em" transform="translate(434.91442542787297,15)">171.8</text><text y="0.32em" transform="translate(480.63569682151547,15)">173.67</text><text y="0.32em" transform="translate(546.1613691931537,15)">176.35</text><text y="0.32em" transform="translate(613.3985330073347,15)">179.1</text><text y="0.32em" transform="translate(617.3105134474324,15)">179.26</text></g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(24.15647921760361,30)">155</text>
+    <text y="0.71em" transform="translate(146.40586797065987,30)">160</text>
+    <text y="0.71em" transform="translate(268.65525672371615,30)">165</text>
+    <text y="0.71em" transform="translate(390.90464547677243,30)">170</text>
+    <text y="0.71em" transform="translate(513.1540342298288,30)">175</text>
+  </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)">
+    <text y="0.32em" transform="translate(394.8166259168701,15)">170.16</text>
+    <text y="0.32em" transform="translate(452.76283618581897,15)">172.53</text>
+    <text y="0.32em" transform="translate(453.0073349633248,15)">172.54</text>
+    <text y="0.32em" transform="translate(475.0122249388751,15)">173.44</text>
+    <text y="0.32em" transform="translate(497.2616136919313,15)">174.35</text>
+    <text y="0.32em" transform="translate(502.15158924205394,15)">174.55</text>
+    <text y="0.32em" transform="translate(468.16625916870396,15)">173.16</text>
+    <text y="0.32em" transform="translate(503.1295843520782,15)">174.59</text>
+    <text y="0.32em" transform="translate(542.0048899755501,15)">176.18</text>
+    <text y="0.32em" transform="translate(584.0586797066015,15)">177.9</text>
+    <text y="0.32em" transform="translate(541.2713936430318,15)">176.15</text>
+    <text y="0.32em" transform="translate(620,15)">179.37</text>
+    <text y="0.32em" transform="translate(601.4180929095357,15)">178.61</text>
+    <text y="0.32em" transform="translate(569.3887530562348,15)">177.3</text>
+    <text y="0.32em" transform="translate(569.3887530562348,15)">177.3</text>
+    <text y="0.32em" transform="translate(568.166259168704,15)">177.25</text>
+    <text y="0.32em" transform="translate(501.17359413202894,15)">174.51</text>
+    <text y="0.32em" transform="translate(439.80440097799493,15)">172</text>
+    <text y="0.32em" transform="translate(394.8166259168701,15)">170.16</text>
+    <text y="0.32em" transform="translate(281.61369193154013,15)">165.53</text>
+    <text y="0.32em" transform="translate(314.3765281173593,15)">166.87</text>
+    <text y="0.32em" transform="translate(321.71149144254224,15)">167.17</text>
+    <text y="0.32em" transform="translate(293.1051344743274,15)">166</text>
+    <text y="0.32em" transform="translate(124.4009779951096,15)">159.1</text>
+    <text y="0.32em" transform="translate(20,15)">154.83</text>
+    <text y="0.32em" transform="translate(221.95599022004873,15)">163.09</text>
+    <text y="0.32em" transform="translate(153.49633251833697,15)">160.29</text>
+    <text y="0.32em" transform="translate(74.76772616136874,15)">157.07</text>
+    <text y="0.32em" transform="translate(109.73105134474301,15)">158.5</text>
+    <text y="0.32em" transform="translate(194.08312958435155,15)">161.95</text>
+    <text y="0.32em" transform="translate(220.73349633251792,15)">163.04</text>
+    <text y="0.32em" transform="translate(385.7701711491439,15)">169.79</text>
+    <text y="0.32em" transform="translate(448.6063569682153,15)">172.36</text>
+    <text y="0.32em" transform="translate(441.0268948655258,15)">172.05</text>
+    <text y="0.32em" transform="translate(460.0977995110026,15)">172.83</text>
+    <text y="0.32em" transform="translate(434.91442542787297,15)">171.8</text>
+    <text y="0.32em" transform="translate(480.63569682151547,15)">173.67</text>
+    <text y="0.32em" transform="translate(546.1613691931537,15)">176.35</text>
+    <text y="0.32em" transform="translate(613.3985330073347,15)">179.1</text>
+    <text y="0.32em" transform="translate(617.3105134474324,15)">179.26</text>
+  </g>
 </svg>

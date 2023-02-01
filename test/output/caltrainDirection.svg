@@ -13,128 +13,121 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis" transform="translate(40,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,31.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">B</text>
+  <g aria-label="facet" transform="translate(0,0)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,31)">B</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,55.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">L</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,79.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">N</text>
-    </g>
-  </g>
-  <g aria-label="x-axis" transform="translate(0,90)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(69.11204013377926,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">06 AM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(156.40301003344482,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">09 AM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(243.69397993311034,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">12 PM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(330.98494983277595,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">03 PM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(418.2759197324415,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">06 PM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(505.566889632107,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">09 PM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(592.8578595317726,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">12 AM</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,20)">
     <g aria-label="vector" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path transform="translate(71.03678929765886,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(100.13377926421404,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(129.23076923076923,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(391.5886287625418,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(420.685618729097,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(394.4983277591973,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(423.59531772575247,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(452.69230769230774,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(79.76588628762542,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(108.8628762541806,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(137.9598662207358,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(380.9197324414716,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(412.4414715719064,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(441.53846153846155,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(122.44147157190635,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
-      <path transform="translate(151.53846153846155,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(71.03678929765886,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(100.13377926421404,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(129.23076923076923,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(391.5886287625418,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(420.685618729097,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(394.4983277591973,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(423.59531772575247,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(452.69230769230774,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(79.76588628762542,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(108.8628762541806,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(137.9598662207358,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(380.9197324414716,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(412.4414715719064,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(441.53846153846155,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(122.44147157190635,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
+      <path transform="translate(151.53846153846155,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,44)">
+  <g aria-label="facet" transform="translate(0,24)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,31)">L</text>
+    </g>
     <g aria-label="vector" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path transform="translate(127.29096989966555,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(156.38795986622074,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(389.1638795986622,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(418.7458193979933,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(451.7224080267559,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(161.23745819397993,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(190.33444816053512,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(335.81939799331104,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(105.46822742474916,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(134.56521739130434,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(367.34113712374585,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(396.438127090301,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(425.53511705685617,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(106.43812709030101,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(135.5351170568562,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(164.63210702341138,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(371.2207357859532,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(400.31772575250835,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(429.41471571906357,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(197.12374581939798,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(342.6086956521739,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(371.70568561872904,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(110.31772575250837,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(139.41471571906354,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(168.51170568561872,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(86.07023411371237,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(115.16722408026756,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(144.26421404682276,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(407.10702341137124,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(436.20401337792646,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(465.3010033444816,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(414.8662207357859,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(443.96321070234114,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
-      <path transform="translate(96.2541806020067,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(127.29096989966555,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(156.38795986622074,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(389.1638795986622,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(418.7458193979933,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(451.7224080267559,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(161.23745819397993,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(190.33444816053512,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(335.81939799331104,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(105.46822742474916,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(134.56521739130434,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(367.34113712374585,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(396.438127090301,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(425.53511705685617,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(106.43812709030101,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(135.5351170568562,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(164.63210702341138,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(371.2207357859532,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(400.31772575250835,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(429.41471571906357,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(197.12374581939798,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(342.6086956521739,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(371.70568561872904,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(110.31772575250837,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(139.41471571906354,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(168.51170568561872,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(86.07023411371237,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(115.16722408026756,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(144.26421404682276,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(407.10702341137124,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(436.20401337792646,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(465.3010033444816,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(414.8662207357859,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(443.96321070234114,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
+      <path transform="translate(96.2541806020067,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,68)">
+  <g aria-label="facet" transform="translate(0,48)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,31)">N</text>
+    </g>
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(68.61204013377926,42)" d="M0,0L0,6"></path>
+      <path transform="translate(155.90301003344482,42)" d="M0,0L0,6"></path>
+      <path transform="translate(243.19397993311034,42)" d="M0,0L0,6"></path>
+      <path transform="translate(330.48494983277595,42)" d="M0,0L0,6"></path>
+      <path transform="translate(417.7759197324415,42)" d="M0,0L0,6"></path>
+      <path transform="translate(505.066889632107,42)" d="M0,0L0,6"></path>
+      <path transform="translate(592.3578595317726,42)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(68.61204013377926,42)">06 AM</text>
+      <text y="0.71em" transform="translate(155.90301003344482,42)">09 AM</text>
+      <text y="0.71em" transform="translate(243.19397993311034,42)">12 PM</text>
+      <text y="0.71em" transform="translate(330.48494983277595,42)">03 PM</text>
+      <text y="0.71em" transform="translate(417.7759197324415,42)">06 PM</text>
+      <text y="0.71em" transform="translate(505.066889632107,42)">09 PM</text>
+      <text y="0.71em" transform="translate(592.3578595317726,42)">12 AM</text>
+    </g>
     <g aria-label="vector" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path transform="translate(40,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(476.4548494983278,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(505.55183946488296,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(534.6488294314381,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(563.7458193979933,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(186.45484949832775,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(215.55183946488296,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(244.64882943143812,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(273.74581939799333,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(302.8428093645485,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(331.93979933110364,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(361.03678929765886,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(457.056856187291,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(78.79598662207357,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(488.5785953177257,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(56.97324414715719,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(522.52508361204,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(551.6220735785954,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(580.7190635451504,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(348.91304347826093,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(175.7859531772575,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(204.8829431438127,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(233.97993311036788,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(263.0769230769231,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(292.17391304347825,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(321.27090301003346,11) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(64.24749163879599,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
-      <path transform="translate(620,11) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(40,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(476.4548494983278,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(505.55183946488296,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(534.6488294314381,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(563.7458193979933,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(186.45484949832775,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(215.55183946488296,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(244.64882943143812,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(273.74581939799333,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(302.8428093645485,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(331.93979933110364,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(361.03678929765886,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(457.056856187291,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(78.79598662207357,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(488.5785953177257,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(56.97324414715719,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(522.52508361204,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(551.6220735785954,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(580.7190635451504,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(348.91304347826093,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(175.7859531772575,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(204.8829431438127,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(233.97993311036788,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(263.0769230769231,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(292.17391304347825,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(321.27090301003346,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(64.24749163879599,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
+      <path transform="translate(620,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
     </g>
   </g>
 </svg>

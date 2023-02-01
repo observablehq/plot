@@ -13,51 +13,47 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis" aria-description="Percent (%) →" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(20.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="629" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(78.23352996145312,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="629" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(135.9670599229062,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="629" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(193.7005898843593,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="629" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">6</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(251.43411984581243,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="629" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(309.1676498072655,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="629" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">10</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(366.9011797687186,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="629" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">12</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(424.6347097301717,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="629" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">14</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(482.36823969162486,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="629" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">16</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(540.1017696530779,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="629" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">18</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(597.835299614531,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="629" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">20</text>
-    </g><text fill="currentColor" transform="translate(640,-30)" dy="1em" text-anchor="end">Percent (%) →</text>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="20" x2="20" y1="30" y2="659"></line>
+    <line x1="77.73352996145312" x2="77.73352996145312" y1="30" y2="659"></line>
+    <line x1="135.4670599229062" x2="135.4670599229062" y1="30" y2="659"></line>
+    <line x1="193.2005898843593" x2="193.2005898843593" y1="30" y2="659"></line>
+    <line x1="250.93411984581243" x2="250.93411984581243" y1="30" y2="659"></line>
+    <line x1="308.6676498072655" x2="308.6676498072655" y1="30" y2="659"></line>
+    <line x1="366.4011797687186" x2="366.4011797687186" y1="30" y2="659"></line>
+    <line x1="424.1347097301717" x2="424.1347097301717" y1="30" y2="659"></line>
+    <line x1="481.86823969162486" x2="481.86823969162486" y1="30" y2="659"></line>
+    <line x1="539.6017696530779" x2="539.6017696530779" y1="30" y2="659"></line>
+    <line x1="597.335299614531" x2="597.335299614531" y1="30" y2="659"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+    <path transform="translate(20,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(77.73352996145312,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(135.4670599229062,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(193.2005898843593,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(250.93411984581243,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(308.6676498072655,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(366.4011797687186,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(424.1347097301717,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(481.86823969162486,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(539.6017696530779,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(597.335299614531,30)" d="M0,0L0,-6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+    <text transform="translate(20,30)">0</text>
+    <text transform="translate(77.73352996145312,30)">2</text>
+    <text transform="translate(135.4670599229062,30)">4</text>
+    <text transform="translate(193.2005898843593,30)">6</text>
+    <text transform="translate(250.93411984581243,30)">8</text>
+    <text transform="translate(308.6676498072655,30)">10</text>
+    <text transform="translate(366.4011797687186,30)">12</text>
+    <text transform="translate(424.1347097301717,30)">14</text>
+    <text transform="translate(481.86823969162486,30)">16</text>
+    <text transform="translate(539.6017696530779,30)">18</text>
+    <text transform="translate(597.335299614531,30)">20</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-26.5)">
+    <text y="0.71em" transform="translate(620,30)">Percent (%) →</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="20" x2="20" y1="30" y2="659"></line>
@@ -586,5 +582,58 @@
     <circle cx="117.44895508639534" cy="519" r="3" fill="#3288bd"></circle>
     <circle cx="141.8365214286333" cy="183" r="3" fill="#3288bd"></circle>
   </g>
-  <g aria-label="text" text-anchor="end" transform="translate(-5.5,0.5)"><text y="0.32em" transform="translate(124.217953576792,399)">AL</text><text y="0.32em" transform="translate(68.98130060242845,651)">AK</text><text y="0.32em" transform="translate(129.27759181221742,363)">AZ</text><text y="0.32em" transform="translate(130.34141770018647,351)">AR</text><text y="0.32em" transform="translate(117.93274517095317,507)">CA</text><text y="0.32em" transform="translate(103.58189381036576,603)">CO</text><text y="0.32em" transform="translate(148.28305830181287,123)">CT</text><text y="0.32em" transform="translate(130.98646436670464,339)">DE</text><text y="0.32em" transform="translate(106.1085153603551,579)">DC</text><text y="0.32em" transform="translate(167.64174897186504,39)">FL</text><text y="0.32em" transform="translate(96.93996755268606,627)">GA</text><text y="0.32em" transform="translate(154.892474753836,75)">HI</text><text y="0.32em" transform="translate(115.72463498334888,543)">ID</text><text y="0.32em" transform="translate(127.57873718330625,375)">IL</text><text y="0.32em" transform="translate(126.50766159121306,387)">IN</text><text y="0.32em" transform="translate(153.41889500760033,99)">IA</text><text y="0.32em" transform="translate(137.16554550189318,267)">KS</text><text y="0.32em" transform="translate(121.46182850005269,435)">KY</text><text y="0.32em" transform="translate(114.48727273491707,567)">LA</text><text y="0.32em" transform="translate(154.5898594249375,87)">ME</text><text y="0.32em" transform="translate(120.78299257982093,447)">MD</text><text y="0.32em" transform="translate(143.48308178217792,159)">MA</text><text y="0.32em" transform="translate(136.02606656291198,279)">MI</text><text y="0.32em" transform="translate(134.3815670157895,303)">MN</text><text y="0.32em" transform="translate(117.2358315941022,531)">MS</text><text y="0.32em" transform="translate(135.54707215209504,291)">MO</text><text y="0.32em" transform="translate(138.2436417744593,243)">MT</text><text y="0.32em" transform="translate(140.45957085371853,207)">NE</text><text y="0.32em" transform="translate(103.64957654060112,591)">NV</text><text y="0.32em" transform="translate(134.27516421937588,315)">NH</text><text y="0.32em" transform="translate(138.96837571065706,231)">NJ</text><text y="0.32em" transform="translate(123.11217227563239,411)">NM</text><text y="0.32em" transform="translate(137.84011469154314,255)">NY</text><text y="0.32em" transform="translate(119.45630691531835,483)">NC</text><text y="0.32em" transform="translate(146.28783242944888,135)">ND</text><text y="0.32em" transform="translate(140.05416594908283,219)">OH</text><text y="0.32em" transform="translate(122.82827305512023,423)">OK</text><text y="0.32em" transform="translate(133.9174926496922,327)">OR</text><text y="0.32em" transform="translate(158.88520192057993,63)">PA</text><text y="0.32em" transform="translate(159.67034484710152,51)">RI</text><text y="0.32em" transform="translate(119.55041052871113,471)">SC</text><text y="0.32em" transform="translate(150.72259732676284,111)">SD</text><text y="0.32em" transform="translate(120.28541955441139,459)">TN</text><text y="0.32em" transform="translate(98.40665546769587,615)">TX</text><text y="0.32em" transform="translate(89.23006126833579,639)">UT</text><text y="0.32em" transform="translate(142.87005445537588,171)">VT</text><text y="0.32em" transform="translate(115.38748192511193,555)">VA</text><text y="0.32em" transform="translate(119.00487915715966,495)">WA</text><text y="0.32em" transform="translate(143.8441341622478,147)">WV</text><text y="0.32em" transform="translate(141.26322824529555,195)">WI</text><text y="0.32em" transform="translate(117.44895508639534,519)">WY</text><text y="0.32em" transform="translate(141.8365214286333,183)">PR</text></g>
+  <g aria-label="text" text-anchor="end" transform="translate(-5.5,0.5)">
+    <text y="0.32em" transform="translate(124.217953576792,399)">AL</text>
+    <text y="0.32em" transform="translate(68.98130060242845,651)">AK</text>
+    <text y="0.32em" transform="translate(129.27759181221742,363)">AZ</text>
+    <text y="0.32em" transform="translate(130.34141770018647,351)">AR</text>
+    <text y="0.32em" transform="translate(117.93274517095317,507)">CA</text>
+    <text y="0.32em" transform="translate(103.58189381036576,603)">CO</text>
+    <text y="0.32em" transform="translate(148.28305830181287,123)">CT</text>
+    <text y="0.32em" transform="translate(130.98646436670464,339)">DE</text>
+    <text y="0.32em" transform="translate(106.1085153603551,579)">DC</text>
+    <text y="0.32em" transform="translate(167.64174897186504,39)">FL</text>
+    <text y="0.32em" transform="translate(96.93996755268606,627)">GA</text>
+    <text y="0.32em" transform="translate(154.892474753836,75)">HI</text>
+    <text y="0.32em" transform="translate(115.72463498334888,543)">ID</text>
+    <text y="0.32em" transform="translate(127.57873718330625,375)">IL</text>
+    <text y="0.32em" transform="translate(126.50766159121306,387)">IN</text>
+    <text y="0.32em" transform="translate(153.41889500760033,99)">IA</text>
+    <text y="0.32em" transform="translate(137.16554550189318,267)">KS</text>
+    <text y="0.32em" transform="translate(121.46182850005269,435)">KY</text>
+    <text y="0.32em" transform="translate(114.48727273491707,567)">LA</text>
+    <text y="0.32em" transform="translate(154.5898594249375,87)">ME</text>
+    <text y="0.32em" transform="translate(120.78299257982093,447)">MD</text>
+    <text y="0.32em" transform="translate(143.48308178217792,159)">MA</text>
+    <text y="0.32em" transform="translate(136.02606656291198,279)">MI</text>
+    <text y="0.32em" transform="translate(134.3815670157895,303)">MN</text>
+    <text y="0.32em" transform="translate(117.2358315941022,531)">MS</text>
+    <text y="0.32em" transform="translate(135.54707215209504,291)">MO</text>
+    <text y="0.32em" transform="translate(138.2436417744593,243)">MT</text>
+    <text y="0.32em" transform="translate(140.45957085371853,207)">NE</text>
+    <text y="0.32em" transform="translate(103.64957654060112,591)">NV</text>
+    <text y="0.32em" transform="translate(134.27516421937588,315)">NH</text>
+    <text y="0.32em" transform="translate(138.96837571065706,231)">NJ</text>
+    <text y="0.32em" transform="translate(123.11217227563239,411)">NM</text>
+    <text y="0.32em" transform="translate(137.84011469154314,255)">NY</text>
+    <text y="0.32em" transform="translate(119.45630691531835,483)">NC</text>
+    <text y="0.32em" transform="translate(146.28783242944888,135)">ND</text>
+    <text y="0.32em" transform="translate(140.05416594908283,219)">OH</text>
+    <text y="0.32em" transform="translate(122.82827305512023,423)">OK</text>
+    <text y="0.32em" transform="translate(133.9174926496922,327)">OR</text>
+    <text y="0.32em" transform="translate(158.88520192057993,63)">PA</text>
+    <text y="0.32em" transform="translate(159.67034484710152,51)">RI</text>
+    <text y="0.32em" transform="translate(119.55041052871113,471)">SC</text>
+    <text y="0.32em" transform="translate(150.72259732676284,111)">SD</text>
+    <text y="0.32em" transform="translate(120.28541955441139,459)">TN</text>
+    <text y="0.32em" transform="translate(98.40665546769587,615)">TX</text>
+    <text y="0.32em" transform="translate(89.23006126833579,639)">UT</text>
+    <text y="0.32em" transform="translate(142.87005445537588,171)">VT</text>
+    <text y="0.32em" transform="translate(115.38748192511193,555)">VA</text>
+    <text y="0.32em" transform="translate(119.00487915715966,495)">WA</text>
+    <text y="0.32em" transform="translate(143.8441341622478,147)">WV</text>
+    <text y="0.32em" transform="translate(141.26322824529555,195)">WI</text>
+    <text y="0.32em" transform="translate(117.44895508639534,519)">WY</text>
+    <text y="0.32em" transform="translate(141.8365214286333,183)">PR</text>
+  </g>
 </svg>

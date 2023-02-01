@@ -24,7 +24,7 @@ import {
   ticks
 } from "d3";
 import {positive, negative, finite} from "../defined.js";
-import {arrayify, constant, order, slice, maybeInterval} from "../options.js";
+import {arrayify, constant, orderof, slice, maybeInterval} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color, length} from "./index.js";
 
@@ -79,7 +79,7 @@ export function ScaleQ(
     reverse
   }
 ) {
-  interval = maybeInterval(interval);
+  interval = maybeInterval(interval, type);
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   reverse = !!reverse;
 
@@ -114,7 +114,7 @@ export function ScaleQ(
     const [min, max] = extent(domain);
     if (min > 0 || max < 0) {
       domain = slice(domain);
-      if (order(domain) !== Math.sign(min)) domain[domain.length - 1] = 0;
+      if (orderof(domain) !== Math.sign(min)) domain[domain.length - 1] = 0;
       // [2, 1] or [-2, -1]
       else domain[0] = 0; // [1, 2] or [-1, -2]
     }
@@ -205,7 +205,7 @@ export function ScaleQuantize(
     thresholds = quantize(interpolateNumber(min, max), n + 1).slice(1, -1); // exactly n - 1 thresholds to match range
     if (min instanceof Date) thresholds = thresholds.map((x) => new Date(x)); // preserve date types
   }
-  if (order(arrayify(domain)) < 0) thresholds.reverse(); // preserve descending domain
+  if (orderof(arrayify(domain)) < 0) thresholds.reverse(); // preserve descending domain
   return ScaleThreshold(key, channels, {domain: thresholds, range, reverse, unknown});
 }
 
@@ -225,7 +225,7 @@ export function ScaleThreshold(
     reverse
   }
 ) {
-  const sign = order(arrayify(domain)); // preserve descending domain
+  const sign = orderof(arrayify(domain)); // preserve descending domain
   if (!pairs(domain).every(([a, b]) => isOrdered(a, b, sign)))
     throw new Error(`the ${key} scale has a non-monotonic domain`);
   if (reverse) range = reverseof(range); // domain ascending, so reverse range

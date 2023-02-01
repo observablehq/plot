@@ -1,7 +1,5 @@
-export {default as aaplBollinger} from "./aapl-bollinger.js";
 export {default as aaplCandlestick} from "./aapl-candlestick.js";
 export {default as aaplChangeVolume} from "./aapl-change-volume.js";
-export {default as aaplClose} from "./aapl-close.js";
 export {default as aaplCloseUntyped} from "./aapl-close-untyped.js";
 export {default as aaplMonthly} from "./aapl-monthly.js";
 export {default as aaplVolume} from "./aapl-volume.js";
@@ -17,7 +15,6 @@ export {default as athletesHeightWeightBinStroke} from "./athletes-height-weight
 export {default as athletesHeightWeightSex} from "./athletes-height-weight-sex.js";
 export {default as athletesHeightWeightSport} from "./athletes-height-weight-sport.js";
 export {default as athletesNationality} from "./athletes-nationality.js";
-export {default as athletesSample} from "./athletes-sample.js";
 export {default as athletesSexWeight} from "./athletes-sex-weight.js";
 export {default as athletesSportSex} from "./athletes-sport-sex.js";
 export {default as athletesSportWeight} from "./athletes-sport-weight.js";
@@ -280,12 +277,20 @@ export {default as yearlyRequests} from "./yearly-requests.js";
 export {default as yearlyRequestsDot} from "./yearly-requests-dot.js";
 export {default as yearlyRequestsLine} from "./yearly-requests-line.js";
 
+export * from "./aapl-bollinger.js";
+export * from "./aapl-close.js";
+export * from "./aapl-fancy-axis.js";
+export * from "./athletes-sample.js";
+export * from "./axis-labels.js";
 export * from "./bin-1m.js";
+export * from "./electricity-demand.js";
+export * from "./federal-funds.js";
 export * from "./function-contour.js";
 export * from "./heatmap.js";
 export * from "./legend-color.js";
 export * from "./legend-opacity.js";
 export * from "./legend-symbol.js";
+export * from "./long-labels.js";
 export * from "./raster-ca55.js";
 export * from "./raster-penguins.js";
 export * from "./raster-vapor.js";

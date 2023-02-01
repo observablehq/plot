@@ -1,8 +1,8 @@
 import {group, pathRound as path, select, Delaunay} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
-import {constant, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../mark.js";
+import {constant, maybeTuple, maybeZ} from "../options.js";
 import {
   applyChannelStyles,
   applyDirectStyles,

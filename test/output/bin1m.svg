@@ -13,84 +13,66 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Frequency" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,339.7172383465259)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">500</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,308.93447669305186)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,278.1517150395778)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,500</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,247.36895338610375)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,216.58619173262974)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,500</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,185.80343007915567)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">3,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,155.0206684256816)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">3,500</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,124.23790677220755)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,93.45514511873354)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4,500</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,62.67238346525947)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">5,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,31.889621811785407)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">5,500</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,339.2172383465259)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,308.43447669305186)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,277.6517150395778)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,246.86895338610375)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,216.08619173262974)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,185.30343007915567)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,154.5206684256816)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,123.73790677220755)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,92.95514511873354)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,62.17238346525947)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,31.389621811785407)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(40.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2020</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(89.62568306010928,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">February</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(135.58196721311475,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">March</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(184.70765027322406,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">April</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(232.2486338797814,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">May</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(281.3743169398907,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">June</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(328.9153005464481,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">July</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(378.04098360655735,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">August</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(427.16666666666663,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">September</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(474.70765027322403,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">October</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(523.8333333333334,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">November</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(571.3743169398907,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">December</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(620.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2021</text>
-    </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,339.2172383465259)">500</text>
+    <text y="0.32em" transform="translate(40,308.43447669305186)">1,000</text>
+    <text y="0.32em" transform="translate(40,277.6517150395778)">1,500</text>
+    <text y="0.32em" transform="translate(40,246.86895338610375)">2,000</text>
+    <text y="0.32em" transform="translate(40,216.08619173262974)">2,500</text>
+    <text y="0.32em" transform="translate(40,185.30343007915567)">3,000</text>
+    <text y="0.32em" transform="translate(40,154.5206684256816)">3,500</text>
+    <text y="0.32em" transform="translate(40,123.73790677220755)">4,000</text>
+    <text y="0.32em" transform="translate(40,92.95514511873354)">4,500</text>
+    <text y="0.32em" transform="translate(40,62.17238346525947)">5,000</text>
+    <text y="0.32em" transform="translate(40,31.389621811785407)">5,500</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(89.12568306010928,370)" d="M0,0L0,6"></path>
+    <path transform="translate(135.08196721311475,370)" d="M0,0L0,6"></path>
+    <path transform="translate(184.20765027322406,370)" d="M0,0L0,6"></path>
+    <path transform="translate(231.7486338797814,370)" d="M0,0L0,6"></path>
+    <path transform="translate(280.8743169398907,370)" d="M0,0L0,6"></path>
+    <path transform="translate(328.4153005464481,370)" d="M0,0L0,6"></path>
+    <path transform="translate(377.54098360655735,370)" d="M0,0L0,6"></path>
+    <path transform="translate(426.66666666666663,370)" d="M0,0L0,6"></path>
+    <path transform="translate(474.20765027322403,370)" d="M0,0L0,6"></path>
+    <path transform="translate(523.3333333333334,370)" d="M0,0L0,6"></path>
+    <path transform="translate(570.8743169398907,370)" d="M0,0L0,6"></path>
+    <path transform="translate(620,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">2020</text>
+    <text y="0.71em" transform="translate(89.12568306010928,370)">February</text>
+    <text y="0.71em" transform="translate(135.08196721311475,370)">March</text>
+    <text y="0.71em" transform="translate(184.20765027322406,370)">April</text>
+    <text y="0.71em" transform="translate(231.7486338797814,370)">May</text>
+    <text y="0.71em" transform="translate(280.8743169398907,370)">June</text>
+    <text y="0.71em" transform="translate(328.4153005464481,370)">July</text>
+    <text y="0.71em" transform="translate(377.54098360655735,370)">August</text>
+    <text y="0.71em" transform="translate(426.66666666666663,370)">September</text>
+    <text y="0.71em" transform="translate(474.20765027322403,370)">October</text>
+    <text y="0.71em" transform="translate(523.3333333333334,370)">November</text>
+    <text y="0.71em" transform="translate(570.8743169398907,370)">December</text>
+    <text y="0.71em" transform="translate(620,370)">2021</text>
   </g>
   <g aria-label="rect">
     <rect x="41" y="34.098504837291095" width="2.169398907103826" height="335.9014951627089"></rect>

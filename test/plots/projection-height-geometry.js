@@ -6,7 +6,7 @@ export default async function () {
     coordinates: Array.from({length: 201}, (_, i) => {
       const angle = (i / 100) * Math.PI;
       const r = (i % 2) + 5;
-      return [340 + 30 * r * Math.cos(angle), 185 + 30 * r * Math.sin(angle)];
+      return [340 + 30 * r * Math.cos(angle), 205 + 30 * r * Math.sin(angle)];
     })
   };
   return Plot.plot({

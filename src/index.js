@@ -1,7 +1,8 @@
-export {plot, marks} from "./plot.js";
-export {Mark} from "./mark.js";
+export {plot} from "./plot.js";
+export {Mark, marks} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
 export {Arrow, arrow} from "./marks/arrow.js";
+export {axisX, axisY, axisFx, axisFy, gridX, gridY, gridFx, gridFy} from "./marks/axis.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
 export {boxX, boxY} from "./marks/box.js";
 export {Cell, cell, cellX, cellY} from "./marks/cell.js";

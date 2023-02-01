@@ -19,7 +19,7 @@ for (const [name, plot] of Object.entries(plots)) {
     let expected;
     let actual = beautify.html(root.outerHTML, {
       indent_size: 2,
-      inline: ["text", "tspan", "span", "svg", "a", "i"],
+      inline: ["title", "tspan", "span", "svg", "a", "i"],
       indent_inner_html: false
     });
     const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);

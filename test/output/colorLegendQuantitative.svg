@@ -16,22 +16,28 @@
   <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAABH0lEQVQ4jX2QQW4bUQxDn6hJ6sTtuosse/8jSuzi64/HblADAvlIDjDj+PP7y0f+4tCdQz9J3Tnyk9Qd6YPMT6QPlDekG5E3QjeUP4h8B43mO6E3yDm9QR44D9CBM4cTS0tTOAUpWsIZkwVW4ARn0BlYDDPedILlyT1+a5+MevKG7KWzQeusWv7M6uziGx9RxOxCRUQ/qU4uNHtFo9lo83dKk5csWT53TpPDYvW7S17OTeJ/2Zv90OkOb57s9Bduo531o1c/WBddf+32Rn7mKM6d2kQbFUsbokw00Ib6j5ahrzr+dfPEL88Nd4F79GTo8rrTQ8/umtepq6teXZXpnr5N1cW316uM757nPBt7vfZk7Z0t7/mM7c3lDMTy+/cXwM9vrI9SuXIAAAAASUVORK5CYII="></image>
   <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(48.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">2</text>
     </g>
     <g class="tick" opacity="1" transform="translate(96.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">4</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">4</text>
     </g>
     <g class="tick" opacity="1" transform="translate(144.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">6</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">6</text>
     </g>
     <g class="tick" opacity="1" transform="translate(192.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">8</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">8</text>
     </g>
     <g class="tick" opacity="1" transform="translate(240.5,0)">
-      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">10</text>
     </g>
   </g>
 </svg>

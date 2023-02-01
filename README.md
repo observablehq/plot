@@ -293,19 +293,20 @@ For a *band* scale, you can further fine-tune padding:
 
 Align defaults to 0.5 (centered). Band scale padding defaults to 0.1 (10% of available space reserved for separating bands), while point scale padding defaults to 0.5 (the gap between the first point and the edge is half the distance of the gap between points, and likewise for the gap between the last point and the opposite edge). Note that rounding and mark insets (e.g., for bars and rects) also affect separation between adjacent marks.
 
-Plot automatically generates axes for position scales. You can configure these axes with the following options:
+Plot automatically generates [axis](#axis) and optionally [grid](#grid) marks for position scales. (For more control, declare these marks explicitly.) You can configure the implicit axes with the following scale options:
 
-* *scale*.**axis** - the orientation: *top* or *bottom* for *x*; *left* or *right* for *y*; null to suppress
-* *scale*.**ticks** - the approximate number of ticks to generate
-* *scale*.**tickSize** - the size of each tick (in pixels; default 6)
+* *scale*.**axis** - the orientation: *top* or *bottom* for *x* and *fx*; *left* or *right* for *y* and *fy*; null to suppress
+* *scale*.**ticks** - the approximate number of ticks to generate, or interval, or array of values
+* *scale*.**tickSize** - the length of each tick (in pixels; default 6 for *x* and *y*, or 0 for *fx* and *fy*)
+* *scale*.**tickSpacing** - the approximate number of pixels between ticks (if *scale*.**ticks** is not specified)
 * *scale*.**tickPadding** - the separation between the tick and its label (in pixels; default 3)
-* *scale*.**tickFormat** - to format tick values, either a function or format specifier string; see [Formats](#formats)
+* *scale*.**tickFormat** - either a function or specifier string to format tick values; see [Formats](#formats)
 * *scale*.**tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
 * *scale*.**grid** - if true, draw grid lines across the plot for each tick
-* *scale*.**line** - if true, draw the axis line
+* *scale*.**line** - if true, draw the axis line (only for *x* and *y*)
 * *scale*.**label** - a string to label the axis
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
-* *scale*.**labelOffset** - the label position offset (in pixels; default 0, typically for facet axes)
+* *scale*.**labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
 * *scale*.**fontVariant** - the font-variant attribute for axis ticks; defaults to tabular-nums for quantitative axes
 * *scale*.**ariaLabel** - a short label representing the axis in the accessibility tree
 * *scale*.**ariaDescription** - a textual description for the axis
@@ -584,6 +585,12 @@ Faceting can be explicitly enabled or disabled on a mark with the *mark*.**facet
 When top-level faceting is used, the default *auto* setting is equivalent to *include* when the mark data is strictly equal to the top-level facet data; otherwise it is equivalent to null. When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the top-level facet data: the data must have the same length and order. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
 
 When mark-level faceting is used, the default *auto* setting is equivalent to *include*: the mark will be faceted if either the *mark*.**fx** or *mark*.**fy** channel option (or both) is specified. The null or false option will disable faceting, while *exclude* draws the subset of the mark’s data *not* in the current facet.
+
+The <a name="facetanchor">*mark*.**facetAnchor**</a> option controls TK. It supports the following settings:
+
+* null - display the mark on each non-empty facet (default for all marks, with the exception of axis marks)
+* *top*, *right*, *bottom*, or *left* - display the mark on facets on the specified side
+* *top-empty*, *right-empty*, *bottom-empty*, or *left-empty* - display the mark on facets that have an empty space on the specified side (the empty space being either the margin, or an empty facet); this is the default for axis marks
 
 ## Legends
 
@@ -957,6 +964,50 @@ Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "
 Returns a new arrow with the given *data* and *options*.
 
 <!-- jsdocEnd arrow -->
+
+### Axis
+
+[Source](./src/marks/axis.js) · [Examples](https://observablehq.com/@observablehq/plot-axis) · Draws an axis.
+
+Plot automatically generates axes for position scales, and draws them below the other marks. Each axis is composed of up to 5 marks: a grid, and an axis mark which might contain a line, ticks, tick labels, and axis label.
+
+When you need more control, you can add axis and grid marks explicitly in the marks options. Note that Plot’s automatic axis for *x* is disabled when a mark’s aria-label property begins by `x-axis `—and likewise for *y*, *fx*, and *fy*.
+
+The optional *data* is an array of tick values—it defaults to the scale’s ticks.
+
+The axis options described in [position options](#position-options) are all supported, except the **grid** option which is handled by the [grid](#grid) mark. The **y** channel, if any, describes the vertical position of the tick and defaults to the axis anchor.
+
+The **axis** option, in this context, is called **anchor** and is one of *top* or *bottom*.
+
+The **color** option controls both **stroke** for the ticks, and the **fill** for labels. It defaults to currentColor.
+
+The (rarely used) text label’s stroke is controlled by the **textStroke**,**textStrokeOpacity**, and **textStrokeWidth** options.
+
+The **facetAnchor** option defaults to *bottom-empty* if anchor is bottom, and *top-empty* if anchor is top. This ensures the proper positioning of the axes with respect to empty facets.
+
+#### Plot.axisX(*data*, *options*)
+
+<!-- jsdoc axisX -->
+
+```js
+Plot.axisX({anchor: "bottom"})
+```
+
+Returns a new *x*-axis with the given *options*.
+
+<!-- jsdocEnd axisX -->
+
+#### Plot.axisY(*data*, *options*)
+
+…same…
+
+#### Plot.axisFx(*data*, *options*)
+
+…same…
+
+#### Plot.axisFy(*data*, *options*)
+
+…same…
 
 ### Bar
 
@@ -1357,6 +1408,52 @@ Plot.graticule()
 ```
 
 Returns a new geo mark with a [default 10° global graticule](https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule10) geometry object and the given *options*.
+
+### Grid
+
+[Source](./src/marks/axis.js) · [Examples](https://observablehq.com/@observablehq/plot-axis) · Draws an axis-aligned grid.
+
+The optional *data* is an array of tick values—it defaults to the scale’s ticks. The grid mark draws a line for each tick value, across the whole frame.
+
+The following options are supported:
+
+* **strokeDasharray** - the [stroke dasharray](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray) for dashed lines, defaults to null
+
+The following options are supported as constant or data-driven channels:
+
+* **stroke** - the grid color, defaults to currentColor
+* **strokeWidth** - the grid’s line width, defaults to 1
+* **strokeOpacity** - the stroke opacity, defaults to 0.1
+* **y1** - the start of the line, a channel of y positions.
+* **y2** - the end of the line, a channel of y positions.
+
+All the other common options are supported when applicable (e.g., **title**).
+
+#### Plot.gridX(*data*, *options*)
+
+<!-- jsdoc gridX -->
+
+```js
+Plot.gridX({strokeDasharray: "5,3"})
+```
+
+Returns a new *x*-grid with the given *options*.
+
+<!-- jsdocEnd gridX -->
+
+#### Plot.gridY(*data*, *options*)
+
+…same…
+
+
+#### Plot.gridFx(*data*, *options*)
+
+…same…
+
+#### Plot.gridFy(*data*, *options*)
+
+…same…
+
 
 ### Hexgrid
 
@@ -1950,7 +2047,7 @@ For example, to draw bars only for letters that commonly form vowels:
 Plot.barY(alphabet, {filter: d => /[aeiou]/i.test(d.letter), x: "letter", y: "frequency"})
 ```
 
-The **filter** transform is similar to filtering the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), except that it will preserve [faceting](#faceting) and will not affect inferred [scale domains](#scale-options); domains are inferred from the unfiltered channel values.
+The **filter** transform is similar to filtering the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), except that it will preserve [faceting](#facet-options) and will not affect inferred [scale domains](#scale-options); domains are inferred from the unfiltered channel values.
 
 ```js
 Plot.barY(alphabet.filter(d => /[aeiou]/i.test(d.letter)), {x: "letter", y: "frequency"})

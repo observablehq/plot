@@ -3,6 +3,7 @@ import * as d3 from "d3";
 
 export default async function () {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const xy = {fx: "sex", x: "culmen_depth_mm", y: "culmen_length_mm"};
   return Plot.plot({
     width: 960,
     height: 320,
@@ -13,20 +14,10 @@ export default async function () {
       percent: true,
       legend: true
     },
-    facet: {
-      data: penguins,
-      x: "sex",
-      marginRight: 80
-    },
     marks: [
       Plot.frame(),
-      Plot.dot(
-        penguins,
-        Plot.hexbin(
-          {title: "count", r: "count", fill: "proportion-facet"},
-          {x: "culmen_depth_mm", y: "culmen_length_mm"}
-        )
-      )
+      Plot.hexgrid(),
+      Plot.dot(penguins, Plot.hexbin({title: "count", r: "count", fill: "proportion-facet"}, xy))
     ]
   });
 }

@@ -13,28 +13,23 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" transform="translate(104,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,25.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-15" dy="0.32em">economy (mpg)</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,50.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-15" dy="0.32em">cylinders</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,75.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-15" dy="0.32em">displacement (cc)</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,100.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-15" dy="0.32em">power (hp)</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,125.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-15" dy="0.32em">weight (lb)</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,150.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-15" dy="0.32em">0-60 mph (s)</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,175.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-15" dy="0.32em">year</text>
-    </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(104,25)" d="M0,0L-6,0"></path>
+    <path transform="translate(104,50)" d="M0,0L-6,0"></path>
+    <path transform="translate(104,75)" d="M0,0L-6,0"></path>
+    <path transform="translate(104,100)" d="M0,0L-6,0"></path>
+    <path transform="translate(104,125)" d="M0,0L-6,0"></path>
+    <path transform="translate(104,150)" d="M0,0L-6,0"></path>
+    <path transform="translate(104,175)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-14.5,0.5)">
+    <text y="0.32em" transform="translate(104,25)">economy (mpg)</text>
+    <text y="0.32em" transform="translate(104,50)">cylinders</text>
+    <text y="0.32em" transform="translate(104,75)">displacement (cc)</text>
+    <text y="0.32em" transform="translate(104,100)">power (hp)</text>
+    <text y="0.32em" transform="translate(104,125)">weight (lb)</text>
+    <text y="0.32em" transform="translate(104,150)">0-60 mph (s)</text>
+    <text y="0.32em" transform="translate(104,175)">year</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="104" x2="620" y1="25" y2="25"></line>
@@ -450,5 +445,60 @@
     <path d="M213.787,25L413.6,50L230.667,75L325.543,100L327.4,125L276,150L448,175"></path>
     <path d="M401.798,25L413.6,50L206.667,75L188.13,100L330.326,125L460.286,150L577,175"></path>
   </g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(104,25)">10</text><text y="0.32em" transform="translate(177.71428571428572,25)">15</text><text y="0.32em" transform="translate(251.42857142857144,25)">20</text><text y="0.32em" transform="translate(325.14285714285717,25)">25</text><text y="0.32em" transform="translate(398.85714285714283,25)">30</text><text y="0.32em" transform="translate(472.5714285714286,25)">35</text><text y="0.32em" transform="translate(546.2857142857143,25)">40</text><text y="0.32em" transform="translate(620,25)">45</text><text y="0.32em" transform="translate(104,50)">3</text><text y="0.32em" transform="translate(207.2,50)">4</text><text y="0.32em" transform="translate(310.4,50)">5</text><text y="0.32em" transform="translate(413.6,50)">6</text><text y="0.32em" transform="translate(516.8,50)">7</text><text y="0.32em" transform="translate(620,50)">8</text><text y="0.32em" transform="translate(104,75)">100</text><text y="0.32em" transform="translate(177.71428571428572,75)">150</text><text y="0.32em" transform="translate(251.42857142857144,75)">200</text><text y="0.32em" transform="translate(325.14285714285717,75)">250</text><text y="0.32em" transform="translate(398.85714285714283,75)">300</text><text y="0.32em" transform="translate(472.5714285714286,75)">350</text><text y="0.32em" transform="translate(546.2857142857143,75)">400</text><text y="0.32em" transform="translate(620,75)">450</text><text y="0.32em" transform="translate(104,100)">60</text><text y="0.32em" transform="translate(168.5,100)">80</text><text y="0.32em" transform="translate(233,100)">100</text><text y="0.32em" transform="translate(297.5,100)">120</text><text y="0.32em" transform="translate(362,100)">140</text><text y="0.32em" transform="translate(426.5,100)">160</text><text y="0.32em" transform="translate(491,100)">180</text><text y="0.32em" transform="translate(555.5,100)">200</text><text y="0.32em" transform="translate(620,100)">220</text><text y="0.32em" transform="translate(104,125)">2,000</text><text y="0.32em" transform="translate(190,125)">2,500</text><text y="0.32em" transform="translate(276,125)">3,000</text><text y="0.32em" transform="translate(362,125)">3,500</text><text y="0.32em" transform="translate(448,125)">4,000</text><text y="0.32em" transform="translate(534.0000000000001,125)">4,500</text><text y="0.32em" transform="translate(620,125)">5,000</text><text y="0.32em" transform="translate(104,150)">8</text><text y="0.32em" transform="translate(168.5,150)">10</text><text y="0.32em" transform="translate(233,150)">12</text><text y="0.32em" transform="translate(297.5,150)">14</text><text y="0.32em" transform="translate(362,150)">16</text><text y="0.32em" transform="translate(426.5,150)">18</text><text y="0.32em" transform="translate(491,150)">20</text><text y="0.32em" transform="translate(555.5,150)">22</text><text y="0.32em" transform="translate(620,150)">24</text><text y="0.32em" transform="translate(104,175)">70</text><text y="0.32em" transform="translate(190,175)">72</text><text y="0.32em" transform="translate(276,175)">74</text><text y="0.32em" transform="translate(362,175)">76</text><text y="0.32em" transform="translate(448,175)">78</text><text y="0.32em" transform="translate(534.0000000000001,175)">80</text><text y="0.32em" transform="translate(620,175)">82</text></g>
+  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,0.5)">
+    <text y="0.32em" transform="translate(104,25)">10</text>
+    <text y="0.32em" transform="translate(177.71428571428572,25)">15</text>
+    <text y="0.32em" transform="translate(251.42857142857144,25)">20</text>
+    <text y="0.32em" transform="translate(325.14285714285717,25)">25</text>
+    <text y="0.32em" transform="translate(398.85714285714283,25)">30</text>
+    <text y="0.32em" transform="translate(472.5714285714286,25)">35</text>
+    <text y="0.32em" transform="translate(546.2857142857143,25)">40</text>
+    <text y="0.32em" transform="translate(620,25)">45</text>
+    <text y="0.32em" transform="translate(104,50)">3</text>
+    <text y="0.32em" transform="translate(207.2,50)">4</text>
+    <text y="0.32em" transform="translate(310.4,50)">5</text>
+    <text y="0.32em" transform="translate(413.6,50)">6</text>
+    <text y="0.32em" transform="translate(516.8,50)">7</text>
+    <text y="0.32em" transform="translate(620,50)">8</text>
+    <text y="0.32em" transform="translate(104,75)">100</text>
+    <text y="0.32em" transform="translate(177.71428571428572,75)">150</text>
+    <text y="0.32em" transform="translate(251.42857142857144,75)">200</text>
+    <text y="0.32em" transform="translate(325.14285714285717,75)">250</text>
+    <text y="0.32em" transform="translate(398.85714285714283,75)">300</text>
+    <text y="0.32em" transform="translate(472.5714285714286,75)">350</text>
+    <text y="0.32em" transform="translate(546.2857142857143,75)">400</text>
+    <text y="0.32em" transform="translate(620,75)">450</text>
+    <text y="0.32em" transform="translate(104,100)">60</text>
+    <text y="0.32em" transform="translate(168.5,100)">80</text>
+    <text y="0.32em" transform="translate(233,100)">100</text>
+    <text y="0.32em" transform="translate(297.5,100)">120</text>
+    <text y="0.32em" transform="translate(362,100)">140</text>
+    <text y="0.32em" transform="translate(426.5,100)">160</text>
+    <text y="0.32em" transform="translate(491,100)">180</text>
+    <text y="0.32em" transform="translate(555.5,100)">200</text>
+    <text y="0.32em" transform="translate(620,100)">220</text>
+    <text y="0.32em" transform="translate(104,125)">2,000</text>
+    <text y="0.32em" transform="translate(190,125)">2,500</text>
+    <text y="0.32em" transform="translate(276,125)">3,000</text>
+    <text y="0.32em" transform="translate(362,125)">3,500</text>
+    <text y="0.32em" transform="translate(448,125)">4,000</text>
+    <text y="0.32em" transform="translate(534.0000000000001,125)">4,500</text>
+    <text y="0.32em" transform="translate(620,125)">5,000</text>
+    <text y="0.32em" transform="translate(104,150)">8</text>
+    <text y="0.32em" transform="translate(168.5,150)">10</text>
+    <text y="0.32em" transform="translate(233,150)">12</text>
+    <text y="0.32em" transform="translate(297.5,150)">14</text>
+    <text y="0.32em" transform="translate(362,150)">16</text>
+    <text y="0.32em" transform="translate(426.5,150)">18</text>
+    <text y="0.32em" transform="translate(491,150)">20</text>
+    <text y="0.32em" transform="translate(555.5,150)">22</text>
+    <text y="0.32em" transform="translate(620,150)">24</text>
+    <text y="0.32em" transform="translate(104,175)">70</text>
+    <text y="0.32em" transform="translate(190,175)">72</text>
+    <text y="0.32em" transform="translate(276,175)">74</text>
+    <text y="0.32em" transform="translate(362,175)">76</text>
+    <text y="0.32em" transform="translate(448,175)">78</text>
+    <text y="0.32em" transform="translate(534.0000000000001,175)">80</text>
+    <text y="0.32em" transform="translate(620,175)">82</text>
+  </g>
 </svg>

@@ -13,231 +13,120 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,33.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">3</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,54.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,75.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,96.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10)">
+    <path transform="translate(40,24)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,45)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,66)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,87)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="downloads →" transform="translate(0,110)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(40.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-90" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(115.27975428404187,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-90" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">200,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(190.05950856808374,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-90" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">400,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(264.8392628521256,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-90" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">600,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(339.6190171361675,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-90" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">800,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(414.3987714202093,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-90" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">1,000,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(489.17852570425123,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-90" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">1,200,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(563.9582799882932,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-90" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">1,400,000</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">downloads →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10)">
+    <text y="0.32em" transform="translate(40,24)">3</text>
+    <text y="0.32em" transform="translate(40,45)">2</text>
+    <text y="0.32em" transform="translate(40,66)">1</text>
+    <text y="0.32em" transform="translate(40,87)">0</text>
+  </g>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="40" x2="40" y1="20" y2="110"></line>
+    <line x1="114.77975428404187" x2="114.77975428404187" y1="20" y2="110"></line>
+    <line x1="189.55950856808374" x2="189.55950856808374" y1="20" y2="110"></line>
+    <line x1="264.3392628521256" x2="264.3392628521256" y1="20" y2="110"></line>
+    <line x1="339.1190171361675" x2="339.1190171361675" y1="20" y2="110"></line>
+    <line x1="413.8987714202093" x2="413.8987714202093" y1="20" y2="110"></line>
+    <line x1="488.67852570425123" x2="488.67852570425123" y1="20" y2="110"></line>
+    <line x1="563.4582799882932" x2="563.4582799882932" y1="20" y2="110"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,110)" d="M0,0L0,6"></path>
+    <path transform="translate(114.77975428404187,110)" d="M0,0L0,6"></path>
+    <path transform="translate(189.55950856808374,110)" d="M0,0L0,6"></path>
+    <path transform="translate(264.3392628521256,110)" d="M0,0L0,6"></path>
+    <path transform="translate(339.1190171361675,110)" d="M0,0L0,6"></path>
+    <path transform="translate(413.8987714202093,110)" d="M0,0L0,6"></path>
+    <path transform="translate(488.67852570425123,110)" d="M0,0L0,6"></path>
+    <path transform="translate(563.4582799882932,110)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,110)">0</text>
+    <text y="0.71em" transform="translate(114.77975428404187,110)">200,000</text>
+    <text y="0.71em" transform="translate(189.55950856808374,110)">400,000</text>
+    <text y="0.71em" transform="translate(264.3392628521256,110)">600,000</text>
+    <text y="0.71em" transform="translate(339.1190171361675,110)">800,000</text>
+    <text y="0.71em" transform="translate(413.8987714202093,110)">1,000,000</text>
+    <text y="0.71em" transform="translate(488.67852570425123,110)">1,200,000</text>
+    <text y="0.71em" transform="translate(563.4582799882932,110)">1,400,000</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,110)">downloads →</text>
   </g>
   <g aria-label="bar">
-    <rect x="41" width="0" y="87" height="19" fill="rgb(110, 64, 170)">
-      <title>0.5.0</title>
-    </rect>
-    <rect x="41.002617291399936" width="0" y="87" height="19" fill="rgb(123, 63, 174)">
-      <title>0.5.1</title>
-    </rect>
-    <rect x="41.004860684028465" width="0" y="87" height="19" fill="rgb(137, 62, 177)">
-      <title>0.5.2</title>
-    </rect>
-    <rect x="41.0074779754284" width="0" y="87" height="19" fill="rgb(151, 61, 179)">
-      <title>0.6.0</title>
-    </rect>
-    <rect x="41.010095266828344" width="0" y="87" height="19" fill="rgb(166, 60, 179)">
-      <title>0.6.1</title>
-    </rect>
-    <rect x="41.01308645699971" width="0" y="87" height="19" fill="rgb(180, 60, 177)">
-      <title>0.6.2</title>
-    </rect>
-    <rect x="41.014582052085395" width="0" y="87" height="19" fill="rgb(194, 61, 174)">
-      <title>0.7.0</title>
-    </rect>
-    <rect x="41.01607764717107" width="0" y="87" height="19" fill="rgb(207, 61, 169)">
-      <title>0.7.1</title>
-    </rect>
-    <rect x="41.92614725680786" width="0" y="87" height="19" fill="rgb(219, 63, 163)">
-      <title>0.8.0</title>
-    </rect>
-    <rect x="41.92839064943637" width="0" y="87" height="19" fill="rgb(231, 65, 155)">
-      <title>0.8.1</title>
-    </rect>
-    <rect x="41" width="0" y="66" height="19" fill="rgb(241, 69, 146)">
-      <title>1.0.0</title>
-    </rect>
-    <rect x="41.09160519899795" width="2.6313048680330837" y="66" height="19" fill="rgb(250, 73, 137)">
-      <title>1.0.1</title>
-    </rect>
-    <rect x="44.72291006703103" width="0" y="66" height="19" fill="rgb(255, 78, 126)">
-      <title>1.0.2</title>
-    </rect>
-    <rect x="45.64307494349616" width="0" y="66" height="19" fill="rgb(255, 83, 116)">
-      <title>1.0.3</title>
-    </rect>
-    <rect x="45.649805121381725" width="0" y="66" height="19" fill="rgb(255, 90, 105)">
-      <title>1.1.0</title>
-    </rect>
-    <rect x="45.68831669483801" width="0" y="66" height="19" fill="rgb(255, 98, 94)">
-      <title>1.1.1</title>
-    </rect>
-    <rect x="45.97173196357453" width="1.5593370903713293" y="66" height="19" fill="rgb(255, 106, 84)">
-      <title>1.2.0</title>
-    </rect>
-    <rect x="48.531069053945856" width="32.13790031343031" y="66" height="19" fill="rgb(255, 116, 74)">
-      <title>1.2.1</title>
-    </rect>
-    <rect x="81.66896936737616" width="0" y="66" height="19" fill="rgb(255, 126, 66)">
-      <title>1.2.2</title>
-    </rect>
-    <rect x="81.6786907354331" width="0" y="66" height="19" fill="rgb(255, 136, 58)">
-      <title>1.2.3</title>
-    </rect>
-    <rect x="81.68018633051878" width="489.9847977916764" y="66" height="19" fill="rgb(253, 147, 53)">
-      <title>1.2.4</title>
-    </rect>
-    <rect x="41" width="0" y="45" height="19" fill="rgb(245, 158, 48)">
-      <title>2.0.0</title>
-    </rect>
-    <rect x="41.28603256013646" width="0" y="45" height="19" fill="rgb(237, 170, 46)">
-      <title>2.0.1</title>
-    </rect>
-    <rect x="41.288275952764984" width="0" y="45" height="19" fill="rgb(228, 181, 46)">
-      <title>2.0.2</title>
-    </rect>
-    <rect x="41.3163183606215" width="0" y="45" height="19" fill="rgb(218, 192, 48)">
-      <title>2.0.3</title>
-    </rect>
-    <rect x="41.641984190528504" width="0" y="45" height="19" fill="rgb(209, 203, 53)">
-      <title>2.1.0</title>
-    </rect>
-    <rect x="41.647966570871226" width="0" y="45" height="19" fill="rgb(199, 213, 59)">
-      <title>2.2.0</title>
-    </rect>
-    <rect x="42.10113188183252" width="0" y="45" height="19" fill="rgb(190, 223, 68)">
-      <title>2.3.0</title>
-    </rect>
-    <rect x="42.19610216977325" width="0" y="45" height="19" fill="rgb(182, 232, 78)">
-      <title>2.3.1</title>
-    </rect>
-    <rect x="43.14505725163774" width="0" y="45" height="19" fill="rgb(175, 240, 91)">
-      <title>2.3.2</title>
-    </rect>
-    <rect x="43.19142069929385" width="13.077288743970882" y="45" height="19" fill="rgb(158, 242, 88)">
-      <title>2.3.3</title>
-    </rect>
-    <rect x="57.26870944326473" width="17.20625287676426" y="45" height="19" fill="rgb(142, 244, 87)">
-      <title>2.4.0</title>
-    </rect>
-    <rect x="75.474962320029" width="3.769452728236189" y="45" height="19" fill="rgb(125, 246, 88)">
-      <title>2.5.0</title>
-    </rect>
-    <rect x="80.24441504826518" width="0" y="45" height="19" fill="rgb(109, 246, 92)">
-      <title>2.5.1</title>
-    </rect>
-    <rect x="80.5222218354304" width="0" y="45" height="19" fill="rgb(94, 246, 97)">
-      <title>2.6.0</title>
-    </rect>
-    <rect x="80.94285795327812" width="0" y="45" height="19" fill="rgb(79, 246, 104)">
-      <title>2.7.0</title>
-    </rect>
-    <rect x="81.13317242793102" width="0.20918862677295635" y="45" height="19" fill="rgb(67, 244, 113)">
-      <title>2.7.1</title>
-    </rect>
-    <rect x="82.34236105470397" width="8.304844825563336" y="45" height="19" fill="rgb(55, 241, 123)">
-      <title>2.8.0</title>
-    </rect>
-    <rect x="91.64720588026731" width="0" y="45" height="19" fill="rgb(46, 237, 133)">
-      <title>2.9.0</title>
-    </rect>
-    <rect x="92.32134536513794" width="6.4136648397199" y="45" height="19" fill="rgb(38, 232, 145)">
-      <title>2.9.1</title>
-    </rect>
-    <rect x="99.73501020485784" width="0" y="45" height="19" fill="rgb(32, 227, 156)">
-      <title>2.10.0</title>
-    </rect>
-    <rect x="99.8898042962258" width="11.746209117714955" y="45" height="19" fill="rgb(28, 220, 168)">
-      <title>2.11.0</title>
-    </rect>
-    <rect x="112.63601341394076" width="2.2476847285559387" y="45" height="19" fill="rgb(26, 212, 179)">
-      <title>2.12.0</title>
-    </rect>
-    <rect x="115.8836981424967" width="504.1163018575033" y="45" height="19" fill="rgb(25, 204, 189)">
-      <title>2.12.1</title>
-    </rect>
-    <rect x="41" width="0" y="24" height="19" fill="rgb(26, 195, 199)">
-      <title>3.0.0</title>
-    </rect>
-    <rect x="41.0018694938571" width="4.212896671140562" y="24" height="19" fill="rgb(29, 185, 207)">
-      <title>3.0.1</title>
-    </rect>
-    <rect x="46.21476616499766" width="3.536139894869983" y="24" height="19" fill="rgb(33, 175, 214)">
-      <title>3.0.2</title>
-    </rect>
-    <rect x="50.750906059867646" width="0" y="24" height="19" fill="rgb(39, 165, 219)">
-      <title>3.0.3</title>
-    </rect>
-    <rect x="50.759879630381725" width="8.856345513408137" y="24" height="19" fill="rgb(45, 154, 223)">
-      <title>3.0.4</title>
-    </rect>
-    <rect x="60.61622514378986" width="0" y="24" height="19" fill="rgb(52, 143, 225)">
-      <title>3.1.0</title>
-    </rect>
-    <rect x="60.74671581501551" width="103.02050770295935" y="24" height="19" fill="rgb(59, 133, 225)">
-      <title>3.1.1</title>
-    </rect>
-    <rect x="164.76722351797486" width="0" y="24" height="19" fill="rgb(67, 122, 224)">
-      <title>3.1.2</title>
-    </rect>
-    <rect x="164.81396086440242" width="0" y="24" height="19" fill="rgb(75, 112, 220)">
-      <title>3.1.3</title>
-    </rect>
-    <rect x="164.95417290368496" width="0.3273406385417559" y="24" height="19" fill="rgb(82, 103, 215)">
-      <title>3.1.4</title>
-    </rect>
-    <rect x="166.28151354222672" width="0" y="24" height="19" fill="rgb(89, 94, 209)">
-      <title>3.1.5</title>
-    </rect>
-    <rect x="167.0308066801528" width="32.4433756096806" y="24" height="19" fill="rgb(96, 85, 201)">
-      <title>3.1.6</title>
-    </rect>
-    <rect x="200.4741822898334" width="182.42202470052646" y="24" height="19" fill="rgb(101, 77, 191)">
-      <title>3.2.0</title>
-    </rect>
-    <rect x="383.8962069903599" width="163.0925799144158" y="24" height="19" fill="rgb(106, 70, 181)">
-      <title>3.2.1</title>
-    </rect>
+    <rect x="41" width="0" y="87" height="19" fill="rgb(110, 64, 170)"><title>0.5.0</title></rect>
+    <rect x="41.002617291399936" width="0" y="87" height="19" fill="rgb(123, 63, 174)"><title>0.5.1</title></rect>
+    <rect x="41.004860684028465" width="0" y="87" height="19" fill="rgb(137, 62, 177)"><title>0.5.2</title></rect>
+    <rect x="41.0074779754284" width="0" y="87" height="19" fill="rgb(151, 61, 179)"><title>0.6.0</title></rect>
+    <rect x="41.010095266828344" width="0" y="87" height="19" fill="rgb(166, 60, 179)"><title>0.6.1</title></rect>
+    <rect x="41.01308645699971" width="0" y="87" height="19" fill="rgb(180, 60, 177)"><title>0.6.2</title></rect>
+    <rect x="41.014582052085395" width="0" y="87" height="19" fill="rgb(194, 61, 174)"><title>0.7.0</title></rect>
+    <rect x="41.01607764717107" width="0" y="87" height="19" fill="rgb(207, 61, 169)"><title>0.7.1</title></rect>
+    <rect x="41.92614725680786" width="0" y="87" height="19" fill="rgb(219, 63, 163)"><title>0.8.0</title></rect>
+    <rect x="41.92839064943637" width="0" y="87" height="19" fill="rgb(231, 65, 155)"><title>0.8.1</title></rect>
+    <rect x="41" width="0" y="66" height="19" fill="rgb(241, 69, 146)"><title>1.0.0</title></rect>
+    <rect x="41.09160519899795" width="2.6313048680330837" y="66" height="19" fill="rgb(250, 73, 137)"><title>1.0.1</title></rect>
+    <rect x="44.72291006703103" width="0" y="66" height="19" fill="rgb(255, 78, 126)"><title>1.0.2</title></rect>
+    <rect x="45.64307494349616" width="0" y="66" height="19" fill="rgb(255, 83, 116)"><title>1.0.3</title></rect>
+    <rect x="45.649805121381725" width="0" y="66" height="19" fill="rgb(255, 90, 105)"><title>1.1.0</title></rect>
+    <rect x="45.68831669483801" width="0" y="66" height="19" fill="rgb(255, 98, 94)"><title>1.1.1</title></rect>
+    <rect x="45.97173196357453" width="1.5593370903713293" y="66" height="19" fill="rgb(255, 106, 84)"><title>1.2.0</title></rect>
+    <rect x="48.531069053945856" width="32.13790031343031" y="66" height="19" fill="rgb(255, 116, 74)"><title>1.2.1</title></rect>
+    <rect x="81.66896936737616" width="0" y="66" height="19" fill="rgb(255, 126, 66)"><title>1.2.2</title></rect>
+    <rect x="81.6786907354331" width="0" y="66" height="19" fill="rgb(255, 136, 58)"><title>1.2.3</title></rect>
+    <rect x="81.68018633051878" width="489.9847977916764" y="66" height="19" fill="rgb(253, 147, 53)"><title>1.2.4</title></rect>
+    <rect x="41" width="0" y="45" height="19" fill="rgb(245, 158, 48)"><title>2.0.0</title></rect>
+    <rect x="41.28603256013646" width="0" y="45" height="19" fill="rgb(237, 170, 46)"><title>2.0.1</title></rect>
+    <rect x="41.288275952764984" width="0" y="45" height="19" fill="rgb(228, 181, 46)"><title>2.0.2</title></rect>
+    <rect x="41.3163183606215" width="0" y="45" height="19" fill="rgb(218, 192, 48)"><title>2.0.3</title></rect>
+    <rect x="41.641984190528504" width="0" y="45" height="19" fill="rgb(209, 203, 53)"><title>2.1.0</title></rect>
+    <rect x="41.647966570871226" width="0" y="45" height="19" fill="rgb(199, 213, 59)"><title>2.2.0</title></rect>
+    <rect x="42.10113188183252" width="0" y="45" height="19" fill="rgb(190, 223, 68)"><title>2.3.0</title></rect>
+    <rect x="42.19610216977325" width="0" y="45" height="19" fill="rgb(182, 232, 78)"><title>2.3.1</title></rect>
+    <rect x="43.14505725163774" width="0" y="45" height="19" fill="rgb(175, 240, 91)"><title>2.3.2</title></rect>
+    <rect x="43.19142069929385" width="13.077288743970882" y="45" height="19" fill="rgb(158, 242, 88)"><title>2.3.3</title></rect>
+    <rect x="57.26870944326473" width="17.20625287676426" y="45" height="19" fill="rgb(142, 244, 87)"><title>2.4.0</title></rect>
+    <rect x="75.474962320029" width="3.769452728236189" y="45" height="19" fill="rgb(125, 246, 88)"><title>2.5.0</title></rect>
+    <rect x="80.24441504826518" width="0" y="45" height="19" fill="rgb(109, 246, 92)"><title>2.5.1</title></rect>
+    <rect x="80.5222218354304" width="0" y="45" height="19" fill="rgb(94, 246, 97)"><title>2.6.0</title></rect>
+    <rect x="80.94285795327812" width="0" y="45" height="19" fill="rgb(79, 246, 104)"><title>2.7.0</title></rect>
+    <rect x="81.13317242793102" width="0.20918862677295635" y="45" height="19" fill="rgb(67, 244, 113)"><title>2.7.1</title></rect>
+    <rect x="82.34236105470397" width="8.304844825563336" y="45" height="19" fill="rgb(55, 241, 123)"><title>2.8.0</title></rect>
+    <rect x="91.64720588026731" width="0" y="45" height="19" fill="rgb(46, 237, 133)"><title>2.9.0</title></rect>
+    <rect x="92.32134536513794" width="6.4136648397199" y="45" height="19" fill="rgb(38, 232, 145)"><title>2.9.1</title></rect>
+    <rect x="99.73501020485784" width="0" y="45" height="19" fill="rgb(32, 227, 156)"><title>2.10.0</title></rect>
+    <rect x="99.8898042962258" width="11.746209117714955" y="45" height="19" fill="rgb(28, 220, 168)"><title>2.11.0</title></rect>
+    <rect x="112.63601341394076" width="2.2476847285559387" y="45" height="19" fill="rgb(26, 212, 179)"><title>2.12.0</title></rect>
+    <rect x="115.8836981424967" width="504.1163018575033" y="45" height="19" fill="rgb(25, 204, 189)"><title>2.12.1</title></rect>
+    <rect x="41" width="0" y="24" height="19" fill="rgb(26, 195, 199)"><title>3.0.0</title></rect>
+    <rect x="41.0018694938571" width="4.212896671140562" y="24" height="19" fill="rgb(29, 185, 207)"><title>3.0.1</title></rect>
+    <rect x="46.21476616499766" width="3.536139894869983" y="24" height="19" fill="rgb(33, 175, 214)"><title>3.0.2</title></rect>
+    <rect x="50.750906059867646" width="0" y="24" height="19" fill="rgb(39, 165, 219)"><title>3.0.3</title></rect>
+    <rect x="50.759879630381725" width="8.856345513408137" y="24" height="19" fill="rgb(45, 154, 223)"><title>3.0.4</title></rect>
+    <rect x="60.61622514378986" width="0" y="24" height="19" fill="rgb(52, 143, 225)"><title>3.1.0</title></rect>
+    <rect x="60.74671581501551" width="103.02050770295935" y="24" height="19" fill="rgb(59, 133, 225)"><title>3.1.1</title></rect>
+    <rect x="164.76722351797486" width="0" y="24" height="19" fill="rgb(67, 122, 224)"><title>3.1.2</title></rect>
+    <rect x="164.81396086440242" width="0" y="24" height="19" fill="rgb(75, 112, 220)"><title>3.1.3</title></rect>
+    <rect x="164.95417290368496" width="0.3273406385417559" y="24" height="19" fill="rgb(82, 103, 215)"><title>3.1.4</title></rect>
+    <rect x="166.28151354222672" width="0" y="24" height="19" fill="rgb(89, 94, 209)"><title>3.1.5</title></rect>
+    <rect x="167.0308066801528" width="32.4433756096806" y="24" height="19" fill="rgb(96, 85, 201)"><title>3.1.6</title></rect>
+    <rect x="200.4741822898334" width="182.42202470052646" y="24" height="19" fill="rgb(101, 77, 191)"><title>3.2.0</title></rect>
+    <rect x="383.8962069903599" width="163.0925799144158" y="24" height="19" fill="rgb(106, 70, 181)"><title>3.2.1</title></rect>
   </g>
-  <g aria-label="text" transform="translate(0.5,10)"><text y="0.32em" transform="translate(64.100019210661,66)">1.2.1</text><text y="0.32em" transform="translate(326.172585226357,66)">1.2.4</text><text y="0.32em" transform="translate(367.4418490712483,45)">2.12.1</text><text y="0.32em" transform="translate(111.7569696664952,24)">3.1.1</text><text y="0.32em" transform="translate(182.75249448499312,24)">3.1.6</text><text y="0.32em" transform="translate(291.18519464009665,24)">3.2.0</text><text y="0.32em" transform="translate(464.94249694756775,24)">3.2.1</text></g>
+  <g aria-label="text" transform="translate(0.5,10)">
+    <text y="0.32em" transform="translate(64.100019210661,66)">1.2.1</text>
+    <text y="0.32em" transform="translate(326.172585226357,66)">1.2.4</text>
+    <text y="0.32em" transform="translate(367.4418490712483,45)">2.12.1</text>
+    <text y="0.32em" transform="translate(111.7569696664952,24)">3.1.1</text>
+    <text y="0.32em" transform="translate(182.75249448499312,24)">3.1.6</text>
+    <text y="0.32em" transform="translate(291.18519464009665,24)">3.2.0</text>
+    <text y="0.32em" transform="translate(464.94249694756775,24)">3.2.1</text>
+  </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="20" y2="110"></line>
   </g>

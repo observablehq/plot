@@ -13,69 +13,54 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="species" transform="translate(75,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,33.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Adelie</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,55.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Gentoo</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,77.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Chinstrap</text>
-    </g><text fill="currentColor" transform="translate(-75,55) rotate(-90)" dy="0.75em" text-anchor="middle">species</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10.5)">
+    <path transform="translate(75,23)" d="M0,0L-6,0"></path>
+    <path transform="translate(75,45)" d="M0,0L-6,0"></path>
+    <path transform="translate(75,67)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="Frequency →" transform="translate(0,90)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(75.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(145.89473684210526,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(216.28947368421052,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(286.6842105263158,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(357.07894736842104,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(427.4736842105263,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(497.86842105263156,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">120</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(568.2631578947369,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">140</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10.5)">
+    <text y="0.32em" transform="translate(75,23)">Adelie</text>
+    <text y="0.32em" transform="translate(75,45)">Gentoo</text>
+    <text y="0.32em" transform="translate(75,67)">Chinstrap</text>
+  </g>
+  <g aria-label="y-axis label" transform="translate(-71.5,0.5)">
+    <text y="0.71em" transform="translate(75,55) rotate(-90)">species</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(75,90)" d="M0,0L0,6"></path>
+    <path transform="translate(145.39473684210526,90)" d="M0,0L0,6"></path>
+    <path transform="translate(215.78947368421052,90)" d="M0,0L0,6"></path>
+    <path transform="translate(286.1842105263158,90)" d="M0,0L0,6"></path>
+    <path transform="translate(356.57894736842104,90)" d="M0,0L0,6"></path>
+    <path transform="translate(426.9736842105263,90)" d="M0,0L0,6"></path>
+    <path transform="translate(497.36842105263156,90)" d="M0,0L0,6"></path>
+    <path transform="translate(567.7631578947369,90)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(75,90)">0</text>
+    <text y="0.71em" transform="translate(145.39473684210526,90)">20</text>
+    <text y="0.71em" transform="translate(215.78947368421052,90)">40</text>
+    <text y="0.71em" transform="translate(286.1842105263158,90)">60</text>
+    <text y="0.71em" transform="translate(356.57894736842104,90)">80</text>
+    <text y="0.71em" transform="translate(426.9736842105263,90)">100</text>
+    <text y="0.71em" transform="translate(497.36842105263156,90)">120</text>
+    <text y="0.71em" transform="translate(567.7631578947369,90)">140</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,90)">Frequency →</text>
   </g>
   <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="75" y="20" width="545" height="70"></rect>
   <g aria-label="bar">
-    <rect x="75" width="256.9407894736842" y="23" height="20" fill="#4e79a7">
-      <title>FEMALE (73)</title>
-    </rect>
-    <rect x="75" width="119.67105263157896" y="67" height="20" fill="#4e79a7">
-      <title>FEMALE (34)</title>
-    </rect>
-    <rect x="75" width="204.14473684210526" y="45" height="20" fill="#4e79a7">
-      <title>FEMALE (58)</title>
-    </rect>
-    <rect x="331.9407894736842" width="256.9407894736842" y="23" height="20" fill="#f28e2c">
-      <title>MALE (73)</title>
-    </rect>
-    <rect x="194.67105263157896" width="119.67105263157896" y="67" height="20" fill="#f28e2c">
-      <title>MALE (34)</title>
-    </rect>
-    <rect x="279.14473684210526" width="214.70394736842104" y="45" height="20" fill="#f28e2c">
-      <title>MALE (61)</title>
-    </rect>
-    <rect x="588.8815789473684" width="21.11842105263156" y="23" height="20" fill="#e15759">
-      <title>null (6)</title>
-    </rect>
-    <rect x="493.8486842105263" width="17.5986842105263" y="45" height="20" fill="#e15759">
-      <title>null (5)</title>
-    </rect>
+    <rect x="75" width="256.9407894736842" y="23" height="20" fill="#4e79a7"><title>FEMALE (73)</title></rect>
+    <rect x="75" width="119.67105263157896" y="67" height="20" fill="#4e79a7"><title>FEMALE (34)</title></rect>
+    <rect x="75" width="204.14473684210526" y="45" height="20" fill="#4e79a7"><title>FEMALE (58)</title></rect>
+    <rect x="331.9407894736842" width="256.9407894736842" y="23" height="20" fill="#f28e2c"><title>MALE (73)</title></rect>
+    <rect x="194.67105263157896" width="119.67105263157896" y="67" height="20" fill="#f28e2c"><title>MALE (34)</title></rect>
+    <rect x="279.14473684210526" width="214.70394736842104" y="45" height="20" fill="#f28e2c"><title>MALE (61)</title></rect>
+    <rect x="588.8815789473684" width="21.11842105263156" y="23" height="20" fill="#e15759"><title>null (6)</title></rect>
+    <rect x="493.8486842105263" width="17.5986842105263" y="45" height="20" fill="#e15759"><title>null (5)</title></rect>
   </g>
-  <g aria-label="text" text-anchor="end" font-style="italic" transform="translate(-2.5,-2.5)"><text transform="translate(620,90)"><tspan x="0" y="-2em">Count of penguins</tspan><tspan x="0" y="-1em">grouped by species</tspan><tspan x="0" y="0em"> and colored by sex</tspan></text></g>
+  <g aria-label="text" text-anchor="end" font-style="italic" transform="translate(-2.5,-2.5)">
+    <text transform="translate(620,90)"><tspan x="0" y="-2em">Count of penguins</tspan><tspan x="0" y="-1em">grouped by species</tspan><tspan x="0" y="0em"> and colored by sex</tspan></text>
+  </g>
 </svg>

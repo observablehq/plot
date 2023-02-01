@@ -13,52 +13,39 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(44.6765999414857,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1740</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(101.2099106241211,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1760</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(157.7432213067565,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1780</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(214.27653198939194,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1800</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(270.8021036835698,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1820</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(327.3354143662052,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1840</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(383.8687250488406,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1860</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(440.40203573147596,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1880</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(496.9353464141114,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1900</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(553.4609181082892,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1920</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(609.9942287909246,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1940</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(666.52753947356,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1960</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(723.0608501561954,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1980</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(779.5941608388309,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">2000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(836.1274715214663,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">2020</text>
-    </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+    <path transform="translate(44.1765999414857,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(100.7099106241211,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(157.2432213067565,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(213.77653198939194,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(270.3021036835698,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(326.8354143662052,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(383.3687250488406,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(439.90203573147596,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(496.4353464141114,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(552.9609181082892,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(609.4942287909246,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(666.02753947356,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(722.5608501561954,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(779.0941608388309,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(835.6274715214663,30)" d="M0,0L0,-6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+    <text transform="translate(44.1765999414857,30)">1740</text>
+    <text transform="translate(100.7099106241211,30)">1760</text>
+    <text transform="translate(157.2432213067565,30)">1780</text>
+    <text transform="translate(213.77653198939194,30)">1800</text>
+    <text transform="translate(270.3021036835698,30)">1820</text>
+    <text transform="translate(326.8354143662052,30)">1840</text>
+    <text transform="translate(383.3687250488406,30)">1860</text>
+    <text transform="translate(439.90203573147596,30)">1880</text>
+    <text transform="translate(496.4353464141114,30)">1900</text>
+    <text transform="translate(552.9609181082892,30)">1920</text>
+    <text transform="translate(609.4942287909246,30)">1940</text>
+    <text transform="translate(666.02753947356,30)">1960</text>
+    <text transform="translate(722.5608501561954,30)">1980</text>
+    <text transform="translate(779.0941608388309,30)">2000</text>
+    <text transform="translate(835.6274715214663,30)">2020</text>
   </g>
   <g aria-label="bar" fill="#ccc">
     <rect x="20" width="200.51719093594573" y="46" height="18"></rect>
@@ -172,5 +159,60 @@
     <rect x="827.3003199411082" width="11.306662136526938" y="1066" height="18"></rect>
     <rect x="838.6069820776352" width="1.3930179223648338" y="1086" height="18"></rect>
   </g>
-  <g aria-label="text" text-anchor="start" transform="translate(5.5,9.5)"><text y="0.32em" transform="translate(220.51719093594573,46)">Martha Washington</text><text y="0.32em" transform="translate(266.97433864680954,66)">Abigail Adams</text><text y="0.32em" transform="translate(317.71888596317376,86)">Martha Jefferson</text><text y="0.32em" transform="translate(353.76709419859003,106)">Dolly Madison</text><text y="0.32em" transform="translate(300.62346046037544,126)">Elizabeth Monroe</text><text y="0.32em" transform="translate(361.80016421755994,146)">Louisa Adams</text><text y="0.32em" transform="translate(318.26061515520445,166)">Emily Donelson</text><text y="0.32em" transform="translate(461.50155251658697,186)">Sarah Jackson</text><text y="0.32em" transform="translate(434.2293571920685,206)">Sarah Van Buren</text><text y="0.32em" transform="translate(395.10103155053463,226)">Anna Harrison</text><text y="0.32em" transform="translate(344.8053455647102,246)">Jane Harrison</text><text y="0.32em" transform="translate(334.4428400200081,266)">Letitia Tyler</text><text y="0.32em" transform="translate(468.1493436016497,286)">Elizabeth Priscilla Tyler</text><text y="0.32em" transform="translate(466.8182375869456,306)">Julia Tyler</text><text y="0.32em" transform="translate(472.73856375699575,326)">Sarah Polk</text><text y="0.32em" transform="translate(362.50441216719986,346)">Margaret "Peggy" Taylor</text><text y="0.32em" transform="translate(364.2689015355286,366)">Abigail Fillmore</text><text y="0.32em" transform="translate(394.4432175316402,386)">Jane Pierce</text><text y="0.32em" transform="translate(506.325773662901,406)">Harriet Lane</text><text y="0.32em" transform="translate(447.07607803165433,426)">Mary Lincoln</text><text y="0.32em" transform="translate(428.70371943335505,446)">Eliza Johnson</text><text y="0.32em" transform="translate(504.77023698292703,466)">Julia Grant</text><text y="0.32em" transform="translate(466.7021527600819,486)">Lucy Hayes</text><text y="0.32em" transform="translate(547.8686637032004,506)">Lucretia Garfield</text><text y="0.32em" transform="translate(544.5408986664402,526)">Mary McElroy</text><text y="0.32em" transform="translate(549.8266277829687,546)">Rose Cleveland</text><text y="0.32em" transform="translate(631.6122578026935,566)">Frances Cleveland</text><text y="0.32em" transform="translate(476.1282407014167,586)">Caroline Harrison</text><text y="0.32em" transform="translate(583.5531394811103,606)">Mary Harrison McKee</text><text y="0.32em" transform="translate(631.6122578026935,566)">Frances Cleveland</text><text y="0.32em" transform="translate(517.33835423804,626)">Ida McKinley</text><text y="0.32em" transform="translate(634.2202969128986,646)">Edith Roosevelt</text><text y="0.32em" transform="translate(619.0673575129533,666)">Helen "Nellie" Taft</text><text y="0.32em" transform="translate(537.6841548930227,686)">Ellen Wilson</text><text y="0.32em" transform="translate(621.1259284426701,706)">Margaret Wilson</text><text y="0.32em" transform="translate(671.653784082222,726)">Edith Wilson</text><text y="0.32em" transform="translate(566.7827514935303,746)">Florence Harding</text><text y="0.32em" transform="translate(659.0082769425333,766)">Grace Coolidge</text><text y="0.32em" transform="translate(620.8473248581972,786)">Lou Hoover</text><text y="0.32em" transform="translate(674.0838264579027,806)">Anna Eleanor Roosevelt</text><text y="0.32em" transform="translate(730.4623573713865,826)">Elizabeth "Bess" Truman</text><text y="0.32em" transform="translate(722.088771860283,846)">Mamie Eisenhower</text><text y="0.32em" transform="translate(763.2060175354153,866)">Jacqueline "Jackie" Kennedy</text><text y="0.32em" transform="translate(800.3609011202657,886)">Claudia "Lady Bird" Johnson</text><text y="0.32em" transform="translate(760.6444123559556,906)">Thelma "Pat" Nixon</text><text y="0.32em" transform="translate(811.6443462914201,926)">Elizabeth "Betty" Ford</text><text y="0.32em" transform="translate(840,946)">Eleanor Rosalynn Carter</text><text y="0.32em" transform="translate(824.823843634682,966)">Nancy Reagan</text><text y="0.32em" transform="translate(830.7983427239352,986)">Barbara Bush</text><text y="0.32em" transform="translate(840,1006)">Hillary Clinton</text><text y="0.32em" transform="translate(840,1026)">Laura Bush</text><text y="0.32em" transform="translate(840,1046)">Michelle Obama</text><text y="0.32em" transform="translate(840,1066)">Melania Trump</text><text y="0.32em" transform="translate(840,1086)">Jill Biden</text></g>
+  <g aria-label="text" text-anchor="start" transform="translate(5.5,9.5)">
+    <text y="0.32em" transform="translate(220.51719093594573,46)">Martha Washington</text>
+    <text y="0.32em" transform="translate(266.97433864680954,66)">Abigail Adams</text>
+    <text y="0.32em" transform="translate(317.71888596317376,86)">Martha Jefferson</text>
+    <text y="0.32em" transform="translate(353.76709419859003,106)">Dolly Madison</text>
+    <text y="0.32em" transform="translate(300.62346046037544,126)">Elizabeth Monroe</text>
+    <text y="0.32em" transform="translate(361.80016421755994,146)">Louisa Adams</text>
+    <text y="0.32em" transform="translate(318.26061515520445,166)">Emily Donelson</text>
+    <text y="0.32em" transform="translate(461.50155251658697,186)">Sarah Jackson</text>
+    <text y="0.32em" transform="translate(434.2293571920685,206)">Sarah Van Buren</text>
+    <text y="0.32em" transform="translate(395.10103155053463,226)">Anna Harrison</text>
+    <text y="0.32em" transform="translate(344.8053455647102,246)">Jane Harrison</text>
+    <text y="0.32em" transform="translate(334.4428400200081,266)">Letitia Tyler</text>
+    <text y="0.32em" transform="translate(468.1493436016497,286)">Elizabeth Priscilla Tyler</text>
+    <text y="0.32em" transform="translate(466.8182375869456,306)">Julia Tyler</text>
+    <text y="0.32em" transform="translate(472.73856375699575,326)">Sarah Polk</text>
+    <text y="0.32em" transform="translate(362.50441216719986,346)">Margaret "Peggy" Taylor</text>
+    <text y="0.32em" transform="translate(364.2689015355286,366)">Abigail Fillmore</text>
+    <text y="0.32em" transform="translate(394.4432175316402,386)">Jane Pierce</text>
+    <text y="0.32em" transform="translate(506.325773662901,406)">Harriet Lane</text>
+    <text y="0.32em" transform="translate(447.07607803165433,426)">Mary Lincoln</text>
+    <text y="0.32em" transform="translate(428.70371943335505,446)">Eliza Johnson</text>
+    <text y="0.32em" transform="translate(504.77023698292703,466)">Julia Grant</text>
+    <text y="0.32em" transform="translate(466.7021527600819,486)">Lucy Hayes</text>
+    <text y="0.32em" transform="translate(547.8686637032004,506)">Lucretia Garfield</text>
+    <text y="0.32em" transform="translate(544.5408986664402,526)">Mary McElroy</text>
+    <text y="0.32em" transform="translate(549.8266277829687,546)">Rose Cleveland</text>
+    <text y="0.32em" transform="translate(631.6122578026935,566)">Frances Cleveland</text>
+    <text y="0.32em" transform="translate(476.1282407014167,586)">Caroline Harrison</text>
+    <text y="0.32em" transform="translate(583.5531394811103,606)">Mary Harrison McKee</text>
+    <text y="0.32em" transform="translate(631.6122578026935,566)">Frances Cleveland</text>
+    <text y="0.32em" transform="translate(517.33835423804,626)">Ida McKinley</text>
+    <text y="0.32em" transform="translate(634.2202969128986,646)">Edith Roosevelt</text>
+    <text y="0.32em" transform="translate(619.0673575129533,666)">Helen "Nellie" Taft</text>
+    <text y="0.32em" transform="translate(537.6841548930227,686)">Ellen Wilson</text>
+    <text y="0.32em" transform="translate(621.1259284426701,706)">Margaret Wilson</text>
+    <text y="0.32em" transform="translate(671.653784082222,726)">Edith Wilson</text>
+    <text y="0.32em" transform="translate(566.7827514935303,746)">Florence Harding</text>
+    <text y="0.32em" transform="translate(659.0082769425333,766)">Grace Coolidge</text>
+    <text y="0.32em" transform="translate(620.8473248581972,786)">Lou Hoover</text>
+    <text y="0.32em" transform="translate(674.0838264579027,806)">Anna Eleanor Roosevelt</text>
+    <text y="0.32em" transform="translate(730.4623573713865,826)">Elizabeth "Bess" Truman</text>
+    <text y="0.32em" transform="translate(722.088771860283,846)">Mamie Eisenhower</text>
+    <text y="0.32em" transform="translate(763.2060175354153,866)">Jacqueline "Jackie" Kennedy</text>
+    <text y="0.32em" transform="translate(800.3609011202657,886)">Claudia "Lady Bird" Johnson</text>
+    <text y="0.32em" transform="translate(760.6444123559556,906)">Thelma "Pat" Nixon</text>
+    <text y="0.32em" transform="translate(811.6443462914201,926)">Elizabeth "Betty" Ford</text>
+    <text y="0.32em" transform="translate(840,946)">Eleanor Rosalynn Carter</text>
+    <text y="0.32em" transform="translate(824.823843634682,966)">Nancy Reagan</text>
+    <text y="0.32em" transform="translate(830.7983427239352,986)">Barbara Bush</text>
+    <text y="0.32em" transform="translate(840,1006)">Hillary Clinton</text>
+    <text y="0.32em" transform="translate(840,1026)">Laura Bush</text>
+    <text y="0.32em" transform="translate(840,1046)">Michelle Obama</text>
+    <text y="0.32em" transform="translate(840,1066)">Melania Trump</text>
+    <text y="0.32em" transform="translate(840,1086)">Jill Biden</text>
+  </g>
 </svg>

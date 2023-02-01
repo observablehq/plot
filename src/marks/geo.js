@@ -1,8 +1,8 @@
 import {geoGraticule10, geoPath, geoTransform} from "d3";
 import {create} from "../context.js";
 import {negative, positive} from "../defined.js";
-import {identity, maybeNumberChannel} from "../options.js";
 import {Mark} from "../mark.js";
+import {identity, maybeNumberChannel} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {withDefaultSort} from "./dot.js";
 

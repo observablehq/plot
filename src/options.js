@@ -1,6 +1,6 @@
 import {parse as isoParse} from "isoformat";
 import {color, descending, range as rangei, quantile} from "d3";
-import {maybeUtcInterval} from "./time.js";
+import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -237,10 +237,10 @@ export function mid(x1, x2) {
   };
 }
 
-// TODO Allow the interval to be specified as a string, e.g. “day” or “hour”?
-// This will require the interval knowing the type of the associated scale to
-// chose between UTC and local time (or better, an explicit timeZone option).
-export function maybeInterval(interval) {
+// If interval is not nullish, converts interval shorthand such as a number (for
+// multiples) or a time interval name (such as “day”) to a {floor, offset,
+// range} object similar to a D3 time interval.
+export function maybeInterval(interval, type) {
   if (interval == null) return;
   if (typeof interval === "number") {
     const n = interval;
@@ -250,7 +250,7 @@ export function maybeInterval(interval) {
       range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => n * x)
     };
   }
-  if (typeof interval === "string") return maybeUtcInterval(interval); // TODO local time, or timeZone option
+  if (typeof interval === "string") return (type === "time" ? maybeTimeInterval : maybeUtcInterval)(interval);
   if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
   if (typeof interval.offset !== "function") throw new Error("invalid interval; missing offset method");
   return interval;
@@ -401,7 +401,7 @@ export function maybeFrameAnchor(value = "middle") {
 // Like a sort comparator, returns a positive value if the given array of values
 // is in ascending order, a negative value if the values are in descending
 // order. Assumes monotonicity; only tests the first and last values.
-export function order(values) {
+export function orderof(values) {
   if (values == null) return;
   const first = values[0];
   const last = values[values.length - 1];

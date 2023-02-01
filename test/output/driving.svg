@@ -13,77 +13,74 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Cost of gasoline ($ per gallon)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,358.4530883502736)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,324.05121188428456)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.6</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,289.6493354182955)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,255.2474589523065)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,220.8455824863174)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,186.44370602032842)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,152.0418295543393)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.6</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,117.63995308835027)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,83.2380766223612)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">3.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,48.83620015637213)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">3.2</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Cost of gasoline ($ per gallon)</text>
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="357.9530883502736" y2="357.9530883502736"></line>
+    <line x1="40" x2="620" y1="323.55121188428456" y2="323.55121188428456"></line>
+    <line x1="40" x2="620" y1="289.1493354182955" y2="289.1493354182955"></line>
+    <line x1="40" x2="620" y1="254.7474589523065" y2="254.7474589523065"></line>
+    <line x1="40" x2="620" y1="220.3455824863174" y2="220.3455824863174"></line>
+    <line x1="40" x2="620" y1="185.94370602032842" y2="185.94370602032842"></line>
+    <line x1="40" x2="620" y1="151.5418295543393" y2="151.5418295543393"></line>
+    <line x1="40" x2="620" y1="117.13995308835027" y2="117.13995308835027"></line>
+    <line x1="40" x2="620" y1="82.7380766223612" y2="82.7380766223612"></line>
+    <line x1="40" x2="620" y1="48.33620015637213" y2="48.33620015637213"></line>
   </g>
-  <g aria-label="x-axis" aria-description="Miles driven (per person-year) →" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(78.30188410270392,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">4,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(166.19811067845762,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(254.09433725421138,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">6,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(341.9905638299651,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">7,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(429.8867904057188,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">8,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(517.7830169814725,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">9,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(605.6792435572262,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10,000</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Miles driven (per person-year) →</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,357.9530883502736)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,323.55121188428456)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,289.1493354182955)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,254.7474589523065)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,220.3455824863174)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,185.94370602032842)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,151.5418295543393)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,117.13995308835027)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,82.7380766223612)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,48.33620015637213)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,357.9530883502736)">1.4</text>
+    <text y="0.32em" transform="translate(40,323.55121188428456)">1.6</text>
+    <text y="0.32em" transform="translate(40,289.1493354182955)">1.8</text>
+    <text y="0.32em" transform="translate(40,254.7474589523065)">2.0</text>
+    <text y="0.32em" transform="translate(40,220.3455824863174)">2.2</text>
+    <text y="0.32em" transform="translate(40,185.94370602032842)">2.4</text>
+    <text y="0.32em" transform="translate(40,151.5418295543393)">2.6</text>
+    <text y="0.32em" transform="translate(40,117.13995308835027)">2.8</text>
+    <text y="0.32em" transform="translate(40,82.7380766223612)">3.0</text>
+    <text y="0.32em" transform="translate(40,48.33620015637213)">3.2</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Cost of gasoline ($ per gallon)</text>
+  </g>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="77.80188410270392" x2="77.80188410270392" y1="20" y2="370"></line>
+    <line x1="165.69811067845762" x2="165.69811067845762" y1="20" y2="370"></line>
+    <line x1="253.59433725421138" x2="253.59433725421138" y1="20" y2="370"></line>
+    <line x1="341.4905638299651" x2="341.4905638299651" y1="20" y2="370"></line>
+    <line x1="429.3867904057188" x2="429.3867904057188" y1="20" y2="370"></line>
+    <line x1="517.2830169814725" x2="517.2830169814725" y1="20" y2="370"></line>
+    <line x1="605.1792435572262" x2="605.1792435572262" y1="20" y2="370"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(77.80188410270392,370)" d="M0,0L0,6"></path>
+    <path transform="translate(165.69811067845762,370)" d="M0,0L0,6"></path>
+    <path transform="translate(253.59433725421138,370)" d="M0,0L0,6"></path>
+    <path transform="translate(341.4905638299651,370)" d="M0,0L0,6"></path>
+    <path transform="translate(429.3867904057188,370)" d="M0,0L0,6"></path>
+    <path transform="translate(517.2830169814725,370)" d="M0,0L0,6"></path>
+    <path transform="translate(605.1792435572262,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(77.80188410270392,370)">4,000</text>
+    <text y="0.71em" transform="translate(165.69811067845762,370)">5,000</text>
+    <text y="0.71em" transform="translate(253.59433725421138,370)">6,000</text>
+    <text y="0.71em" transform="translate(341.4905638299651,370)">7,000</text>
+    <text y="0.71em" transform="translate(429.3867904057188,370)">8,000</text>
+    <text y="0.71em" transform="translate(517.2830169814725,370)">9,000</text>
+    <text y="0.71em" transform="translate(605.1792435572262,370)">10,000</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">Miles driven (per person-year) →</text>
   </g>
   <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
@@ -91,5 +88,17 @@
     </marker>
     <path marker-mid="url(#plot-marker-1)" d="M50,188.885C50,188.885,52.428,185.181,53.434,185.496C55.769,186.229,54.55,209.697,58.189,211.074C60.96,212.123,67.705,201.107,70.075,201.786C71.77,202.271,71.401,207.416,72.717,209.027C73.704,210.236,74.92,210.328,76.415,211.298C78.818,212.857,82.576,214.736,85.66,217.628C89.794,221.504,93.246,230.327,98.075,233.47C102.089,236.081,107.04,237.169,111.547,236.876C116.284,236.567,121.194,232.284,125.811,231.217C129.881,230.276,133.59,230.429,137.698,230.305C142.108,230.172,146.527,230.159,151.434,230.529C157.152,230.959,164.295,231.022,169.925,233.023C175.352,234.952,179.846,238.834,184.717,242.07C189.711,245.388,193.914,249.074,199.509,252.718C206.352,257.174,214.579,262.623,223.019,266.513C231.942,270.625,243.619,276.353,251.811,276.472C257.86,276.56,264.951,276.316,267.66,271.501C273.544,261.045,243.32,200.23,248.906,195.456C251.456,193.275,258.195,200.947,263.962,201.786C271.094,202.823,280.968,200.642,288.792,199.068C296.05,197.608,302.849,191.301,309.396,192.962C317.353,194.98,328.242,217.217,331.849,215.392C337.54,212.512,323.075,165.352,319.962,137.282C316.358,104.776,306.112,38.264,312.566,31.582C314.145,29.948,317.092,30.15,318.906,31.806C324.721,37.118,323.913,76.947,327.094,96.55C329.769,113.034,331.301,128.425,336.075,141.806C340.257,153.526,346.516,164.169,352.717,173.043C358.046,180.669,365.164,182.473,370.151,192.514C380.164,212.676,377.645,285.077,390.226,295.944C395.648,300.627,402.869,295.205,409.774,296.838C418.333,298.863,428.098,308.904,437.245,309.068C446.236,309.229,457.562,304.047,464.189,298.214C470.388,292.757,474.92,275.544,476.604,276.025C477.98,276.418,474.074,287.747,475.811,293.002C477.717,298.769,484.177,303.72,488.755,308.844C493.413,314.058,499.566,321.316,503.547,323.998C505.665,325.426,506.596,325.93,509.094,326.269C513.773,326.903,526.078,327.146,529.962,323.775C533.058,321.088,530.382,312.665,533.396,310.874C537.096,308.676,547.705,310.829,552.943,315.622C560.939,322.936,563.098,359.638,568,360C571.311,360.245,575.579,349.608,577.774,340.976C581.69,325.569,579.853,272.886,579.358,272.86C579.076,272.845,576.216,287.827,577.509,295.032C578.86,302.556,585.371,317.393,587.811,316.998C590.877,316.501,589.853,292.341,592.302,278.966C595.105,263.66,601.54,247.962,604.453,230.305C607.831,209.829,609.645,183.237,610,163.084C610.289,146.649,608.58,131.289,607.887,118.275C607.352,108.224,607.688,102.24,606.302,91.562C604.178,75.204,597.978,29.839,593.887,30C587.338,30.259,579.105,189.767,574.604,189.797C572.367,189.812,569.321,150.407,569.321,150.407"></path>
   </g>
-  <g aria-label="text" transform="translate(0.5,-11.5)"><text y="0.32em" transform="translate(72.71698191982466,209.02736512900702)">1960</text><text y="0.32em" transform="translate(125.81132164611739,231.21657544956994)">1965</text><text y="0.32em" transform="translate(199.50943342327787,252.7177482408131)">1970</text><text y="0.32em" transform="translate(263.9622597146716,201.78577013291635)">1975</text><text y="0.32em" transform="translate(312.566033962945,31.582486317435475)">1980</text><text y="0.32em" transform="translate(370.15093916725704,192.51446442533225)">1985</text><text y="0.32em" transform="translate(476.6037731495706,276.02501954652064)">1990</text><text y="0.32em" transform="translate(529.9622586159687,323.7748240813135)">1995</text><text y="0.32em" transform="translate(579.3584876638039,272.8600469116497)">2000</text><text y="0.32em" transform="translate(610,163.08365910867863)">2005</text><text y="0.32em" transform="translate(569.320756168098,150.40656763096172)">2010</text></g>
+  <g aria-label="text" transform="translate(0.5,-11.5)">
+    <text y="0.32em" transform="translate(72.71698191982466,209.02736512900702)">1960</text>
+    <text y="0.32em" transform="translate(125.81132164611739,231.21657544956994)">1965</text>
+    <text y="0.32em" transform="translate(199.50943342327787,252.7177482408131)">1970</text>
+    <text y="0.32em" transform="translate(263.9622597146716,201.78577013291635)">1975</text>
+    <text y="0.32em" transform="translate(312.566033962945,31.582486317435475)">1980</text>
+    <text y="0.32em" transform="translate(370.15093916725704,192.51446442533225)">1985</text>
+    <text y="0.32em" transform="translate(476.6037731495706,276.02501954652064)">1990</text>
+    <text y="0.32em" transform="translate(529.9622586159687,323.7748240813135)">1995</text>
+    <text y="0.32em" transform="translate(579.3584876638039,272.8600469116497)">2000</text>
+    <text y="0.32em" transform="translate(610,163.08365910867863)">2005</text>
+    <text y="0.32em" transform="translate(569.320756168098,150.40656763096172)">2010</text>
+  </g>
 </svg>

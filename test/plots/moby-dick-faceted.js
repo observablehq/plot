@@ -6,7 +6,7 @@ export default async function () {
   const letters = [...mobydick].filter((d) => /\w/.test(d));
   const uppers = letters.map((d) => d.toUpperCase());
   const cases = letters.map((d) => (d.toLowerCase() === d ? "lower" : "upper"));
-  const vowels = letters.map((d) => (/[aeiouy]/i.test(d) ? "vowel" : ""));
+  const vowels = letters.map((d) => (/[aeiouy]/i.test(d) ? "vowel" : "consonant"));
   return Plot.plot({
     y: {
       grid: true

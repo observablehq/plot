@@ -13,75 +13,66 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="U.S. retail monthly sales (in billions, seasonally-adjusted)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,340.9081977746965)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">50</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,311.31639554939295)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,281.7245933240894)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">150</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,252.1327910987859)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,222.54098887348238)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">250</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,192.94918664817882)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">300</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,163.3573844228753)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">350</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,133.7655821975718)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,104.17377997226826)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">450</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,74.58197774696474)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">500</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,44.990175521661214)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">550</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">U.S. retail monthly sales (in billions, seasonally-adjusted)</text>
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="340.4081977746965" y2="340.4081977746965"></line>
+    <line x1="40" x2="620" y1="310.81639554939295" y2="310.81639554939295"></line>
+    <line x1="40" x2="620" y1="281.2245933240894" y2="281.2245933240894"></line>
+    <line x1="40" x2="620" y1="251.6327910987859" y2="251.6327910987859"></line>
+    <line x1="40" x2="620" y1="222.04098887348238" y2="222.04098887348238"></line>
+    <line x1="40" x2="620" y1="192.44918664817882" y2="192.44918664817882"></line>
+    <line x1="40" x2="620" y1="162.8573844228753" y2="162.8573844228753"></line>
+    <line x1="40" x2="620" y1="133.2655821975718" y2="133.2655821975718"></line>
+    <line x1="40" x2="620" y1="103.67377997226826" y2="103.67377997226826"></line>
+    <line x1="40" x2="620" y1="74.08197774696474" y2="74.08197774696474"></line>
+    <line x1="40" x2="620" y1="44.490175521661214" y2="44.490175521661214"></line>
   </g>
-  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(100.68557091459951,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1995</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(200.9582465442151,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(301.2858360159061,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2005</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(401.55851164552166,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2010</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(501.83118727513727,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2015</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(602.1038629047528,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2020</text>
-    </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,340.4081977746965)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,310.81639554939295)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,281.2245933240894)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,251.6327910987859)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,222.04098887348238)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,192.44918664817882)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,162.8573844228753)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,133.2655821975718)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,103.67377997226826)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,74.08197774696474)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,44.490175521661214)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,340.4081977746965)">50</text>
+    <text y="0.32em" transform="translate(40,310.81639554939295)">100</text>
+    <text y="0.32em" transform="translate(40,281.2245933240894)">150</text>
+    <text y="0.32em" transform="translate(40,251.6327910987859)">200</text>
+    <text y="0.32em" transform="translate(40,222.04098887348238)">250</text>
+    <text y="0.32em" transform="translate(40,192.44918664817882)">300</text>
+    <text y="0.32em" transform="translate(40,162.8573844228753)">350</text>
+    <text y="0.32em" transform="translate(40,133.2655821975718)">400</text>
+    <text y="0.32em" transform="translate(40,103.67377997226826)">450</text>
+    <text y="0.32em" transform="translate(40,74.08197774696474)">500</text>
+    <text y="0.32em" transform="translate(40,44.490175521661214)">550</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">U.S. retail monthly sales (in billions, seasonally-adjusted)</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(100.18557091459951,370)" d="M0,0L0,6"></path>
+    <path transform="translate(200.4582465442151,370)" d="M0,0L0,6"></path>
+    <path transform="translate(300.7858360159061,370)" d="M0,0L0,6"></path>
+    <path transform="translate(401.05851164552166,370)" d="M0,0L0,6"></path>
+    <path transform="translate(501.33118727513727,370)" d="M0,0L0,6"></path>
+    <path transform="translate(601.6038629047528,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(100.18557091459951,370)">1995</text>
+    <text y="0.71em" transform="translate(200.4582465442151,370)">2000</text>
+    <text y="0.71em" transform="translate(300.7858360159061,370)">2005</text>
+    <text y="0.71em" transform="translate(401.05851164552166,370)">2010</text>
+    <text y="0.71em" transform="translate(501.33118727513727,370)">2015</text>
+    <text y="0.71em" transform="translate(601.6038629047528,370)">2020</text>
   </g>
   <g aria-label="line" fill="none" stroke="#bab0ab" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path d="M40,283.369L41.702,282.953L43.295,275.699L44.997,273.135L46.645,269.348L48.347,270.179L49.994,269.453L51.697,269.172L53.399,272.574L55.046,267.225L56.749,268.472L58.396,246.402L60.098,279.318L61.801,281.173L63.338,269.128L65.041,265.567L66.688,262.149L68.39,262.561L70.038,261.29L71.74,261.506L73.443,265.005L75.09,261.85L76.792,259.064L78.44,237.109L80.142,274.508L81.844,273.625L83.382,256.179L85.084,257.806L86.732,254.635L88.434,252.848L90.081,255.566L91.784,250.219L93.486,255.211L95.133,252.843L96.836,250.141L98.483,227.302L100.186,266.225L101.888,268.123L103.425,250.876L105.128,253.977L106.775,245.432L108.478,244.623L110.125,249.614L111.827,243.2L113.53,250.377L115.177,249.239L116.879,244.418L118.527,223.526L120.229,260.499L121.931,256.143L123.524,244.466L125.226,244.698L126.874,235.691L128.576,241.269L130.223,240.914L131.926,236.208L133.628,246.158L135.276,238.22L136.978,237.457L138.625,217.258L140.328,251.403L142.03,253.079L143.568,236.758L145.27,239.601L146.917,231.398L148.62,235.437L150.267,232.978L151.969,230.769L153.672,238.135L155.319,232.545L157.021,234.893L158.669,209.58L160.371,246.985L162.073,249.347L163.611,233.692L165.313,231.213L166.961,224.984L168.663,225.552L170.311,227.112L172.013,227.686L173.715,233.142L175.363,225.454L177.065,227.373L178.712,198.978L180.415,240.905L182.117,239.411L183.655,219.94L185.357,221.578L187.004,214.872L188.707,215.579L190.354,214.909L192.056,213.111L193.759,219.73L195.406,217.283L197.109,213.693L198.756,181.998L200.458,230.077L202.161,221.698L203.753,204.573L205.455,213.508L207.103,202.093L208.805,203.524L210.453,209.526L212.155,201.952L213.857,210.704L215.505,209.672L217.207,206.353L218.854,180.637L220.557,221.599L222.259,223.36L223.797,204.02L225.499,207.289L227.146,194.809L228.849,199.622L230.496,204.82L232.198,195.549L233.901,214.984L235.548,197.423L237.251,199.825L238.898,176.942L240.6,218.728L242.303,220.215L243.84,201.172L245.543,201.476L247.19,192.211L248.892,199.046L250.54,195.152L252.242,188.155L253.944,208.317L255.592,199.823L257.294,197.95L258.941,170.548L260.644,211.194L262.346,216.684L263.884,196.182L265.586,195.852L267.233,185.117L268.936,191.859L270.583,186.576L272.286,182.355L273.988,196.065L275.635,190.061L277.338,191.701L278.985,158.373L280.687,203.422L282.39,202.839L283.982,181.159L285.685,183.459L287.332,175.636L289.034,179.995L290.682,175.878L292.384,176.874L294.086,184.445L295.734,180.775L297.436,178.092L299.084,140.868L300.786,196.438L302.488,195.372L304.026,169.284L305.728,171.361L307.375,165.611L309.078,162.298L310.725,161.776L312.428,159.483L314.13,172.748L315.777,171.064L317.48,166.528L319.127,129.947L320.829,181.473L322.532,184.133L324.069,155.759L325.772,161.871L327.419,148.914L329.121,153.024L330.769,155.635L332.471,147.591L334.173,165.098L335.821,163.57L337.523,158.757L339.171,122.618L340.873,175.359L342.575,178.741L344.113,148.569L345.815,157.806L347.463,138.289L349.165,147.091L350.812,149.627L352.515,140.358L354.217,160.528L355.864,151.801L357.567,146.403L359.214,117.832L360.916,167.214L362.619,166.472L364.211,149.3L365.914,151.66L367.561,134.475L369.263,145.986L370.911,142.897L372.613,143.408L374.315,162.537L375.963,162.948L377.665,171.412L379.313,142.595L381.015,186.42L382.717,192.797L384.255,175.566L385.957,174.781L387.605,164.202L389.307,166.169L390.954,163.999L392.657,160.85L394.359,177.863L396.006,169.598L397.709,169.153L399.356,133.099L401.059,183.834L402.761,185.983L404.298,156.537L406.001,159.109L407.648,153.622L409.351,157.765L410.998,155.791L412.7,155.384L414.403,165.225L416.05,159.775L417.752,153.49L419.4,117.485L421.102,171.388L422.804,170.365L424.342,140.907L426.044,144.644L427.692,138.001L429.394,139.953L431.041,142.331L432.744,136.456L434.446,148.047L436.094,145.409L437.796,138.462L439.443,102.596L441.146,159.789L442.848,149.6L444.44,124.892L446.143,137.439L447.79,122.253L449.493,132.689L451.14,135.618L452.842,122.659L454.545,141.783L456.192,133.621L457.894,126.717L459.542,96.511L461.244,147.714L462.946,148.661L464.484,120.411L466.186,128.209L467.834,111.256L469.536,124.557L471.183,120.003L472.886,112.548L474.588,135.507L476.236,123.974L477.938,119.188L479.585,87.747L481.288,143.295L482.99,145.091L484.528,113.942L486.23,114.684L487.877,98.211L489.58,113.568L491.227,107.65L492.929,102.865L494.632,120.586L496.279,110.505L497.981,110.086L499.629,72.703L501.331,134.433L503.034,140.33L504.571,106.059L506.273,109.807L507.921,94.923L509.623,103.796L511.271,98.032L512.973,98.995L514.675,113.864L516.323,105.69L518.025,105.584L519.672,62.467L521.375,132.071L523.077,124.28L524.67,97.051L526.372,102.824L528.019,91.586L529.722,94.762L531.369,96.456L533.071,90.634L534.774,104.343L536.421,101.71L538.123,93.047L539.771,50.109L541.473,120.206L543.176,122.305L544.713,83.748L546.415,93.821L548.063,76.539L549.765,84.141L551.413,87.978L553.115,79.075L554.817,91.409L556.465,87.623L558.167,74.51L559.814,38.658L561.517,106.81L563.219,111.949L564.757,68.563L566.459,85.021L568.106,56.764L569.809,69.174L571.456,70.227L573.158,61.084L574.861,86.75L576.508,71.008L578.211,61.679L579.858,38.993L581.56,98.886L583.263,107.398L584.8,64.794L586.503,68.511L588.15,46.189L589.852,63.267L591.5,55.082L593.202,47.303L594.904,76.406L596.552,58.967L598.254,53.159L599.902,20L601.604,84.817L603.306,85.997L604.899,85.023L606.601,127.143L608.248,69.216L609.951,52.171L611.598,43.28L613.301,44.288L615.003,53.952"></path>

@@ -13,399 +13,415 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis" transform="translate(60,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,58.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Adelie</text>
+  <g aria-label="facet" transform="translate(0,0)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(60,58.5)">Adelie</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,144.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Chinstrap</text>
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="106.66666666666666" x2="106.66666666666666" y1="20" y2="97"></line>
+      <line x1="184.44444444444443" x2="184.44444444444443" y1="20" y2="97"></line>
+      <line x1="262.22222222222223" x2="262.22222222222223" y1="20" y2="97"></line>
+      <line x1="340" x2="340" y1="20" y2="97"></line>
+      <line x1="417.77777777777777" x2="417.77777777777777" y1="20" y2="97"></line>
+      <line x1="495.55555555555554" x2="495.55555555555554" y1="20" y2="97"></line>
+      <line x1="573.3333333333333" x2="573.3333333333333" y1="20" y2="97"></line>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,230.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Gentoo</text>
-    </g>
-  </g>
-  <g aria-label="x-axis" aria-description="body_mass_g →" transform="translate(0,270)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(107.16666666666666,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3,000</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(184.94444444444443,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3,500</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(262.72222222222223,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,000</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(340.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,500</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(418.27777777777777,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5,000</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(496.05555555555554,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5,500</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(573.8333333333333,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6,000</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">body_mass_g →</text>
-  </g>
-  <g aria-label="facet" transform="translate(0,20)">
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="223.33333333333334" cy="38.5" r="3"></circle>
-      <circle cx="231.11111111111111" cy="38.5" r="3"></circle>
-      <circle cx="145.55555555555557" cy="38.5" r="3"></circle>
-      <circle cx="176.66666666666669" cy="38.5" r="3"></circle>
-      <circle cx="207.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="203.88888888888889" cy="32.67964406501831" r="3"></circle>
-      <circle cx="367.22222222222223" cy="38.5" r="3"></circle>
-      <circle cx="180.55555555555557" cy="32.67964406501831" r="3"></circle>
-      <circle cx="301.11111111111114" cy="38.5" r="3"></circle>
-      <circle cx="153.33333333333331" cy="38.5" r="3"></circle>
-      <circle cx="215.55555555555557" cy="38.5" r="3"></circle>
-      <circle cx="137.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="231.11111111111111" cy="31.5" r="3"></circle>
-      <circle cx="324.44444444444446" cy="38.5" r="3"></circle>
-      <circle cx="215.55555555555557" cy="31.5" r="3"></circle>
-      <circle cx="176.66666666666669" cy="45.5" r="3"></circle>
-      <circle cx="340" cy="38.5" r="3"></circle>
-      <circle cx="157.22222222222223" cy="32.67964406501833" r="3"></circle>
-      <circle cx="293.33333333333337" cy="38.5" r="3"></circle>
-      <circle cx="168.88888888888889" cy="38.5" r="3"></circle>
-      <circle cx="200" cy="38.5" r="3"></circle>
-      <circle cx="231.11111111111111" cy="45.5" r="3"></circle>
-      <circle cx="254.44444444444443" cy="38.5" r="3"></circle>
-      <circle cx="231.11111111111111" cy="52.5" r="3"></circle>
-      <circle cx="231.11111111111111" cy="24.5" r="3"></circle>
-      <circle cx="192.22222222222223" cy="38.5" r="3"></circle>
-      <circle cx="137.77777777777777" cy="31.5" r="3"></circle>
-      <circle cx="130" cy="38.5" r="3"></circle>
-      <circle cx="254.44444444444443" cy="31.5" r="3"></circle>
-      <circle cx="145.55555555555557" cy="31.5" r="3"></circle>
-      <circle cx="246.66666666666666" cy="38.5" r="3"></circle>
-      <circle cx="153.33333333333331" cy="45.5" r="3"></circle>
-      <circle cx="246.66666666666666" cy="31.5" r="3"></circle>
-      <circle cx="157.22222222222223" cy="51.32035593498167" r="3"></circle>
-      <circle cx="285.55555555555554" cy="38.5" r="3"></circle>
-      <circle cx="254.44444444444443" cy="45.5" r="3"></circle>
-      <circle cx="192.22222222222223" cy="31.5" r="3"></circle>
-      <circle cx="153.33333333333331" cy="26.85928813003666" r="3"></circle>
-      <circle cx="363.3333333333333" cy="32.67964406501833" r="3"></circle>
-      <circle cx="130" cy="31.5" r="3"></circle>
-      <circle cx="246.66666666666666" cy="45.5" r="3"></circle>
-      <circle cx="122.22222222222221" cy="38.5" r="3"></circle>
-      <circle cx="324.44444444444446" cy="31.5" r="3"></circle>
-      <circle cx="106.66666666666666" cy="38.5" r="3"></circle>
-      <circle cx="355.55555555555554" cy="38.5" r="3"></circle>
-      <circle cx="172.77777777777777" cy="32.67964406501833" r="3"></circle>
-      <circle cx="102.77777777777779" cy="32.6796440650183" r="3"></circle>
-      <circle cx="176.66666666666669" cy="26.85928813003666" r="3"></circle>
-      <circle cx="285.55555555555554" cy="31.5" r="3"></circle>
-      <circle cx="184.44444444444443" cy="38.5" r="3"></circle>
-      <circle cx="308.88888888888886" cy="38.5" r="3"></circle>
-      <circle cx="176.66666666666669" cy="52.5" r="3"></circle>
-      <circle cx="270" cy="38.5" r="3"></circle>
-      <circle cx="91.11111111111111" cy="38.5" r="3"></circle>
-      <circle cx="215.55555555555557" cy="45.5" r="3"></circle>
-      <circle cx="192.22222222222223" cy="45.5" r="3"></circle>
-      <circle cx="231.11111111111111" cy="17.5" r="3"></circle>
-      <circle cx="83.33333333333333" cy="38.5" r="3"></circle>
-      <circle cx="223.33333333333334" cy="31.5" r="3"></circle>
-      <circle cx="130" cy="45.5" r="3"></circle>
-      <circle cx="324.44444444444446" cy="45.5" r="3"></circle>
-      <circle cx="200" cy="45.5" r="3"></circle>
-      <circle cx="270" cy="31.5" r="3"></circle>
-      <circle cx="83.33333333333333" cy="31.5" r="3"></circle>
-      <circle cx="254.44444444444443" cy="52.5" r="3"></circle>
-      <circle cx="161.11111111111111" cy="38.5" r="3"></circle>
-      <circle cx="277.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="114.44444444444444" cy="38.5" r="3"></circle>
-      <circle cx="332.2222222222222" cy="38.5" r="3"></circle>
-      <circle cx="200" cy="26.859288130036624" r="3"></circle>
-      <circle cx="246.66666666666666" cy="52.5" r="3"></circle>
-      <circle cx="192.22222222222223" cy="52.5" r="3"></circle>
-      <circle cx="285.55555555555554" cy="45.5" r="3"></circle>
-      <circle cx="215.55555555555557" cy="24.5" r="3"></circle>
-      <circle cx="301.11111111111114" cy="31.5" r="3"></circle>
-      <circle cx="215.55555555555557" cy="52.5" r="3"></circle>
-      <circle cx="246.66666666666666" cy="24.5" r="3"></circle>
-      <circle cx="192.22222222222223" cy="24.5" r="3"></circle>
-      <circle cx="262.22222222222223" cy="38.5" r="3"></circle>
-      <circle cx="137.77777777777777" cy="45.5" r="3"></circle>
-      <circle cx="371.11111111111114" cy="32.67964406501833" r="3"></circle>
-      <circle cx="231.11111111111111" cy="59.5" r="3"></circle>
-      <circle cx="293.33333333333337" cy="31.5" r="3"></circle>
-      <circle cx="161.11111111111111" cy="45.49999999999998" r="3"></circle>
-      <circle cx="192.22222222222223" cy="17.5" r="3"></circle>
-      <circle cx="231.11111111111111" cy="66.5" r="3"></circle>
-      <circle cx="184.44444444444443" cy="45.5" r="3"></circle>
-      <circle cx="254.44444444444443" cy="24.5" r="3"></circle>
-      <circle cx="200" cy="52.5" r="3"></circle>
-      <circle cx="192.22222222222223" cy="59.5" r="3"></circle>
-      <circle cx="308.88888888888886" cy="31.5" r="3"></circle>
-      <circle cx="168.88888888888889" cy="45.5" r="3"></circle>
-      <circle cx="332.2222222222222" cy="31.5" r="3"></circle>
-      <circle cx="153.33333333333331" cy="19.85928813003666" r="3"></circle>
-      <circle cx="308.88888888888886" cy="45.5" r="3"></circle>
-      <circle cx="215.55555555555557" cy="17.5" r="3"></circle>
-      <circle cx="316.66666666666663" cy="38.5" r="3"></circle>
-      <circle cx="91.11111111111111" cy="31.5" r="3"></circle>
-      <circle cx="277.77777777777777" cy="31.5" r="3"></circle>
-      <circle cx="219.44444444444443" cy="58.320355934981706" r="3"></circle>
-      <circle cx="375" cy="38.5" r="3"></circle>
-      <circle cx="118.33333333333334" cy="32.67964406501832" r="3"></circle>
-      <circle cx="301.11111111111114" cy="45.5" r="3"></circle>
-      <circle cx="95" cy="44.32035593498169" r="3"></circle>
-      <circle cx="192.22222222222223" cy="66.5" r="3"></circle>
-      <circle cx="223.33333333333334" cy="45.5" r="3"></circle>
-      <circle cx="246.66666666666666" cy="17.5" r="3"></circle>
-      <circle cx="133.88888888888889" cy="51.32035593498169" r="3"></circle>
-      <circle cx="382.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="235" cy="11.679644065018312" r="3"></circle>
-      <circle cx="355.55555555555554" cy="31.5" r="3"></circle>
-      <circle cx="137.77777777777777" cy="24.5" r="3"></circle>
-      <circle cx="305" cy="51.320355934981706" r="3"></circle>
-      <circle cx="246.66666666666666" cy="59.5" r="3"></circle>
-      <circle cx="273.88888888888886" cy="44.32035593498167" r="3"></circle>
-      <circle cx="91.11111111111111" cy="50.140711869963376" r="3"></circle>
-      <circle cx="227.22222222222223" cy="11.679644065018312" r="3"></circle>
-      <circle cx="161.11111111111111" cy="26.859288130036642" r="3"></circle>
-      <circle cx="157.22222222222223" cy="58.32035593498167" r="3"></circle>
-      <circle cx="130" cy="24.5" r="3"></circle>
-      <circle cx="184.44444444444443" cy="26.859288130036603" r="3"></circle>
-      <circle cx="176.66666666666669" cy="19.85928813003666" r="3"></circle>
-      <circle cx="242.77777777777777" cy="65.32035593498169" r="3"></circle>
-      <circle cx="114.44444444444444" cy="45.5" r="3"></circle>
-      <circle cx="262.22222222222223" cy="31.5" r="3"></circle>
-      <circle cx="149.44444444444443" cy="51.32035593498169" r="3"></circle>
-      <circle cx="308.88888888888886" cy="24.5" r="3"></circle>
-      <circle cx="114.44444444444444" cy="26.85928813003664" r="3"></circle>
-      <circle cx="262.22222222222223" cy="45.5" r="3"></circle>
-      <circle cx="157.22222222222223" cy="14.03893219505499" r="3"></circle>
-      <circle cx="184.44444444444443" cy="52.5" r="3"></circle>
-      <circle cx="184.44444444444443" cy="19.859288130036603" r="3"></circle>
-      <circle cx="336.11111111111114" cy="44.320355934981635" r="3"></circle>
-      <circle cx="172.77777777777777" cy="58.32035593498167" r="3"></circle>
-      <circle cx="246.66666666666666" cy="10.5" r="3"></circle>
-      <circle cx="133.88888888888889" cy="18.679644065018312" r="3"></circle>
-      <circle cx="258.3333333333333" cy="18.679644065018312" r="3"></circle>
-      <circle cx="168.88888888888889" cy="26.859288130036642" r="3"></circle>
-      <circle cx="301.11111111111114" cy="24.5" r="3"></circle>
-      <circle cx="168.88888888888889" cy="52.499999999999986" r="3"></circle>
-      <circle cx="180.55555555555557" cy="58.32035593498169" r="3"></circle>
-      <circle cx="114.44444444444444" cy="52.5" r="3"></circle>
-      <circle cx="219.44444444444443" cy="11.679644065018294" r="3"></circle>
-      <circle cx="106.66666666666666" cy="45.5" r="3"></circle>
-      <circle cx="207.77777777777777" cy="45.5" r="3"></circle>
-      <circle cx="301.11111111111114" cy="57.14071186996341" r="3"></circle>
-      <circle cx="180.55555555555557" cy="14.038932195054972" r="3"></circle>
-      <circle cx="176.66666666666669" cy="64.14071186996334" r="3"></circle>
-      <circle cx="223.33333333333334" cy="52.5" r="3"></circle>
-      <circle cx="215.55555555555557" cy="64.14071186996341" r="3"></circle>
-      <circle cx="262.22222222222223" cy="24.5" r="3"></circle>
+      <circle cx="223.33333333333334" cy="58.5" r="3"></circle>
+      <circle cx="231.11111111111111" cy="58.5" r="3"></circle>
+      <circle cx="145.55555555555557" cy="58.5" r="3"></circle>
+      <circle cx="176.66666666666669" cy="58.5" r="3"></circle>
+      <circle cx="207.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="203.88888888888889" cy="52.67964406501831" r="3"></circle>
+      <circle cx="367.22222222222223" cy="58.5" r="3"></circle>
+      <circle cx="180.55555555555557" cy="52.67964406501831" r="3"></circle>
+      <circle cx="301.11111111111114" cy="58.5" r="3"></circle>
+      <circle cx="153.33333333333331" cy="58.5" r="3"></circle>
+      <circle cx="215.55555555555557" cy="58.5" r="3"></circle>
+      <circle cx="137.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="231.11111111111111" cy="51.5" r="3"></circle>
+      <circle cx="324.44444444444446" cy="58.5" r="3"></circle>
+      <circle cx="215.55555555555557" cy="51.5" r="3"></circle>
+      <circle cx="176.66666666666669" cy="65.5" r="3"></circle>
+      <circle cx="340" cy="58.5" r="3"></circle>
+      <circle cx="157.22222222222223" cy="52.67964406501833" r="3"></circle>
+      <circle cx="293.33333333333337" cy="58.5" r="3"></circle>
+      <circle cx="168.88888888888889" cy="58.5" r="3"></circle>
+      <circle cx="200" cy="58.5" r="3"></circle>
+      <circle cx="231.11111111111111" cy="65.5" r="3"></circle>
+      <circle cx="254.44444444444443" cy="58.5" r="3"></circle>
+      <circle cx="231.11111111111111" cy="72.5" r="3"></circle>
+      <circle cx="231.11111111111111" cy="44.5" r="3"></circle>
+      <circle cx="192.22222222222223" cy="58.5" r="3"></circle>
+      <circle cx="137.77777777777777" cy="51.5" r="3"></circle>
+      <circle cx="130" cy="58.5" r="3"></circle>
+      <circle cx="254.44444444444443" cy="51.5" r="3"></circle>
+      <circle cx="145.55555555555557" cy="51.5" r="3"></circle>
+      <circle cx="246.66666666666666" cy="58.5" r="3"></circle>
+      <circle cx="153.33333333333331" cy="65.5" r="3"></circle>
+      <circle cx="246.66666666666666" cy="51.5" r="3"></circle>
+      <circle cx="157.22222222222223" cy="71.32035593498168" r="3"></circle>
+      <circle cx="285.55555555555554" cy="58.5" r="3"></circle>
+      <circle cx="254.44444444444443" cy="65.5" r="3"></circle>
+      <circle cx="192.22222222222223" cy="51.5" r="3"></circle>
+      <circle cx="153.33333333333331" cy="46.85928813003666" r="3"></circle>
+      <circle cx="363.3333333333333" cy="52.67964406501833" r="3"></circle>
+      <circle cx="130" cy="51.5" r="3"></circle>
+      <circle cx="246.66666666666666" cy="65.5" r="3"></circle>
+      <circle cx="122.22222222222221" cy="58.5" r="3"></circle>
+      <circle cx="324.44444444444446" cy="51.5" r="3"></circle>
+      <circle cx="106.66666666666666" cy="58.5" r="3"></circle>
+      <circle cx="355.55555555555554" cy="58.5" r="3"></circle>
+      <circle cx="172.77777777777777" cy="52.67964406501833" r="3"></circle>
+      <circle cx="102.77777777777779" cy="52.6796440650183" r="3"></circle>
+      <circle cx="176.66666666666669" cy="46.85928813003666" r="3"></circle>
+      <circle cx="285.55555555555554" cy="51.5" r="3"></circle>
+      <circle cx="184.44444444444443" cy="58.5" r="3"></circle>
+      <circle cx="308.88888888888886" cy="58.5" r="3"></circle>
+      <circle cx="176.66666666666669" cy="72.5" r="3"></circle>
+      <circle cx="270" cy="58.5" r="3"></circle>
+      <circle cx="91.11111111111111" cy="58.5" r="3"></circle>
+      <circle cx="215.55555555555557" cy="65.5" r="3"></circle>
+      <circle cx="192.22222222222223" cy="65.5" r="3"></circle>
+      <circle cx="231.11111111111111" cy="37.5" r="3"></circle>
+      <circle cx="83.33333333333333" cy="58.5" r="3"></circle>
+      <circle cx="223.33333333333334" cy="51.5" r="3"></circle>
+      <circle cx="130" cy="65.5" r="3"></circle>
+      <circle cx="324.44444444444446" cy="65.5" r="3"></circle>
+      <circle cx="200" cy="65.5" r="3"></circle>
+      <circle cx="270" cy="51.5" r="3"></circle>
+      <circle cx="83.33333333333333" cy="51.5" r="3"></circle>
+      <circle cx="254.44444444444443" cy="72.5" r="3"></circle>
+      <circle cx="161.11111111111111" cy="58.5" r="3"></circle>
+      <circle cx="277.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="114.44444444444444" cy="58.5" r="3"></circle>
+      <circle cx="332.2222222222222" cy="58.5" r="3"></circle>
+      <circle cx="200" cy="46.859288130036624" r="3"></circle>
+      <circle cx="246.66666666666666" cy="72.5" r="3"></circle>
+      <circle cx="192.22222222222223" cy="72.5" r="3"></circle>
+      <circle cx="285.55555555555554" cy="65.5" r="3"></circle>
+      <circle cx="215.55555555555557" cy="44.5" r="3"></circle>
+      <circle cx="301.11111111111114" cy="51.5" r="3"></circle>
+      <circle cx="215.55555555555557" cy="72.5" r="3"></circle>
+      <circle cx="246.66666666666666" cy="44.5" r="3"></circle>
+      <circle cx="192.22222222222223" cy="44.5" r="3"></circle>
+      <circle cx="262.22222222222223" cy="58.5" r="3"></circle>
+      <circle cx="137.77777777777777" cy="65.5" r="3"></circle>
+      <circle cx="371.11111111111114" cy="52.67964406501833" r="3"></circle>
+      <circle cx="231.11111111111111" cy="79.5" r="3"></circle>
+      <circle cx="293.33333333333337" cy="51.5" r="3"></circle>
+      <circle cx="161.11111111111111" cy="65.49999999999999" r="3"></circle>
+      <circle cx="192.22222222222223" cy="37.5" r="3"></circle>
+      <circle cx="231.11111111111111" cy="86.5" r="3"></circle>
+      <circle cx="184.44444444444443" cy="65.5" r="3"></circle>
+      <circle cx="254.44444444444443" cy="44.5" r="3"></circle>
+      <circle cx="200" cy="72.5" r="3"></circle>
+      <circle cx="192.22222222222223" cy="79.5" r="3"></circle>
+      <circle cx="308.88888888888886" cy="51.5" r="3"></circle>
+      <circle cx="168.88888888888889" cy="65.5" r="3"></circle>
+      <circle cx="332.2222222222222" cy="51.5" r="3"></circle>
+      <circle cx="153.33333333333331" cy="39.85928813003666" r="3"></circle>
+      <circle cx="308.88888888888886" cy="65.5" r="3"></circle>
+      <circle cx="215.55555555555557" cy="37.5" r="3"></circle>
+      <circle cx="316.66666666666663" cy="58.5" r="3"></circle>
+      <circle cx="91.11111111111111" cy="51.5" r="3"></circle>
+      <circle cx="277.77777777777777" cy="51.5" r="3"></circle>
+      <circle cx="219.44444444444443" cy="78.3203559349817" r="3"></circle>
+      <circle cx="375" cy="58.5" r="3"></circle>
+      <circle cx="118.33333333333334" cy="52.67964406501832" r="3"></circle>
+      <circle cx="301.11111111111114" cy="65.5" r="3"></circle>
+      <circle cx="95" cy="64.32035593498169" r="3"></circle>
+      <circle cx="192.22222222222223" cy="86.5" r="3"></circle>
+      <circle cx="223.33333333333334" cy="65.5" r="3"></circle>
+      <circle cx="246.66666666666666" cy="37.5" r="3"></circle>
+      <circle cx="133.88888888888889" cy="71.32035593498169" r="3"></circle>
+      <circle cx="382.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="235" cy="31.679644065018312" r="3"></circle>
+      <circle cx="355.55555555555554" cy="51.5" r="3"></circle>
+      <circle cx="137.77777777777777" cy="44.5" r="3"></circle>
+      <circle cx="305" cy="71.3203559349817" r="3"></circle>
+      <circle cx="246.66666666666666" cy="79.5" r="3"></circle>
+      <circle cx="273.88888888888886" cy="64.32035593498168" r="3"></circle>
+      <circle cx="91.11111111111111" cy="70.14071186996338" r="3"></circle>
+      <circle cx="227.22222222222223" cy="31.679644065018312" r="3"></circle>
+      <circle cx="161.11111111111111" cy="46.859288130036646" r="3"></circle>
+      <circle cx="157.22222222222223" cy="78.32035593498168" r="3"></circle>
+      <circle cx="130" cy="44.5" r="3"></circle>
+      <circle cx="184.44444444444443" cy="46.8592881300366" r="3"></circle>
+      <circle cx="176.66666666666669" cy="39.85928813003666" r="3"></circle>
+      <circle cx="242.77777777777777" cy="85.32035593498169" r="3"></circle>
+      <circle cx="114.44444444444444" cy="65.5" r="3"></circle>
+      <circle cx="262.22222222222223" cy="51.5" r="3"></circle>
+      <circle cx="149.44444444444443" cy="71.32035593498169" r="3"></circle>
+      <circle cx="308.88888888888886" cy="44.5" r="3"></circle>
+      <circle cx="114.44444444444444" cy="46.85928813003664" r="3"></circle>
+      <circle cx="262.22222222222223" cy="65.5" r="3"></circle>
+      <circle cx="157.22222222222223" cy="34.03893219505499" r="3"></circle>
+      <circle cx="184.44444444444443" cy="72.5" r="3"></circle>
+      <circle cx="184.44444444444443" cy="39.8592881300366" r="3"></circle>
+      <circle cx="336.11111111111114" cy="64.32035593498163" r="3"></circle>
+      <circle cx="172.77777777777777" cy="78.32035593498168" r="3"></circle>
+      <circle cx="246.66666666666666" cy="30.5" r="3"></circle>
+      <circle cx="133.88888888888889" cy="38.67964406501831" r="3"></circle>
+      <circle cx="258.3333333333333" cy="38.67964406501831" r="3"></circle>
+      <circle cx="168.88888888888889" cy="46.859288130036646" r="3"></circle>
+      <circle cx="301.11111111111114" cy="44.5" r="3"></circle>
+      <circle cx="168.88888888888889" cy="72.49999999999999" r="3"></circle>
+      <circle cx="180.55555555555557" cy="78.32035593498169" r="3"></circle>
+      <circle cx="114.44444444444444" cy="72.5" r="3"></circle>
+      <circle cx="219.44444444444443" cy="31.679644065018294" r="3"></circle>
+      <circle cx="106.66666666666666" cy="65.5" r="3"></circle>
+      <circle cx="207.77777777777777" cy="65.5" r="3"></circle>
+      <circle cx="301.11111111111114" cy="77.14071186996341" r="3"></circle>
+      <circle cx="180.55555555555557" cy="34.03893219505497" r="3"></circle>
+      <circle cx="176.66666666666669" cy="84.14071186996334" r="3"></circle>
+      <circle cx="223.33333333333334" cy="72.5" r="3"></circle>
+      <circle cx="215.55555555555557" cy="84.14071186996341" r="3"></circle>
+      <circle cx="262.22222222222223" cy="44.5" r="3"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,106)">
+  <g aria-label="facet" transform="translate(0,86)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(60,58.5)">Chinstrap</text>
+    </g>
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="106.66666666666666" x2="106.66666666666666" y1="20" y2="97"></line>
+      <line x1="184.44444444444443" x2="184.44444444444443" y1="20" y2="97"></line>
+      <line x1="262.22222222222223" x2="262.22222222222223" y1="20" y2="97"></line>
+      <line x1="340" x2="340" y1="20" y2="97"></line>
+      <line x1="417.77777777777777" x2="417.77777777777777" y1="20" y2="97"></line>
+      <line x1="495.55555555555554" x2="495.55555555555554" y1="20" y2="97"></line>
+      <line x1="573.3333333333333" x2="573.3333333333333" y1="20" y2="97"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="184.44444444444443" cy="38.5" r="3"></circle>
-      <circle cx="246.66666666666666" cy="38.5" r="3"></circle>
-      <circle cx="207.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="188.33333333333331" cy="32.67964406501831" r="3"></circle>
-      <circle cx="219.44444444444443" cy="38.5" r="3"></circle>
-      <circle cx="254.44444444444443" cy="38.5" r="3"></circle>
-      <circle cx="145.55555555555557" cy="38.5" r="3"></circle>
-      <circle cx="223.33333333333334" cy="32.67964406501833" r="3"></circle>
-      <circle cx="285.55555555555554" cy="38.5" r="3"></circle>
-      <circle cx="215.55555555555557" cy="32.679644065018294" r="3"></circle>
-      <circle cx="231.11111111111111" cy="38.5" r="3"></circle>
-      <circle cx="227.22222222222223" cy="44.32035593498169" r="3"></circle>
-      <circle cx="215.55555555555557" cy="44.320355934981706" r="3"></circle>
-      <circle cx="270" cy="38.5" r="3"></circle>
-      <circle cx="196.1111111111111" cy="38.5" r="3"></circle>
-      <circle cx="270" cy="31.5" r="3"></circle>
-      <circle cx="153.33333333333331" cy="38.5" r="3"></circle>
-      <circle cx="215.55555555555557" cy="51.320355934981706" r="3"></circle>
-      <circle cx="176.66666666666669" cy="38.5" r="3"></circle>
-      <circle cx="324.44444444444446" cy="38.5" r="3"></circle>
-      <circle cx="200" cy="32.67964406501833" r="3"></circle>
-      <circle cx="168.88888888888889" cy="38.5" r="3"></circle>
-      <circle cx="91.11111111111111" cy="38.5" r="3"></circle>
-      <circle cx="231.11111111111111" cy="31.5" r="3"></circle>
-      <circle cx="153.33333333333331" cy="31.5" r="3"></circle>
-      <circle cx="285.55555555555554" cy="31.5" r="3"></circle>
-      <circle cx="168.88888888888889" cy="31.5" r="3"></circle>
-      <circle cx="231.11111111111111" cy="50.140711869963376" r="3"></circle>
-      <circle cx="215.55555555555557" cy="25.679644065018294" r="3"></circle>
-      <circle cx="347.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="137.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="308.88888888888886" cy="38.5" r="3"></circle>
-      <circle cx="161.11111111111111" cy="38.5" r="3"></circle>
-      <circle cx="277.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="200" cy="44.32035593498167" r="3"></circle>
-      <circle cx="246.66666666666666" cy="31.5" r="3"></circle>
-      <circle cx="238.88888888888889" cy="38.5" r="3"></circle>
-      <circle cx="386.6666666666667" cy="38.5" r="3"></circle>
-      <circle cx="60" cy="38.5" r="3"></circle>
-      <circle cx="340" cy="38.5" r="3"></circle>
-      <circle cx="254.44444444444443" cy="31.5" r="3"></circle>
-      <circle cx="207.77777777777777" cy="31.5" r="3"></circle>
-      <circle cx="192.22222222222223" cy="44.320355934981706" r="3"></circle>
-      <circle cx="184.44444444444443" cy="45.5" r="3"></circle>
-      <circle cx="211.66666666666666" cy="19.859288130036624" r="3"></circle>
-      <circle cx="332.2222222222222" cy="38.5" r="3"></circle>
-      <circle cx="168.88888888888889" cy="45.5" r="3"></circle>
-      <circle cx="308.88888888888886" cy="31.5" r="3"></circle>
-      <circle cx="145.55555555555557" cy="31.5" r="3"></circle>
-      <circle cx="211.66666666666666" cy="57.140711869963376" r="3"></circle>
-      <circle cx="157.22222222222223" cy="44.32035593498167" r="3"></circle>
-      <circle cx="254.44444444444443" cy="45.5" r="3"></circle>
-      <circle cx="200" cy="25.67964406501833" r="3"></circle>
-      <circle cx="270" cy="45.5" r="3"></circle>
-      <circle cx="161.11111111111111" cy="31.5" r="3"></circle>
-      <circle cx="176.66666666666669" cy="31.5" r="3"></circle>
-      <circle cx="145.55555555555557" cy="45.5" r="3"></circle>
-      <circle cx="270" cy="52.5" r="3"></circle>
-      <circle cx="231.11111111111111" cy="24.5" r="3"></circle>
-      <circle cx="188.33333333333331" cy="51.32035593498169" r="3"></circle>
-      <circle cx="254.44444444444443" cy="52.5" r="3"></circle>
-      <circle cx="207.77777777777777" cy="45.5" r="3"></circle>
-      <circle cx="207.77777777777777" cy="62.96106780494506" r="3"></circle>
-      <circle cx="262.22222222222223" cy="38.5" r="3"></circle>
-      <circle cx="168.88888888888889" cy="52.5" r="3"></circle>
-      <circle cx="227.22222222222223" cy="55.96106780494507" r="3"></circle>
-      <circle cx="277.77777777777777" cy="31.5" r="3"></circle>
-      <circle cx="227.22222222222223" cy="18.679644065018312" r="3"></circle>
+      <circle cx="184.44444444444443" cy="58.5" r="3"></circle>
+      <circle cx="246.66666666666666" cy="58.5" r="3"></circle>
+      <circle cx="207.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="188.33333333333331" cy="52.67964406501831" r="3"></circle>
+      <circle cx="219.44444444444443" cy="58.5" r="3"></circle>
+      <circle cx="254.44444444444443" cy="58.5" r="3"></circle>
+      <circle cx="145.55555555555557" cy="58.5" r="3"></circle>
+      <circle cx="223.33333333333334" cy="52.67964406501833" r="3"></circle>
+      <circle cx="285.55555555555554" cy="58.5" r="3"></circle>
+      <circle cx="215.55555555555557" cy="52.679644065018294" r="3"></circle>
+      <circle cx="231.11111111111111" cy="58.5" r="3"></circle>
+      <circle cx="227.22222222222223" cy="64.32035593498169" r="3"></circle>
+      <circle cx="215.55555555555557" cy="64.3203559349817" r="3"></circle>
+      <circle cx="270" cy="58.5" r="3"></circle>
+      <circle cx="196.1111111111111" cy="58.5" r="3"></circle>
+      <circle cx="270" cy="51.5" r="3"></circle>
+      <circle cx="153.33333333333331" cy="58.5" r="3"></circle>
+      <circle cx="215.55555555555557" cy="71.3203559349817" r="3"></circle>
+      <circle cx="176.66666666666669" cy="58.5" r="3"></circle>
+      <circle cx="324.44444444444446" cy="58.5" r="3"></circle>
+      <circle cx="200" cy="52.67964406501833" r="3"></circle>
+      <circle cx="168.88888888888889" cy="58.5" r="3"></circle>
+      <circle cx="91.11111111111111" cy="58.5" r="3"></circle>
+      <circle cx="231.11111111111111" cy="51.5" r="3"></circle>
+      <circle cx="153.33333333333331" cy="51.5" r="3"></circle>
+      <circle cx="285.55555555555554" cy="51.5" r="3"></circle>
+      <circle cx="168.88888888888889" cy="51.5" r="3"></circle>
+      <circle cx="231.11111111111111" cy="70.14071186996338" r="3"></circle>
+      <circle cx="215.55555555555557" cy="45.679644065018294" r="3"></circle>
+      <circle cx="347.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="137.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="308.88888888888886" cy="58.5" r="3"></circle>
+      <circle cx="161.11111111111111" cy="58.5" r="3"></circle>
+      <circle cx="277.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="200" cy="64.32035593498168" r="3"></circle>
+      <circle cx="246.66666666666666" cy="51.5" r="3"></circle>
+      <circle cx="238.88888888888889" cy="58.5" r="3"></circle>
+      <circle cx="386.6666666666667" cy="58.5" r="3"></circle>
+      <circle cx="60" cy="58.5" r="3"></circle>
+      <circle cx="340" cy="58.5" r="3"></circle>
+      <circle cx="254.44444444444443" cy="51.5" r="3"></circle>
+      <circle cx="207.77777777777777" cy="51.5" r="3"></circle>
+      <circle cx="192.22222222222223" cy="64.3203559349817" r="3"></circle>
+      <circle cx="184.44444444444443" cy="65.5" r="3"></circle>
+      <circle cx="211.66666666666666" cy="39.859288130036624" r="3"></circle>
+      <circle cx="332.2222222222222" cy="58.5" r="3"></circle>
+      <circle cx="168.88888888888889" cy="65.5" r="3"></circle>
+      <circle cx="308.88888888888886" cy="51.5" r="3"></circle>
+      <circle cx="145.55555555555557" cy="51.5" r="3"></circle>
+      <circle cx="211.66666666666666" cy="77.14071186996338" r="3"></circle>
+      <circle cx="157.22222222222223" cy="64.32035593498168" r="3"></circle>
+      <circle cx="254.44444444444443" cy="65.5" r="3"></circle>
+      <circle cx="200" cy="45.67964406501833" r="3"></circle>
+      <circle cx="270" cy="65.5" r="3"></circle>
+      <circle cx="161.11111111111111" cy="51.5" r="3"></circle>
+      <circle cx="176.66666666666669" cy="51.5" r="3"></circle>
+      <circle cx="145.55555555555557" cy="65.5" r="3"></circle>
+      <circle cx="270" cy="72.5" r="3"></circle>
+      <circle cx="231.11111111111111" cy="44.5" r="3"></circle>
+      <circle cx="188.33333333333331" cy="71.32035593498169" r="3"></circle>
+      <circle cx="254.44444444444443" cy="72.5" r="3"></circle>
+      <circle cx="207.77777777777777" cy="65.5" r="3"></circle>
+      <circle cx="207.77777777777777" cy="82.96106780494506" r="3"></circle>
+      <circle cx="262.22222222222223" cy="58.5" r="3"></circle>
+      <circle cx="168.88888888888889" cy="72.5" r="3"></circle>
+      <circle cx="227.22222222222223" cy="75.96106780494506" r="3"></circle>
+      <circle cx="277.77777777777777" cy="51.5" r="3"></circle>
+      <circle cx="227.22222222222223" cy="38.67964406501831" r="3"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,192)">
-    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="340" cy="38.5" r="3"></circle>
-      <circle cx="526.6666666666667" cy="38.5" r="3"></circle>
-      <circle cx="332.2222222222222" cy="38.5" r="3"></circle>
-      <circle cx="526.6666666666667" cy="31.5" r="3"></circle>
-      <circle cx="480" cy="38.5" r="3"></circle>
-      <circle cx="347.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="386.6666666666667" cy="38.5" r="3"></circle>
-      <circle cx="448.88888888888886" cy="38.5" r="3"></circle>
-      <circle cx="324.44444444444446" cy="38.5" r="3"></circle>
-      <circle cx="441.11111111111114" cy="38.5" r="3"></circle>
-      <circle cx="363.3333333333333" cy="38.5" r="3"></circle>
-      <circle cx="503.3333333333333" cy="38.5" r="3"></circle>
-      <circle cx="363.3333333333333" cy="31.5" r="3"></circle>
-      <circle cx="550" cy="38.5" r="3"></circle>
-      <circle cx="293.33333333333337" cy="38.5" r="3"></circle>
-      <circle cx="550" cy="31.5" r="3"></circle>
-      <circle cx="285.55555555555554" cy="38.5" r="3"></circle>
-      <circle cx="620" cy="38.5" r="3"></circle>
-      <circle cx="386.6666666666667" cy="31.5" r="3"></circle>
-      <circle cx="472.22222222222223" cy="38.5" r="3"></circle>
-      <circle cx="526.6666666666667" cy="45.5" r="3"></circle>
-      <circle cx="417.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="324.44444444444446" cy="31.5" r="3"></circle>
-      <circle cx="425.55555555555554" cy="38.5" r="3"></circle>
-      <circle cx="417.77777777777777" cy="31.5" r="3"></circle>
-      <circle cx="433.3333333333333" cy="38.5" r="3"></circle>
-      <circle cx="277.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="518.8888888888889" cy="38.5" r="3"></circle>
-      <circle cx="355.55555555555554" cy="38.5" r="3"></circle>
-      <circle cx="503.3333333333333" cy="31.5" r="3"></circle>
-      <circle cx="456.6666666666667" cy="38.5" r="3"></circle>
-      <circle cx="371.11111111111114" cy="38.5" r="3"></circle>
-      <circle cx="425.55555555555554" cy="31.5" r="3"></circle>
-      <circle cx="581.1111111111111" cy="38.5" r="3"></circle>
-      <circle cx="441.11111111111114" cy="31.5" r="3"></circle>
-      <circle cx="480" cy="31.5" r="3"></circle>
-      <circle cx="410" cy="38.5" r="3"></circle>
-      <circle cx="456.6666666666667" cy="31.5" r="3"></circle>
-      <circle cx="316.66666666666663" cy="38.5" r="3"></circle>
-      <circle cx="472.22222222222223" cy="31.5" r="3"></circle>
-      <circle cx="254.44444444444443" cy="38.5" r="3"></circle>
-      <circle cx="526.6666666666667" cy="52.5" r="3"></circle>
-      <circle cx="308.88888888888886" cy="38.5" r="3"></circle>
-      <circle cx="378.88888888888886" cy="38.5" r="3"></circle>
-      <circle cx="503.3333333333333" cy="45.5" r="3"></circle>
-      <circle cx="402.22222222222223" cy="38.5" r="3"></circle>
-      <circle cx="293.33333333333337" cy="31.5" r="3"></circle>
-      <circle cx="480" cy="45.5" r="3"></circle>
-      <circle cx="433.3333333333333" cy="31.5" r="3"></circle>
-      <circle cx="464.44444444444446" cy="38.5" r="3"></circle>
-      <circle cx="394.44444444444446" cy="38.5" r="3"></circle>
-      <circle cx="464.44444444444446" cy="31.5" r="3"></circle>
-      <circle cx="324.44444444444446" cy="45.5" r="3"></circle>
-      <circle cx="417.77777777777777" cy="45.5" r="3"></circle>
-      <circle cx="402.22222222222223" cy="31.5" r="3"></circle>
-      <circle cx="425.55555555555554" cy="45.5" r="3"></circle>
-      <circle cx="308.88888888888886" cy="31.5" r="3"></circle>
-      <circle cx="417.77777777777777" cy="52.5" r="3"></circle>
-      <circle cx="332.2222222222222" cy="31.5" r="3"></circle>
-      <circle cx="503.3333333333333" cy="52.5" r="3"></circle>
-      <circle cx="293.33333333333337" cy="45.5" r="3"></circle>
-      <circle cx="464.44444444444446" cy="45.5" r="3"></circle>
-      <circle cx="324.44444444444446" cy="52.5" r="3"></circle>
-      <circle cx="518.8888888888889" cy="31.5" r="3"></circle>
-      <circle cx="371.11111111111114" cy="31.5" r="3"></circle>
-      <circle cx="526.6666666666667" cy="24.5" r="3"></circle>
-      <circle cx="363.3333333333333" cy="45.5" r="3"></circle>
-      <circle cx="542.2222222222223" cy="38.5" r="3"></circle>
-      <circle cx="371.11111111111114" cy="45.5" r="3"></circle>
-      <circle cx="503.3333333333333" cy="24.5" r="3"></circle>
-      <circle cx="378.88888888888886" cy="31.5" r="3"></circle>
-      <circle cx="417.77777777777777" cy="24.5" r="3"></circle>
-      <circle cx="433.3333333333333" cy="45.5" r="3"></circle>
-      <circle cx="448.88888888888886" cy="31.5" r="3"></circle>
-      <circle cx="371.11111111111114" cy="52.5" r="3"></circle>
-      <circle cx="542.2222222222223" cy="31.5" r="3"></circle>
-      <circle cx="355.55555555555554" cy="31.5" r="3"></circle>
-      <circle cx="573.3333333333333" cy="38.5" r="3"></circle>
-      <circle cx="378.88888888888886" cy="45.5" r="3"></circle>
-      <circle cx="565.5555555555557" cy="38.5" r="3"></circle>
-      <circle cx="359.44444444444446" cy="25.67964406501833" r="3"></circle>
-      <circle cx="487.77777777777777" cy="38.5" r="3"></circle>
-      <circle cx="375" cy="25.679644065018294" r="3"></circle>
-      <circle cx="472.22222222222223" cy="45.5" r="3"></circle>
-      <circle cx="378.88888888888886" cy="52.5" r="3"></circle>
-      <circle cx="511.11111111111114" cy="38.5" r="3"></circle>
-      <circle cx="355.55555555555554" cy="45.5" r="3"></circle>
-      <circle cx="464.44444444444446" cy="52.5" r="3"></circle>
-      <circle cx="398.3333333333333" cy="44.32035593498167" r="3"></circle>
-      <circle cx="503.3333333333333" cy="17.5" r="3"></circle>
-      <circle cx="410" cy="31.5" r="3"></circle>
-      <circle cx="480" cy="52.5" r="3"></circle>
-      <circle cx="378.88888888888886" cy="19.859288130036585" r="3"></circle>
-      <circle cx="518.8888888888889" cy="45.5" r="3"></circle>
-      <circle cx="394.44444444444446" cy="31.5" r="3"></circle>
-      <circle cx="448.88888888888886" cy="45.5" r="3"></circle>
-      <circle cx="406.11111111111114" cy="44.32035593498167" r="3"></circle>
-      <circle cx="398.3333333333333" cy="51.32035593498167" r="3"></circle>
-      <circle cx="359.44444444444446" cy="51.32035593498167" r="3"></circle>
-      <circle cx="456.6666666666667" cy="45.5" r="3"></circle>
-      <circle cx="394.44444444444446" cy="24.5" r="3"></circle>
-      <circle cx="511.11111111111114" cy="31.5" r="3"></circle>
-      <circle cx="413.88888888888886" cy="18.67964406501833" r="3"></circle>
-      <circle cx="495.55555555555554" cy="38.5" r="3"></circle>
-      <circle cx="375" cy="58.320355934981706" r="3"></circle>
-      <circle cx="495.55555555555554" cy="31.5" r="3"></circle>
-      <circle cx="371.11111111111114" cy="19.859288130036585" r="3"></circle>
-      <circle cx="495.55555555555554" cy="45.5" r="3"></circle>
-      <circle cx="351.6666666666667" cy="51.320355934981706" r="3"></circle>
-      <circle cx="495.55555555555554" cy="24.5" r="3"></circle>
-      <circle cx="417.77777777777777" cy="59.5" r="3"></circle>
-      <circle cx="565.5555555555557" cy="31.5" r="3"></circle>
-      <circle cx="363.3333333333333" cy="19.859288130036624" r="3"></circle>
-      <circle cx="495.55555555555554" cy="52.5" r="3"></circle>
-      <circle cx="320.55555555555554" cy="25.67964406501833" r="3"></circle>
-      <circle cx="550" cy="45.5" r="3"></circle>
-      <circle cx="398.3333333333333" cy="58.32035593498167" r="3"></circle>
-      <circle cx="573.3333333333333" cy="31.5" r="3"></circle>
-      <circle cx="406.11111111111114" cy="25.67964406501833" r="3"></circle>
-      <circle cx="394.44444444444446" cy="17.5" r="3"></circle>
-      <circle cx="534.4444444444443" cy="38.5" r="3"></circle>
-      <circle cx="448.88888888888886" cy="52.5" r="3"></circle>
-      <circle cx="480" cy="24.5" r="3"></circle>
+  <g aria-label="facet" transform="translate(0,172)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(60,58.5)">Gentoo</text>
     </g>
+    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="106.66666666666666" x2="106.66666666666666" y1="20" y2="97"></line>
+      <line x1="184.44444444444443" x2="184.44444444444443" y1="20" y2="97"></line>
+      <line x1="262.22222222222223" x2="262.22222222222223" y1="20" y2="97"></line>
+      <line x1="340" x2="340" y1="20" y2="97"></line>
+      <line x1="417.77777777777777" x2="417.77777777777777" y1="20" y2="97"></line>
+      <line x1="495.55555555555554" x2="495.55555555555554" y1="20" y2="97"></line>
+      <line x1="573.3333333333333" x2="573.3333333333333" y1="20" y2="97"></line>
+    </g>
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(106.66666666666666,97)" d="M0,0L0,6"></path>
+      <path transform="translate(184.44444444444443,97)" d="M0,0L0,6"></path>
+      <path transform="translate(262.22222222222223,97)" d="M0,0L0,6"></path>
+      <path transform="translate(340,97)" d="M0,0L0,6"></path>
+      <path transform="translate(417.77777777777777,97)" d="M0,0L0,6"></path>
+      <path transform="translate(495.55555555555554,97)" d="M0,0L0,6"></path>
+      <path transform="translate(573.3333333333333,97)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(106.66666666666666,97)">3,000</text>
+      <text y="0.71em" transform="translate(184.44444444444443,97)">3,500</text>
+      <text y="0.71em" transform="translate(262.22222222222223,97)">4,000</text>
+      <text y="0.71em" transform="translate(340,97)">4,500</text>
+      <text y="0.71em" transform="translate(417.77777777777777,97)">5,000</text>
+      <text y="0.71em" transform="translate(495.55555555555554,97)">5,500</text>
+      <text y="0.71em" transform="translate(573.3333333333333,97)">6,000</text>
+    </g>
+    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <circle cx="340" cy="58.5" r="3"></circle>
+      <circle cx="526.6666666666667" cy="58.5" r="3"></circle>
+      <circle cx="332.2222222222222" cy="58.5" r="3"></circle>
+      <circle cx="526.6666666666667" cy="51.5" r="3"></circle>
+      <circle cx="480" cy="58.5" r="3"></circle>
+      <circle cx="347.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="386.6666666666667" cy="58.5" r="3"></circle>
+      <circle cx="448.88888888888886" cy="58.5" r="3"></circle>
+      <circle cx="324.44444444444446" cy="58.5" r="3"></circle>
+      <circle cx="441.11111111111114" cy="58.5" r="3"></circle>
+      <circle cx="363.3333333333333" cy="58.5" r="3"></circle>
+      <circle cx="503.3333333333333" cy="58.5" r="3"></circle>
+      <circle cx="363.3333333333333" cy="51.5" r="3"></circle>
+      <circle cx="550" cy="58.5" r="3"></circle>
+      <circle cx="293.33333333333337" cy="58.5" r="3"></circle>
+      <circle cx="550" cy="51.5" r="3"></circle>
+      <circle cx="285.55555555555554" cy="58.5" r="3"></circle>
+      <circle cx="620" cy="58.5" r="3"></circle>
+      <circle cx="386.6666666666667" cy="51.5" r="3"></circle>
+      <circle cx="472.22222222222223" cy="58.5" r="3"></circle>
+      <circle cx="526.6666666666667" cy="65.5" r="3"></circle>
+      <circle cx="417.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="324.44444444444446" cy="51.5" r="3"></circle>
+      <circle cx="425.55555555555554" cy="58.5" r="3"></circle>
+      <circle cx="417.77777777777777" cy="51.5" r="3"></circle>
+      <circle cx="433.3333333333333" cy="58.5" r="3"></circle>
+      <circle cx="277.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="518.8888888888889" cy="58.5" r="3"></circle>
+      <circle cx="355.55555555555554" cy="58.5" r="3"></circle>
+      <circle cx="503.3333333333333" cy="51.5" r="3"></circle>
+      <circle cx="456.6666666666667" cy="58.5" r="3"></circle>
+      <circle cx="371.11111111111114" cy="58.5" r="3"></circle>
+      <circle cx="425.55555555555554" cy="51.5" r="3"></circle>
+      <circle cx="581.1111111111111" cy="58.5" r="3"></circle>
+      <circle cx="441.11111111111114" cy="51.5" r="3"></circle>
+      <circle cx="480" cy="51.5" r="3"></circle>
+      <circle cx="410" cy="58.5" r="3"></circle>
+      <circle cx="456.6666666666667" cy="51.5" r="3"></circle>
+      <circle cx="316.66666666666663" cy="58.5" r="3"></circle>
+      <circle cx="472.22222222222223" cy="51.5" r="3"></circle>
+      <circle cx="254.44444444444443" cy="58.5" r="3"></circle>
+      <circle cx="526.6666666666667" cy="72.5" r="3"></circle>
+      <circle cx="308.88888888888886" cy="58.5" r="3"></circle>
+      <circle cx="378.88888888888886" cy="58.5" r="3"></circle>
+      <circle cx="503.3333333333333" cy="65.5" r="3"></circle>
+      <circle cx="402.22222222222223" cy="58.5" r="3"></circle>
+      <circle cx="293.33333333333337" cy="51.5" r="3"></circle>
+      <circle cx="480" cy="65.5" r="3"></circle>
+      <circle cx="433.3333333333333" cy="51.5" r="3"></circle>
+      <circle cx="464.44444444444446" cy="58.5" r="3"></circle>
+      <circle cx="394.44444444444446" cy="58.5" r="3"></circle>
+      <circle cx="464.44444444444446" cy="51.5" r="3"></circle>
+      <circle cx="324.44444444444446" cy="65.5" r="3"></circle>
+      <circle cx="417.77777777777777" cy="65.5" r="3"></circle>
+      <circle cx="402.22222222222223" cy="51.5" r="3"></circle>
+      <circle cx="425.55555555555554" cy="65.5" r="3"></circle>
+      <circle cx="308.88888888888886" cy="51.5" r="3"></circle>
+      <circle cx="417.77777777777777" cy="72.5" r="3"></circle>
+      <circle cx="332.2222222222222" cy="51.5" r="3"></circle>
+      <circle cx="503.3333333333333" cy="72.5" r="3"></circle>
+      <circle cx="293.33333333333337" cy="65.5" r="3"></circle>
+      <circle cx="464.44444444444446" cy="65.5" r="3"></circle>
+      <circle cx="324.44444444444446" cy="72.5" r="3"></circle>
+      <circle cx="518.8888888888889" cy="51.5" r="3"></circle>
+      <circle cx="371.11111111111114" cy="51.5" r="3"></circle>
+      <circle cx="526.6666666666667" cy="44.5" r="3"></circle>
+      <circle cx="363.3333333333333" cy="65.5" r="3"></circle>
+      <circle cx="542.2222222222223" cy="58.5" r="3"></circle>
+      <circle cx="371.11111111111114" cy="65.5" r="3"></circle>
+      <circle cx="503.3333333333333" cy="44.5" r="3"></circle>
+      <circle cx="378.88888888888886" cy="51.5" r="3"></circle>
+      <circle cx="417.77777777777777" cy="44.5" r="3"></circle>
+      <circle cx="433.3333333333333" cy="65.5" r="3"></circle>
+      <circle cx="448.88888888888886" cy="51.5" r="3"></circle>
+      <circle cx="371.11111111111114" cy="72.5" r="3"></circle>
+      <circle cx="542.2222222222223" cy="51.5" r="3"></circle>
+      <circle cx="355.55555555555554" cy="51.5" r="3"></circle>
+      <circle cx="573.3333333333333" cy="58.5" r="3"></circle>
+      <circle cx="378.88888888888886" cy="65.5" r="3"></circle>
+      <circle cx="565.5555555555557" cy="58.5" r="3"></circle>
+      <circle cx="359.44444444444446" cy="45.67964406501833" r="3"></circle>
+      <circle cx="487.77777777777777" cy="58.5" r="3"></circle>
+      <circle cx="375" cy="45.679644065018294" r="3"></circle>
+      <circle cx="472.22222222222223" cy="65.5" r="3"></circle>
+      <circle cx="378.88888888888886" cy="72.5" r="3"></circle>
+      <circle cx="511.11111111111114" cy="58.5" r="3"></circle>
+      <circle cx="355.55555555555554" cy="65.5" r="3"></circle>
+      <circle cx="464.44444444444446" cy="72.5" r="3"></circle>
+      <circle cx="398.3333333333333" cy="64.32035593498168" r="3"></circle>
+      <circle cx="503.3333333333333" cy="37.5" r="3"></circle>
+      <circle cx="410" cy="51.5" r="3"></circle>
+      <circle cx="480" cy="72.5" r="3"></circle>
+      <circle cx="378.88888888888886" cy="39.85928813003659" r="3"></circle>
+      <circle cx="518.8888888888889" cy="65.5" r="3"></circle>
+      <circle cx="394.44444444444446" cy="51.5" r="3"></circle>
+      <circle cx="448.88888888888886" cy="65.5" r="3"></circle>
+      <circle cx="406.11111111111114" cy="64.32035593498168" r="3"></circle>
+      <circle cx="398.3333333333333" cy="71.32035593498168" r="3"></circle>
+      <circle cx="359.44444444444446" cy="71.32035593498168" r="3"></circle>
+      <circle cx="456.6666666666667" cy="65.5" r="3"></circle>
+      <circle cx="394.44444444444446" cy="44.5" r="3"></circle>
+      <circle cx="511.11111111111114" cy="51.5" r="3"></circle>
+      <circle cx="413.88888888888886" cy="38.67964406501833" r="3"></circle>
+      <circle cx="495.55555555555554" cy="58.5" r="3"></circle>
+      <circle cx="375" cy="78.3203559349817" r="3"></circle>
+      <circle cx="495.55555555555554" cy="51.5" r="3"></circle>
+      <circle cx="371.11111111111114" cy="39.85928813003659" r="3"></circle>
+      <circle cx="495.55555555555554" cy="65.5" r="3"></circle>
+      <circle cx="351.6666666666667" cy="71.3203559349817" r="3"></circle>
+      <circle cx="495.55555555555554" cy="44.5" r="3"></circle>
+      <circle cx="417.77777777777777" cy="79.5" r="3"></circle>
+      <circle cx="565.5555555555557" cy="51.5" r="3"></circle>
+      <circle cx="363.3333333333333" cy="39.859288130036624" r="3"></circle>
+      <circle cx="495.55555555555554" cy="72.5" r="3"></circle>
+      <circle cx="320.55555555555554" cy="45.67964406501833" r="3"></circle>
+      <circle cx="550" cy="65.5" r="3"></circle>
+      <circle cx="398.3333333333333" cy="78.32035593498168" r="3"></circle>
+      <circle cx="573.3333333333333" cy="51.5" r="3"></circle>
+      <circle cx="406.11111111111114" cy="45.67964406501833" r="3"></circle>
+      <circle cx="394.44444444444446" cy="37.5" r="3"></circle>
+      <circle cx="534.4444444444443" cy="58.5" r="3"></circle>
+      <circle cx="448.88888888888886" cy="72.5" r="3"></circle>
+      <circle cx="480" cy="44.5" r="3"></circle>
+    </g>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,269)">body_mass_g →</text>
   </g>
 </svg>

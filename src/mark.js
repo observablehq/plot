@@ -1,5 +1,6 @@
 import {Channels, channelDomain, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
+import {maybeFacetAnchor} from "./facet.js";
 import {arrayify, isDomainSort, range} from "./options.js";
 import {keyword, maybeNamed} from "./options.js";
 import {maybeProject} from "./projection.js";
@@ -8,7 +9,22 @@ import {basic, initializer} from "./transforms/basic.js";
 
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
-    const {facet = "auto", fx, fy, sort, dx, dy, clip, channels: extraChannels} = options;
+    const {
+      facet = "auto",
+      facetAnchor,
+      fx,
+      fy,
+      sort,
+      dx = 0,
+      dy = 0,
+      margin = 0,
+      marginTop = margin,
+      marginRight = margin,
+      marginBottom = margin,
+      marginLeft = margin,
+      clip,
+      channels: extraChannels
+    } = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
@@ -16,10 +32,11 @@ export class Mark {
     if (facet === null || facet === false) {
       this.facet = null;
     } else {
-      this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
+      this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude", "super"]);
       this.fx = fx;
       this.fy = fy;
     }
+    this.facetAnchor = maybeFacetAnchor(facetAnchor);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
@@ -30,9 +47,24 @@ export class Mark {
         throw new Error(`missing channel value: ${name}`);
       })
     );
-    this.dx = +dx || 0;
-    this.dy = +dy || 0;
+    this.dx = +dx;
+    this.dy = +dy;
+    this.marginTop = +marginTop;
+    this.marginRight = +marginRight;
+    this.marginBottom = +marginBottom;
+    this.marginLeft = +marginLeft;
     this.clip = maybeClip(clip);
+    // Super-faceting currently disallow position channels; in the future, we
+    // could allow position to be specified in fx and fy in addition to (or
+    // instead of) x and y.
+    if (this.facet === "super") {
+      if (fx || fy) throw new Error(`super-faceting cannot use fx or fy`);
+      for (const name in this.channels) {
+        const {scale} = channels[name];
+        if (scale !== "x" && scale !== "y") continue;
+        throw new Error(`super-faceting cannot use x or y`);
+      }
+    }
   }
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
@@ -70,4 +102,10 @@ export class Mark {
     if (context.projection) this.project(channels, values, context);
     return values;
   }
+}
+
+/** @jsdoc marks */
+export function marks(...marks) {
+  marks.plot = Mark.prototype.plot; // Note: depends on side-effect in plot!
+  return marks;
 }

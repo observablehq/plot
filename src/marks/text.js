@@ -2,6 +2,7 @@ import {namespaces} from "d3";
 import {create} from "../context.js";
 import {nonempty} from "../defined.js";
 import {formatDefault} from "../format.js";
+import {Mark} from "../mark.js";
 import {
   indexOf,
   identity,
@@ -16,7 +17,6 @@ import {
   isTextual,
   isIterable
 } from "../options.js";
-import {Mark} from "../mark.js";
 import {
   applyChannelStyles,
   applyDirectStyles,
@@ -35,6 +35,8 @@ const defaults = {
   strokeWidth: 3,
   paintOrder: "stroke"
 };
+
+const softHyphen = "\u00ad";
 
 export class Text extends Mark {
   constructor(data, options = {}) {
@@ -64,7 +66,7 @@ export class Text extends Mark {
         y: {value: y, scale: "y", optional: true},
         fontSize: {value: vfontSize, optional: true},
         rotate: {value: numberChannel(vrotate), optional: true},
-        text: {value: text, filter: nonempty}
+        text: {value: text, filter: nonempty, optional: true}
       },
       options,
       defaults
@@ -223,7 +225,7 @@ function lineWrap(input, maxWidth, widthof = (_, i, j) => j - i) {
     // make the line longer than the allowed width, then break the line at the
     // previous word end.
     if (lineEnd > lineStart && widthof(input, lineStart, wordEnd) > maxWidth) {
-      lines.push(input.slice(lineStart, lineEnd));
+      lines.push(input.slice(lineStart, lineEnd) + (input[lineEnd - 1] === softHyphen ? "-" : ""));
       lineStart = wordStart;
     }
 
@@ -251,6 +253,7 @@ function* lineBreaks(input) {
   while (j < n) {
     let k = 1;
     switch (input[j]) {
+      case softHyphen:
       case "-": // hyphen
         ++j;
         yield [i, j, false];
