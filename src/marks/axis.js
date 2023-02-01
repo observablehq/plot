@@ -3,11 +3,10 @@ import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {range, valueof, arrayify, constant, keyword, identity, number} from "../options.js";
-import {isNone, isNoneish, isIterable, isTemporal, maybeInterval, orderof} from "../options.js";
+import {isNoneish, isIterable, isTemporal, maybeInterval, orderof} from "../options.js";
 import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
-import {frame} from "./frame.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
@@ -64,7 +63,6 @@ function axisKy(
   anchor,
   data,
   {
-    line,
     color = "currentColor",
     opacity = 1,
     stroke = color,
@@ -95,16 +93,6 @@ function axisKy(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
   return marks(
-    k === "y" && line && !isNone(line)
-      ? frame({
-          anchor,
-          facetAnchor: anchor + "-empty",
-          stroke: line === true ? stroke : line,
-          strokeOpacity,
-          strokeWidth,
-          ...options
-        })
-      : null,
     tickSize && !isNoneish(stroke)
       ? axisTickKy(k, anchor, data, {
           stroke,
@@ -182,7 +170,6 @@ function axisKx(
   anchor,
   data,
   {
-    line,
     color = "currentColor",
     opacity = 1,
     stroke = color,
@@ -213,16 +200,6 @@ function axisKx(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
   return marks(
-    k === "x" && line && !isNone(line)
-      ? frame({
-          anchor,
-          facetAnchor: anchor + "-empty",
-          stroke: line === true ? stroke : line,
-          strokeOpacity,
-          strokeWidth,
-          ...options
-        })
-      : null,
     tickSize && !isNoneish(stroke)
       ? axisTickKx(k, anchor, data, {
           stroke,

@@ -6,6 +6,7 @@ import {Facets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilt
 import {Legends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
+import {frame} from "./marks/frame.js";
 import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeInterval} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales, innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
@@ -513,6 +514,8 @@ function maybeAxis(axes, axis, axisType, primary, secondary, defaults, options) 
   if (!axis) return;
   const both = isBoth(axis);
   options = axisOptions(both ? primary : axis, defaults, options);
+  const {line} = options;
+  if ((axisType === axisY || axisType === axisX) && line && !isNone(line)) axes.push(frame(lineOptions(options)));
   axes.push(axisType(options));
   if (both) axes.push(axisType({...options, anchor: secondary, label: null}));
 }
@@ -561,6 +564,11 @@ function axisOptions(
     labelAnchor,
     labelOffset
   };
+}
+
+function lineOptions(options) {
+  const {anchor, line} = options;
+  return {anchor, facetAnchor: anchor + "-empty", stroke: line === true ? undefined : line};
 }
 
 function gridOptions(
