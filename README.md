@@ -295,7 +295,7 @@ Align defaults to 0.5 (centered). Band scale padding defaults to 0.1 (10% of ava
 
 Plot automatically generates [axis](#axis) and optionally [grid](#grid) marks for position scales. (For more control, declare these marks explicitly.) You can configure the implicit axes with the following scale options:
 
-* *scale*.**axis** - the orientation: *top* or *bottom* for *x* and *fx*; *left* or *right* for *y* and *fy*; null to suppress
+* *scale*.**axis** - the orientation: *top* or *bottom* (or *both*) for *x* and *fx*; *left* or *right* (or *both*) for *y* and *fy*; null to suppress
 * *scale*.**ticks** - the approximate number of ticks to generate, or interval, or array of values
 * *scale*.**tickSize** - the length of each tick (in pixels; default 6 for *x* and *y*, or 0 for *fx* and *fy*)
 * *scale*.**tickSpacing** - the approximate number of pixels between ticks (if *scale*.**ticks** is not specified)
