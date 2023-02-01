@@ -1,12 +1,11 @@
 import {extent, format, utcFormat} from "d3";
-import {create} from "../context.js";
 import {formatDefault} from "../format.js";
-import {Mark, marks} from "../mark.js";
+import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {range, valueof, arrayify, constant, keyword, identity, number} from "../options.js";
-import {isNone, isNoneish, isIterable, isTemporal, maybeInterval, orderof} from "../options.js";
+import {isNoneish, isIterable, isTemporal, maybeInterval, orderof} from "../options.js";
 import {isTemporalScale} from "../scales.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
@@ -64,7 +63,6 @@ function axisKy(
   anchor,
   data,
   {
-    line,
     color = "currentColor",
     opacity = 1,
     stroke = color,
@@ -95,14 +93,6 @@ function axisKy(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
   return marks(
-    k === "y" && line && !isNone(line)
-      ? new AxisLine(k, anchor, {
-          stroke: line === true ? stroke : line,
-          strokeOpacity,
-          strokeWidth,
-          ...options
-        })
-      : null,
     tickSize && !isNoneish(stroke)
       ? axisTickKy(k, anchor, data, {
           stroke,
@@ -180,7 +170,6 @@ function axisKx(
   anchor,
   data,
   {
-    line,
     color = "currentColor",
     opacity = 1,
     stroke = color,
@@ -211,14 +200,6 @@ function axisKx(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
   return marks(
-    k === "x" && line && !isNone(line)
-      ? new AxisLine(k, anchor, {
-          stroke: line === true ? stroke : line,
-          strokeOpacity,
-          strokeWidth,
-          ...options
-        })
-      : null,
     tickSize && !isNoneish(stroke)
       ? axisTickKx(k, anchor, data, {
           stroke,
@@ -570,34 +551,6 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
   }
   m.ariaLabel = ariaLabel;
   return m;
-}
-
-const axisLineDefaults = {
-  fill: null,
-  stroke: "currentColor"
-};
-
-class AxisLine extends Mark {
-  constructor(k, anchor, {facetAnchor = anchor + "-empty", ...options} = {}) {
-    super(undefined, undefined, {facetAnchor, ...options}, axisLineDefaults);
-    this.anchor = anchor;
-    this.ariaLabel = `${k}-axis line`;
-  }
-  render(index, scales, channels, dimensions, context) {
-    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
-    const {anchor} = this;
-    const tx = anchor === "left" ? -0.5 : anchor === "right" ? 0.5 : undefined;
-    const ty = anchor === "top" ? -0.5 : anchor === "bottom" ? 0.5 : undefined;
-    return create("svg:line", context)
-      .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyDirectStyles, this)
-      .call(applyTransform, this, {}, tx, ty)
-      .attr("x1", anchor === "right" ? width - marginRight : marginLeft)
-      .attr("y1", anchor === "bottom" ? height - marginBottom : marginTop)
-      .attr("x2", anchor === "left" ? marginLeft : width - marginRight)
-      .attr("y2", anchor === "top" ? marginTop : height - marginBottom)
-      .node();
-  }
 }
 
 function inferTextChannel(scale, ticks, tickFormat) {
