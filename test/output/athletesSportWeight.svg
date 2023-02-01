@@ -1249,7 +1249,6 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="20" y2="38"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="20" y2="38"></line>
     </g>
-    <line aria-label="x-axis line" stroke="currentColor" transform="translate(0.5,0.5)" x1="100" y1="38" x2="620" y2="38"></line>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(136.61971830985914,38)" d="M0,0L0,6"></path>
       <path transform="translate(209.85915492957747,38)" d="M0,0L0,6"></path>
@@ -1310,6 +1309,7 @@
       <rect x="459.8732394366197" width="6.323943661971839" y="20" height="18" fill="rgb(252, 254, 211)"></rect>
       <rect x="467.19718309859155" width="6.323943661971839" y="20" height="18" fill="rgb(214, 239, 179)"></rect>
     </g>
+    <line aria-label="frame" stroke="currentColor" stroke-linecap="square" transform="translate(0.5,0.5)" x1="100" x2="620" y1="38" y2="38"></line>
   </g>
   <g aria-label="fy-axis label" transform="translate(-96.5,0.5)">
     <text y="0.71em" transform="translate(100,305) rotate(-90)">sport</text>

@@ -6,8 +6,10 @@ export default async function () {
   return Plot.plot({
     marginLeft: 100,
     grid: true,
-    x: {line: true},
     color: {scheme: "YlGnBu", zero: true},
-    marks: [Plot.barX(athletes, Plot.binX({fill: "proportion-facet"}, {x: "weight", fy: "sport", thresholds: 60}))]
+    marks: [
+      Plot.barX(athletes, Plot.binX({fill: "proportion-facet"}, {x: "weight", fy: "sport", thresholds: 60})),
+      Plot.frame({anchor: "bottom", facetAnchor: "bottom"})
+    ]
   });
 }
