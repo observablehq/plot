@@ -327,12 +327,6 @@ function plotThis({marks = [], ...options} = {}) {
 // Note: This side-effect avoids a circular dependency.
 Mark.prototype.plot = plotThis;
 
-/** @jsdoc marks */
-export function marks(...marks) {
-  marks.plot = plotThis;
-  return marks;
-}
-
 function flatMarks(marks) {
   return marks
     .flat(Infinity)

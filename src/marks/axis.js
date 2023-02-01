@@ -1,7 +1,7 @@
 import {extent, format, utcFormat} from "d3";
 import {create} from "../context.js";
 import {formatDefault} from "../format.js";
-import {Mark} from "../mark.js";
+import {Mark, marks} from "../mark.js";
 import {radians} from "../math.js";
 import {range, valueof, arrayify, constant, keyword, identity, number} from "../options.js";
 import {isNone, isNoneish, isIterable, isTemporal, maybeInterval, orderof} from "../options.js";
@@ -94,7 +94,7 @@ function axisKy(
   tickPadding = number(tickPadding);
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
-  return [
+  return marks(
     k === "y" && line && !isNone(line)
       ? new AxisLine(k, anchor, {
           stroke: line === true ? stroke : line,
@@ -172,7 +172,7 @@ function axisKy(
           }
         })
       : null
-  ];
+  );
 }
 
 function axisKx(
@@ -210,7 +210,7 @@ function axisKx(
   tickPadding = number(tickPadding);
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
-  return [
+  return marks(
     k === "x" && line && !isNone(line)
       ? new AxisLine(k, anchor, {
           stroke: line === true ? stroke : line,
@@ -285,7 +285,7 @@ function axisKx(
           }
         })
       : null
-  ];
+  );
 }
 
 function axisTickKy(

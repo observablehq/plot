@@ -1,6 +1,6 @@
 import {cluster as Cluster} from "d3";
 import {isNoneish} from "../options.js";
-import {marks} from "../plot.js";
+import {marks} from "../mark.js";
 import {maybeTreeAnchor, treeLink, treeNode} from "../transforms/tree.js";
 import {dot} from "./dot.js";
 import {link} from "./link.js";

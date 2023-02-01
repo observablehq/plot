@@ -103,3 +103,9 @@ export class Mark {
     return values;
   }
 }
+
+/** @jsdoc marks */
+export function marks(...marks) {
+  marks.plot = Mark.prototype.plot; // Note: depends on side-effect in plot!
+  return marks;
+}
