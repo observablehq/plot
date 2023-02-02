@@ -585,7 +585,7 @@ When top-level faceting is used, the default *auto* setting is equivalent to *in
 
 When mark-level faceting is used, the default *auto* setting is equivalent to *include*: the mark will be faceted if either the *mark*.**fx** or *mark*.**fy** channel option (or both) is specified. The null or false option will disable faceting, while *exclude* draws the subset of the mark’s data *not* in the current facet.
 
-The <a name="facetanchor">*mark*.**facetAnchor**</a> option controls TK. It supports the following settings:
+The <a name="facetanchor">*mark*.**facetAnchor**</a> option controls the placement of the mark with respect to the facets. It supports the following settings:
 
 * null - display the mark on each non-empty facet (default for all marks, with the exception of axis marks)
 * *top*, *right*, *bottom*, or *left* - display the mark on facets on the specified side
@@ -799,7 +799,7 @@ The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, a
 
 The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark’s associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
 
-The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support insets and rounded corner constant options:
+The rectangular marks ([bar](#bar), [cell](#cell), [frame](#frame), and [rect](#rect)) support insets and rounded corner constant options:
 
 * **insetTop** - inset the top edge
 * **insetRight** - inset the right edge
@@ -2064,7 +2064,7 @@ Decorations are static marks that do not represent data. Currently this includes
 
 The frame mark supports the [standard mark options](#marks), and the **rx** and **ry** options to set the [*x* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) and [*y* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners. It does not accept any data or support channels. The default **stroke** is currentColor, and the default **fill** is none.
 
-If the **anchor** option is specified as one of *left*, *right*, *top*, or *bottom*, that side is rendered as a single line (and the *fill*, *rx* and *ry* options are ignored).
+If the **anchor** option is specified as one of *left*, *right*, *top*, or *bottom*, that side is rendered as a single line (and the **fill**, **fillOpacity**, **rx**, and **ry** options are ignored).
 
 #### Plot.frame(*options*)
 
