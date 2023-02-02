@@ -474,15 +474,15 @@ function inferAxes(marks, channelsByScale, options) {
     grid,
     facet = {},
     facet: {axis: facetAxis = axis, grid: facetGrid} = facet,
-    x: {type: xType = hasScale(marks, "x"), axis: xAxis = axis, grid: xGrid = xAxis === null ? null : grid} = x,
-    y: {type: yType = hasScale(marks, "y"), axis: yAxis = axis, grid: yGrid = yAxis === null ? null : grid} = y,
+    x: {axis: xAxis = axis, grid: xGrid = xAxis === null ? null : grid} = x,
+    y: {axis: yAxis = axis, grid: yGrid = yAxis === null ? null : grid} = y,
     fx: {axis: fxAxis = facetAxis, grid: fxGrid = fxAxis === null ? null : facetGrid} = fx,
     fy: {axis: fyAxis = facetAxis, grid: fyGrid = fyAxis === null ? null : facetGrid} = fy
   } = options;
 
   // Disable axes if the corresponding scale is not present.
-  if (projection || !xType) xAxis = xGrid = null;
-  if (projection || !yType) yAxis = yGrid = null;
+  if (projection || (!isScaleOptions(x) && !hasScaleChannel("x", marks))) xAxis = xGrid = null;
+  if (projection || (!isScaleOptions(y) && !hasScaleChannel("y", marks))) yAxis = yGrid = null;
   if (!channelsByScale.has("fx")) fxAxis = fxGrid = null;
   if (!channelsByScale.has("fy")) fyAxis = fyGrid = null;
 
@@ -608,7 +608,7 @@ function hasAxis(marks, k) {
   return marks.some((m) => m.ariaLabel?.startsWith(prefix));
 }
 
-function hasScale(marks, k) {
+function hasScaleChannel(k, marks) {
   for (const mark of marks) {
     for (const key in mark.channels) {
       if (mark.channels[key].scale === k) {
