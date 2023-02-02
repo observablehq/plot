@@ -5,9 +5,10 @@
 * [Introduction](https://observablehq.com/@observablehq/plot?collection=@observablehq/plot) - a quick tour, and Plot’s motivations
 * [Marks and Channels](https://observablehq.com/@observablehq/plot-marks?collection=@observablehq/plot) - drawing data-driven shapes with Plot
 * [Scales](https://observablehq.com/@observablehq/plot-scales?collection=@observablehq/plot) - visual encodings for abstract data
+* [Axes](https://observablehq.com/@observablehq/plot-axes?collection=@observablehq/plot) - documenting position encodings
 * [Transforms](https://observablehq.com/@observablehq/plot-transforms?collection=@observablehq/plot) - deriving data
 * [Facets](https://observablehq.com/@observablehq/plot-facets?collection=@observablehq/plot) - small multiples
-* [Legends](https://observablehq.com/@observablehq/plot-legends?collection=@observablehq/plot) - documenting visual encodings
+* [Legends](https://observablehq.com/@observablehq/plot-legends?collection=@observablehq/plot) - documenting other visual encodings
 * [Mapping](https://observablehq.com/@observablehq/plot-mapping?collection=@observablehq/plot) - creating maps with geometries and projections
 
 This README is intended as a technical reference for Plot’s API. For more, please see:
@@ -94,7 +95,7 @@ These options determine the overall layout of the plot; all are specified as num
 
 The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/main/README.md#width) to make responsive plots. The default **height** is chosen automatically based on the plot’s associated scales; for example, if *y* is linear and there is no *fy* scale, it might be 396.
 
-The default margins depend on the plot’s axes: for example, **marginTop** and **marginBottom** are at least 30 if there is a corresponding top or bottom *x* axis, and **marginLeft** and **marginRight** are at least 40 if there is a corresponding left or right *y* axis. For simplicity’s sake and for consistent layout across plots, margins are not automatically sized to make room for tick labels; instead, shorten your tick labels or increase the margins as needed. (In the future, margins may be specified indirectly via a scale property to make it easier to reorient axes without adjusting margins; see [#210](https://github.com/observablehq/plot/issues/210).)
+The default margins depend on the maximum margins of the plot’s constituent [marks](#mark-options). While most marks default to zero margins (because they are drawn inside the chart area), Plot’s [axis](#axis) mark has non-zero default margins. For example, **marginTop** and **marginBottom** are at least 30 if there is a corresponding top or bottom *x* axis, and **marginLeft** and **marginRight** are at least 40 if there is a corresponding left or right *y* axis. For simplicity’s sake and for consistent layout across plots, axis margins are not automatically sized to make room for tick labels; instead, shorten your tick labels or increase the margins as needed.
 
 The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion as assigning [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)) or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion as assigning [*element*.style properties](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)). Note that unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecated-quirky-length)) such as `{padding: 20}` may not supported by some browsers; you should instead specify a string with units such as `{padding: "20px"}`. By default, the returned plot has a white background, a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color. For example, a dark theme:
 
@@ -967,23 +968,43 @@ Returns a new arrow with the given *data* and *options*.
 
 ### Axis
 
-[Source](./src/marks/axis.js) · [Examples](https://observablehq.com/@observablehq/plot-axis) · Draws an axis.
+[Source](./src/marks/axis.js) · [Examples](https://observablehq.com/@observablehq/plot-axis) · Draws an axis to document the visual encoding of the corresponding position scale: *x* and *y*, and *fx* and *fy* if faceting. The axis mark is a [composite mark](#marks) comprised of (up to) three marks: a [vector](#vector) for ticks, a [text](#text) for tick labels, and another [text](#text) for an axis label.
 
-Plot automatically generates axes for position scales, and draws them below the other marks. Each axis is composed of up to 5 marks: a grid, and an axis mark which might contain a line, ticks, tick labels, and axis label.
+By default, the data for an axis mark are its tick values sampled from the associated position scale’s domain. For control over tick values, you can specify the axis mark’s data explicitly, or use one of the following options:
 
-When you need more control, you can add axis and grid marks explicitly in the marks options. Note that Plot’s automatic axis for *x* is disabled when a mark’s aria-label property begins by `x-axis `—and likewise for *y*, *fx*, and *fy*.
+* **ticks** - the approximate number of ticks to generate, or interval, or array of values
+* **tickSpacing** - the approximate number of pixels between ticks (if **ticks** is not specified)
+* **interval** - an interval or time interval
 
-The optional *data* is an array of tick values—it defaults to the scale’s ticks.
+Note that when an axis mark is declared explicitly (as opposed to an implicit axis), the corresponding scale’s *scale*.ticks and *scale*.tickSpacing options are *not* automatically inherited by the axis mark; however, the *scale*.interval option *is* inherited (because it typically affects the behavior of the position encoding), as is the *scale*.label option. You can declare multiple axis marks for the same position scale with different ticks, and different styles, as desired.
 
-The axis options described in [position options](#position-options) are all supported, except the **grid** option which is handled by the [grid](#grid) mark. The **y** channel, if any, describes the vertical position of the tick and defaults to the axis anchor.
+The axis mark supports the following additional options:
+
+* **anchor** - the orientation: *top*, *bottom* (*x* and *fx*); *left*, *right* (*y* and *fy*); *both*; null to suppress
+* **tickSize** - the length of the tick vector (in pixels; default 6 for *x* and *y*, or 0 for *fx* and *fy*)
+* **tickPadding** - the separation between the tick vector and its label (in pixels; default 3)
+* **tickFormat** - either a function or specifier string to format tick values; see [Formats](#formats)
+* **tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
+* **fontVariant** - the font-variant attribute for ticks; defaults to tabular-nums for quantitative axes
+* **label** - a string to label the axis; defaults to the scale’s label, perhaps with an arrow
+* **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
+* **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
+* **ariaLabel** - a short label representing the axis in the accessibility tree
+* **ariaDescription** - a longer textual description for the axis
+* **color** - the color of the ticks and labels (defaults to *currentColor*)
+* **stroke** - the color of the tick vector (defaults to **color**)
+* **fill** - the color of the text labels (defaults to **color**)
+* **textStroke** - the color of the stroke around tick labels (defaults to *none*)
+* **textStrokeOpacity** - the opacity of the stroke around tick labels
+* **textStrokeWidth** - the thickness of the stroke around tick labels (in pixels)
+
+The **x** and **y** channels, if specified, describes the position of the tick and defaults to the axis anchor.
 
 The **axis** option, in this context, is called **anchor** and is one of *top* or *bottom*.
 
-The **color** option controls both **stroke** for the ticks, and the **fill** for labels. It defaults to currentColor.
+The [**facetAnchor**](#facetanchor) mark option defaults to *bottom-empty* if anchor is bottom, and *top-empty* if anchor is top. This ensures the proper positioning of the axes with respect to empty facets.
 
-The (rarely used) text label’s stroke is controlled by the **textStroke**,**textStrokeOpacity**, and **textStrokeWidth** options.
-
-The **facetAnchor** option defaults to *bottom-empty* if anchor is bottom, and *top-empty* if anchor is top. This ensures the proper positioning of the axes with respect to empty facets.
+Plot automatically generates axes for position scales, and draws them below the other marks. When you need more control, you can add axis and grid marks explicitly in the marks options. Note that Plot’s automatic axis for *x* is disabled when a mark’s aria-label property begins by `x-axis `—and likewise for *y*, *fx*, and *fy*.
 
 #### Plot.axisX(*data*, *options*)
 
@@ -993,7 +1014,7 @@ The **facetAnchor** option defaults to *bottom-empty* if anchor is bottom, and *
 Plot.axisX({anchor: "bottom"})
 ```
 
-Returns a new *x*-axis with the given *options*.
+Returns a new *x* axis with the given *options*.
 
 <!-- jsdocEnd axisX -->
 
@@ -1437,7 +1458,7 @@ All the other common options are supported when applicable (e.g., **title**).
 Plot.gridX({strokeDasharray: "5,3"})
 ```
 
-Returns a new *x*-grid with the given *options*.
+Returns a new *x* grid with the given *options*.
 
 <!-- jsdocEnd gridX -->
 
