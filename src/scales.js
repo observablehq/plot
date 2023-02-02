@@ -1,9 +1,6 @@
 import {parse as isoParse} from "isoformat";
 import {
-  isColor,
-  isEvery,
   isOrdinal,
-  isFirst,
   isTemporal,
   isTemporalString,
   isNumericString,
@@ -34,7 +31,7 @@ import {
 import {isDivergingScheme} from "./scales/schemes.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
-import {isSymbol, maybeSymbol} from "./symbols.js";
+import {maybeSymbol} from "./symbols.js";
 import {warn} from "./warnings.js";
 
 export function Scales(
@@ -406,20 +403,8 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   // If there’s no data (and no type) associated with this scale, don’t create a scale.
   if (domain === undefined && !channels.some(({value}) => value !== undefined)) return;
 
-  const kind = registry.get(key);
-
-  // For color scales, if no range or scheme is specified and all associated
-  // defined values (from the domain if present, and otherwise from channels)
-  // are valid colors, then default to the identity scale. This allows, for
-  // example, a fill channel to return literal colors; without this, the colors
-  // would be remapped to a categorical scheme!
-  if (kind === color && range === undefined && scheme === undefined && isAll(domain, channels, isColor))
-    return "identity";
-
-  // Similarly for symbols…
-  if (kind === symbol && range === undefined && isAll(domain, channels, isSymbol)) return "identity";
-
   // Some scales have default types.
+  const kind = registry.get(key);
   if (kind === radius) return "sqrt";
   if (kind === opacity || kind === length) return "linear";
   if (kind === symbol) return "ordinal";
@@ -459,13 +444,6 @@ function asOrdinalType(kind) {
     default:
       return "ordinal";
   }
-}
-
-function isAll(domain, channels, is) {
-  return domain !== undefined
-    ? isFirst(domain, is) && isEvery(domain, is)
-    : channels.some(({value}) => value !== undefined && isFirst(value, is)) &&
-        channels.every(({value}) => value === undefined || isEvery(value, is));
 }
 
 export function isTemporalScale({type}) {

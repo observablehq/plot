@@ -1,7 +1,7 @@
 import {Channels, channelDomain, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
-import {arrayify, isDomainSort, range} from "./options.js";
+import {arrayify, isDomainSort, isOptions, range} from "./options.js";
 import {keyword, maybeNamed} from "./options.js";
 import {maybeProject} from "./projection.js";
 import {maybeClip, styles} from "./style.js";
@@ -41,11 +41,20 @@ export class Mark {
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
     this.channels = Object.fromEntries(
-      Object.entries(channels).filter(([name, {value, optional}]) => {
-        if (value != null) return true;
-        if (optional) return false;
-        throw new Error(`missing channel value: ${name}`);
-      })
+      Object.entries(channels)
+        .map(([name, channel]) => {
+          const {value} = channel;
+          if (isOptions(value)) {
+            channel = {...channel, value: value.value};
+            if (value.scale !== undefined) channel.scale = value.scale;
+          }
+          return [name, channel];
+        })
+        .filter(([name, {value, optional}]) => {
+          if (value != null) return true;
+          if (optional) return false;
+          throw new Error(`missing channel value: ${name}`);
+        })
     );
     this.dx = +dx;
     this.dy = +dy;

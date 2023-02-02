@@ -19,6 +19,7 @@ export default async function () {
         data,
         Plot.stackY2({
           x: (d) => 2021 - d.birth,
+          stroke: "gender",
           fill: (d) => (d.gender === "F" ? "rgb(132, 165, 157)" : "#f6bd60"),
           title: "full_name"
         })
