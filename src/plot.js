@@ -481,8 +481,8 @@ function inferAxes(marks, channelsByScale, options) {
   } = options;
 
   // Disable axes if the corresponding scale is not present.
-  if (projection || !hasScale("x", x, marks)) xAxis = xGrid = null;
-  if (projection || !hasScale("y", y, marks)) yAxis = yGrid = null;
+  if (projection || (!isScaleOptions(x) && !hasScaleChannel("x", marks))) xAxis = xGrid = null;
+  if (projection || (!isScaleOptions(y) && !hasScaleChannel("y", marks))) yAxis = yGrid = null;
   if (!channelsByScale.has("fx")) fxAxis = fxGrid = null;
   if (!channelsByScale.has("fy")) fyAxis = fyGrid = null;
 
@@ -608,8 +608,7 @@ function hasAxis(marks, k) {
   return marks.some((m) => m.ariaLabel?.startsWith(prefix));
 }
 
-function hasScale(k, {domain, type}, marks) {
-  if (domain !== undefined || type != undefined) return true;
+function hasScaleChannel(k, marks) {
   for (const mark of marks) {
     for (const key in mark.channels) {
       if (mark.channels[key].scale === k) {
