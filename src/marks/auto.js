@@ -29,11 +29,12 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
 
   const {value: xValue} = x;
   const {value: yValue} = y;
-  const {value: sizeValue, reduce: sizeReduce} = size;
+  const {value: sizeValue} = size;
 
   // Determine the default reducer, if any.
   let {reduce: xReduce} = x;
   let {reduce: yReduce} = y;
+  let {reduce: sizeReduce} = size;
   if (xReduce === undefined)
     xReduce = yReduce == null && xValue == null && sizeValue == null && yValue != null ? "count" : null;
   if (yReduce === undefined)
@@ -71,6 +72,19 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   if (y) y.label = labelof(yValue);
   if (color) color.label = labelof(colorValue);
   if (size) size.label = labelof(sizeValue);
+
+  // Determine the default size reducer, if any.
+  if (
+    sizeReduce === undefined &&
+    sizeValue == null &&
+    colorReduce == null &&
+    xReduce == null &&
+    yReduce == null &&
+    (!x || isOrdinal(x)) &&
+    (!y || isOrdinal(y))
+  ) {
+    sizeReduce = "count";
+  }
 
   // Determine the default mark type.
   if (mark === undefined) {
@@ -167,10 +181,13 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
     transformOptions.x = xReduce;
     transform = isOrdinal(y) ? groupY : binY;
   } else if (colorReduce != null || sizeReduce != null) {
-    if (isOrdinal(x) && isOrdinal(y)) transform = group;
-    else if (!isOrdinal(x) && !isOrdinal(y)) transform = bin;
-    else if (isOrdinal(x) && !isOrdinal(y)) transform = binY;
-    else if (!isOrdinal(x) && isOrdinal(y)) transform = binX;
+    if (x && y) {
+      transform = isOrdinal(x) && isOrdinal(y) ? group : isOrdinal(x) ? binY : isOrdinal(y) ? binX : bin;
+    } else if (x) {
+      transform = isOrdinal(x) ? groupX : binX;
+    } else if (y) {
+      transform = isOrdinal(y) ? groupY : binY;
+    }
   }
   if (transform) options = transform(transformOptions, options);
 

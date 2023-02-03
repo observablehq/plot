@@ -16,17 +16,17 @@ export async function autoHistogramGroup() {
   return Plot.auto(penguins, {x: "island"}).plot();
 }
 
-export async function autoTickContinuous() {
+export async function autoNullReduceContinuous() {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.auto(penguins, {x: "culmen_length_mm", y: {reduce: null}}).plot();
 }
 
-export async function autoTickOrdinal() {
+export async function autoNullReduceOrdinal() {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.auto(penguins, {x: "island", y: {reduce: null}}).plot();
 }
 
-export async function autoTickDate() {
+export async function autoNullReduceDate() {
   const athletes = await d3.csv("data/athletes.csv", d3.autoType);
   return Plot.auto(athletes, {x: "date_of_birth", y: {reduce: null}}).plot();
 }
