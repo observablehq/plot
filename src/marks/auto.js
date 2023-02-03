@@ -1,5 +1,5 @@
 import {InternSet} from "d3";
-import {isOrdinal, labelof, valueof, isOptions, identity} from "../options.js";
+import {isOrdinal, labelof, valueof, isOptions, identity, isColor} from "../options.js";
 import {area, areaX, areaY} from "./area.js";
 import {dot} from "./dot.js";
 import {line, lineX, lineY} from "./line.js";
@@ -24,7 +24,7 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   if (!isOptions(y)) y = makeOptions(y);
   if (!isOptions(fx)) fx = makeOptions(fx);
   if (!isOptions(fy)) fy = makeOptions(fy);
-  if (!isOptions(color)) color = makeOptions(color);
+  if (!isOptions(color)) color = isColor(color) ? {color} : makeOptions(color);
   if (!isOptions(size)) size = makeOptions(size);
 
   const {value: xValue} = x;
@@ -41,7 +41,7 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
 
   const {zero: xZero} = x;
   const {zero: yZero} = y;
-  const {value: colorValue, reduce: colorReduce} = color;
+  const {value: colorValue, reduce: colorReduce, color: colorColor} = color;
   const {value: fxValue} = fx;
   const {value: fyValue} = fy;
 
@@ -100,33 +100,33 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
     switch (`${mark}`.toLowerCase()) {
       case "dot":
         mark = dot;
-        stroke = color;
+        stroke = color ?? colorColor;
         strokeReduce = colorReduce;
         break;
       case "line":
         mark = x && y ? line : x ? lineX : lineY; // 1d line by index
-        stroke = color;
+        stroke = color ?? colorColor;
         strokeReduce = colorReduce;
         if (isHighCardinality(color)) z = null; // TODO only if z not set by user
         break;
       case "area":
-        // TODO: throw some errors; I'm not sure we ever want Plot.area; how does it work with ordinal?
         mark =
           x && y
             ? isContinuous(x) && isMonotonic(x)
               ? areaY
               : isContinuous(y) && isMonotonic(y)
               ? areaX
-              : area
+              : area // TODO error? how does it work with ordinal?
             : x
             ? areaX
             : areaY; // 1d area by index
-        fill = color;
+        fill = color ?? colorColor;
         fillReduce = colorReduce;
+        if (isHighCardinality(color)) z = null; // TODO only if z not set by user
         break;
       case "rule":
         mark = x ? ruleX : ruleY;
-        stroke = color;
+        stroke = color ?? colorColor;
         strokeReduce = colorReduce;
         break;
       case "bar":
@@ -152,7 +152,7 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
             : isOrdinal(y)
             ? barX
             : barY;
-        fill = color;
+        fill = color ?? colorColor;
         fillReduce = colorReduce;
         break;
       default:
@@ -254,5 +254,5 @@ function isReducer(reduce) {
 }
 
 function isHighCardinality(value) {
-  return new InternSet(value).size > value?.length >> 1;
+  return value ? new InternSet(value).size > value.length >> 1 : false;
 }

@@ -46,6 +46,26 @@ export async function autoArea() {
   return Plot.auto(aapl, {x: "Date", y: "Close", mark: "area"}).plot();
 }
 
+export async function autoAreaColor() {
+  const aapl = await d3.csv("data/aapl.csv", d3.autoType);
+  return Plot.auto(aapl, {x: "Date", y: "Close", color: "Close", mark: "area"}).plot();
+}
+
+export async function autoAreaColorValue() {
+  const aapl = await d3.csv("data/aapl.csv", d3.autoType);
+  return Plot.auto(aapl, {x: "Date", y: "Close", color: {value: "Close"}, mark: "area"}).plot();
+}
+
+export async function autoAreaColorName() {
+  const aapl = await d3.csv("data/aapl.csv", d3.autoType);
+  return Plot.auto(aapl, {x: "Date", y: "Close", color: "red", mark: "area"}).plot();
+}
+
+export async function autoAreaColorColor() {
+  const aapl = await d3.csv("data/aapl.csv", d3.autoType);
+  return Plot.auto(aapl, {x: "Date", y: "Close", color: {color: "red"}, mark: "area"}).plot();
+}
+
 export async function autoDot() {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.auto(penguins, {x: "culmen_length_mm", y: "body_mass_g"}).plot();
@@ -159,12 +179,12 @@ export async function autoAreaStackColor() {
 
 export async function autoBarStackColorField() {
   const athletes = await d3.csv("data/athletes.csv", d3.autoType);
-  return Plot.auto(athletes, {x: "height", color: "gold"}).plot();
+  return Plot.auto(athletes, {x: "height", color: {value: "gold"}}).plot();
 }
 
 export async function autoBarStackColorConstant() {
   const athletes = await d3.csv("data/athletes.csv", d3.autoType);
-  return Plot.auto(athletes, {x: "height", color: () => "gold"}).plot();
+  return Plot.auto(athletes, {x: "height", color: "gold"}).plot();
 }
 
 export async function autoBarMean() {
