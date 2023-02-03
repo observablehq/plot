@@ -63,6 +63,8 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
 
   // TODO Shorthand: array of primitives should result in a histogram
   if (!x && !y) throw new Error("must specify x or y");
+  if (xReduce != null && !y) throw new Error("reducing x requires y");
+  if (yReduce != null && !x) throw new Error("reducing y requires x");
 
   let z, zReduce;
 
@@ -95,15 +97,15 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
         ? "dot"
         : xReduce != null || yReduce != null || colorReduce != null
         ? "bar"
-        : xValue != null && yValue != null
+        : x && y
         ? isContinuous(x) && isContinuous(y) && (isMonotonic(x) || isMonotonic(y))
           ? "line"
           : (isContinuous(x) && xZero) || (isContinuous(y) && yZero)
           ? "bar"
           : "dot"
-        : xValue != null
+        : x
         ? "rule"
-        : yValue != null
+        : y
         ? "rule"
         : null;
   }
@@ -151,16 +153,16 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
               ? barX
               : rectX
             : colorReduce != null
-            ? isOrdinal(x) && isOrdinal(y)
+            ? x && y && isOrdinal(x) && isOrdinal(y)
               ? cell
-              : isOrdinal(x)
+              : x && isOrdinal(x)
               ? barY
-              : isOrdinal(y)
+              : y && isOrdinal(y)
               ? barX
               : rect
-            : isOrdinal(x) && isOrdinal(y)
+            : x && y && isOrdinal(x) && isOrdinal(y)
             ? cell
-            : isOrdinal(y)
+            : y && isOrdinal(y)
             ? barX
             : barY;
         colorMode = "fill";
