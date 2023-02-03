@@ -46,7 +46,6 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   const {value: fxValue} = fx;
   const {value: fyValue} = fy;
 
-  // TODO Default sizeReduce for ordinal/ordinal case?
   // TODO The line mark will need z?
   // TODO Limit and sort for bar charts (e.g. alphabet)?
   // TODO Look at Plot warnings and see how many we can prevent
