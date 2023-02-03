@@ -55,4 +55,7 @@
     <rect x="40" width="259.4736842105263" y="45" height="20" fill="rgb(35, 23, 27)"></rect>
     <rect x="40" width="473.1578947368421" y="67" height="20" fill="rgb(254, 185, 39)"></rect>
   </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="40" x2="40" y1="20" y2="90"></line>
+  </g>
 </svg>

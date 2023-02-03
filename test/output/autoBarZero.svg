@@ -116,9 +116,6 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.12</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">frequency →</text>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="40" x2="40" y1="20" y2="550"></line>
-  </g>
   <g aria-label="bar">
     <rect x="40" width="580" y="106" height="18"></rect>
     <rect x="40" width="413.51598173515987" y="406" height="18"></rect>
@@ -146,5 +143,8 @@
     <rect x="40" width="6.849315068493155" y="486" height="18"></rect>
     <rect x="40" width="4.337899543378995" y="346" height="18"></rect>
     <rect x="40" width="3.37899543378996" y="526" height="18"></rect>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="40" x2="40" y1="20" y2="550"></line>
   </g>
 </svg>

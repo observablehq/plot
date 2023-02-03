@@ -144,4 +144,7 @@
     <rect x="40" width="4.337899543378995" y="346" height="18"></rect>
     <rect x="40" width="3.37899543378996" y="526" height="18"></rect>
   </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="40" x2="40" y1="20" y2="550"></line>
+  </g>
 </svg>

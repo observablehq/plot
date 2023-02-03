@@ -39,8 +39,8 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   if (yReduce === undefined)
     yReduce = xReduce == null && yValue == null && sizeValue == null && xValue != null ? "count" : null;
 
-  const {zero: xZero} = x;
-  const {zero: yZero} = y;
+  let {zero: xZero} = x;
+  let {zero: yZero} = y;
   const {value: colorValue, reduce: colorReduce, color: colorColor} = color;
   const {value: fxValue} = fx;
   const {value: fyValue} = fy;
@@ -64,7 +64,7 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   fx = valueof(data, fxValue); // TODO Should we still materialize if heuristic doesn't depend on it?
   fy = valueof(data, fyValue);
 
-  let fill, stroke, z, fillReduce, strokeReduce, zReduce;
+  let z, zReduce;
 
   // Propagate the x and y labels (field names), if any.
   if (x) x.label = labelof(xValue);
@@ -92,18 +92,18 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
         : null;
   }
 
+  let colorMode; // "fill" or "stroke"
+
   // Determine the mark implementation.
   if (mark != null) {
     switch (`${mark}`.toLowerCase()) {
       case "dot":
         mark = dot;
-        stroke = color ?? colorColor;
-        strokeReduce = colorReduce;
+        colorMode = "stroke";
         break;
       case "line":
         mark = x && y ? line : x ? lineX : lineY; // 1d line by index
-        stroke = color ?? colorColor;
-        strokeReduce = colorReduce;
+        colorMode = "stroke";
         if (isHighCardinality(color)) z = null; // TODO only if z not set by user
         break;
       case "area":
@@ -117,14 +117,12 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
             : x
             ? areaX
             : areaY; // 1d area by index
-        fill = color ?? colorColor;
-        fillReduce = colorReduce;
+        colorMode = "fill";
         if (isHighCardinality(color)) z = null; // TODO only if z not set by user
         break;
       case "rule":
         mark = x ? ruleX : ruleY;
-        stroke = color ?? colorColor;
-        strokeReduce = colorReduce;
+        colorMode = "stroke";
         break;
       case "bar":
         mark =
@@ -149,8 +147,7 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
             : isOrdinal(y)
             ? barX
             : barY;
-        fill = color ?? colorColor;
-        fillReduce = colorReduce;
+        colorMode = "fill";
         break;
       default:
         throw new Error(`invalid mark: ${mark}`);
@@ -158,14 +155,9 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   }
 
   // Determine the mark options.
-  let options = {x, y, fill, stroke, z, r: size, fx, fy};
+  let options = {x, y, [colorMode]: color ?? colorColor, z, r: size, fx, fy};
   let transform;
-  let transformOptions = {
-    fill: fillReduce,
-    stroke: strokeReduce,
-    z: zReduce,
-    r: sizeReduce
-  };
+  let transformOptions = {[colorMode]: colorReduce, z: zReduce, r: sizeReduce};
   if (xReduce != null && yReduce != null) {
     throw new Error(`cannot reduce both x and y`); // for now at least
   } else if (yReduce != null) {
@@ -182,12 +174,18 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   }
   if (transform) options = transform(transformOptions, options);
 
-  return marks(
-    fx || fy ? frame({strokeOpacity: 0.1}) : null,
-    xZero ? ruleX([0]) : null,
-    yZero ? ruleY([0]) : null,
-    mark(data, options)
-  );
+  // If zero-ness is not specified, default based on whether the resolved mark
+  // type will include a zero baseline.
+  if (xZero === undefined) xZero = transform !== binX && (mark === barX || mark === areaX || mark === rectX);
+  if (yZero === undefined) yZero = transform !== binY && (mark === barY || mark === areaY || mark === rectY);
+
+  // In the case of filled marks (particularly bars and areas) the frame and
+  // rules should come after the mark; in the case of stroked marks
+  // (particularly dots and lines) they should come before the mark.
+  const frames = fx || fy ? frame({strokeOpacity: 0.1}) : null;
+  const rules = [xZero ? ruleX([0]) : null, yZero ? ruleY([0]) : null];
+  mark = mark(data, options);
+  return colorMode === "stroke" ? marks(frames, rules, mark) : marks(frames, mark, rules);
 }
 
 function isContinuous(values) {
