@@ -77,4 +77,7 @@
     <rect x="496.71428571428567" y="330.2272727272727" width="40.428571428571445" height="39.77272727272731" fill="#4e79a7"></rect>
     <rect x="579.5714285714287" y="354.0909090909091" width="40.42857142857133" height="15.909090909090878" fill="#f28e2c"></rect>
   </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+  </g>
 </svg>

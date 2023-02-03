@@ -180,4 +180,7 @@
     <rect x="393.5490196078431" y="87.98561151079137" width="10.372549019607845" height="0.41966426858512307" fill="rgb(246, 95, 24)"></rect>
     <rect x="461.7843137254901" y="271.378896882494" width="10.372549019607789" height="0.41966426858510886" fill="rgb(144, 12, 0)"></rect>
   </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+  </g>
 </svg>

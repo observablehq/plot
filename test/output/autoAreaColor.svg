@@ -1265,4 +1265,7 @@
     <path fill="rgb(146, 12, 0)" d="M619.364,24.936L619.682,20L619.682,370L619.364,370Z"></path>
     <path fill="rgb(144, 12, 0)" d="M619.682,20L620,22.67L620,370L619.682,370Z"></path>
   </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+  </g>
 </svg>
