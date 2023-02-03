@@ -1,5 +1,5 @@
-import {isOrdinal, labelof, valueof, isOptions} from "../options.js";
-import {isHighCardinality} from "../style.js";
+import {InternSet} from "d3";
+import {isOrdinal, labelof, valueof, isOptions, identity} from "../options.js";
 import {area, areaX, areaY} from "./area.js";
 import {dot} from "./dot.js";
 import {line, lineX, lineY} from "./line.js";
@@ -15,7 +15,7 @@ import {ascending} from "d3";
 
 export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   // Shorthand: array of primitives should result in a histogram
-  if (x === undefined && y === undefined) x = (d) => d;
+  if (x === undefined && y === undefined) x = identity;
 
   // Allow x and y and other dimensions to be specified as shorthand
   // field names (but note that they can also be specified as a
@@ -257,4 +257,8 @@ function isReducer(reduce) {
       return true;
   }
   return false;
+}
+
+function isHighCardinality(value) {
+  return new InternSet(value).size > value?.length >> 1;
 }
