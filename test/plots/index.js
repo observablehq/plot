@@ -280,6 +280,7 @@ export {default as yearlyRequests} from "./yearly-requests.js";
 export {default as yearlyRequestsDot} from "./yearly-requests-dot.js";
 export {default as yearlyRequestsLine} from "./yearly-requests-line.js";
 
+export * from "./autoplot.js";
 export * from "./bin-1m.js";
 export * from "./function-contour.js";
 export * from "./heatmap.js";
@@ -291,4 +292,3 @@ export * from "./raster-penguins.js";
 export * from "./raster-vapor.js";
 export * from "./raster-walmart.js";
 export * from "./volcano.js";
-export * from "./autoplot.js";
