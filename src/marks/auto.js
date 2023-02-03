@@ -14,9 +14,6 @@ import {marks} from "../mark.js";
 import {ascending} from "d3";
 
 export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
-  // Shorthand: array of primitives should result in a histogram
-  if (x === undefined && y === undefined) x = identity;
-
   // Allow x and y and other dimensions to be specified as shorthand field names
   // (but note that they can also be specified as a {transform} object such as
   // Plot.identity).
@@ -26,6 +23,9 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   if (!isOptions(fy)) fy = makeOptions(fy);
   if (!isOptions(color)) color = isColor(color) ? {color} : makeOptions(color);
   if (!isOptions(size)) size = makeOptions(size);
+
+  // TODO Shorthand: array of primitives should result in a histogram
+  if (x.value === undefined && y.value === undefined) throw new Error("must specify x or y");
 
   const {value: xValue} = x;
   const {value: yValue} = y;

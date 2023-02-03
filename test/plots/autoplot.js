@@ -212,11 +212,3 @@ export async function autoDotFacet2() {
     color: "sex"
   }).plot();
 }
-
-export async function autoShorthandContinuous() {
-  return Plot.auto([1, 1, 2, 3, 5]).plot();
-}
-
-export async function autoShorthandOrdinal() {
-  return Plot.auto(["apple", "apple", "orange", "apple", "orange", "pomegranate"]).plot();
-}
