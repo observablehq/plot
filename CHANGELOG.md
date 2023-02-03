@@ -1,5 +1,36 @@
 # Observable Plot - Changelog
 
+## 0.6.3
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+[<img src="./img/axes.png" width="640" alt="A diagram illustrating some positioning options for the new axisX mark.">](https://observablehq.com/@observablehq/plot-axes)
+
+```js
+Plot.plot({
+  height: 80,
+  grid: true,
+  x: {type: "linear"},
+  marks: [
+    Plot.axisX({anchor: "top", label: "top-left", labelAnchor: "left"}),
+    Plot.axisX({anchor: "top", label: "top-center", labelAnchor: "center", ticks: []}),
+    Plot.axisX({anchor: "top", label: "top-right", labelAnchor: "right", ticks: []}),
+    Plot.axisX({anchor: "bottom", label: "bottom-left", labelAnchor: "left"}),
+    Plot.axisX({anchor: "bottom", label: "bottom-center", labelAnchor: "center", ticks: []}),
+    Plot.axisX({anchor: "bottom", label: "bottom-right", labelAnchor: "right", ticks: []})
+  ]
+})
+```
+
+Plot’s [axes](./README.md#axis) and [grids](./README.md#axis) are now marks, that can be added explicitly to the top-level [**marks** option](#mark-options). The new **axisX**, **axisY**, **axisFx**, and **axisFy** marks document the visual encoding of position scales *x* and *y*, and *fx* and *fy* if faceting. Similarly, the **gridX**, **gridY**, **gridFx**, and **gridFy** marks draw grid lines across the frame, perpendicular to these axes. The axis mark is a [composite mark](./README.md#marks) comprised of (up to) three marks: a [vector](./README.md#vector) for ticks, a [text](./README.md#text) for tick labels, and another [text](./README.md#text) for an axis label. You can declare multiple axis and grid marks for the same scale with different ticks, and styles, as desired.
+
+A new [**facetAnchor**](#facetanchor) option, available for all marks, controls the facets which will carry a mark; it defaults to null for all marks except for axis marks, where it defaults to *top-empty* if the axis anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
+
+A new **anchor** option allows to draw only one side of the [frame](./README.md#frame) mark—in which case the **fill**, **fillOpacity**, **rx**, and **ry** options are ignored.
+
+* Fixed a crash of the [raster](./README.md#raster) when the colors use the identity scale (https://github.com/observablehq/plot/issues/1237)
+* New sideEffects worth mentioning? https://github.com/observablehq/plot/pull/1235
+
 ## 0.6.2
 
 [Released January 18, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.2)
