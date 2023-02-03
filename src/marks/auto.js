@@ -46,11 +46,8 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   const {value: fyValue} = fy;
 
   // TODO Default sizeReduce for ordinal/ordinal case?
-  // TODO Allow x: {field: "red"}, too?
-  // TODO We might need maybeColorChannel to detect constant colors?
   // TODO The line mark will need z?
   // TODO Limit and sort for bar charts (e.g. alphabet)?
-  // TODO Support array of primitives with no channels?
   // TODO Look at Plot warnings and see how many we can prevent
   // TODO Default to something other than turbo for continuous? Like:
   //      scheme: (colorValue && isContinuous(color)) || colorReduce ? "ylgnbu" : undefined
