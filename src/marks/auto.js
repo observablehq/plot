@@ -24,9 +24,6 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   if (!isOptions(color)) color = isColor(color) ? {color} : makeOptions(color);
   if (!isOptions(size)) size = makeOptions(size);
 
-  // TODO Shorthand: array of primitives should result in a histogram
-  if (x.value === undefined && y.value === undefined) throw new Error("must specify x or y");
-
   const {value: xValue} = x;
   const {value: yValue} = y;
   const {value: sizeValue} = size;
@@ -63,6 +60,9 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   size = valueof(data, sizeValue);
   fx = valueof(data, fxValue); // TODO Should we still materialize if heuristic doesn't depend on it?
   fy = valueof(data, fyValue);
+
+  // TODO Shorthand: array of primitives should result in a histogram
+  if (!x && !y) throw new Error("must specify x or y");
 
   let z, zReduce;
 
