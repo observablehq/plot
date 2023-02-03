@@ -433,6 +433,9 @@
       <circle cx="80" cy="252" r="3" stroke="#f28e2c"></circle>
     </g>
   </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(330,30)">island</text>
+  </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
   </g>

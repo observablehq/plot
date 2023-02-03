@@ -498,6 +498,12 @@
       <text y="0.32em" transform="translate(40,53.41818181818183)">55</text>
     </g>
   </g>
+  <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
+    <text transform="translate(600,255) rotate(-90)">species</text>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(320,30)">island</text>
+  </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
   </g>

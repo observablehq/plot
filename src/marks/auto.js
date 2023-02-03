@@ -13,25 +13,30 @@ import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../mark.js";
 import {ascending} from "d3";
 
-export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
+export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   // Allow x and y and other dimensions to be specified as shorthand field names
   // (but note that they can also be specified as a {transform} object such as
   // Plot.identity).
   if (!isOptions(x)) x = makeOptions(x);
   if (!isOptions(y)) y = makeOptions(y);
-  if (!isOptions(fx)) fx = makeOptions(fx);
-  if (!isOptions(fy)) fy = makeOptions(fy);
   if (!isOptions(color)) color = isColor(color) ? {color} : makeOptions(color);
   if (!isOptions(size)) size = makeOptions(size);
+
+  // We don’t apply any type inference to the fx and fy channels, if present, so
+  // these are simply passed-through to the underlying mark’s options.
+  if (isOptions(fx)) ({value: fx} = makeOptions(fx));
+  if (isOptions(fy)) ({value: fy} = makeOptions(fy));
 
   const {value: xValue} = x;
   const {value: yValue} = y;
   const {value: sizeValue} = size;
+  const {value: colorValue, color: colorColor} = color;
 
   // Determine the default reducer, if any.
   let {reduce: xReduce} = x;
   let {reduce: yReduce} = y;
   let {reduce: sizeReduce} = size;
+  let {reduce: colorReduce} = color;
   if (xReduce === undefined)
     xReduce = yReduce == null && xValue == null && sizeValue == null && yValue != null ? "count" : null;
   if (yReduce === undefined)
@@ -39,9 +44,6 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
 
   let {zero: xZero} = x;
   let {zero: yZero} = y;
-  const {value: colorValue, reduce: colorReduce, color: colorColor} = color;
-  const {value: fxValue} = fx;
-  const {value: fyValue} = fy;
 
   // TODO The line mark will need z?
   // TODO Limit and sort for bar charts (e.g. alphabet)?
@@ -58,15 +60,16 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   y = valueof(data, yValue);
   color = valueof(data, colorValue);
   size = valueof(data, sizeValue);
-  fx = valueof(data, fxValue); // TODO Should we still materialize if heuristic doesn't depend on it?
-  fy = valueof(data, fyValue);
 
   // TODO Shorthand: array of primitives should result in a histogram
   if (!x && !y) throw new Error("must specify x or y");
 
   let z, zReduce;
 
-  // Propagate the x and y labels (field names), if any.
+  // Propagate the x and y labels (field names), if any. This is necessary for
+  // any column we materialize (and hence, we don’t need to do this for fx and
+  // fy, since those columns are not needed for type inference and hence are not
+  // greedily materialized).
   if (x) x.label = labelof(xValue);
   if (y) y.label = labelof(yValue);
   if (color) color.label = labelof(colorValue);
@@ -198,7 +201,7 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   // In the case of filled marks (particularly bars and areas) the frame and
   // rules should come after the mark; in the case of stroked marks
   // (particularly dots and lines) they should come before the mark.
-  const frames = fx || fy ? frame({strokeOpacity: 0.1}) : null;
+  const frames = fx != null || fy != null ? frame({strokeOpacity: 0.1}) : null;
   const rules = [xZero ? ruleX([0]) : null, yZero ? ruleY([0]) : null];
   mark = mark(data, options);
   return colorMode === "stroke" ? marks(frames, rules, mark) : marks(frames, mark, rules);
