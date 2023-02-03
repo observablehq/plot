@@ -13,69 +13,59 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Frequency" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,332.98660235798496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,295.47320471597)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,257.959807073955)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">300</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,220.44640943193997)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,182.93301178992496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">500</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,145.41961414790998)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,107.90621650589496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">700</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,70.39281886387995)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">800</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,32.879421221864945)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">900</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,332.48660235798496)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,294.97320471597)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,257.459807073955)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,219.94640943193997)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,182.43301178992496)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,144.91961414790998)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,107.40621650589496)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,69.89281886387995)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,32.379421221864945)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="date_of_birth →" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(52.32879812259038,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1955</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(111.50519640163157,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1960</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(170.71400234676202,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1965</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(229.8904006258032,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1970</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(289.06679890484435,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1975</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(348.24319718388557,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1980</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(407.452003129016,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1985</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(466.6284014080572,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1990</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(525.8047996870985,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1995</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(584.9811979661396,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2000</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">date_of_birth →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,332.48660235798496)">100</text>
+    <text y="0.32em" transform="translate(40,294.97320471597)">200</text>
+    <text y="0.32em" transform="translate(40,257.459807073955)">300</text>
+    <text y="0.32em" transform="translate(40,219.94640943193997)">400</text>
+    <text y="0.32em" transform="translate(40,182.43301178992496)">500</text>
+    <text y="0.32em" transform="translate(40,144.91961414790998)">600</text>
+    <text y="0.32em" transform="translate(40,107.40621650589496)">700</text>
+    <text y="0.32em" transform="translate(40,69.89281886387995)">800</text>
+    <text y="0.32em" transform="translate(40,32.379421221864945)">900</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(51.82879812259038,370)" d="M0,0L0,6"></path>
+    <path transform="translate(111.00519640163157,370)" d="M0,0L0,6"></path>
+    <path transform="translate(170.21400234676202,370)" d="M0,0L0,6"></path>
+    <path transform="translate(229.3904006258032,370)" d="M0,0L0,6"></path>
+    <path transform="translate(288.56679890484435,370)" d="M0,0L0,6"></path>
+    <path transform="translate(347.74319718388557,370)" d="M0,0L0,6"></path>
+    <path transform="translate(406.952003129016,370)" d="M0,0L0,6"></path>
+    <path transform="translate(466.1284014080572,370)" d="M0,0L0,6"></path>
+    <path transform="translate(525.3047996870985,370)" d="M0,0L0,6"></path>
+    <path transform="translate(584.4811979661396,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(51.82879812259038,370)">1955</text>
+    <text y="0.71em" transform="translate(111.00519640163157,370)">1960</text>
+    <text y="0.71em" transform="translate(170.21400234676202,370)">1965</text>
+    <text y="0.71em" transform="translate(229.3904006258032,370)">1970</text>
+    <text y="0.71em" transform="translate(288.56679890484435,370)">1975</text>
+    <text y="0.71em" transform="translate(347.74319718388557,370)">1980</text>
+    <text y="0.71em" transform="translate(406.952003129016,370)">1985</text>
+    <text y="0.71em" transform="translate(466.1284014080572,370)">1990</text>
+    <text y="0.71em" transform="translate(525.3047996870985,370)">1995</text>
+    <text y="0.71em" transform="translate(584.4811979661396,370)">2000</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">date_of_birth →</text>
   </g>
   <g aria-label="rect">
     <rect x="41" y="369.2497320471597" width="10.828798122590378" height="0.7502679528403178"></rect>

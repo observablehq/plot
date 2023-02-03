@@ -13,22 +13,19 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(97.14473684210526,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2014</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(217.21052631578948,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2015</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(337.2763157894737,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2016</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(457.67105263157896,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2017</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(577.7368421052631,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2018</text>
-    </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(96.64473684210526,30)" d="M0,0L0,6"></path>
+    <path transform="translate(216.71052631578948,30)" d="M0,0L0,6"></path>
+    <path transform="translate(336.7763157894737,30)" d="M0,0L0,6"></path>
+    <path transform="translate(457.17105263157896,30)" d="M0,0L0,6"></path>
+    <path transform="translate(577.2368421052631,30)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(96.64473684210526,30)">2014</text>
+    <text y="0.71em" transform="translate(216.71052631578948,30)">2015</text>
+    <text y="0.71em" transform="translate(336.7763157894737,30)">2016</text>
+    <text y="0.71em" transform="translate(457.17105263157896,30)">2017</text>
+    <text y="0.71em" transform="translate(577.2368421052631,30)">2018</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="105.52631578947367" cy="15" r="9.09450638250681"></circle>

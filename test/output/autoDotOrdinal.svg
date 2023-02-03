@@ -13,636 +13,437 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="nationality" transform="translate(40,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,23.42270531400959)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">AFG</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,29.268115942028913)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ALB</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,35.113526570048236)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ALG</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,40.95893719806756)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">AND</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,46.80434782608688)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ANG</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,52.649758454106205)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ANT</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,58.495169082125535)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ARG</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,64.34057971014485)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ARM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,70.18599033816417)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ARU</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,76.0314009661835)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ASA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,81.87681159420282)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">AUS</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,87.72222222222216)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">AUT</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,93.56763285024148)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">AZE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,99.4130434782608)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BAH</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,105.25845410628013)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BAN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,111.10386473429945)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BAR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,116.94927536231877)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BDI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,122.7946859903381)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BEL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,128.6400966183574)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BEN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,134.48550724637676)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BER</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,140.33091787439605)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BHU</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,146.1763285024154)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BIH</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,152.02173913043472)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BIZ</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,157.86714975845405)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BLR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,163.71256038647337)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BOL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,169.5579710144927)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BOT</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,175.40338164251202)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BRA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,181.24879227053134)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BRN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,187.09420289855066)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BRU</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,192.93961352656999)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BUL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,198.7850241545893)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BUR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,204.63043478260863)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CAF</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,210.47584541062795)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CAM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,216.32125603864728)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CAN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,222.1666666666666)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CAY</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,228.01207729468592)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CGO</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,233.85748792270525)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CHA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,239.70289855072457)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CHI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,245.5483091787439)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CHN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,251.39371980676322)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CIV</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,257.2391304347825)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CMR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,263.08454106280186)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">COD</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,268.9299516908212)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">COK</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,274.7753623188405)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">COL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,280.62077294685986)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">COM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,286.46618357487915)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CPV</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,292.3115942028985)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CRC</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,298.1570048309178)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CRO</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,304.00241545893715)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CUB</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,309.84782608695645)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CYP</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,315.6932367149758)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">CZE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,321.5386473429951)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">DEN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,327.38405797101444)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">DJI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,333.22946859903374)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">DMA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,339.0748792270531)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">DOM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,344.9202898550724)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ECU</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,350.76570048309173)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">EGY</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,356.61111111111103)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ERI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,362.4565217391304)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ESA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,368.3019323671497)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ESP</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,374.147342995169)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">EST</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,379.9927536231883)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ETH</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,385.8381642512077)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">FIJ</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,391.68357487922697)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">FIN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,397.5289855072463)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">FRA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,403.37439613526567)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">FSM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,409.21980676328496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GAB</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,415.0652173913043)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GAM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,420.9106280193236)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GBR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,426.75603864734296)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GBS</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,432.60144927536226)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GEO</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,438.4468599033816)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GEQ</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,444.2922705314009)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GER</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,450.13768115942025)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GHA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,455.98309178743955)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GRE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,461.8285024154589)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GRN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,467.6739130434782)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GUA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,473.51932367149755)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GUI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,479.36473429951684)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GUM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,485.2101449275362)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">GUY</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,491.0555555555555)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">HAI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,496.90096618357484)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">HKG</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,502.74637681159413)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">HON</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,508.5917874396135)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">HUN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,514.4371980676328)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">INA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,520.2826086956521)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">IND</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,526.1280193236714)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">IOA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,531.9734299516908)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">IRI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,537.8188405797101)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">IRL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,543.6642512077294)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">IRQ</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,549.5096618357487)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ISL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,555.355072463768)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ISR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,561.2004830917874)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ISV</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,567.0458937198067)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ITA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,572.891304347826)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">IVB</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,578.7367149758453)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">JAM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,584.5821256038647)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">JOR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,590.427536231884)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">JPN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,596.2729468599033)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">KAZ</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,602.1183574879227)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">KEN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,607.963768115942)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">KGZ</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,613.8091787439613)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">KIR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,619.6545893719806)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">KOR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,625.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">KOS</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,631.3454106280193)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">KSA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,637.1908212560386)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">LAO</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,643.0362318840579)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">LAT</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,648.8816425120773)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">LBA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,654.7270531400966)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">LBR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,660.5724637681159)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">LCA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,666.4178743961352)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">LES</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,672.2632850241546)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">LIB</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,678.1086956521739)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">LIE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,683.9541062801932)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">LTU</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,689.7995169082125)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">LUX</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,695.6449275362319)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MAD</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,701.4903381642512)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MAR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,707.3357487922705)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MAS</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,713.1811594202898)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MAW</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,719.0265700483092)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MDA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,724.8719806763285)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MDV</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,730.7173913043478)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MEX</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,736.562801932367)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MGL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,742.4082125603865)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MHL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,748.2536231884058)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MKD</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,754.099033816425)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MLI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,759.9444444444443)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MLT</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,765.7898550724638)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MNE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,771.635265700483)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MON</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,777.4806763285023)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MOZ</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,783.3260869565217)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MRI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,789.171497584541)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MTN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,795.0169082125603)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MYA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,800.8623188405796)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NAM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,806.707729468599)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NCA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,812.5531400966183)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NED</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,818.3985507246376)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NEP</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,824.2439613526569)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NGR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,830.0893719806763)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NIG</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,835.9347826086956)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NOR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,841.7801932367149)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NRU</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,847.6256038647342)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NZL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,853.4710144927536)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">OMA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,859.3164251207729)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">PAK</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,865.1618357487922)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">PAN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,871.0072463768115)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">PAR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,876.8526570048309)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">PER</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,882.6980676328502)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">PHI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,888.5434782608695)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">PLE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,894.3888888888888)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">PLW</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,900.2342995169082)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">PNG</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,906.0797101449275)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">POL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,911.9251207729468)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">POR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,917.7705314009661)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">PRK</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,923.6159420289855)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">PUR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,929.4613526570048)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">QAT</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,935.3067632850241)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ROT</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,941.1521739130434)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ROU</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,946.9975845410628)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">RSA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,952.8429951690821)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">RUS</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,958.6884057971014)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">RWA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,964.5338164251208)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SAM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,970.3792270531401)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SEN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,976.2246376811594)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SEY</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,982.0700483091787)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SIN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,987.9154589371981)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SKN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,993.7608695652174)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SLE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,999.6062801932367)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SLO</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1005.451690821256)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SMR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1011.2971014492754)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SOL</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1017.1425120772947)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SOM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1022.987922705314)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SRB</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1028.8333333333333)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SRI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1034.6787439613527)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SSD</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1040.5241545893718)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">STP</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1046.3695652173913)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SUD</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1052.2149758454107)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SUI</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1058.0603864734298)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SUR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1063.9057971014493)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SVK</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1069.7512077294687)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SWE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1075.5966183574878)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SWZ</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1081.4420289855072)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SYR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1087.2874396135264)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TAN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1093.1328502415458)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TGA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1098.9782608695652)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">THA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1104.8236714975844)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TJK</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1110.6690821256038)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TKM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1116.5144927536232)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TLS</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1122.3599033816424)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TOG</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1128.2053140096618)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TPE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1134.050724637681)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TTO</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1139.8961352657004)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TUN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1145.7415458937198)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TUR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1151.586956521739)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TUV</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1157.4323671497584)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">UAE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1163.2777777777778)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">UGA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1169.123188405797)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">UKR</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1174.9685990338164)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">URU</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1180.8140096618358)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">USA</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1186.659420289855)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">UZB</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1192.5048309178744)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">VAN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1198.3502415458936)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">VEN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1204.195652173913)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">VIE</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1210.0410628019324)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">VIN</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1215.8864734299516)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">YEM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1221.731884057971)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ZAM</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1227.5772946859904)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ZIM</text>
-    </g><text fill="currentColor" transform="translate(-40,625) rotate(-90)" dy="0.75em" text-anchor="middle">nationality</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,22.92270531400959)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,28.768115942028913)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,34.613526570048236)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,40.45893719806756)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,46.30434782608688)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,52.149758454106205)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,57.995169082125535)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,63.84057971014486)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,69.68599033816417)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,75.5314009661835)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,81.37681159420282)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,87.22222222222216)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,93.06763285024148)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,98.9130434782608)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,104.75845410628013)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,110.60386473429945)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,116.44927536231877)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,122.2946859903381)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,128.1400966183574)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,133.98550724637676)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,139.83091787439605)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,145.6763285024154)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,151.52173913043472)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,157.36714975845405)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,163.21256038647337)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,169.0579710144927)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,174.90338164251202)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,180.74879227053134)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,186.59420289855066)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,192.43961352656999)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,198.2850241545893)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,204.13043478260863)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,209.97584541062795)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,215.82125603864728)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,221.6666666666666)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,227.51207729468592)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,233.35748792270525)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,239.20289855072457)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,245.0483091787439)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,250.89371980676322)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,256.7391304347825)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,262.58454106280186)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,268.4299516908212)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,274.2753623188405)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,280.12077294685986)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,285.96618357487915)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,291.8115942028985)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,297.6570048309178)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,303.50241545893715)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,309.34782608695645)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,315.1932367149758)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,321.0386473429951)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,326.88405797101444)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,332.72946859903374)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,338.5748792270531)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,344.4202898550724)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,350.26570048309173)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,356.11111111111103)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,361.9565217391304)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,367.8019323671497)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,373.647342995169)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,379.4927536231883)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,385.3381642512077)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,391.18357487922697)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,397.0289855072463)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,402.87439613526567)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,408.71980676328496)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,414.5652173913043)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,420.4106280193236)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,426.25603864734296)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,432.10144927536226)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,437.9468599033816)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,443.7922705314009)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,449.63768115942025)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,455.48309178743955)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,461.3285024154589)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,467.1739130434782)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,473.01932367149755)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,478.86473429951684)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,484.7101449275362)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,490.5555555555555)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,496.40096618357484)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,502.24637681159413)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,508.0917874396135)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,513.9371980676328)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,519.7826086956521)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,525.6280193236714)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,531.4734299516908)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,537.3188405797101)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,543.1642512077294)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,549.0096618357487)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,554.855072463768)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,560.7004830917874)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,566.5458937198067)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,572.391304347826)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,578.2367149758453)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,584.0821256038647)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,589.927536231884)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,595.7729468599033)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,601.6183574879227)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,607.463768115942)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,613.3091787439613)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,619.1545893719806)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,625)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,630.8454106280193)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,636.6908212560386)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,642.5362318840579)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,648.3816425120773)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,654.2270531400966)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,660.0724637681159)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,665.9178743961352)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,671.7632850241546)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,677.6086956521739)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,683.4541062801932)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,689.2995169082125)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,695.1449275362319)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,700.9903381642512)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,706.8357487922705)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,712.6811594202898)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,718.5265700483092)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,724.3719806763285)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,730.2173913043478)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,736.062801932367)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,741.9082125603865)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,747.7536231884058)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,753.599033816425)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,759.4444444444443)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,765.2898550724638)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,771.135265700483)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,776.9806763285023)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,782.8260869565217)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,788.671497584541)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,794.5169082125603)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,800.3623188405796)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,806.207729468599)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,812.0531400966183)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,817.8985507246376)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,823.7439613526569)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,829.5893719806763)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,835.4347826086956)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,841.2801932367149)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,847.1256038647342)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,852.9710144927536)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,858.8164251207729)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,864.6618357487922)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,870.5072463768115)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,876.3526570048309)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,882.1980676328502)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,888.0434782608695)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,893.8888888888888)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,899.7342995169082)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,905.5797101449275)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,911.4251207729468)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,917.2705314009661)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,923.1159420289855)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,928.9613526570048)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,934.8067632850241)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,940.6521739130434)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,946.4975845410628)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,952.3429951690821)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,958.1884057971014)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,964.0338164251208)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,969.8792270531401)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,975.7246376811594)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,981.5700483091787)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,987.4154589371981)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,993.2608695652174)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,999.1062801932367)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1004.951690821256)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1010.7971014492754)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1016.6425120772947)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1022.487922705314)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1028.3333333333333)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1034.1787439613527)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1040.0241545893718)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1045.8695652173913)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1051.7149758454107)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1057.5603864734298)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1063.4057971014493)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1069.2512077294687)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1075.0966183574878)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1080.9420289855072)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1086.7874396135264)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1092.6328502415458)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1098.4782608695652)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1104.3236714975844)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1110.1690821256038)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1116.0144927536232)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1121.8599033816424)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1127.7053140096618)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1133.550724637681)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1139.3961352657004)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1145.2415458937198)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1151.086956521739)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1156.9323671497584)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1162.7777777777778)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1168.623188405797)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1174.4685990338164)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1180.3140096618358)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1186.159420289855)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1192.0048309178744)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1197.8502415458936)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1203.695652173913)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1209.5410628019324)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1215.3864734299516)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1221.231884057971)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,1227.0772946859904)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="sex" transform="translate(0,1230)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(185.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">female</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(475.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">male</text>
-    </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">sex</text>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,22.92270531400959)">AFG</text>
+    <text y="0.32em" transform="translate(40,28.768115942028913)">ALB</text>
+    <text y="0.32em" transform="translate(40,34.613526570048236)">ALG</text>
+    <text y="0.32em" transform="translate(40,40.45893719806756)">AND</text>
+    <text y="0.32em" transform="translate(40,46.30434782608688)">ANG</text>
+    <text y="0.32em" transform="translate(40,52.149758454106205)">ANT</text>
+    <text y="0.32em" transform="translate(40,57.995169082125535)">ARG</text>
+    <text y="0.32em" transform="translate(40,63.84057971014486)">ARM</text>
+    <text y="0.32em" transform="translate(40,69.68599033816417)">ARU</text>
+    <text y="0.32em" transform="translate(40,75.5314009661835)">ASA</text>
+    <text y="0.32em" transform="translate(40,81.37681159420282)">AUS</text>
+    <text y="0.32em" transform="translate(40,87.22222222222216)">AUT</text>
+    <text y="0.32em" transform="translate(40,93.06763285024148)">AZE</text>
+    <text y="0.32em" transform="translate(40,98.9130434782608)">BAH</text>
+    <text y="0.32em" transform="translate(40,104.75845410628013)">BAN</text>
+    <text y="0.32em" transform="translate(40,110.60386473429945)">BAR</text>
+    <text y="0.32em" transform="translate(40,116.44927536231877)">BDI</text>
+    <text y="0.32em" transform="translate(40,122.2946859903381)">BEL</text>
+    <text y="0.32em" transform="translate(40,128.1400966183574)">BEN</text>
+    <text y="0.32em" transform="translate(40,133.98550724637676)">BER</text>
+    <text y="0.32em" transform="translate(40,139.83091787439605)">BHU</text>
+    <text y="0.32em" transform="translate(40,145.6763285024154)">BIH</text>
+    <text y="0.32em" transform="translate(40,151.52173913043472)">BIZ</text>
+    <text y="0.32em" transform="translate(40,157.36714975845405)">BLR</text>
+    <text y="0.32em" transform="translate(40,163.21256038647337)">BOL</text>
+    <text y="0.32em" transform="translate(40,169.0579710144927)">BOT</text>
+    <text y="0.32em" transform="translate(40,174.90338164251202)">BRA</text>
+    <text y="0.32em" transform="translate(40,180.74879227053134)">BRN</text>
+    <text y="0.32em" transform="translate(40,186.59420289855066)">BRU</text>
+    <text y="0.32em" transform="translate(40,192.43961352656999)">BUL</text>
+    <text y="0.32em" transform="translate(40,198.2850241545893)">BUR</text>
+    <text y="0.32em" transform="translate(40,204.13043478260863)">CAF</text>
+    <text y="0.32em" transform="translate(40,209.97584541062795)">CAM</text>
+    <text y="0.32em" transform="translate(40,215.82125603864728)">CAN</text>
+    <text y="0.32em" transform="translate(40,221.6666666666666)">CAY</text>
+    <text y="0.32em" transform="translate(40,227.51207729468592)">CGO</text>
+    <text y="0.32em" transform="translate(40,233.35748792270525)">CHA</text>
+    <text y="0.32em" transform="translate(40,239.20289855072457)">CHI</text>
+    <text y="0.32em" transform="translate(40,245.0483091787439)">CHN</text>
+    <text y="0.32em" transform="translate(40,250.89371980676322)">CIV</text>
+    <text y="0.32em" transform="translate(40,256.7391304347825)">CMR</text>
+    <text y="0.32em" transform="translate(40,262.58454106280186)">COD</text>
+    <text y="0.32em" transform="translate(40,268.4299516908212)">COK</text>
+    <text y="0.32em" transform="translate(40,274.2753623188405)">COL</text>
+    <text y="0.32em" transform="translate(40,280.12077294685986)">COM</text>
+    <text y="0.32em" transform="translate(40,285.96618357487915)">CPV</text>
+    <text y="0.32em" transform="translate(40,291.8115942028985)">CRC</text>
+    <text y="0.32em" transform="translate(40,297.6570048309178)">CRO</text>
+    <text y="0.32em" transform="translate(40,303.50241545893715)">CUB</text>
+    <text y="0.32em" transform="translate(40,309.34782608695645)">CYP</text>
+    <text y="0.32em" transform="translate(40,315.1932367149758)">CZE</text>
+    <text y="0.32em" transform="translate(40,321.0386473429951)">DEN</text>
+    <text y="0.32em" transform="translate(40,326.88405797101444)">DJI</text>
+    <text y="0.32em" transform="translate(40,332.72946859903374)">DMA</text>
+    <text y="0.32em" transform="translate(40,338.5748792270531)">DOM</text>
+    <text y="0.32em" transform="translate(40,344.4202898550724)">ECU</text>
+    <text y="0.32em" transform="translate(40,350.26570048309173)">EGY</text>
+    <text y="0.32em" transform="translate(40,356.11111111111103)">ERI</text>
+    <text y="0.32em" transform="translate(40,361.9565217391304)">ESA</text>
+    <text y="0.32em" transform="translate(40,367.8019323671497)">ESP</text>
+    <text y="0.32em" transform="translate(40,373.647342995169)">EST</text>
+    <text y="0.32em" transform="translate(40,379.4927536231883)">ETH</text>
+    <text y="0.32em" transform="translate(40,385.3381642512077)">FIJ</text>
+    <text y="0.32em" transform="translate(40,391.18357487922697)">FIN</text>
+    <text y="0.32em" transform="translate(40,397.0289855072463)">FRA</text>
+    <text y="0.32em" transform="translate(40,402.87439613526567)">FSM</text>
+    <text y="0.32em" transform="translate(40,408.71980676328496)">GAB</text>
+    <text y="0.32em" transform="translate(40,414.5652173913043)">GAM</text>
+    <text y="0.32em" transform="translate(40,420.4106280193236)">GBR</text>
+    <text y="0.32em" transform="translate(40,426.25603864734296)">GBS</text>
+    <text y="0.32em" transform="translate(40,432.10144927536226)">GEO</text>
+    <text y="0.32em" transform="translate(40,437.9468599033816)">GEQ</text>
+    <text y="0.32em" transform="translate(40,443.7922705314009)">GER</text>
+    <text y="0.32em" transform="translate(40,449.63768115942025)">GHA</text>
+    <text y="0.32em" transform="translate(40,455.48309178743955)">GRE</text>
+    <text y="0.32em" transform="translate(40,461.3285024154589)">GRN</text>
+    <text y="0.32em" transform="translate(40,467.1739130434782)">GUA</text>
+    <text y="0.32em" transform="translate(40,473.01932367149755)">GUI</text>
+    <text y="0.32em" transform="translate(40,478.86473429951684)">GUM</text>
+    <text y="0.32em" transform="translate(40,484.7101449275362)">GUY</text>
+    <text y="0.32em" transform="translate(40,490.5555555555555)">HAI</text>
+    <text y="0.32em" transform="translate(40,496.40096618357484)">HKG</text>
+    <text y="0.32em" transform="translate(40,502.24637681159413)">HON</text>
+    <text y="0.32em" transform="translate(40,508.0917874396135)">HUN</text>
+    <text y="0.32em" transform="translate(40,513.9371980676328)">INA</text>
+    <text y="0.32em" transform="translate(40,519.7826086956521)">IND</text>
+    <text y="0.32em" transform="translate(40,525.6280193236714)">IOA</text>
+    <text y="0.32em" transform="translate(40,531.4734299516908)">IRI</text>
+    <text y="0.32em" transform="translate(40,537.3188405797101)">IRL</text>
+    <text y="0.32em" transform="translate(40,543.1642512077294)">IRQ</text>
+    <text y="0.32em" transform="translate(40,549.0096618357487)">ISL</text>
+    <text y="0.32em" transform="translate(40,554.855072463768)">ISR</text>
+    <text y="0.32em" transform="translate(40,560.7004830917874)">ISV</text>
+    <text y="0.32em" transform="translate(40,566.5458937198067)">ITA</text>
+    <text y="0.32em" transform="translate(40,572.391304347826)">IVB</text>
+    <text y="0.32em" transform="translate(40,578.2367149758453)">JAM</text>
+    <text y="0.32em" transform="translate(40,584.0821256038647)">JOR</text>
+    <text y="0.32em" transform="translate(40,589.927536231884)">JPN</text>
+    <text y="0.32em" transform="translate(40,595.7729468599033)">KAZ</text>
+    <text y="0.32em" transform="translate(40,601.6183574879227)">KEN</text>
+    <text y="0.32em" transform="translate(40,607.463768115942)">KGZ</text>
+    <text y="0.32em" transform="translate(40,613.3091787439613)">KIR</text>
+    <text y="0.32em" transform="translate(40,619.1545893719806)">KOR</text>
+    <text y="0.32em" transform="translate(40,625)">KOS</text>
+    <text y="0.32em" transform="translate(40,630.8454106280193)">KSA</text>
+    <text y="0.32em" transform="translate(40,636.6908212560386)">LAO</text>
+    <text y="0.32em" transform="translate(40,642.5362318840579)">LAT</text>
+    <text y="0.32em" transform="translate(40,648.3816425120773)">LBA</text>
+    <text y="0.32em" transform="translate(40,654.2270531400966)">LBR</text>
+    <text y="0.32em" transform="translate(40,660.0724637681159)">LCA</text>
+    <text y="0.32em" transform="translate(40,665.9178743961352)">LES</text>
+    <text y="0.32em" transform="translate(40,671.7632850241546)">LIB</text>
+    <text y="0.32em" transform="translate(40,677.6086956521739)">LIE</text>
+    <text y="0.32em" transform="translate(40,683.4541062801932)">LTU</text>
+    <text y="0.32em" transform="translate(40,689.2995169082125)">LUX</text>
+    <text y="0.32em" transform="translate(40,695.1449275362319)">MAD</text>
+    <text y="0.32em" transform="translate(40,700.9903381642512)">MAR</text>
+    <text y="0.32em" transform="translate(40,706.8357487922705)">MAS</text>
+    <text y="0.32em" transform="translate(40,712.6811594202898)">MAW</text>
+    <text y="0.32em" transform="translate(40,718.5265700483092)">MDA</text>
+    <text y="0.32em" transform="translate(40,724.3719806763285)">MDV</text>
+    <text y="0.32em" transform="translate(40,730.2173913043478)">MEX</text>
+    <text y="0.32em" transform="translate(40,736.062801932367)">MGL</text>
+    <text y="0.32em" transform="translate(40,741.9082125603865)">MHL</text>
+    <text y="0.32em" transform="translate(40,747.7536231884058)">MKD</text>
+    <text y="0.32em" transform="translate(40,753.599033816425)">MLI</text>
+    <text y="0.32em" transform="translate(40,759.4444444444443)">MLT</text>
+    <text y="0.32em" transform="translate(40,765.2898550724638)">MNE</text>
+    <text y="0.32em" transform="translate(40,771.135265700483)">MON</text>
+    <text y="0.32em" transform="translate(40,776.9806763285023)">MOZ</text>
+    <text y="0.32em" transform="translate(40,782.8260869565217)">MRI</text>
+    <text y="0.32em" transform="translate(40,788.671497584541)">MTN</text>
+    <text y="0.32em" transform="translate(40,794.5169082125603)">MYA</text>
+    <text y="0.32em" transform="translate(40,800.3623188405796)">NAM</text>
+    <text y="0.32em" transform="translate(40,806.207729468599)">NCA</text>
+    <text y="0.32em" transform="translate(40,812.0531400966183)">NED</text>
+    <text y="0.32em" transform="translate(40,817.8985507246376)">NEP</text>
+    <text y="0.32em" transform="translate(40,823.7439613526569)">NGR</text>
+    <text y="0.32em" transform="translate(40,829.5893719806763)">NIG</text>
+    <text y="0.32em" transform="translate(40,835.4347826086956)">NOR</text>
+    <text y="0.32em" transform="translate(40,841.2801932367149)">NRU</text>
+    <text y="0.32em" transform="translate(40,847.1256038647342)">NZL</text>
+    <text y="0.32em" transform="translate(40,852.9710144927536)">OMA</text>
+    <text y="0.32em" transform="translate(40,858.8164251207729)">PAK</text>
+    <text y="0.32em" transform="translate(40,864.6618357487922)">PAN</text>
+    <text y="0.32em" transform="translate(40,870.5072463768115)">PAR</text>
+    <text y="0.32em" transform="translate(40,876.3526570048309)">PER</text>
+    <text y="0.32em" transform="translate(40,882.1980676328502)">PHI</text>
+    <text y="0.32em" transform="translate(40,888.0434782608695)">PLE</text>
+    <text y="0.32em" transform="translate(40,893.8888888888888)">PLW</text>
+    <text y="0.32em" transform="translate(40,899.7342995169082)">PNG</text>
+    <text y="0.32em" transform="translate(40,905.5797101449275)">POL</text>
+    <text y="0.32em" transform="translate(40,911.4251207729468)">POR</text>
+    <text y="0.32em" transform="translate(40,917.2705314009661)">PRK</text>
+    <text y="0.32em" transform="translate(40,923.1159420289855)">PUR</text>
+    <text y="0.32em" transform="translate(40,928.9613526570048)">QAT</text>
+    <text y="0.32em" transform="translate(40,934.8067632850241)">ROT</text>
+    <text y="0.32em" transform="translate(40,940.6521739130434)">ROU</text>
+    <text y="0.32em" transform="translate(40,946.4975845410628)">RSA</text>
+    <text y="0.32em" transform="translate(40,952.3429951690821)">RUS</text>
+    <text y="0.32em" transform="translate(40,958.1884057971014)">RWA</text>
+    <text y="0.32em" transform="translate(40,964.0338164251208)">SAM</text>
+    <text y="0.32em" transform="translate(40,969.8792270531401)">SEN</text>
+    <text y="0.32em" transform="translate(40,975.7246376811594)">SEY</text>
+    <text y="0.32em" transform="translate(40,981.5700483091787)">SIN</text>
+    <text y="0.32em" transform="translate(40,987.4154589371981)">SKN</text>
+    <text y="0.32em" transform="translate(40,993.2608695652174)">SLE</text>
+    <text y="0.32em" transform="translate(40,999.1062801932367)">SLO</text>
+    <text y="0.32em" transform="translate(40,1004.951690821256)">SMR</text>
+    <text y="0.32em" transform="translate(40,1010.7971014492754)">SOL</text>
+    <text y="0.32em" transform="translate(40,1016.6425120772947)">SOM</text>
+    <text y="0.32em" transform="translate(40,1022.487922705314)">SRB</text>
+    <text y="0.32em" transform="translate(40,1028.3333333333333)">SRI</text>
+    <text y="0.32em" transform="translate(40,1034.1787439613527)">SSD</text>
+    <text y="0.32em" transform="translate(40,1040.0241545893718)">STP</text>
+    <text y="0.32em" transform="translate(40,1045.8695652173913)">SUD</text>
+    <text y="0.32em" transform="translate(40,1051.7149758454107)">SUI</text>
+    <text y="0.32em" transform="translate(40,1057.5603864734298)">SUR</text>
+    <text y="0.32em" transform="translate(40,1063.4057971014493)">SVK</text>
+    <text y="0.32em" transform="translate(40,1069.2512077294687)">SWE</text>
+    <text y="0.32em" transform="translate(40,1075.0966183574878)">SWZ</text>
+    <text y="0.32em" transform="translate(40,1080.9420289855072)">SYR</text>
+    <text y="0.32em" transform="translate(40,1086.7874396135264)">TAN</text>
+    <text y="0.32em" transform="translate(40,1092.6328502415458)">TGA</text>
+    <text y="0.32em" transform="translate(40,1098.4782608695652)">THA</text>
+    <text y="0.32em" transform="translate(40,1104.3236714975844)">TJK</text>
+    <text y="0.32em" transform="translate(40,1110.1690821256038)">TKM</text>
+    <text y="0.32em" transform="translate(40,1116.0144927536232)">TLS</text>
+    <text y="0.32em" transform="translate(40,1121.8599033816424)">TOG</text>
+    <text y="0.32em" transform="translate(40,1127.7053140096618)">TPE</text>
+    <text y="0.32em" transform="translate(40,1133.550724637681)">TTO</text>
+    <text y="0.32em" transform="translate(40,1139.3961352657004)">TUN</text>
+    <text y="0.32em" transform="translate(40,1145.2415458937198)">TUR</text>
+    <text y="0.32em" transform="translate(40,1151.086956521739)">TUV</text>
+    <text y="0.32em" transform="translate(40,1156.9323671497584)">UAE</text>
+    <text y="0.32em" transform="translate(40,1162.7777777777778)">UGA</text>
+    <text y="0.32em" transform="translate(40,1168.623188405797)">UKR</text>
+    <text y="0.32em" transform="translate(40,1174.4685990338164)">URU</text>
+    <text y="0.32em" transform="translate(40,1180.3140096618358)">USA</text>
+    <text y="0.32em" transform="translate(40,1186.159420289855)">UZB</text>
+    <text y="0.32em" transform="translate(40,1192.0048309178744)">VAN</text>
+    <text y="0.32em" transform="translate(40,1197.8502415458936)">VEN</text>
+    <text y="0.32em" transform="translate(40,1203.695652173913)">VIE</text>
+    <text y="0.32em" transform="translate(40,1209.5410628019324)">VIN</text>
+    <text y="0.32em" transform="translate(40,1215.3864734299516)">YEM</text>
+    <text y="0.32em" transform="translate(40,1221.231884057971)">ZAM</text>
+    <text y="0.32em" transform="translate(40,1227.0772946859904)">ZIM</text>
+  </g>
+  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+    <text y="0.71em" transform="translate(40,625) rotate(-90)">nationality</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(185,1230)" d="M0,0L0,6"></path>
+    <path transform="translate(475,1230)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(185,1230)">female</text>
+    <text y="0.71em" transform="translate(475,1230)">male</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,1230)">sex</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="475" cy="367.8019323671497" r="3"></circle>

@@ -13,42 +13,41 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="species" transform="translate(40,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,33.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Adelie</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,55.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Chinstrap</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,77.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Gentoo</text>
-    </g><text fill="currentColor" transform="translate(-40,55) rotate(-90)" dy="0.75em" text-anchor="middle">species</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10.5)">
+    <path transform="translate(40,23)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,45)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,67)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="Frequency →" transform="translate(0,90)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(40.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(116.81578947368422,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(193.13157894736844,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(269.4473684210526,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(345.7631578947369,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(422.0789473684211,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(498.39473684210526,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">120</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(574.7105263157895,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">140</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10.5)">
+    <text y="0.32em" transform="translate(40,23)">Adelie</text>
+    <text y="0.32em" transform="translate(40,45)">Chinstrap</text>
+    <text y="0.32em" transform="translate(40,67)">Gentoo</text>
+  </g>
+  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+    <text y="0.71em" transform="translate(40,55) rotate(-90)">species</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,90)" d="M0,0L0,6"></path>
+    <path transform="translate(116.31578947368422,90)" d="M0,0L0,6"></path>
+    <path transform="translate(192.63157894736844,90)" d="M0,0L0,6"></path>
+    <path transform="translate(268.9473684210526,90)" d="M0,0L0,6"></path>
+    <path transform="translate(345.2631578947369,90)" d="M0,0L0,6"></path>
+    <path transform="translate(421.5789473684211,90)" d="M0,0L0,6"></path>
+    <path transform="translate(497.89473684210526,90)" d="M0,0L0,6"></path>
+    <path transform="translate(574.2105263157895,90)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,90)">0</text>
+    <text y="0.71em" transform="translate(116.31578947368422,90)">20</text>
+    <text y="0.71em" transform="translate(192.63157894736844,90)">40</text>
+    <text y="0.71em" transform="translate(268.9473684210526,90)">60</text>
+    <text y="0.71em" transform="translate(345.2631578947369,90)">80</text>
+    <text y="0.71em" transform="translate(421.5789473684211,90)">100</text>
+    <text y="0.71em" transform="translate(497.89473684210526,90)">120</text>
+    <text y="0.71em" transform="translate(574.2105263157895,90)">140</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,90)">Frequency →</text>
   </g>
   <g aria-label="bar">
     <rect x="40" width="278.55263157894734" y="23" height="20" fill="#4e79a7"></rect>

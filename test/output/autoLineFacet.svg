@@ -13,264 +13,261 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis" transform="translate(600,0)" fill="none" text-anchor="start">
-    <g class="tick" opacity="1" transform="translate(0,59.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Agriculture</text>
+  <g aria-label="facet" transform="translate(0,0)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Agriculture</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,146.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Business services</text>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,233.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Construction</text>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,320.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Education and Health</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,407.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Finance</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,494.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Government</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,581.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Information</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,668.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Leisure and hospitality</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,755.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Manufacturing</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,842.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Mining and Extraction</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,929.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Other</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1016.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Self-employed</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1103.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Transportation and Utilities</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1190.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Wholesale and Retail Trade</text>
-    </g>
-  </g>
-  <g aria-label="x-axis" transform="translate(0,1230)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(40.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(151.6183496199783,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2002</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(262.58469055374593,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2004</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(373.7030401737242,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2006</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(484.66938110749186,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2008</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(595.7877307274701,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2010</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" aria-description="↑ unemployed" transform="translate(40,20)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,0)" dy="-1em" text-anchor="start">↑ unemployed</text>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,107)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,194)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,281)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,368)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,455)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,542)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,629)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,716)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,803)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,890)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,977)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,1064)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(40,1151)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,46.57054963084496)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,14.577112387202625)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,20)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,73.137L44.712,72.529L49.121,73.201L53.833,73.745L58.393,75.728L63.105,74.577L67.666,75.6L72.378,74.545L77.09,74.097L81.65,74.449L86.363,71.921L90.923,71.793L95.635,72.049L100.347,71.889L104.604,69.522L109.316,73.585L113.876,74.577L118.588,73.905L123.149,74.449L127.861,73.553L132.573,74.833L137.134,74.289L141.846,73.425L146.406,71.921L151.118,71.825L155.831,72.081L160.087,69.458L164.799,73.233L169.359,75.217L174.072,75.217L178.632,74.417L183.344,74.065L188.056,75.121L192.617,74.961L197.329,73.681L201.889,74.225L206.602,72.977L211.314,72.561L215.57,72.913L220.282,73.137L224.843,73.809L229.555,75.057L234.115,74.449L238.827,72.529L243.54,74.929L248.1,73.713L252.812,73.329L257.372,73.681L262.085,72.177L266.797,72.689L271.205,73.169L275.917,74.641L280.478,74.897L285.19,74.673L289.75,73.585L294.463,74.769L299.175,75.249L303.735,74.801L308.447,73.873L313.008,72.785L317.72,73.169L322.432,74.641L326.688,73.617L331.401,75.377L335.961,75.952L340.673,75.632L345.233,75.856L349.946,74.865L354.658,74.001L359.218,75.345L363.931,74.289L368.491,74.001L373.203,73.585L377.915,73.617L382.172,74.321L386.884,75.473L391.444,75.537L396.156,76.944L400.717,76.304L405.429,75.632L410.141,75.568L414.701,75.6L419.414,74.065L423.974,73.617L428.686,73.969L433.398,74.001L437.655,74.129L442.367,75.92L446.927,76.016L451.64,76.176L456.2,76.784L460.912,76.336L465.624,76.368L470.185,76.56L474.897,75.505L479.457,74.993L484.169,74.449L488.882,73.745L493.29,72.465L498.002,74.609L502.562,75.057L507.275,75.313L511.835,74.065L516.547,74.513L521.26,75.377L525.82,74.961L530.532,74.257L535.092,70.737L539.805,70.226L544.517,70.034L548.773,70.354L553.485,72.433L558.046,73.713L562.758,72.241L567.318,72.305L572.03,71.825L576.743,73.265L581.303,72.753L586.015,72.305L590.575,68.722L595.288,67.89L600,68.946"></path>
+      <path d="M40,93.137L44.712,92.529L49.121,93.201L53.833,93.745L58.393,95.728L63.105,94.577L67.666,95.6L72.378,94.545L77.09,94.097L81.65,94.449L86.363,91.921L90.923,91.793L95.635,92.049L100.347,91.889L104.604,89.522L109.316,93.585L113.876,94.577L118.588,93.905L123.149,94.449L127.861,93.553L132.573,94.833L137.134,94.289L141.846,93.425L146.406,91.921L151.118,91.825L155.831,92.081L160.087,89.458L164.799,93.233L169.359,95.217L174.072,95.217L178.632,94.417L183.344,94.065L188.056,95.121L192.617,94.961L197.329,93.681L201.889,94.225L206.602,92.977L211.314,92.561L215.57,92.913L220.282,93.137L224.843,93.809L229.555,95.057L234.115,94.449L238.827,92.529L243.54,94.929L248.1,93.713L252.812,93.329L257.372,93.681L262.085,92.177L266.797,92.689L271.205,93.169L275.917,94.641L280.478,94.897L285.19,94.673L289.75,93.585L294.463,94.769L299.175,95.249L303.735,94.801L308.447,93.873L313.008,92.785L317.72,93.169L322.432,94.641L326.688,93.617L331.401,95.377L335.961,95.952L340.673,95.632L345.233,95.856L349.946,94.865L354.658,94.001L359.218,95.345L363.931,94.289L368.491,94.001L373.203,93.585L377.915,93.617L382.172,94.321L386.884,95.473L391.444,95.537L396.156,96.944L400.717,96.304L405.429,95.632L410.141,95.568L414.701,95.6L419.414,94.065L423.974,93.617L428.686,93.969L433.398,94.001L437.655,94.129L442.367,95.92L446.927,96.016L451.64,96.176L456.2,96.784L460.912,96.336L465.624,96.368L470.185,96.56L474.897,95.505L479.457,94.993L484.169,94.449L488.882,93.745L493.29,92.465L498.002,94.609L502.562,95.057L507.275,95.313L511.835,94.065L516.547,94.513L521.26,95.377L525.82,94.961L530.532,94.257L535.092,90.737L539.805,90.226L544.517,90.034L548.773,90.354L553.485,92.433L558.046,93.713L562.758,92.241L567.318,92.305L572.03,91.825L576.743,93.265L581.303,92.753L586.015,92.305L590.575,88.722L595.288,87.89L600,88.946"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,107)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,87)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Business services</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,57.108L44.712,59.284L49.121,58.132L53.833,61.523L58.393,60.116L63.105,60.628L67.666,57.716L72.378,59.38L77.09,60.18L81.65,61.939L86.363,60.564L90.923,60.02L95.635,54.581L100.347,54.901L104.604,57.204L109.316,57.108L113.876,57.204L118.588,55.861L123.149,54.677L127.861,52.789L132.573,52.149L137.134,48.95L141.846,47.798L146.406,48.598L151.118,42.231L155.831,46.934L160.087,47.222L164.799,47.638L169.359,46.614L174.072,43.543L178.632,43.671L183.344,48.438L188.056,45.847L192.617,47.286L197.329,45.143L201.889,44.855L206.602,42.487L211.314,41.591L215.57,39.992L220.282,43.639L224.843,42.711L229.555,43.127L234.115,45.399L238.827,49.878L243.54,46.87L248.1,45.623L252.812,47.734L257.372,47.734L262.085,43.831L266.797,47.222L271.205,46.103L275.917,54.005L280.478,51.861L285.19,52.021L289.75,52.789L294.463,51.03L299.175,54.069L303.735,53.077L308.447,50.166L313.008,50.07L317.72,47.414L322.432,48.758L326.688,52.245L331.401,55.221L335.961,54.709L340.673,54.293L345.233,52.341L349.946,54.773L354.658,50.486L359.218,54.133L363.931,55.317L368.491,52.853L373.203,51.669L377.915,51.158L382.172,51.701L386.884,57.46L391.444,55.829L396.156,53.973L400.717,54.549L405.429,56.276L410.141,54.517L414.701,53.493L419.414,57.012L423.974,52.757L428.686,49.75L433.398,51.669L437.655,53.269L442.367,56.021L446.927,54.293L451.64,54.965L456.2,54.293L460.912,56.212L465.624,57.108L470.185,56.468L474.897,56.34L479.457,52.373L484.169,49.494L488.882,50.358L493.29,50.038L498.002,54.517L502.562,51.541L507.275,49.59L511.835,50.358L516.547,47.318L521.26,47.638L525.82,44.407L530.532,46.326L535.092,41.368L539.805,31.833L544.517,29.69L548.773,26.97L553.485,31.737L558.046,29.626L562.758,27.514L567.318,29.082L572.03,28.154L576.743,27.002L581.303,30.458L586.015,29.626L590.575,30.522L595.288,26.427L600,22.395"></path>
+      <path d="M40,77.108L44.712,79.284L49.121,78.132L53.833,81.523L58.393,80.116L63.105,80.628L67.666,77.716L72.378,79.38L77.09,80.18L81.65,81.939L86.363,80.564L90.923,80.02L95.635,74.581L100.347,74.901L104.604,77.204L109.316,77.108L113.876,77.204L118.588,75.861L123.149,74.677L127.861,72.789L132.573,72.149L137.134,68.95L141.846,67.798L146.406,68.598L151.118,62.231L155.831,66.934L160.087,67.222L164.799,67.638L169.359,66.614L174.072,63.543L178.632,63.671L183.344,68.438L188.056,65.847L192.617,67.286L197.329,65.143L201.889,64.855L206.602,62.487L211.314,61.591L215.57,59.992L220.282,63.639L224.843,62.711L229.555,63.127L234.115,65.399L238.827,69.878L243.54,66.87L248.1,65.623L252.812,67.734L257.372,67.734L262.085,63.831L266.797,67.222L271.205,66.103L275.917,74.005L280.478,71.861L285.19,72.021L289.75,72.789L294.463,71.03L299.175,74.069L303.735,73.077L308.447,70.166L313.008,70.07L317.72,67.414L322.432,68.758L326.688,72.245L331.401,75.221L335.961,74.709L340.673,74.293L345.233,72.341L349.946,74.773L354.658,70.486L359.218,74.133L363.931,75.317L368.491,72.853L373.203,71.669L377.915,71.158L382.172,71.701L386.884,77.46L391.444,75.829L396.156,73.973L400.717,74.549L405.429,76.276L410.141,74.517L414.701,73.493L419.414,77.012L423.974,72.757L428.686,69.75L433.398,71.669L437.655,73.269L442.367,76.021L446.927,74.293L451.64,74.965L456.2,74.293L460.912,76.212L465.624,77.108L470.185,76.468L474.897,76.34L479.457,72.373L484.169,69.494L488.882,70.358L493.29,70.038L498.002,74.517L502.562,71.541L507.275,69.59L511.835,70.358L516.547,67.318L521.26,67.638L525.82,64.407L530.532,66.326L535.092,61.368L539.805,51.833L544.517,49.69L548.773,46.97L553.485,51.737L558.046,49.626L562.758,47.514L567.318,49.082L572.03,48.154L576.743,47.002L581.303,50.458L586.015,49.626L590.575,50.522L595.288,46.427L600,42.395"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,194)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,174)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Construction</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,54.229L44.712,52.085L49.121,56.66L53.833,63.763L58.393,65.363L63.105,65.619L67.666,65.779L72.378,63.795L77.09,65.715L81.65,64.723L86.363,62.643L90.923,59.508L95.635,51.317L100.347,51.637L104.604,56.212L109.316,58.996L113.876,62.771L118.588,63.891L123.149,63.763L127.861,61.363L132.573,62.419L137.134,60.947L141.846,56.628L146.406,52.949L151.118,39.32L155.831,44.151L160.087,45.783L164.799,50.71L169.359,58.036L174.072,59.092L178.632,59.06L183.344,57.14L188.056,58.388L192.617,56.308L197.329,53.813L201.889,47.958L206.602,39.8L211.314,40.536L215.57,46.486L220.282,53.365L224.843,55.189L229.555,55.349L234.115,56.404L238.827,57.268L243.54,56.276L248.1,57.236L252.812,55.989L257.372,52.053L262.085,46.263L266.797,44.823L271.205,45.719L275.917,50.902L280.478,56.788L285.19,56.692L289.75,58.548L294.463,60.052L299.175,57.94L303.735,57.748L308.447,55.829L313.008,50.23L317.72,43.543L322.432,41.272L326.688,47.318L331.401,55.893L335.961,59.924L340.673,60.18L345.233,61.779L349.946,60.116L354.658,59.764L359.218,61.459L363.931,60.02L368.491,52.053L373.203,50.294L377.915,51.317L382.172,51.829L386.884,56.5L391.444,57.364L396.156,59.86L400.717,57.812L405.429,58.292L410.141,59.316L414.701,63.475L419.414,58.292L423.974,54.869L428.686,48.566L433.398,43.319L437.655,48.502L442.367,50.774L446.927,56.436L451.64,58.868L456.2,58.324L460.912,60.212L465.624,58.996L470.185,57.556L474.897,57.428L479.457,47.094L484.169,42.903L488.882,42.295L493.29,40.632L498.002,44.247L502.562,52.181L507.275,52.949L511.835,53.013L516.547,52.021L521.26,47.03L525.82,43.575L530.532,38.488L535.092,32.057L539.805,22.267L544.517,13.277L548.773,14.749L553.485,22.491L558.046,21.5L562.758,26.842L567.318,24.091L572.03,28.73L576.743,27.066L581.303,22.267L586.015,21.116L590.575,12.669L595.288,7.87L600,0"></path>
+      <path d="M40,74.229L44.712,72.085L49.121,76.66L53.833,83.763L58.393,85.363L63.105,85.619L67.666,85.779L72.378,83.795L77.09,85.715L81.65,84.723L86.363,82.643L90.923,79.508L95.635,71.317L100.347,71.637L104.604,76.212L109.316,78.996L113.876,82.771L118.588,83.891L123.149,83.763L127.861,81.363L132.573,82.419L137.134,80.947L141.846,76.628L146.406,72.949L151.118,59.32L155.831,64.151L160.087,65.783L164.799,70.71L169.359,78.036L174.072,79.092L178.632,79.06L183.344,77.14L188.056,78.388L192.617,76.308L197.329,73.813L201.889,67.958L206.602,59.8L211.314,60.536L215.57,66.486L220.282,73.365L224.843,75.189L229.555,75.349L234.115,76.404L238.827,77.268L243.54,76.276L248.1,77.236L252.812,75.989L257.372,72.053L262.085,66.263L266.797,64.823L271.205,65.719L275.917,70.902L280.478,76.788L285.19,76.692L289.75,78.548L294.463,80.052L299.175,77.94L303.735,77.748L308.447,75.829L313.008,70.23L317.72,63.543L322.432,61.272L326.688,67.318L331.401,75.893L335.961,79.924L340.673,80.18L345.233,81.779L349.946,80.116L354.658,79.764L359.218,81.459L363.931,80.02L368.491,72.053L373.203,70.294L377.915,71.317L382.172,71.829L386.884,76.5L391.444,77.364L396.156,79.86L400.717,77.812L405.429,78.292L410.141,79.316L414.701,83.475L419.414,78.292L423.974,74.869L428.686,68.566L433.398,63.319L437.655,68.502L442.367,70.774L446.927,76.436L451.64,78.868L456.2,78.324L460.912,80.212L465.624,78.996L470.185,77.556L474.897,77.428L479.457,67.094L484.169,62.903L488.882,62.295L493.29,60.632L498.002,64.247L502.562,72.181L507.275,72.949L511.835,73.013L516.547,72.021L521.26,67.03L525.82,63.575L530.532,58.488L535.092,52.057L539.805,42.267L544.517,33.277L548.773,34.749L553.485,42.491L558.046,41.5L562.758,46.842L567.318,44.091L572.03,48.73L576.743,47.066L581.303,42.267L586.015,41.116L590.575,32.669L595.288,27.87L600,20"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,281)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,261)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Education and Health</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,66.77L44.712,66.898L49.121,65.874L53.833,67.538L58.393,64.531L63.105,63.603L67.666,62.771L72.378,63.667L77.09,65.331L81.65,67.218L86.363,66.834L90.923,68.69L95.635,64.371L100.347,64.531L104.604,63.475L109.316,67.154L113.876,65.587L118.588,62.835L123.149,61.651L127.861,59.028L132.573,63.507L137.134,62.515L141.846,61.555L146.406,62.611L151.118,59.316L155.831,59.188L160.087,60.788L164.799,62.291L169.359,61.011L174.072,57.652L178.632,56.596L183.344,56.948L188.056,60.084L192.617,61.523L197.329,62.291L201.889,60.212L206.602,60.18L211.314,59.636L215.57,61.491L220.282,58.516L224.843,58.292L229.555,53.461L234.115,55.765L238.827,53.749L243.54,57.3L248.1,57.62L252.812,56.884L257.372,58.228L262.085,56.884L266.797,58.612L271.205,59.38L275.917,59.22L280.478,59.828L285.19,53.461L289.75,54.869L294.463,57.364L299.175,59.092L303.735,61.235L308.447,59.828L313.008,60.084L317.72,58.452L322.432,58.26L326.688,58.42L331.401,59.156L335.961,57.332L340.673,56.724L345.233,57.748L349.946,57.46L354.658,57.012L359.218,57.972L363.931,56.404L368.491,61.139L373.203,59.092L377.915,61.171L382.172,60.052L386.884,60.212L391.444,60.692L396.156,58.324L400.717,56.98L405.429,58.516L410.141,59.636L414.701,61.075L419.414,60.916L423.974,62.003L428.686,60.052L433.398,62.419L437.655,62.227L442.367,60.308L446.927,58.164L451.64,57.172L456.2,56.788L460.912,57.332L465.624,57.908L470.185,60.979L474.897,61.235L479.457,61.395L484.169,59.636L488.882,60.084L493.29,58.58L498.002,60.436L502.562,58.26L507.275,56.66L511.835,53.237L516.547,51.062L521.26,51.349L525.82,52.565L530.532,54.133L535.092,52.757L539.805,52.725L544.517,50.966L548.773,48.278L553.485,47.222L558.046,45.911L562.758,37.528L567.318,37.464L572.03,38.424L576.743,37.848L581.303,37.112L586.015,40.696L590.575,40.216L595.288,40.472L600,39.672"></path>
+      <path d="M40,86.77L44.712,86.898L49.121,85.874L53.833,87.538L58.393,84.531L63.105,83.603L67.666,82.771L72.378,83.667L77.09,85.331L81.65,87.218L86.363,86.834L90.923,88.69L95.635,84.371L100.347,84.531L104.604,83.475L109.316,87.154L113.876,85.587L118.588,82.835L123.149,81.651L127.861,79.028L132.573,83.507L137.134,82.515L141.846,81.555L146.406,82.611L151.118,79.316L155.831,79.188L160.087,80.788L164.799,82.291L169.359,81.011L174.072,77.652L178.632,76.596L183.344,76.948L188.056,80.084L192.617,81.523L197.329,82.291L201.889,80.212L206.602,80.18L211.314,79.636L215.57,81.491L220.282,78.516L224.843,78.292L229.555,73.461L234.115,75.765L238.827,73.749L243.54,77.3L248.1,77.62L252.812,76.884L257.372,78.228L262.085,76.884L266.797,78.612L271.205,79.38L275.917,79.22L280.478,79.828L285.19,73.461L289.75,74.869L294.463,77.364L299.175,79.092L303.735,81.235L308.447,79.828L313.008,80.084L317.72,78.452L322.432,78.26L326.688,78.42L331.401,79.156L335.961,77.332L340.673,76.724L345.233,77.748L349.946,77.46L354.658,77.012L359.218,77.972L363.931,76.404L368.491,81.139L373.203,79.092L377.915,81.171L382.172,80.052L386.884,80.212L391.444,80.692L396.156,78.324L400.717,76.98L405.429,78.516L410.141,79.636L414.701,81.075L419.414,80.916L423.974,82.003L428.686,80.052L433.398,82.419L437.655,82.227L442.367,80.308L446.927,78.164L451.64,77.172L456.2,76.788L460.912,77.332L465.624,77.908L470.185,80.979L474.897,81.235L479.457,81.395L484.169,79.636L488.882,80.084L493.29,78.58L498.002,80.436L502.562,78.26L507.275,76.66L511.835,73.237L516.547,71.062L521.26,71.349L525.82,72.565L530.532,74.133L535.092,72.757L539.805,72.725L544.517,70.966L548.773,68.278L553.485,67.222L558.046,65.911L562.758,57.528L567.318,57.464L572.03,58.424L576.743,57.848L581.303,57.112L586.015,60.696L590.575,60.216L595.288,60.472L600,59.672"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,368)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,348)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Finance</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,70.769L44.712,70.386L49.121,70.833L53.833,71.761L58.393,71.825L63.105,71.153L67.666,71.985L72.378,71.249L77.09,72.081L81.65,70.897L86.363,72.177L90.923,71.665L95.635,70.642L100.347,70.546L104.604,71.313L109.316,70.642L113.876,71.953L118.588,70.098L123.149,68.818L127.861,69.874L132.573,69.49L137.134,69.074L141.846,67.826L146.406,69.81L151.118,69.522L155.831,67.89L160.087,68.882L164.799,68.722L169.359,67.186L174.072,66.13L178.632,67.026L183.344,67.09L188.056,68.498L192.617,68.082L197.329,67.282L201.889,67.762L206.602,67.602L211.314,68.146L215.57,66.642L220.282,67.73L224.843,67.826L229.555,66.61L234.115,68.978L238.827,67.122L243.54,68.306L248.1,68.37L252.812,68.114L257.372,69.01L262.085,65.171L266.797,66.45L271.205,67.09L275.917,68.082L280.478,68.402L285.19,67.346L289.75,68.242L294.463,68.082L299.175,66.098L303.735,66.61L308.447,68.786L313.008,68.786L317.72,70.002L322.432,68.434L326.688,69.714L331.401,69.906L335.961,68.85L340.673,68.242L345.233,68.178L349.946,68.466L354.658,69.746L359.218,69.906L363.931,69.49L368.491,71.537L373.203,70.61L377.915,69.49L382.172,68.53L386.884,68.69L391.444,68.818L396.156,68.498L400.717,67.538L405.429,69.65L410.141,70.546L414.701,71.313L419.414,70.737L423.974,70.801L428.686,70.61L433.398,68.626L437.655,70.002L442.367,70.674L446.927,69.074L451.64,68.37L456.2,68.242L460.912,66.194L465.624,67.954L470.185,68.242L474.897,69.714L479.457,67.986L484.169,68.946L488.882,67.73L493.29,67.73L498.002,67.698L502.562,66.514L507.275,67.282L511.835,66.866L516.547,64.979L521.26,65.906L525.82,64.179L530.532,62.259L535.092,60.788L539.805,59.796L544.517,57.684L548.773,57.62L553.485,60.116L558.046,60.916L562.758,61.651L567.318,59.828L572.03,59.956L576.743,57.044L581.303,57.396L586.015,58.26L590.575,56.788L595.288,58.132L600,55.413"></path>
+      <path d="M40,90.769L44.712,90.386L49.121,90.833L53.833,91.761L58.393,91.825L63.105,91.153L67.666,91.985L72.378,91.249L77.09,92.081L81.65,90.897L86.363,92.177L90.923,91.665L95.635,90.642L100.347,90.546L104.604,91.313L109.316,90.642L113.876,91.953L118.588,90.098L123.149,88.818L127.861,89.874L132.573,89.49L137.134,89.074L141.846,87.826L146.406,89.81L151.118,89.522L155.831,87.89L160.087,88.882L164.799,88.722L169.359,87.186L174.072,86.13L178.632,87.026L183.344,87.09L188.056,88.498L192.617,88.082L197.329,87.282L201.889,87.762L206.602,87.602L211.314,88.146L215.57,86.642L220.282,87.73L224.843,87.826L229.555,86.61L234.115,88.978L238.827,87.122L243.54,88.306L248.1,88.37L252.812,88.114L257.372,89.01L262.085,85.171L266.797,86.45L271.205,87.09L275.917,88.082L280.478,88.402L285.19,87.346L289.75,88.242L294.463,88.082L299.175,86.098L303.735,86.61L308.447,88.786L313.008,88.786L317.72,90.002L322.432,88.434L326.688,89.714L331.401,89.906L335.961,88.85L340.673,88.242L345.233,88.178L349.946,88.466L354.658,89.746L359.218,89.906L363.931,89.49L368.491,91.537L373.203,90.61L377.915,89.49L382.172,88.53L386.884,88.69L391.444,88.818L396.156,88.498L400.717,87.538L405.429,89.65L410.141,90.546L414.701,91.313L419.414,90.737L423.974,90.801L428.686,90.61L433.398,88.626L437.655,90.002L442.367,90.674L446.927,89.074L451.64,88.37L456.2,88.242L460.912,86.194L465.624,87.954L470.185,88.242L474.897,89.714L479.457,87.986L484.169,88.946L488.882,87.73L493.29,87.73L498.002,87.698L502.562,86.514L507.275,87.282L511.835,86.866L516.547,84.979L521.26,85.906L525.82,84.179L530.532,82.259L535.092,80.788L539.805,79.796L544.517,77.684L548.773,77.62L553.485,80.116L558.046,80.916L562.758,81.651L567.318,79.828L572.03,79.956L576.743,77.044L581.303,77.396L586.015,78.26L590.575,76.788L595.288,78.132L600,75.413"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,455)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,435)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Government</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,64.307L44.712,64.979L49.121,68.114L53.833,69.458L58.393,66.226L63.105,58.772L67.666,60.628L72.378,59.412L77.09,65.011L81.65,65.555L86.363,65.779L90.923,66.386L95.635,63.251L100.347,68.53L104.604,66.706L109.316,66.258L113.876,66.514L118.588,61.267L123.149,60.532L127.861,60.788L132.573,64.051L137.134,64.339L141.846,64.627L146.406,64.659L151.118,62.515L155.831,61.811L160.087,62.803L164.799,63.763L169.359,62.579L174.072,60.116L178.632,57.428L183.344,58.996L188.056,61.107L192.617,62.099L197.329,63.091L201.889,63.795L206.602,59.796L211.314,62.611L215.57,61.235L220.282,63.987L224.843,62.771L229.555,55.541L234.115,54.101L238.827,54.229L243.54,60.276L248.1,62.067L252.812,60.724L257.372,61.555L262.085,61.715L266.797,62.387L271.205,61.107L275.917,64.211L280.478,63.091L285.19,59.508L289.75,54.357L294.463,56.436L299.175,59.892L303.735,60.116L308.447,61.619L313.008,62.099L317.72,60.308L322.432,62.963L326.688,63.091L331.401,62.771L335.961,63.571L340.673,56.276L345.233,56.212L349.946,56.82L354.658,59.892L359.218,62.003L363.931,62.259L368.491,65.491L373.203,63.443L377.915,62.963L382.172,63.315L386.884,64.819L391.444,64.339L396.156,59.572L400.717,56.98L405.429,59.028L410.141,65.395L414.701,64.499L419.414,65.267L423.974,65.427L428.686,62.835L433.398,65.107L437.655,64.659L442.367,65.011L446.927,64.371L451.64,59.764L456.2,55.541L460.912,55.829L465.624,61.267L470.185,62.323L474.897,62.643L479.457,63.635L484.169,62.995L488.882,66.162L493.29,64.467L498.002,66.13L502.562,63.315L507.275,57.14L511.835,53.429L516.547,54.997L521.26,59.732L525.82,60.404L530.532,61.203L535.092,61.715L539.805,57.204L544.517,60.052L548.773,58.932L553.485,59.668L558.046,55.605L562.758,46.358L567.318,41.943L572.03,42.295L576.743,48.374L581.303,52.949L586.015,54.133L590.575,52.565L595.288,47.734L600,49.91"></path>
+      <path d="M40,84.307L44.712,84.979L49.121,88.114L53.833,89.458L58.393,86.226L63.105,78.772L67.666,80.628L72.378,79.412L77.09,85.011L81.65,85.555L86.363,85.779L90.923,86.386L95.635,83.251L100.347,88.53L104.604,86.706L109.316,86.258L113.876,86.514L118.588,81.267L123.149,80.532L127.861,80.788L132.573,84.051L137.134,84.339L141.846,84.627L146.406,84.659L151.118,82.515L155.831,81.811L160.087,82.803L164.799,83.763L169.359,82.579L174.072,80.116L178.632,77.428L183.344,78.996L188.056,81.107L192.617,82.099L197.329,83.091L201.889,83.795L206.602,79.796L211.314,82.611L215.57,81.235L220.282,83.987L224.843,82.771L229.555,75.541L234.115,74.101L238.827,74.229L243.54,80.276L248.1,82.067L252.812,80.724L257.372,81.555L262.085,81.715L266.797,82.387L271.205,81.107L275.917,84.211L280.478,83.091L285.19,79.508L289.75,74.357L294.463,76.436L299.175,79.892L303.735,80.116L308.447,81.619L313.008,82.099L317.72,80.308L322.432,82.963L326.688,83.091L331.401,82.771L335.961,83.571L340.673,76.276L345.233,76.212L349.946,76.82L354.658,79.892L359.218,82.003L363.931,82.259L368.491,85.491L373.203,83.443L377.915,82.963L382.172,83.315L386.884,84.819L391.444,84.339L396.156,79.572L400.717,76.98L405.429,79.028L410.141,85.395L414.701,84.499L419.414,85.267L423.974,85.427L428.686,82.835L433.398,85.107L437.655,84.659L442.367,85.011L446.927,84.371L451.64,79.764L456.2,75.541L460.912,75.829L465.624,81.267L470.185,82.323L474.897,82.643L479.457,83.635L484.169,82.995L488.882,86.162L493.29,84.467L498.002,86.13L502.562,83.315L507.275,77.14L511.835,73.429L516.547,74.997L521.26,79.732L525.82,80.404L530.532,81.203L535.092,81.715L539.805,77.204L544.517,80.052L548.773,78.932L553.485,79.668L558.046,75.605L562.758,66.358L567.318,61.943L572.03,62.295L576.743,68.374L581.303,72.949L586.015,74.133L590.575,72.565L595.288,67.734L600,69.91"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,542)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,522)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Information</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,74.065L44.712,74.481L49.121,73.585L53.833,75.025L58.393,73.873L63.105,74.801L67.666,73.457L72.378,73.489L77.09,73.905L81.65,74.993L86.363,74.321L90.923,73.233L95.635,72.913L100.347,74.577L104.604,73.329L109.316,73.329L113.876,72.817L118.588,72.849L123.149,71.473L127.861,71.345L132.573,71.057L137.134,70.61L141.846,70.354L146.406,69.266L151.118,69.65L155.831,69.138L160.087,69.554L164.799,69.842L169.359,69.746L174.072,69.906L178.632,69.618L183.344,69.426L188.056,70.674L192.617,71.313L197.329,71.025L201.889,69.906L206.602,70.29L211.314,67.794L215.57,69.522L220.282,69.49L224.843,70.034L229.555,70.418L234.115,70.897L238.827,70.897L243.54,70.13L248.1,72.241L252.812,69.842L257.372,70.897L262.085,70.514L266.797,71.857L271.205,71.153L275.917,72.689L280.478,71.985L285.19,72.561L289.75,72.497L294.463,71.953L299.175,72.369L303.735,72.145L308.447,72.081L313.008,72.529L317.72,72.689L322.432,71.537L326.688,72.401L331.401,72.369L335.961,73.425L340.673,72.945L345.233,73.521L349.946,73.073L354.658,72.689L359.218,72.881L363.931,72.561L368.491,73.969L373.203,74.705L377.915,74.257L382.172,74.353L386.884,73.841L391.444,73.009L396.156,74.417L400.717,74.769L405.429,73.841L410.141,72.625L414.701,74.353L419.414,73.681L423.974,74.609L428.686,73.489L433.398,73.617L437.655,74.577L442.367,75.6L446.927,74.545L451.64,74.417L456.2,74.481L460.912,73.585L465.624,74.097L470.185,74.225L474.897,73.841L479.457,74.065L484.169,72.657L488.882,71.889L493.29,73.105L498.002,73.489L502.562,72.625L507.275,73.041L511.835,73.553L516.547,73.457L521.26,72.753L525.82,72.689L530.532,72.529L535.092,71.057L539.805,70.642L544.517,70.897L548.773,70.002L553.485,67.826L558.046,68.37L562.758,66.962L567.318,66.13L572.03,66.61L576.743,66.482L581.303,69.714L586.015,70.29L590.575,69.874L595.288,68.05L600,68.466"></path>
+      <path d="M40,94.065L44.712,94.481L49.121,93.585L53.833,95.025L58.393,93.873L63.105,94.801L67.666,93.457L72.378,93.489L77.09,93.905L81.65,94.993L86.363,94.321L90.923,93.233L95.635,92.913L100.347,94.577L104.604,93.329L109.316,93.329L113.876,92.817L118.588,92.849L123.149,91.473L127.861,91.345L132.573,91.057L137.134,90.61L141.846,90.354L146.406,89.266L151.118,89.65L155.831,89.138L160.087,89.554L164.799,89.842L169.359,89.746L174.072,89.906L178.632,89.618L183.344,89.426L188.056,90.674L192.617,91.313L197.329,91.025L201.889,89.906L206.602,90.29L211.314,87.794L215.57,89.522L220.282,89.49L224.843,90.034L229.555,90.418L234.115,90.897L238.827,90.897L243.54,90.13L248.1,92.241L252.812,89.842L257.372,90.897L262.085,90.514L266.797,91.857L271.205,91.153L275.917,92.689L280.478,91.985L285.19,92.561L289.75,92.497L294.463,91.953L299.175,92.369L303.735,92.145L308.447,92.081L313.008,92.529L317.72,92.689L322.432,91.537L326.688,92.401L331.401,92.369L335.961,93.425L340.673,92.945L345.233,93.521L349.946,93.073L354.658,92.689L359.218,92.881L363.931,92.561L368.491,93.969L373.203,94.705L377.915,94.257L382.172,94.353L386.884,93.841L391.444,93.009L396.156,94.417L400.717,94.769L405.429,93.841L410.141,92.625L414.701,94.353L419.414,93.681L423.974,94.609L428.686,93.489L433.398,93.617L437.655,94.577L442.367,95.6L446.927,94.545L451.64,94.417L456.2,94.481L460.912,93.585L465.624,94.097L470.185,94.225L474.897,93.841L479.457,94.065L484.169,92.657L488.882,91.889L493.29,93.105L498.002,93.489L502.562,92.625L507.275,93.041L511.835,93.553L516.547,93.457L521.26,92.753L525.82,92.689L530.532,92.529L535.092,91.057L539.805,90.642L544.517,90.897L548.773,90.002L553.485,87.826L558.046,88.37L562.758,86.962L567.318,86.13L572.03,86.61L576.743,86.482L581.303,89.714L586.015,90.29L590.575,89.874L595.288,88.05L600,88.466"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,629)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,609)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Leisure and hospitality</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,53.045L44.712,53.141L49.121,52.821L53.833,57.012L58.393,56.468L63.105,51.413L67.666,52.917L72.378,56.468L77.09,57.716L81.65,55.957L86.363,55.861L90.923,57.62L95.635,52.277L100.347,51.797L104.604,51.925L109.316,54.261L113.876,54.677L118.588,51.797L123.149,52.053L127.861,53.525L132.573,49.27L137.134,49.174L141.846,48.15L146.406,48.054L151.118,47.766L155.831,46.934L160.087,46.838L164.799,47.574L169.359,45.367L174.072,44.983L178.632,46.103L183.344,49.782L188.056,49.75L192.617,47.478L197.329,46.774L201.889,48.566L206.602,44.503L211.314,41.432L215.57,44.951L220.282,46.518L224.843,47.51L229.555,44.535L234.115,45.431L238.827,44.471L243.54,46.774L248.1,48.214L252.812,46.39L257.372,49.75L262.085,42.967L266.797,46.486L271.205,44.823L275.917,48.47L280.478,46.806L285.19,40.024L289.75,47.19L294.463,45.751L299.175,50.742L303.735,50.774L308.447,48.758L313.008,50.87L317.72,46.295L322.432,45.815L326.688,47.126L331.401,49.846L335.961,47.862L340.673,47.67L345.233,48.342L349.946,51.062L354.658,51.126L359.218,52.597L363.931,47.158L368.491,48.31L373.203,48.95L377.915,44.791L382.172,48.726L386.884,49.846L391.444,51.509L396.156,47.926L400.717,50.326L405.429,50.71L410.141,52.149L414.701,52.629L419.414,51.317L423.974,55.637L428.686,48.918L433.398,49.942L437.655,51.03L442.367,51.765L446.927,51.477L451.64,48.726L456.2,48.63L460.912,50.006L465.624,49.526L470.185,48.918L474.897,46.518L479.457,47.318L484.169,40.44L488.882,44.279L493.29,47.862L498.002,50.102L502.562,43.703L507.275,41.144L511.835,40.568L516.547,42.167L521.26,45.143L525.82,42.039L530.532,37.016L535.092,39.352L539.805,30.49L544.517,30.81L548.773,30.586L553.485,35.769L558.046,26.906L562.758,24.059L567.318,26.874L572.03,25.723L576.743,31.066L581.303,26.747L586.015,29.306L590.575,26.107L595.288,20.348L600,26.97"></path>
+      <path d="M40,73.045L44.712,73.141L49.121,72.821L53.833,77.012L58.393,76.468L63.105,71.413L67.666,72.917L72.378,76.468L77.09,77.716L81.65,75.957L86.363,75.861L90.923,77.62L95.635,72.277L100.347,71.797L104.604,71.925L109.316,74.261L113.876,74.677L118.588,71.797L123.149,72.053L127.861,73.525L132.573,69.27L137.134,69.174L141.846,68.15L146.406,68.054L151.118,67.766L155.831,66.934L160.087,66.838L164.799,67.574L169.359,65.367L174.072,64.983L178.632,66.103L183.344,69.782L188.056,69.75L192.617,67.478L197.329,66.774L201.889,68.566L206.602,64.503L211.314,61.432L215.57,64.951L220.282,66.518L224.843,67.51L229.555,64.535L234.115,65.431L238.827,64.471L243.54,66.774L248.1,68.214L252.812,66.39L257.372,69.75L262.085,62.967L266.797,66.486L271.205,64.823L275.917,68.47L280.478,66.806L285.19,60.024L289.75,67.19L294.463,65.751L299.175,70.742L303.735,70.774L308.447,68.758L313.008,70.87L317.72,66.295L322.432,65.815L326.688,67.126L331.401,69.846L335.961,67.862L340.673,67.67L345.233,68.342L349.946,71.062L354.658,71.126L359.218,72.597L363.931,67.158L368.491,68.31L373.203,68.95L377.915,64.791L382.172,68.726L386.884,69.846L391.444,71.509L396.156,67.926L400.717,70.326L405.429,70.71L410.141,72.149L414.701,72.629L419.414,71.317L423.974,75.637L428.686,68.918L433.398,69.942L437.655,71.03L442.367,71.765L446.927,71.477L451.64,68.726L456.2,68.63L460.912,70.006L465.624,69.526L470.185,68.918L474.897,66.518L479.457,67.318L484.169,60.44L488.882,64.279L493.29,67.862L498.002,70.102L502.562,63.703L507.275,61.144L511.835,60.568L516.547,62.167L521.26,65.143L525.82,62.039L530.532,57.016L535.092,59.352L539.805,50.49L544.517,50.81L548.773,50.586L553.485,55.769L558.046,46.906L562.758,44.059L567.318,46.874L572.03,45.723L576.743,51.066L581.303,46.747L586.015,49.306L590.575,46.107L595.288,40.348L600,46.97"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,716)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,696)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Manufacturing</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,54.581L44.712,55.861L49.121,54.421L53.833,54.517L58.393,56.148L63.105,58.196L67.666,55.413L72.378,56.148L77.09,56.724L81.65,55.893L86.363,56.564L90.923,57.172L95.635,48.918L100.347,49.206L104.604,47.542L109.316,50.71L113.876,49.174L118.588,47.478L123.149,44.343L127.861,45.335L132.573,46.199L137.134,43.991L141.846,42.615L146.406,40.568L151.118,34.009L155.831,36.6L160.087,34.329L164.799,35.769L169.359,39.864L174.072,40.088L178.632,40.152L183.344,42.615L188.056,43.639L192.617,44.599L197.329,42.391L201.889,40.056L206.602,36.409L211.314,38.744L215.57,38.968L220.282,39.704L224.843,41.272L229.555,38.648L234.115,39.896L238.827,40.12L243.54,40.472L248.1,44.759L252.812,44.983L257.372,45.271L262.085,42.551L266.797,43.063L271.205,43.415L275.917,45.943L280.478,47.158L285.19,47.446L289.75,45.463L294.463,51.189L299.175,50.806L303.735,49.782L308.447,49.11L313.008,50.166L317.72,49.622L322.432,49.622L326.688,49.942L331.401,52.693L335.961,54.293L340.673,54.293L345.233,49.814L349.946,53.525L354.658,53.269L359.218,52.469L363.931,51.733L368.491,53.845L373.203,53.173L377.915,51.797L382.172,55.637L386.884,54.229L391.444,56.308L396.156,57.748L400.717,54.517L405.429,56.308L410.141,57.844L414.701,58.292L419.414,55.605L423.974,56.948L428.686,54.005L433.398,53.301L437.655,54.325L442.367,54.101L446.927,57.236L451.64,57.172L456.2,58.196L460.912,58.996L465.624,56.532L470.185,54.741L474.897,53.685L479.457,53.365L484.169,51.285L488.882,51.829L493.29,51.477L498.002,52.597L502.562,49.942L507.275,50.486L511.835,49.014L516.547,47.35L521.26,46.582L525.82,45.847L530.532,41.463L535.092,35.993L539.805,23.323L544.517,19.772L548.773,16.893L553.485,15.101L558.046,13.757L562.758,13.757L567.318,14.461L572.03,18.364L576.743,18.044L581.303,17.788L586.015,17.852L590.575,22.171L595.288,16.701L600,20.028"></path>
+      <path d="M40,74.581L44.712,75.861L49.121,74.421L53.833,74.517L58.393,76.148L63.105,78.196L67.666,75.413L72.378,76.148L77.09,76.724L81.65,75.893L86.363,76.564L90.923,77.172L95.635,68.918L100.347,69.206L104.604,67.542L109.316,70.71L113.876,69.174L118.588,67.478L123.149,64.343L127.861,65.335L132.573,66.199L137.134,63.991L141.846,62.615L146.406,60.568L151.118,54.009L155.831,56.6L160.087,54.329L164.799,55.769L169.359,59.864L174.072,60.088L178.632,60.152L183.344,62.615L188.056,63.639L192.617,64.599L197.329,62.391L201.889,60.056L206.602,56.409L211.314,58.744L215.57,58.968L220.282,59.704L224.843,61.272L229.555,58.648L234.115,59.896L238.827,60.12L243.54,60.472L248.1,64.759L252.812,64.983L257.372,65.271L262.085,62.551L266.797,63.063L271.205,63.415L275.917,65.943L280.478,67.158L285.19,67.446L289.75,65.463L294.463,71.189L299.175,70.806L303.735,69.782L308.447,69.11L313.008,70.166L317.72,69.622L322.432,69.622L326.688,69.942L331.401,72.693L335.961,74.293L340.673,74.293L345.233,69.814L349.946,73.525L354.658,73.269L359.218,72.469L363.931,71.733L368.491,73.845L373.203,73.173L377.915,71.797L382.172,75.637L386.884,74.229L391.444,76.308L396.156,77.748L400.717,74.517L405.429,76.308L410.141,77.844L414.701,78.292L419.414,75.605L423.974,76.948L428.686,74.005L433.398,73.301L437.655,74.325L442.367,74.101L446.927,77.236L451.64,77.172L456.2,78.196L460.912,78.996L465.624,76.532L470.185,74.741L474.897,73.685L479.457,73.365L484.169,71.285L488.882,71.829L493.29,71.477L498.002,72.597L502.562,69.942L507.275,70.486L511.835,69.014L516.547,67.35L521.26,66.582L525.82,65.847L530.532,61.463L535.092,55.993L539.805,43.323L544.517,39.772L548.773,36.893L553.485,35.101L558.046,33.757L562.758,33.757L567.318,34.461L572.03,38.364L576.743,38.044L581.303,37.788L586.015,37.852L590.575,42.171L595.288,36.701L600,40.028"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,803)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,783)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Mining and Extraction</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,77.456L44.712,77.264L49.121,77.52L53.833,77.424L58.393,77.2L63.105,77.648L67.666,77.552L72.378,77.328L77.09,77.264L81.65,76.816L86.363,77.712L90.923,77.424L95.635,77.712L100.347,77.2L104.604,77.616L109.316,77.296L113.876,76.976L118.588,77.232L123.149,77.52L127.861,77.488L132.573,77.328L137.134,77.04L141.846,77.424L146.406,77.2L151.118,77.008L155.831,76.944L160.087,77.168L164.799,77.008L169.359,77.264L174.072,76.944L178.632,77.456L183.344,77.04L188.056,76.72L192.617,76.912L197.329,77.04L201.889,76.624L206.602,76.336L211.314,76.752L215.57,76.592L220.282,76.752L224.843,76.784L229.555,76.912L234.115,76.688L238.827,77.424L243.54,77.264L248.1,77.072L252.812,76.976L257.372,77.04L262.085,77.072L266.797,77.296L271.205,77.36L275.917,76.976L280.478,77.36L285.19,77.2L289.75,77.168L294.463,77.744L299.175,77.808L303.735,77.584L308.447,77.424L313.008,77.552L317.72,77.136L322.432,77.264L326.688,77.04L331.401,77.456L335.961,77.552L340.673,77.264L345.233,77.36L349.946,77.68L354.658,77.68L359.218,78L363.931,77.488L368.491,77.328L373.203,77.232L377.915,77.264L382.172,77.616L386.884,77.52L391.444,77.424L396.156,77.072L400.717,77.264L405.429,77.04L410.141,77.616L414.701,77.584L419.414,77.36L423.974,77.264L428.686,76.944L433.398,77.008L437.655,77.296L442.367,77.52L446.927,77.36L451.64,77.008L456.2,77.008L460.912,77.008L465.624,77.264L470.185,77.776L474.897,77.552L479.457,77.296L484.169,77.168L488.882,77.552L493.29,77.168L498.002,77.168L502.562,77.168L507.275,77.168L511.835,77.648L516.547,77.52L521.26,77.264L525.82,77.584L530.532,77.04L535.092,76.592L539.805,76.176L544.517,76.048L548.773,74.705L553.485,74.065L558.046,74.929L562.758,74.865L567.318,75.025L572.03,75.089L576.743,75.632L581.303,75.377L586.015,74.993L590.575,75.217L595.288,75.888L600,75.537"></path>
+      <path d="M40,97.456L44.712,97.264L49.121,97.52L53.833,97.424L58.393,97.2L63.105,97.648L67.666,97.552L72.378,97.328L77.09,97.264L81.65,96.816L86.363,97.712L90.923,97.424L95.635,97.712L100.347,97.2L104.604,97.616L109.316,97.296L113.876,96.976L118.588,97.232L123.149,97.52L127.861,97.488L132.573,97.328L137.134,97.04L141.846,97.424L146.406,97.2L151.118,97.008L155.831,96.944L160.087,97.168L164.799,97.008L169.359,97.264L174.072,96.944L178.632,97.456L183.344,97.04L188.056,96.72L192.617,96.912L197.329,97.04L201.889,96.624L206.602,96.336L211.314,96.752L215.57,96.592L220.282,96.752L224.843,96.784L229.555,96.912L234.115,96.688L238.827,97.424L243.54,97.264L248.1,97.072L252.812,96.976L257.372,97.04L262.085,97.072L266.797,97.296L271.205,97.36L275.917,96.976L280.478,97.36L285.19,97.2L289.75,97.168L294.463,97.744L299.175,97.808L303.735,97.584L308.447,97.424L313.008,97.552L317.72,97.136L322.432,97.264L326.688,97.04L331.401,97.456L335.961,97.552L340.673,97.264L345.233,97.36L349.946,97.68L354.658,97.68L359.218,98L363.931,97.488L368.491,97.328L373.203,97.232L377.915,97.264L382.172,97.616L386.884,97.52L391.444,97.424L396.156,97.072L400.717,97.264L405.429,97.04L410.141,97.616L414.701,97.584L419.414,97.36L423.974,97.264L428.686,96.944L433.398,97.008L437.655,97.296L442.367,97.52L446.927,97.36L451.64,97.008L456.2,97.008L460.912,97.008L465.624,97.264L470.185,97.776L474.897,97.552L479.457,97.296L484.169,97.168L488.882,97.552L493.29,97.168L498.002,97.168L502.562,97.168L507.275,97.168L511.835,97.648L516.547,97.52L521.26,97.264L525.82,97.584L530.532,97.04L535.092,96.592L539.805,96.176L544.517,96.048L548.773,94.705L553.485,94.065L558.046,94.929L562.758,94.865L567.318,95.025L572.03,95.089L576.743,95.632L581.303,95.377L586.015,94.993L590.575,95.217L595.288,95.888L600,95.537"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,890)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,870)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Other</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,69.298L44.712,70.642L49.121,70.162L53.833,70.386L58.393,69.938L63.105,70.865L67.666,71.601L72.378,72.081L77.09,71.025L81.65,72.913L86.363,71.121L90.923,72.721L95.635,71.761L100.347,70.29L104.604,71.665L109.316,71.025L113.876,72.561L118.588,70.194L123.149,70.769L127.861,70.354L132.573,70.865L137.134,70.418L141.846,69.874L146.406,69.202L151.118,68.338L155.831,67.218L160.087,68.018L164.799,69.49L169.359,69.618L174.072,67.346L178.632,66.674L183.344,66.77L188.056,69.074L192.617,69.362L197.329,68.978L201.889,70.354L206.602,68.338L211.314,67.474L215.57,66.226L220.282,67.474L224.843,67.218L229.555,66.578L234.115,65.107L238.827,66.13L243.54,67.25L248.1,65.97L252.812,66.642L257.372,69.17L262.085,67.762L266.797,66.354L271.205,66.354L275.917,66.962L280.478,68.146L285.19,67.634L289.75,66.994L294.463,67.154L299.175,68.434L303.735,68.466L308.447,68.658L313.008,69.234L317.72,68.786L322.432,67.666L326.688,68.21L331.401,68.274L335.961,68.018L340.673,68.754L345.233,69.298L349.946,68.274L354.658,68.242L359.218,67.858L363.931,68.466L368.491,69.458L373.203,68.21L377.915,69.074L382.172,68.722L386.884,69.554L391.444,69.586L396.156,69.586L400.717,68.306L405.429,67.154L410.141,68.146L414.701,69.49L419.414,68.274L423.974,68.274L428.686,69.266L433.398,69.842L437.655,70.961L442.367,70.897L446.927,70.322L451.64,69.874L456.2,70.29L460.912,70.418L465.624,69.842L470.185,72.241L474.897,69.906L479.457,70.546L484.169,69.618L488.882,68.05L493.29,69.01L498.002,70.034L502.562,69.266L507.275,67.762L511.835,66.802L516.547,64.883L521.26,66.098L525.82,67.378L530.532,64.179L535.092,66.322L539.805,64.275L544.517,63.571L548.773,66.002L553.485,65.171L558.046,62.835L562.758,60.244L567.318,62.387L572.03,61.171L576.743,63.283L581.303,60.756L586.015,62.355L590.575,61.651L595.288,58.58L600,58.772"></path>
+      <path d="M40,89.298L44.712,90.642L49.121,90.162L53.833,90.386L58.393,89.938L63.105,90.865L67.666,91.601L72.378,92.081L77.09,91.025L81.65,92.913L86.363,91.121L90.923,92.721L95.635,91.761L100.347,90.29L104.604,91.665L109.316,91.025L113.876,92.561L118.588,90.194L123.149,90.769L127.861,90.354L132.573,90.865L137.134,90.418L141.846,89.874L146.406,89.202L151.118,88.338L155.831,87.218L160.087,88.018L164.799,89.49L169.359,89.618L174.072,87.346L178.632,86.674L183.344,86.77L188.056,89.074L192.617,89.362L197.329,88.978L201.889,90.354L206.602,88.338L211.314,87.474L215.57,86.226L220.282,87.474L224.843,87.218L229.555,86.578L234.115,85.107L238.827,86.13L243.54,87.25L248.1,85.97L252.812,86.642L257.372,89.17L262.085,87.762L266.797,86.354L271.205,86.354L275.917,86.962L280.478,88.146L285.19,87.634L289.75,86.994L294.463,87.154L299.175,88.434L303.735,88.466L308.447,88.658L313.008,89.234L317.72,88.786L322.432,87.666L326.688,88.21L331.401,88.274L335.961,88.018L340.673,88.754L345.233,89.298L349.946,88.274L354.658,88.242L359.218,87.858L363.931,88.466L368.491,89.458L373.203,88.21L377.915,89.074L382.172,88.722L386.884,89.554L391.444,89.586L396.156,89.586L400.717,88.306L405.429,87.154L410.141,88.146L414.701,89.49L419.414,88.274L423.974,88.274L428.686,89.266L433.398,89.842L437.655,90.961L442.367,90.897L446.927,90.322L451.64,89.874L456.2,90.29L460.912,90.418L465.624,89.842L470.185,92.241L474.897,89.906L479.457,90.546L484.169,89.618L488.882,88.05L493.29,89.01L498.002,90.034L502.562,89.266L507.275,87.762L511.835,86.802L516.547,84.883L521.26,86.098L525.82,87.378L530.532,84.179L535.092,86.322L539.805,84.275L544.517,83.571L548.773,86.002L553.485,85.171L558.046,82.835L562.758,80.244L567.318,82.387L572.03,81.171L576.743,83.283L581.303,80.756L586.015,82.355L590.575,81.651L595.288,78.58L600,78.772"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,977)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,957)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Self-employed</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,70.418L44.712,69.682L49.121,71.249L53.833,71.089L58.393,71.473L63.105,72.049L67.666,70.961L72.378,72.113L77.09,71.249L81.65,70.833L86.363,69.33L90.923,72.369L95.635,71.857L100.347,71.377L104.604,72.273L109.316,71.153L113.876,71.473L118.588,72.081L123.149,71.953L127.861,70.29L132.573,69.874L137.134,70.162L141.846,70.578L146.406,70.098L151.118,69.65L155.831,70.066L160.087,71.121L164.799,69.906L169.359,69.618L174.072,70.194L178.632,70.098L183.344,69.394L188.056,69.554L192.617,69.266L197.329,68.562L201.889,67.602L206.602,67.698L211.314,68.338L215.57,69.138L220.282,70.13L224.843,69.394L229.555,68.626L234.115,69.426L238.827,68.402L243.54,68.882L248.1,67.25L252.812,68.21L257.372,68.498L262.085,68.402L266.797,69.746L271.205,69.746L275.917,70.322L280.478,68.882L285.19,68.274L289.75,68.754L294.463,67.698L299.175,66.482L303.735,68.434L308.447,66.77L313.008,67.154L317.72,66.994L322.432,66.45L326.688,68.082L331.401,69.33L335.961,68.498L340.673,69.49L345.233,69.042L349.946,70.098L354.658,69.042L359.218,69.906L363.931,67.858L368.491,67.602L373.203,67.154L377.915,67.442L382.172,68.466L386.884,67.378L391.444,70.034L396.156,70.226L400.717,68.754L405.429,68.274L410.141,68.498L414.701,69.266L419.414,69.842L423.974,68.882L428.686,66.034L433.398,68.466L437.655,68.114L442.367,70.386L446.927,69.234L451.64,69.81L456.2,67.698L460.912,67.986L465.624,68.338L470.185,67.25L474.897,67.314L479.457,67.634L484.169,67.25L488.882,67.186L493.29,66.994L498.002,67.25L502.562,66.354L507.275,66.418L511.835,67.026L516.547,65.97L521.26,64.819L525.82,65.395L530.532,64.915L535.092,60.18L539.805,56.98L544.517,59.316L548.773,58.068L553.485,62.451L558.046,61.107L562.758,62.963L567.318,60.404L572.03,59.86L576.743,57.716L581.303,58.548L586.015,59.124L590.575,58.58L595.288,54.709L600,56.308"></path>
+      <path d="M40,90.418L44.712,89.682L49.121,91.249L53.833,91.089L58.393,91.473L63.105,92.049L67.666,90.961L72.378,92.113L77.09,91.249L81.65,90.833L86.363,89.33L90.923,92.369L95.635,91.857L100.347,91.377L104.604,92.273L109.316,91.153L113.876,91.473L118.588,92.081L123.149,91.953L127.861,90.29L132.573,89.874L137.134,90.162L141.846,90.578L146.406,90.098L151.118,89.65L155.831,90.066L160.087,91.121L164.799,89.906L169.359,89.618L174.072,90.194L178.632,90.098L183.344,89.394L188.056,89.554L192.617,89.266L197.329,88.562L201.889,87.602L206.602,87.698L211.314,88.338L215.57,89.138L220.282,90.13L224.843,89.394L229.555,88.626L234.115,89.426L238.827,88.402L243.54,88.882L248.1,87.25L252.812,88.21L257.372,88.498L262.085,88.402L266.797,89.746L271.205,89.746L275.917,90.322L280.478,88.882L285.19,88.274L289.75,88.754L294.463,87.698L299.175,86.482L303.735,88.434L308.447,86.77L313.008,87.154L317.72,86.994L322.432,86.45L326.688,88.082L331.401,89.33L335.961,88.498L340.673,89.49L345.233,89.042L349.946,90.098L354.658,89.042L359.218,89.906L363.931,87.858L368.491,87.602L373.203,87.154L377.915,87.442L382.172,88.466L386.884,87.378L391.444,90.034L396.156,90.226L400.717,88.754L405.429,88.274L410.141,88.498L414.701,89.266L419.414,89.842L423.974,88.882L428.686,86.034L433.398,88.466L437.655,88.114L442.367,90.386L446.927,89.234L451.64,89.81L456.2,87.698L460.912,87.986L465.624,88.338L470.185,87.25L474.897,87.314L479.457,87.634L484.169,87.25L488.882,87.186L493.29,86.994L498.002,87.25L502.562,86.354L507.275,86.418L511.835,87.026L516.547,85.97L521.26,84.819L525.82,85.395L530.532,84.915L535.092,80.18L539.805,76.98L544.517,79.316L548.773,78.068L553.485,82.451L558.046,81.107L562.758,82.963L567.318,80.404L572.03,79.86L576.743,77.716L581.303,78.548L586.015,79.124L590.575,78.58L595.288,74.709L600,76.308"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,1064)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
+  <g aria-label="facet" transform="translate(0,1044)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Transportation and Utilities</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
     <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,70.514L44.712,70.929L49.121,71.921L53.833,71.953L58.393,71.985L63.105,72.209L67.666,70.769L72.378,71.729L77.09,70.674L81.65,73.169L86.363,73.937L90.923,72.689L95.635,71.857L100.347,72.017L104.604,71.889L109.316,70.642L113.876,72.369L118.588,70.322L123.149,70.514L127.861,70.833L132.573,71.217L137.134,67.794L141.846,68.402L146.406,68.146L151.118,66.29L155.831,67.474L160.087,68.05L164.799,69.106L169.359,69.842L174.072,69.298L178.632,69.426L183.344,70.993L188.056,70.546L192.617,69.682L197.329,70.61L201.889,70.29L206.602,67.474L211.314,67.954L215.57,67.858L220.282,69.298L224.843,69.746L229.555,68.466L234.115,68.818L238.827,69.906L243.54,69.906L248.1,69.746L252.812,69.266L257.372,69.522L262.085,70.29L266.797,68.754L271.205,68.978L275.917,70.418L280.478,70.705L285.19,70.801L289.75,70.674L294.463,70.514L299.175,71.409L303.735,71.057L308.447,71.121L313.008,71.537L317.72,69.234L322.432,70.226L326.688,69.522L331.401,69.842L335.961,70.929L340.673,70.162L345.233,70.961L349.946,72.081L354.658,71.313L359.218,70.034L363.931,71.697L368.491,71.601L373.203,68.882L377.915,69.746L382.172,69.65L386.884,69.362L391.444,70.833L396.156,70.865L400.717,70.482L405.429,71.121L410.141,72.209L414.701,71.473L419.414,72.209L423.974,71.985L428.686,70.13L433.398,70.034L437.655,70.098L442.367,72.049L446.927,71.153L451.64,70.322L456.2,68.178L460.912,71.505L465.624,70.897L470.185,71.089L474.897,70.322L479.457,71.345L484.169,69.394L488.882,68.818L493.29,69.522L498.002,70.226L502.562,69.458L507.275,67.538L511.835,66.578L516.547,68.178L521.26,67.282L525.82,67.954L530.532,67.474L535.092,64.595L539.805,61.363L544.517,60.052L548.773,60.212L553.485,60.756L558.046,61.875L562.758,62.099L567.318,61.715L572.03,60.564L576.743,60.852L581.303,62.707L586.015,62.291L590.575,60.82L595.288,57.044L600,59.156"></path>
+      <path d="M40,90.514L44.712,90.929L49.121,91.921L53.833,91.953L58.393,91.985L63.105,92.209L67.666,90.769L72.378,91.729L77.09,90.674L81.65,93.169L86.363,93.937L90.923,92.689L95.635,91.857L100.347,92.017L104.604,91.889L109.316,90.642L113.876,92.369L118.588,90.322L123.149,90.514L127.861,90.833L132.573,91.217L137.134,87.794L141.846,88.402L146.406,88.146L151.118,86.29L155.831,87.474L160.087,88.05L164.799,89.106L169.359,89.842L174.072,89.298L178.632,89.426L183.344,90.993L188.056,90.546L192.617,89.682L197.329,90.61L201.889,90.29L206.602,87.474L211.314,87.954L215.57,87.858L220.282,89.298L224.843,89.746L229.555,88.466L234.115,88.818L238.827,89.906L243.54,89.906L248.1,89.746L252.812,89.266L257.372,89.522L262.085,90.29L266.797,88.754L271.205,88.978L275.917,90.418L280.478,90.705L285.19,90.801L289.75,90.674L294.463,90.514L299.175,91.409L303.735,91.057L308.447,91.121L313.008,91.537L317.72,89.234L322.432,90.226L326.688,89.522L331.401,89.842L335.961,90.929L340.673,90.162L345.233,90.961L349.946,92.081L354.658,91.313L359.218,90.034L363.931,91.697L368.491,91.601L373.203,88.882L377.915,89.746L382.172,89.65L386.884,89.362L391.444,90.833L396.156,90.865L400.717,90.482L405.429,91.121L410.141,92.209L414.701,91.473L419.414,92.209L423.974,91.985L428.686,90.13L433.398,90.034L437.655,90.098L442.367,92.049L446.927,91.153L451.64,90.322L456.2,88.178L460.912,91.505L465.624,90.897L470.185,91.089L474.897,90.322L479.457,91.345L484.169,89.394L488.882,88.818L493.29,89.522L498.002,90.226L502.562,89.458L507.275,87.538L511.835,86.578L516.547,88.178L521.26,87.282L525.82,87.954L530.532,87.474L535.092,84.595L539.805,81.363L544.517,80.052L548.773,80.212L553.485,80.756L558.046,81.875L562.758,82.099L567.318,81.715L572.03,80.564L576.743,80.852L581.303,82.707L586.015,82.291L590.575,80.82L595.288,77.044L600,79.156"></path>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,1151)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="0" width="560" height="78"></rect>
-    <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-      <path d="M40,46.071L44.712,45.335L49.121,46.614L53.833,52.693L58.393,51.797L63.105,51.285L67.666,52.725L72.378,50.774L77.09,52.757L81.65,54.421L86.363,55.637L90.923,55.189L95.635,49.014L100.347,46.39L104.604,44.887L109.316,51.829L113.876,50.07L118.588,47.51L123.149,51.413L127.861,48.374L132.573,48.118L137.134,47.958L141.846,44.599L146.406,43.703L151.118,39.288L155.831,37.624L160.087,37.464L164.799,38.968L169.359,41.655L174.072,38.392L178.632,41.847L183.344,40.632L188.056,40.6L192.617,39.288L197.329,38.328L201.889,41.272L206.602,35.129L211.314,38.456L215.57,40.344L220.282,39.64L224.843,38.168L229.555,32.185L234.115,33.689L238.827,40.92L243.54,38.744L248.1,40.024L252.812,41.08L257.372,43.479L262.085,33.625L266.797,34.265L271.205,33.721L275.917,38.136L280.478,40.216L285.19,40.248L289.75,40.856L294.463,43.543L299.175,42.007L303.735,41.655L308.447,44.631L313.008,44.215L317.72,36.409L322.432,36.441L326.688,40.536L331.401,41.879L335.961,41.432L340.673,39.768L345.233,39.864L349.946,41.911L354.658,44.855L359.218,44.471L363.931,45.655L368.491,47.094L373.203,39.576L377.915,41.559L382.172,45.367L386.884,46.966L391.444,45.271L396.156,43.351L400.717,43.415L405.429,46.806L410.141,45.815L414.701,46.966L419.414,45.495L423.974,47.19L428.686,40.76L433.398,44.631L437.655,49.398L442.367,50.166L446.927,52.629L451.64,46.742L456.2,43.223L460.912,45.175L465.624,45.207L470.185,49.046L474.897,49.494L479.457,45.783L484.169,42.231L488.882,45.847L493.29,46.326L498.002,48.662L502.562,44.503L507.275,40.952L511.835,35.545L516.547,34.361L521.26,37.208L525.82,36.057L530.532,33.369L535.092,28.954L539.805,20.668L544.517,18.972L548.773,18.812L553.485,19.42L558.046,19.356L562.758,18.46L567.318,18.748L572.03,20.668L576.743,20.188L581.303,16.669L586.015,17.948L590.575,18.844L595.288,9.15L600,11.806"></path>
+  <g aria-label="facet" transform="translate(0,1131)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,59)">Wholesale and Retail Trade</text>
     </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,66.07054963084497)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,34.077112387202625)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,66.07054963084497)">1,000</text>
+      <text y="0.32em" transform="translate(40,34.077112387202625)">2,000</text>
+    </g>
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(40,98)" d="M0,0L0,6"></path>
+      <path transform="translate(151.1183496199783,98)" d="M0,0L0,6"></path>
+      <path transform="translate(262.08469055374593,98)" d="M0,0L0,6"></path>
+      <path transform="translate(373.2030401737242,98)" d="M0,0L0,6"></path>
+      <path transform="translate(484.16938110749186,98)" d="M0,0L0,6"></path>
+      <path transform="translate(595.2877307274701,98)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(40,98)">2000</text>
+      <text y="0.71em" transform="translate(151.1183496199783,98)">2002</text>
+      <text y="0.71em" transform="translate(262.08469055374593,98)">2004</text>
+      <text y="0.71em" transform="translate(373.2030401737242,98)">2006</text>
+      <text y="0.71em" transform="translate(484.16938110749186,98)">2008</text>
+      <text y="0.71em" transform="translate(595.2877307274701,98)">2010</text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="560" height="78"></rect>
+    <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+      <path d="M40,66.071L44.712,65.335L49.121,66.614L53.833,72.693L58.393,71.797L63.105,71.285L67.666,72.725L72.378,70.774L77.09,72.757L81.65,74.421L86.363,75.637L90.923,75.189L95.635,69.014L100.347,66.39L104.604,64.887L109.316,71.829L113.876,70.07L118.588,67.51L123.149,71.413L127.861,68.374L132.573,68.118L137.134,67.958L141.846,64.599L146.406,63.703L151.118,59.288L155.831,57.624L160.087,57.464L164.799,58.968L169.359,61.655L174.072,58.392L178.632,61.847L183.344,60.632L188.056,60.6L192.617,59.288L197.329,58.328L201.889,61.272L206.602,55.129L211.314,58.456L215.57,60.344L220.282,59.64L224.843,58.168L229.555,52.185L234.115,53.689L238.827,60.92L243.54,58.744L248.1,60.024L252.812,61.08L257.372,63.479L262.085,53.625L266.797,54.265L271.205,53.721L275.917,58.136L280.478,60.216L285.19,60.248L289.75,60.856L294.463,63.543L299.175,62.007L303.735,61.655L308.447,64.631L313.008,64.215L317.72,56.409L322.432,56.441L326.688,60.536L331.401,61.879L335.961,61.432L340.673,59.768L345.233,59.864L349.946,61.911L354.658,64.855L359.218,64.471L363.931,65.655L368.491,67.094L373.203,59.576L377.915,61.559L382.172,65.367L386.884,66.966L391.444,65.271L396.156,63.351L400.717,63.415L405.429,66.806L410.141,65.815L414.701,66.966L419.414,65.495L423.974,67.19L428.686,60.76L433.398,64.631L437.655,69.398L442.367,70.166L446.927,72.629L451.64,66.742L456.2,63.223L460.912,65.175L465.624,65.207L470.185,69.046L474.897,69.494L479.457,65.783L484.169,62.231L488.882,65.847L493.29,66.326L498.002,68.662L502.562,64.503L507.275,60.952L511.835,55.545L516.547,54.361L521.26,57.208L525.82,56.057L530.532,53.369L535.092,48.954L539.805,40.668L544.517,38.972L548.773,38.812L553.485,39.42L558.046,39.356L562.758,38.46L567.318,38.748L572.03,40.668L576.743,40.188L581.303,36.669L586.015,37.948L590.575,38.844L595.288,29.15L600,31.806"></path>
+    </g>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ unemployed</text>
   </g>
 </svg>

@@ -13,54 +13,46 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Close" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,333.6656479802122)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,296.8312959604245)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,259.99694394063675)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,223.16259192084902)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,186.32823990106127)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,149.4938878812735)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">120</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,112.65953586148576)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">140</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,75.825183841698)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,38.99083182191024)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">180</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Close</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,333.1656479802122)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,296.3312959604245)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,259.49694394063675)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,222.66259192084902)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,185.82823990106127)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,148.9938878812735)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,112.15953586148576)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,75.325183841698)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,38.49083182191024)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(114.58991228070175,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2014</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(230.65350877192984,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2015</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(346.7171052631579,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2016</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(463.0986842105263,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2017</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(579.1622807017544,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2018</text>
-    </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,333.1656479802122)">20</text>
+    <text y="0.32em" transform="translate(40,296.3312959604245)">40</text>
+    <text y="0.32em" transform="translate(40,259.49694394063675)">60</text>
+    <text y="0.32em" transform="translate(40,222.66259192084902)">80</text>
+    <text y="0.32em" transform="translate(40,185.82823990106127)">100</text>
+    <text y="0.32em" transform="translate(40,148.9938878812735)">120</text>
+    <text y="0.32em" transform="translate(40,112.15953586148576)">140</text>
+    <text y="0.32em" transform="translate(40,75.325183841698)">160</text>
+    <text y="0.32em" transform="translate(40,38.49083182191024)">180</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Close</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(114.08991228070175,370)" d="M0,0L0,6"></path>
+    <path transform="translate(230.15350877192984,370)" d="M0,0L0,6"></path>
+    <path transform="translate(346.2171052631579,370)" d="M0,0L0,6"></path>
+    <path transform="translate(462.5986842105263,370)" d="M0,0L0,6"></path>
+    <path transform="translate(578.6622807017544,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(114.08991228070175,370)">2014</text>
+    <text y="0.71em" transform="translate(230.15350877192984,370)">2015</text>
+    <text y="0.71em" transform="translate(346.2171052631579,370)">2016</text>
+    <text y="0.71em" transform="translate(462.5986842105263,370)">2017</text>
+    <text y="0.71em" transform="translate(578.6622807017544,370)">2018</text>
   </g>
   <g aria-label="area">
     <path fill="rgb(74, 64, 179)" d="M40,250.357L40.318,253.219L40.318,370L40,370Z"></path>

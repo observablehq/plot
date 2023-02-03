@@ -10,7 +10,7 @@ import {cell} from "./cell.js";
 import {frame} from "./frame.js";
 import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
-import {marks} from "../plot.js";
+import {marks} from "../mark.js";
 import {ascending} from "d3";
 
 export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
