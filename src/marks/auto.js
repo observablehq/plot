@@ -77,6 +77,7 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   if (
     sizeReduce === undefined &&
     sizeValue == null &&
+    colorReduce == null &&
     xReduce == null &&
     yReduce == null &&
     (!x || isOrdinal(x)) &&
