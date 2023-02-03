@@ -13,12 +13,9 @@ import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../plot.js";
 import {ascending} from "d3";
 
-// https://github.com/observablehq/stdlib/blob/main/src/table.js
-const nChecks = 20; // number of values to check in each array
-
 export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   // Shorthand: array of primitives should result in a histogram
-  if (x === undefined && y === undefined && arrayIsPrimitive(data)) x = (d) => d;
+  if (x === undefined && y === undefined) x = (d) => d;
 
   // Allow x and y and other dimensions to be specified as shorthand
   // field names (but note that they can also be specified as a
@@ -227,72 +224,6 @@ function isMonotonic(values) {
 
 function makeOptions(value) {
   return isReducer(value) ? {reduce: value} : {value};
-}
-
-// https://github.com/observablehq/stdlib/blob/main/src/table.js
-function arrayIsPrimitive(value) {
-  return isTypedArray(value) || arrayContainsPrimitives(value) || arrayContainsDates(value);
-}
-
-// https://github.com/observablehq/stdlib/blob/main/src/table.js
-function isTypedArray(value) {
-  return (
-    value instanceof Int8Array ||
-    value instanceof Int16Array ||
-    value instanceof Int32Array ||
-    value instanceof Uint8Array ||
-    value instanceof Uint8ClampedArray ||
-    value instanceof Uint16Array ||
-    value instanceof Uint32Array ||
-    value instanceof Float32Array ||
-    value instanceof Float64Array
-  );
-}
-
-// https://github.com/observablehq/stdlib/blob/main/src/table.js
-// Given an array, checks that the first n elements are primitives (number,
-// string, boolean, bigint) of a consistent type.
-function arrayContainsPrimitives(value) {
-  const n = Math.min(nChecks, value.length);
-  if (!(n > 0)) return false;
-  let type;
-  let hasPrimitive = false; // ensure we encounter 1+ primitives
-  for (let i = 0; i < n; ++i) {
-    const v = value[i];
-    if (v == null) continue; // ignore null and undefined
-    const t = typeof v;
-    if (type === undefined) {
-      switch (t) {
-        case "number":
-        case "boolean":
-        case "string":
-        case "bigint":
-          type = t;
-          break;
-        default:
-          return false;
-      }
-    } else if (t !== type) {
-      return false;
-    }
-    hasPrimitive = true;
-  }
-  return hasPrimitive;
-}
-
-// https://github.com/observablehq/stdlib/blob/main/src/table.js
-// Given an array, checks that the first n elements are dates.
-function arrayContainsDates(value) {
-  const n = Math.min(nChecks, value.length);
-  if (!(n > 0)) return false;
-  let hasDate = false; // ensure we encounter 1+ dates
-  for (let i = 0; i < n; ++i) {
-    const v = value[i];
-    if (v == null) continue; // ignore null and undefined
-    if (!(v instanceof Date)) return false;
-    hasDate = true;
-  }
-  return hasDate;
 }
 
 // https://github.com/observablehq/plot/blob/818562649280e155136f730fc496e0b3d15ae464/src/transforms/group.js#L236
