@@ -1,4 +1,5 @@
 import {isOrdinal, labelof, valueof, isOptions} from "../options.js";
+import {isHighCardinality} from "../style.js";
 import {area, areaX, areaY} from "./area.js";
 import {dot} from "./dot.js";
 import {line, lineX, lineY} from "./line.js";
@@ -111,7 +112,7 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
         mark = x && y ? line : x ? lineX : lineY; // 1d line by index
         stroke = color;
         strokeReduce = colorReduce;
-        if (new Set(color).size > color?.length >> 1) {
+        if (isHighCardinality(color)) {
           // TODO isHighCardinality(color)
           // TODO only if z not set by user
           z = null;
@@ -186,9 +187,9 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
     transformOptions.x = xReduce;
     transform = isOrdinal(y) ? groupY : binY;
   } else if (colorReduce != null || sizeReduce != null) {
-    if (isOrdinal(x) && isOrdinal(y)) transform = group; 
-    else if (!isOrdinal(x) && !isOrdinal(y)) transform = bin; 
-    else if (isOrdinal(x) && !isOrdinal(y)) transform = binY; 
+    if (isOrdinal(x) && isOrdinal(y)) transform = group;
+    else if (!isOrdinal(x) && !isOrdinal(y)) transform = bin;
+    else if (isOrdinal(x) && !isOrdinal(y)) transform = binY;
     else if (!isOrdinal(x) && isOrdinal(y)) transform = binX;
   }
   if (transform) options = transform(transformOptions, options);
