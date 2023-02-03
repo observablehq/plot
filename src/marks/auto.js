@@ -17,9 +17,9 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   // Shorthand: array of primitives should result in a histogram
   if (x === undefined && y === undefined) x = identity;
 
-  // Allow x and y and other dimensions to be specified as shorthand
-  // field names (but note that they can also be specified as a
-  // {transform} object such as Plot.identity).
+  // Allow x and y and other dimensions to be specified as shorthand field names
+  // (but note that they can also be specified as a {transform} object such as
+  // Plot.identity).
   if (!isOptions(x)) x = makeOptions(x);
   if (!isOptions(y)) y = makeOptions(y);
   if (!isOptions(fx)) fx = makeOptions(fx);
@@ -29,7 +29,6 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
 
   const {value: xValue} = x;
   const {value: yValue} = y;
-
   const {value: sizeValue, reduce: sizeReduce} = size;
 
   // Determine the default reducer, if any.
@@ -56,11 +55,11 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   // TODO Default to something other than turbo for continuous? Like:
   //      scheme: (colorValue && isContinuous(color)) || colorReduce ? "ylgnbu" : undefined
 
-  // To apply heuristics based on the data types (values), realize the
-  // columns. We could maybe look at the data.schema here, but Plot’s
-  // behavior depends on the actual values anyway, so this probably is
-  // what we want. By materializing the columns here, we also ensure
-  // that they aren’t re-computed later in Plot.plot.
+  // To apply heuristics based on the data types (values), realize the columns.
+  // We could maybe look at the data.schema here, but Plot’s behavior depends on
+  // the actual values anyway, so this probably is what we want. By
+  // materializing the columns here, we also ensure that they aren’t re-computed
+  // later in Plot.plot.
   x = valueof(data, xValue);
   y = valueof(data, yValue);
   color = valueof(data, colorValue);
@@ -68,7 +67,6 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
   fx = valueof(data, fxValue); // TODO Should we still materialize if heuristic doesn't depend on it?
   fy = valueof(data, fyValue);
 
-  // (Toph) We wanna output to these but don't allow them in API yet
   let fill, stroke, z, fillReduce, strokeReduce, zReduce;
 
   // Propagate the x and y labels (field names), if any.
@@ -109,11 +107,7 @@ export function auto(data, {x, y, fx, fy, color, size, mark} = {}) {
         mark = x && y ? line : x ? lineX : lineY; // 1d line by index
         stroke = color;
         strokeReduce = colorReduce;
-        if (isHighCardinality(color)) {
-          // TODO isHighCardinality(color)
-          // TODO only if z not set by user
-          z = null;
-        }
+        if (isHighCardinality(color)) z = null; // TODO only if z not set by user
         break;
       case "area":
         // TODO: throw some errors; I'm not sure we ever want Plot.area; how does it work with ordinal?
