@@ -1,5 +1,5 @@
 import {InternSet} from "d3";
-import {isOrdinal, labelof, valueof, isOptions, identity, isColor} from "../options.js";
+import {isOrdinal, labelof, valueof, isOptions, isColor} from "../options.js";
 import {area, areaX, areaY} from "./area.js";
 import {dot} from "./dot.js";
 import {line, lineX, lineY} from "./line.js";
