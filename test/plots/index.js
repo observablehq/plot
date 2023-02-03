@@ -280,6 +280,7 @@ export * from "./aapl-bollinger.js";
 export * from "./aapl-close.js";
 export * from "./aapl-fancy-axis.js";
 export * from "./athletes-sample.js";
+export * from "./autoplot.js";
 export * from "./axis-labels.js";
 export * from "./bin-1m.js";
 export * from "./electricity-demand.js";
