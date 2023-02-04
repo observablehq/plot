@@ -117,42 +117,38 @@ function facetAnchorRight(facets, {x: X}, {x}) {
   return X ? X.indexOf(x) === X.length - 1 : true;
 }
 
-function facetAnchorTopEmpty(facets, {y: Y}, {x, y}) {
+function facetAnchorTopEmpty(facets, {y: Y}, {x, y, empty}) {
+  if (empty) return false;
   const i = Y?.indexOf(y);
-  if (i > 0) {
-    const y = Y[i - 1];
-    return facets.find((f) => f.x === x && f.y === y)?.empty;
-  }
+  if (i > 0) return isEmptyFacet(facets, {x, y: Y[i - 1]});
 }
 
-function facetAnchorBottomEmpty(facets, {y: Y}, {x, y}) {
+function facetAnchorBottomEmpty(facets, {y: Y}, {x, y, empty}) {
+  if (empty) return false;
   const i = Y?.indexOf(y);
-  if (i < Y?.length - 1) {
-    const y = Y[i + 1];
-    return facets.find((f) => f.x === x && f.y === y)?.empty;
-  }
+  if (i < Y?.length - 1) return isEmptyFacet(facets, {x, y: Y[i + 1]});
 }
 
-function facetAnchorLeftEmpty(facets, {x: X}, {x, y}) {
+function facetAnchorLeftEmpty(facets, {x: X}, {x, y, empty}) {
+  if (empty) return false;
   const i = X?.indexOf(x);
-  if (i > 0) {
-    const x = X[i - 1];
-    return facets.find((f) => f.x === x && f.y === y)?.empty;
-  }
+  if (i > 0) return isEmptyFacet(facets, {x: X[i - 1], y});
 }
 
-function facetAnchorRightEmpty(facets, {x: X}, {x, y}) {
+function facetAnchorRightEmpty(facets, {x: X}, {x, y, empty}) {
+  if (empty) return false;
   const i = X?.indexOf(x);
-  if (i < X?.length - 1) {
-    const x = X[i + 1];
-    return facets.find((f) => f.x === x && f.y === y)?.empty;
-  }
+  if (i < X?.length - 1) return isEmptyFacet(facets, {x: X[i + 1], y});
 }
 
 function and(a, b) {
   return function () {
     return a.apply(null, arguments) && b.apply(null, arguments);
   };
+}
+
+function isEmptyFacet(facets, {x, y}) {
+  return facets.find((f) => f.x === x && f.y === y)?.empty;
 }
 
 // Facet filter, by mark; for now only the "eq" filter is provided.
