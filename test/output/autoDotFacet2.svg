@@ -470,32 +470,10 @@
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(214,100)">Chinstrap</text>
     </g>
-    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(102.83333333333333,170)" d="M0,0L0,6"></path>
-      <path transform="translate(199.5,170)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(102.83333333333333,170)">4,000</text>
-      <text y="0.71em" transform="translate(199.5,170)">6,000</text>
-    </g>
   </g>
   <g aria-label="facet" transform="translate(386,310)">
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(214,100)">Gentoo</text>
-    </g>
-    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(40,155.23636363636365)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,129.78181818181818)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,104.32727272727274)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,78.87272727272727)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,53.41818181818183)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,155.23636363636365)">35</text>
-      <text y="0.32em" transform="translate(40,129.78181818181818)">40</text>
-      <text y="0.32em" transform="translate(40,104.32727272727274)">45</text>
-      <text y="0.32em" transform="translate(40,78.87272727272727)">50</text>
-      <text y="0.32em" transform="translate(40,53.41818181818183)">55</text>
     </g>
   </g>
   <g aria-label="fy-axis label" transform="translate(37.5,0.5)">

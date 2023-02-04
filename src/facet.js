@@ -117,7 +117,8 @@ function facetAnchorRight(facets, {x: X}, {x}) {
   return X ? X.indexOf(x) === X.length - 1 : true;
 }
 
-function facetAnchorTopEmpty(facets, {y: Y}, {x, y}) {
+function facetAnchorTopEmpty(facets, {y: Y}, {x, y, empty}) {
+  if (empty) return false;
   const i = Y?.indexOf(y);
   if (i > 0) {
     const y = Y[i - 1];
@@ -125,7 +126,8 @@ function facetAnchorTopEmpty(facets, {y: Y}, {x, y}) {
   }
 }
 
-function facetAnchorBottomEmpty(facets, {y: Y}, {x, y}) {
+function facetAnchorBottomEmpty(facets, {y: Y}, {x, y, empty}) {
+  if (empty) return false;
   const i = Y?.indexOf(y);
   if (i < Y?.length - 1) {
     const y = Y[i + 1];
@@ -133,7 +135,8 @@ function facetAnchorBottomEmpty(facets, {y: Y}, {x, y}) {
   }
 }
 
-function facetAnchorLeftEmpty(facets, {x: X}, {x, y}) {
+function facetAnchorLeftEmpty(facets, {x: X}, {x, y, empty}) {
+  if (empty) return false;
   const i = X?.indexOf(x);
   if (i > 0) {
     const x = X[i - 1];
@@ -141,7 +144,8 @@ function facetAnchorLeftEmpty(facets, {x: X}, {x, y}) {
   }
 }
 
-function facetAnchorRightEmpty(facets, {x: X}, {x, y}) {
+function facetAnchorRightEmpty(facets, {x: X}, {x, y, empty}) {
+  if (empty) return false;
   const i = X?.indexOf(x);
   if (i < X?.length - 1) {
     const x = X[i + 1];
