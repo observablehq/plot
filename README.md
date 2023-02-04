@@ -968,35 +968,35 @@ Returns a new arrow with the given *data* and *options*.
 
 [Source](./src/marks/auto.js) · [Examples](https://observablehq.com/@observablehq/plot-auto) · Automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. While Plot.auto will respect the options you provide, you shouldn’t rely on Plot.auto’s behavior being stable over time; if you want to guarantee a specific chart type, you should specify the marks and transforms explicitly. Plot.auto is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible.
 
-For example, two quantitative dimensions make a scatterplot with the dot mark:
+For example, two quantitative dimensions make a scatterplot:
 
 ```js
 Plot.auto(olympians, {x: "height", y: "weight"}).plot()
 // equivalent to Plot.dot(olympians, {x: "height", y: "weight"}).plot()
 ```
 
-A monotonically increasing quantitative dimension and another numeric one make a line chart:
+A monotonic quantitative dimension and another numeric one make a line chart:
 
 ```js
 Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
 // equivalent to Plot.lineY(aapl, {x: "Date", y: "Close"}).plot()
 ```
 
-One quantitative dimension makes a histogram with a rect mark and bin transform:
+One quantitative dimension makes a histogram:
 
 ```js
 Plot.auto(penguins, {x: "body_mass_g"}).plot()
 // equivalent to Plot.rectY(penguins, Plot.binX({y: "count"}, {x: "body_mass_g"})).plot()
 ```
 
-One ordinal dimension makes a bar chart with a bar mark and group transform:
+One ordinal dimension makes a bar chart:
 
 ```js
 Plot.auto(penguins, {x: "island"}).plot()
 // equivalent to Plot.barY(penguins, Plot.groupX({y: "count"}, {x: "island"})).plot()
 ```
 
-These opinionated inferences also make it easier to switch which dimensions you’re showing by changing only one thing in the code: e.g., switch a vertical bar chart to a horizontal one by just switching x to y, instead of also having to switch Plot.barY to Plot.barX and Plot.groupX to Plot.groupY.
+Opinionated inferences also make it easier to switch which dimensions you’re showing by changing only one thing in the code: you can switch a vertical bar chart to a horizontal one by just switching x to y, instead of also having to switch Plot.barY to Plot.barX and Plot.groupX to Plot.groupY.
 
 The options are six channels and a mark override. You must specify either x or y; all others are optional:
 * **x** - corresponds to each mark’s _x_ channel; if specified without _y_, bins or groups on _x_ and shows the count on _y_
