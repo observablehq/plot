@@ -966,7 +966,35 @@ Returns a new arrow with the given *data* and *options*.
 
 ### Auto
 
-[Source](./src/marks/auto.js) · [Examples](https://observablehq.com/@observablehq/plot-auto) · Automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. For example, `Plot.auto(olympians, {x: "height", y: "weight"}).plot()` makes a scatterplot; `Plot.auto(aapl, {x: "Date", y: "Close"}).plot()` makes a line chart; `Plot.auto(penguins, {x: "body_mass_g"}).plot()` makes a histogram; `Plot.auto(penguins, {x: "island"}).plot()` makes a bar chart.
+[Source](./src/marks/auto.js) · [Examples](https://observablehq.com/@observablehq/plot-auto) · Automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics.
+
+For example, two quantitative dimensions make a scatterplot with the dot mark:
+
+```js
+Plot.auto(olympians, {x: "height", y: "weight"}).plot()
+// equivalent to Plot.dot(olympians, {x: "height", y: "weight"}).plot()
+```
+
+A monotonically increasing quantitative dimension and another numeric one make a line chart:
+
+```js
+Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
+// equivalent to Plot.lineY(aapl, {x: "Date", y: "Close"}).plot()
+```
+
+One quantitative dimension makes a histogram with a rect mark and bin transform:
+
+```js
+Plot.auto(penguins, {x: "body_mass_g"}).plot()
+// equivalent to Plot.rectY(penguins, Plot.binX({y: "count"}, {x: "body_mass_g"})).plot()
+```
+
+One ordinal dimension makes a bar chart with a bar mark and group transform:
+
+```js
+Plot.auto(penguins, {x: "island"}).plot()
+// equivalent to Plot.barY(penguins, Plot.groupX({y: "count"}, {x: "island"})).plot()
+```
 
 The options are six channels and a mark override. You must specify either x or y; all others are optional:
 * **x** - corresponds to each mark’s _x_ channel; if specified without _y_, bins or groups on _x_ and shows the count on _y_
@@ -980,7 +1008,7 @@ The options are six channels and a mark override. You must specify either x or y
 The six channels take one of the following:
 * a string; if not a color name or reducer name, interpreted as a field name
 * an accessor function
-* an object _{value, reduce, color }_, where _value_ is a field string or accessor, _reduce_ is a reducer name or function, and color is the name of a color
+* an object _{value, reduce, color}_, where _value_ is a field string or accessor, _reduce_ is a reducer name or function, and color is the name of a color
 
 Setting a reducer on **x** or **y** implicitly groups or bins on the other (y or x). Setting a reducer on **color** or **size** groups or bins in both x and y dimensions. Setting a reducer on both x and y throws an error.
 
@@ -990,6 +1018,7 @@ Setting a reducer on **x** or **y** implicitly groups or bins on the other (y or
 
 ```js
 Plot.auto(athletes, {x: "height", y: "weight", color: "count"})
+// equivalent to Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "height", y: "weight"})).plot()
 ```
 
 Returns an automatically selected mark with the given *data* and *options*.
