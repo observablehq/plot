@@ -1008,9 +1008,9 @@ The options are six channels and a mark override. You must specify either x or y
 * **mark** - dot, line, area, rule, or bar; each option except dot includes x and y variants, and bar tries picks the appropriate mark from barX, barY, rectX, rectY, rect, or cell
 
 The six channels take one of the following:
-* a string; if not a color name or reducer name, interpreted as a field name
+* a string; if not a valid CSS color string or reducer name, interpreted as a field name
 * an accessor function
-* an object _{value, reduce, color}_, where _value_ is a field string or accessor, _reduce_ is a reducer name or function, and color is the name of a color
+* an object _{value, reduce, color}_, where _value_ is a field string or accessor, _reduce_ is a reducer name or function, and _color_ is a color string
 
 Setting a reducer on **x** or **y** implicitly groups or bins on the other (y or x). Setting a reducer on **color** or **size** groups or bins in both x and y dimensions. Setting a reducer on both x and y throws an error.
 
