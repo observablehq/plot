@@ -964,6 +964,38 @@ Returns a new arrow with the given *data* and *options*.
 
 <!-- jsdocEnd arrow -->
 
+### Auto
+
+[Source](./src/marks/auto.js) · [Examples](https://observablehq.com/@observablehq/plot-auto) · Automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. For example, `Plot.auto(olympians, {x: "height", y: "weight"}).plot()` makes a scatterplot; `Plot.auto(aapl, {x: "Date", y: "Close"}).plot()` makes a line chart; `Plot.auto(penguins, {x: "body_mass_g"}).plot()` makes a histogram; `Plot.auto(penguins, {x: "island"}).plot()` makes a bar chart.
+
+The options are six channels and a mark override. You must specify either x or y; all others are optional:
+* **x** - corresponds to each mark’s _x_ channel; if specified without _y_, bins or groups on _x_ and shows the count on _y_
+* **y** - corresponds to each mark’s _y_ channel; if specified without _x_, bins or groups on _y_ and shows the count on _x_
+* **fx** - corresponds to each mark’s _fx_ channel
+* **fy** - corresponds to each mark’s _fy_ channel
+* **color** - corresponds to stroke (for line, rule, dot) or fill (for area, rect, bar, cell)
+* **size** - corresponds to the dot’s _r_ channel; setting this always results in a dot mark
+* **mark** - dot, line, area, rule, or bar; each option except dot includes x and y variants, and bar tries picks the appropriate mark from barX, barY, rectX, rectY, rect, or cell
+
+The six channels take one of the following:
+* a string; if not a color name or reducer name, interpreted as a field name
+* an accessor function
+* an object _{value, reduce, color }_, where _value_ is a field string or accessor, _reduce_ is a reducer name or function, and color is the name of a color
+
+Setting a reducer on **x** or **y** implicitly groups or bins on the other (y or x). Setting a reducer on **color** or **size** groups or bins in both x and y dimensions. Setting a reducer on both x and y throws an error.
+
+#### Plot.auto(*data*, *options*)
+
+<!-- jsdoc auto -->
+
+```js
+Plot.auto(athletes, {x: "height", y: "weight", color: "count"})
+```
+
+Returns an automatically selected mark with the given *data* and *options*.
+
+<!-- jsdocEnd auto -->
+
 ### Axis
 
 [Source](./src/marks/axis.js) · [Examples](https://observablehq.com/@observablehq/plot-axis) · Draws an axis to document the visual encoding of the corresponding position scale: *x* or *y*, and *fx* or *fy* if faceting. The axis mark is a [composite mark](#marks) comprised of (up to) three marks: a [vector](#vector) for ticks, a [text](#text) for tick labels, and another [text](#text) for an axis label.
