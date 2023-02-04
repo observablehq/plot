@@ -210,5 +210,5 @@ export async function autoDotFacet2() {
     fx: "island",
     fy: "species",
     color: "sex"
-  }).plot({marginRight: 70, x: {ticks: 5}});
+  }).plot();
 }
