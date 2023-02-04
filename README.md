@@ -1023,7 +1023,7 @@ Plot.auto(athletes, {x: "height", y: "weight", color: "count"})
 // equivalent to Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "height", y: "weight"})).plot()
 ```
 
-Returns an automatically selected mark with the given *data* and *options*.
+Returns an automatically selected mark with the given *data* and *options* for a quick view of the data. The heuristic for the choice may evolve in the future.
 
 <!-- jsdocEnd auto -->
 
