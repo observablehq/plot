@@ -4,34 +4,59 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-[<img src="./img/axes.png" width="640" alt="A diagram illustrating some positioning options for the new axisX mark.">](https://observablehq.com/@observablehq/plot-axes)
+The new [auto mark](./README.md#auto) (Plot.auto) automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API.
+
+For example,
+
+[TK image]
 
 ```js
-Plot.plot({
-  height: 80,
-  grid: true,
-  x: {type: "linear"},
-  marks: [
-    Plot.axisX({anchor: "top", label: "top-left", labelAnchor: "left"}),
-    Plot.axisX({anchor: "top", label: "top-center", labelAnchor: "center", ticks: []}),
-    Plot.axisX({anchor: "top", label: "top-right", labelAnchor: "right", ticks: []}),
-    Plot.axisX({anchor: "bottom", label: "bottom-left", labelAnchor: "left"}),
-    Plot.axisX({anchor: "bottom", label: "bottom-center", labelAnchor: "center", ticks: []}),
-    Plot.axisX({anchor: "bottom", label: "bottom-right", labelAnchor: "right", ticks: []})
-  ]
-})
+Plot.auto(olympians, {x: "height", y: "weight"}).plot()
 ```
 
-Plot’s [axes](./README.md#axis) and [grids](./README.md#axis) are now marks, that can be added explicitly to the top-level [**marks** option](#mark-options). The new **axisX**, **axisY**, **axisFx**, and **axisFy** marks document the visual encoding of position scales *x* and *y*, and *fx* and *fy* if faceting. Similarly, the **gridX**, **gridY**, **gridFx**, and **gridFy** marks draw grid lines across the frame, perpendicular to these axes. The axis mark is a [composite mark](./README.md#marks) comprised of (up to) three marks: a [vector](./README.md#vector) for ticks, a [text](./README.md#text) for tick labels, and another [text](./README.md#text) for an axis label. You can declare multiple axis and grid marks for the same scale with different ticks, and styles, as desired.
+makes a scatterplot (equivalent to [Plot.dot](./README.md#dot));
 
-A new [**facetAnchor**](#facetanchor) option, available for all marks, controls the facets which will carry a mark; it defaults to null for all marks except for axis marks, where it defaults to *top-empty* if the axis anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
+[TK image]
 
-A new **anchor** option allows to draw only one side of the [frame](./README.md#frame) mark—in which case the **fill**, **fillOpacity**, **rx**, and **ry** options are ignored.
+```js
+Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
+```
 
-The new [auto mark](./README.md#auto) automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. For example, `Plot.auto(olympians, {x: "height", y: "weight"}).plot()` makes a scatterplot; `Plot.auto(aapl, {x: "Date", y: "Close"}).plot()` makes a line chart; `Plot.auto(penguins, {x: "body_mass_g"}).plot()` makes a histogram; `Plot.auto(penguins, {x: "island"}).plot()` makes a bar chart.
+makes a line chart (equivalent to [Plot.lineY](./README.md#line); this mark is chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
 
-* Fix a crash of the [raster](./README.md#raster) when the colors use the identity scale (https://github.com/observablehq/plot/issues/1237)
-* New sideEffects worth mentioning? https://github.com/observablehq/plot/pull/1235
+[TK image]
+
+```js
+Plot.auto(penguins, {x: "body_mass_g"}).plot()
+```
+
+makes a histogram (equivalent to [Plot.rectY](./README.md#rect) and [Plot.binX](./README.md#bin); chosen because the _body_mass_g_ column is quantitative);
+
+[TK image]
+
+```js
+Plot.auto(penguins, {x: "island"}).plot()
+```
+
+makes a bar chart (equivalent to [Plot.barY](./README.md#bar) and [Plot.groupX](./README.md#group); chosen because the _island_ column is categorical strings).
+
+Plot’s [axes](./README.md#axis) and [grids](./README.md#axis) are now proper marks, affording a high degree of customizability. This has been one of our most asked-for features, closing more than a dozen feature requests!
+
+TODO Add a bunch of examples (see [Plot: Axes](https://observablehq.com/@observablehq/plot-axes)) that demonstrate some of the new configuration possibilities with axes, including: white grid lines overlaying marks, perhaps ggplot2-style; multi-line tick labels; repeated _both_ axes; and NYT-style dashed grid lines.
+
+[TK image]
+
+The *x* and *y* axes are now automatically repeated when there are empty facets, improving readability.
+
+Marks can now declare default margins via the **marginTop**, **marginRight**, **marginBottom**, and **marginLeft** options, and the **margin** shorthand. For each side, the maximum corresponding margin across marks becomes the plot’s default. While most marks default to zero margins (because they are drawn inside the chart area), Plot‘s axis mark provides default margins depending on their anchor. The facet margin options (*e.g.*., facet.**marginRight**) now correctly affect the positioning of the *x* and *y* axis labels.
+
+The new [*mark*.**facetAnchor**](#facetanchor) mark option controls the facets in which the mark will appear when faceting. It defaults to null for all marks except for axis marks, where it defaults to *top-empty* if the axis anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
+
+The [frame mark](./README.md#frame)’s new **anchor** option allows you to draw a line on one side of the frame (as opposed to the default behavior where a rect is drawn around all four sides). This feature is now used by the *scale*.**line** option for *x* and *y* scales.
+
+The [text mark](./README.md#text) now supports soft hyphens (`\xad`); lines are now eligible to break at soft hyphens, in which case a hyphen (-) will appear at the end of the line before the break.
+
+The [raster mark](./README.md#raster) no longer crashes with an _identity_ color scale.
 
 ## 0.6.2
 
