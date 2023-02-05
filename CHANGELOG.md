@@ -28,7 +28,9 @@ A new [**facetAnchor**](#facetanchor) option, available for all marks, controls 
 
 A new **anchor** option allows to draw only one side of the [frame](./README.md#frame) mark—in which case the **fill**, **fillOpacity**, **rx**, and **ry** options are ignored.
 
-* Fixed a crash of the [raster](./README.md#raster) when the colors use the identity scale (https://github.com/observablehq/plot/issues/1237)
+The new [auto mark](./README.md#auto) automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. For example, `Plot.auto(olympians, {x: "height", y: "weight"}).plot()` makes a scatterplot; `Plot.auto(aapl, {x: "Date", y: "Close"}).plot()` makes a line chart; `Plot.auto(penguins, {x: "body_mass_g"}).plot()` makes a histogram; `Plot.auto(penguins, {x: "island"}).plot()` makes a bar chart.
+
+* Fix a crash of the [raster](./README.md#raster) when the colors use the identity scale (https://github.com/observablehq/plot/issues/1237)
 * New sideEffects worth mentioning? https://github.com/observablehq/plot/pull/1235
 
 ## 0.6.2

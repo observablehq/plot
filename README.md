@@ -964,6 +964,69 @@ Returns a new arrow with the given *data* and *options*.
 
 <!-- jsdocEnd arrow -->
 
+### Auto
+
+[Source](./src/marks/auto.js) · [Examples](https://observablehq.com/@observablehq/plot-auto) · Automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. While Plot.auto will respect the options you provide, you shouldn’t rely on Plot.auto’s behavior being stable over time; if you want to guarantee a specific chart type, you should specify the marks and transforms explicitly. Plot.auto is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible.
+
+For example, two quantitative dimensions make a scatterplot:
+
+```js
+Plot.auto(olympians, {x: "height", y: "weight"}).plot()
+// equivalent to Plot.dot(olympians, {x: "height", y: "weight"}).plot()
+```
+
+A monotonic quantitative dimension and another numeric one make a line chart:
+
+```js
+Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
+// equivalent to Plot.lineY(aapl, {x: "Date", y: "Close"}).plot()
+```
+
+One quantitative dimension makes a histogram:
+
+```js
+Plot.auto(penguins, {x: "body_mass_g"}).plot()
+// equivalent to Plot.rectY(penguins, Plot.binX({y: "count"}, {x: "body_mass_g"})).plot()
+```
+
+One ordinal dimension makes a bar chart:
+
+```js
+Plot.auto(penguins, {x: "island"}).plot()
+// equivalent to Plot.barY(penguins, Plot.groupX({y: "count"}, {x: "island"})).plot()
+```
+
+Opinionated inferences also make it easier to switch which dimensions you’re showing by changing only one thing in the code: you can switch a vertical bar chart to a horizontal one by just switching x to y, instead of also having to switch Plot.barY to Plot.barX and Plot.groupX to Plot.groupY.
+
+The options are six channels and a mark override. You must specify either x or y; all others are optional:
+* **x** - corresponds to each mark’s _x_ channel; if specified without _y_, bins or groups on _x_ and shows the count on _y_
+* **y** - corresponds to each mark’s _y_ channel; if specified without _x_, bins or groups on _y_ and shows the count on _x_
+* **fx** - corresponds to each mark’s _fx_ channel
+* **fy** - corresponds to each mark’s _fy_ channel
+* **color** - corresponds to stroke (for line, rule, dot) or fill (for area, rect, bar, cell)
+* **size** - corresponds to the dot’s _r_ channel; setting this always results in a dot mark
+* **mark** - dot, line, area, rule, or bar; each option except dot includes x and y variants, and bar tries picks the appropriate mark from barX, barY, rectX, rectY, rect, or cell
+
+The six channels take one of the following:
+* a string; if not a valid CSS color string or reducer name, interpreted as a field name
+* an accessor function
+* an object _{value, reduce, color}_, where _value_ is a field string or accessor, _reduce_ is a reducer name or function, and _color_ is a color string
+
+Setting a reducer on **x** or **y** implicitly groups or bins on the other (y or x). Setting a reducer on **color** or **size** groups or bins in both x and y dimensions. Setting a reducer on both x and y throws an error.
+
+#### Plot.auto(*data*, *options*)
+
+<!-- jsdoc auto -->
+
+```js
+Plot.auto(athletes, {x: "height", y: "weight", color: "count"})
+// equivalent to Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "height", y: "weight"})).plot()
+```
+
+Returns an automatically selected mark with the given *data* and *options* for a quick view of the data. The heuristic for the choice may evolve in the future.
+
+<!-- jsdocEnd auto -->
+
 ### Axis
 
 [Source](./src/marks/axis.js) · [Examples](https://observablehq.com/@observablehq/plot-axis) · Draws an axis to document the visual encoding of the corresponding position scale: *x* or *y*, and *fx* or *fy* if faceting. The axis mark is a [composite mark](#marks) comprised of (up to) three marks: a [vector](#vector) for ticks, a [text](#text) for tick labels, and another [text](#text) for an axis label.
