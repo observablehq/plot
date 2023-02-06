@@ -42,9 +42,22 @@ Plot’s [axes](./README.md#axis) and [grids](./README.md#axis) are now proper m
 
 TODO Add a bunch of examples (see [Plot: Axes](https://observablehq.com/@observablehq/plot-axes)) that demonstrate some of the new configuration possibilities with axes, including: white grid lines overlaying marks, perhaps ggplot2-style; multi-line tick labels; repeated _both_ axes; and NYT-style dashed grid lines.
 
-[TK image]
+The *x* and *y* axes are now automatically repeated in empty facets, improving readability by reducing eye travel to read tick values. Below, note that the *x* axis for culmen depth (with ticks at 15 and 20 mm) is rendered below the Adelie/null-sex facet in the top-right.
 
-The *x* and *y* axes are now automatically repeated when there are empty facets, improving readability.
+[<img src="./img/facet-axes.webp" width="640" alt="A scatterplot showing the culmen length and depth of various penguins, faceted by species and sex; the facets are arranged in a grid, with the y-axis on the left and the x-axis on the bottom.">](https://observablehq.com/@observablehq/plot-axes)
+
+```js
+Plot.plot({
+  facet: {marginRight: 80},
+  marks: [
+    Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", stroke: "#ddd"}),
+    Plot.frame(),
+    Plot.gridX(),
+    Plot.gridY(),
+    Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", fx: "sex", fy: "species"})
+  ]
+})
+```
 
 Marks can now declare default margins via the **marginTop**, **marginRight**, **marginBottom**, and **marginLeft** options, and the **margin** shorthand. For each side, the maximum corresponding margin across marks becomes the plot’s default. While most marks default to zero margins (because they are drawn inside the chart area), Plot‘s axis mark provides default margins depending on their anchor. The facet margin options (*e.g.*., facet.**marginRight**) now correctly affect the positioning of the *x* and *y* axis labels.
 
