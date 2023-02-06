@@ -263,6 +263,7 @@ export function* groupIndex(I, position, {z}, channels) {
   for (const G of Z ? groupZ(I, Z, z) : [I]) {
     let Ag; // the A-values (aesthetics) of the current group, if any
     let Gg; // the current group index (a subset of G, and I), if any
+    let segment = 0; // counter of sub-groups for the current z
     out: for (const i of G) {
       // If any channel has an undefined value for this index, skip it.
       for (const c of C) {
@@ -275,8 +276,9 @@ export function* groupIndex(I, position, {z}, channels) {
       // Otherwise, if this is a new group, record the aesthetics for this
       // group. Yield the current group and start a new one.
       if (Ag === undefined) {
-        if (Gg) yield Gg;
-        (Ag = A.map((c) => keyof(c[i]))), (Gg = [i]);
+        if (Gg) segment++ ? Object.assign(Gg, {segment}) : Gg;
+        Ag = A.map((c) => keyof(c[i]));
+        Gg = [i];
         continue;
       }
 
@@ -287,15 +289,16 @@ export function* groupIndex(I, position, {z}, channels) {
       for (let j = 0; j < A.length; ++j) {
         const k = keyof(A[j][i]);
         if (k !== Ag[j]) {
-          yield Gg;
-          (Ag = A.map((c) => keyof(c[i]))), (Gg = [i]);
+          yield segment++ ? Object.assign(Gg, {segment}) : Gg;
+          Ag = A.map((c) => keyof(c[i]));
+          Gg = [i];
           continue out;
         }
       }
     }
 
     // Yield the current group, if any.
-    if (Gg) yield Gg;
+    if (Gg) yield segment++ ? Object.assign(Gg, {segment}) : Gg;
   }
 }
 

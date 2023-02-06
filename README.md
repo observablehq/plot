@@ -3273,6 +3273,15 @@ For each pixel in the raster grid, initiates a random walk, stopping when either
 
 <!-- jsdocEnd interpolatorRandomWalk -->
 
+
+## Halo
+
+The line mark support a halo filter, allowing to better separate multiple lines by adding a thick white background underneath each line, [a technique described by Sara Soueidan](https://tympanus.net/codrops/2019/01/22/svg-filter-effects-outline-text-with-femorphology/). The halo options can be specified as:
+
+* *haloColor* - the halo’s color, defaults to white
+* *haloRadius* - the halo’s radius, which defaults to 2px
+* *halo* - if true, activates the halo filter; if specified as a color, defines the halo’s color; if specified as a number, defines the halo’s radius
+
 ## Markers
 
 A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defines a graphic drawn on vertices of a [line](#line) or a [link](#link) mark. The supported marker options are:

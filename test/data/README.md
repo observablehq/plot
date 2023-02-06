@@ -154,6 +154,11 @@ https://github.com/topojson/us-atlas
 U.S. Bureau of Labor Statistics, 2016
 https://www.bls.gov/lau/tables.htm
 
+## us-gdp.csv
+U.S. Gross Domestic Product, chained dollars, Jan 1947-Jan 2022
+Federal Reserve Economic Data
+https://fred.stlouisfed.org/
+
 ## us-state-capitals.csv
 Unknown origin
 
