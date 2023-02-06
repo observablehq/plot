@@ -40,7 +40,7 @@ function LineCurve({curve = curveAuto, tension}) {
 
 export class Line extends Mark {
   constructor(data, options = {}) {
-    const {x, y, z, curve, tension, halo, haloColor, haloRadius} = options;
+    const {x, y, z, halo, haloColor, haloRadius} = options;
     super(
       data,
       {
@@ -52,7 +52,7 @@ export class Line extends Mark {
       defaults
     );
     this.z = z;
-    this.curve = Curve(curve, tension);
+    this.curve = LineCurve(options);
     this.halo = maybeHalo(halo, haloColor, haloRadius);
     markers(this, options);
   }
@@ -67,6 +67,7 @@ export class Line extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
+    const {curve} = this;
     const g = create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions)
       .call(applyTransform, this, scales)
