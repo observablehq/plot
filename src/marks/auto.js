@@ -23,7 +23,9 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   if (!isOptions(size)) size = makeOptions(size);
 
   // We don’t apply any type inference to the fx and fy channels, if present, so
-  // these are simply passed-through to the underlying mark’s options.
+  // these are simply passed-through to the underlying mark’s options. We don’t
+  // support reducers on the facet channels, but for symmetry with x and y we
+  // still allow the channels to be specified as {value} objects.
   if (isOptions(fx)) ({value: fx} = makeOptions(fx));
   if (isOptions(fy)) ({value: fy} = makeOptions(fy));
 

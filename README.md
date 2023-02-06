@@ -966,64 +966,100 @@ Returns a new arrow with the given *data* and *options*.
 
 ### Auto
 
-[Source](./src/marks/auto.js) · [Examples](https://observablehq.com/@observablehq/plot-auto) · Automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. While Plot.auto will respect the options you provide, you shouldn’t rely on Plot.auto’s behavior being stable over time; if you want to guarantee a specific chart type, you should specify the marks and transforms explicitly. Plot.auto is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible.
-
-For example, two quantitative dimensions make a scatterplot:
+[Source](./src/marks/auto.js) · [Examples](https://observablehq.com/@observablehq/plot-auto) · Automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. For example,
 
 ```js
 Plot.auto(olympians, {x: "height", y: "weight"}).plot()
-// equivalent to Plot.dot(olympians, {x: "height", y: "weight"}).plot()
 ```
 
-A monotonic quantitative dimension and another numeric one make a line chart:
+makes a scatterplot (equivalent to [dot](#dot));
 
 ```js
 Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
-// equivalent to Plot.lineY(aapl, {x: "Date", y: "Close"}).plot()
 ```
 
-One quantitative dimension makes a histogram:
+makes a line chart (equivalent to [lineY](#line); chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
 
 ```js
 Plot.auto(penguins, {x: "body_mass_g"}).plot()
-// equivalent to Plot.rectY(penguins, Plot.binX({y: "count"}, {x: "body_mass_g"})).plot()
 ```
 
-One ordinal dimension makes a bar chart:
+makes a histogram (equivalent to [rectY](#rect) and [binX](#bin); chosen because the _body_mass_g_ column is quantitative);
 
 ```js
 Plot.auto(penguins, {x: "island"}).plot()
-// equivalent to Plot.barY(penguins, Plot.groupX({y: "count"}, {x: "island"})).plot()
 ```
 
-Opinionated inferences also make it easier to switch which dimensions you’re showing by changing only one thing in the code: you can switch a vertical bar chart to a horizontal one by just switching x to y, instead of also having to switch Plot.barY to Plot.barX and Plot.groupX to Plot.groupY.
+makes a bar chart (equivalent to [barY](#bar) and [groupX](#group); chosen because the _island_ column is categorical).
 
-The options are six channels and a mark override. You must specify either x or y; all others are optional:
-* **x** - corresponds to each mark’s _x_ channel; if specified without _y_, bins or groups on _x_ and shows the count on _y_
-* **y** - corresponds to each mark’s _y_ channel; if specified without _x_, bins or groups on _y_ and shows the count on _x_
-* **fx** - corresponds to each mark’s _fx_ channel
-* **fy** - corresponds to each mark’s _fy_ channel
-* **color** - corresponds to stroke (for line, rule, dot) or fill (for area, rect, bar, cell)
-* **size** - corresponds to the dot’s _r_ channel; setting this always results in a dot mark
-* **mark** - dot, line, area, rule, or bar; each option except dot includes x and y variants, and bar tries picks the appropriate mark from barX, barY, rectX, rectY, rect, or cell
+Plot.auto seeks to provide a useful initial plot as quickly as possible through opinionated defaults, and to accelerate exploratory analysis by letting you see different dimensions of data with minimal code. For example, you can switch a vertical bar chart to a horizontal one by changing *x* to *y*; you don’t also have to switch barY to barX and groupX to groupY.
 
-The six channels take one of the following:
-* a string; if not a valid CSS color string or reducer name, interpreted as a field name
-* an accessor function
-* an object _{value, reduce, color}_, where _value_ is a field string or accessor, _reduce_ is a reducer name or function, and _color_ is a color string
+The auto mark supports a subset of the standard [mark options](#mark-options). You must provide at least one position channel:
 
-Setting a reducer on **x** or **y** implicitly groups or bins on the other (y or x). Setting a reducer on **color** or **size** groups or bins in both x and y dimensions. Setting a reducer on both x and y throws an error.
+* **x** - horizontal position
+* **y** - vertical position
+
+You may also provide one or more visual encoding channels:
+
+* **color** - corresponds to _stroke_ or _fill_ (depending on the chosen mark type)
+* **size** - corresponds to _r_ (and in future, possibly _length_)
+
+And you may specify the standard mark-level facet channels:
+
+* **fx** - horizontal facet position (column)
+* **fy** - vertical facet position (row)
+
+In addition to channel values, the **x**, **y**, **color**, and **size** options may specify reducers. Setting a reducer on **x** implicitly groups or bins on **y**, and likewise setting a reducer on **y** implicitly groups or bins on **x**. Setting a reducer on **color** or **size** groups or bins in both **x** and **y**. Setting a reducer on both **x** and **y** throws an error. To specify a reducer, simply pass the reducer name to the corresponding option. For example:
+
+```js
+Plot.auto(penguins, {x: "body_mass_g", y: "count"}).plot()
+```
+
+To pass both a value and a reducer, or to disambiguate whether the given string represents a field name or a reducer name, the **x**, **y**, **color**, and **size** options can also be specified as an object with separate **value** and **reduce** properties. For example, to compute the total weight of the penguins in each bin:
+
+```js
+Plot.auto(penguins, {x: "body_mass_g", y: {value: "body_mass_g", reduce: "sum"}}).plot()
+```
+
+If the **color** channel is specified as a string that is also a valid CSS color, it is interpreted as a constant color. For example, for red bars:
+
+```js
+Plot.auto(penguins, {x: "body_mass_g", color: "red"}).plot()
+```
+
+This is shorthand for:
+
+```js
+Plot.auto(penguins, {x: "body_mass_g", color: {color: "red"}}).plot()
+```
+
+To reference a field name instead as a variable color encoding, specify the **color** option as an object with a **value** property:
+
+```js
+Plot.auto(penguins, {x: "body_mass_g", color: {value: "red"}}).plot()
+```
+
+Alternatively, you can specify a function of data or an array of values, as with a standard mark channel.
+
+The auto mark chooses the mark type automatically based on several simple heuristics. These heuristics are not explicitly documented and are likely to evolve over time; see the [source code](./src/marks/auto.js) for details. For more control, you can specify the desired mark type using the **mark** option, which supports the following names:
+
+* *area* - [areaY](#plotareaydata-options) or [areaX](#plotareaxdata-options) (or sometimes [area](#plotareadata-options))
+* *bar* - [barY](#plotbarydata-options) or [barX](#plotbarxdata-options); or [rectY](#plotrectydata-options), [rectX](#plotrectxdata-options), or [rect](#plotrectdata-options); or [cell](#plotcelldata-options)
+* *dot* - [dot](#plotdotdata-options)
+* *line* - [lineY](#plotlineydata-options) or [lineX](#plotlinexdata-options) (or sometimes [line](#plotlinedata-options))
+* *rule* - [ruleY](#plotruleydata-options) or [ruleX](#plotrulexdata-options)
+
+The chosen mark type depends both on the options you provide (*e.g.*, whether you specified **x** or **y** or both) and the inferred type of the corresponding data values (whether the associated dimension of data is quantitative, categorical, monotonic, *etc.*). While the auto mark will respect the options you provide, you shouldn’t rely on its behavior being stable over time; to guarantee a specific chart type, specify the marks and transforms explicitly.
 
 #### Plot.auto(*data*, *options*)
 
 <!-- jsdoc auto -->
 
 ```js
-Plot.auto(athletes, {x: "height", y: "weight", color: "count"})
-// equivalent to Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "height", y: "weight"})).plot()
+Plot.auto(athletes, {x: "height", y: "weight", color: "count"}) // equivalent to rect + bin, say
 ```
 
-Returns an automatically selected mark with the given *data* and *options* for a quick view of the data. The heuristic for the choice may evolve in the future.
+Returns an automatically-chosen mark with the given *data* and *options*, suitable for a quick view of the data.
 
 <!-- jsdocEnd auto -->
 

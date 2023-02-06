@@ -4,9 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [auto mark](./README.md#auto) (Plot.auto) automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API.
-
-For example,
+The new [auto mark](./README.md#auto) ([Plot.auto](./README.md#plotautodata-options)) automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API. For example,
 
 [TK image]
 
@@ -14,7 +12,7 @@ For example,
 Plot.auto(olympians, {x: "height", y: "weight"}).plot()
 ```
 
-makes a scatterplot (equivalent to [Plot.dot](./README.md#dot));
+makes a scatterplot (equivalent to [dot](./README.md#dot));
 
 [TK image]
 
@@ -22,7 +20,7 @@ makes a scatterplot (equivalent to [Plot.dot](./README.md#dot));
 Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
 ```
 
-makes a line chart (equivalent to [Plot.lineY](./README.md#line); this mark is chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
+makes a line chart (equivalent to [lineY](./README.md#line); chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
 
 [TK image]
 
@@ -30,7 +28,7 @@ makes a line chart (equivalent to [Plot.lineY](./README.md#line); this mark is c
 Plot.auto(penguins, {x: "body_mass_g"}).plot()
 ```
 
-makes a histogram (equivalent to [Plot.rectY](./README.md#rect) and [Plot.binX](./README.md#bin); chosen because the _body_mass_g_ column is quantitative);
+makes a histogram (equivalent to [rectY](./README.md#rect) and [binX](./README.md#bin); chosen because the _body_mass_g_ column is quantitative);
 
 [TK image]
 
@@ -38,7 +36,7 @@ makes a histogram (equivalent to [Plot.rectY](./README.md#rect) and [Plot.binX](
 Plot.auto(penguins, {x: "island"}).plot()
 ```
 
-makes a bar chart (equivalent to [Plot.barY](./README.md#bar) and [Plot.groupX](./README.md#group); chosen because the _island_ column is categorical strings).
+makes a bar chart (equivalent to [barY](./README.md#bar) and [groupX](./README.md#group); chosen because the _island_ column is categorical).
 
 Plot’s [axes](./README.md#axis) and [grids](./README.md#axis) are now proper marks, affording a high degree of customizability. This has been one of our most asked-for features, closing more than a dozen feature requests!
 
@@ -52,11 +50,7 @@ Marks can now declare default margins via the **marginTop**, **marginRight**, **
 
 The new [*mark*.**facetAnchor**](#facetanchor) mark option controls the facets in which the mark will appear when faceting. It defaults to null for all marks except for axis marks, where it defaults to *top-empty* if the axis anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
 
-The [frame mark](./README.md#frame)’s new **anchor** option allows you to draw a line on one side of the frame (as opposed to the default behavior where a rect is drawn around all four sides). This feature is now used by the *scale*.**line** option for *x* and *y* scales.
-
-The [text mark](./README.md#text) now supports soft hyphens (`\xad`); lines are now eligible to break at soft hyphens, in which case a hyphen (-) will appear at the end of the line before the break.
-
-The [raster mark](./README.md#raster) no longer crashes with an _identity_ color scale.
+The [frame mark](./README.md#frame)’s new **anchor** option allows you to draw a line on one side of the frame (as opposed to the default behavior where a rect is drawn around all four sides); this feature is now used by the *scale*.**line** option for *x* and *y* scales. The [text mark](./README.md#text) now supports soft hyphens (`\xad`); lines are now eligible to break at soft hyphens, in which case a hyphen (-) will appear at the end of the line before the break. The [raster mark](./README.md#raster) no longer crashes with an _identity_ color scale. The [voronoi mark](./README.md#plotvoronoidata-options) now correctly respects the **target**, **mixBlendMode**, and **opacity** options.
 
 ## 0.6.2
 
