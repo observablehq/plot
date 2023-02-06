@@ -966,7 +966,7 @@ Returns a new arrow with the given *data* and *options*.
 
 ### Auto
 
-[Source](./src/marks/auto.js) · [Examples](https://observablehq.com/@observablehq/plot-auto) · Automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. For example,
+[Source](./src/marks/auto.js) · [Examples](https://observablehq.com/@observablehq/plot-auto) · Automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. Plot.auto seeks to provide a useful initial plot as quickly as possible through opinionated defaults, and to accelerate exploratory analysis by letting you refine views with minimal changes to code. For example,
 
 ```js
 Plot.auto(olympians, {x: "height", y: "weight"}).plot()
@@ -990,9 +990,7 @@ makes a histogram (equivalent to [rectY](#rect) and [binX](#bin); chosen because
 Plot.auto(penguins, {x: "island"}).plot()
 ```
 
-makes a bar chart (equivalent to [barY](#bar) and [groupX](#group); chosen because the _island_ column is categorical). Note that Plot.auto returns a mark; to generate a plot of this mark, call [*mark*.plot](#markplotoptions) on the returned mark. This allows passing additional plot options, such as to set the dimensions of the plot or to override the scale type. You can also combine the auto mark with other marks—even other auto marks.
-
-Plot.auto seeks to provide a useful initial plot as quickly as possible through opinionated defaults, and to accelerate exploratory analysis by letting you see different dimensions of data with minimal code. For example, you can switch a vertical bar chart to a horizontal one by changing *x* to *y*; you don’t also have to switch barY to barX and groupX to groupY.
+makes a bar chart (equivalent to [barY](#bar) and [groupX](#group); chosen because the _island_ column is categorical). Note that Plot.auto returns a [mark](#marks); to then generate a plot (SVG), call [*mark*.plot](#markplotoptions) on the returned mark as shown above. This allows passing plot options, such as to set the chart dimensions or to override a scale type. You can also combine the auto mark with other marks—even other auto marks.
 
 The auto mark supports a subset of the standard [mark options](#mark-options). You must provide at least one position channel:
 
