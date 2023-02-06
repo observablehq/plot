@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [auto mark](./README.md#auto) ([Plot.auto](./README.md#plotautodata-options)) automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API. For example,
+The new [auto mark](./README.md#auto) ([Plot.auto](./README.md#plotautodata-options)) automatically selects a mark type that best represents the given dimensions of data according to some simple heuristics. For example,
 
 [<img src="./img/auto-dot.webp" width="640" alt="A scatterplot height and weight of olympic athletes.">](https://observablehq.com/@observablehq/plot-auto)
 
@@ -12,7 +12,7 @@ The new [auto mark](./README.md#auto) ([Plot.auto](./README.md#plotautodata-opti
 Plot.auto(olympians, {x: "height", y: "weight"}).plot()
 ```
 
-makes a scatterplot (equivalent to [dot](./README.md#plotdotdata-options)); while adding **color**
+makes a scatterplot (equivalent to [dot](./README.md#plotdotdata-options)); adding **color** as
 
 [<img src="./img/auto-bin-color.webp" width="640" alt="A heatmap of .">](https://observablehq.com/@observablehq/plot-auto)
 
@@ -20,7 +20,7 @@ makes a scatterplot (equivalent to [dot](./README.md#plotdotdata-options)); whil
 Plot.auto(olympians, {x: "height", y: "weight", color: "count"}).plot()
 ```
 
-makes a heatmap (equivalent to [rect](./README.md#plotrectdata-options) and [bin](./README.md#plotbinoutputs-options); chosen since _height_ and _weight_ are quantitative);
+makes a heatmap (equivalent to [rect](./README.md#plotrectdata-options) and [bin](./README.md#plotbinoutputs-options); chosen since _height_ and _weight_ are quantitative); switching to
 
 [<img src="./img/auto-line.webp" width="640" alt="A line chart of Apple stock price.">](https://observablehq.com/@observablehq/plot-auto)
 
@@ -36,7 +36,7 @@ makes a line chart (equivalent to [lineY](./README.md#plotlineydata-options); ch
 Plot.auto(penguins, {x: "body_mass_g"}).plot()
 ```
 
-makes a histogram (equivalent to [rectY](./README.md#plotrectydata-options) and [binX](./README.md#plotbinxoutputs-options); chosen because the _body_mass_g_ column is quantitative);
+makes a histogram (equivalent to [rectY](./README.md#plotrectydata-options) and [binX](./README.md#plotbinxoutputs-options); chosen because the _body_mass_g_ column is quantitative); and
 
 [<img src="./img/auto-group.webp" width="640" alt="A vertical bar chart of penguins by island.">](https://observablehq.com/@observablehq/plot-auto)
 
@@ -44,11 +44,39 @@ makes a histogram (equivalent to [rectY](./README.md#plotrectydata-options) and 
 Plot.auto(penguins, {x: "island"}).plot()
 ```
 
-makes a bar chart (equivalent to [barY](./README.md#plotbarydata-options) and [groupX](./README.md#plotgroupxoutputs-options); chosen because the _island_ column is categorical).
+makes a bar chart (equivalent to [barY](./README.md#plotbarydata-options) and [groupX](./README.md#plotgroupxoutputs-options); chosen because the _island_ column is categorical). The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API.
 
-Plot’s [axes](./README.md#axis) and [grids](./README.md#axis) are now proper marks, affording a high degree of customizability. This has been one of our most asked-for features, closing more than a dozen feature requests!
+Plot’s new [axis](./README.md#axis) and [grid](./README.md#axis) marks allow customization and styling of axes. This has been one of our most asked-for features, closing more than a dozen feature requests (see [#1197](https://github.com/observablehq/plot/pull/1197))! The new axis mark composes a [vector](./README.md#vector) for tick marks and a [text](./README.md#text) for tick and axis labels. As such, you can use the rich capabilities of these marks, such the **lineWidth** option to wrap long text labels.
 
-TODO Add a bunch of examples (see [Plot: Axes](https://observablehq.com/@observablehq/plot-axes)) that demonstrate some of the new configuration possibilities with axes, including: white grid lines overlaying marks, perhaps ggplot2-style; multi-line tick labels; repeated _both_ axes; and NYT-style dashed grid lines.
+[<img src="./img/axis-multiline.webp" width="640" alt="A bar chart of parodical survey responses demonstrating text wrapping of long axis labels.">](https://observablehq.com/@observablehq/plot-auto)
+
+```js
+Plot.plot({
+  y: {percent: true},
+  marks: [
+    Plot.axisX({label: null, lineWidth: 8, marginBottom: 40}),
+    Plot.axisY({label: "↑ Responses (%)"}),
+    Plot.barY(responses, {x: "name", y: "value"}),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+And since axes and grids are now proper marks, you can interleave them with other marks, for example to produce ggplot2-style axes with a gray background and white grid lines.
+
+[<img src="./img/axis-ggplot.webp" width="640" alt="A line chart of Apple’s stock price demonstrating styled axes with a gray background overlaid with white grid lines.">](https://observablehq.com/@observablehq/plot-auto)
+
+```js
+Plot.plot({
+  inset: 10,
+  marks: [
+    Plot.frame({fill: "#eaeaea"}),
+    Plot.gridY({stroke: "#fff", strokeOpacity: 1}),
+    Plot.gridX({stroke: "#fff", strokeOpacity: 1}),
+    Plot.line(aapl, {x: "Date", y: "Close"})
+  ]
+})
+```
 
 The *x* and *y* axes are now automatically repeated in empty facets, improving readability by reducing eye travel to read tick values. Below, note that the *x* axis for culmen depth (with ticks at 15 and 20 mm) is rendered below the Adelie/null-sex facet in the top-right.
 
@@ -66,6 +94,8 @@ Plot.plot({
   ]
 })
 ```
+
+See [Plot: Axes](https://observablehq.com/@observablehq/plot-axes) for more examples, including the new _both_ **axis** option to repeat axes on both sides of the plot, dashed grid lines via the **strokeDasharray** option, data-driven tick placement, and layering axes to show hierarchical time intervals (years, months, weeks).
 
 Marks can now declare default margins via the **marginTop**, **marginRight**, **marginBottom**, and **marginLeft** options, and the **margin** shorthand. For each side, the maximum corresponding margin across marks becomes the plot’s default. While most marks default to zero margins (because they are drawn inside the chart area), Plot‘s axis mark provides default margins depending on their anchor. The facet margin options (*e.g.*., facet.**marginRight**) now correctly affect the positioning of the *x* and *y* axis labels.
 
