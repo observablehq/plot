@@ -990,7 +990,7 @@ makes a histogram (equivalent to [rectY](#rect) and [binX](#bin); chosen because
 Plot.auto(penguins, {x: "island"}).plot()
 ```
 
-makes a bar chart (equivalent to [barY](#bar) and [groupX](#group); chosen because the _island_ column is categorical).
+makes a bar chart (equivalent to [barY](#bar) and [groupX](#group); chosen because the _island_ column is categorical). Note that Plot.auto returns a mark; to generate a plot of this mark, call [*mark*.plot](#markplotoptions) on the returned mark. This allows passing additional plot options, such as to set the dimensions of the plot or to override the scale type. You can also combine the auto mark with other marks—even other auto marks.
 
 Plot.auto seeks to provide a useful initial plot as quickly as possible through opinionated defaults, and to accelerate exploratory analysis by letting you see different dimensions of data with minimal code. For example, you can switch a vertical bar chart to a horizontal one by changing *x* to *y*; you don’t also have to switch barY to barX and groupX to groupY.
 
@@ -1012,31 +1012,31 @@ And you may specify the standard mark-level facet channels:
 In addition to channel values, the **x**, **y**, **color**, and **size** options may specify reducers. Setting a reducer on **x** implicitly groups or bins on **y**, and likewise setting a reducer on **y** implicitly groups or bins on **x**. Setting a reducer on **color** or **size** groups or bins in both **x** and **y**. Setting a reducer on both **x** and **y** throws an error. To specify a reducer, simply pass the reducer name to the corresponding option. For example:
 
 ```js
-Plot.auto(penguins, {x: "body_mass_g", y: "count"}).plot()
+Plot.auto(penguins, {x: "body_mass_g", y: "count"})
 ```
 
 To pass both a value and a reducer, or to disambiguate whether the given string represents a field name or a reducer name, the **x**, **y**, **color**, and **size** options can also be specified as an object with separate **value** and **reduce** properties. For example, to compute the total weight of the penguins in each bin:
 
 ```js
-Plot.auto(penguins, {x: "body_mass_g", y: {value: "body_mass_g", reduce: "sum"}}).plot()
+Plot.auto(penguins, {x: "body_mass_g", y: {value: "body_mass_g", reduce: "sum"}})
 ```
 
 If the **color** channel is specified as a string that is also a valid CSS color, it is interpreted as a constant color. For example, for red bars:
 
 ```js
-Plot.auto(penguins, {x: "body_mass_g", color: "red"}).plot()
+Plot.auto(penguins, {x: "body_mass_g", color: "red"})
 ```
 
 This is shorthand for:
 
 ```js
-Plot.auto(penguins, {x: "body_mass_g", color: {color: "red"}}).plot()
+Plot.auto(penguins, {x: "body_mass_g", color: {color: "red"}})
 ```
 
 To reference a field name instead as a variable color encoding, specify the **color** option as an object with a **value** property:
 
 ```js
-Plot.auto(penguins, {x: "body_mass_g", color: {value: "red"}}).plot()
+Plot.auto(penguins, {x: "body_mass_g", color: {value: "red"}})
 ```
 
 Alternatively, you can specify a function of data or an array of values, as with a standard mark channel.
