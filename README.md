@@ -1065,15 +1065,15 @@ Returns an automatically-chosen mark with the given *data* and *options*, suitab
 
 [Source](./src/marks/axis.js) · [Examples](https://observablehq.com/@observablehq/plot-axis) · Draws an axis to document the visual encoding of the corresponding position scale: *x* or *y*, and *fx* or *fy* if faceting. The axis mark is a [composite mark](#marks) comprised of (up to) three marks: a [vector](#vector) for ticks, a [text](#text) for tick labels, and another [text](#text) for an axis label.
 
-By default, the data for an axis mark are its tick values sampled from the associated scale’s domain. For control over tick values, you can specify the axis mark’s data explicitly (_e.g._ as an array of numbers), or use one of the following options:
+By default, the data for an axis mark are tick values sampled from the associated scale’s domain. If desired, you can specify the axis mark’s data explicitly (_e.g._ as an array of numbers), or use one of the following options:
 
 * **ticks** - the approximate number of ticks to generate, or interval, or array of values
 * **tickSpacing** - the approximate number of pixels between ticks (if **ticks** is not specified)
 * **interval** - an interval or time interval
 
-Note that when an axis mark is declared explicitly using the [**marks** option](#mark-options) (as opposed to an implicit axis), the corresponding scale’s *scale*.ticks and *scale*.tickSpacing options are not automatically inherited by the axis mark; however, the *scale*.interval option *is* inherited, as is the *scale*.label option. You can declare multiple axis marks for the same scale with different ticks, and styles, as desired.
+Note that when an axis mark is declared explicitly (via the [**marks** option](#mark-options), as opposed to an implicit axis), the corresponding scale’s *scale*.ticks and *scale*.tickSpacing options are not automatically inherited by the axis mark; however, the *scale*.interval option *is* inherited, as is the *scale*.label option. You can declare multiple axis marks for the same scale with different ticks, and styles, as desired.
 
-In addition to the [standard mark options](#marks), the axis mark supports the following additional options:
+In addition to the [standard mark options](#marks), the axis mark supports the following options:
 
 * **anchor** - the orientation: *top*, *bottom* (*x* or *fx*); *left*, *right* (*y* or *fy*); *both*; null to suppress
 * **tickSize** - the length of the tick vector (in pixels; default 6 for *x* or *y*, or 0 for *fx* or *fy*)
