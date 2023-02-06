@@ -6,37 +6,45 @@
 
 The new [auto mark](./README.md#auto) ([Plot.auto](./README.md#plotautodata-options)) automatically selects a mark type that best represents the dimensions of the given data according to some simple heuristics. The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API. For example,
 
-[TK image]
+[<img src="./img/auto-dot.webp" width="640" alt="A scatterplot height and weight of olympic athletes.">](https://observablehq.com/@observablehq/plot-auto)
 
 ```js
 Plot.auto(olympians, {x: "height", y: "weight"}).plot()
 ```
 
-makes a scatterplot (equivalent to [dot](./README.md#dot));
+makes a scatterplot (equivalent to [dot](./README.md#plotdotdata-options)); while adding **color**
 
-[TK image]
+[<img src="./img/auto-bin-color.webp" width="640" alt="A heatmap of .">](https://observablehq.com/@observablehq/plot-auto)
+
+```js
+Plot.auto(olympians, {x: "height", y: "weight", color: "count"}).plot()
+```
+
+makes a heatmap (equivalent to [rect](./README.md#plotrectdata-options) and [bin](./README.md#plotbinoutputs-options); chosen since _height_ and _weight_ are quantitative);
+
+[<img src="./img/auto-line.webp" width="640" alt="A line chart of Apple stock price.">](https://observablehq.com/@observablehq/plot-auto)
 
 ```js
 Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
 ```
 
-makes a line chart (equivalent to [lineY](./README.md#line); chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
+makes a line chart (equivalent to [lineY](./README.md#plotlineydata-options); chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
 
-[TK image]
+[<img src="./img/auto-bin.webp" width="640" alt="A histogram of penguin body mass.">](https://observablehq.com/@observablehq/plot-auto)
 
 ```js
 Plot.auto(penguins, {x: "body_mass_g"}).plot()
 ```
 
-makes a histogram (equivalent to [rectY](./README.md#rect) and [binX](./README.md#bin); chosen because the _body_mass_g_ column is quantitative);
+makes a histogram (equivalent to [rectY](./README.md#plotrectydata-options) and [binX](./README.md#plotbinxoutputs-options); chosen because the _body_mass_g_ column is quantitative);
 
-[TK image]
+[<img src="./img/auto-group.webp" width="640" alt="A vertical bar chart of penguins by island.">](https://observablehq.com/@observablehq/plot-auto)
 
 ```js
 Plot.auto(penguins, {x: "island"}).plot()
 ```
 
-makes a bar chart (equivalent to [barY](./README.md#bar) and [groupX](./README.md#group); chosen because the _island_ column is categorical).
+makes a bar chart (equivalent to [barY](./README.md#plotbarydata-options) and [groupX](./README.md#plotgroupxoutputs-options); chosen because the _island_ column is categorical).
 
 Plot’s [axes](./README.md#axis) and [grids](./README.md#axis) are now proper marks, affording a high degree of customizability. This has been one of our most asked-for features, closing more than a dozen feature requests!
 
