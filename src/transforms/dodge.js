@@ -3,6 +3,7 @@ import {finite, positive} from "../defined.js";
 import {identity, maybeNamed, number, valueof} from "../options.js";
 import {coerceNumbers} from "../scales.js";
 import {initializer} from "./basic.js";
+import {Position} from "../projection.js";
 
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
 const anchorXRight = ({width, marginRight}) => [-1, width - marginRight];
@@ -15,17 +16,7 @@ function maybeAnchor(anchor) {
   return typeof anchor === "string" ? {anchor} : anchor;
 }
 
-/**
- * ```js
- * Plot.dodgeX({y: "value"})
- * ```
- *
- * Equivalent to Plot.dodgeY, but piling horizontally, creating a new *x*
- * position channel that avoids overlapping. The *y* position channel is
- * unchanged.
- *
- * @link https://github.com/observablehq/plot/blob/main/README.md#dodge
- */
+/** @jsdoc dodgeX */
 export function dodgeX(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
   let {anchor = "left", padding = 1} = maybeAnchor(dodgeOptions);
@@ -45,17 +36,7 @@ export function dodgeX(dodgeOptions = {}, options = {}) {
   return dodge("x", "y", anchor, number(padding), options);
 }
 
-/**
- * ```js
- * Plot.dodgeY({x: "date"})
- * ```
- *
- * Given marks arranged along the *x* axis, the dodgeY transform piles them
- * vertically by defining a *y* position channel that avoids overlapping. The
- * *x* position channel is unchanged.
- *
- * @link https://github.com/observablehq/plot/blob/main/README.md#dodge
- */
+/** @jsdoc dodgeY */
 export function dodgeY(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
   let {anchor = "bottom", padding = 1} = maybeAnchor(dodgeOptions);
@@ -87,9 +68,10 @@ function dodge(y, x, anchor, padding, options) {
     options = {...options, channels: {r: {value: r, scale: "r"}, ...maybeNamed(channels)}};
     if (sort === undefined && reverse === undefined) options.sort = {channel: "r", order: "descending"};
   }
-  return initializer(options, function (data, facets, {[x]: X, r: R}, scales, dimensions) {
-    if (!X) throw new Error(`missing channel: ${x}`);
-    X = coerceNumbers(valueof(X.value, scales[X.scale] || identity));
+  return initializer(options, function (data, facets, channels, scales, dimensions, context) {
+    let {[x]: X, r: R} = channels;
+    if (!channels[x]) throw new Error(`missing channel: ${x}`);
+    ({[x]: X} = Position(channels, scales, context));
     const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
     if (R) R = coerceNumbers(valueof(R.value, scales[R.scale] || identity));
     let [ky, ty] = anchor(dimensions);

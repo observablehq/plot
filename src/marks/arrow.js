@@ -1,7 +1,7 @@
 import {create} from "../context.js";
+import {Mark} from "../mark.js";
 import {radians} from "../math.js";
 import {constant} from "../options.js";
-import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSameValue} from "./link.js";
 
@@ -66,7 +66,7 @@ export class Arrow extends Mark {
     const wingScale = headLength / 1.5;
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales)
       .call((g) =>
         g
@@ -176,13 +176,7 @@ function circleCircleIntersect([ax, ay, ar], [bx, by, br], sign) {
   return [ax + (dx * x + dy * y) / d, ay + (dy * x - dx * y) / d];
 }
 
-/**
- * ```js
- * Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015", bend: true})
- * ```
- *
- * Returns a new arrow with the given *data* and *options*.
- */
+/** @jsdoc arrow */
 export function arrow(data, options = {}) {
   let {x, x1, x2, y, y1, y2, ...remainingOptions} = options;
   [x1, x2] = maybeSameValue(x, x1, x2);

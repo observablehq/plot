@@ -1,6 +1,7 @@
 import {contourDensity, create, geoPath} from "d3";
-import {identity, isTypedArray, maybeTuple, maybeZ, valueof} from "../options.js";
-import {Mark} from "../plot.js";
+import {Mark} from "../mark.js";
+import {isTypedArray, maybeTuple, maybeZ} from "../options.js";
+import {Position} from "../projection.js";
 import {coerceNumbers} from "../scales.js";
 import {
   applyFrameAnchor,
@@ -49,8 +50,8 @@ export class Density extends Mark {
     const {contours} = channels;
     const path = geoPath();
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, {})
       .call((g) =>
         g
           .selectAll()
@@ -65,26 +66,7 @@ export class Density extends Mark {
   }
 }
 
-/**
- * Draws contours representing the estimated density of the two-dimensional
- * points given by the **x** and **y** channels, and possibly weighted by the
- * **weight** channel. If either of the **x** or **y** channels are not
- * specified, the corresponding position is controlled by the **frameAnchor**
- * option.
- *
- * The **thresholds** option, which defaults to 20, specifies one more than the
- * number of contours that will be computed at uniformly-spaced intervals
- * between 0 (exclusive) and the maximum density (exclusive). The **thresholds**
- * option may also be specified as an array or iterable of explicit density
- * values. The **bandwidth** option, which defaults to 20, specifies the
- * standard deviation of the Gaussian kernel used for estimation in pixels.
- *
- * If a **z**, **stroke** or **fill** channel is specified, the input points are
- * grouped by series, and separate sets of contours are generated for each
- * series. If the **stroke** or **fill** is specified as *density*, a color
- * channel is constructed with values representing the density threshold value
- * of each contour.
- */
+/** @jsdoc density */
 export function density(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
   [x, y] = maybeTuple(x, y);
@@ -103,14 +85,15 @@ function densityInitializer(options, fillDensity, strokeDensity) {
       : typeof thresholds?.[Symbol.iterator] === "function"
       ? coerceNumbers(thresholds)
       : +thresholds;
-  return initializer(options, function (data, facets, channels, scales, dimensions) {
-    const X = channels.x ? coerceNumbers(valueof(channels.x.value, scales[channels.x.scale] || identity)) : null;
-    const Y = channels.y ? coerceNumbers(valueof(channels.y.value, scales[channels.y.scale] || identity)) : null;
+  return initializer(options, function (data, facets, channels, scales, dimensions, context) {
     const W = channels.weight ? coerceNumbers(channels.weight.value) : null;
     const Z = channels.z?.value;
     const {z} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const {width, height} = dimensions;
+
+    // Get the (either scaled or projected) xy channels.
+    const {x: X, y: Y} = Position(channels, scales, context);
 
     // Group any of the input channels according to the first index associated
     // with each z-series or facet. Drop any channels not be needed for

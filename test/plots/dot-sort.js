@@ -5,7 +5,7 @@ export default async function () {
   const x = [..."ABDCEFGH"];
   const r = [30, 60, 20, 20, 35, 22, 20, 28];
   const options = {x, r, stroke: "black", fill: x, fillOpacity: 0.8};
-  const p = {width: 300, margin: 50, axis: null, r: {type: "identity"}};
+  const p = {width: 300, axis: null, r: {type: "identity"}, x: {inset: 50}, margin: 0};
   return html`
     ${Plot.dot(x, options).plot({...p, caption: "default sort (r desc)"})}
     <br />

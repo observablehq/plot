@@ -1,0 +1,20 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="350" height="250" viewBox="0 0 350 250" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <line aria-label="frame" stroke="red" stroke-width="4" stroke-linecap="square" transform="translate(0.5,0.5)" x1="2" x2="2" y1="2" y2="248"></line>
+  <line aria-label="frame" stroke="green" stroke-width="4" stroke-linecap="square" transform="translate(0.5,0.5)" x1="348" x2="348" y1="2" y2="248"></line>
+  <line aria-label="frame" stroke="blue" stroke-width="4" stroke-linecap="square" transform="translate(0.5,0.5)" x1="2" x2="348" y1="2" y2="2"></line>
+  <line aria-label="frame" stroke="black" stroke-width="4" stroke-linecap="square" transform="translate(0.5,0.5)" x1="2" x2="348" y1="248" y2="248"></line>
+</svg>

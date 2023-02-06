@@ -29,6 +29,20 @@
     <path d="M213.45491948003718,265.7998099410759A338.82853036939986,338.82853036939986 0,0,1 296.6294973598357,135.45651964237453M291.4606781836766,136.77095973937946L296.6294973598357,135.45651964237453L295.18342628751526,140.59006840499893" stroke-opacity="0.125"></path>
     <path stroke-opacity="1"></path>
   </g>
-  <g aria-label="text" transform="translate(0.5,55.5)"><text y="0.32em" transform="translate(60,100.38886351853552)">A</text><text y="0.32em" transform="translate(339,100.38886351853557)">B</text><text y="0.32em" transform="translate(199.49999999999997,319)">C</text></g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(60,100.38886351853552)">0.3</text><text y="0.32em" transform="translate(199.50000000000003,60)">0.2</text><text y="0.32em" transform="translate(168.40937402493734,189.5)">0.5</text><text y="0.32em" transform="translate(199.49999999999997,140.77772703707106)">0.1</text><text y="0.32em" transform="translate(339,100.38886351853557)">0.7</text><text y="0.32em" transform="translate(307.90937402493734,229.88886351853552)">0.2</text><text y="0.32em" transform="translate(91.09062597506264,229.88886351853554)">0.1</text><text y="0.32em" transform="translate(230.59062597506266,189.5)">0.1</text><text y="0.32em" transform="translate(199.49999999999997,319)">0.8</text></g>
+  <g aria-label="text" transform="translate(0.5,55.5)">
+    <text y="0.32em" transform="translate(60,100.38886351853552)">A</text>
+    <text y="0.32em" transform="translate(339,100.38886351853557)">B</text>
+    <text y="0.32em" transform="translate(199.49999999999997,319)">C</text>
+  </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)">
+    <text y="0.32em" transform="translate(60,100.38886351853552)">0.3</text>
+    <text y="0.32em" transform="translate(199.50000000000003,60)">0.2</text>
+    <text y="0.32em" transform="translate(168.40937402493734,189.5)">0.5</text>
+    <text y="0.32em" transform="translate(199.49999999999997,140.77772703707106)">0.1</text>
+    <text y="0.32em" transform="translate(339,100.38886351853557)">0.7</text>
+    <text y="0.32em" transform="translate(307.90937402493734,229.88886351853552)">0.2</text>
+    <text y="0.32em" transform="translate(91.09062597506264,229.88886351853554)">0.1</text>
+    <text y="0.32em" transform="translate(230.59062597506266,189.5)">0.1</text>
+    <text y="0.32em" transform="translate(199.49999999999997,319)">0.8</text>
+  </g>
 </svg>

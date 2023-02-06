@@ -3,42 +3,19 @@ import {defined} from "../defined.js";
 import {percentile, take} from "../options.js";
 import {mapX, mapY} from "./map.js";
 
-/**
- * ```js
- * Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
- * ```
- *
- * Like
- * [Plot.mapX](https://github.com/observablehq/plot/blob/main/README.md#plotmapxmap-options),
- * but applies the normalize map method with the given *basis*.
- */
+/** @jsdoc normalizeX */
 export function normalizeX(basis, options) {
   if (arguments.length === 1) ({basis, ...options} = basis);
   return mapX(normalize(basis), options);
 }
 
-/**
- * ```js
- * Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
- * ```
- *
- * Like
- * [Plot.mapY](https://github.com/observablehq/plot/blob/main/README.md#plotmapymap-options),
- * but applies the normalize map method with the given *basis*.
- */
+/** @jsdoc normalizeY */
 export function normalizeY(basis, options) {
   if (arguments.length === 1) ({basis, ...options} = basis);
   return mapY(normalize(basis), options);
 }
 
-/**
- * ```js
- * Plot.map({y: Plot.normalize("first")}, {x: "Date", y: "Close", stroke: "Symbol"})
- * ```
- *
- * Returns a normalize map method for the given *basis*, suitable for use with
- * Plot.map.
- */
+/** @jsdoc normalize */
 export function normalize(basis) {
   if (basis === undefined) return normalizeFirst;
   if (typeof basis === "function") return normalizeBasis((I, S) => basis(take(S, I)));

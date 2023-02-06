@@ -1,7 +1,7 @@
-import {path} from "d3";
+import {pathRound as path} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
-import {Mark} from "../plot.js";
+import {Mark} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {markers, applyMarkers} from "./marker.js";
 
@@ -33,7 +33,7 @@ export class Link extends Mark {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
     const {curve} = this;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales)
       .call((g) =>
         g
@@ -58,13 +58,7 @@ export class Link extends Mark {
   }
 }
 
-/**
- * ```js
- * Plot.link(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015"})
- * ```
- *
- * Returns a new link with the given *data* and *options*.
- */
+/** @jsdoc link */
 export function link(data, options = {}) {
   let {x, x1, x2, y, y1, y2, ...remainingOptions} = options;
   [x1, x2] = maybeSameValue(x, x1, x2);

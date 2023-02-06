@@ -14,12 +14,12 @@ export default async function () {
         stargazers,
         Plot.binX(
           {y: "count", title: (d, {x1, x2}) => `${format(x1)} to ${format(x2)}\n${d.length}`},
-          {x: "date", thresholds: d3.utcWeek}
+          {x: "date", thresholds: "week"}
         )
       ),
       Plot.ruleY(
         stargazers,
-        Plot.groupZ({y: "median"}, Plot.binX({y: "count", x: null}, {x: "date", stroke: "red", thresholds: d3.utcWeek}))
+        Plot.groupZ({y: "median"}, Plot.binX({y: "count", x: null}, {x: "date", stroke: "red", thresholds: "week"}))
       ),
       Plot.ruleY([0])
     ]

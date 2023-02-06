@@ -1,0 +1,118 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,345)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,295)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,244.99999999999997)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,145)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,95)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,44.999999999999986)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,345)">3,000</text>
+    <text y="0.32em" transform="translate(40,295)">3,500</text>
+    <text y="0.32em" transform="translate(40,244.99999999999997)">4,000</text>
+    <text y="0.32em" transform="translate(40,195)">4,500</text>
+    <text y="0.32em" transform="translate(40,145)">5,000</text>
+    <text y="0.32em" transform="translate(40,95)">5,500</text>
+    <text y="0.32em" transform="translate(40,44.999999999999986)">6,000</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ body_mass_g</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(84.61538461538461,370)" d="M0,0L0,6"></path>
+    <path transform="translate(196.15384615384613,370)" d="M0,0L0,6"></path>
+    <path transform="translate(307.69230769230774,370)" d="M0,0L0,6"></path>
+    <path transform="translate(419.2307692307693,370)" d="M0,0L0,6"></path>
+    <path transform="translate(530.7692307692308,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(84.61538461538461,370)">35</text>
+    <text y="0.71em" transform="translate(196.15384615384613,370)">40</text>
+    <text y="0.71em" transform="translate(307.69230769230774,370)">45</text>
+    <text y="0.71em" transform="translate(419.2307692307693,370)">50</text>
+    <text y="0.71em" transform="translate(530.7692307692308,370)">55</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">culmen_length_mm →</text>
+  </g>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <circle cx="173.84615384615387" cy="270" r="9.72111104761179"></circle>
+    <circle cx="129.23076923076923" cy="320" r="9"></circle>
+    <circle cx="352.30769230769226" cy="170" r="8.74642784226795"></circle>
+    <circle cx="129.23076923076923" cy="270" r="8.485281374238571"></circle>
+    <circle cx="218.46153846153845" cy="270" r="7.648529270389177"></circle>
+    <circle cx="263.0769230769231" cy="220" r="7.348469228349534"></circle>
+    <circle cx="441.53846153846155" cy="270" r="7.348469228349534"></circle>
+    <circle cx="84.61538461538461" cy="320" r="7.035623639735144"></circle>
+    <circle cx="218.46153846153845" cy="220" r="7.035623639735144"></circle>
+    <circle cx="307.69230769230774" cy="220" r="7.035623639735144"></circle>
+    <circle cx="396.9230769230769" cy="70.00000000000001" r="7.035623639735144"></circle>
+    <circle cx="263.0769230769231" cy="170" r="6.708203932499369"></circle>
+    <circle cx="441.53846153846155" cy="70.00000000000001" r="6.708203932499369"></circle>
+    <circle cx="173.84615384615387" cy="320" r="6.3639610306789285"></circle>
+    <circle cx="218.46153846153845" cy="320" r="6.3639610306789285"></circle>
+    <circle cx="307.69230769230774" cy="170" r="6.3639610306789285"></circle>
+    <circle cx="352.30769230769226" cy="120" r="6.3639610306789285"></circle>
+    <circle cx="307.69230769230774" cy="120" r="6.000000000000001"></circle>
+    <circle cx="352.30769230769226" cy="270" r="6.000000000000001"></circle>
+    <circle cx="307.69230769230774" cy="270" r="5.612486080160913"></circle>
+    <circle cx="396.9230769230769" cy="120" r="5.612486080160913"></circle>
+    <circle cx="441.53846153846155" cy="120" r="5.612486080160913"></circle>
+    <circle cx="396.9230769230769" cy="170" r="5.196152422706632"></circle>
+    <circle cx="84.61538461538461" cy="270" r="4.74341649025257"></circle>
+    <circle cx="396.9230769230769" cy="270" r="4.74341649025257"></circle>
+    <circle cx="441.53846153846155" cy="220" r="4.74341649025257"></circle>
+    <circle cx="129.23076923076923" cy="370" r="4.242640687119286"></circle>
+    <circle cx="173.84615384615387" cy="220" r="4.242640687119286"></circle>
+    <circle cx="263.0769230769231" cy="270" r="4.242640687119286"></circle>
+    <circle cx="352.30769230769226" cy="220" r="4.242640687119286"></circle>
+    <circle cx="396.9230769230769" cy="220" r="4.242640687119286"></circle>
+    <circle cx="441.53846153846155" cy="320" r="4.242640687119286"></circle>
+    <circle cx="173.84615384615387" cy="170" r="3.674234614174767"></circle>
+    <circle cx="218.46153846153845" cy="170" r="3.674234614174767"></circle>
+    <circle cx="263.0769230769231" cy="320" r="3.674234614174767"></circle>
+    <circle cx="352.30769230769226" cy="320" r="3.674234614174767"></circle>
+    <circle cx="486.1538461538462" cy="170" r="3.674234614174767"></circle>
+    <circle cx="530.7692307692308" cy="70.00000000000001" r="3.674234614174767"></circle>
+    <circle cx="84.61538461538461" cy="220" r="3.0000000000000004"></circle>
+    <circle cx="129.23076923076923" cy="220" r="3.0000000000000004"></circle>
+    <circle cx="352.30769230769226" cy="70.00000000000001" r="3.0000000000000004"></circle>
+    <circle cx="396.9230769230769" cy="320" r="3.0000000000000004"></circle>
+    <circle cx="396.9230769230769" cy="20" r="3.0000000000000004"></circle>
+    <circle cx="486.1538461538462" cy="220" r="3.0000000000000004"></circle>
+    <circle cx="486.1538461538462" cy="120" r="3.0000000000000004"></circle>
+    <circle cx="486.1538461538462" cy="70.00000000000001" r="3.0000000000000004"></circle>
+    <circle cx="530.7692307692308" cy="220" r="3.0000000000000004"></circle>
+    <circle cx="40" cy="370" r="2.121320343559643"></circle>
+    <circle cx="40" cy="320" r="2.121320343559643"></circle>
+    <circle cx="40" cy="270" r="2.121320343559643"></circle>
+    <circle cx="84.61538461538461" cy="370" r="2.121320343559643"></circle>
+    <circle cx="173.84615384615387" cy="370" r="2.121320343559643"></circle>
+    <circle cx="263.0769230769231" cy="370" r="2.121320343559643"></circle>
+    <circle cx="263.0769230769231" cy="120" r="2.121320343559643"></circle>
+    <circle cx="307.69230769230774" cy="320" r="2.121320343559643"></circle>
+    <circle cx="307.69230769230774" cy="70.00000000000001" r="2.121320343559643"></circle>
+    <circle cx="352.30769230769226" cy="370" r="2.121320343559643"></circle>
+    <circle cx="441.53846153846155" cy="20" r="2.121320343559643"></circle>
+    <circle cx="486.1538461538462" cy="320" r="2.121320343559643"></circle>
+    <circle cx="486.1538461538462" cy="270" r="2.121320343559643"></circle>
+    <circle cx="620" cy="270" r="2.121320343559643"></circle>
+    <circle cx="620" cy="20" r="2.121320343559643"></circle>
+  </g>
+</svg>

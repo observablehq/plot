@@ -13,98 +13,84 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Frequency" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,344.85897435897436)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,319.2179487179487)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,293.57692307692304)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,267.9358974358974)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,242.2948717948718)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,216.65384615384616)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">120</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,191.01282051282053)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">140</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,165.37179487179486)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,139.73076923076923)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">180</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,114.08974358974362)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,88.44871794871794)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">220</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,62.807692307692314)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">240</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,37.166666666666686)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">260</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="344.35897435897436" y2="344.35897435897436"></line>
+    <line x1="40" x2="620" y1="318.7179487179487" y2="318.7179487179487"></line>
+    <line x1="40" x2="620" y1="293.07692307692304" y2="293.07692307692304"></line>
+    <line x1="40" x2="620" y1="267.4358974358974" y2="267.4358974358974"></line>
+    <line x1="40" x2="620" y1="241.7948717948718" y2="241.7948717948718"></line>
+    <line x1="40" x2="620" y1="216.15384615384616" y2="216.15384615384616"></line>
+    <line x1="40" x2="620" y1="190.51282051282053" y2="190.51282051282053"></line>
+    <line x1="40" x2="620" y1="164.87179487179486" y2="164.87179487179486"></line>
+    <line x1="40" x2="620" y1="139.23076923076923" y2="139.23076923076923"></line>
+    <line x1="40" x2="620" y1="113.58974358974362" y2="113.58974358974362"></line>
+    <line x1="40" x2="620" y1="87.94871794871794" y2="87.94871794871794"></line>
+    <line x1="40" x2="620" y1="62.307692307692314" y2="62.307692307692314"></line>
+    <line x1="40" x2="620" y1="36.666666666666686" y2="36.666666666666686"></line>
   </g>
-  <g aria-label="x-axis" aria-description="New stargazers per hour →" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(40.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(98.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(156.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(214.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(272.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(330.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(388.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">7</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(446.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(504.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">9</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(562.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10+</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(620.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em"></text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">New stargazers per hour →</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,344.35897435897436)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,318.7179487179487)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,293.07692307692304)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,267.4358974358974)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,241.7948717948718)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,216.15384615384616)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,190.51282051282053)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,164.87179487179486)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,139.23076923076923)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,113.58974358974362)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,87.94871794871794)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,62.307692307692314)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,36.666666666666686)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,344.35897435897436)">20</text>
+    <text y="0.32em" transform="translate(40,318.7179487179487)">40</text>
+    <text y="0.32em" transform="translate(40,293.07692307692304)">60</text>
+    <text y="0.32em" transform="translate(40,267.4358974358974)">80</text>
+    <text y="0.32em" transform="translate(40,241.7948717948718)">100</text>
+    <text y="0.32em" transform="translate(40,216.15384615384616)">120</text>
+    <text y="0.32em" transform="translate(40,190.51282051282053)">140</text>
+    <text y="0.32em" transform="translate(40,164.87179487179486)">160</text>
+    <text y="0.32em" transform="translate(40,139.23076923076923)">180</text>
+    <text y="0.32em" transform="translate(40,113.58974358974362)">200</text>
+    <text y="0.32em" transform="translate(40,87.94871794871794)">220</text>
+    <text y="0.32em" transform="translate(40,62.307692307692314)">240</text>
+    <text y="0.32em" transform="translate(40,36.666666666666686)">260</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(98,370)" d="M0,0L0,6"></path>
+    <path transform="translate(156,370)" d="M0,0L0,6"></path>
+    <path transform="translate(214,370)" d="M0,0L0,6"></path>
+    <path transform="translate(272,370)" d="M0,0L0,6"></path>
+    <path transform="translate(330,370)" d="M0,0L0,6"></path>
+    <path transform="translate(388,370)" d="M0,0L0,6"></path>
+    <path transform="translate(446,370)" d="M0,0L0,6"></path>
+    <path transform="translate(504,370)" d="M0,0L0,6"></path>
+    <path transform="translate(562,370)" d="M0,0L0,6"></path>
+    <path transform="translate(620,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">1</text>
+    <text y="0.71em" transform="translate(98,370)">2</text>
+    <text y="0.71em" transform="translate(156,370)">3</text>
+    <text y="0.71em" transform="translate(214,370)">4</text>
+    <text y="0.71em" transform="translate(272,370)">5</text>
+    <text y="0.71em" transform="translate(330,370)">6</text>
+    <text y="0.71em" transform="translate(388,370)">7</text>
+    <text y="0.71em" transform="translate(446,370)">8</text>
+    <text y="0.71em" transform="translate(504,370)">9</text>
+    <text y="0.71em" transform="translate(562,370)">10+</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">New stargazers per hour →</text>
   </g>
   <g aria-label="rect">
     <rect x="41" y="20" width="57" height="350"></rect>

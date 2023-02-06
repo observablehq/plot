@@ -7,6 +7,6 @@ export default async function () {
     y: {
       transform: (d) => d / 1e6
     },
-    marks: [Plot.rectY(aapl, Plot.binX({y: "sum"}, {x: "Date", thresholds: d3.utcMonth, y: "Volume"})), Plot.ruleY([0])]
+    marks: [Plot.rectY(aapl, Plot.binX({y: "sum"}, {x: "Date", thresholds: "month", y: "Volume"})), Plot.ruleY([0])]
   });
 }

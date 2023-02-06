@@ -13,68 +13,64 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="How comfortable are you with d3 now?" transform="translate(300,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,40.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">I looked at some examples!</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,60.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">I've forked a bl.ock or two</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,80.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">selectAll(".answers").enter()</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,100.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Someone told me I should learn it...</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,120.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em"></text>
-    </g><text fill="currentColor" transform="translate(-300,30)" dy="-1em" text-anchor="start">How comfortable are you with d3 now?</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10.5)">
+    <path transform="translate(300,30)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,50)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,70)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,90)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,110)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="Frequency (%) →" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(300.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(364.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">10</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(428.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(492.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">30</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(556.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(620.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">50</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(684.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">60</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(748.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">70</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(812.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(876.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">90</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(940.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">100</text>
-    </g><text fill="currentColor" transform="translate(960,-30)" dy="1em" text-anchor="end">Frequency (%) →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10.5)">
+    <text y="0.32em" transform="translate(300,30)">I looked at some examples!</text>
+    <text y="0.32em" transform="translate(300,50)">I've forked a bl.ock or two</text>
+    <text y="0.32em" transform="translate(300,70)">selectAll(".answers").enter()</text>
+    <text y="0.32em" transform="translate(300,90)">Someone told me I should learn it...</text>
+    <text y="0.32em" transform="translate(300,110)"></text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-296.5,-26.5)">
+    <text y="0.71em" transform="translate(300,30)">How comfortable are you with d3 now?</text>
+  </g>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="300" x2="300" y1="30" y2="130"></line>
+    <line x1="364" x2="364" y1="30" y2="130"></line>
+    <line x1="428" x2="428" y1="30" y2="130"></line>
+    <line x1="492" x2="492" y1="30" y2="130"></line>
+    <line x1="556" x2="556" y1="30" y2="130"></line>
+    <line x1="620" x2="620" y1="30" y2="130"></line>
+    <line x1="684" x2="684" y1="30" y2="130"></line>
+    <line x1="748" x2="748" y1="30" y2="130"></line>
+    <line x1="812" x2="812" y1="30" y2="130"></line>
+    <line x1="876" x2="876" y1="30" y2="130"></line>
+    <line x1="940" x2="940" y1="30" y2="130"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+    <path transform="translate(300,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(364,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(428,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(492,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(556,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(620,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(684,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(748,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(812,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(876,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(940,30)" d="M0,0L0,-6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+    <text transform="translate(300,30)">0</text>
+    <text transform="translate(364,30)">10</text>
+    <text transform="translate(428,30)">20</text>
+    <text transform="translate(492,30)">30</text>
+    <text transform="translate(556,30)">40</text>
+    <text transform="translate(620,30)">50</text>
+    <text transform="translate(684,30)">60</text>
+    <text transform="translate(748,30)">70</text>
+    <text transform="translate(812,30)">80</text>
+    <text transform="translate(876,30)">90</text>
+    <text transform="translate(940,30)">100</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-26.5)">
+    <text y="0.71em" transform="translate(940,30)">Frequency (%) →</text>
   </g>
   <g aria-label="bar" fill="steelblue">
     <rect x="300" width="150.70336391437309" y="71" height="19"></rect>

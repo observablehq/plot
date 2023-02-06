@@ -10,7 +10,7 @@ export default async function () {
       label: null
     },
     y: {
-      range: [12, -24],
+      insetTop: -24,
       axis: null
     },
     fy: {

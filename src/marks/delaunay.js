@@ -1,8 +1,8 @@
-import {group, path, select, Delaunay} from "d3";
+import {group, pathRound as path, select, Delaunay} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
+import {Mark} from "../mark.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
-import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
   applyDirectStyles,
@@ -65,6 +65,7 @@ class DelaunayLink extends Mark {
     markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const {curve} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
@@ -123,8 +124,8 @@ class DelaunayLink extends Mark {
     }
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
           ? (g) =>
@@ -155,6 +156,7 @@ class AbstractDelaunayMark extends Mark {
     );
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? (i) => X[i] : constant(cx);
@@ -172,8 +174,8 @@ class AbstractDelaunayMark extends Mark {
     }
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
           ? (g) =>
@@ -223,6 +225,7 @@ class Voronoi extends Mark {
     );
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? (i) => X[i] : constant(cx);
@@ -242,8 +245,8 @@ class Voronoi extends Mark {
     }
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
           ? (g) =>
@@ -279,74 +282,27 @@ function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
   return new DelaunayMark(data, {...options, x, y});
 }
 
-/**
- * Draws links for each edge of the Delaunay triangulation of the points given
- * by the **x** and **y** channels. Supports the same options as the [link
- * mark](#link), except that **x1**, **y1**, **x2**, and **y2** are derived
- * automatically from **x** and **y**. When an aesthetic channel is specified
- * (such as **stroke** or **strokeWidth**), the link inherits the corresponding
- * channel value from one of its two endpoints arbitrarily.
- *
- * If a **z** channel is specified, the input points are grouped by *z*, and
- * separate Delaunay triangulations are constructed for each group.
- */
+/** @jsdoc delaunayLink */
 export function delaunayLink(data, options) {
   return delaunayMark(DelaunayLink, data, options);
 }
 
-/**
- * Draws a mesh of the Delaunay triangulation of the points given by the **x**
- * and **y** channels. The **stroke** option defaults to _currentColor_, and the
- * **strokeOpacity** defaults to 0.2. The **fill** option is not supported. When
- * an aesthetic channel is specified (such as **stroke** or **strokeWidth**),
- * the mesh inherits the corresponding channel value from one of its constituent
- * points arbitrarily.
- *
- * If a **z** channel is specified, the input points are grouped by *z*, and
- * separate Delaunay triangulations are constructed for each group.
- */
+/** @jsdoc delaunayMesh */
 export function delaunayMesh(data, options) {
   return delaunayMark(DelaunayMesh, data, options);
 }
 
-/**
- * Draws a convex hull around the points given by the **x** and **y** channels.
- * The **stroke** option defaults to _currentColor_ and the **fill** option
- * defaults to _none_. When an aesthetic channel is specified (such as
- * **stroke** or **strokeWidth**), the hull inherits the corresponding channel
- * value from one of its constituent points arbitrarily.
- *
- * If a **z** channel is specified, the input points are grouped by *z*, and
- * separate convex hulls are constructed for each group. If the **z** channel is
- * not specified, it defaults to either the **fill** channel, if any, or the
- * **stroke** channel, if any.
- */
+/** @jsdoc hull */
 export function hull(data, options) {
   return delaunayMark(Hull, data, options);
 }
 
-/**
- * Draws polygons for each cell of the Voronoi tesselation of the points given
- * by the **x** and **y** channels.
- *
- * If a **z** channel is specified, the input points are grouped by *z*, and
- * separate Voronoi tesselations are constructed for each group.
- */
+/** @jsdoc voronoi */
 export function voronoi(data, options) {
   return delaunayMark(Voronoi, data, options);
 }
 
-/**
- * Draws a mesh for the cell boundaries of the Voronoi tesselation of the points
- * given by the **x** and **y** channels. The **stroke** option defaults to
- * _currentColor_, and the **strokeOpacity** defaults to 0.2. The **fill**
- * option is not supported. When an aesthetic channel is specified (such as
- * **stroke** or **strokeWidth**), the mesh inherits the corresponding channel
- * value from one of its constituent points arbitrarily.
- *
- * If a **z** channel is specified, the input points are grouped by *z*, and
- * separate Voronoi tesselations are constructed for each group.
- */
+/** @jsdoc voronoiMesh */
 export function voronoiMesh(data, options) {
   return delaunayMark(VoronoiMesh, data, options);
 }

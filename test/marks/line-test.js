@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import {curveLinear, curveStep} from "d3";
+import {curveStep} from "d3";
 import assert from "assert";
 
 it("line() has the expected defaults", () => {
@@ -26,7 +26,7 @@ it("line() has the expected defaults", () => {
     Object.values(line.channels).map((c) => c.scale),
     ["x", "y"]
   );
-  assert.strictEqual(line.curve, curveLinear);
+  assert.strictEqual(line.curve.name, "curveAuto");
   assert.strictEqual(line.fill, "none");
   assert.strictEqual(line.fillOpacity, undefined);
   assert.strictEqual(line.stroke, "currentColor");

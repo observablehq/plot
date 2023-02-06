@@ -19,17 +19,37 @@ https://www.flother.is/2017/olympic-games-data/
 ## barley.csv
 http://search.r-project.org/R/library/lattice/html/barley.html
 
+## beagle.csv
+https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world
+
 ## bls-metro-unemployment.csv
 Bureau of Labor Statistics
 https://www.bls.gov/
+
+## ca55-south.csv
+Great Britain aeromagnetic survey
+https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/
 
 ## cars.csv
 1983 ASA Data Exposition
 http://lib.stat.cmu.edu/datasets/
 
+## cities-10k.csv
+Geonames
+https://www.geonames.org/about.html
+https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/
+
 ## covid-ihme-projected-deaths.csv
 Institute for Health Metrics and Evaluation
 https://covid19.healthdata.org/
+
+## countries-50m.json
+World Atlas TopoJSON 2.0.2
+https://github.com/topojson/world-atlas
+
+## countries-110m.json
+World Atlas TopoJSON 2.0.2
+https://github.com/topojson/world-atlas
 
 ## d3-survey-2015.json
 D3 Community Survey, 2015
@@ -51,9 +71,17 @@ https://archive.nytimes.com/www.nytimes.com/imagepages/2010/05/02/business/02met
 Daily downloads of the npm “@observablehq/cars” package
 https://observablehq.com/@mbostock/npm-daily-downloads?name=@observablehq/cars
 
+## electricity-demand.csv
+Hourly electricity demand for California from the U.S. Energy Information Administration, Jan. 2021
+https://www.eia.gov/opendata/
+
 ## energy-production.csv
 U.S. Energy Information Administration; monthly energy review, primary energy production by source, Jan. 2022
 https://www.eia.gov/totalenergy/data/monthly/index.php
+
+## federal-funds.csv
+U.S. Federal Reserve, Jan. 2023
+https://www.federalreserve.gov/releases/h15/
 
 ## flare.csv
 Flare visualization toolkit package hierarchy
@@ -118,10 +146,21 @@ https://observablehq.com/@moklick
 TSA
 https://www.tsa.gov/coronavirus/passenger-throughput
 
+## us-counties-10m.json
+U.S. Atlas TopoJSON 3.0.0
+https://github.com/topojson/us-atlas
+
+## us-county-unemployment.csv
+U.S. Bureau of Labor Statistics, 2016
+https://www.bls.gov/lau/tables.htm
+
 ## us-gdp.csv
 U.S. Gross Domestic Product, chained dollars, Jan 1947-Jan 2022
 Federal Reserve Economic Data
 https://fred.stlouisfed.org/
+
+## us-state-capitals.csv
+Unknown origin
 
 ## us-population-state-age.csv
 U.S. Census Bureau
@@ -143,6 +182,14 @@ https://www.census.gov/retail/mrts/historic_releases.html
 ## us-state-population-2010-2019.csv
 U.S. Census Bureau (?)
 https://observablehq.com/@d3/diverging-bar-chart
+
+## walmarts.tsv
+Thomas J. Holmes, University of Minnesota, Federal Reserve Bank of Minneapolis, and NBER
+https://users.econ.umn.edu/~holmes/data/WalMart/
+
+## water-vapor.csv
+NASA Earth Observations
+https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV
 
 ## wealth-britain.csv
 U.K. Office for National Statistics

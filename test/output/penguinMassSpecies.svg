@@ -13,139 +13,100 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Frequency" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,333.2659574468085)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,296.031914893617)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,258.79787234042556)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">30</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,221.56382978723406)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,184.32978723404256)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">50</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,147.09574468085103)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,109.86170212765958)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">70</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,72.62765957446808)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,35.39361702127658)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">90</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="332.7659574468085" y2="332.7659574468085"></line>
+    <line x1="40" x2="620" y1="295.531914893617" y2="295.531914893617"></line>
+    <line x1="40" x2="620" y1="258.29787234042556" y2="258.29787234042556"></line>
+    <line x1="40" x2="620" y1="221.06382978723406" y2="221.06382978723406"></line>
+    <line x1="40" x2="620" y1="183.82978723404256" y2="183.82978723404256"></line>
+    <line x1="40" x2="620" y1="146.59574468085103" y2="146.59574468085103"></line>
+    <line x1="40" x2="620" y1="109.36170212765958" y2="109.36170212765958"></line>
+    <line x1="40" x2="620" y1="72.12765957446808" y2="72.12765957446808"></line>
+    <line x1="40" x2="620" y1="34.89361702127658" y2="34.89361702127658"></line>
   </g>
-  <g aria-label="x-axis" aria-description="Body mass (g) →" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(40.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2,500</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(113.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(185.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3,500</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(258.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(330.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,500</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(403.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(475.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5,500</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(548.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(620.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6,500</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Body mass (g) →</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,332.7659574468085)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,295.531914893617)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,258.29787234042556)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,221.06382978723406)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,183.82978723404256)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,146.59574468085103)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,109.36170212765958)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,72.12765957446808)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,34.89361702127658)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,332.7659574468085)">10</text>
+    <text y="0.32em" transform="translate(40,295.531914893617)">20</text>
+    <text y="0.32em" transform="translate(40,258.29787234042556)">30</text>
+    <text y="0.32em" transform="translate(40,221.06382978723406)">40</text>
+    <text y="0.32em" transform="translate(40,183.82978723404256)">50</text>
+    <text y="0.32em" transform="translate(40,146.59574468085103)">60</text>
+    <text y="0.32em" transform="translate(40,109.36170212765958)">70</text>
+    <text y="0.32em" transform="translate(40,72.12765957446808)">80</text>
+    <text y="0.32em" transform="translate(40,34.89361702127658)">90</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(113,370)" d="M0,0L0,6"></path>
+    <path transform="translate(185,370)" d="M0,0L0,6"></path>
+    <path transform="translate(258,370)" d="M0,0L0,6"></path>
+    <path transform="translate(330,370)" d="M0,0L0,6"></path>
+    <path transform="translate(403,370)" d="M0,0L0,6"></path>
+    <path transform="translate(475,370)" d="M0,0L0,6"></path>
+    <path transform="translate(548,370)" d="M0,0L0,6"></path>
+    <path transform="translate(620,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">2,500</text>
+    <text y="0.71em" transform="translate(113,370)">3,000</text>
+    <text y="0.71em" transform="translate(185,370)">3,500</text>
+    <text y="0.71em" transform="translate(258,370)">4,000</text>
+    <text y="0.71em" transform="translate(330,370)">4,500</text>
+    <text y="0.71em" transform="translate(403,370)">5,000</text>
+    <text y="0.71em" transform="translate(475,370)">5,500</text>
+    <text y="0.71em" transform="translate(548,370)">6,000</text>
+    <text y="0.71em" transform="translate(620,370)">6,500</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">Body mass (g) →</text>
   </g>
   <g aria-label="rect">
-    <rect x="41" y="343.93617021276594" width="72" height="26.063829787234056" fill="#4e79a7">
-      <title>Adelie FEMALE (6)
-        Adelie null (1)</title>
-    </rect>
-    <rect x="114" y="195" width="71" height="175" fill="#4e79a7">
-      <title>Adelie FEMALE (42)
+    <rect x="41" y="343.93617021276594" width="72" height="26.063829787234056" fill="#4e79a7"><title>Adelie FEMALE (6)
+        Adelie null (1)</title></rect>
+    <rect x="114" y="195" width="71" height="175" fill="#4e79a7"><title>Adelie FEMALE (42)
         Adelie MALE (3)
-        Adelie null (2)</title>
-    </rect>
-    <rect x="186" y="154.04255319148936" width="72" height="215.95744680851064" fill="#4e79a7">
-      <title>Adelie MALE (32)
+        Adelie null (2)</title></rect>
+    <rect x="186" y="154.04255319148936" width="72" height="215.95744680851064" fill="#4e79a7"><title>Adelie MALE (32)
         Adelie FEMALE (25)
-        Adelie null (1)</title>
-    </rect>
-    <rect x="259" y="254.5744680851064" width="71" height="115.42553191489361" fill="#4e79a7">
-      <title>Adelie MALE (30)
-        Adelie null (1)</title>
-    </rect>
-    <rect x="331" y="340.2127659574468" width="72" height="29.787234042553223" fill="#4e79a7">
-      <title>Adelie MALE (8)</title>
-    </rect>
-    <rect x="41" y="336.48936170212767" width="72" height="7.446808510638277" fill="#f28e2c">
-      <title>Chinstrap FEMALE (2)</title>
-    </rect>
-    <rect x="114" y="139.14893617021278" width="71" height="55.85106382978722" fill="#f28e2c">
-      <title>Chinstrap FEMALE (11)
-        Chinstrap MALE (4)</title>
-    </rect>
-    <rect x="186" y="23.72340425531913" width="72" height="130.31914893617022" fill="#f28e2c">
-      <title>Chinstrap FEMALE (20)
-        Chinstrap MALE (15)</title>
-    </rect>
-    <rect x="259" y="206.17021276595744" width="71" height="48.404255319148945" fill="#f28e2c">
-      <title>Chinstrap MALE (12)
-        Chinstrap FEMALE (1)</title>
-    </rect>
-    <rect x="331" y="329.04255319148933" width="72" height="11.170212765957444" fill="#f28e2c">
-      <title>Chinstrap MALE (3)</title>
-    </rect>
-    <rect x="186" y="20" width="72" height="3.7234042553191316" fill="#e15759">
-      <title>Gentoo FEMALE (1)</title>
-    </rect>
-    <rect x="259" y="150.31914893617022" width="71" height="55.85106382978722" fill="#e15759">
-      <title>Gentoo FEMALE (14)
-        Gentoo null (1)</title>
-    </rect>
-    <rect x="331" y="180.10638297872342" width="72" height="148.93617021276592" fill="#e15759">
-      <title>Gentoo FEMALE (35)
+        Adelie null (1)</title></rect>
+    <rect x="259" y="254.5744680851064" width="71" height="115.42553191489361" fill="#4e79a7"><title>Adelie MALE (30)
+        Adelie null (1)</title></rect>
+    <rect x="331" y="340.2127659574468" width="72" height="29.787234042553223" fill="#4e79a7"><title>Adelie MALE (8)</title></rect>
+    <rect x="41" y="336.48936170212767" width="72" height="7.446808510638277" fill="#f28e2c"><title>Chinstrap FEMALE (2)</title></rect>
+    <rect x="114" y="139.14893617021278" width="71" height="55.85106382978722" fill="#f28e2c"><title>Chinstrap FEMALE (11)
+        Chinstrap MALE (4)</title></rect>
+    <rect x="186" y="23.72340425531913" width="72" height="130.31914893617022" fill="#f28e2c"><title>Chinstrap FEMALE (20)
+        Chinstrap MALE (15)</title></rect>
+    <rect x="259" y="206.17021276595744" width="71" height="48.404255319148945" fill="#f28e2c"><title>Chinstrap MALE (12)
+        Chinstrap FEMALE (1)</title></rect>
+    <rect x="331" y="329.04255319148933" width="72" height="11.170212765957444" fill="#f28e2c"><title>Chinstrap MALE (3)</title></rect>
+    <rect x="186" y="20" width="72" height="3.7234042553191316" fill="#e15759"><title>Gentoo FEMALE (1)</title></rect>
+    <rect x="259" y="150.31914893617022" width="71" height="55.85106382978722" fill="#e15759"><title>Gentoo FEMALE (14)
+        Gentoo null (1)</title></rect>
+    <rect x="331" y="180.10638297872342" width="72" height="148.93617021276592" fill="#e15759"><title>Gentoo FEMALE (35)
         Gentoo null (3)
-        Gentoo MALE (2)</title>
-    </rect>
-    <rect x="404" y="243.40425531914897" width="71" height="126.59574468085103" fill="#e15759">
-      <title>Gentoo MALE (26)
-        Gentoo FEMALE (8)</title>
-    </rect>
-    <rect x="476" y="262.02127659574467" width="72" height="107.97872340425533" fill="#e15759">
-      <title>Gentoo MALE (29)</title>
-    </rect>
-    <rect x="549" y="355.1063829787234" width="71" height="14.893617021276611" fill="#e15759">
-      <title>Gentoo MALE (4)</title>
-    </rect>
+        Gentoo MALE (2)</title></rect>
+    <rect x="404" y="243.40425531914897" width="71" height="126.59574468085103" fill="#e15759"><title>Gentoo MALE (26)
+        Gentoo FEMALE (8)</title></rect>
+    <rect x="476" y="262.02127659574467" width="72" height="107.97872340425533" fill="#e15759"><title>Gentoo MALE (29)</title></rect>
+    <rect x="549" y="355.1063829787234" width="71" height="14.893617021276611" fill="#e15759"><title>Gentoo MALE (4)</title></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>

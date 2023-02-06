@@ -1,0 +1,69 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,345.8181818181818)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,320.3636363636363)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,294.90909090909093)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,269.45454545454544)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,244)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,218.54545454545453)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,193.09090909090907)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,167.63636363636365)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,142.18181818181822)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,116.72727272727272)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,91.27272727272727)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,65.81818181818181)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,40.363636363636374)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,345.8181818181818)">20</text>
+    <text y="0.32em" transform="translate(40,320.3636363636363)">40</text>
+    <text y="0.32em" transform="translate(40,294.90909090909093)">60</text>
+    <text y="0.32em" transform="translate(40,269.45454545454544)">80</text>
+    <text y="0.32em" transform="translate(40,244)">100</text>
+    <text y="0.32em" transform="translate(40,218.54545454545453)">120</text>
+    <text y="0.32em" transform="translate(40,193.09090909090907)">140</text>
+    <text y="0.32em" transform="translate(40,167.63636363636365)">160</text>
+    <text y="0.32em" transform="translate(40,142.18181818181822)">180</text>
+    <text y="0.32em" transform="translate(40,116.72727272727272)">200</text>
+    <text y="0.32em" transform="translate(40,91.27272727272727)">220</text>
+    <text y="0.32em" transform="translate(40,65.81818181818181)">240</text>
+    <text y="0.32em" transform="translate(40,40.363636363636374)">260</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(121.20000000000002,370)" d="M0,0L0,6"></path>
+    <path transform="translate(237.20000000000002,370)" d="M0,0L0,6"></path>
+    <path transform="translate(353.2,370)" d="M0,0L0,6"></path>
+    <path transform="translate(469.2,370)" d="M0,0L0,6"></path>
+    <path transform="translate(585.1999999999999,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(121.20000000000002,370)">50,000,000</text>
+    <text y="0.71em" transform="translate(237.20000000000002,370)">100,000,000</text>
+    <text y="0.71em" transform="translate(353.2,370)">150,000,000</text>
+    <text y="0.71em" transform="translate(469.2,370)">200,000,000</text>
+    <text y="0.71em" transform="translate(585.1999999999999,370)">250,000,000</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">Volume →</text>
+  </g>
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <path d="M40,288.545L63.2,20L86.4,69.636L109.6,130.727L132.8,186.727L156,223.636L179.2,274.545L202.4,308.909L225.6,324.182L248.8,347.091L272,349.636L295.2,359.818L318.4,364.909L341.6,364.909L364.8,368.727L388,367.455L411.2,370L434.4,364.909L457.6,370L527.2,368.727L620,370"></path>
+  </g>
+</svg>

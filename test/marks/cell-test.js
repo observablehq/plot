@@ -125,3 +125,10 @@ it("cellY() defaults y to identity and x to null", () => {
   );
   assert.strictEqual(cell.channels.y.type, "band");
 });
+
+it("cell() is incompatible with a projection", () => {
+  assert.throws(
+    () => Plot.cell([]).plot({projection: "equal-earth"}),
+    /scale incompatible with channel: projection !== band/
+  );
+});
