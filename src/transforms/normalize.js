@@ -1,6 +1,6 @@
 import {extent, deviation, max, mean, median, min, sum} from "d3";
 import {defined} from "../defined.js";
-import {percentile, take} from "../options.js";
+import {isWeaklyNumeric, percentile, take} from "../options.js";
 import {mapX, mapY} from "./map.js";
 
 /** @jsdoc normalizeX */
@@ -46,6 +46,7 @@ export function normalize(basis) {
 function normalizeBasis(basis) {
   return {
     map(I, S, T) {
+      if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
       const b = +basis(I, S);
       for (const i of I) {
         T[i] = S[i] === null ? NaN : S[i] / b;
@@ -60,6 +61,7 @@ function normalizeAccessor(f) {
 
 const normalizeExtent = {
   map(I, S, T) {
+    if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
     const [s1, s2] = extent(I, (i) => S[i]),
       d = s2 - s1;
     for (const i of I) {
@@ -69,6 +71,7 @@ const normalizeExtent = {
 };
 
 const normalizeFirst = normalizeBasis((I, S) => {
+  if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
   for (let i = 0; i < I.length; ++i) {
     const s = S[I[i]];
     if (defined(s)) return s;
@@ -76,6 +79,7 @@ const normalizeFirst = normalizeBasis((I, S) => {
 });
 
 const normalizeLast = normalizeBasis((I, S) => {
+  if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
   for (let i = I.length - 1; i >= 0; --i) {
     const s = S[I[i]];
     if (defined(s)) return s;
@@ -84,6 +88,7 @@ const normalizeLast = normalizeBasis((I, S) => {
 
 const normalizeDeviation = {
   map(I, S, T) {
+    if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
     const m = mean(I, (i) => S[i]);
     const d = deviation(I, (i) => S[i]);
     for (const i of I) {

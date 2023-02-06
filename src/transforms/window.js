@@ -1,6 +1,6 @@
 import {deviation, max, min, median, mode, variance} from "d3";
 import {defined} from "../defined.js";
-import {percentile, take} from "../options.js";
+import {isWeaklyNumeric, percentile, take} from "../options.js";
 import {warn} from "../warnings.js";
 import {mapX, mapY} from "./map.js";
 
@@ -96,6 +96,7 @@ function reduceNumbers(f) {
     strict
       ? {
           map(I, S, T) {
+            if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
             const C = Float64Array.from(I, (i) => (S[i] === null ? NaN : S[i]));
             let nans = 0;
             for (let i = 0; i < k - 1; ++i) if (isNaN(C[i])) ++nans;
@@ -108,6 +109,7 @@ function reduceNumbers(f) {
         }
       : {
           map(I, S, T) {
+            if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
             const C = Float64Array.from(I, (i) => (S[i] === null ? NaN : S[i]));
             for (let i = -s; i < 0; ++i) {
               T[I[i + s]] = f(C.subarray(0, i + k));
@@ -149,6 +151,7 @@ function reduceSum(k, s, strict) {
   return strict
     ? {
         map(I, S, T) {
+          if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
           let nans = 0;
           let sum = 0;
           for (let i = 0; i < k - 1; ++i) {
@@ -169,6 +172,7 @@ function reduceSum(k, s, strict) {
       }
     : {
         map(I, S, T) {
+          if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
           let sum = 0;
           const n = I.length;
           for (let i = 0, j = Math.min(n, k - s - 1); i < j; ++i) {
@@ -188,6 +192,7 @@ function reduceMean(k, s, strict) {
     const sum = reduceSum(k, s, strict);
     return {
       map(I, S, T) {
+        if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
         sum.map(I, S, T);
         for (let i = 0, n = I.length - k + 1; i < n; ++i) {
           T[I[i + s]] /= k;
@@ -197,6 +202,7 @@ function reduceMean(k, s, strict) {
   } else {
     return {
       map(I, S, T) {
+        if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
         let sum = 0;
         let count = 0;
         const n = I.length;
@@ -248,6 +254,7 @@ function reduceDifference(k, s, strict) {
   return strict
     ? {
         map(I, S, T) {
+          if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
           for (let i = 0, n = I.length - k; i < n; ++i) {
             const a = S[I[i]];
             const b = S[I[i + k - 1]];
@@ -257,6 +264,7 @@ function reduceDifference(k, s, strict) {
       }
     : {
         map(I, S, T) {
+          if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
           for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
             T[I[i + s]] = lastNumber(S, I, i, k) - firstNumber(S, I, i, k);
           }
@@ -268,6 +276,7 @@ function reduceRatio(k, s, strict) {
   return strict
     ? {
         map(I, S, T) {
+          if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
           for (let i = 0, n = I.length - k; i < n; ++i) {
             const a = S[I[i]];
             const b = S[I[i + k - 1]];
@@ -277,6 +286,7 @@ function reduceRatio(k, s, strict) {
       }
     : {
         map(I, S, T) {
+          if (!isWeaklyNumeric(S)) throw new Error("non-numeric data");
           for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
             T[I[i + s]] = lastNumber(S, I, i, k) / firstNumber(S, I, i, k);
           }

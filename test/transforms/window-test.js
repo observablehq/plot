@@ -311,3 +311,54 @@ it(`windowX({reduce: "last", k}) does not coerce to numbers`, () => {
   const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, x: (d) => d}), data);
   assert.deepStrictEqual(m3.x.transform(), ["B", "A", "A", "C", "C", "A", "B", "B", "B", "B"]);
 });
+
+/* eslint-disable no-sparse-arrays */
+/* eslint-disable comma-dangle */
+it("window computes a moving average", () => {
+  const data = range(6);
+  const m1 = Plot.windowX({k: 1, x: (d) => d, strict: true});
+  m1.transform(data, [range(data.length)]);
+  assert.deepStrictEqual(m1.x.transform(), [0, 1, 2, 3, 4, 5]);
+  const m2 = Plot.windowX({k: 2, x: (d) => d, strict: true});
+  m2.transform(data, [range(data.length)]);
+  assert.deepStrictEqual(m2.x.transform(), [0.5, 1.5, 2.5, 3.5, 4.5, ,]);
+  const m3 = Plot.windowX({k: 3, x: (d) => d, strict: true});
+  m3.transform(data, [range(data.length)]);
+  assert.deepStrictEqual(m3.x.transform(), [, 1, 2, 3, 4, ,]);
+  const m4 = Plot.windowX({k: 4, x: (d) => d, strict: true});
+  m4.transform(data, [range(data.length)]);
+  assert.deepStrictEqual(m4.x.transform(), [, 1.5, 2.5, 3.5, , ,]);
+});
+
+it("window skips NaN", () => {
+  const data = [1, 1, 1, null, 1, 1, 1, 1, 1, NaN, 1, 1, 1];
+  const m3 = Plot.windowX({k: 3, x: (d) => d, strict: true});
+  m3.transform(data, [range(data.length)]);
+  assert.deepStrictEqual(m3.x.transform(), [, 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, 1, ,]);
+});
+
+it("window treats null as NaN", () => {
+  const data = [1, 1, 1, null, 1, 1, 1, 1, 1, null, 1, 1, 1];
+  const m3 = Plot.windowX({k: 3, x: (d) => d, strict: true});
+  m3.transform(data, [range(data.length)]);
+  assert.deepStrictEqual(m3.x.transform(), [, 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, 1, ,]);
+});
+
+it("window respects anchor", () => {
+  const data = [0, 1, 2, 3, 4, 5];
+  const mc = Plot.windowX({k: 3, x: (d) => d, strict: true});
+  mc.transform(data, [range(data.length)]);
+  assert.deepStrictEqual(mc.x.transform(), [, 1, 2, 3, 4, ,]);
+  const ml = Plot.windowX({k: 3, anchor: "start", strict: true, x: (d) => d});
+  ml.transform(data, [range(data.length)]);
+  assert.deepStrictEqual(ml.x.transform(), [1, 2, 3, 4, , ,]);
+  const mt = Plot.windowX({k: 3, anchor: "end", strict: true, x: (d) => d});
+  mt.transform(data, [range(data.length)]);
+  assert.deepStrictEqual(mt.x.transform(), [, , 1, 2, 3, 4]);
+});
+
+it("window throws on non-numeric data", () => {
+  const data = [null, "A", 1, 2, 3, 4, 5];
+  const mc = Plot.windowX({k: 3, x: (d) => d});
+  assert.throws(() => mc.transform(data, [range(data.length)]));
+});
