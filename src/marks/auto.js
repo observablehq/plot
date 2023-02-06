@@ -13,7 +13,7 @@ import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../mark.js";
 import {ascending} from "d3";
 
-export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
+export function auto(data, {x, y, color, size, fx, fy, mark, ...otherOptions} = {}) {
   // Allow x and y and other dimensions to be specified as shorthand field names
   // (but note that they can also be specified as a {transform} object such as
   // Plot.identity).
@@ -205,7 +205,7 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   // (particularly dots and lines) they should come before the mark.
   const frames = fx != null || fy != null ? frame({strokeOpacity: 0.1}) : null;
   const rules = [xZero ? ruleX([0]) : null, yZero ? ruleY([0]) : null];
-  mark = mark(data, options);
+  mark = mark(data, {...otherOptions, ...options});
   return colorMode === "stroke" ? marks(frames, rules, mark) : marks(frames, mark, rules);
 }
 

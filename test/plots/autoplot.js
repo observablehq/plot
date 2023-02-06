@@ -41,6 +41,11 @@ export async function autoLine() {
   return Plot.auto(aapl, {x: "Date", y: "Close"}).plot();
 }
 
+export async function autoLineOtherOptions() {
+  const aapl = await d3.csv("data/aapl.csv", d3.autoType);
+  return Plot.auto(aapl, {x: "Date", y: "Close", strokeWidth: 3, ariaDescription: "Price of Apple, 2013–2018"}).plot();
+}
+
 export async function autoArea() {
   const aapl = await d3.csv("data/aapl.csv", d3.autoType);
   return Plot.auto(aapl, {x: "Date", y: "Close", mark: "area"}).plot();
