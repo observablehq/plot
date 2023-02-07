@@ -2,7 +2,7 @@
 
 ## 0.6.3
 
-*Not yet released. These are forthcoming changes in the main branch.*
+[Released February 6, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.3)
 
 The new [auto mark](./README.md#auto) ([Plot.auto](./README.md#plotautodata-options)) automatically selects a mark type that best represents the given dimensions of data according to some simple heuristics. For example,
 
