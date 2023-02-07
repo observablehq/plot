@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="0" y="0" width="434" height="272"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(217,272)">a</text>
     </g>
@@ -23,6 +24,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(482,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="0" y="0" width="434" height="272"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(217,272)">b</text>
     </g>

@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="0" y="0" width="192" height="120"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(96,120)">1960’s</text>
     </g>
@@ -28,6 +29,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(192,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="0" y="0" width="192" height="120"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(96,120)">1970’s</text>
     </g>
@@ -42,6 +44,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(384,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="0" y="0" width="192" height="120"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(96,120)">1980’s</text>
     </g>
@@ -56,6 +59,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(576,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="0" y="0" width="192" height="120"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(96,120)">1990’s</text>
     </g>
@@ -70,6 +74,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(768,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="0" y="0" width="192" height="120"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(96,120)">2000’s</text>
     </g>

@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(1,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="99" height="300"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(89.5,320)">Africa</text>
     </g>
@@ -78,6 +79,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(111,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="99" height="300"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(89.5,320)">Americas</text>
     </g>
@@ -150,6 +152,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(221,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="99" height="300"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(89.5,320)">Asia</text>
     </g>
@@ -255,6 +258,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(331,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="99" height="300"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(89.5,320)">Europe</text>
     </g>
@@ -334,6 +338,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(441,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="20" width="99" height="300"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(89.5,320)">Oceania</text>
     </g>

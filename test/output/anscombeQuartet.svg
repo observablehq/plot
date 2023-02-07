@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(2,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="207" height="180"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(143.5,30)">1</text>
     </g>
@@ -69,6 +70,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(232,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="207" height="180"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(143.5,30)">2</text>
     </g>
@@ -110,6 +112,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(462,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="207" height="180"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(143.5,30)">3</text>
     </g>
@@ -151,6 +154,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(692,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="207" height="180"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(143.5,30)">4</text>
     </g>

@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="210" y="20" width="410" height="56"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">WHITE</text>
     </g>
@@ -33,6 +34,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,62)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="210" y="20" width="410" height="56"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">UNDESIGNATED</text>
     </g>
@@ -52,6 +54,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,124)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="210" y="20" width="410" height="56"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">ASIAN</text>
     </g>
@@ -71,6 +74,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,186)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="210" y="20" width="410" height="56"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">OTHER</text>
     </g>
@@ -90,6 +94,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,248)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="210" y="20" width="410" height="56"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">TWO or MORE RACES</text>
     </g>
@@ -109,6 +114,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,310)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="210" y="20" width="410" height="56"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">INDIAN AMERICAN or ALASKA NATIVE</text>
     </g>
@@ -128,6 +134,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,372)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="210" y="20" width="410" height="56"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">BLACK or AFRICAN AMERICAN</text>
     </g>
@@ -147,6 +154,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,434)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="210" y="20" width="410" height="56"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(210,48)">NATIVE HAWAIIAN or PACIFIC ISLANDER</text>
     </g>

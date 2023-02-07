@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,6)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Construction</text>
     </g>
@@ -149,6 +150,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,26)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Wholesale and Retail Trade</text>
     </g>
@@ -284,6 +286,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,46)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Manufacturing</text>
     </g>
@@ -419,6 +422,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,66)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Leisure and hospitality</text>
     </g>
@@ -554,6 +558,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,86)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Business services</text>
     </g>
@@ -689,6 +694,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,106)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Education and Health</text>
     </g>
@@ -824,6 +830,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,126)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Government</text>
     </g>
@@ -959,6 +966,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,146)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Self-employed</text>
     </g>
@@ -1094,6 +1102,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,166)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Finance</text>
     </g>
@@ -1229,6 +1238,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,186)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Transportation and Utilities</text>
     </g>
@@ -1364,6 +1374,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,206)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Other</text>
     </g>
@@ -1499,6 +1510,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,226)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Information</text>
     </g>
@@ -1634,6 +1646,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,246)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Agriculture</text>
     </g>
@@ -1769,6 +1782,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,266)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="140" y="20" width="480" height="18"></rect>
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Mining and Extraction</text>
     </g>

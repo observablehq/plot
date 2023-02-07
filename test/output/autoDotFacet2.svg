@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="174" height="140"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(127,30)">Biscoe</text>
     </g>
@@ -88,6 +89,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,310)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="174" height="140"></rect>
     <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,155.23636363636365)" d="M0,0L-6,0"></path>
       <path transform="translate(40,129.78181818181818)" d="M0,0L-6,0"></path>
@@ -238,6 +240,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(193,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="174" height="140"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(127,30)">Dream</text>
     </g>
@@ -302,6 +305,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(193,155)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="174" height="140"></rect>
     <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,155.23636363636365)" d="M0,0L-6,0"></path>
       <path transform="translate(40,129.78181818181818)" d="M0,0L-6,0"></path>
@@ -397,6 +401,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(386,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="174" height="140"></rect>
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(214,100)">Adelie</text>
     </g>

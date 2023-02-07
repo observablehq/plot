@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(3,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
@@ -37,6 +38,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(3,50)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
@@ -54,6 +56,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(3,100)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
@@ -71,6 +74,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(3,150)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
@@ -88,6 +92,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(3,200)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
@@ -105,6 +110,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(3,250)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
@@ -122,6 +128,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(3,300)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
@@ -139,6 +146,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(3,350)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
@@ -156,6 +164,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(51,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
@@ -173,6 +182,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(51,50)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
     </g>
@@ -184,6 +194,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(51,100)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
     </g>
@@ -195,6 +206,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(51,150)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
     </g>
@@ -206,6 +218,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(51,200)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
     </g>
@@ -217,6 +230,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(51,250)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
     </g>
@@ -228,6 +242,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(51,300)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
     </g>
@@ -239,6 +254,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(51,350)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
     </g>
@@ -250,6 +266,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(99,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
@@ -267,6 +284,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(99,50)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
     </g>
@@ -278,6 +296,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(99,100)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
     </g>
@@ -289,6 +308,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(99,150)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
     </g>
@@ -300,6 +320,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(99,200)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
     </g>
@@ -311,6 +332,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(99,250)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
     </g>
@@ -322,6 +344,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(99,300)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
     </g>
@@ -333,6 +356,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(99,350)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
     </g>
@@ -344,6 +368,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(147,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
@@ -361,6 +386,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(147,50)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
     </g>
@@ -372,6 +398,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(147,100)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
     </g>
@@ -383,6 +410,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(147,150)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
     </g>
@@ -394,6 +422,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(147,200)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
     </g>
@@ -405,6 +434,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(147,250)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
     </g>
@@ -416,6 +446,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(147,300)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
     </g>
@@ -427,6 +458,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(147,350)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
     </g>
@@ -438,6 +470,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(195,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
@@ -455,6 +488,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(195,50)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
     </g>
@@ -466,6 +500,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(195,100)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
     </g>
@@ -477,6 +512,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(195,150)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
     </g>
@@ -488,6 +524,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(195,200)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
     </g>
@@ -499,6 +536,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(195,250)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
     </g>
@@ -510,6 +548,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(195,300)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
     </g>
@@ -521,6 +560,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(195,350)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
     </g>
@@ -532,6 +572,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(243,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
@@ -549,6 +590,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(243,50)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
     </g>
@@ -560,6 +602,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(243,100)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
     </g>
@@ -571,6 +614,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(243,150)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
     </g>
@@ -582,6 +626,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(243,200)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
     </g>
@@ -593,6 +638,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(243,250)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
     </g>
@@ -604,6 +650,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(243,300)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
     </g>
@@ -615,6 +662,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(243,350)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
     </g>
@@ -626,6 +674,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(291,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
@@ -643,6 +692,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(291,50)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
     </g>
@@ -654,6 +704,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(291,100)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
     </g>
@@ -665,6 +716,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(291,150)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
     </g>
@@ -676,6 +728,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(291,200)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
     </g>
@@ -687,6 +740,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(291,250)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
     </g>
@@ -698,6 +752,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(291,300)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
     </g>
@@ -709,6 +764,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(291,350)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
     </g>
@@ -720,6 +776,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(339,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
@@ -737,6 +794,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(339,50)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
     </g>
@@ -748,6 +806,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(339,100)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
     </g>
@@ -759,6 +818,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(339,150)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
     </g>
@@ -770,6 +830,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(339,200)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
     </g>
@@ -781,6 +842,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(339,250)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
     </g>
@@ -792,6 +854,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(339,300)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
     </g>
@@ -803,6 +866,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(339,350)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="48" height="50"></rect>
     <g aria-label="rect">
       <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
     </g>

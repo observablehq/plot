@@ -472,6 +472,7 @@ function inferAxes(marks, channelsByScale, options) {
     fy = {},
     axis,
     grid,
+    frame: fram,
     facet = {},
     facet: {axis: facetAxis = axis, grid: facetGrid} = facet,
     x: {axis: xAxis = axis, grid: xGrid = xAxis === null ? null : grid} = x,
@@ -491,6 +492,7 @@ function inferAxes(marks, channelsByScale, options) {
   if (yAxis === undefined) yAxis = !hasAxis(marks, "y");
   if (fxAxis === undefined) fxAxis = !hasAxis(marks, "fx");
   if (fyAxis === undefined) fyAxis = !hasAxis(marks, "fy");
+  if (fram === undefined) fram = !!(fxAxis || fyAxis);
 
   // Resolve the default orientation of axes.
   if (xAxis === true) xAxis = "bottom";
@@ -499,6 +501,7 @@ function inferAxes(marks, channelsByScale, options) {
   if (fyAxis === true) fyAxis = yAxis === "right" || yAxis === null ? "left" : "right";
 
   const axes = [];
+  if (fram) axes.push(frame({stroke: fram === true ? undefined : fram, strokeOpacity: 0.1}));
   maybeGrid(axes, fyGrid, gridFy, fy);
   maybeAxis(axes, fyAxis, axisFy, "right", "left", facet, fy);
   maybeGrid(axes, fxGrid, gridFx, fx);

@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(120.5,30)">FEMALE</text>
     </g>
@@ -391,6 +392,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,186)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="201" y1="179.38909090909092" y2="179.38909090909092"></line>
       <line x1="40" x2="201" y1="149.02545454545455" y2="149.02545454545455"></line>
@@ -765,6 +767,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,372)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="201" y1="179.38909090909092" y2="179.38909090909092"></line>
       <line x1="40" x2="201" y1="149.02545454545455" y2="149.02545454545455"></line>
@@ -1147,6 +1150,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(179,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(120.5,30)">MALE</text>
     </g>
@@ -1510,6 +1514,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(179,186)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="201" y1="179.38909090909092" y2="179.38909090909092"></line>
       <line x1="40" x2="201" y1="149.02545454545455" y2="149.02545454545455"></line>
@@ -1870,6 +1875,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(179,372)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="201" y1="179.38909090909092" y2="179.38909090909092"></line>
       <line x1="40" x2="201" y1="149.02545454545455" y2="149.02545454545455"></line>
@@ -2238,6 +2244,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(358,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(201,113.5)">Adelie</text>
     </g>
@@ -2614,6 +2621,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(358,372)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="40" y="30" width="161" height="167"></rect>
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(201,113.5)">Gentoo</text>
     </g>

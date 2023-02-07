@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,2)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -100,6 +101,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,41)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -155,6 +157,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,80)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -916,6 +919,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,119)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -989,6 +993,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,158)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -1047,6 +1052,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,197)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -1312,6 +1318,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,236)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -1586,6 +1593,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,275)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -1842,6 +1850,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,314)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -2257,6 +2266,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,353)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -2284,6 +2294,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,392)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -2942,6 +2953,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,431)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
@@ -3095,6 +3107,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,470)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="120" y="30" width="820" height="39"></rect>
     <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>

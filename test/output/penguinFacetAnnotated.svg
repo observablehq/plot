@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,1)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="75" y="20" width="495" height="59"></rect>
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(570,49.5)">Biscoe</text>
     </g>
@@ -37,6 +38,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,66)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="75" y="20" width="495" height="59"></rect>
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(570,49.5)">Dream</text>
     </g>
@@ -60,6 +62,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,131)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)" x="75" y="20" width="495" height="59"></rect>
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(570,49.5)">Torgersen</text>
     </g>
