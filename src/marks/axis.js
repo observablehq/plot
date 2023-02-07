@@ -37,11 +37,13 @@ function anchorFx(options) {
   return maybeAnchor(options, ["top", "bottom"]);
 }
 
+/** @jsdoc axisY */
 export function axisY() {
   const [data, options] = maybeData(...arguments);
   return axisKy("y", anchorY(options), data, options);
 }
 
+/** @jsdoc axisFy */
 export function axisFy() {
   const [data, options] = maybeData(...arguments);
   return axisKy("fy", anchorFy(options), data, options);
@@ -53,6 +55,7 @@ export function axisX() {
   return axisKx("x", anchorX(options), data, options);
 }
 
+/** @jsdoc axisFx */
 export function axisFx() {
   const [data, options] = maybeData(...arguments);
   return axisKx("fx", anchorFx(options), data, options);

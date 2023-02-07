@@ -13,6 +13,7 @@ import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../mark.js";
 import {ascending} from "d3";
 
+/** @jsdoc auto */
 export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   // Allow x and y and other dimensions to be specified as shorthand field names
   // (but note that they can also be specified as a {transform} object such as
