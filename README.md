@@ -1638,11 +1638,9 @@ The following image-specific constant options are also supported:
 * **crossOrigin** - the [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior
 * **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear).
 
-To crop the image instead of scaling it to fit, set **preserveAspectRatio** to “xMidYMid slice”.
+To crop the image instead of scaling it to fit, set **preserveAspectRatio** to “xMidYMid slice”. The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation on enlarged images; however, note that this is not supported in WebKit.
 
 Images are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting, consider a [sort and reverse transform](#transforms).
-
-The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation on enlarged images; however, note that this is not supported in WebKit.
 
 #### Plot.image(*data*, *options*)
 
