@@ -301,7 +301,7 @@ export function plot(options = {}) {
     }
   }
 
-  figure.scale = exposeScales(scaleDescriptors);
+  figure.scale = exposeScales(scales);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
 
   const w = consumeWarnings();

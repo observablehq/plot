@@ -102,19 +102,17 @@ export function Scales(
 
 export function ScaleFunctions(scales) {
   return Object.fromEntries(
-    Object.entries(scales)
-      .filter(([, {scale}]) => scale) // drop identity scales
-      .map(([name, scale]) => [
-        name,
-        {
-          ...exposeScale(scale),
-          // for axis
-          _label: scale.label,
-          _tickFormat: scale.scale.tickFormat,
-          _tickFunction: scale.scale.ticks,
-          ...(scale.type === "identity" && {range: slice(scale.range)})
-        }
-      ])
+    Object.entries(scales).map(([name, scale]) => [
+      name,
+      {
+        ...exposeScale(scale),
+        // for axis
+        _label: scale.label,
+        _tickFormat: scale.scale?.tickFormat,
+        _tickFunction: scale.scale?.ticks,
+        ...(scale.type === "identity" && scale.range && {range: slice(scale.range)})
+      }
+    ])
   );
 }
 
@@ -571,10 +569,14 @@ export function scale(options = {}) {
   return scale;
 }
 
-export function exposeScales(scaleDescriptors) {
+export function exposeScales(scales) {
   return (key) => {
     if (!registry.has((key = `${key}`))) throw new Error(`unknown scale: ${key}`);
-    return key in scaleDescriptors ? exposeScale(scaleDescriptors[key]) : undefined;
+    if (key in scales) {
+      const {_label, _tickFormat, _tickFunction, ...scale} = scales[key];
+      if (scale.type === "identity") delete scale.range;
+      return scale;
+    }
   };
 }
 
