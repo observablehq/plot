@@ -1,7 +1,7 @@
+import {extent} from "d3";
 import {projectionAspectRatio} from "./projection.js";
 import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
-import {warn} from "./warnings.js";
 
 export function Dimensions(scales, marks, options = {}) {
   // Compute the default margins: the maximum of the marks’ margins. While not
@@ -106,23 +106,44 @@ function autoHeight(
 
   const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
 
-  // If a data aspect ratio is given, tweak the height to match.
+  // If a desired aspect ratio is given, compute a default height to match.
   if (aspectRatio != null) {
     aspectRatio = +aspectRatio;
     if (!(isFinite(aspectRatio) && aspectRatio > 0)) throw new Error(`invalid aspectRatio: ${aspectRatio}`);
-    if (!["utc", "time", "linear"].includes(x?.type) || !["utc", "time", "linear"].includes(y?.type)) {
-      warn(`invalid x/y scale types for the aspectRatio option: ${x?.type}/${y?.type}`);
-    } else {
-      const ratio = Math.abs((y.domain[1] - y.domain[0]) / (x.domain[1] - x.domain[0]) / aspectRatio);
-      const trueWidth =
-        (fx ? fx.scale.bandwidth() : 1) * (width - marginLeftDefault - marginRightDefault) - x.insetLeft - x.insetRight;
-      return (
-        (ratio * trueWidth + y.insetTop + y.insetBottom) / (fy ? fy.scale.bandwidth() : 1) +
-        marginTopDefault +
-        marginBottomDefault
-      );
-    }
+    const ratio = aspectRatioLength("y", y) / (aspectRatioLength("x", x) * aspectRatio);
+    const fxb = fx ? fx.scale.bandwidth() : 1;
+    const fyb = fy ? fy.scale.bandwidth() : 1;
+    const w = fxb * (width - marginLeftDefault - marginRightDefault) - x.insetLeft - x.insetRight;
+    return (ratio * w + y.insetTop + y.insetBottom) / fyb + marginTopDefault + marginBottomDefault;
   }
 
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
+}
+
+function aspectRatioLength(k, scale) {
+  if (!scale) throw new Error(`aspectRatio requires ${k} scale`);
+  const {type, domain} = scale;
+  let transform;
+  switch (type) {
+    case "linear":
+    case "utc":
+    case "time":
+      transform = Number;
+      break;
+    case "pow": {
+      const exponent = scale.scale.exponent();
+      transform = (x) => Math.pow(x, exponent);
+      break;
+    }
+    case "log":
+      transform = Math.log;
+      break;
+    case "point":
+    case "band":
+      return domain.length;
+    default:
+      throw new Error(`unsupported ${k} scale for aspectRatio: ${type}`);
+  }
+  const [min, max] = extent(domain);
+  return Math.abs(transform(max) - transform(min));
 }
