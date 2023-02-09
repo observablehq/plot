@@ -4,8 +4,8 @@ export async function aspectRatioLinear() {
   return Plot.plot({
     grid: true,
     inset: 6,
-    x: {type: "linear", domain: [0, 10].map(Math.sqrt)},
-    y: {type: "linear", domain: [10, 20].map(Math.sqrt)},
+    x: {type: "linear", domain: [0, 10]},
+    y: {type: "linear", domain: [10, 20]},
     aspectRatio: 1,
     marks: [Plot.frame()]
   });

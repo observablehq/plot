@@ -3,22 +3,21 @@ import * as d3 from "d3";
 
 export async function seattleTemperatureAmplitude() {
   const data = await d3.csv("data/seattle-weather.csv", d3.autoType);
-  const temp_extent = (d) => d.temp_max - d.temp_min;
+  const delta = (d) => d.temp_max - d.temp_min;
   return Plot.plot({
-    x: {label: "temp_min →", nice: true},
-    y: {label: "↑ temp amplitude", zero: true},
+    x: {label: "Daily low temperature (°F) →", nice: true},
+    y: {label: "↑ Daily temperature variation (Δ°F)", zero: true},
     aspectRatio: true,
     color: {
-      type: "ordinal",
-      scheme: "sinebow",
+      scheme: "rainbow",
       legend: true,
       tickFormat: Plot.formatMonth()
     },
     marks: [
       Plot.ruleY([0]),
-      Plot.dot(data, {fill: (d) => d.date.getUTCMonth(), x: "temp_min", y: temp_extent, title: "date"}),
-      Plot.dot(data, Plot.selectMaxY({x: "temp_min", y: temp_extent, r: 5.5})),
-      Plot.text(data, Plot.selectMaxY({x: "temp_min", y: temp_extent, text: "date", dy: -11}))
+      Plot.dot(data, {fill: (d) => d.date.getUTCMonth(), x: "temp_min", y: delta}),
+      Plot.dot(data, Plot.selectMaxY({x: "temp_min", y: delta, r: 5})),
+      Plot.text(data, Plot.selectMaxY({x: "temp_min", y: delta, text: "date", lineAnchor: "bottom", dy: -10}))
     ]
   });
 }
