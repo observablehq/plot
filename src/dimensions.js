@@ -106,7 +106,7 @@ function autoHeight(
 
   const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
 
-  // If a data aspect ratio is given, tweak the height to match
+  // If a data aspect ratio is given, tweak the height to match.
   if (aspectRatio != null) {
     aspectRatio = +aspectRatio;
     if (!(isFinite(aspectRatio) && aspectRatio > 0)) throw new Error(`invalid aspectRatio: ${aspectRatio}`);

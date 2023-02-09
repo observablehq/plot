@@ -284,7 +284,7 @@ export * from "./autoplot.js";
 export * from "./axis-labels.js";
 export * from "./bin-1m.js";
 export * from "./electricity-demand.js";
-export * from "./empty-dataAspectRatio.js";
+export * from "./empty-aspectRatio.js";
 export * from "./federal-funds.js";
 export * from "./frame.js";
 export * from "./function-contour.js";

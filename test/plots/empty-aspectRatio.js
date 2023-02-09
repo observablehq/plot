@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import {svg} from "htl";
 
-export async function emptyDataAspectRatio() {
+export async function emptyAspectRatio() {
   return Plot.plot({
     grid: true,
     inset: 6,
