@@ -568,12 +568,11 @@ export function exposeScales(scales) {
 }
 
 function censorScale({label, ...scale}) {
-  if (scale.type === "identity") delete scale.range;
   return scale;
 }
 
 function instantiateScale({scale, type, domain, range, interpolate, interval, transform, percent, pivot, label}) {
-  if (type === "identity") return {type, apply: (d) => d, invert: (d) => d, ...(range && {range: slice(range)})};
+  if (type === "identity") return {type, apply: (d) => d, invert: (d) => d};
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
     type,

@@ -500,9 +500,14 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
   let channels;
   const m = mark(
     data,
-    initializer(options, function (data, facets, _channels, scales) {
-      const {[k]: scale} = scales;
+    initializer(options, function (data, facets, _channels, scales, dimensions) {
+      let {[k]: scale} = scales;
       if (!scale) throw new Error(`missing scale: ${k}`);
+      if (scale.type === "identity" && (k === "x" || k === "y") && scale.range === undefined) {
+        const {width, height, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
+        const range = k === "x" ? [marginLeft, width - marginRight] : [height - marginBottom, marginTop];
+        scale = {...scale, range, domain: range};
+      }
       let {ticks, tickSpacing, interval} = options;
       if (isTemporalScale(scale) && typeof ticks === "string") (interval = ticks), (ticks = undefined);
       if (data == null) {
@@ -589,25 +594,15 @@ function inferTickFormat(scale, ticks, tickFormat) {
         .tickFormat(isIterable(ticks) ? null : ticks, tickFormat);
     default:
       return scaleLinear()
-        .domain(scale.domain ?? scale.range)
+        .domain(scale.domain)
         .tickFormat(isIterable(ticks) ? null : ticks, tickFormat);
   }
 }
 
-function inferTickFunction(scale) {
-  switch (scale.type) {
-    case "point":
-    case "band":
-      return;
-    case "log":
-      return scaleLog().domain(scale.domain).ticks;
-    case "time":
-      return scaleTime().domain(scale.domain).ticks;
-    case "utc":
-      return scaleUtc().domain(scale.domain).ticks;
-    default:
-      return scaleLinear().domain(scale.domain ?? scale.range).ticks;
-  }
+function inferTickFunction({type, domain}) {
+  if (type === "point" || type === "band") return;
+  const S = type === "log" ? scaleLog : type === "time" ? scaleTime : type === "utc" ? scaleUtc : scaleLinear;
+  return S().domain(domain).ticks;
 }
 
 const shapeTickBottom = {
