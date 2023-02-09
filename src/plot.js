@@ -133,11 +133,11 @@ export function plot(options = {}) {
 
   // Initalize the scales and dimensions.
   const scaleDescriptors = Scales(addScaleChannels(channelsByScale, stateByMark), options);
-  const scales = ScaleFunctions(scaleDescriptors);
   const dimensions = Dimensions(scaleDescriptors, marks, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
 
+  const scales = ScaleFunctions(scaleDescriptors);
   const {fx, fy} = scales;
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
@@ -235,7 +235,7 @@ export function plot(options = {}) {
 
   // Render facets.
   if (facets !== undefined) {
-    const facetDomains = {x: fx?.domain(), y: fy?.domain()};
+    const facetDomains = {x: fx?.domain, y: fy?.domain};
 
     // Sort the facets to match the fx and fy domains; this is needed because
     // the facets were constructed prior to the fx and fy scales.
@@ -656,9 +656,9 @@ function actualDimensions({fx, fy}, dimensions) {
 }
 
 function outerRange(scale) {
-  const domain = scale.domain();
-  let x1 = scale(domain[0]);
-  let x2 = scale(domain[domain.length - 1]);
+  const {domain} = scale;
+  let x1 = scale.apply(domain[0]);
+  let x2 = scale.apply(domain[domain.length - 1]);
   if (x2 < x1) [x1, x2] = [x2, x1];
-  return [x1, x2 + scale.bandwidth()];
+  return [x1, x2 + scale.bandwidth];
 }

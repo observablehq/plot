@@ -11,7 +11,7 @@ export function remap(outputs = {}, options) {
           if (!channel) throw new Error(`missing channel: ${name}`);
           const V = Array.from(channel.value);
           const n = V.length;
-          const scale = scales[channel.scale];
+          const scale = scales[channel.scale]?.apply;
           if (scale) for (let i = 0; i < n; ++i) V[i] = scale(V[i]);
           for (let i = 0; i < n; ++i) V[i] = map(V[i], i, V);
           return [name, {value: V}];

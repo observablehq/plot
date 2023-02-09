@@ -104,12 +104,17 @@ export function ScaleFunctions(scales) {
   return Object.fromEntries(
     Object.entries(scales)
       .filter(([, {scale}]) => scale) // drop identity scales
-      .map(([name, {scale, type, interval, label}]) => {
-        scale.type = type; // for axis
-        if (interval != null) scale.interval = interval; // for axis
-        if (label != null) scale.label = label; // for axis
-        return [name, scale];
-      })
+      .map(([name, scale]) => [
+        name,
+        {
+          ...exposeScale(scale),
+          // for axis
+          _label: scale.label,
+          _tickFormat: scale.scale.tickFormat,
+          _tickFunction: scale.scale.ticks,
+          ...(scale.type === "identity" && {range: slice(scale.range)})
+        }
+      ])
   );
 }
 
@@ -494,10 +499,10 @@ export function isDivergingScale({type}) {
 // dimension (whereas a dot will simply be drawn in the center).
 export function isCollapsed(scale) {
   if (scale === undefined) return true; // treat missing scale as collapsed
-  const domain = scale.domain();
-  const value = scale(domain[0]);
+  const {domain} = scale;
+  const value = scale.apply(domain[0]);
   for (let i = 1, n = domain.length; i < n; ++i) {
-    if (scale(domain[i]) - value) {
+    if (scale.apply(domain[i]) - value) {
       return false;
     }
   }

@@ -60,7 +60,7 @@ function scaleProjection({x: X, y: Y}) {
     Y ??= (y) => y;
     return geoTransform({
       point(x, y) {
-        this.stream.point(X(x), Y(y));
+        this.stream.point(X.apply(x), Y.apply(y));
       }
     });
   }

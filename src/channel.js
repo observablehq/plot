@@ -25,7 +25,7 @@ export function valueObject(channels, scales) {
     Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
       let scale;
       if (scaleName !== undefined) {
-        scale = scales[scaleName];
+        scale = scales[scaleName]?.apply;
       }
       return [name, scale === undefined ? value : map(value, scale)];
     })
