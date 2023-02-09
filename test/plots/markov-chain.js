@@ -11,8 +11,8 @@ export default async function () {
   const factors = matrix.flatMap((m, i) => m.map((value, j) => ({i, j, value})));
   return Plot.plot({
     width: 400,
-    height: 380,
     inset: 60,
+    aspectRatio: true,
     axis: null,
     marks: [
       Plot.dot(centers, {r: 40}),
