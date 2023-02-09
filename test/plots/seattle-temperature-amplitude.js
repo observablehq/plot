@@ -1,13 +1,13 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function () {
+export async function seattleTemperatureAmplitude() {
   const data = await d3.csv("data/seattle-weather.csv", d3.autoType);
   const temp_extent = (d) => d.temp_max - d.temp_min;
   return Plot.plot({
     x: {label: "temp_min →", nice: true},
     y: {label: "↑ temp amplitude", zero: true},
-    dataAspectRatio: true,
+    aspectRatio: true,
     color: {
       type: "ordinal",
       scheme: "sinebow",

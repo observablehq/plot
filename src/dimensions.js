@@ -90,7 +90,7 @@ export function Dimensions(scales, marks, options = {}) {
 function autoHeight(
   {x, y, fy, fx},
   marks,
-  {projection, dataAspectRatio},
+  {projection, aspectRatio},
   {width, marginTopDefault, marginRightDefault, marginBottomDefault, marginLeftDefault}
 ) {
   const nfy = fy ? fy.scale.domain().length : 1;
@@ -107,13 +107,13 @@ function autoHeight(
   const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
 
   // If a data aspect ratio is given, tweak the height to match
-  if ((dataAspectRatio = +dataAspectRatio)) {
-    if (!(isFinite(dataAspectRatio) && dataAspectRatio > 0))
-      throw new Error(`invalid data aspect ratio: ${dataAspectRatio}`);
+  if (aspectRatio != null) {
+    aspectRatio = +aspectRatio;
+    if (!(isFinite(aspectRatio) && aspectRatio > 0)) throw new Error(`invalid aspectRatio: ${aspectRatio}`);
     if (!["utc", "time", "linear"].includes(x?.type) || !["utc", "time", "linear"].includes(y?.type)) {
-      warn(`invalid x/y scale types for the dataAspectRatio option: ${x?.type}/${y?.type}`);
+      warn(`invalid x/y scale types for the aspectRatio option: ${x?.type}/${y?.type}`);
     } else {
-      const ratio = Math.abs((y.domain[1] - y.domain[0]) / (x.domain[1] - x.domain[0]) / dataAspectRatio);
+      const ratio = Math.abs((y.domain[1] - y.domain[0]) / (x.domain[1] - x.domain[0]) / aspectRatio);
       const trueWidth =
         (fx ? fx.scale.bandwidth() : 1) * (width - marginLeftDefault - marginRightDefault) - x.insetLeft - x.insetRight;
       return (
