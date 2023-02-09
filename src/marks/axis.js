@@ -1,4 +1,4 @@
-import {extent, format, utcFormat} from "d3";
+import {extent, format, utcFormat, scaleLinear, scaleLog, scaleTime, scaleUtc} from "d3";
 import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
@@ -508,26 +508,29 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
       if (data == null) {
         if (isIterable(ticks)) {
           data = arrayify(ticks);
-        } else if (scale._tickFunction) {
-          if (ticks !== undefined) {
-            data = scale._tickFunction(ticks);
-          } else {
-            interval = maybeInterval(interval === undefined ? scale.interval : interval, scale.type);
-            if (interval !== undefined) {
-              // For time scales, we could pass the interval directly to
-              // scale.ticks because it’s supported by d3.utcTicks; but
-              // quantitative scales and d3.ticks do not support numeric
-              // intervals for scale.ticks, so we compute them here.
-              const [min, max] = extent(scale.domain);
-              data = interval.range(min, interval.offset(interval.floor(max))); // inclusive max
-            } else {
-              const [min, max] = extent(scale.range);
-              ticks = (max - min) / (tickSpacing === undefined ? (k === "x" ? 80 : 35) : tickSpacing);
-              data = scale._tickFunction(ticks);
-            }
-          }
         } else {
-          data = scale.domain;
+          const tickFunction = inferTickFunction(scale);
+          if (tickFunction) {
+            if (ticks !== undefined) {
+              data = tickFunction(ticks);
+            } else {
+              interval = maybeInterval(interval === undefined ? scale.interval : interval, scale.type);
+              if (interval !== undefined) {
+                // For time scales, we could pass the interval directly to
+                // scale.ticks because it’s supported by d3.utcTicks; but
+                // quantitative scales and d3.ticks do not support numeric
+                // intervals for scale.ticks, so we compute them here.
+                const [min, max] = extent(scale.domain);
+                data = interval.range(min, interval.offset(interval.floor(max))); // inclusive max
+              } else {
+                const [min, max] = extent(scale.range);
+                ticks = (max - min) / (tickSpacing === undefined ? (k === "x" ? 80 : 35) : tickSpacing);
+                data = tickFunction(ticks);
+              }
+            }
+          } else {
+            data = scale.domain;
+          }
         }
         if (k === "y" || k === "x") {
           facets = [range(data)];
@@ -564,13 +567,47 @@ function inferTextChannel(scale, ticks, tickFormat) {
 // domain (or ticks) are numbers or dates (say because we’re applying a time
 // interval to the ordinal scale), we want Plot’s default formatter.
 function inferTickFormat(scale, ticks, tickFormat) {
-  return scale._tickFormat
-    ? scale._tickFormat(isIterable(ticks) ? null : ticks, tickFormat)
-    : tickFormat === undefined
-    ? formatDefault
-    : typeof tickFormat === "string"
-    ? (isTemporal(scale.domain) ? utcFormat : format)(tickFormat)
-    : constant(tickFormat);
+  switch (scale.type) {
+    case "point":
+    case "band":
+      return tickFormat === undefined
+        ? formatDefault
+        : typeof tickFormat === "string"
+        ? (isTemporal(scale.domain) ? utcFormat : format)(tickFormat)
+        : constant(tickFormat);
+    case "log":
+      return scaleLog()
+        .domain(scale.domain)
+        .tickFormat(isIterable(ticks) ? null : ticks, tickFormat);
+    case "time":
+      return scaleTime()
+        .domain(scale.domain)
+        .tickFormat(isIterable(ticks) ? null : ticks, tickFormat);
+    case "utc":
+      return scaleUtc()
+        .domain(scale.domain)
+        .tickFormat(isIterable(ticks) ? null : ticks, tickFormat);
+    default:
+      return scaleLinear()
+        .domain(scale.domain ?? scale.range)
+        .tickFormat(isIterable(ticks) ? null : ticks, tickFormat);
+  }
+}
+
+function inferTickFunction(scale) {
+  switch (scale.type) {
+    case "point":
+    case "band":
+      return;
+    case "log":
+      return scaleLog().domain(scale.domain).ticks;
+    case "time":
+      return scaleTime().domain(scale.domain).ticks;
+    case "utc":
+      return scaleUtc().domain(scale.domain).ticks;
+    default:
+      return scaleLinear().domain(scale.domain ?? scale.range).ticks;
+  }
 }
 
 const shapeTickBottom = {
@@ -611,7 +648,7 @@ function inferScaleOrder(scale) {
 // Takes the scale label, and if this is not an ordinal scale and the label was
 // inferred from an associated channel, adds an orientation-appropriate arrow.
 function inferAxisLabel(key, scale, labelAnchor) {
-  const label = scale._label;
+  const {label} = scale;
   if (scale.bandwidth !== undefined || !label?.inferred) return label;
   const order = inferScaleOrder(scale);
   return order

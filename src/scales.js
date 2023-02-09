@@ -100,20 +100,8 @@ export function Scales(
   return scales;
 }
 
-export function ScaleFunctions(scales) {
-  return Object.fromEntries(
-    Object.entries(scales).map(([name, scale]) => [
-      name,
-      {
-        ...exposeScale(scale),
-        // for axis
-        _label: scale.label,
-        _tickFormat: scale.scale?.tickFormat,
-        _tickFunction: scale.scale?.ticks,
-        ...(scale.type === "identity" && scale.range && {range: slice(scale.range)})
-      }
-    ])
-  );
+export function instantiateScales(scales) {
+  return Object.fromEntries(Object.entries(scales).map(([name, scale]) => [name, instantiateScale(scale)]));
 }
 
 // Mutates scale.range!
@@ -563,27 +551,29 @@ export function scale(options = {}) {
     if (!registry.has(key)) continue; // ignore unknown properties
     if (!isScaleOptions(options[key])) continue; // e.g., ignore {color: "red"}
     if (scale !== undefined) throw new Error("ambiguous scale definition; multiple scales found");
-    scale = exposeScale(normalizeScale(key, options[key]));
+    scale = instantiateScale(normalizeScale(key, options[key]));
   }
   if (scale === undefined) throw new Error("invalid scale definition; no scale found");
-  return scale;
+  return censorScale(scale);
 }
 
+// Note: the label, used for axis or legend, is deliberately not exposed as it
+// does not affect the scale’s behavior. By convention the identity’s range is
+// also censored.
 export function exposeScales(scales) {
   return (key) => {
     if (!registry.has((key = `${key}`))) throw new Error(`unknown scale: ${key}`);
-    if (key in scales) {
-      const {_label, _tickFormat, _tickFunction, ...scale} = scales[key];
-      if (scale.type === "identity") delete scale.range;
-      return scale;
-    }
+    return key in scales ? censorScale(scales[key]) : undefined;
   };
 }
 
-// Note: axis- and legend-related properties (such as label, ticks and
-// tickFormat) are not included here as they do not affect the scale’s behavior.
-function exposeScale({scale, type, domain, range, interpolate, interval, transform, percent, pivot}) {
-  if (type === "identity") return {type: "identity", apply: (d) => d, invert: (d) => d};
+function censorScale({label, ...scale}) {
+  if (scale.type === "identity") delete scale.range;
+  return scale;
+}
+
+function instantiateScale({scale, type, domain, range, interpolate, interval, transform, percent, pivot, label}) {
+  if (type === "identity") return {type, apply: (d) => d, invert: (d) => d, ...(range && {range: slice(range)})};
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
     type,
@@ -620,6 +610,9 @@ function exposeScale({scale, type, domain, range, interpolate, interval, transfo
 
     // utilities
     apply: (t) => scale(t),
-    ...(scale.invert && {invert: (t) => scale.invert(t)})
+    ...(scale.invert && {invert: (t) => scale.invert(t)}),
+
+    // private label, for axis
+    ...(label !== undefined && {label})
   };
 }

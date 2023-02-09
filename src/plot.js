@@ -8,7 +8,7 @@ import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
 import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeInterval} from "./options.js";
-import {Scales, ScaleFunctions, autoScaleRange, exposeScales, innerDimensions, outerDimensions} from "./scales.js";
+import {Scales, instantiateScales, autoScaleRange, exposeScales, innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {consumeWarnings, warn} from "./warnings.js";
@@ -137,7 +137,7 @@ export function plot(options = {}) {
 
   autoScaleRange(scaleDescriptors, dimensions);
 
-  const scales = ScaleFunctions(scaleDescriptors);
+  const scales = instantiateScales(scaleDescriptors);
   const {fx, fy} = scales;
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
@@ -192,7 +192,7 @@ export function plot(options = {}) {
     addScaleChannels(newChannelsByScale, stateByMark, (key) => newByScale.has(key));
     addScaleChannels(channelsByScale, stateByMark, (key) => newByScale.has(key));
     const newScaleDescriptors = inheritScaleLabels(Scales(newChannelsByScale, options), scaleDescriptors);
-    const newScales = ScaleFunctions(newScaleDescriptors);
+    const newScales = instantiateScales(newScaleDescriptors);
     Object.assign(scaleDescriptors, newScaleDescriptors);
     Object.assign(scales, newScales);
   }
