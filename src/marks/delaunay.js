@@ -1,8 +1,8 @@
-import {group, path, select, Delaunay} from "d3";
+import {group, pathRound as path, select, Delaunay} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
+import {Mark} from "../mark.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
-import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
   applyDirectStyles,
@@ -65,6 +65,7 @@ class DelaunayLink extends Mark {
     markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const {curve} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
@@ -123,8 +124,8 @@ class DelaunayLink extends Mark {
     }
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
           ? (g) =>
@@ -155,6 +156,7 @@ class AbstractDelaunayMark extends Mark {
     );
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? (i) => X[i] : constant(cx);
@@ -172,8 +174,8 @@ class AbstractDelaunayMark extends Mark {
     }
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
           ? (g) =>
@@ -223,10 +225,12 @@ class Voronoi extends Mark {
     );
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? (i) => X[i] : constant(cx);
     const yi = Y ? (i) => Y[i] : constant(cy);
+    const mark = this;
 
     function cells(index) {
       const delaunay = Delaunay.from(index, xi, yi);
@@ -236,14 +240,14 @@ class Voronoi extends Mark {
         .data(index)
         .enter()
         .append("path")
-        .call(applyDirectStyles, this)
+        .call(applyDirectStyles, mark)
         .attr("d", (_, i) => voronoi.renderCell(i))
-        .call(applyChannelStyles, this, channels);
+        .call(applyChannelStyles, mark, channels);
     }
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
           ? (g) =>

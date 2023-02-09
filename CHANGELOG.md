@@ -1,10 +1,399 @@
 # Observable Plot - Changelog
 
+## 0.6.3
+
+[Released February 6, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.3)
+
+The new [auto mark](./README.md#auto) ([Plot.auto](./README.md#plotautodata-options)) automatically selects a mark type that best represents the given dimensions of data according to some simple heuristics. For example,
+
+[<img src="./img/auto-dot.webp" width="640" alt="A scatterplot height and weight of olympic athletes.">](https://observablehq.com/@observablehq/plot-auto)
+
+```js
+Plot.auto(olympians, {x: "height", y: "weight"}).plot()
+```
+
+makes a scatterplot (equivalent to [dot](./README.md#plotdotdata-options)); adding **color** as
+
+[<img src="./img/auto-bin-color.webp" width="640" alt="A heatmap of .">](https://observablehq.com/@observablehq/plot-auto)
+
+```js
+Plot.auto(olympians, {x: "height", y: "weight", color: "count"}).plot()
+```
+
+makes a heatmap (equivalent to [rect](./README.md#plotrectdata-options) and [bin](./README.md#plotbinoutputs-options); chosen since _height_ and _weight_ are quantitative); switching to
+
+[<img src="./img/auto-line.webp" width="640" alt="A line chart of Apple stock price.">](https://observablehq.com/@observablehq/plot-auto)
+
+```js
+Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
+```
+
+makes a line chart (equivalent to [lineY](./README.md#plotlineydata-options); chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
+
+[<img src="./img/auto-bin.webp" width="640" alt="A histogram of penguin body mass.">](https://observablehq.com/@observablehq/plot-auto)
+
+```js
+Plot.auto(penguins, {x: "body_mass_g"}).plot()
+```
+
+makes a histogram (equivalent to [rectY](./README.md#plotrectydata-options) and [binX](./README.md#plotbinxoutputs-options); chosen because the _body_mass_g_ column is quantitative); and
+
+[<img src="./img/auto-group.webp" width="640" alt="A vertical bar chart of penguins by island.">](https://observablehq.com/@observablehq/plot-auto)
+
+```js
+Plot.auto(penguins, {x: "island"}).plot()
+```
+
+makes a bar chart (equivalent to [barY](./README.md#plotbarydata-options) and [groupX](./README.md#plotgroupxoutputs-options); chosen because the _island_ column is categorical). The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API.
+
+Plot’s new [axis](./README.md#axis) and [grid](./README.md#axis) marks allow customization and styling of axes. This has been one of our most asked-for features, closing more than a dozen feature requests (see [#1197](https://github.com/observablehq/plot/pull/1197))! The new axis mark composes a [vector](./README.md#vector) for tick marks and a [text](./README.md#text) for tick and axis labels. As such, you can use the rich capabilities of these marks, such the **lineWidth** option to wrap long text labels.
+
+[<img src="./img/axis-multiline.webp" width="640" alt="A bar chart of parodical survey responses demonstrating text wrapping of long axis labels.">](https://observablehq.com/@observablehq/plot-auto)
+
+```js
+Plot.plot({
+  y: {percent: true},
+  marks: [
+    Plot.axisX({label: null, lineWidth: 8, marginBottom: 40}),
+    Plot.axisY({label: "↑ Responses (%)"}),
+    Plot.barY(responses, {x: "name", y: "value"}),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+And since axes and grids are now proper marks, you can interleave them with other marks, for example to produce ggplot2-style axes with a gray background and white grid lines.
+
+[<img src="./img/axis-ggplot.webp" width="640" alt="A line chart of Apple’s stock price demonstrating styled axes with a gray background overlaid with white grid lines.">](https://observablehq.com/@observablehq/plot-auto)
+
+```js
+Plot.plot({
+  inset: 10,
+  marks: [
+    Plot.frame({fill: "#eaeaea"}),
+    Plot.gridY({stroke: "#fff", strokeOpacity: 1}),
+    Plot.gridX({stroke: "#fff", strokeOpacity: 1}),
+    Plot.line(aapl, {x: "Date", y: "Close"})
+  ]
+})
+```
+
+The *x* and *y* axes are now automatically repeated in empty facets, improving readability by reducing eye travel to read tick values. Below, note that the *x* axis for culmen depth (with ticks at 15 and 20 mm) is rendered below the Adelie/null-sex facet in the top-right.
+
+[<img src="./img/facet-axes.webp" width="640" alt="A scatterplot showing the culmen length and depth of various penguins, faceted by species and sex; the facets are arranged in a grid, with the y-axis on the left and the x-axis on the bottom.">](https://observablehq.com/@observablehq/plot-axes)
+
+```js
+Plot.plot({
+  facet: {marginRight: 80},
+  marks: [
+    Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", stroke: "#ddd"}),
+    Plot.frame(),
+    Plot.gridX(),
+    Plot.gridY(),
+    Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", fx: "sex", fy: "species"})
+  ]
+})
+```
+
+See [Plot: Axes](https://observablehq.com/@observablehq/plot-axes) for more examples, including the new _both_ **axis** option to repeat axes on both sides of the plot, dashed grid lines via the **strokeDasharray** option, data-driven tick placement, and layering axes to show hierarchical time intervals (years, months, weeks).
+
+Marks can now declare default margins via the **marginTop**, **marginRight**, **marginBottom**, and **marginLeft** options, and the **margin** shorthand. For each side, the maximum corresponding margin across marks becomes the plot’s default. While most marks default to zero margins (because they are drawn inside the chart area), Plot‘s axis mark provides default margins depending on their anchor. The facet margin options (*e.g.*, facet.**marginRight**) now correctly affect the positioning of the *x* and *y* axis labels.
+
+The new [*mark*.**facetAnchor**](#facetanchor) mark option controls the facets in which the mark will appear when faceting. It defaults to null for all marks except for axis marks, where it defaults to *top-empty* if the axis anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
+
+The [frame mark](./README.md#frame)’s new **anchor** option allows you to draw a line on one side of the frame (as opposed to the default behavior where a rect is drawn around all four sides); this feature is now used by the *scale*.**line** option for *x* and *y* scales. The [text mark](./README.md#text) now supports soft hyphens (`\xad`); lines are now eligible to break at soft hyphens, in which case a hyphen (-) will appear at the end of the line before the break. The [raster mark](./README.md#raster) no longer crashes with an _identity_ color scale. The [voronoi mark](./README.md#plotvoronoidata-options) now correctly respects the **target**, **mixBlendMode**, and **opacity** options.
+
+## 0.6.2
+
+[Released January 18, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.2)
+
+The new [raster mark](./README.md#raster) and [contour mark](./README.md#contour) generate a raster image and smooth contours, respectively, from spatial samples. For example, the plot below shows a gridded digital elevation model of Maungawhau (R’s [`volcano` dataset](./test/data/volcano.json)) with contours every 10 meters:
+
+[<img src="./img/volcano.webp" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/@observablehq/plot-raster)
+
+```js
+Plot.plot({
+  color: {legend: true, label: "Height (m)"},
+  marks: [
+    Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}),
+    Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, interval: 10})
+  ]
+})
+```
+
+For non-gridded or sparse data, the raster and contour marks implement a variety of [spatial interpolation methods](./README.md#spatial-interpolation) to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
+
+[<img src="./img/ca55.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-raster)
+
+```js
+Plot.plot({
+  width: 640,
+  height: 484,
+  inset: 4,
+  x: {tickFormat: "s"},
+  y: {tickFormat: "s", ticks: 5},
+  color: {type: "diverging", legend: true},
+  marks: [
+    Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "barycentric"}),
+    Plot.dot(ca55, {x: "LONGITUDE", y: "LATITUDE", r: 0.75, fill: "currentColor"})
+  ]
+})
+```
+
+The same data, with a smidge of blur, as filled contours in projected coordinates:
+
+[<img src="./img/ca55-contours.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-contour)
+
+```js
+Plot.plot({
+  width: 640,
+  height: 484,
+  color: {type: "diverging", legend: true},
+  projection: {type: "reflect-y", domain: {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])}},
+  marks: [Plot.contour(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", stroke: "currentColor", blur: 2})]
+})
+```
+
+Naturally, the raster and contour mark are compatible with Plot’s [projection system](./README.md#projection-options), allowing spatial samples to be shown in any geographic projection and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded global water vapor dataset from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
+
+[<img src="./img/water-vapor.png" width="650" alt="A map of global atmospheric water vapor, showing a higher concentration of water vapor near the equator">](https://observablehq.com/@observablehq/plot-raster)
+
+```js
+Plot.plot({
+  projection: "equirectangular",
+  color: {
+    scheme: "ylgnbu",
+    unknown: "#ccc",
+    legend: true,
+    label: "Water vapor (cm)"
+  },
+  marks: [
+    Plot.raster(vapor, {
+      x1: -180,
+      y1: 90,
+      x2: 180,
+      y2: -90,
+      width: 720,
+      height: 360
+    }),
+    Plot.graticule(),
+    Plot.frame()
+  ]
+})
+```
+
+The raster and contour mark also support sampling continuous spatial functions *f*(*x*, *y*). For example, here is the famous Mandelbrot set, with color encoding the number of iterations before the point escapes:
+
+[<img src="./img/mandelbrot.webp" width="640" alt="The Mandelbrot set">](https://observablehq.com/@observablehq/plot-raster)
+
+```js
+Plot.plot({
+  height: 500,
+  marks: [
+    Plot.raster({
+      fill: (x, y) => {
+        for (let n = 0, zr = 0, zi = 0; n < 80; ++n) {
+          [zr, zi] = [zr * zr - zi * zi + x, 2 * zr * zi + y];
+          if (zr * zr + zi * zi > 4) return n;
+        }
+      },
+      x1: -2,
+      y1: -1.164,
+      x2: 1,
+      y2: 1.164,
+      pixelSize: 0.5
+    })
+  ]
+})
+```
+
+The [vector mark](./README.md#vector) now supports the **shape** constant option; the built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](./README.md#plotspikedata-options) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to set the shape radius.
+
+[<img src="./img/spike-map.webp" width="640" alt="A spike map of U.S. county population">](https://observablehq.com/@observablehq/plot-spike)
+
+```js
+Plot.plot({
+  width: 960,
+  height: 600,
+  projection: "albers-usa",
+  length: {
+    range: [0, 200]
+  },
+  marks: [
+    Plot.geo(nation, {fill: "#e0e0e0"}),
+    Plot.geo(statemesh, {stroke: "white"}),
+    Plot.spike(counties.features, Plot.geoCentroid({stroke: "red", length: (d) => population.get(d.id)}))
+  ]
+});
+```
+
+The new [geoCentroid transform](./README.md#plotgeocentroidoptions) and [centroid initializer](./README.md#plotcentroidoptions) compute the spherical and projected planar centroids of geometry, respectively. The new [identity](./README.md#plotidentity) channel helper returns a source array as-is, avoiding an extra copy.
+
+The **interval** option now supports named time intervals such as “sunday” and “hour”, equivalent to the corresponding d3-time interval (_e.g._, d3.utcSunday and d3.utcHour). The [bin transform](./README.md#bin) is now many times faster, especially when there are many bins and when binning temporal data.
+
+Diverging scales now correctly handle descending domains. When the stack **order** option is used without a *z* channel, a helpful error message is now thrown. The **clip** option *frame* now correctly handles band scales. Using D3 7.8, generated SVG path data is now rounded to three decimal points to reduce output size. Fix a crash when a facet scale’s domain includes a value for which there is no corresponding facet data. The bin, group, and hexbin transforms now correctly ignore undefined outputs. Upgrade D3 to 7.8.2.
+
+## 0.6.1
+
+[Released December 12, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.1)
+
+The new [geo mark](./README.md#geo) renders GeoJSON geometries such as polygons, lines, and points. Together with Plot’s new [projection system](https://observablehq.com/@observablehq/plot-projections), Plot can now produce [thematic maps](https://observablehq.com/@observablehq/plot-mapping). For example, the choropleth map below shows unemployment rates by U.S. county.
+
+[<img src="./img/choropleth.png" width="640" alt="A choropleth of unemployment rate by U.S. county">](https://observablehq.com/@observablehq/plot-geo)
+
+```js
+Plot.geo(counties, {fill: (d) => d.properties.unemployment}).plot({
+  projection: "albers-usa",
+  color: {
+    type: "quantile",
+    n: 8,
+    scheme: "blues",
+    label: "Unemployment (%)",
+    legend: true
+  }
+})
+```
+
+The new top-level [**projection** option](./README.md#projection-options) controls how geometric coordinates are transformed to the screen and supports a variety of common geographic projections, including the composite U.S. Albers projection shown above, the Equal Earth projection, the Mercator projection, the orthographic and stereographic projections, several conic and azimuthal projections, among others. Projections can be fit to geometry using the projection.**domain** option, and rotated to an arbitrary aspect using the projection.**rotate** option.
+
+[<img src="./img/orthographic.png" width="640" alt="A world map using the orthographic projection, centered somewhere around San Antonio, Texas">](https://observablehq.com/@observablehq/plot-projections)
+
+```js
+Plot.plot({
+  height: 640,
+  inset: 1,
+  projection: {type: "orthographic", rotate: [100, -30]},
+  marks: [
+    Plot.graticule(),
+    Plot.geo(land, {fill: "currentColor"}),
+    Plot.sphere()
+  ]
+})
+```
+
+The new graticule convenience mark renders meridians and parallels (lines of constant longitude and latitude), while the sphere convenience mark draws the outline of the sphere.
+
+Plot’s projection system works automatically with most of Plot’s mark types, including dots, vectors, lines, and rects. For geographic projections, *x* represents longitude and *y* represents latitude. For example, the map below uses vectors to show county-level vote margins in the 2020 U.S. presidential election: a margin for Biden is shown as a blue left-pointing arrow, while a margin for Trump is shown as a red right-pointing arrow; the length of the arrow is proportional to the margin.
+
+[<img src="./img/vector-map.png" width="640" alt="An arrow map showing the county-level vote margins in the 2020 U.S. presidential election; a margin for Biden is shown as a blue left-pointing arrow, and a margin for Trump is shown as a red right-pointing arrow">](https://observablehq.com/@observablehq/plot-mapping)
+
+```js
+Plot.plot({
+  width: 975,
+  projection: "albers-usa",
+  marks: [
+    Plot.geo(statemesh, {strokeOpacity: 0.25}),
+    Plot.geo(nation),
+    Plot.vector(elections, {
+      filter: (d) => d.votes > 0,
+      anchor: "start",
+      x: (d) => centroids.get(d.fips)?.[0],
+      y: (d) => centroids.get(d.fips)?.[1],
+      sort: (d) => Math.abs(d.results_trumpd - d.results_bidenj),
+      stroke: (d) => (d.results_trumpd > d.results_bidenj ? "red" : "blue"),
+      length: (d) => Math.sqrt(Math.abs(d.margin2020 * d.votes)),
+      rotate: (d) => (d.results_bidenj < d.results_trumpd ? 60 : -60)
+    })
+  ]
+})
+```
+
+For the [line mark](./README.md#line), the specified projection doesn’t simply project control points; the projection has full control over how geometry is transformed from its native coordinate system (often spherical) to the screen. This allows line geometry to be represented as [geodesics](https://en.wikipedia.org/wiki/Geodesic), which are sampled and clipped during projection. For example, the map below shows the route of Charles Darwin’s voyage on the HMS *Beagle*; note that the line is cut when it crosses the antimeridian in the Pacific ocean. (Also note the use of the *stroke* channel to vary color.)
+
+[<img src="./img/beagle.png" width="640" alt="A map of the route of the HMS Beagle, 1831–1836; color indicates direction, with the ship initially departing London and heading southwest before circumnavigating the globe">](https://observablehq.com/@observablehq/plot-geo)
+
+```js
+Plot.plot({
+  projection: "equal-earth",
+  marks: [
+    Plot.geo(land, {fill: "currentColor"}),
+    Plot.graticule(),
+    Plot.line(beagle, {stroke: (d, i) => i, z: null, strokeWidth: 2}),
+    Plot.sphere()
+  ]
+})
+```
+
+Plot’s new geo mark and projection system work with Plot’s other core features, including scales, legends, faceting, and transforms. For example, here is a faceted dot map showing openings of Walmart stores over five decades.
+
+[<img src="./img/faceted-map.png" width="930" alt="A dot map of Walmart store openings faceted by decade">](https://observablehq.com/@observablehq/plot-mapping)
+
+```js
+Plot.plot({
+  width: 975,
+  projection: "albers",
+  fx: {tickFormat: (d) => `${d}’s`},
+  facet: {data: walmarts, x: (d) => Math.floor(d.date.getUTCFullYear() / 10) * 10},
+  marks: [
+    Plot.geo(statemesh, {strokeOpacity: 0.1}),
+    Plot.dot(walmarts, {x: "longitude", y: "latitude", r: 1, fill: "currentColor"}),
+    Plot.geo(nation)
+  ]
+})
+```
+
+As another example using the same dataset, the map below uses the hexbin transform to aggregate Walmart store opening into local hexagons.
+
+[<img src="./img/hexbin-map.png" width="640" alt="A bivariate hexbin map of Walmart store openings; within each hexagonal area, size indicates the number of Walmart store openings, and color indicates the year of the first opening">](https://observablehq.com/@observablehq/plot-mapping)
+
+```js
+Plot.plot({
+  projection: "albers",
+  color: {
+    legend: true,
+    label: "First year opened",
+    scheme: "spectral"
+  },
+  marks: [
+    Plot.geo(statemesh, {strokeOpacity: 0.25}),
+    Plot.geo(nation),
+    Plot.dot(walmarts, Plot.hexbin({r: "count", fill: "min"}, {x: "longitude", y: "latitude", fill: "date"}))
+  ]
+})
+```
+
+In addition to the included basic projections, Plot’s projection system can be extended using any projection implementation compatible with D3’s [projection stream interface](https://github.com/d3/d3-geo/blob/main/README.md#streams). This includes all the projections provided by the [d3-geo-projection](https://github.com/d3/d3-geo-projection) and [d3-geo-polygon](https://github.com/d3/d3-geo-polygon) libraries! For example, here is a world map using Goode’s interrupted homolosine projection.
+
+[<img src="./img/goode.png" width="640" alt="A world map using Goode’s interrupted homolosine projection">](https://observablehq.com/@observablehq/plot-extended-projections)
+
+```js
+Plot.plot({
+  width: 975,
+  height: 424,
+  inset: 1,
+  projection: {
+    type: d3.geoInterruptedHomolosine,
+    domain: {type: "Sphere"}
+  },
+  marks: [
+    Plot.geo(land, {clip: "sphere", fill: "currentColor"}),
+    Plot.graticule({clip: "sphere"}),
+    Plot.sphere()
+  ]
+})
+```
+
+Plot now supports [mark-level faceting](./README.md#facet-options) via the new *mark*.**fx** and *mark*.**fy** options. Mark-level faceting makes it easier to control which marks are faceted (versus repeated across facets), especially when combining multiple datasets or specifying faceted annotations.
+
+[<img src="./img/anscombe.png" width="640" alt="A faceted scatterplot of Anscombe’s quartet">](https://observablehq.com/@observablehq/plot-facets)
+
+```js
+Plot.plot({
+  grid: true,
+  height: 180,
+  marks: [Plot.frame(), Plot.dot(anscombe, {x: "x", y: "y", fx: "series"})]
+})
+```
+
+When mark-level faceting is used, the mark will be faceted if either the *mark*.**fx** or *mark*.**fy** channel option (or both) is specified. As before, you can set the *mark*.**facet** option to null or false option will disable faceting, or to *exclude* to draw the subset of the mark’s data not in the current facet.
+
+In addition to the above new features, this release also includes a variety of bug fixes. The *fx* and *fy* scales now support the *scale*.**transform** and *scale*.**percent** options. The *quantize* scale now respects the *scale*.**unknown** option. Initializers (including dodge and hexbin) no longer unintentionally drop the *mark*.**sort** option when being used to sort a scale’s domain. The error message when an invalid color scheme is specified has been improved. Plot no longer warns about empty strings appearing to be numbers. The *mean* and *median* reducers now return dates if the data is temporal. The default **height** now adjusts automatically to preserve the inner size of the plot when margins are specified. Fix the position of the frame anchor when either the *x* or *y* scale is ordinal (band or point). Dots with a negative constant radius *r* are no longer rendered rather than generating invalid SVG.
+
 ## 0.6.0
 
 [Released September 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.0)
 
-[<img src="./img/window-strict.png" width="640" height="398" alt="A smoothed line chart of Apple’s stock price">](https://observablehq.com/@observablehq/plot-window)
+[<img src="./img/window-strict.png" width="640" alt="A smoothed line chart of Apple’s stock price">](https://observablehq.com/@observablehq/plot-window)
 
 ```js
 Plot.plot({
@@ -36,7 +425,7 @@ Plot now uses D3 7.6.1, using [d3.blur2](https://observablehq.com/@d3/d3-blur) f
 
 The new [density mark](./README.md#density) creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. The **bandwidth** and number of **thresholds** are configurable.
 
-[<img src="./img/density-contours.png" width="640" height="400" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
+[<img src="./img/density-contours.png" width="640" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
 
 ```js
 Plot.plot({
@@ -51,7 +440,7 @@ Plot.plot({
 
 By default, as shown above, the density is represented by contour lines. By setting the **fill** option to *density*, you can draw filled regions with a sequential color encoding instead.
 
-[<img src="./img/density-fill.png" width="640" height="500" alt="A contour plot showing the relationship between diamond price and weight">](https://observablehq.com/@observablehq/plot-density)
+[<img src="./img/density-fill.png" width="640" alt="A contour plot showing the relationship between diamond price and weight">](https://observablehq.com/@observablehq/plot-density)
 
 ```js
 Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
@@ -65,7 +454,7 @@ Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
 
 The new [linear regression marks](./README.md#linear-regression) produce [linear regressions](https://en.wikipedia.org/wiki/Linear_regression) with [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*).
 
-[<img src="./img/linear-regression.png" width="640" height="400" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
+[<img src="./img/linear-regression.png" width="640" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
 
 ```js
 Plot.plot({
@@ -80,7 +469,7 @@ Plot.plot({
 
 The new [Delaunay and Voronoi marks](./README.md#delaunay) produce Delaunay triangulations and Voronoi tesselations: [Plot.delaunayLink](./README.md#plotdelaunaylinkdata-options) draws links for each edge of the Delaunay triangulation of the given points, [Plot.delaunayMesh](./README.md#plotdelaunaymeshdata-options) draws a mesh of the Delaunay triangulation  of the given points, [Plot.hull](./README.md#plothulldata-options) draws a convex hull around the given points, [Plot.voronoi](./README.md#plotvoronoidata-options) draws polygons for each cell of the Voronoi tesselation of the given points, and [Plot.voronoiMesh](./README.md#plotvoronoimeshdata-options) draws a mesh for the cell boundaries of the Voronoi tesselation of the given points.
 
-[<img src="./img/voronoi.png" width="640" height="396" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
+[<img src="./img/voronoi.png" width="640" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
 
 ```js
 Plot.plot({

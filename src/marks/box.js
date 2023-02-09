@@ -1,5 +1,5 @@
 import {min, max, quantile} from "d3";
-import {marks} from "../plot.js";
+import {marks} from "../mark.js";
 import {groupX, groupY, groupZ} from "../transforms/group.js";
 import {map} from "../transforms/map.js";
 import {barX, barY} from "./bar.js";

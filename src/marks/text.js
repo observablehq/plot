@@ -2,6 +2,7 @@ import {namespaces} from "d3";
 import {create} from "../context.js";
 import {nonempty} from "../defined.js";
 import {formatDefault} from "../format.js";
+import {Mark} from "../mark.js";
 import {
   indexOf,
   identity,
@@ -16,7 +17,6 @@ import {
   isTextual,
   isIterable
 } from "../options.js";
-import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
   applyDirectStyles,
@@ -26,6 +26,7 @@ import {
   impliedString,
   applyFrameAnchor
 } from "../style.js";
+import {template} from "../template.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
 const defaults = {
@@ -34,6 +35,8 @@ const defaults = {
   strokeWidth: 3,
   paintOrder: "stroke"
 };
+
+const softHyphen = "\u00ad";
 
 export class Text extends Mark {
   constructor(data, options = {}) {
@@ -63,7 +66,7 @@ export class Text extends Mark {
         y: {value: y, scale: "y", optional: true},
         fontSize: {value: vfontSize, optional: true},
         rotate: {value: numberChannel(vrotate), optional: true},
-        text: {value: text, filter: nonempty}
+        text: {value: text, filter: nonempty, optional: true}
       },
       options,
       defaults
@@ -82,13 +85,14 @@ export class Text extends Mark {
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
     const {rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this, T, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
         g
           .selectAll()
@@ -99,29 +103,9 @@ export class Text extends Mark {
           .call(applyMultilineText, this, T)
           .attr(
             "transform",
-            R
-              ? X && Y
-                ? (i) => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
-                : X
-                ? (i) => `translate(${X[i]},${cy}) rotate(${R[i]})`
-                : Y
-                ? (i) => `translate(${cx},${Y[i]}) rotate(${R[i]})`
-                : (i) => `translate(${cx},${cy}) rotate(${R[i]})`
-              : rotate
-              ? X && Y
-                ? (i) => `translate(${X[i]},${Y[i]}) rotate(${rotate})`
-                : X
-                ? (i) => `translate(${X[i]},${cy}) rotate(${rotate})`
-                : Y
-                ? (i) => `translate(${cx},${Y[i]}) rotate(${rotate})`
-                : `translate(${cx},${cy}) rotate(${rotate})`
-              : X && Y
-              ? (i) => `translate(${X[i]},${Y[i]})`
-              : X
-              ? (i) => `translate(${X[i]},${cy})`
-              : Y
-              ? (i) => `translate(${cx},${Y[i]})`
-              : `translate(${cx},${cy})`
+            template`translate(${X ? (i) => X[i] : cx},${Y ? (i) => Y[i] : cy})${
+              R ? (i) => ` rotate(${R[i]})` : rotate ? ` rotate(${rotate})` : ``
+            }`
           )
           .call(applyAttr, "font-size", FS && ((i) => FS[i]))
           .call(applyChannelStyles, this, channels)
@@ -140,7 +124,7 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
   selection.each(function (i) {
     const lines = linesof(formatDefault(T[i]));
     const n = lines.length;
-    const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? -0.29 - n : (164 - n * 100) / 200;
+    const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {
       for (let i = 0; i < n; ++i) {
         if (!lines[i]) continue;
@@ -241,7 +225,7 @@ function lineWrap(input, maxWidth, widthof = (_, i, j) => j - i) {
     // make the line longer than the allowed width, then break the line at the
     // previous word end.
     if (lineEnd > lineStart && widthof(input, lineStart, wordEnd) > maxWidth) {
-      lines.push(input.slice(lineStart, lineEnd));
+      lines.push(input.slice(lineStart, lineEnd) + (input[lineEnd - 1] === softHyphen ? "-" : ""));
       lineStart = wordStart;
     }
 
@@ -269,6 +253,7 @@ function* lineBreaks(input) {
   while (j < n) {
     let k = 1;
     switch (input[j]) {
+      case softHyphen:
       case "-": // hyphen
         ++j;
         yield [i, j, false];

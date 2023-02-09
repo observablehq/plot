@@ -1,0 +1,87 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="20" y="30" width="600" height="340"></rect>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+    <path transform="translate(26,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(84.80000000000001,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(143.60000000000002,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(202.39999999999998,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(261.20000000000005,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(320,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(378.79999999999995,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(437.59999999999997,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(496.40000000000003,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(555.2,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(614,30)" d="M0,0L0,-6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+    <text transform="translate(26,30)">0.0</text>
+    <text transform="translate(84.80000000000001,30)">0.1</text>
+    <text transform="translate(143.60000000000002,30)">0.2</text>
+    <text transform="translate(202.39999999999998,30)">0.3</text>
+    <text transform="translate(261.20000000000005,30)">0.4</text>
+    <text transform="translate(320,30)">0.5</text>
+    <text transform="translate(378.79999999999995,30)">0.6</text>
+    <text transform="translate(437.59999999999997,30)">0.7</text>
+    <text transform="translate(496.40000000000003,30)">0.8</text>
+    <text transform="translate(555.2,30)">0.9</text>
+    <text transform="translate(614,30)">1.0</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="start" transform="translate(-16.5,-26.5)">
+    <text y="0.71em" transform="translate(20,30)">top-left</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(320,30)">top-center</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-26.5)">
+    <text y="0.71em" transform="translate(620,30)">top-right</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(26,370)" d="M0,0L0,6"></path>
+    <path transform="translate(84.80000000000001,370)" d="M0,0L0,6"></path>
+    <path transform="translate(143.60000000000002,370)" d="M0,0L0,6"></path>
+    <path transform="translate(202.39999999999998,370)" d="M0,0L0,6"></path>
+    <path transform="translate(261.20000000000005,370)" d="M0,0L0,6"></path>
+    <path transform="translate(320,370)" d="M0,0L0,6"></path>
+    <path transform="translate(378.79999999999995,370)" d="M0,0L0,6"></path>
+    <path transform="translate(437.59999999999997,370)" d="M0,0L0,6"></path>
+    <path transform="translate(496.40000000000003,370)" d="M0,0L0,6"></path>
+    <path transform="translate(555.2,370)" d="M0,0L0,6"></path>
+    <path transform="translate(614,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(26,370)">0.0</text>
+    <text y="0.71em" transform="translate(84.80000000000001,370)">0.1</text>
+    <text y="0.71em" transform="translate(143.60000000000002,370)">0.2</text>
+    <text y="0.71em" transform="translate(202.39999999999998,370)">0.3</text>
+    <text y="0.71em" transform="translate(261.20000000000005,370)">0.4</text>
+    <text y="0.71em" transform="translate(320,370)">0.5</text>
+    <text y="0.71em" transform="translate(378.79999999999995,370)">0.6</text>
+    <text y="0.71em" transform="translate(437.59999999999997,370)">0.7</text>
+    <text y="0.71em" transform="translate(496.40000000000003,370)">0.8</text>
+    <text y="0.71em" transform="translate(555.2,370)">0.9</text>
+    <text y="0.71em" transform="translate(614,370)">1.0</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="start" transform="translate(-16.5,27.5)">
+    <text transform="translate(20,370)">bottom-left</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(320,370)">bottom-center</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">bottom-right</text>
+  </g>
+</svg>

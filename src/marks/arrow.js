@@ -1,7 +1,7 @@
 import {create} from "../context.js";
+import {Mark} from "../mark.js";
 import {radians} from "../math.js";
 import {constant} from "../options.js";
-import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSameValue} from "./link.js";
 
@@ -66,7 +66,7 @@ export class Arrow extends Mark {
     const wingScale = headLength / 1.5;
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales)
       .call((g) =>
         g

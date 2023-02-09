@@ -29,6 +29,20 @@
     <path d="M210.772152941181,292.4285829020334A364.53106720050914,364.53106720050914 0,0,1 298.01575980443147,141.31822317931878M292.8929730141243,142.80196842210782L298.01575980443147,141.31822317931878L296.73932748227753,146.49655929929062" stroke-opacity="0.125"></path>
     <path stroke-opacity="1"></path>
   </g>
-  <g aria-label="text" transform="translate(0.5,55.5)"><text y="0.32em" transform="translate(60,104.63999999999999)">A</text><text y="0.32em" transform="translate(339,104.64000000000004)">B</text><text y="0.32em" transform="translate(199.49999999999997,346.26108765585843)">C</text></g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(60,104.63999999999999)">0.3</text><text y="0.32em" transform="translate(199.50000000000003,60)">0.2</text><text y="0.32em" transform="translate(168.40937402493734,203.13054382792922)">0.5</text><text y="0.32em" transform="translate(199.49999999999997,149.28000000000003)">0.1</text><text y="0.32em" transform="translate(339,104.64000000000004)">0.7</text><text y="0.32em" transform="translate(307.90937402493734,247.7705438279292)">0.2</text><text y="0.32em" transform="translate(91.09062597506264,247.77054382792923)">0.1</text><text y="0.32em" transform="translate(230.59062597506266,203.13054382792922)">0.1</text><text y="0.32em" transform="translate(199.49999999999997,346.26108765585843)">0.8</text></g>
+  <g aria-label="text" transform="translate(0.5,55.5)">
+    <text y="0.32em" transform="translate(60,104.63999999999999)">A</text>
+    <text y="0.32em" transform="translate(339,104.64000000000004)">B</text>
+    <text y="0.32em" transform="translate(199.49999999999997,346.26108765585843)">C</text>
+  </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)">
+    <text y="0.32em" transform="translate(60,104.63999999999999)">0.3</text>
+    <text y="0.32em" transform="translate(199.50000000000003,60)">0.2</text>
+    <text y="0.32em" transform="translate(168.40937402493734,203.13054382792922)">0.5</text>
+    <text y="0.32em" transform="translate(199.49999999999997,149.28000000000003)">0.1</text>
+    <text y="0.32em" transform="translate(339,104.64000000000004)">0.7</text>
+    <text y="0.32em" transform="translate(307.90937402493734,247.7705438279292)">0.2</text>
+    <text y="0.32em" transform="translate(91.09062597506264,247.77054382792923)">0.1</text>
+    <text y="0.32em" transform="translate(230.59062597506266,203.13054382792922)">0.1</text>
+    <text y="0.32em" transform="translate(199.49999999999997,346.26108765585843)">0.8</text>
+  </g>
 </svg>

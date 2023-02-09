@@ -1,15 +1,15 @@
 import {create} from "../context.js";
 import {positive} from "../defined.js";
+import {Mark} from "../mark.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
-import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
   applyDirectStyles,
   applyIndirectStyles,
-  applyTransform,
   applyAttr,
   impliedString,
-  applyFrameAnchor
+  applyFrameAnchor,
+  applyTransform
 } from "../style.js";
 
 const defaults = {
@@ -66,11 +66,12 @@ export class Image extends Mark {
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, width: W, height: H, src: S} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
         g
           .selectAll()

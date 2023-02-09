@@ -7,7 +7,7 @@ export default async function () {
     width: 960,
     height: 1080,
     y: {
-      range: [20, -40],
+      insetTop: -40,
       axis: null
     },
     fy: {

@@ -13,66 +13,54 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Daily trade volume (millions)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,344.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,317.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,291.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,265.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,239.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,212.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">120</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,186.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">140</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,160.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,133.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">180</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,107.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,81.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">220</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,55.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">240</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,28.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">260</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Daily trade volume (millions)</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,344)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,317)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,291)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,265)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,239)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,212)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,186)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,160)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,133)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,107)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,81)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,55)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,28)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(117.02127086698977,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2014</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(231.02234787291331,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2015</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(345.0234248788368,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2016</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(459.3368336025849,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2017</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(573.3379106085084,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2018</text>
-    </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,344)">20</text>
+    <text y="0.32em" transform="translate(40,317)">40</text>
+    <text y="0.32em" transform="translate(40,291)">60</text>
+    <text y="0.32em" transform="translate(40,265)">80</text>
+    <text y="0.32em" transform="translate(40,239)">100</text>
+    <text y="0.32em" transform="translate(40,212)">120</text>
+    <text y="0.32em" transform="translate(40,186)">140</text>
+    <text y="0.32em" transform="translate(40,160)">160</text>
+    <text y="0.32em" transform="translate(40,133)">180</text>
+    <text y="0.32em" transform="translate(40,107)">200</text>
+    <text y="0.32em" transform="translate(40,81)">220</text>
+    <text y="0.32em" transform="translate(40,55)">240</text>
+    <text y="0.32em" transform="translate(40,28)">260</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Daily trade volume (millions)</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(116.52127086698977,370)" d="M0,0L0,6"></path>
+    <path transform="translate(230.52234787291331,370)" d="M0,0L0,6"></path>
+    <path transform="translate(344.5234248788368,370)" d="M0,0L0,6"></path>
+    <path transform="translate(458.8368336025849,370)" d="M0,0L0,6"></path>
+    <path transform="translate(572.8379106085084,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(116.52127086698977,370)">2014</text>
+    <text y="0.71em" transform="translate(230.52234787291331,370)">2015</text>
+    <text y="0.71em" transform="translate(344.5234248788368,370)">2016</text>
+    <text y="0.71em" transform="translate(458.8368336025849,370)">2017</text>
+    <text y="0.71em" transform="translate(572.8379106085084,370)">2018</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>

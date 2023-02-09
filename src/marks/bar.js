@@ -1,6 +1,6 @@
 import {create} from "../context.js";
+import {Mark} from "../mark.js";
 import {identity, indexOf, number} from "../options.js";
-import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
 import {
   applyDirectStyles,
@@ -28,7 +28,7 @@ export class AbstractBar extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {rx, ry} = this;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(this._transform, this, scales)
       .call((g) =>
         g

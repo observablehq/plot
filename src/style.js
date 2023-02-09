@@ -1,12 +1,27 @@
-import {group, namespaces} from "d3";
+import {geoPath, group, namespaces} from "d3";
+import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
-import {string, number, maybeColorChannel, maybeNumberChannel, isNoneish, isNone, isRound, keyof} from "./options.js";
+import {
+  string,
+  number,
+  maybeColorChannel,
+  maybeNumberChannel,
+  maybeKeyword,
+  isNoneish,
+  isNone,
+  isRound,
+  keyof
+} from "./options.js";
 import {warn} from "./warnings.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
 let nextClipId = 0;
+
+function getClipId() {
+  return `plot-clip-${++nextClipId}`;
+}
 
 export function styles(
   mark,
@@ -284,19 +299,64 @@ export function* groupIndex(I, position, {z}, channels) {
   }
 }
 
-// clip: true clips to the frame
-// TODO: accept other types of clips (paths, urls, x, y, other marks?…)
+// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
 // https://github.com/observablehq/plot/issues/181
 export function maybeClip(clip) {
-  if (clip === true) return "frame";
-  if (clip == null || clip === false) return false;
-  throw new Error(`invalid clip method: ${clip}`);
+  if (clip === true) clip = "frame";
+  else if (clip === false) clip = null;
+  return maybeKeyword(clip, "clip", ["frame", "sphere"]);
 }
 
-export function applyIndirectStyles(selection, mark, scales, dimensions) {
+// Note: may mutate selection.node!
+function applyClip(selection, mark, dimensions, context) {
+  let clipUrl;
+  switch (mark.clip) {
+    case "frame": {
+      const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
+      const id = getClipId();
+      clipUrl = `url(#${id})`;
+      selection = create("svg:g", context)
+        .call((g) =>
+          g
+            .append("svg:clipPath")
+            .attr("id", id)
+            .append("rect")
+            .attr("x", marginLeft)
+            .attr("y", marginTop)
+            .attr("width", width - marginRight - marginLeft)
+            .attr("height", height - marginTop - marginBottom)
+        )
+        .each(function () {
+          this.appendChild(selection.node());
+          selection.node = () => this; // Note: mutation!
+        });
+      break;
+    }
+    case "sphere": {
+      const {projection} = context;
+      if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
+      const id = getClipId();
+      clipUrl = `url(#${id})`;
+      selection
+        .append("clipPath")
+        .attr("id", id)
+        .append("path")
+        .attr("d", geoPath(projection)({type: "Sphere"}));
+      break;
+    }
+  }
+  // Here we’re careful to apply the ARIA attributes to the outer G element when
+  // clipping is applied, and to apply the ARIA attributes before any other
+  // attributes (for readability).
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
+  applyAttr(selection, "clip-path", clipUrl);
+}
+
+// Note: may mutate selection.node!
+export function applyIndirectStyles(selection, mark, dimensions, context) {
+  applyClip(selection, mark, dimensions, context);
   applyAttr(selection, "fill", mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);
@@ -310,20 +370,6 @@ export function applyIndirectStyles(selection, mark, scales, dimensions) {
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "paint-order", mark.paintOrder);
   applyAttr(selection, "pointer-events", mark.pointerEvents);
-  if (mark.clip === "frame") {
-    const {x, y} = scales;
-    const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-    const id = `plot-clip-${++nextClipId}`;
-    selection
-      .attr("clip-path", `url(#${id})`)
-      .append("clipPath")
-      .attr("id", id)
-      .append("rect")
-      .attr("x", marginLeft - (x?.bandwidth ? x.bandwidth() / 2 : 0))
-      .attr("y", marginTop - (y?.bandwidth ? y.bandwidth() / 2 : 0))
-      .attr("width", width - marginRight - marginLeft)
-      .attr("height", height - marginTop - marginBottom);
-  }
 }
 
 export function applyDirectStyles(selection, mark) {

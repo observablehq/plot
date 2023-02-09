@@ -1,6 +1,7 @@
 import {contourDensity, create, geoPath} from "d3";
-import {identity, isTypedArray, maybeTuple, maybeZ, valueof} from "../options.js";
-import {Mark} from "../plot.js";
+import {Mark} from "../mark.js";
+import {isTypedArray, maybeTuple, maybeZ} from "../options.js";
+import {Position} from "../projection.js";
 import {coerceNumbers} from "../scales.js";
 import {
   applyFrameAnchor,
@@ -49,8 +50,8 @@ export class Density extends Mark {
     const {contours} = channels;
     const path = geoPath();
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, {})
       .call((g) =>
         g
           .selectAll()
@@ -84,14 +85,15 @@ function densityInitializer(options, fillDensity, strokeDensity) {
       : typeof thresholds?.[Symbol.iterator] === "function"
       ? coerceNumbers(thresholds)
       : +thresholds;
-  return initializer(options, function (data, facets, channels, scales, dimensions) {
-    const X = channels.x ? coerceNumbers(valueof(channels.x.value, scales[channels.x.scale] || identity)) : null;
-    const Y = channels.y ? coerceNumbers(valueof(channels.y.value, scales[channels.y.scale] || identity)) : null;
+  return initializer(options, function (data, facets, channels, scales, dimensions, context) {
     const W = channels.weight ? coerceNumbers(channels.weight.value) : null;
     const Z = channels.z?.value;
     const {z} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const {width, height} = dimensions;
+
+    // Get the (either scaled or projected) xy channels.
+    const {x: X, y: Y} = Position(channels, scales, context);
 
     // Group any of the input channels according to the first index associated
     // with each z-series or facet. Drop any channels not be needed for

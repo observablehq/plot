@@ -1,8 +1,8 @@
-import {path, symbolCircle} from "d3";
+import {pathRound as path, symbolCircle} from "d3";
 import {create} from "../context.js";
-import {positive} from "../defined.js";
+import {negative, positive} from "../defined.js";
+import {Mark} from "../mark.js";
 import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
-import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
   applyDirectStyles,
@@ -11,6 +11,7 @@ import {
   applyTransform
 } from "../style.js";
 import {maybeSymbolChannel} from "../symbols.js";
+import {template} from "../template.js";
 import {sort} from "../transforms/basic.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
@@ -20,6 +21,12 @@ const defaults = {
   stroke: "currentColor",
   strokeWidth: 1.5
 };
+
+export function withDefaultSort(options) {
+  return options.sort === undefined && options.reverse === undefined
+    ? sort({channel: "r", order: "descending"}, options)
+    : options;
+}
 
 export class Dot extends Mark {
   constructor(data, options = {}) {
@@ -36,9 +43,7 @@ export class Dot extends Mark {
         rotate: {value: vrotate, optional: true},
         symbol: {value: vsymbol, scale: "symbol", optional: true}
       },
-      options.sort === undefined && options.reverse === undefined
-        ? sort({channel: "r", order: "descending"}, options)
-        : options,
+      withDefaultSort(options),
       defaults
     );
     this.r = cr;
@@ -60,12 +65,16 @@ export class Dot extends Mark {
     }
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
+    const {r, rotate, symbol} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const circle = this.symbol === symbolCircle;
+    const size = R ? undefined : r * r * Math.PI;
+    if (negative(r)) index = [];
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
         g
           .selectAll()
@@ -79,32 +88,42 @@ export class Dot extends Mark {
                   selection
                     .attr("cx", X ? (i) => X[i] : cx)
                     .attr("cy", Y ? (i) => Y[i] : cy)
-                    .attr("r", R ? (i) => R[i] : this.r);
+                    .attr("r", R ? (i) => R[i] : r);
                 }
               : (selection) => {
-                  const translate =
-                    X && Y
-                      ? (i) => `translate(${X[i]},${Y[i]})`
-                      : X
-                      ? (i) => `translate(${X[i]},${cy})`
-                      : Y
-                      ? (i) => `translate(${cx},${Y[i]})`
-                      : () => `translate(${cx},${cy})`;
                   selection
                     .attr(
                       "transform",
-                      A
-                        ? (i) => `${translate(i)} rotate(${A[i]})`
-                        : this.rotate
-                        ? (i) => `${translate(i)} rotate(${this.rotate})`
-                        : translate
+                      template`translate(${X ? (i) => X[i] : cx},${Y ? (i) => Y[i] : cy})${
+                        A ? (i) => ` rotate(${A[i]})` : rotate ? ` rotate(${rotate})` : ``
+                      }`
                     )
-                    .attr("d", (i) => {
-                      const p = path(),
-                        r = R ? R[i] : this.r;
-                      (S ? S[i] : this.symbol).draw(p, r * r * Math.PI);
-                      return p;
-                    });
+                    .attr(
+                      "d",
+                      R && S
+                        ? (i) => {
+                            const p = path();
+                            S[i].draw(p, R[i] * R[i] * Math.PI);
+                            return p;
+                          }
+                        : R
+                        ? (i) => {
+                            const p = path();
+                            symbol.draw(p, R[i] * R[i] * Math.PI);
+                            return p;
+                          }
+                        : S
+                        ? (i) => {
+                            const p = path();
+                            S[i].draw(p, size);
+                            return p;
+                          }
+                        : (() => {
+                            const p = path();
+                            symbol.draw(p, size);
+                            return p;
+                          })()
+                    );
                 }
           )
           .call(applyChannelStyles, this, channels)

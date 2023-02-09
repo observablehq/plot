@@ -13,51 +13,41 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Ava</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,53.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Emma</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,74.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Jacob</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,95.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Mason</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,116.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Mia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,137.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Noah</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,158.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Olivia</text>
-    </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10)">
+    <path transform="translate(40,23)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,44)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,65)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,86)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,107)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,128)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,149)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" transform="translate(0,170)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(87.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Ava</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(168.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Emma</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(249.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jacob</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(330.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Mason</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(411.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Mia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(492.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Noah</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(573.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Olivia</text>
-    </g>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10)">
+    <text y="0.32em" transform="translate(40,23)">Ava</text>
+    <text y="0.32em" transform="translate(40,44)">Emma</text>
+    <text y="0.32em" transform="translate(40,65)">Jacob</text>
+    <text y="0.32em" transform="translate(40,86)">Mason</text>
+    <text y="0.32em" transform="translate(40,107)">Mia</text>
+    <text y="0.32em" transform="translate(40,128)">Noah</text>
+    <text y="0.32em" transform="translate(40,149)">Olivia</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(37,0)">
+    <path transform="translate(51,170)" d="M0,0L0,6"></path>
+    <path transform="translate(132,170)" d="M0,0L0,6"></path>
+    <path transform="translate(213,170)" d="M0,0L0,6"></path>
+    <path transform="translate(294,170)" d="M0,0L0,6"></path>
+    <path transform="translate(375,170)" d="M0,0L0,6"></path>
+    <path transform="translate(456,170)" d="M0,0L0,6"></path>
+    <path transform="translate(537,170)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(37,9.5)">
+    <text y="0.71em" transform="translate(51,170)">Ava</text>
+    <text y="0.71em" transform="translate(132,170)">Emma</text>
+    <text y="0.71em" transform="translate(213,170)">Jacob</text>
+    <text y="0.71em" transform="translate(294,170)">Mason</text>
+    <text y="0.71em" transform="translate(375,170)">Mia</text>
+    <text y="0.71em" transform="translate(456,170)">Noah</text>
+    <text y="0.71em" transform="translate(537,170)">Olivia</text>
   </g>
   <g aria-label="cell">
     <rect x="213" width="73" y="149" height="19"></rect>

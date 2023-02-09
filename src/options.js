@@ -1,5 +1,6 @@
 import {parse as isoParse} from "isoformat";
-import {color, descending, quantile} from "d3";
+import {color, descending, range as rangei, quantile} from "d3";
+import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -21,6 +22,7 @@ export function valueof(data, value, type) {
 
 export const field = (name) => (d) => d[name];
 export const indexOf = (d, i) => i;
+/** @jsdoc identity */
 export const identity = {transform: (d) => d};
 export const zero = () => 0;
 export const one = () => 1;
@@ -30,6 +32,7 @@ export const number = (x) => (x == null ? x : +x);
 export const boolean = (x) => (x == null ? x : !!x);
 export const first = (x) => (x ? x[0] : undefined);
 export const second = (x) => (x ? x[1] : undefined);
+export const third = (x) => (x ? x[2] : undefined);
 export const constant = (x) => () => x;
 
 // Converts a string like “p25” into a function that takes an index I and an
@@ -234,6 +237,25 @@ export function mid(x1, x2) {
   };
 }
 
+// If interval is not nullish, converts interval shorthand such as a number (for
+// multiples) or a time interval name (such as “day”) to a {floor, offset,
+// range} object similar to a D3 time interval.
+export function maybeInterval(interval, type) {
+  if (interval == null) return;
+  if (typeof interval === "number") {
+    const n = interval;
+    return {
+      floor: (d) => n * Math.floor(d / n),
+      offset: (d) => d + n, // note: no optional step for simplicity
+      range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => n * x)
+    };
+  }
+  if (typeof interval === "string") return (type === "time" ? maybeTimeInterval : maybeUtcInterval)(interval);
+  if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
+  if (typeof interval.offset !== "function") throw new Error("invalid interval; missing offset method");
+  return interval;
+}
+
 // This distinguishes between per-dimension options and a standalone value.
 export function maybeValue(value) {
   return value === undefined || isOptions(value) ? value : {value};
@@ -249,6 +271,14 @@ export function numberChannel(source) {
         transform: (data) => valueof(data, source, Float64Array),
         label: labelof(source)
       };
+}
+
+export function isTuples(data) {
+  if (!isIterable(data)) return false;
+  for (const d of data) {
+    if (d == null) continue;
+    return typeof d === "object" && "0" in d && "1" in d;
+  }
 }
 
 export function isIterable(value) {
@@ -292,8 +322,10 @@ export function isTemporalString(values) {
 // coercion because we want to ignore false positives on e.g. empty strings.
 export function isNumericString(values) {
   for (const value of values) {
-    if (value == null || value === "") continue;
-    return typeof value === "string" && !isNaN(value);
+    if (value == null) continue;
+    if (typeof value !== "string") return false;
+    if (!value.trim()) continue;
+    return !isNaN(value);
   }
 }
 
@@ -369,7 +401,7 @@ export function maybeFrameAnchor(value = "middle") {
 // Like a sort comparator, returns a positive value if the given array of values
 // is in ascending order, a negative value if the values are in descending
 // order. Assumes monotonicity; only tests the first and last values.
-export function order(values) {
+export function orderof(values) {
   if (values == null) return;
   const first = values[0];
   const last = values[values.length - 1];

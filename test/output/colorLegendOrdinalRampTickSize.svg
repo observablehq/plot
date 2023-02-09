@@ -24,25 +24,33 @@
   </g>
   <g transform="translate(0,28)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(18.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">&lt;20</text>
+      <line stroke="currentColor" y2="0"></line>
+      <text fill="currentColor" y="3" dy="0.71em">&lt;20</text>
     </g>
     <g class="tick" opacity="1" transform="translate(52.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">20-29</text>
+      <line stroke="currentColor" y2="0"></line>
+      <text fill="currentColor" y="3" dy="0.71em">20-29</text>
     </g>
     <g class="tick" opacity="1" transform="translate(86.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">30-39</text>
+      <line stroke="currentColor" y2="0"></line>
+      <text fill="currentColor" y="3" dy="0.71em">30-39</text>
     </g>
     <g class="tick" opacity="1" transform="translate(120.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">40-49</text>
+      <line stroke="currentColor" y2="0"></line>
+      <text fill="currentColor" y="3" dy="0.71em">40-49</text>
     </g>
     <g class="tick" opacity="1" transform="translate(154.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">50-59</text>
+      <line stroke="currentColor" y2="0"></line>
+      <text fill="currentColor" y="3" dy="0.71em">50-59</text>
     </g>
     <g class="tick" opacity="1" transform="translate(188.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">60-69</text>
+      <line stroke="currentColor" y2="0"></line>
+      <text fill="currentColor" y="3" dy="0.71em">60-69</text>
     </g>
     <g class="tick" opacity="1" transform="translate(222.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">≥70</text>
+      <line stroke="currentColor" y2="0"></line>
+      <text fill="currentColor" y="3" dy="0.71em">≥70</text>
     </g>
-  </g><text x="0" y="12" fill="currentColor" font-weight="bold">Age (years)</text>
+  </g>
+  <text x="0" y="12" fill="currentColor" font-weight="bold">Age (years)</text>
 </svg>

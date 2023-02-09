@@ -1,0 +1,57 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="430" viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="facet" transform="translate(0,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+      <text transform="translate(177.5,30)">a</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,215)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,215)">0</text>
+    </g>
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(59,0)">
+      <path transform="translate(54,400)" d="M0,0L0,6"></path>
+      <path transform="translate(184,400)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="x-axis tick label" transform="translate(59,9.5)">
+      <text y="0.71em" transform="translate(54,400)">1</text>
+      <text y="0.71em" transform="translate(184,400)">2</text>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(305,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+      <text transform="translate(177.5,30)">b</text>
+    </g>
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(59,0)">
+      <path transform="translate(54,400)" d="M0,0L0,6"></path>
+      <path transform="translate(184,400)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="x-axis tick label" transform="translate(59,9.5)">
+      <text y="0.71em" transform="translate(54,400)">1</text>
+      <text y="0.71em" transform="translate(184,400)">2</text>
+    </g>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(330,30)">TYPE</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
+    <text y="0.71em" transform="translate(40,30)">VALUE</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,400)">PERIOD</text>
+  </g>
+</svg>

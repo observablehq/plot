@@ -4,12 +4,12 @@ import * as d3 from "d3";
 export default async function () {
   const data = await d3.csv("data/bls-industry-unemployment.csv", d3.autoType);
   return Plot.plot({
-    facet: {data, y: "industry", marginLeft: 140},
+    facet: {data, y: "industry"},
     marginLeft: 140,
     marks: [
       Plot.barX(data, {
         x: "date",
-        interval: d3.utcMonth,
+        interval: "month",
         fill: "unemployed",
         title: "unemployed",
         sort: {fy: "fill", reverse: true},
@@ -23,7 +23,7 @@ export default async function () {
           },
           {
             x: "date",
-            interval: d3.utcMonth,
+            interval: "month",
             stroke: "#fff",
             fill: "black",
             strokeWidth: 1.5,
@@ -40,7 +40,7 @@ export default async function () {
           },
           {
             x: "date",
-            interval: d3.utcMonth,
+            interval: "month",
             value: "unemployed",
             fill: "#333",
             title: "unemployed",

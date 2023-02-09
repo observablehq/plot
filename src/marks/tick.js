@@ -1,6 +1,6 @@
 import {create} from "../context.js";
 import {identity, number} from "../options.js";
-import {Mark} from "../plot.js";
+import {Mark} from "../mark.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 
 const defaults = {
@@ -15,7 +15,7 @@ class AbstractTick extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(this._transform, this, scales)
       .call((g) =>
         g

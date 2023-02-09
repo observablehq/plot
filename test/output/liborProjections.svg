@@ -13,58 +13,56 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ on" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <path class="domain" stroke="currentColor" d="M0.5,355.9521874459623V20.5"></path>
-    <g class="tick" opacity="1" transform="translate(0,327.64075739235693)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2015</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,271.78307107037864)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2016</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,215.77234999135396)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2017</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,159.91466366937576)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2018</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,104.05697734739752)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2019</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,48.199291025419335)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2020</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ on</text>
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="940" y1="327.14075739235693" y2="327.14075739235693"></line>
+    <line x1="40" x2="940" y1="271.28307107037864" y2="271.28307107037864"></line>
+    <line x1="40" x2="940" y1="215.27234999135396" y2="215.27234999135396"></line>
+    <line x1="40" x2="940" y1="159.41466366937576" y2="159.41466366937576"></line>
+    <line x1="40" x2="940" y1="103.55697734739752" y2="103.55697734739752"></line>
+    <line x1="40" x2="940" y1="47.699291025419335" y2="47.699291025419335"></line>
   </g>
-  <g aria-label="x-axis" aria-description="about →" transform="translate(0,362.4521874459623)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(134.6691163755836,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2016</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(246.53752377658654,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2018</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(358.25289642054304,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2020</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(470.12130382154595,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2022</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(581.8366764655024,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2024</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(693.7050838665052,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2026</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(805.4204565104617,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2028</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(917.2888639114647,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2030</text>
-    </g><text fill="currentColor" transform="translate(960,30)" dy="-0.32em" text-anchor="end">about →</text>
+  <line aria-label="frame" stroke="currentColor" stroke-linecap="square" transform="translate(0.5,0.5)" x1="40" x2="40" y1="20" y2="362.4521874459623"></line>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,327.14075739235693)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,271.28307107037864)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,215.27234999135396)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,159.41466366937576)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,103.55697734739752)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,47.699291025419335)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,327.14075739235693)">2015</text>
+    <text y="0.32em" transform="translate(40,271.28307107037864)">2016</text>
+    <text y="0.32em" transform="translate(40,215.27234999135396)">2017</text>
+    <text y="0.32em" transform="translate(40,159.41466366937576)">2018</text>
+    <text y="0.32em" transform="translate(40,103.55697734739752)">2019</text>
+    <text y="0.32em" transform="translate(40,47.699291025419335)">2020</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ on</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(134.1691163755836,362.4521874459623)" d="M0,0L0,6"></path>
+    <path transform="translate(246.03752377658654,362.4521874459623)" d="M0,0L0,6"></path>
+    <path transform="translate(357.75289642054304,362.4521874459623)" d="M0,0L0,6"></path>
+    <path transform="translate(469.62130382154595,362.4521874459623)" d="M0,0L0,6"></path>
+    <path transform="translate(581.3366764655024,362.4521874459623)" d="M0,0L0,6"></path>
+    <path transform="translate(693.2050838665052,362.4521874459623)" d="M0,0L0,6"></path>
+    <path transform="translate(804.9204565104617,362.4521874459623)" d="M0,0L0,6"></path>
+    <path transform="translate(916.7888639114647,362.4521874459623)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(134.1691163755836,362.4521874459623)">2016</text>
+    <text y="0.71em" transform="translate(246.03752377658654,362.4521874459623)">2018</text>
+    <text y="0.71em" transform="translate(357.75289642054304,362.4521874459623)">2020</text>
+    <text y="0.71em" transform="translate(469.62130382154595,362.4521874459623)">2022</text>
+    <text y="0.71em" transform="translate(581.3366764655024,362.4521874459623)">2024</text>
+    <text y="0.71em" transform="translate(693.2050838665052,362.4521874459623)">2026</text>
+    <text y="0.71em" transform="translate(804.9204565104617,362.4521874459623)">2028</text>
+    <text y="0.71em" transform="translate(916.7888639114647,362.4521874459623)">2030</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(940,362.4521874459623)">about →</text>
   </g>
   <g aria-label="dot" transform="translate(0.5,0.5)">
     <circle cx="50" cy="355.4521874459623" r="3" fill="rgb(50, 32, 73)"></circle>
@@ -3055,5 +3053,256 @@
     <circle cx="930.4089572886045" cy="20" r="3" fill="rgb(39, 183, 229)"></circle>
     <circle cx="935" cy="20" r="3" fill="rgb(39, 184, 229)"></circle>
   </g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(82.90247276500087,355.4521874459623)">0.19%</text><text y="0.32em" transform="translate(138.7601590869791,355.4521874459623)">0.87%</text><text y="0.32em" transform="translate(194.77088016600382,355.4521874459623)">1.82%</text><text y="0.32em" transform="translate(250.62856648798203,355.4521874459623)">2.53%</text><text y="0.32em" transform="translate(306.4862528099602,355.4521874459623)">2.90%</text><text y="0.32em" transform="translate(362.3439391319385,355.4521874459623)">3.26%</text><text y="0.32em" transform="translate(418.3546602109632,355.4521874459623)">3.44%</text><text y="0.32em" transform="translate(474.2123465329414,355.4521874459623)">3.66%</text><text y="0.32em" transform="translate(530.0700328549195,355.4521874459623)">3.67%</text><text y="0.32em" transform="translate(585.9277191768978,355.4521874459623)">3.79%</text><text y="0.32em" transform="translate(82.90247276500087,341.37298979768286)">0.16%</text><text y="0.32em" transform="translate(138.7601590869791,341.37298979768286)">1.02%</text><text y="0.32em" transform="translate(194.77088016600382,341.37298979768286)">2.01%</text><text y="0.32em" transform="translate(250.62856648798203,341.37298979768286)">2.61%</text><text y="0.32em" transform="translate(306.4862528099602,341.37298979768286)">2.86%</text><text y="0.32em" transform="translate(362.3439391319385,341.37298979768286)">3.05%</text><text y="0.32em" transform="translate(418.3546602109632,341.37298979768286)">3.23%</text><text y="0.32em" transform="translate(474.2123465329414,341.37298979768286)">3.30%</text><text y="0.32em" transform="translate(530.0700328549195,341.37298979768286)">3.42%</text><text y="0.32em" transform="translate(585.9277191768978,341.37298979768286)">3.50%</text><text y="0.32em" transform="translate(82.90247276500087,327.29379214940343)">0.17%</text><text y="0.32em" transform="translate(138.7601590869791,327.29379214940343)">0.84%</text><text y="0.32em" transform="translate(194.77088016600382,327.29379214940343)">1.69%</text><text y="0.32em" transform="translate(250.62856648798203,327.29379214940343)">2.21%</text><text y="0.32em" transform="translate(306.4862528099602,327.29379214940343)">2.34%</text><text y="0.32em" transform="translate(362.3439391319385,327.29379214940343)">2.51%</text><text y="0.32em" transform="translate(418.3546602109632,327.29379214940343)">2.67%</text><text y="0.32em" transform="translate(474.2123465329414,327.29379214940343)">2.72%</text><text y="0.32em" transform="translate(530.0700328549195,327.29379214940343)">2.78%</text><text y="0.32em" transform="translate(585.9277191768978,327.29379214940343)">2.81%</text><text y="0.32em" transform="translate(138.7601590869791,313.520664015217)">0.56%</text><text y="0.32em" transform="translate(194.77088016600382,313.520664015217)">1.24%</text><text y="0.32em" transform="translate(250.62856648798203,313.520664015217)">1.72%</text><text y="0.32em" transform="translate(306.4862528099602,313.520664015217)">1.98%</text><text y="0.32em" transform="translate(362.3439391319385,313.520664015217)">2.19%</text><text y="0.32em" transform="translate(418.3546602109632,313.520664015217)">2.33%</text><text y="0.32em" transform="translate(474.2123465329414,313.520664015217)">2.40%</text><text y="0.32em" transform="translate(530.0700328549195,313.520664015217)">2.49%</text><text y="0.32em" transform="translate(585.9277191768978,313.520664015217)">2.50%</text><text y="0.32em" transform="translate(641.9384402559225,313.520664015217)">2.53%</text><text y="0.32em" transform="translate(138.7601590869791,299.5945011239841)">0.46%</text><text y="0.32em" transform="translate(194.77088016600382,299.5945011239841)">1.23%</text><text y="0.32em" transform="translate(250.62856648798203,299.5945011239841)">1.84%</text><text y="0.32em" transform="translate(306.4862528099602,299.5945011239841)">2.29%</text><text y="0.32em" transform="translate(362.3439391319385,299.5945011239841)">2.60%</text><text y="0.32em" transform="translate(418.3546602109632,299.5945011239841)">2.91%</text><text y="0.32em" transform="translate(474.2123465329414,299.5945011239841)">3.01%</text><text y="0.32em" transform="translate(530.0700328549195,299.5945011239841)">3.10%</text><text y="0.32em" transform="translate(585.9277191768978,299.5945011239841)">3.20%</text><text y="0.32em" transform="translate(641.9384402559225,299.5945011239841)">3.20%</text><text y="0.32em" transform="translate(138.7601590869791,285.5153034757046)">0.34%</text><text y="0.32em" transform="translate(194.77088016600382,285.5153034757046)">0.84%</text><text y="0.32em" transform="translate(250.62856648798203,285.5153034757046)">1.26%</text><text y="0.32em" transform="translate(306.4862528099602,285.5153034757046)">1.64%</text><text y="0.32em" transform="translate(362.3439391319385,285.5153034757046)">1.97%</text><text y="0.32em" transform="translate(418.3546602109632,285.5153034757046)">2.25%</text><text y="0.32em" transform="translate(474.2123465329414,285.5153034757046)">2.42%</text><text y="0.32em" transform="translate(530.0700328549195,285.5153034757046)">2.61%</text><text y="0.32em" transform="translate(585.9277191768978,285.5153034757046)">2.63%</text><text y="0.32em" transform="translate(641.9384402559225,285.5153034757046)">2.79%</text><text y="0.32em" transform="translate(138.7601590869791,271.4361058274252)">0.45%</text><text y="0.32em" transform="translate(194.77088016600382,271.4361058274252)">1.09%</text><text y="0.32em" transform="translate(250.62856648798203,271.4361058274252)">1.55%</text><text y="0.32em" transform="translate(306.4862528099602,271.4361058274252)">1.86%</text><text y="0.32em" transform="translate(362.3439391319385,271.4361058274252)">2.02%</text><text y="0.32em" transform="translate(418.3546602109632,271.4361058274252)">2.25%</text><text y="0.32em" transform="translate(474.2123465329414,271.4361058274252)">2.42%</text><text y="0.32em" transform="translate(530.0700328549195,271.4361058274252)">2.52%</text><text y="0.32em" transform="translate(585.9277191768978,271.4361058274252)">2.59%</text><text y="0.32em" transform="translate(641.9384402559225,271.4361058274252)">2.69%</text><text y="0.32em" transform="translate(194.77088016600382,257.50994293619226)">0.69%</text><text y="0.32em" transform="translate(250.62856648798203,257.50994293619226)">0.86%</text><text y="0.32em" transform="translate(306.4862528099602,257.50994293619226)">1.12%</text><text y="0.32em" transform="translate(362.3439391319385,257.50994293619226)">1.37%</text><text y="0.32em" transform="translate(418.3546602109632,257.50994293619226)">1.62%</text><text y="0.32em" transform="translate(474.2123465329414,257.50994293619226)">1.83%</text><text y="0.32em" transform="translate(530.0700328549195,257.50994293619226)">2.02%</text><text y="0.32em" transform="translate(585.9277191768978,257.50994293619226)">2.11%</text><text y="0.32em" transform="translate(641.9384402559225,257.50994293619226)">2.21%</text><text y="0.32em" transform="translate(697.7961265779007,257.50994293619226)">2.31%</text><text y="0.32em" transform="translate(194.77088016600382,243.58378004495933)">0.50%</text><text y="0.32em" transform="translate(250.62856648798203,243.58378004495933)">0.64%</text><text y="0.32em" transform="translate(306.4862528099602,243.58378004495933)">0.84%</text><text y="0.32em" transform="translate(362.3439391319385,243.58378004495933)">1.04%</text><text y="0.32em" transform="translate(418.3546602109632,243.58378004495933)">1.28%</text><text y="0.32em" transform="translate(474.2123465329414,243.58378004495933)">1.46%</text><text y="0.32em" transform="translate(530.0700328549195,243.58378004495933)">1.62%</text><text y="0.32em" transform="translate(585.9277191768978,243.58378004495933)">1.76%</text><text y="0.32em" transform="translate(641.9384402559225,243.58378004495933)">1.83%</text><text y="0.32em" transform="translate(697.7961265779007,243.58378004495933)">1.92%</text><text y="0.32em" transform="translate(194.77088016600382,229.5045823966799)">0.66%</text><text y="0.32em" transform="translate(250.62856648798203,229.5045823966799)">0.86%</text><text y="0.32em" transform="translate(306.4862528099602,229.5045823966799)">1.01%</text><text y="0.32em" transform="translate(362.3439391319385,229.5045823966799)">1.11%</text><text y="0.32em" transform="translate(418.3546602109632,229.5045823966799)">1.22%</text><text y="0.32em" transform="translate(474.2123465329414,229.5045823966799)">1.40%</text><text y="0.32em" transform="translate(530.0700328549195,229.5045823966799)">1.51%</text><text y="0.32em" transform="translate(585.9277191768978,229.5045823966799)">1.66%</text><text y="0.32em" transform="translate(641.9384402559225,229.5045823966799)">1.74%</text><text y="0.32em" transform="translate(697.7961265779007,229.5045823966799)">1.80%</text><text y="0.32em" transform="translate(194.77088016600382,215.42538474840046)">0.78%</text><text y="0.32em" transform="translate(250.62856648798203,215.42538474840046)">1.34%</text><text y="0.32em" transform="translate(306.4862528099602,215.42538474840046)">1.82%</text><text y="0.32em" transform="translate(362.3439391319385,215.42538474840046)">2.13%</text><text y="0.32em" transform="translate(418.3546602109632,215.42538474840046)">2.33%</text><text y="0.32em" transform="translate(474.2123465329414,215.42538474840046)">2.46%</text><text y="0.32em" transform="translate(530.0700328549195,215.42538474840046)">2.58%</text><text y="0.32em" transform="translate(585.9277191768978,215.42538474840046)">2.64%</text><text y="0.32em" transform="translate(641.9384402559225,215.42538474840046)">2.70%</text><text y="0.32em" transform="translate(697.7961265779007,215.42538474840046)">2.74%</text><text y="0.32em" transform="translate(250.62856648798203,201.65225661421405)">1.43%</text><text y="0.32em" transform="translate(306.4862528099602,201.65225661421405)">1.86%</text><text y="0.32em" transform="translate(362.3439391319385,201.65225661421405)">2.13%</text><text y="0.32em" transform="translate(418.3546602109632,201.65225661421405)">2.31%</text><text y="0.32em" transform="translate(474.2123465329414,201.65225661421405)">2.44%</text><text y="0.32em" transform="translate(530.0700328549195,201.65225661421405)">2.54%</text><text y="0.32em" transform="translate(585.9277191768978,201.65225661421405)">2.60%</text><text y="0.32em" transform="translate(641.9384402559225,201.65225661421405)">2.67%</text><text y="0.32em" transform="translate(697.7961265779007,201.65225661421405)">2.71%</text><text y="0.32em" transform="translate(753.6538128998789,201.65225661421405)">2.75%</text><text y="0.32em" transform="translate(250.62856648798203,187.72609372298115)">1.43%</text><text y="0.32em" transform="translate(306.4862528099602,187.72609372298115)">1.70%</text><text y="0.32em" transform="translate(362.3439391319385,187.72609372298115)">1.97%</text><text y="0.32em" transform="translate(418.3546602109632,187.72609372298115)">2.11%</text><text y="0.32em" transform="translate(474.2123465329414,187.72609372298115)">2.25%</text><text y="0.32em" transform="translate(530.0700328549195,187.72609372298115)">2.38%</text><text y="0.32em" transform="translate(585.9277191768978,187.72609372298115)">2.47%</text><text y="0.32em" transform="translate(641.9384402559225,187.72609372298115)">2.56%</text><text y="0.32em" transform="translate(697.7961265779007,187.72609372298115)">2.61%</text><text y="0.32em" transform="translate(753.6538128998789,187.72609372298115)">2.69%</text><text y="0.32em" transform="translate(250.62856648798203,173.64689607470171)">1.43%</text><text y="0.32em" transform="translate(306.4862528099602,173.64689607470171)">1.77%</text><text y="0.32em" transform="translate(362.3439391319385,173.64689607470171)">1.95%</text><text y="0.32em" transform="translate(418.3546602109632,173.64689607470171)">2.06%</text><text y="0.32em" transform="translate(474.2123465329414,173.64689607470171)">2.15%</text><text y="0.32em" transform="translate(530.0700328549195,173.64689607470171)">2.34%</text><text y="0.32em" transform="translate(585.9277191768978,173.64689607470171)">2.42%</text><text y="0.32em" transform="translate(641.9384402559225,173.64689607470171)">2.51%</text><text y="0.32em" transform="translate(697.7961265779007,173.64689607470171)">2.56%</text><text y="0.32em" transform="translate(753.6538128998789,173.64689607470171)">2.61%</text><text y="0.32em" transform="translate(250.62856648798203,159.56769842642228)">1.53%</text><text y="0.32em" transform="translate(306.4862528099602,159.56769842642228)">2.05%</text><text y="0.32em" transform="translate(362.3439391319385,159.56769842642228)">2.20%</text><text y="0.32em" transform="translate(418.3546602109632,159.56769842642228)">2.24%</text><text y="0.32em" transform="translate(474.2123465329414,159.56769842642228)">2.26%</text><text y="0.32em" transform="translate(530.0700328549195,159.56769842642228)">2.33%</text><text y="0.32em" transform="translate(585.9277191768978,159.56769842642228)">2.40%</text><text y="0.32em" transform="translate(641.9384402559225,159.56769842642228)">2.46%</text><text y="0.32em" transform="translate(697.7961265779007,159.56769842642228)">2.52%</text><text y="0.32em" transform="translate(753.6538128998789,159.56769842642228)">2.56%</text><text y="0.32em" transform="translate(306.4862528099602,145.79457029223585)">2.35%</text><text y="0.32em" transform="translate(362.3439391319385,145.79457029223585)">2.60%</text><text y="0.32em" transform="translate(418.3546602109632,145.79457029223585)">2.68%</text><text y="0.32em" transform="translate(474.2123465329414,145.79457029223585)">2.69%</text><text y="0.32em" transform="translate(530.0700328549195,145.79457029223585)">2.69%</text><text y="0.32em" transform="translate(585.9277191768978,145.79457029223585)">2.70%</text><text y="0.32em" transform="translate(641.9384402559225,145.79457029223585)">2.74%</text><text y="0.32em" transform="translate(697.7961265779007,145.79457029223585)">2.78%</text><text y="0.32em" transform="translate(753.6538128998789,145.79457029223585)">2.83%</text><text y="0.32em" transform="translate(809.5114992218572,145.79457029223585)">2.85%</text><text y="0.32em" transform="translate(306.4862528099602,131.86840740100297)">2.51%</text><text y="0.32em" transform="translate(362.3439391319385,131.86840740100297)">2.83%</text><text y="0.32em" transform="translate(418.3546602109632,131.86840740100297)">2.87%</text><text y="0.32em" transform="translate(474.2123465329414,131.86840740100297)">2.82%</text><text y="0.32em" transform="translate(530.0700328549195,131.86840740100297)">2.81%</text><text y="0.32em" transform="translate(585.9277191768978,131.86840740100297)">2.82%</text><text y="0.32em" transform="translate(641.9384402559225,131.86840740100297)">2.84%</text><text y="0.32em" transform="translate(697.7961265779007,131.86840740100297)">2.90%</text><text y="0.32em" transform="translate(753.6538128998789,131.86840740100297)">2.94%</text><text y="0.32em" transform="translate(809.5114992218572,131.86840740100297)">2.96%</text><text y="0.32em" transform="translate(306.4862528099602,117.78920975272348)">2.55%</text><text y="0.32em" transform="translate(362.3439391319385,117.78920975272348)">3.01%</text><text y="0.32em" transform="translate(418.3546602109632,117.78920975272348)">3.00%</text><text y="0.32em" transform="translate(474.2123465329414,117.78920975272348)">2.96%</text><text y="0.32em" transform="translate(530.0700328549195,117.78920975272348)">2.94%</text><text y="0.32em" transform="translate(585.9277191768978,117.78920975272348)">2.97%</text><text y="0.32em" transform="translate(641.9384402559225,117.78920975272348)">2.98%</text><text y="0.32em" transform="translate(697.7961265779007,117.78920975272348)">3.02%</text><text y="0.32em" transform="translate(753.6538128998789,117.78920975272348)">3.04%</text><text y="0.32em" transform="translate(809.5114992218572,117.78920975272348)">3.06%</text><text y="0.32em" transform="translate(306.4862528099602,103.71001210444406)">2.52%</text><text y="0.32em" transform="translate(362.3439391319385,103.71001210444406)">2.56%</text><text y="0.32em" transform="translate(418.3546602109632,103.71001210444406)">2.43%</text><text y="0.32em" transform="translate(474.2123465329414,103.71001210444406)">2.50%</text><text y="0.32em" transform="translate(530.0700328549195,103.71001210444406)">2.60%</text><text y="0.32em" transform="translate(585.9277191768978,103.71001210444406)">2.65%</text><text y="0.32em" transform="translate(641.9384402559225,103.71001210444406)">2.72%</text><text y="0.32em" transform="translate(697.7961265779007,103.71001210444406)">2.79%</text><text y="0.32em" transform="translate(753.6538128998789,103.71001210444406)">2.87%</text><text y="0.32em" transform="translate(809.5114992218572,103.71001210444406)">2.93%</text><text y="0.32em" transform="translate(362.3439391319385,89.93688397025767)">2.28%</text><text y="0.32em" transform="translate(418.3546602109632,89.93688397025767)">2.00%</text><text y="0.32em" transform="translate(474.2123465329414,89.93688397025767)">2.03%</text><text y="0.32em" transform="translate(530.0700328549195,89.93688397025767)">2.12%</text><text y="0.32em" transform="translate(585.9277191768978,89.93688397025767)">2.20%</text><text y="0.32em" transform="translate(641.9384402559225,89.93688397025767)">2.30%</text><text y="0.32em" transform="translate(697.7961265779007,89.93688397025767)">2.37%</text><text y="0.32em" transform="translate(753.6538128998789,89.93688397025767)">2.45%</text><text y="0.32em" transform="translate(809.5114992218572,89.93688397025767)">2.52%</text><text y="0.32em" transform="translate(865.5222203008818,89.93688397025767)">2.58%</text><text y="0.32em" transform="translate(362.3439391319385,76.01072107902472)">1.74%</text><text y="0.32em" transform="translate(418.3546602109632,76.01072107902472)">1.44%</text><text y="0.32em" transform="translate(474.2123465329414,76.01072107902472)">1.51%</text><text y="0.32em" transform="translate(530.0700328549195,76.01072107902472)">1.63%</text><text y="0.32em" transform="translate(585.9277191768978,76.01072107902472)">1.76%</text><text y="0.32em" transform="translate(641.9384402559225,76.01072107902472)">1.88%</text><text y="0.32em" transform="translate(697.7961265779007,76.01072107902472)">1.98%</text><text y="0.32em" transform="translate(753.6538128998789,76.01072107902472)">2.08%</text><text y="0.32em" transform="translate(809.5114992218572,76.01072107902472)">2.16%</text><text y="0.32em" transform="translate(865.5222203008818,76.01072107902472)">2.24%</text><text y="0.32em" transform="translate(362.3439391319385,61.93152343074529)">1.70%</text><text y="0.32em" transform="translate(418.3546602109632,61.93152343074529)">1.33%</text><text y="0.32em" transform="translate(474.2123465329414,61.93152343074529)">1.27%</text><text y="0.32em" transform="translate(530.0700328549195,61.93152343074529)">1.28%</text><text y="0.32em" transform="translate(585.9277191768978,61.93152343074529)">1.31%</text><text y="0.32em" transform="translate(641.9384402559225,61.93152343074529)">1.38%</text><text y="0.32em" transform="translate(697.7961265779007,61.93152343074529)">1.43%</text><text y="0.32em" transform="translate(753.6538128998789,61.93152343074529)">1.51%</text><text y="0.32em" transform="translate(809.5114992218572,61.93152343074529)">1.57%</text><text y="0.32em" transform="translate(865.5222203008818,61.93152343074529)">1.64%</text><text y="0.32em" transform="translate(362.3439391319385,47.852325782465854)">1.71%</text><text y="0.32em" transform="translate(418.3546602109632,47.852325782465854)">1.49%</text><text y="0.32em" transform="translate(474.2123465329414,47.852325782465854)">1.50%</text><text y="0.32em" transform="translate(530.0700328549195,47.852325782465854)">1.61%</text><text y="0.32em" transform="translate(585.9277191768978,47.852325782465854)">1.69%</text><text y="0.32em" transform="translate(641.9384402559225,47.852325782465854)">1.78%</text><text y="0.32em" transform="translate(697.7961265779007,47.852325782465854)">1.87%</text><text y="0.32em" transform="translate(753.6538128998789,47.852325782465854)">1.92%</text><text y="0.32em" transform="translate(809.5114992218572,47.852325782465854)">1.98%</text><text y="0.32em" transform="translate(865.5222203008818,47.852325782465854)">2.07%</text><text y="0.32em" transform="translate(418.3546602109632,33.926162891232906)">0.23%</text><text y="0.32em" transform="translate(474.2123465329414,33.926162891232906)">0.28%</text><text y="0.32em" transform="translate(530.0700328549195,33.926162891232906)">0.39%</text><text y="0.32em" transform="translate(585.9277191768978,33.926162891232906)">0.54%</text><text y="0.32em" transform="translate(641.9384402559225,33.926162891232906)">0.67%</text><text y="0.32em" transform="translate(697.7961265779007,33.926162891232906)">0.79%</text><text y="0.32em" transform="translate(753.6538128998789,33.926162891232906)">0.86%</text><text y="0.32em" transform="translate(809.5114992218572,33.926162891232906)">0.92%</text><text y="0.32em" transform="translate(865.5222203008818,33.926162891232906)">0.96%</text><text y="0.32em" transform="translate(921.3799066228601,33.926162891232906)">0.97%</text><text y="0.32em" transform="translate(418.3546602109632,20)">0.16%</text><text y="0.32em" transform="translate(474.2123465329414,20)">0.11%</text><text y="0.32em" transform="translate(530.0700328549195,20)">0.14%</text><text y="0.32em" transform="translate(585.9277191768978,20)">0.29%</text><text y="0.32em" transform="translate(641.9384402559225,20)">0.48%</text><text y="0.32em" transform="translate(697.7961265779007,20)">0.67%</text><text y="0.32em" transform="translate(753.6538128998789,20)">0.79%</text><text y="0.32em" transform="translate(809.5114992218572,20)">0.88%</text><text y="0.32em" transform="translate(865.5222203008818,20)">0.96%</text><text y="0.32em" transform="translate(921.3799066228601,20)">0.99%</text></g>
+  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" transform="translate(0.5,0.5)">
+    <text y="0.32em" transform="translate(82.90247276500087,355.4521874459623)">0.19%</text>
+    <text y="0.32em" transform="translate(138.7601590869791,355.4521874459623)">0.87%</text>
+    <text y="0.32em" transform="translate(194.77088016600382,355.4521874459623)">1.82%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,355.4521874459623)">2.53%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,355.4521874459623)">2.90%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,355.4521874459623)">3.26%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,355.4521874459623)">3.44%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,355.4521874459623)">3.66%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,355.4521874459623)">3.67%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,355.4521874459623)">3.79%</text>
+    <text y="0.32em" transform="translate(82.90247276500087,341.37298979768286)">0.16%</text>
+    <text y="0.32em" transform="translate(138.7601590869791,341.37298979768286)">1.02%</text>
+    <text y="0.32em" transform="translate(194.77088016600382,341.37298979768286)">2.01%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,341.37298979768286)">2.61%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,341.37298979768286)">2.86%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,341.37298979768286)">3.05%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,341.37298979768286)">3.23%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,341.37298979768286)">3.30%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,341.37298979768286)">3.42%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,341.37298979768286)">3.50%</text>
+    <text y="0.32em" transform="translate(82.90247276500087,327.29379214940343)">0.17%</text>
+    <text y="0.32em" transform="translate(138.7601590869791,327.29379214940343)">0.84%</text>
+    <text y="0.32em" transform="translate(194.77088016600382,327.29379214940343)">1.69%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,327.29379214940343)">2.21%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,327.29379214940343)">2.34%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,327.29379214940343)">2.51%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,327.29379214940343)">2.67%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,327.29379214940343)">2.72%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,327.29379214940343)">2.78%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,327.29379214940343)">2.81%</text>
+    <text y="0.32em" transform="translate(138.7601590869791,313.520664015217)">0.56%</text>
+    <text y="0.32em" transform="translate(194.77088016600382,313.520664015217)">1.24%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,313.520664015217)">1.72%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,313.520664015217)">1.98%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,313.520664015217)">2.19%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,313.520664015217)">2.33%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,313.520664015217)">2.40%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,313.520664015217)">2.49%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,313.520664015217)">2.50%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,313.520664015217)">2.53%</text>
+    <text y="0.32em" transform="translate(138.7601590869791,299.5945011239841)">0.46%</text>
+    <text y="0.32em" transform="translate(194.77088016600382,299.5945011239841)">1.23%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,299.5945011239841)">1.84%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,299.5945011239841)">2.29%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,299.5945011239841)">2.60%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,299.5945011239841)">2.91%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,299.5945011239841)">3.01%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,299.5945011239841)">3.10%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,299.5945011239841)">3.20%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,299.5945011239841)">3.20%</text>
+    <text y="0.32em" transform="translate(138.7601590869791,285.5153034757046)">0.34%</text>
+    <text y="0.32em" transform="translate(194.77088016600382,285.5153034757046)">0.84%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,285.5153034757046)">1.26%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,285.5153034757046)">1.64%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,285.5153034757046)">1.97%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,285.5153034757046)">2.25%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,285.5153034757046)">2.42%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,285.5153034757046)">2.61%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,285.5153034757046)">2.63%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,285.5153034757046)">2.79%</text>
+    <text y="0.32em" transform="translate(138.7601590869791,271.4361058274252)">0.45%</text>
+    <text y="0.32em" transform="translate(194.77088016600382,271.4361058274252)">1.09%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,271.4361058274252)">1.55%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,271.4361058274252)">1.86%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,271.4361058274252)">2.02%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,271.4361058274252)">2.25%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,271.4361058274252)">2.42%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,271.4361058274252)">2.52%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,271.4361058274252)">2.59%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,271.4361058274252)">2.69%</text>
+    <text y="0.32em" transform="translate(194.77088016600382,257.50994293619226)">0.69%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,257.50994293619226)">0.86%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,257.50994293619226)">1.12%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,257.50994293619226)">1.37%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,257.50994293619226)">1.62%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,257.50994293619226)">1.83%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,257.50994293619226)">2.02%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,257.50994293619226)">2.11%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,257.50994293619226)">2.21%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,257.50994293619226)">2.31%</text>
+    <text y="0.32em" transform="translate(194.77088016600382,243.58378004495933)">0.50%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,243.58378004495933)">0.64%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,243.58378004495933)">0.84%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,243.58378004495933)">1.04%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,243.58378004495933)">1.28%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,243.58378004495933)">1.46%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,243.58378004495933)">1.62%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,243.58378004495933)">1.76%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,243.58378004495933)">1.83%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,243.58378004495933)">1.92%</text>
+    <text y="0.32em" transform="translate(194.77088016600382,229.5045823966799)">0.66%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,229.5045823966799)">0.86%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,229.5045823966799)">1.01%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,229.5045823966799)">1.11%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,229.5045823966799)">1.22%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,229.5045823966799)">1.40%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,229.5045823966799)">1.51%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,229.5045823966799)">1.66%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,229.5045823966799)">1.74%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,229.5045823966799)">1.80%</text>
+    <text y="0.32em" transform="translate(194.77088016600382,215.42538474840046)">0.78%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,215.42538474840046)">1.34%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,215.42538474840046)">1.82%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,215.42538474840046)">2.13%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,215.42538474840046)">2.33%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,215.42538474840046)">2.46%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,215.42538474840046)">2.58%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,215.42538474840046)">2.64%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,215.42538474840046)">2.70%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,215.42538474840046)">2.74%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,201.65225661421405)">1.43%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,201.65225661421405)">1.86%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,201.65225661421405)">2.13%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,201.65225661421405)">2.31%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,201.65225661421405)">2.44%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,201.65225661421405)">2.54%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,201.65225661421405)">2.60%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,201.65225661421405)">2.67%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,201.65225661421405)">2.71%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,201.65225661421405)">2.75%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,187.72609372298115)">1.43%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,187.72609372298115)">1.70%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,187.72609372298115)">1.97%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,187.72609372298115)">2.11%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,187.72609372298115)">2.25%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,187.72609372298115)">2.38%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,187.72609372298115)">2.47%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,187.72609372298115)">2.56%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,187.72609372298115)">2.61%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,187.72609372298115)">2.69%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,173.64689607470171)">1.43%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,173.64689607470171)">1.77%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,173.64689607470171)">1.95%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,173.64689607470171)">2.06%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,173.64689607470171)">2.15%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,173.64689607470171)">2.34%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,173.64689607470171)">2.42%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,173.64689607470171)">2.51%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,173.64689607470171)">2.56%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,173.64689607470171)">2.61%</text>
+    <text y="0.32em" transform="translate(250.62856648798203,159.56769842642228)">1.53%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,159.56769842642228)">2.05%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,159.56769842642228)">2.20%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,159.56769842642228)">2.24%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,159.56769842642228)">2.26%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,159.56769842642228)">2.33%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,159.56769842642228)">2.40%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,159.56769842642228)">2.46%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,159.56769842642228)">2.52%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,159.56769842642228)">2.56%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,145.79457029223585)">2.35%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,145.79457029223585)">2.60%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,145.79457029223585)">2.68%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,145.79457029223585)">2.69%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,145.79457029223585)">2.69%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,145.79457029223585)">2.70%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,145.79457029223585)">2.74%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,145.79457029223585)">2.78%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,145.79457029223585)">2.83%</text>
+    <text y="0.32em" transform="translate(809.5114992218572,145.79457029223585)">2.85%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,131.86840740100297)">2.51%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,131.86840740100297)">2.83%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,131.86840740100297)">2.87%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,131.86840740100297)">2.82%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,131.86840740100297)">2.81%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,131.86840740100297)">2.82%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,131.86840740100297)">2.84%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,131.86840740100297)">2.90%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,131.86840740100297)">2.94%</text>
+    <text y="0.32em" transform="translate(809.5114992218572,131.86840740100297)">2.96%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,117.78920975272348)">2.55%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,117.78920975272348)">3.01%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,117.78920975272348)">3.00%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,117.78920975272348)">2.96%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,117.78920975272348)">2.94%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,117.78920975272348)">2.97%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,117.78920975272348)">2.98%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,117.78920975272348)">3.02%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,117.78920975272348)">3.04%</text>
+    <text y="0.32em" transform="translate(809.5114992218572,117.78920975272348)">3.06%</text>
+    <text y="0.32em" transform="translate(306.4862528099602,103.71001210444406)">2.52%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,103.71001210444406)">2.56%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,103.71001210444406)">2.43%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,103.71001210444406)">2.50%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,103.71001210444406)">2.60%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,103.71001210444406)">2.65%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,103.71001210444406)">2.72%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,103.71001210444406)">2.79%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,103.71001210444406)">2.87%</text>
+    <text y="0.32em" transform="translate(809.5114992218572,103.71001210444406)">2.93%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,89.93688397025767)">2.28%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,89.93688397025767)">2.00%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,89.93688397025767)">2.03%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,89.93688397025767)">2.12%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,89.93688397025767)">2.20%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,89.93688397025767)">2.30%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,89.93688397025767)">2.37%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,89.93688397025767)">2.45%</text>
+    <text y="0.32em" transform="translate(809.5114992218572,89.93688397025767)">2.52%</text>
+    <text y="0.32em" transform="translate(865.5222203008818,89.93688397025767)">2.58%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,76.01072107902472)">1.74%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,76.01072107902472)">1.44%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,76.01072107902472)">1.51%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,76.01072107902472)">1.63%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,76.01072107902472)">1.76%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,76.01072107902472)">1.88%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,76.01072107902472)">1.98%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,76.01072107902472)">2.08%</text>
+    <text y="0.32em" transform="translate(809.5114992218572,76.01072107902472)">2.16%</text>
+    <text y="0.32em" transform="translate(865.5222203008818,76.01072107902472)">2.24%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,61.93152343074529)">1.70%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,61.93152343074529)">1.33%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,61.93152343074529)">1.27%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,61.93152343074529)">1.28%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,61.93152343074529)">1.31%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,61.93152343074529)">1.38%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,61.93152343074529)">1.43%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,61.93152343074529)">1.51%</text>
+    <text y="0.32em" transform="translate(809.5114992218572,61.93152343074529)">1.57%</text>
+    <text y="0.32em" transform="translate(865.5222203008818,61.93152343074529)">1.64%</text>
+    <text y="0.32em" transform="translate(362.3439391319385,47.852325782465854)">1.71%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,47.852325782465854)">1.49%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,47.852325782465854)">1.50%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,47.852325782465854)">1.61%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,47.852325782465854)">1.69%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,47.852325782465854)">1.78%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,47.852325782465854)">1.87%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,47.852325782465854)">1.92%</text>
+    <text y="0.32em" transform="translate(809.5114992218572,47.852325782465854)">1.98%</text>
+    <text y="0.32em" transform="translate(865.5222203008818,47.852325782465854)">2.07%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,33.926162891232906)">0.23%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,33.926162891232906)">0.28%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,33.926162891232906)">0.39%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,33.926162891232906)">0.54%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,33.926162891232906)">0.67%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,33.926162891232906)">0.79%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,33.926162891232906)">0.86%</text>
+    <text y="0.32em" transform="translate(809.5114992218572,33.926162891232906)">0.92%</text>
+    <text y="0.32em" transform="translate(865.5222203008818,33.926162891232906)">0.96%</text>
+    <text y="0.32em" transform="translate(921.3799066228601,33.926162891232906)">0.97%</text>
+    <text y="0.32em" transform="translate(418.3546602109632,20)">0.16%</text>
+    <text y="0.32em" transform="translate(474.2123465329414,20)">0.11%</text>
+    <text y="0.32em" transform="translate(530.0700328549195,20)">0.14%</text>
+    <text y="0.32em" transform="translate(585.9277191768978,20)">0.29%</text>
+    <text y="0.32em" transform="translate(641.9384402559225,20)">0.48%</text>
+    <text y="0.32em" transform="translate(697.7961265779007,20)">0.67%</text>
+    <text y="0.32em" transform="translate(753.6538128998789,20)">0.79%</text>
+    <text y="0.32em" transform="translate(809.5114992218572,20)">0.88%</text>
+    <text y="0.32em" transform="translate(865.5222203008818,20)">0.96%</text>
+    <text y="0.32em" transform="translate(921.3799066228601,20)">0.99%</text>
+  </g>
 </svg>

@@ -25,13 +25,13 @@ const events = [
 
 export default async function () {
   return Plot.plot({
+    height: 90,
     grid: true,
     x: {
       type: "utc",
       domain: times,
-      ticks: d3.utcDay,
+      ticks: "day",
       tickFormat: "%d",
-      inset: 20,
       label: "date →"
     },
     color: {
@@ -41,10 +41,9 @@ export default async function () {
       scheme: "cool"
     },
     marks: [
-      Plot.barX(d3.utcDays(...d3.extent(times)), {interval: d3.utcDay, fill: (d) => d}),
+      Plot.barX(d3.utcDays(...d3.extent(times)), {interval: "day", fill: (d) => d}),
       Plot.dotX(events, {x: "date", fill: "white"}),
       Plot.textX(events, {x: "date", text: "text", dx: -5, dy: -10, fill: "white", textAnchor: "start"})
-    ],
-    height: 90
+    ]
   });
 }

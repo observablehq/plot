@@ -13,60 +13,53 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="clarity" transform="translate(40,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,35.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">IF</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,55.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">VVS1</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,75.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">VVS2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,95.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">VS1</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,115.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">VS2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,135.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SI1</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,155.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">I1</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,175.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">SI2</text>
-    </g><text fill="currentColor" transform="translate(-40,105) rotate(-90)" dy="0.75em" text-anchor="middle">clarity</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+    <path transform="translate(40,26)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,46)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,66)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,86)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,106)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,126)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,146)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,166)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="price →" transform="translate(0,190)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(92.99067416337786,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(155.70354652105746,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(218.4164188787371,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(281.12929123641675,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">8,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(343.84216359409635,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(406.555035951776,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">12,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(469.26790830945555,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">14,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(531.9807806671351,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">16,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(594.6936530248148,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">18,000</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">price →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
+    <text y="0.32em" transform="translate(40,26)">IF</text>
+    <text y="0.32em" transform="translate(40,46)">VVS1</text>
+    <text y="0.32em" transform="translate(40,66)">VVS2</text>
+    <text y="0.32em" transform="translate(40,86)">VS1</text>
+    <text y="0.32em" transform="translate(40,106)">VS2</text>
+    <text y="0.32em" transform="translate(40,126)">SI1</text>
+    <text y="0.32em" transform="translate(40,146)">I1</text>
+    <text y="0.32em" transform="translate(40,166)">SI2</text>
+  </g>
+  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+    <text y="0.71em" transform="translate(40,105) rotate(-90)">clarity</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(92.49067416337786,190)" d="M0,0L0,6"></path>
+    <path transform="translate(155.20354652105746,190)" d="M0,0L0,6"></path>
+    <path transform="translate(217.9164188787371,190)" d="M0,0L0,6"></path>
+    <path transform="translate(280.62929123641675,190)" d="M0,0L0,6"></path>
+    <path transform="translate(343.34216359409635,190)" d="M0,0L0,6"></path>
+    <path transform="translate(406.055035951776,190)" d="M0,0L0,6"></path>
+    <path transform="translate(468.76790830945555,190)" d="M0,0L0,6"></path>
+    <path transform="translate(531.4807806671351,190)" d="M0,0L0,6"></path>
+    <path transform="translate(594.1936530248148,190)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(92.49067416337786,190)">2,000</text>
+    <text y="0.71em" transform="translate(155.20354652105746,190)">4,000</text>
+    <text y="0.71em" transform="translate(217.9164188787371,190)">6,000</text>
+    <text y="0.71em" transform="translate(280.62929123641675,190)">8,000</text>
+    <text y="0.71em" transform="translate(343.34216359409635,190)">10,000</text>
+    <text y="0.71em" transform="translate(406.055035951776,190)">12,000</text>
+    <text y="0.71em" transform="translate(468.76790830945555,190)">14,000</text>
+    <text y="0.71em" transform="translate(531.4807806671351,190)">16,000</text>
+    <text y="0.71em" transform="translate(594.1936530248148,190)">18,000</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,190)">price →</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,9.5)">
     <line x1="40.595772287397956" x2="334.78185651727307" y1="146" y2="146"></line>

@@ -1,8 +1,8 @@
 import {area as shapeArea} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
+import {Mark} from "../mark.js";
 import {first, indexOf, maybeZ, second} from "../options.js";
-import {Mark} from "../plot.js";
 import {
   applyDirectStyles,
   applyIndirectStyles,
@@ -46,7 +46,7 @@ export class Area extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales, 0, 0)
       .call((g) =>
         g

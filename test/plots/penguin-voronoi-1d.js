@@ -10,6 +10,8 @@ export default async function () {
         x: "body_mass_g",
         fill: "species",
         fillOpacity: 0.5,
+        href: (d) => `https://en.wikipedia.org/wiki/${d.species}_penguin`,
+        target: "_blank",
         title: (d) => `${d.species} (${d.sex})\n${d.island}`
       }),
       Plot.dot(penguins, {

@@ -13,353 +13,248 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" transform="translate(120,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,41.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Niger</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Chad</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,63.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Madagascar</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,74.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Yemen, Rep</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,85.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Afghanistan</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,96.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Burundi</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,107.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Mali</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,118.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Ethiopia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,129.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Congo, Dem Rep</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,140.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Togo</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,151.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Burkina Faso</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,162.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Congo, Rep</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,173.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Uganda</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,184.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Cote d’Ivoire</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,195.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Dominican Republic</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,206.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">South Africa</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,217.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Benin</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,228.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Cameroon</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,239.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Honduras</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,250.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Pakistan</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,261.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Paraguay</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,272.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Senegal</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,283.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Nicaragua</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,294.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Egypt, Arab Rep</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,305.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Guatemala</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,316.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Panama</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,327.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Morocco</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,338.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Tunisia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,349.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Kyrgyz Republic</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,360.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Ecuador</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,371.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bangladesh</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,382.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Peru</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,393.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">India</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,404.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Argentina</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,415.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Jordan</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,426.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Cambodia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,437.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Kuwait</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,448.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Colombia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,459.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Brazil</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,470.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Botswana</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,481.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Mexico</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,492.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Oman</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,503.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Uruguay</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,514.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Saudi Arabia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,525.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Chile</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,536.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Iran, Islamic Rep</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,547.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Indonesia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,558.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Qatar</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,569.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Armenia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,580.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">United Arab Emirates</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,591.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Costa Rica</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,602.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bahrain</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,613.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Malta</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,624.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Thailand</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,635.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Azerbaijan</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,646.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Turkey</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,657.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trinidad and Tobago</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,668.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Romania</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,679.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">China</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,690.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Cyprus</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,701.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Sri Lanka</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,712.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Georgia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,723.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Malaysia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,734.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bulgaria</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,745.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Israel</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,756.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">New Zealand</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,767.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Australia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,778.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Slovak Republic</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,789.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Serbia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,800.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">United States</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,811.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">France</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,822.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Portugal</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,833.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Belgium</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,844.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Poland</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,855.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Norway</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,866.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Hungary</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,877.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Slovenia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,888.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Germany</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,899.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Spain</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,910.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Canada</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,921.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Croatia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,932.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Latvia</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,943.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Macao SAR, China</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,954.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Denmark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,965.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Italy</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,976.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">United Kingdom</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,987.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Russian Federation</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,998.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Hong Kong SAR, China</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1009.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Czech Republic</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1020.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Korea, Rep</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1031.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Lithuania</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1042.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Singapore</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1053.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Finland</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1064.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Austria</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1075.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Ireland</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1086.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Sweden</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1097.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Japan</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1108.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Kazakhstan</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1119.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Vietnam</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1130.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Netherlands</text>
-    </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,5.5)">
+    <path transform="translate(120,36)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,47)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,58)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,69)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,80)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,91)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,102)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,113)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,124)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,135)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,146)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,157)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,168)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,179)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,190)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,201)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,212)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,223)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,234)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,245)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,256)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,267)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,278)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,289)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,300)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,311)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,322)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,333)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,344)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,355)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,366)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,377)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,388)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,399)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,410)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,421)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,432)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,443)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,454)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,465)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,476)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,487)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,498)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,509)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,520)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,531)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,542)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,553)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,564)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,575)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,586)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,597)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,608)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,619)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,630)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,641)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,652)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,663)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,674)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,685)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,696)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,707)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,718)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,729)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,740)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,751)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,762)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,773)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,784)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,795)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,806)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,817)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,828)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,839)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,850)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,861)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,872)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,883)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,894)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,905)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,916)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,927)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,938)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,949)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,960)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,971)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,982)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,993)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1004)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1015)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1026)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1037)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1048)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1059)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1070)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1081)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1092)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1103)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1114)" d="M0,0L-6,0"></path>
+    <path transform="translate(120,1125)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(120.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">100%</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(170.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">80%</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(220.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">60%</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(270.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">40%</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(320.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">20%</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(370.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">0%</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(420.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">20%</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(470.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">40%</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(520.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">60%</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(570.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">80%</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(620.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">100%</text>
-    </g>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,5.5)">
+    <text y="0.32em" transform="translate(120,36)">Niger</text>
+    <text y="0.32em" transform="translate(120,47)">Chad</text>
+    <text y="0.32em" transform="translate(120,58)">Madagascar</text>
+    <text y="0.32em" transform="translate(120,69)">Yemen, Rep</text>
+    <text y="0.32em" transform="translate(120,80)">Afghanistan</text>
+    <text y="0.32em" transform="translate(120,91)">Burundi</text>
+    <text y="0.32em" transform="translate(120,102)">Mali</text>
+    <text y="0.32em" transform="translate(120,113)">Ethiopia</text>
+    <text y="0.32em" transform="translate(120,124)">Congo, Dem Rep</text>
+    <text y="0.32em" transform="translate(120,135)">Togo</text>
+    <text y="0.32em" transform="translate(120,146)">Burkina Faso</text>
+    <text y="0.32em" transform="translate(120,157)">Congo, Rep</text>
+    <text y="0.32em" transform="translate(120,168)">Uganda</text>
+    <text y="0.32em" transform="translate(120,179)">Cote d’Ivoire</text>
+    <text y="0.32em" transform="translate(120,190)">Dominican Republic</text>
+    <text y="0.32em" transform="translate(120,201)">South Africa</text>
+    <text y="0.32em" transform="translate(120,212)">Benin</text>
+    <text y="0.32em" transform="translate(120,223)">Cameroon</text>
+    <text y="0.32em" transform="translate(120,234)">Honduras</text>
+    <text y="0.32em" transform="translate(120,245)">Pakistan</text>
+    <text y="0.32em" transform="translate(120,256)">Paraguay</text>
+    <text y="0.32em" transform="translate(120,267)">Senegal</text>
+    <text y="0.32em" transform="translate(120,278)">Nicaragua</text>
+    <text y="0.32em" transform="translate(120,289)">Egypt, Arab Rep</text>
+    <text y="0.32em" transform="translate(120,300)">Guatemala</text>
+    <text y="0.32em" transform="translate(120,311)">Panama</text>
+    <text y="0.32em" transform="translate(120,322)">Morocco</text>
+    <text y="0.32em" transform="translate(120,333)">Tunisia</text>
+    <text y="0.32em" transform="translate(120,344)">Kyrgyz Republic</text>
+    <text y="0.32em" transform="translate(120,355)">Ecuador</text>
+    <text y="0.32em" transform="translate(120,366)">Bangladesh</text>
+    <text y="0.32em" transform="translate(120,377)">Peru</text>
+    <text y="0.32em" transform="translate(120,388)">India</text>
+    <text y="0.32em" transform="translate(120,399)">Argentina</text>
+    <text y="0.32em" transform="translate(120,410)">Jordan</text>
+    <text y="0.32em" transform="translate(120,421)">Cambodia</text>
+    <text y="0.32em" transform="translate(120,432)">Kuwait</text>
+    <text y="0.32em" transform="translate(120,443)">Colombia</text>
+    <text y="0.32em" transform="translate(120,454)">Brazil</text>
+    <text y="0.32em" transform="translate(120,465)">Botswana</text>
+    <text y="0.32em" transform="translate(120,476)">Mexico</text>
+    <text y="0.32em" transform="translate(120,487)">Oman</text>
+    <text y="0.32em" transform="translate(120,498)">Uruguay</text>
+    <text y="0.32em" transform="translate(120,509)">Saudi Arabia</text>
+    <text y="0.32em" transform="translate(120,520)">Chile</text>
+    <text y="0.32em" transform="translate(120,531)">Iran, Islamic Rep</text>
+    <text y="0.32em" transform="translate(120,542)">Indonesia</text>
+    <text y="0.32em" transform="translate(120,553)">Qatar</text>
+    <text y="0.32em" transform="translate(120,564)">Armenia</text>
+    <text y="0.32em" transform="translate(120,575)">United Arab Emirates</text>
+    <text y="0.32em" transform="translate(120,586)">Costa Rica</text>
+    <text y="0.32em" transform="translate(120,597)">Bahrain</text>
+    <text y="0.32em" transform="translate(120,608)">Malta</text>
+    <text y="0.32em" transform="translate(120,619)">Thailand</text>
+    <text y="0.32em" transform="translate(120,630)">Azerbaijan</text>
+    <text y="0.32em" transform="translate(120,641)">Turkey</text>
+    <text y="0.32em" transform="translate(120,652)">Trinidad and Tobago</text>
+    <text y="0.32em" transform="translate(120,663)">Romania</text>
+    <text y="0.32em" transform="translate(120,674)">China</text>
+    <text y="0.32em" transform="translate(120,685)">Cyprus</text>
+    <text y="0.32em" transform="translate(120,696)">Sri Lanka</text>
+    <text y="0.32em" transform="translate(120,707)">Georgia</text>
+    <text y="0.32em" transform="translate(120,718)">Malaysia</text>
+    <text y="0.32em" transform="translate(120,729)">Bulgaria</text>
+    <text y="0.32em" transform="translate(120,740)">Israel</text>
+    <text y="0.32em" transform="translate(120,751)">New Zealand</text>
+    <text y="0.32em" transform="translate(120,762)">Australia</text>
+    <text y="0.32em" transform="translate(120,773)">Slovak Republic</text>
+    <text y="0.32em" transform="translate(120,784)">Serbia</text>
+    <text y="0.32em" transform="translate(120,795)">United States</text>
+    <text y="0.32em" transform="translate(120,806)">France</text>
+    <text y="0.32em" transform="translate(120,817)">Portugal</text>
+    <text y="0.32em" transform="translate(120,828)">Belgium</text>
+    <text y="0.32em" transform="translate(120,839)">Poland</text>
+    <text y="0.32em" transform="translate(120,850)">Norway</text>
+    <text y="0.32em" transform="translate(120,861)">Hungary</text>
+    <text y="0.32em" transform="translate(120,872)">Slovenia</text>
+    <text y="0.32em" transform="translate(120,883)">Germany</text>
+    <text y="0.32em" transform="translate(120,894)">Spain</text>
+    <text y="0.32em" transform="translate(120,905)">Canada</text>
+    <text y="0.32em" transform="translate(120,916)">Croatia</text>
+    <text y="0.32em" transform="translate(120,927)">Latvia</text>
+    <text y="0.32em" transform="translate(120,938)">Macao SAR, China</text>
+    <text y="0.32em" transform="translate(120,949)">Denmark</text>
+    <text y="0.32em" transform="translate(120,960)">Italy</text>
+    <text y="0.32em" transform="translate(120,971)">United Kingdom</text>
+    <text y="0.32em" transform="translate(120,982)">Russian Federation</text>
+    <text y="0.32em" transform="translate(120,993)">Hong Kong SAR, China</text>
+    <text y="0.32em" transform="translate(120,1004)">Czech Republic</text>
+    <text y="0.32em" transform="translate(120,1015)">Korea, Rep</text>
+    <text y="0.32em" transform="translate(120,1026)">Lithuania</text>
+    <text y="0.32em" transform="translate(120,1037)">Singapore</text>
+    <text y="0.32em" transform="translate(120,1048)">Finland</text>
+    <text y="0.32em" transform="translate(120,1059)">Austria</text>
+    <text y="0.32em" transform="translate(120,1070)">Ireland</text>
+    <text y="0.32em" transform="translate(120,1081)">Sweden</text>
+    <text y="0.32em" transform="translate(120,1092)">Japan</text>
+    <text y="0.32em" transform="translate(120,1103)">Kazakhstan</text>
+    <text y="0.32em" transform="translate(120,1114)">Vietnam</text>
+    <text y="0.32em" transform="translate(120,1125)">Netherlands</text>
+  </g>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="120" x2="120" y1="30" y2="1140"></line>
+    <line x1="170" x2="170" y1="30" y2="1140"></line>
+    <line x1="220" x2="220" y1="30" y2="1140"></line>
+    <line x1="270" x2="270" y1="30" y2="1140"></line>
+    <line x1="320" x2="320" y1="30" y2="1140"></line>
+    <line x1="370" x2="370" y1="30" y2="1140"></line>
+    <line x1="420" x2="420" y1="30" y2="1140"></line>
+    <line x1="470" x2="470" y1="30" y2="1140"></line>
+    <line x1="520" x2="520" y1="30" y2="1140"></line>
+    <line x1="570" x2="570" y1="30" y2="1140"></line>
+    <line x1="620" x2="620" y1="30" y2="1140"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+    <path transform="translate(120,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(170,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(220,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(270,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(320,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(370,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(420,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(470,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(520,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(570,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(620,30)" d="M0,0L0,-6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+    <text transform="translate(120,30)">100%</text>
+    <text transform="translate(170,30)">80%</text>
+    <text transform="translate(220,30)">60%</text>
+    <text transform="translate(270,30)">40%</text>
+    <text transform="translate(320,30)">20%</text>
+    <text transform="translate(370,30)">0%</text>
+    <text transform="translate(420,30)">20%</text>
+    <text transform="translate(470,30)">40%</text>
+    <text transform="translate(520,30)">60%</text>
+    <text transform="translate(570,30)">80%</text>
+    <text transform="translate(620,30)">100%</text>
   </g>
   <g aria-label="bar">
     <rect x="353.5" width="16.5" y="80" height="10" fill="#aed9e0"></rect>

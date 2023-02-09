@@ -28,7 +28,8 @@ import {
   labelof,
   range,
   second,
-  percentile
+  percentile,
+  isTemporal
 } from "../options.js";
 import {basic} from "./basic.js";
 
@@ -173,9 +174,11 @@ export function maybeOutputs(outputs, inputs) {
   // Propagate standard mark channels by default.
   if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
   if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
-  return entries.map(([name, reduce]) => {
-    return reduce == null ? {name, initialize() {}, scope() {}, reduce() {}} : maybeOutput(name, reduce, inputs);
-  });
+  return entries
+    .filter(([, reduce]) => reduce !== undefined)
+    .map(([name, reduce]) => {
+      return reduce === null ? {name, initialize() {}, scope() {}, reduce() {}} : maybeOutput(name, reduce, inputs);
+    });
 }
 
 export function maybeOutput(name, reduce, inputs) {
@@ -260,9 +263,9 @@ export function maybeReduce(reduce, value) {
     case "max-index":
       return reduceAccessor(maxIndex);
     case "mean":
-      return reduceAccessor(mean);
+      return reduceMaybeTemporalAccessor(mean);
     case "median":
-      return reduceAccessor(median);
+      return reduceMaybeTemporalAccessor(median);
     case "variance":
       return reduceAccessor(variance);
     case "mode":
@@ -315,6 +318,15 @@ function reduceAccessor(f) {
   return {
     reduce(I, X) {
       return f(I, (i) => X[i]);
+    }
+  };
+}
+
+function reduceMaybeTemporalAccessor(f) {
+  return {
+    reduce(I, X) {
+      const x = f(I, (i) => X[i]);
+      return isTemporal(X) ? new Date(x) : x;
     }
   };
 }
