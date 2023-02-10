@@ -40,7 +40,7 @@ function maybePathChannel(value) {
 
 export class Image extends Mark {
   constructor(data, options = {}) {
-    let {x, y, width, height, src, preserveAspectRatio, crossOrigin, frameAnchor} = options;
+    let {x, y, width, height, src, preserveAspectRatio, crossOrigin, frameAnchor, imageRendering} = options;
     if (width === undefined && height !== undefined) width = height;
     else if (height === undefined && width !== undefined) height = width;
     const [vs, cs] = maybePathChannel(src);
@@ -64,6 +64,7 @@ export class Image extends Mark {
     this.preserveAspectRatio = impliedString(preserveAspectRatio, "xMidYMid");
     this.crossOrigin = string(crossOrigin);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
+    this.imageRendering = impliedString(imageRendering, "auto");
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
@@ -104,6 +105,7 @@ export class Image extends Mark {
           .call(applyAttr, "href", S ? (i) => S[i] : this.src)
           .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
           .call(applyAttr, "crossorigin", this.crossOrigin)
+          .call(applyAttr, "image-rendering", this.imageRendering)
           .call(applyChannelStyles, this, channels)
       )
       .node();

@@ -1636,8 +1636,9 @@ The following image-specific constant options are also supported:
 * **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
 * **preserveAspectRatio** - the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio); defaults to “xMidYMid meet”
 * **crossOrigin** - the [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior
+* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
 
-To crop the image instead of scaling it to fit, set **preserveAspectRatio** to “xMidYMid slice”.
+To crop the image instead of scaling it to fit, set **preserveAspectRatio** to “xMidYMid slice”. The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation on enlarged images; however, note that this is not supported in WebKit.
 
 Images are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting, consider a [sort and reverse transform](#transforms).
 
@@ -1834,7 +1835,7 @@ The following raster-specific constant options are supported:
 * **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
 * **blur** - a non-negative pixel radius for smoothing; defaults to 0
 
-The **imageRendering** option may be sent to *pixelated* to disable bilinear interpolation for a sharper image; however, note that this is not supported in WebKit. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
+The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation for a sharper image; however, note that this is not supported in WebKit. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
 
 #### Plot.raster(*data*, *options*)
 
