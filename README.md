@@ -1636,7 +1636,7 @@ The following image-specific constant options are also supported:
 * **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
 * **preserveAspectRatio** - the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio); defaults to “xMidYMid meet”
 * **crossOrigin** - the [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior
-* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear).
+* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
 
 To crop the image instead of scaling it to fit, set **preserveAspectRatio** to “xMidYMid slice”. The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation on enlarged images; however, note that this is not supported in WebKit.
 
