@@ -32,7 +32,6 @@ export default async function () {
     .map((d) => ({...d, Year: +d.YYYYMM.slice(0, 4), Value: +d.Value}));
   return Plot.plot({
     x: {
-      tickFormat: "d",
       label: null
     },
     y: {

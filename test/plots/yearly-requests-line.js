@@ -15,16 +15,5 @@ export default async function () {
     [2012, 9],
     [2019, 20]
   ];
-  return Plot.plot({
-    label: null,
-    x: {
-      interval: 1,
-      tickFormat: "", // TODO https://github.com/observablehq/plot/issues/768
-      inset: 20
-    },
-    y: {
-      zero: true
-    },
-    marks: [Plot.line(requests)]
-  });
+  return Plot.plot({label: null, x: {interval: 1, inset: 20}, y: {zero: true}, marks: [Plot.line(requests)]});
 }
