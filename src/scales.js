@@ -76,6 +76,7 @@ export function Scales(
         label = key === "fx" || key === "fy" ? facetLabel : globalLabel,
         percent,
         transform,
+        interval,
         inset,
         insetTop = inset !== undefined ? inset : key === "y" ? globalInsetTop : 0, // not fy
         insetRight = inset !== undefined ? inset : key === "x" ? globalInsetRight : 0, // not fx
@@ -87,6 +88,32 @@ export function Scales(
       scale.percent = !!percent;
       scale.label = label === undefined ? inferScaleLabel(channels, scale) : label;
       scale.transform = transform;
+
+      // A flag indicating that a sample of the values on every channel are
+      // integers; an axis may use that information to decide its tickFormat.
+      if (
+        !transform &&
+        !scale.percent &&
+        (scale.type === "linear" || scale.type === "point" || scale.type === "band")
+      ) {
+        if (typeof interval === "number") {
+          scale.integer = interval === Math.floor(interval);
+        } else {
+          channels: for (const {value} of channels) {
+            let c = 0;
+            for (const x of value) {
+              if (typeof x !== "number" || (x && x > Math.floor(x))) {
+                scale.integer = false;
+                break channels;
+              } else if (isFinite(x)) {
+                scale.integer = true;
+                if (++c > 40) break;
+              }
+            }
+          }
+        }
+      }
+
       if (key === "x" || key === "fx") {
         scale.insetLeft = +insetLeft;
         scale.insetRight = +insetRight;
@@ -567,11 +594,23 @@ export function exposeScales(scales) {
   };
 }
 
-function censorScale({label, ...scale}) {
+function censorScale({label, integer, ...scale}) {
   return scale;
 }
 
-function instantiateScale({scale, type, domain, range, interpolate, interval, transform, percent, pivot, label}) {
+function instantiateScale({
+  scale,
+  type,
+  domain,
+  range,
+  interpolate,
+  interval,
+  transform,
+  percent,
+  pivot,
+  label,
+  integer
+}) {
   if (type === "identity") return {type, apply: (d) => d, invert: (d) => d};
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
@@ -580,6 +619,7 @@ function instantiateScale({scale, type, domain, range, interpolate, interval, tr
     ...(range !== undefined && {range: slice(range)}), // defensive copy
     ...(transform !== undefined && {transform}),
     ...(percent && {percent}), // only exposed if truthy
+    ...(integer !== undefined && {integer}),
     ...(unknown !== undefined && {unknown}),
     ...(interval !== undefined && {interval}),
 

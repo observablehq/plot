@@ -570,13 +570,17 @@ function inferTextChannel(scale, ticks, tickFormat) {
 
 // D3’s ordinal scales simply use toString by default, but if the ordinal scale
 // domain (or ticks) are numbers or dates (say because we’re applying a time
-// interval to the ordinal scale), we want Plot’s default formatter.
+// interval to the ordinal scale), we want Plot’s default formatter. As a
+// heuristic to represent years on a linear scale without a comma, when the
+// scale is integer and the domain covers [1500...2200] we default to "d".
 function inferTickFormat(scale, ticks, tickFormat) {
   switch (scale.type) {
     case "point":
     case "band":
       return tickFormat === undefined
-        ? formatDefault
+        ? isYearFormat(scale)
+          ? format("d")
+          : formatDefault
         : typeof tickFormat === "string"
         ? (isTemporal(scale.domain) ? utcFormat : format)(tickFormat)
         : constant(tickFormat);
@@ -593,10 +597,18 @@ function inferTickFormat(scale, ticks, tickFormat) {
         .domain(scale.domain)
         .tickFormat(isIterable(ticks) ? null : ticks, tickFormat);
     default:
-      return scaleLinear()
-        .domain(scale.domain)
-        .tickFormat(isIterable(ticks) ? null : ticks, tickFormat);
+      return isYearFormat(scale)
+        ? format("d")
+        : scaleLinear()
+            .domain(scale.domain)
+            .tickFormat(isIterable(ticks) ? null : ticks, tickFormat);
   }
+}
+
+function isYearFormat({integer, domain}) {
+  if (integer !== true) return;
+  for (const d of domain) if (typeof d !== "number" || d < 1500 || d > 2200) return;
+  return true;
 }
 
 function inferTickFunction({type, domain}) {

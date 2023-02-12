@@ -15,12 +15,5 @@ export default async function () {
     [2012, 9],
     [2019, 20]
   ];
-  return Plot.plot({
-    label: null,
-    x: {
-      interval: 1,
-      tickFormat: "" // TODO https://github.com/observablehq/plot/issues/768
-    },
-    marks: [Plot.barY(requests, {x: "0", y: "1"})]
-  });
+  return Plot.plot({label: null, x: {interval: 1}, marks: [Plot.barY(requests, {x: "0", y: "1"})]});
 }
