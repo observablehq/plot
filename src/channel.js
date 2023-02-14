@@ -46,9 +46,8 @@ export function Channels(channels, data) {
 export function valueObject(channels, scales) {
   return Object.fromEntries(
     Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
-      let scale;
-      if (scaleName != null) scale = scales[scaleName];
-      return [name, scale === undefined ? value : map(value, scale)];
+      const scale = scaleName == null ? null : scales[scaleName];
+      return [name, scale == null ? value : map(value, scale)];
     })
   );
 }
