@@ -26,6 +26,8 @@ export function Channel(data, {scale, type, value, filter, hint}, name) {
         }
       }
     }
+  } else if (scale != null && !registry.has(scale)) {
+    throw new Error(`unknown scale: ${scale}`);
   }
 
   return {
