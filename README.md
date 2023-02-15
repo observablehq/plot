@@ -1587,16 +1587,39 @@ Returns a new *x* grid with the given *options*.
 
 #### Plot.gridY(*data*, *options*)
 
-…same…
+<!-- jsdoc gridY -->
 
+```js
+Plot.gridY({strokeDasharray: "5,3"})
+```
+
+Returns a new *y* grid with the given *options*.
+
+<!-- jsdocEnd gridY -->
 
 #### Plot.gridFx(*data*, *options*)
 
-…same…
+<!-- jsdoc gridFx -->
+
+```js
+Plot.gridFx({strokeDasharray: "5,3"})
+```
+
+Returns a new *fx* grid with the given *options*.
+
+<!-- jsdocEnd gridFx -->
 
 #### Plot.gridFy(*data*, *options*)
 
-…same…
+<!-- jsdoc gridFy -->
+
+```js
+Plot.gridFy({strokeDasharray: "5,3"})
+```
+
+Returns a new *fy* grid with the given *options*.
+
+<!-- jsdocEnd gridFy -->
 
 ### Hexgrid
 
