@@ -197,6 +197,11 @@ export async function autoBarMeanZero() {
   return Plot.auto(weather, {x: "date", y: {value: "temp_max", reduce: "mean", zero: true}}).plot();
 }
 
+export async function autoBarMode() {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  return Plot.auto(penguins, {x: "island", y: {value: "species", reduce: "mode"}, mark: "bar"}).plot();
+}
+
 export async function autoLineMean() {
   const weather = await d3.csv("data/seattle-weather.csv", d3.autoType);
   return Plot.auto(weather, {x: "date", y: {value: "temp_max", reduce: "mean"}}).plot();
