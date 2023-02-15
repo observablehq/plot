@@ -51,7 +51,7 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   // TODO Limit and sort for bar charts (e.g. alphabet)?
   // TODO Look at Plot warnings and see how many we can prevent
   // TODO Default to something other than turbo for continuous? Like:
-  //      scheme: (colorValue && isContinuous(color)) || colorReduce ? "ylgnbu" : undefined
+  //      scheme: (colorValue && !isOrdinal(color)) || colorReduce ? "ylgnbu" : undefined
 
   // To apply heuristics based on the data types (values), realize the columns.
   // We could maybe look at the data.schema here, but Plot’s behavior depends on
@@ -100,9 +100,9 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
         : xZero || yZero || colorReduce != null // histogram or heatmap
         ? "bar"
         : x && y
-        ? isContinuous(x) && isContinuous(y) && (xReduce != null || yReduce != null || isMonotonic(x) || isMonotonic(y))
-          ? "line"
-          : "dot"
+        ? isOrdinal(x) || isOrdinal(y) || (xReduce == null && yReduce == null && !isMonotonic(x) && !isMonotonic(y))
+          ? "dot"
+          : "line"
         : x || y
         ? "rule"
         : null;
@@ -132,28 +132,21 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
         colorMode = "stroke";
         break;
       case "bar":
-        mark =
-          yReduce != null
-            ? isOrdinal(x)
-              ? barY
-              : rectY
-            : xReduce != null
-            ? isOrdinal(y)
-              ? barX
-              : rectX
-            : colorReduce != null
-            ? x && y && isOrdinal(x) && isOrdinal(y)
-              ? cell
-              : x && isOrdinal(x)
-              ? barY
-              : y && isOrdinal(y)
-              ? barX
-              : rect
-            : x && y && isOrdinal(x) && isOrdinal(y)
-            ? cell
-            : y && isOrdinal(y)
+        mark = yZero
+          ? isOrdinalReduced(xReduce, x)
+            ? barY
+            : rectY
+          : xZero
+          ? isOrdinalReduced(yReduce, y)
             ? barX
-            : barY;
+            : rectX
+          : isOrdinalReduced(xReduce, x) && isOrdinalReduced(yReduce, y)
+          ? cell
+          : isOrdinalReduced(xReduce, x)
+          ? barY
+          : isOrdinalReduced(yReduce, y)
+          ? barX
+          : rect;
         colorMode = "fill";
         break;
       default:
@@ -198,10 +191,6 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   return colorMode === "stroke" ? marks(frames, rules, mark) : marks(frames, mark, rules);
 }
 
-function isContinuous(values) {
-  return !isOrdinal(values);
-}
-
 // TODO What about sorted within series?
 function isMonotonic(values) {
   let previous;
@@ -225,8 +214,20 @@ function makeOptions(value) {
   return isReducer(value) ? {reduce: value} : {value};
 }
 
+// The distinct, count, sum, and proportion reducers are additive (stackable).
 function isZeroReducer(reduce) {
   return /^(?:distinct|count|sum|proportion)$/i.test(reduce);
+}
+
+// The first, last, and mode reducers preserve the type of the aggregated values.
+function isSelectReducer(reduce) {
+  return /^(?:first|last|mode)$/i.test(reduce);
+}
+
+// We can’t infer the type of a custom reducer without invoking it, so
+// assume most reducers produce quantitative values.
+function isOrdinalReduced(reduce, value) {
+  return (reduce != null && !isSelectReducer(reduce)) || !value ? false : isOrdinal(value);
 }
 
 // https://github.com/observablehq/plot/blob/818562649280e155136f730fc496e0b3d15ae464/src/transforms/group.js#L236
