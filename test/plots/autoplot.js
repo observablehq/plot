@@ -187,9 +187,19 @@ export async function autoBarStackColorConstant() {
   return Plot.auto(athletes, {x: "height", color: "gold"}).plot();
 }
 
-export async function autoBarMean() {
+export async function autoBarMeanZero() {
+  const weather = await d3.csv("data/seattle-weather.csv", d3.autoType);
+  return Plot.auto(weather, {x: "date", y: {value: "temp_max", reduce: "mean", zero: true}}).plot();
+}
+
+export async function autoLineMean() {
   const weather = await d3.csv("data/seattle-weather.csv", d3.autoType);
   return Plot.auto(weather, {x: "date", y: {value: "temp_max", reduce: "mean"}}).plot();
+}
+
+export async function autoLineMeanColor() {
+  const athletes = await d3.csv("data/athletes.csv", d3.autoType);
+  return Plot.auto(athletes, {x: "date_of_birth", y: {value: "height", reduce: "mean"}, color: "sex"}).plot();
 }
 
 export async function autoLineFacet() {
