@@ -800,12 +800,19 @@ All marks support the following optional channels:
 
 The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, and **opacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill opacity, stroke opacity, object opacity, stroke width, or radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
-Every variable color channel is scaled with the *color* scale unless its defined values are all valid CSS color strings, in which case they are used directly. This is equivalent to defining the **fill** or **stroke** channel as an object with a *value* and an undefined *scale* property. To opt out of automatic detection, specify the scale like so:
+The scale associated with any channel can be overridden by specifying the channel as an object with a *value* property specifying the channel values and a *scale* property specifying the desired scale name or null for an unscaled channel. For example, to force the **stroke** channel to be unscaled, interpreting the associated values as literal color strings:
 
 ```js
-Plot.dot(data, {stroke: {value: "fieldName", scale: "color"}}) // use the color scale
-Plot.dot(data, {stroke: {value: "fieldName", scale: null}})    // directly use the given values
+Plot.dot(data, {stroke: {value: "fieldName", scale: null}})
 ```
+
+To instead force the **stroke** channel to be bound to the *color* scale regardless of the provided values, say:
+
+```js
+Plot.dot(data, {stroke: {value: "fieldName", scale: "color"}})
+```
+
+The color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled.
 
 The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark’s associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
 
