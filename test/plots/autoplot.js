@@ -214,7 +214,7 @@ export async function autoLineMeanColor() {
 
 export async function autoLineMeanThresholds() {
   const weather = await d3.csv("data/seattle-weather.csv", d3.autoType);
-  return Plot.auto(weather, {x: {value: "date", thresholds: d3.utcMonth}, y: {value: "temp_max", reduce: "mean"}}).plot();
+  return Plot.auto(weather, {x: {value: "date", thresholds: "month"}, y: {value: "temp_max", reduce: "mean"}}).plot();
 }
 
 export async function autoLineFacet() {
