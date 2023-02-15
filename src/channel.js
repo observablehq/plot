@@ -6,26 +6,14 @@ import {maybeReduce} from "./transforms/group.js";
 
 // TODO Type coercion?
 export function Channel(data, {scale, type, value, filter, hint}, name) {
-  let V = valueof(data, value);
-
-  // If the channel uses the "auto" scale, infer the scale from the channel name
-  // and the provided values. For color and symbol channels, no scale is applied
-  // if the values are literal; however for symbols, we must promote symbol
-  // names (e.g., "plus") to symbol implementations (symbolPlus).
-  if (scale === "auto") {
-    [scale, V] = inferChannelScale(name, V);
-  } else if (scale != null && !registry.has(scale)) {
-    throw new Error(`unknown scale: ${scale}`);
-  }
-
-  return {
+  return inferChannelScale(name, {
     scale,
     type,
-    value: V,
+    value: valueof(data, value),
     label: labelof(value),
     filter,
     hint
-  };
+  });
 }
 
 export function Channels(channels, data) {
@@ -42,20 +30,40 @@ export function valueObject(channels, scales) {
   );
 }
 
-// Returns the default scale for the channel with the given name.
-export function inferChannelScale(name, value) {
-  switch (name) {
-    case "fill":
-    case "stroke":
-    case "color":
-      return [isEvery(value, isColor) ? null : "color", value];
-    case "fillOpacity":
-    case "strokeOpacity":
-      return ["opacity", value];
-    case "symbol":
-      return isEvery(value, isSymbol) ? [null, map(value, maybeSymbol)] : ["symbol", value];
+// If the channel uses the "auto" scale (or equivalently true), infer the scale
+// from the channel name and the provided values. For color and symbol channels,
+// no scale is applied if the values are literal; however for symbols, we must
+// promote symbol names (e.g., "plus") to symbol implementations (symbolPlus).
+// Note: mutates channel!
+export function inferChannelScale(name, channel) {
+  const {scale, value} = channel;
+  if (scale === true || scale === "auto") {
+    switch (name) {
+      case "fill":
+      case "stroke":
+      case "color":
+        channel.scale = isEvery(value, isColor) ? null : "color";
+        break;
+      case "fillOpacity":
+      case "strokeOpacity":
+        channel.scale = "opacity";
+        break;
+      case "symbol":
+        if (isEvery(value, isSymbol)) {
+          channel.scale = null;
+          channel.value = map(value, maybeSymbol);
+        } else {
+          channel.scale = "symbol";
+        }
+        break;
+      default:
+        channel.scale = registry.has(name) ? name : null;
+        break;
+    }
+  } else if (scale != null && !registry.has(scale)) {
+    throw new Error(`unknown scale: ${scale}`);
   }
-  return [registry.has(name) ? name : null, value];
+  return channel;
 }
 
 // Note: mutates channel.domain! This is set to a function so that it is lazily
