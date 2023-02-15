@@ -123,7 +123,7 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
         if (isHighCardinality(color)) z = null; // TODO only if z not set by user
         break;
       case "area":
-        mark = yZero || (x && isMonotonic(x)) ? areaY : xZero || (y && isMonotonic(y)) ? areaX : area; // 1d area by index
+        mark = yZero ? areaY : xZero ? areaX : y && isMonotonic(y) ? areaX : areaY; // favor areaY if unsure
         colorMode = "fill";
         if (isHighCardinality(color)) z = null; // TODO only if z not set by user
         break;
