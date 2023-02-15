@@ -123,16 +123,7 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
         if (isHighCardinality(color)) z = null; // TODO only if z not set by user
         break;
       case "area":
-        mark =
-          x && y
-            ? isContinuous(x) && isMonotonic(x)
-              ? areaY
-              : isContinuous(y) && isMonotonic(y)
-              ? areaX
-              : area // TODO error? how does it work with ordinal?
-            : x
-            ? areaX
-            : areaY; // 1d area by index
+        mark = yZero || (x && isMonotonic(x)) ? areaY : xZero || (y && isMonotonic(y)) ? areaX : area; // 1d area by index
         colorMode = "fill";
         if (isHighCardinality(color)) z = null; // TODO only if z not set by user
         break;
