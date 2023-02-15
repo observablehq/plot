@@ -814,6 +814,12 @@ Plot.dot(data, {stroke: {value: "fieldName", scale: "color"}})
 
 The color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled.
 
+In addition to functions of data, arrays, and column names, channel values can be specified as an object with a *transform* method; this transform method is passed the mark’s array of data and must return the corresponding array of channel values. (Whereas a channel value specified as a function is invoked repeatedly for each element in the mark’s data, similar to *array*.map, the transform method is invoked only once being passed the entire array of data.) For example, to pass the mark’s data directly to the **x** channel, equivalent to [Plot.identity](#plotidentity):
+
+```js
+Plot.dot(numbers, {x: {transform: data => data}})
+```
+
 The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark’s associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
 
 The rectangular marks ([bar](#bar), [cell](#cell), [frame](#frame), and [rect](#rect)) support insets and rounded corner constant options:
