@@ -1,6 +1,6 @@
 import {ascending, InternSet} from "d3";
 import {isOrdinal, labelof, valueof, isOptions, isColor, isObject} from "../options.js";
-import {area, areaX, areaY} from "./area.js";
+import {areaX, areaY} from "./area.js";
 import {dot} from "./dot.js";
 import {line, lineX, lineY} from "./line.js";
 import {ruleX, ruleY} from "./rule.js";
