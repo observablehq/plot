@@ -1,4 +1,4 @@
-import {InternSet} from "d3";
+import {ascending, InternSet} from "d3";
 import {isOrdinal, labelof, valueof, isOptions, isColor} from "../options.js";
 import {area, areaX, areaY} from "./area.js";
 import {dot} from "./dot.js";
@@ -11,7 +11,6 @@ import {frame} from "./frame.js";
 import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../mark.js";
-import {ascending} from "d3";
 
 /** @jsdoc auto */
 export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
@@ -45,8 +44,8 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   if (yReduce === undefined)
     yReduce = xReduce == null && yValue == null && sizeValue == null && xValue != null ? "count" : null;
 
-  let {zero: xZero} = x;
-  let {zero: yZero} = y;
+  let {zero: xZero = isZeroReducer(xReduce) ? true : undefined} = x;
+  let {zero: yZero = isZeroReducer(yReduce) ? true : undefined} = y;
 
   // TODO The line mark will need z?
   // TODO Limit and sort for bar charts (e.g. alphabet)?
@@ -98,14 +97,16 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
     mark =
       sizeValue != null || sizeReduce != null
         ? "dot"
-        : xReduce != null || yReduce != null || colorReduce != null
+        : colorReduce != null // e.g., heatmap
         ? "bar"
         : x && y
-        ? isContinuous(x) && isContinuous(y) && (isMonotonic(x) || isMonotonic(y))
+        ? isContinuous(x) && isContinuous(y) && (xReduce != null || yReduce != null || isMonotonic(x) || isMonotonic(y))
           ? "line"
           : (isContinuous(x) && xZero) || (isContinuous(y) && yZero)
           ? "bar"
           : "dot"
+        : xZero || yZero
+        ? "bar"
         : x
         ? "rule"
         : y
@@ -237,6 +238,10 @@ function isMonotonic(values) {
 
 function makeOptions(value) {
   return isReducer(value) ? {reduce: value} : {value};
+}
+
+function isZeroReducer(reduce) {
+  return /^(?:distinct|count|sum|proportion)$/i.test(reduce);
 }
 
 // https://github.com/observablehq/plot/blob/818562649280e155136f730fc496e0b3d15ae464/src/transforms/group.js#L236

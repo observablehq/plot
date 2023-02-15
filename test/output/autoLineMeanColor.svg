@@ -1,0 +1,68 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,348.12499999999994)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,293.43750000000017)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,238.75000000000009)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,184.0625)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,129.37499999999991)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,74.68749999999984)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,20)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,348.12499999999994)">1.60</text>
+    <text y="0.32em" transform="translate(40,293.43750000000017)">1.65</text>
+    <text y="0.32em" transform="translate(40,238.75000000000009)">1.70</text>
+    <text y="0.32em" transform="translate(40,184.0625)">1.75</text>
+    <text y="0.32em" transform="translate(40,129.37499999999991)">1.80</text>
+    <text y="0.32em" transform="translate(40,74.68749999999984)">1.85</text>
+    <text y="0.32em" transform="translate(40,20)">1.90</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ height</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(46.03753137120694,370)" d="M0,0L0,6"></path>
+    <path transform="translate(106.44592744695414,370)" d="M0,0L0,6"></path>
+    <path transform="translate(166.88740588637918,370)" d="M0,0L0,6"></path>
+    <path transform="translate(227.2958019621264,370)" d="M0,0L0,6"></path>
+    <path transform="translate(287.7041980378736,370)" d="M0,0L0,6"></path>
+    <path transform="translate(348.11259411362084,370)" d="M0,0L0,6"></path>
+    <path transform="translate(408.55407255304584,370)" d="M0,0L0,6"></path>
+    <path transform="translate(468.9624686287931,370)" d="M0,0L0,6"></path>
+    <path transform="translate(529.3708647045403,370)" d="M0,0L0,6"></path>
+    <path transform="translate(589.7792607802875,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(46.03753137120694,370)">1955</text>
+    <text y="0.71em" transform="translate(106.44592744695414,370)">1960</text>
+    <text y="0.71em" transform="translate(166.88740588637918,370)">1965</text>
+    <text y="0.71em" transform="translate(227.2958019621264,370)">1970</text>
+    <text y="0.71em" transform="translate(287.7041980378736,370)">1975</text>
+    <text y="0.71em" transform="translate(348.11259411362084,370)">1980</text>
+    <text y="0.71em" transform="translate(408.55407255304584,370)">1985</text>
+    <text y="0.71em" transform="translate(468.9624686287931,370)">1990</text>
+    <text y="0.71em" transform="translate(529.3708647045403,370)">1995</text>
+    <text y="0.71em" transform="translate(589.7792607802875,370)">2000</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">date_of_birth →</text>
+  </g>
+  <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <path stroke="#4e79a7" d="M40,293.438ZM88.333,370L100.408,348.125L136.667,238.75L148.742,337.187L160.833,298.906L172.925,242.396L185,173.125L197.075,184.063L209.167,282.5L221.258,282.5L233.333,233.281L245.408,285.234L257.5,262.448L269.592,271.563L281.667,283.594L293.742,250.903L305.833,284.323L317.925,247.202L330,253.333L342.075,223.207L354.167,250.005L366.258,241.747L378.333,251.378L390.408,218.966L402.5,230.473L414.592,238.801L426.667,232.726L438.742,229.045L450.833,232.53L462.925,227.674L475,227.294L487.075,230.593L499.167,238.219L511.258,243.269L523.333,239.432L535.408,239.768L547.5,248.432L559.592,261.526L571.667,265.104L583.742,324.553L595.833,298.758L607.925,291.615L620,244.219"></path>
+    <path stroke="#f28e2c" d="M52.075,337.187L64.167,20L76.258,184.063L100.408,96.562L112.5,74.687L124.592,85.625L136.667,216.875L148.742,143.437L160.833,173.125L172.925,166.562L185,195L197.075,100.937L209.167,99.297L221.258,145.284L233.333,178.594L245.408,132.5L257.5,144.87L269.592,121.354L281.667,184.746L293.742,131.125L305.833,126.094L317.925,110.717L330,134.495L342.075,119.735L354.167,88.895L366.258,102.422L378.333,91.93L390.408,99.297L402.5,90.858L414.592,103.311L426.667,98.37L438.742,96.619L450.833,94.678L462.925,103.772L475,96.879L487.075,104.142L499.167,107.453L511.258,118.543L523.333,115.512L535.408,114.968L547.5,118.536L559.592,130.408L571.667,132.866L583.742,123.359L595.833,242.396L620,348.125"></path>
+  </g>
+</svg>
