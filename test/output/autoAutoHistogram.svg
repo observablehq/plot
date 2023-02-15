@@ -1,0 +1,70 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,330.2272727272727)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,290.45454545454544)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,250.68181818181822)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,210.9090909090909)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,171.13636363636363)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,131.36363636363637)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,91.59090909090911)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,51.81818181818183)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,330.2272727272727)">20</text>
+    <text y="0.32em" transform="translate(40,290.45454545454544)">40</text>
+    <text y="0.32em" transform="translate(40,250.68181818181822)">60</text>
+    <text y="0.32em" transform="translate(40,210.9090909090909)">80</text>
+    <text y="0.32em" transform="translate(40,171.13636363636363)">100</text>
+    <text y="0.32em" transform="translate(40,131.36363636363637)">120</text>
+    <text y="0.32em" transform="translate(40,91.59090909090911)">140</text>
+    <text y="0.32em" transform="translate(40,51.81818181818183)">160</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(56.11111111111111,370)" d="M0,0L0,6"></path>
+    <path transform="translate(136.66666666666666,370)" d="M0,0L0,6"></path>
+    <path transform="translate(217.22222222222223,370)" d="M0,0L0,6"></path>
+    <path transform="translate(297.77777777777777,370)" d="M0,0L0,6"></path>
+    <path transform="translate(378.33333333333337,370)" d="M0,0L0,6"></path>
+    <path transform="translate(458.88888888888886,370)" d="M0,0L0,6"></path>
+    <path transform="translate(539.4444444444445,370)" d="M0,0L0,6"></path>
+    <path transform="translate(620,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(56.11111111111111,370)">0</text>
+    <text y="0.71em" transform="translate(136.66666666666666,370)">5</text>
+    <text y="0.71em" transform="translate(217.22222222222223,370)">10</text>
+    <text y="0.71em" transform="translate(297.77777777777777,370)">15</text>
+    <text y="0.71em" transform="translate(378.33333333333337,370)">20</text>
+    <text y="0.71em" transform="translate(458.88888888888886,370)">25</text>
+    <text y="0.71em" transform="translate(539.4444444444445,370)">30</text>
+    <text y="0.71em" transform="translate(620,370)">35</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">temp_max →</text>
+  </g>
+  <g aria-label="area">
+    <path d="M40,364.034L72.222,352.102L104.444,330.227L136.667,288.466L168.889,155.227L201.111,151.25L233.333,20L265.556,35.909L297.778,125.398L330,133.352L362.222,187.045L394.444,125.398L426.667,157.216L458.889,210.909L491.111,210.909L523.333,292.443L555.556,292.443L587.778,334.205L620,358.068L620,370L587.778,370L555.556,370L523.333,370L491.111,370L458.889,370L426.667,370L394.444,370L362.222,370L330,370L297.778,370L265.556,370L233.333,370L201.111,370L168.889,370L136.667,370L104.444,370L72.222,370L40,370Z"></path>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+  </g>
+</svg>

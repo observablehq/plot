@@ -29,7 +29,8 @@ import {
   range,
   second,
   percentile,
-  isTemporal
+  isTemporal,
+  isObject
 } from "../options.js";
 import {basic} from "./basic.js";
 
@@ -234,7 +235,7 @@ export function maybeGroup(I, X) {
 }
 
 export function maybeReduce(reduce, value) {
-  if (reduce && typeof reduce.reduce === "function") return reduce;
+  if (typeof reduce?.reduce === "function" && isObject(reduce)) return reduce; // N.B. array.reduce
   if (typeof reduce === "function") return reduceFunction(reduce);
   if (/^p\d{2}$/i.test(reduce)) return reduceAccessor(percentile(reduce));
   switch (`${reduce}`.toLowerCase()) {

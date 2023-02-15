@@ -177,6 +177,11 @@ export async function autoAreaStackColor() {
   return Plot.auto(industries, {x: "date", y: "unemployed", color: "industry", mark: "area"}).plot();
 }
 
+export async function autoAutoHistogram() {
+  const weather = await d3.csv("data/seattle-weather.csv", d3.autoType);
+  return Plot.auto(weather, {x: "temp_max", mark: "area"}).plot();
+}
+
 export async function autoBarStackColorField() {
   const athletes = await d3.csv("data/athletes.csv", d3.autoType);
   return Plot.auto(athletes, {x: "height", color: {value: "gold"}}).plot();

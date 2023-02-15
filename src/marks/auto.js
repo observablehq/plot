@@ -1,6 +1,6 @@
 import {ascending, InternSet} from "d3";
-import {isOrdinal, labelof, valueof, isOptions, isColor} from "../options.js";
-import {area, areaX, areaY} from "./area.js";
+import {isOrdinal, labelof, valueof, isOptions, isColor, isObject} from "../options.js";
+import {areaX, areaY} from "./area.js";
 import {dot} from "./dot.js";
 import {line, lineX, lineY} from "./line.js";
 import {ruleX, ruleY} from "./rule.js";
@@ -123,16 +123,7 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
         if (isHighCardinality(color)) z = null; // TODO only if z not set by user
         break;
       case "area":
-        mark =
-          x && y
-            ? isContinuous(x) && isMonotonic(x)
-              ? areaY
-              : isContinuous(y) && isMonotonic(y)
-              ? areaX
-              : area // TODO error? how does it work with ordinal?
-            : x
-            ? areaX
-            : areaY; // 1d area by index
+        mark = yZero ? areaY : xZero || (y && isMonotonic(y)) ? areaX : areaY; // favor areaY if unsure
         colorMode = "fill";
         if (isHighCardinality(color)) z = null; // TODO only if z not set by user
         break;
@@ -240,7 +231,7 @@ function isZeroReducer(reduce) {
 
 // https://github.com/observablehq/plot/blob/818562649280e155136f730fc496e0b3d15ae464/src/transforms/group.js#L236
 function isReducer(reduce) {
-  if (typeof reduce?.reduce === "function") return true;
+  if (typeof reduce?.reduce === "function" && isObject(reduce)) return true; // N.B. array.reduce
   if (/^p\d{2}$/i.test(reduce)) return true;
   switch (`${reduce}`.toLowerCase()) {
     case "first":
