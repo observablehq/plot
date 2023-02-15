@@ -373,7 +373,12 @@ function applyScaleTransform(channel, options) {
 function inferChannelScales(channels) {
   for (const name in channels) {
     const channel = channels[name];
-    if (channel.scale === true) channel.scale = inferChannelScale(name);
+    const {scale, value} = channel;
+    if (scale === true || scale === "auto") {
+      [channel.scale, channel.value] = inferChannelScale(name, value);
+    } else if (scale != null && !scaleRegistry.has(scale)) {
+      throw new Error(`unknown scale: ${scale}`);
+    }
   }
 }
 

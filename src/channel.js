@@ -13,19 +13,7 @@ export function Channel(data, {scale, type, value, filter, hint}, name) {
   // if the values are literal; however for symbols, we must promote symbol
   // names (e.g., "plus") to symbol implementations (symbolPlus).
   if (scale === "auto") {
-    scale = inferChannelScale(name);
-    if (V) {
-      if (scale === "color") {
-        if (isEvery(V, isColor)) {
-          scale = undefined;
-        }
-      } else if (scale === "symbol") {
-        if (isEvery(V, isSymbol)) {
-          V = map(V, maybeSymbol);
-          scale = undefined;
-        }
-      }
-    }
+    [scale, V] = inferChannelScale(name, V);
   } else if (scale != null && !registry.has(scale)) {
     throw new Error(`unknown scale: ${scale}`);
   }
@@ -55,16 +43,19 @@ export function valueObject(channels, scales) {
 }
 
 // Returns the default scale for the channel with the given name.
-export function inferChannelScale(name) {
+export function inferChannelScale(name, value) {
   switch (name) {
     case "fill":
     case "stroke":
-      return "color";
+    case "color":
+      return [isEvery(value, isColor) ? null : "color", value];
     case "fillOpacity":
     case "strokeOpacity":
-      return "opacity";
+      return ["opacity", value];
+    case "symbol":
+      return isEvery(value, isSymbol) ? [null, map(value, maybeSymbol)] : ["symbol", value];
   }
-  return registry.has(name) ? name : null;
+  return [registry.has(name) ? name : null, value];
 }
 
 // Note: mutates channel.domain! This is set to a function so that it is lazily

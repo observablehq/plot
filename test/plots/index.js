@@ -295,6 +295,7 @@ export * from "./legend-opacity.js";
 export * from "./legend-symbol.js";
 export * from "./libor-projections.js";
 export * from "./long-labels.js";
+export * from "./penguin-hexbin-color-explicit.js";
 export * from "./raster-ca55.js";
 export * from "./raster-penguins.js";
 export * from "./raster-vapor.js";
