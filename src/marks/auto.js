@@ -97,19 +97,13 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
     mark =
       sizeValue != null || sizeReduce != null
         ? "dot"
-        : colorReduce != null // e.g., heatmap
+        : xZero || yZero || colorReduce != null // histogram or heatmap
         ? "bar"
         : x && y
         ? isContinuous(x) && isContinuous(y) && (xReduce != null || yReduce != null || isMonotonic(x) || isMonotonic(y))
           ? "line"
-          : (isContinuous(x) && xZero) || (isContinuous(y) && yZero)
-          ? "bar"
           : "dot"
-        : xZero || yZero
-        ? "bar"
-        : x
-        ? "rule"
-        : y
+        : x || y
         ? "rule"
         : null;
   }
