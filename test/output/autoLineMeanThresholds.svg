@@ -1,0 +1,58 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,339.85768779342726)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,308.02083333333337)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,276.1839788732395)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,244.34712441314556)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,212.51026995305165)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,180.67341549295776)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,148.8365610328639)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,116.99970657277)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,85.1628521126761)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,53.3259976525822)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,21.489143192488342)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,339.85768779342726)">8</text>
+    <text y="0.32em" transform="translate(40,308.02083333333337)">10</text>
+    <text y="0.32em" transform="translate(40,276.1839788732395)">12</text>
+    <text y="0.32em" transform="translate(40,244.34712441314556)">14</text>
+    <text y="0.32em" transform="translate(40,212.51026995305165)">16</text>
+    <text y="0.32em" transform="translate(40,180.67341549295776)">18</text>
+    <text y="0.32em" transform="translate(40,148.8365610328639)">20</text>
+    <text y="0.32em" transform="translate(40,116.99970657277)">22</text>
+    <text y="0.32em" transform="translate(40,85.1628521126761)">24</text>
+    <text y="0.32em" transform="translate(40,53.3259976525822)">26</text>
+    <text y="0.32em" transform="translate(40,21.489143192488342)">28</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ temp_max</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(182.16083916083915,370)" d="M0,0L0,6"></path>
+    <path transform="translate(330.2027972027972,370)" d="M0,0L0,6"></path>
+    <path transform="translate(478.24475524475525,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(182.16083916083915,370)">2013</text>
+    <text y="0.71em" transform="translate(330.2027972027972,370)">2014</text>
+    <text y="0.71em" transform="translate(478.24475524475525,370)">2015</text>
+  </g>
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <path d="M40,354.903L52.168,319.548L64.336,315.107L76.706,230.445L89.077,186.065L101.448,169.637L113.818,102.57L126.392,55.585L138.762,102.991L151.133,215.232L163.503,286.902L175.874,352.028L188.448,370L200.413,316.492L212.378,264.887L224.748,240.474L237.119,154.793L249.49,97.049L261.86,51.837L274.434,51.426L286.804,127.188L299.175,240.701L311.545,275.335L323.916,355.417L336.49,314.388L348.455,336.674L360.42,261.755L372.79,221.106L385.161,150.891L397.531,123.526L409.902,38.999L422.476,47.215L434.846,98.481L447.217,181.29L459.587,291.625L471.958,305.813L484.531,305.556L496.497,267.941L508.462,238.339L520.832,220.416L533.203,148.426L545.573,52.318L557.944,20L570.517,51.94L582.888,144.167L595.259,188.016L607.629,313.062L620,333.798"></path>
+  </g>
+</svg>
