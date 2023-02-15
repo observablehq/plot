@@ -9,7 +9,7 @@ export async function penguinHexbinColorExplicit() {
       Plot.dot(
         penguins,
         Plot.hexbin(
-          {r: "count", fill: (d) => (d.length > 3 ? "green" : "yellow")},
+          {r: "count", fill: (d) => (d.length > 3 ? "black" : "red")},
           {x: "culmen_depth_mm", y: "culmen_length_mm"}
         )
       )
