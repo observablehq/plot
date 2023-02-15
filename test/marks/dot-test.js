@@ -79,7 +79,7 @@ it("dot(data, {fill}) allows fill to be a variable color", () => {
   assert.strictEqual(dot.fill, undefined);
   const {fill} = dot.channels;
   assert.strictEqual(fill.value, "x");
-  assert.strictEqual(fill.scale, "color");
+  assert.strictEqual(fill.scale, "auto");
 });
 
 it("dot(data, {fill}) defaults stroke to undefined if fill is not none", () => {
@@ -103,7 +103,7 @@ it("dot(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(dot.stroke, undefined);
   const {stroke} = dot.channels;
   assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });
 
 it("dot(data, {stroke}) defaults strokeWidth to 1.5 if stroke is defined", () => {

@@ -50,7 +50,7 @@ it("ruleX(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(rule.stroke, undefined);
   const {stroke} = rule.channels;
   assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });
 
 it("ruleX(data, {x, y}) specifies y1 = zero, y2 = y", () => {
@@ -145,7 +145,7 @@ it("ruleY(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(rule.stroke, undefined);
   const {stroke} = rule.channels;
   assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });
 
 it("ruleY(data, {x, y}) specifies x1 = zero, x2 = x", () => {

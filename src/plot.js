@@ -1,5 +1,5 @@
 import {select} from "d3";
-import {Channel} from "./channel.js";
+import {Channel, inferChannelScale} from "./channel.js";
 import {Context, create} from "./context.js";
 import {Dimensions} from "./dimensions.js";
 import {Facets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilter} from "./facet.js";
@@ -156,7 +156,7 @@ export function plot(options = {}) {
         state.facets = update.facets;
       }
       if (update.channels !== undefined) {
-        inferChannelScale(update.channels, mark);
+        inferChannelScales(update.channels);
         Object.assign(state.channels, update.channels);
         for (const channel of Object.values(update.channels)) {
           const {scale} = channel;
@@ -370,27 +370,9 @@ function applyScaleTransform(channel, options) {
 // An initializer may generate channels without knowing how the downstream mark
 // will use them. Marks are typically responsible associated scales with
 // channels, but here we assume common behavior across marks.
-function inferChannelScale(channels) {
+function inferChannelScales(channels) {
   for (const name in channels) {
-    const channel = channels[name];
-    let {scale} = channel;
-    if (scale === true) {
-      switch (name) {
-        case "fill":
-        case "stroke":
-          scale = "color";
-          break;
-        case "fillOpacity":
-        case "strokeOpacity":
-        case "opacity":
-          scale = "opacity";
-          break;
-        default:
-          scale = scaleRegistry.has(name) ? name : null;
-          break;
-      }
-      channel.scale = scale;
-    }
+    inferChannelScale(name, channels[name]);
   }
 }
 

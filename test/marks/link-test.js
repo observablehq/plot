@@ -50,5 +50,5 @@ it("link(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(link.stroke, undefined);
   const {stroke} = link.channels;
   assert.strictEqual(stroke.value, "4");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });

@@ -98,7 +98,7 @@ it("text(data, {fill}) allows fill to be a variable color", () => {
   assert.strictEqual(text.fill, undefined);
   const {fill} = text.channels;
   assert.strictEqual(fill.value, "x");
-  assert.strictEqual(fill.scale, "color");
+  assert.strictEqual(fill.scale, "auto");
 });
 
 it("text(data, {stroke}) has a default strokeLinejoin of round", () => {

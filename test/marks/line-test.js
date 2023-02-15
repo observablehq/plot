@@ -70,7 +70,7 @@ it("line(data, {fill}) allows fill to be a variable color", () => {
   assert.strictEqual(line.fill, undefined);
   const {fill} = line.channels;
   assert.strictEqual(fill.value, "x");
-  assert.strictEqual(fill.scale, "color");
+  assert.strictEqual(fill.scale, "auto");
 });
 
 it("line(data, {fill}) implies a default z channel if fill is variable", () => {
@@ -100,7 +100,7 @@ it("line(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(line.stroke, undefined);
   const {stroke} = line.channels;
   assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });
 
 it("line(data, {stroke}) implies a default z channel if stroke is variable", () => {

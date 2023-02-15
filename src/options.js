@@ -336,23 +336,18 @@ export function isNumeric(values) {
   }
 }
 
-export function isFirst(values, is) {
-  for (const value of values) {
-    if (value == null) continue;
-    return is(value);
-  }
-}
-
-// Whereas isFirst only tests the first defined value and returns undefined for
-// an empty array, this tests all defined values and only returns true if all of
-// them are valid colors. It also returns true for an empty array, and thus
-// should generally be used in conjunction with isFirst.
+// Returns true if every non-null value in the specified iterable of values
+// passes the specified predicate, and there is at least one non-null value;
+// returns false if at least one non-null value does not pass the specified
+// predicate; otherwise returns undefined (as if all values are null).
 export function isEvery(values, is) {
+  let every;
   for (const value of values) {
     if (value == null) continue;
     if (!is(value)) return false;
+    every = true;
   }
-  return true;
+  return every;
 }
 
 // Mostly relies on d3-color, with a few extra color keywords. Currently this

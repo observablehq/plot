@@ -61,7 +61,7 @@ it("tickX(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(tick.stroke, undefined);
   const {stroke} = tick.channels;
   assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });
 
 it("tickY() has the expected defaults", () => {
@@ -124,5 +124,5 @@ it("tickY(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(tick.stroke, undefined);
   const {stroke} = tick.channels;
   assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });

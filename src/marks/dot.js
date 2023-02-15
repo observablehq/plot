@@ -41,7 +41,7 @@ export class Dot extends Mark {
         y: {value: y, scale: "y", optional: true},
         r: {value: vr, scale: "r", filter: positive, optional: true},
         rotate: {value: vrotate, optional: true},
-        symbol: {value: vsymbol, scale: "symbol", optional: true}
+        symbol: {value: vsymbol, scale: "auto", optional: true}
       },
       withDefaultSort(options),
       defaults

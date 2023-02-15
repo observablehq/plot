@@ -1,35 +1,69 @@
 import {ascending, descending, rollup, sort} from "d3";
-import {first, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
+import {first, isColor, isEvery, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
+import {isSymbol, maybeSymbol} from "./symbols.js";
 import {maybeReduce} from "./transforms/group.js";
 
 // TODO Type coercion?
-export function Channel(data, {scale, type, value, filter, hint}) {
-  return {
+export function Channel(data, {scale, type, value, filter, hint}, name) {
+  return inferChannelScale(name, {
     scale,
     type,
     value: valueof(data, value),
     label: labelof(value),
     filter,
     hint
-  };
+  });
 }
 
-export function Channels(descriptors, data) {
-  return Object.fromEntries(Object.entries(descriptors).map(([name, channel]) => [name, Channel(data, channel)]));
+export function Channels(channels, data) {
+  return Object.fromEntries(Object.entries(channels).map(([name, channel]) => [name, Channel(data, channel, name)]));
 }
 
 // TODO Use Float64Array for scales with numeric ranges, e.g. position?
 export function valueObject(channels, scales) {
   return Object.fromEntries(
     Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
-      let scale;
-      if (scaleName !== undefined) {
-        scale = scales[scaleName];
-      }
-      return [name, scale === undefined ? value : map(value, scale)];
+      const scale = scaleName == null ? null : scales[scaleName];
+      return [name, scale == null ? value : map(value, scale)];
     })
   );
+}
+
+// If the channel uses the "auto" scale (or equivalently true), infer the scale
+// from the channel name and the provided values. For color and symbol channels,
+// no scale is applied if the values are literal; however for symbols, we must
+// promote symbol names (e.g., "plus") to symbol implementations (symbolPlus).
+// Note: mutates channel!
+export function inferChannelScale(name, channel) {
+  const {scale, value} = channel;
+  if (scale === true || scale === "auto") {
+    switch (name) {
+      case "fill":
+      case "stroke":
+      case "color":
+        channel.scale = isEvery(value, isColor) ? null : "color";
+        break;
+      case "fillOpacity":
+      case "strokeOpacity":
+        channel.scale = "opacity";
+        break;
+      case "symbol":
+        if (isEvery(value, isSymbol)) {
+          channel.scale = null;
+          channel.value = map(value, maybeSymbol);
+        } else {
+          channel.scale = "symbol";
+        }
+        break;
+      default:
+        channel.scale = registry.has(name) ? name : null;
+        break;
+    }
+  } else if (scale != null && !registry.has(scale)) {
+    throw new Error(`unknown scale: ${scale}`);
+  }
+  return channel;
 }
 
 // Note: mutates channel.domain! This is set to a function so that it is lazily

@@ -143,9 +143,9 @@ export function styles(
     title: {value: title, optional: true},
     href: {value: href, optional: true},
     ariaLabel: {value: variaLabel, optional: true},
-    fill: {value: vfill, scale: "color", optional: true},
+    fill: {value: vfill, scale: "auto", optional: true},
     fillOpacity: {value: vfillOpacity, scale: "opacity", optional: true},
-    stroke: {value: vstroke, scale: "color", optional: true},
+    stroke: {value: vstroke, scale: "auto", optional: true},
     strokeOpacity: {value: vstrokeOpacity, scale: "opacity", optional: true},
     strokeWidth: {value: vstrokeWidth, optional: true},
     opacity: {value: vopacity, scale: "opacity", optional: true}
