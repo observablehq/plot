@@ -290,7 +290,6 @@ function inferLogDomain(channels) {
   for (const {value} of channels) {
     if (value !== undefined) {
       for (let v of value) {
-        v = +v;
         if (v > 0) return inferDomain(channels, positive);
         if (v < 0) return inferDomain(channels, negative);
       }
