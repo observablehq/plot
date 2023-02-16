@@ -2,7 +2,6 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 const integers = d3.range(40).map((int) => ({
-  /* eslint-disable no-undef */
   big1: BigInt(int),
   big2: BigInt(int * int)
 }));
