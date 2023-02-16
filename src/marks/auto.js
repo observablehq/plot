@@ -29,16 +29,12 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   if (isOptions(fx)) ({value: fx} = makeOptions(fx));
   if (isOptions(fy)) ({value: fy} = makeOptions(fy));
 
-  const {value: xValue} = x;
-  const {value: yValue} = y;
-  const {value: sizeValue} = size;
-  const {value: colorValue, color: colorColor} = color;
+  let {value: xValue, reduce: xReduce, ...xOptions} = x;
+  let {value: yValue, reduce: yReduce, ...yOptions} = y;
+  let {value: sizeValue, reduce: sizeReduce} = size;
+  let {value: colorValue, color: colorColor, reduce: colorReduce} = color;
 
   // Determine the default reducer, if any.
-  let {reduce: xReduce} = x;
-  let {reduce: yReduce} = y;
-  let {reduce: sizeReduce} = size;
-  let {reduce: colorReduce} = color;
   if (xReduce === undefined)
     xReduce = yReduce == null && xValue == null && sizeValue == null && yValue != null ? "count" : null;
   if (yReduce === undefined)
@@ -175,7 +171,11 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
       transform = isOrdinal(y) ? groupY : binY;
     }
   }
-  if (transform) options = transform(transformOptions, options);
+  if (transform) {
+    if (transform === bin || transform === binX) options.x = {value: x, ...xOptions};
+    if (transform === bin || transform === binY) options.y = {value: y, ...yOptions};
+    options = transform(transformOptions, options);
+  }
 
   // If zero-ness is not specified, default based on whether the resolved mark
   // type will include a zero baseline.

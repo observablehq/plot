@@ -212,6 +212,11 @@ export async function autoLineMeanColor() {
   return Plot.auto(athletes, {x: "date_of_birth", y: {value: "height", reduce: "mean"}, color: "sex"}).plot();
 }
 
+export async function autoLineMeanThresholds() {
+  const weather = await d3.csv("data/seattle-weather.csv", d3.autoType);
+  return Plot.auto(weather, {x: {value: "date", thresholds: "month"}, y: {value: "temp_max", reduce: "mean"}}).plot();
+}
+
 export async function autoLineFacet() {
   const industries = await d3.csv("data/bls-industry-unemployment.csv", d3.autoType);
   return Plot.auto(industries, {x: "date", y: "unemployed", fy: "industry"}).plot();
