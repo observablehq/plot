@@ -283,6 +283,7 @@ export * from "./aspectRatio.js";
 export * from "./athletes-sample.js";
 export * from "./autoplot.js";
 export * from "./axis-labels.js";
+export * from "./bigint.js";
 export * from "./bin-1m.js";
 export * from "./electricity-demand.js";
 export * from "./federal-funds.js";

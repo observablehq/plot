@@ -512,7 +512,7 @@ export function coerceNumbers(values) {
 // since the result will be stored in a Float64Array and we don’t want null to
 // be coerced to zero.
 export function coerceNumber(x) {
-  return x == null ? NaN : +x;
+  return x == null ? NaN : Number(x);
 }
 
 // When coercing strings to dates, we only want to allow the ISO 8601 format
