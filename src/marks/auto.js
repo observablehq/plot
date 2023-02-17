@@ -12,8 +12,7 @@ import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../mark.js";
 
-/** @jsdoc auto */
-export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
+export function autoSpec(data, {x, y, color, size, fx, fy, mark} = {}) {
   // Allow x and y and other dimensions to be specified as shorthand field names
   // (but note that they can also be specified as a {transform} object such as
   // Plot.identity).
@@ -64,8 +63,6 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   if (xReduce != null && !y) throw new Error("reducing x requires y");
   if (yReduce != null && !x) throw new Error("reducing y requires x");
 
-  let z, zReduce;
-
   // Propagate the x and y labels (field names), if any. This is necessary for
   // any column we materialize (and hence, we don’t need to do this for fx and
   // fy, since those columns are not needed for type inference and hence are not
@@ -91,7 +88,7 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   // Determine the default mark type.
   if (mark === undefined) {
     mark =
-      sizeValue != null || sizeReduce != null
+      size != null || sizeReduce != null
         ? "dot"
         : xZero || yZero || colorReduce != null // histogram or heatmap
         ? "bar"
@@ -104,6 +101,31 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
         : null;
   }
 
+  // TODO: "?? null" on all of these, so none are undefined? (Currently breaks a lot of tests…)
+  return {
+    x: {value: x, reduce: xReduce, zero: xZero, ...xOptions},
+    y: {value: y, reduce: yReduce, zero: yZero, ...yOptions},
+    color: {value: color, color: colorColor, reduce: colorReduce},
+    size: {value: size, reduce: sizeReduce},
+    fx,
+    fy,
+    mark
+  };
+}
+
+/** @jsdoc auto */
+export function auto(data, initialOptions) {
+  let {
+    x: {value: x, reduce: xReduce, zero: xZero, ...xOptions},
+    y: {value: y, reduce: yReduce, zero: yZero, ...yOptions},
+    color: {value: color, color: colorColor, reduce: colorReduce},
+    size: {value: size, reduce: sizeReduce},
+    fx,
+    fy,
+    mark
+  } = autoSpec(data, initialOptions);
+
+  let z, zReduce;
   let colorMode; // "fill" or "stroke"
 
   // Determine the mark implementation.
