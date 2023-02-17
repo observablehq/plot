@@ -302,4 +302,5 @@ export * from "./raster-penguins.js";
 export * from "./raster-vapor.js";
 export * from "./raster-walmart.js";
 export * from "./seattle-temperature-amplitude.js";
+export * from "./text-overflow.js";
 export * from "./volcano.js";

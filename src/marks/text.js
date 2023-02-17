@@ -49,6 +49,7 @@ export class Text extends Mark {
       lineAnchor = /^top/i.test(frameAnchor) ? "top" : /^bottom/i.test(frameAnchor) ? "bottom" : "middle",
       lineHeight = 1,
       lineWidth = Infinity,
+      textOverflow,
       monospace,
       fontFamily = monospace ? "ui-monospace, monospace" : undefined,
       fontSize,
@@ -76,6 +77,8 @@ export class Text extends Mark {
     this.lineAnchor = keyword(lineAnchor, "lineAnchor", ["top", "middle", "bottom"]);
     this.lineHeight = +lineHeight;
     this.lineWidth = +lineWidth;
+    this.textOverflow =
+      textOverflow == null ? undefined : keyword(textOverflow, "textOverflow", ["none", "clip", "ellipsis"]);
     this.monospace = !!monospace;
     this.fontFamily = string(fontFamily);
     this.fontSize = cfontSize;
@@ -100,7 +103,7 @@ export class Text extends Mark {
           .enter()
           .append("text")
           .call(applyDirectStyles, this)
-          .call(applyMultilineText, this, T)
+          .call(applyMultilineText, this, T, channels.title)
           .attr(
             "transform",
             template`translate(${X ? (i) => X[i] : cx},${Y ? (i) => Y[i] : cy})${
@@ -114,12 +117,14 @@ export class Text extends Mark {
   }
 }
 
-function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineWidth}, T) {
+function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineWidth, textOverflow}, T, hasTitle) {
   if (!T) return;
+  if ((textOverflow === "clip" || textOverflow === "ellipsis") && !isFinite(lineWidth))
+    throw new Error(`the textOverflow option requires a specified lineWidth`);
   const linesof = isFinite(lineWidth)
     ? monospace
-      ? (t) => lineWrap(t, lineWidth, monospaceWidth)
-      : (t) => lineWrap(t, lineWidth * 100, defaultWidth)
+      ? (t) => lineWrapOverflow(t, lineWidth * 100, monospaceWidth, textOverflow)
+      : (t) => lineWrapOverflow(t, lineWidth * 100, defaultWidth, textOverflow)
     : (t) => t.split(/\r\n?|\n/g);
   selection.each(function (i) {
     const lines = linesof(formatDefault(T[i]));
@@ -137,6 +142,11 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
     } else {
       if (y) this.setAttribute("y", `${y * lineHeight}em`);
       this.textContent = lines[0];
+    }
+    if (textOverflow && !hasTitle && lines[0] !== T[i]) {
+      const title = this.ownerDocument.createElementNS(namespaces.svg, "title");
+      title.textContent = T[i];
+      this.appendChild(title);
     }
   });
 }
@@ -212,7 +222,7 @@ function maybeFontSizeChannel(fontSize) {
 // This is a greedy algorithm for line wrapping. It would be better to use the
 // Knuth–Plass line breaking algorithm (but that would be much more complex).
 // https://en.wikipedia.org/wiki/Line_wrap_and_word_wrap
-function lineWrap(input, maxWidth, widthof = (_, i, j) => j - i) {
+function lineWrap(input, maxWidth, widthof) {
   const lines = [];
   let lineStart,
     lineEnd = 0;
@@ -393,5 +403,19 @@ function defaultWidth(text, start, end) {
 }
 
 function monospaceWidth(text, start, end) {
-  return end - start;
+  return 100 * (end - start);
+}
+
+function lineWrapOverflow(input, width, widthof, textOverflow) {
+  if (!textOverflow) return lineWrap(input, width, widthof);
+  for (let i = 0; i < input.length; ++i) {
+    width -= widthof(input, i, i + 1);
+    if (width < 0)
+      return [
+        i < input.length - 1
+          ? input.slice(0, i).trim() + (textOverflow === "ellipsis" ? "…" : "")
+          : input.slice(0, i + 1).trim()
+      ];
+  }
+  return [input];
 }
