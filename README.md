@@ -593,6 +593,7 @@ The <a name="facetanchor">*mark*.**facetAnchor**</a> option controls the placeme
 * null - display the mark on each non-empty facet (default for all marks, with the exception of axis marks)
 * *top*, *right*, *bottom*, or *left* - display the mark on facets on the specified side
 * *top-empty*, *right-empty*, *bottom-empty*, or *left-empty* - display the mark on facets that have an empty space on the specified side (the empty space being either the margin, or an empty facet); this is the default for axis marks
+* *empty* - display the mark on empty facets only
 
 ## Legends
 
