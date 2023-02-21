@@ -2041,12 +2041,13 @@ The following text-specific constant options are also supported:
 
 If a **lineWidth** is specified, input text values will be wrapped as needed to fit while preserving existing newlines. The line wrapping implementation is rudimentary; for non-ASCII, non-U.S. English text, or for when a different font is used, you may get better results by hard-wrapping the text yourself (by supplying newlines in the input). If the **monospace** option is truthy, the default **fontFamily** changes to “ui-monospace, monospace”, and the **lineWidth** option is interpreted as characters (ch) rather than ems.
 
-If the **textOverflow** option is specified, only one line will be shown: if the text is longer than the given line width, it is clipped to that length, a title with the complete text is provided unless the mark already has a title channel. The following textOverflow options are supported:
-* **clip** - the text is clipped when the lineWidth is reached; extra spaces are trimed
-* **clip-start** - the width is measured from the end of the line, and the text is clipped to the left
-* **ellipsis** - same as clip, with an ellipsis (…) appended to the clipped text
-* **ellipsis-start** - same as clip-start, with an ellipsis prepended to the clipped text
-* **ellipsis-middle** - if the text is too long, its beginning and end are joined with an ellipsis in the middle
+If the **textOverflow** option is specified, only one line will be shown: if the text is longer than the given line width, it is clipped to that length, a title with the complete text is provided unless the mark already has a title channel. The following textOverflow values are supported:
+
+* *clip* - the text is clipped when the lineWidth is reached; extra spaces are trimed
+* *clip-start* - the width is measured from the end of the line, and the text is clipped to the left
+* *ellipsis* - same as clip, with an ellipsis (…) appended to the clipped text
+* *ellipsis-start* - same as clip-start, with an ellipsis prepended to the clipped text
+* *ellipsis-middle* - if the text is too long, its beginning and end are joined with an ellipsis in the middle
 
 The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
