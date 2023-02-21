@@ -48,9 +48,9 @@ export async function textOverflow() {
   ];
   const options = ["clip", "ellipsis", "clip-start", "ellipsis-start", "ellipsis-middle"];
   return Plot.plot({
-    width: 700,
+    width: 800,
     marginLeft: 180,
-    fx: {axis: "top", domain: options},
+    fx: {axis: "top", domain: [...options, "monospace"]},
     y: {domain: names},
     marks: [
       options.map((textOverflow) =>
@@ -64,6 +64,16 @@ export async function textOverflow() {
           frameAnchor: textOverflow.endsWith("-start") ? "left" : textOverflow.endsWith("-middle") ? "middle" : "right"
         })
       ),
+      Plot.text(names, {
+        text: names,
+        y: names,
+        fx: () => "monospace",
+        monospace: true,
+        textOverflow: "ellipsis-end",
+        lineWidth: 14,
+        dx: -2,
+        frameAnchor: "right"
+      }),
       Plot.frame()
     ]
   });
