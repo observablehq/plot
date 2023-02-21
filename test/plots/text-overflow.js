@@ -1,6 +1,71 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+export async function textOverflow() {
+  const names = [
+    "The Best Years of Our Lives",
+    "The Ballad of Gregorio Cortez",
+    "My Big Fat Independent Movie",
+    "Battle for the Planet of the Apes",
+    "Big Things",
+    "Bogus",
+    "🐣🐧🐤🐥🦜🦆🦢🌾✖️",
+    "Beverly Hills Cop",
+    "Beverly Hills Cop II",
+    "Beverly Hills Cop III",
+    "The Black Hole",
+    "Bathory",
+    "Big",
+    "The Big Parade",
+    "Boyz n the Hood",
+    "The Book of Mormon Movie, Volume 1: The Journey",
+    "Return to the Blue Lagoon",
+    "Bright Lights, Big City",
+    "The Blue Bird",
+    "The Blue Butterfly",
+    "Blade Runner",
+    "Bloodsport",
+    "The Blues Brothers",
+    "Blow Out",
+    "De battre mon coeur s'est arrêté",
+    "The Broadway Melody",
+    "Boom Town",
+    "Bound",
+    "Bang",
+    "Bananas",
+    "Bill & Ted's Bogus Journey",
+    "The Birth of a Nation",
+    "The Ballad of Cable Hogue",
+    "The Blood of Heroes",
+    "The Blood of My Brother: A Story of Death in Iraq",
+    "Boomerang",
+    "The Bridge on the River Kwai",
+    "Born on the Fourth of July",
+    "Basquiat",
+    "Black Rain",
+    "Bottle Rocket"
+  ];
+  const options = ["clip", "clip-start", "ellipsis", "ellipsis-start", "ellipsis-middle"];
+  return Plot.plot({
+    width: 700,
+    marginLeft: 180,
+    fx: {axis: "top", domain: options},
+    y: {domain: names},
+    marks: [
+      options.map((textOverflow) =>
+        Plot.text(names, {
+          text: names,
+          y: names,
+          fx: () => textOverflow,
+          textOverflow,
+          lineWidth: 5
+        })
+      ),
+      Plot.frame()
+    ]
+  });
+}
+
 export async function textOverflowClip() {
   return textOverflowPlot("clip");
 }

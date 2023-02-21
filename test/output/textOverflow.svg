@@ -1,0 +1,347 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="700" height="910" viewBox="0 0 700 910" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="facet" transform="translate(0,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+      <text transform="translate(226,30)">clip</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(180,40.48780487804879)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,61.46341463414635)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,82.43902439024392)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,103.41463414634148)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,124.39024390243904)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,145.3658536585366)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,166.34146341463418)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,187.31707317073173)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,208.2926829268293)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,229.26829268292684)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,250.2439024390244)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,271.219512195122)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,292.19512195121956)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,313.1707317073171)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,334.1463414634147)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,355.1219512195122)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,376.0975609756098)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,397.07317073170736)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,418.0487804878049)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,439.0243902439025)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,460)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,480.9756097560976)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,501.95121951219517)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,522.9268292682927)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,543.9024390243903)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,564.8780487804878)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,585.8536585365854)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,606.829268292683)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,627.8048780487806)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,648.7804878048781)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,669.7560975609756)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,690.7317073170732)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,711.7073170731708)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,732.6829268292684)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,753.6585365853659)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,774.6341463414634)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,795.609756097561)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,816.5853658536586)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,837.5609756097562)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,858.5365853658537)" d="M0,0L-6,0"></path>
+      <path transform="translate(180,879.5121951219512)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(180,40.48780487804879)">The Best Years of Our Lives</text>
+      <text y="0.32em" transform="translate(180,61.46341463414635)">The Ballad of Gregorio Cortez</text>
+      <text y="0.32em" transform="translate(180,82.43902439024392)">My Big Fat Independent Movie</text>
+      <text y="0.32em" transform="translate(180,103.41463414634148)">Battle for the Planet of the Apes</text>
+      <text y="0.32em" transform="translate(180,124.39024390243904)">Big Things</text>
+      <text y="0.32em" transform="translate(180,145.3658536585366)">Bogus</text>
+      <text y="0.32em" transform="translate(180,166.34146341463418)">🐣🐧🐤🐥🦜🦆🦢🌾✖️</text>
+      <text y="0.32em" transform="translate(180,187.31707317073173)">Beverly Hills Cop</text>
+      <text y="0.32em" transform="translate(180,208.2926829268293)">Beverly Hills Cop II</text>
+      <text y="0.32em" transform="translate(180,229.26829268292684)">Beverly Hills Cop III</text>
+      <text y="0.32em" transform="translate(180,250.2439024390244)">The Black Hole</text>
+      <text y="0.32em" transform="translate(180,271.219512195122)">Bathory</text>
+      <text y="0.32em" transform="translate(180,292.19512195121956)">Big</text>
+      <text y="0.32em" transform="translate(180,313.1707317073171)">The Big Parade</text>
+      <text y="0.32em" transform="translate(180,334.1463414634147)">Boyz n the Hood</text>
+      <text y="0.32em" transform="translate(180,355.1219512195122)">The Book of Mormon Movie, Volume 1: The Journey</text>
+      <text y="0.32em" transform="translate(180,376.0975609756098)">Return to the Blue Lagoon</text>
+      <text y="0.32em" transform="translate(180,397.07317073170736)">Bright Lights, Big City</text>
+      <text y="0.32em" transform="translate(180,418.0487804878049)">The Blue Bird</text>
+      <text y="0.32em" transform="translate(180,439.0243902439025)">The Blue Butterfly</text>
+      <text y="0.32em" transform="translate(180,460)">Blade Runner</text>
+      <text y="0.32em" transform="translate(180,480.9756097560976)">Bloodsport</text>
+      <text y="0.32em" transform="translate(180,501.95121951219517)">The Blues Brothers</text>
+      <text y="0.32em" transform="translate(180,522.9268292682927)">Blow Out</text>
+      <text y="0.32em" transform="translate(180,543.9024390243903)">De battre mon coeur s'est arrêté</text>
+      <text y="0.32em" transform="translate(180,564.8780487804878)">The Broadway Melody</text>
+      <text y="0.32em" transform="translate(180,585.8536585365854)">Boom Town</text>
+      <text y="0.32em" transform="translate(180,606.829268292683)">Bound</text>
+      <text y="0.32em" transform="translate(180,627.8048780487806)">Bang</text>
+      <text y="0.32em" transform="translate(180,648.7804878048781)">Bananas</text>
+      <text y="0.32em" transform="translate(180,669.7560975609756)">Bill &amp; Ted's Bogus Journey</text>
+      <text y="0.32em" transform="translate(180,690.7317073170732)">The Birth of a Nation</text>
+      <text y="0.32em" transform="translate(180,711.7073170731708)">The Ballad of Cable Hogue</text>
+      <text y="0.32em" transform="translate(180,732.6829268292684)">The Blood of Heroes</text>
+      <text y="0.32em" transform="translate(180,753.6585365853659)">The Blood of My Brother: A Story of Death in Iraq</text>
+      <text y="0.32em" transform="translate(180,774.6341463414634)">Boomerang</text>
+      <text y="0.32em" transform="translate(180,795.609756097561)">The Bridge on the River Kwai</text>
+      <text y="0.32em" transform="translate(180,816.5853658536586)">Born on the Fourth of July</text>
+      <text y="0.32em" transform="translate(180,837.5609756097562)">Basquiat</text>
+      <text y="0.32em" transform="translate(180,858.5365853658537)">Black Rain</text>
+      <text y="0.32em" transform="translate(180,879.5121951219512)">Bottle Rocket</text>
+    </g>
+    <g aria-label="text" transform="translate(0.5,0.5)">
+      <text y="0.32em" transform="translate(226,40.48780487804879)">The Best<title>The Best Years of Our Lives</title></text>
+      <text y="0.32em" transform="translate(226,61.46341463414635)">The Balla<title>The Ballad of Gregorio Cortez</title></text>
+      <text y="0.32em" transform="translate(226,82.43902439024392)">My Big Fa<title>My Big Fat Independent Movie</title></text>
+      <text y="0.32em" transform="translate(226,103.41463414634148)">Battle for<title>Battle for the Planet of the Apes</title></text>
+      <text y="0.32em" transform="translate(226,124.39024390243904)">Big Things</text>
+      <text y="0.32em" transform="translate(226,145.3658536585366)">Bogus</text>
+      <text y="0.32em" transform="translate(226,166.34146341463418)">🐣🐧🐤🐥🦜🦆🦢🌾<title>🐣🐧🐤🐥🦜🦆🦢🌾✖️</title></text>
+      <text y="0.32em" transform="translate(226,187.31707317073173)">Beverly Hi<title>Beverly Hills Cop</title></text>
+      <text y="0.32em" transform="translate(226,208.2926829268293)">Beverly Hi<title>Beverly Hills Cop II</title></text>
+      <text y="0.32em" transform="translate(226,229.26829268292684)">Beverly Hi<title>Beverly Hills Cop III</title></text>
+      <text y="0.32em" transform="translate(226,250.2439024390244)">The Black<title>The Black Hole</title></text>
+      <text y="0.32em" transform="translate(226,271.219512195122)">Bathory</text>
+      <text y="0.32em" transform="translate(226,292.19512195121956)">Big</text>
+      <text y="0.32em" transform="translate(226,313.1707317073171)">The Big P<title>The Big Parade</title></text>
+      <text y="0.32em" transform="translate(226,334.1463414634147)">Boyz n th<title>Boyz n the Hood</title></text>
+      <text y="0.32em" transform="translate(226,355.1219512195122)">The Book<title>The Book of Mormon Movie, Volume 1: The Journey</title></text>
+      <text y="0.32em" transform="translate(226,376.0975609756098)">Return to<title>Return to the Blue Lagoon</title></text>
+      <text y="0.32em" transform="translate(226,397.07317073170736)">Bright Lig<title>Bright Lights, Big City</title></text>
+      <text y="0.32em" transform="translate(226,418.0487804878049)">The Blue<title>The Blue Bird</title></text>
+      <text y="0.32em" transform="translate(226,439.0243902439025)">The Blue<title>The Blue Butterfly</title></text>
+      <text y="0.32em" transform="translate(226,460)">Blade Run<title>Blade Runner</title></text>
+      <text y="0.32em" transform="translate(226,480.9756097560976)">Bloodsport</text>
+      <text y="0.32em" transform="translate(226,501.95121951219517)">The Blues<title>The Blues Brothers</title></text>
+      <text y="0.32em" transform="translate(226,522.9268292682927)">Blow Out</text>
+      <text y="0.32em" transform="translate(226,543.9024390243903)">De battre<title>De battre mon coeur s'est arrêté</title></text>
+      <text y="0.32em" transform="translate(226,564.8780487804878)">The Broad<title>The Broadway Melody</title></text>
+      <text y="0.32em" transform="translate(226,585.8536585365854)">Boom To<title>Boom Town</title></text>
+      <text y="0.32em" transform="translate(226,606.829268292683)">Bound</text>
+      <text y="0.32em" transform="translate(226,627.8048780487806)">Bang</text>
+      <text y="0.32em" transform="translate(226,648.7804878048781)">Bananas</text>
+      <text y="0.32em" transform="translate(226,669.7560975609756)">Bill &amp; Ted'<title>Bill &amp; Ted's Bogus Journey</title></text>
+      <text y="0.32em" transform="translate(226,690.7317073170732)">The Birth<title>The Birth of a Nation</title></text>
+      <text y="0.32em" transform="translate(226,711.7073170731708)">The Balla<title>The Ballad of Cable Hogue</title></text>
+      <text y="0.32em" transform="translate(226,732.6829268292684)">The Blood<title>The Blood of Heroes</title></text>
+      <text y="0.32em" transform="translate(226,753.6585365853659)">The Blood<title>The Blood of My Brother: A Story of Death in Iraq</title></text>
+      <text y="0.32em" transform="translate(226,774.6341463414634)">Boomerang</text>
+      <text y="0.32em" transform="translate(226,795.609756097561)">The Bridg<title>The Bridge on the River Kwai</title></text>
+      <text y="0.32em" transform="translate(226,816.5853658536586)">Born on t<title>Born on the Fourth of July</title></text>
+      <text y="0.32em" transform="translate(226,837.5609756097562)">Basquiat</text>
+      <text y="0.32em" transform="translate(226,858.5365853658537)">Black Rain</text>
+      <text y="0.32em" transform="translate(226,879.5121951219512)">Bottle Roc<title>Bottle Rocket</title></text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="180" y="30" width="92" height="860"></rect>
+  </g>
+  <g aria-label="facet" transform="translate(102,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+      <text transform="translate(226,30)">clip-start</text>
+    </g>
+    <g aria-label="text" transform="translate(0.5,0.5)">
+      <text y="0.32em" transform="translate(226,40.48780487804879)">Our Lives<title>The Best Years of Our Lives</title></text>
+      <text y="0.32em" transform="translate(226,61.46341463414635)">rio Cortez<title>The Ballad of Gregorio Cortez</title></text>
+      <text y="0.32em" transform="translate(226,82.43902439024392)">ent Movie<title>My Big Fat Independent Movie</title></text>
+      <text y="0.32em" transform="translate(226,103.41463414634148)">f the Apes<title>Battle for the Planet of the Apes</title></text>
+      <text y="0.32em" transform="translate(226,124.39024390243904)">Big Things</text>
+      <text y="0.32em" transform="translate(226,145.3658536585366)">Bogus</text>
+      <text y="0.32em" transform="translate(226,166.34146341463418)">🐤🐥🦜🦆🦢🌾✖️<title>🐣🐧🐤🐥🦜🦆🦢🌾✖️</title></text>
+      <text y="0.32em" transform="translate(226,187.31707317073173)">Hills Cop<title>Beverly Hills Cop</title></text>
+      <text y="0.32em" transform="translate(226,208.2926829268293)">ills Cop II<title>Beverly Hills Cop II</title></text>
+      <text y="0.32em" transform="translate(226,229.26829268292684)">ills Cop III<title>Beverly Hills Cop III</title></text>
+      <text y="0.32em" transform="translate(226,250.2439024390244)">lack Hole<title>The Black Hole</title></text>
+      <text y="0.32em" transform="translate(226,271.219512195122)">Bathory</text>
+      <text y="0.32em" transform="translate(226,292.19512195121956)">Big</text>
+      <text y="0.32em" transform="translate(226,313.1707317073171)">ig Parade<title>The Big Parade</title></text>
+      <text y="0.32em" transform="translate(226,334.1463414634147)">the Hood<title>Boyz n the Hood</title></text>
+      <text y="0.32em" transform="translate(226,355.1219512195122)">e Journey<title>The Book of Mormon Movie, Volume 1: The Journey</title></text>
+      <text y="0.32em" transform="translate(226,376.0975609756098)">e Lagoon<title>Return to the Blue Lagoon</title></text>
+      <text y="0.32em" transform="translate(226,397.07317073170736)">s, Big City<title>Bright Lights, Big City</title></text>
+      <text y="0.32em" transform="translate(226,418.0487804878049)">Blue Bird<title>The Blue Bird</title></text>
+      <text y="0.32em" transform="translate(226,439.0243902439025)">Butterfly<title>The Blue Butterfly</title></text>
+      <text y="0.32em" transform="translate(226,460)">de Runner<title>Blade Runner</title></text>
+      <text y="0.32em" transform="translate(226,480.9756097560976)">Bloodsport</text>
+      <text y="0.32em" transform="translate(226,501.95121951219517)">s Brothers<title>The Blues Brothers</title></text>
+      <text y="0.32em" transform="translate(226,522.9268292682927)">Blow Out</text>
+      <text y="0.32em" transform="translate(226,543.9024390243903)">'est arrêté<title>De battre mon coeur s'est arrêté</title></text>
+      <text y="0.32em" transform="translate(226,564.8780487804878)">ay Melody<title>The Broadway Melody</title></text>
+      <text y="0.32em" transform="translate(226,585.8536585365854)">om Town<title>Boom Town</title></text>
+      <text y="0.32em" transform="translate(226,606.829268292683)">Bound</text>
+      <text y="0.32em" transform="translate(226,627.8048780487806)">Bang</text>
+      <text y="0.32em" transform="translate(226,648.7804878048781)">Bananas</text>
+      <text y="0.32em" transform="translate(226,669.7560975609756)">s Journey<title>Bill &amp; Ted's Bogus Journey</title></text>
+      <text y="0.32em" transform="translate(226,690.7317073170732)">f a Nation<title>The Birth of a Nation</title></text>
+      <text y="0.32em" transform="translate(226,711.7073170731708)">ble Hogue<title>The Ballad of Cable Hogue</title></text>
+      <text y="0.32em" transform="translate(226,732.6829268292684)">of Heroes<title>The Blood of Heroes</title></text>
+      <text y="0.32em" transform="translate(226,753.6585365853659)">ath in Iraq<title>The Blood of My Brother: A Story of Death in Iraq</title></text>
+      <text y="0.32em" transform="translate(226,774.6341463414634)">Boomerang</text>
+      <text y="0.32em" transform="translate(226,795.609756097561)">iver Kwai<title>The Bridge on the River Kwai</title></text>
+      <text y="0.32em" transform="translate(226,816.5853658536586)">rth of July<title>Born on the Fourth of July</title></text>
+      <text y="0.32em" transform="translate(226,837.5609756097562)">Basquiat</text>
+      <text y="0.32em" transform="translate(226,858.5365853658537)">Black Rain</text>
+      <text y="0.32em" transform="translate(226,879.5121951219512)">tle Rocket<title>Bottle Rocket</title></text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="180" y="30" width="92" height="860"></rect>
+  </g>
+  <g aria-label="facet" transform="translate(204,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+      <text transform="translate(226,30)">ellipsis</text>
+    </g>
+    <g aria-label="text" transform="translate(0.5,0.5)">
+      <text y="0.32em" transform="translate(226,40.48780487804879)">The Best…<title>The Best Years of Our Lives</title></text>
+      <text y="0.32em" transform="translate(226,61.46341463414635)">The Balla…<title>The Ballad of Gregorio Cortez</title></text>
+      <text y="0.32em" transform="translate(226,82.43902439024392)">My Big Fa…<title>My Big Fat Independent Movie</title></text>
+      <text y="0.32em" transform="translate(226,103.41463414634148)">Battle for…<title>Battle for the Planet of the Apes</title></text>
+      <text y="0.32em" transform="translate(226,124.39024390243904)">Big Things</text>
+      <text y="0.32em" transform="translate(226,145.3658536585366)">Bogus</text>
+      <text y="0.32em" transform="translate(226,166.34146341463418)">🐣🐧🐤🐥🦜🦆🦢🌾…<title>🐣🐧🐤🐥🦜🦆🦢🌾✖️</title></text>
+      <text y="0.32em" transform="translate(226,187.31707317073173)">Beverly Hi…<title>Beverly Hills Cop</title></text>
+      <text y="0.32em" transform="translate(226,208.2926829268293)">Beverly Hi…<title>Beverly Hills Cop II</title></text>
+      <text y="0.32em" transform="translate(226,229.26829268292684)">Beverly Hi…<title>Beverly Hills Cop III</title></text>
+      <text y="0.32em" transform="translate(226,250.2439024390244)">The Black…<title>The Black Hole</title></text>
+      <text y="0.32em" transform="translate(226,271.219512195122)">Bathory</text>
+      <text y="0.32em" transform="translate(226,292.19512195121956)">Big</text>
+      <text y="0.32em" transform="translate(226,313.1707317073171)">The Big P…<title>The Big Parade</title></text>
+      <text y="0.32em" transform="translate(226,334.1463414634147)">Boyz n th…<title>Boyz n the Hood</title></text>
+      <text y="0.32em" transform="translate(226,355.1219512195122)">The Book…<title>The Book of Mormon Movie, Volume 1: The Journey</title></text>
+      <text y="0.32em" transform="translate(226,376.0975609756098)">Return to…<title>Return to the Blue Lagoon</title></text>
+      <text y="0.32em" transform="translate(226,397.07317073170736)">Bright Lig…<title>Bright Lights, Big City</title></text>
+      <text y="0.32em" transform="translate(226,418.0487804878049)">The Blue…<title>The Blue Bird</title></text>
+      <text y="0.32em" transform="translate(226,439.0243902439025)">The Blue…<title>The Blue Butterfly</title></text>
+      <text y="0.32em" transform="translate(226,460)">Blade Run…<title>Blade Runner</title></text>
+      <text y="0.32em" transform="translate(226,480.9756097560976)">Bloodsport</text>
+      <text y="0.32em" transform="translate(226,501.95121951219517)">The Blues…<title>The Blues Brothers</title></text>
+      <text y="0.32em" transform="translate(226,522.9268292682927)">Blow Out</text>
+      <text y="0.32em" transform="translate(226,543.9024390243903)">De battre…<title>De battre mon coeur s'est arrêté</title></text>
+      <text y="0.32em" transform="translate(226,564.8780487804878)">The Broad…<title>The Broadway Melody</title></text>
+      <text y="0.32em" transform="translate(226,585.8536585365854)">Boom To…<title>Boom Town</title></text>
+      <text y="0.32em" transform="translate(226,606.829268292683)">Bound</text>
+      <text y="0.32em" transform="translate(226,627.8048780487806)">Bang</text>
+      <text y="0.32em" transform="translate(226,648.7804878048781)">Bananas</text>
+      <text y="0.32em" transform="translate(226,669.7560975609756)">Bill &amp; Ted'…<title>Bill &amp; Ted's Bogus Journey</title></text>
+      <text y="0.32em" transform="translate(226,690.7317073170732)">The Birth…<title>The Birth of a Nation</title></text>
+      <text y="0.32em" transform="translate(226,711.7073170731708)">The Balla…<title>The Ballad of Cable Hogue</title></text>
+      <text y="0.32em" transform="translate(226,732.6829268292684)">The Blood…<title>The Blood of Heroes</title></text>
+      <text y="0.32em" transform="translate(226,753.6585365853659)">The Blood…<title>The Blood of My Brother: A Story of Death in Iraq</title></text>
+      <text y="0.32em" transform="translate(226,774.6341463414634)">Boomerang</text>
+      <text y="0.32em" transform="translate(226,795.609756097561)">The Bridg…<title>The Bridge on the River Kwai</title></text>
+      <text y="0.32em" transform="translate(226,816.5853658536586)">Born on t…<title>Born on the Fourth of July</title></text>
+      <text y="0.32em" transform="translate(226,837.5609756097562)">Basquiat</text>
+      <text y="0.32em" transform="translate(226,858.5365853658537)">Black Rain</text>
+      <text y="0.32em" transform="translate(226,879.5121951219512)">Bottle Roc…<title>Bottle Rocket</title></text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="180" y="30" width="92" height="860"></rect>
+  </g>
+  <g aria-label="facet" transform="translate(306,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+      <text transform="translate(226,30)">ellipsis-start</text>
+    </g>
+    <g aria-label="text" transform="translate(0.5,0.5)">
+      <text y="0.32em" transform="translate(226,40.48780487804879)">…Our Lives<title>The Best Years of Our Lives</title></text>
+      <text y="0.32em" transform="translate(226,61.46341463414635)">…rio Cortez<title>The Ballad of Gregorio Cortez</title></text>
+      <text y="0.32em" transform="translate(226,82.43902439024392)">…ent Movie<title>My Big Fat Independent Movie</title></text>
+      <text y="0.32em" transform="translate(226,103.41463414634148)">…f the Apes<title>Battle for the Planet of the Apes</title></text>
+      <text y="0.32em" transform="translate(226,124.39024390243904)">Big Things</text>
+      <text y="0.32em" transform="translate(226,145.3658536585366)">Bogus</text>
+      <text y="0.32em" transform="translate(226,166.34146341463418)">…🐤🐥🦜🦆🦢🌾✖️<title>🐣🐧🐤🐥🦜🦆🦢🌾✖️</title></text>
+      <text y="0.32em" transform="translate(226,187.31707317073173)">…Hills Cop<title>Beverly Hills Cop</title></text>
+      <text y="0.32em" transform="translate(226,208.2926829268293)">…ills Cop II<title>Beverly Hills Cop II</title></text>
+      <text y="0.32em" transform="translate(226,229.26829268292684)">…ills Cop III<title>Beverly Hills Cop III</title></text>
+      <text y="0.32em" transform="translate(226,250.2439024390244)">…lack Hole<title>The Black Hole</title></text>
+      <text y="0.32em" transform="translate(226,271.219512195122)">Bathory</text>
+      <text y="0.32em" transform="translate(226,292.19512195121956)">Big</text>
+      <text y="0.32em" transform="translate(226,313.1707317073171)">…ig Parade<title>The Big Parade</title></text>
+      <text y="0.32em" transform="translate(226,334.1463414634147)">…the Hood<title>Boyz n the Hood</title></text>
+      <text y="0.32em" transform="translate(226,355.1219512195122)">…e Journey<title>The Book of Mormon Movie, Volume 1: The Journey</title></text>
+      <text y="0.32em" transform="translate(226,376.0975609756098)">…e Lagoon<title>Return to the Blue Lagoon</title></text>
+      <text y="0.32em" transform="translate(226,397.07317073170736)">…s, Big City<title>Bright Lights, Big City</title></text>
+      <text y="0.32em" transform="translate(226,418.0487804878049)">…Blue Bird<title>The Blue Bird</title></text>
+      <text y="0.32em" transform="translate(226,439.0243902439025)">…Butterfly<title>The Blue Butterfly</title></text>
+      <text y="0.32em" transform="translate(226,460)">…de Runner<title>Blade Runner</title></text>
+      <text y="0.32em" transform="translate(226,480.9756097560976)">Bloodsport</text>
+      <text y="0.32em" transform="translate(226,501.95121951219517)">…s Brothers<title>The Blues Brothers</title></text>
+      <text y="0.32em" transform="translate(226,522.9268292682927)">Blow Out</text>
+      <text y="0.32em" transform="translate(226,543.9024390243903)">…'est arrêté<title>De battre mon coeur s'est arrêté</title></text>
+      <text y="0.32em" transform="translate(226,564.8780487804878)">…ay Melody<title>The Broadway Melody</title></text>
+      <text y="0.32em" transform="translate(226,585.8536585365854)">…om Town<title>Boom Town</title></text>
+      <text y="0.32em" transform="translate(226,606.829268292683)">Bound</text>
+      <text y="0.32em" transform="translate(226,627.8048780487806)">Bang</text>
+      <text y="0.32em" transform="translate(226,648.7804878048781)">Bananas</text>
+      <text y="0.32em" transform="translate(226,669.7560975609756)">…s Journey<title>Bill &amp; Ted's Bogus Journey</title></text>
+      <text y="0.32em" transform="translate(226,690.7317073170732)">…f a Nation<title>The Birth of a Nation</title></text>
+      <text y="0.32em" transform="translate(226,711.7073170731708)">…ble Hogue<title>The Ballad of Cable Hogue</title></text>
+      <text y="0.32em" transform="translate(226,732.6829268292684)">…of Heroes<title>The Blood of Heroes</title></text>
+      <text y="0.32em" transform="translate(226,753.6585365853659)">…ath in Iraq<title>The Blood of My Brother: A Story of Death in Iraq</title></text>
+      <text y="0.32em" transform="translate(226,774.6341463414634)">Boomerang</text>
+      <text y="0.32em" transform="translate(226,795.609756097561)">…iver Kwai<title>The Bridge on the River Kwai</title></text>
+      <text y="0.32em" transform="translate(226,816.5853658536586)">…rth of July<title>Born on the Fourth of July</title></text>
+      <text y="0.32em" transform="translate(226,837.5609756097562)">Basquiat</text>
+      <text y="0.32em" transform="translate(226,858.5365853658537)">Black Rain</text>
+      <text y="0.32em" transform="translate(226,879.5121951219512)">…tle Rocket<title>Bottle Rocket</title></text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="180" y="30" width="92" height="860"></rect>
+  </g>
+  <g aria-label="facet" transform="translate(408,0)">
+    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+      <text transform="translate(226,30)">ellipsis-middle</text>
+    </g>
+    <g aria-label="text" transform="translate(0.5,0.5)">
+      <text y="0.32em" transform="translate(226,40.48780487804879)">The B…ives<title>The Best Years of Our Lives</title></text>
+      <text y="0.32em" transform="translate(226,61.46341463414635)">The B…rtez<title>The Ballad of Gregorio Cortez</title></text>
+      <text y="0.32em" transform="translate(226,82.43902439024392)">My Bi…ovie<title>My Big Fat Independent Movie</title></text>
+      <text y="0.32em" transform="translate(226,103.41463414634148)">Battl…Apes<title>Battle for the Planet of the Apes</title></text>
+      <text y="0.32em" transform="translate(226,124.39024390243904)">Big Things</text>
+      <text y="0.32em" transform="translate(226,145.3658536585366)">Bogus</text>
+      <text y="0.32em" transform="translate(226,166.34146341463418)">🐣🐧🐤🐥…🦢🌾✖️<title>🐣🐧🐤🐥🦜🦆🦢🌾✖️</title></text>
+      <text y="0.32em" transform="translate(226,187.31707317073173)">Beve…Cop<title>Beverly Hills Cop</title></text>
+      <text y="0.32em" transform="translate(226,208.2926829268293)">Bever…op II<title>Beverly Hills Cop II</title></text>
+      <text y="0.32em" transform="translate(226,229.26829268292684)">Beverl…p III<title>Beverly Hills Cop III</title></text>
+      <text y="0.32em" transform="translate(226,250.2439024390244)">The B…Hole<title>The Black Hole</title></text>
+      <text y="0.32em" transform="translate(226,271.219512195122)">Bathory</text>
+      <text y="0.32em" transform="translate(226,292.19512195121956)">Big</text>
+      <text y="0.32em" transform="translate(226,313.1707317073171)">The B…rade<title>The Big Parade</title></text>
+      <text y="0.32em" transform="translate(226,334.1463414634147)">Boyz…Hood<title>Boyz n the Hood</title></text>
+      <text y="0.32em" transform="translate(226,355.1219512195122)">The B…rney<title>The Book of Mormon Movie, Volume 1: The Journey</title></text>
+      <text y="0.32em" transform="translate(226,376.0975609756098)">Retu…goon<title>Return to the Blue Lagoon</title></text>
+      <text y="0.32em" transform="translate(226,397.07317073170736)">Brigh…City<title>Bright Lights, Big City</title></text>
+      <text y="0.32em" transform="translate(226,418.0487804878049)">The B…Bird<title>The Blue Bird</title></text>
+      <text y="0.32em" transform="translate(226,439.0243902439025)">The B…erfly<title>The Blue Butterfly</title></text>
+      <text y="0.32em" transform="translate(226,460)">Blade…nner<title>Blade Runner</title></text>
+      <text y="0.32em" transform="translate(226,480.9756097560976)">Bloodsport</text>
+      <text y="0.32em" transform="translate(226,501.95121951219517)">The B…hers<title>The Blues Brothers</title></text>
+      <text y="0.32em" transform="translate(226,522.9268292682927)">Blow Out</text>
+      <text y="0.32em" transform="translate(226,543.9024390243903)">De ba…rêté<title>De battre mon coeur s'est arrêté</title></text>
+      <text y="0.32em" transform="translate(226,564.8780487804878)">The B…lody<title>The Broadway Melody</title></text>
+      <text y="0.32em" transform="translate(226,585.8536585365854)">Boom…own<title>Boom Town</title></text>
+      <text y="0.32em" transform="translate(226,606.829268292683)">Bound</text>
+      <text y="0.32em" transform="translate(226,627.8048780487806)">Bang</text>
+      <text y="0.32em" transform="translate(226,648.7804878048781)">Bananas</text>
+      <text y="0.32em" transform="translate(226,669.7560975609756)">Bill …urney<title>Bill &amp; Ted's Bogus Journey</title></text>
+      <text y="0.32em" transform="translate(226,690.7317073170732)">The B…tion<title>The Birth of a Nation</title></text>
+      <text y="0.32em" transform="translate(226,711.7073170731708)">The …ogue<title>The Ballad of Cable Hogue</title></text>
+      <text y="0.32em" transform="translate(226,732.6829268292684)">The B…roes<title>The Blood of Heroes</title></text>
+      <text y="0.32em" transform="translate(226,753.6585365853659)">The B…Iraq<title>The Blood of My Brother: A Story of Death in Iraq</title></text>
+      <text y="0.32em" transform="translate(226,774.6341463414634)">Boomerang</text>
+      <text y="0.32em" transform="translate(226,795.609756097561)">The …Kwai<title>The Bridge on the River Kwai</title></text>
+      <text y="0.32em" transform="translate(226,816.5853658536586)">Born…July<title>Born on the Fourth of July</title></text>
+      <text y="0.32em" transform="translate(226,837.5609756097562)">Basquiat</text>
+      <text y="0.32em" transform="translate(226,858.5365853658537)">Black Rain</text>
+      <text y="0.32em" transform="translate(226,879.5121951219512)">Bottl…ocket<title>Bottle Rocket</title></text>
+    </g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="180" y="30" width="92" height="860"></rect>
+  </g>
+</svg>

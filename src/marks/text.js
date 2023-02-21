@@ -78,7 +78,16 @@ export class Text extends Mark {
     this.lineHeight = +lineHeight;
     this.lineWidth = +lineWidth;
     this.textOverflow =
-      textOverflow == null ? undefined : keyword(textOverflow, "textOverflow", ["none", "clip", "ellipsis"]);
+      textOverflow == null
+        ? undefined
+        : keyword(textOverflow, "textOverflow", [
+            "clip",
+            "clip-start",
+            "ellipsis",
+            "ellipsis-start",
+            "ellipsis-middle",
+            "ellipsis-end"
+          ]);
     this.monospace = !!monospace;
     this.fontFamily = string(fontFamily);
     this.fontSize = cfontSize;
@@ -89,7 +98,7 @@ export class Text extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
+    const {x: X, y: Y, rotate: R, text: T, title: TL, fontSize: FS} = channels;
     const {rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
@@ -103,7 +112,7 @@ export class Text extends Mark {
           .enter()
           .append("text")
           .call(applyDirectStyles, this)
-          .call(applyMultilineText, this, T, channels.title)
+          .call(applyMultilineText, this, T, TL)
           .attr(
             "transform",
             template`translate(${X ? (i) => X[i] : cx},${Y ? (i) => Y[i] : cy})${
@@ -117,14 +126,14 @@ export class Text extends Mark {
   }
 }
 
-function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineWidth, textOverflow}, T, hasTitle) {
+function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineWidth, textOverflow}, T, TL) {
   if (!T) return;
-  if ((textOverflow === "clip" || textOverflow === "ellipsis") && !isFinite(lineWidth))
-    throw new Error(`the textOverflow option requires a specified lineWidth`);
+  if (textOverflow && !isFinite(lineWidth)) throw new Error(`the textOverflow option requires a specified lineWidth`);
+  const measure = monospace ? monospaceWidth : defaultWidth;
   const linesof = isFinite(lineWidth)
-    ? monospace
-      ? (t) => lineWrapOverflow(t, lineWidth * 100, monospaceWidth, textOverflow)
-      : (t) => lineWrapOverflow(t, lineWidth * 100, defaultWidth, textOverflow)
+    ? textOverflow
+      ? (t) => [overflow(t, lineWidth * 100, measure, textOverflow).join("")]
+      : (t) => lineWrap(t, lineWidth * 100, measure)
     : (t) => t.split(/\r\n?|\n/g);
   selection.each(function (i) {
     const lines = linesof(formatDefault(T[i]));
@@ -143,7 +152,7 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
       if (y) this.setAttribute("y", `${y * lineHeight}em`);
       this.textContent = lines[0];
     }
-    if (textOverflow && !hasTitle && lines[0] !== T[i]) {
+    if (textOverflow && !TL && lines[0] !== T[i]) {
       const title = this.ownerDocument.createElementNS(namespaces.svg, "title");
       title.textContent = T[i];
       this.appendChild(title);
@@ -226,6 +235,7 @@ function lineWrap(input, maxWidth, widthof) {
   const lines = [];
   let lineStart,
     lineEnd = 0;
+  input = [...input];
   for (const [wordStart, wordEnd, required] of lineBreaks(input)) {
     // Record the start of a line. This isn’t the same as the previous line’s
     // end because we often skip spaces between lines.
@@ -235,7 +245,9 @@ function lineWrap(input, maxWidth, widthof) {
     // make the line longer than the allowed width, then break the line at the
     // previous word end.
     if (lineEnd > lineStart && widthof(input, lineStart, wordEnd) > maxWidth) {
-      lines.push(input.slice(lineStart, lineEnd) + (input[lineEnd - 1] === softHyphen ? "-" : ""));
+      const line = input.slice(lineStart, lineEnd);
+      if (input[lineEnd - 1] === softHyphen) line.push("-");
+      lines.push(line);
       lineStart = wordStart;
     }
 
@@ -249,7 +261,7 @@ function lineWrap(input, maxWidth, widthof) {
     // Extend the current line to include the new word.
     lineEnd = wordEnd;
   }
-  return lines;
+  return lines.map((line) => line.join(""));
 }
 
 // This is a rudimentary (and U.S.-centric) algorithm for finding opportunities
@@ -389,10 +401,10 @@ function defaultWidth(text, start, end) {
   let sum = 0;
   for (let i = start; i < end; ++i) {
     sum += defaultWidthMap[text[i]] || defaultWidthMap.e;
-    const first = text.charCodeAt(i);
-    if (first >= 0xd800 && first <= 0xdbff) {
+    const first = text[i].charCodeAt(0);
+    if (first >= 0xd800 && first <= 0xdbff && i < end - 1) {
       // high surrogate
-      const second = text.charCodeAt(i + 1);
+      const second = text[i + 1].charCodeAt(0);
       if (second >= 0xdc00 && second <= 0xdfff) {
         // low surrogate
         ++i; // surrogate pair
@@ -406,16 +418,41 @@ function monospaceWidth(text, start, end) {
   return 100 * (end - start);
 }
 
-function lineWrapOverflow(input, width, widthof, textOverflow) {
-  if (!textOverflow) return lineWrap(input, width, widthof);
-  for (let i = 0; i < input.length; ++i) {
-    width -= widthof(input, i, i + 1);
-    if (width < 0)
-      return [
-        i < input.length - 1
-          ? input.slice(0, i).trim() + (textOverflow === "ellipsis" ? "…" : "")
-          : input.slice(0, i + 1).trim()
-      ];
+function interlace(chars) {
+  const a = [];
+  const n = chars.length;
+  for (let i = 0; i < n >> 1; ++i) a.push(chars[i], chars[n - i - 1]);
+  if (n % 2) a.push(chars[(n / 2) | 0]);
+  return a;
+}
+
+function deinterlace(chars) {
+  const a = [];
+  const n = chars.length;
+  for (let i = 0; i < n; ++i) a[i % 2 ? n - ((i - 1) >> 1) : i >> 1] = chars[i];
+  return a;
+}
+
+function overflow(input, width, widthof, textOverflow) {
+  let chars = [...input]; // utf-8 split
+  switch (textOverflow) {
+    case "clip-start":
+      return overflow(chars.reverse(), width, widthof, "clip").reverse();
+    case "ellipsis-start":
+      return overflow(chars.reverse(), width, widthof, "ellipsis").reverse();
+    case "ellipsis-middle":
+      return deinterlace(overflow(interlace(chars), width, widthof, "ellipsis"));
   }
-  return [input];
+  for (let i = 0; i < chars.length; ++i) {
+    width -= widthof(chars, i, i + 1);
+    if (width < 0) {
+      if (i === chars.length - 1) return chars;
+      chars = chars.slice(0, i);
+      while (chars[0] === " ") chars.shift();
+      while (chars[chars.length - 1] === " ") chars.pop();
+      if (textOverflow === "ellipsis") chars.push("…");
+      return chars;
+    }
+  }
+  return chars;
 }
