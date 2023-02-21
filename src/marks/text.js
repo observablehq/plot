@@ -133,7 +133,7 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
   const measure = monospace ? monospaceWidth : defaultWidth;
   const linesof = isFinite(lineWidth)
     ? textOverflow
-      ? (t) => [overflow(t, lineWidth * 100, measure, textOverflow).join("")]
+      ? (t) => [overflow(t, lineWidth * 100, measure, textOverflow)]
       : (t) => lineWrap(t, lineWidth * 100, measure)
     : (t) => t.split(/\r\n?|\n/g);
   selection.each(function (i) {
@@ -236,7 +236,6 @@ function lineWrap(input, maxWidth, widthof) {
   const lines = [];
   let lineStart,
     lineEnd = 0;
-  input = [...input];
   for (const [wordStart, wordEnd, required] of lineBreaks(input)) {
     // Record the start of a line. This isn’t the same as the previous line’s
     // end because we often skip spaces between lines.
@@ -246,9 +245,7 @@ function lineWrap(input, maxWidth, widthof) {
     // make the line longer than the allowed width, then break the line at the
     // previous word end.
     if (lineEnd > lineStart && widthof(input, lineStart, wordEnd) > maxWidth) {
-      const line = input.slice(lineStart, lineEnd);
-      if (input[lineEnd - 1] === softHyphen) line.push("-");
-      lines.push(line);
+      lines.push(input.slice(lineStart, lineEnd) + (input[lineEnd - 1] === softHyphen ? "-" : ""));
       lineStart = wordStart;
     }
 
@@ -262,7 +259,7 @@ function lineWrap(input, maxWidth, widthof) {
     // Extend the current line to include the new word.
     lineEnd = wordEnd;
   }
-  return lines.map((line) => line.join(""));
+  return lines;
 }
 
 // This is a rudimentary (and U.S.-centric) algorithm for finding opportunities
@@ -393,25 +390,17 @@ const defaultWidthMap = {
 // a string based on a technique of Gregor Aisch; it assumes that individual
 // characters are laid out independently and does not implement the Unicode
 // grapheme cluster breaking algorithm. It does understand code points, though,
-// and so treats things like emoji as having the width of a lowercase e (and
-// should be equivalent to using for-of to iterate over code points, while also
-// being fast). TODO Optimize this by noting that we often re-measure characters
-// that were previously measured?
+// and so treats things like emoji as having a 1em width (and should be
+// equivalent to using for-of to iterate over code points, while also being
+// fast). TODO Optimize this by noting that we often re-measure characters that
+// were previously measured?
 // http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries
 // https://exploringjs.com/impatient-js/ch_strings.html#atoms-of-text
 function defaultWidth(text, start, end) {
   let sum = 0;
   for (let i = start; i < end; ++i) {
-    sum += defaultWidthMap[text[i]] || defaultWidthMap.e;
-    const first = text[i].charCodeAt(0);
-    if (first >= 0xd800 && first <= 0xdbff && i < end - 1) {
-      // high surrogate
-      const second = text[i + 1].charCodeAt(0);
-      if (second >= 0xdc00 && second <= 0xdfff) {
-        // low surrogate
-        ++i; // surrogate pair
-      }
-    }
+    sum += defaultWidthMap[text[i]] || 100;
+    i += isSurrogatePair(text[i], text[i + 1]);
   }
   return sum;
 }
@@ -420,41 +409,49 @@ function monospaceWidth(text, start, end) {
   return 100 * (end - start);
 }
 
-function interlace(chars) {
+function isSurrogatePair(first, second) {
+  return first >= "\ud800" && first <= "\udbff" && second >= "\udc00" && second <= "\udfff";
+}
+
+function interlace(input) {
+  input = [...input];
   const a = [];
-  const n = chars.length;
-  for (let i = 0; i < n >> 1; ++i) a.push(chars[i], chars[n - i - 1]);
-  if (n % 2) a.push(chars[(n / 2) | 0]);
+  const n = input.length;
+  for (let i = 0; i < n >> 1; ++i) a.push(input[i], input[n - i - 1]);
+  if (n % 2) a.push(input[(n / 2) | 0]);
   return a;
 }
 
-function deinterlace(chars) {
+function deinterlace(input) {
+  input = [...input];
   const a = [];
-  const n = chars.length;
-  for (let i = 0; i < n; ++i) a[i % 2 ? n - ((i - 1) >> 1) : i >> 1] = chars[i];
-  return a;
+  const n = input.length;
+  for (let i = 0; i < n; ++i) a[i % 2 ? n - ((i - 1) >> 1) : i >> 1] = input[i];
+  return a.join("");
 }
 
 function overflow(input, width, widthof, textOverflow) {
-  let chars = [...input]; // utf-8 split
   switch (textOverflow) {
     case "clip-start":
-      return overflow(chars.reverse(), width, widthof, "clip").reverse();
+      return [...overflow([...input].reverse().join(""), width, widthof, "clip-end")].reverse().join("");
     case "ellipsis-start":
-      return overflow(chars.reverse(), width, widthof, "ellipsis").reverse();
+      return [...overflow([...input].reverse().join(""), width, widthof, "ellipsis-end")].reverse().join("");
     case "ellipsis-middle":
-      return deinterlace(overflow(interlace(chars), width, widthof, "ellipsis"));
+      return deinterlace(overflow(interlace(input).join(""), width, widthof, "ellipsis-end"));
   }
-  for (let i = 0; i < chars.length; ++i) {
-    width -= widthof(chars, i, i + 1);
+  if (textOverflow === "ellipsis-end") width -= widthof("…", 0, 1);
+  let out = "";
+  input = [...input.trim()]; // iterate on code points
+  for (const [i, char] of input.entries()) {
+    width -= widthof(char, 0, char.length);
     if (width < 0) {
-      if (i === chars.length - 1) return chars;
-      chars = chars.slice(0, i);
-      while (chars[0] === " ") chars.shift();
-      while (chars[chars.length - 1] === " ") chars.pop();
-      if (textOverflow === "ellipsis") chars.push("…");
-      return chars;
+      if (textOverflow === "ellipsis-end") {
+        if (i === input.length - 1) out += char;
+        else out = out.replace(/[.\s…]+$/, "") + "…";
+      }
+      break;
     }
+    out += char;
   }
-  return chars;
+  return out.trimEnd();
 }
