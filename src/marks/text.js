@@ -406,7 +406,9 @@ function defaultWidth(text, start, end) {
 }
 
 function monospaceWidth(text, start, end) {
-  return 100 * (end - start);
+  let sum = end - start;
+  for (let i = start; i < end; ++i) sum -= isSurrogatePair(text[i], text[i + 1]);
+  return 100 * sum;
 }
 
 function isSurrogatePair(first, second) {
