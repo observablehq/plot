@@ -2043,9 +2043,9 @@ If a **lineWidth** is specified, input text values will be wrapped as needed to 
 
 If the **textOverflow** option is specified, only one line will be shown: if the text is longer than the given line width, it is clipped to that length, a title with the complete text is provided unless the mark already has a title channel. The following textOverflow values are supported:
 
-* *clip* - the text is clipped when the lineWidth is reached; extra spaces are trimed
+* *clip* or *clip-end*- the text is clipped when the lineWidth is reached; extra spaces are trimed
 * *clip-start* - the width is measured from the end of the line, and the text is clipped to the left
-* *ellipsis* - same as clip, with an ellipsis (…) appended to the clipped text
+* *ellipsis* or *ellipsis-end* - same as clip, with an ellipsis (…) appended to the clipped text
 * *ellipsis-start* - same as clip-start, with an ellipsis prepended to the clipped text
 * *ellipsis-middle* - if the text is too long, its beginning and end are joined with an ellipsis in the middle
 

@@ -81,13 +81,14 @@ export class Text extends Mark {
       textOverflow == null
         ? undefined
         : keyword(textOverflow, "textOverflow", [
-            "clip",
+            "clip", // shorthand for clip-end
+            "ellipsis", // … ellipsis-end
             "clip-start",
-            "ellipsis",
+            "clip-end",
             "ellipsis-start",
             "ellipsis-middle",
             "ellipsis-end"
-          ]);
+          ]).replace(/^(clip|ellipsis)$/, "$1-end");
     this.monospace = !!monospace;
     this.fontFamily = string(fontFamily);
     this.fontSize = cfontSize;
