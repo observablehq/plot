@@ -291,6 +291,7 @@ function axisTickKy(
     ...options
   }
 ) {
+  if (k === "fy" && options.x !== undefined) throw new Error("fy axes do not support the x option");
   return axisMark(vectorY, k, `${k}-axis tick`, data, {
     strokeWidth,
     strokeLinecap,
@@ -325,6 +326,7 @@ function axisTickKx(
     ...options
   }
 ) {
+  if (k === "fx" && options.y !== undefined) throw new Error("fx axes do not support the y option");
   return axisMark(vectorX, k, `${k}-axis tick`, data, {
     strokeWidth,
     strokeLinejoin,
@@ -363,6 +365,7 @@ function axisTextKy(
     ...options
   }
 ) {
+  if (k === "fy" && options.x !== undefined) throw new Error("fy axes do not support the x option");
   return axisMark(
     textY,
     k,
@@ -410,6 +413,7 @@ function axisTextKx(
     ...options
   }
 ) {
+  if (k === "fx" && options.y !== undefined) throw new Error("fx axes do not support the y option");
   return axisMark(
     textX,
     k,
