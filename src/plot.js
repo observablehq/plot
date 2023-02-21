@@ -100,8 +100,7 @@ export function plot(options = {}) {
     for (const mark of marks) {
       if (mark.facet === "exclude") {
         const facetState = facetStateByMark.get(mark);
-        if (facetState === undefined) throw new Error(`the facet: "exclude" option is restricted to top-level facets`);
-        facetState.facetsIndex = facetExclude(facetState.facetsIndex);
+        if (facetState !== undefined) facetState.facetsIndex = facetExclude(facetState.facetsIndex);
       }
     }
   }
