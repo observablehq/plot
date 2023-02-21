@@ -100,7 +100,7 @@ export function plot(options = {}) {
     for (const mark of marks) {
       if (mark.facet === "exclude") {
         const facetState = facetStateByMark.get(mark);
-        facetState.facetsIndex = facetExclude(facetState.facetsIndex);
+        if (facetState !== undefined) facetState.facetsIndex = facetExclude(facetState.facetsIndex);
       }
     }
   }
