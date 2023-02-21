@@ -384,7 +384,8 @@ const defaultWidthMap = {
   "‘": 31,
   "’": 31,
   "“": 47,
-  "”": 47
+  "”": 47,
+  "…": 89
 };
 
 // This is a rudimentary (and U.S.-centric) algorithm for measuring the width of
