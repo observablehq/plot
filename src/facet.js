@@ -91,7 +91,8 @@ const facetAnchors = new Map([
   ["top-empty", facetAnchorTopEmpty],
   ["right-empty", facetAnchorRightEmpty],
   ["bottom-empty", facetAnchorBottomEmpty],
-  ["left-empty", facetAnchorLeftEmpty]
+  ["left-empty", facetAnchorLeftEmpty],
+  ["empty", facetAnchorEmpty]
 ]);
 
 export function maybeFacetAnchor(facetAnchor) {
@@ -151,6 +152,10 @@ function facetAnchorRightEmpty(facets, {x: X}, {x, y, empty}) {
     const x = X[i + 1];
     return facets.find((f) => f.x === x && f.y === y)?.empty;
   }
+}
+
+function facetAnchorEmpty(facets, channels, {empty}) {
+  return empty;
 }
 
 function and(a, b) {
