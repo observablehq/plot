@@ -3,19 +3,23 @@ import * as d3 from "d3";
 
 export async function textOverflow() {
   const names = [
+    "🐣🐧🐤🐥🍎🦜",
+    "🐣🐧🐤🐥🍎🦜🎃",
+    "🐣🐧🐤🐥🍎🦜🎃🍌",
+    "🐣🐧🐤🐥🍎🦜🎃🍌🦆",
+    "🐣🐧🐤🐥🍎🦜🎃🍌🦆🦢",
+    "🐣🐧🐤🐥🍎🦜🎃🍌🦆🦢🌾",
+    "🐣🐧🐤🐥🍎🦜🎃🍌🦆🦢🌾🍎",
     "The Best Years of Our Lives",
     "The Ballad of Gregorio Cortez",
     "My Big Fat Independent Movie",
     "Battle for the Planet of the Apes",
     "Big Things",
     "Bogus",
-    "🐣🐧🐤🐥🦜🦆🦢🌾✖️",
     "Beverly Hills Cop",
     "Beverly Hills Cop II",
     "Beverly Hills Cop III",
     "The Black Hole",
-    "Bathory",
-    "Big",
     "The Big Parade",
     "Boyz n the Hood",
     "The Book of Mormon Movie, Volume 1: The Journey",
@@ -27,12 +31,9 @@ export async function textOverflow() {
     "Bloodsport",
     "The Blues Brothers",
     "Blow Out",
-    "De battre mon coeur s'est arrêté",
+    "De battre mon cœur s'est arrêté",
     "The Broadway Melody",
     "Boom Town",
-    "Bound",
-    "Bang",
-    "Bananas",
     "Bill & Ted's Bogus Journey",
     "The Birth of a Nation",
     "The Ballad of Cable Hogue",
@@ -45,7 +46,7 @@ export async function textOverflow() {
     "Black Rain",
     "Bottle Rocket"
   ];
-  const options = ["clip", "clip-start", "ellipsis", "ellipsis-start", "ellipsis-middle"];
+  const options = ["clip", "ellipsis", "clip-start", "ellipsis-start", "ellipsis-middle"];
   return Plot.plot({
     width: 700,
     marginLeft: 180,
@@ -58,7 +59,9 @@ export async function textOverflow() {
           y: names,
           fx: () => textOverflow,
           textOverflow,
-          lineWidth: 5
+          lineWidth: 8,
+          dx: textOverflow.endsWith("-start") ? 2 : textOverflow.endsWith("-middle") ? 0 : -2,
+          frameAnchor: textOverflow.endsWith("-start") ? "left" : textOverflow.endsWith("-middle") ? "middle" : "right"
         })
       ),
       Plot.frame()
