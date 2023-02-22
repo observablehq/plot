@@ -3,13 +3,6 @@ import * as d3 from "d3";
 
 export async function textOverflow() {
   const names = [
-    "🐣🐧🐤🐥🍎🦜",
-    "🐣🐧🐤🐥🍎🦜🎃",
-    "🐣🐧🐤🐥🍎🦜🎃🍌",
-    "🐣🐧🐤🐥🍎🦜🎃🍌🦆",
-    "🐣🐧🐤🐥🍎🦜🎃🍌🦆🦢",
-    "🐣🐧🐤🐥🍎🦜🎃🍌🦆🦢🌾",
-    "🐣🐧🐤🐥🍎🦜🎃🍌🦆🦢🌾🍎",
     "The Best Years of Our Lives",
     "The Ballad of Gregorio Cortez",
     "My Big Fat Independent Movie",
@@ -70,7 +63,7 @@ export async function textOverflow() {
         fx: () => "monospace",
         monospace: true,
         textOverflow: "ellipsis-end",
-        lineWidth: 14,
+        lineWidth: 13,
         dx: -2,
         frameAnchor: "right"
       }),

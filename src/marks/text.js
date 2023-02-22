@@ -382,8 +382,7 @@ const defaultWidthMap = {
   "‘": 31,
   "’": 31,
   "“": 47,
-  "”": 47,
-  "…": 89
+  "”": 47
 };
 
 // This is a rudimentary (and U.S.-centric) algorithm for measuring the width of
@@ -398,68 +397,64 @@ const defaultWidthMap = {
 // https://exploringjs.com/impatient-js/ch_strings.html#atoms-of-text
 function defaultWidth(text, start, end) {
   let sum = 0;
-  for (let i = start; i < end; ++i) {
-    sum += defaultWidthMap[text[i]] || 100;
-    i += isSurrogatePair(text[i], text[i + 1]);
-  }
+  for (let i = start; i < end; i += 1 + isSurrogatePair(text, i)) sum += defaultWidthMap[text[i]] || defaultWidthMap.e;
   return sum;
 }
 
 function monospaceWidth(text, start, end) {
   let sum = 0;
-  for (let i = start; i < end; ++i) {
-    ++sum;
-    if (isSurrogatePair(text[i], text[i + 1])) {
-      sum += 0.7;
-      ++i;
+  for (let i = start; i < end; i += 1 + isSurrogatePair(text, i)) sum += 100;
+  return sum;
+}
+
+function isSurrogatePair(text, i) {
+  const first = text.charCodeAt(i);
+  if (first >= 0xd800 && first <= 0xdbff) {
+    // high surrogate
+    const second = text.charCodeAt(i + 1);
+    if (second >= 0xdc00 && second <= 0xdfff) {
+      // low surrogate
+      return true; // surrogate pair
     }
   }
-  return 100 * sum;
-}
-
-function isSurrogatePair(first, second) {
-  return first >= "\ud800" && first <= "\udbff" && second >= "\udc00" && second <= "\udfff";
-}
-
-function interlace(input) {
-  input = [...input];
-  const a = [];
-  const n = input.length;
-  for (let i = 0; i < n >> 1; ++i) a.push(input[i], input[n - i - 1]);
-  if (n % 2) a.push(input[(n / 2) | 0]);
-  return a;
-}
-
-function deinterlace(input) {
-  input = [...input];
-  const a = [];
-  const n = input.length;
-  for (let i = 0; i < n; ++i) a[i % 2 ? n - ((i - 1) >> 1) : i >> 1] = input[i];
-  return a.join("");
+  return false;
 }
 
 function overflow(input, width, widthof, textOverflow) {
   switch (textOverflow) {
+    case "clip-end":
+      return overflow2(input, width, 1, widthof, "");
+    case "ellipsis-end":
+      return overflow2(input, width, 1, widthof, "…");
     case "clip-start":
-      return [...overflow([...input].reverse().join(""), width, widthof, "clip-end")].reverse().join("");
+      return overflow2(input, width, 0, widthof, "");
     case "ellipsis-start":
-      return [...overflow([...input].reverse().join(""), width, widthof, "ellipsis-end")].reverse().join("");
+      return overflow2(input, width, 0, widthof, "…");
     case "ellipsis-middle":
-      return deinterlace(overflow(interlace(input).join(""), width, widthof, "ellipsis-end"));
+      return overflow2(input, width, 1 / 2, widthof, "…");
   }
-  if (textOverflow === "ellipsis-end") width -= widthof("…", 0, 1);
-  let out = "";
-  input = [...input.trim()]; // iterate on code points
-  for (const [i, char] of input.entries()) {
-    width -= widthof(char, 0, char.length);
-    if (width < 0) {
-      if (textOverflow === "ellipsis-end") {
-        if (i === input.length - 1) out += char;
-        else out = out.replace(/[.\s…]+$/, "") + "…";
-      }
+}
+
+function overflow2(text, width, p, widthof, ellipsis) {
+  if (ellipsis) width -= widthof(ellipsis, 0, ellipsis.length);
+  text = text.trim();
+  const head = [];
+  const tail = [];
+  const lengths = [];
+  let dropped = 0;
+  let w = 0; // width consumed by selected chars
+  for (let i = 0; i < text.length; ++i) {
+    const char = `${text[i]}${isSurrogatePair(text, i) ? text[++i] : ""}`;
+    const l = widthof(char, 0, char.length);
+    if (w < width * p) {
+      head.push(char), (w += l);
+    } else if (w < width) {
+      tail.push(char), lengths.push(l), (w += l);
+      while (w >= width) tail.shift(), (w -= lengths.shift()), dropped++;
+    } else {
+      dropped = text.length - i;
       break;
     }
-    out += char;
   }
-  return out.trimEnd();
+  return dropped <= (ellipsis ? 1 : 0) ? text : head.join("").trimEnd() + ellipsis + tail.join("").trimStart();
 }
