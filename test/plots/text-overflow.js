@@ -37,7 +37,9 @@ export async function textOverflow() {
     "Born on the Fourth of July",
     "Basquiat",
     "Black Rain",
-    "Bottle Rocket"
+    "Bottle Rocket",
+    "👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩", // composed emoji (TODO: slightly buggy)
+    "🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿" // fitz modifiers (TODO: slightly buggy)
   ];
   const options = ["clip", "ellipsis", "clip-start", "ellipsis-start", "ellipsis-middle"];
   return Plot.plot({
