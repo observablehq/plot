@@ -389,10 +389,10 @@ const defaultWidthMap = {
 // a string based on a technique of Gregor Aisch; it assumes that individual
 // characters are laid out independently and does not implement the Unicode
 // grapheme cluster breaking algorithm. It does understand code points, though,
-// and so treats things like emoji as having a 1em width (and should be
-// equivalent to using for-of to iterate over code points, while also being
-// fast). TODO Optimize this by noting that we often re-measure characters that
-// were previously measured?
+// and so treats things like emoji as having the width of a lowercase e (and
+// should be equivalent to using for-of to iterate over code points, while also
+// being fast). TODO Optimize this by noting that we often re-measure characters
+// that were previously measured?
 // http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries
 // https://exploringjs.com/impatient-js/ch_strings.html#atoms-of-text
 function defaultWidth(text, start, end) {
@@ -414,10 +414,10 @@ function isSurrogatePair(text, i) {
     const second = text.charCodeAt(i + 1);
     if (second >= 0xdc00 && second <= 0xdfff) {
       // low surrogate
-      return true; // surrogate pair
+      return 1; // surrogate pair
     }
   }
-  return false;
+  return 0;
 }
 
 function overflow(input, width, widthof, textOverflow) {
@@ -444,7 +444,7 @@ function overflow2(text, width, p, widthof, ellipsis) {
   let dropped = 0;
   let w = 0; // width consumed by selected chars
   for (let i = 0; i < text.length; ++i) {
-    const char = `${text[i]}${isSurrogatePair(text, i) ? text[++i] : ""}`;
+    const char = isSurrogatePair(text, i) ? text[i] + text[++i] : text[i];
     const l = widthof(char, 0, char.length);
     if (w < width * p) {
       head.push(char), (w += l);
