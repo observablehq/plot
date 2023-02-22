@@ -395,29 +395,25 @@ const defaultWidthMap = {
 // that were previously measured?
 // http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries
 // https://exploringjs.com/impatient-js/ch_strings.html#atoms-of-text
+function codePointLength(text, i) {
+  const first = text.charCodeAt(i);
+  if (first >= 0xd800 && first <= 0xdbff) {
+    const second = text.charCodeAt(i + 1);
+    if (second >= 0xdc00 && second <= 0xdfff) return 2; // surrogate pair
+  }
+  return 1;
+}
+
 function defaultWidth(text, start, end) {
   let sum = 0;
-  for (let i = start; i < end; i += 1 + isSurrogatePair(text, i)) sum += defaultWidthMap[text[i]] || defaultWidthMap.e;
+  for (let i = start; i < end; i += codePointLength(text, i)) sum += defaultWidthMap[text[i]] || defaultWidthMap.e;
   return sum;
 }
 
 function monospaceWidth(text, start, end) {
   let sum = 0;
-  for (let i = start; i < end; i += 1 + isSurrogatePair(text, i)) sum += 100;
+  for (let i = start; i < end; i += codePointLength(text, i)) sum += 100;
   return sum;
-}
-
-function isSurrogatePair(text, i) {
-  const first = text.charCodeAt(i);
-  if (first >= 0xd800 && first <= 0xdbff) {
-    // high surrogate
-    const second = text.charCodeAt(i + 1);
-    if (second >= 0xdc00 && second <= 0xdfff) {
-      // low surrogate
-      return 1; // surrogate pair
-    }
-  }
-  return 0;
 }
 
 function overflow(input, width, widthof, textOverflow) {
@@ -443,8 +439,9 @@ function overflow2(text, width, p, widthof, ellipsis) {
   const lengths = [];
   let dropped = 0;
   let w = 0; // width consumed by selected chars
-  for (let i = 0; i < text.length; ++i) {
-    const char = isSurrogatePair(text, i) ? text[i] + text[++i] : text[i];
+  let i = 0;
+  while (i < text.length) {
+    const char = text.slice(i, (i += codePointLength(text, i)));
     const l = widthof(char, 0, char.length);
     if (w < width * p) {
       head.push(char), (w += l);
@@ -452,7 +449,7 @@ function overflow2(text, width, p, widthof, ellipsis) {
       tail.push(char), lengths.push(l), (w += l);
       while (w >= width) tail.shift(), (w -= lengths.shift()), dropped++;
     } else {
-      dropped = text.length - i;
+      dropped = text.length - i + 1;
       break;
     }
   }
