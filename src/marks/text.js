@@ -419,20 +419,21 @@ function monospaceWidth(text, start, end) {
 function overflow(input, width, widthof, textOverflow) {
   switch (textOverflow) {
     case "clip-end":
-      return overflow2(input, width, 1, widthof, "");
+      return clip(input, width, 1, widthof, "");
     case "ellipsis-end":
-      return overflow2(input, width, 1, widthof, "…");
+      return clip(input, width, 1, widthof, "…");
     case "clip-start":
-      return overflow2(input, width, 0, widthof, "");
+      return clip(input, width, 0, widthof, "");
     case "ellipsis-start":
-      return overflow2(input, width, 0, widthof, "…");
+      return clip(input, width, 0, widthof, "…");
     case "ellipsis-middle":
-      return overflow2(input, width, 1 / 2, widthof, "…");
+      return clip(input, width, 1 / 2, widthof, "…");
   }
 }
 
-function overflow2(text, width, p, widthof, ellipsis) {
-  if (ellipsis) width -= widthof(ellipsis, 0, ellipsis.length);
+// Clips a text to the given width, balancing head and tail in proportion to p.
+function clip(text, width, p, widthof, insert) {
+  if (insert) width -= widthof(insert, 0, insert.length);
   text = text.trim();
   const head = [];
   const tail = [];
@@ -453,5 +454,5 @@ function overflow2(text, width, p, widthof, ellipsis) {
       break;
     }
   }
-  return dropped <= (ellipsis ? 1 : 0) ? text : head.join("").trimEnd() + ellipsis + tail.join("").trimStart();
+  return dropped <= (insert ? 1 : 0) ? text : head.join("").trimEnd() + insert + tail.join("").trimStart();
 }
