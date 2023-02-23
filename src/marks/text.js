@@ -397,13 +397,13 @@ const defaultWidthMap = {
 // https://exploringjs.com/impatient-js/ch_strings.html#atoms-of-text
 function defaultWidth(text, start, end) {
   let sum = 0;
-  for (let i = start; i < end; i += glyphLength(text, i)) sum += defaultWidthMap[text[i]] || defaultWidthMap.e;
+  for (let i = start; i < end; i = readCharacter(text, i)) sum += defaultWidthMap[text[i]] || defaultWidthMap.e;
   return sum;
 }
 
 function monospaceWidth(text, start, end) {
   let sum = 0;
-  for (let i = start; i < end; i += glyphLength(text, i)) sum += 100;
+  for (let i = start; i < end; i = readCharacter(text, i)) sum += 100;
   return sum;
 }
 
@@ -432,7 +432,7 @@ function clip(text, width, p, widthof, insert) {
   let dropped = 0;
   let w = 0; // width consumed by selected chars
   for (let i = 0; i < text.length; ) {
-    const char = text.slice(i, (i += glyphLength(text, i)));
+    const char = text.slice(i, (i = readCharacter(text, i)));
     const l = widthof(char, 0, char.length);
     if (w < width * p) {
       head.push(char), (w += l);
@@ -447,15 +447,26 @@ function clip(text, width, p, widthof, insert) {
   return dropped <= (insert ? 1 : 0) ? text : head.join("").trimEnd() + insert + tail.join("").trimStart();
 }
 
-// The size of the glyph at the given index. Supports the zero width joiner for
-// composed emojis. TODO: support more modifiers (e.g. fitz).
-function glyphLength(text, i) {
-  let a;
-  let j = 0;
-  do {
-    a = text.charCodeAt(i + j++);
-    // surrogate pair
-    if (a >= 0xd800 && a <= 0xdbff) a = text.charCodeAt(i + ++j);
-  } while (a === 0x200d); // zwj
-  return j;
+// TODO I wrote these as regular expressions for clarity, but we might want to
+// optimize by testing char codes directly for surrogate pair and zero-width
+// joiner detection (assuming that doing so would actually be faster in a
+// material way… maybe a quick microbenchmark to see if it matters)?
+const reSurrogatePair = /[\uD800-\uDBFF][\uDC00-\uDFFF]/y;
+const reCombiner = /[\p{Combining_Mark}\p{Emoji_Modifier}]+/uy;
+const reZeroWidthJoiner = /\u200D/y;
+
+// Reads a single “character” element from the given text starting at the given
+// index, returning the index after the read character. Ideally, this implements
+// the Unicode text segmentation algorithm and understands grapheme cluster
+// boundaries, etc., but in practice this is only smart enough to detect UTF-16
+// surrogate pairs, combining marks, and zero-width joiner (zwj) sequences such
+// as emoji skin color modifiers. https://unicode.org/reports/tr29/
+export function readCharacter(text, i) {
+  reSurrogatePair.lastIndex = i++; // consume first character
+  if (reSurrogatePair.test(text)) ++i; // consume surrogate pair
+  reCombiner.lastIndex = i;
+  if (reCombiner.test(text)) i = reCombiner.lastIndex; // consume combiners
+  reZeroWidthJoiner.lastIndex = i;
+  if (reZeroWidthJoiner.test(text)) return readCharacter(text, i + 1); // consume zero-width join and what follows
+  return i;
 }

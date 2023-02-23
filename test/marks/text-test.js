@@ -1,4 +1,5 @@
 import * as Plot from "@observablehq/plot";
+import {readCharacter} from "../../src/marks/text.js";
 import assert from "assert";
 
 it("text() has the expected defaults", () => {
@@ -131,3 +132,34 @@ it("text({length}) can take length-only data", () => {
   const text = Plot.text(data);
   assert.strictEqual(text.data, data);
 });
+
+it("readCharacter reads latin letters", () => {
+  assert.deepStrictEqual(getCharacters("(foo)"), [..."(foo)"]);
+  assert.deepStrictEqual(getCharacters("(mañana)"), [..."(mañana)"]);
+});
+
+it("readCharacter reads surrogate pairs", () => {
+  assert.deepStrictEqual(getCharacters("(😀)"), [..."(😀)"]);
+  assert.deepStrictEqual(getCharacters("(💩)"), [..."(💩)"]);
+  assert.deepStrictEqual(getCharacters("Iñtërnâtiônàlizætiøn☃💩"), [..."Iñtërnâtiônàlizætiøn☃💩"]);
+});
+
+it("readCharacter reads combining marks", () => {
+  assert.deepStrictEqual(getCharacters("Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘"), ["Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍", "A̴̵̜̰͔ͫ͗͢", "L̠ͨͧͩ͘", "G̴̻͈͍͔̹̑͗̎̅͛́", "Ǫ̵̹̻̝̳͂̌̌͘"]);
+});
+
+it("readCharacter reads emoji sequences", () => {
+  assert.deepStrictEqual(getCharacters("(👨‍👩‍👧‍👦)"), ["(", "👨‍👩‍👧‍👦", ")"]);
+  assert.deepStrictEqual(getCharacters("(👋🏻)"), ["(", "👋🏻", ")"]);
+  assert.deepStrictEqual(getCharacters("(🧑🏾)"), ["(", "🧑🏾", ")"]);
+  assert.deepStrictEqual(getCharacters("(👨🏻)"), ["(", "👨🏻", ")"]);
+  assert.deepStrictEqual(getCharacters("(👧🏼)"), ["(", "👧🏼", ")"]);
+});
+
+function getCharacters(text) {
+  const characters = [];
+  for (let i = 0, n = text.length; i < n; ) {
+    characters.push(text.slice(i, (i = readCharacter(text, i))));
+  }
+  return characters;
+}
