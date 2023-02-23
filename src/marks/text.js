@@ -435,17 +435,17 @@ function clip(text, width, p, widthof, insert) {
   const lengths = [];
   let dropped = 0;
   let w = 0; // width consumed by selected chars
-  for (let i = 0; i < text.length; ) {
-    const char = text.slice(i, (i = readCharacter(text, i)));
-    const l = widthof(char, 0, char.length);
+  for (let i = 0, j; i < text.length; i = j) {
+    j = readCharacter(text, i);
+    const char = text.slice(i, j);
+    const l = widthof(text, i, j);
     if (w < width * p) {
       head.push(char), (w += l);
     } else if (w < width) {
       tail.push(char), lengths.push(l), (w += l);
-      while (w >= width) tail.shift(), (w -= lengths.shift()), dropped++;
-    } else {
-      dropped++;
-      if (dropped > 1) break;
+      while (w >= width) tail.shift(), (w -= lengths.shift()), ++dropped;
+    } else if (++dropped > 1) {
+      break;
     }
   }
   return dropped <= (insert ? 1 : 0) ? text : head.join("").trimEnd() + insert + tail.join("").trimStart();
