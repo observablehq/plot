@@ -456,9 +456,12 @@ export function clipMiddle(text, width, widthof, insert) {
   const w = widthof(text, 0, text.length);
   if (w <= width) return text;
   const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
-  const i = cut(text, width / 2, widthof, e);
+  const i = cut(text, width / 2, widthof, e); // TODO return error also?
   const j = cut(text, w - width / 2, widthof, 0); // TODO need to read spaces?
-  return text.slice(0, i).trimEnd() + insert + text.slice(j).trimStart();
+  if (j < 0) return insert;
+  const l = text.slice(0, i).trimEnd() + insert + text.slice(j).trimStart();
+  // console.warn([l, widthof(l, 0, l.length)]);
+  return l;
 }
 
 export function clipEnd(text, width, widthof, insert) {
@@ -467,7 +470,7 @@ export function clipEnd(text, width, widthof, insert) {
   if (w <= width) return text;
   const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
   const i = cut(text, w - width + e, widthof, -e); // TODO need to read spaces?
-  if (i < 0) return "";
+  if (i < 0) return insert;
   return insert + text.slice(readCharacter(text, i)).trimStart();
 }
 

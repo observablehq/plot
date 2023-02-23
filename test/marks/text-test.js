@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import {clipEnd, clipStart, defaultWidth, readCharacter} from "../../src/marks/text.js";
+import {clipEnd, clipMiddle, clipStart, defaultWidth, readCharacter} from "../../src/marks/text.js";
 import assert from "assert";
 
 it("text() has the expected defaults", () => {
@@ -156,50 +156,56 @@ it("readCharacter reads emoji sequences", () => {
   assert.deepStrictEqual(getCharacters("(👧🏼)"), ["(", "👧🏼", ")"]);
 });
 
-it("clipStart removes the start of the line to fit the available space", () => {
+it.only("clipStart removes the start of the line to fit the available space", () => {
   assert.strictEqual(clipStart("The quick brown fox", 800, defaultWidth, ""), "The quick brow");
   assert.strictEqual(clipStart("The quick brown fox", 400, defaultWidth, ""), "The qui");
   assert.strictEqual(clipStart("The quick brown fox", 200, defaultWidth, ""), "The");
   assert.strictEqual(clipStart("The quick brown fox", 0, defaultWidth, ""), "");
-  textStartWidthTest("The quick brown fox", "The quick brow".length, "The quick brown".length, 800, defaultWidth);
-  textStartWidthTest("The quick brown fox", "The qui".length, "The quic".length, 400, defaultWidth);
-  textStartWidthTest("The quick brown fox", "The".length, "The q".length, 200, defaultWidth);
-  textStartWidthTest("The quick brown fox", "".length, "T".length, 0, defaultWidth);
+  textWidthTest("The quick brow", "The quick brown", 800, defaultWidth);
+  textWidthTest("The qui", "The quic", 400, defaultWidth);
+  textWidthTest("The", "The q", 200, defaultWidth);
+  textWidthTest("", "T", 0, defaultWidth);
 });
 
-it("clipEnd removes the end of the line to fit the available space", () => {
-  assert.strictEqual(clipEnd("The quick brown fox", 800, defaultWidth, ""), "quick brown fox");
-  assert.strictEqual(clipEnd("The quick brown fox", 400, defaultWidth, ""), "own fox");
-  assert.strictEqual(clipEnd("The quick brown fox", 200, defaultWidth, ""), "fox");
-  assert.strictEqual(clipEnd("The quick brown fox", 0, defaultWidth, ""), "");
-  textEndWidthTest("The quick brown fox", "quick brown fox".length, "e quick brown fox".length, 800, defaultWidth);
-  textEndWidthTest("The quick brown fox", "own fox".length, "rown fox".length, 400, defaultWidth);
-  textEndWidthTest("The quick brown fox", "fox".length, "n fox".length, 200, defaultWidth);
-  textEndWidthTest("The quick brown fox", "".length, "x".length, 0, defaultWidth);
-});
-
-it("clipStart does not consider leading whitespace as consuming width", () => {
+it.only("clipStart does not consider leading whitespace as consuming width", () => {
   assert.strictEqual(clipStart("   The quick brown fox", 800, defaultWidth, ""), "The quick brow");
   assert.strictEqual(clipStart("  The quick brown fox", 400, defaultWidth, ""), "The qui");
   assert.strictEqual(clipStart(" The quick brown fox", 200, defaultWidth, ""), "The");
   assert.strictEqual(clipStart(" The quick brown fox", 0, defaultWidth, ""), "");
 });
 
-it("clipEnd does not consider trailing whitespace as consuming width", () => {
+it.only("clipMiddle removes the middle of the line to fit the available space", () => {
+  assert.strictEqual(clipMiddle("The quick brown fox", 800, defaultWidth, ""), "The quirown fox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 400, defaultWidth, ""), "Then fox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 200, defaultWidth, ""), "Tox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 0, defaultWidth, ""), "");
+  textWidthTest("The quirown fox", "The quicrown fox", 800, defaultWidth);
+  textWidthTest("Then fox", "Thewn fox", 400, defaultWidth);
+  // textWidthTest("Tox", "Thox", 200, defaultWidth);
+  // textWidthTest("", "T", 0, defaultWidth);
+});
+
+it.only("clipEnd removes the end of the line to fit the available space", () => {
+  assert.strictEqual(clipEnd("The quick brown fox", 800, defaultWidth, ""), "quick brown fox");
+  assert.strictEqual(clipEnd("The quick brown fox", 400, defaultWidth, ""), "own fox");
+  assert.strictEqual(clipEnd("The quick brown fox", 200, defaultWidth, ""), "fox");
+  assert.strictEqual(clipEnd("The quick brown fox", 0, defaultWidth, ""), "");
+  textWidthTest("quick brown fox", "e quick brown fox", 800, defaultWidth);
+  textWidthTest("own fox", "rown fox", 400, defaultWidth);
+  textWidthTest("fox", "n fox", 200, defaultWidth);
+  textWidthTest("", "x", 0, defaultWidth);
+});
+
+it.only("clipEnd does not consider trailing whitespace as consuming width", () => {
   assert.strictEqual(clipEnd("The quick brown fox   ", 800, defaultWidth, ""), "quick brown fox");
   assert.strictEqual(clipEnd("The quick brown fox  ", 400, defaultWidth, ""), "own fox");
   assert.strictEqual(clipEnd("The quick brown fox ", 200, defaultWidth, ""), "fox");
   assert.strictEqual(clipEnd("The quick brown fox ", 0, defaultWidth, ""), "");
 });
 
-function textStartWidthTest(text, i, j, width, widthof) {
-  assert.ok(widthof(text, 0, i) <= width, "text is too long");
-  assert.ok(widthof(text, 0, j) > width, "text is too short");
-}
-
-function textEndWidthTest(text, i, j, width, widthof) {
-  assert.ok(widthof(text, text.length - i, text.length) <= width, "text is too long");
-  assert.ok(widthof(text, text.length - j, text.length) > width, "text is too short");
+function textWidthTest(a, b, width, widthof) {
+  assert.ok(widthof(a, 0, a.length) <= width, "text is too long");
+  assert.ok(widthof(b, 0, b.length) > width, "text is too short");
 }
 
 function getCharacters(text) {
