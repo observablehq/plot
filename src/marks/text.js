@@ -397,13 +397,17 @@ const defaultWidthMap = {
 // https://exploringjs.com/impatient-js/ch_strings.html#atoms-of-text
 function defaultWidth(text, start, end) {
   let sum = 0;
-  for (let i = start; i < end; i = readCharacter(text, i)) sum += defaultWidthMap[text[i]] || defaultWidthMap.e;
+  for (let i = start; i < end; i = readCharacter(text, i)) {
+    sum += defaultWidthMap[text[i]] ?? (isPictographic(text, i) ? 120 : defaultWidthMap.e);
+  }
   return sum;
 }
 
 function monospaceWidth(text, start, end) {
   let sum = 0;
-  for (let i = start; i < end; i = readCharacter(text, i)) sum += 100;
+  for (let i = start; i < end; i = readCharacter(text, i)) {
+    sum += isPictographic(text, i) ? 200 : 100;
+  }
   return sum;
 }
 
@@ -454,6 +458,7 @@ function clip(text, width, p, widthof, insert) {
 const reSurrogatePair = /[\uD800-\uDBFF][\uDC00-\uDFFF]/y;
 const reCombiner = /[\p{Combining_Mark}\p{Emoji_Modifier}]+/uy;
 const reZeroWidthJoiner = /\u200D/y;
+const rePictographic = /\p{Extended_Pictographic}/uy;
 
 // Reads a single “character” element from the given text starting at the given
 // index, returning the index after the read character. Ideally, this implements
@@ -469,4 +474,9 @@ export function readCharacter(text, i) {
   reZeroWidthJoiner.lastIndex = i;
   if (reZeroWidthJoiner.test(text)) return readCharacter(text, i + 1); // consume zero-width join and what follows
   return i;
+}
+
+function isPictographic(text, i) {
+  rePictographic.lastIndex = i;
+  return rePictographic.test(text);
 }
