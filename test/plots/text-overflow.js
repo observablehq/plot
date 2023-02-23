@@ -41,7 +41,7 @@ export async function textOverflow() {
     "👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩", // composed emoji (TODO: slightly buggy)
     "🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿" // fitz modifiers (TODO: slightly buggy)
   ];
-  const options = ["clip", "ellipsis", "clip-start", "ellipsis-start", "ellipsis-middle"];
+  const options = ["clip-start", "clip-end", "ellipsis-start", "ellipsis-middle", "ellipsis-end"];
   return Plot.plot({
     width: 800,
     marginLeft: 180,

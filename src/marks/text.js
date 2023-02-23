@@ -129,7 +129,7 @@ export class Text extends Mark {
 
 function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineWidth, textOverflow}, T, TL) {
   if (!T) return;
-  if (textOverflow && !isFinite(lineWidth)) throw new Error(`the textOverflow option requires a specified lineWidth`);
+  if (textOverflow && !isFinite(lineWidth)) throw new Error(`the textOverflow option requires a specified lineWidth`); // TODO move to constructor
   const measure = monospace ? monospaceWidth : defaultWidth;
   const linesof = isFinite(lineWidth)
     ? textOverflow
@@ -413,42 +413,65 @@ function monospaceWidth(text, start, end) {
 
 function overflow(input, width, widthof, textOverflow) {
   switch (textOverflow) {
-    case "clip-end":
-      return clip(input, width, 1, widthof, "");
-    case "ellipsis-end":
-      return clip(input, width, 1, widthof, "…");
     case "clip-start":
-      return clip(input, width, 0, widthof, "");
+      return clipStart(input, width, widthof, "");
+    case "clip-end":
+      return clipEnd(input, width, widthof, "");
     case "ellipsis-start":
-      return clip(input, width, 0, widthof, "…");
+      return clipStart(input, width, widthof, "…");
     case "ellipsis-middle":
-      return clip(input, width, 1 / 2, widthof, "…");
+      return clipMiddle(input, width, widthof, "…");
+    case "ellipsis-end":
+      return clipEnd(input, width, widthof, "…");
   }
 }
 
-// Clips a text to the given width, balancing head and tail in proportion to p.
-function clip(text, width, p, widthof, insert) {
-  if (insert) width -= widthof(insert, 0, insert.length);
-  text = text.trim();
-  const head = [];
-  const tail = [];
-  const lengths = [];
-  let dropped = 0;
-  let w = 0; // width consumed by selected chars
-  for (let i = 0, j; i < text.length; i = j) {
-    j = readCharacter(text, i);
-    const char = text.slice(i, j);
-    const l = widthof(text, i, j);
-    if (w < width * p) {
-      head.push(char), (w += l);
-    } else if (w < width) {
-      tail.push(char), lengths.push(l), (w += l);
-      while (w >= width) tail.shift(), (w -= lengths.shift()), ++dropped;
-    } else if (++dropped > 1) {
-      break;
+function cut(text, width, widthof, inset) {
+  if (!(width > 0)) throw new Error(`non-positive line width: ${width}`); // TODO move to constructor
+  const I = []; // indexes of read character boundaries
+  let w = 0; // current line width
+  for (let i = 0, j = 0, n = text.length; i < n; i = j) {
+    j = readCharacter(text, i); // read the next character
+    if (w === 0 && isSpace(text, i)) continue; // ignore leading spaces
+    const l = widthof(text, i, j); // current character width
+    if (w + l > width) {
+      w += inset;
+      while (w > width && i > 0) (j = i), (i = I.pop()), (w -= widthof(text, i, j)); // remove excess
+      return i;
     }
+    w += l;
+    I.push(i);
   }
-  return dropped <= (insert ? 1 : 0) ? text : head.join("").trimEnd() + insert + tail.join("").trimStart();
+  return -1;
+}
+
+function clipStart(text, width, widthof, insert) {
+  const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
+  const i = cut(text, width, widthof, e);
+  if (i < 0) return text;
+  const l = text.slice(0, i).trimEnd() + insert;
+  return l; // + ` (${widthof(l, 0, l.length)}/${width})`;
+}
+
+function clipMiddle(text, width, widthof, insert) {
+  text = text.trim(); // ignore leading and trailing whitespace
+  const w = widthof(text, 0, text.length);
+  if (w <= width) return text;
+  const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
+  const i = cut(text, width / 2, widthof, e);
+  const j = cut(text, w - width / 2, widthof, 0); // TODO need to read spaces?
+  const l = text.slice(0, i).trimEnd() + insert + text.slice(j).trimStart();
+  return l; // + ` (${widthof(l, 0, l.length)}/${width})`;
+}
+
+function clipEnd(text, width, widthof, insert) {
+  text = text.trim(); // ignore leading and trailing whitespace
+  const w = widthof(text, 0, text.length);
+  if (w <= width) return text;
+  const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
+  const i = cut(text, w - width + e, widthof, -e); // TODO need to read spaces?
+  const l = insert + text.slice(i).trimStart(); // readCharacter(text, i)
+  return l; // + ` (${widthof(l, 0, l.length)}/${width})`;
 }
 
 // TODO I wrote these as regular expressions for clarity, but we might want to
@@ -459,6 +482,7 @@ const reSurrogatePair = /[\uD800-\uDBFF][\uDC00-\uDFFF]/y;
 const reCombiner = /[\p{Combining_Mark}\p{Emoji_Modifier}]+/uy;
 const reZeroWidthJoiner = /\u200D/y;
 const rePictographic = /\p{Extended_Pictographic}/uy;
+const reSpace = /\s/y;
 
 // Reads a single “character” element from the given text starting at the given
 // index, returning the index after the read character. Ideally, this implements
@@ -479,4 +503,9 @@ export function readCharacter(text, i) {
 function isPictographic(text, i) {
   rePictographic.lastIndex = i;
   return rePictographic.test(text);
+}
+
+function isSpace(text, i) {
+  reSpace.lastIndex = i;
+  return reSpace.test(text);
 }
