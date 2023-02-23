@@ -156,51 +156,77 @@ it("readCharacter reads emoji sequences", () => {
   assert.deepStrictEqual(getCharacters("(👧🏼)"), ["(", "👧🏼", ")"]);
 });
 
-it.only("clipStart removes the start of the line to fit the available space", () => {
-  assert.strictEqual(clipStart("The quick brown fox", 800, defaultWidth, ""), "The quick brow");
-  assert.strictEqual(clipStart("The quick brown fox", 400, defaultWidth, ""), "The qui");
-  assert.strictEqual(clipStart("The quick brown fox", 200, defaultWidth, ""), "The");
-  assert.strictEqual(clipStart("The quick brown fox", 0, defaultWidth, ""), "");
+it("clipEnd removes the end of the line to fit the available space", () => {
+  assert.strictEqual(clipEnd("The quick brown fox", 800, defaultWidth, ""), "The quick brow");
+  assert.strictEqual(clipEnd("The quick brown fox", 400, defaultWidth, ""), "The qui");
+  assert.strictEqual(clipEnd("The quick brown fox", 200, defaultWidth, ""), "The");
   textWidthTest("The quick brow", "The quick brown", 800, defaultWidth);
   textWidthTest("The qui", "The quic", 400, defaultWidth);
   textWidthTest("The", "The q", 200, defaultWidth);
-  textWidthTest("", "T", 0, defaultWidth);
 });
 
-it.only("clipStart does not consider leading whitespace as consuming width", () => {
-  assert.strictEqual(clipStart("   The quick brown fox", 800, defaultWidth, ""), "The quick brow");
-  assert.strictEqual(clipStart("  The quick brown fox", 400, defaultWidth, ""), "The qui");
-  assert.strictEqual(clipStart(" The quick brown fox", 200, defaultWidth, ""), "The");
-  assert.strictEqual(clipStart(" The quick brown fox", 0, defaultWidth, ""), "");
+it("clipEnd reserves space for the ellipsis, if any", () => {
+  assert.strictEqual(clipEnd("The quick brown fox", 800, defaultWidth, "…"), "The quick brow…");
+  assert.strictEqual(clipEnd("The quick brown fox", 400, defaultWidth, "…"), "The qu…");
+  assert.strictEqual(clipEnd("The quick brown fox", 200, defaultWidth, "…"), "Th…");
+  textWidthTest("The quick brow…", "The quick brown…", 800, defaultWidth);
+  textWidthTest("The qu…", "The qui…", 400, defaultWidth);
+  textWidthTest("Th…", "The…", 200, defaultWidth);
 });
 
-it.only("clipMiddle removes the middle of the line to fit the available space", () => {
-  assert.strictEqual(clipMiddle("The quick brown fox", 800, defaultWidth, ""), "The quirown fox");
-  assert.strictEqual(clipMiddle("The quick brown fox", 400, defaultWidth, ""), "Then fox");
-  assert.strictEqual(clipMiddle("The quick brown fox", 200, defaultWidth, ""), "Tox");
-  assert.strictEqual(clipMiddle("The quick brown fox", 0, defaultWidth, ""), "");
-  textWidthTest("The quirown fox", "The quicrown fox", 800, defaultWidth);
-  textWidthTest("Then fox", "Thewn fox", 400, defaultWidth);
-  // textWidthTest("Tox", "Thox", 200, defaultWidth);
-  // textWidthTest("", "T", 0, defaultWidth);
-});
-
-it.only("clipEnd removes the end of the line to fit the available space", () => {
-  assert.strictEqual(clipEnd("The quick brown fox", 800, defaultWidth, ""), "quick brown fox");
-  assert.strictEqual(clipEnd("The quick brown fox", 400, defaultWidth, ""), "own fox");
-  assert.strictEqual(clipEnd("The quick brown fox", 200, defaultWidth, ""), "fox");
+it("clipEnd returns the ellipsis, if any, if the available width is zero", () => {
+  assert.strictEqual(clipEnd("The quick brown fox", 0, defaultWidth, "…"), "…");
   assert.strictEqual(clipEnd("The quick brown fox", 0, defaultWidth, ""), "");
+});
+
+it("clipEnd does not consider leading whitespace as consuming width", () => {
+  assert.strictEqual(clipEnd("   The quick brown fox", 800, defaultWidth, ""), "The quick brow");
+  assert.strictEqual(clipEnd("  The quick brown fox", 400, defaultWidth, ""), "The qui");
+  assert.strictEqual(clipEnd(" The quick brown fox", 200, defaultWidth, ""), "The");
+  assert.strictEqual(clipEnd(" The quick brown fox", 0, defaultWidth, ""), "");
+});
+
+it("clipMiddle removes the middle of the line to fit the available space", () => {
+  assert.strictEqual(clipMiddle("The quick brown fox", 800, defaultWidth, ""), "The quirown fox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 400, defaultWidth, ""), "Thefox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 200, defaultWidth, ""), "Tox");
+  textWidthTest("The quirown fox", "The quibrown fox", 800, defaultWidth);
+  textWidthTest("Thefox", "Then fox", 400, defaultWidth);
+  textWidthTest("Tox", "Tfox", 200, defaultWidth);
+});
+
+it("clipMiddle reserves space for the ellipsis, if any", () => {
+  assert.strictEqual(clipMiddle("The quick brown fox", 800, defaultWidth, "…"), "The qu…own fox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 400, defaultWidth, "…"), "Th…fox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 200, defaultWidth, "…"), "…ox");
+  textWidthTest("The qu…own fox", "The qu…rown fox", 800, defaultWidth);
+  textWidthTest("Th…fox", "Th…n fox", 400, defaultWidth);
+  textWidthTest("…ox", "…fox", 200, defaultWidth);
+});
+
+it("clipMiddle returns the ellipsis, if any, if the available width is zero", () => {
+  assert.strictEqual(clipMiddle("The quick brown fox", 0, defaultWidth, "…"), "…");
+  assert.strictEqual(clipMiddle("The quick brown fox", 0, defaultWidth, ""), "");
+});
+
+it("clipStart removes the start of the line to fit the available space", () => {
+  assert.strictEqual(clipStart("The quick brown fox", 800, defaultWidth, ""), "quick brown fox");
+  assert.strictEqual(clipStart("The quick brown fox", 400, defaultWidth, ""), "own fox");
+  assert.strictEqual(clipStart("The quick brown fox", 200, defaultWidth, ""), "fox");
   textWidthTest("quick brown fox", "e quick brown fox", 800, defaultWidth);
   textWidthTest("own fox", "rown fox", 400, defaultWidth);
   textWidthTest("fox", "n fox", 200, defaultWidth);
-  textWidthTest("", "x", 0, defaultWidth);
 });
 
-it.only("clipEnd does not consider trailing whitespace as consuming width", () => {
-  assert.strictEqual(clipEnd("The quick brown fox   ", 800, defaultWidth, ""), "quick brown fox");
-  assert.strictEqual(clipEnd("The quick brown fox  ", 400, defaultWidth, ""), "own fox");
-  assert.strictEqual(clipEnd("The quick brown fox ", 200, defaultWidth, ""), "fox");
-  assert.strictEqual(clipEnd("The quick brown fox ", 0, defaultWidth, ""), "");
+it("clipStart does not consider trailing whitespace as consuming width", () => {
+  assert.strictEqual(clipStart("The quick brown fox   ", 800, defaultWidth, ""), "quick brown fox");
+  assert.strictEqual(clipStart("The quick brown fox  ", 400, defaultWidth, ""), "own fox");
+  assert.strictEqual(clipStart("The quick brown fox ", 200, defaultWidth, ""), "fox");
+});
+
+it("clipStart returns the ellipsis, if any, if the available width is zero", () => {
+  assert.strictEqual(clipStart("The quick brown fox", 0, defaultWidth, "…"), "…");
+  assert.strictEqual(clipStart("The quick brown fox", 0, defaultWidth, ""), "");
 });
 
 function textWidthTest(a, b, width, widthof) {

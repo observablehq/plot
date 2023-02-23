@@ -435,20 +435,19 @@ function cut(text, width, widthof, inset) {
     if (w + l > width) {
       w += inset;
       while (w > width && i > 0) (j = i), (i = I.pop()), (w -= widthof(text, i, j)); // remove excess
-      return i;
+      return [i, width - w];
     }
     w += l;
     I.push(i);
   }
-  return -1;
+  return [-1, 0];
 }
 
-export function clipStart(text, width, widthof, insert) {
+export function clipEnd(text, width, widthof, insert) {
   text = text.trim(); // ignore leading and trailing whitespace
   const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
-  const i = cut(text, width, widthof, e);
-  if (i < 0) return text;
-  return text.slice(0, i).trimEnd() + insert;
+  const [i] = cut(text, width, widthof, e);
+  return i < 0 ? text : text.slice(0, i).trimEnd() + insert;
 }
 
 export function clipMiddle(text, width, widthof, insert) {
@@ -456,22 +455,18 @@ export function clipMiddle(text, width, widthof, insert) {
   const w = widthof(text, 0, text.length);
   if (w <= width) return text;
   const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
-  const i = cut(text, width / 2, widthof, e); // TODO return error also?
-  const j = cut(text, w - width / 2, widthof, 0); // TODO need to read spaces?
-  if (j < 0) return insert;
-  const l = text.slice(0, i).trimEnd() + insert + text.slice(j).trimStart();
-  // console.warn([l, widthof(l, 0, l.length)]);
-  return l;
+  const [i, ei] = cut(text, width / 2, widthof, e);
+  const [j] = cut(text, w - width / 2 - ei, widthof, 0); // TODO read spaces?
+  return j < 0 ? insert : text.slice(0, i).trimEnd() + insert + text.slice(readCharacter(text, j)).trimStart();
 }
 
-export function clipEnd(text, width, widthof, insert) {
+export function clipStart(text, width, widthof, insert) {
   text = text.trim(); // ignore leading and trailing whitespace
   const w = widthof(text, 0, text.length);
   if (w <= width) return text;
   const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
-  const i = cut(text, w - width + e, widthof, -e); // TODO need to read spaces?
-  if (i < 0) return insert;
-  return insert + text.slice(readCharacter(text, i)).trimStart();
+  const [j] = cut(text, w - width + e, widthof, -e); // TODO read spaces?
+  return j < 0 ? insert : insert + text.slice(readCharacter(text, j)).trimStart();
 }
 
 // TODO I wrote these as regular expressions for clarity, but we might want to

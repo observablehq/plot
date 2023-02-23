@@ -55,7 +55,7 @@ export async function textOverflow() {
           fx: () => textOverflow,
           textOverflow,
           lineWidth: 8,
-          dx: textOverflow.endsWith("-start") ? 2 : textOverflow.endsWith("-middle") ? 0 : -2,
+          dx: textOverflow.endsWith("-start") ? 4 : textOverflow.endsWith("-middle") ? 0 : -4,
           frameAnchor: textOverflow.endsWith("-start") ? "left" : textOverflow.endsWith("-middle") ? "middle" : "right"
         })
       ),
@@ -66,7 +66,7 @@ export async function textOverflow() {
         monospace: true,
         textOverflow: "ellipsis-end",
         lineWidth: 13,
-        dx: -2,
+        dx: -4,
         frameAnchor: "right"
       }),
       Plot.frame()
