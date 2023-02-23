@@ -395,7 +395,7 @@ const defaultWidthMap = {
 // that were previously measured?
 // http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries
 // https://exploringjs.com/impatient-js/ch_strings.html#atoms-of-text
-function defaultWidth(text, start, end) {
+export function defaultWidth(text, start, end) {
   let sum = 0;
   for (let i = start; i < end; i = readCharacter(text, i)) {
     sum += defaultWidthMap[text[i]] ?? (isPictographic(text, i) ? 120 : defaultWidthMap.e);
@@ -403,7 +403,7 @@ function defaultWidth(text, start, end) {
   return sum;
 }
 
-function monospaceWidth(text, start, end) {
+export function monospaceWidth(text, start, end) {
   let sum = 0;
   for (let i = start; i < end; i = readCharacter(text, i)) {
     sum += isPictographic(text, i) ? 200 : 100;
@@ -427,12 +427,10 @@ function overflow(input, width, widthof, textOverflow) {
 }
 
 function cut(text, width, widthof, inset) {
-  if (!(width > 0)) throw new Error(`non-positive line width: ${width}`); // TODO move to constructor
   const I = []; // indexes of read character boundaries
   let w = 0; // current line width
   for (let i = 0, j = 0, n = text.length; i < n; i = j) {
     j = readCharacter(text, i); // read the next character
-    if (w === 0 && isSpace(text, i)) continue; // ignore leading spaces
     const l = widthof(text, i, j); // current character width
     if (w + l > width) {
       w += inset;
@@ -445,33 +443,32 @@ function cut(text, width, widthof, inset) {
   return -1;
 }
 
-function clipStart(text, width, widthof, insert) {
+export function clipStart(text, width, widthof, insert) {
+  text = text.trim(); // ignore leading and trailing whitespace
   const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
   const i = cut(text, width, widthof, e);
   if (i < 0) return text;
-  const l = text.slice(0, i).trimEnd() + insert;
-  return l; // + ` (${widthof(l, 0, l.length)}/${width})`;
+  return text.slice(0, i).trimEnd() + insert;
 }
 
-function clipMiddle(text, width, widthof, insert) {
+export function clipMiddle(text, width, widthof, insert) {
   text = text.trim(); // ignore leading and trailing whitespace
   const w = widthof(text, 0, text.length);
   if (w <= width) return text;
   const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
   const i = cut(text, width / 2, widthof, e);
   const j = cut(text, w - width / 2, widthof, 0); // TODO need to read spaces?
-  const l = text.slice(0, i).trimEnd() + insert + text.slice(j).trimStart();
-  return l; // + ` (${widthof(l, 0, l.length)}/${width})`;
+  return text.slice(0, i).trimEnd() + insert + text.slice(j).trimStart();
 }
 
-function clipEnd(text, width, widthof, insert) {
+export function clipEnd(text, width, widthof, insert) {
   text = text.trim(); // ignore leading and trailing whitespace
   const w = widthof(text, 0, text.length);
   if (w <= width) return text;
   const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
   const i = cut(text, w - width + e, widthof, -e); // TODO need to read spaces?
-  const l = insert + text.slice(i).trimStart(); // readCharacter(text, i)
-  return l; // + ` (${widthof(l, 0, l.length)}/${width})`;
+  if (i < 0) return "";
+  return insert + text.slice(readCharacter(text, i)).trimStart();
 }
 
 // TODO I wrote these as regular expressions for clarity, but we might want to
@@ -482,7 +479,6 @@ const reSurrogatePair = /[\uD800-\uDBFF][\uDC00-\uDFFF]/y;
 const reCombiner = /[\p{Combining_Mark}\p{Emoji_Modifier}]+/uy;
 const reZeroWidthJoiner = /\u200D/y;
 const rePictographic = /\p{Extended_Pictographic}/uy;
-const reSpace = /\s/y;
 
 // Reads a single “character” element from the given text starting at the given
 // index, returning the index after the read character. Ideally, this implements
@@ -503,9 +499,4 @@ export function readCharacter(text, i) {
 function isPictographic(text, i) {
   rePictographic.lastIndex = i;
   return rePictographic.test(text);
-}
-
-function isSpace(text, i) {
-  reSpace.lastIndex = i;
-  return reSpace.test(text);
 }
