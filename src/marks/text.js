@@ -182,12 +182,12 @@ function applyIndirectTextStyles(selection, mark, T) {
   applyAttr(selection, "font-family", mark.fontFamily);
   applyAttr(selection, "font-size", mark.fontSize);
   applyAttr(selection, "font-style", mark.fontStyle);
-  applyAttr(
-    selection,
-    "font-variant",
-    mark.fontVariant === undefined && (isNumeric(T) || isTemporal(T)) ? "tabular-nums" : mark.fontVariant
-  );
+  applyAttr(selection, "font-variant", mark.fontVariant === undefined ? inferFontVariant(T) : mark.fontVariant);
   applyAttr(selection, "font-weight", mark.fontWeight);
+}
+
+function inferFontVariant(T) {
+  return isNumeric(T) || isTemporal(T) ? "tabular-nums" : undefined;
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/font-size
