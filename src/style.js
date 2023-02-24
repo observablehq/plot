@@ -1,4 +1,4 @@
-import {geoPath, group, namespaces} from "d3";
+import {geoPath, group, local, namespaces} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
@@ -46,7 +46,8 @@ export function styles(
     mixBlendMode,
     paintOrder,
     pointerEvents,
-    shapeRendering
+    shapeRendering,
+    details
   },
   {
     ariaLabel: cariaLabel,
@@ -148,7 +149,8 @@ export function styles(
     stroke: {value: vstroke, scale: "auto", optional: true},
     strokeOpacity: {value: vstrokeOpacity, scale: "opacity", optional: true},
     strokeWidth: {value: vstrokeWidth, optional: true},
-    opacity: {value: vopacity, scale: "opacity", optional: true}
+    opacity: {value: vopacity, scale: "opacity", optional: true},
+    details: {value: details, optional: true}
   };
 }
 
@@ -190,7 +192,10 @@ export function applyChannelStyles(
     strokeOpacity: SO,
     strokeWidth: SW,
     opacity: O,
-    href: H
+    href: H,
+    details: D,
+    x: X,
+    y: Y
   }
 ) {
   if (AL) applyAttr(selection, "aria-label", (i) => AL[i]);
@@ -201,7 +206,18 @@ export function applyChannelStyles(
   if (SW) applyAttr(selection, "stroke-width", (i) => SW[i]);
   if (O) applyAttr(selection, "opacity", (i) => O[i]);
   if (H) applyHref(selection, (i) => H[i], target);
+  if (D) applyDetails(selection, D, X, Y);
   applyTitle(selection, T);
+}
+
+const details = local(); // TODO: this should belong to the plot context
+const geometry = local();
+function applyDetails(selection, D, X, Y) {
+  for (const node of selection) {
+    const i = node.__data__;
+    details.set(node, D[i]);
+    geometry.set(node, {x: X[i], y: Y[i]});
+  }
 }
 
 export function applyGroupedChannelStyles(

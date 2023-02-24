@@ -81,6 +81,20 @@ export class Mark {
     if (this.transform != null) ({facets, data} = this.transform(data, facets)), (data = arrayify(data));
     const channels = Channels(this.channels, data);
     if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort); // mutates facetChannels!
+
+    // TODO design the default details channel
+    channels.details ??= {
+      value: channels.x
+        ? Array.from(channels.x.value, (x, i) => ({
+            x,
+            y: channels.y?.value[i],
+            fill: channels.fill?.value[i],
+            stroke: channels.stroke?.value[i],
+            text: channels.text?.value[i]
+          }))
+        : null,
+      filter: null
+    };
     return {data, facets, channels};
   }
   filter(index, channels, values) {
