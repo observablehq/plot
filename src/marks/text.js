@@ -79,7 +79,7 @@ export class Text extends Mark {
     this.lineWidth = +lineWidth;
     this.textOverflow =
       textOverflow == null
-        ? undefined
+        ? null
         : keyword(textOverflow, "textOverflow", [
             "clip", // shorthand for clip-end
             "ellipsis", // … ellipsis-end
@@ -96,6 +96,7 @@ export class Text extends Mark {
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
+    this.splitText = splitter(this);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
@@ -127,17 +128,11 @@ export class Text extends Mark {
   }
 }
 
-function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineWidth, textOverflow}, T, TL) {
+function applyMultilineText(selection, mark, T, TL) {
   if (!T) return;
-  if (textOverflow && !isFinite(lineWidth)) throw new Error(`the textOverflow option requires a specified lineWidth`); // TODO move to constructor
-  const measure = monospace ? monospaceWidth : defaultWidth;
-  const linesof = isFinite(lineWidth)
-    ? textOverflow
-      ? (t) => [overflow(t, lineWidth * 100, measure, textOverflow)]
-      : (t) => lineWrap(t, lineWidth * 100, measure)
-    : (t) => t.split(/\r\n?|\n/g);
+  const {lineAnchor, lineHeight, textOverflow} = mark;
   selection.each(function (i) {
-    const lines = linesof(formatDefault(T[i]));
+    const lines = mark.splitText(formatDefault(T[i]));
     const n = lines.length;
     const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {
@@ -415,18 +410,25 @@ export function monospaceWidth(text, start, end) {
   return sum;
 }
 
-function overflow(input, width, widthof, textOverflow) {
+function splitter({monospace, lineWidth, textOverflow}) {
+  if (textOverflow != null && lineWidth == null) throw new Error("textOverflow requires lineWidth");
+  if (lineWidth == null) return (text) => text.split(/\r\n?|\n/g);
+  if (!(lineWidth >= 0)) throw new Error(`invalid lineWidth: ${lineWidth}`);
+  const widthof = monospace ? monospaceWidth : defaultWidth;
+  const maxWidth = lineWidth * 100;
   switch (textOverflow) {
+    case null:
+      return (text) => lineWrap(text, maxWidth, widthof);
     case "clip-start":
-      return clipStart(input, width, widthof, "");
+      return (text) => [clipStart(text, maxWidth, widthof, "")];
     case "clip-end":
-      return clipEnd(input, width, widthof, "");
+      return (text) => [clipEnd(text, maxWidth, widthof, "")];
     case "ellipsis-start":
-      return clipStart(input, width, widthof, "…");
+      return (text) => [clipStart(text, maxWidth, widthof, "…")];
     case "ellipsis-middle":
-      return clipMiddle(input, width, widthof, "…");
+      return (text) => [clipMiddle(text, maxWidth, widthof, "…")];
     case "ellipsis-end":
-      return clipEnd(input, width, widthof, "…");
+      return (text) => [clipEnd(text, maxWidth, widthof, "…")];
   }
 }
 
