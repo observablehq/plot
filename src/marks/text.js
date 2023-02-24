@@ -77,18 +77,7 @@ export class Text extends Mark {
     this.lineAnchor = keyword(lineAnchor, "lineAnchor", ["top", "middle", "bottom"]);
     this.lineHeight = +lineHeight;
     this.lineWidth = +lineWidth;
-    this.textOverflow =
-      textOverflow == null
-        ? null
-        : keyword(textOverflow, "textOverflow", [
-            "clip", // shorthand for clip-end
-            "ellipsis", // … ellipsis-end
-            "clip-start",
-            "clip-end",
-            "ellipsis-start",
-            "ellipsis-middle",
-            "ellipsis-end"
-          ]).replace(/^(clip|ellipsis)$/, "$1-end");
+    this.textOverflow = maybeTextOverflow(textOverflow);
     this.monospace = !!monospace;
     this.fontFamily = string(fontFamily);
     this.fontSize = cfontSize;
@@ -128,6 +117,20 @@ export class Text extends Mark {
       )
       .node();
   }
+}
+
+function maybeTextOverflow(textOverflow) {
+  return textOverflow == null
+    ? null
+    : keyword(textOverflow, "textOverflow", [
+        "clip", // shorthand for clip-end
+        "ellipsis", // … ellipsis-end
+        "clip-start",
+        "clip-end",
+        "ellipsis-start",
+        "ellipsis-middle",
+        "ellipsis-end"
+      ]).replace(/^(clip|ellipsis)$/, "$1-end");
 }
 
 function applyMultilineText(selection, mark, T, TL) {
