@@ -15,7 +15,7 @@ export async function textOverflow() {
     "The Black Hole",
     "The Big Parade",
     "Boyz n the Hood",
-    "The Book of Mormon Movie, Volume 1: The Journey",
+    "The Book of Mormon Movie,\nVolume 1: The Journey", // split lines
     "Return to the Blue Lagoon",
     "Bright Lights, Big City",
     "The Blue Bird",
@@ -38,8 +38,8 @@ export async function textOverflow() {
     "Basquiat",
     "Black Rain",
     "Bottle Rocket",
-    "👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩", // composed emoji (TODO: slightly buggy)
-    "🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿" // fitz modifiers (TODO: slightly buggy)
+    "👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩", // composed emoji
+    "🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿" // fitz modifiers
   ];
   const options = ["clip-start", "clip-end", "ellipsis-start", "ellipsis-middle", "ellipsis-end"];
   return Plot.plot({
