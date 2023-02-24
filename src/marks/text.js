@@ -454,9 +454,9 @@ export function clipMiddle(text, width, widthof, insert) {
   text = text.trim(); // ignore leading and trailing whitespace
   const w = widthof(text, 0, text.length);
   if (w <= width) return text;
-  const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
+  const e = widthof(insert, 0, insert.length) / 2; // TODO precompute ellipsis length
   const [i, ei] = cut(text, width / 2, widthof, e);
-  const [j] = cut(text, w - width / 2 - ei, widthof, 0); // TODO read spaces?
+  const [j] = cut(text, w - width / 2 - ei + e, widthof, -e); // TODO read spaces?
   return j < 0 ? insert : text.slice(0, i).trimEnd() + insert + text.slice(readCharacter(text, j)).trimStart();
 }
 

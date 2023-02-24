@@ -196,12 +196,12 @@ it("clipMiddle removes the middle of the line to fit the available space", () =>
 });
 
 it("clipMiddle reserves space for the ellipsis, if any", () => {
-  assert.strictEqual(clipMiddle("The quick brown fox", 800, defaultWidth, "…"), "The qu…own fox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 800, defaultWidth, "…"), "The qui…own fox");
   assert.strictEqual(clipMiddle("The quick brown fox", 400, defaultWidth, "…"), "Th…fox");
-  assert.strictEqual(clipMiddle("The quick brown fox", 200, defaultWidth, "…"), "…ox");
-  textWidthTest("The qu…own fox", "The qu…rown fox", 800, defaultWidth);
+  assert.strictEqual(clipMiddle("The quick brown fox", 200, defaultWidth, "…"), "T…x");
+  textWidthTest("The qui…own fox", "The qui…rown fox", 800, defaultWidth);
   textWidthTest("Th…fox", "Th…n fox", 400, defaultWidth);
-  textWidthTest("…ox", "…fox", 200, defaultWidth);
+  textWidthTest("T…x", "T…ox", 200, defaultWidth);
 });
 
 it("clipMiddle returns the ellipsis, if any, if the available width is zero", () => {
