@@ -1486,7 +1486,7 @@ The **stroke** defaults to none. The **fill** defaults to currentColor if the st
 
 The built-in **symbol** types are: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke, based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746)). The *hexagon* symbol is also supported. You can also specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types) method.
 
-Dots are sorted by descending radius to mitigate overplotting; use *sort: null* to draw them in input order.
+Dots are sorted by descending radius by default to mitigate overplotting; set the **sort** option to null to draw them in input order.
 
 #### Plot.dot(*data*, *options*)
 
