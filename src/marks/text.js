@@ -403,6 +403,10 @@ export function defaultWidth(text, start, end) {
   return sum;
 }
 
+// Even for monospaced text, we can’t assume that the number of UTF-16 code
+// points (i.e., the length of a string) corresponds to the number of visible
+// characters; we still have to count graphemes. And note that pictographic
+// characters such as emojis are typically not monospaced!
 export function monospaceWidth(text, start, end) {
   let sum = 0;
   for (let i = start; i < end; i = readCharacter(text, i)) {
@@ -426,6 +430,12 @@ function overflow(input, width, widthof, textOverflow) {
   }
 }
 
+// Cuts the given text to the given width, using the specified widthof function;
+// the returned [index, error] guarantees text.slice(0, index) fits within the
+// specified width with the given error. If the text fits naturally within the
+// given width, returns [-1, 0]. If the text needs cutting, the given inset
+// specifies how much space (in the same units as width and widthof) to reserve
+// for a possible ellipsis character.
 function cut(text, width, widthof, inset) {
   const I = []; // indexes of read character boundaries
   let w = 0; // current line width
