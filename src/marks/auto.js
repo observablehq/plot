@@ -12,7 +12,11 @@ import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../mark.js";
 
-export function autoSpec(data, {x, y, color, size, fx, fy, mark} = {}) {
+export function autoSpec(data, options) {
+  return spec(data, options);
+}
+
+function spec(data, {x, y, color, size, fx, fy, mark} = {}, {materialize} = {}) {
   // Allow x and y and other dimensions to be specified as shorthand field names
   // (but note that they can also be specified as a {transform} object such as
   // Plot.identity).
@@ -41,12 +45,6 @@ export function autoSpec(data, {x, y, color, size, fx, fy, mark} = {}) {
 
   let {zero: xZero = isZeroReducer(xReduce) ? true : undefined} = x;
   let {zero: yZero = isZeroReducer(yReduce) ? true : undefined} = y;
-
-  // TODO The line mark will need z?
-  // TODO Limit and sort for bar charts (e.g. alphabet)?
-  // TODO Look at Plot warnings and see how many we can prevent
-  // TODO Default to something other than turbo for continuous? Like:
-  //      scheme: (colorValue && !isOrdinal(color)) || colorReduce ? "ylgnbu" : undefined
 
   // To apply heuristics based on the data types (values), realize the columns.
   // We could maybe look at the data.schema here, but Plot’s behavior depends on
@@ -101,14 +99,32 @@ export function autoSpec(data, {x, y, color, size, fx, fy, mark} = {}) {
         : null;
   }
 
-  // TODO: "?? null" on all of these, so none are undefined? (Currently breaks a lot of tests…)
+  // TODO: Maybe we should return null in undefined cases, so the spec is always
+  // totally defined one way or the other. (Currently breaks a lot of tests.)
   return {
-    x: {value: x, reduce: xReduce, zero: xZero, ...xOptions},
-    y: {value: y, reduce: yReduce, zero: yZero, ...yOptions},
-    color: {value: color, color: colorColor, reduce: colorReduce},
-    size: {value: size, reduce: sizeReduce},
-    fx,
-    fy,
+    x: {
+      ...(materialize ? {value: x} : xValue !== undefined && {value: xValue}),
+      ...(xReduce !== undefined && {reduce: xReduce}),
+      ...(xZero !== undefined && {zero: xZero}),
+      ...xOptions
+    },
+    y: {
+      ...(materialize ? {value: y} : yValue !== undefined && {value: yValue}),
+      ...(yReduce !== undefined && {reduce: yReduce}),
+      ...(yZero !== undefined && {zero: yZero}),
+      ...yOptions
+    },
+    color: {
+      ...(materialize ? {value: color} : colorValue !== undefined && {value: colorValue}),
+      ...(colorColor !== undefined && {color: colorColor}),
+      ...(colorReduce !== undefined && {reduce: colorReduce})
+    },
+    size: {
+      ...(materialize ? {value: size} : sizeValue !== undefined && {value: sizeValue}),
+      ...(sizeReduce !== undefined && {reduce: sizeReduce})
+    },
+    ...(fx !== undefined && {fx}),
+    ...(fy !== undefined && {fy}),
     mark
   };
 }
@@ -123,7 +139,7 @@ export function auto(data, initialOptions) {
     fx,
     fy,
     mark
-  } = autoSpec(data, initialOptions);
+  } = spec(data, initialOptions, {materialize: true});
 
   let z, zReduce;
   let colorMode; // "fill" or "stroke"
