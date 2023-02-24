@@ -395,7 +395,7 @@ const defaultWidthMap = {
 // that were previously measured?
 // http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries
 // https://exploringjs.com/impatient-js/ch_strings.html#atoms-of-text
-export function defaultWidth(text, start, end) {
+export function defaultWidth(text, start = 0, end = text.length) {
   let sum = 0;
   for (let i = start; i < end; i = readCharacter(text, i)) {
     sum += defaultWidthMap[text[i]] ?? (isPictographic(text, i) ? 120 : defaultWidthMap.e);
@@ -407,7 +407,7 @@ export function defaultWidth(text, start, end) {
 // points (i.e., the length of a string) corresponds to the number of visible
 // characters; we still have to count graphemes. And note that pictographic
 // characters such as emojis are typically not monospaced!
-export function monospaceWidth(text, start, end) {
+export function monospaceWidth(text, start = 0, end = text.length) {
   let sum = 0;
   for (let i = start; i < end; i = readCharacter(text, i)) {
     sum += isPictographic(text, i) ? 200 : 100;
@@ -463,30 +463,30 @@ function cut(text, width, widthof, inset) {
   return [-1, 0];
 }
 
-export function clipEnd(text, width, widthof, insert) {
+export function clipEnd(text, width, widthof, ellipsis) {
   text = text.trim(); // ignore leading and trailing whitespace
-  const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
+  const e = widthof(ellipsis);
   const [i] = cut(text, width, widthof, e);
-  return i < 0 ? text : text.slice(0, i).trimEnd() + insert;
+  return i < 0 ? text : text.slice(0, i).trimEnd() + ellipsis;
 }
 
-export function clipMiddle(text, width, widthof, insert) {
+export function clipMiddle(text, width, widthof, ellipsis) {
   text = text.trim(); // ignore leading and trailing whitespace
-  const w = widthof(text, 0, text.length);
+  const w = widthof(text);
   if (w <= width) return text;
-  const e = widthof(insert, 0, insert.length) / 2; // TODO precompute ellipsis length
+  const e = widthof(ellipsis) / 2;
   const [i, ei] = cut(text, width / 2, widthof, e);
   const [j] = cut(text, w - width / 2 - ei + e, widthof, -e); // TODO read spaces?
-  return j < 0 ? insert : text.slice(0, i).trimEnd() + insert + text.slice(readCharacter(text, j)).trimStart();
+  return j < 0 ? ellipsis : text.slice(0, i).trimEnd() + ellipsis + text.slice(readCharacter(text, j)).trimStart();
 }
 
-export function clipStart(text, width, widthof, insert) {
+export function clipStart(text, width, widthof, ellipsis) {
   text = text.trim(); // ignore leading and trailing whitespace
-  const w = widthof(text, 0, text.length);
+  const w = widthof(text);
   if (w <= width) return text;
-  const e = widthof(insert, 0, insert.length); // TODO precompute ellipsis length
+  const e = widthof(ellipsis);
   const [j] = cut(text, w - width + e, widthof, -e); // TODO read spaces?
-  return j < 0 ? insert : insert + text.slice(readCharacter(text, j)).trimStart();
+  return j < 0 ? ellipsis : ellipsis + text.slice(readCharacter(text, j)).trimStart();
 }
 
 // TODO I wrote these as regular expressions for clarity, but we might want to
