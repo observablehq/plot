@@ -96,7 +96,9 @@ export class Text extends Mark {
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
+    if (!(this.lineWidth >= 0)) throw new Error(`invalid lineWidth: ${lineWidth}`);
     this.splitText = splitter(this);
+    this.clipText = clipper(this);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
@@ -130,9 +132,9 @@ export class Text extends Mark {
 
 function applyMultilineText(selection, mark, T, TL) {
   if (!T) return;
-  const {lineAnchor, lineHeight, textOverflow} = mark;
+  const {lineAnchor, lineHeight, textOverflow, splitText, clipText} = mark;
   selection.each(function (i) {
-    const lines = mark.splitText(formatDefault(T[i]));
+    const lines = splitText(formatDefault(T[i])).map(clipText);
     const n = lines.length;
     const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {
@@ -411,24 +413,27 @@ export function monospaceWidth(text, start, end) {
 }
 
 function splitter({monospace, lineWidth, textOverflow}) {
-  if (textOverflow != null && lineWidth == null) throw new Error("textOverflow requires lineWidth");
-  if (lineWidth == null) return (text) => text.split(/\r\n?|\n/g);
-  if (!(lineWidth >= 0)) throw new Error(`invalid lineWidth: ${lineWidth}`);
+  if (textOverflow != null || lineWidth == Infinity) return (text) => text.split(/\r\n?|\n/g);
+  const widthof = monospace ? monospaceWidth : defaultWidth;
+  const maxWidth = lineWidth * 100;
+  return (text) => lineWrap(text, maxWidth, widthof);
+}
+
+function clipper({monospace, lineWidth, textOverflow}) {
+  if (textOverflow == null || lineWidth == Infinity) return (text) => text;
   const widthof = monospace ? monospaceWidth : defaultWidth;
   const maxWidth = lineWidth * 100;
   switch (textOverflow) {
-    case null:
-      return (text) => lineWrap(text, maxWidth, widthof);
     case "clip-start":
-      return (text) => [clipStart(text, maxWidth, widthof, "")];
+      return (text) => clipStart(text, maxWidth, widthof, "");
     case "clip-end":
-      return (text) => [clipEnd(text, maxWidth, widthof, "")];
+      return (text) => clipEnd(text, maxWidth, widthof, "");
     case "ellipsis-start":
-      return (text) => [clipStart(text, maxWidth, widthof, "…")];
+      return (text) => clipStart(text, maxWidth, widthof, "…");
     case "ellipsis-middle":
-      return (text) => [clipMiddle(text, maxWidth, widthof, "…")];
+      return (text) => clipMiddle(text, maxWidth, widthof, "…");
     case "ellipsis-end":
-      return (text) => [clipEnd(text, maxWidth, widthof, "…")];
+      return (text) => clipEnd(text, maxWidth, widthof, "…");
   }
 }
 
