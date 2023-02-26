@@ -4,16 +4,10 @@ import assert from "assert";
 it("Plot.autoSpec makes a histogram from a quantitative dimension", () => {
   const data = [{value: 1}, {value: 1}, {value: 38}];
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "value"}), {
-    x: {
-      value: Object.assign([1, 1, 38], {label: "value"}),
-      reduce: null,
-      zero: undefined
-    },
-    y: {value: undefined, reduce: "count", zero: true},
-    color: {value: undefined, color: undefined, reduce: undefined},
-    size: {value: undefined, reduce: undefined},
-    fx: undefined,
-    fy: undefined,
+    x: {value: "value", reduce: null},
+    y: {reduce: "count", zero: true},
+    color: {},
+    size: {},
     mark: "bar"
   });
 });
@@ -21,16 +15,10 @@ it("Plot.autoSpec makes a histogram from a quantitative dimension", () => {
 it("Plot.autoSpec makes a bar chart from an ordinal dimension", () => {
   const data = [{value: "duck"}, {value: "duck"}, {value: "goose"}];
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "value", color: "blue"}), {
-    x: {
-      value: Object.assign(["duck", "duck", "goose"], {label: "value"}),
-      reduce: null,
-      zero: undefined
-    },
-    y: {value: undefined, reduce: "count", zero: true},
-    color: {value: undefined, color: "blue", reduce: undefined},
-    size: {value: undefined, reduce: undefined},
-    fx: undefined,
-    fy: undefined,
+    x: {value: "value", reduce: null},
+    y: {reduce: "count", zero: true},
+    color: {color: "blue"},
+    size: {},
     mark: "bar"
   });
 });
@@ -42,16 +30,10 @@ it("Plot.autoSpec makes a line from a monotonic dimension", () => {
     {date: 3, value: 38}
   ];
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "date", y: "value"}), {
-    x: {value: Object.assign([1, 2, 3], {label: "date"}), reduce: null, zero: undefined},
-    y: {
-      value: Object.assign([1, 1, 38], {label: "value"}),
-      reduce: null,
-      zero: undefined
-    },
-    color: {value: undefined, color: undefined, reduce: undefined},
-    size: {value: undefined, reduce: undefined},
-    fx: undefined,
-    fy: undefined,
+    x: {value: "date", reduce: null},
+    y: {value: "value", reduce: null},
+    color: {},
+    size: {},
     mark: "line"
   });
 });
@@ -63,12 +45,10 @@ it("Plot.autoSpec makes a dot plot from two quantitative dimensions", () => {
     {x: 1, y: 2}
   ];
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "x", y: "y"}), {
-    x: {value: Object.assign([0, 2, 1], {label: "x"}), reduce: null, zero: undefined},
-    y: {value: Object.assign([0, 3, 2], {label: "y"}), reduce: null, zero: undefined},
-    color: {value: undefined, color: undefined, reduce: undefined},
-    size: {value: undefined, reduce: undefined},
-    fx: undefined,
-    fy: undefined,
+    x: {value: "x", reduce: null},
+    y: {value: "y", reduce: null},
+    color: {},
+    size: {},
     mark: "dot"
   });
 });
@@ -83,19 +63,10 @@ it("Plot.autoSpec makes a faceted heatmap", () => {
     {x: 4, y: 2, f: "two"}
   ];
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "x", y: "y", fy: "f", color: "count"}), {
-    x: {
-      value: Object.assign([0, 2, 1, 4, 2, 4], {label: "x"}),
-      reduce: null,
-      zero: undefined
-    },
-    y: {
-      value: Object.assign([0, 3, 2, 1, 6, 2], {label: "y"}),
-      reduce: null,
-      zero: undefined
-    },
-    color: {value: undefined, color: undefined, reduce: "count"},
-    size: {value: undefined, reduce: undefined},
-    fx: undefined,
+    x: {value: "x", reduce: null},
+    y: {value: "y", reduce: null},
+    color: {reduce: "count"},
+    size: {},
     fy: "f",
     mark: "bar"
   });
