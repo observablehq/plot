@@ -81,13 +81,13 @@ export function autoSpec(data, options) {
     x: {
       value: xValue ?? null,
       reduce: xReduce ?? null,
-      ...(xZero !== undefined && {zero: xZero}), // TODO ?? false?
+      ...(xZero !== undefined && {zero: xZero}), // TODO realize default
       ...xOptions
     },
     y: {
       value: yValue ?? null,
       reduce: yReduce ?? null,
-      ...(yZero !== undefined && {zero: yZero}), // TODO ?? false?
+      ...(yZero !== undefined && {zero: yZero}), // TODO realize default
       ...yOptions
     },
     color: {
@@ -216,7 +216,7 @@ export function auto(data, options) {
   }
 
   // If zero-ness is not specified, default based on whether the resolved mark
-  // type will include a zero baseline.
+  // type will include a zero baseline. TODO Move this to autoSpec.
   if (xZero === undefined) xZero = transform !== binX && (mark === barX || mark === areaX || mark === rectX);
   if (yZero === undefined) yZero = transform !== binY && (mark === barY || mark === areaY || mark === rectY);
 
