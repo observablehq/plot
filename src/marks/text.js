@@ -490,13 +490,7 @@ export function clipStart(text, width, widthof, ellipsis) {
   return j < 0 ? ellipsis : ellipsis + text.slice(readCharacter(text, j)).trimStart();
 }
 
-// TODO I wrote these as regular expressions for clarity, but we might want to
-// optimize by testing char codes directly for surrogate pair and zero-width
-// joiner detection (assuming that doing so would actually be faster in a
-// material way… maybe a quick microbenchmark to see if it matters)?
-const reSurrogatePair = /[\uD800-\uDBFF][\uDC00-\uDFFF]/y;
 const reCombiner = /[\p{Combining_Mark}\p{Emoji_Modifier}]+/uy;
-const reZeroWidthJoiner = /\u200D/y;
 const rePictographic = /\p{Extended_Pictographic}/uy;
 
 // Reads a single “character” element from the given text starting at the given
@@ -506,16 +500,35 @@ const rePictographic = /\p{Extended_Pictographic}/uy;
 // surrogate pairs, combining marks, and zero-width joiner (zwj) sequences such
 // as emoji skin color modifiers. https://unicode.org/reports/tr29/
 export function readCharacter(text, i) {
-  reSurrogatePair.lastIndex = i++; // consume first character
-  if (reSurrogatePair.test(text)) ++i; // consume surrogate pair
-  reCombiner.lastIndex = i;
-  if (reCombiner.test(text)) i = reCombiner.lastIndex; // consume combiners
-  reZeroWidthJoiner.lastIndex = i;
-  if (reZeroWidthJoiner.test(text)) return readCharacter(text, i + 1); // consume zero-width join and what follows
+  i += isSurrogatePair(text, i) ? 2 : 1;
+  if (isCombiner(text, i)) i = reCombiner.lastIndex;
+  if (isZeroWidthJoiner(text, i)) return readCharacter(text, i + 1);
   return i;
 }
 
+// We avoid more expensive regex tests involving Unicode property classes by
+// first checking for the common case of 7-bit ASCII characters.
+function isAscii(text, i) {
+  return text.charCodeAt(i) < 0x80;
+}
+
+function isSurrogatePair(text, i) {
+  const hi = text.charCodeAt(i);
+  if (hi >= 0xd800 && hi < 0xdc00) {
+    const lo = text.charCodeAt(i + 1);
+    return lo >= 0xdc00 && lo < 0xe000;
+  }
+  return false;
+}
+
+function isZeroWidthJoiner(text, i) {
+  return text.charCodeAt(i) === 0x200d;
+}
+
+function isCombiner(text, i) {
+  return isAscii(text, i) ? false : ((reCombiner.lastIndex = i), reCombiner.test(text));
+}
+
 function isPictographic(text, i) {
-  rePictographic.lastIndex = i;
-  return rePictographic.test(text);
+  return isAscii(text, i) ? false : ((rePictographic.lastIndex = i), rePictographic.test(text));
 }
