@@ -2029,7 +2029,7 @@ The following text-specific constant options are also supported:
 * **lineAnchor** - the line anchor for vertical position; top, bottom, or middle
 * **lineHeight** - the line height in ems; defaults to 1
 * **lineWidth** - the line width in ems, for wrapping; defaults to Infinity
-* **textOverflow** - the strategy to use for wrapping or clipping a text that is longer than lineWidth
+* **textOverflow** - how to wrap or clip lines longer than the specified line width
 * **monospace** - if true, changes the default fontFamily and metrics to monospace
 * **fontFamily** - the font name; defaults to [system-ui](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 * **fontSize** - the font size in pixels; defaults to 10
@@ -2041,13 +2041,14 @@ The following text-specific constant options are also supported:
 
 If a **lineWidth** is specified, input text values will be wrapped as needed to fit while preserving existing newlines. The line wrapping implementation is rudimentary; for non-ASCII, non-U.S. English text, or for when a different font is used, you may get better results by hard-wrapping the text yourself (by supplying newlines in the input). If the **monospace** option is truthy, the default **fontFamily** changes to “ui-monospace, monospace”, and the **lineWidth** option is interpreted as characters (ch) rather than ems.
 
-If the **textOverflow** option is specified, only one line will be shown: if the text is longer than the given line width, it is clipped to that length, a title with the complete text is provided unless the mark already has a title channel. The following textOverflow values are supported:
+The **textOverflow** option can be used to truncate lines of text longer than the given **lineWidth**. If the mark does not have a **title** channel, a title with the non-truncated text is also added. The following **textOverflow** values are supported:
 
-* *clip* or *clip-end*- the text is clipped when the lineWidth is reached; extra spaces are trimed
-* *clip-start* - the width is measured from the end of the line, and the text is clipped to the left
-* *ellipsis* or *ellipsis-end* - same as clip, with an ellipsis (…) appended to the clipped text
-* *ellipsis-start* - same as clip-start, with an ellipsis prepended to the clipped text
-* *ellipsis-middle* - if the text is too long, its beginning and end are joined with an ellipsis in the middle
+* null (default) - preserve overflowing characters
+* *clip* or *clip-end* - remove characters from the end
+* *clip-start* - remove characters from the start
+* *ellipsis* or *ellipsis-end* - replace characters from the end with an ellipsis (…)
+* *ellipsis-start* - replace characters from the start with an ellipsis (…)
+* *ellipsis-middle* - replace characters from the middle with an ellipsis (…)
 
 The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
