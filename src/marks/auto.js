@@ -86,7 +86,7 @@ function spec(data, {x, y, color, size, fx, fy, mark} = {}, {materialize} = {}) 
   // Determine the default mark type.
   if (mark === undefined) {
     mark =
-      size != null || sizeReduce != null
+      sizeValue != null || sizeReduce != null
         ? "dot"
         : xZero || yZero || colorReduce != null // histogram or heatmap
         ? "bar"
