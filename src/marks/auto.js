@@ -93,7 +93,7 @@ export function autoSpec(data, options) {
     color: {
       value: colorValue ?? null,
       reduce: colorReduce ?? null,
-      ...(colorColor !== undefined && {color: colorColor}) // TODO ?? null
+      ...(colorColor !== undefined && {color: colorColor})
     },
     size: {
       value: sizeValue ?? null,
@@ -184,11 +184,11 @@ export function auto(data, options) {
   let markOptions = {
     fx,
     fy,
-    x: X ?? undefined,
-    y: Y ?? undefined,
+    x: X ?? undefined, // treat null x as undefined for implicit stack
+    y: Y ?? undefined, // treat null y as undefined for implicit stack
     [colorMode]: C ?? colorColor,
     z: Z,
-    r: S ?? undefined
+    r: S ?? undefined // treat null size as undefined for default constant radius
   };
   let transform;
   let transformOptions = {[colorMode]: colorReduce ?? undefined, r: sizeReduce ?? undefined};
