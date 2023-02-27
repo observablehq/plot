@@ -13,6 +13,8 @@ import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../mark.js";
 
 export function autoSpec(data, options) {
+  options = normalizeOptions(options);
+
   let {
     fx,
     fy,
@@ -21,15 +23,13 @@ export function autoSpec(data, options) {
     color: {value: colorValue, color: colorColor, reduce: colorReduce},
     size: {value: sizeValue, reduce: sizeReduce}, // TODO constant radius?
     mark
-  } = normalizeOptions(options);
+  } = options;
 
-  // To apply heuristics based on the data types (values), realize the columns.
-  // We could maybe look at the data.schema here, but Plot’s behavior depends on
-  // the actual values anyway, so this probably is what we want.
-  const X = valueof(data, xValue);
-  const Y = valueof(data, yValue);
-  const C = valueof(data, colorValue);
-  const S = valueof(data, sizeValue);
+  const {
+    x: {value: X},
+    y: {value: Y},
+    size: {value: S}
+  } = materializeValues(data, options);
 
   // Determine the default reducer, if any.
   if (xReduce === undefined) xReduce = yReduce == null && !X && sizeValue == null && Y ? "count" : null;
@@ -57,15 +57,6 @@ export function autoSpec(data, options) {
   if (xReduce != null && !Y) throw new Error("reducing x requires y");
   if (yReduce != null && !X) throw new Error("reducing y requires x");
 
-  // Propagate the x and y labels (field names), if any. This is necessary for
-  // any column we materialize (and hence, we don’t need to do this for fx and
-  // fy, since those columns are not needed for type inference and hence are not
-  // greedily materialized).
-  if (X) X.label = labelof(xValue);
-  if (Y) Y.label = labelof(yValue);
-  if (C) C.label = labelof(colorValue);
-  if (S) S.label = labelof(sizeValue);
-
   // Determine the default mark type.
   if (mark === undefined) {
     mark =
@@ -82,8 +73,6 @@ export function autoSpec(data, options) {
         : null;
   }
 
-  // TODO: Maybe we should return null in undefined cases, so the spec is always
-  // totally defined one way or the other. (Currently breaks a lot of tests.)
   return {
     fx: fx ?? null,
     fy: fy ?? null,
@@ -114,39 +103,19 @@ export function autoSpec(data, options) {
 
 /** @jsdoc auto */
 export function auto(data, options) {
-  options = normalizeOptions(options);
-
   // By materializing here, we ensure the columns aren’t re-computed later.
-  const X = valueof(data, options.x.value);
-  const Y = valueof(data, options.y.value);
-  const C = valueof(data, options.color.value);
-  const S = valueof(data, options.size.value);
-
-  // Propagate the x and y labels (field names), if any. This is necessary for
-  // any column we materialize (and hence, we don’t need to do this for fx and
-  // fy, since those columns are not needed for type inference and hence are not
-  // greedily materialized).
-  if (X) X.label = labelof(options.x.value);
-  if (Y) Y.label = labelof(options.y.value);
-  if (C) C.label = labelof(options.color.value);
-  if (S) S.label = labelof(options.size.value);
+  options = materializeValues(data, normalizeOptions(options));
 
   // Compute the default options via autoSpec.
   let {
-    x: {value: xValue, reduce: xReduce, zero: xZero, ...xOptions},
-    y: {value: yValue, reduce: yReduce, zero: yZero, ...yOptions},
-    color: {color: colorColor, reduce: colorReduce},
-    size: {reduce: sizeReduce},
+    x: {value: X, reduce: xReduce, zero: xZero, ...xOptions},
+    y: {value: Y, reduce: yReduce, zero: yZero, ...yOptions},
+    color: {value: C, color: colorColor, reduce: colorReduce},
+    size: {value: S, reduce: sizeReduce},
     fx,
     fy,
     mark
-  } = autoSpec(data, {
-    ...options,
-    x: {...options.x, value: X},
-    y: {...options.y, value: Y},
-    color: {...options.color, value: C},
-    size: {...options.size, value: S}
-  });
+  } = autoSpec(data, options);
 
   let Z, zReduce;
   let colorMode; // "fill" or "stroke"
@@ -196,7 +165,7 @@ export function auto(data, options) {
   }
 
   // Determine the mark options.
-  let markOptions = {fx, fy, x: X, y: Y, [colorMode]: C ?? colorColor, z: Z, r: S};
+  let markOptions = {fx, fy, x: X ?? undefined, y: Y ?? undefined, [colorMode]: C ?? colorColor, z: Z, r: S ?? undefined};
   let transform;
   let transformOptions = {[colorMode]: colorReduce ?? undefined, z: zReduce ?? undefined, r: sizeReduce ?? undefined};
   if (xReduce != null && yReduce != null) {
@@ -269,6 +238,33 @@ function normalizeOptions({x, y, color, size, fx, fy, mark} = {}) {
   if (isOptions(fx)) ({value: fx} = makeOptions(fx));
   if (isOptions(fy)) ({value: fy} = makeOptions(fy));
   return {x, y, color, size, fx, fy, mark};
+}
+
+// To apply heuristics based on the data types (values), realize the columns. We
+// could maybe look at the data.schema here, but Plot’s behavior depends on the
+// actual values anyway, so this probably is what we want.
+function materializeValues(data, options) {
+  const X = valueof(data, options.x.value);
+  const Y = valueof(data, options.y.value);
+  const C = valueof(data, options.color.value);
+  const S = valueof(data, options.size.value);
+
+  // Propagate the x and y labels (field names), if any. This is necessary for
+  // any column we materialize (and hence, we don’t need to do this for fx and
+  // fy, since those columns are not needed for type inference and hence are not
+  // greedily materialized).
+  if (X) X.label = labelof(options.x.value);
+  if (Y) Y.label = labelof(options.y.value);
+  if (C) C.label = labelof(options.color.value);
+  if (S) S.label = labelof(options.size.value);
+
+  return {
+    ...options,
+    x: {...options.x, value: X},
+    y: {...options.y, value: Y},
+    color: {...options.color, value: C},
+    size: {...options.size, value: S}
+  };
 }
 
 function makeOptions(value) {
