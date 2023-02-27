@@ -165,7 +165,15 @@ export function auto(data, options) {
   }
 
   // Determine the mark options.
-  let markOptions = {fx, fy, x: X ?? undefined, y: Y ?? undefined, [colorMode]: C ?? colorColor, z: Z, r: S ?? undefined};
+  let markOptions = {
+    fx,
+    fy,
+    x: X ?? undefined,
+    y: Y ?? undefined,
+    [colorMode]: C ?? colorColor,
+    z: Z,
+    r: S ?? undefined
+  };
   let transform;
   let transformOptions = {[colorMode]: colorReduce ?? undefined, z: zReduce ?? undefined, r: sizeReduce ?? undefined};
   if (xReduce != null && yReduce != null) {
