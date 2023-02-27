@@ -12,68 +12,28 @@ import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../mark.js";
 
-/** @jsdoc auto */
-export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
-  // Allow x and y and other dimensions to be specified as shorthand field names
-  // (but note that they can also be specified as a {transform} object such as
-  // Plot.identity).
-  if (!isOptions(x)) x = makeOptions(x);
-  if (!isOptions(y)) y = makeOptions(y);
-  if (!isOptions(color)) color = isColor(color) ? {color} : makeOptions(color);
-  if (!isOptions(size)) size = makeOptions(size);
+export function autoSpec(data, options) {
+  options = normalizeOptions(options);
 
-  // We don’t apply any type inference to the fx and fy channels, if present, so
-  // these are simply passed-through to the underlying mark’s options. We don’t
-  // support reducers on the facet channels, but for symmetry with x and y we
-  // still allow the channels to be specified as {value} objects.
-  if (isOptions(fx)) ({value: fx} = makeOptions(fx));
-  if (isOptions(fy)) ({value: fy} = makeOptions(fy));
+  let {
+    fx,
+    fy,
+    x: {value: xValue, reduce: xReduce, zero: xZero, ...xOptions},
+    y: {value: yValue, reduce: yReduce, zero: yZero, ...yOptions},
+    color: {value: colorValue, color: colorColor, reduce: colorReduce},
+    size: {value: sizeValue, reduce: sizeReduce}, // TODO constant radius?
+    mark
+  } = options;
 
-  let {value: xValue, reduce: xReduce, ...xOptions} = x;
-  let {value: yValue, reduce: yReduce, ...yOptions} = y;
-  let {value: sizeValue, reduce: sizeReduce} = size;
-  let {value: colorValue, color: colorColor, reduce: colorReduce} = color;
+  // Lazily materialize x and y columns for type inference, if needed.
+  const {x, y} = options;
+  let X, Y;
 
   // Determine the default reducer, if any.
   if (xReduce === undefined)
     xReduce = yReduce == null && xValue == null && sizeValue == null && yValue != null ? "count" : null;
   if (yReduce === undefined)
     yReduce = xReduce == null && yValue == null && sizeValue == null && xValue != null ? "count" : null;
-
-  let {zero: xZero = isZeroReducer(xReduce) ? true : undefined} = x;
-  let {zero: yZero = isZeroReducer(yReduce) ? true : undefined} = y;
-
-  // TODO The line mark will need z?
-  // TODO Limit and sort for bar charts (e.g. alphabet)?
-  // TODO Look at Plot warnings and see how many we can prevent
-  // TODO Default to something other than turbo for continuous? Like:
-  //      scheme: (colorValue && !isOrdinal(color)) || colorReduce ? "ylgnbu" : undefined
-
-  // To apply heuristics based on the data types (values), realize the columns.
-  // We could maybe look at the data.schema here, but Plot’s behavior depends on
-  // the actual values anyway, so this probably is what we want. By
-  // materializing the columns here, we also ensure that they aren’t re-computed
-  // later in Plot.plot.
-  x = valueof(data, xValue);
-  y = valueof(data, yValue);
-  color = valueof(data, colorValue);
-  size = valueof(data, sizeValue);
-
-  // TODO Shorthand: array of primitives should result in a histogram
-  if (!x && !y) throw new Error("must specify x or y");
-  if (xReduce != null && !y) throw new Error("reducing x requires y");
-  if (yReduce != null && !x) throw new Error("reducing y requires x");
-
-  let z, zReduce;
-
-  // Propagate the x and y labels (field names), if any. This is necessary for
-  // any column we materialize (and hence, we don’t need to do this for fx and
-  // fy, since those columns are not needed for type inference and hence are not
-  // greedily materialized).
-  if (x) x.label = labelof(xValue);
-  if (y) y.label = labelof(yValue);
-  if (color) color.label = labelof(colorValue);
-  if (size) size.label = labelof(sizeValue);
 
   // Determine the default size reducer, if any.
   if (
@@ -82,11 +42,20 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
     colorReduce == null &&
     xReduce == null &&
     yReduce == null &&
-    (!x || isOrdinal(x)) &&
-    (!y || isOrdinal(y))
+    (xValue == null || isOrdinal((X ??= materializeValue(data, x)))) &&
+    (yValue == null || isOrdinal((Y ??= materializeValue(data, y))))
   ) {
     sizeReduce = "count";
   }
+
+  // Determine the default zero-ness.
+  if (xZero === undefined) xZero = isZeroReducer(xReduce) ? true : undefined;
+  if (yZero === undefined) yZero = isZeroReducer(yReduce) ? true : undefined;
+
+  // TODO Shorthand: array of primitives should result in a histogram
+  if (xValue == null && yValue == null) throw new Error("must specify x or y");
+  if (xReduce != null && yValue == null) throw new Error("reducing x requires y");
+  if (yReduce != null && xValue == null) throw new Error("reducing y requires x");
 
   // Determine the default mark type.
   if (mark === undefined) {
@@ -95,15 +64,76 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
         ? "dot"
         : xZero || yZero || colorReduce != null // histogram or heatmap
         ? "bar"
-        : x && y
-        ? isOrdinal(x) || isOrdinal(y) || (xReduce == null && yReduce == null && !isMonotonic(x) && !isMonotonic(y))
+        : xValue != null && yValue != null
+        ? isOrdinal((X ??= materializeValue(data, x))) ||
+          isOrdinal((Y ??= materializeValue(data, y))) ||
+          (xReduce == null && yReduce == null && !isMonotonic(X) && !isMonotonic(Y))
           ? "dot"
           : "line"
-        : x || y
+        : xValue != null || yValue != null
         ? "rule"
         : null;
   }
 
+  return {
+    fx: fx ?? null,
+    fy: fy ?? null,
+    x: {
+      value: xValue ?? null,
+      reduce: xReduce ?? null,
+      ...(xZero !== undefined && {zero: xZero}), // TODO realize default
+      ...xOptions
+    },
+    y: {
+      value: yValue ?? null,
+      reduce: yReduce ?? null,
+      ...(yZero !== undefined && {zero: yZero}), // TODO realize default
+      ...yOptions
+    },
+    color: {
+      value: colorValue ?? null,
+      reduce: colorReduce ?? null,
+      ...(colorColor !== undefined && {color: colorColor})
+    },
+    size: {
+      value: sizeValue ?? null,
+      reduce: sizeReduce ?? null
+    },
+    mark
+  };
+}
+
+/** @jsdoc auto */
+export function auto(data, options) {
+  options = normalizeOptions(options);
+
+  // Greedily materialize columns for type inference; we’ll need them anyway to
+  // plot! Note that we don’t apply any type inference to the fx and fy
+  // channels, if present; these are always ordinal (at least for now).
+  const {x, y, color, size} = options;
+  const X = materializeValue(data, x);
+  const Y = materializeValue(data, y);
+  const C = materializeValue(data, color);
+  const S = materializeValue(data, size);
+
+  // Compute the default options via autoSpec.
+  let {
+    fx,
+    fy,
+    x: {reduce: xReduce, zero: xZero, ...xOptions},
+    y: {reduce: yReduce, zero: yZero, ...yOptions},
+    color: {color: colorColor, reduce: colorReduce},
+    size: {reduce: sizeReduce},
+    mark
+  } = autoSpec(data, {
+    ...options,
+    x: {...x, value: X},
+    y: {...y, value: Y},
+    color: {...color, value: C},
+    size: {...size, value: S}
+  });
+
+  let Z; // may be set to null to disable series-by-color for line and area
   let colorMode; // "fill" or "stroke"
 
   // Determine the mark implementation.
@@ -114,33 +144,33 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
         colorMode = "stroke";
         break;
       case "line":
-        mark = x && y ? line : x ? lineX : lineY; // 1d line by index
+        mark = X && Y ? line : X ? lineX : lineY; // 1d line by index
         colorMode = "stroke";
-        if (isHighCardinality(color)) z = null; // TODO only if z not set by user
+        if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
         break;
       case "area":
-        mark = yZero ? areaY : xZero || (y && isMonotonic(y)) ? areaX : areaY; // favor areaY if unsure
+        mark = yZero ? areaY : xZero || (Y && isMonotonic(Y)) ? areaX : areaY; // favor areaY if unsure
         colorMode = "fill";
-        if (isHighCardinality(color)) z = null; // TODO only if z not set by user
+        if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
         break;
       case "rule":
-        mark = x ? ruleX : ruleY;
+        mark = X ? ruleX : ruleY;
         colorMode = "stroke";
         break;
       case "bar":
         mark = yZero
-          ? isOrdinalReduced(xReduce, x)
+          ? isOrdinalReduced(xReduce, X)
             ? barY
             : rectY
           : xZero
-          ? isOrdinalReduced(yReduce, y)
+          ? isOrdinalReduced(yReduce, Y)
             ? barX
             : rectX
-          : isOrdinalReduced(xReduce, x) && isOrdinalReduced(yReduce, y)
+          : isOrdinalReduced(xReduce, X) && isOrdinalReduced(yReduce, Y)
           ? cell
-          : isOrdinalReduced(xReduce, x)
+          : isOrdinalReduced(xReduce, X)
           ? barY
-          : isOrdinalReduced(yReduce, y)
+          : isOrdinalReduced(yReduce, Y)
           ? barX
           : rect;
         colorMode = "fill";
@@ -151,34 +181,42 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   }
 
   // Determine the mark options.
-  let options = {x, y, [colorMode]: color ?? colorColor, z, r: size, fx, fy};
+  let markOptions = {
+    fx,
+    fy,
+    x: X ?? undefined, // treat null x as undefined for implicit stack
+    y: Y ?? undefined, // treat null y as undefined for implicit stack
+    [colorMode]: C ?? colorColor,
+    z: Z,
+    r: S ?? undefined // treat null size as undefined for default constant radius
+  };
   let transform;
-  let transformOptions = {[colorMode]: colorReduce, z: zReduce, r: sizeReduce};
+  let transformOptions = {[colorMode]: colorReduce ?? undefined, r: sizeReduce ?? undefined};
   if (xReduce != null && yReduce != null) {
     throw new Error(`cannot reduce both x and y`); // for now at least
   } else if (yReduce != null) {
     transformOptions.y = yReduce;
-    transform = isOrdinal(x) ? groupX : binX;
+    transform = isOrdinal(X) ? groupX : binX;
   } else if (xReduce != null) {
     transformOptions.x = xReduce;
-    transform = isOrdinal(y) ? groupY : binY;
+    transform = isOrdinal(Y) ? groupY : binY;
   } else if (colorReduce != null || sizeReduce != null) {
-    if (x && y) {
-      transform = isOrdinal(x) && isOrdinal(y) ? group : isOrdinal(x) ? binY : isOrdinal(y) ? binX : bin;
-    } else if (x) {
-      transform = isOrdinal(x) ? groupX : binX;
-    } else if (y) {
-      transform = isOrdinal(y) ? groupY : binY;
+    if (X && Y) {
+      transform = isOrdinal(X) && isOrdinal(Y) ? group : isOrdinal(X) ? binY : isOrdinal(Y) ? binX : bin;
+    } else if (X) {
+      transform = isOrdinal(X) ? groupX : binX;
+    } else if (Y) {
+      transform = isOrdinal(Y) ? groupY : binY;
     }
   }
   if (transform) {
-    if (transform === bin || transform === binX) options.x = {value: x, ...xOptions};
-    if (transform === bin || transform === binY) options.y = {value: y, ...yOptions};
-    options = transform(transformOptions, options);
+    if (transform === bin || transform === binX) markOptions.x = {value: X, ...xOptions};
+    if (transform === bin || transform === binY) markOptions.y = {value: Y, ...yOptions};
+    markOptions = transform(transformOptions, markOptions);
   }
 
   // If zero-ness is not specified, default based on whether the resolved mark
-  // type will include a zero baseline.
+  // type will include a zero baseline. TODO Move this to autoSpec.
   if (xZero === undefined) xZero = transform !== binX && (mark === barX || mark === areaX || mark === rectX);
   if (yZero === undefined) yZero = transform !== binY && (mark === barY || mark === areaY || mark === rectY);
 
@@ -187,7 +225,7 @@ export function auto(data, {x, y, color, size, fx, fy, mark} = {}) {
   // (particularly dots and lines) they should come before the mark.
   const frames = fx != null || fy != null ? frame({strokeOpacity: 0.1}) : null;
   const rules = [xZero ? ruleX([0]) : null, yZero ? ruleY([0]) : null];
-  mark = mark(data, options);
+  mark = mark(data, markOptions);
   return colorMode === "stroke" ? marks(frames, rules, mark) : marks(frames, mark, rules);
 }
 
@@ -208,6 +246,29 @@ function isMonotonic(values) {
     previousOrder = order;
   }
   return true;
+}
+
+// Allow x and y and other dimensions to be specified as shorthand field names
+// (but note that they can also be specified as a {transform} object such as
+// Plot.identity). We don’t support reducers for the faceting, but for symmetry
+// with x and y we allow facets to be specified as {value} objects.
+function normalizeOptions({x, y, color, size, fx, fy, mark} = {}) {
+  if (!isOptions(x)) x = makeOptions(x);
+  if (!isOptions(y)) y = makeOptions(y);
+  if (!isOptions(color)) color = isColor(color) ? {color} : makeOptions(color);
+  if (!isOptions(size)) size = makeOptions(size);
+  if (isOptions(fx)) ({value: fx} = makeOptions(fx));
+  if (isOptions(fy)) ({value: fy} = makeOptions(fy));
+  return {x, y, color, size, fx, fy, mark};
+}
+
+// To apply heuristics based on the data types (values), realize the columns. We
+// could maybe look at the data.schema here, but Plot’s behavior depends on the
+// actual values anyway, so this probably is what we want.
+function materializeValue(data, options) {
+  const V = valueof(data, options.value);
+  if (V) V.label = labelof(options.value);
+  return V;
 }
 
 function makeOptions(value) {
