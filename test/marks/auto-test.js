@@ -4,10 +4,12 @@ import assert from "assert";
 it("Plot.autoSpec makes a histogram from a quantitative dimension", () => {
   const data = [{value: 1}, {value: 1}, {value: 38}];
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "value"}), {
+    fx: null,
+    fy: null,
     x: {value: "value", reduce: null},
-    y: {reduce: "count", zero: true},
-    color: {},
-    size: {},
+    y: {value: null, reduce: "count", zero: true},
+    color: {value: null, reduce: null},
+    size: {value: null, reduce: null},
     mark: "bar"
   });
 });
@@ -15,10 +17,12 @@ it("Plot.autoSpec makes a histogram from a quantitative dimension", () => {
 it("Plot.autoSpec makes a bar chart from an ordinal dimension", () => {
   const data = [{value: "duck"}, {value: "duck"}, {value: "goose"}];
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "value", color: "blue"}), {
+    fx: null,
+    fy: null,
     x: {value: "value", reduce: null},
-    y: {reduce: "count", zero: true},
-    color: {color: "blue"},
-    size: {},
+    y: {value: null, reduce: "count", zero: true},
+    color: {value: null, reduce: null, color: "blue"},
+    size: {value: null, reduce: null},
     mark: "bar"
   });
 });
@@ -30,10 +34,12 @@ it("Plot.autoSpec makes a line from a monotonic dimension", () => {
     {date: 3, value: 38}
   ];
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "date", y: "value"}), {
+    fx: null,
+    fy: null,
     x: {value: "date", reduce: null},
     y: {value: "value", reduce: null},
-    color: {},
-    size: {},
+    color: {value: null, reduce: null},
+    size: {value: null, reduce: null},
     mark: "line"
   });
 });
@@ -45,10 +51,12 @@ it("Plot.autoSpec makes a dot plot from two quantitative dimensions", () => {
     {x: 1, y: 2}
   ];
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "x", y: "y"}), {
+    fx: null,
+    fy: null,
     x: {value: "x", reduce: null},
     y: {value: "y", reduce: null},
-    color: {},
-    size: {},
+    color: {value: null, reduce: null},
+    size: {value: null, reduce: null},
     mark: "dot"
   });
 });
@@ -63,11 +71,12 @@ it("Plot.autoSpec makes a faceted heatmap", () => {
     {x: 4, y: 2, f: "two"}
   ];
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "x", y: "y", fy: "f", color: "count"}), {
+    fx: null,
+    fy: "f",
     x: {value: "x", reduce: null},
     y: {value: "y", reduce: null},
-    color: {reduce: "count"},
-    size: {},
-    fy: "f",
+    color: {value: null, reduce: "count"},
+    size: {value: null, reduce: null},
     mark: "bar"
   });
 });
