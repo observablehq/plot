@@ -25,15 +25,15 @@ export function autoSpec(data, options) {
     mark
   } = options;
 
-  const {
-    x: {value: X},
-    y: {value: Y},
-    size: {value: S}
-  } = materializeValues(data, options);
+  // Lazily materialize x and y columns for type inference, if needed.
+  const {x, y} = options;
+  let X, Y;
 
   // Determine the default reducer, if any.
-  if (xReduce === undefined) xReduce = yReduce == null && !X && sizeValue == null && Y ? "count" : null;
-  if (yReduce === undefined) yReduce = xReduce == null && !Y && sizeValue == null && X ? "count" : null;
+  if (xReduce === undefined)
+    xReduce = yReduce == null && xValue == null && sizeValue == null && yValue != null ? "count" : null;
+  if (yReduce === undefined)
+    yReduce = xReduce == null && yValue == null && sizeValue == null && xValue != null ? "count" : null;
 
   // Determine the default size reducer, if any.
   if (
@@ -42,8 +42,8 @@ export function autoSpec(data, options) {
     colorReduce == null &&
     xReduce == null &&
     yReduce == null &&
-    (!X || isOrdinal(X)) &&
-    (!Y || isOrdinal(Y))
+    (xValue == null || isOrdinal((X ??= materializeValue(data, x)))) &&
+    (yValue == null || isOrdinal((Y ??= materializeValue(data, y))))
   ) {
     sizeReduce = "count";
   }
@@ -53,22 +53,24 @@ export function autoSpec(data, options) {
   if (yZero === undefined) yZero = isZeroReducer(yReduce) ? true : undefined;
 
   // TODO Shorthand: array of primitives should result in a histogram
-  if (!X && !Y) throw new Error("must specify x or y");
-  if (xReduce != null && !Y) throw new Error("reducing x requires y");
-  if (yReduce != null && !X) throw new Error("reducing y requires x");
+  if (xValue == null && yValue == null) throw new Error("must specify x or y");
+  if (xReduce != null && yValue == null) throw new Error("reducing x requires y");
+  if (yReduce != null && xValue == null) throw new Error("reducing y requires x");
 
   // Determine the default mark type.
   if (mark === undefined) {
     mark =
-      S || sizeReduce != null
+      sizeValue != null || sizeReduce != null
         ? "dot"
         : xZero || yZero || colorReduce != null // histogram or heatmap
         ? "bar"
-        : X && Y
-        ? isOrdinal(X) || isOrdinal(Y) || (xReduce == null && yReduce == null && !isMonotonic(X) && !isMonotonic(Y))
+        : xValue != null && yValue != null
+        ? isOrdinal((X ??= materializeValue(data, x))) ||
+          isOrdinal((Y ??= materializeValue(data, y))) ||
+          (xReduce == null && yReduce == null && !isMonotonic(X) && !isMonotonic(Y))
           ? "dot"
           : "line"
-        : X || Y
+        : xValue != null || yValue != null
         ? "rule"
         : null;
   }
@@ -103,21 +105,33 @@ export function autoSpec(data, options) {
 
 /** @jsdoc auto */
 export function auto(data, options) {
-  // By materializing here, we ensure the columns aren’t re-computed later.
-  options = materializeValues(data, normalizeOptions(options));
+  options = normalizeOptions(options);
+
+  // Greedily materialize columns for type inference; we’ll need them anyway to plot!
+  const {x, y, color, size} = options;
+  const X = materializeValue(data, x);
+  const Y = materializeValue(data, y);
+  const C = materializeValue(data, color);
+  const S = materializeValue(data, size);
 
   // Compute the default options via autoSpec.
   let {
-    x: {value: X, reduce: xReduce, zero: xZero, ...xOptions},
-    y: {value: Y, reduce: yReduce, zero: yZero, ...yOptions},
-    color: {value: C, color: colorColor, reduce: colorReduce},
-    size: {value: S, reduce: sizeReduce},
     fx,
     fy,
+    x: {reduce: xReduce, zero: xZero, ...xOptions},
+    y: {reduce: yReduce, zero: yZero, ...yOptions},
+    color: {color: colorColor, reduce: colorReduce},
+    size: {reduce: sizeReduce},
     mark
-  } = autoSpec(data, options);
+  } = autoSpec(data, {
+    ...options,
+    x: {...x, value: X},
+    y: {...y, value: Y},
+    color: {...color, value: C},
+    size: {...size, value: S}
+  });
 
-  let Z, zReduce;
+  let Z; // may be set to null to disable series-by-color for line and area
   let colorMode; // "fill" or "stroke"
 
   // Determine the mark implementation.
@@ -175,7 +189,7 @@ export function auto(data, options) {
     r: S ?? undefined
   };
   let transform;
-  let transformOptions = {[colorMode]: colorReduce ?? undefined, z: zReduce ?? undefined, r: sizeReduce ?? undefined};
+  let transformOptions = {[colorMode]: colorReduce ?? undefined, r: sizeReduce ?? undefined};
   if (xReduce != null && yReduce != null) {
     throw new Error(`cannot reduce both x and y`); // for now at least
   } else if (yReduce != null) {
@@ -251,28 +265,10 @@ function normalizeOptions({x, y, color, size, fx, fy, mark} = {}) {
 // To apply heuristics based on the data types (values), realize the columns. We
 // could maybe look at the data.schema here, but Plot’s behavior depends on the
 // actual values anyway, so this probably is what we want.
-function materializeValues(data, options) {
-  const X = valueof(data, options.x.value);
-  const Y = valueof(data, options.y.value);
-  const C = valueof(data, options.color.value);
-  const S = valueof(data, options.size.value);
-
-  // Propagate the x and y labels (field names), if any. This is necessary for
-  // any column we materialize (and hence, we don’t need to do this for fx and
-  // fy, since those columns are not needed for type inference and hence are not
-  // greedily materialized).
-  if (X) X.label = labelof(options.x.value);
-  if (Y) Y.label = labelof(options.y.value);
-  if (C) C.label = labelof(options.color.value);
-  if (S) S.label = labelof(options.size.value);
-
-  return {
-    ...options,
-    x: {...options.x, value: X},
-    y: {...options.y, value: Y},
-    color: {...options.color, value: C},
-    size: {...options.size, value: S}
-  };
+function materializeValue(data, options) {
+  const V = valueof(data, options.value);
+  if (V) V.label = labelof(options.value);
+  return V;
 }
 
 function makeOptions(value) {
