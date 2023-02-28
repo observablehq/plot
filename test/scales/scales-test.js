@@ -5,7 +5,14 @@ import it from "../jsdom.js";
 
 it("Plot throws an error if an ordinal position scale has a huge inferred domain", () => {
   assert.ok(Plot.cellX({length: 10000}, {x: d3.randomLcg(42)}).plot());
-  assert.throws(() => Plot.cellX({length: 10001}, {x: d3.randomLcg(42)}).plot());
+  assert.throws(() => Plot.cellX({length: 10001}, {x: d3.randomLcg(42)}).plot(), /implicit ordinal domain of x scale/);
+});
+
+it("Plot throws an error if scale.unknown is set to d3.scaleImplicit", () => {
+  assert.throws(
+    () => Plot.plot({color: {type: "ordinal", unknown: d3.scaleImplicit}}),
+    /implicit unknown on color scale/
+  );
 });
 
 it("Plot does not throw an error if an ordinal color scale has a huge inferred domain", () => {

@@ -52,7 +52,9 @@ export function ScaleOrdinal(key, channels, {type, interval, domain, range, sche
       }
     }
   }
-  if (unknown === scaleImplicit) throw new Error("implicit unknown is not supported");
+  if (unknown === scaleImplicit) {
+    throw new Error(`implicit unknown on ${key} scale is not supported`);
+  }
   return ScaleO(key, scaleOrdinal().unknown(unknown), channels, {...options, type, domain, range, hint});
 }
 
@@ -98,8 +100,9 @@ function inferDomain(channels, interval, key) {
     const [min, max] = extent(values).map(interval.floor, interval);
     return interval.range(min, interval.offset(max));
   }
-  if (values.size > 10e3 && registry.get(key) === position)
-    throw new Error("implicit ordinal position domain has more than 10,000 values");
+  if (values.size > 10e3 && registry.get(key) === position) {
+    throw new Error(`implicit ordinal domain of ${key} scale has more than 10,000 values`);
+  }
   return sort(values, ascendingDefined);
 }
 
