@@ -14,10 +14,14 @@ Plot.plot({
   grid: true,
   x: {label: "Daily low temperature (°F) →", tickSpacing: 40},
   y: {label: "↑ Daily temperature variation (Δ°F)", tickSpacing: 40},
-  color: {scheme: "rainbow", legend: true, tickFormat: Plot.formatMonth()},
+  color: {scheme: "rainbow", nice: true, legend: true, tickFormat: "%b"},
   marks: [
     Plot.ruleY([0]),
-    Plot.dot(weather, {fill: (d) => d.date.getUTCMonth(), x: "temp_min", y: (d) => d.temp_max - d.temp_min})
+    Plot.dot(weather, {
+      x: (d) => d.temp_min,
+      y: (d) => d.temp_max - d.temp_min,
+      fill: (d) => (d = new Date(d.date), d.setUTCFullYear(2020), d)
+    })
   ]
 })
 ```
