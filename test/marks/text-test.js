@@ -1,4 +1,5 @@
 import * as Plot from "@observablehq/plot";
+import {clipEnd, clipMiddle, clipStart, defaultWidth, readCharacter} from "../../src/marks/text.js";
 import assert from "assert";
 
 it("text() has the expected defaults", () => {
@@ -131,3 +132,112 @@ it("text({length}) can take length-only data", () => {
   const text = Plot.text(data);
   assert.strictEqual(text.data, data);
 });
+
+it("readCharacter reads latin letters", () => {
+  assert.deepStrictEqual(getCharacters("(foo)"), [..."(foo)"]);
+  assert.deepStrictEqual(getCharacters("(mañana)"), [..."(mañana)"]);
+});
+
+it("readCharacter reads surrogate pairs", () => {
+  assert.deepStrictEqual(getCharacters("(😀)"), [..."(😀)"]);
+  assert.deepStrictEqual(getCharacters("(💩)"), [..."(💩)"]);
+  assert.deepStrictEqual(getCharacters("Iñtërnâtiônàlizætiøn☃💩"), [..."Iñtërnâtiônàlizætiøn☃💩"]);
+});
+
+it("readCharacter reads combining marks", () => {
+  assert.deepStrictEqual(getCharacters("Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘"), ["Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍", "A̴̵̜̰͔ͫ͗͢", "L̠ͨͧͩ͘", "G̴̻͈͍͔̹̑͗̎̅͛́", "Ǫ̵̹̻̝̳͂̌̌͘"]);
+});
+
+it("readCharacter reads emoji sequences", () => {
+  assert.deepStrictEqual(getCharacters("(👨‍👩‍👧‍👦)"), ["(", "👨‍👩‍👧‍👦", ")"]);
+  assert.deepStrictEqual(getCharacters("(👋🏻)"), ["(", "👋🏻", ")"]);
+  assert.deepStrictEqual(getCharacters("(🧑🏾)"), ["(", "🧑🏾", ")"]);
+  assert.deepStrictEqual(getCharacters("(👨🏻)"), ["(", "👨🏻", ")"]);
+  assert.deepStrictEqual(getCharacters("(👧🏼)"), ["(", "👧🏼", ")"]);
+});
+
+it("clipEnd removes the end of the line to fit the available space", () => {
+  assert.strictEqual(clipEnd("The quick brown fox", 800, defaultWidth, ""), "The quick brow");
+  assert.strictEqual(clipEnd("The quick brown fox", 400, defaultWidth, ""), "The qui");
+  assert.strictEqual(clipEnd("The quick brown fox", 200, defaultWidth, ""), "The");
+  textWidthTest("The quick brow", "The quick brown", 800, defaultWidth);
+  textWidthTest("The qui", "The quic", 400, defaultWidth);
+  textWidthTest("The", "The q", 200, defaultWidth);
+});
+
+it("clipEnd reserves space for the ellipsis, if any", () => {
+  assert.strictEqual(clipEnd("The quick brown fox", 800, defaultWidth, "…"), "The quick bro…");
+  assert.strictEqual(clipEnd("The quick brown fox", 400, defaultWidth, "…"), "The q…");
+  assert.strictEqual(clipEnd("The quick brown fox", 200, defaultWidth, "…"), "T…");
+  textWidthTest("The quick bro…", "The quick brow…", 800, defaultWidth);
+  textWidthTest("The q…", "The qu…", 400, defaultWidth);
+  textWidthTest("T…", "Th…", 200, defaultWidth);
+});
+
+it("clipEnd returns the ellipsis, if any, if the available width is zero", () => {
+  assert.strictEqual(clipEnd("The quick brown fox", 0, defaultWidth, "…"), "…");
+  assert.strictEqual(clipEnd("The quick brown fox", 0, defaultWidth, ""), "");
+});
+
+it("clipEnd does not consider leading whitespace as consuming width", () => {
+  assert.strictEqual(clipEnd("   The quick brown fox", 800, defaultWidth, ""), "The quick brow");
+  assert.strictEqual(clipEnd("  The quick brown fox", 400, defaultWidth, ""), "The qui");
+  assert.strictEqual(clipEnd(" The quick brown fox", 200, defaultWidth, ""), "The");
+  assert.strictEqual(clipEnd(" The quick brown fox", 0, defaultWidth, ""), "");
+});
+
+it("clipMiddle removes the middle of the line to fit the available space", () => {
+  assert.strictEqual(clipMiddle("The quick brown fox", 800, defaultWidth, ""), "The quirown fox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 400, defaultWidth, ""), "Thefox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 200, defaultWidth, ""), "Tox");
+  textWidthTest("The quirown fox", "The quibrown fox", 800, defaultWidth);
+  textWidthTest("Thefox", "Then fox", 400, defaultWidth);
+  textWidthTest("Tox", "Tfox", 200, defaultWidth);
+});
+
+it("clipMiddle reserves space for the ellipsis, if any", () => {
+  assert.strictEqual(clipMiddle("The quick brown fox", 800, defaultWidth, "…"), "The qu…own fox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 400, defaultWidth, "…"), "Th…fox");
+  assert.strictEqual(clipMiddle("The quick brown fox", 200, defaultWidth, "…"), "…ox");
+  textWidthTest("The qu…own fox", "The qu…rown fox", 800, defaultWidth);
+  textWidthTest("Th…fox", "Th…n fox", 400, defaultWidth);
+  textWidthTest("…ox", "T…ox", 200, defaultWidth);
+});
+
+it("clipMiddle returns the ellipsis, if any, if the available width is zero", () => {
+  assert.strictEqual(clipMiddle("The quick brown fox", 0, defaultWidth, "…"), "…");
+  assert.strictEqual(clipMiddle("The quick brown fox", 0, defaultWidth, ""), "");
+});
+
+it("clipStart removes the start of the line to fit the available space", () => {
+  assert.strictEqual(clipStart("The quick brown fox", 800, defaultWidth, ""), "quick brown fox");
+  assert.strictEqual(clipStart("The quick brown fox", 400, defaultWidth, ""), "own fox");
+  assert.strictEqual(clipStart("The quick brown fox", 200, defaultWidth, ""), "fox");
+  textWidthTest("quick brown fox", "e quick brown fox", 800, defaultWidth);
+  textWidthTest("own fox", "rown fox", 400, defaultWidth);
+  textWidthTest("fox", "n fox", 200, defaultWidth);
+});
+
+it("clipStart does not consider trailing whitespace as consuming width", () => {
+  assert.strictEqual(clipStart("The quick brown fox   ", 800, defaultWidth, ""), "quick brown fox");
+  assert.strictEqual(clipStart("The quick brown fox  ", 400, defaultWidth, ""), "own fox");
+  assert.strictEqual(clipStart("The quick brown fox ", 200, defaultWidth, ""), "fox");
+});
+
+it("clipStart returns the ellipsis, if any, if the available width is zero", () => {
+  assert.strictEqual(clipStart("The quick brown fox", 0, defaultWidth, "…"), "…");
+  assert.strictEqual(clipStart("The quick brown fox", 0, defaultWidth, ""), "");
+});
+
+function textWidthTest(a, b, width, widthof) {
+  assert.ok(widthof(a, 0, a.length) <= width, "text is too long");
+  assert.ok(widthof(b, 0, b.length) > width, "text is too short");
+}
+
+function getCharacters(text) {
+  const characters = [];
+  for (let i = 0, n = text.length; i < n; ) {
+    characters.push(text.slice(i, (i = readCharacter(text, i))));
+  }
+  return characters;
+}

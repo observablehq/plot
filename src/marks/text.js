@@ -49,6 +49,7 @@ export class Text extends Mark {
       lineAnchor = /^top/i.test(frameAnchor) ? "top" : /^bottom/i.test(frameAnchor) ? "bottom" : "middle",
       lineHeight = 1,
       lineWidth = Infinity,
+      textOverflow,
       monospace,
       fontFamily = monospace ? "ui-monospace, monospace" : undefined,
       fontSize,
@@ -76,6 +77,7 @@ export class Text extends Mark {
     this.lineAnchor = keyword(lineAnchor, "lineAnchor", ["top", "middle", "bottom"]);
     this.lineHeight = +lineHeight;
     this.lineWidth = +lineWidth;
+    this.textOverflow = maybeTextOverflow(textOverflow);
     this.monospace = !!monospace;
     this.fontFamily = string(fontFamily);
     this.fontSize = cfontSize;
@@ -83,10 +85,13 @@ export class Text extends Mark {
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
+    if (!(this.lineWidth >= 0)) throw new Error(`invalid lineWidth: ${lineWidth}`);
+    this.splitLines = splitter(this);
+    this.clipLine = clipper(this);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
+    const {x: X, y: Y, rotate: R, text: T, title: TL, fontSize: FS} = channels;
     const {rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
@@ -100,7 +105,7 @@ export class Text extends Mark {
           .enter()
           .append("text")
           .call(applyDirectStyles, this)
-          .call(applyMultilineText, this, T)
+          .call(applyMultilineText, this, T, TL)
           .attr(
             "transform",
             template`translate(${X ? (i) => X[i] : cx},${Y ? (i) => Y[i] : cy})${
@@ -114,15 +119,25 @@ export class Text extends Mark {
   }
 }
 
-function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineWidth}, T) {
+function maybeTextOverflow(textOverflow) {
+  return textOverflow == null
+    ? null
+    : keyword(textOverflow, "textOverflow", [
+        "clip", // shorthand for clip-end
+        "ellipsis", // … ellipsis-end
+        "clip-start",
+        "clip-end",
+        "ellipsis-start",
+        "ellipsis-middle",
+        "ellipsis-end"
+      ]).replace(/^(clip|ellipsis)$/, "$1-end");
+}
+
+function applyMultilineText(selection, mark, T, TL) {
   if (!T) return;
-  const linesof = isFinite(lineWidth)
-    ? monospace
-      ? (t) => lineWrap(t, lineWidth, monospaceWidth)
-      : (t) => lineWrap(t, lineWidth * 100, defaultWidth)
-    : (t) => t.split(/\r\n?|\n/g);
+  const {lineAnchor, lineHeight, textOverflow, splitLines, clipLine} = mark;
   selection.each(function (i) {
-    const lines = linesof(formatDefault(T[i]));
+    const lines = splitLines(formatDefault(T[i])).map(clipLine);
     const n = lines.length;
     const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {
@@ -137,6 +152,11 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
     } else {
       if (y) this.setAttribute("y", `${y * lineHeight}em`);
       this.textContent = lines[0];
+    }
+    if (textOverflow && !TL && lines[0] !== T[i]) {
+      const title = this.ownerDocument.createElementNS(namespaces.svg, "title");
+      title.textContent = T[i];
+      this.appendChild(title);
     }
   });
 }
@@ -165,12 +185,12 @@ function applyIndirectTextStyles(selection, mark, T) {
   applyAttr(selection, "font-family", mark.fontFamily);
   applyAttr(selection, "font-size", mark.fontSize);
   applyAttr(selection, "font-style", mark.fontStyle);
-  applyAttr(
-    selection,
-    "font-variant",
-    mark.fontVariant === undefined && (isNumeric(T) || isTemporal(T)) ? "tabular-nums" : mark.fontVariant
-  );
+  applyAttr(selection, "font-variant", mark.fontVariant === undefined ? inferFontVariant(T) : mark.fontVariant);
   applyAttr(selection, "font-weight", mark.fontWeight);
+}
+
+function inferFontVariant(T) {
+  return isNumeric(T) || isTemporal(T) ? "tabular-nums" : undefined;
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/font-size
@@ -212,7 +232,7 @@ function maybeFontSizeChannel(fontSize) {
 // This is a greedy algorithm for line wrapping. It would be better to use the
 // Knuth–Plass line breaking algorithm (but that would be much more complex).
 // https://en.wikipedia.org/wiki/Line_wrap_and_word_wrap
-function lineWrap(input, maxWidth, widthof = (_, i, j) => j - i) {
+function lineWrap(input, maxWidth, widthof) {
   const lines = [];
   let lineStart,
     lineEnd = 0;
@@ -362,7 +382,8 @@ const defaultWidthMap = {
   "‘": 31,
   "’": 31,
   "“": 47,
-  "”": 47
+  "”": 47,
+  "…": 82
 };
 
 // This is a rudimentary (and U.S.-centric) algorithm for measuring the width of
@@ -375,23 +396,139 @@ const defaultWidthMap = {
 // that were previously measured?
 // http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries
 // https://exploringjs.com/impatient-js/ch_strings.html#atoms-of-text
-function defaultWidth(text, start, end) {
+export function defaultWidth(text, start = 0, end = text.length) {
   let sum = 0;
-  for (let i = start; i < end; ++i) {
-    sum += defaultWidthMap[text[i]] || defaultWidthMap.e;
-    const first = text.charCodeAt(i);
-    if (first >= 0xd800 && first <= 0xdbff) {
-      // high surrogate
-      const second = text.charCodeAt(i + 1);
-      if (second >= 0xdc00 && second <= 0xdfff) {
-        // low surrogate
-        ++i; // surrogate pair
-      }
-    }
+  for (let i = start; i < end; i = readCharacter(text, i)) {
+    sum += defaultWidthMap[text[i]] ?? (isPictographic(text, i) ? 120 : defaultWidthMap.e);
   }
   return sum;
 }
 
-function monospaceWidth(text, start, end) {
-  return end - start;
+// Even for monospaced text, we can’t assume that the number of UTF-16 code
+// points (i.e., the length of a string) corresponds to the number of visible
+// characters; we still have to count graphemes. And note that pictographic
+// characters such as emojis are typically not monospaced!
+export function monospaceWidth(text, start = 0, end = text.length) {
+  let sum = 0;
+  for (let i = start; i < end; i = readCharacter(text, i)) {
+    sum += isPictographic(text, i) ? 200 : 100;
+  }
+  return sum;
+}
+
+function splitter({monospace, lineWidth, textOverflow}) {
+  if (textOverflow != null || lineWidth == Infinity) return (text) => text.split(/\r\n?|\n/g);
+  const widthof = monospace ? monospaceWidth : defaultWidth;
+  const maxWidth = lineWidth * 100;
+  return (text) => lineWrap(text, maxWidth, widthof);
+}
+
+function clipper({monospace, lineWidth, textOverflow}) {
+  if (textOverflow == null || lineWidth == Infinity) return (text) => text;
+  const widthof = monospace ? monospaceWidth : defaultWidth;
+  const maxWidth = lineWidth * 100;
+  switch (textOverflow) {
+    case "clip-start":
+      return (text) => clipStart(text, maxWidth, widthof, "");
+    case "clip-end":
+      return (text) => clipEnd(text, maxWidth, widthof, "");
+    case "ellipsis-start":
+      return (text) => clipStart(text, maxWidth, widthof, "…");
+    case "ellipsis-middle":
+      return (text) => clipMiddle(text, maxWidth, widthof, "…");
+    case "ellipsis-end":
+      return (text) => clipEnd(text, maxWidth, widthof, "…");
+  }
+}
+
+// Cuts the given text to the given width, using the specified widthof function;
+// the returned [index, error] guarantees text.slice(0, index) fits within the
+// specified width with the given error. If the text fits naturally within the
+// given width, returns [-1, 0]. If the text needs cutting, the given inset
+// specifies how much space (in the same units as width and widthof) to reserve
+// for a possible ellipsis character.
+function cut(text, width, widthof, inset) {
+  const I = []; // indexes of read character boundaries
+  let w = 0; // current line width
+  for (let i = 0, j = 0, n = text.length; i < n; i = j) {
+    j = readCharacter(text, i); // read the next character
+    const l = widthof(text, i, j); // current character width
+    if (w + l > width) {
+      w += inset;
+      while (w > width && i > 0) (j = i), (i = I.pop()), (w -= widthof(text, i, j)); // remove excess
+      return [i, width - w];
+    }
+    w += l;
+    I.push(i);
+  }
+  return [-1, 0];
+}
+
+export function clipEnd(text, width, widthof, ellipsis) {
+  text = text.trim(); // ignore leading and trailing whitespace
+  const e = widthof(ellipsis);
+  const [i] = cut(text, width, widthof, e);
+  return i < 0 ? text : text.slice(0, i).trimEnd() + ellipsis;
+}
+
+export function clipMiddle(text, width, widthof, ellipsis) {
+  text = text.trim(); // ignore leading and trailing whitespace
+  const w = widthof(text);
+  if (w <= width) return text;
+  const e = widthof(ellipsis) / 2;
+  const [i, ei] = cut(text, width / 2, widthof, e);
+  const [j] = cut(text, w - width / 2 - ei + e, widthof, -e); // TODO read spaces?
+  return j < 0 ? ellipsis : text.slice(0, i).trimEnd() + ellipsis + text.slice(readCharacter(text, j)).trimStart();
+}
+
+export function clipStart(text, width, widthof, ellipsis) {
+  text = text.trim(); // ignore leading and trailing whitespace
+  const w = widthof(text);
+  if (w <= width) return text;
+  const e = widthof(ellipsis);
+  const [j] = cut(text, w - width + e, widthof, -e); // TODO read spaces?
+  return j < 0 ? ellipsis : ellipsis + text.slice(readCharacter(text, j)).trimStart();
+}
+
+const reCombiner = /[\p{Combining_Mark}\p{Emoji_Modifier}]+/uy;
+const rePictographic = /\p{Extended_Pictographic}/uy;
+
+// Reads a single “character” element from the given text starting at the given
+// index, returning the index after the read character. Ideally, this implements
+// the Unicode text segmentation algorithm and understands grapheme cluster
+// boundaries, etc., but in practice this is only smart enough to detect UTF-16
+// surrogate pairs, combining marks, and zero-width joiner (zwj) sequences such
+// as emoji skin color modifiers. https://unicode.org/reports/tr29/
+export function readCharacter(text, i) {
+  i += isSurrogatePair(text, i) ? 2 : 1;
+  if (isCombiner(text, i)) i = reCombiner.lastIndex;
+  if (isZeroWidthJoiner(text, i)) return readCharacter(text, i + 1);
+  return i;
+}
+
+// We avoid more expensive regex tests involving Unicode property classes by
+// first checking for the common case of 7-bit ASCII characters.
+function isAscii(text, i) {
+  return text.charCodeAt(i) < 0x80;
+}
+
+function isSurrogatePair(text, i) {
+  const hi = text.charCodeAt(i);
+  if (hi >= 0xd800 && hi < 0xdc00) {
+    const lo = text.charCodeAt(i + 1);
+    return lo >= 0xdc00 && lo < 0xe000;
+  }
+  return false;
+}
+
+function isZeroWidthJoiner(text, i) {
+  return text.charCodeAt(i) === 0x200d;
+}
+
+function isCombiner(text, i) {
+  return isAscii(text, i) ? false : ((reCombiner.lastIndex = i), reCombiner.test(text));
+}
+
+function isPictographic(text, i) {
+  return isAscii(text, i) ? false : ((rePictographic.lastIndex = i), rePictographic.test(text));
 }
