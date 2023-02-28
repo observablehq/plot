@@ -1,6 +1,6 @@
-import {curveLinear, geoPath, line as shapeLine} from "d3";
+import {geoPath, line as shapeLine} from "d3";
 import {create} from "../context.js";
-import {Curve} from "../curve.js";
+import {curveAuto, PathCurve} from "../curve.js";
 import {Mark} from "../mark.js";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {coerceNumbers} from "../scales.js";
@@ -24,22 +24,9 @@ const defaults = {
   strokeMiterlimit: 1
 };
 
-// This is a special built-in curve that will use d3.geoPath when there is a
-// projection, and the linear curve when there is not. You can explicitly
-// opt-out of d3.geoPath and instead use d3.line with the "linear" curve.
-function curveAuto(context) {
-  return curveLinear(context);
-}
-
-// For the “auto” curve, return a symbol instead of a curve implementation;
-// we’ll use d3.geoPath instead of d3.line to render if there’s a projection.
-function LineCurve({curve = curveAuto, tension}) {
-  return typeof curve !== "function" && `${curve}`.toLowerCase() === "auto" ? curveAuto : Curve(curve, tension);
-}
-
 export class Line extends Mark {
   constructor(data, options = {}) {
-    const {x, y, z} = options;
+    const {x, y, z, curve, tension} = options;
     super(
       data,
       {
@@ -51,7 +38,7 @@ export class Line extends Mark {
       defaults
     );
     this.z = z;
-    this.curve = LineCurve(options);
+    this.curve = PathCurve(curve, tension);
     markers(this, options);
   }
   filter(index) {

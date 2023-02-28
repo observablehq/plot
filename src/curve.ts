@@ -20,7 +20,14 @@ import {
   curveStepAfter,
   curveStepBefore
 } from "d3";
-import type {CurveFactory, CurveBundleFactory, CurveCardinalFactory, CurveCatmullRomFactory} from "d3";
+import type {
+  CurveFactory,
+  CurveBundleFactory,
+  CurveCardinalFactory,
+  CurveCatmullRomFactory,
+  CurveGenerator,
+  Path
+} from "d3";
 
 type CurveFunction = CurveFactory | CurveBundleFactory | CurveCardinalFactory | CurveCatmullRomFactory;
 type CurveName =
@@ -82,4 +89,17 @@ export function Curve(curve: CurveName | CurveFunction = curveLinear, tension?: 
     }
   }
   return c;
+}
+
+// For the “auto” curve, return a symbol instead of a curve implementation;
+// we’ll use d3.geoPath to render if there’s a projection.
+export function PathCurve(curve: CurveName | CurveFunction = curveAuto, tension?: number): CurveFunction {
+  return typeof curve !== "function" && `${curve}`.toLowerCase() === "auto" ? curveAuto : Curve(curve, tension);
+}
+
+// This is a special built-in curve that will use d3.geoPath when there is a
+// projection, and the linear curve when there is not. You can explicitly
+// opt-out of d3.geoPath and instead use d3.line with the "linear" curve.
+export function curveAuto(context: CanvasRenderingContext2D | Path): CurveGenerator {
+  return curveLinear(context);
 }
