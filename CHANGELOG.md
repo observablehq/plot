@@ -6,6 +6,22 @@
 
 The new top-level **aspectRatio** option changes the default plot **height** such that, assuming both *x* and *y* are *linear* scales, a scaled unit distance in *x* is the given aspect ratio times a scaled unit distance in *y*. For example, if *x* and *y* represent the same units (kilometers, say, or degrees Celsius, or seconds), and if the **aspectRatio** is one, then scaled distances in *x* and *y* will be equivalent.
 
+<img src="./img/aspect-ratio.webp" width="650" alt="A scatterplot of daily temperature variation (y) vs. daily low temperature (x).">
+
+```js
+Plot.plot({
+  aspectRatio: 1,
+  grid: true,
+  x: {label: "Daily low temperature (°F) →", tickSpacing: 40},
+  y: {label: "↑ Daily temperature variation (Δ°F)", tickSpacing: 40},
+  color: {scheme: "rainbow", legend: true, tickFormat: Plot.formatMonth()},
+  marks: [
+    Plot.ruleY([0]),
+    Plot.dot(weather, {fill: (d) => d.date.getUTCMonth(), x: "temp_min", y: (d) => d.temp_max - d.temp_min})
+  ]
+})
+```
+
 The new **textOverflow** option for the text mark allows text to be truncated when a line of text is longer than the specified **lineWidth**. Overflowing characters can either be clipped (*clip*) or replaced with an ellipsis (*ellipsis*), either at the start, middle, or end of each line. When wrapping or truncating, the text mark now more accurately estimates the width of ellipses and emojis, and no longer separates combining marks or emoji character sequences.
 
 The link mark now respects the current **projection**, if any, given the default **curve** of *auto*. This matches the behavior of the line mark. To opt-out of the projection and draw a straight line, set the **curve** to *linear*.
