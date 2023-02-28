@@ -1,5 +1,37 @@
 # Observable Plot - Changelog
 
+## 0.6.4
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+The new top-level **aspectRatio** option changes the default plot **height** such that, assuming both *x* and *y* are *linear* scales, a scaled unit distance in *x* is the given aspect ratio times a scaled unit distance in *y*. For example, if *x* and *y* represent the same units (kilometers, say, or degrees Celsius, or seconds), and if the **aspectRatio** is one, then scaled distances in *x* and *y* will be equivalent.
+
+The new **textOverflow** option for the text mark allows text to be truncated when a line is longer than the specified **lineWidth**. Overflowing characters can either be clipped or replaced with ellipsis, either at the start, middle, or end of each line. Also, the text mark now more accurately estimates the width of ellipses and emojis when wrapping or truncating, and no longer separates combining marks or emoji character sequences.
+
+The link mark now respects the current **projection**, if any, given the default **curve** of *auto*. This matches the behavior of the line mark. To opt-out of the projection and draw a straight line, set the **curve** to *linear*.
+
+The image mark now supports the **imageRendering** option. (Note: Safari currently ignores the SVG image-rendering attribute.)
+
+You can now override the scale associated with a specific channel by specifying the channel as a {value, scale} object. For example, to force the **stroke** channel to be unscaled, interpreting the associated values as literal color strings:
+
+```js
+Plot.dot(data, {stroke: {value: "fieldName", scale: null}})
+```
+
+To instead force the **stroke** channel to be bound to the *color* scale regardless of the provided values, say:
+
+```js
+Plot.dot(data, {stroke: {value: "fieldName", scale: "color"}})
+```
+
+Color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled. In the case where some color and scale channels are literal values, which other color channels are not, the channels with literal values will now automatically opt-out of the corresponding scale. (This deviates from the previous behavior, where *all* channels associated with a scale were required to be literal values in order to have the scale default to an *identity* scale.)
+
+The mark **facet** option can now be set to *empty* such that a mark is only rendered on empty facets. This is typically used in conjunction with decoration marks, such as diagonal labels in a scatterplot matrix.
+
+Plot.autoSpec TK…
+
+Fix a bug where arrays of values could be erroneously interpreted as reducers. Fix a crash when the mark **facet** option is set to *exclude*, but mark is not faceted; the **facet** option is now ignored in this case. Fix number coercion to better support BigInt.
+
 ## 0.6.3
 
 [Released February 6, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.3)
