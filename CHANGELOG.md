@@ -24,7 +24,7 @@ To instead force the **stroke** channel to be bound to the *color* scale regardl
 Plot.dot(data, {stroke: {value: "fieldName", scale: "color"}})
 ```
 
-Color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled. In the case where some color and scale channels are literal values, which other color channels are not, the channels with literal values will now automatically opt-out of the corresponding scale. (This deviates from the previous behavior, where *all* channels associated with a scale were required to be literal values in order to have the scale default to an *identity* scale.)
+Color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled. Likewise, if the dot mark’s **symbol** channel values are all symbols, symbol names, or nullish, values are interpreted literally and unscaled; otherwise, the channel is bound to the *symbol* scale. (In the case where some color and scale channels are literal values, which other color channels are not, the channels with literal values will now automatically opt-out of the corresponding scale. This deviates from the previous behavior, where *all* channels associated with a scale were required to be literal values in order to have the scale default to an *identity* scale.)
 
 The mark **facet** option can now be set to *empty* such that a mark is only rendered on empty facets. This is typically used in conjunction with decoration marks, such as diagonal labels in a scatterplot matrix.
 
