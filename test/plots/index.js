@@ -289,6 +289,7 @@ export * from "./electricity-demand.js";
 export * from "./federal-funds.js";
 export * from "./frame.js";
 export * from "./function-contour.js";
+export * from "./geo-link.js";
 export * from "./heatmap.js";
 export * from "./image-rendering.js";
 export * from "./legend-color.js";

@@ -1,7 +1,8 @@
-import {pathRound as path} from "d3";
+import {geoPath, pathRound as path} from "d3";
 import {create} from "../context.js";
-import {Curve} from "../curve.js";
+import {curveAuto, PathCurve} from "../curve.js";
 import {Mark} from "../mark.js";
+import {coerceNumbers} from "../scales.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {markers, applyMarkers} from "./marker.js";
 
@@ -26,8 +27,14 @@ export class Link extends Mark {
       options,
       defaults
     );
-    this.curve = Curve(curve, tension);
+    this.curve = PathCurve(curve, tension);
     markers(this, options);
+  }
+  project(channels, values, context) {
+    // For the auto curve, projection is handled at render.
+    if (this.curve !== curveAuto) {
+      super.project(channels, values, context);
+    }
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
@@ -42,20 +49,41 @@ export class Link extends Mark {
           .enter()
           .append("path")
           .call(applyDirectStyles, this)
-          .attr("d", (i) => {
-            const p = path();
-            const c = curve(p);
-            c.lineStart();
-            c.point(X1[i], Y1[i]);
-            c.point(X2[i], Y2[i]);
-            c.lineEnd();
-            return p;
-          })
+          .attr(
+            "d",
+            curve === curveAuto && context.projection
+              ? sphereLink(context.projection, X1, Y1, X2, Y2)
+              : (i) => {
+                  const p = path();
+                  const c = curve(p);
+                  c.lineStart();
+                  c.point(X1[i], Y1[i]);
+                  c.point(X2[i], Y2[i]);
+                  c.lineEnd();
+                  return p;
+                }
+          )
           .call(applyChannelStyles, this, channels)
           .call(applyMarkers, this, channels)
       )
       .node();
   }
+}
+
+function sphereLink(projection, X1, Y1, X2, Y2) {
+  const path = geoPath(projection);
+  X1 = coerceNumbers(X1);
+  Y1 = coerceNumbers(Y1);
+  X2 = coerceNumbers(X2);
+  Y2 = coerceNumbers(Y2);
+  return (i) =>
+    path({
+      type: "LineString",
+      coordinates: [
+        [X1[i], Y1[i]],
+        [X2[i], Y2[i]]
+      ]
+    });
 }
 
 /** @jsdoc link */
