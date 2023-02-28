@@ -13,7 +13,6 @@ import {
   quantile,
   quantize,
   reverse as reverseof,
-  pairs,
   scaleLinear,
   scaleLog,
   scalePow,
@@ -225,9 +224,9 @@ export function ScaleThreshold(
     reverse
   }
 ) {
-  const sign = orderof(arrayify(domain)); // preserve descending domain
-  if (!pairs(domain).every(([a, b]) => isOrdered(a, b, sign)))
-    throw new Error(`the ${key} scale has a non-monotonic domain`);
+  domain = arrayify(domain);
+  const sign = orderof(domain); // preserve descending domain
+  if (!isOrdered(domain, sign)) throw new Error(`the ${key} scale has a non-monotonic domain`);
   if (reverse) range = reverseof(range); // domain ascending, so reverse range
   return {
     type: "threshold",
@@ -237,9 +236,12 @@ export function ScaleThreshold(
   };
 }
 
-function isOrdered(a, b, sign) {
-  const s = descending(a, b);
-  return s === 0 || s === sign;
+function isOrdered(domain, sign) {
+  for (let i = 1, n = domain.length, d = domain[0]; i < n; ++i) {
+    const s = descending(d, (d = domain[i]));
+    if (s !== 0 && s !== sign) return false;
+  }
+  return true;
 }
 
 export function ScaleIdentity() {
