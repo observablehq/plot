@@ -237,3 +237,8 @@ export async function autoDotFacet2() {
     color: "sex"
   }).plot();
 }
+
+export async function autoChannels() {
+  const athletes = await d3.csv("data/athletes.csv", d3.autoType);
+  return Plot.auto(athletes, {x: Plot.valueof(athletes, "height"), y: Plot.valueof(athletes, "sport")}).plot();
+}
