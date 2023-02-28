@@ -6,7 +6,7 @@
 
 The new top-level **aspectRatio** option changes the default plot **height** such that, assuming both *x* and *y* are *linear* scales, a scaled unit distance in *x* is the given aspect ratio times a scaled unit distance in *y*. For example, if *x* and *y* represent the same units (kilometers, say, or degrees Celsius, or seconds), and if the **aspectRatio** is one, then scaled distances in *x* and *y* will be equivalent.
 
-The new **textOverflow** option for the text mark allows text to be truncated when a line of text is longer than the specified **lineWidth**. Overflowing characters can either be clipped (*clip*) or replaced with ellipses (*ellipsis*), either at the start, middle, or end of each line. The text mark now more accurately estimates the width of ellipses and emojis when wrapping or truncating, and no longer separates combining marks or emoji character sequences.
+The new **textOverflow** option for the text mark allows text to be truncated when a line of text is longer than the specified **lineWidth**. Overflowing characters can either be clipped (*clip*) or replaced with an ellipsis (*ellipsis*), either at the start, middle, or end of each line. The text mark now more accurately estimates the width of ellipses and emojis when wrapping or truncating, and no longer separates combining marks or emoji character sequences.
 
 The link mark now respects the current **projection**, if any, given the default **curve** of *auto*. This matches the behavior of the line mark. To opt-out of the projection and draw a straight line, set the **curve** to *linear*.
 
