@@ -50,11 +50,11 @@ Plot.dot(data, {stroke: {value: "foo", scale: "color"}})
 
 Color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled. Likewise, if the dot mark’s **symbol** channel values are all symbols, symbol names, or nullish, values are interpreted literally and unscaled; otherwise, the channel is bound to the *symbol* scale. (If some color channels are literal values while other color channels are not, the channels with literal values will now automatically opt-out of the color scale; the same goes for symbol channels. This deviates from the previous behavior, where *all* channels associated with a scale were required to be literal values in order to have the scale default to an *identity* scale.)
 
-The mark [**facet** option](./README.md#facet-options) can now be set to *empty* such that a mark is only rendered on empty facets. This is typically used for annotation.
+The mark [**facetAnchor** option](./README.md#facet-options) can now be set to *empty* such that a mark is only rendered on empty facets. This is typically used for annotation.
 
 The new Plot.autoSpec method takes *data* and *options* suitable for [Plot.auto](./README.md#aut) and returns a corresponding *options* object with default options realized. While intended primarily as an internal helper, Plot.autoSpec may be useful for debugging by letting you inspect which mark and reducers are chosen by Plot.auto.
 
-Fix a bug where arrays of values could be erroneously interpreted as reducers. Fix a crash when the mark **facet** option is set to *exclude*, but the mark is not faceted; the option is now ignored. Fix number coercion to better support BigInt.
+Fix Plot.auto to only default to the *bar* mark if *x* or *y* is zeroed. Fix Plot.auto’s support for the *area* mark. Fix Plot.auto’s use of the *bar* mark with possibly ordinal reducers. Fix a bug where arrays of values could be erroneously interpreted as reducers. Fix a crash when the mark **facet** option is set to *exclude*, but the mark is not faceted; the option is now ignored. Fix a crash coercing BigInt values to numbers.
 
 ## 0.6.3
 
