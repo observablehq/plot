@@ -582,7 +582,10 @@ Faceting can be explicitly enabled or disabled on a mark with the *mark*.**facet
 * *auto* (default) - automatically determine if this mark should be faceted
 * *include* (or true) - draw the subset of the mark’s data in the current facet
 * *exclude* - draw the subset of the mark’s data *not* in the current facet
-* null (or false) - repeat this mark’s data across all facets (i.e., no faceting)
+* *super* - draw this mark in a single frame that covers all facets
+* null (or false) - repeat this mark’s data across all facets (*i.e.*, no faceting)
+
+When a mark uses *super* faceting, it is not allowed to use position scales (*x*, *y*, *fx*, or *fy*); *super* faceting is intended for decorations, such as labels and legends.
 
 When top-level faceting is used, the default *auto* setting is equivalent to *include* when the mark data is strictly equal to the top-level facet data; otherwise it is equivalent to null. When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the top-level facet data: the data must have the same length and order. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
 
