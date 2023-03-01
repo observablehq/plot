@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new top-level **aspectRatio** option changes the default plot **height** such that, assuming both *x* and *y* are *linear* scales, a scaled unit distance in *x* is the given aspect ratio times a scaled unit distance in *y*. For example, if *x* and *y* represent the same units (kilometers, say, or degrees Celsius, or seconds), and if the **aspectRatio** is one, then scaled distances in *x* and *y* will be equivalent.
+The new top-level [**aspectRatio** option](./README.md#layout-options) changes the default plot **height** such that, assuming both *x* and *y* are *linear* scales, a scaled unit distance in *x* divided by a scaled unit distance in *y* is the given aspect ratio. For example, if *x* and *y* represent the same units (say, degrees Fahrenheit), and if the **aspectRatio** is one, then scaled distances in *x* and *y* will be equivalent.
 
 <img src="./img/aspect-ratio.webp" width="650" alt="A scatterplot of daily temperature variation (y) vs. daily low temperature (x).">
 
@@ -26,31 +26,35 @@ Plot.plot({
 })
 ```
 
-The new **textOverflow** option for the text mark allows text to be truncated when a line of text is longer than the specified **lineWidth**. Overflowing characters can either be clipped (*clip*) or replaced with an ellipsis (*ellipsis*), either at the start, middle, or end of each line. When wrapping or truncating, the text mark now more accurately estimates the width of ellipses and emojis, and no longer separates combining marks or emoji character sequences.
+The new **textOverflow** option for the [text mark](./README.md#text) allows text to be truncated when a line of text is longer than the specified **lineWidth**. Overflowing characters can either be clipped (*clip*) or replaced with an ellipsis (*ellipsis*), either at the start, middle, or end of each line.
 
-The link mark now respects the current **projection**, if any, given the default **curve** of *auto*. This matches the behavior of the line mark. To opt-out of the projection and draw a straight line, set the **curve** to *linear*.
+<img src="./img/text-overflow.webp" width="620" alt="A demonstration of Plot’s text overflow methods, including clip-start, clip-end, ellipsis-start, ellipsis-middle, ellipsis-end, applied to titles of Hayao Miyazaki films.">
 
-The image mark now supports the **imageRendering** option. (Note: Safari currently ignores the SVG image-rendering attribute.)
+When wrapping or truncating, the text mark now more accurately estimates the width of ellipses and emojis, and no longer separates combining marks or emoji character sequences such as 👨‍👩‍👧‍👦.
 
-You can now override the scale associated with a specific channel by specifying the channel as a {value, scale} object. For example, to force the **stroke** channel to be unscaled, interpreting the associated values as literal color strings:
+The [link mark](./README.md#link) now respects the current [**projection**](./README.md#projection-options), if any, given the default [**curve**](./README.md#curves) of *auto*. This matches the behavior of the line mark. To opt-out of the projection and draw a straight line, set the **curve** to *linear*.
+
+The [image mark](./README.md#image) now supports the **imageRendering** option. (Note: Safari currently ignores the SVG image-rendering attribute.)
+
+You can now override the scale for a given [mark channel](./README.md#mark-options) by specifying the corresponding option as a {value, scale} object. For example, to force the **stroke** channel to be unscaled, interpreting the associated values as literal color strings:
 
 ```js
-Plot.dot(data, {stroke: {value: "fieldName", scale: null}})
+Plot.dot(data, {stroke: {value: "foo", scale: null}})
 ```
 
 To instead force the **stroke** channel to be bound to the *color* scale regardless of the provided values, say:
 
 ```js
-Plot.dot(data, {stroke: {value: "fieldName", scale: "color"}})
+Plot.dot(data, {stroke: {value: "foo", scale: "color"}})
 ```
 
-Color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled. Likewise, if the dot mark’s **symbol** channel values are all symbols, symbol names, or nullish, values are interpreted literally and unscaled; otherwise, the channel is bound to the *symbol* scale. (In the case where some color or symbol channels are literal values, while other channels are not, the channels with literal values will now automatically opt-out of the corresponding scale. This deviates from the previous behavior, where *all* channels associated with a scale were required to be literal values in order to have the scale default to an *identity* scale.)
+Color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled. Likewise, if the dot mark’s **symbol** channel values are all symbols, symbol names, or nullish, values are interpreted literally and unscaled; otherwise, the channel is bound to the *symbol* scale. (If some color channels are literal values while other color channels are not, the channels with literal values will now automatically opt-out of the color scale; the same goes for symbol channels. This deviates from the previous behavior, where *all* channels associated with a scale were required to be literal values in order to have the scale default to an *identity* scale.)
 
-The mark **facet** option can now be set to *empty* such that a mark is only rendered on empty facets. This is typically used in conjunction with decoration marks, such as diagonal labels in a scatterplot matrix.
+The mark [**facet** option](./README.md#facet-options) can now be set to *empty* such that a mark is only rendered on empty facets. This is typically used for annotation.
 
-Plot.autoSpec TK…
+The new Plot.autoSpec method takes *data* and *options* suitable for [Plot.auto](./README.md#aut) and returns a corresponding *options* object with default options realized. While intended primarily as an internal helper, Plot.autoSpec may be useful for debugging by letting you inspect which mark and reducers are chosen by Plot.auto.
 
-Fix a bug where arrays of values could be erroneously interpreted as reducers. Fix a crash when the mark **facet** option is set to *exclude*, but mark is not faceted; the **facet** option is now ignored in this case. Fix number coercion to better support BigInt.
+Fix a bug where arrays of values could be erroneously interpreted as reducers. Fix a crash when the mark **facet** option is set to *exclude*, but the mark is not faceted; the option is now ignored. Fix number coercion to better support BigInt.
 
 ## 0.6.3
 
