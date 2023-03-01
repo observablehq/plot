@@ -2040,7 +2040,7 @@ The following text-specific constant options are also supported:
 * **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
 
-If a **lineWidth** is specified, input text values will be wrapped as needed to fit while preserving existing newlines. The line wrapping implementation is rudimentary; for non-ASCII, non-U.S. English text, or for when a different font is used, you may get better results by hard-wrapping the text yourself (by supplying newlines in the input). If the **monospace** option is truthy, the default **fontFamily** changes to “ui-monospace, monospace”, and the **lineWidth** option is interpreted as characters (ch) rather than ems.
+If a **lineWidth** is specified, input text values will be wrapped as needed to fit while preserving existing newlines. The line wrapping implementation is rudimentary: it replaces the space before the word that overflows with a line feed (\n). Lines might also be split on words that contain a soft-hyphen (\xad), replacing it with a dash (-) and a line feed. For non-ASCII, non-U.S. English text, or for when a different font is used, you may get better results by hard-wrapping the text yourself (by supplying line feeds in the input). If the **monospace** option is truthy, the default **fontFamily** changes to “ui-monospace, monospace”, and the **lineWidth** option is interpreted as characters (ch) rather than ems.
 
 The **textOverflow** option can be used to truncate lines of text longer than the given **lineWidth**. If the mark does not have a **title** channel, a title with the non-truncated text is also added. The following **textOverflow** values are supported:
 
