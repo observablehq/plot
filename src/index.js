@@ -24,6 +24,7 @@ export {Rect, rect, rectX, rectY} from "./marks/rect.js";
 export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";
 export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
+export {Tooltip, tooltip} from "./marks/tooltip.js";
 export {tree, cluster} from "./marks/tree.js";
 export {Vector, vector, vectorX, vectorY, spike} from "./marks/vector.js";
 export {valueof, column, identity, indexOf} from "./options.js";

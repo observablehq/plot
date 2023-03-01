@@ -31,6 +31,7 @@ export * from "./marks/rect.js";
 export * from "./marks/rule.js";
 export * from "./marks/text.js";
 export * from "./marks/tick.js";
+export * from "./marks/tooltip.js";
 export * from "./marks/tree.js";
 export * from "./marks/vector.js";
 export * from "./options.js";

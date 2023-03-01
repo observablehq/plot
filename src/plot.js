@@ -1,6 +1,6 @@
 import {select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
-import {createContext, create} from "./context.js";
+import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslate, facetFilter} from "./facet.js";
 import {createLegends, exposeLegends} from "./legends.js";
@@ -204,7 +204,7 @@ export function plot(options = {}) {
 
   const {width, height} = dimensions;
 
-  const svg = create("svg", context)
+  const svg = select(context.ownerSVGElement)
     .attr("class", className)
     .attr("fill", "currentColor")
     .attr("font-family", "system-ui, sans-serif")
@@ -261,7 +261,9 @@ export function plot(options = {}) {
             index = indexes[facetStateByMark.has(mark) ? f.i : 0];
             index = mark.filter(index, channels, values);
             if (index.length === 0) continue;
-            index.fi = f.i; // TODO cleaner way of exposing the current facet index?
+            index.fx = f.x;
+            index.fy = f.y;
+            index.fi = f.i;
           }
           const node = mark.render(index, scales, values, subdimensions, context);
           if (node == null) continue;
