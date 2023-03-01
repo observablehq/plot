@@ -2,7 +2,7 @@
 
 ## 0.6.4
 
-*Not yet released. These are forthcoming changes in the main branch.*
+[Released February 28, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.4)
 
 The new top-level [**aspectRatio** option](./README.md#layout-options) changes the default plot **height** such that, assuming both *x* and *y* are *linear* scales, a scaled unit distance in *x* divided by a scaled unit distance in *y* is the given aspect ratio. For example, if *x* and *y* represent the same units (say, degrees Fahrenheit), and if the **aspectRatio** is one, then scaled distances in *x* and *y* will be equivalent.
 
