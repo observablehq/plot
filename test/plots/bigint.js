@@ -21,3 +21,7 @@ export async function bigintLog() {
 export async function bigintOrdinal() {
   return Plot.cellX(integers.slice(1, 11), {x: "big1", fill: "big1"}).plot({color: {type: "log", legend: true}});
 }
+
+export async function bigintStack() {
+  return Plot.barY(integers, {x: (d, i) => i % 5, y: "big1"}).plot();
+}

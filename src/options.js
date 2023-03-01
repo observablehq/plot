@@ -91,7 +91,13 @@ export function arrayify(data, type) {
 // An optimization of type.from(values, f): if the given values are already an
 // instanceof the desired array type, the faster values.map method is used.
 export function map(values, f, type = Array) {
-  return values instanceof type ? values.map(f) : type.from(values, f);
+  try {
+    return values instanceof type ? values.map(f) : type.from(values, f);
+  } catch (error) {
+    if (error.message === "Cannot convert a BigInt value to a number")
+      return map(values, (d, i) => Number(f(d, i)), type);
+    throw error;
+  }
 }
 
 // An optimization of type.from(values): if the given values are already an
