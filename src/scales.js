@@ -7,7 +7,8 @@ import {
   isScaleOptions,
   isTypedArray,
   map,
-  slice
+  slice,
+  typedMap
 } from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
@@ -505,7 +506,7 @@ function coerceDates(values) {
 
 // If the values are specified as a typed array, no coercion is required.
 export function coerceNumbers(values) {
-  return isTypedArray(values) ? values : map(values, coerceNumber, Float64Array);
+  return isTypedArray(values) ? values : typedMap(values, coerceNumber, Float64Array);
 }
 
 // Unlike Mark’s number, here we want to convert null and undefined to NaN,
