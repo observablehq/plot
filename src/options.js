@@ -3,7 +3,7 @@ import {color, descending, range as rangei, quantile} from "d3";
 import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
-const TypedArray = Object.getPrototypeOf(Uint8Array);
+export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 /** @jsdoc valueof */
@@ -16,14 +16,26 @@ export function valueof(data, value, type) {
     : valueType === "number" || value instanceof Date || valueType === "boolean"
     ? map(data, constant(value), type)
     : value && typeof value.transform === "function"
-    ? arrayify(value.transform(data), type)
-    : arrayify(value, type); // preserve undefined type
+    ? maybedTypedArrayify(value.transform(data), type)
+    : maybedTypedArrayify(value, type);
 }
 
 // When valueof is asked to produce a typed array (i.e., numbers) we implicitly
 // apply null-safe type coercion.
 function maybeTypedMap(data, f, type) {
-  return map(data, isTypedArray(type?.prototype) ? floater(f) : f, type);
+  return map(data, type?.prototype instanceof TypedArray ? floater(f) : f, type);
+}
+
+// When valueof is asked to produce a typed array (i.e., numbers) we implicitly
+// apply null-safe type coercion.
+function maybedTypedArrayify(data, type) {
+  return type === undefined
+    ? arrayify(data) // preserve undefined type
+    : data instanceof type
+    ? data
+    : type.prototype instanceof TypedArray && !(data instanceof TypedArray)
+    ? type.from(data, coerceNumber)
+    : type.from(data);
 }
 
 function floater(f) {
@@ -54,7 +66,7 @@ export function percentile(reduce) {
 
 // If the values are specified as a typed array, no coercion is required.
 export function coerceNumbers(values) {
-  return isTypedArray(values) ? values : map(values, coerceNumber, Float64Array);
+  return values instanceof TypedArray ? values : map(values, coerceNumber, Float64Array);
 }
 
 // Unlike Mark’s number, here we want to convert null and undefined to NaN since
@@ -114,22 +126,9 @@ export function keyword(input, name, allowed) {
   return i;
 }
 
-// Promotes the specified data to an array or typed array as needed. If an array
-// type is provided (e.g., Array), then the returned array will strictly be of
-// the specified type; otherwise, any array or typed array may be returned. If
-// the specified data is null or undefined, returns the value as-is. When
-// converting a non-typed array to a typed array, null-safe number coercion is
-// implicitly applied.
-export function arrayify(data, type) {
-  return data == null
-    ? data
-    : type === undefined
-    ? data instanceof Array || data instanceof TypedArray
-      ? data
-      : Array.from(data)
-    : data instanceof type
-    ? data
-    : type.from(data, isTypedArray(type.prototype) && !isTypedArray(data) ? coerceNumber : undefined);
+// Promotes the specified data to an array as needed.
+export function arrayify(data) {
+  return data == null || data instanceof Array || data instanceof TypedArray ? data : Array.from(data);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
@@ -142,10 +141,6 @@ export function map(values, f, type = Array) {
 // instanceof the desired array type, the faster values.slice method is used.
 export function slice(values, type = Array) {
   return values instanceof type ? values.slice() : type.from(values);
-}
-
-export function isTypedArray(values) {
-  return values instanceof TypedArray;
 }
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.

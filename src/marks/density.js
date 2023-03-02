@@ -1,6 +1,6 @@
 import {contourDensity, create, geoPath} from "d3";
 import {Mark} from "../mark.js";
-import {coerceNumbers, isTypedArray, maybeTuple, maybeZ} from "../options.js";
+import {coerceNumbers, maybeTuple, maybeZ, TypedArray} from "../options.js";
 import {Position} from "../projection.js";
 import {
   applyFrameAnchor,
@@ -128,7 +128,7 @@ function densityInitializer(options, fillDensity, strokeDensity) {
     // If explicit thresholds were not specified, find the maximum density of
     // all grids and use this to compute thresholds.
     let T = thresholds;
-    if (!isTypedArray(T)) {
+    if (!(T instanceof TypedArray)) {
       let maxValue = 0;
       for (const facetContours of facetsContours) {
         for (const [, contour] of facetContours) {
