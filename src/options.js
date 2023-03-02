@@ -9,12 +9,16 @@ const objectToString = Object.prototype.toString;
 /** @jsdoc valueof */
 export function valueof(data, value, type) {
   const valueType = typeof value;
+  const access =
+    type && Object.getPrototypeOf(type) === TypedArray
+      ? (value) => typedMap(data, value, type)
+      : (value) => map(data, value);
   return valueType === "string"
-    ? map(data, field(value), type)
+    ? access(field(value))
     : valueType === "function"
-    ? map(data, value, type)
+    ? access(value)
     : valueType === "number" || value instanceof Date || valueType === "boolean"
-    ? map(data, constant(value), type)
+    ? access(constant(value))
     : value && typeof value.transform === "function"
     ? arrayify(value.transform(data), type)
     : arrayify(value, type); // preserve undefined type
@@ -92,7 +96,11 @@ export function arrayify(data, type) {
 // instanceof the desired array type, the faster values.map method is used. Note
 // that we don’t rely on the implicit coercion of typedArray.from, because it
 // errors on BigInts.
-export function map(values, f, type = Array) {
+export function map(values, f) {
+  return values instanceof Array ? values.map(f) : Array.from(values, f);
+}
+
+export function typedMap(values, f, type) {
   const g = type === Array ? f : (d, i) => Number(f(d, i));
   return values instanceof type ? values.map(g) : type.from(values, g);
 }
@@ -234,7 +242,7 @@ export function mid(x1, x2) {
       const X2 = x2.transform(data);
       return isTemporal(X1) || isTemporal(X2)
         ? map(X1, (_, i) => new Date((+X1[i] + +X2[i]) / 2))
-        : map(X1, (_, i) => (+X1[i] + +X2[i]) / 2, Float64Array);
+        : typedMap(X1, (_, i) => (+X1[i] + +X2[i]) / 2, Float64Array);
     },
     label: x1.label
   };

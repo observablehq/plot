@@ -20,7 +20,7 @@ import {
   labelof,
   isTemporal,
   isIterable,
-  map
+  typedMap
 } from "../options.js";
 import {coerceDate, coerceNumber} from "../scales.js";
 import {basic} from "./basic.js";
@@ -230,7 +230,7 @@ function maybeBin(options) {
     let V = valueof(data, value);
     let T; // bin thresholds
     if (isTemporal(V) || isTimeThresholds(thresholds)) {
-      V = map(V, coerceDate, Float64Array);
+      V = typedMap(V, coerceDate, Float64Array);
       let [min, max] = typeof domain === "function" ? domain(V) : domain;
       let t = typeof thresholds === "function" && !isInterval(thresholds) ? thresholds(V, min, max) : thresholds;
       if (typeof t === "number") t = utcTickInterval(min, max, t);
@@ -243,7 +243,7 @@ function maybeBin(options) {
       }
       T = t;
     } else {
-      V = map(V, coerceNumber, Float64Array); // TODO deduplicate with code above
+      V = typedMap(V, coerceNumber, Float64Array); // TODO deduplicate with code above
       let [min, max] = typeof domain === "function" ? domain(V) : domain;
       let t = typeof thresholds === "function" && !isInterval(thresholds) ? thresholds(V, min, max) : thresholds;
       if (typeof t === "number") {

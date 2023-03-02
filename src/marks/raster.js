@@ -1,7 +1,7 @@
 import {blurImage, Delaunay, randomLcg, rgb} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
-import {map, first, second, third, isTuples, isNumeric, isTemporal, take, identity} from "../options.js";
+import {typedMap, first, second, third, isTuples, isNumeric, isTemporal, take, identity} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {Mark} from "../mark.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
@@ -115,8 +115,8 @@ export class Raster extends AbstractRaster {
     if (this.interpolate) {
       const kx = w / dx;
       const ky = h / dy;
-      const IX = map(X, (x) => (x - x1) * kx, Float64Array);
-      const IY = map(Y, (y) => (y - y1) * ky, Float64Array);
+      const IX = typedMap(X, (x) => (x - x1) * kx, Float64Array);
+      const IY = typedMap(Y, (y) => (y - y1) * ky, Float64Array);
       if (F) F = this.interpolate(index, w, h, IX, IY, F);
       if (FO) FO = this.interpolate(index, w, h, IX, IY, FO);
     }
