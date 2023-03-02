@@ -20,7 +20,8 @@ import {
   labelof,
   isTemporal,
   isIterable,
-  map
+  map,
+  anonymous
 } from "../options.js";
 import {coerceDate, coerceNumber} from "../scales.js";
 import {basic} from "./basic.js";
@@ -226,7 +227,7 @@ function maybeBinValueTuple(options) {
 function maybeBin(options) {
   if (options == null) return;
   const {value, cumulative, domain = extent, thresholds} = options;
-  const bin = (data) => {
+  const bin = anonymous((data) => {
     let V = valueof(data, value);
     let T; // bin thresholds
     if (isTemporal(V) || isTimeThresholds(thresholds)) {
@@ -293,7 +294,7 @@ function maybeBin(options) {
     else for (let i = 1; i < T.length; ++i) E.push([T[i - 1], T[i]]);
     E.bin = (cumulative < 0 ? bin1cn : cumulative > 0 ? bin1cp : bin1)(E, T, V);
     return E;
-  };
+  });
   bin.label = labelof(value);
   return bin;
 }

@@ -21,7 +21,7 @@ export function valueof(data, value, type) {
 }
 
 export const field = (name) => (d) => d[name];
-export const indexOf = (d, i) => i;
+export const indexOf = anonymous((d, i) => i);
 /** @jsdoc identity */
 export const identity = {transform: (d) => d};
 export const zero = () => 0;
@@ -30,9 +30,9 @@ export const yes = () => true;
 export const string = (x) => (x == null ? x : `${x}`);
 export const number = (x) => (x == null ? x : +x);
 export const boolean = (x) => (x == null ? x : !!x);
-export const first = (x) => (x ? x[0] : undefined);
-export const second = (x) => (x ? x[1] : undefined);
-export const third = (x) => (x ? x[2] : undefined);
+export const first = anonymous((x) => (x ? x[0] : undefined));
+export const second = anonymous((x) => (x ? x[1] : undefined));
+export const third = anonymous((x) => (x ? x[2] : undefined));
 export const constant = (x) => () => x;
 
 // Converts a string like “p25” into a function that takes an index I and an
@@ -217,7 +217,17 @@ export function maybeColumn(source) {
 }
 
 export function labelof(value, defaultValue) {
-  return typeof value === "string" ? value : value && value.label !== undefined ? value.label : defaultValue;
+  return typeof value === "string"
+    ? value
+    : typeof value === "function" && value.name && !/^f?[xy]\d*$/.test(value.name)
+    ? value.name
+    : value && value.label !== undefined
+    ? value.label
+    : defaultValue;
+}
+
+export function anonymous(f) {
+  return f;
 }
 
 // Assuming that both x1 and x2 and lazy columns (per above), this derives a new

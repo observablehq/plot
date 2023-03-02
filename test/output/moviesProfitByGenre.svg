@@ -43,6 +43,9 @@
     <text y="0.32em" transform="translate(120,246)">Western</text>
     <text y="0.32em" transform="translate(120,266)">Other</text>
   </g>
+  <g aria-label="y-axis label" transform="translate(-116.5,0.5)">
+    <text y="0.71em" transform="translate(120,155) rotate(-90)">Genre</text>
+  </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="182.141592920354" x2="182.141592920354" y1="20" y2="290"></line>
     <line x1="268.5132743362832" x2="268.5132743362832" y1="20" y2="290"></line>

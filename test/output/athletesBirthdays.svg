@@ -41,6 +41,9 @@
     <text y="0.32em" transform="translate(40,226)">Nov</text>
     <text y="0.32em" transform="translate(40,246)">Dec</text>
   </g>
+  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+    <text y="0.71em" transform="translate(40,145) rotate(-90)">month</text>
+  </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,270)" d="M0,0L0,6"></path>
     <path transform="translate(142.00364298724955,270)" d="M0,0L0,6"></path>
