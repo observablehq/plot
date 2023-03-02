@@ -9,19 +9,25 @@ const objectToString = Object.prototype.toString;
 /** @jsdoc valueof */
 export function valueof(data, value, type) {
   const valueType = typeof value;
-  const access =
-    type && Object.getPrototypeOf(type) === TypedArray
-      ? (value) => floatMap(data, value, type)
-      : (value) => map(data, value);
   return valueType === "string"
-    ? access(field(value))
+    ? maybeTypedMap(data, field(value), type)
     : valueType === "function"
-    ? access(value)
+    ? maybeTypedMap(data, value, type)
     : valueType === "number" || value instanceof Date || valueType === "boolean"
-    ? access(constant(value))
+    ? map(data, constant(value), type)
     : value && typeof value.transform === "function"
     ? arrayify(value.transform(data), type)
     : arrayify(value, type); // preserve undefined type
+}
+
+// When valueof is asked to produce a typed array (i.e., numbers) we implicitly
+// apply null-safe type coercion.
+function maybeTypedMap(data, f, type) {
+  return map(data, isTypedArray(type?.prototype) ? floater(f) : f, type);
+}
+
+function floater(f) {
+  return (d, i) => coerceNumber(f(d, i));
 }
 
 export const field = (name) => (d) => d[name];
@@ -44,6 +50,38 @@ export const constant = (x) => () => x;
 export function percentile(reduce) {
   const p = +`${reduce}`.slice(1) / 100;
   return (I, f) => quantile(I, p, f);
+}
+
+// If the values are specified as a typed array, no coercion is required.
+export function coerceNumbers(values) {
+  return isTypedArray(values) ? values : map(values, coerceNumber, Float64Array);
+}
+
+// Unlike Mark’s number, here we want to convert null and undefined to NaN since
+// the result will be stored in a Float64Array and we don’t want null to be
+// coerced to zero. We use Number instead of unary + to allow BigInt coercion.
+export function coerceNumber(x) {
+  return x == null ? NaN : Number(x);
+}
+
+export function coerceDates(values) {
+  return map(values, coerceDate);
+}
+
+// When coercing strings to dates, we only want to allow the ISO 8601 format
+// since the built-in string parsing of the Date constructor varies across
+// browsers. (In the future, this could be made more liberal if desired, though
+// it is still generally preferable to do date parsing yourself explicitly,
+// rather than rely on Plot.) Any non-string values are coerced to number first
+// and treated as milliseconds since UNIX epoch.
+export function coerceDate(x) {
+  return x instanceof Date && !isNaN(x)
+    ? x
+    : typeof x === "string"
+    ? isoParse(x)
+    : x == null || isNaN((x = +x))
+    ? undefined
+    : new Date(x);
 }
 
 // Some channels may allow a string constant to be specified; to differentiate
@@ -79,7 +117,9 @@ export function keyword(input, name, allowed) {
 // Promotes the specified data to an array or typed array as needed. If an array
 // type is provided (e.g., Array), then the returned array will strictly be of
 // the specified type; otherwise, any array or typed array may be returned. If
-// the specified data is null or undefined, returns the value as-is.
+// the specified data is null or undefined, returns the value as-is. When
+// converting a non-typed array to a typed array, null-safe number coercion is
+// implicitly applied.
 export function arrayify(data, type) {
   return data == null
     ? data
@@ -89,30 +129,13 @@ export function arrayify(data, type) {
       : Array.from(data)
     : data instanceof type
     ? data
-    : type.from(data);
+    : type.from(data, isTypedArray(type.prototype) && !isTypedArray(data) ? coerceNumber : undefined);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
 // instanceof the desired array type, the faster values.map method is used.
-export function map(values, f) {
-  return values instanceof Array ? values.map(f) : Array.from(values, f);
-}
-
-// Unlike Mark’s number, this converts null and undefined to NaN, since the
-// result will be stored in a Float64Array and we don’t want null to be coerced
-// to zero. Using Number to coerce BigInts.
-function toFloat(x) {
-  return x == null ? NaN : Number(x);
-}
-
-export function floatMap(values, f, type = Float64Array) {
-  return f === undefined
-    ? values instanceof type
-      ? values.map(toFloat)
-      : type.from(values, toFloat)
-    : values instanceof type
-    ? values.map((d, i) => toFloat(f(d, i)))
-    : type.from(values, (d, i) => toFloat(f(d, i)));
+export function map(values, f, type = Array) {
+  return values instanceof type ? values.map(f) : type.from(values, f);
 }
 
 // An optimization of type.from(values): if the given values are already an
@@ -252,7 +275,7 @@ export function mid(x1, x2) {
       const X2 = x2.transform(data);
       return isTemporal(X1) || isTemporal(X2)
         ? map(X1, (_, i) => new Date((+X1[i] + +X2[i]) / 2))
-        : floatMap(X1, (_, i) => (+X1[i] + +X2[i]) / 2);
+        : map(X1, (_, i) => (+X1[i] + +X2[i]) / 2, Float64Array);
     },
     label: x1.label
   };
