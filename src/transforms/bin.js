@@ -243,7 +243,7 @@ function maybeBin(options) {
       }
       T = t;
     } else {
-      V = floatMap(V); // TODO deduplicate with code above
+      V = coerceNumbers(V);
       let [min, max] = typeof domain === "function" ? domain(V) : domain;
       let t = typeof thresholds === "function" && !isInterval(thresholds) ? thresholds(V, min, max) : thresholds;
       if (typeof t === "number") {
