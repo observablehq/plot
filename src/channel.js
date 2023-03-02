@@ -1,5 +1,5 @@
 import {ascending, descending, rollup, sort} from "d3";
-import {first, isColor, isEvery, isIterable, labelof, map, maybeValue, range, floatMap, valueof} from "./options.js";
+import {first, isColor, isEvery, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {isSymbol, maybeSymbol} from "./symbols.js";
 import {maybeReduce} from "./transforms/group.js";
@@ -121,7 +121,7 @@ function findScaleChannel(channels, scale) {
 function difference(channels, k1, k2) {
   const X1 = values(channels, k1);
   const X2 = values(channels, k2);
-  return floatMap(X2, (x2, i) => Math.abs(x2 - X1[i]));
+  return map(X2, (x2, i) => Math.abs(x2 - X1[i]), Float64Array);
 }
 
 function values(channels, name, alias) {

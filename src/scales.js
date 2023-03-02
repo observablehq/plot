@@ -1,14 +1,13 @@
-import {parse as isoParse} from "isoformat";
 import {
   isOrdinal,
   isTemporal,
   isTemporalString,
   isNumericString,
   isScaleOptions,
-  isTypedArray,
   map,
   slice,
-  floatMap
+  coerceNumbers,
+  coerceDates
 } from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
@@ -498,31 +497,6 @@ function coerceType(channels, {domain, ...options}, coerceValues) {
 
 function coerceSymbols(values) {
   return map(values, maybeSymbol);
-}
-
-function coerceDates(values) {
-  return map(values, coerceDate);
-}
-
-// If the values are specified as a typed array, no coercion is required.
-export function coerceNumbers(values) {
-  return isTypedArray(values) ? values : floatMap(values);
-}
-
-// When coercing strings to dates, we only want to allow the ISO 8601 format
-// since the built-in string parsing of the Date constructor varies across
-// browsers. (In the future, this could be made more liberal if desired, though
-// it is still generally preferable to do date parsing yourself explicitly,
-// rather than rely on Plot.) Any non-string values are coerced to number first
-// and treated as milliseconds since UNIX epoch.
-export function coerceDate(x) {
-  return x instanceof Date && !isNaN(x)
-    ? x
-    : typeof x === "string"
-    ? isoParse(x)
-    : x == null || isNaN((x = +x))
-    ? undefined
-    : new Date(x);
 }
 
 /** @jsdoc scale */

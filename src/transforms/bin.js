@@ -11,6 +11,8 @@ import {
 import {
   valueof,
   identity,
+  coerceDate,
+  coerceNumbers,
   maybeColumn,
   maybeInterval,
   maybeTuple,
@@ -20,9 +22,8 @@ import {
   labelof,
   isTemporal,
   isIterable,
-  floatMap
+  map
 } from "../options.js";
-import {coerceDate, coerceNumbers} from "../scales.js";
 import {basic} from "./basic.js";
 import {
   hasOutput,
@@ -230,7 +231,7 @@ function maybeBin(options) {
     let V = valueof(data, value);
     let T; // bin thresholds
     if (isTemporal(V) || isTimeThresholds(thresholds)) {
-      V = floatMap(V, coerceDate);
+      V = map(V, coerceDate, Float64Array); // like coerceDates, but faster
       let [min, max] = typeof domain === "function" ? domain(V) : domain;
       let t = typeof thresholds === "function" && !isInterval(thresholds) ? thresholds(V, min, max) : thresholds;
       if (typeof t === "number") t = utcTickInterval(min, max, t);
