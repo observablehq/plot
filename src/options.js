@@ -11,7 +11,7 @@ export function valueof(data, value, type) {
   const valueType = typeof value;
   const access =
     type && Object.getPrototypeOf(type) === TypedArray
-      ? (value) => typedMap(data, value, type)
+      ? (value) => floatMap(data, value, type)
       : (value) => map(data, value);
   return valueType === "string"
     ? access(field(value))
@@ -93,16 +93,26 @@ export function arrayify(data, type) {
 }
 
 // An optimization of type.from(values, f): if the given values are already an
-// instanceof the desired array type, the faster values.map method is used. Note
-// that we don’t rely on the implicit coercion of typedArray.from, because it
-// errors on BigInts.
+// instanceof the desired array type, the faster values.map method is used.
 export function map(values, f) {
   return values instanceof Array ? values.map(f) : Array.from(values, f);
 }
 
-export function typedMap(values, f, type) {
-  const g = type === Array ? f : (d, i) => Number(f(d, i));
-  return values instanceof type ? values.map(g) : type.from(values, g);
+// Unlike Mark’s number, this converts null and undefined to NaN, since the
+// result will be stored in a Float64Array and we don’t want null to be coerced
+// to zero. Using Number to coerce BigInts.
+function toFloat(x) {
+  return x == null ? NaN : Number(x);
+}
+
+export function floatMap(values, f, type = Float64Array) {
+  return f === undefined
+    ? values instanceof type
+      ? values.map(toFloat)
+      : type.from(values, toFloat)
+    : values instanceof type
+    ? values.map((d, i) => toFloat(f(d, i)))
+    : type.from(values, (d, i) => toFloat(f(d, i)));
 }
 
 // An optimization of type.from(values): if the given values are already an
@@ -242,7 +252,7 @@ export function mid(x1, x2) {
       const X2 = x2.transform(data);
       return isTemporal(X1) || isTemporal(X2)
         ? map(X1, (_, i) => new Date((+X1[i] + +X2[i]) / 2))
-        : typedMap(X1, (_, i) => (+X1[i] + +X2[i]) / 2, Float64Array);
+        : floatMap(X1, (_, i) => (+X1[i] + +X2[i]) / 2);
     },
     label: x1.label
   };
