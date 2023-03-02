@@ -367,6 +367,11 @@ export function isColor(value) {
   );
 }
 
+export function isOpacity(value) {
+  if (typeof value !== "number") return false;
+  return (0 <= value && value <= 1) || isNaN(value);
+}
+
 export function isNoneish(value) {
   return value == null || isNone(value);
 }

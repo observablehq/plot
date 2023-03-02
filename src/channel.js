@@ -1,5 +1,5 @@
 import {ascending, descending, rollup, sort} from "d3";
-import {first, isColor, isEvery, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
+import {first, isColor, isEvery, isIterable, isOpacity, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {isSymbol, maybeSymbol} from "./symbols.js";
 import {maybeReduce} from "./transforms/group.js";
@@ -46,7 +46,7 @@ export function inferChannelScale(name, channel) {
         break;
       case "fillOpacity":
       case "strokeOpacity":
-        channel.scale = "opacity";
+        channel.scale = isEvery(value, isOpacity) ? null : "opacity";
         break;
       case "symbol":
         if (isEvery(value, isSymbol)) {
