@@ -3,21 +3,39 @@ import {color, descending, range as rangei, quantile} from "d3";
 import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
-const TypedArray = Object.getPrototypeOf(Uint8Array);
+export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 /** @jsdoc valueof */
 export function valueof(data, value, type) {
   const valueType = typeof value;
   return valueType === "string"
-    ? map(data, field(value), type)
+    ? maybeTypedMap(data, field(value), type)
     : valueType === "function"
-    ? map(data, value, type)
+    ? maybeTypedMap(data, value, type)
     : valueType === "number" || value instanceof Date || valueType === "boolean"
     ? map(data, constant(value), type)
     : value && typeof value.transform === "function"
-    ? arrayify(value.transform(data), type)
-    : arrayify(value, type); // preserve undefined type
+    ? maybeTypedArrayify(value.transform(data), type)
+    : maybeTypedArrayify(value, type);
+}
+
+function maybeTypedMap(data, f, type) {
+  return map(data, type?.prototype instanceof TypedArray ? floater(f) : f, type);
+}
+
+function maybeTypedArrayify(data, type) {
+  return type === undefined
+    ? arrayify(data) // preserve undefined type
+    : data instanceof type
+    ? data
+    : type.prototype instanceof TypedArray && !(data instanceof TypedArray)
+    ? type.from(data, coerceNumber)
+    : type.from(data);
+}
+
+function floater(f) {
+  return (d, i) => coerceNumber(f(d, i));
 }
 
 export const field = (name) => (d) => d[name];
@@ -40,6 +58,38 @@ export const constant = (x) => () => x;
 export function percentile(reduce) {
   const p = +`${reduce}`.slice(1) / 100;
   return (I, f) => quantile(I, p, f);
+}
+
+// If the values are specified as a typed array, no coercion is required.
+export function coerceNumbers(values) {
+  return values instanceof TypedArray ? values : map(values, coerceNumber, Float64Array);
+}
+
+// Unlike Mark’s number, here we want to convert null and undefined to NaN since
+// the result will be stored in a Float64Array and we don’t want null to be
+// coerced to zero. We use Number instead of unary + to allow BigInt coercion.
+function coerceNumber(x) {
+  return x == null ? NaN : Number(x);
+}
+
+export function coerceDates(values) {
+  return map(values, coerceDate);
+}
+
+// When coercing strings to dates, we only want to allow the ISO 8601 format
+// since the built-in string parsing of the Date constructor varies across
+// browsers. (In the future, this could be made more liberal if desired, though
+// it is still generally preferable to do date parsing yourself explicitly,
+// rather than rely on Plot.) Any non-string values are coerced to number first
+// and treated as milliseconds since UNIX epoch.
+export function coerceDate(x) {
+  return x instanceof Date && !isNaN(x)
+    ? x
+    : typeof x === "string"
+    ? isoParse(x)
+    : x == null || isNaN((x = +x))
+    ? undefined
+    : new Date(x);
 }
 
 // Some channels may allow a string constant to be specified; to differentiate
@@ -72,20 +122,9 @@ export function keyword(input, name, allowed) {
   return i;
 }
 
-// Promotes the specified data to an array or typed array as needed. If an array
-// type is provided (e.g., Array), then the returned array will strictly be of
-// the specified type; otherwise, any array or typed array may be returned. If
-// the specified data is null or undefined, returns the value as-is.
-export function arrayify(data, type) {
-  return data == null
-    ? data
-    : type === undefined
-    ? data instanceof Array || data instanceof TypedArray
-      ? data
-      : Array.from(data)
-    : data instanceof type
-    ? data
-    : type.from(data);
+// Promotes the specified data to an array as needed.
+export function arrayify(data) {
+  return data == null || data instanceof Array || data instanceof TypedArray ? data : Array.from(data);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
@@ -98,10 +137,6 @@ export function map(values, f, type = Array) {
 // instanceof the desired array type, the faster values.slice method is used.
 export function slice(values, type = Array) {
   return values instanceof type ? values.slice() : type.from(values);
-}
-
-export function isTypedArray(values) {
-  return values instanceof TypedArray;
 }
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.

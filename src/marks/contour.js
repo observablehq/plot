@@ -1,7 +1,7 @@
-import {blur2, contours, geoPath, map, max, min, nice, range, ticks, thresholdSturges} from "d3";
+import {blur2, contours, geoPath, max, min, nice, range, ticks, thresholdSturges} from "d3";
 import {Channels} from "../channel.js";
 import {create} from "../context.js";
-import {labelof, identity, arrayify} from "../options.js";
+import {labelof, identity, arrayify, map} from "../options.js";
 import {Position} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, styles} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -156,7 +156,9 @@ function contourGeometry({thresholds, interval, ...options}) {
     const {contour} = contours().size([w, h]).smooth(this.smooth);
     const contourData = [];
     const contourFacets = [];
-    for (const V of VV) contourFacets.push(range(contourData.length, contourData.push(...T.map((t) => contour(V, t)))));
+    for (const V of VV) {
+      contourFacets.push(range(contourData.length, contourData.push(...map(T, (t) => contour(V, t)))));
+    }
 
     // Rescale the contour multipolygon from grid to screen coordinates.
     for (const {coordinates} of contourData) {
@@ -188,7 +190,7 @@ function contourGeometry({thresholds, interval, ...options}) {
 function maybeTicks(thresholds, V, min, max) {
   if (typeof thresholds?.range === "function") return thresholds.range(thresholds.floor(min), max);
   if (typeof thresholds === "function") thresholds = thresholds(V, min, max);
-  if (typeof thresholds !== "number") return arrayify(thresholds, Array);
+  if (typeof thresholds !== "number") return arrayify(thresholds);
   const tz = ticks(...nice(min, max, thresholds), thresholds);
   while (tz[tz.length - 1] >= max) tz.pop();
   while (tz[1] < min) tz.shift();

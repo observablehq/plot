@@ -1,7 +1,6 @@
 import IntervalTree from "interval-tree-1d";
 import {finite, positive} from "../defined.js";
 import {identity, maybeNamed, number, valueof} from "../options.js";
-import {coerceNumbers} from "../scales.js";
 import {initializer} from "./basic.js";
 import {Position} from "../projection.js";
 
@@ -73,7 +72,7 @@ function dodge(y, x, anchor, padding, options) {
     if (!channels[x]) throw new Error(`missing channel: ${x}`);
     ({[x]: X} = Position(channels, scales, context));
     const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
-    if (R) R = coerceNumbers(valueof(R.value, scales[R.scale] || identity));
+    if (R) R = valueof(R.value, scales[R.scale] || identity, Float64Array);
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
     const Y = new Float64Array(X.length);

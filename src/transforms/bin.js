@@ -11,6 +11,8 @@ import {
 import {
   valueof,
   identity,
+  coerceDate,
+  coerceNumbers,
   maybeColumn,
   maybeInterval,
   maybeTuple,
@@ -22,7 +24,6 @@ import {
   isIterable,
   map
 } from "../options.js";
-import {coerceDate, coerceNumber} from "../scales.js";
 import {basic} from "./basic.js";
 import {
   hasOutput,
@@ -230,7 +231,7 @@ function maybeBin(options) {
     let V = valueof(data, value);
     let T; // bin thresholds
     if (isTemporal(V) || isTimeThresholds(thresholds)) {
-      V = map(V, coerceDate, Float64Array);
+      V = map(V, coerceDate, Float64Array); // like coerceDates, but faster
       let [min, max] = typeof domain === "function" ? domain(V) : domain;
       let t = typeof thresholds === "function" && !isInterval(thresholds) ? thresholds(V, min, max) : thresholds;
       if (typeof t === "number") t = utcTickInterval(min, max, t);
@@ -243,7 +244,7 @@ function maybeBin(options) {
       }
       T = t;
     } else {
-      V = map(V, coerceNumber, Float64Array); // TODO deduplicate with code above
+      V = coerceNumbers(V);
       let [min, max] = typeof domain === "function" ? domain(V) : domain;
       let t = typeof thresholds === "function" && !isInterval(thresholds) ? thresholds(V, min, max) : thresholds;
       if (typeof t === "number") {
@@ -371,7 +372,7 @@ function Bin(EX, EY) {
 
 // non-cumulative distribution
 function bin1(E, T, V) {
-  T = T.map(coerceNumber); // for faster bisection; TODO skip if already typed
+  T = coerceNumbers(T); // for faster bisection
   return (I) => {
     const B = E.map(() => []);
     for (const i of I) B[bisect(T, V[i]) - 1]?.push(i); // TODO quantization?

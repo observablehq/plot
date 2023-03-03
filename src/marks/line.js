@@ -2,8 +2,7 @@ import {geoPath, line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {curveAuto, PathCurve} from "../curve.js";
 import {Mark} from "../mark.js";
-import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
-import {coerceNumbers} from "../scales.js";
+import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {
   applyDirectStyles,
   applyIndirectStyles,

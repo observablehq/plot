@@ -1,13 +1,13 @@
-import {parse as isoParse} from "isoformat";
 import {
   isOrdinal,
   isTemporal,
   isTemporalString,
   isNumericString,
   isScaleOptions,
-  isTypedArray,
   map,
-  slice
+  slice,
+  coerceNumbers,
+  coerceDates
 } from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
@@ -497,38 +497,6 @@ function coerceType(channels, {domain, ...options}, coerceValues) {
 
 function coerceSymbols(values) {
   return map(values, maybeSymbol);
-}
-
-function coerceDates(values) {
-  return map(values, coerceDate);
-}
-
-// If the values are specified as a typed array, no coercion is required.
-export function coerceNumbers(values) {
-  return isTypedArray(values) ? values : map(values, coerceNumber, Float64Array);
-}
-
-// Unlike Mark’s number, here we want to convert null and undefined to NaN,
-// since the result will be stored in a Float64Array and we don’t want null to
-// be coerced to zero.
-export function coerceNumber(x) {
-  return x == null ? NaN : Number(x);
-}
-
-// When coercing strings to dates, we only want to allow the ISO 8601 format
-// since the built-in string parsing of the Date constructor varies across
-// browsers. (In the future, this could be made more liberal if desired, though
-// it is still generally preferable to do date parsing yourself explicitly,
-// rather than rely on Plot.) Any non-string values are coerced to number first
-// and treated as milliseconds since UNIX epoch.
-export function coerceDate(x) {
-  return x instanceof Date && !isNaN(x)
-    ? x
-    : typeof x === "string"
-    ? isoParse(x)
-    : x == null || isNaN((x = +x))
-    ? undefined
-    : new Date(x);
 }
 
 /** @jsdoc scale */

@@ -18,8 +18,7 @@ import {
   geoTransverseMercator
 } from "d3";
 import {valueObject} from "./channel.js";
-import {constant, isObject} from "./options.js";
-import {coerceNumbers} from "./scales.js";
+import {coerceNumbers, constant, isObject} from "./options.js";
 import {warn} from "./warnings.js";
 
 const pi = Math.PI;

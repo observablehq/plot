@@ -2,7 +2,7 @@ import {geoPath, pathRound as path} from "d3";
 import {create} from "../context.js";
 import {curveAuto, PathCurve} from "../curve.js";
 import {Mark} from "../mark.js";
-import {coerceNumbers} from "../scales.js";
+import {coerceNumbers} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {markers, applyMarkers} from "./marker.js";
 
