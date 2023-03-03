@@ -16,19 +16,15 @@ export function valueof(data, value, type) {
     : valueType === "number" || value instanceof Date || valueType === "boolean"
     ? map(data, constant(value), type)
     : value && typeof value.transform === "function"
-    ? maybedTypedArrayify(value.transform(data), type)
-    : maybedTypedArrayify(value, type);
+    ? maybeTypedArrayify(value.transform(data), type)
+    : maybeTypedArrayify(value, type);
 }
 
-// When valueof is asked to produce a typed array (i.e., numbers) we implicitly
-// apply null-safe type coercion.
 function maybeTypedMap(data, f, type) {
   return map(data, type?.prototype instanceof TypedArray ? floater(f) : f, type);
 }
 
-// When valueof is asked to produce a typed array (i.e., numbers) we implicitly
-// apply null-safe type coercion.
-function maybedTypedArrayify(data, type) {
+function maybeTypedArrayify(data, type) {
   return type === undefined
     ? arrayify(data) // preserve undefined type
     : data instanceof type
@@ -72,7 +68,7 @@ export function coerceNumbers(values) {
 // Unlike Mark’s number, here we want to convert null and undefined to NaN since
 // the result will be stored in a Float64Array and we don’t want null to be
 // coerced to zero. We use Number instead of unary + to allow BigInt coercion.
-export function coerceNumber(x) {
+function coerceNumber(x) {
   return x == null ? NaN : Number(x);
 }
 
