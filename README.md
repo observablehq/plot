@@ -2432,7 +2432,7 @@ The **thresholds** option may be specified as a named method or a variety of oth
 * *scott* - [Scott’s normal reference rule](https://en.wikipedia.org/wiki/Histogram#Scott.27s_normal_reference_rule)
 * *sturges* - [Sturges’ formula](https://en.wikipedia.org/wiki/Histogram#Sturges.27_formula)
 * a count (hint) representing the desired number of bins
-* an array of *n* threshold values for *n* + 1 bins
+* an array of *n* threshold values for *n* - 1 bins
 * an interval or time interval (for temporal binning; see below)
 * a function that returns an array, count, or time interval
 
