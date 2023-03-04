@@ -78,9 +78,11 @@ export class Mark {
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
     if (facets === undefined && data != null) facets = [range(data)];
+    const originalFacets = facets;
     if (this.transform != null) ({facets, data} = this.transform(data, facets)), (data = arrayify(data));
+    if (facets !== undefined) facets.original = originalFacets; // needed up read facetChannels
     const channels = Channels(this.channels, data);
-    if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort); // mutates facetChannels!
+    if (this.sort != null) channelDomain(data, facets, channels, facetChannels, this.sort); // mutates facetChannels!
     return {data, facets, channels};
   }
   filter(index, channels, values) {
