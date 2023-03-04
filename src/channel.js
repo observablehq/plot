@@ -1,4 +1,4 @@
-import {ascending, descending, rollup, sort} from "d3";
+import {ascending, descending, InternSet, rollup, sort} from "d3";
 import {first, isColor, isEvery, isIterable, isOpacity, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {isSymbol, maybeSymbol} from "./symbols.js";
@@ -84,8 +84,8 @@ export function channelDomain(channels, facetChannels, data, options) {
     const [lo = 0, hi = Infinity] = isIterable(limit) ? limit : limit < 0 ? [limit] : [0, limit];
     if (y == null) {
       X.domain = () => {
-        let domain = XV;
-        if (reverse) domain = domain.slice().reverse();
+        let domain = Array.from(new InternSet(XV)); // remove any duplicates
+        if (reverse) domain = domain.reverse();
         if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
         return domain;
       };
