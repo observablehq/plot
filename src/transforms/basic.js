@@ -76,8 +76,11 @@ function filterTransform(value) {
 }
 
 /** @jsdoc reverse */
-export function reverse(options) {
-  return {...apply(options, reverseTransform), sort: null};
+export function reverse({sort, ...options} = {}) {
+  return {
+    ...apply(options, reverseTransform),
+    sort: isDomainSort(sort) ? sort : null
+  };
 }
 
 function reverseTransform(data, facets) {
@@ -85,16 +88,18 @@ function reverseTransform(data, facets) {
 }
 
 /** @jsdoc shuffle */
-export function shuffle(options = {}) {
-  const {seed, ...remainingOptions} = options;
-  return {...apply(remainingOptions, sortValue(seed == null ? Math.random : randomLcg(seed))), sort: null};
+export function shuffle({seed, sort, ...options} = {}) {
+  return {
+    ...apply(options, sortValue(seed == null ? Math.random : randomLcg(seed))),
+    sort: isDomainSort(sort) ? sort : null
+  };
 }
 
 /** @jsdoc sort */
-export function sort(order, options) {
+export function sort(order, {sort, ...options} = {}) {
   return {
     ...(isOptions(order) && order.channel !== undefined ? initializer : apply)(options, sortTransform(order)),
-    sort: null
+    sort: isDomainSort(sort) ? sort : null
   };
 }
 
