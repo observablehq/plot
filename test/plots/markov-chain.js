@@ -21,7 +21,7 @@ export default async function () {
         y1: ({i}) => centers[i][1],
         x2: ({j}) => centers[j][0],
         y2: ({j}) => centers[j][1],
-        strokeOpacity: "value",
+        strokeOpacity: {value: "value", scale: true},
         bend: true,
         strokeWidth: 1,
         inset: 55

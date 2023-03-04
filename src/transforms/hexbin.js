@@ -83,13 +83,13 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
       x: {value: BX},
       y: {value: BY},
       ...(Z && {z: {value: GZ}}),
-      ...(F && {fill: {value: GF, scale: true}}),
-      ...(S && {stroke: {value: GS, scale: true}}),
-      ...(Q && {symbol: {value: GQ, scale: true}}),
+      ...(F && {fill: {value: GF, scale: "auto"}}),
+      ...(S && {stroke: {value: GS, scale: "auto"}}),
+      ...(Q && {symbol: {value: GQ, scale: "auto"}}),
       ...Object.fromEntries(
         outputs.map(({name, output}) => [
           name,
-          {scale: true, radius: name === "r" ? binWidth / 2 : undefined, value: output.transform()}
+          {scale: "auto", radius: name === "r" ? binWidth / 2 : undefined, value: output.transform()}
         ])
       )
     };

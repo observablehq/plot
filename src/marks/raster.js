@@ -248,7 +248,7 @@ export function sampler(name, options = {}) {
         }
       }
     }
-    return {data: V, facets, channels: {[name]: {value: V, scale: true}}};
+    return {data: V, facets, channels: {[name]: {value: V, scale: "auto"}}};
   });
 }
 

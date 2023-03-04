@@ -177,18 +177,18 @@ export function maybeOutputs(outputs, inputs) {
   if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
   return entries
     .filter(([, reduce]) => reduce !== undefined)
-    .map(([name, reduce]) => {
-      return reduce === null ? {name, initialize() {}, scope() {}, reduce() {}} : maybeOutput(name, reduce, inputs);
-    });
+    .map(([name, reduce]) => (reduce === null ? nullOutput(name) : maybeOutput(name, reduce, inputs)));
 }
 
 export function maybeOutput(name, reduce, inputs) {
+  let scale; // optional per-channel scale override
+  if (isObject(reduce) && typeof reduce.reduce !== "function") (scale = reduce.scale), (reduce = reduce.reduce);
   const evaluator = maybeEvaluator(name, reduce, inputs);
   const [output, setOutput] = column(evaluator.label);
   let O;
   return {
     name,
-    output,
+    output: scale === undefined ? output : {value: output, scale},
     initialize(data) {
       evaluator.initialize(data);
       O = setOutput([]);
@@ -200,6 +200,10 @@ export function maybeOutput(name, reduce, inputs) {
       O.push(evaluator.reduce(I, extent));
     }
   };
+}
+
+function nullOutput(name) {
+  return {name, initialize() {}, scope() {}, reduce() {}};
 }
 
 export function maybeEvaluator(name, reduce, inputs) {
