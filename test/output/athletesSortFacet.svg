@@ -15,247 +15,247 @@
   </style>
   <g aria-label="facet" transform="translate(0,6)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">boxing</text>
+      <text y="0.32em" transform="translate(90,29)">boxing</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="112.63936063936063" y="20" height="18"></rect>
+      <rect x="90" width="102.92907092907095" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,26)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">wrestling</text>
+      <text y="0.32em" transform="translate(90,29)">wrestling</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="288.9906920275192" y="20" height="18"></rect>
+      <rect x="90" width="264.07770133549167" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,46)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">canoe</text>
+      <text y="0.32em" transform="translate(90,29)">canoe</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="300.08804488562794" y="20" height="18"></rect>
+      <rect x="90" width="274.2183858437635" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,66)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">cycling</text>
+      <text y="0.32em" transform="translate(90,29)">cycling</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="340.89795918367344" y="20" height="18"></rect>
+      <rect x="90" width="311.51020408163265" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,86)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">equestrian</text>
+      <text y="0.32em" transform="translate(90,29)">equestrian</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="342.62548262548256" y="20" height="18"></rect>
+      <rect x="90" width="313.08880308880305" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,106)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">shooting</text>
+      <text y="0.32em" transform="translate(90,29)">shooting</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="346.4703296703297" y="20" height="18"></rect>
+      <rect x="90" width="316.60219780219785" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,126)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">judo</text>
+      <text y="0.32em" transform="translate(90,29)">judo</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="349.268221574344" y="20" height="18"></rect>
+      <rect x="90" width="319.1588921282799" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,146)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">rowing</text>
+      <text y="0.32em" transform="translate(90,29)">rowing</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="353.36223557064505" y="20" height="18"></rect>
+      <rect x="90" width="322.8999738835205" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,166)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">weightlifting</text>
+      <text y="0.32em" transform="translate(90,29)">weightlifting</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="360.71760797342193" y="20" height="18"></rect>
+      <rect x="90" width="329.62126245847173" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,186)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">sailing</text>
+      <text y="0.32em" transform="translate(90,29)">sailing</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="383.8466165413534" y="20" height="18"></rect>
+      <rect x="90" width="350.75639097744363" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,206)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">football</text>
+      <text y="0.32em" transform="translate(90,29)">football</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="386.6485854570961" y="20" height="18"></rect>
+      <rect x="90" width="353.31681084872577" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,226)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">tennis</text>
+      <text y="0.32em" transform="translate(90,29)">tennis</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="415.46938775510205" y="20" height="18"></rect>
+      <rect x="90" width="379.6530612244898" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,246)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">athletics</text>
+      <text y="0.32em" transform="translate(90,29)">athletics</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="430.57662777341153" y="20" height="18"></rect>
+      <rect x="90" width="393.4579529653588" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,266)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">golf</text>
+      <text y="0.32em" transform="translate(90,29)">golf</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="439.97142857142853" y="20" height="18"></rect>
+      <rect x="90" width="402.0428571428571" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,286)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">rugby sevens</text>
+      <text y="0.32em" transform="translate(90,29)">rugby sevens</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="441.4628571428571" y="20" height="18"></rect>
+      <rect x="90" width="403.4057142857143" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,306)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">aquatics</text>
+      <text y="0.32em" transform="translate(90,29)">aquatics</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="443.4032624814632" y="20" height="18"></rect>
+      <rect x="90" width="405.1788433020267" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,326)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">handball</text>
+      <text y="0.32em" transform="translate(90,29)">handball</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="443.7308146399056" y="20" height="18"></rect>
+      <rect x="90" width="405.47815820543093" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,346)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">archery</text>
+      <text y="0.32em" transform="translate(90,29)">archery</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="447.4285714285715" y="20" height="18"></rect>
+      <rect x="90" width="408.8571428571429" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,366)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">badminton</text>
+      <text y="0.32em" transform="translate(90,29)">badminton</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="447.4285714285715" y="20" height="18"></rect>
+      <rect x="90" width="408.8571428571429" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,386)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">basketball</text>
+      <text y="0.32em" transform="translate(90,29)">basketball</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="447.4285714285715" y="20" height="18"></rect>
+      <rect x="90" width="408.8571428571429" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,406)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">hockey</text>
+      <text y="0.32em" transform="translate(90,29)">hockey</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="447.4285714285715" y="20" height="18"></rect>
+      <rect x="90" width="408.8571428571429" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,426)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">modern pentathlon</text>
+      <text y="0.32em" transform="translate(90,29)">modern pentathlon</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="447.4285714285715" y="20" height="18"></rect>
+      <rect x="90" width="408.8571428571429" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,446)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">table tennis</text>
+      <text y="0.32em" transform="translate(90,29)">table tennis</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="447.4285714285715" y="20" height="18"></rect>
+      <rect x="90" width="408.8571428571429" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,466)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">taekwondo</text>
+      <text y="0.32em" transform="translate(90,29)">taekwondo</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="447.4285714285715" y="20" height="18"></rect>
+      <rect x="90" width="408.8571428571429" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,486)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">triathlon</text>
+      <text y="0.32em" transform="translate(90,29)">triathlon</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="447.4285714285715" y="20" height="18"></rect>
+      <rect x="90" width="408.8571428571429" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,506)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">volleyball</text>
+      <text y="0.32em" transform="translate(90,29)">volleyball</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="447.4285714285715" y="20" height="18"></rect>
+      <rect x="90" width="408.8571428571429" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,526)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">fencing</text>
+      <text y="0.32em" transform="translate(90,29)">fencing</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="451.0662020905923" y="20" height="18"></rect>
+      <rect x="90" width="412.18118466898954" y="20" height="18"></rect>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,546)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,29)">gymnastics</text>
+      <text y="0.32em" transform="translate(90,29)">gymnastics</text>
     </g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(40,38)" d="M0,0L0,6"></path>
-      <path transform="translate(129.4857142857143,38)" d="M0,0L0,6"></path>
-      <path transform="translate(218.9714285714286,38)" d="M0,0L0,6"></path>
-      <path transform="translate(308.45714285714286,38)" d="M0,0L0,6"></path>
-      <path transform="translate(397.9428571428572,38)" d="M0,0L0,6"></path>
-      <path transform="translate(487.4285714285715,38)" d="M0,0L0,6"></path>
-      <path transform="translate(576.9142857142857,38)" d="M0,0L0,6"></path>
+      <path transform="translate(90,38)" d="M0,0L0,6"></path>
+      <path transform="translate(171.7714285714286,38)" d="M0,0L0,6"></path>
+      <path transform="translate(253.54285714285717,38)" d="M0,0L0,6"></path>
+      <path transform="translate(335.31428571428575,38)" d="M0,0L0,6"></path>
+      <path transform="translate(417.08571428571435,38)" d="M0,0L0,6"></path>
+      <path transform="translate(498.8571428571429,38)" d="M0,0L0,6"></path>
+      <path transform="translate(580.6285714285715,38)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(40,38)">0.0</text>
-      <text y="0.71em" transform="translate(129.4857142857143,38)">0.1</text>
-      <text y="0.71em" transform="translate(218.9714285714286,38)">0.2</text>
-      <text y="0.71em" transform="translate(308.45714285714286,38)">0.3</text>
-      <text y="0.71em" transform="translate(397.9428571428572,38)">0.4</text>
-      <text y="0.71em" transform="translate(487.4285714285715,38)">0.5</text>
-      <text y="0.71em" transform="translate(576.9142857142857,38)">0.6</text>
+      <text y="0.71em" transform="translate(90,38)">0.0</text>
+      <text y="0.71em" transform="translate(171.7714285714286,38)">0.1</text>
+      <text y="0.71em" transform="translate(253.54285714285717,38)">0.2</text>
+      <text y="0.71em" transform="translate(335.31428571428575,38)">0.3</text>
+      <text y="0.71em" transform="translate(417.08571428571435,38)">0.4</text>
+      <text y="0.71em" transform="translate(498.8571428571429,38)">0.5</text>
+      <text y="0.71em" transform="translate(580.6285714285715,38)">0.6</text>
     </g>
     <g aria-label="bar">
-      <rect x="40" width="580" y="20" height="18"></rect>
+      <rect x="90" width="530" y="20" height="18"></rect>
     </g>
   </g>
-  <g aria-label="fy-axis label" transform="translate(-36.5,0.5)">
-    <text y="0.71em" transform="translate(40,305) rotate(-90)">sport</text>
+  <g aria-label="fy-axis label" transform="translate(-86.5,0.5)">
+    <text y="0.71em" transform="translate(90,305) rotate(-90)">sport</text>
   </g>
 </svg>

@@ -3,8 +3,8 @@ import * as d3 from "d3";
 
 export async function athletesSortFacet() {
   const athletes = await d3.csv("data/athletes.csv", d3.autoType);
-  const female = (d) => d.sex === "female";
-  return Plot.barX(athletes, Plot.groupZ({x: "mean"}, {x: female, fy: "sport", sort: {fy: "x"}})).plot();
+  const f = (d) => d.sex === "female";
+  return Plot.barX(athletes, Plot.groupZ({x: "mean"}, {x: f, fy: "sport", sort: {fy: "x"}})).plot({marginLeft: 90});
 }
 
 export async function athletesSortNullLimit() {
