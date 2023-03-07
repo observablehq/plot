@@ -1252,7 +1252,10 @@ it("plot(…).scale('opacity') can return a linear scale for penguins", async ()
 
 it("plot(…).scale('opacity') respects the percent option, affecting domain", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.rectX(penguins, Plot.binX({fillOpacity: "proportion"}, {x: "body_mass_g", thresholds: 20})).plot({
+  const plot = Plot.rectX(
+    penguins,
+    Plot.binX({fillOpacity: {reduce: "proportion", scale: true}}, {x: "body_mass_g", thresholds: 20})
+  ).plot({
     opacity: {percent: true}
   });
   scaleEqual(plot.scale("opacity"), {

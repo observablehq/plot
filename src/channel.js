@@ -1,5 +1,5 @@
 import {ascending, descending, rollup, sort} from "d3";
-import {first, isColor, isEvery, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
+import {first, isColor, isEvery, isIterable, isOpacity, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {isSymbol, maybeSymbol} from "./symbols.js";
 import {maybeReduce} from "./transforms/group.js";
@@ -42,14 +42,14 @@ export function inferChannelScale(name, channel) {
       case "fill":
       case "stroke":
       case "color":
-        channel.scale = isEvery(value, isColor) ? null : "color";
+        channel.scale = scale !== true && isEvery(value, isColor) ? null : "color";
         break;
       case "fillOpacity":
       case "strokeOpacity":
-        channel.scale = "opacity";
+        channel.scale = scale !== true && isEvery(value, isOpacity) ? null : "opacity";
         break;
       case "symbol":
-        if (isEvery(value, isSymbol)) {
+        if (scale !== true && isEvery(value, isSymbol)) {
           channel.scale = null;
           channel.value = map(value, maybeSymbol);
         } else {
@@ -60,6 +60,8 @@ export function inferChannelScale(name, channel) {
         channel.scale = registry.has(name) ? name : null;
         break;
     }
+  } else if (scale === false) {
+    channel.scale = null;
   } else if (scale != null && !registry.has(scale)) {
     throw new Error(`unknown scale: ${scale}`);
   }

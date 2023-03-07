@@ -402,6 +402,10 @@ export function isColor(value) {
   );
 }
 
+export function isOpacity(value) {
+  return typeof value === "number" && ((0 <= value && value <= 1) || isNaN(value));
+}
+
 export function isNoneish(value) {
   return value == null || isNone(value);
 }
