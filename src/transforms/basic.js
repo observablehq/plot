@@ -3,8 +3,7 @@ import {ascendingDefined, descendingDefined} from "../defined.js";
 import {arrayify, isDomainSort, isOptions, maybeValue, valueof} from "../options.js";
 
 /** @jsdoc transform */
-export function basic(options = {}, transform) {
-  let {filter: f1, sort: s1, reverse: r1, transform: t1, initializer: i1, ...remainingOptions} = options;
+export function basic({filter: f1, sort: s1, reverse: r1, transform: t1, initializer: i1, ...options} = {}, transform) {
   // If both t1 and t2 are defined, returns a composite transform that first
   // applies t1 and then applies t2.
   if (t1 === undefined) {
@@ -15,15 +14,14 @@ export function basic(options = {}, transform) {
   }
   if (transform != null && i1 != null) throw new Error("transforms cannot be applied after initializers");
   return {
-    ...remainingOptions,
+    ...options,
     ...((s1 === null || isDomainSort(s1)) && {sort: s1}),
     transform: composeTransform(t1, transform)
   };
 }
 
 /** @jsdoc initializer */
-export function initializer(options = {}, initializer) {
-  let {filter: f1, sort: s1, reverse: r1, initializer: i1, ...remainingOptions} = options;
+export function initializer({filter: f1, sort: s1, reverse: r1, initializer: i1, ...options} = {}, initializer) {
   // If both i1 and i2 are defined, returns a composite initializer that first
   // applies i1 and then applies i2.
   if (i1 === undefined) {
@@ -33,7 +31,7 @@ export function initializer(options = {}, initializer) {
     if (r1) i1 = composeInitializer(i1, reverseTransform);
   }
   return {
-    ...remainingOptions,
+    ...options,
     ...((s1 === null || isDomainSort(s1)) && {sort: s1}),
     initializer: composeInitializer(i1, initializer)
   };
@@ -76,8 +74,11 @@ function filterTransform(value) {
 }
 
 /** @jsdoc reverse */
-export function reverse(options) {
-  return {...apply(options, reverseTransform), sort: null};
+export function reverse({sort, ...options} = {}) {
+  return {
+    ...apply(options, reverseTransform),
+    sort: isDomainSort(sort) ? sort : null
+  };
 }
 
 function reverseTransform(data, facets) {
@@ -85,16 +86,18 @@ function reverseTransform(data, facets) {
 }
 
 /** @jsdoc shuffle */
-export function shuffle(options = {}) {
-  const {seed, ...remainingOptions} = options;
-  return {...apply(remainingOptions, sortValue(seed == null ? Math.random : randomLcg(seed))), sort: null};
+export function shuffle({seed, sort, ...options} = {}) {
+  return {
+    ...apply(options, sortValue(seed == null ? Math.random : randomLcg(seed))),
+    sort: isDomainSort(sort) ? sort : null
+  };
 }
 
 /** @jsdoc sort */
-export function sort(order, options) {
+export function sort(order, {sort, ...options} = {}) {
   return {
     ...(isOptions(order) && order.channel !== undefined ? initializer : apply)(options, sortTransform(order)),
-    sort: null
+    sort: isDomainSort(sort) ? sort : null
   };
 }
 

@@ -13,6 +13,24 @@ export async function athletesSortFacet() {
   });
 }
 
+export async function athletesSortNationality() {
+  const athletes = await d3.csv("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    color: {legend: true},
+    marks: [
+      Plot.dot(
+        athletes,
+        Plot.sort("height", {
+          y: "weight",
+          x: "height",
+          stroke: "nationality",
+          sort: {color: null, limit: 10}
+        })
+      )
+    ]
+  });
+}
+
 export async function athletesSortNullLimit() {
   const athletes = await d3.csv("data/athletes.csv", d3.autoType);
   return Plot.plot({
