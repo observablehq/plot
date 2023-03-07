@@ -1,0 +1,262 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="620" viewBox="0 0 640 620" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="facet" transform="translate(0,6)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">boxing</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="100.987012987013" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,26)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">wrestling</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="259.0951031970862" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,46)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">canoe</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="269.0444540353906" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,66)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">cycling</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="305.63265306122446" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,86)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">equestrian</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="307.1814671814671" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,106)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">shooting</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="310.6285714285715" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,126)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">judo</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="313.13702623906704" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,146)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">rowing</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="316.8075215460956" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,166)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">weightlifting</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="323.4019933554817" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,186)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">sailing</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="344.1383458646617" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,206)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">football</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="346.65045592705167" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,226)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">tennis</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="372.48979591836735" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,246)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">athletics</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="386.03421800374826" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,266)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">golf</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="394.45714285714286" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,286)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">rugby sevens</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="395.7942857142857" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,306)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">aquatics</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="397.53395946613944" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,326)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">handball</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="397.827626918536" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,346)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">archery</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="401.14285714285717" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,366)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">badminton</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="401.14285714285717" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,386)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">basketball</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="401.14285714285717" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,406)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">hockey</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="401.14285714285717" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,426)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">modern pentathlon</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="401.14285714285717" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,446)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">table tennis</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="401.14285714285717" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,466)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">taekwondo</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="401.14285714285717" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,486)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">triathlon</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="401.14285714285717" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,506)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">volleyball</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="401.14285714285717" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,526)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">fencing</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="404.40418118466897" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,546)">
+    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(100,29)">gymnastics</text>
+    </g>
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(100,38)" d="M0,0L0,6"></path>
+      <path transform="translate(180.22857142857146,38)" d="M0,0L0,6"></path>
+      <path transform="translate(260.4571428571429,38)" d="M0,0L0,6"></path>
+      <path transform="translate(340.6857142857143,38)" d="M0,0L0,6"></path>
+      <path transform="translate(420.91428571428577,38)" d="M0,0L0,6"></path>
+      <path transform="translate(501.14285714285717,38)" d="M0,0L0,6"></path>
+      <path transform="translate(581.3714285714286,38)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(100,38)">0.0</text>
+      <text y="0.71em" transform="translate(180.22857142857146,38)">0.1</text>
+      <text y="0.71em" transform="translate(260.4571428571429,38)">0.2</text>
+      <text y="0.71em" transform="translate(340.6857142857143,38)">0.3</text>
+      <text y="0.71em" transform="translate(420.91428571428577,38)">0.4</text>
+      <text y="0.71em" transform="translate(501.14285714285717,38)">0.5</text>
+      <text y="0.71em" transform="translate(581.3714285714286,38)">0.6</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="100" width="520" y="20" height="18"></rect>
+    </g>
+  </g>
+  <g aria-label="fy-axis label" transform="translate(-96.5,0.5)">
+    <text y="0.71em" transform="translate(100,305) rotate(-90)">sport</text>
+  </g>
+  <line aria-label="frame" stroke="currentColor" stroke-linecap="square" transform="translate(0.5,0.5)" x1="100" x2="100" y1="26" y2="584"></line>
+</svg>
