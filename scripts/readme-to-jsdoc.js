@@ -5,11 +5,11 @@ import mkdirp from "mkdirp";
 
 // Extract the documentation from the README.
 const readme = readFileSync("./README.md", "utf-8");
-const docmap = new Map<string, string[]>();
-let doc: {name: string; lines: string[]} | null = null;
+const docmap = new Map();
+let doc = null;
 for (const [i, line] of readme.split(/\r?\n/).entries()) {
   if (/<!--\s*jsdoc/.test(line)) {
-    let match: RegExpExecArray | null;
+    let match;
     if ((match = /^<!--\s+jsdoc\s+(\w+)\s+-->$/.exec(line))) {
       const [, name] = match;
       if (doc) {
@@ -53,7 +53,7 @@ for (const file of glob.sync("build/**/*.js")) {
   const lines = readFileSync(file, "utf-8").split("\n");
   let count = 0;
   for (let i = 0, n = lines.length; i < n; ++i) {
-    let match: RegExpExecArray | null;
+    let match;
     if ((match = /^(\s*(?:\/\*)?\*\s+)@jsdoc\s+(\w+)((?:\s*\*\/)?\s*)$/.exec(lines[i]))) {
       const [, pre, name, post] = match;
       const docs = docmap.get(name);

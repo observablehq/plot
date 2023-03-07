@@ -6,7 +6,7 @@ export function consumeWarnings() {
   return w;
 }
 
-export function warn(message: string) {
+export function warn(message) {
   console.warn(message);
   ++warnings;
 }
