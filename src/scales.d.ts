@@ -3,7 +3,7 @@ import type {Interval} from "./interval.js";
 export type ScaleType = QuantitativeScaleType | TemporalScaleType | OrdinalScaleType;
 export type QuantitativeScaleType = "linear" | "pow" | "sqrt" | "log" | "symlog";
 export type TemporalScaleType = "utc" | "time";
-export type OrdinalScaleType = "ordinal";
+export type OrdinalScaleType = "ordinal" | "categorical";
 export type OrdinalPositionScaleType = "point" | "band" | "ordinal";
 export type ColorScaleType = QuantitativeScaleType | "sequential" | "diverging" | "categorical";
 
@@ -70,80 +70,78 @@ export type QuantitativeColorSchemeName =
 
 export type ColorSchemeName = QuantitativeColorSchemeName | CategoricalColorSchemeName;
 
-export interface ScaleOptions {
+export interface ScaleOptions extends AxisOptions, LegendOptions {
   type?: ScaleType | null;
   domain?: any[];
   range?: any[];
   unknown?: any;
   reverse?: boolean;
   transform?: (t: any) => any;
-}
 
-export type Interpolate = string; // TODO
-
-export interface QuantitativeScaleOptions {
+  // quantitative scale options
   interval?: Interval;
   clamp?: boolean;
   nice?: boolean | number | Interval;
   zero?: boolean;
   percent?: boolean;
+
+  // color scale options
+  scheme?: ColorSchemeName;
   interpolate?: Interpolate;
-}
 
-// TODO quantile scale
-// TODO quantize scale
-// TODO threshold scale
-
-export interface PowerScaleOptions {
+  // power scale options
   exponent?: number;
-}
 
-export interface LogScaleOptions {
+  // log scale options
   base?: number;
-}
 
-export interface SymlogScaleOptions {
+  // symlog scale options
   constant?: number;
-}
 
-export interface DivergingScaleOptions {
+  // TODO quantile scale
+  // TODO quantize scale
+  // TODO threshold scale
+
+  // diverging scale options
   pivot?: any;
   symmetric?: boolean;
-}
 
-export interface ColorScaleOptions {
-  scheme?: ColorSchemeName;
-  // TODO interpolate
-}
-
-export interface PositionScaleOptions {
+  // position scale options
   inset?: number;
-  round?: boolean;
-}
-
-export interface HorizontalPositionScaleOptions {
-  insetLeft?: number;
-  insetRight?: number;
-}
-
-export interface VerticalPositionScaleOptions {
   insetTop?: number;
+  insetRight?: number;
   insetBottom?: number;
-}
-
-export interface OrdinalPositionScaleOptions {
+  insetLeft?: number;
+  round?: boolean;
   padding?: number;
+  paddingInner?: number;
+  paddingOuter?: number;
   align?: number;
 }
 
-export interface BandPositionScaleOptions {
-  paddingInner?: number;
-  paddingOuter?: number;
+export interface AxisOptions {
+  axis?: "top" | "right" | "bottom" | "left" | "both" | boolean | null;
+  ticks?: number | Interval | any[];
+  tickSize?: number;
+  tickSpacing?: number;
+  tickPadding?: number;
+  tickFormat?: string | ((t: any) => string) | null;
+  tickRotate?: number;
+  grid?: boolean;
+  line?: boolean;
+  label?: string | null;
+  labelOffset?: number;
+  labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
+  fontVariant?: CSSStyleDeclaration["fontVariant"];
+  // ariaLabel?: string; // TODO
+  // ariaDescription?: string; // TODO
 }
 
 export interface LegendOptions {
-  legend?: string; // TODO
+  legend?: string | boolean | null; // TODO
 }
+
+export type Interpolate = string; // TODO
 
 // TODO greater specificity
 export interface Scale {

@@ -8,9 +8,9 @@ export function linearRegressionY(data: any, options?: {}): LinearRegressionY;
 
 /** @jsdoc LinearRegressionX */
 export class LinearRegressionX extends LinearRegression {
-    constructor(data: any, options: any);
-    _renderBand(I: any, X: any, Y: any): never;
-    _renderLine(I: any, X: any, Y: any): string;
+  constructor(data: any, options: any);
+  _renderBand(I: any, X: any, Y: any): never;
+  _renderLine(I: any, X: any, Y: any): string;
 }
 
 /** @jsdoc LinearRegressionY */

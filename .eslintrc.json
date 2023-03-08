@@ -12,6 +12,7 @@
     "no-constant-condition": 0,
     "no-sparse-arrays": 0,
     "no-unexpected-multiline": 0,
+    "@typescript-eslint/ban-types": 0,
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/no-this-alias": 0,

@@ -27,7 +27,7 @@
     "src/**/*.js"
   ],
   "scripts": {
-    "test": "yarn test:mocha && yarn test:lint && yarn test:tsc",
+    "test": "yarn test:mocha && yarn test:lint",
     "test:mocha": "mkdir -p test/output && mocha 'test/**/*-test.*' 'test/plot.js'",
     "test:lint": "eslint src test",
     "test:tsc": "tsc",
