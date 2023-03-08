@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export async function penguinFacetAnnotatedX() { // TODO fix plural inconsistency
+export async function penguinFacetAnnotatedX() {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marginLeft: 75,
