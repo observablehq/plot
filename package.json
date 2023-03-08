@@ -23,8 +23,8 @@
   },
   "files": [
     "dist/**/*.js",
-    "src/**/*.js",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/**/*.js"
   ],
   "scripts": {
     "test": "yarn test:mocha && yarn test:lint && yarn test:tsc",
@@ -36,7 +36,7 @@
     "dev": "vite"
   },
   "_moduleAliases": {
-    "@observablehq/plot": "./src/index"
+    "@observablehq/plot": "./src/index.js"
   },
   "sideEffects": [
     "./src/plot.js"
