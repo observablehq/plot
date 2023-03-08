@@ -156,6 +156,7 @@ export function ScaleQuantile(
     n = quantiles,
     scheme = "rdylbu",
     domain = inferQuantileDomain(channels),
+    unknown,
     interpolate,
     reverse
   }
@@ -171,7 +172,7 @@ export function ScaleQuantile(
   if (domain.length > 0) {
     domain = scaleQuantile(domain, range === undefined ? {length: n} : range).quantiles();
   }
-  return ScaleThreshold(key, channels, {domain, range, reverse});
+  return ScaleThreshold(key, channels, {domain, range, reverse, unknown});
 }
 
 export function ScaleQuantize(
