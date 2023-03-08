@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "noEmit": true,
+    "module": "Node16",
+    "baseUrl": "./src",
+    "paths": {
+      "@observablehq/plot": ["index"]
+    }
+  },
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.js",
+    "src/**/*.ts",
+    "test/**/*.js",
+    "test/**/*.ts",
+  ]
+}

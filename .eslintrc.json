@@ -1,9 +1,7 @@
 {
-  "extends": ["eslint:recommended", "prettier"],
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 2021
-  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "plugins": ["@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
   "env": {
     "es2020": true,
     "node": true,
@@ -14,6 +12,9 @@
     "no-constant-condition": 0,
     "no-sparse-arrays": 0,
     "no-unexpected-multiline": 0,
-    "no-unused-vars": ["error", {"ignoreRestSiblings": true}]
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-this-alias": 0,
+    "@typescript-eslint/no-unused-vars": ["error", {"ignoreRestSiblings": true}]
   }
 }

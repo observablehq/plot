@@ -2,6 +2,7 @@ import type {Dimensions} from "./dimensions.js";
 import type {ChannelDomainSort, ChannelSpec, ChannelValue, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Facet, FacetAnchor} from "./facet.js";
+import type {plot} from "./plot.js";
 
 export type Data = any[]; // TODO iterable, arquero, arrow, etc.
 
@@ -61,3 +62,6 @@ export interface MarkOptions {
 
 /** @jsdoc Mark */
 export class Mark {} // TODO
+
+/** @jsdoc marks */
+export function marks(...marks: Markish[]): Markish[] & {plot: typeof plot};

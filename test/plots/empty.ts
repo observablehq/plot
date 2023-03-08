@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import {svg} from "htl";
 
-export default async function () {
+export async function empty() {
   return Plot.plot({
     grid: true,
     inset: 6,

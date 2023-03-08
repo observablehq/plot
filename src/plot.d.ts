@@ -72,6 +72,3 @@ export interface Plot {
 
 /** @jsdoc plot */
 export function plot(options?: PlotOptions): (SVGSVGElement | HTMLElement) & Plot;
-
-/** @jsdoc marks */
-export function marks(...marks: Markish[]): Markish[] & {plot: typeof plot};
