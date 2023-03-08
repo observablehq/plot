@@ -86,7 +86,6 @@ function sphereLink(projection, X1, Y1, X2, Y2) {
     });
 }
 
-/** @jsdoc link */
 export function link(data, options = {}) {
   let {x, x1, x2, y, y1, y2, ...remainingOptions} = options;
   [x1, x2] = maybeSameValue(x, x1, x2);

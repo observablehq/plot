@@ -2,7 +2,6 @@ import {count, group, rank} from "d3";
 import {maybeZ, take, valueof, maybeInput, column} from "../options.js";
 import {basic} from "./basic.js";
 
-/** @jsdoc mapX */
 export function mapX(map, options = {}) {
   return mapAlias(
     Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, map])),
@@ -10,7 +9,6 @@ export function mapX(map, options = {}) {
   );
 }
 
-/** @jsdoc mapY */
 export function mapY(map, options = {}) {
   return mapAlias(
     Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, map])),
@@ -18,7 +16,6 @@ export function mapY(map, options = {}) {
   );
 }
 
-/** @jsdoc map */
 export function map(outputs = {}, options = {}) {
   const z = maybeZ(options);
   const channels = Object.entries(outputs).map(([key, map]) => {

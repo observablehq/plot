@@ -11,7 +11,6 @@ const legendRegistry = new Map([
   ["opacity", legendOpacity]
 ]);
 
-/** @jsdoc legend */
 export function legend(options = {}) {
   for (const [key, value] of legendRegistry) {
     const scale = options[key];

@@ -15,7 +15,6 @@ function maybeAnchor(anchor) {
   return typeof anchor === "string" ? {anchor} : anchor;
 }
 
-/** @jsdoc dodgeX */
 export function dodgeX(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
   let {anchor = "left", padding = 1} = maybeAnchor(dodgeOptions);
@@ -35,7 +34,6 @@ export function dodgeX(dodgeOptions = {}, options = {}) {
   return dodge("x", "y", anchor, number(padding), options);
 }
 
-/** @jsdoc dodgeY */
 export function dodgeY(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
   let {anchor = "bottom", padding = 1} = maybeAnchor(dodgeOptions);

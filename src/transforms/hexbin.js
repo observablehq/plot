@@ -12,7 +12,6 @@ import {Position} from "../projection.js";
 export const ox = 0.5,
   oy = 0;
 
-/** @jsdoc hexbin */
 export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
   // TODO filter e.g. to show empty hexbins?
   // TODO disallow x, x1, x2, y, y1, y2 reducers?

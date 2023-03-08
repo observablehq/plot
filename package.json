@@ -16,6 +16,7 @@
     "umd": "./dist/plot.umd.min.js",
     "default": "./src/index.js"
   },
+  "types": "src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/observablehq/plot.git"
@@ -23,8 +24,7 @@
   "files": [
     "dist/**/*.js",
     "src/**/*.js",
-    "src/**/*.ts",
-    "types/**/*.d.ts"
+    "src/**/*.d.ts"
   ],
   "scripts": {
     "test": "yarn test:mocha && yarn test:lint",
@@ -35,7 +35,7 @@
     "dev": "vite"
   },
   "_moduleAliases": {
-    "@observablehq/plot": "./src/index.js"
+    "@observablehq/plot": "./src/index"
   },
   "sideEffects": [
     "./src/plot.js"

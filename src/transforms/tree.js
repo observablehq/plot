@@ -3,7 +3,6 @@ import {ascendingDefined} from "../defined.js";
 import {column, identity, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
-/** @jsdoc treeNode */
 export function treeNode(options = {}) {
   let {
     path = identity, // the delimited path
@@ -57,7 +56,6 @@ export function treeNode(options = {}) {
   };
 }
 
-/** @jsdoc treeLink */
 export function treeLink(options = {}) {
   let {
     path = identity, // the delimited path

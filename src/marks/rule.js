@@ -107,14 +107,12 @@ export class RuleY extends Mark {
   }
 }
 
-/** @jsdoc ruleX */
 export function ruleX(data, options) {
   let {x = identity, y, y1, y2, ...rest} = maybeIntervalY(options);
   [y1, y2] = maybeOptionalZero(y, y1, y2);
   return new RuleX(data, {...rest, x, y1, y2});
 }
 
-/** @jsdoc ruleY */
 export function ruleY(data, options) {
   let {y = identity, x, x1, x2, ...rest} = maybeIntervalX(options);
   [x1, x2] = maybeOptionalZero(x, x1, x2);

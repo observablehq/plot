@@ -283,27 +283,22 @@ function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
   return new DelaunayMark(data, {...options, x, y});
 }
 
-/** @jsdoc delaunayLink */
 export function delaunayLink(data, options) {
   return delaunayMark(DelaunayLink, data, options);
 }
 
-/** @jsdoc delaunayMesh */
 export function delaunayMesh(data, options) {
   return delaunayMark(DelaunayMesh, data, options);
 }
 
-/** @jsdoc hull */
 export function hull(data, options) {
   return delaunayMark(Hull, data, options);
 }
 
-/** @jsdoc voronoi */
 export function voronoi(data, options) {
   return delaunayMark(Voronoi, data, options);
 }
 
-/** @jsdoc voronoiMesh */
 export function voronoiMesh(data, options) {
   return delaunayMark(VoronoiMesh, data, options);
 }

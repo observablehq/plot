@@ -13,7 +13,6 @@ import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
-/** @jsdoc plot */
 export function plot(options = {}) {
   const {facet, style, caption, ariaLabel, ariaDescription} = options;
 

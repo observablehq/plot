@@ -3,7 +3,6 @@ import {ascendingDefined} from "../defined.js";
 import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
 import {basic} from "./basic.js";
 
-/** @jsdoc stackX */
 export function stackX(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
@@ -11,7 +10,6 @@ export function stackX(stack = {}, options = {}) {
   return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
-/** @jsdoc stackX1 */
 export function stackX1(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {y1, y = y1, x} = options;
@@ -19,7 +17,6 @@ export function stackX1(stack = {}, options = {}) {
   return {...transform, y1, y: Y, x: X};
 }
 
-/** @jsdoc stackX2 */
 export function stackX2(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {y1, y = y1, x} = options;
@@ -27,7 +24,6 @@ export function stackX2(stack = {}, options = {}) {
   return {...transform, y1, y: Y, x: X};
 }
 
-/** @jsdoc stackY */
 export function stackY(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
@@ -35,7 +31,6 @@ export function stackY(stack = {}, options = {}) {
   return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
-/** @jsdoc stackY1 */
 export function stackY1(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {x1, x = x1, y} = options;
@@ -43,7 +38,6 @@ export function stackY1(stack = {}, options = {}) {
   return {...transform, x1, x: X, y: Y};
 }
 
-/** @jsdoc stackY2 */
 export function stackY2(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {x1, x = x1, y} = options;

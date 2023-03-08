@@ -19,19 +19,16 @@ export function formatNumber(locale = "en-US") {
   return (i) => (i != null && !isNaN(i) ? format.format(i) : undefined);
 }
 
-/** @jsdoc formatMonth */
 export function formatMonth(locale = "en-US", format = "short") {
   const fmt = monthFormat(locale, format);
   return (i) => (i != null && !isNaN((i = +new Date(Date.UTC(2000, +i)))) ? fmt.format(i) : undefined);
 }
 
-/** @jsdoc formatWeekday */
 export function formatWeekday(locale = "en-US", format = "short") {
   const fmt = weekdayFormat(locale, format);
   return (i) => (i != null && !isNaN((i = +new Date(Date.UTC(2001, 0, +i)))) ? fmt.format(i) : undefined);
 }
 
-/** @jsdoc formatIsoDate */
 export function formatIsoDate(date) {
   return isoFormat(date, "Invalid Date");
 }

@@ -2,7 +2,6 @@ import {randomLcg} from "d3";
 import {ascendingDefined, descendingDefined} from "../defined.js";
 import {arrayify, isDomainSort, isOptions, maybeValue, valueof} from "../options.js";
 
-/** @jsdoc transform */
 export function basic({filter: f1, sort: s1, reverse: r1, transform: t1, initializer: i1, ...options} = {}, transform) {
   // If both t1 and t2 are defined, returns a composite transform that first
   // applies t1 and then applies t2.
@@ -20,7 +19,6 @@ export function basic({filter: f1, sort: s1, reverse: r1, transform: t1, initial
   };
 }
 
-/** @jsdoc initializer */
 export function initializer({filter: f1, sort: s1, reverse: r1, initializer: i1, ...options} = {}, initializer) {
   // If both i1 and i2 are defined, returns a composite initializer that first
   // applies i1 and then applies i2.
@@ -61,7 +59,6 @@ function apply(options, t) {
   return (options.initializer != null ? initializer : basic)(options, t);
 }
 
-/** @jsdoc filter */
 export function filter(test, options) {
   return apply(options, filterTransform(test));
 }
@@ -73,7 +70,6 @@ function filterTransform(value) {
   };
 }
 
-/** @jsdoc reverse */
 export function reverse({sort, ...options} = {}) {
   return {
     ...apply(options, reverseTransform),
@@ -85,7 +81,6 @@ function reverseTransform(data, facets) {
   return {data, facets: facets.map((I) => I.slice().reverse())};
 }
 
-/** @jsdoc shuffle */
 export function shuffle({seed, sort, ...options} = {}) {
   return {
     ...apply(options, sortValue(seed == null ? Math.random : randomLcg(seed))),
@@ -93,7 +88,6 @@ export function shuffle({seed, sort, ...options} = {}) {
   };
 }
 
-/** @jsdoc sort */
 export function sort(order, {sort, ...options} = {}) {
   return {
     ...(isOptions(order) && order.channel !== undefined ? initializer : apply)(options, sortTransform(order)),

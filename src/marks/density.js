@@ -65,7 +65,6 @@ export class Density extends Mark {
   }
 }
 
-/** @jsdoc density */
 export function density(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
   [x, y] = maybeTuple(x, y);

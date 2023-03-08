@@ -99,20 +99,17 @@ function sphereLine(projection, X, Y) {
   };
 }
 
-/** @jsdoc line */
 export function line(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
   [x, y] = maybeTuple(x, y);
   return new Line(data, {...remainingOptions, x, y});
 }
 
-/** @jsdoc lineX */
 export function lineX(data, options = {}) {
   const {x = identity, y = indexOf, ...remainingOptions} = options;
   return new Line(data, maybeDenseIntervalY({...remainingOptions, x, y}));
 }
 
-/** @jsdoc lineY */
 export function lineY(data, options = {}) {
   const {x = indexOf, y = identity, ...remainingOptions} = options;
   return new Line(data, maybeDenseIntervalX({...remainingOptions, x, y}));

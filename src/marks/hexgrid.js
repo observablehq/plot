@@ -12,7 +12,6 @@ const defaults = {
   strokeOpacity: 0.1
 };
 
-/** @jsdoc hexgrid */
 export function hexgrid(options) {
   return new Hexgrid(options);
 }

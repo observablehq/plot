@@ -34,13 +34,11 @@ import {
 } from "../options.js";
 import {basic} from "./basic.js";
 
-/** @jsdoc groupZ */
 export function groupZ(outputs, options) {
   // Group on {z, fill, stroke}.
   return groupn(null, null, outputs, options);
 }
 
-/** @jsdoc groupX */
 export function groupX(outputs = {y: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then on x.
   const {x = identity} = options;
@@ -48,7 +46,6 @@ export function groupX(outputs = {y: "count"}, options = {}) {
   return groupn(x, null, outputs, options);
 }
 
-/** @jsdoc groupY */
 export function groupY(outputs = {x: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then on y.
   const {y = identity} = options;
@@ -56,7 +53,6 @@ export function groupY(outputs = {x: "count"}, options = {}) {
   return groupn(null, y, outputs, options);
 }
 
-/** @jsdoc group */
 export function group(outputs = {fill: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then on x and y.
   let {x, y} = options;

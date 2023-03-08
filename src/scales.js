@@ -499,7 +499,6 @@ function coerceSymbols(values) {
   return map(values, maybeSymbol);
 }
 
-/** @jsdoc scale */
 export function scale(options = {}) {
   let scale;
   for (const key in options) {

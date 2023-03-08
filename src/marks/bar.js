@@ -129,12 +129,10 @@ export class BarY extends AbstractBar {
   }
 }
 
-/** @jsdoc barX */
 export function barX(data, options = {y: indexOf, x2: identity}) {
   return new BarX(data, maybeStackX(maybeIntervalX(maybeIdentityX(options))));
 }
 
-/** @jsdoc barY */
 export function barY(data, options = {x: indexOf, y2: identity}) {
   return new BarY(data, maybeStackY(maybeIntervalY(maybeIdentityY(options))));
 }

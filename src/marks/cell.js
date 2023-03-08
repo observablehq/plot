@@ -24,21 +24,18 @@ export class Cell extends AbstractBar {
   }
 }
 
-/** @jsdoc cell */
 export function cell(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
   [x, y] = maybeTuple(x, y);
   return new Cell(data, {...remainingOptions, x, y});
 }
 
-/** @jsdoc cellX */
 export function cellX(data, options = {}) {
   let {x = indexOf, fill, stroke, ...remainingOptions} = options;
   if (fill === undefined && maybeColorChannel(stroke)[0] === undefined) fill = identity;
   return new Cell(data, {...remainingOptions, x, fill, stroke});
 }
 
-/** @jsdoc cellY */
 export function cellY(data, options = {}) {
   let {y = indexOf, fill, stroke, ...remainingOptions} = options;
   if (fill === undefined && maybeColorChannel(stroke)[0] === undefined) fill = identity;

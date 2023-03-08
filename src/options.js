@@ -6,7 +6,6 @@ import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
-/** @jsdoc valueof */
 export function valueof(data, value, type) {
   const valueType = typeof value;
   return valueType === "string"
@@ -40,7 +39,6 @@ function floater(f) {
 
 export const field = (name) => (d) => d[name];
 export const indexOf = (d, i) => i;
-/** @jsdoc identity */
 export const identity = {transform: (d) => d};
 export const zero = () => 0;
 export const one = () => 1;
@@ -231,7 +229,6 @@ export function maybeInput(key, options) {
   return options[key];
 }
 
-/** @jsdoc column */
 export function column(source) {
   // Defines a column whose values are lazily populated by calling the returned
   // setter. If the given source is labeled, the label is propagated to the

@@ -100,13 +100,11 @@ export class TickY extends AbstractTick {
   }
 }
 
-/** @jsdoc tickX */
 export function tickX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
   return new TickX(data, {...remainingOptions, x});
 }
 
-/** @jsdoc tickY */
 export function tickY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;
   return new TickY(data, {...remainingOptions, y});

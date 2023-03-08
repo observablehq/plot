@@ -161,20 +161,17 @@ function applyMultilineText(selection, mark, T, TL) {
   });
 }
 
-/** @jsdoc text */
 export function text(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Text(data, {...remainingOptions, x, y});
 }
 
-/** @jsdoc textX */
 export function textX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
   return new Text(data, maybeIntervalMidY({...remainingOptions, x}));
 }
 
-/** @jsdoc textY */
 export function textY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;
   return new Text(data, maybeIntervalMidX({...remainingOptions, y}));

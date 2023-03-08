@@ -137,26 +137,22 @@ export class Vector extends Mark {
   }
 }
 
-/** @jsdoc vector */
 export function vector(data, options = {}) {
   let {x, y, ...rest} = options;
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Vector(data, {...rest, x, y});
 }
 
-/** @jsdoc vectorX */
 export function vectorX(data, options = {}) {
   const {x = identity, ...rest} = options;
   return new Vector(data, {...rest, x});
 }
 
-/** @jsdoc vectorY */
 export function vectorY(data, options = {}) {
   const {y = identity, ...rest} = options;
   return new Vector(data, {...rest, y});
 }
 
-/** @jsdoc spike */
 export function spike(data, options = {}) {
   const {
     shape = shapeSpike,
