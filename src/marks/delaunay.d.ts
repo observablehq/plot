@@ -1,14 +1,15 @@
-/** @jsdoc delaunayLink */
-export function delaunayLink(data: any, options: any): any;
+import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
-/** @jsdoc delaunayMesh */
-export function delaunayMesh(data: any, options: any): any;
+export interface DelaunayOptions extends MarkOptions {
+  // TODO
+}
 
-/** @jsdoc hull */
-export function hull(data: any, options: any): any;
+export function delaunayLink(data?: Data | null, options?: DelaunayOptions): RenderableMark;
 
-/** @jsdoc voronoi */
-export function voronoi(data: any, options: any): any;
+export function delaunayMesh(data?: Data | null, options?: DelaunayOptions): RenderableMark;
 
-/** @jsdoc voronoiMesh */
-export function voronoiMesh(data: any, options: any): any;
+export function hull(data?: Data | null, options?: DelaunayOptions): RenderableMark;
+
+export function voronoi(data?: Data | null, options?: DelaunayOptions): RenderableMark;
+
+export function voronoiMesh(data?: Data | null, options?: DelaunayOptions): RenderableMark;

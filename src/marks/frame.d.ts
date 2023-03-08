@@ -1,17 +1,10 @@
-import {Mark} from "../mark.js";
+import type {RenderableMark} from "../mark.js";
+import type {RectOptions} from "./rect.js";
 
-/** @jsdoc frame */
-export function frame(options: any): Frame;
-
-/** @jsdoc Frame */
-export class Frame extends Mark {
-  constructor(options?: {});
-  anchor: string | undefined;
-  insetTop: any;
-  insetRight: any;
-  insetBottom: any;
-  insetLeft: any;
-  rx: any;
-  ry: any;
-  render(index: any, scales: any, channels: any, dimensions: any, context: any): any;
+export interface FrameOptions extends RectOptions {
+  anchor?: "top" | "right" | "bottom" | "left" | null;
 }
+
+export function frame(options?: FrameOptions): Frame;
+
+export class Frame extends RenderableMark {}

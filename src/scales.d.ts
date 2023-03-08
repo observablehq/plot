@@ -1,13 +1,24 @@
 import type {Interval} from "./interval.js";
 
-export type ScaleType = QuantitativeScaleType | TemporalScaleType | OrdinalScaleType;
-export type QuantitativeScaleType = "linear" | "pow" | "sqrt" | "log" | "symlog";
-export type TemporalScaleType = "utc" | "time";
-export type OrdinalScaleType = "ordinal" | "categorical";
-export type OrdinalPositionScaleType = "point" | "band" | "ordinal";
-export type ColorScaleType = QuantitativeScaleType | "sequential" | "diverging" | "categorical";
+export type ScaleType =
+  | "linear"
+  | "pow"
+  | "sqrt"
+  | "log"
+  | "symlog"
+  | "utc"
+  | "time"
+  | "point"
+  | "band"
+  | "ordinal"
+  | "sequential"
+  | "diverging"
+  | "categorical"
+  | "threshold"
+  | "quantile"
+  | "quantize";
 
-export type CategoricalColorSchemeName =
+export type ColorSchemeName =
   | "accent"
   | "category10"
   | "dark2"
@@ -17,9 +28,7 @@ export type CategoricalColorSchemeName =
   | "set1"
   | "set2"
   | "set3"
-  | "tableau10";
-
-export type DivergingColorSchemeName =
+  | "tableau10"
   | "brbg"
   | "prgn"
   | "piyg"
@@ -30,9 +39,7 @@ export type DivergingColorSchemeName =
   | "rdylgn"
   | "spectral"
   | "burd"
-  | "buylrd";
-
-export type SequentialColorSchemeName =
+  | "buylrd"
   | "blues"
   | "greens"
   | "greys"
@@ -59,21 +66,14 @@ export type SequentialColorSchemeName =
   | "ylgn"
   | "ylgnbu"
   | "ylorbr"
-  | "ylorrd";
+  | "ylorrd"
+  | "rainbow"
+  | "sinebow";
 
-export type CyclicalColorSchemeName = "rainbow" | "sinebow";
-
-export type QuantitativeColorSchemeName =
-  | DivergingColorSchemeName
-  | SequentialColorSchemeName
-  | CyclicalColorSchemeName;
-
-export type ColorSchemeName = QuantitativeColorSchemeName | CategoricalColorSchemeName;
-
-export interface ScaleOptions extends AxisOptions, LegendOptions {
+export interface ScaleOptions extends ScaleAxisOptions, ScaleLegendOptions {
   type?: ScaleType | null;
-  domain?: any[];
-  range?: any[];
+  domain?: Iterable<any>;
+  range?: Iterable<any>;
   unknown?: any;
   reverse?: boolean;
   transform?: (t: any) => any;
@@ -119,13 +119,13 @@ export interface ScaleOptions extends AxisOptions, LegendOptions {
   align?: number;
 }
 
-export interface AxisOptions {
+export interface ScaleAxisOptions {
   axis?: "top" | "right" | "bottom" | "left" | "both" | boolean | null;
   ticks?: number | Interval | any[];
   tickSize?: number;
   tickSpacing?: number;
   tickPadding?: number;
-  tickFormat?: string | ((t: any) => string) | null;
+  tickFormat?: string | ((t: any) => any) | null;
   tickRotate?: number;
   grid?: boolean;
   line?: boolean;
@@ -137,7 +137,7 @@ export interface AxisOptions {
   // ariaDescription?: string; // TODO
 }
 
-export interface LegendOptions {
+export interface ScaleLegendOptions {
   legend?: string | boolean | null; // TODO
 }
 
@@ -170,5 +170,4 @@ export interface Scale {
   invert?(t: any): any;
 }
 
-/** @jsdoc scale */
 export function scale(options?: {}): any;

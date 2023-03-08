@@ -1,23 +1,33 @@
-/** @jsdoc axisY */
-export function axisY(...args: any[]): any[];
+import type {CompoundMark, Data, MarkOptions, RenderableMark} from "mark.js";
 
-/** @jsdoc axisFy */
-export function axisFy(...args: any[]): any[];
+export interface AxisOptions extends MarkOptions {
+  // TODO
+}
 
-/** @jsdoc axisX */
-export function axisX(...args: any[]): any[];
+export interface GridOptions extends MarkOptions {
+  // TODO
+}
 
-/** @jsdoc axisFx */
-export function axisFx(...args: any[]): any[];
+export function axisY(options?: AxisOptions): CompoundMark;
+export function axisY(data?: Data | null, options?: AxisOptions): CompoundMark;
 
-/** @jsdoc gridY */
-export function gridY(...args: any[]): any;
+export function axisFy(options?: AxisOptions): CompoundMark;
+export function axisFy(data?: Data | null, options?: AxisOptions): CompoundMark;
 
-/** @jsdoc gridFy */
-export function gridFy(...args: any[]): any;
+export function axisX(options?: AxisOptions): CompoundMark;
+export function axisX(data?: Data | null, options?: AxisOptions): CompoundMark;
 
-/** @jsdoc gridX */
-export function gridX(...args: any[]): any;
+export function axisFx(options?: AxisOptions): CompoundMark;
+export function axisFx(data?: Data | null, options?: AxisOptions): CompoundMark;
 
-/** @jsdoc gridFx */
-export function gridFx(...args: any[]): any;
+export function gridY(options?: GridOptions): RenderableMark;
+export function gridY(data?: Data | null, options?: GridOptions): RenderableMark;
+
+export function gridFy(options?: GridOptions): RenderableMark;
+export function gridFy(data?: Data | null, options?: GridOptions): RenderableMark;
+
+export function gridX(options?: GridOptions): RenderableMark;
+export function gridX(data?: Data | null, options?: GridOptions): RenderableMark;
+
+export function gridFx(options?: GridOptions): RenderableMark;
+export function gridFx(data?: Data | null, options?: GridOptions): RenderableMark;

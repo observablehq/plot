@@ -1,4 +1,5 @@
-/** @jsdoc hexbin */
+// TODO
+
 export function hexbin(
   outputs?: {
     fill: string;

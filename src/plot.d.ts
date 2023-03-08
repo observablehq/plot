@@ -1,7 +1,8 @@
+import type {ChannelValue} from "./channel.js";
 import type {Interval} from "./interval.js";
 import type {Data, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
-import type {LegendOptions, Scale, ScaleOptions} from "./scales.js";
+import type {ScaleLegendOptions, Scale, ScaleOptions} from "./scales.js";
 
 export interface PlotOptions {
   // dimensions
@@ -15,7 +16,7 @@ export interface PlotOptions {
   aspectRatio?: number;
 
   // other top-level options
-  style?: CSSStyleDeclaration;
+  style?: Partial<CSSStyleDeclaration> | string;
   caption?: string | null | Node;
   document?: Document;
 
@@ -59,6 +60,8 @@ export interface PlotOptions {
     grid?: boolean;
     label?: string | null;
     data?: Data;
+    x?: ChannelValue;
+    y?: ChannelValue;
   };
 
   // marks
@@ -67,8 +70,7 @@ export interface PlotOptions {
 
 export interface Plot {
   scale(name: string): Scale | undefined;
-  legend(name: string, options?: LegendOptions): HTMLElement | undefined;
+  legend(name: string, options?: ScaleLegendOptions): HTMLElement | undefined;
 }
 
-/** @jsdoc plot */
 export function plot(options?: PlotOptions): (SVGSVGElement | HTMLElement) & Plot;

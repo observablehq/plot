@@ -1,23 +1,13 @@
-import {Mark} from "../mark.js";
+import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
-/** @jsdoc ruleX */
-export function ruleX(data: any, options: any): RuleX;
-
-/** @jsdoc ruleY */
-export function ruleY(data: any, options: any): RuleY;
-
-/** @jsdoc RuleX */
-export class RuleX extends Mark {
-  constructor(data: any, options?: {});
-  insetTop: any;
-  insetBottom: any;
-  render(index: any, scales: any, channels: any, dimensions: any, context: any): any;
+export interface RuleOptions extends MarkOptions {
+  // TODO
 }
 
-/** @jsdoc RuleY */
-export class RuleY extends Mark {
-  constructor(data: any, options?: {});
-  insetRight: any;
-  insetLeft: any;
-  render(index: any, scales: any, channels: any, dimensions: any, context: any): any;
-}
+export function ruleX(data?: Data | null, options?: RuleOptions): RuleX;
+
+export function ruleY(data?: Data | null, options?: RuleOptions): RuleY;
+
+export class RuleX extends RenderableMark {}
+
+export class RuleY extends RenderableMark {}

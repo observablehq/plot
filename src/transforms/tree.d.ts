@@ -1,5 +1,5 @@
-/** @jsdoc treeNode */
+// TODO
+
 export function treeNode(options?: {}): any;
 
-/** @jsdoc treeLink */
 export function treeLink(options?: {}): any;

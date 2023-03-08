@@ -1,31 +1,41 @@
-import {Mark} from "../mark.js";
+import type {ChannelValueSpec} from "../channel.js";
+import type {FrameAnchor} from "../options.js";
+import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
-/** @jsdoc text */
-export function text(data: any, options?: {}): Text;
+export type TextAnchor = "start" | "middle" | "end";
 
-/** @jsdoc textX */
-export function textX(data: any, options?: {}): Text;
+export type LineAnchor = "top" | "middle" | "bottom";
 
-/** @jsdoc textY */
-export function textY(data: any, options?: {}): Text;
+export type TextOverflow =
+  | "clip"
+  | "ellipsis"
+  | "clip-start"
+  | "clip-end"
+  | "ellipsis-start"
+  | "ellipsis-middle"
+  | "ellipsis-end";
 
-/** @jsdoc Text */
-export class Text extends Mark {
-  constructor(data: any, options?: {});
-  rotate: any;
-  textAnchor: any;
-  lineAnchor: string;
-  lineHeight: number;
-  lineWidth: number;
-  textOverflow: string | null;
-  monospace: boolean;
-  fontFamily: any;
-  fontSize: any;
-  fontStyle: any;
-  fontVariant: any;
-  fontWeight: any;
-  frameAnchor: string;
-  splitLines: (text: any) => any;
-  clipLine: ((text: any) => any) | undefined;
-  render(index: any, scales: any, channels: any, dimensions: any, context: any): any;
+export interface TextOptions extends MarkOptions {
+  text?: ChannelValueSpec;
+  frameAnchor?: FrameAnchor;
+  textAnchor?: TextAnchor;
+  lineAnchor?: LineAnchor;
+  lineHeight?: number;
+  lineWidth?: number;
+  textOverflow?: TextOverflow;
+  monospace?: boolean;
+  fontFamily?: string;
+  fontSize?: ChannelValueSpec;
+  fontStyle?: string;
+  fontVariant?: string;
+  fontWeight?: string | number;
+  rotate?: ChannelValueSpec;
 }
+
+export function text(data?: Data | null, options?: TextOptions): Text;
+
+export function textX(data?: Data | null, options?: TextOptions): Text;
+
+export function textY(data?: Data | null, options?: TextOptions): Text;
+
+export class Text extends RenderableMark {}

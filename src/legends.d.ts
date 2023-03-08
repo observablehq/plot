@@ -1,2 +1,5 @@
-/** @jsdoc legend */
-export function legend(options?: any): any;
+export interface LegendOptions {
+  // TODO
+}
+
+export function legend(options?: LegendOptions): HTMLElement;

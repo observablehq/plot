@@ -4,7 +4,7 @@ import type {Context} from "./context.js";
 import type {Facet, FacetAnchor} from "./facet.js";
 import type {plot} from "./plot.js";
 
-export type Data = any[]; // TODO iterable, arquero, arrow, etc.
+export type Data = Iterable<any> | {length: number};
 
 export type Markish = Renderable["render"] | Renderable | null | undefined | Markish[];
 
@@ -35,7 +35,7 @@ export interface MarkOptions {
   filter?: ChannelValue;
   reverse?: boolean;
   sort?: ChannelValue | ((a: any, b: any) => number) | ChannelDomainSort;
-  transform?: any; // TODO
+  transform?: (data: any[], facets: number[][]) => {data?: any[]; facets?: number[][]};
   initializer?: any; // TODO
   title?: ChannelValueSpec;
   href?: ChannelValueSpec;
@@ -51,8 +51,8 @@ export interface MarkOptions {
   strokeLinejoin?: string;
   strokeLinecap?: string;
   strokeMiterlimit?: number;
-  strokeDasharray?: string;
-  strokeDashoffset?: string;
+  strokeDasharray?: string | number;
+  strokeDashoffset?: string | number;
   opacity?: ChannelValueSpec;
   mixBlendMode?: string;
   paintOrder?: string;
@@ -60,8 +60,14 @@ export interface MarkOptions {
   shapeRendering?: string;
 }
 
-/** @jsdoc Mark */
-export class Mark {} // TODO
+export class Mark {
+  plot: typeof plot;
+}
 
-/** @jsdoc marks */
-export function marks(...marks: Markish[]): Markish[] & {plot: typeof plot};
+export class RenderableMark extends Mark implements Renderable {
+  render: Renderable["render"];
+}
+
+export type CompoundMark = Markish[] & {plot: typeof plot};
+
+export function marks(...marks: Markish[]): CompoundMark;

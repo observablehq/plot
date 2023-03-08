@@ -1,10 +1,19 @@
-/** @jsdoc valueof */
-export function valueof(data: any, value: any, type: any): any;
+import type {Data} from "./mark.js";
+import type {ChannelTransform, ChannelValue} from "./channel.js";
 
-/** @jsdoc column */
-export function column(source: any): (((v: any) => any) | {transform: () => any; label: any})[];
+export function valueof(data: Data | null, value: ChannelValue | null, type?: any): any;
 
-/** @jsdoc identity */
-export interface identity {
-  transform(d: any): any;
-}
+export function column(source: any): (((v: any) => any) | {transform: () => any; label: any})[]; // TODO
+
+export const identity: ChannelTransform;
+
+export type FrameAnchor =
+  | "middle"
+  | "top-left"
+  | "top"
+  | "top-right"
+  | "right"
+  | "bottom-right"
+  | "bottom"
+  | "bottom-left"
+  | "left";

@@ -1,4 +1,5 @@
-/** @jsdoc binX */
+// TODO
+
 export function binX(
   outputs?: {
     y: string;
@@ -6,7 +7,6 @@ export function binX(
   options?: {}
 ): any;
 
-/** @jsdoc binY */
 export function binY(
   outputs?: {
     x: string;
@@ -14,7 +14,6 @@ export function binY(
   options?: {}
 ): any;
 
-/** @jsdoc bin */
 export function bin(
   outputs?: {
     fill: string;

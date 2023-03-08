@@ -1,4 +1,5 @@
-/** @jsdoc centroid */
+// TODO
+
 export function centroid({
   geometry,
   ...options
@@ -13,7 +14,6 @@ export function centroid({
   sort?: any;
 };
 
-/** @jsdoc geoCentroid */
 export function geoCentroid({
   geometry,
   ...options

@@ -1,5 +1,9 @@
-/** @jsdoc tree */
-export function tree(data: any, options?: {}): any[];
+import type {CompoundMark, Data, MarkOptions} from "../mark.js";
 
-/** @jsdoc cluster */
-export function cluster(data: any, options: any): any[];
+export interface TreeOptions extends MarkOptions {
+  // TODO
+}
+
+export function tree(data?: Data | null, options?: TreeOptions): CompoundMark;
+
+export function cluster(data?: Data | null, options?: TreeOptions): CompoundMark;

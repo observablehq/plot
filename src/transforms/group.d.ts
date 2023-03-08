@@ -1,4 +1,5 @@
-/** @jsdoc groupZ */
+// TODO
+
 export function groupZ(
   outputs: any,
   options: any
@@ -85,7 +86,6 @@ export function groupZ(
       z?: any;
     };
 
-/** @jsdoc groupX */
 export function groupX(
   outputs?: {
     y: string;
@@ -174,7 +174,6 @@ export function groupX(
       z?: any;
     };
 
-/** @jsdoc groupY */
 export function groupY(
   outputs?: {
     x: string;
@@ -263,7 +262,6 @@ export function groupY(
       z?: any;
     };
 
-/** @jsdoc group */
 export function group(
   outputs?: {
     fill: string;

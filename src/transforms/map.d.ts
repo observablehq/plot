@@ -1,4 +1,5 @@
-/** @jsdoc mapX */
+// TODO
+
 export function mapX(
   map: any,
   options?: {}
@@ -7,7 +8,6 @@ export function mapX(
   sort?: any;
 };
 
-/** @jsdoc mapY */
 export function mapY(
   map: any,
   options?: {}
@@ -16,7 +16,6 @@ export function mapY(
   sort?: any;
 };
 
-/** @jsdoc map */
 export function map(
   outputs?: {},
   options?: {}

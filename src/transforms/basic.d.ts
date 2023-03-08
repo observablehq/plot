@@ -1,4 +1,5 @@
-/** @jsdoc transform */
+// TODO
+
 export function basic(
   options: {} | undefined,
   transform: any
@@ -7,7 +8,6 @@ export function basic(
   sort?: any;
 };
 
-/** @jsdoc initializer */
 export function initializer(
   options: {} | undefined,
   initializer: any
@@ -16,7 +16,6 @@ export function initializer(
   sort?: any;
 };
 
-/** @jsdoc filter */
 export function filter(
   test: any,
   options: any
@@ -30,7 +29,6 @@ export function filter(
       sort?: any;
     };
 
-/** @jsdoc reverse */
 export function reverse(options: any):
   | {
       sort: null;
@@ -41,7 +39,6 @@ export function reverse(options: any):
       initializer: any;
     };
 
-/** @jsdoc shuffle */
 export function shuffle(options?: {}):
   | {
       sort: null;
@@ -52,7 +49,6 @@ export function shuffle(options?: {}):
       initializer: any;
     };
 
-/** @jsdoc sort */
 export function sort(
   order: any,
   options: any

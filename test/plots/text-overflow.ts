@@ -41,7 +41,7 @@ export async function textOverflow() {
     "👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩", // composed emoji
     "🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿" // fitz modifiers
   ];
-  const options = ["clip-start", "clip-end", "ellipsis-start", "ellipsis-middle", "ellipsis-end"];
+  const options: Plot.TextOverflow[] = ["clip-start", "clip-end", "ellipsis-start", "ellipsis-middle", "ellipsis-end"];
   return Plot.plot({
     width: 800,
     marginLeft: 180,
@@ -83,14 +83,14 @@ export async function textOverflowEllipsis() {
 }
 
 export async function textOverflowMonospace() {
-  return textOverflowPlot("ellipsis", "monospace");
+  return textOverflowPlot("ellipsis", {monospace: true});
 }
 
 export async function textOverflowNone() {
   return textOverflowPlot(null);
 }
 
-async function textOverflowPlot(textOverflow, monospace) {
+async function textOverflowPlot(textOverflow, {monospace = false} = {}) {
   const presidents = await d3.csv("data/us-president-favorability.csv", d3.autoType);
   const opinions = [
     "Very Unfavorable %",

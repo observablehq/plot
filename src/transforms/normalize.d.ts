@@ -1,4 +1,5 @@
-/** @jsdoc normalizeX */
+// TODO
+
 export function normalizeX(
   basis: any,
   options: any,
@@ -8,7 +9,6 @@ export function normalizeX(
   sort?: any;
 };
 
-/** @jsdoc normalizeY */
 export function normalizeY(
   basis: any,
   options: any,
@@ -18,7 +18,6 @@ export function normalizeY(
   sort?: any;
 };
 
-/** @jsdoc normalize */
 export function normalize(basis: any): {
   map(I: any, S: any, T: any): void;
 };

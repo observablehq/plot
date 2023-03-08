@@ -1,4 +1,5 @@
-/** @jsdoc windowX */
+// TODO
+
 export function windowX(
   windowOptions: {} | undefined,
   options: any,
@@ -8,7 +9,6 @@ export function windowX(
   sort?: any;
 };
 
-/** @jsdoc windowY */
 export function windowY(
   windowOptions: {} | undefined,
   options: any,
@@ -18,7 +18,6 @@ export function windowY(
   sort?: any;
 };
 
-/** @jsdoc window */
 export function window(options?: {}): {
   map(I: any, S: any, T: any): void;
 };

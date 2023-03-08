@@ -1,23 +1,9 @@
-/** @jsdoc autoSpec */
-export function autoSpec(
-  data: any,
-  options: any
-): {
-  fx: any;
-  fy: any;
-  x: any;
-  y: any;
-  color: {
-    color?: any;
-    value: any;
-    reduce: any;
-  };
-  size: {
-    value: any;
-    reduce: any;
-  };
-  mark: any;
-};
+import type {CompoundMark, Data} from "../mark.js";
 
-/** @jsdoc auto */
-export function auto(data: any, options: any): any[];
+export interface AutoOptions {
+  // TODO
+}
+
+export function autoSpec(data?: Data | null, options?: AutoOptions): AutoOptions;
+
+export function auto(data?: Data | null, options?: AutoOptions): CompoundMark;

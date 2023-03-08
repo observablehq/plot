@@ -1,35 +1,23 @@
-import type {ChannelValueSpec, Data, Mark, MarkOptions} from "../mark.js";
+import type {ChannelValueSpec} from "../channel.js";
+import type {Data, RenderableMark} from "../mark.js";
+import type {RectOptions} from "./rect.js";
 
-export interface BarOptions extends MarkOptions {
-  inset?: number;
-  insetTop?: number;
-  insetRight?: number;
-  insetBottom?: number;
-  insetLeft?: number;
-  rx?: number | string;
-  ry?: number | string;
-}
-
-export interface BarXOptions extends BarOptions {
+export interface BarXOptions extends RectOptions {
   x1?: ChannelValueSpec;
   x2?: ChannelValueSpec;
   y?: ChannelValueSpec;
 }
 
-export interface BarYOptions extends BarOptions {
+export interface BarYOptions extends RectOptions {
   y1?: ChannelValueSpec;
   y2?: ChannelValueSpec;
   x?: ChannelValueSpec;
 }
 
-/** @jsdoc barX */
 export function barX(data?: Data | null, options?: BarXOptions): BarX;
 
-/** @jsdoc barY */
 export function barY(data?: Data | null, options?: BarYOptions): BarY;
 
-/** @jsdoc BarX */
-export class BarX extends Mark {}
+export class BarX extends RenderableMark {}
 
-/** @jsdoc BarY */
-export class BarY extends Mark {}
+export class BarY extends RenderableMark {}

@@ -1,4 +1,5 @@
-/** @jsdoc dodgeX */
+// TODO
+
 export function dodgeX(
   dodgeOptions?: {},
   options?: {},
@@ -8,7 +9,6 @@ export function dodgeX(
   sort?: any;
 };
 
-/** @jsdoc dodgeY */
 export function dodgeY(
   dodgeOptions?: {},
   options?: {},

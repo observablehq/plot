@@ -1,3 +1,5 @@
+import type {ScaleType} from "./scales.js";
+
 export interface ChannelTransform {
   transform: (data: any[]) => any[];
 }
@@ -5,14 +7,14 @@ export interface ChannelTransform {
 export interface ChannelSpec {
   value: ChannelValueSpec | null;
   scale?: string | null; // TODO scale name
-  type?: string; // TODO scale type requirement (e.g., "band")
+  type?: ScaleType;
   optional?: boolean;
   filter?: (value: any) => boolean;
   hint?: any; // TODO
 }
 
 export type ChannelValue =
-  | any[] // TODO iterable, typed array?
+  | Iterable<any> // column of values
   | string // field name, or literal color
   | Date // constant
   | number // constant
@@ -23,16 +25,19 @@ export type ChannelValue =
 
 export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale?: string | boolean | null};
 
+export type ChannelReduce = any; // TODO
+
 export type ChannelDomainSort = {
+  reduce?: ChannelReduce;
+  reverse?: boolean;
+  limit?: number;
+} & {
   [name: string]:
-    | string // channel name, "data", "width", "height"
+    | string // value
     | {
         value: string; // channel name, "data", "width", "height"
+        reduce?: ChannelReduce;
         reverse?: boolean;
-        reduce?: any; // TODO
         limit?: number;
       };
-  reverse?: boolean;
-  reduce?: any; // TODO
-  limit?: number;
 };
