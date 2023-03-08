@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 
-export default function () {
+export async function vectorFrame() {
   return Plot.plot({
     inset: 12,
     width: 200,

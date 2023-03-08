@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default function () {
+export async function vectorField() {
   return Plot.plot({
     inset: 12,
     height: 600,
