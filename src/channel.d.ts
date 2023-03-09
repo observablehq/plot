@@ -28,16 +28,19 @@ export type ChannelValueSpec = ChannelValue | Pick<ChannelSpec, "value" | "scale
 export type ChannelReduce = any; // TODO
 
 export type ChannelDomainSort = {
-  reduce?: ChannelReduce;
-  reverse?: boolean;
-  limit?: number;
-} & {
   [name: string]:
-    | string // value
+    | string
+    | null // value
+    | boolean // only for reverse
+    | number // only for limit
+    | undefined // only for reverse and limit
     | {
-        value: string; // channel name, "data", "width", "height"
+        value: string | null; // channel name, "data", "width", "height"
         reduce?: ChannelReduce;
         reverse?: boolean;
         limit?: number;
       };
+  reduce?: ChannelReduce;
+  reverse?: boolean;
+  limit?: number;
 };

@@ -2,8 +2,8 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function athletesSortFacet() {
-  const athletes = await d3.csv("data/athletes.csv", d3.autoType);
-  const female = (d) => d.sex === "female";
+  const athletes = await d3.csv<{sex: string; sport: string}>("data/athletes.csv", d3.autoType);
+  const female = (d: (typeof athletes)[number]) => d.sex === "female";
   return Plot.plot({
     marginLeft: 100,
     marks: [

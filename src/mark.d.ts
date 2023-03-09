@@ -16,6 +16,10 @@ export type RenderFunction = (
 
 export type Markish = RenderFunction | Renderable | Markish[];
 
+export type MarkTransform = (data: any[], facets: number[][]) => {data?: any[]; facets?: number[][]};
+
+export type MarkInitializer = any; // TODO
+
 export interface Renderable {
   render: RenderFunction;
 }
@@ -37,8 +41,8 @@ export interface MarkOptions {
   filter?: ChannelValue;
   reverse?: boolean;
   sort?: ChannelValue | ((a: any, b: any) => number) | ChannelDomainSort;
-  transform?: (data: any[], facets: number[][]) => {data?: any[]; facets?: number[][]};
-  initializer?: any; // TODO
+  transform?: MarkTransform;
+  initializer?: MarkInitializer;
   title?: ChannelValueSpec;
   href?: ChannelValueSpec;
   ariaLabel?: ChannelValueSpec;
