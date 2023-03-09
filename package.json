@@ -31,7 +31,7 @@
     "test:mocha": "mkdir -p test/output && mocha 'test/**/*-test.*' 'test/plot.js'",
     "test:lint": "eslint src test",
     "test:tsc": "tsc",
-    "prepublishOnly": "rm -rf build dist && node scripts/readme-to-jsdoc.js && rollup -c",
+    "prepublishOnly": "rm -rf dist && rollup -c",
     "postpublish": "git push && git push --tags",
     "dev": "vite"
   },
