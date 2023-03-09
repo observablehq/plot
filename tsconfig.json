@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "strict": true,
     "noEmit": true,
     "module": "Node16",
     "baseUrl": "./src",

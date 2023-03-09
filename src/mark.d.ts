@@ -6,16 +6,18 @@ import type {plot} from "./plot.js";
 
 export type Data = Iterable<any> | {length: number};
 
-export type Markish = Renderable["render"] | Renderable | null | undefined | Markish[];
+export type RenderFunction = (
+  index: number[],
+  scales: {[name: string]: (value: any) => any},
+  values: {[name: string]: any[]},
+  dimensions: Dimensions,
+  context: Context
+) => SVGElement | null;
+
+export type Markish = RenderFunction | Renderable | Markish[];
 
 export interface Renderable {
-  render(
-    index: number[],
-    scales: {[name: string]: (value: any) => any},
-    values: {[name: string]: any[]},
-    dimensions: Dimensions,
-    context: Context
-  ): SVGElement | null;
+  render: RenderFunction;
 }
 
 export interface MarkOptions {
@@ -65,7 +67,7 @@ export class Mark {
 }
 
 export class RenderableMark extends Mark implements Renderable {
-  render: Renderable["render"];
+  render: RenderFunction;
 }
 
 export type CompoundMark = Markish[] & {plot: typeof plot};
