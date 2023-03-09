@@ -148,7 +148,6 @@ export {default as penguinCulmenDelaunayMesh} from "./penguin-culmen-delaunay-me
 export {default as penguinCulmenDelaunaySpecies} from "./penguin-culmen-delaunay-species.js";
 export {default as penguinCulmenMarkFacet} from "./penguin-culmen-mark-facet.js";
 export {default as penguinCulmenVoronoi} from "./penguin-culmen-voronoi.js";
-export {default as penguinQuantileUnknown} from "./penguin-quantile-unknown.js";
 export {default as penguinVoronoi1D} from "./penguin-voronoi-1d.js";
 export {default as penguinDensity} from "./penguin-density.js";
 export {default as penguinDensityFill} from "./penguin-density-fill.js";
@@ -300,6 +299,7 @@ export * from "./legend-symbol.js";
 export * from "./libor-projections.js";
 export * from "./long-labels.js";
 export * from "./penguin-hexbin-color-explicit.js";
+export * from "./penguin-quantile-unknown.js";
 export * from "./raster-ca55.js";
 export * from "./raster-penguins.js";
 export * from "./raster-vapor.js";
