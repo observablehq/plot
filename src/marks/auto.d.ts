@@ -4,6 +4,6 @@ export interface AutoOptions {
   // TODO
 }
 
-export function autoSpec(data?: Data | null, options?: AutoOptions): AutoOptions;
+export function autoSpec(data?: Data, options?: AutoOptions): AutoOptions;
 
-export function auto(data?: Data | null, options?: AutoOptions): CompoundMark;
+export function auto(data?: Data, options?: AutoOptions): CompoundMark;

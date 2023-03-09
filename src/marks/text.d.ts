@@ -32,10 +32,10 @@ export interface TextOptions extends MarkOptions {
   rotate?: ChannelValueSpec;
 }
 
-export function text(data?: Data | null, options?: TextOptions): Text;
+export function text(data?: Data, options?: TextOptions): Text;
 
-export function textX(data?: Data | null, options?: TextOptions): Text;
+export function textX(data?: Data, options?: TextOptions): Text;
 
-export function textY(data?: Data | null, options?: TextOptions): Text;
+export function textY(data?: Data, options?: TextOptions): Text;
 
 export class Text extends RenderableMark {}

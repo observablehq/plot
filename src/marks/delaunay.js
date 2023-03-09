@@ -2,6 +2,7 @@ import {group, pathRound as path, select, Delaunay} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {Mark} from "../mark.js";
+import {markers, applyMarkers} from "../marker.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
 import {
   applyChannelStyles,
@@ -10,7 +11,6 @@ import {
   applyIndirectStyles,
   applyTransform
 } from "../style.js";
-import {markers, applyMarkers} from "./marker.js";
 
 const delaunayLinkDefaults = {
   ariaLabel: "delaunay link",

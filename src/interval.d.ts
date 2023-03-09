@@ -17,13 +17,13 @@ export type TimeIntervalName =
   | "sunday";
 
 // TODO Is range required, too?
-export interface CustomInterval<T> {
+export interface IntervalImplementation<T> {
   floor(value: T): T;
   offset(value: T, offset: number): T;
 }
 
-export type TimeInterval = TimeIntervalName | CustomInterval<Date>;
+export type TimeInterval = TimeIntervalName | IntervalImplementation<Date>;
 
-export type NumberInterval = number | CustomInterval<number>;
+export type NumberInterval = number | IntervalImplementation<number>;
 
 export type Interval = TimeInterval | NumberInterval;

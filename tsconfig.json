@@ -8,11 +8,5 @@
       "@observablehq/plot": ["index"]
     }
   },
-  "include": [
-    "src/**/*.d.ts",
-    "src/**/*.js",
-    "src/**/*.ts",
-    "test/**/*.js",
-    "test/**/*.ts",
-  ]
+  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "test/**/*.js", "test/**/*.ts"]
 }

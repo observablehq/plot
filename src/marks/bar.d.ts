@@ -14,9 +14,9 @@ export interface BarYOptions extends RectOptions {
   x?: ChannelValueSpec;
 }
 
-export function barX(data?: Data | null, options?: BarXOptions): BarX;
+export function barX(data?: Data, options?: BarXOptions): BarX;
 
-export function barY(data?: Data | null, options?: BarYOptions): BarY;
+export function barY(data?: Data, options?: BarYOptions): BarY;
 
 export class BarX extends RenderableMark {}
 

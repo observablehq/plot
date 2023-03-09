@@ -4,7 +4,7 @@ export interface GeoOptions extends MarkOptions {
   // TODO
 }
 
-export function geo(data?: Data | null, options?: GeoOptions): Geo;
+export function geo(data?: Data, options?: GeoOptions): Geo;
 
 export function sphere(options?: GeoOptions): Geo;
 

@@ -1,4 +1,4 @@
-import {create} from "../context.js";
+import {create} from "./context.js";
 
 export function markers(mark, {marker, markerStart = marker, markerMid = marker, markerEnd = marker} = {}) {
   mark.markerStart = maybeMarker(markerStart);

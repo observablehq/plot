@@ -5,6 +5,6 @@ export interface ContourOptions extends MarkOptions {
 }
 
 export function contour(options?: ContourOptions): Contour;
-export function contour(data?: Data | null, options?: ContourOptions): Contour;
+export function contour(data?: Data, options?: ContourOptions): Contour;
 
 export class Contour extends RenderableMark {}

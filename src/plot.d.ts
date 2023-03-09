@@ -1,5 +1,4 @@
 import type {ChannelValue} from "./channel.js";
-import type {Interval} from "./interval.js";
 import type {Data, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
 import type {ScaleLegendOptions, Scale, ScaleOptions} from "./scales.js";
@@ -21,22 +20,22 @@ export interface PlotOptions {
   document?: Document;
 
   // top-level scale options
-  clamp?: boolean;
-  nice?: boolean | number | Interval;
-  zero?: boolean;
-  insetTop?: number;
-  insetRight?: number;
-  insetBottom?: number;
-  insetLeft?: number;
-  inset?: number;
-  round?: boolean;
-  align?: number;
-  padding?: number;
+  clamp?: ScaleOptions["clamp"];
+  nice?: ScaleOptions["nice"];
+  zero?: ScaleOptions["zero"];
+  inset?: ScaleOptions["inset"];
+  insetTop?: ScaleOptions["insetTop"];
+  insetRight?: ScaleOptions["insetRight"];
+  insetBottom?: ScaleOptions["insetBottom"];
+  insetLeft?: ScaleOptions["insetLeft"];
+  round?: ScaleOptions["round"];
+  align?: ScaleOptions["align"];
+  padding?: ScaleOptions["padding"];
 
   // top-level axis options
-  grid?: boolean;
-  label?: string | null;
-  axis?: boolean | null;
+  grid?: ScaleOptions["grid"];
+  label?: ScaleOptions["label"];
+  axis?: ScaleOptions["axis"];
 
   // scale, axis, and legend definitions
   fx?: ScaleOptions;
@@ -52,13 +51,13 @@ export interface PlotOptions {
 
   // faceting
   facet?: {
+    margin?: number;
     marginTop?: number;
     marginRight?: number;
     marginBottom?: number;
     marginLeft?: number;
-    margin?: number;
-    grid?: boolean;
-    label?: string | null;
+    grid?: ScaleOptions["grid"];
+    label?: ScaleOptions["label"];
     data?: Data;
     x?: ChannelValue;
     y?: ChannelValue;

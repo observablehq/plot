@@ -121,18 +121,18 @@ export interface ScaleOptions extends ScaleAxisOptions, ScaleLegendOptions {
 
 export interface ScaleAxisOptions {
   axis?: "top" | "right" | "bottom" | "left" | "both" | boolean | null;
-  ticks?: number | Interval | any[];
+  ticks?: number | Interval | Iterable<any>;
   tickSize?: number;
   tickSpacing?: number;
   tickPadding?: number;
   tickFormat?: string | ((t: any) => any) | null;
   tickRotate?: number;
-  grid?: boolean;
+  grid?: boolean | string | Interval | Iterable<any>;
   line?: boolean;
   label?: string | null;
   labelOffset?: number;
   labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
-  fontVariant?: CSSStyleDeclaration["fontVariant"];
+  fontVariant?: string | null;
   // ariaLabel?: string; // TODO
   // ariaDescription?: string; // TODO
 }

@@ -2,6 +2,7 @@ import {geoPath, line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {curveAuto, PathCurve} from "../curve.js";
 import {Mark} from "../mark.js";
+import {applyGroupedMarkers, markers} from "../marker.js";
 import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {
   applyDirectStyles,
@@ -11,7 +12,6 @@ import {
   groupIndex
 } from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
-import {applyGroupedMarkers, markers} from "./marker.js";
 
 const defaults = {
   ariaLabel: "line",

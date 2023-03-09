@@ -1,9 +1,8 @@
-import type {CurveFactory, CurveBundleFactory, CurveCardinalFactory, CurveCatmullRomFactory} from "d3";
+import type {CurveFactory} from "d3";
 
-export type CurveFunction = CurveFactory | CurveBundleFactory | CurveCardinalFactory | CurveCatmullRomFactory;
+export type CurveImplementation = CurveFactory;
 
 export type CurveName =
-  | "auto" // TODO only in certain contexts?
   | "basis"
   | "basis-closed"
   | "basis-open"
@@ -24,3 +23,5 @@ export type CurveName =
   | "step"
   | "step-after"
   | "step-before";
+
+export type CurveSpec = CurveName | CurveImplementation;

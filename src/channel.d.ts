@@ -6,7 +6,7 @@ export interface ChannelTransform {
 
 export interface ChannelSpec {
   value: ChannelValueSpec | null;
-  scale?: string | null; // TODO scale name
+  scale?: string | boolean; // TODO scale name
   type?: ScaleType;
   optional?: boolean;
   filter?: (value: any) => boolean;
@@ -23,7 +23,7 @@ export type ChannelValue =
   | ((d: any, i: number) => any) // function of data
   | ChannelTransform; // function of data
 
-export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale?: string | boolean | null};
+export type ChannelValueSpec = ChannelValue | Pick<ChannelSpec, "value" | "scale">;
 
 export type ChannelReduce = any; // TODO
 

@@ -4,6 +4,6 @@ export interface LinearRegressionOptions extends MarkOptions {
   // TODO
 }
 
-export function linearRegressionX(data?: Data | null, options?: LinearRegressionOptions): RenderableMark;
+export function linearRegressionX(data?: Data, options?: LinearRegressionOptions): RenderableMark;
 
-export function linearRegressionY(data?: Data | null, options?: LinearRegressionOptions): RenderableMark;
+export function linearRegressionY(data?: Data, options?: LinearRegressionOptions): RenderableMark;

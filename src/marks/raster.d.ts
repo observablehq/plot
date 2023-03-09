@@ -18,7 +18,7 @@ export interface RasterOptions extends MarkOptions {
 }
 
 export function raster(options?: RasterOptions): Raster;
-export function raster(data?: Data | null, options?: RasterOptions): Raster;
+export function raster(data?: Data, options?: RasterOptions): Raster;
 
 export const interpolateNone: RasterInterpolate;
 

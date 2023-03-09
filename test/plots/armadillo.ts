@@ -4,7 +4,7 @@ import {geoArmadillo} from "d3-geo-projection";
 import {feature} from "topojson-client";
 
 export async function armadillo() {
-  const world = await d3.json("data/countries-50m.json");
+  const world = await d3.json<any>("data/countries-50m.json");
   const land = feature(world, world.objects.land);
   return Plot.plot({
     width: 960,

@@ -27,9 +27,10 @@
     "src/**/*.js"
   ],
   "scripts": {
-    "test": "yarn test:mocha && yarn test:lint",
+    "test": "yarn test:mocha && yarn test:lint && yarn test:prettier",
     "test:mocha": "mkdir -p test/output && mocha 'test/**/*-test.*' 'test/plot.js'",
     "test:lint": "eslint src test",
+    "test:prettier": "prettier --check src test",
     "test:tsc": "tsc",
     "prepublishOnly": "rm -rf dist && rollup -c",
     "postpublish": "git push && git push --tags",
@@ -47,6 +48,7 @@
     "@rollup/plugin-json": "^5.0.2",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.1.0",
+    "@types/d3": "^7.4.0",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
     "canvas": "^2.0.0",

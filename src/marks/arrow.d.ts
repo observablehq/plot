@@ -4,6 +4,6 @@ export interface ArrowOptions extends MarkOptions {
   // TODO
 }
 
-export function arrow(data?: Data | null, options?: ArrowOptions): Arrow;
+export function arrow(data?: Data, options?: ArrowOptions): Arrow;
 
 export class Arrow extends RenderableMark {}
