@@ -19,6 +19,24 @@ it("Plot does not throw an error if an ordinal color scale has a huge inferred d
   assert.ok(Plot.dotX({length: 10001}, {x: 0, fill: d3.randomLcg(42)}).plot({color: {type: "ordinal"}}));
 });
 
+it("Plot throws an error if a threshold scale has a non-monotonic domain", () => {
+  assert.throws(
+    () => Plot.frame().plot({color: {type: "threshold", domain: [1, 0, 1]}}),
+    /the color scale has a non-monotonic domain/
+  );
+});
+
+it("Plot does not throw an error if a quantile scale has a non-monotonic domain", () => {
+  const plot = Plot.frame().plot({
+    color: {type: "quantile", n: 4, domain: Array.from({length: 10001}, d3.randomLcg(42))}
+  });
+  scaleEqual(plot.scale("color"), {
+    domain: [0.250974579481408, 0.5048853259067982, 0.7546474279370159],
+    range: ["#d7191c", "#fdae61", "#abd9e9", "#2c7bb6"],
+    type: "threshold"
+  });
+});
+
 it("Plot.scale(description) returns a standalone scale", () => {
   const color = Plot.scale({color: {type: "linear"}});
   scaleEqual(color, {

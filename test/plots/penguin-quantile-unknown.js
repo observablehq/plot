@@ -10,3 +10,10 @@ export async function penguinQuantileUnknown() {
     color: {type: "quantile", n: 5, scheme: "blues", unknown: "red", legend: true}
   });
 }
+
+export async function penguinQuantileEmpty() {
+  const sample = await d3.csv("data/penguins.csv", d3.autoType);
+  return Plot.tickX(sample, {x: "culmen_length_mm", stroke: () => null}).plot({
+    color: {type: "quantile", n: 5, scheme: "blues", unknown: "red"}
+  });
+}
