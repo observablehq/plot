@@ -1,12 +1,17 @@
-import type {ScaleType} from "./scales.js";
+import type {ScaleName, ScaleType} from "./scales.js";
 
 export interface ChannelTransform {
   transform: (data: any[]) => any[];
 }
 
+// TODO Adopt stricter Channel instead of ChannelSpec.
+export type Channels = {[name: string]: ChannelSpec};
+
+export type ChannelValues = {[name: string]: any[]};
+
 export interface ChannelSpec {
   value: ChannelValueSpec | null;
-  scale?: string | boolean; // TODO scale name
+  scale?: ScaleName | "auto" | boolean;
   type?: ScaleType;
   optional?: boolean;
   filter?: (value: any) => boolean;
@@ -25,22 +30,54 @@ export type ChannelValue =
 
 export type ChannelValueSpec = ChannelValue | Pick<ChannelSpec, "value" | "scale">;
 
-export type ChannelReduce = any; // TODO
-
 export type ChannelDomainSort = {
   [name: string]:
     | string
-    | null // value
-    | boolean // only for reverse
-    | number // only for limit
-    | undefined // only for reverse and limit
+    | Reducer // reduce
+    | boolean // reverse
+    | number // limit
+    | null
+    | undefined
     | {
         value: string | null; // channel name, "data", "width", "height"
-        reduce?: ChannelReduce;
+        reduce?: Reducer;
         reverse?: boolean;
         limit?: number;
       };
-  reduce?: ChannelReduce;
+  reduce?: Reducer;
   reverse?: boolean;
   limit?: number;
 };
+
+export type ReducerName =
+  | "first"
+  | "last"
+  | "count"
+  | "distinct"
+  | "sum"
+  | "proportion"
+  | "proportion-facet"
+  | "deviation"
+  | "min"
+  | "min-index"
+  | "max"
+  | "max-index"
+  | "mean"
+  | "median"
+  | "variance"
+  | "mode"
+  | `p${number}${number}` // percentile
+  | "x"
+  | "x1"
+  | "x2"
+  | "y"
+  | "y1"
+  | "y2";
+
+export type ReducerFunction = (values: any[], extent: [min: any, max: any]) => any;
+
+export interface ReducerImplementation {
+  reduce(index: number[], values: any[], extent: [min: any, max: any]): any;
+}
+
+export type Reducer = ReducerName | ReducerFunction | ReducerImplementation;

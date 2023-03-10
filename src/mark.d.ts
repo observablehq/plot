@@ -1,30 +1,28 @@
 import type {Dimensions} from "./dimensions.js";
-import type {ChannelDomainSort, ChannelSpec, ChannelValue, ChannelValueSpec} from "./channel.js";
+import type {Channels, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Facet, FacetAnchor} from "./facet.js";
 import type {plot} from "./plot.js";
+import type {ScaleFunctions} from "./scales.js";
+import type {TransformOptions} from "./transforms/basic.js";
 
 export type Data = Iterable<any> | {length: number};
 
 export type RenderFunction = (
   index: number[],
-  scales: {[name: string]: (value: any) => any},
-  values: {[name: string]: any[]},
+  scales: ScaleFunctions,
+  values: ChannelValues,
   dimensions: Dimensions,
   context: Context
 ) => SVGElement | null;
 
 export type Markish = RenderFunction | Renderable | Markish[];
 
-export type MarkTransform = (data: any[], facets: number[][]) => {data?: any[]; facets?: number[][]};
-
-export type MarkInitializer = any; // TODO
-
 export interface Renderable {
   render: RenderFunction;
 }
 
-export interface MarkOptions {
+export interface MarkOptions extends TransformOptions {
   facet?: Facet | boolean | null;
   facetAnchor?: FacetAnchor | null;
   fx?: ChannelValue;
@@ -37,12 +35,7 @@ export interface MarkOptions {
   marginBottom?: number;
   marginLeft?: number;
   clip?: "frame" | "sphere" | boolean | null;
-  channels?: {[name: string]: ChannelSpec};
-  filter?: ChannelValue;
-  reverse?: boolean;
-  sort?: ChannelValue | ((a: any, b: any) => number) | ChannelDomainSort;
-  transform?: MarkTransform;
-  initializer?: MarkInitializer;
+  channels?: Channels;
   title?: ChannelValueSpec;
   href?: ChannelValueSpec;
   ariaLabel?: ChannelValueSpec;

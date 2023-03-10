@@ -1,33 +1,5 @@
-// TODO
+import type {Initialized, Transformed} from "./basic.js";
 
-export function centroid({
-  geometry,
-  ...options
-}?: {
-  geometry?:
-    | {
-        transform: (d: any) => any;
-      }
-    | undefined;
-}): {
-  initializer: any;
-  sort?: any;
-};
+export function centroid<T>(options?: T): Initialized<T>;
 
-export function geoCentroid({
-  geometry,
-  ...options
-}?: {
-  geometry?:
-    | {
-        transform: (d: any) => any;
-      }
-    | undefined;
-}): {
-  x: {
-    transform: (data: any) => Float64Array;
-  };
-  y: {
-    transform: () => Float64Array;
-  };
-};
+export function geoCentroid<T>(options?: T): Transformed<T>;

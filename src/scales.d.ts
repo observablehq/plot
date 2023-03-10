@@ -1,5 +1,9 @@
 import type {Interval} from "./interval.js";
 
+export type ScaleName = "x" | "y" | "fx" | "fy" | "r" | "color" | "opacity" | "symbol" | "length";
+
+export type ScaleFunctions = Partial<{[name in ScaleName]: (value: any) => any}>;
+
 export type ScaleType =
   | "linear"
   | "pow"
@@ -133,8 +137,6 @@ export interface ScaleAxisOptions {
   labelOffset?: number;
   labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
   fontVariant?: string | null;
-  // ariaLabel?: string; // TODO
-  // ariaDescription?: string; // TODO
 }
 
 export interface ScaleLegendOptions {

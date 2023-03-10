@@ -1,13 +1,47 @@
-import type {MarkOptions, MarkTransform} from "../mark.js";
+import type {ChannelDomainSort, Channels, ChannelValue} from "../channel.js";
+import type {Context} from "../context.js";
+import type {Dimensions} from "../dimensions.js";
+import type {ScaleFunctions} from "../scales.js";
 
-export function transform<T extends MarkOptions>(options: T, transform: MarkTransform): T;
+export type TransformFunction = (data: any[], facets: number[][]) => {data?: any[]; facets?: number[][]};
 
-export function initializer<T extends MarkOptions>(options: T, initializer: any): T;
+export type InitializerFunction = (
+  data: any[],
+  facets: number[][],
+  channels: Channels,
+  scales: ScaleFunctions,
+  dimensions: Dimensions,
+  context: Context
+) => {
+  data?: any[]; // TODO Data?
+  facets?: number[][];
+  channels?: Channels;
+};
 
-export function filter<T extends MarkOptions>(test: (d: any, i: number) => boolean, options: T): T;
+export interface TransformOptions {
+  filter?: ChannelValue;
+  reverse?: boolean;
+  sort?: ChannelValue | CompareFunction | ChannelDomainSort;
+  transform?: TransformFunction;
+  initializer?: InitializerFunction;
+}
 
-export function reverse<T extends MarkOptions>(options: T): T;
+export type FilterFunction = (d: any, i: number) => boolean;
 
-export function shuffle<T extends MarkOptions>(options: T): T;
+export type CompareFunction = (a: any, b: any) => number;
 
-export function sort<T extends MarkOptions>(order: MarkOptions["sort"], options: T): T;
+export type Transformed<T> = T & {transform: TransformFunction};
+
+export type Initialized<T> = T & {initializer: InitializerFunction};
+
+export function transform<T>(options: T, transform: TransformFunction): Transformed<T>;
+
+export function initializer<T>(options: T, initializer: InitializerFunction): Initialized<T>;
+
+export function filter<T>(test: FilterFunction, options?: T): Transformed<T>;
+
+export function reverse<T>(options?: T): Transformed<T>;
+
+export function shuffle<T>(options?: T): Transformed<T>;
+
+export function sort<T>(order: TransformOptions["sort"], options?: T): Transformed<T>;
