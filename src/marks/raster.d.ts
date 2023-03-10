@@ -1,3 +1,4 @@
+import type {ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
 export type RasterInterpolateName = "none" | "nearest" | "barycentric" | "random-walk";
@@ -14,7 +15,18 @@ export type RasterInterpolate = (
 export type RandomSource = () => number;
 
 export interface RasterOptions extends MarkOptions {
-  // TODO
+  x?: ChannelValueSpec;
+  y?: ChannelValueSpec;
+  x1?: number;
+  x2?: number;
+  y1?: number;
+  y2?: number;
+  width?: number;
+  height?: number;
+  pixelSize?: number;
+  blur?: number;
+  interpolate?: RasterInterpolate;
+  imageRendering?: string;
 }
 
 export function raster(options?: RasterOptions): Raster;

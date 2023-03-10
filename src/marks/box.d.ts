@@ -1,11 +1,13 @@
-import type {ChannelValueSpec} from "channel.js";
-import type {CompoundMark, Data, MarkOptions} from "../mark.js";
+import type {CompoundMark, Data} from "../mark.js";
+import type {BarXOptions, BarYOptions} from "./bar.js";
+import type {DotOptions} from "./dot.js";
+import type {RuleXOptions, RuleYOptions} from "./rule.js";
+import type {TickOptions} from "./tick.js";
 
-export interface BoxOptions extends MarkOptions {
-  x?: ChannelValueSpec;
-  y?: ChannelValueSpec;
-}
+export type BoxXOptions = DotOptions & BarXOptions & TickOptions & RuleXOptions;
 
-export function boxX(data?: Data, options?: BoxOptions): CompoundMark;
+export type BoxYOptions = DotOptions & BarYOptions & TickOptions & RuleYOptions;
 
-export function boxY(data?: Data, options?: BoxOptions): CompoundMark;
+export function boxX(data?: Data, options?: BoxXOptions): CompoundMark;
+
+export function boxY(data?: Data, options?: BoxYOptions): CompoundMark;

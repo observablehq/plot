@@ -1,5 +1,18 @@
-// TODO
+import type {MarkOptions} from "../mark.js";
+import type {Transformed} from "./basic.js";
 
-export function treeNode(options?: {}): any;
+export interface TreeTransformOptions {
+  delimiter?: string;
+  treeLayout?: Function; // TODO
+  treeSort?: any; // TODO
+  treeSeparation?: any; // TODO
+  treeAnchor?: "left" | "right";
+}
 
-export function treeLink(options?: {}): any;
+export function treeNode<T extends MarkOptions>(
+  options?: T & TreeTransformOptions
+): Transformed<Omit<T, keyof TreeTransformOptions>>;
+
+export function treeLink<T extends MarkOptions>(
+  options?: T & TreeTransformOptions
+): Transformed<Omit<T, keyof TreeTransformOptions>>;

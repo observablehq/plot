@@ -1,7 +1,10 @@
-import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {ChannelValue} from "../channel.js";
+import type {Data, RenderableMark} from "../mark.js";
+import type {RasterOptions} from "./raster.js";
 
-export interface ContourOptions extends MarkOptions {
-  // TODO
+export interface ContourOptions extends Omit<RasterOptions, "imageRendering"> {
+  smooth?: boolean;
+  value?: ChannelValue;
 }
 
 export function contour(options?: ContourOptions): Contour;

@@ -4,10 +4,42 @@ export interface ChannelTransform {
   transform: (data: any[]) => any[];
 }
 
-// TODO Adopt stricter Channel instead of ChannelSpec.
-export type Channels = {[name: string]: ChannelSpec};
+export type ChannelName =
+  | "ariaLabel"
+  | "fill"
+  | "fillOpacity"
+  | "fontSize"
+  | "fx" // TODO separate FacetChannelName?
+  | "fy" // TODO separate FacetChannelName?
+  | "geometry"
+  | "height"
+  | "href"
+  | "length"
+  | "opacity"
+  | "path"
+  | "r"
+  | "rotate"
+  | "src"
+  | "stroke"
+  | "strokeOpacity"
+  | "strokeWidth"
+  | "symbol"
+  | "text"
+  | "title"
+  | "weight"
+  | "width"
+  | "x"
+  | "x1"
+  | "x2"
+  | "y"
+  | "y1"
+  | "y2"
+  | "z";
 
-export type ChannelValues = {[name: string]: any[]};
+// TODO Adopt stricter Channel instead of ChannelSpec.
+export type Channels = {[key in ChannelName]?: ChannelSpec};
+
+export type ChannelValues = {[key in ChannelName]?: any[]};
 
 export interface ChannelSpec {
   value: ChannelValueSpec | null;
@@ -20,7 +52,7 @@ export interface ChannelSpec {
 
 export type ChannelValue =
   | Iterable<any> // column of values
-  | string // field name, or literal color
+  | string // field or literal color
   | Date // constant
   | number // constant
   | boolean // constant
@@ -30,24 +62,21 @@ export type ChannelValue =
 
 export type ChannelValueSpec = ChannelValue | Pick<ChannelSpec, "value" | "scale">;
 
-export type ChannelDomainSort = {
-  [name: string]:
-    | string
-    | Reducer // reduce
-    | boolean // reverse
-    | number // limit
-    | null
-    | undefined
-    | {
-        value: string | null; // channel name, "data", "width", "height"
-        reduce?: Reducer;
-        reverse?: boolean;
-        limit?: number;
-      };
+export type ChannelDomainValue = ChannelName | "data" | "width" | "height" | null;
+
+export interface ChannelDomainOptions {
   reduce?: Reducer;
   reverse?: boolean;
   limit?: number;
-};
+}
+
+export type ChannelDomainSort = {
+  [key in ScaleName]?:
+    | ChannelDomainValue
+    | ({
+        value: ChannelDomainValue;
+      } & ChannelDomainOptions);
+} & ChannelDomainOptions;
 
 export type ReducerName =
   | "first"
@@ -81,3 +110,9 @@ export interface ReducerImplementation {
 }
 
 export type Reducer = ReducerName | ReducerFunction | ReducerImplementation;
+
+export type ChannelReducers = {[key in ChannelName]?: Reducer}; // TODO ChannelReducerSpec {reducer, scale}
+
+export type ChannelInputs = {[key in ChannelName]?: ChannelValueSpec};
+
+export type ChannelOutputs<T> = {[key in keyof T]: ChannelValueSpec};

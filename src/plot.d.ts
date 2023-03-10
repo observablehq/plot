@@ -1,9 +1,9 @@
 import type {ChannelValue} from "./channel.js";
 import type {Data, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
-import type {ScaleLegendOptions, Scale, ScaleOptions} from "./scales.js";
+import type {ScaleLegendOptions, Scale, ScaleOptions, ScalesOptions} from "./scales.js";
 
-export interface PlotOptions {
+export interface PlotOptions extends ScalesOptions {
   // dimensions
   marginTop?: number;
   marginRight?: number;
@@ -38,15 +38,6 @@ export interface PlotOptions {
   axis?: ScaleOptions["axis"];
 
   // scale, axis, and legend definitions
-  fx?: ScaleOptions;
-  fy?: ScaleOptions;
-  x?: ScaleOptions;
-  y?: ScaleOptions;
-  r?: ScaleOptions;
-  color?: ScaleOptions;
-  opacity?: ScaleOptions;
-  length?: ScaleOptions;
-  symbol?: ScaleOptions;
   projection?: ProjectionOptions | ProjectionName | ProjectionFactory | ProjectionImplementation | null;
 
   // faceting

@@ -1,23 +1,24 @@
-// TODO
+import type {Transformed} from "./basic.js";
+import type {MapImplementation} from "./map.js";
 
-export function normalizeX(
-  basis: any,
-  options: any,
-  ...args: any[]
-): {
-  transform: any;
-  sort?: any;
-};
+export type NormalizeBasisName =
+  | "deviation"
+  | "first"
+  | "last"
+  | "max"
+  | "mean"
+  | "median"
+  | "min"
+  | "sum"
+  | `p${number}${number}`
+  | "extent";
 
-export function normalizeY(
-  basis: any,
-  options: any,
-  ...args: any[]
-): {
-  transform: any;
-  sort?: any;
-};
+export type NormalizeBasisFunction = (index: number[], values: any[]) => any;
 
-export function normalize(basis: any): {
-  map(I: any, S: any, T: any): void;
-};
+export type NormalizeBasis = NormalizeBasisName | NormalizeBasisFunction;
+
+export function normalizeX<T>(basis: NormalizeBasis, options?: T): Transformed<T>;
+
+export function normalizeY<T>(basis: NormalizeBasis, options?: T): Transformed<T>;
+
+export function normalize(basis: NormalizeBasis): MapImplementation;

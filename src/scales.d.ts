@@ -2,7 +2,7 @@ import type {Interval} from "./interval.js";
 
 export type ScaleName = "x" | "y" | "fx" | "fy" | "r" | "color" | "opacity" | "symbol" | "length";
 
-export type ScaleFunctions = Partial<{[name in ScaleName]: (value: any) => any}>;
+export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any};
 
 export type ScaleType =
   | "linear"
@@ -24,7 +24,8 @@ export type ScaleType =
   | "categorical"
   | "threshold"
   | "quantile"
-  | "quantize";
+  | "quantize"
+  | "identity";
 
 export type ColorSchemeName =
   | "accent"
@@ -77,6 +78,8 @@ export type ColorSchemeName =
   | "ylorrd"
   | "rainbow"
   | "sinebow";
+
+export type ScalesOptions = {[key in ScaleName]?: ScaleOptions};
 
 export interface ScaleOptions extends ScaleAxisOptions, ScaleLegendOptions {
   type?: ScaleType | null;

@@ -1,18 +1,30 @@
+import type {ChannelOutputs, ChannelReducers, Reducer} from "../channel.js";
+import type {MarkOptions} from "../mark.js";
 import type {Transformed} from "./basic.js";
-import type {ChannelValueSpec, Reducer} from "../channel.js";
 
-export type Reducers = {
-  [key: string]: Reducer;
-};
+export interface GroupOutputs {
+  data?: Reducer;
+  filter?: Reducer;
+  sort?: Reducer;
+  reverse?: boolean;
+}
 
-export type Outputs<T> = {
-  [key in keyof T]: ChannelValueSpec;
-};
+export function groupZ<T extends MarkOptions, S extends ChannelReducers>(
+  outputs?: S & GroupOutputs,
+  options?: T
+): Transformed<Omit<T, keyof (S & GroupOutputs)> & ChannelOutputs<Omit<S, keyof GroupOutputs>>>;
 
-export function groupZ<A, B extends Reducers>(outputs?: B, options?: A): Transformed<Omit<A, keyof B> & Outputs<B>>;
+export function groupX<T extends MarkOptions, S extends ChannelReducers>(
+  outputs?: S & GroupOutputs,
+  options?: T
+): Transformed<Omit<T, keyof (S & GroupOutputs)> & ChannelOutputs<Omit<S, keyof GroupOutputs>>>;
 
-export function groupX<A, B extends Reducers>(outputs?: B, options?: A): Transformed<Omit<A, keyof B> & Outputs<B>>;
+export function groupY<T extends MarkOptions, S extends ChannelReducers>(
+  outputs?: S & GroupOutputs,
+  options?: T
+): Transformed<Omit<T, keyof (S & GroupOutputs)> & ChannelOutputs<Omit<S, keyof GroupOutputs>>>;
 
-export function groupY<A, B extends Reducers>(outputs?: B, options?: A): Transformed<Omit<A, keyof B> & Outputs<B>>;
-
-export function group<A, B extends Reducers>(outputs?: B, options?: A): Transformed<Omit<A, keyof B> & Outputs<B>>;
+export function group<T extends MarkOptions, S extends ChannelReducers>(
+  outputs?: S & GroupOutputs,
+  options?: T
+): Transformed<Omit<T, keyof (S & GroupOutputs)> & ChannelOutputs<Omit<S, keyof GroupOutputs>>>;

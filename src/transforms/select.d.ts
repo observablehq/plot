@@ -1,39 +1,23 @@
-// TODO
+import type {ChannelName} from "../channel.js";
+import type {MarkOptions} from "../mark.js";
+import type {Transformed} from "./basic.js";
 
-export function select(
-  selector: any,
-  options?: {}
-): {
-  transform: any;
-  sort?: any;
-};
+export type SelectorName = "first" | "last";
 
-export function selectFirst(options: any): {
-  transform: any;
-  sort?: any;
-};
+export type SelectorFunction = (index: number[], values: any[] | null) => number[];
 
-export function selectLast(options: any): {
-  transform: any;
-  sort?: any;
-};
+export type Selector = SelectorName | SelectorFunction | {[key in ChannelName]?: SelectorName | SelectorFunction};
 
-export function selectMinX(options: any): {
-  transform: any;
-  sort?: any;
-};
+export function select<T extends MarkOptions>(selector: Selector, options?: T): Transformed<T>;
 
-export function selectMinY(options: any): {
-  transform: any;
-  sort?: any;
-};
+export function selectFirst<T extends MarkOptions>(options?: T): Transformed<T>;
 
-export function selectMaxX(options: any): {
-  transform: any;
-  sort?: any;
-};
+export function selectLast<T extends MarkOptions>(options?: T): Transformed<T>;
 
-export function selectMaxY(options: any): {
-  transform: any;
-  sort?: any;
-};
+export function selectMinX<T extends MarkOptions>(options?: T): Transformed<T>;
+
+export function selectMinY<T extends MarkOptions>(options?: T): Transformed<T>;
+
+export function selectMaxX<T extends MarkOptions>(options?: T): Transformed<T>;
+
+export function selectMaxY<T extends MarkOptions>(options?: T): Transformed<T>;

@@ -1,5 +1,12 @@
+import type {ChannelOutputs, ChannelReducers} from "../channel.js";
+import type {MarkOptions} from "../mark.js";
 import type {Transformed} from "./basic.js";
-import type {Outputs, Reducers} from "./group.js";
 
-// TODO binWidth
-export function hexbin<A, B extends Reducers>(outputs?: B, options?: A): Transformed<Omit<A, keyof B> & Outputs<B>>;
+export interface HexbinOptions {
+  binWidth?: number;
+}
+
+export function hexbin<T extends MarkOptions, S extends ChannelReducers>(
+  outputs?: S,
+  options?: T & HexbinOptions
+): Transformed<Omit<T, keyof (S & HexbinOptions)> & ChannelOutputs<S>>;

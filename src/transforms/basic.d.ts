@@ -1,6 +1,7 @@
 import type {ChannelDomainSort, Channels, ChannelValue} from "../channel.js";
 import type {Context} from "../context.js";
 import type {Dimensions} from "../dimensions.js";
+import type {MarkOptions} from "../mark.js";
 import type {ScaleFunctions} from "../scales.js";
 
 export type TransformFunction = (data: any[], facets: number[][]) => {data?: any[]; facets?: number[][]};
@@ -30,18 +31,18 @@ export type FilterFunction = (d: any, i: number) => boolean;
 
 export type CompareFunction = (a: any, b: any) => number;
 
-export type Transformed<T> = T & {transform: TransformFunction};
+export type Transformed<T extends MarkOptions> = T & {transform: TransformFunction};
 
-export type Initialized<T> = T & {initializer: InitializerFunction};
+export type Initialized<T extends MarkOptions> = T & {initializer: InitializerFunction};
 
-export function transform<T>(options: T, transform: TransformFunction): Transformed<T>;
+export function transform<T extends MarkOptions>(options: T, transform: TransformFunction): Transformed<T>;
 
-export function initializer<T>(options: T, initializer: InitializerFunction): Initialized<T>;
+export function initializer<T extends MarkOptions>(options: T, initializer: InitializerFunction): Initialized<T>;
 
-export function filter<T>(test: FilterFunction, options?: T): Transformed<T>;
+export function filter<T extends MarkOptions>(test: FilterFunction, options?: T): Transformed<T>;
 
-export function reverse<T>(options?: T): Transformed<T>;
+export function reverse<T extends MarkOptions>(options?: T): Transformed<T>;
 
-export function shuffle<T>(options?: T): Transformed<T>;
+export function shuffle<T extends MarkOptions>(options?: T): Transformed<T>;
 
-export function sort<T>(order: TransformOptions["sort"], options?: T): Transformed<T>;
+export function sort<T extends MarkOptions>(order: TransformOptions["sort"], options?: T): Transformed<T>;

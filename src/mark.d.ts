@@ -1,5 +1,5 @@
 import type {Dimensions} from "./dimensions.js";
-import type {Channels, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
+import type {ChannelInputs, Channels, ChannelValues} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Facet, FacetAnchor} from "./facet.js";
 import type {plot} from "./plot.js";
@@ -22,11 +22,9 @@ export interface Renderable {
   render: RenderFunction;
 }
 
-export interface MarkOptions extends TransformOptions {
+export interface MarkOptions extends ChannelInputs, TransformOptions {
   facet?: Facet | boolean | null;
   facetAnchor?: FacetAnchor | null;
-  fx?: ChannelValue;
-  fy?: ChannelValue;
   dx?: number;
   dy?: number;
   margin?: number;
@@ -36,23 +34,14 @@ export interface MarkOptions extends TransformOptions {
   marginLeft?: number;
   clip?: "frame" | "sphere" | boolean | null;
   channels?: Channels;
-  title?: ChannelValueSpec;
-  href?: ChannelValueSpec;
-  ariaLabel?: ChannelValueSpec;
   ariaDescription?: string;
   ariaHidden?: string;
   target?: string;
-  fill?: ChannelValueSpec;
-  fillOpacity?: ChannelValueSpec;
-  stroke?: ChannelValueSpec;
-  strokeWidth?: ChannelValueSpec;
-  strokeOpacity?: ChannelValueSpec;
   strokeLinejoin?: string;
   strokeLinecap?: string;
   strokeMiterlimit?: number;
   strokeDasharray?: string | number;
   strokeDashoffset?: string | number;
-  opacity?: ChannelValueSpec;
   mixBlendMode?: string;
   paintOrder?: string;
   pointerEvents?: string;
