@@ -29,7 +29,11 @@ export interface WindowOptions {
   strict?: boolean;
 }
 
+export function windowX<T extends MarkOptions>(options?: T & WindowOptions): Transformed<Omit<T, keyof WindowOptions>>; // TODO fix window to consume options
+
 export function windowX<T extends MarkOptions>(windowOptions?: WindowOptions | number, options?: T): Transformed<T>;
+
+export function windowY<T extends MarkOptions>(options?: T & WindowOptions): Transformed<Omit<T, keyof WindowOptions>>; // TODO fix window to consume options
 
 export function windowY<T extends MarkOptions>(windowOptions?: WindowOptions | number, options?: T): Transformed<T>;
 
