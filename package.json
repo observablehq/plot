@@ -53,6 +53,7 @@
     "@types/node": "^18.11.13",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
+    "arquero": "^5",
     "canvas": "^2.0.0",
     "d3-geo-projection": "^4.0.0",
     "eslint": "^8.16.0",

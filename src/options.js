@@ -10,7 +10,9 @@ const objectToString = Object.prototype.toString;
 export function valueof(data, value, type) {
   const valueType = typeof value;
   return valueType === "string"
-    ? maybeTypedMap(data, field(value), type)
+    ? typeof data?.array === "function"
+      ? data.array(value, type)
+      : maybeTypedMap(data, field(value), type)
     : valueType === "function"
     ? maybeTypedMap(data, value, type)
     : valueType === "number" || value instanceof Date || valueType === "boolean"
@@ -124,7 +126,21 @@ export function keyword(input, name, allowed) {
 
 // Promotes the specified data to an array as needed.
 export function arrayify(data) {
-  return data == null || data instanceof Array || data instanceof TypedArray ? data : Array.from(data);
+  return data == null || data instanceof Array || data instanceof TypedArray ? data : maybeColumnar(data);
+}
+
+function maybeColumnar(data) {
+  if (isObject(data)) {
+    // arquero table (duck typing)
+    if (typeof data.array === "function" && typeof data.totalRows === "function")
+      return Object.assign(new Array(data.totalRows()), {array: (x, type) => data.array(x, type)});
+    // quarto's dataframe (object of arrays)
+    const columns = Object.keys(data);
+    const lengths = columns.map((c) => data[c]?.length);
+    if (new Set(lengths).size === 1 && lengths[0] !== undefined)
+      return Object.assign(new Array(lengths[0]), {array: (x, type) => maybeTypedArrayify(data[x], type)});
+  }
+  return Array.from(data);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
