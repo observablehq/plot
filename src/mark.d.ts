@@ -16,7 +16,7 @@ export type RenderFunction = (
   context: Context
 ) => SVGElement | null;
 
-export type Markish = RenderFunction | Renderable | Markish[];
+export type Markish = RenderFunction | Renderable | Markish[] | null | undefined;
 
 export interface Renderable {
   render: RenderFunction;
