@@ -1,22 +1,8 @@
-// TODO
+import type {Transformed} from "./basic.js";
+import type {Outputs, Reducers} from "./group.js";
 
-export function binX(
-  outputs?: {
-    y: string;
-  },
-  options?: {}
-): any;
+export function binX<A, B extends Reducers>(outputs?: B, options?: A): Transformed<Omit<A, keyof B> & Outputs<B>>;
 
-export function binY(
-  outputs?: {
-    x: string;
-  },
-  options?: {}
-): any;
+export function binY<A, B extends Reducers>(outputs?: B, options?: A): Transformed<Omit<A, keyof B> & Outputs<B>>;
 
-export function bin(
-  outputs?: {
-    fill: string;
-  },
-  options?: {}
-): any;
+export function bin<A, B extends Reducers>(outputs?: B, options?: A): Transformed<Omit<A, keyof B> & Outputs<B>>;

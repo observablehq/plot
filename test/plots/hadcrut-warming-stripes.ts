@@ -16,7 +16,7 @@ export async function hadcrutWarmingStripes() {
       round: true
     },
     color: {
-      scheme: "BuRd",
+      scheme: "burd",
       symmetric: false
     },
     marks: [

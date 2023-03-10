@@ -3,6 +3,7 @@
     "allowJs": true,
     "strict": true,
     "noEmit": true,
+    "noImplicitAny": false,
     "module": "Node16",
     "baseUrl": "./src",
     "paths": {

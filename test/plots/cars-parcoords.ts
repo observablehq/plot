@@ -2,11 +2,11 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function carsParcoords() {
-  const cars = await d3.csv("data/cars.csv", d3.autoType);
+  const cars: any = await d3.csv("data/cars.csv", d3.autoType);
   const dimensions = cars.columns.slice(1);
 
   // Reshape wide data to make it tidy.
-  const data = dimensions.flatMap((dimension) => {
+  const data = dimensions.flatMap((dimension: string) => {
     return cars.map(({name, year, [dimension]: value}) => {
       return {name: `${name}-${year}`, dimension, value};
     });

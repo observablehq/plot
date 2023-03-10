@@ -16,6 +16,8 @@ export type TextOverflow =
   | "ellipsis-end";
 
 export interface TextOptions extends MarkOptions {
+  x?: ChannelValueSpec;
+  y?: ChannelValueSpec;
   text?: ChannelValueSpec;
   frameAnchor?: FrameAnchor;
   textAnchor?: TextAnchor;

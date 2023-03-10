@@ -1,7 +1,13 @@
+import type {ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
 export interface DensityOptions extends MarkOptions {
-  // TODO
+  x?: ChannelValueSpec;
+  y?: ChannelValueSpec;
+  z?: ChannelValueSpec;
+  weight?: ChannelValueSpec;
+  bandwidth?: number;
+  thresholds?: number | Iterable<number>;
 }
 
 export function density(data?: Data, options?: DensityOptions): Density;

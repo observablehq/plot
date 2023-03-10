@@ -14,7 +14,7 @@ export async function metroInequalityChange() {
       label: "↑ Inequality"
     },
     color: {
-      scheme: "BuRd",
+      scheme: "burd",
       symmetric: false
     },
     marks: [

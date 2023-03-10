@@ -1,7 +1,12 @@
+import type {ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
 export interface LinearRegressionOptions extends MarkOptions {
-  // TODO
+  x?: ChannelValueSpec;
+  y?: ChannelValueSpec;
+  z?: ChannelValueSpec;
+  ci?: number;
+  precision?: number;
 }
 
 export function linearRegressionX(data?: Data, options?: LinearRegressionOptions): RenderableMark;

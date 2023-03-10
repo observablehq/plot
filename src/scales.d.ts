@@ -17,6 +17,10 @@ export type ScaleType =
   | "ordinal"
   | "sequential"
   | "diverging"
+  | "diverging-log"
+  | "diverging-pow"
+  | "diverging-sqrt"
+  | "diverging-symlog"
   | "categorical"
   | "threshold"
   | "quantile"
@@ -141,6 +145,8 @@ export interface ScaleAxisOptions {
 
 export interface ScaleLegendOptions {
   legend?: string | boolean | null; // TODO
+  fill?: string;
+  stroke?: string;
 }
 
 export type Interpolate = string; // TODO
