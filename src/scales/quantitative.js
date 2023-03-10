@@ -156,6 +156,7 @@ export function ScaleQuantile(
     n = quantiles,
     scheme = "rdylbu",
     domain = inferQuantileDomain(channels),
+    unknown,
     interpolate,
     reverse
   }
@@ -171,7 +172,7 @@ export function ScaleQuantile(
   if (domain.length > 0) {
     domain = scaleQuantile(domain, range === undefined ? {length: n} : range).quantiles();
   }
-  return ScaleThreshold(key, channels, {domain, range, reverse});
+  return ScaleThreshold(key, channels, {domain, range, reverse, unknown});
 }
 
 export function ScaleQuantize(
@@ -226,7 +227,7 @@ export function ScaleThreshold(
 ) {
   domain = arrayify(domain);
   const sign = orderof(domain); // preserve descending domain
-  if (!isOrdered(domain, sign)) throw new Error(`the ${key} scale has a non-monotonic domain`);
+  if (!isNaN(sign) && !isOrdered(domain, sign)) throw new Error(`the ${key} scale has a non-monotonic domain`);
   if (reverse) range = reverseof(range); // domain ascending, so reverse range
   return {
     type: "threshold",
