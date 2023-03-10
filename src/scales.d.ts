@@ -109,9 +109,9 @@ export interface ScaleOptions extends ScaleAxisOptions, ScaleLegendOptions {
   // symlog scale options
   constant?: number;
 
-  // TODO quantile scale
-  // TODO quantize scale
-  // TODO threshold scale
+  // quantize and quantile scale options
+  n?: number;
+  quantiles?: number; // deprecated; use n instead
 
   // diverging scale options
   pivot?: any;
