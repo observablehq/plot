@@ -132,13 +132,28 @@ export function arrayify(data) {
 function maybeColumnar(data) {
   if (isObject(data)) {
     // arquero table (duck typing)
-    if (typeof data.array === "function" && typeof data.totalRows === "function")
-      return Object.assign(new Array(data.totalRows()), {array: (x, type) => data.array(x, type)});
+    if (typeof data.array === "function" && typeof data.totalRows === "function") {
+      return {
+        length: data.totalRows(),
+        array: (x, type) => data.array(x, type),
+        [Symbol.iterator]: function* () {
+          yield* data;
+        }
+      };
+    }
     // quarto's dataframe (object of arrays)
     const columns = Object.keys(data);
     const lengths = columns.map((c) => data[c]?.length);
-    if (new Set(lengths).size === 1 && lengths[0] !== undefined)
-      return Object.assign(new Array(lengths[0]), {array: (x, type) => maybeTypedArrayify(data[x], type)});
+    if (new Set(lengths).size === 1 && lengths[0] !== undefined) {
+      const length = lengths[0];
+      return {
+        length,
+        array: (x, type) => maybeTypedArrayify(data[x], type),
+        [Symbol.iterator]: function* () {
+          for (let i = 0; i < length; ++i) yield Object.fromEntries(columns.map((c) => [c, data[c][i]]));
+        }
+      };
+    }
   }
   return Array.from(data);
 }
