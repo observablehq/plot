@@ -11,9 +11,9 @@ import {
 import {positive, negative} from "../defined.js";
 import {quantitativeScheme} from "./schemes.js";
 import {registry, color} from "./index.js";
-import {inferDomain, Interpolator, flip, interpolatePiecewise} from "./quantitative.js";
+import {inferDomain, maybeInterpolator, flip, interpolatePiecewise} from "./quantitative.js";
 
-function ScaleD(
+function createScaleD(
   key,
   scale,
   transform,
@@ -48,7 +48,7 @@ function ScaleD(
   // function is a “fixed” interpolator on the [0, 1] interval, as when a
   // color scheme such as interpolateRdBu is used.
   if (typeof interpolate !== "function") {
-    interpolate = Interpolator(interpolate);
+    interpolate = maybeInterpolator(interpolate);
   }
 
   // If an explicit range is specified, promote it to a piecewise interpolator.
@@ -75,31 +75,35 @@ function ScaleD(
   return {type, domain: [min, max], pivot, interpolate, scale};
 }
 
-export function ScaleDiverging(key, channels, options) {
-  return ScaleD(key, scaleDiverging(), transformIdentity, channels, options);
+export function createScaleDiverging(key, channels, options) {
+  return createScaleD(key, scaleDiverging(), transformIdentity, channels, options);
 }
 
-export function ScaleDivergingSqrt(key, channels, options) {
-  return ScaleDivergingPow(key, channels, {...options, exponent: 0.5});
+export function createScaleDivergingSqrt(key, channels, options) {
+  return createScaleDivergingPow(key, channels, {...options, exponent: 0.5});
 }
 
-export function ScaleDivergingPow(key, channels, {exponent = 1, ...options}) {
-  return ScaleD(key, scaleDivergingPow().exponent((exponent = +exponent)), transformPow(exponent), channels, {
+export function createScaleDivergingPow(key, channels, {exponent = 1, ...options}) {
+  return createScaleD(key, scaleDivergingPow().exponent((exponent = +exponent)), transformPow(exponent), channels, {
     ...options,
     type: "diverging-pow"
   });
 }
 
-export function ScaleDivergingLog(
+export function createScaleDivergingLog(
   key,
   channels,
   {base = 10, pivot = 1, domain = inferDomain(channels, pivot < 0 ? negative : positive), ...options}
 ) {
-  return ScaleD(key, scaleDivergingLog().base((base = +base)), transformLog, channels, {domain, pivot, ...options});
+  return createScaleD(key, scaleDivergingLog().base((base = +base)), transformLog, channels, {
+    domain,
+    pivot,
+    ...options
+  });
 }
 
-export function ScaleDivergingSymlog(key, channels, {constant = 1, ...options}) {
-  return ScaleD(
+export function createScaleDivergingSymlog(key, channels, {constant = 1, ...options}) {
+  return createScaleD(
     key,
     scaleDivergingSymlog().constant((constant = +constant)),
     transformSymlog(constant),

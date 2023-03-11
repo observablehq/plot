@@ -457,7 +457,7 @@ export function inherit(options = {}, ...rest) {
 
 // Given an iterable of named things (objects with a name property), returns a
 // corresponding object with properties associated with the given name.
-export function Named(things) {
+export function named(things) {
   console.warn("named iterables are deprecated; please use an object instead");
   const names = new Set();
   return Object.fromEntries(
@@ -474,5 +474,5 @@ export function Named(things) {
 }
 
 export function maybeNamed(things) {
-  return isIterable(things) ? Named(things) : things;
+  return isIterable(things) ? named(things) : things;
 }

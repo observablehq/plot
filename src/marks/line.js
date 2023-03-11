@@ -1,6 +1,6 @@
 import {geoPath, line as shapeLine} from "d3";
 import {create} from "../context.js";
-import {curveAuto, PathCurve} from "../curve.js";
+import {curveAuto, maybeCurveAuto} from "../curve.js";
 import {Mark} from "../mark.js";
 import {applyGroupedMarkers, markers} from "../marker.js";
 import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.js";
@@ -37,7 +37,7 @@ export class Line extends Mark {
       defaults
     );
     this.z = z;
-    this.curve = PathCurve(curve, tension);
+    this.curve = maybeCurveAuto(curve, tension);
     markers(this, options);
   }
   filter(index) {

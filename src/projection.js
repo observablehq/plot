@@ -25,7 +25,7 @@ const pi = Math.PI;
 const tau = 2 * pi;
 const defaultAspectRatio = 0.618;
 
-export function Projection(
+export function createProjection(
   {
     projection,
     inset: globalInset = 0,
@@ -254,7 +254,7 @@ export function projectionAspectRatio(projection, marks) {
 
 // Extract the (possibly) scaled values for the x and y channels, and apply the
 // projection if any.
-export function Position(channels, scales, context) {
+export function applyPosition(channels, scales, context) {
   const {x, y} = channels;
   let position = {};
   if (x) position.x = x;

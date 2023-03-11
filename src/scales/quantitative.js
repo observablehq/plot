@@ -41,13 +41,13 @@ const interpolators = new Map([
   ["lab", interpolateLab]
 ]);
 
-export function Interpolator(interpolate) {
+export function maybeInterpolator(interpolate) {
   const i = `${interpolate}`.toLowerCase();
   if (!interpolators.has(i)) throw new Error(`unknown interpolator: ${i}`);
   return interpolators.get(i);
 }
 
-export function ScaleQ(
+export function createScaleQ(
   key,
   scale,
   channels,
@@ -88,7 +88,7 @@ export function ScaleQ(
   // function is a “fixed” interpolator on the [0, 1] interval, as when a
   // color scheme such as interpolateRdBu is used.
   if (typeof interpolate !== "function") {
-    interpolate = Interpolator(interpolate);
+    interpolate = maybeInterpolator(interpolate);
   }
   if (interpolate.length === 1) {
     if (reverse) {
@@ -127,27 +127,27 @@ export function ScaleQ(
   return {type, domain, range, scale, interpolate, interval};
 }
 
-export function ScaleLinear(key, channels, options) {
-  return ScaleQ(key, scaleLinear(), channels, options);
+export function createScaleLinear(key, channels, options) {
+  return createScaleQ(key, scaleLinear(), channels, options);
 }
 
-export function ScaleSqrt(key, channels, options) {
-  return ScalePow(key, channels, {...options, exponent: 0.5});
+export function createScaleSqrt(key, channels, options) {
+  return createScalePow(key, channels, {...options, exponent: 0.5});
 }
 
-export function ScalePow(key, channels, {exponent = 1, ...options}) {
-  return ScaleQ(key, scalePow().exponent(exponent), channels, {...options, type: "pow"});
+export function createScalePow(key, channels, {exponent = 1, ...options}) {
+  return createScaleQ(key, scalePow().exponent(exponent), channels, {...options, type: "pow"});
 }
 
-export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(channels), ...options}) {
-  return ScaleQ(key, scaleLog().base(base), channels, {...options, domain});
+export function createScaleLog(key, channels, {base = 10, domain = inferLogDomain(channels), ...options}) {
+  return createScaleQ(key, scaleLog().base(base), channels, {...options, domain});
 }
 
-export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
-  return ScaleQ(key, scaleSymlog().constant(constant), channels, options);
+export function createScaleSymlog(key, channels, {constant = 1, ...options}) {
+  return createScaleQ(key, scaleSymlog().constant(constant), channels, options);
 }
 
-export function ScaleQuantile(
+export function createScaleQuantile(
   key,
   channels,
   {
@@ -172,10 +172,10 @@ export function ScaleQuantile(
   if (domain.length > 0) {
     domain = scaleQuantile(domain, range === undefined ? {length: n} : range).quantiles();
   }
-  return ScaleThreshold(key, channels, {domain, range, reverse, unknown});
+  return createScaleThreshold(key, channels, {domain, range, reverse, unknown});
 }
 
-export function ScaleQuantize(
+export function createScaleQuantize(
   key,
   channels,
   {
@@ -206,10 +206,10 @@ export function ScaleQuantize(
     if (min instanceof Date) thresholds = thresholds.map((x) => new Date(x)); // preserve date types
   }
   if (orderof(arrayify(domain)) < 0) thresholds.reverse(); // preserve descending domain
-  return ScaleThreshold(key, channels, {domain: thresholds, range, reverse, unknown});
+  return createScaleThreshold(key, channels, {domain: thresholds, range, reverse, unknown});
 }
 
-export function ScaleThreshold(
+export function createScaleThreshold(
   key,
   channels,
   {
@@ -245,7 +245,7 @@ function isOrdered(domain, sign) {
   return true;
 }
 
-export function ScaleIdentity() {
+export function createScaleIdentity() {
   return {type: "identity", scale: scaleIdentity()};
 }
 

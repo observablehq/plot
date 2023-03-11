@@ -1,6 +1,6 @@
 import {area as shapeArea} from "d3";
 import {create} from "../context.js";
-import {Curve} from "../curve.js";
+import {maybeCurve} from "../curve.js";
 import {Mark} from "../mark.js";
 import {first, indexOf, maybeZ, second} from "../options.js";
 import {
@@ -38,7 +38,7 @@ export class Area extends Mark {
       defaults
     );
     this.z = z;
-    this.curve = Curve(curve, tension);
+    this.curve = maybeCurve(curve, tension);
   }
   filter(index) {
     return index;

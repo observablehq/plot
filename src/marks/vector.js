@@ -56,7 +56,7 @@ function isShapeObject(value) {
   return value && typeof value.draw === "function";
 }
 
-function Shape(shape) {
+function maybeShape(shape) {
   if (isShapeObject(shape)) return shape;
   const value = shapes.get(`${shape}`.toLowerCase());
   if (value) return value;
@@ -82,7 +82,7 @@ export class Vector extends Mark {
     this.r = +r;
     this.length = cl;
     this.rotate = cr;
-    this.shape = Shape(shape);
+    this.shape = maybeShape(shape);
     this.anchor = keyword(anchor, "anchor", ["start", "middle", "end"]);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }

@@ -1,6 +1,6 @@
 import {group, pathRound as path, select, Delaunay} from "d3";
 import {create} from "../context.js";
-import {Curve} from "../curve.js";
+import {maybeCurve} from "../curve.js";
 import {Mark} from "../mark.js";
 import {markers, applyMarkers} from "../marker.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
@@ -61,7 +61,7 @@ class DelaunayLink extends Mark {
       options,
       delaunayLinkDefaults
     );
-    this.curve = Curve(curve, tension);
+    this.curve = maybeCurve(curve, tension);
     markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {

@@ -158,7 +158,7 @@ function binn(
       const BX2 = bx && setBX2([]);
       const BY1 = by && setBY1([]);
       const BY2 = by && setBY2([]);
-      const bin = Bin(bx?.(data), by?.(data));
+      const bin = bing(bx?.(data), by?.(data));
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
@@ -341,7 +341,7 @@ function isInterval(t) {
   return t ? typeof t.range === "function" : false;
 }
 
-function Bin(EX, EY) {
+function bing(EX, EY) {
   return EX && EY
     ? function* (I) {
         const X = EX.bin(I); // first bin on x

@@ -44,7 +44,7 @@ const curves = new Map([
   ["step-before", curveStepBefore]
 ]);
 
-export function Curve(curve = curveLinear, tension) {
+export function maybeCurve(curve = curveLinear, tension) {
   if (typeof curve === "function") return curve; // custom curve
   const c = curves.get(`${curve}`.toLowerCase());
   if (!c) throw new Error(`unknown curve: ${curve}`);
@@ -62,8 +62,8 @@ export function Curve(curve = curveLinear, tension) {
 
 // For the “auto” curve, return a symbol instead of a curve implementation;
 // we’ll use d3.geoPath to render if there’s a projection.
-export function PathCurve(curve = curveAuto, tension) {
-  return typeof curve !== "function" && `${curve}`.toLowerCase() === "auto" ? curveAuto : Curve(curve, tension);
+export function maybeCurveAuto(curve = curveAuto, tension) {
+  return typeof curve !== "function" && `${curve}`.toLowerCase() === "auto" ? curveAuto : maybeCurve(curve, tension);
 }
 
 // This is a special built-in curve that will use d3.geoPath when there is a
