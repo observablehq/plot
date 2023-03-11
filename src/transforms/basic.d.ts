@@ -1,6 +1,7 @@
-import type {ChannelDomainSort, Channels, ChannelValue} from "../channel.js";
+import type {Channels} from "../channel.js";
 import type {Context} from "../context.js";
 import type {Dimensions} from "../dimensions.js";
+import type {MarkOptions} from "../mark.js";
 import type {ScaleFunctions} from "../scales.js";
 
 export type TransformFunction = (data: any[], facets: number[][]) => {data?: any[]; facets?: number[][]};
@@ -17,14 +18,6 @@ export type InitializerFunction = (
   facets?: number[][];
   channels?: Channels;
 };
-
-export interface TransformOptions {
-  filter?: ChannelValue;
-  reverse?: boolean;
-  sort?: ChannelValue | CompareFunction | ChannelDomainSort;
-  transform?: TransformFunction;
-  initializer?: InitializerFunction;
-}
 
 export type FilterFunction = (d: any, i: number) => boolean;
 
@@ -44,4 +37,4 @@ export function reverse<T>(options?: T): Transformed<T>;
 
 export function shuffle<T>(options?: T): Transformed<T>;
 
-export function sort<T>(order: TransformOptions["sort"], options?: T): Transformed<T>;
+export function sort<T>(order: MarkOptions["sort"], options?: T): Transformed<T>;

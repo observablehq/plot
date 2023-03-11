@@ -38,8 +38,6 @@ export type ChannelName =
 
 export type Channels = {[key in ChannelName]?: Channel};
 
-export type ChannelValues = {[key in ChannelName]?: any[]};
-
 export interface Channel {
   value: ChannelValueSpec | null;
   scale?: ScaleName | "auto" | boolean;
@@ -111,7 +109,3 @@ export interface ReducerImplementation {
 export type Reducer = ReducerName | ReducerFunction | ReducerImplementation;
 
 export type ChannelReducers = {[key in ChannelName]?: Reducer | null}; // TODO ChannelReducerSpec {reducer, scale}
-
-export type ChannelInputs = {[key in ChannelName]?: ChannelValueSpec};
-
-export type ChannelOutputs<T> = {[key in keyof T]: ChannelValueSpec};

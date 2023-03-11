@@ -3,7 +3,7 @@ import type {ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import type {SymbolImplementation, SymbolName} from "../symbols.js";
 
-export interface DotOptions extends Omit<MarkOptions, "symbol"> {
+export interface DotOptions extends MarkOptions {
   x?: ChannelValueSpec;
   y?: ChannelValueSpec;
   r?: ChannelValueSpec | number;

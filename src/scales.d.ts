@@ -1,6 +1,8 @@
 import type {InsetOptions} from "./inset.js";
 import type {Interpolate} from "./interpolate.js";
 import type {Interval} from "./interval.js";
+import type {LegendType} from "./legends.js";
+import type {AxisAnchor} from "./marks/axis.js";
 
 export type ScaleName = "x" | "y" | "fx" | "fy" | "r" | "color" | "opacity" | "symbol" | "length";
 
@@ -83,7 +85,7 @@ export type ColorSchemeName =
 
 export type ScalesOptions = {[key in ScaleName]?: ScaleOptions};
 
-export interface ScaleOptions extends ScaleAxisOptions, ScaleLegendOptions, InsetOptions {
+export interface ScaleOptions extends ScaleAxisOptions, InsetOptions {
   type?: ScaleType | null;
   domain?: Iterable<any>;
   range?: Iterable<any>;
@@ -128,25 +130,22 @@ export interface ScaleOptions extends ScaleAxisOptions, ScaleLegendOptions, Inse
 }
 
 export interface ScaleAxisOptions {
-  axis?: "top" | "right" | "bottom" | "left" | "both" | boolean | null;
+  axis?: AxisAnchor | "both" | boolean | null; // for position scales
+  legend?: LegendType | boolean | null; // for color, opacity, and symbol scales
   ticks?: number | Interval | Iterable<any>;
-  tickSpacing?: number;
   tickSize?: number;
+  tickSpacing?: number;
   tickPadding?: number;
   tickFormat?: string | ((t: any, i: number) => any) | null;
   tickRotate?: number;
+  fontVariant?: string;
+  ariaLabel?: string;
+  ariaDescription?: string;
+  label?: string | null;
+  labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
+  labelOffset?: number;
   grid?: boolean | string | Interval | Iterable<any>;
   line?: boolean;
-  label?: string | null;
-  labelOffset?: number;
-  labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
-  fontVariant?: string;
-}
-
-export interface ScaleLegendOptions {
-  legend?: string | boolean | null; // TODO
-  fill?: string;
-  stroke?: string;
 }
 
 // TODO greater specificity

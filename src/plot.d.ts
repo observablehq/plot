@@ -1,8 +1,9 @@
 import type {ChannelValue} from "./channel.js";
+import type {LegendOptions} from "./legends.js";
 import type {InsetOptions} from "./inset.js";
 import type {Data, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
-import type {ScaleLegendOptions, Scale, ScaleOptions, ScalesOptions} from "./scales.js";
+import type {Scale, ScaleOptions, ScalesOptions} from "./scales.js";
 
 export interface PlotOptions extends ScalesOptions, InsetOptions {
   // dimensions
@@ -56,7 +57,7 @@ export interface PlotOptions extends ScalesOptions, InsetOptions {
 
 export interface Plot {
   scale(name: string): Scale | undefined;
-  legend(name: string, options?: ScaleLegendOptions): HTMLElement | undefined;
+  legend(name: string, options?: LegendOptions): HTMLElement | undefined;
 }
 
 export function plot(options?: PlotOptions): (SVGSVGElement | HTMLElement) & Plot;
