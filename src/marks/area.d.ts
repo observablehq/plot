@@ -1,8 +1,10 @@
-import type {ChannelValueSpec} from "../channel.js";
-import type {CurveSpec} from "../curve.js";
+import type {ChannelValueSpec, Reducer} from "../channel.js";
+import type {CurveAutoOptions} from "../curve.js";
+import type {Interval} from "../interval.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {StackOptions} from "../transforms/stack.js";
 
-export interface AreaOptions extends MarkOptions {
+export interface AreaOptions extends MarkOptions, StackOptions, CurveAutoOptions {
   x?: ChannelValueSpec; // TODO only for areaY?
   x1?: ChannelValueSpec;
   x2?: ChannelValueSpec;
@@ -10,8 +12,8 @@ export interface AreaOptions extends MarkOptions {
   y1?: ChannelValueSpec;
   y2?: ChannelValueSpec;
   z?: ChannelValueSpec;
-  curve?: CurveSpec | "auto";
-  tension?: number;
+  interval?: Interval; // TODO x- or y-specific intervals?
+  reduce?: Reducer;
 }
 
 export function area(data?: Data, options?: AreaOptions): Area;

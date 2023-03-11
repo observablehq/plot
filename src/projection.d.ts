@@ -1,4 +1,5 @@
 import type {GeoPermissibleObjects, GeoStreamWrapper} from "d3";
+import type {InsetOptions} from "./inset.js";
 
 export type ProjectionName =
   | "albers-usa"
@@ -22,13 +23,10 @@ export type ProjectionImplementation = GeoStreamWrapper;
 
 export type ProjectionFactory = (options: any) => ProjectionImplementation;
 
-export interface ProjectionOptions {
+export interface ProjectionOptions extends InsetOptions {
   type?: ProjectionName | ProjectionFactory | null;
   domain?: GeoPermissibleObjects;
-  insetTop?: number;
-  insetRight?: number;
-  insetBottom?: number;
-  insetLeft?: number;
-  inset?: number;
-  clip?: true | false | number | "frame" | null;
+  rotate?: [x: number, y: number, z?: number];
+  parallels?: [y1: number, y2: number];
+  clip?: boolean | number | "frame" | null;
 }

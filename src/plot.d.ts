@@ -1,9 +1,10 @@
 import type {ChannelValue} from "./channel.js";
+import type {InsetOptions} from "./inset.js";
 import type {Data, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
 import type {ScaleLegendOptions, Scale, ScaleOptions, ScalesOptions} from "./scales.js";
 
-export interface PlotOptions extends ScalesOptions {
+export interface PlotOptions extends ScalesOptions, InsetOptions {
   // dimensions
   marginTop?: number;
   marginRight?: number;
@@ -23,11 +24,6 @@ export interface PlotOptions extends ScalesOptions {
   clamp?: ScaleOptions["clamp"];
   nice?: ScaleOptions["nice"];
   zero?: ScaleOptions["zero"];
-  inset?: ScaleOptions["inset"];
-  insetTop?: ScaleOptions["insetTop"];
-  insetRight?: ScaleOptions["insetRight"];
-  insetBottom?: ScaleOptions["insetBottom"];
-  insetLeft?: ScaleOptions["insetLeft"];
   round?: ScaleOptions["round"];
   align?: ScaleOptions["align"];
   padding?: ScaleOptions["padding"];

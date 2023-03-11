@@ -1,9 +1,9 @@
 import type {ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
-export type RasterInterpolateName = "none" | "nearest" | "barycentric" | "random-walk";
+export type RasterInterpolateName = "nearest" | "barycentric" | "random-walk";
 
-export type RasterInterpolate = (
+export type RasterInterpolateFunction = (
   index: number[],
   width: number,
   height: number,
@@ -12,9 +12,13 @@ export type RasterInterpolate = (
   V: any[]
 ) => any[];
 
+export type RasterInterpolate = RasterInterpolateName | RasterInterpolateFunction;
+
 export type RandomSource = () => number;
 
-export interface RasterOptions extends MarkOptions {
+export type RasterSampler = (x: number, y: number, facet: number[] & {fx: any; fy: any}) => any;
+
+export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity"> {
   x?: ChannelValueSpec;
   y?: ChannelValueSpec;
   x1?: number;
@@ -25,23 +29,26 @@ export interface RasterOptions extends MarkOptions {
   height?: number;
   pixelSize?: number;
   blur?: number;
-  interpolate?: RasterInterpolate;
+  interpolate?: RasterInterpolate | "none" | null;
   imageRendering?: string;
+  fill?: ChannelValueSpec | RasterSampler;
+  fillOpacity?: ChannelValueSpec | RasterSampler;
 }
 
 export function raster(options?: RasterOptions): Raster;
+
 export function raster(data?: Data, options?: RasterOptions): Raster;
 
-export const interpolateNone: RasterInterpolate;
+export const interpolateNone: RasterInterpolateFunction;
 
-export function interpolatorBarycentric(options?: {random?: RandomSource}): RasterInterpolate;
+export function interpolatorBarycentric(options?: {random?: RandomSource}): RasterInterpolateFunction;
 
-export const interpolateNearest: RasterInterpolate;
+export const interpolateNearest: RasterInterpolateFunction;
 
 export function interpolatorRandomWalk(options?: {
   random?: RandomSource;
   minDistance?: number;
   maxSteps?: number;
-}): RasterInterpolate;
+}): RasterInterpolateFunction;
 
 export class Raster extends RenderableMark {}

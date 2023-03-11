@@ -7,7 +7,7 @@ export async function seattleTemperatureAmplitude() {
   return Plot.plot({
     x: {label: "Daily low temperature (°F) →", nice: true},
     y: {label: "↑ Daily temperature variation (Δ°F)", zero: true},
-    aspectRatio: true,
+    aspectRatio: 1,
     color: {
       scheme: "rainbow",
       legend: true,

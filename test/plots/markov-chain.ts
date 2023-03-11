@@ -12,7 +12,7 @@ export async function markovChain() {
   return Plot.plot({
     width: 400,
     inset: 60,
-    aspectRatio: true,
+    aspectRatio: 1,
     axis: null,
     marks: [
       Plot.dot(centers, {r: 40}),

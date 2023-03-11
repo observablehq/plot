@@ -1,14 +1,10 @@
 import type {ChannelValueSpec} from "../channel.js";
+import type {InsetOptions} from "../inset.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
-export interface TickOptions extends MarkOptions {
+export interface TickOptions extends MarkOptions, InsetOptions {
   x?: ChannelValueSpec;
   y?: ChannelValueSpec;
-  inset?: number;
-  insetTop?: number;
-  insetRight?: number;
-  insetBottom?: number;
-  insetLeft?: number;
 }
 
 export function tickX(data?: Data, options?: TickOptions): TickX;

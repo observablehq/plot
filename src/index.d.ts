@@ -4,6 +4,8 @@ export * from "./curve.js";
 export * from "./dimensions.js";
 export * from "./facet.js";
 export * from "./format.js";
+export * from "./inset.js";
+export * from "./interpolate.js";
 export * from "./interval.js";
 export * from "./legends.js";
 export * from "./mark.js";

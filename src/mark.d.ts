@@ -22,6 +22,7 @@ export interface Renderable {
   render: RenderFunction;
 }
 
+// TODO only include common channels by default
 export interface MarkOptions extends ChannelInputs, TransformOptions {
   facet?: Facet | boolean | null;
   facetAnchor?: FacetAnchor | null;

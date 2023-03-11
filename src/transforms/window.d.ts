@@ -1,4 +1,3 @@
-import type {MarkOptions} from "../mark.js";
 import type {Transformed} from "./basic.js";
 import type {Map} from "./map.js";
 
@@ -29,12 +28,12 @@ export interface WindowOptions {
   strict?: boolean;
 }
 
-export function windowX<T extends MarkOptions>(options?: T & WindowOptions): Transformed<Omit<T, keyof WindowOptions>>; // TODO fix window to consume options
+export function windowX<T>(options?: T & WindowOptions): Transformed<T>;
 
-export function windowX<T extends MarkOptions>(windowOptions?: WindowOptions | number, options?: T): Transformed<T>;
+export function windowX<T>(windowOptions?: WindowOptions | number, options?: T): Transformed<T>;
 
-export function windowY<T extends MarkOptions>(options?: T & WindowOptions): Transformed<Omit<T, keyof WindowOptions>>; // TODO fix window to consume options
+export function windowY<T>(options?: T & WindowOptions): Transformed<T>;
 
-export function windowY<T extends MarkOptions>(windowOptions?: WindowOptions | number, options?: T): Transformed<T>;
+export function windowY<T>(windowOptions?: WindowOptions | number, options?: T): Transformed<T>;
 
 export function window(options?: WindowOptions | number): Map;

@@ -11,7 +11,7 @@ export async function athletesHeightWeightBin() {
       ticks: 10
     },
     color: {
-      scheme: "YlGnBu"
+      scheme: "ylgnbu"
     },
     marks: [Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))]
   });

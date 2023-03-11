@@ -1,5 +1,4 @@
 import type {ChannelValueSpec} from "../channel.js";
-import type {MarkOptions} from "../mark.js";
 import type {Initialized} from "./basic.js";
 
 export type DodgeAnchor = "top" | "right" | "bottom" | "left" | "middle";
@@ -12,16 +11,10 @@ export interface DodgeOptions {
   padding?: number;
 }
 
-export function dodgeX<T extends MarkOptions>(options?: T & DodgeOptions): Initialized<Omit<T, keyof DodgeOptions>>;
+export function dodgeX<T>(options?: T & DodgeOptions): Initialized<T>;
 
-export function dodgeX<T extends MarkOptions>(
-  dodgeOptions?: DodgeOptions | DodgeAnchor,
-  options?: T & DodgeOptions
-): Initialized<Omit<T, keyof DodgeOptions>>;
+export function dodgeX<T>(dodgeOptions?: DodgeOptions | DodgeAnchor, options?: T): Initialized<T>;
 
-export function dodgeY<T extends MarkOptions>(options?: T & DodgeOptions): Initialized<Omit<T, keyof DodgeOptions>>;
+export function dodgeY<T>(options?: T & DodgeOptions): Initialized<T>;
 
-export function dodgeY<T extends MarkOptions>(
-  dodgeOptions?: DodgeOptions | DodgeAnchor,
-  options?: T & DodgeOptions
-): Initialized<Omit<T, keyof DodgeOptions>>;
+export function dodgeY<T>(dodgeOptions?: DodgeOptions | DodgeAnchor, options?: T): Initialized<T>;

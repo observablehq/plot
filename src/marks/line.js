@@ -63,7 +63,7 @@ export class Line extends Mark {
           .append("path")
           .call(applyDirectStyles, this)
           .call(applyGroupedChannelStyles, this, channels)
-          .call(applyGroupedMarkers, this, channels)
+          .call(applyGroupedMarkers, this, channels, context)
           .attr(
             "d",
             curve === curveAuto && context.projection

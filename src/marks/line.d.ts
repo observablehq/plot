@@ -1,18 +1,15 @@
-import type {ChannelValueSpec} from "../channel.js";
-import type {CurveSpec} from "../curve.js";
+import type {ChannelValueSpec, Reducer} from "../channel.js";
+import type {CurveAutoOptions} from "../curve.js";
+import type {Interval} from "../interval.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
-import type {MarkerSpec} from "../marker.js";
+import type {MarkerOptions} from "../marker.js";
 
-export interface LineOptions extends MarkOptions {
+export interface LineOptions extends MarkOptions, MarkerOptions, CurveAutoOptions {
   x?: ChannelValueSpec;
   y?: ChannelValueSpec;
   z?: ChannelValueSpec;
-  curve?: CurveSpec | "auto";
-  tension?: number;
-  marker?: MarkerSpec;
-  markerStart?: MarkerSpec;
-  markerMid?: MarkerSpec;
-  markerEnd?: MarkerSpec;
+  interval?: Interval; // TODO x- or y-specific intervals?
+  reduce?: Reducer;
 }
 
 export function line(data?: Data, options?: LineOptions): Line;

@@ -64,7 +64,7 @@ export class Link extends Mark {
                 }
           )
           .call(applyChannelStyles, this, channels)
-          .call(applyMarkers, this, channels)
+          .call(applyMarkers, this, channels, context)
       )
       .node();
   }

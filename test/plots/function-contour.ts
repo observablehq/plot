@@ -28,7 +28,7 @@ export async function functionContourFaceted() {
     fx: {tickFormat: (f) => f?.name},
     fy: {tickFormat: (f) => f?.name},
     marks: [
-      Plot.contour({
+      Plot.contour(undefined, {
         fill: (x, y, {fx, fy}) => fx(x) * fy(y),
         fx: [Math.sin, Math.sin, lin, lin],
         fy: [Math.cos, lin, lin, Math.cos],

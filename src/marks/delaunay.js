@@ -120,7 +120,7 @@ class DelaunayLink extends Mark {
           return p;
         })
         .call(applyChannelStyles, mark, newChannels)
-        .call(applyMarkers, mark, newChannels);
+        .call(applyMarkers, mark, newChannels, context);
     }
 
     return create("svg:g", context)

@@ -1,3 +1,5 @@
+import type {InsetOptions} from "./inset.js";
+import type {Interpolate} from "./interpolate.js";
 import type {Interval} from "./interval.js";
 
 export type ScaleName = "x" | "y" | "fx" | "fy" | "r" | "color" | "opacity" | "symbol" | "length";
@@ -81,7 +83,7 @@ export type ColorSchemeName =
 
 export type ScalesOptions = {[key in ScaleName]?: ScaleOptions};
 
-export interface ScaleOptions extends ScaleAxisOptions, ScaleLegendOptions {
+export interface ScaleOptions extends ScaleAxisOptions, ScaleLegendOptions, InsetOptions {
   type?: ScaleType | null;
   domain?: Iterable<any>;
   range?: Iterable<any>;
@@ -118,11 +120,6 @@ export interface ScaleOptions extends ScaleAxisOptions, ScaleLegendOptions {
   symmetric?: boolean;
 
   // position scale options
-  inset?: number;
-  insetTop?: number;
-  insetRight?: number;
-  insetBottom?: number;
-  insetLeft?: number;
   round?: boolean;
   padding?: number;
   paddingInner?: number;
@@ -133,17 +130,17 @@ export interface ScaleOptions extends ScaleAxisOptions, ScaleLegendOptions {
 export interface ScaleAxisOptions {
   axis?: "top" | "right" | "bottom" | "left" | "both" | boolean | null;
   ticks?: number | Interval | Iterable<any>;
-  tickSize?: number;
   tickSpacing?: number;
+  tickSize?: number;
   tickPadding?: number;
-  tickFormat?: string | ((t: any) => any) | null;
+  tickFormat?: string | ((t: any, i: number) => any) | null;
   tickRotate?: number;
   grid?: boolean | string | Interval | Iterable<any>;
   line?: boolean;
   label?: string | null;
   labelOffset?: number;
   labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
-  fontVariant?: string | null;
+  fontVariant?: string;
 }
 
 export interface ScaleLegendOptions {
@@ -151,8 +148,6 @@ export interface ScaleLegendOptions {
   fill?: string;
   stroke?: string;
 }
-
-export type Interpolate = string; // TODO
 
 // TODO greater specificity
 export interface Scale {

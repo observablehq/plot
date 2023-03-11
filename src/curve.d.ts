@@ -1,6 +1,6 @@
 import type {CurveFactory} from "d3";
 
-export type CurveImplementation = CurveFactory;
+export type CurveFunction = CurveFactory;
 
 export type CurveName =
   | "basis"
@@ -24,4 +24,14 @@ export type CurveName =
   | "step-after"
   | "step-before";
 
-export type CurveSpec = CurveName | CurveImplementation;
+export type Curve = CurveName | CurveFunction;
+
+export interface CurveOptions {
+  curve?: CurveOptions;
+  tension?: number;
+}
+
+export interface CurveAutoOptions {
+  curve?: Curve | "auto";
+  tension?: number;
+}

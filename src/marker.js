@@ -78,15 +78,15 @@ function markerCircleStroke(color, context) {
 
 let nextMarkerId = 0;
 
-export function applyMarkers(path, mark, {stroke: S} = {}) {
-  return applyMarkersColor(path, mark, S && ((i) => S[i]));
+export function applyMarkers(path, mark, {stroke: S}, context) {
+  return applyMarkersColor(path, mark, S && ((i) => S[i]), context);
 }
 
-export function applyGroupedMarkers(path, mark, {stroke: S} = {}) {
-  return applyMarkersColor(path, mark, S && (([i]) => S[i]));
+export function applyGroupedMarkers(path, mark, {stroke: S}, context) {
+  return applyMarkersColor(path, mark, S && (([i]) => S[i]), context);
 }
 
-function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, strokeof = () => stroke) {
+function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, strokeof = () => stroke, context) {
   const iriByMarkerColor = new Map();
 
   function applyMarker(marker) {
@@ -96,7 +96,6 @@ function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, st
       if (!iriByColor) iriByMarkerColor.set(marker, (iriByColor = new Map()));
       let iri = iriByColor.get(color);
       if (!iri) {
-        const context = {document: this.ownerDocument};
         const node = this.parentNode.insertBefore(marker(color, context), this);
         const id = `plot-marker-${++nextMarkerId}`;
         node.setAttribute("id", id);
