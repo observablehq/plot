@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "strict": true,
     "noEmit": true,
     "noImplicitAny": false,
     "module": "Node16",
