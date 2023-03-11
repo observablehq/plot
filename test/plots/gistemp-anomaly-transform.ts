@@ -12,7 +12,7 @@ export async function gistempAnomalyTransform() {
       grid: true
     },
     color: {
-      scheme: "burd",
+      scheme: "BuRd",
       domain: [-1, 1],
       transform
     },

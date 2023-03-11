@@ -46,7 +46,7 @@ export function colorLegendOrdinalRampTickSize() {
   return Plot.legend({
     color: {
       domain: ["<20", "20-29", "30-39", "40-49", "50-59", "60-69", "≥70"],
-      scheme: "spectral",
+      scheme: "Spectral",
       label: "Age (years)"
     },
     legend: "ramp",

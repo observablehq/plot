@@ -11,7 +11,7 @@ export async function seattleTemperatureBand() {
     },
     color: {
       type: "linear",
-      scheme: "burd"
+      scheme: "BuRd"
     },
     marks: [
       Plot.ruleX(data, {

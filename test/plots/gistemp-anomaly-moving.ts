@@ -10,7 +10,7 @@ export async function gistempAnomalyMoving() {
       grid: true
     },
     color: {
-      scheme: "burd",
+      scheme: "BuRd",
       symmetric: false
     },
     marks: [
