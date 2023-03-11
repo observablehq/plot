@@ -56,6 +56,7 @@ export * from "./crimean-war-overlapped.js";
 export * from "./crimean-war-stacked.js";
 export * from "./d3-survey-2015-comfort.js";
 export * from "./d3-survey-2015-why.js";
+export * from "./date-intervals.js";
 export * from "./darker-dodge.js";
 export * from "./decathlon.js";
 export * from "./diamonds-boxplot.js";
