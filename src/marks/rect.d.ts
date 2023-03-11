@@ -2,8 +2,9 @@ import type {ChannelValueSpec} from "../channel.js";
 import type {InsetOptions} from "../inset.js";
 import type {Interval} from "../interval.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {StackOptions} from "../transforms/stack.js";
 
-export interface RectOptions extends MarkOptions, InsetOptions {
+export interface RectOptions extends MarkOptions, InsetOptions, StackOptions {
   x?: ChannelValueSpec; // TODO x: {value, interval}
   x1?: ChannelValueSpec;
   x2?: ChannelValueSpec;

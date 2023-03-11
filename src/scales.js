@@ -31,7 +31,7 @@ import {
 import {isDivergingScheme} from "./scales/schemes.js";
 import {createScaleTime, createScaleUtc} from "./scales/temporal.js";
 import {createScaleOrdinal, createScalePoint, createScaleBand, ordinalImplicit} from "./scales/ordinal.js";
-import {maybeSymbol} from "./symbols.js";
+import {maybeSymbol} from "./symbol.js";
 import {warn} from "./warnings.js";
 
 export function createScales(

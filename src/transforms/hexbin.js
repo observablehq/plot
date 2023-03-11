@@ -1,4 +1,4 @@
-import {sqrt3} from "../symbols.js";
+import {sqrt3} from "../symbol.js";
 import {isNoneish, number, valueof} from "../options.js";
 import {initializer} from "./basic.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";

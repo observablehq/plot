@@ -1,7 +1,7 @@
 import {ascending, descending, InternSet, rollup, sort} from "d3";
 import {first, isColor, isEvery, isIterable, isOpacity, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
-import {isSymbol, maybeSymbol} from "./symbols.js";
+import {isSymbol, maybeSymbol} from "./symbol.js";
 import {maybeReduce} from "./transforms/group.js";
 
 // TODO Type coercion?

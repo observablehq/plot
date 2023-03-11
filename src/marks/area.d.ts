@@ -1,7 +1,8 @@
-import type {ChannelValueSpec, Reducer} from "../channel.js";
+import type {ChannelValueSpec} from "../channel.js";
 import type {CurveAutoOptions} from "../curve.js";
 import type {Interval} from "../interval.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {Reducer} from "../reducer.js";
 import type {StackOptions} from "../transforms/stack.js";
 
 export interface AreaOptions extends MarkOptions, StackOptions, CurveAutoOptions {

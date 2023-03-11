@@ -4,7 +4,7 @@ import * as d3 from "d3";
 export async function softwareVersions() {
   const data = await d3.csv("data/software-versions.csv");
 
-  function stack({text, fill, ...options} = {}) {
+  function stack({text = undefined, fill = undefined, ...options}) {
     return Plot.stackX({
       ...Plot.groupZ(
         {

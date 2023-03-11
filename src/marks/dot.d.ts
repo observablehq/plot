@@ -1,7 +1,6 @@
-import type {FrameAnchor} from "../options.js";
 import type {ChannelValueSpec} from "../channel.js";
-import type {Data, MarkOptions, RenderableMark} from "../mark.js";
-import type {SymbolImplementation, SymbolName} from "../symbols.js";
+import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
+import type {SymbolImplementation, SymbolName} from "../symbol.js";
 
 export interface DotOptions extends MarkOptions {
   x?: ChannelValueSpec;

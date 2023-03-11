@@ -375,7 +375,7 @@ export function colorSchemesOrdinal() {
     "ylorrd",
     "rainbow",
     "sinebow"
-  ]) {
+  ] as const) {
     div.append(
       Plot.legend({color: {type: "ordinal", scheme, domain: [scheme]}}),
       Plot.legend({color: {type: "ordinal", scheme, domain: [scheme, ...`1`]}}),
@@ -430,7 +430,7 @@ export function colorSchemesQuantitative() {
     "ylorrd",
     "rainbow",
     "sinebow"
-  ]) {
+  ] as const) {
     div.append(Plot.legend({color: {type: "linear", scheme}, label: scheme, ticks: 0, tickSize: 0, marginBottom: 10}));
   }
   return div;

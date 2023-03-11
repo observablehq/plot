@@ -4,9 +4,20 @@ import type {Dimensions} from "./dimensions.js";
 import type {Facet, FacetAnchor} from "./facet.js";
 import type {plot} from "./plot.js";
 import type {ScaleFunctions} from "./scales.js";
-import type {InitializerFunction, CompareFunction, TransformFunction} from "./transforms/basic.js";
+import type {InitializerFunction, TransformFunction, SortOrder} from "./transforms/basic.js";
 
-export type Data = Iterable<any> | {length: number};
+export type FrameAnchor =
+  | "middle"
+  | "top-left"
+  | "top"
+  | "top-right"
+  | "right"
+  | "bottom-right"
+  | "bottom"
+  | "bottom-left"
+  | "left";
+
+export type Data = Iterable<any> | ArrayLike<any>;
 
 export type RenderFunction = (
   index: number[],
@@ -26,7 +37,7 @@ export interface MarkOptions {
   // transforms
   filter?: ChannelValue;
   reverse?: boolean;
-  sort?: ChannelValue | CompareFunction | ChannelDomainSort;
+  sort?: SortOrder | ChannelDomainSort;
   transform?: TransformFunction;
   initializer?: InitializerFunction;
 

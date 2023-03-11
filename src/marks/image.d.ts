@@ -1,6 +1,5 @@
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
-import type {Data, MarkOptions, RenderableMark} from "../mark.js";
-import type {FrameAnchor} from "../options.js";
+import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 
 export interface ImageOptions extends MarkOptions {
   x?: ChannelValueSpec;

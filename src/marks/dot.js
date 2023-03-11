@@ -10,7 +10,7 @@ import {
   applyIndirectStyles,
   applyTransform
 } from "../style.js";
-import {maybeSymbolChannel} from "../symbols.js";
+import {maybeSymbolChannel} from "../symbol.js";
 import {template} from "../template.js";
 import {sort} from "../transforms/basic.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";

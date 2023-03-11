@@ -1,8 +1,6 @@
 import type {CompoundMark, Data} from "../mark.js";
 
-export interface AutoOptions {
-  // TODO
-}
+export type AutoOptions = any; // TODO
 
 export function autoSpec(data?: Data, options?: AutoOptions): AutoOptions;
 

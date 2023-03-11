@@ -1,5 +1,6 @@
-import type {ChannelReducers, Reducer} from "../channel.js";
+import type {ChannelReducers} from "../channel.js";
 import type {Interval, RangeInterval} from "../interval.js";
+import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 
 export type ThresholdsName = "freedman-diaconis" | "scott" | "sturges" | "auto";

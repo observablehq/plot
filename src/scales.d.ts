@@ -1,3 +1,4 @@
+import type {ColorSchemeName} from "./color.js";
 import type {InsetOptions} from "./inset.js";
 import type {Interpolate} from "./interpolate.js";
 import type {Interval} from "./interval.js";
@@ -30,60 +31,6 @@ export type ScaleType =
   | "quantile"
   | "quantize"
   | "identity";
-
-type ColorSchemeNameCase =
-  | "Accent"
-  | "Category10"
-  | "Dark2"
-  | "Paired"
-  | "Pastel1"
-  | "Pastel2"
-  | "Set1"
-  | "Set2"
-  | "Set3"
-  | "Tableau10"
-  | "BrBG"
-  | "PRGn"
-  | "PiYG"
-  | "PuOr"
-  | "RdBu"
-  | "RdGy"
-  | "RdYlBu"
-  | "RdYlGn"
-  | "Spectral"
-  | "BuRd"
-  | "BuYlRd"
-  | "Blues"
-  | "Greens"
-  | "Greys"
-  | "Oranges"
-  | "Purples"
-  | "Reds"
-  | "Turbo"
-  | "Viridis"
-  | "Magma"
-  | "Inferno"
-  | "Plasma"
-  | "Cividis"
-  | "Cubehelix"
-  | "Warm"
-  | "Cool"
-  | "BuGn"
-  | "BuPu"
-  | "GnBu"
-  | "OrRd"
-  | "PuBu"
-  | "PuBuGn"
-  | "PuRd"
-  | "RdPu"
-  | "YlGn"
-  | "YlGnBu"
-  | "YlOrBr"
-  | "YlOrRd"
-  | "Rainbow"
-  | "Sinebow";
-
-export type ColorSchemeName = ColorSchemeNameCase | Lowercase<ColorSchemeNameCase>;
 
 export type ScalesOptions = {[key in ScaleName]?: ScaleOptions};
 

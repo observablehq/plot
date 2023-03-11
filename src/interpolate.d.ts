@@ -1,4 +1,6 @@
-export type InterpolateName = "number" | "rgb" | "hsl" | "hcl" | "lab";
+import type {ColorInterpolateName} from "./color.js";
+
+export type InterpolateName = "number" | ColorInterpolateName;
 
 export type InterpolateFunction<T> = (a: T, b: T) => InterpolateFixedFunction<T>;
 

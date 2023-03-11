@@ -2,19 +2,19 @@ import type {CompoundMark, Data, MarkOptions, RenderableMark} from "../mark.js";
 import type {ScaleOptions} from "../scales.js";
 import type {RuleXOptions, RuleYOptions} from "./rule.js";
 import type {TextOptions} from "./text.js";
-import type {TickOptions} from "./tick.js";
+import type {TickXOptions, TickYOptions} from "./tick.js";
 
 export type AxisAnchor = "top" | "right" | "bottom" | "left";
 
-export interface GridOptions {
+interface GridOptions {
   anchor?: AxisAnchor;
   interval?: ScaleOptions["interval"];
   ticks?: ScaleOptions["ticks"];
   tickSpacing?: ScaleOptions["tickSpacing"];
-  color?: TickOptions["stroke"];
+  color?: MarkOptions["stroke"];
 }
 
-export interface AxisOptions extends GridOptions, MarkOptions, TextOptions, TickOptions {
+interface AxisOptions extends GridOptions, MarkOptions, TextOptions {
   tickSize?: ScaleOptions["tickSize"];
   tickPadding?: ScaleOptions["tickPadding"];
   tickFormat?: ScaleOptions["tickFormat"];
@@ -24,30 +24,34 @@ export interface AxisOptions extends GridOptions, MarkOptions, TextOptions, Tick
   label?: ScaleOptions["label"];
   labelOffset?: ScaleOptions["labelOffset"];
   labelAnchor?: ScaleOptions["labelAnchor"];
-  textStroke?: TextOptions["stroke"];
-  textStrokeOpacity?: TextOptions["strokeOpacity"];
-  textStrokeWidth?: TextOptions["strokeWidth"];
+  textStroke?: MarkOptions["stroke"];
+  textStrokeOpacity?: MarkOptions["strokeOpacity"];
+  textStrokeWidth?: MarkOptions["strokeWidth"];
 }
+
+export interface AxisXOptions extends AxisOptions, TickXOptions {}
+
+export interface AxisYOptions extends AxisOptions, TickYOptions {}
 
 export interface GridXOptions extends GridOptions, RuleXOptions {}
 
 export interface GridYOptions extends GridOptions, RuleYOptions {}
 
-export function axisY(options?: AxisOptions): CompoundMark;
+export function axisY(options?: AxisYOptions): CompoundMark;
 
-export function axisY(data?: Data, options?: AxisOptions): CompoundMark;
+export function axisY(data?: Data, options?: AxisYOptions): CompoundMark;
 
-export function axisFy(options?: AxisOptions): CompoundMark;
+export function axisFy(options?: AxisYOptions): CompoundMark;
 
-export function axisFy(data?: Data, options?: AxisOptions): CompoundMark;
+export function axisFy(data?: Data, options?: AxisYOptions): CompoundMark;
 
-export function axisX(options?: AxisOptions): CompoundMark;
+export function axisX(options?: AxisXOptions): CompoundMark;
 
-export function axisX(data?: Data, options?: AxisOptions): CompoundMark;
+export function axisX(data?: Data, options?: AxisXOptions): CompoundMark;
 
-export function axisFx(options?: AxisOptions): CompoundMark;
+export function axisFx(options?: AxisXOptions): CompoundMark;
 
-export function axisFx(data?: Data, options?: AxisOptions): CompoundMark;
+export function axisFx(data?: Data, options?: AxisXOptions): CompoundMark;
 
 export function gridY(options?: GridYOptions): RenderableMark;
 

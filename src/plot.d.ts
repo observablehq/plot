@@ -19,6 +19,8 @@ export interface PlotOptions extends ScalesOptions, InsetOptions {
   // other top-level options
   style?: Partial<CSSStyleDeclaration> | string;
   caption?: string | null | Node;
+  ariaLabel?: string;
+  ariaDescription?: string;
   document?: Document;
 
   // top-level scale options

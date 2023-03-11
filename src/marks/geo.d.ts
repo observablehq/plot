@@ -1,9 +1,9 @@
 import type {GeoPermissibleObjects} from "d3";
-import type {ChannelValueSpec} from "../channel.js";
+import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
 export interface GeoOptions extends MarkOptions {
-  geometry?: ChannelValueSpec;
+  geometry?: ChannelValue;
   r?: ChannelValueSpec;
 }
 

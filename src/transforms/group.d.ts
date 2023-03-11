@@ -1,4 +1,5 @@
-import type {ChannelReducers, Reducer} from "../channel.js";
+import type {ChannelReducers} from "../channel.js";
+import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 
 export interface GroupReducers {

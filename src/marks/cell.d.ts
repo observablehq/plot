@@ -1,10 +1,12 @@
 import type {ChannelValueSpec} from "../channel.js";
-import type {Data, RenderableMark} from "../mark.js";
-import type {RectOptions} from "./rect.js";
+import type {InsetOptions} from "../inset.js";
+import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
-export interface CellOptions extends RectOptions {
+export interface CellOptions extends MarkOptions, InsetOptions {
   x?: ChannelValueSpec;
   y?: ChannelValueSpec;
+  rx?: number | string;
+  ry?: number | string;
 }
 
 export function cell(data?: Data, options?: CellOptions): Cell;

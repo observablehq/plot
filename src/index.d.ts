@@ -1,4 +1,5 @@
 export * from "./channel.js";
+export * from "./color.js";
 export * from "./context.js";
 export * from "./curve.js";
 export * from "./dimensions.js";
@@ -38,8 +39,9 @@ export * from "./marks/vector.js";
 export * from "./options.js";
 export * from "./plot.js";
 export * from "./projection.js";
+export * from "./reducer.js";
 export * from "./scales.js";
-export * from "./symbols.js";
+export * from "./symbol.js";
 export * from "./transforms/basic.js";
 export * from "./transforms/bin.js";
 export * from "./transforms/centroid.js";

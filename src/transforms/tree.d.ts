@@ -1,6 +1,8 @@
+import type {ChannelValue} from "../channel.js";
 import type {Transformed} from "./basic.js";
 
 export interface TreeTransformOptions {
+  path?: ChannelValue;
   delimiter?: string;
   treeLayout?: Function; // TODO
   treeSort?: any; // TODO
