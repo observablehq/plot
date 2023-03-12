@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function letterFrequencyCloud() {
-  const alphabet = await d3.csv("data/alphabet.csv", d3.autoType);
+  const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   const random = d3.randomLcg(3);
   const max = d3.max(alphabet, (d) => d.frequency);
   return Plot.plot({

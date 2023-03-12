@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function liborProjections() {
-  const libor = await d3.csv("data/libor-projections.csv", d3.autoType);
+  const libor = await d3.csv<any>("data/libor-projections.csv", d3.autoType);
   const pc = d3.format(".2%");
   return Plot.plot({
     width: 960,

@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function wealthBritainProportionPlot() {
-  const wide = await d3.csv("data/wealth-britain.csv", d3.autoType);
+  const wide = await d3.csv<any>("data/wealth-britain.csv", d3.autoType);
   const columns = wide.columns.slice(1);
   const data = columns.flatMap((type) => wide.map((d) => ({age: d.age, type, value: d[type]})));
   const stack = (options) => Plot.stackY({}, {x: "type", y: "value", z: "age", ...options});

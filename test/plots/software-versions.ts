@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function softwareVersions() {
-  const data = await d3.csv("data/software-versions.csv");
+  const data = await d3.csv<any>("data/software-versions.csv");
 
   function stack({text = undefined, fill = undefined, ...options}) {
     return Plot.stackX({

@@ -4,8 +4,10 @@ import {feature, mesh} from "topojson-client";
 
 export async function usPresidentialElectionMap2020() {
   const [[counties, statemesh], elections] = await Promise.all([
-    d3.json("data/us-counties-10m.json").then((us) => [feature(us, us.objects.counties), mesh(us, us.objects.states)]),
-    d3.csv("data/us-presidential-election-2020.csv")
+    d3
+      .json<any>("data/us-counties-10m.json")
+      .then((us) => [feature(us, us.objects.counties), mesh(us, us.objects.states)]),
+    d3.csv<any>("data/us-presidential-election-2020.csv")
   ]);
   const geom = new Map(counties.features.map((d) => [d.id, d]));
   return Plot.plot({

@@ -5,9 +5,9 @@ import {feature, mesh} from "topojson-client";
 export async function usStateCapitals() {
   const [[states, statemesh], capitals] = await Promise.all([
     d3
-      .json("data/us-counties-10m.json")
+      .json<any>("data/us-counties-10m.json")
       .then((us) => [feature(us, us.objects.states), mesh(us, us.objects.states, (a, b) => a !== b)]),
-    d3.csv("data/us-state-capitals.csv", d3.autoType)
+    d3.csv<any>("data/us-state-capitals.csv", d3.autoType)
   ]);
   return Plot.plot({
     width: 960,

@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import {feature} from "topojson-client";
 
 export async function projectionBleedEdges2() {
-  const world = await d3.json("data/countries-110m.json");
+  const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
   return Plot.plot({
     width: 600,

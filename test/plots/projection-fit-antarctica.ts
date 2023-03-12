@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import {feature} from "topojson-client";
 
 export async function projectionFitAntarctica() {
-  const world = await d3.json("data/countries-50m.json");
+  const world = await d3.json<any>("data/countries-50m.json");
   const domain = feature(
     world,
     world.objects.countries.geometries.find((d) => d.properties.name === "Antarctica")

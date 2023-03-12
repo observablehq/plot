@@ -4,8 +4,8 @@ import {feature} from "topojson-client";
 
 export async function usStateCapitalsVoronoi() {
   const [capitals, nation] = await Promise.all([
-    d3.csv("data/us-state-capitals.csv", d3.autoType),
-    d3.json("data/us-counties-10m.json").then((us) => feature(us, us.objects.nation))
+    d3.csv<any>("data/us-state-capitals.csv", d3.autoType),
+    d3.json<any>("data/us-counties-10m.json").then((us) => feature(us, us.objects.nation))
   ]);
   return Plot.plot({
     width: 640,

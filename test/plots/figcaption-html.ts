@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import {html} from "htl";
 
 export async function figcaptionHtml() {
-  const alphabet = await d3.csv("data/alphabet.csv", d3.autoType);
+  const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return Plot.plot({
     caption: html`Figure 1. The relative frequency of letters in the English language. Data:
       <i>Cryptographical Mathematics</i>`,

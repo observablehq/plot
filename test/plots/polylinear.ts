@@ -41,7 +41,7 @@ export async function polylinear() {
       scheme: "cool"
     },
     marks: [
-      Plot.barX(d3.utcDays(...d3.extent(times)), {interval: "day", fill: (d) => d}),
+      Plot.barX(d3.utcDays(...(d3.extent(times) as [Date, Date])), {interval: "day", fill: (d) => d}),
       Plot.dotX(events, {x: "date", fill: "white"}),
       Plot.textX(events, {x: "date", text: "text", dx: -5, dy: -10, fill: "white", textAnchor: "start"})
     ]

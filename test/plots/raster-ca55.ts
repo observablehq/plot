@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 async function plotCa55(mark) {
-  const ca55 = await d3.csv("data/ca55-south.csv", d3.autoType);
+  const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
   const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
   return Plot.plot({
     width: 640,
@@ -34,7 +34,7 @@ export async function rasterCa55Nearest() {
 }
 
 export async function rasterCa55Color() {
-  const ca55 = await d3.csv("data/ca55-south.csv", d3.autoType);
+  const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
   const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
   return Plot.plot({
     width: 640,

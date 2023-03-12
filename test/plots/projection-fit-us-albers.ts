@@ -4,7 +4,7 @@ import {mesh} from "topojson-client";
 
 export async function projectionFitUsAlbers() {
   const [conus, countymesh] = await d3
-    .json("data/us-counties-10m.json")
+    .json<any>("data/us-counties-10m.json")
     .then((us) => [
       mesh(us, filter48(us.objects.states), (a, b) => a === b),
       mesh(us, filter48(us.objects.counties), (a, b) => a !== b)

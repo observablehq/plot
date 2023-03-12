@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function musicRevenue() {
-  const data = await d3.csv("data/riaa-us-revenue.csv", d3.autoType);
+  const data = await d3.csv<any>("data/riaa-us-revenue.csv", d3.autoType);
   const stack = {x: "year", y: "revenue", z: "format", order: "appearance", reverse: true};
   return Plot.plot({
     y: {

@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function moviesProfitByGenre() {
-  const movies = await d3.json("data/movies.json");
+  const movies = await d3.json<any>("data/movies.json");
   const Genre = (d) => d["Major Genre"] || "Other";
   const Profit = (d) => (d["Worldwide Gross"] - d["Production Budget"]) / 1e6;
   return Plot.plot({

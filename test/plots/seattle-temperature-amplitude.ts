@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function seattleTemperatureAmplitude() {
-  const data = await d3.csv("data/seattle-weather.csv", d3.autoType);
+  const data = await d3.csv<any>("data/seattle-weather.csv", d3.autoType);
   const delta = (d) => d.temp_max - d.temp_min;
   return Plot.plot({
     x: {label: "Daily low temperature (°F) →", nice: true},

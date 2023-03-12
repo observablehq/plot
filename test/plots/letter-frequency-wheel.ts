@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function letterFrequencyWheel() {
-  const alphabet = d3.sort(await d3.csv("data/alphabet.csv", d3.autoType), (d) => d.letter);
+  const alphabet = d3.sort(await d3.csv<any>("data/alphabet.csv", d3.autoType), (d) => d.letter);
   const m = d3.max(alphabet, (d) => d.frequency) * 1.1;
   return Plot.plot({
     width: 500,

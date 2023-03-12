@@ -26,7 +26,7 @@ const types = new Map([
 ]);
 
 export async function energyProduction() {
-  const energy = ((await d3.csv("data/energy-production.csv")) as any[])
+  const energy = (await d3.csv<any>("data/energy-production.csv"))
     .filter((d) => d.YYYYMM.slice(-2) === "13") // only take annual data
     .filter((d) => types.has(d.Description)) // don’t double-count categories
     .map((d) => ({...d, Year: +d.YYYYMM.slice(0, 4), Value: +d.Value}));

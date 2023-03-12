@@ -4,7 +4,7 @@ import {mesh} from "topojson-client";
 
 export async function projectionHeightAlbers() {
   const [conus, countymesh] = await d3
-    .json("data/us-counties-10m.json")
+    .json<any>("data/us-counties-10m.json")
     .then((us) => [mesh(us, us.objects.states, (a, b) => a === b), mesh(us, us.objects.counties, (a, b) => a !== b)]);
   return Plot.plot({
     projection: {

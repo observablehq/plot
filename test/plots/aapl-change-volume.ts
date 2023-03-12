@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function aaplChangeVolume() {
-  const data = await d3.csv("data/aapl.csv", d3.autoType);
+  const data = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     x: {
       label: "Daily change (%) →",

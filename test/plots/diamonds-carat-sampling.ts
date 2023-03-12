@@ -15,7 +15,7 @@ function sample(n, options) {
 }
 
 export async function diamondsCaratSampling() {
-  const data = await d3.csv("data/diamonds.csv", d3.autoType);
+  const data = await d3.csv<any>("data/diamonds.csv", d3.autoType);
   return Plot.plot({
     marginLeft: 44,
     marks: [

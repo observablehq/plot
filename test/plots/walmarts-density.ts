@@ -4,8 +4,8 @@ import {mesh} from "topojson-client";
 
 export async function walmartsDensity() {
   const [walmarts, statemesh] = await Promise.all([
-    d3.tsv("data/walmarts.tsv", d3.autoType),
-    d3.json("data/us-counties-10m.json").then((us) =>
+    d3.tsv<any>("data/walmarts.tsv", d3.autoType),
+    d3.json<any>("data/us-counties-10m.json").then((us) =>
       mesh(us, {
         type: "GeometryCollection",
         geometries: us.objects.states.geometries.filter((d) => d.id !== "02" && d.id !== "15")

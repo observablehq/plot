@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function electricityDemand() {
-  const electricity = await d3.csv("data/electricity-demand.csv", d3.autoType);
+  const electricity = await d3.csv<any>("data/electricity-demand.csv", d3.autoType);
   return Plot.plot({
     width: 960,
     marginLeft: 50,

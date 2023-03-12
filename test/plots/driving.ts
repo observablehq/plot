@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function driving() {
-  const driving = await d3.csv("data/driving.csv", d3.autoType);
+  const driving = await d3.csv<any>("data/driving.csv", d3.autoType);
   return Plot.plot({
     inset: 10,
     grid: true,

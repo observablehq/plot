@@ -4,7 +4,7 @@ import {remap} from "../transforms/remap.js";
 
 export async function carsJitter() {
   const random = d3.randomNormal.source(d3.randomLcg(42))(0, 7);
-  const data = await d3.csv("data/cars.csv", d3.autoType);
+  const data = await d3.csv<any>("data/cars.csv", d3.autoType);
   return Plot.plot({
     height: 350,
     nice: true,

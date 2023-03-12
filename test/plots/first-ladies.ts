@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function firstLadies() {
-  const data = await d3.csv("data/first-ladies.csv", d3.autoType);
+  const data = await d3.csv<any>("data/first-ladies.csv", d3.autoType);
   const now = new Date("2021-07-19");
   return Plot.plot({
     width: 960,

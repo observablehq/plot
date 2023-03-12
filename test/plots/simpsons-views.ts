@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function simpsonsViews() {
-  const data = await d3.csv("data/simpsons.csv", d3.autoType);
+  const data = await d3.csv<any>("data/simpsons.csv", d3.autoType);
   return Plot.plot({
     height: 640,
     grid: true,

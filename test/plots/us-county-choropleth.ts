@@ -5,9 +5,9 @@ import {feature, mesh} from "topojson-client";
 export async function usCountyChoropleth() {
   const [[counties, statemesh], unemployment] = await Promise.all([
     d3
-      .json("data/us-counties-10m.json")
+      .json<any>("data/us-counties-10m.json")
       .then((us) => [feature(us, us.objects.counties), mesh(us, us.objects.states, (a, b) => a !== b)]),
-    d3.csv("data/us-county-unemployment.csv").then((data) => new Map(data.map(({id, rate}) => [id, +rate])))
+    d3.csv<any>("data/us-county-unemployment.csv").then((data) => new Map(data.map(({id, rate}) => [id, +rate])))
   ]);
   return Plot.plot({
     width: 960,

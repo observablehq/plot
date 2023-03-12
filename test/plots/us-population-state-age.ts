@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function usPopulationStateAge() {
-  const states = await d3.csv("data/us-population-state-age.csv", d3.autoType);
+  const states = await d3.csv<any>("data/us-population-state-age.csv", d3.autoType);
   const ages = states.columns.slice(1);
   const stateage = ages.flatMap((age) => states.map((d) => ({state: d.name, age, population: d[age]})));
   return Plot.plot({

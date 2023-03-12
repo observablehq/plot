@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function footballCoverage() {
-  const football = await d3.csv("data/football-coverage.csv", d3.autoType);
+  const football = await d3.csv<any>("data/football-coverage.csv", d3.autoType);
   return Plot.plot({
     x: {
       axis: null

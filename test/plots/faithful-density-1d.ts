@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function faithfulDensity1d() {
-  const faithful = await d3.tsv("data/faithful.tsv", d3.autoType);
+  const faithful = await d3.tsv<any>("data/faithful.tsv", d3.autoType);
   return Plot.plot({
     height: 100,
     inset: 20,

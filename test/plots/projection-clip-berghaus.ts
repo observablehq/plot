@@ -4,7 +4,7 @@ import {geoBerghaus} from "d3-geo-projection";
 import {feature} from "topojson-client";
 
 export async function projectionClipBerghaus() {
-  const world = await d3.json("data/countries-110m.json");
+  const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
   return Plot.plot({
     width: 600,

@@ -6,7 +6,7 @@ import * as d3 from "d3";
 // not a recommended pattern: you should instead parse strings to dates when
 // loading the data, say by applying d3.autoType or calling array.map.
 export async function ibmTrading() {
-  const ibm = await d3.csv("data/ibm.csv").then((data) => data.slice(-20));
+  const ibm = await d3.csv<any>("data/ibm.csv").then((data) => data.slice(-20));
   return Plot.plot({
     marginBottom: 65,
     x: {

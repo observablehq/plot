@@ -4,7 +4,10 @@ import * as d3 from "d3";
 const parseDate = d3.utcParse("%b-%Y");
 
 export async function usRetailSales() {
-  const data = await d3.csv("data/us-retail-sales.csv", ({Date, ...d}) => ({Date: parseDate(Date), ...d3.autoType(d)}));
+  const data = await d3.csv<any>("data/us-retail-sales.csv", ({Date, ...d}) => ({
+    Date: parseDate(Date),
+    ...d3.autoType(d)
+  }));
   return Plot.plot({
     y: {
       grid: true,

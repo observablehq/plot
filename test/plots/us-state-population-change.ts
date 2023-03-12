@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function usStatePopulationChange() {
-  const data = await d3.csv("data/us-state-population-2010-2019.csv", d3.autoType);
+  const data = await d3.csv<any>("data/us-state-population-2010-2019.csv", d3.autoType);
   return Plot.plot({
     height: 800,
     marginLeft: 100,

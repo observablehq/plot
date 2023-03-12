@@ -5,7 +5,7 @@ import {feature, mesh} from "topojson-client";
 export async function usCountySpikes() {
   const [[nation, counties, statemesh], population] = await Promise.all([
     d3
-      .json("data/us-counties-10m.json")
+      .json<any>("data/us-counties-10m.json")
       .then((us) => [
         feature(us, us.objects.nation),
         feature(us, us.objects.counties),

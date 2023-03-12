@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 // Test channel transform composition.
 export async function penguinDodgeHexbin() {
-  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     height: 300,
     x: {

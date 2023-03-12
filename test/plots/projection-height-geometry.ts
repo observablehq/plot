@@ -8,7 +8,7 @@ export async function projectionHeightGeometry() {
       const r = (i % 2) + 5;
       return [340 + 30 * r * Math.cos(angle), 205 + 30 * r * Math.sin(angle)];
     })
-  };
+  } as const;
   return Plot.plot({
     facet: {data: [0, 1], y: [0, 1]},
     projection: null,

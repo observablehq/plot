@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function moviesRatingByGenre() {
-  const movies = await d3.json("data/movies.json");
+  const movies = await d3.json<any>("data/movies.json");
   return Plot.plot({
     width: 960,
     height: 560,

@@ -91,7 +91,7 @@ export async function textOverflowNone() {
 }
 
 async function textOverflowPlot(textOverflow, {monospace = false} = {}) {
-  const presidents = await d3.csv("data/us-president-favorability.csv", d3.autoType);
+  const presidents = await d3.csv<any>("data/us-president-favorability.csv", d3.autoType);
   const opinions = [
     "Very Unfavorable %",
     "Somewhat Unfavorable %",

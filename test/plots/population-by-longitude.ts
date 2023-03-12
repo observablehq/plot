@@ -3,9 +3,9 @@ import * as d3 from "d3";
 import {feature} from "topojson-client";
 
 export async function populationByLongitude() {
-  const world = await d3.json("data/countries-110m.json");
+  const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
-  const cities = await d3.csv("data/cities-10k.csv", d3.autoType);
+  const cities = await d3.csv<any>("data/cities-10k.csv", d3.autoType);
   return Plot.plot({
     style: {overflow: "visible"},
     projection: {type: "equirectangular", rotate: [-10, 0]},

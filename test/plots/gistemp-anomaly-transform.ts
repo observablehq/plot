@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function gistempAnomalyTransform() {
-  const data = await d3.csv("data/gistemp.csv", d3.autoType);
+  const data = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   const transform = (c) => (c * 9) / 5; // convert (relative) Celsius to Fahrenheit
   return Plot.plot({
     y: {

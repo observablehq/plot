@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function aaplBollinger() {
-  const AAPL = await d3.csv("data/aapl.csv", d3.autoType);
+  const AAPL = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     y: {
       grid: true
@@ -16,7 +16,7 @@ export async function aaplBollinger() {
 }
 
 export async function aaplBollingerGridInterval() {
-  const AAPL = await d3.csv("data/aapl.csv", d3.autoType);
+  const AAPL = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     marks: [
       Plot.frame({fill: "#eaeaea"}),
@@ -34,7 +34,7 @@ export async function aaplBollingerGridInterval() {
 }
 
 export async function aaplBollingerGridSpacing() {
-  const AAPL = await d3.csv("data/aapl.csv", d3.autoType);
+  const AAPL = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     marks: [
       Plot.frame({fill: "#eaeaea"}),

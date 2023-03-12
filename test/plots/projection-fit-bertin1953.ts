@@ -4,7 +4,7 @@ import {geoBertin1953} from "d3-geo-projection";
 import {merge} from "topojson-client";
 
 export async function projectionFitBertin1953() {
-  const world = await d3.json("data/countries-110m.json");
+  const world = await d3.json<any>("data/countries-110m.json");
   const land = merge(
     world,
     world.objects.countries.geometries.filter((d) => d.properties.name !== "Antarctica")

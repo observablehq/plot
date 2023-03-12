@@ -2,14 +2,14 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function volcano() {
-  const volcano = await d3.json("data/volcano.json");
+  const volcano = await d3.json<any>("data/volcano.json");
   return Plot.plot({
     marks: [Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}), Plot.frame()]
   });
 }
 
 export async function volcanoTerrain() {
-  const volcano = await d3.json("data/volcano.json");
+  const volcano = await d3.json<any>("data/volcano.json");
   return Plot.plot({
     color: {
       interpolate: d3.piecewise(d3.interpolateHsl, [
@@ -27,7 +27,7 @@ export async function volcanoTerrain() {
 }
 
 export async function volcanoContour() {
-  const volcano = await d3.json("data/volcano.json");
+  const volcano = await d3.json<any>("data/volcano.json");
   return Plot.plot({
     marks: [
       Plot.contour(volcano.values, {

@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function usPresidentialElection2020() {
-  const data = await d3.csv("data/us-presidential-election-2020.csv", d3.autoType);
+  const data = await d3.csv<any>("data/us-presidential-election-2020.csv", d3.autoType);
   return Plot.plot({
     width: 960,
     height: 640,

@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import {svg} from "htl";
 
 export async function penguinSpeciesGradient() {
-  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
       () => svg`<defs>

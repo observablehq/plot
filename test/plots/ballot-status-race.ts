@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function ballotStatusRace() {
-  let votes: any = await d3.csv("data/nc-absentee-votes.csv", d3.autoType);
+  let votes: any = await d3.csv<any>("data/nc-absentee-votes.csv", d3.autoType);
 
   // Filter for mail ballots.
   const types = ["MAIL"];

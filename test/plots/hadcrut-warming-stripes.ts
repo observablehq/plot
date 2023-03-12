@@ -8,7 +8,7 @@ export async function hadcrutWarmingStripes() {
     .map((line) => line.split(/\s+/g)) // split each line into fields
     .map(([year, anomaly]) => ({
       // extract the year and median anomaly
-      year: new Date(Date.UTC(year, 0, 1)),
+      year: new Date(Date.UTC(+year, 0, 1)),
       anomaly: +anomaly
     }));
   return Plot.plot({

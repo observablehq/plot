@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export async function usPresidentialForecast2016() {
-  const data = await d3.csv("data/us-presidential-forecast-2016-histogram.csv", d3.autoType);
+  const data = await d3.csv<any>("data/us-presidential-forecast-2016-histogram.csv", d3.autoType);
   return Plot.plot({
     x: {
       label: "Electoral votes for Hillary Clinton →"
