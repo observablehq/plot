@@ -32,9 +32,21 @@ export type ScaleType =
   | "quantize"
   | "identity";
 
-export type ScalesOptions = {[key in ScaleName]?: ScaleOptions};
+export interface ScaleDefaults extends InsetOptions {
+  clamp?: boolean;
+  nice?: boolean | number | Interval;
+  zero?: boolean;
+  round?: boolean;
+  align?: number;
+  padding?: number;
 
-export interface ScaleOptions extends ScaleAxisOptions, InsetOptions {
+  // axis options
+  axis?: AxisAnchor | "both" | boolean | null; // for position scales
+  grid?: boolean | string | Interval | Iterable<any>;
+  label?: string | null;
+}
+
+export interface ScaleOptions extends ScaleDefaults {
   type?: ScaleType | null;
   domain?: Iterable<any>;
   range?: Iterable<any>;
@@ -44,9 +56,6 @@ export interface ScaleOptions extends ScaleAxisOptions, InsetOptions {
 
   // quantitative scale options
   interval?: Interval;
-  clamp?: boolean;
-  nice?: boolean | number | Interval;
-  zero?: boolean;
   percent?: boolean;
 
   // color scale options
@@ -71,15 +80,10 @@ export interface ScaleOptions extends ScaleAxisOptions, InsetOptions {
   symmetric?: boolean;
 
   // position scale options
-  round?: boolean;
-  padding?: number;
   paddingInner?: number;
   paddingOuter?: number;
-  align?: number;
-}
 
-export interface ScaleAxisOptions {
-  axis?: AxisAnchor | "both" | boolean | null; // for position scales
+  // axis and legend options
   legend?: LegendType | boolean | null; // for color, opacity, and symbol scales
   ticks?: number | Interval | Iterable<any>;
   tickSize?: number;
@@ -90,10 +94,8 @@ export interface ScaleAxisOptions {
   fontVariant?: string;
   ariaLabel?: string;
   ariaDescription?: string;
-  label?: string | null;
   labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
   labelOffset?: number;
-  grid?: boolean | string | Interval | Iterable<any>;
   line?: boolean;
 }
 

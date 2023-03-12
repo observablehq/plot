@@ -1,4 +1,4 @@
-import type {ScaleAxisOptions, ScaleOptions} from "./scales.js";
+import type {ScaleOptions} from "./scales.js";
 
 export type LegendType = "ramp" | "swatches";
 
@@ -11,8 +11,8 @@ export interface LegendOptions {
   symbol?: ScaleOptions;
 
   // shared options
-  tickFormat?: ScaleAxisOptions["tickFormat"];
-  fontVariant?: ScaleAxisOptions["fontVariant"];
+  tickFormat?: ScaleOptions["tickFormat"];
+  fontVariant?: ScaleOptions["fontVariant"];
   style?: any;
   className?: any;
 
