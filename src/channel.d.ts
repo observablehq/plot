@@ -50,7 +50,7 @@ export interface Channel {
 
 export type ChannelValue =
   | Iterable<any> // column of values
-  | (string & {}) // field or literal color; see also https://github.com/microsoft/TypeScript/issues/29729
+  | (string & Record<never, never>) // field or literal color; see also https://github.com/microsoft/TypeScript/issues/29729
   | Date // constant
   | number // constant
   | boolean // constant

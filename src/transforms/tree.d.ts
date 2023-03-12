@@ -4,7 +4,7 @@ import type {Transformed} from "./basic.js";
 export interface TreeTransformOptions {
   path?: ChannelValue;
   delimiter?: string;
-  treeLayout?: Function; // TODO
+  treeLayout?: any; // TODO
   treeSort?: any; // TODO
   treeSeparation?: any; // TODO
   treeAnchor?: "left" | "right";

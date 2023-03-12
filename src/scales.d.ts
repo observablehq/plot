@@ -126,4 +126,4 @@ export interface Scale {
   invert?(t: any): any;
 }
 
-export function scale(options?: {}): any;
+export function scale(options?: {[name in ScaleName]?: ScaleOptions}): any;
