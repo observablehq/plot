@@ -36,7 +36,7 @@ export async function gridChoropleth() {
   });
 }
 
-function gridmap(states) {
+function gridmap(states: {name: string}[]) {
   return new Map(states.map((state) => [state.name, state]));
 }
 
