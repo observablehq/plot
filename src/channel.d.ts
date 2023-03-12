@@ -50,7 +50,7 @@ export interface Channel {
 
 export type ChannelValue =
   | Iterable<any> // column of values
-  | string // field or literal color
+  | (string & {}) // field or literal color; see also https://github.com/microsoft/TypeScript/issues/29729
   | Date // constant
   | number // constant
   | boolean // constant
@@ -58,7 +58,7 @@ export type ChannelValue =
   | ((d: any, i: number) => any) // function of data
   | ChannelTransform; // function of data
 
-export type ChannelValueSpec = ChannelValue | Pick<Channel, "value" | "scale">;
+export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale?: Channel["scale"]};
 
 export type ChannelDomainValue = ChannelName | "data" | "width" | "height" | null;
 
