@@ -2,7 +2,7 @@ import {InternSet, extent, quantize, reverse as reverseof, sort, symbolsFill, sy
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {isNoneish, map, maybeInterval} from "../options.js";
-import {maybeSymbol} from "../symbols.js";
+import {maybeSymbol} from "../symbol.js";
 import {registry, color, position, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
 
@@ -12,7 +12,7 @@ import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js
 // of this by setting the type explicitly.
 export const ordinalImplicit = Symbol("ordinal");
 
-function ScaleO(key, scale, channels, {type, interval, domain, range, reverse, hint}) {
+function createScaleO(key, scale, channels, {type, interval, domain, range, reverse, hint}) {
   interval = maybeInterval(interval, type);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
@@ -26,7 +26,7 @@ function ScaleO(key, scale, channels, {type, interval, domain, range, reverse, h
   return {type, domain, range, scale, hint, interval};
 }
 
-export function ScaleOrdinal(key, channels, {type, interval, domain, range, scheme, unknown, ...options}) {
+export function createScaleOrdinal(key, channels, {type, interval, domain, range, scheme, unknown, ...options}) {
   interval = maybeInterval(interval, type);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   let hint;
@@ -55,14 +55,14 @@ export function ScaleOrdinal(key, channels, {type, interval, domain, range, sche
   if (unknown === scaleImplicit) {
     throw new Error(`implicit unknown on ${key} scale is not supported`);
   }
-  return ScaleO(key, scaleOrdinal().unknown(unknown), channels, {...options, type, domain, range, hint});
+  return createScaleO(key, scaleOrdinal().unknown(unknown), channels, {...options, type, domain, range, hint});
 }
 
-export function ScalePoint(key, channels, {align = 0.5, padding = 0.5, ...options}) {
+export function createScalePoint(key, channels, {align = 0.5, padding = 0.5, ...options}) {
   return maybeRound(scalePoint().align(align).padding(padding), channels, options, key);
 }
 
-export function ScaleBand(
+export function createScaleBand(
   key,
   channels,
   {
@@ -84,7 +84,7 @@ export function ScaleBand(
 function maybeRound(scale, channels, options, key) {
   let {round} = options;
   if (round !== undefined) scale.round((round = !!round));
-  scale = ScaleO(key, scale, channels, options);
+  scale = createScaleO(key, scale, channels, options);
   scale.round = round; // preserve for autoScaleRound
   return scale;
 }

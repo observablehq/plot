@@ -1,8 +1,8 @@
 import {blur2, contours, geoPath, max, min, nice, range, ticks, thresholdSturges} from "d3";
-import {Channels} from "../channel.js";
+import {createChannels} from "../channel.js";
 import {create} from "../context.js";
 import {labelof, identity, arrayify, map} from "../options.js";
-import {Position} from "../projection.js";
+import {applyPosition} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, styles} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import {maybeThresholds} from "../transforms/bin.js";
@@ -120,7 +120,7 @@ function contourGeometry({thresholds, interval, ...options}) {
 
     // Interpolate the raster grid, as needed.
     if (this.interpolate) {
-      const {x: X, y: Y} = Position(channels, scales, context);
+      const {x: X, y: Y} = applyPosition(channels, scales, context);
       // Convert scaled (screen) coordinates to grid (canvas) coordinates.
       const IX = map(X, (x) => (x - x1) * kx, Float64Array);
       const IY = map(Y, (y) => (y - y1) * ky, Float64Array);
@@ -176,7 +176,7 @@ function contourGeometry({thresholds, interval, ...options}) {
     return {
       data: contourData,
       facets: contourFacets,
-      channels: Channels(this.contourChannels, contourData)
+      channels: createChannels(this.contourChannels, contourData)
     };
   });
 }
@@ -197,7 +197,6 @@ function maybeTicks(thresholds, V, min, max) {
   return tz;
 }
 
-/** @jsdoc contour */
 export function contour() {
   return new Contour(...maybeTuples("value", ...arguments));
 }

@@ -64,8 +64,6 @@ See also our [Plot + React example](https://github.com/observablehq/plot-create-
 
 ## Plot.plot(*options*)
 
-<!-- jsdoc plot -->
-
 Renders a new plot given the specified *options* and returns the corresponding SVG or HTML figure element. All *options* are optional.
 
 ### Mark options
@@ -223,8 +221,6 @@ Plot.plot({
 })
 ```
 
-<!-- jsdocEnd plot -->
-
 #### *plot*.scale(*scaleName*)
 
 Scale definitions can be exposed through the *plot*.**scale**(*scaleName*) function of a returned plot. The *scaleName* must be one of the known scale names: `"x"`, `"y"`, `"fx"`, `"fy"`, `"r"`, `"color"`, `"opacity"`, `"symbol"`, or `"length"`. If the associated *plot* has no scale with the given *scaleName*, returns undefined.
@@ -236,8 +232,6 @@ console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 ```
 
 #### Plot.scale(*options*)
-
-<!-- jsdoc scale -->
 
 You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 
@@ -257,8 +251,6 @@ const plot2 = Plot.plot({…, color: plot1.scale("color")});
 ```
 
 For convenience, scale objects expose a *scale*.**apply**(*input*) method which returns the scale’s output for the given *input* value. When applicable, scale objects also expose a *scale*.**invert**(*output*) method which returns the corresponding input value from the scale’s domain for the given *output* value.
-
-<!-- jsdocEnd scale -->
 
 ### Position options
 
@@ -692,8 +684,6 @@ The **style** legend option allows custom styles to override Plot’s defaults; 
 
 #### Plot.legend(*options*)
 
-<!-- jsdoc legend -->
-
 Returns a standalone legend for the scale defined by the given *options* object. The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a ramp legend of a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 
 ```js
@@ -710,8 +700,6 @@ Plot.legend({
   }
 })
 ```
-
-<!-- jsdocEnd legend -->
 
 ## Marks
 
@@ -868,11 +856,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot({width: 1024})
 
 #### Plot.marks(...*marks*)
 
-<!-- jsdoc marks -->
-
 A convenience method for composing a mark from a series of other marks. Returns an array of marks that implements the *mark*.plot function. See the [box mark implementation](./src/marks/box.js) for an example.
-
-<!-- jsdocEnd marks -->
 
 ### Area
 
@@ -903,19 +887,13 @@ The area mark supports [curve options](#curves) to control interpolation between
 
 #### Plot.area(*data*, *options*)
 
-<!-- jsdoc area -->
-
 ```js
 Plot.area(aapl, {x1: "Date", y1: 0, y2: "Close"})
 ```
 
 Returns a new area with the given *data* and *options*. Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) is used in the common horizontal orientation where the baseline and topline share *x* values, while [Plot.areaX](#plotareaxdata-options) is used in the vertical orientation where the baseline and topline share *y* values.
 
-<!-- jsdocEnd area -->
-
 #### Plot.areaX(*data*, *options*)
-
-<!-- jsdoc areaX -->
 
 ```js
 Plot.areaX(aapl, {y: "Date", x: "Close"})
@@ -931,11 +909,7 @@ Plot.areaX(observations, {y: "date", x: "temperature", interval: "day"})
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
-<!-- jsdocEnd areaX -->
-
 #### Plot.areaY(*data*, *options*)
-
-<!-- jsdoc areaY -->
 
 ```js
 Plot.areaY(aapl, {x: "Date", y: "Close"})
@@ -950,8 +924,6 @@ Plot.areaY(observations, {x: "date", y: "temperature", interval: "day")
 ```
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
-
-<!-- jsdocEnd areaY -->
 
 ### Arrow
 
@@ -981,15 +953,11 @@ The **bend** option sets the angle between the straight line between the two poi
 
 #### Plot.arrow(*data*, *options*)
 
-<!-- jsdoc arrow -->
-
 ```js
 Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015", bend: true})
 ```
 
 Returns a new arrow with the given *data* and *options*.
-
-<!-- jsdocEnd arrow -->
 
 ### Auto
 
@@ -1078,15 +1046,11 @@ The chosen mark type depends both on the options you provide (*e.g.*, whether yo
 
 #### Plot.auto(*data*, *options*)
 
-<!-- jsdoc auto -->
-
 ```js
 Plot.auto(athletes, {x: "height", y: "weight", color: "count"}) // equivalent to rect + bin, say
 ```
 
 Returns an automatically-chosen mark with the given *data* and *options*, suitable for a quick view of the data.
-
-<!-- jsdocEnd auto -->
 
 ### Axis
 
@@ -1131,19 +1095,13 @@ For simplicity’s sake and for consistent layout across plots, axis margins are
 
 #### Plot.axisX(*data*, *options*)
 
-<!-- jsdoc axisX -->
-
 ```js
 Plot.axisX({anchor: "bottom", tickSpacing: 80})
 ```
 
 Returns a new *x* axis with the given *options*.
 
-<!-- jsdocEnd axisX -->
-
 #### Plot.axisY(*data*, *options*)
-
-<!-- jsdoc axisY -->
 
 ```js
 Plot.axisY({anchor: "left", tickSpacing: 35})
@@ -1151,11 +1109,7 @@ Plot.axisY({anchor: "left", tickSpacing: 35})
 
 Returns a new *y* axis with the given *options*.
 
-<!-- jsdocEnd axisY -->
-
 #### Plot.axisFx(*data*, *options*)
-
-<!-- jsdoc axisFx -->
 
 ```js
 Plot.axisFx({anchor: "top", label: null})
@@ -1163,19 +1117,13 @@ Plot.axisFx({anchor: "top", label: null})
 
 Returns a new *fx* axis with the given *options*.
 
-<!-- jsdocEnd axisFx -->
-
 #### Plot.axisFy(*data*, *options*)
-
-<!-- jsdoc axisFy -->
 
 ```js
 Plot.axisFy({anchor: "right", label: null})
 ```
 
 Returns a new *fy* axis with the given *options*.
-
-<!-- jsdocEnd axisFy -->
 
 ### Bar
 
@@ -1186,8 +1134,6 @@ Returns a new *fy* axis with the given *options*.
 For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options). The bar mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
 #### Plot.barX(*data*, *options*)
-
-<!-- jsdoc barX -->
 
 ```js
 Plot.barX(alphabet, {y: "letter", x: "frequency"})
@@ -1208,11 +1154,7 @@ In addition to the [standard bar channels](#bar), the following optional channel
 
 If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
 
-<!-- jsdocEnd barX -->
-
 #### Plot.barY(*data*, *options*)
-
-<!-- jsdoc barY -->
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency"})
@@ -1232,8 +1174,6 @@ In addition to the [standard bar channels](#bar), the following optional channel
 * **x** - the horizontal position; bound to the *x* scale, which must be *band*
 
 If the **x** channel is not specified, the bar will span the full horizontal extent of the plot (or facet).
-
-<!-- jsdocEnd barY -->
 
 ### Box
 
@@ -1258,27 +1198,19 @@ The given *options* are passed through to these underlying marks, with the excep
 
 #### Plot.boxX(*data*, *options*)
 
-<!-- jsdoc boxX -->
-
 ```js
 Plot.boxX(simpsons.map(d => d.imdb_rating))
 ```
 
 Returns a horizontal boxplot mark. If the **x** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **y** option is not specified, it defaults to null; if the **y** option is specified, it should represent an ordinal (discrete) value.
 
-<!-- jsdocEnd boxX -->
-
 #### Plot.boxY(*data*, *options*)
-
-<!-- jsdoc boxY -->
 
 ```js
 Plot.boxY(simpsons.map(d => d.imdb_rating))
 ```
 
 Returns a vertical boxplot mark. If the **y** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **x** option is not specified, it defaults to null; if the **x** option is specified, it should represent an ordinal (discrete) value.
-
-<!-- jsdocEnd boxY -->
 
 ### Cell
 
@@ -1297,19 +1229,13 @@ The **stroke** defaults to none. The **fill** defaults to currentColor if the st
 
 #### Plot.cell(*data*, *options*)
 
-<!-- jsdoc cell -->
-
 ```js
 Plot.cell(simpsons, {x: "number_in_season", y: "season", fill: "imdb_rating"})
 ```
 
 Returns a new cell with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-<!-- jsdocEnd cell -->
-
 #### Plot.cellX(*data*, *options*)
-
-<!-- jsdoc cellX -->
 
 ```js
 Plot.cellX(simpsons.map(d => d.imdb_rating))
@@ -1317,19 +1243,13 @@ Plot.cellX(simpsons.map(d => d.imdb_rating))
 
 Equivalent to [Plot.cell](#plotcelldata-options), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
-<!-- jsdocEnd cellX -->
-
 #### Plot.cellY(*data*, *options*)
-
-<!-- jsdoc cellY -->
 
 ```js
 Plot.cellY(simpsons.map(d => d.imdb_rating))
 ```
 
 Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
-
-<!-- jsdocEnd cellY -->
 
 ### Contour
 
@@ -1376,15 +1296,11 @@ Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill
 
 #### Plot.contour(*data*, *options*)
 
-<!-- jsdoc contour -->
-
 ```js
 Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
 ```
 
 Returns a new contour mark with the given (optional) *data* and *options*.
-
-<!-- jsdocEnd contour -->
 
 ### Delaunay
 
@@ -1394,53 +1310,33 @@ Returns a new contour mark with the given (optional) *data* and *options*.
 
 #### Plot.delaunayLink(*data*, *options*)
 
-<!-- jsdoc delaunayLink -->
-
 Draws links for each edge of the Delaunay triangulation of the points given by the **x** and **y** channels. Supports the same options as the [link mark](#link), except that **x1**, **y1**, **x2**, and **y2** are derived automatically from **x** and **y**. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the link inherits the corresponding channel value from one of its two endpoints arbitrarily.
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate Delaunay triangulations are constructed for each group.
 
-<!-- jsdocEnd delaunayLink -->
-
 #### Plot.delaunayMesh(*data*, *options*)
-
-<!-- jsdoc delaunayMesh -->
 
 Draws a mesh of the Delaunay triangulation of the points given by the **x** and **y** channels. The **stroke** option defaults to _currentColor_, and the **strokeOpacity** defaults to 0.2. The **fill** option is not supported. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the mesh inherits the corresponding channel value from one of its constituent points arbitrarily.
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate Delaunay triangulations are constructed for each group.
 
-<!-- jsdocEnd delaunayMesh -->
-
 #### Plot.hull(*data*, *options*)
-
-<!-- jsdoc hull -->
 
 Draws a convex hull around the points given by the **x** and **y** channels. The **stroke** option defaults to _currentColor_ and the **fill** option defaults to _none_. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the hull inherits the corresponding channel value from one of its constituent points arbitrarily.
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate convex hulls are constructed for each group. If the **z** channel is not specified, it defaults to either the **fill** channel, if any, or the **stroke** channel, if any.
 
-<!-- jsdocEnd hull -->
-
 #### Plot.voronoi(*data*, *options*)
-
-<!-- jsdoc voronoi -->
 
 Draws polygons for each cell of the Voronoi tesselation of the points given by the **x** and **y** channels.
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate Voronoi tesselations are constructed for each group.
 
-<!-- jsdocEnd voronoi -->
-
 #### Plot.voronoiMesh(*data*, *options*)
-
-<!-- jsdoc voronoiMesh -->
 
 Draws a mesh for the cell boundaries of the Voronoi tesselation of the points given by the **x** and **y** channels. The **stroke** option defaults to _currentColor_, and the **strokeOpacity** defaults to 0.2. The **fill** option is not supported. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the mesh inherits the corresponding channel value from one of its constituent points arbitrarily.
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate Voronoi tesselations are constructed for each group.
-
-<!-- jsdocEnd voronoiMesh -->
 
 ### Density
 
@@ -1450,15 +1346,11 @@ If a **z** channel is specified, the input points are grouped by *z*, and separa
 
 #### Plot.density(*data*, *options*)
 
-<!-- jsdoc density -->
-
 Draws contours representing the estimated density of the two-dimensional points given by the **x** and **y** channels, and possibly weighted by the **weight** channel. If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
 The **thresholds** option, which defaults to 20, specifies one more than the number of contours that will be computed at uniformly-spaced intervals between 0 (exclusive) and the maximum density (exclusive). The **thresholds** option may also be specified as an array or iterable of explicit density values. The **bandwidth** option, which defaults to 20, specifies the standard deviation of the Gaussian kernel used for estimation in pixels.
 
 If a **z**, **stroke** or **fill** channel is specified, the input points are grouped by series, and separate sets of contours are generated for each series. If the **stroke** or **fill** is specified as *density*, a color channel is constructed with values representing the density threshold value of each contour.
-
-<!-- jsdocEnd density -->
 
 ### Dot
 
@@ -1493,19 +1385,13 @@ Dots are sorted by descending radius by default to mitigate overplotting; set th
 
 #### Plot.dot(*data*, *options*)
 
-<!-- jsdoc dot -->
-
 ```js
 Plot.dot(sales, {x: "units", y: "fruit"})
 ```
 
 Returns a new dot with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-<!-- jsdocEnd dot -->
-
 #### Plot.dotX(*data*, *options*)
-
-<!-- jsdoc dotX -->
 
 ```js
 Plot.dotX(cars.map(d => d["economy (mpg)"]))
@@ -1515,11 +1401,7 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option i
 
 If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
 
-<!-- jsdocEnd dotX -->
-
 #### Plot.dotY(*data*, *options*)
-
-<!-- jsdoc dotY -->
 
 ```js
 Plot.dotY(cars.map(d => d["economy (mpg)"]))
@@ -1529,23 +1411,13 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option i
 
 If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
 
-<!-- jsdocEnd dotY -->
-
 #### Plot.circle(*data*, *options*)
-
-<!-- jsdoc circle -->
 
 Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *circle*.
 
-<!-- jsdocEnd circle -->
-
 #### Plot.hexagon(*data*, *options*)
 
-<!-- jsdoc hexagon -->
-
 Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *hexagon*.
-
-<!-- jsdocEnd hexagon -->
 
 ### Geo
 
@@ -1599,19 +1471,13 @@ All the other common options are supported when applicable (e.g., **title**).
 
 #### Plot.gridX(*data*, *options*)
 
-<!-- jsdoc gridX -->
-
 ```js
 Plot.gridX({strokeDasharray: "5,3"})
 ```
 
 Returns a new *x* grid with the given *options*.
 
-<!-- jsdocEnd gridX -->
-
 #### Plot.gridY(*data*, *options*)
-
-<!-- jsdoc gridY -->
 
 ```js
 Plot.gridY({strokeDasharray: "5,3"})
@@ -1619,11 +1485,7 @@ Plot.gridY({strokeDasharray: "5,3"})
 
 Returns a new *y* grid with the given *options*.
 
-<!-- jsdocEnd gridY -->
-
 #### Plot.gridFx(*data*, *options*)
-
-<!-- jsdoc gridFx -->
 
 ```js
 Plot.gridFx({strokeDasharray: "5,3"})
@@ -1631,19 +1493,13 @@ Plot.gridFx({strokeDasharray: "5,3"})
 
 Returns a new *fx* grid with the given *options*.
 
-<!-- jsdocEnd gridFx -->
-
 #### Plot.gridFy(*data*, *options*)
-
-<!-- jsdoc gridFy -->
 
 ```js
 Plot.gridFy({strokeDasharray: "5,3"})
 ```
 
 Returns a new *fy* grid with the given *options*.
-
-<!-- jsdocEnd gridFy -->
 
 ### Hexgrid
 
@@ -1655,11 +1511,7 @@ The hexgrid mark can be used to support marks using the [hexbin](#hexbin) layout
 Plot.hexgrid()
 ```
 
-<!-- jsdoc hexgrid -->
-
 The **binWidth** option specifies the distance between the centers of neighboring hexagons, in pixels (defaults to 20). The **clip** option defaults to true, clipping the mark to the frame’s dimensions.
-
-<!-- jsdocEnd hexgrid -->
 
 ### Image
 
@@ -1691,15 +1543,11 @@ Images are drawn in input order, with the last data drawn on top. If sorting is 
 
 #### Plot.image(*data*, *options*)
 
-<!-- jsdoc image -->
-
 ```js
 Plot.image(presidents, {x: "inauguration", y: "favorability", src: "portrait"})
 ```
 
 Returns a new image with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
-
-<!-- jsdocEnd image -->
 
 ### Linear regression
 
@@ -1719,27 +1567,19 @@ Multiple regressions can be defined by specifying the *z*, *fill*, or *stroke* c
 
 #### Plot.linearRegressionX(*data*, *options*)
 
-<!-- jsdoc linearRegressionX -->
-
 ```js
 Plot.linearRegressionX(mtcars, {y: "wt", x: "hp"})
 ```
 
 Returns a linear regression mark where *x* is the dependent variable and *y* is the independent variable.
 
-<!-- jsdocEnd linearRegressionX -->
-
 #### Plot.linearRegressionY(*data*, *options*)
-
-<!-- jsdoc linearRegressionY -->
 
 ```js
 Plot.linearRegressionY(mtcars, {x: "wt", y: "hp"})
 ```
 
 Returns a linear regression mark where *y* is the dependent variable and *x* is the independent variable.
-
-<!-- jsdocEnd linearRegressionY -->
 
 ### Line
 
@@ -1766,19 +1606,13 @@ The line mark supports [curve options](#curves) to control interpolation between
 
 #### Plot.line(*data*, *options*)
 
-<!-- jsdoc line -->
-
 ```js
 Plot.line(aapl, {x: "Date", y: "Close"})
 ```
 
 Returns a new line with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-<!-- jsdocEnd line -->
-
 #### Plot.lineX(*data*, *options*)
-
-<!-- jsdoc lineX -->
 
 ```js
 Plot.lineX(aapl.map(d => d.Close))
@@ -1794,11 +1628,7 @@ Plot.lineX(observations, {y: "date", x: "temperature", interval: "day"})
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
-<!-- jsdocEnd lineX -->
-
 #### Plot.lineY(*data*, *options*)
-
-<!-- jsdoc lineY -->
 
 ```js
 Plot.lineY(aapl.map(d => d.Close))
@@ -1813,8 +1643,6 @@ Plot.lineY(observations, {x: "date", y: "temperature", interval: "day"})
 ```
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
-
-<!-- jsdocEnd lineY -->
 
 ### Link
 
@@ -1837,15 +1665,11 @@ The link mark supports [curve options](#curves) to control interpolation between
 
 #### Plot.link(*data*, *options*)
 
-<!-- jsdoc link -->
-
 ```js
 Plot.link(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015"})
 ```
 
 Returns a new link with the given *data* and *options*.
-
-<!-- jsdocEnd link -->
 
 ### Raster
 
@@ -1886,15 +1710,11 @@ The **imageRendering** option may be set to *pixelated* to disable bilinear inte
 
 #### Plot.raster(*data*, *options*)
 
-<!-- jsdoc raster -->
-
 ```js
 Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
 ```
 
 Returns a new raster mark with the given (optional) *data* and *options*.
-
-<!-- jsdocEnd raster -->
 
 ### Rect
 
@@ -1917,19 +1737,13 @@ The rect mark supports the [standard mark options](#marks), including insets and
 
 #### Plot.rect(*data*, *options*)
 
-<!-- jsdoc rect -->
-
 ```js
 Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
 ```
 
 Returns a new rect with the given *data* and *options*.
 
-<!-- jsdocEnd rect -->
-
 #### Plot.rectX(*data*, *options*)
-
-<!-- jsdoc rectX -->
 
 ```js
 Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
@@ -1937,19 +1751,13 @@ Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 
 Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](#plotstackxstack-options); this is the typical configuration for a histogram with rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
 
-<!-- jsdocEnd rectX -->
-
 #### Plot.rectY(*data*, *options*)
-
-<!-- jsdoc rectY -->
 
 ```js
 Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
 Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for a histogram with rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
-
-<!-- jsdocEnd rectY -->
 
 ### Rule
 
@@ -1960,8 +1768,6 @@ Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **y
 For the required channels, see [Plot.ruleX](#plotrulexdata-options) and [Plot.ruleY](#plotruleydata-options). The rule mark supports the [standard mark options](#marks), including insets along its secondary dimension. The **stroke** defaults to currentColor.
 
 #### Plot.ruleX(*data*, *options*)
-
-<!-- jsdoc ruleX -->
 
 ```js
 Plot.ruleX([0]) // as annotation
@@ -1980,11 +1786,7 @@ If the **x** option is not specified, it defaults to the identity function and a
 
 If an **interval** is specified, such as d3.utcDay, **y1** and **y2** can be derived from **y**: *interval*.floor(*y*) is invoked for each *y* to produce *y1*, and *interval*.offset(*y1*) is invoked for each *y1* to produce *y2*. If the interval is specified as a number *n*, *y1* and *y2* are taken as the two consecutive multiples of *n* that bracket *y*.
 
-<!-- jsdocEnd ruleX -->
-
 #### Plot.ruleY(*data*, *options*)
-
-<!-- jsdoc ruleY -->
 
 ```js
 Plot.ruleY([0]) // as annotation
@@ -2003,8 +1805,6 @@ Returns a new rule↔︎ with the given *data* and *options*. In addition to the
 If the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is specified, it is shorthand for the **x2** option with **x1** equal to zero; this is the typical configuration for a horizontal lollipop chart with rules aligned at *x* = 0. If the **x1** channel is not specified, the rule will start at the left edge of the plot (or facet). If the **x2** channel is not specified, the rule will end at the right edge of the plot (or facet).
 
 If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*.
-
-<!-- jsdocEnd ruleY -->
 
 ### Text
 
@@ -2062,31 +1862,19 @@ The **paintOrder** option defaults to “stroke” and the **strokeWidth** optio
 
 #### Plot.text(*data*, *options*)
 
-<!-- jsdoc text -->
-
 Returns a new text mark with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-<!-- jsdocEnd text -->
-
 #### Plot.textX(*data*, *options*)
-
-<!-- jsdoc textX -->
 
 Equivalent to [Plot.text](#plottextdata-options), except **x** defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
 
-<!-- jsdocEnd textX -->
-
 #### Plot.textY(*data*, *options*)
-
-<!-- jsdoc textY -->
 
 Equivalent to [Plot.text](#plottextdata-options), except **y** defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
-
-<!-- jsdocEnd textY -->
 
 ### Tick
 
@@ -2097,8 +1885,6 @@ If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*in
 For the required channels, see [Plot.tickX](#plottickxdata-options) and [Plot.tickY](#plottickydata-options). The tick mark supports the [standard mark options](#marks), including insets. The **stroke** defaults to currentColor.
 
 #### Plot.tickX(*data*, *options*)
-
-<!-- jsdoc tickX -->
 
 ```js
 Plot.tickX(stateage, {x: "population", y: "age"})
@@ -2114,11 +1900,7 @@ The following optional channels are supported:
 
 If the **y** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
 
-<!-- jsdocEnd tickX -->
-
 #### Plot.tickY(*data*, *options*)
-
-<!-- jsdoc tickY -->
 
 ```js
 Plot.tickY(stateage, {y: "population", x: "age"})
@@ -2133,8 +1915,6 @@ The following optional channels are supported:
 * **x** - the horizontal position; bound to the *x* scale, which must be *band*
 
 If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
-
-<!-- jsdocEnd tickY -->
 
 ### Vector
 
@@ -2176,39 +1956,23 @@ Vectors are drawn in input order, with the last data drawn on top. If sorting is
 
 #### Plot.vector(*data*, *options*)
 
-<!-- jsdoc vector -->
-
 ```js
 Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "direction"})
 ```
 
 Returns a new vector with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-<!-- jsdocEnd vector -->
-
 #### Plot.vectorX(*data*, *options*)
-
-<!-- jsdoc vectorX -->
 
 Equivalent to [Plot.vector](#plotvectordata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
-<!-- jsdocEnd vectorX -->
-
 #### Plot.vectorY(*data*, *options*)
-
-<!-- jsdoc vectorY -->
 
 Equivalent to [Plot.vector](#plotvectordata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
-<!-- jsdocEnd vectorY -->
-
 #### Plot.spike(*data*, *options*)
 
-<!-- jsdoc spike -->
-
 Equivalent to [Plot.vector](#plotvectordata-options) except that the **shape** defaults to *spike*, the **stroke** defaults to *currentColor*, the **strokeWidth** defaults to 1, the **fill** defaults to **stroke**, the **fillOpacity** defaults to 0.3, and the **anchor** defaults to *start*.
-
-<!-- jsdocEnd spike -->
 
 ## Decorations
 
@@ -2226,15 +1990,11 @@ If the **anchor** option is specified as one of *left*, *right*, *top*, or *bott
 
 #### Plot.frame(*options*)
 
-<!-- jsdoc frame -->
-
 ```js
 Plot.frame({stroke: "red"})
 ```
 
 Returns a new frame with the specified *options*.
-
-<!-- jsdocEnd frame -->
 
 ## Transforms
 
@@ -2282,19 +2042,13 @@ The *filter*, *sort* and *reverse* transforms are also available as functions, a
 
 #### Plot.sort(*order*, *options*)
 
-<!-- jsdoc sort -->
-
 ```js
 Plot.sort("body_mass_g", options) // show data in ascending body mass order
 ```
 
 Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name. See also [index sorting](#sort-options), which allows marks to be sorted by a named channel, such as *r* for radius.
 
-<!-- jsdocEnd sort -->
-
 #### Plot.shuffle(*options*)
-
-<!-- jsdoc shuffle -->
 
 ```js
 Plot.shuffle(options) // show data in random order
@@ -2302,11 +2056,7 @@ Plot.shuffle(options) // show data in random order
 
 Shuffles the data randomly. If a *seed* option is specified, a linear congruential generator with the given seed is used to generate random numbers deterministically; otherwise, Math.random is used.
 
-<!-- jsdocEnd shuffle -->
-
 #### Plot.reverse(*options*)
-
-<!-- jsdoc reverse -->
 
 ```js
 Plot.reverse(options) // reverse the input order
@@ -2314,19 +2064,13 @@ Plot.reverse(options) // reverse the input order
 
 Reverses the order of the data.
 
-<!-- jsdocEnd reverse -->
-
 #### Plot.filter(*test*, *options*)
-
-<!-- jsdoc filter -->
 
 ```js
 Plot.filter(d => d.body_mass_g > 3000, options) // show data whose body mass is greater than 3kg
 ```
 
 Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition such as a field name; truthy values are retained.
-
-<!-- jsdocEnd filter -->
 
 ### Bin
 
@@ -2450,19 +2194,13 @@ Lastly, the bin transform changes the default [mark insets](#marks): rather than
 
 #### Plot.bin(*outputs*, *options*)
 
-<!-- jsdoc bin -->
-
 ```js
 Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
 ```
 
 Bins on *x* and *y*. Also groups on the first channel of *z*, *fill*, or *stroke*, if any.
 
-<!-- jsdocEnd bin -->
-
 #### Plot.binX(*outputs*, *options*)
-
-<!-- jsdoc binX -->
 
 ```js
 Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
@@ -2470,11 +2208,7 @@ Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 
 Bins on *x*. Also groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
 
-<!-- jsdocEnd binX -->
-
 #### Plot.binY(*outputs*, *options*)
-
-<!-- jsdoc binY -->
 
 ```js
 Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
@@ -2482,13 +2216,9 @@ Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 
 Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or *stroke*, if any.
 
-<!-- jsdocEnd binY -->
-
 ### Centroid
 
 #### Plot.centroid(*options*)
-
-<!-- jsdoc centroid -->
 
 The centroid initializer derives **x** and **y** channels representing the planar (projected) centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
 
@@ -2496,19 +2226,13 @@ The centroid initializer derives **x** and **y** channels representing the plana
 Plot.dot(regions.features, Plot.centroid()).plot({projection: "reflect-y"})
 ```
 
-<!-- jsdocEnd centroid -->
-
 #### Plot.geoCentroid(*options*)
-
-<!-- jsdoc geoCentroid -->
 
 The geoCentroid transform derives **x** and **y** channels representing the spherical centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
 
 ```js
 Plot.dot(counties.features, Plot.geoCentroid()).plot({projection: "albers-usa"})
 ```
-
-<!-- jsdocEnd geoCentroid -->
 
 ### Group
 
@@ -2587,19 +2311,13 @@ The default reducer for the **title** channel returns a summary list of the top 
 
 #### Plot.group(*outputs*, *options*)
 
-<!-- jsdoc group -->
-
 ```js
 Plot.group({fill: "count"}, {x: "island", y: "species"})
 ```
 
 Groups on *x*, *y*, and the first channel of *z*, *fill*, or *stroke*, if any.
 
-<!-- jsdocEnd group -->
-
 #### Plot.groupX(*outputs*, *options*)
-
-<!-- jsdoc groupX -->
 
 ```js
 Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
@@ -2607,11 +2325,7 @@ Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
 
 Groups on *x* and the first channel of *z*, *fill*, or *stroke*, if any.
 
-<!-- jsdocEnd groupX -->
-
 #### Plot.groupY(*outputs*, *options*)
-
-<!-- jsdoc groupY -->
 
 ```js
 Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
@@ -2619,19 +2333,13 @@ Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
 
 Groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
 
-<!-- jsdocEnd groupY -->
-
 #### Plot.groupZ(*outputs*, *options*)
-
-<!-- jsdoc groupZ -->
 
 ```js
 Plot.groupZ({x: "proportion"}, {fill: "species"})
 ```
 
 Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group.
-
-<!-- jsdocEnd groupZ -->
 
 ### Map
 
@@ -2697,19 +2405,13 @@ By default, **anchor** is *middle* and **reduce** is *mean*.
 
 #### Plot.map(*outputs*, *options*)
 
-<!-- jsdoc map -->
-
 ```js
 Plot.map({y: "cumsum"}, {y: d3.randomNormal()})
 ```
 
 Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then for each channel declared in the specified *outputs* object, applies the corresponding map method. Each channel in *outputs* must have a corresponding input channel in *options*.
 
-<!-- jsdocEnd map -->
-
 #### Plot.mapX(*map*, *options*)
-
-<!-- jsdoc mapX -->
 
 ```js
 Plot.mapX("cumsum", {x: d3.randomNormal()})
@@ -2717,11 +2419,7 @@ Plot.mapX("cumsum", {x: d3.randomNormal()})
 
 Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but ignores any of **x**, **x1**, and **x2** not present in *options*.
 
-<!-- jsdocEnd mapX -->
-
 #### Plot.mapY(*map*, *options*)
-
-<!-- jsdoc mapY -->
 
 ```js
 Plot.mapY("cumsum", {y: d3.randomNormal()})
@@ -2729,11 +2427,7 @@ Plot.mapY("cumsum", {y: d3.randomNormal()})
 
 Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*.
 
-<!-- jsdocEnd mapY -->
-
 #### Plot.normalize(*basis*)
-
-<!-- jsdoc normalize -->
 
 ```js
 Plot.map({y: Plot.normalize("first")}, {x: "Date", y: "Close", stroke: "Symbol"})
@@ -2741,11 +2435,7 @@ Plot.map({y: Plot.normalize("first")}, {x: "Date", y: "Close", stroke: "Symbol"}
 
 Returns a normalize map method for the given *basis*, suitable for use with Plot.map.
 
-<!-- jsdocEnd normalize -->
-
 #### Plot.normalizeX(*basis*, *options*)
-
-<!-- jsdoc normalizeX -->
 
 ```js
 Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
@@ -2753,19 +2443,13 @@ Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
 
 Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *basis*.
 
-<!-- jsdocEnd normalizeX -->
-
 #### Plot.normalizeY(*basis*, *options*)
-
-<!-- jsdoc normalizeY -->
 
 ```js
 Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
 Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *basis*.
-
-<!-- jsdocEnd normalizeY -->
 
 #### Plot.window(*k*)
 
@@ -2801,8 +2485,6 @@ The select transform derives a filtered mark index; it does not affect the mark�
 
 #### Plot.select(*selector*, *options*)
 
-<!-- jsdoc select -->
-
 Selects the points of each series selected by the *selector*, which can be specified either as a function which receives as input the index of the series, the shorthand “first” or “last”, or as a {*key*: *value*} object with exactly one *key* being the name of a channel and the *value* being a function which receives as input the index of the series and the channel values. The *value* may alternatively be specified as the shorthand “min” and “max” which respectively select the minimum and maximum points for the specified channel.
 
 For example, to select the point within each series that is the closest to the median of the *y* channel:
@@ -2833,55 +2515,29 @@ To pick the point in each city with the highest temperature:
 Plot.select({fill: "max"}, {x: "date", y: "city", fill: "temperature", z: "city"})
 ```
 
-<!-- jsdocEnd select -->
-
 #### Plot.selectFirst(*options*)
-
-<!-- jsdoc selectFirst -->
 
 Selects the first point of each series according to input order.
 
-<!-- jsdocEnd selectFirst -->
-
 #### Plot.selectLast(*options*)
-
-<!-- jsdoc selectLast -->
 
 Selects the last point of each series according to input order.
 
-<!-- jsdocEnd selectLast -->
-
 #### Plot.selectMinX(*options*)
-
-<!-- jsdoc selectMinX -->
 
 Selects the leftmost point of each series.
 
-<!-- jsdocEnd selectMinX -->
-
 #### Plot.selectMinY(*options*)
-
-<!-- jsdoc selectMinY -->
 
 Selects the lowest point of each series.
 
-<!-- jsdocEnd selectMinY -->
-
 #### Plot.selectMaxX(*options*)
-
-<!-- jsdoc selectMaxX -->
 
 Selects the rightmost point of each series.
 
-<!-- jsdocEnd selectMaxX -->
-
 #### Plot.selectMaxY(*options*)
 
-<!-- jsdoc selectMaxY -->
-
 Selects the highest point of each series.
-
-<!-- jsdocEnd selectMaxY -->
 
 ### Stack
 
@@ -2929,19 +2585,13 @@ If two arguments are passed to the stack transform functions below, the stack-sp
 
 #### Plot.stackY(*stack*, *options*)
 
-<!-- jsdoc stackY -->
-
 ```js
 Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
 ```
 
 Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points. The stack options (*offset*, *order*, and *reverse*) may be specified as part of the *options* object, if the only argument, or as a separate *stack* options argument.
 
-<!-- jsdocEnd stackY -->
-
 #### Plot.stackY1(*stack*, *options*)
-
-<!-- jsdoc stackY1 -->
 
 ```js
 Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
@@ -2949,11 +2599,7 @@ Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
 
 Equivalent to [Plot.stackY](#plotstackystack-options), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
 
-<!-- jsdocEnd stackY1 -->
-
 #### Plot.stackY2(*stack*, *options*)
-
-<!-- jsdoc stackY2 -->
 
 ```js
 Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
@@ -2961,11 +2607,7 @@ Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
 
 Equivalent to [Plot.stackY](#plotstackystack-options), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
 
-<!-- jsdocEnd stackY2 -->
-
 #### Plot.stackX(*stack*, *options*)
-
-<!-- jsdoc stackX -->
 
 ```js
 Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
@@ -2973,11 +2615,7 @@ Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
 
 See Plot.stackY, but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
 
-<!-- jsdocEnd stackX -->
-
 #### Plot.stackX1(*stack*, *options*)
-
-<!-- jsdoc stackX1 -->
 
 ```js
 Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
@@ -2985,19 +2623,13 @@ Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
 
 Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
 
-<!-- jsdocEnd stackX1 -->
-
 #### Plot.stackX2(*stack*, *options*)
-
-<!-- jsdoc stackX2 -->
 
 ```js
 Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
 Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
-
-<!-- jsdocEnd stackX2 -->
 
 ### Tree
 
@@ -3055,8 +2687,6 @@ The default **treeLayout** implements the Reingold–Tilford “tidy” algorith
 
 #### Plot.treeNode(*options*)
 
-<!-- jsdoc treeNode -->
-
 Based on the tree options described above, populates the **x** and **y** channels with the positions for each node. The following defaults are also applied: the default **frameAnchor** inherits the **treeAnchor**. This transform is intended to be used with [dot](#dot), [text](#text), and other point-based marks. This transform is rarely used directly; see the [Plot.tree compound mark](#plottreedata-options).
 
 The treeNode transform will derive output columns for any *options* that have one of the following named node values:
@@ -3069,11 +2699,7 @@ The treeNode transform will derive output columns for any *options* that have on
 
 In addition, if any option value is specified as an object with a **node** method, a derived output column will be generated by invoking the **node** method for each node in the tree.
 
-<!-- jsdocEnd treeNode -->
-
 #### Plot.treeLink(*options*)
-
-<!-- jsdoc treeLink -->
 
 Based on the tree options described above, populates the **x1**, **y1**, **x2**, and **y2** channels. The following defaults are also applied: the default **curve** is *bump-x*, the default **stroke** is #555, the default **strokeWidth** is 1.5, and the default **strokeOpacity** is 0.5. This transform is intended to be used with [link](#link), [arrow](#arrow), and other two-point-based marks. This transform is rarely used directly; see the [Plot.tree compound mark](#plottreedata-options).
 
@@ -3091,11 +2717,7 @@ The treeLink transform will derive output columns for any *options* that have on
 
 In addition, if any option value is specified as an object with a **node** method, a derived output column will be generated by invoking the **node** method for each child node in the tree; likewise if any option value is specified as an object with a **link** method, a derived output column will be generated by invoking the **link** method for each link in the tree, being passed two node arguments, the child and the parent.
 
-<!-- jsdocEnd treeLink -->
-
 #### Plot.tree(*data*, *options*)
-
-<!-- jsdoc tree -->
 
 A convenience compound mark for rendering a tree diagram, including a [link](#link) to render links from parent to child, an optional [dot](#dot) for nodes, and a [text](#text) for node labels. The link mark uses the [treeLink transform](#plottreelinkoptions), while the dot and text marks use the [treeNode transform](#plottreenodeoptions). The following options are supported:
 
@@ -3120,15 +2742,9 @@ A convenience compound mark for rendering a tree diagram, including a [link](#li
 
 Any additional *options* are passed through to the constituent link, dot, and text marks and their corresponding treeLink or treeNode transform.
 
-<!-- jsdocEnd tree -->
-
 #### Plot.cluster(*data*, *options*)
 
-<!-- jsdoc cluster -->
-
 Like [Plot.tree](#plottreedata-options), except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm, which aligns leaf nodes.
-
-<!-- jsdocEnd cluster -->
 
 ### Custom transforms
 
@@ -3139,8 +2755,6 @@ While transform functions often produce new *data* or *facets*, they may return 
 Plot provides a few helpers for implementing transforms.
 
 #### Plot.valueof(*data*, *value*, *type*)
-
-<!-- jsdoc valueof -->
 
 Given an iterable *data* and some *value* accessor, returns an array (a column) of the specified *type* with the corresponding value of each element of the data. The *value* accessor may be one of the following types:
 
@@ -3155,37 +2769,23 @@ If *type* is specified, it must be Array or a similar class that implements the 
 
 Plot.valueof is not guaranteed to return a new array. When a transform method is used, or when the given *value* is an array that is compatible with the requested *type*, the array may be returned as-is without making a copy.
 
-<!-- jsdocEnd valueof -->
-
 #### Plot.transform(*options*, *transform*)
-
-<!-- jsdoc transform -->
 
 Given an *options* object that may specify some basic transforms (*filter*, *sort*, or *reverse*) or a custom *transform* function, composes those transforms if any with the given *transform* function, returning a new *options* object. If a custom *transform* function is present on the given *options*, any basic transforms are ignored. Any additional input *options* are passed through in the returned *options* object. This method facilitates applying the basic transforms prior to applying the given custom *transform* and is used internally by Plot’s built-in transforms.
 
-<!-- jsdocEnd transform -->
-
 #### Plot.column(*source*)
-
-<!-- jsdoc column -->
 
 This helper for constructing derived columns returns a [*column*, *setColumn*] array. The *column* object implements *column*.transform, returning whatever value was most recently passed to *setColumn*. If *setColumn* is not called, then *column*.transform returns undefined. If a *source* is specified, then *column*.label exposes the given *source*’s label, if any: if *source* is a string as when representing a named field of data, then *column*.label is *source*; otherwise *column*.label propagates *source*.label. This allows derived columns to propagate a human-readable axis or legend label.
 
 Plot.column is typically used by options transforms to define new channels; the associated columns are populated (derived) when the **transform** option function is invoked.
 
-<!-- jsdocEnd column -->
-
 #### Plot.identity
-
-<!-- jsdoc identity -->
 
 This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data:
 
 ```js
 Plot.raster(await readValues(), {width: 300, height: 200, fill: Plot.identity})
 ```
-
-<!-- jsdocEnd identity -->
 
 ## Initializers
 
@@ -3206,27 +2806,19 @@ The dodge layout is highly dependent on the input data order: the circles placed
 
 #### Plot.dodgeY(*dodgeOptions*, *options*)
 
-<!-- jsdoc dodgeY -->
-
 ```js
 Plot.dodgeY({x: "date"})
 ```
 
 Given marks arranged along the *x* axis, the dodgeY transform piles them vertically by defining a *y* position channel that avoids overlapping. The *x* position channel is unchanged.
 
-<!-- jsdocEnd dodgeY -->
-
 #### Plot.dodgeX(*dodgeOptions*, *options*)
-
-<!-- jsdoc dodgeX -->
 
 ```js
 Plot.dodgeX({y: "value"})
 ```
 
 Equivalent to Plot.dodgeY, but piling horizontally, creating a new *x* position channel that avoids overlapping. The *y* position channel is unchanged.
-
-<!-- jsdocEnd dodgeX -->
 
 ### Hexbin
 
@@ -3235,8 +2827,6 @@ Equivalent to Plot.dodgeY, but piling horizontally, creating a new *x* position 
 [Source](./src/transforms/hexbin.js) · [Examples](https://observablehq.com/@observablehq/plot-hexbin) · The hexbin transform can be applied to any mark that consumes *x* and *y*, such as the [dot](#dot), [image](#image), [text](#text), and [vector](#vector) marks. It aggregates values into hexagonal bins of the given **binWidth** (in pixels) and computes new position channels *x* and *y* as the centers of each bin. It can also create new channels by applying a specified reducer to each bin, such as the *count* of elements in the bin.
 
 #### Plot.hexbin(*outputs*, *options*)
-
-<!-- jsdoc hexbin -->
 
 Aggregates the given input channels into hexagonal bins, creating output channels with the reduced data. The *options* must specify the **x** and **y** channels. The **binWidth** option (default 20) defines the distance between centers of neighboring hexagons in pixels. If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. The *outputs* options are similar to the [bin transform](#bin); each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.
 
@@ -3263,8 +2853,6 @@ The following aggregation methods are supported:
 
 See also the [hexgrid](#hexgrid) mark.
 
-<!-- jsdocEnd hexbin -->
-
 ### Custom initializers
 
 You can specify a custom initializer by specifying a function as the mark **initializer** option. This function is called after the scales have been computed, and receives as inputs the (possibly transformed) array of *data*, the *facets* index of elements of this array that belong to each facet, the input *channels* (as an object of named channels), the *scales*, and the *dimensions*. The mark itself is the *this* context. The initializer function must return an object with *data*, *facets*, and new *channels*. Any new channels are merged with existing channels, replacing channels of the same name.
@@ -3273,11 +2861,7 @@ If an initializer desires a channel that is not supported by the downstream mark
 
 #### Plot.initializer(*options*, *initializer*)
 
-<!-- jsdoc initializer -->
-
 This helper composes the *initializer* function with any other transforms present in the *options*, and returns a new *options* object.
-
-<!-- jsdocEnd initializer -->
 
 ## Curves
 
@@ -3338,35 +2922,19 @@ So, *x*[*index*[0]] represents the *x*-position of the first sample, *y*[*index*
 
 #### Plot.interpolateNone(*index*, *width*, *height*, *x*, *y*, *value*)
 
-<!-- jsdoc interpolateNone -->
-
 Applies a simple forward mapping of samples, binning them into pixels in the raster grid without any blending or interpolation. If multiple samples map to the same pixel, the last one wins; this can introduce bias if the points are not in random order, so use [Plot.shuffle](#plotshuffleoptions) to randomize the input if needed.
-
-<!-- jsdocEnd interpolateNone -->
 
 #### Plot.interpolateNearest(*index*, *width*, *height*, *x*, *y*, *value*)
 
-<!-- jsdoc interpolateNearest -->
-
 Assigns each pixel in the raster grid the value of the closest sample; effectively a Voronoi diagram.
-
-<!-- jsdocEnd interpolateNearest -->
 
 #### Plot.interpolatorBarycentric({*random*})
 
-<!-- jsdoc interpolatorBarycentric -->
-
 Constructs a Delaunay triangulation of the samples, and then for each pixel in the raster grid, determines the triangle that covers the pixel’s centroid and interpolates the values associated with the triangle’s vertices using [barycentric coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system). If the interpolated values are ordinal or categorical (_i.e._, anything other than numbers or dates), then one of the three values will be picked randomly weighted by the barycentric coordinates; the given *random* number generator will be used, which defaults to a [linear congruential generator](https://github.com/d3/d3-random/blob/main/README.md#randomLcg) with a fixed seed (for deterministic results).
-
-<!-- jsdocEnd interpolatorBarycentric -->
 
 #### Plot.interpolatorRandomWalk({*random*, *minDistance* = 0.5, *maxSteps* = 2})
 
-<!-- jsdoc interpolatorRandomWalk -->
-
 For each pixel in the raster grid, initiates a random walk, stopping when either the walk is within a given distance (*minDistance*) of a sample or the maximum allowable number of steps (*maxSteps*) have been taken, and then assigning the current pixel the closest sample’s value. The random walk uses the “walk on spheres” algorithm in two dimensions described by [Sawhney and Crane](https://www.cs.cmu.edu/~kmcrane/Projects/MonteCarloGeometryProcessing/index.html), SIGGRAPH 2020.
-
-<!-- jsdocEnd interpolatorRandomWalk -->
 
 ## Markers
 
@@ -3395,19 +2963,13 @@ These helper functions are provided for use as a *scale*.tickFormat [axis option
 
 #### Plot.formatIsoDate(*date*)
 
-<!-- jsdoc formatIsoDate -->
-
 ```js
 Plot.formatIsoDate(new Date("2020-01-01T00:00.000Z")) // "2020-01-01"
 ```
 
 Given a *date*, returns the shortest equivalent ISO 8601 UTC string. If the given *date* is not valid, returns `"Invalid Date"`.
 
-<!-- jsdocEnd formatIsoDate -->
-
 #### Plot.formatWeekday(*locale*, *format*)
-
-<!-- jsdoc formatWeekday -->
 
 ```js
 Plot.formatWeekday("es-MX", "long")(0) // "domingo"
@@ -3415,19 +2977,13 @@ Plot.formatWeekday("es-MX", "long")(0) // "domingo"
 
 Returns a function that formats a given week day number (from 0 = Sunday to 6 = Saturday) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [weekday format](https://tc39.es/ecma402/#datetimeformat-objects): either *narrow*, *short*, or *long*; if not specified, it defaults to *short*.
 
-<!-- jsdocEnd formatWeekday -->
-
 #### Plot.formatMonth(*locale*, *format*)
-
-<!-- jsdoc formatMonth -->
 
 ```js
 Plot.formatMonth("es-MX", "long")(0) // "enero"
 ```
 
 Returns a function that formats a given month number (from 0 = January to 11 = December) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [month format](https://tc39.es/ecma402/#datetimeformat-objects): either *2-digit*, *numeric*, *narrow*, *short*, *long*; if not specified, it defaults to *short*.
-
-<!-- jsdocEnd formatMonth -->
 
 ## Accessibility
 

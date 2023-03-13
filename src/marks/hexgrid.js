@@ -2,7 +2,7 @@ import {create} from "../context.js";
 import {Mark} from "../mark.js";
 import {number} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
-import {sqrt4_3} from "../symbols.js";
+import {sqrt4_3} from "../symbol.js";
 import {ox, oy} from "../transforms/hexbin.js";
 
 const defaults = {
@@ -12,7 +12,6 @@ const defaults = {
   strokeOpacity: 0.1
 };
 
-/** @jsdoc hexgrid */
 export function hexgrid(options) {
   return new Hexgrid(options);
 }

@@ -1,8 +1,8 @@
-import {sqrt3} from "../symbols.js";
+import {sqrt3} from "../symbol.js";
 import {isNoneish, number, valueof} from "../options.js";
 import {initializer} from "./basic.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
-import {Position} from "../projection.js";
+import {applyPosition} from "../projection.js";
 
 // We don’t want the hexagons to align with the edges of the plot frame, as that
 // would cause extreme x-values (the upper bound of the default x-scale domain)
@@ -12,7 +12,6 @@ import {Position} from "../projection.js";
 export const ox = 0.5,
   oy = 0;
 
-/** @jsdoc hexbin */
 export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
   // TODO filter e.g. to show empty hexbins?
   // TODO disallow x, x1, x2, y, y1, y2 reducers?
@@ -36,7 +35,7 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
     if (Y === undefined) throw new Error("missing channel: y");
 
     // Get the (either scaled or projected) xy channels.
-    ({x: X, y: Y} = Position(channels, scales, context));
+    ({x: X, y: Y} = applyPosition(channels, scales, context));
 
     // Extract the values for channels that are eligible for grouping; not all
     // marks define a z channel, so compute one if it not already computed. If z

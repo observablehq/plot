@@ -3,19 +3,16 @@ import {defined} from "../defined.js";
 import {percentile, take} from "../options.js";
 import {mapX, mapY} from "./map.js";
 
-/** @jsdoc normalizeX */
 export function normalizeX(basis, options) {
   if (arguments.length === 1) ({basis, ...options} = basis);
   return mapX(normalize(basis), options);
 }
 
-/** @jsdoc normalizeY */
 export function normalizeY(basis, options) {
   if (arguments.length === 1) ({basis, ...options} = basis);
   return mapY(normalize(basis), options);
 }
 
-/** @jsdoc normalize */
 export function normalize(basis) {
   if (basis === undefined) return normalizeFirst;
   if (typeof basis === "function") return normalizeBasis((I, S) => basis(take(S, I)));

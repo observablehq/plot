@@ -1,7 +1,8 @@
 import {geoPath, line as shapeLine} from "d3";
 import {create} from "../context.js";
-import {curveAuto, PathCurve} from "../curve.js";
+import {curveAuto, maybeCurveAuto} from "../curve.js";
 import {Mark} from "../mark.js";
+import {applyGroupedMarkers, markers} from "../marker.js";
 import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {
   applyDirectStyles,
@@ -11,7 +12,6 @@ import {
   groupIndex
 } from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
-import {applyGroupedMarkers, markers} from "./marker.js";
 
 const defaults = {
   ariaLabel: "line",
@@ -37,7 +37,7 @@ export class Line extends Mark {
       defaults
     );
     this.z = z;
-    this.curve = PathCurve(curve, tension);
+    this.curve = maybeCurveAuto(curve, tension);
     markers(this, options);
   }
   filter(index) {
@@ -63,7 +63,7 @@ export class Line extends Mark {
           .append("path")
           .call(applyDirectStyles, this)
           .call(applyGroupedChannelStyles, this, channels)
-          .call(applyGroupedMarkers, this, channels)
+          .call(applyGroupedMarkers, this, channels, context)
           .attr(
             "d",
             curve === curveAuto && context.projection
@@ -99,20 +99,17 @@ function sphereLine(projection, X, Y) {
   };
 }
 
-/** @jsdoc line */
 export function line(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
   [x, y] = maybeTuple(x, y);
   return new Line(data, {...remainingOptions, x, y});
 }
 
-/** @jsdoc lineX */
 export function lineX(data, options = {}) {
   const {x = identity, y = indexOf, ...remainingOptions} = options;
   return new Line(data, maybeDenseIntervalY({...remainingOptions, x, y}));
 }
 
-/** @jsdoc lineY */
 export function lineY(data, options = {}) {
   const {x = indexOf, y = identity, ...remainingOptions} = options;
   return new Line(data, maybeDenseIntervalX({...remainingOptions, x, y}));

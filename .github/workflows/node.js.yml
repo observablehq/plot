@@ -27,7 +27,7 @@ jobs:
           echo ::add-matcher::.github/eslint.json
           yarn run eslint src test --format=compact
       - run: yarn run prettier --check src test
-      - run: yarn test
+      - run: yarn test:mocha
       - name: Test artifacts
         uses: actions/upload-artifact@v3
         if: failure()

@@ -1,10 +1,10 @@
 import {cross, rollup, sum} from "d3";
 import {range} from "./options.js";
-import {Scales} from "./scales.js";
+import {createScales} from "./scales.js";
 
 // Returns an array of {x?, y?, i} objects representing the facet domain.
-export function Facets(channelsByScale, options) {
-  const {fx, fy} = Scales(channelsByScale, options);
+export function createFacets(channelsByScale, options) {
+  const {fx, fy} = createScales(channelsByScale, options);
   const fxDomain = fx?.scale.domain();
   const fyDomain = fy?.scale.domain();
   return fxDomain && fyDomain

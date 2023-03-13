@@ -1,5 +1,5 @@
 import {rgb} from "d3";
-import {Context} from "./context.js";
+import {createContext} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
 import {legendSwatches, legendSymbols} from "./legends/swatches.js";
 import {inherit, isScaleOptions} from "./options.js";
@@ -11,13 +11,12 @@ const legendRegistry = new Map([
   ["opacity", legendOpacity]
 ]);
 
-/** @jsdoc legend */
 export function legend(options = {}) {
   for (const [key, value] of legendRegistry) {
     const scale = options[key];
     if (isScaleOptions(scale)) {
       // e.g., ignore {color: "red"}
-      const context = Context(options);
+      const context = createContext(options);
       let hint;
       // For symbol legends, pass a hint to the symbol scale.
       if (key === "symbol") {
@@ -69,7 +68,7 @@ function interpolateOpacity(color) {
   return (t) => `rgba(${r},${g},${b},${t})`;
 }
 
-export function Legends(scales, context, options) {
+export function createLegends(scales, context, options) {
   const legends = [];
   for (const [key, value] of legendRegistry) {
     const o = options[key];

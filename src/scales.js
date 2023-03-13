@@ -11,30 +11,30 @@ import {
 } from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
-  ScaleLinear,
-  ScaleSqrt,
-  ScalePow,
-  ScaleLog,
-  ScaleSymlog,
-  ScaleQuantile,
-  ScaleQuantize,
-  ScaleThreshold,
-  ScaleIdentity
+  createScaleLinear,
+  createScaleSqrt,
+  createScalePow,
+  createScaleLog,
+  createScaleSymlog,
+  createScaleQuantile,
+  createScaleQuantize,
+  createScaleThreshold,
+  createScaleIdentity
 } from "./scales/quantitative.js";
 import {
-  ScaleDiverging,
-  ScaleDivergingSqrt,
-  ScaleDivergingPow,
-  ScaleDivergingLog,
-  ScaleDivergingSymlog
+  createScaleDiverging,
+  createScaleDivergingSqrt,
+  createScaleDivergingPow,
+  createScaleDivergingLog,
+  createScaleDivergingSymlog
 } from "./scales/diverging.js";
 import {isDivergingScheme} from "./scales/schemes.js";
-import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
-import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
-import {maybeSymbol} from "./symbols.js";
+import {createScaleTime, createScaleUtc} from "./scales/temporal.js";
+import {createScaleOrdinal, createScalePoint, createScaleBand, ordinalImplicit} from "./scales/ordinal.js";
+import {maybeSymbol} from "./symbol.js";
 import {warn} from "./warnings.js";
 
-export function Scales(
+export function createScales(
   channelsByScale,
   {
     label: globalLabel,
@@ -57,7 +57,7 @@ export function Scales(
   const scales = {};
   for (const [key, channels] of channelsByScale) {
     const scaleOptions = options[key];
-    const scale = Scale(key, channels, {
+    const scale = createScale(key, channels, {
       round: registry.get(key) === position ? round : undefined, // only for position
       nice,
       clamp,
@@ -97,7 +97,7 @@ export function Scales(
   return scales;
 }
 
-export function ScaleFunctions(scales) {
+export function createScaleFunctions(scales) {
   return Object.fromEntries(
     Object.entries(scales)
       .filter(([, {scale}]) => scale) // drop identity scales
@@ -237,10 +237,10 @@ function piecewiseRange(scale) {
 }
 
 export function normalizeScale(key, scale, hint) {
-  return Scale(key, hint === undefined ? undefined : [{hint}], {...scale});
+  return createScale(key, hint === undefined ? undefined : [{hint}], {...scale});
 }
 
-function Scale(key, channels = [], options = {}) {
+function createScale(key, channels = [], options = {}) {
   const type = inferScaleType(key, channels, options);
 
   // Warn for common misuses of implicit ordinal scales. We disable this test if
@@ -323,47 +323,47 @@ function Scale(key, channels = [], options = {}) {
 
   switch (type) {
     case "diverging":
-      return ScaleDiverging(key, channels, options);
+      return createScaleDiverging(key, channels, options);
     case "diverging-sqrt":
-      return ScaleDivergingSqrt(key, channels, options);
+      return createScaleDivergingSqrt(key, channels, options);
     case "diverging-pow":
-      return ScaleDivergingPow(key, channels, options);
+      return createScaleDivergingPow(key, channels, options);
     case "diverging-log":
-      return ScaleDivergingLog(key, channels, options);
+      return createScaleDivergingLog(key, channels, options);
     case "diverging-symlog":
-      return ScaleDivergingSymlog(key, channels, options);
+      return createScaleDivergingSymlog(key, channels, options);
     case "categorical":
     case "ordinal":
     case ordinalImplicit:
-      return ScaleOrdinal(key, channels, options);
+      return createScaleOrdinal(key, channels, options);
     case "cyclical":
     case "sequential":
     case "linear":
-      return ScaleLinear(key, channels, options);
+      return createScaleLinear(key, channels, options);
     case "sqrt":
-      return ScaleSqrt(key, channels, options);
+      return createScaleSqrt(key, channels, options);
     case "threshold":
-      return ScaleThreshold(key, channels, options);
+      return createScaleThreshold(key, channels, options);
     case "quantile":
-      return ScaleQuantile(key, channels, options);
+      return createScaleQuantile(key, channels, options);
     case "quantize":
-      return ScaleQuantize(key, channels, options);
+      return createScaleQuantize(key, channels, options);
     case "pow":
-      return ScalePow(key, channels, options);
+      return createScalePow(key, channels, options);
     case "log":
-      return ScaleLog(key, channels, options);
+      return createScaleLog(key, channels, options);
     case "symlog":
-      return ScaleSymlog(key, channels, options);
+      return createScaleSymlog(key, channels, options);
     case "utc":
-      return ScaleUtc(key, channels, options);
+      return createScaleUtc(key, channels, options);
     case "time":
-      return ScaleTime(key, channels, options);
+      return createScaleTime(key, channels, options);
     case "point":
-      return ScalePoint(key, channels, options);
+      return createScalePoint(key, channels, options);
     case "band":
-      return ScaleBand(key, channels, options);
+      return createScaleBand(key, channels, options);
     case "identity":
-      return registry.get(key) === position ? ScaleIdentity() : {type: "identity"};
+      return registry.get(key) === position ? createScaleIdentity() : {type: "identity"};
     case undefined:
       return;
     default:
@@ -499,7 +499,6 @@ function coerceSymbols(values) {
   return map(values, maybeSymbol);
 }
 
-/** @jsdoc scale */
 export function scale(options = {}) {
   let scale;
   for (const key in options) {

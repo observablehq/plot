@@ -1,6 +1,6 @@
 import {pathRound as path} from "d3";
 import {inferFontVariant, maybeAutoTickFormat} from "../axes.js";
-import {Context, create} from "../context.js";
+import {createContext, create} from "../context.js";
 import {isNoneish, maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {isOrdinalScale, isThresholdScale} from "../scales.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
@@ -92,7 +92,7 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
     style,
     width
   } = options;
-  const context = Context(options);
+  const context = createContext(options);
   className = maybeClassName(className);
   tickFormat = maybeAutoTickFormat(tickFormat, scale.domain);
 

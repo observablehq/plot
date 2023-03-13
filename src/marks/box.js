@@ -7,7 +7,6 @@ import {dot} from "./dot.js";
 import {ruleX, ruleY} from "./rule.js";
 import {tickX, tickY} from "./tick.js";
 
-/** @jsdoc boxX */
 export function boxX(data, options = {}) {
   // Returns a composite mark for producing a horizontal box plot, applying the
   // necessary statistical transforms. The boxes are grouped by y, if present.
@@ -31,7 +30,6 @@ export function boxX(data, options = {}) {
   );
 }
 
-/** @jsdoc boxY */
 export function boxY(data, options = {}) {
   // Returns a composite mark for producing a vertical box plot, applying the
   // necessary statistical transforms. The boxes are grouped by x, if present.

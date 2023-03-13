@@ -6,7 +6,6 @@ import {dot} from "./dot.js";
 import {link} from "./link.js";
 import {text} from "./text.js";
 
-/** @jsdoc tree */
 export function tree(data, options = {}) {
   let {
     fill,
@@ -67,7 +66,6 @@ export function tree(data, options = {}) {
   );
 }
 
-/** @jsdoc cluster */
 export function cluster(data, options) {
   return tree(data, {...options, treeLayout: Cluster});
 }

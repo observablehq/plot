@@ -1,6 +1,6 @@
 import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {inferFontVariant} from "../axes.js";
-import {Context, create} from "../context.js";
+import {createContext, create} from "../context.js";
 import {map} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
@@ -22,7 +22,7 @@ export function legendRamp(color, options) {
     round = true,
     className
   } = options;
-  const context = Context(options);
+  const context = createContext(options);
   className = maybeClassName(className);
   if (tickFormat === null) tickFormat = () => null;
 

@@ -10,7 +10,7 @@ import {
   applyIndirectStyles,
   applyTransform
 } from "../style.js";
-import {maybeSymbolChannel} from "../symbols.js";
+import {maybeSymbolChannel} from "../symbol.js";
 import {template} from "../template.js";
 import {sort} from "../transforms/basic.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
@@ -132,31 +132,26 @@ export class Dot extends Mark {
   }
 }
 
-/** @jsdoc dot */
 export function dot(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Dot(data, {...remainingOptions, x, y});
 }
 
-/** @jsdoc dotX */
 export function dotX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
   return new Dot(data, maybeIntervalMidY({...remainingOptions, x}));
 }
 
-/** @jsdoc dotY */
 export function dotY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;
   return new Dot(data, maybeIntervalMidX({...remainingOptions, y}));
 }
 
-/** @jsdoc circle */
 export function circle(data, options) {
   return dot(data, {...options, symbol: "circle"});
 }
 
-/** @jsdoc hexagon */
 export function hexagon(data, options) {
   return dot(data, {...options, symbol: "hexagon"});
 }

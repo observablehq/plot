@@ -122,7 +122,6 @@ class LinearRegressionY extends LinearRegression {
   }
 }
 
-/** @jsdoc linearRegressionX */
 export function linearRegressionX(data, options = {}) {
   const {
     y = indexOf,
@@ -134,7 +133,6 @@ export function linearRegressionX(data, options = {}) {
   return new LinearRegressionX(data, maybeDenseIntervalY({...remainingOptions, x, y, fill, stroke}));
 }
 
-/** @jsdoc linearRegressionY */
 export function linearRegressionY(data, options = {}) {
   const {
     x = indexOf,

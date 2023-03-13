@@ -1,7 +1,7 @@
 import {contourDensity, create, geoPath} from "d3";
 import {Mark} from "../mark.js";
 import {coerceNumbers, maybeTuple, maybeZ, TypedArray} from "../options.js";
-import {Position} from "../projection.js";
+import {applyPosition} from "../projection.js";
 import {
   applyFrameAnchor,
   applyDirectStyles,
@@ -65,7 +65,6 @@ export class Density extends Mark {
   }
 }
 
-/** @jsdoc density */
 export function density(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
   [x, y] = maybeTuple(x, y);
@@ -92,7 +91,7 @@ function densityInitializer(options, fillDensity, strokeDensity) {
     const {width, height} = dimensions;
 
     // Get the (either scaled or projected) xy channels.
-    const {x: X, y: Y} = Position(channels, scales, context);
+    const {x: X, y: Y} = applyPosition(channels, scales, context);
 
     // Group any of the input channels according to the first index associated
     // with each z-series or facet. Drop any channels not be needed for

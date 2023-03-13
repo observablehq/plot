@@ -1,4 +1,4 @@
-import {Channels, channelDomain, valueObject} from "./channel.js";
+import {createChannels, channelDomain, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
 import {arrayify, isDomainSort, isOptions, range} from "./options.js";
@@ -81,7 +81,7 @@ export class Mark {
     const originalFacets = facets;
     if (this.transform != null) ({facets, data} = this.transform(data, facets)), (data = arrayify(data));
     if (facets !== undefined) facets.original = originalFacets; // needed up read facetChannels
-    const channels = Channels(this.channels, data);
+    const channels = createChannels(this.channels, data);
     if (this.sort != null) channelDomain(data, facets, channels, facetChannels, this.sort); // mutates facetChannels!
     return {data, facets, channels};
   }
@@ -115,7 +115,6 @@ export class Mark {
   }
 }
 
-/** @jsdoc marks */
 export function marks(...marks) {
   marks.plot = Mark.prototype.plot; // Note: depends on side-effect in plot!
   return marks;

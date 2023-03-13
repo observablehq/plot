@@ -2,7 +2,6 @@ import {geoCentroid as GeoCentroid, geoPath} from "d3";
 import {identity, valueof} from "../options.js";
 import {initializer} from "./basic.js";
 
-/** @jsdoc centroid */
 export function centroid({geometry = identity, ...options} = {}) {
   // Suppress defaults for x and y since they will be computed by the initializer.
   return initializer({...options, x: null, y: null}, (data, facets, channels, scales, dimensions, {projection}) => {
@@ -16,7 +15,6 @@ export function centroid({geometry = identity, ...options} = {}) {
   });
 }
 
-/** @jsdoc geoCentroid */
 export function geoCentroid({geometry = identity, ...options} = {}) {
   let C;
   return {

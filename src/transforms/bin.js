@@ -40,7 +40,6 @@ import {
 } from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
-/** @jsdoc binX */
 export function binX(outputs = {y: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then optionally on y, then bin x.
   [outputs, options] = mergeOptions(outputs, options);
@@ -48,7 +47,6 @@ export function binX(outputs = {y: "count"}, options = {}) {
   return binn(maybeBinValue(x, options, identity), null, null, y, outputs, maybeInsetX(options));
 }
 
-/** @jsdoc binY */
 export function binY(outputs = {x: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then optionally on x, then bin y.
   [outputs, options] = mergeOptions(outputs, options);
@@ -56,7 +54,6 @@ export function binY(outputs = {x: "count"}, options = {}) {
   return binn(null, maybeBinValue(y, options, identity), x, null, outputs, maybeInsetY(options));
 }
 
-/** @jsdoc bin */
 export function bin(outputs = {fill: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then bin on x and y.
   [outputs, options] = mergeOptions(outputs, options);
@@ -161,7 +158,7 @@ function binn(
       const BX2 = bx && setBX2([]);
       const BY1 = by && setBY1([]);
       const BY2 = by && setBY2([]);
-      const bin = Bin(bx?.(data), by?.(data));
+      const bin = bing(bx?.(data), by?.(data));
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
@@ -344,7 +341,7 @@ function isInterval(t) {
   return t ? typeof t.range === "function" : false;
 }
 
-function Bin(EX, EY) {
+function bing(EX, EY) {
   return EX && EY
     ? function* (I) {
         const X = EX.bin(I); // first bin on x

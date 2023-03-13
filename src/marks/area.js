@@ -1,6 +1,6 @@
 import {area as shapeArea} from "d3";
 import {create} from "../context.js";
-import {Curve} from "../curve.js";
+import {maybeCurve} from "../curve.js";
 import {Mark} from "../mark.js";
 import {first, indexOf, maybeZ, second} from "../options.js";
 import {
@@ -38,7 +38,7 @@ export class Area extends Mark {
       defaults
     );
     this.z = z;
-    this.curve = Curve(curve, tension);
+    this.curve = maybeCurve(curve, tension);
   }
   filter(index) {
     return index;
@@ -71,19 +71,16 @@ export class Area extends Mark {
   }
 }
 
-/** @jsdoc area */
 export function area(data, options) {
   if (options === undefined) return areaY(data, {x: first, y: second});
   return new Area(data, options);
 }
 
-/** @jsdoc areaX */
 export function areaX(data, options) {
   const {y = indexOf, ...rest} = maybeDenseIntervalY(options);
   return new Area(data, maybeStackX(maybeIdentityX({...rest, y1: y, y2: undefined})));
 }
 
-/** @jsdoc areaY */
 export function areaY(data, options) {
   const {x = indexOf, ...rest} = maybeDenseIntervalX(options);
   return new Area(data, maybeStackY(maybeIdentityY({...rest, x1: x, x2: undefined})));

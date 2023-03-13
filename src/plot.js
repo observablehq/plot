@@ -1,19 +1,19 @@
 import {select} from "d3";
-import {Channel, inferChannelScale} from "./channel.js";
-import {Context, create} from "./context.js";
-import {Dimensions} from "./dimensions.js";
-import {Facets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilter} from "./facet.js";
-import {Legends, exposeLegends} from "./legends.js";
+import {createChannel, inferChannelScale} from "./channel.js";
+import {createContext, create} from "./context.js";
+import {createDimensions} from "./dimensions.js";
+import {createFacets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilter} from "./facet.js";
+import {createLegends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
 import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeInterval} from "./options.js";
-import {Scales, ScaleFunctions, autoScaleRange, exposeScales, innerDimensions, outerDimensions} from "./scales.js";
+import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
+import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
-/** @jsdoc plot */
 export function plot(options = {}) {
   const {facet, style, caption, ariaLabel, ariaDescription} = options;
 
@@ -57,7 +57,7 @@ export function plot(options = {}) {
   // All the possible facets are given by the domains of the fx or fy scales, or
   // the cross-product of these domains if we facet by both x and y. We sort
   // them in order to apply the facet filters afterwards.
-  const facets = Facets(channelsByScale, options);
+  const facets = createFacets(channelsByScale, options);
 
   if (facets !== undefined) {
     const topFacetsIndex = topFacetState ? facetFilter(facets, topFacetState) : undefined;
@@ -132,16 +132,16 @@ export function plot(options = {}) {
   }
 
   // Initalize the scales and dimensions.
-  const scaleDescriptors = Scales(addScaleChannels(channelsByScale, stateByMark), options);
-  const scales = ScaleFunctions(scaleDescriptors);
-  const dimensions = Dimensions(scaleDescriptors, marks, options);
+  const scaleDescriptors = createScales(addScaleChannels(channelsByScale, stateByMark), options);
+  const scales = createScaleFunctions(scaleDescriptors);
+  const dimensions = createDimensions(scaleDescriptors, marks, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
 
   const {fx, fy} = scales;
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
-  const context = Context(options, subdimensions, scaleDescriptors);
+  const context = createContext(options, subdimensions, scaleDescriptors);
 
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
@@ -191,8 +191,8 @@ export function plot(options = {}) {
     const newChannelsByScale = new Map();
     addScaleChannels(newChannelsByScale, stateByMark, (key) => newByScale.has(key));
     addScaleChannels(channelsByScale, stateByMark, (key) => newByScale.has(key));
-    const newScaleDescriptors = inheritScaleLabels(Scales(newChannelsByScale, options), scaleDescriptors);
-    const newScales = ScaleFunctions(newScaleDescriptors);
+    const newScaleDescriptors = inheritScaleLabels(createScales(newChannelsByScale, options), scaleDescriptors);
+    const newScales = createScaleFunctions(newScaleDescriptors);
     Object.assign(scaleDescriptors, newScaleDescriptors);
     Object.assign(scales, newScales);
   }
@@ -287,7 +287,7 @@ export function plot(options = {}) {
 
   // Wrap the plot in a figure with a caption, if desired.
   let figure = svg;
-  const legends = Legends(scaleDescriptors, context, options);
+  const legends = createLegends(scaleDescriptors, context, options);
   if (caption != null || legends.length > 0) {
     const {document} = context;
     figure = document.createElement("figure");
@@ -400,8 +400,8 @@ function maybeTopFacet(facet, options) {
   const data = arrayify(facet.data ?? x ?? y);
   if (data === undefined) throw new Error(`missing facet data`);
   const channels = {};
-  if (x != null) channels.fx = Channel(data, {value: x, scale: "fx"});
-  if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});
+  if (x != null) channels.fx = createChannel(data, {value: x, scale: "fx"});
+  if (y != null) channels.fy = createChannel(data, {value: y, scale: "fy"});
   applyScaleTransforms(channels, options);
   const groups = facetGroups(data, channels);
   return {channels, groups, data: facet.data};
@@ -420,8 +420,8 @@ function maybeMarkFacet(mark, topFacetState, options) {
     if (data === undefined) throw new Error(`missing facet data in ${mark.ariaLabel}`);
     if (data === null) return; // ignore channel definitions if no data is provided TODO this right?
     const channels = {};
-    if (fx != null) channels.fx = Channel(data, {value: fx, scale: "fx"});
-    if (fy != null) channels.fy = Channel(data, {value: fy, scale: "fy"});
+    if (fx != null) channels.fx = createChannel(data, {value: fx, scale: "fx"});
+    if (fy != null) channels.fy = createChannel(data, {value: fy, scale: "fy"});
     applyScaleTransforms(channels, options);
     return {channels, groups: facetGroups(data, channels)};
   }

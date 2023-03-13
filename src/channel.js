@@ -1,11 +1,11 @@
 import {ascending, descending, InternSet, rollup, sort} from "d3";
 import {first, isColor, isEvery, isIterable, isOpacity, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
-import {isSymbol, maybeSymbol} from "./symbols.js";
+import {isSymbol, maybeSymbol} from "./symbol.js";
 import {maybeReduce} from "./transforms/group.js";
 
 // TODO Type coercion?
-export function Channel(data, {scale, type, value, filter, hint}, name) {
+export function createChannel(data, {scale, type, value, filter, hint}, name) {
   return inferChannelScale(name, {
     scale,
     type,
@@ -16,8 +16,10 @@ export function Channel(data, {scale, type, value, filter, hint}, name) {
   });
 }
 
-export function Channels(channels, data) {
-  return Object.fromEntries(Object.entries(channels).map(([name, channel]) => [name, Channel(data, channel, name)]));
+export function createChannels(channels, data) {
+  return Object.fromEntries(
+    Object.entries(channels).map(([name, channel]) => [name, createChannel(data, channel, name)])
+  );
 }
 
 // TODO Use Float64Array for scales with numeric ranges, e.g. position?

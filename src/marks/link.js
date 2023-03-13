@@ -1,10 +1,10 @@
 import {geoPath, pathRound as path} from "d3";
 import {create} from "../context.js";
-import {curveAuto, PathCurve} from "../curve.js";
+import {curveAuto, maybeCurveAuto} from "../curve.js";
 import {Mark} from "../mark.js";
+import {markers, applyMarkers} from "../marker.js";
 import {coerceNumbers} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
-import {markers, applyMarkers} from "./marker.js";
 
 const defaults = {
   ariaLabel: "link",
@@ -27,7 +27,7 @@ export class Link extends Mark {
       options,
       defaults
     );
-    this.curve = PathCurve(curve, tension);
+    this.curve = maybeCurveAuto(curve, tension);
     markers(this, options);
   }
   project(channels, values, context) {
@@ -64,7 +64,7 @@ export class Link extends Mark {
                 }
           )
           .call(applyChannelStyles, this, channels)
-          .call(applyMarkers, this, channels)
+          .call(applyMarkers, this, channels, context)
       )
       .node();
   }
@@ -86,7 +86,6 @@ function sphereLink(projection, X1, Y1, X2, Y2) {
     });
 }
 
-/** @jsdoc link */
 export function link(data, options = {}) {
   let {x, x1, x2, y, y1, y2, ...remainingOptions} = options;
   [x1, x2] = maybeSameValue(x, x1, x2);

@@ -2,7 +2,7 @@ import IntervalTree from "interval-tree-1d";
 import {finite, positive} from "../defined.js";
 import {identity, maybeNamed, number, valueof} from "../options.js";
 import {initializer} from "./basic.js";
-import {Position} from "../projection.js";
+import {applyPosition} from "../projection.js";
 
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
 const anchorXRight = ({width, marginRight}) => [-1, width - marginRight];
@@ -15,7 +15,6 @@ function maybeAnchor(anchor) {
   return typeof anchor === "string" ? {anchor} : anchor;
 }
 
-/** @jsdoc dodgeX */
 export function dodgeX(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
   let {anchor = "left", padding = 1} = maybeAnchor(dodgeOptions);
@@ -35,7 +34,6 @@ export function dodgeX(dodgeOptions = {}, options = {}) {
   return dodge("x", "y", anchor, number(padding), options);
 }
 
-/** @jsdoc dodgeY */
 export function dodgeY(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
   let {anchor = "bottom", padding = 1} = maybeAnchor(dodgeOptions);
@@ -70,7 +68,7 @@ function dodge(y, x, anchor, padding, options) {
   return initializer(options, function (data, facets, channels, scales, dimensions, context) {
     let {[x]: X, r: R} = channels;
     if (!channels[x]) throw new Error(`missing channel: ${x}`);
-    ({[x]: X} = Position(channels, scales, context));
+    ({[x]: X} = applyPosition(channels, scales, context));
     const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
     if (R) R = valueof(R.value, scales[R.scale] || identity, Float64Array);
     let [ky, ty] = anchor(dimensions);

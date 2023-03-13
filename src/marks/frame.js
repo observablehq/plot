@@ -70,7 +70,6 @@ export class Frame extends Mark {
   }
 }
 
-/** @jsdoc frame */
 export function frame(options) {
   return new Frame(options);
 }

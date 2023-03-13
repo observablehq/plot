@@ -103,7 +103,6 @@ export function autoSpec(data, options) {
   };
 }
 
-/** @jsdoc auto */
 export function auto(data, options) {
   options = normalizeOptions(options);
 

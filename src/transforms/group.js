@@ -34,31 +34,27 @@ import {
 } from "../options.js";
 import {basic} from "./basic.js";
 
-/** @jsdoc groupZ */
+// Group on {z, fill, stroke}.
 export function groupZ(outputs, options) {
-  // Group on {z, fill, stroke}.
   return groupn(null, null, outputs, options);
 }
 
-/** @jsdoc groupX */
+// Group on {z, fill, stroke}, then on x.
 export function groupX(outputs = {y: "count"}, options = {}) {
-  // Group on {z, fill, stroke}, then on x.
   const {x = identity} = options;
   if (x == null) throw new Error("missing channel: x");
   return groupn(x, null, outputs, options);
 }
 
-/** @jsdoc groupY */
+// Group on {z, fill, stroke}, then on y.
 export function groupY(outputs = {x: "count"}, options = {}) {
-  // Group on {z, fill, stroke}, then on y.
   const {y = identity} = options;
   if (y == null) throw new Error("missing channel: y");
   return groupn(null, y, outputs, options);
 }
 
-/** @jsdoc group */
+// Group on {z, fill, stroke}, then on x and y.
 export function group(outputs = {fill: "count"}, options = {}) {
-  // Group on {z, fill, stroke}, then on x and y.
   let {x, y} = options;
   [x, y] = maybeTuple(x, y);
   if (x == null) throw new Error("missing channel: x");
