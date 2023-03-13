@@ -13,11 +13,11 @@ interface LinearRegressionOptions extends MarkOptions, BinOptions {
 }
 
 export interface LinearRegressionXOptions extends LinearRegressionOptions {
-  y?: ChannelValueSpec & Omit<BinOptions, "interval">;
+  y?: ChannelValueSpec & Omit<BinOptions, "interval">; // interval must be mark-level option
 }
 
 export interface LinearRegressionYOptions extends LinearRegressionOptions {
-  x?: ChannelValueSpec & Omit<BinOptions, "interval">;
+  x?: ChannelValueSpec & Omit<BinOptions, "interval">; // interval must be mark-level option
 }
 
 export function linearRegressionX(data?: Data, options?: LinearRegressionXOptions): RenderableMark;

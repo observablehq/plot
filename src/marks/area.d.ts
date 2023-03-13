@@ -15,12 +15,12 @@ export interface AreaOptions extends MarkOptions, StackOptions, CurveAutoOptions
 
 export interface AreaXOptions extends Omit<AreaOptions, "y1" | "y2">, BinOptions {
   x?: ChannelValueSpec;
-  y?: ChannelValueSpec & Omit<BinOptions, "interval">;
+  y?: ChannelValueSpec & Omit<BinOptions, "interval">; // interval must be a mark-level option
   reduce?: Reducer;
 }
 
 export interface AreaYOptions extends Omit<AreaOptions, "x1" | "x2">, BinOptions {
-  x?: ChannelValueSpec & Omit<BinOptions, "interval">;
+  x?: ChannelValueSpec & Omit<BinOptions, "interval">; // interval must be a mark-level option
   y?: ChannelValueSpec;
   reduce?: Reducer;
 }

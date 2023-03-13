@@ -12,12 +12,12 @@ export interface LineOptions extends MarkOptions, MarkerOptions, CurveAutoOption
 }
 
 export interface LineXOptions extends LineOptions, BinOptions {
-  y?: ChannelValueSpec & Omit<BinOptions, "interval">;
+  y?: ChannelValueSpec & Omit<BinOptions, "interval">; // interval must be mark-level option
   reduce?: Reducer;
 }
 
 export interface LineYOptions extends LineOptions, BinOptions {
-  x?: ChannelValueSpec & Omit<BinOptions, "interval">;
+  x?: ChannelValueSpec & Omit<BinOptions, "interval">; // interval must be mark-level option
   reduce?: Reducer;
 }
 
