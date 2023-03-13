@@ -1,3 +1,4 @@
+import type {Interval} from "./interval.js";
 import type {Reducer} from "./reducer.js";
 import type {ScaleName, ScaleType} from "./scales.js";
 
@@ -10,8 +11,8 @@ export type ChannelName =
   | "fill"
   | "fillOpacity"
   | "fontSize"
-  | "fx" // TODO separate FacetChannelName?
-  | "fy" // TODO separate FacetChannelName?
+  | "fx"
+  | "fy"
   | "geometry"
   | "height"
   | "href"
@@ -60,6 +61,10 @@ export type ChannelValue =
 
 export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale?: Channel["scale"]};
 
+export type ChannelValueIntervalSpec = ChannelValueSpec | {value: ChannelValue; interval?: Interval}; // TODO scale override?
+
+export type ChannelReducerSpec = Reducer | {reduce: Reducer; scale?: Channel["scale"]};
+
 export type ChannelDomainValue = ChannelName | "data" | "width" | "height" | null;
 
 export interface ChannelDomainOptions {
@@ -76,4 +81,4 @@ export type ChannelDomainSort = {
       } & ChannelDomainOptions);
 } & ChannelDomainOptions;
 
-export type ChannelReducers = {[key in ChannelName]?: Reducer | null}; // TODO ChannelReducerSpec {reducer, scale}
+export type ChannelReducers = {[key in ChannelName]?: ChannelReducerSpec | null};
