@@ -1,3 +1,4 @@
+import type {ReducerPercentile} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 import type {Map} from "./map.js";
 
@@ -10,8 +11,8 @@ export type NormalizeBasisName =
   | "median"
   | "min"
   | "sum"
-  | `p${number}${number}`
-  | "extent";
+  | "extent"
+  | ReducerPercentile;
 
 export type NormalizeBasisFunction = (index: number[], values: any[]) => any;
 

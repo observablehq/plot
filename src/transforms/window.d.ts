@@ -1,3 +1,4 @@
+import type {ReducerPercentile} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 import type {Map} from "./map.js";
 
@@ -14,7 +15,7 @@ export type WindowReducerName =
   | "ratio"
   | "first"
   | "last"
-  | `p${number}${number}`;
+  | ReducerPercentile;
 
 export type WindowReducerFunction = (values: any[]) => any;
 
