@@ -15,7 +15,7 @@ export type StackOrderName = "value" | "x" | "y" | "z" | "sum" | "appearance" | 
 
 export type StackOrder =
   | StackOrderName
-  | string // field name
+  | (string & Record<never, never>) // field name; see also https://github.com/microsoft/TypeScript/issues/29729
   | ((d: any, i: number) => any) // function of data
   | any[]; // explicit ordinal values
 
