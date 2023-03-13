@@ -13,8 +13,8 @@ export interface LegendOptions {
   // shared options
   tickFormat?: ScaleOptions["tickFormat"];
   fontVariant?: ScaleOptions["fontVariant"];
-  style?: any;
-  className?: any;
+  style?: string | Partial<CSSStyleDeclaration> | null;
+  className?: string | null;
 
   // symbol options
   fill?: string;
