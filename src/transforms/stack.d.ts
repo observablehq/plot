@@ -1,3 +1,4 @@
+import type {ChannelValue} from "../channel.js";
 import type {Transformed} from "./basic.js";
 
 export type StackOffsetName =
@@ -23,6 +24,7 @@ export interface StackOptions {
   offset?: StackOffset | null;
   order?: StackOrder | null;
   reverse?: boolean;
+  z?: ChannelValue;
 }
 
 export function stackX<T>(options?: T & StackOptions): Transformed<T>;
