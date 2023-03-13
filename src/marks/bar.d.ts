@@ -1,15 +1,24 @@
-import type {ChannelValueSpec} from "../channel.js";
-import type {Data, RenderableMark} from "../mark.js";
+import type {ChannelValue, ChannelValueSpec} from "../channel.js";
+import type {Interval} from "../interval.js";
+import type {InsetOptions} from "../inset.js";
+import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import type {StackOptions} from "../transforms/stack.js";
-import type {RectOptions} from "./rect.js";
 
-export interface BarXOptions extends RectOptions, StackOptions {
+interface BarOptions extends MarkOptions, InsetOptions, StackOptions {
+  interval?: Interval;
+  rx?: number | string;
+  ry?: number | string;
+}
+
+export interface BarXOptions extends BarOptions {
+  x?: ChannelValueSpec | {value: ChannelValue; interval?: Interval}; // TODO scale override?
   x1?: ChannelValueSpec;
   x2?: ChannelValueSpec;
   y?: ChannelValueSpec;
 }
 
-export interface BarYOptions extends RectOptions, StackOptions {
+export interface BarYOptions extends BarOptions {
+  y?: ChannelValueSpec | {value: ChannelValue; interval?: Interval}; // TODO scale override?
   y1?: ChannelValueSpec;
   y2?: ChannelValueSpec;
   x?: ChannelValueSpec;
