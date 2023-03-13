@@ -1,14 +1,25 @@
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {Reducer} from "../reducer.js";
+import type {BinOptions} from "../transforms/bin.js";
 
-export interface LinearRegressionOptions extends MarkOptions {
+interface LinearRegressionOptions extends MarkOptions, BinOptions {
   x?: ChannelValueSpec;
   y?: ChannelValueSpec;
   z?: ChannelValue;
   ci?: number;
   precision?: number;
+  reduce?: Reducer;
 }
 
-export function linearRegressionX(data?: Data, options?: LinearRegressionOptions): RenderableMark;
+export interface LinearRegressionXOptions extends LinearRegressionOptions {
+  y?: ChannelValueSpec & Omit<BinOptions, "interval">;
+}
 
-export function linearRegressionY(data?: Data, options?: LinearRegressionOptions): RenderableMark;
+export interface LinearRegressionYOptions extends LinearRegressionOptions {
+  x?: ChannelValueSpec & Omit<BinOptions, "interval">;
+}
+
+export function linearRegressionX(data?: Data, options?: LinearRegressionXOptions): RenderableMark;
+
+export function linearRegressionY(data?: Data, options?: LinearRegressionYOptions): RenderableMark;
