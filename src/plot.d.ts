@@ -111,9 +111,9 @@ export interface PlotOptions extends ScaleDefaults {
   className?: string | null;
 
   /**
-   * If a **caption** is specified, Plot.plot wraps the generated SVG element in
-   * an HTML figure element with a figcaption, returning the figure. To specify
-   * an HTML caption, consider using the [`html` tagged template
+   * If a **caption** is specified, Plot wraps the generated SVG element in an
+   * HTML figure element with a figcaption, returning the figure. To specify an
+   * HTML caption, consider using the [`html` tagged template
    * literal](http://github.com/observablehq/htl); otherwise, the specified
    * string represents text that will be escaped as needed.
    *
@@ -184,7 +184,29 @@ export interface PlotOptions extends ScaleDefaults {
   /** plot facet options */
   facet?: PlotFacetOptions;
 
-  // marks
+  /**
+   * The array of marks to render. Each mark has its own data and options; see
+   * the respective mark type for details.
+   *
+   * Each mark (or “markish”) may also be a nested array of marks, allowing
+   * composition. Marks may also be a function which returns an SVG element, to
+   * insert arbitrary content into the plot. And marks may be null or undefined
+   * to produce no output; this is useful for showing marks conditionally
+   * (*e.g.*, when a box is checked).
+   *
+   * Marks are drawn in *z* order, last on top. For example, here a single rule
+   * at *y* = 0 is drawn on top of blue bars for the [*alphabet*
+   * dataset](./test/data/alphabet.csv).
+   *
+   * ```js
+   * Plot.plot({
+   *   marks: [
+   *     Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "steelblue"}),
+   *     Plot.ruleY([0])
+   *   ]
+   * })
+   * ```
+   */
   marks?: Markish[];
 }
 
