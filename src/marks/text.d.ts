@@ -1,4 +1,4 @@
-import type {ChannelValueSpec} from "../channel.js";
+import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 
 export type TextAnchor = "start" | "middle" | "end";
@@ -17,7 +17,7 @@ export type TextOverflow =
 export interface TextOptions extends MarkOptions {
   x?: ChannelValueSpec;
   y?: ChannelValueSpec;
-  text?: ChannelValueSpec;
+  text?: ChannelValue;
   frameAnchor?: FrameAnchor;
   textAnchor?: TextAnchor;
   lineAnchor?: LineAnchor;
@@ -26,11 +26,11 @@ export interface TextOptions extends MarkOptions {
   textOverflow?: TextOverflow;
   monospace?: boolean;
   fontFamily?: string;
-  fontSize?: ChannelValueSpec;
+  fontSize?: ChannelValue;
   fontStyle?: string;
   fontVariant?: string;
   fontWeight?: string | number;
-  rotate?: ChannelValueSpec;
+  rotate?: ChannelValue;
 }
 
 export function text(data?: Data, options?: TextOptions): Text;

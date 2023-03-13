@@ -47,9 +47,55 @@ export interface ScaleDefaults extends InsetOptions {
 }
 
 export interface ScaleOptions extends ScaleDefaults {
+  /**
+   * For quantitative data:
+   * * *linear* (default) - linear transform (translate and scale)
+   * * *pow* - power (exponential) transform
+   * * *sqrt* - square-root transform; *pow* with *exponent* = 0.5
+   * * *log* - logarithmic transform
+   * * *symlog* - bi-symmetric logarithmic transform per Webber et al.
+   *
+   * For temporal data:
+   * * *utc* (default, recommended) - UTC time
+   * * *time* - local time
+   *
+   * For ordinal data:
+   * * *ordinal* -
+   * * *point* -
+   * * *band* -
+   *
+   * For color:
+   * * *categorical* - equivalent to *ordinal*; defaults to *tableau10*
+   * * *sequential* - equivalent to *linear*; defaults to *turbo*
+   * * *cyclical* - equivalent to *linear*; defaults to *rainbow*
+   * * *threshold* - encodes using discrete thresholds; defaults to *rdylbu*
+   * * *quantile* - encodes using quantile thresholds; defaults to *rdylbu*
+   * * *quantize* - uniformly quantizes a continuous domain; defaults to *rdylbu*
+   * * *diverging* - *linear*, but with a pivot; defaults to *rdbu*
+   * * *diverging-log* - *log*, but with a pivot; defaults to *rdbu*
+   * * *diverging-pow* - *pow*, but with a pivot; defaults to *rdbu*
+   * * *diverging-sqrt* - *sqrt*, but with a pivot; defaults to *rdbu*
+   * * *diverging-symlog* - *symlog*, but with a pivot; defaults to *rdbu*
+   *
+   * Other scale types:
+   * * *identity* -
+   */
   type?: ScaleType | null;
+
+  /**
+   * For continuous data: [*min*, *max*]. Can be [*max*, *min*] to reverse the scale.
+   *
+   * For ordinal data: [...*values*], in order.
+   */
   domain?: Iterable<any>;
+
+  /**
+   * For continuous data: [*min*, *max*]. Can be [*max*, *min*] to reverse the scale.
+   *
+   * For ordinal data: [...*values*], in order.
+   */
   range?: Iterable<any>;
+
   unknown?: any;
   reverse?: boolean;
   transform?: (t: any) => any;

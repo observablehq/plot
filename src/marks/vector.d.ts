@@ -1,4 +1,4 @@
-import type {ChannelValueSpec} from "../channel.js";
+import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 
 export type VectorShapeName = "arrow" | "spike";
@@ -14,7 +14,7 @@ export interface VectorOptions extends MarkOptions {
   y?: ChannelValueSpec;
   r?: ChannelValueSpec;
   length?: ChannelValueSpec;
-  rotate?: ChannelValueSpec;
+  rotate?: ChannelValue;
   shape?: VectorShapeSpec;
   anchor?: "start" | "middle" | "end";
   frameAnchor?: FrameAnchor;

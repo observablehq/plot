@@ -57,9 +57,9 @@ export interface MarkOptions {
   // accessibility and interaction
   ariaDescription?: string;
   ariaHidden?: string;
-  ariaLabel?: ChannelValueSpec;
+  ariaLabel?: ChannelValue;
   pointerEvents?: string;
-  title?: ChannelValueSpec;
+  title?: ChannelValue;
 
   // aesthetics
   clip?: "frame" | "sphere" | boolean | null;
@@ -81,7 +81,7 @@ export interface MarkOptions {
   shapeRendering?: string;
 
   // links
-  href?: ChannelValueSpec;
+  href?: ChannelValue;
   target?: string;
 
   // custom channels

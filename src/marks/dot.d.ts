@@ -1,4 +1,4 @@
-import type {ChannelValueSpec} from "../channel.js";
+import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 import type {SymbolImplementation, SymbolName} from "../symbol.js";
 
@@ -6,7 +6,7 @@ export interface DotOptions extends MarkOptions {
   x?: ChannelValueSpec;
   y?: ChannelValueSpec;
   r?: ChannelValueSpec | number;
-  rotate?: ChannelValueSpec | number;
+  rotate?: ChannelValue | number;
   symbol?: ChannelValueSpec | SymbolName | SymbolImplementation;
   frameAnchor?: FrameAnchor;
 }
