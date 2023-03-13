@@ -59,7 +59,7 @@ export type ChannelValue =
   | ((d: any, i: number) => any) // function of data
   | ChannelTransform; // function of data
 
-export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale?: Channel["scale"]};
+export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale?: Channel["scale"]}; // TODO label
 
 export type ChannelValueIntervalSpec = ChannelValueSpec | {value: ChannelValue; interval?: Interval}; // TODO scale override?
 
