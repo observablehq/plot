@@ -1,3 +1,5 @@
+type Digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
 export type ReducerName =
   | "first"
   | "last"
@@ -15,7 +17,7 @@ export type ReducerName =
   | "median"
   | "variance"
   | "mode"
-  | `p${number}${number}` // percentile
+  | ("p25" | "p50" | "p75" | (`p${Digit}${Digit}` & Record<never, never>)) // percentile
   | "x"
   | "x1"
   | "x2"
