@@ -288,10 +288,17 @@ export function maybeInterval(interval, type) {
   return interval;
 }
 
-// Unlike the interval transform, we require a range method, too.
-export function maybeRangeInterval(interval) {
-  interval = maybeInterval(interval);
+// Like maybeInterval, but requires a range method too.
+export function maybeRangeInterval(interval, type) {
+  interval = maybeInterval(interval, type);
   if (interval && typeof interval.range !== "function") throw new Error("invalid interval: missing range method");
+  return interval;
+}
+
+// Like maybeRangeInterval, but requires a ceil method too.
+export function maybeNiceInterval(interval, type) {
+  interval = maybeRangeInterval(interval, type);
+  if (interval && typeof interval.ceil !== "function") throw new Error("invalid interval: missing ceil method");
   return interval;
 }
 

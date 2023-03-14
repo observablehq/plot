@@ -1,7 +1,7 @@
 import type {ColorSchemeName} from "./color.js";
 import type {InsetOptions} from "./inset.js";
 import type {Interpolate} from "./interpolate.js";
-import type {Interval, RangeInterval} from "./interval.js";
+import type {NiceInterval, RangeInterval} from "./interval.js";
 import type {LegendType} from "./legends.js";
 import type {AxisAnchor} from "./marks/axis.js";
 
@@ -34,7 +34,7 @@ export type ScaleType =
 
 export interface ScaleDefaults extends InsetOptions {
   clamp?: boolean;
-  nice?: boolean | number | Interval; // TODO requires interval.ceil, too!
+  nice?: boolean | number | NiceInterval;
   zero?: boolean;
   round?: boolean;
   align?: number;
