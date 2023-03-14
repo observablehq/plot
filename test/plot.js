@@ -3,7 +3,7 @@ import {promises as fs} from "fs";
 import * as path from "path";
 import beautify from "js-beautify";
 import it from "./jsdom.js";
-import * as plots from "./plots/index.ts";
+import * as plots from "./plots/index.js";
 
 for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
