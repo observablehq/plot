@@ -7,6 +7,7 @@ export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 export function valueof(data, value, type) {
+  if (typeof value?.transform === "function") return maybeTypedArrayify(value.transform(data), type);
   const valueType = typeof value;
   return valueType === "string"
     ? maybeTypedMap(data, field(value), type)
@@ -14,13 +15,11 @@ export function valueof(data, value, type) {
     ? maybeTypedMap(data, value, type)
     : valueType === "number" || value instanceof Date || valueType === "boolean"
     ? map(data, constant(value), type)
-    : value && typeof value.transform === "function"
-    ? maybeTypedArrayify(value.transform(data), type)
     : maybeTypedArrayify(value, type);
 }
 
 function maybeTypedMap(data, f, type) {
-  return map(data, type?.prototype instanceof TypedArray ? floater(f) : f, type);
+  return data == null ? data : map(data, type?.prototype instanceof TypedArray ? floater(f) : f, type);
 }
 
 function maybeTypedArrayify(data, type) {
@@ -128,7 +127,7 @@ export function arrayify(data) {
 // An optimization of type.from(values, f): if the given values are already an
 // instanceof the desired array type, the faster values.map method is used.
 export function map(values, f, type = Array) {
-  return !values ? values : values instanceof type ? values.map(f) : type.from(values, f);
+  return values instanceof type ? values.map(f) : type.from(values, f);
 }
 
 // An optimization of type.from(values): if the given values are already an
