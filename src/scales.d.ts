@@ -21,6 +21,7 @@ export type ScaleType =
   | "band"
   | "ordinal"
   | "sequential"
+  | "cyclical"
   | "diverging"
   | "diverging-log"
   | "diverging-pow"

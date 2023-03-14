@@ -9,7 +9,7 @@ export async function seattleTemperatureAmplitude() {
     y: {label: "↑ Daily temperature variation (Δ°F)", zero: true},
     aspectRatio: 1,
     color: {
-      scheme: "rainbow",
+      type: "cyclical",
       legend: true,
       tickFormat: Plot.formatMonth()
     },
