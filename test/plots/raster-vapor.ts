@@ -17,6 +17,25 @@ export async function rasterVapor() {
   });
 }
 
+export async function rasterVapor2() {
+  return Plot.plot({
+    color: {scheme: "blues", legend: true},
+    x: {transform: (x) => x - 180},
+    y: {transform: (y) => 90 - y},
+    marks: [
+      Plot.raster(await vapor(), {
+        width: 360,
+        height: 180
+      }),
+      Plot.raster(await vapor(), {
+        width: 360,
+        height: 180,
+        fill: {value: (d) => (d > 4 ? "red" : null), scale: null}
+      })
+    ]
+  });
+}
+
 export async function contourVapor() {
   return Plot.plot({
     width: 960,

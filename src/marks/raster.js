@@ -97,11 +97,11 @@ export class Raster extends AbstractRaster {
   scale(channels, {color, ...scales}, context) {
     return super.scale(channels, scales, context);
   }
-  render(index, scales, channels, dimensions, context) {
-    const color = scales.color ?? ((x) => x);
-    const {x: X, y: Y} = channels;
+  render(index, scales, values, dimensions, context) {
+    const color = scales[values.channels.fill?.scale] ?? ((x) => x);
+    const {x: X, y: Y} = values;
     const {document} = context;
-    const [x1, y1, x2, y2] = renderBounds(channels, dimensions, context);
+    const [x1, y1, x2, y2] = renderBounds(values, dimensions, context);
     const dx = x2 - x1;
     const dy = y2 - y1;
     const {pixelSize: k, width: w = Math.round(Math.abs(dx) / k), height: h = Math.round(Math.abs(dy) / k)} = this;
@@ -110,7 +110,7 @@ export class Raster extends AbstractRaster {
     // Interpolate the samples to fill the raster grid. If interpolate is null,
     // then a continuous function is being sampled, and the raster grid is
     // already aligned with the canvas.
-    let {fill: F, fillOpacity: FO} = channels;
+    let {fill: F, fillOpacity: FO} = values;
     let offset = 0;
     if (this.interpolate) {
       const kx = w / dx;

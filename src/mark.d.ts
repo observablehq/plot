@@ -1,10 +1,10 @@
-import type {Channels, ChannelDomainSort, ChannelName, ChannelValue, ChannelValueSpec} from "./channel.js";
+import type {ChannelDomainSort, Channels, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Dimensions} from "./dimensions.js";
 import type {Facet, FacetAnchor} from "./facet.js";
 import type {plot} from "./plot.js";
 import type {ScaleFunctions} from "./scales.js";
-import type {InitializerFunction, TransformFunction, SortOrder} from "./transforms/basic.js";
+import type {InitializerFunction, SortOrder, TransformFunction} from "./transforms/basic.js";
 
 export type FrameAnchor =
   | "middle"
@@ -22,7 +22,7 @@ export type Data = Iterable<any> | ArrayLike<any>;
 export type RenderFunction = (
   index: number[],
   scales: ScaleFunctions,
-  values: {[key in ChannelName]?: any[]},
+  values: ChannelValues,
   dimensions: Dimensions,
   context: Context
 ) => SVGElement | null;
