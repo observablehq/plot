@@ -77,9 +77,9 @@ export interface PlotOptions extends ScaleDefaults {
   // other top-level options
 
   /**
-   * The **style** option allows custom styles to override Plot’s defaults. It
-   * may be specified either as a string of inline styles (*e.g.*, `"color:
-   * red;"`, in the same fashion as assigning
+   * Custom styles to override Plot’s defaults. Styles may be specified either
+   * as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion
+   * as assigning
    * [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style))
    * or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion
    * as assigning [*element*.style
@@ -104,14 +104,13 @@ export interface PlotOptions extends ScaleDefaults {
   style?: string | Partial<CSSStyleDeclaration> | null;
 
   /**
-   * The generated SVG element has a random class name which applies a default
-   * stylesheet. Use the top-level **className** option to specify that class
-   * name.
+   * The generated SVG element’s class name used for Plot’s default stylesheet;
+   * by default, a random string prefixed with “plot-”.
    */
-  className?: string | null;
+  className?: string;
 
   /**
-   * If a **caption** is specified, Plot wraps the generated SVG element in an
+   * The figure caption. If present, Plot wraps the generated SVG element in an
    * HTML figure element with a figcaption, returning the figure. To specify an
    * HTML caption, consider using the [`html` tagged template
    * literal](http://github.com/observablehq/htl); otherwise, the specified
@@ -151,42 +150,101 @@ export interface PlotOptions extends ScaleDefaults {
 
   // scale, axis, and legend definitions
 
+  /**
+   * Options for the horizontal position *x* scale. The *x* scale defaults to
+   * the *linear* type for quantitative (numeric) data, the *utc* type for
+   * temporal (date) data, and the *point* type for ordinal (string or boolean)
+   * data. Some marks require a specific *x*-scale type, affecting the default;
+   * for example, the barY, cell, and tickY marks require the *band* type.
+   *
+   * If the *x* scale is present, and an *x*-axis mark is not included in
+   * {@link marks}, an implicit *x*-axis will be rendered below other marks.
+   */
+  x?: ScaleOptions;
+
+  /**
+   * Options for the vertical position *y* scale. The *y* scale defaults to the
+   * *linear* type for quantitative (numeric) data, the *utc* type for temporal
+   * (date) data, and the *point* type for ordinal (string or boolean) data.
+   * Some marks require a specific *y*-scale type, affecting the default; for
+   * example, the barX, cell, and tickX marks require the *band* type.
+   *
+   * If the *y* scale is present, and a *y*-axis mark is not included in
+   * {@link marks}, an implicit *y*-axis will be rendered below other marks.
+   */
+  y?: ScaleOptions;
+
+  /**
+   * Options for the radius (size) *r* scale for dots or Point geos. The *r*
+   * scale defaults to a *sqrt* scale such that the area of marks is
+   * proportional to the encoded quantitative value, and is typically used with
+   * quantitative data; the domain and range should both start at zero for
+   * accurate areal representation.
+   *
+   * Plot does not currently implement a radius legend; see
+   * [#236](https://github.com/observablehq/plot/issues/236). We recommend
+   * either implementing one manually or labeling points so that values can be
+   * read directly from the plot.
+   */
+  r?: ScaleOptions;
+
+  /**
+   * Options for the *color* scale for fill or stroke. The *color* scale
+   * defaults to a *linear* scale with the *turbo* scheme for quantitative
+   * (numeric) or temporal (date) data, and an *ordinal* scale with the
+   * *tableau10* scheme for categorical (string or boolean) data.
+   *
+   * Plot does not currently render a color legend by default; set the
+   * **legend** *color* scale option to true to produce a color legend.
+   *
+   * Note: a channel bound to the *color* scale typically bypasses the scale if
+   * all associated values are valid CSS color strings; the *color* scale can be
+   * explicitly associated or disassociated with a particular channel by
+   * specifying the channel value as a {value, scale} object.
+   */
+  color?: ScaleOptions;
+
+  /**
+   * Options for the *opacity* scale for fill or stroke opacity. The *opacity*
+   * scale defaults to a *linear* scale, and is typically used with quantitative
+   * data; the domain and range should both start at zero for an accurate
+   * encoding.
+   *
+   * TODO Automatic opt-out for channels whose data are numbers in [0, 1].
+   */
+  opacity?: ScaleOptions;
+
+  /**
+   * Options for the categorical *symbol* scale for dots.
+   *
+   * TODO Automatic opt-out for channels whose data are symbols.
+   */
+  symbol?: ScaleOptions;
+
+  /**
+   * Options for the *length* scale for vectors.
+   */
+  length?: ScaleOptions;
+
+  /**
+   * Options for projection. A projection is an alternative to the *x* and *y*
+   * scales for encoding position, and is typically used to convert polygonal
+   * geometry in spherical coordinates to a planar visual representation.
+   */
+  projection?: ProjectionOptions | ProjectionName | ProjectionFactory | ProjectionImplementation | null;
+
   /** horizontal facet position scale; always a band scale */
   fx?: ScaleOptions;
 
   /** vertical facet position scale; always a band scale */
   fy?: ScaleOptions;
 
-  /** horizontal position scale */
-  x?: ScaleOptions;
-
-  /** vertical position scale */
-  y?: ScaleOptions;
-
-  /** radius (size) scale; for dots and Point geos */
-  r?: ScaleOptions;
-
-  /** color scale; for fill or stroke */
-  color?: ScaleOptions;
-
-  /** opacity scale; for fill or stroke opacity */
-  opacity?: ScaleOptions;
-
-  /** categorical symbol scale; for dots */
-  symbol?: ScaleOptions;
-
-  /** length scale; for vectors */
-  length?: ScaleOptions;
-
-  /** projection; alternative to the x and y scales */
-  projection?: ProjectionOptions | ProjectionName | ProjectionFactory | ProjectionImplementation | null;
-
   /** plot facet options */
   facet?: PlotFacetOptions;
 
   /**
-   * The array of marks to render. Each mark has its own data and options; see
-   * the respective mark type for details.
+   * The marks to render. Each mark has its own data and options; see the
+   * respective mark type for details.
    *
    * Each mark (or “markish”) may also be a nested array of marks, allowing
    * composition. Marks may also be a function which returns an SVG element, to
