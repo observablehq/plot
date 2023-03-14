@@ -82,3 +82,9 @@ export type ChannelDomainSort = {
 } & ChannelDomainOptions;
 
 export type ChannelReducers = {[key in ChannelName]?: ChannelReducerSpec | null};
+
+/** The abstract (unscaled) values, and associated scale, per channel. */
+export type ChannelStates = {[key in ChannelName]?: {value: any[]; scale: ScaleName | null}};
+
+/** The possibly-scaled values for each channel. */
+export type ChannelValues = {[key in ChannelName]?: any[]} & {channels: ChannelStates};
