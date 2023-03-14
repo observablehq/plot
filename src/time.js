@@ -42,18 +42,18 @@ const utcIntervals = new Map([
   ["sunday", utcSunday]
 ]);
 
-export function isoInterval(interval) {
+export function coerceDateInterval(interval) {
   return Object.assign((t) => interval(t), {...interval, floor: (t) => interval.floor(coerceDate(t))});
 }
 
 export function maybeTimeInterval(interval) {
   const i = timeIntervals.get(`${interval}`.toLowerCase());
   if (!i) throw new Error(`unknown interval: ${interval}`);
-  return isoInterval(i);
+  return coerceDateInterval(i);
 }
 
 export function maybeUtcInterval(interval) {
   const i = utcIntervals.get(`${interval}`.toLowerCase());
   if (!i) throw new Error(`unknown interval: ${interval}`);
-  return isoInterval(i);
+  return coerceDateInterval(i);
 }
