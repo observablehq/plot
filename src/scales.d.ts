@@ -101,7 +101,7 @@ export interface ScaleOptions extends ScaleDefaults {
   transform?: (t: any) => any;
 
   // quantitative scale options
-  interval?: Interval;
+  interval?: Interval; // TODO RangeInterval?
   percent?: boolean;
 
   // color scale options
@@ -131,7 +131,7 @@ export interface ScaleOptions extends ScaleDefaults {
 
   // axis and legend options
   legend?: LegendType | boolean | null; // for color, opacity, and symbol scales
-  ticks?: number | Interval | Iterable<any>;
+  ticks?: number | Interval | Iterable<any>; // TODO RangeInterval?
   tickSize?: number;
   tickSpacing?: number;
   tickPadding?: number;
@@ -153,7 +153,7 @@ export interface Scale {
   transform?: (t: any) => any;
   percent?: boolean;
   unknown?: any;
-  interval?: Interval;
+  interval?: Interval; // TODO RangeInterval?
   interpolate?: Interpolate;
   clamp?: boolean;
   pivot?: any;
