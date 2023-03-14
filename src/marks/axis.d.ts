@@ -33,9 +33,9 @@ export interface AxisXOptions extends AxisOptions, TickXOptions {}
 
 export interface AxisYOptions extends AxisOptions, TickYOptions {}
 
-export interface GridXOptions extends GridOptions, RuleXOptions {}
+export interface GridXOptions extends GridOptions, Omit<RuleXOptions, "interval"> {}
 
-export interface GridYOptions extends GridOptions, RuleYOptions {}
+export interface GridYOptions extends GridOptions, Omit<RuleYOptions, "interval"> {}
 
 export function axisY(options?: AxisYOptions): CompoundMark;
 

@@ -14,7 +14,7 @@ import {
   coerceDate,
   coerceNumbers,
   maybeColumn,
-  maybeInterval,
+  maybeRangeInterval,
   maybeTuple,
   maybeColorChannel,
   maybeValue,
@@ -24,6 +24,7 @@ import {
   isIterable,
   map
 } from "../options.js";
+import {maybeUtcInterval} from "../time.js";
 import {basic} from "./basic.js";
 import {
   hasOutput,
@@ -311,18 +312,9 @@ export function maybeThresholds(thresholds, interval, defaultThresholds = thresh
       case "auto":
         return thresholdAuto;
     }
-    const interval = maybeInterval(thresholds);
-    if (interval !== undefined) return interval;
-    throw new Error(`invalid thresholds: ${thresholds}`);
+    return maybeUtcInterval(thresholds);
   }
   return thresholds; // pass array, count, or function to bin.thresholds
-}
-
-// Unlike the interval transform, we require a range method, too.
-function maybeRangeInterval(interval) {
-  interval = maybeInterval(interval);
-  if (!isInterval(interval)) throw new Error(`invalid interval: ${interval}`);
-  return interval;
 }
 
 function thresholdAuto(values, min, max) {
@@ -338,7 +330,7 @@ function isTimeInterval(t) {
 }
 
 function isInterval(t) {
-  return t ? typeof t.range === "function" : false;
+  return typeof t?.range === "function";
 }
 
 function bing(EX, EY) {

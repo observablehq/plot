@@ -1,7 +1,7 @@
 import type {ColorSchemeName} from "./color.js";
 import type {InsetOptions} from "./inset.js";
 import type {Interpolate} from "./interpolate.js";
-import type {Interval} from "./interval.js";
+import type {NiceInterval, RangeInterval} from "./interval.js";
 import type {LegendType} from "./legends.js";
 import type {AxisAnchor} from "./marks/axis.js";
 
@@ -34,7 +34,7 @@ export type ScaleType =
 
 export interface ScaleDefaults extends InsetOptions {
   clamp?: boolean;
-  nice?: boolean | number | Interval;
+  nice?: boolean | number | NiceInterval;
   zero?: boolean;
   round?: boolean;
   align?: number;
@@ -42,7 +42,7 @@ export interface ScaleDefaults extends InsetOptions {
 
   // axis options
   axis?: AxisAnchor | "both" | boolean | null; // for position scales
-  grid?: boolean | string | Interval | Iterable<any>;
+  grid?: boolean | string | RangeInterval | Iterable<any>;
   label?: string | null;
 }
 
@@ -101,7 +101,7 @@ export interface ScaleOptions extends ScaleDefaults {
   transform?: (t: any) => any;
 
   // quantitative scale options
-  interval?: Interval; // TODO RangeInterval?
+  interval?: RangeInterval;
   percent?: boolean;
 
   // color scale options
@@ -131,7 +131,7 @@ export interface ScaleOptions extends ScaleDefaults {
 
   // axis and legend options
   legend?: LegendType | boolean | null; // for color, opacity, and symbol scales
-  ticks?: number | Interval | Iterable<any>; // TODO RangeInterval?
+  ticks?: number | RangeInterval | Iterable<any>;
   tickSize?: number;
   tickSpacing?: number;
   tickPadding?: number;
@@ -153,7 +153,7 @@ export interface Scale {
   transform?: (t: any) => any;
   percent?: boolean;
   unknown?: any;
-  interval?: Interval; // TODO RangeInterval?
+  interval?: RangeInterval;
   interpolate?: Interpolate;
   clamp?: boolean;
   pivot?: any;

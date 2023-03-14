@@ -23,7 +23,7 @@ import {
   ticks
 } from "d3";
 import {positive, negative, finite} from "../defined.js";
-import {arrayify, constant, orderof, slice, maybeInterval} from "../options.js";
+import {arrayify, constant, orderof, slice, maybeNiceInterval, maybeRangeInterval} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color, length} from "./index.js";
 
@@ -78,7 +78,7 @@ export function createScaleQ(
     reverse
   }
 ) {
-  interval = maybeInterval(interval, type);
+  interval = maybeRangeInterval(interval, type);
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   reverse = !!reverse;
 
@@ -121,10 +121,14 @@ export function createScaleQ(
 
   if (reverse) domain = reverseof(domain);
   scale.domain(domain).unknown(unknown);
-  if (nice) scale.nice(nice === true ? undefined : nice), (domain = scale.domain());
+  if (nice) scale.nice(maybeNice(nice, type)), (domain = scale.domain());
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
   return {type, domain, range, scale, interpolate, interval};
+}
+
+function maybeNice(nice, type) {
+  return nice === true ? undefined : typeof nice === "number" ? nice : maybeNiceInterval(nice, type);
 }
 
 export function createScaleLinear(key, channels, options) {

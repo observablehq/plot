@@ -18,21 +18,21 @@ export type TimeIntervalName =
 
 export interface IntervalImplementation<T> {
   floor(value: T): T;
-  offset(value: T, offset: number): T;
+  offset(value: T, offset?: number): T;
 }
 
 export interface RangeIntervalImplementation<T> extends IntervalImplementation<T> {
   range(start: T, stop: T): T[];
 }
 
-export type TimeInterval = TimeIntervalName | IntervalImplementation<Date>;
+export interface NiceIntervalImplementation<T> extends RangeIntervalImplementation<T> {
+  ceil(value: T): T;
+}
 
-export type TimeRangeInterval = TimeIntervalName | RangeIntervalImplementation<Date>;
+type LiteralInterval<T> = T extends Date ? TimeIntervalName : T extends number ? number : never;
 
-export type NumberInterval = number | IntervalImplementation<number>;
+export type Interval<T = any> = LiteralInterval<T> | IntervalImplementation<T>;
 
-export type NumberRangeInterval = number | RangeIntervalImplementation<number>;
+export type RangeInterval<T = any> = LiteralInterval<T> | RangeIntervalImplementation<T>;
 
-export type Interval = TimeInterval | NumberInterval;
-
-export type RangeInterval = TimeRangeInterval | NumberRangeInterval;
+export type NiceInterval<T = any> = LiteralInterval<T> | NiceIntervalImplementation<T>;
