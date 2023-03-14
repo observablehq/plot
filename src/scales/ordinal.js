@@ -1,7 +1,7 @@
 import {InternSet, extent, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {isNoneish, map, maybeInterval} from "../options.js";
+import {isNoneish, map, maybeRangeInterval} from "../options.js";
 import {maybeSymbol} from "../symbol.js";
 import {registry, color, position, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
@@ -13,7 +13,7 @@ import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js
 export const ordinalImplicit = Symbol("ordinal");
 
 function createScaleO(key, scale, channels, {type, interval, domain, range, reverse, hint}) {
-  interval = maybeInterval(interval, type);
+  interval = maybeRangeInterval(interval, type);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
@@ -27,7 +27,7 @@ function createScaleO(key, scale, channels, {type, interval, domain, range, reve
 }
 
 export function createScaleOrdinal(key, channels, {type, interval, domain, range, scheme, unknown, ...options}) {
-  interval = maybeInterval(interval, type);
+  interval = maybeRangeInterval(interval, type);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   let hint;
   if (registry.get(key) === symbol) {

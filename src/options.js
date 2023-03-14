@@ -288,6 +288,13 @@ export function maybeInterval(interval, type) {
   return interval;
 }
 
+// Unlike the interval transform, we require a range method, too.
+export function maybeRangeInterval(interval) {
+  interval = maybeInterval(interval);
+  if (interval && typeof interval.range !== "function") throw new Error("invalid interval: missing range method");
+  return interval;
+}
+
 // This distinguishes between per-dimension options and a standalone value.
 export function maybeValue(value) {
   return value === undefined || isOptions(value) ? value : {value};

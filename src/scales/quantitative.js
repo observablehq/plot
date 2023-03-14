@@ -23,7 +23,7 @@ import {
   ticks
 } from "d3";
 import {positive, negative, finite} from "../defined.js";
-import {arrayify, constant, orderof, slice, maybeInterval} from "../options.js";
+import {arrayify, constant, orderof, slice, maybeRangeInterval} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color, length} from "./index.js";
 
@@ -78,7 +78,7 @@ export function createScaleQ(
     reverse
   }
 ) {
-  interval = maybeInterval(interval, type);
+  interval = maybeRangeInterval(interval, type);
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   reverse = !!reverse;
 

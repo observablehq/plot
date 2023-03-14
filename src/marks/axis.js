@@ -3,7 +3,7 @@ import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {range, valueof, arrayify, constant, keyword, identity, number} from "../options.js";
-import {isNoneish, isIterable, isTemporal, maybeInterval, orderof} from "../options.js";
+import {isNoneish, isIterable, isTemporal, maybeRangeInterval, orderof} from "../options.js";
 import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -511,7 +511,7 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
           if (ticks !== undefined) {
             data = scale.ticks(ticks);
           } else {
-            interval = maybeInterval(interval === undefined ? scale.interval : interval, scale.type); // TODO check for RangeInterval
+            interval = maybeRangeInterval(interval === undefined ? scale.interval : interval, scale.type);
             if (interval !== undefined) {
               // For time scales, we could pass the interval directly to
               // scale.ticks because it’s supported by d3.utcTicks; but

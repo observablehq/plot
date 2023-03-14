@@ -1,5 +1,5 @@
 import type {ChannelReducers} from "../channel.js";
-import type {Interval, RangeInterval} from "../interval.js";
+import type {RangeInterval} from "../interval.js";
 import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 
@@ -7,7 +7,7 @@ export type ThresholdsName = "freedman-diaconis" | "scott" | "sturges" | "auto";
 
 export type ThresholdsFunction = (values: any[], min: any, max: any) => any[];
 
-export type Thresholds = ThresholdsName | ThresholdsFunction | Interval;
+export type Thresholds = ThresholdsName | ThresholdsFunction | RangeInterval;
 
 export interface BinOptions {
   cumulative?: boolean | number;
