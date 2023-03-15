@@ -2,10 +2,28 @@ import type {Interval} from "./interval.js";
 import type {Reducer} from "./reducer.js";
 import type {ScaleName, ScaleType} from "./scales.js";
 
+/** Lazily-constructed channel values derived from data. */
 export interface ChannelTransform {
+  /**
+   * Given a mark’s (possibly transformed) data, returns the corresponding array
+   * of values for the current channel. In rare cases, the given data or the
+   * return value may be nullish.
+   */
   transform: (data: any[]) => any[];
+
+  /**
+   * An optional human-readable label for this channel. The associated scale’s
+   * axis (if any) label will default to this value, provided that all channels
+   * that provide labels are consistent; the inferred axis label may also have a
+   * percent sign and directional arrow as appropriate.
+   */
+  label?: string;
 }
 
+/**
+ * The set of known channel names. Channels in custom marks may use other names;
+ * these known names are enumerated for convenient autocomplete.
+ */
 export type ChannelName =
   | "ariaLabel"
   | "fill"
@@ -38,17 +56,77 @@ export type ChannelName =
   | "y2"
   | "z";
 
+/**
+ * An object literal of channel definitions. This is also used to represent
+ * materialized channel states after mark initialization.
+ */
 export type Channels = {[key in ChannelName]?: Channel};
 
+/**
+ * A channel definition. This is also used to represent the materialized channel
+ * state after mark initialization.
+ */
 export interface Channel {
+  /**
+   * The values for this channel. After initialization, this is either an array
+   * of values or null. For channels that are not marked as optional, this value
+   * must not be null.
+   */
   value: ChannelValueSpec | null;
-  scale?: ScaleName | "auto" | boolean;
+
+  /**
+   * The name of this channel’s associated scale, if any. If a scale is
+   * specified, this channel’s abstract values will be encoded using the
+   * corresponding scale. If the scale is specified as true, the default scale
+   * for this channel name will be used (such as the *color* scale for the
+   * *fill* channel). The scale name *auto* is similar to true, except that the
+   * scale will not be used if the associated values met certain criteria; for
+   * example, a channel that would normally be associated with the *color* scale
+   * will not if all values are valid CSS color strings. if the scale is
+   * specified as false or null, the channel values will not be scaled.
+   */
+  scale?: ScaleName | "auto" | boolean | null;
+
+  /**
+   * The required scale type, if any. Marks may require a certain scale type;
+   * for example, the barY mark requires that the *x* scale is a *band* scale.
+   * If channels express a conflicting requirement for a given scale, an error
+   * will be thrown during render.
+   */
   type?: ScaleType;
+
+  /**
+   * If true, values are optional for this channel. Defaults to false.
+   */
   optional?: boolean;
-  filter?: (value: any) => boolean;
-  hint?: any; // TODO
+
+  /**
+   * How to filter this channel’s values. Values for which the filter does not
+   * return truthy will be removed from the mark’s render index, preventing them
+   * from being displayed. If not specified, uses the default filter which
+   * returns true for any non-nullish, non-NaN value. If null, values will not
+   * be filtered; all values will be rendered.
+   */
+  filter?: ((value: any) => boolean) | null;
+
+  /**
+   * An internal hint to affect the default construction of scales. For example,
+   * the dot mark uses a channel hint to affect the default range of the
+   * *symbol* scale and the default fill and stroke of the corresponding legend.
+   */
+  hint?: any;
 }
 
+/**
+ * A channel’s values may be expressed as:
+ *
+ * * a function that returns the corresponding value for each datum
+ * * a field name, to extract the corresponding value for each datum
+ * * an iterable of values, typically of the same length as the data
+ * * a channel transform that returns an iterable of values given the data
+ * * a constant date, number, or boolean
+ * * null to represent no value
+ */
 export type ChannelValue =
   | Iterable<any> // column of values
   | (string & Record<never, never>) // field or literal color; see also https://github.com/microsoft/TypeScript/issues/29729
@@ -59,20 +137,46 @@ export type ChannelValue =
   | ((d: any, i: number) => any) // function of data
   | ChannelTransform; // function of data
 
+/**
+ * When specifying a mark channel’s value, you can provide a {value, scale}
+ * object to override the scale that would normally be associated with the
+ * channel.
+ */
 export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale?: Channel["scale"]}; // TODO label
 
+/**
+ * In some contexts, when specifying a mark channel’s value, you can provide a
+ * {value, interval} object to specify an associated interval.
+ */
 export type ChannelValueIntervalSpec = ChannelValueSpec | {value: ChannelValue; interval?: Interval}; // TODO scale override?
 
-export type ChannelReducerSpec = Reducer | {reduce: Reducer; scale?: Channel["scale"]};
-
+/**
+ * In addition to imputing scale domains from aggregated channel values in
+ * ascending or descending order, a few methods are available:
+ *
+ * * *data* - impute from mark data
+ * * *width* - impute from |*x2* - *x1*|
+ * * *height* - impute from |*y2* - *y1*|
+ * * null - impute from input order
+ */
 export type ChannelDomainValue = ChannelName | "data" | "width" | "height" | null;
 
+/**
+ * Additional options for imputing scale domains from channel values. These
+ * options may be specified separately for each scale or shared.
+ */
 export interface ChannelDomainOptions {
   reduce?: Reducer;
   reverse?: boolean;
   limit?: number;
 }
 
+/**
+ * How to impute the domain for scales based on the associated channels’ values.
+ * Each key corresponds to the name of a scale for which to impute the domain;
+ * the value the specifies which values to aggregate and reduce, and how to
+ * order and truncate the resulting values.
+ */
 export type ChannelDomainSort = {
   [key in ScaleName]?:
     | ChannelDomainValue
@@ -81,10 +185,18 @@ export type ChannelDomainSort = {
       } & ChannelDomainOptions);
 } & ChannelDomainOptions;
 
-export type ChannelReducers = {[key in ChannelName]?: ChannelReducerSpec | null};
+/**
+ * How to reduce the desired output channels of an aggregating transform, such
+ * as the group or bin transform.
+ */
+export type ChannelReducers = {[key in ChannelName]?: Reducer | {reduce: Reducer; scale?: Channel["scale"]} | null};
 
-/** The abstract (unscaled) values, and associated scale, per channel. */
+/**
+ * The abstract (unscaled) values, and associated scale, per channel.
+ */
 export type ChannelStates = {[key in ChannelName]?: {value: any[]; scale: ScaleName | null}};
 
-/** The possibly-scaled values for each channel. */
+/**
+ * The possibly-scaled values for each channel.
+ */
 export type ChannelValues = {[key in ChannelName]?: any[]} & {channels: ChannelStates};
