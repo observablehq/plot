@@ -278,8 +278,7 @@ export interface PlotOptions extends ScaleDefaults {
    * (*e.g.*, when a box is checked).
    *
    * Marks are drawn in *z* order, last on top. For example, here a single rule
-   * at *y* = 0 is drawn on top of blue bars for the [*alphabet*
-   * dataset](./test/data/alphabet.csv).
+   * at *y* = 0 is drawn on top of blue bars for the *alphabet* dataset.
    *
    * ```js
    * Plot.plot({
