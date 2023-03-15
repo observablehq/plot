@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export async function intervalWeekMonth() {
+export async function dateIntervalWeekMonth() {
   const data = await d3.csv("data/bls-industry-unemployment.csv");
   return Plot.plot({
     marginLeft: 80,
