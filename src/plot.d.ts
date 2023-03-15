@@ -179,7 +179,9 @@ export interface PlotOptions extends ScaleDefaults {
    * scale defaults to a *sqrt* scale such that the area of marks is
    * proportional to the encoded quantitative value, and is typically used with
    * quantitative data; the domain and range should both start at zero for
-   * accurate areal representation.
+   * accurate areal representation. The default range is chosen such that the
+   * first quartile of values has a radius of 3 pixels, but no value has a
+   * radius greater than 30 pixels.
    *
    * Plot does not currently implement a radius legend; see
    * [#236](https://github.com/observablehq/plot/issues/236). We recommend
@@ -191,16 +193,16 @@ export interface PlotOptions extends ScaleDefaults {
   /**
    * Options for the *color* scale for fill or stroke. The *color* scale
    * defaults to a *linear* scale with the *turbo* scheme for quantitative
-   * (numeric) or temporal (date) data, and an *ordinal* scale with the
-   * *tableau10* scheme for categorical (string or boolean) data.
+   * (numbers) or temporal (dates) data, and an *ordinal* scale with the
+   * *tableau10* scheme for categorical (strings or booleans) data.
    *
    * Plot does not currently render a color legend by default; set the
    * **legend** *color* scale option to true to produce a color legend.
    *
    * Note: a channel bound to the *color* scale typically bypasses the scale if
-   * all associated values are valid CSS color strings; the *color* scale can be
-   * explicitly associated or disassociated with a particular channel by
-   * specifying the channel value as a {value, scale} object.
+   * all associated values are valid CSS color strings; you can override the
+   * scale associated with a channel by specifying the value as a {value, scale}
+   * object.
    */
   color?: ScaleOptions;
 
@@ -208,21 +210,34 @@ export interface PlotOptions extends ScaleDefaults {
    * Options for the *opacity* scale for fill or stroke opacity. The *opacity*
    * scale defaults to a *linear* scale, and is typically used with quantitative
    * data; the domain and range should both start at zero for an accurate
-   * encoding.
+   * encoding. The default range is [0, 1].
    *
-   * TODO Automatic opt-out for channels whose data are numbers in [0, 1].
+   * Note: a channel bound to the *opacity* scale typically bypasses the scale
+   * if all associated values are numbers in the interval [0, 1]; you can
+   * override the scale associated with a channel by specifying the value as a
+   * {value, scale} object.
    */
   opacity?: ScaleOptions;
 
   /**
-   * Options for the categorical *symbol* scale for dots.
+   * Options for the categorical *symbol* scale for dots. The *symbol* scale
+   * defaults to an *ordinal* scale. The default range is one of two sets of
+   * seven symbols, chosen to maximize discriminability based on whether the
+   * symbols are filled or stroked.
    *
-   * TODO Automatic opt-out for channels whose data are symbols.
+   * Note: a channel bound to the *symbol* scale typically bypasses the scale if
+   * all associated values are valid symbol names or implementations; you can
+   * override the scale associated with a channel by specifying the value as a
+   * {value, scale} object.
    */
   symbol?: ScaleOptions;
 
   /**
-   * Options for the *length* scale for vectors.
+   * Options for the *length* scale for vectors. The *length* scale defaults to
+   * a *linear* scale, and is typically used with quantitative data; the domain
+   * and range should both start at zero for an accurate encoding. The default
+   * range is chosen such that the median of values has a length of 12 pixels,
+   * but no value has a length greater than 60 pixels.
    */
   length?: ScaleOptions;
 
@@ -233,13 +248,23 @@ export interface PlotOptions extends ScaleDefaults {
    */
   projection?: ProjectionOptions | ProjectionName | ProjectionFactory | ProjectionImplementation | null;
 
-  /** horizontal facet position scale; always a band scale */
+  /**
+   * Options for the horizontal facet position *fx* scale. If present, the *fx*
+   * scale is always a *band* scale.
+   */
   fx?: ScaleOptions;
 
-  /** vertical facet position scale; always a band scale */
+  /**
+   * Options for the vertical facet position *fy* scale. If present, the *fy*
+   * scale is always a *band* scale.
+   */
   fy?: ScaleOptions;
 
-  /** plot facet options */
+  /**
+   * Options for faceting, including shorthand options for the *fx* and *fy*
+   * facet scales and axes, and top-level faceting as an alternative to
+   * mark-level *fx* and *fy* channels.
+   */
   facet?: PlotFacetOptions;
 
   /**
