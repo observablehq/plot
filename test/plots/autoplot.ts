@@ -162,6 +162,11 @@ export async function autoRectColorReducer() {
   return Plot.auto(penguins, {x: "culmen_length_mm", color: {value: "island", reduce: "mode"}}).plot();
 }
 
+export async function autoRuleZero() {
+  const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.auto(athletes, {x: "date_of_birth", y: {value: "height", reduce: "mean"}, mark: "rule"}).plot();
+}
+
 export async function autoLineColor() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.auto(aapl, {x: "Date", y: "Close", color: "Close"}).plot();
