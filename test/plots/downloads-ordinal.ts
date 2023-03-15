@@ -20,3 +20,18 @@ export async function downloadsOrdinal() {
     ]
   });
 }
+
+export async function downloadsOrdinalIsostrings() {
+  const downloads = (await d3.csv<any>("data/downloads.csv")).filter((d) => /20(19|20)-0/.test(d.date));
+  return Plot.plot({
+    width: 960,
+    marginBottom: 50,
+    x: {
+      interval: "month",
+      tickRotate: -45,
+      tickFormat: "%b %Y",
+      label: null
+    },
+    marks: [Plot.barY(downloads, {x: "date", y: "downloads", fill: "#ccc", stroke: "currentColor", title: "date"})]
+  });
+}

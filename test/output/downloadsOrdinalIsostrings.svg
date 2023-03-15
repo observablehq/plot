@@ -1,0 +1,642 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="960" height="420" viewBox="0 0 960 420" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,338.1818181818182)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,306.3636363636363)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,274.54545454545456)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,242.72727272727272)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,210.9090909090909)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,179.0909090909091)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,147.27272727272728)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,115.45454545454545)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,83.63636363636361)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,51.81818181818183)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,20)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,338.1818181818182)">2</text>
+    <text y="0.32em" transform="translate(40,306.3636363636363)">4</text>
+    <text y="0.32em" transform="translate(40,274.54545454545456)">6</text>
+    <text y="0.32em" transform="translate(40,242.72727272727272)">8</text>
+    <text y="0.32em" transform="translate(40,210.9090909090909)">10</text>
+    <text y="0.32em" transform="translate(40,179.0909090909091)">12</text>
+    <text y="0.32em" transform="translate(40,147.27272727272728)">14</text>
+    <text y="0.32em" transform="translate(40,115.45454545454545)">16</text>
+    <text y="0.32em" transform="translate(40,83.63636363636361)">18</text>
+    <text y="0.32em" transform="translate(40,51.81818181818183)">20</text>
+    <text y="0.32em" transform="translate(40,20)">22</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ downloads</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(19.5,0)">
+    <path transform="translate(51,370)" d="M0,0L0,6"></path>
+    <path transform="translate(93,370)" d="M0,0L0,6"></path>
+    <path transform="translate(135,370)" d="M0,0L0,6"></path>
+    <path transform="translate(177,370)" d="M0,0L0,6"></path>
+    <path transform="translate(219,370)" d="M0,0L0,6"></path>
+    <path transform="translate(261,370)" d="M0,0L0,6"></path>
+    <path transform="translate(303,370)" d="M0,0L0,6"></path>
+    <path transform="translate(345,370)" d="M0,0L0,6"></path>
+    <path transform="translate(387,370)" d="M0,0L0,6"></path>
+    <path transform="translate(429,370)" d="M0,0L0,6"></path>
+    <path transform="translate(471,370)" d="M0,0L0,6"></path>
+    <path transform="translate(513,370)" d="M0,0L0,6"></path>
+    <path transform="translate(555,370)" d="M0,0L0,6"></path>
+    <path transform="translate(597,370)" d="M0,0L0,6"></path>
+    <path transform="translate(639,370)" d="M0,0L0,6"></path>
+    <path transform="translate(681,370)" d="M0,0L0,6"></path>
+    <path transform="translate(723,370)" d="M0,0L0,6"></path>
+    <path transform="translate(765,370)" d="M0,0L0,6"></path>
+    <path transform="translate(807,370)" d="M0,0L0,6"></path>
+    <path transform="translate(849,370)" d="M0,0L0,6"></path>
+    <path transform="translate(891,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(19.5,12.32842712474619)">
+    <text y="0.32em" transform="translate(51,370) rotate(-45)">Jan 2019</text>
+    <text y="0.32em" transform="translate(93,370) rotate(-45)">Feb 2019</text>
+    <text y="0.32em" transform="translate(135,370) rotate(-45)">Mar 2019</text>
+    <text y="0.32em" transform="translate(177,370) rotate(-45)">Apr 2019</text>
+    <text y="0.32em" transform="translate(219,370) rotate(-45)">May 2019</text>
+    <text y="0.32em" transform="translate(261,370) rotate(-45)">Jun 2019</text>
+    <text y="0.32em" transform="translate(303,370) rotate(-45)">Jul 2019</text>
+    <text y="0.32em" transform="translate(345,370) rotate(-45)">Aug 2019</text>
+    <text y="0.32em" transform="translate(387,370) rotate(-45)">Sep 2019</text>
+    <text y="0.32em" transform="translate(429,370) rotate(-45)">Oct 2019</text>
+    <text y="0.32em" transform="translate(471,370) rotate(-45)">Nov 2019</text>
+    <text y="0.32em" transform="translate(513,370) rotate(-45)">Dec 2019</text>
+    <text y="0.32em" transform="translate(555,370) rotate(-45)">Jan 2020</text>
+    <text y="0.32em" transform="translate(597,370) rotate(-45)">Feb 2020</text>
+    <text y="0.32em" transform="translate(639,370) rotate(-45)">Mar 2020</text>
+    <text y="0.32em" transform="translate(681,370) rotate(-45)">Apr 2020</text>
+    <text y="0.32em" transform="translate(723,370) rotate(-45)">May 2020</text>
+    <text y="0.32em" transform="translate(765,370) rotate(-45)">Jun 2020</text>
+    <text y="0.32em" transform="translate(807,370) rotate(-45)">Jul 2020</text>
+    <text y="0.32em" transform="translate(849,370) rotate(-45)">Aug 2020</text>
+    <text y="0.32em" transform="translate(891,370) rotate(-45)">Sep 2020</text>
+  </g>
+  <g aria-label="bar" fill="#ccc" stroke="currentColor">
+    <rect x="51" width="38" y="290.45454545454544" height="79.54545454545456"><title>2019-01-01</title></rect>
+    <rect x="51" width="38" y="20" height="350"><title>2019-01-02</title></rect>
+    <rect x="51" width="38" y="147.27272727272728" height="222.72727272727272"><title>2019-01-03</title></rect>
+    <rect x="51" width="38" y="210.9090909090909" height="159.0909090909091"><title>2019-01-04</title></rect>
+    <rect x="51" width="38" y="226.81818181818178" height="143.18181818181822"><title>2019-01-05</title></rect>
+    <rect x="51" width="38" y="274.54545454545456" height="95.45454545454544"><title>2019-01-06</title></rect>
+    <rect x="51" width="38" y="83.63636363636361" height="286.3636363636364"><title>2019-01-07</title></rect>
+    <rect x="51" width="38" y="210.9090909090909" height="159.0909090909091"><title>2019-01-08</title></rect>
+    <rect x="51" width="38" y="306.3636363636363" height="63.63636363636368"><title>2019-01-09</title></rect>
+    <rect x="51" width="38" y="67.72727272727272" height="302.27272727272725"><title>2019-01-10</title></rect>
+    <rect x="51" width="38" y="131.36363636363637" height="238.63636363636363"><title>2019-01-11</title></rect>
+    <rect x="51" width="38" y="242.72727272727272" height="127.27272727272728"><title>2019-01-12</title></rect>
+    <rect x="51" width="38" y="306.3636363636363" height="63.63636363636368"><title>2019-01-13</title></rect>
+    <rect x="51" width="38" y="67.72727272727272" height="302.27272727272725"><title>2019-01-14</title></rect>
+    <rect x="51" width="38" y="163.18181818181816" height="206.81818181818184"><title>2019-01-15</title></rect>
+    <rect x="51" width="38" y="195" height="175"><title>2019-01-16</title></rect>
+    <rect x="51" width="38" y="195" height="175"><title>2019-01-17</title></rect>
+    <rect x="51" width="38" y="163.18181818181816" height="206.81818181818184"><title>2019-01-18</title></rect>
+    <rect x="51" width="38" y="258.6363636363637" height="111.36363636363632"><title>2019-01-19</title></rect>
+    <rect x="51" width="38" y="274.54545454545456" height="95.45454545454544"><title>2019-01-20</title></rect>
+    <rect x="51" width="38" y="290.45454545454544" height="79.54545454545456"><title>2019-01-21</title></rect>
+    <rect x="51" width="38" y="258.6363636363637" height="111.36363636363632"><title>2019-01-22</title></rect>
+    <rect x="51" width="38" y="322.2727272727273" height="47.72727272727269"><title>2019-01-23</title></rect>
+    <rect x="51" width="38" y="370" height="0"><title>2019-01-24</title></rect>
+    <rect x="51" width="38" y="370" height="0"><title>2019-01-25</title></rect>
+    <rect x="51" width="38" y="370" height="0"><title>2019-01-26</title></rect>
+    <rect x="51" width="38" y="370" height="0"><title>2019-01-27</title></rect>
+    <rect x="51" width="38" y="370" height="0"><title>2019-01-28</title></rect>
+    <rect x="51" width="38" y="370" height="0"><title>2019-01-29</title></rect>
+    <rect x="51" width="38" y="370" height="0"><title>2019-01-30</title></rect>
+    <rect x="51" width="38" y="370" height="0"><title>2019-01-31</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-01</title></rect>
+    <rect x="93" width="38" y="338.1818181818182" height="31.818181818181813"><title>2019-02-02</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-03</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-04</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-05</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-06</title></rect>
+    <rect x="93" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-02-07</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-08</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-09</title></rect>
+    <rect x="93" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-02-10</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-11</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-12</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-13</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-14</title></rect>
+    <rect x="93" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-02-15</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-16</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-17</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-18</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-19</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-20</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-21</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-22</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-23</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-24</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-25</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-26</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-27</title></rect>
+    <rect x="93" width="38" y="370" height="0"><title>2019-02-28</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-01</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-02</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-03</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-04</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-05</title></rect>
+    <rect x="135" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-03-06</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-07</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-08</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-09</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-10</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-11</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-12</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-13</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-14</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-15</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-16</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-17</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-18</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-19</title></rect>
+    <rect x="135" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-03-20</title></rect>
+    <rect x="135" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-03-21</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-22</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-23</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-24</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-25</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-26</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-27</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-28</title></rect>
+    <rect x="135" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-03-29</title></rect>
+    <rect x="135" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-03-30</title></rect>
+    <rect x="135" width="38" y="370" height="0"><title>2019-03-31</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-01</title></rect>
+    <rect x="177" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-04-02</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-03</title></rect>
+    <rect x="177" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-04-04</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-05</title></rect>
+    <rect x="177" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-04-06</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-07</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-08</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-09</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-10</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-11</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-12</title></rect>
+    <rect x="177" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-04-13</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-14</title></rect>
+    <rect x="177" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-04-15</title></rect>
+    <rect x="177" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-04-16</title></rect>
+    <rect x="177" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-04-17</title></rect>
+    <rect x="177" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-04-18</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-19</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-20</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-21</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-22</title></rect>
+    <rect x="177" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-04-23</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-24</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-25</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-26</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-27</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-28</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-29</title></rect>
+    <rect x="177" width="38" y="370" height="0"><title>2019-04-30</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-01</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-02</title></rect>
+    <rect x="219" width="38" y="338.1818181818182" height="31.818181818181813"><title>2019-05-03</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-04</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-05</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-06</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-07</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-08</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-09</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-10</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-11</title></rect>
+    <rect x="219" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-05-12</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-13</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-14</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-15</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-16</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-17</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-18</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-19</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-20</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-21</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-22</title></rect>
+    <rect x="219" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-05-23</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-24</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-25</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-26</title></rect>
+    <rect x="219" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-05-27</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-28</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-29</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-30</title></rect>
+    <rect x="219" width="38" y="370" height="0"><title>2019-05-31</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-01</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-02</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-03</title></rect>
+    <rect x="261" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-06-04</title></rect>
+    <rect x="261" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-06-05</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-06</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-07</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-08</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-09</title></rect>
+    <rect x="261" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-06-10</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-11</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-12</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-13</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-14</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-15</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-16</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-17</title></rect>
+    <rect x="261" width="38" y="338.1818181818182" height="31.818181818181813"><title>2019-06-18</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-19</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-20</title></rect>
+    <rect x="261" width="38" y="338.1818181818182" height="31.818181818181813"><title>2019-06-21</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-22</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-23</title></rect>
+    <rect x="261" width="38" y="338.1818181818182" height="31.818181818181813"><title>2019-06-24</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-25</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-26</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-27</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-28</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-29</title></rect>
+    <rect x="261" width="38" y="370" height="0"><title>2019-06-30</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-01</title></rect>
+    <rect x="303" width="38" y="338.1818181818182" height="31.818181818181813"><title>2019-07-02</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-03</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-04</title></rect>
+    <rect x="303" width="38" y="322.2727272727273" height="47.72727272727269"><title>2019-07-05</title></rect>
+    <rect x="303" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-07-06</title></rect>
+    <rect x="303" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-07-07</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-08</title></rect>
+    <rect x="303" width="38" y="338.1818181818182" height="31.818181818181813"><title>2019-07-09</title></rect>
+    <rect x="303" width="38" y="338.1818181818182" height="31.818181818181813"><title>2019-07-10</title></rect>
+    <rect x="303" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-07-11</title></rect>
+    <rect x="303" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-07-12</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-13</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-14</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-15</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-16</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-17</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-18</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-19</title></rect>
+    <rect x="303" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-07-20</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-21</title></rect>
+    <rect x="303" width="38" y="338.1818181818182" height="31.818181818181813"><title>2019-07-22</title></rect>
+    <rect x="303" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-07-23</title></rect>
+    <rect x="303" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-07-24</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-25</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-26</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-27</title></rect>
+    <rect x="303" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-07-28</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-29</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-30</title></rect>
+    <rect x="303" width="38" y="370" height="0"><title>2019-07-31</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-01</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-02</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-03</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-04</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-05</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-06</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-07</title></rect>
+    <rect x="345" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-08-08</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-09</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-10</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-11</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-12</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-13</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-14</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-15</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-16</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-17</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-18</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-19</title></rect>
+    <rect x="345" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-08-20</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-21</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-22</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-23</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-24</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-25</title></rect>
+    <rect x="345" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-08-26</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-27</title></rect>
+    <rect x="345" width="38" y="338.1818181818182" height="31.818181818181813"><title>2019-08-28</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-29</title></rect>
+    <rect x="345" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-08-30</title></rect>
+    <rect x="345" width="38" y="370" height="0"><title>2019-08-31</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-01</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-02</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-03</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-04</title></rect>
+    <rect x="387" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-09-05</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-06</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-07</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-08</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-09</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-10</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-11</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-12</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-13</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-14</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-15</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-16</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-17</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-18</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-19</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-20</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-21</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-22</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-23</title></rect>
+    <rect x="387" width="38" y="354.0909090909091" height="15.909090909090878"><title>2019-09-24</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-25</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-26</title></rect>
+    <rect x="387" width="38" y="338.1818181818182" height="31.818181818181813"><title>2019-09-27</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-28</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-29</title></rect>
+    <rect x="387" width="38" y="370" height="0"><title>2019-09-30</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-01</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-02</title></rect>
+    <rect x="555" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-01-03</title></rect>
+    <rect x="555" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-01-04</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-05</title></rect>
+    <rect x="555" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-01-06</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-07</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-08</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-09</title></rect>
+    <rect x="555" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-01-10</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-11</title></rect>
+    <rect x="555" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-01-12</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-13</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-14</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-15</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-16</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-17</title></rect>
+    <rect x="555" width="38" y="338.1818181818182" height="31.818181818181813"><title>2020-01-18</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-19</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-20</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-21</title></rect>
+    <rect x="555" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-01-22</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-23</title></rect>
+    <rect x="555" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-01-24</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-25</title></rect>
+    <rect x="555" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-01-26</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-27</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-28</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-29</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-30</title></rect>
+    <rect x="555" width="38" y="370" height="0"><title>2020-01-31</title></rect>
+    <rect x="597" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-02-01</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-02</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-03</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-04</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-05</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-06</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-07</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-08</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-09</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-10</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-11</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-12</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-13</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-14</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-15</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-16</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-17</title></rect>
+    <rect x="597" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-02-18</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-19</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-20</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-21</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-22</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-23</title></rect>
+    <rect x="597" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-02-24</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-25</title></rect>
+    <rect x="597" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-02-26</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-27</title></rect>
+    <rect x="597" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-02-28</title></rect>
+    <rect x="597" width="38" y="370" height="0"><title>2020-02-29</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-01</title></rect>
+    <rect x="639" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-03-02</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-03</title></rect>
+    <rect x="639" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-03-04</title></rect>
+    <rect x="639" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-03-05</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-06</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-07</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-08</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-09</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-10</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-11</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-12</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-13</title></rect>
+    <rect x="639" width="38" y="338.1818181818182" height="31.818181818181813"><title>2020-03-14</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-15</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-16</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-17</title></rect>
+    <rect x="639" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-03-18</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-19</title></rect>
+    <rect x="639" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-03-20</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-21</title></rect>
+    <rect x="639" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-03-22</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-23</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-24</title></rect>
+    <rect x="639" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-03-25</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-26</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-27</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-28</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-29</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-30</title></rect>
+    <rect x="639" width="38" y="370" height="0"><title>2020-03-31</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-01</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-02</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-03</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-04</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-05</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-06</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-07</title></rect>
+    <rect x="681" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-04-08</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-09</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-10</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-11</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-12</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-13</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-14</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-15</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-16</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-17</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-18</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-19</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-20</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-21</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-22</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-23</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-24</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-25</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-26</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-27</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-28</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-29</title></rect>
+    <rect x="681" width="38" y="370" height="0"><title>2020-04-30</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-01</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-02</title></rect>
+    <rect x="723" width="38" y="338.1818181818182" height="31.818181818181813"><title>2020-05-03</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-04</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-05</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-06</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-07</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-08</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-09</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-10</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-11</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-12</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-13</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-14</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-15</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-16</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-17</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-18</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-19</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-20</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-21</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-22</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-23</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-24</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-25</title></rect>
+    <rect x="723" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-05-26</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-27</title></rect>
+    <rect x="723" width="38" y="338.1818181818182" height="31.818181818181813"><title>2020-05-28</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-29</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-30</title></rect>
+    <rect x="723" width="38" y="370" height="0"><title>2020-05-31</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-01</title></rect>
+    <rect x="765" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-06-02</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-03</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-04</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-05</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-06</title></rect>
+    <rect x="765" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-06-07</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-08</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-09</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-10</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-11</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-12</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-13</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-14</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-15</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-16</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-17</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-18</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-19</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-20</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-21</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-22</title></rect>
+    <rect x="765" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-06-23</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-24</title></rect>
+    <rect x="765" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-06-25</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-26</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-27</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-28</title></rect>
+    <rect x="765" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-06-29</title></rect>
+    <rect x="765" width="38" y="370" height="0"><title>2020-06-30</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-01</title></rect>
+    <rect x="807" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-07-02</title></rect>
+    <rect x="807" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-07-03</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-04</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-05</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-06</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-07</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-08</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-09</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-10</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-11</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-12</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-13</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-14</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-15</title></rect>
+    <rect x="807" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-07-16</title></rect>
+    <rect x="807" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-07-17</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-18</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-19</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-20</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-21</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-22</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-23</title></rect>
+    <rect x="807" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-07-24</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-25</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-26</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-27</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-28</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-29</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-30</title></rect>
+    <rect x="807" width="38" y="370" height="0"><title>2020-07-31</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-01</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-02</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-03</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-04</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-05</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-06</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-07</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-08</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-09</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-10</title></rect>
+    <rect x="849" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-08-11</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-12</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-13</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-14</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-15</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-16</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-17</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-18</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-19</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-20</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-21</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-22</title></rect>
+    <rect x="849" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-08-23</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-24</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-25</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-26</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-27</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-28</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-29</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-30</title></rect>
+    <rect x="849" width="38" y="370" height="0"><title>2020-08-31</title></rect>
+    <rect x="891" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-09-01</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-02</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-03</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-04</title></rect>
+    <rect x="891" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-09-05</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-06</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-07</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-08</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-09</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-10</title></rect>
+    <rect x="891" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-09-11</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-12</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-13</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-14</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-15</title></rect>
+    <rect x="891" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-09-16</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-17</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-18</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-19</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-20</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-21</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-22</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-23</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-24</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-25</title></rect>
+    <rect x="891" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-09-26</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-27</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-28</title></rect>
+    <rect x="891" width="38" y="370" height="0"><title>2020-09-29</title></rect>
+    <rect x="891" width="38" y="354.0909090909091" height="15.909090909090878"><title>2020-09-30</title></rect>
+  </g>
+</svg>

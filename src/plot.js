@@ -7,7 +7,18 @@ import {createLegends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
-import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeInterval} from "./options.js";
+import {
+  arrayify,
+  coerceDate,
+  isColor,
+  isIterable,
+  isNone,
+  isScaleOptions,
+  isTimeInterval,
+  map,
+  yes,
+  maybeInterval
+} from "./options.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
@@ -358,12 +369,13 @@ function applyScaleTransforms(channels, options) {
 function applyScaleTransform(channel, options) {
   const {scale} = channel;
   if (scale == null) return;
-  const {
-    type,
-    percent,
-    interval,
-    transform = percent ? (x) => x * 100 : maybeInterval(interval, type)?.floor
-  } = options[scale] ?? {};
+  let {type, percent, interval, transform} = options[scale] ?? {};
+  if (transform === undefined) {
+    if (percent) return (channel.value = channel.value.map((x) => x * 100)), undefined;
+    const i = maybeInterval(interval, type);
+    if (isTimeInterval(i)) return (channel.value = channel.value.map((d) => i.floor(coerceDate(d)))), undefined;
+    transform = i?.floor;
+  }
   if (transform != null) channel.value = map(channel.value, transform);
 }
 
