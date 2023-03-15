@@ -1,3 +1,11 @@
+/**
+ * The set of supported color spaces for interpolation.
+ *
+ * * *rgb* - red, green, blue (sRGB)
+ * * *hsl* - hue, saturation, lightness (HSL; cylindrical sRGB)
+ * * *hcl* - hue, chroma, perceptual lightness (CIELCh_ab; cylindrical CIELAB)
+ * * *lab* - perceptual lightness and opponent colors (L\*a\*b\*, CIELAB)
+ */
 export type ColorInterpolateName = "rgb" | "hsl" | "hcl" | "lab";
 
 type ColorSchemeNameCase =
@@ -52,4 +60,8 @@ type ColorSchemeNameCase =
   | "Rainbow"
   | "Sinebow";
 
+/**
+ * The set of supported color schemes, including schemes appropriate for
+ * sequential, diverging, categorical, and cyclical values.
+ */
 export type ColorSchemeName = ColorSchemeNameCase | Lowercase<ColorSchemeNameCase>;
