@@ -2,7 +2,6 @@ import {utcSecond, utcMinute, utcHour, utcDay, utcWeek, utcMonth, utcYear} from 
 import {utcMonday, utcTuesday, utcWednesday, utcThursday, utcFriday, utcSaturday, utcSunday} from "d3";
 import {timeSecond, timeMinute, timeHour, timeDay, timeWeek, timeMonth, timeYear} from "d3";
 import {timeMonday, timeTuesday, timeWednesday, timeThursday, timeFriday, timeSaturday, timeSunday} from "d3";
-import {coerceDate} from "./options.js";
 
 const timeIntervals = new Map([
   ["second", timeSecond],
@@ -42,18 +41,14 @@ const utcIntervals = new Map([
   ["sunday", utcSunday]
 ]);
 
-export function coerceDateInterval(interval) {
-  return Object.assign((t) => interval(t), {...interval, floor: (t) => interval.floor(coerceDate(t))});
-}
-
 export function maybeTimeInterval(interval) {
   const i = timeIntervals.get(`${interval}`.toLowerCase());
   if (!i) throw new Error(`unknown interval: ${interval}`);
-  return coerceDateInterval(i);
+  return i;
 }
 
 export function maybeUtcInterval(interval) {
   const i = utcIntervals.get(`${interval}`.toLowerCase());
   if (!i) throw new Error(`unknown interval: ${interval}`);
-  return coerceDateInterval(i);
+  return i;
 }

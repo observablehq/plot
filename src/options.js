@@ -1,6 +1,6 @@
 import {parse as isoParse} from "isoformat";
 import {color, descending, range as rangei, quantile} from "d3";
-import {coerceDateInterval, maybeTimeInterval, maybeUtcInterval} from "./time.js";
+import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -285,7 +285,7 @@ export function maybeInterval(interval, type) {
   if (typeof interval === "string") return (type === "time" ? maybeTimeInterval : maybeUtcInterval)(interval);
   if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
   if (typeof interval.offset !== "function") throw new Error("invalid interval; missing offset method");
-  return isTimeInterval(interval) ? coerceDateInterval(interval) : interval;
+  return interval;
 }
 
 // Like maybeInterval, but requires a range method too.

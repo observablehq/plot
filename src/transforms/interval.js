@@ -1,3 +1,4 @@
+import {coerceDate, isTimeInterval} from "../options.js";
 import {isTemporal, labelof, map, maybeInterval, maybeValue, valueof} from "../options.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
@@ -28,7 +29,9 @@ function maybeIntervalK(k, maybeInsetK, options, trivial) {
   let D1, V1;
   function transform(data) {
     if (V1 !== undefined && data === D1) return V1; // memoize
-    return (V1 = map(valueof((D1 = data), value), (v) => interval.floor(v)));
+    let V = valueof((D1 = data), value);
+    if (isTimeInterval(interval)) V = map(V, coerceDate, Float64Array);
+    return (V1 = map(V, (v) => interval.floor(v)));
   }
   return maybeInsetK({
     ...options,
