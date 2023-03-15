@@ -115,6 +115,13 @@ it("valueof returns arrays that match the specified type as-is", () => {
   assert.strictEqual(valueof(m, identity, My32Array), m);
 });
 
+it("valueof returns the given array value", () => {
+  const a = [1, 2, 3];
+  assert.strictEqual(valueof(null, a), a);
+  assert.strictEqual(valueof(undefined, a), a);
+  assert.strictEqual(valueof([], a), a);
+});
+
 it("valueof accepts complicated data with the proper accessor", () => {
   const m = [(d) => d, new Promise(() => {})];
   assert.deepStrictEqual(valueof(m, String), ["(d) => d", "[object Promise]"]);
