@@ -188,6 +188,7 @@ export * from "./penguin-mass-sex-species.js";
 export * from "./penguin-mass-sex.js";
 export * from "./penguin-mass-species.js";
 export * from "./penguin-mass.js";
+export * from "./penguin-na.js";
 export * from "./penguin-quantile-unknown.js";
 export * from "./penguin-sex-mass-culmen-species.js";
 export * from "./penguin-sex.js";

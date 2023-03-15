@@ -137,7 +137,7 @@ function applyMultilineText(selection, mark, T, TL) {
   if (!T) return;
   const {lineAnchor, lineHeight, textOverflow, splitLines, clipLine} = mark;
   selection.each(function (i) {
-    const lines = splitLines(formatDefault(T[i])).map(clipLine);
+    const lines = splitLines(formatDefault(T[i]) ?? "").map(clipLine);
     const n = lines.length;
     const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {
