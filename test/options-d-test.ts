@@ -1,4 +1,4 @@
-import {valueof} from "../../src/options.js";
+import {valueof} from "../src/options.js";
 
 // Valid input data
 valueof([1, 2, 3], (d) => d, Float32Array);
