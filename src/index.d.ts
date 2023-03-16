@@ -2,7 +2,6 @@ export * from "./channel.js";
 export * from "./context.js";
 export * from "./curve.js";
 export * from "./dimensions.js";
-export * from "./facet.js";
 export * from "./format.js";
 export * from "./inset.js";
 export * from "./interval.js";

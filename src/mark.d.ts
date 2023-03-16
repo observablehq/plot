@@ -1,10 +1,26 @@
 import type {ChannelDomainSort, Channels, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Dimensions} from "./dimensions.js";
-import type {Facet, FacetAnchor} from "./facet.js";
 import type {plot} from "./plot.js";
 import type {ScaleFunctions} from "./scales.js";
 import type {InitializerFunction, SortOrder, TransformFunction} from "./transforms/basic.js";
+
+export type Facet = "auto" | "include" | "exclude" | "super";
+
+export type FacetAnchor =
+  | "top"
+  | "right"
+  | "bottom"
+  | "left"
+  | "top-left"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-right"
+  | "top-empty"
+  | "right-empty"
+  | "bottom-empty"
+  | "left-empty"
+  | "empty";
 
 export type FrameAnchor =
   | "middle"
