@@ -1,9 +1,71 @@
-import type {ColorSchemeName} from "./color.js";
 import type {InsetOptions} from "./inset.js";
-import type {Interpolate} from "./interpolate.js";
 import type {NiceInterval, RangeInterval} from "./interval.js";
 import type {LegendType} from "./legends.js";
 import type {AxisAnchor} from "./marks/axis.js";
+
+/** How to interpolate range values for continuous scales. */
+export type Interpolate =
+  | "number"
+  | "rgb"
+  | "hsl"
+  | "hcl"
+  | "lab"
+  | (<T>(a: T, b: T) => (t: number) => T)
+  | ((t: number) => any);
+
+type ColorSchemeCase =
+  | "Accent"
+  | "Category10"
+  | "Dark2"
+  | "Paired"
+  | "Pastel1"
+  | "Pastel2"
+  | "Set1"
+  | "Set2"
+  | "Set3"
+  | "Tableau10"
+  | "BrBG"
+  | "PRGn"
+  | "PiYG"
+  | "PuOr"
+  | "RdBu"
+  | "RdGy"
+  | "RdYlBu"
+  | "RdYlGn"
+  | "Spectral"
+  | "BuRd"
+  | "BuYlRd"
+  | "Blues"
+  | "Greens"
+  | "Greys"
+  | "Oranges"
+  | "Purples"
+  | "Reds"
+  | "Turbo"
+  | "Viridis"
+  | "Magma"
+  | "Inferno"
+  | "Plasma"
+  | "Cividis"
+  | "Cubehelix"
+  | "Warm"
+  | "Cool"
+  | "BuGn"
+  | "BuPu"
+  | "GnBu"
+  | "OrRd"
+  | "PuBu"
+  | "PuBuGn"
+  | "PuRd"
+  | "RdPu"
+  | "YlGn"
+  | "YlGnBu"
+  | "YlOrBr"
+  | "YlOrRd"
+  | "Rainbow"
+  | "Sinebow";
+
+export type ColorScheme = ColorSchemeCase | (Lowercase<ColorSchemeCase> & Record<never, never>);
 
 export type ScaleName = "x" | "y" | "fx" | "fy" | "r" | "color" | "opacity" | "symbol" | "length";
 
@@ -105,8 +167,84 @@ export interface ScaleOptions extends ScaleDefaults {
   interval?: RangeInterval;
   percent?: boolean;
 
-  // color scale options
-  scheme?: ColorSchemeName;
+  /**
+   * Shorthand for setting the range or interpolate option of a *color* scale.
+   *
+   * Categorical schemes:
+   *
+   * * *Accent*
+   * * *Category10*
+   * * *Dark2*
+   * * *Paired*
+   * * *Pastel1*
+   * * *Pastel2*
+   * * *Set1*
+   * * *Set2*
+   * * *Set3*
+   * * *Tableau10* (default)
+   *
+   * Sequential schemes:
+   *
+   * * *Blues*
+   * * *Greens*
+   * * *Greys*
+   * * *Oranges*
+   * * *Purples*
+   * * *Reds*
+   * * *Turbo* (default)
+   * * *Viridis*
+   * * *Magma*
+   * * *Inferno*
+   * * *Plasma*
+   * * *Cividis*
+   * * *Cubehelix*
+   * * *Warm*
+   * * *Cool*
+   * * *BuGn*
+   * * *BuPu*
+   * * *GnBu*
+   * * *OrRd*
+   * * *PuBu*
+   * * *PuBuGn*
+   * * *PuRd*
+   * * *RdPu*
+   * * *YlGn*
+   * * *YlGnBu*
+   * * *YlOrBr*
+   * * *YlOrRd*
+   *
+   * Diverging schemes:
+   *
+   * * *BrBG*
+   * * *PRGn*
+   * * *PiYG*
+   * * *PuOr*
+   * * *RdBu* (default)
+   * * *RdGy*
+   * * *RdYlBu*
+   * * *RdYlGn*
+   * * *Spectral*
+   * * *BuRd*
+   * * *BuYlRd*
+   *
+   * Cyclical schemes:
+   *
+   * * *Rainbow* (default)
+   * * *Sinebow*
+   */
+  scheme?: ColorScheme;
+
+  /**
+   * For continuous scales: how to interpolate range values.
+   *
+   * * *number* - linear numeric interpolation
+   * * *rgb* - red, green, blue (sRGB)
+   * * *hsl* - hue, saturation, lightness (HSL; cylindrical sRGB)
+   * * *hcl* - hue, chroma, perceptual lightness (CIELCh_ab; cylindrical CIELAB)
+   * * *lab* - perceptual lightness and opponent colors (L\*a\*b\*, CIELAB)
+   * * a function that takes a single argument t in [0, 1]
+   * * a function that takes two arguments a and b to interpolate
+   */
   interpolate?: Interpolate;
 
   // power scale options
@@ -146,27 +284,7 @@ export interface ScaleOptions extends ScaleDefaults {
   line?: boolean;
 }
 
-// TODO greater specificity
-export interface Scale {
-  type: ScaleType;
-  domain: any[];
-  range?: any[];
-  transform?: (t: any) => any;
-  percent?: boolean;
-  unknown?: any;
-  interval?: RangeInterval;
-  interpolate?: Interpolate;
-  clamp?: boolean;
-  pivot?: any;
-  symmetric?: boolean;
-  base?: number;
-  exponent?: number;
-  constant?: number;
-  align?: number;
-  round?: boolean;
-  padding?: number;
-  paddingInner?: number;
-  paddingOuter?: number;
+export interface Scale extends ScaleOptions {
   bandwidth?: number;
   step?: number;
   apply(t: any): any;
