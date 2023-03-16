@@ -1,4 +1,5 @@
-import {ascending, descending, InternSet, rollup, sort} from "d3";
+import {InternSet, rollup, sort} from "d3";
+import {ascendingDefined, descendingDefined} from "./defined.js";
 import {first, isColor, isEvery, isIterable, isOpacity, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {isSymbol, maybeSymbol} from "./symbol.js";
@@ -153,9 +154,9 @@ function values(channels, name, alias) {
 }
 
 function ascendingGroup([ak, av], [bk, bv]) {
-  return ascending(av, bv) || ascending(ak, bk);
+  return ascendingDefined(av, bv) || ascendingDefined(ak, bk);
 }
 
 function descendingGroup([ak, av], [bk, bv]) {
-  return descending(av, bv) || ascending(ak, bk);
+  return descendingDefined(av, bv) || ascendingDefined(ak, bk);
 }
