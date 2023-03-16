@@ -1,8 +1,10 @@
 import type {CurveFactory} from "d3";
 
-type CurveFunction = CurveFactory;
+/** A curve implementation. */
+export type CurveFunction = CurveFactory;
 
-type CurveName =
+/** The built-in curve implementations. */
+export type CurveName =
   | "basis"
   | "basis-closed"
   | "basis-open"
@@ -60,6 +62,7 @@ export interface CurveOptions extends CurveAutoOptions {
   curve?: Curve;
 }
 
+/** Options for marks that support possibly-projected curves. */
 export interface CurveAutoOptions {
   /**
    * The curve (interpolation) method for connecting adjacent points. One of:

@@ -1,8 +1,6 @@
 import type {GeoStreamWrapper} from "d3";
 
-/**
- * Additional rendering context provided to marks and initializers.
- */
+/** Additional rendering context provided to marks and initializers. */
 export interface Context {
   /**
    * The current document. Defaults to window.document, but may be overridden
@@ -10,8 +8,6 @@ export interface Context {
    */
   document: Document;
 
-  /**
-   * The current projection, if any.
-   */
+  /** The current projection, if any. */
   projection?: GeoStreamWrapper;
 }
