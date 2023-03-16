@@ -7,6 +7,7 @@ export type Marker =
   | "circle-stroke"
   | ((color: string, context: {document: Document}) => SVGMarkerElement);
 
+/** Options for marks that support markers, such as lines and links. */
 export interface MarkerOptions {
   /**
    * Shorthand to set the same default for markerStart, markerMid, and
