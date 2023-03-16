@@ -19,58 +19,56 @@ export interface PlotOptions extends ScaleDefaults {
 
   /**
    * The outer height of the plot in pixels, including margins. The default
-   * depends on the plot’s scales, and the plot’s {@link width} if an
-   * {@link aspectRatio} is specified. For example, if {@link y} is linear and
-   * there is no {@link fy} scale, it might be 396.
+   * depends on the plot’s scales, and the plot’s width if an aspectRatio is
+   * specified. For example, if the *y* scale is linear and there is no *fy*
+   * scale, it might be 396.
    */
   height?: number;
 
   /**
    * The desired aspect ratio of the *x* and *y* scales, affecting the default
-   * {@link height}. Given an aspect ratio of *dx* / *dy*, and assuming that the
-   * *x* and *y* scales represent equivalent units (say, degrees Celsius or
-   * meters), computes a default {@link height} such that *dx* pixels along *x*
-   * represents the same variation as *dy* pixels along *y*. Note: when
-   * faceting, set the *fx* and *fy* scales’ **round** option to false for an
-   * exact aspect ratio.
+   * height. Given an aspect ratio of *dx* / *dy*, and assuming that the *x* and
+   * *y* scales represent equivalent units (say, degrees Celsius or meters),
+   * computes a default height such that *dx* pixels along *x* represents the
+   * same variation as *dy* pixels along *y*. Note: when faceting, set the *fx*
+   * and *fy* scales’ **round** option to false for an exact aspect ratio.
    */
   aspectRatio?: number | boolean | null;
 
   /**
-   * Shorthand to set the same default for all four margins: {@link marginTop},
-   * {@link marginRight}, {@link marginBottom}, and {@link marginLeft}.
-   * Otherwise, the default margins depend on the maximum margins of the plot’s
-   * {@link marks}. While most marks default to zero margins (because they are
-   * drawn inside the chart area), Plot’s axis marks have non-zero default
-   * margins.
+   * Shorthand to set the same default for all four margins: marginTop,
+   * marginRight, marginBottom, and marginLeft. Otherwise, the default margins
+   * depend on the maximum margins of the plot’s marks. While most marks default
+   * to zero margins (because they are drawn inside the chart area), Plot’s axis
+   * marks have non-zero default margins.
    */
   margin?: number;
 
   /**
    * The top margin; the distance in pixels between the top edges of the inner
    * and outer plot area. Defaults to the maximum top margin of the plot’s
-   * {@link marks}.
+   * marks.
    */
   marginTop?: number;
 
   /**
    * The right margin; the distance in pixels between the right edges of the
    * inner and outer plot area. Defaults to the maximum right margin of the
-   * plot’s {@link marks}.
+   * plot’s marks.
    */
   marginRight?: number;
 
   /**
    * The bottom margin; the distance in pixels between the bottom edges of the
    * inner and outer plot area. Defaults to the maximum bottom margin of the
-   * plot’s {@link marks}.
+   * plot’s marks.
    */
   marginBottom?: number;
 
   /**
    * The left margin; the distance in pixels between the left edges of the inner
    * and outer plot area. Defaults to the maximum left margin of the plot’s
-   * {@link marks}.
+   * marks.
    */
   marginLeft?: number;
 
@@ -157,8 +155,8 @@ export interface PlotOptions extends ScaleDefaults {
    * data. Some marks require a specific *x*-scale type, affecting the default;
    * for example, the barY, cell, and tickY marks require the *band* type.
    *
-   * If the *x* scale is present, and an *x*-axis mark is not included in
-   * {@link marks}, an implicit *x*-axis will be rendered below other marks.
+   * If the *x* scale is present, and an *x*-axis mark is not included in marks,
+   * an implicit *x*-axis will be rendered below other marks.
    */
   x?: ScaleOptions;
 
@@ -169,8 +167,8 @@ export interface PlotOptions extends ScaleDefaults {
    * Some marks require a specific *y*-scale type, affecting the default; for
    * example, the barX, cell, and tickX marks require the *band* type.
    *
-   * If the *y* scale is present, and a *y*-axis mark is not included in
-   * {@link marks}, an implicit *y*-axis will be rendered below other marks.
+   * If the *y* scale is present, and a *y*-axis mark is not included in marks,
+   * an implicit *y*-axis will be rendered below other marks.
    */
   y?: ScaleOptions;
 
@@ -303,9 +301,8 @@ export interface PlotFacetOptions {
   y?: ChannelValue;
 
   /**
-   * Shorthand to set the same default for all four facet margins:
-   * {@link marginTop}, {@link marginRight}, {@link marginBottom}, and
-   * {@link marginLeft}.
+   * Shorthand to set the same default for all four facet margins: marginTop,
+   * marginRight, marginBottom, and marginLeft.
    */
   margin?: number;
 
@@ -345,8 +342,8 @@ export interface PlotFacetOptions {
 }
 
 /**
- * The SVG or HTML figure element returned by {@link plot} is decorated with
- * additional methods to allow sharing of scales and legends across plots.
+ * The SVG or HTML figure element generated by Plot is decorated with additional
+ * methods to allow sharing of scales and legends across plots.
  */
 export interface Plot {
   scale(name: string): Scale | undefined;
