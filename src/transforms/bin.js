@@ -94,10 +94,10 @@ function binn(
   by = maybeBin(by);
 
   // Compute the outputs.
-  outputs = maybeOutputs(outputs, inputs);
-  reduceData = maybeReduce(reduceData, identity);
-  sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
-  filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
+  outputs = maybeBinOutputs(outputs, inputs);
+  reduceData = maybeBinReduce(reduceData, identity);
+  sort = sort == null ? undefined : maybeBinOutput("sort", sort, inputs);
+  filter = filter == null ? undefined : maybeBinEvaluator("filter", filter, inputs);
 
   // Don’t group on a channel if an output requires it as an input!
   if (gx != null && hasOutput(outputs, "x", "x1", "x2")) gx = null;
@@ -317,6 +317,40 @@ export function maybeThresholds(thresholds, interval, defaultThresholds = thresh
   return thresholds; // pass array, count, or function to bin.thresholds
 }
 
+function maybeBinOutputs(outputs, inputs) {
+  return maybeOutputs(outputs, inputs, maybeBinOutput);
+}
+
+function maybeBinOutput(name, reduce, inputs) {
+  return maybeOutput(name, reduce, inputs, maybeBinEvaluator);
+}
+
+function maybeBinEvaluator(name, reduce, inputs) {
+  return maybeEvaluator(name, reduce, inputs, maybeBinReduce);
+}
+
+function maybeBinReduce(reduce, value) {
+  return maybeReduce(reduce, value, maybeBinReduceFallback);
+}
+
+function maybeBinReduceFallback(reduce) {
+  switch (`${reduce}`.toLowerCase()) {
+    case "x":
+      return reduceX;
+    case "x1":
+      return reduceX1;
+    case "x2":
+      return reduceX2;
+    case "y":
+      return reduceY;
+    case "y1":
+      return reduceY1;
+    case "y2":
+      return reduceY2;
+  }
+  throw new Error(`invalid bin reduce: ${reduce}`);
+}
+
 function thresholdAuto(values, min, max) {
   return Math.min(200, thresholdScott(values, min, max));
 }
@@ -396,3 +430,44 @@ function bin1cn(E, T, V) {
     return B;
   };
 }
+
+function mid1(x1, x2) {
+  const m = (+x1 + +x2) / 2;
+  return x1 instanceof Date ? new Date(m) : m;
+}
+
+const reduceX = {
+  reduce(I, X, {x1, x2}) {
+    return mid1(x1, x2);
+  }
+};
+
+const reduceY = {
+  reduce(I, X, {y1, y2}) {
+    return mid1(y1, y2);
+  }
+};
+
+const reduceX1 = {
+  reduce(I, X, {x1}) {
+    return x1;
+  }
+};
+
+const reduceX2 = {
+  reduce(I, X, {x2}) {
+    return x2;
+  }
+};
+
+const reduceY1 = {
+  reduce(I, X, {y1}) {
+    return y1;
+  }
+};
+
+const reduceY2 = {
+  reduce(I, X, {y2}) {
+    return y2;
+  }
+};

@@ -1,8 +1,7 @@
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {CurveOptions} from "../curve.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
-import type {Reducer} from "../reducer.js";
-import type {BinOptions} from "../transforms/bin.js";
+import type {BinOptions, BinReducer} from "../transforms/bin.js";
 import type {StackOptions} from "../transforms/stack.js";
 
 export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
@@ -16,13 +15,13 @@ export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
 export interface AreaXOptions extends Omit<AreaOptions, "y1" | "y2">, BinOptions {
   x?: ChannelValueSpec;
   y?: ChannelValueSpec & Omit<BinOptions, "interval">; // interval must be a mark-level option
-  reduce?: Reducer;
+  reduce?: BinReducer;
 }
 
 export interface AreaYOptions extends Omit<AreaOptions, "x1" | "x2">, BinOptions {
   x?: ChannelValueSpec & Omit<BinOptions, "interval">; // interval must be a mark-level option
   y?: ChannelValueSpec;
-  reduce?: Reducer;
+  reduce?: BinReducer;
 }
 
 export function area(data?: Data, options?: AreaOptions): Area;

@@ -166,10 +166,13 @@ export type ChannelDomainValue = ChannelName | "data" | "width" | "height" | nul
  * options may be specified separately for each scale or shared.
  */
 export interface ChannelDomainOptions {
-  reduce?: Reducer;
+  reduce?: Reducer | true;
   reverse?: boolean;
   limit?: number;
 }
+
+/** How to derive a scale’s domain from a channel’s values. */
+export type ChannelDomainValueSpec = ChannelDomainValue | ({value: ChannelDomainValue} & ChannelDomainOptions);
 
 /**
  * How to impute the domain for scales based on the associated channels’ values.
@@ -177,19 +180,13 @@ export interface ChannelDomainOptions {
  * the value the specifies which values to aggregate and reduce, and how to
  * order and truncate the resulting values.
  */
-export type ChannelDomainSort = {
-  [key in ScaleName]?:
-    | ChannelDomainValue
-    | ({
-        value: ChannelDomainValue;
-      } & ChannelDomainOptions);
-} & ChannelDomainOptions;
+export type ChannelDomainSort = {[key in ScaleName]?: ChannelDomainValueSpec} & ChannelDomainOptions;
 
 /**
  * How to reduce the desired output channels of an aggregating transform, such
  * as the group or bin transform.
  */
-export type ChannelReducers = {[key in ChannelName]?: Reducer | {reduce: Reducer; scale?: Channel["scale"]} | null};
+export type ChannelReducers<T = Reducer> = {[key in ChannelName]?: T | {reduce: T; scale?: Channel["scale"]} | null};
 
 /**
  * The abstract (unscaled) values, and associated scale, per channel.

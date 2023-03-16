@@ -23,18 +23,12 @@ export type ReducerName =
   | "median"
   | "variance"
   | "mode"
-  | "x"
-  | "x1"
-  | "x2"
-  | "y"
-  | "y1"
-  | "y2"
   | ReducerPercentile;
 
-export type ReducerFunction = (values: any[], extent: {x1: any; y1: any; x2: any; y2: any}) => any; // TODO extent only for bin
+export type ReducerFunction = (values: any[]) => any;
 
 export interface ReducerImplementation {
-  reduce(index: number[], values: any[], extent: {x1: any; y1: any; x2: any; y2: any}): any; // TODO extent only for bin
+  reduce(index: number[], values: any[]): any;
 }
 
 export type Reducer = ReducerName | ReducerFunction | ReducerImplementation;

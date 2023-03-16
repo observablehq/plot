@@ -16,15 +16,35 @@ export interface BinOptions {
   interval?: RangeInterval;
 }
 
-export interface BinReducers extends BinOptions {
-  data?: Reducer | null;
-  filter?: Reducer | null;
-  sort?: Reducer | null;
+export type BinReducer =
+  | Reducer
+  | BinReducerFunction
+  | BinReducerImplementation
+  | "x"
+  | "x1"
+  | "x2"
+  | "y"
+  | "y1"
+  | "y2";
+
+export type BinReducerFunction = (values: any[], extent: {x1: any; y1: any; x2: any; y2: any}) => any;
+
+export interface BinReducerImplementation {
+  reduce(index: number[], values: any[], extent: {x1: any; y1: any; x2: any; y2: any}): any;
+}
+
+export interface BinOutputOptions {
+  data?: BinReducer | null;
+  filter?: BinReducer | null;
+  sort?: BinReducer | null;
   reverse?: boolean;
 }
 
-export function binX<T>(outputs?: ChannelReducers & BinReducers, options?: T & BinOptions): Transformed<T>;
+/** How to reduce binned channel values. */
+export type BinOutputs = ChannelReducers<BinReducer> & BinOptions & BinOutputOptions;
 
-export function binY<T>(outputs?: ChannelReducers & BinReducers, options?: T & BinOptions): Transformed<T>;
+export function binX<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;
 
-export function bin<T>(outputs?: ChannelReducers & BinReducers, options?: T & BinOptions): Transformed<T>;
+export function binY<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;
+
+export function bin<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;

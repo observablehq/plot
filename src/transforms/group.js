@@ -166,20 +166,20 @@ export function hasOutput(outputs, ...names) {
   return false;
 }
 
-export function maybeOutputs(outputs, inputs) {
+export function maybeOutputs(outputs, inputs, asOutput = maybeOutput) {
   const entries = Object.entries(outputs);
   // Propagate standard mark channels by default.
   if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
   if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
   return entries
     .filter(([, reduce]) => reduce !== undefined)
-    .map(([name, reduce]) => (reduce === null ? nullOutput(name) : maybeOutput(name, reduce, inputs)));
+    .map(([name, reduce]) => (reduce === null ? nullOutput(name) : asOutput(name, reduce, inputs)));
 }
 
-export function maybeOutput(name, reduce, inputs) {
+export function maybeOutput(name, reduce, inputs, asEvaluator = maybeEvaluator) {
   let scale; // optional per-channel scale override
   if (isObject(reduce) && typeof reduce.reduce !== "function") (scale = reduce.scale), (reduce = reduce.reduce);
-  const evaluator = maybeEvaluator(name, reduce, inputs);
+  const evaluator = asEvaluator(name, reduce, inputs);
   const [output, setOutput] = column(evaluator.label);
   let O;
   return {
@@ -202,9 +202,9 @@ function nullOutput(name) {
   return {name, initialize() {}, scope() {}, reduce() {}};
 }
 
-export function maybeEvaluator(name, reduce, inputs) {
+export function maybeEvaluator(name, reduce, inputs, asReduce = maybeReduce) {
   const input = maybeInput(name, inputs);
-  const reducer = maybeReduce(reduce, input);
+  const reducer = asReduce(reduce, input);
   let V, context;
   return {
     label: labelof(reducer === reduceCount ? null : input, reducer.label),
@@ -234,7 +234,7 @@ export function maybeGroup(I, X) {
     : [[, I]];
 }
 
-export function maybeReduce(reduce, value) {
+export function maybeReduce(reduce, value, fallback = invalidReduce) {
   if (typeof reduce?.reduce === "function" && isObject(reduce)) return reduce; // N.B. array.reduce
   if (typeof reduce === "function") return reduceFunction(reduce);
   if (/^p\d{2}$/i.test(reduce)) return reduceAccessor(percentile(reduce));
@@ -271,19 +271,11 @@ export function maybeReduce(reduce, value) {
       return reduceAccessor(variance);
     case "mode":
       return reduceAccessor(mode);
-    case "x":
-      return reduceX;
-    case "x1":
-      return reduceX1;
-    case "x2":
-      return reduceX2;
-    case "y":
-      return reduceY;
-    case "y1":
-      return reduceY1;
-    case "y2":
-      return reduceY2;
   }
+  return fallback(reduce);
+}
+
+function invalidReduce(reduce) {
   throw new Error(`invalid reduce: ${reduce}`);
 }
 
@@ -393,44 +385,3 @@ function reduceProportion(value, scope) {
     ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length / basis}
     : {scope, reduce: (I, V, basis = 1) => sum(I, (i) => V[i]) / basis};
 }
-
-function mid(x1, x2) {
-  const m = (+x1 + +x2) / 2;
-  return x1 instanceof Date ? new Date(m) : m;
-}
-
-const reduceX = {
-  reduce(I, X, {x1, x2}) {
-    return mid(x1, x2);
-  }
-};
-
-const reduceY = {
-  reduce(I, X, {y1, y2}) {
-    return mid(y1, y2);
-  }
-};
-
-const reduceX1 = {
-  reduce(I, X, {x1}) {
-    return x1;
-  }
-};
-
-const reduceX2 = {
-  reduce(I, X, {x2}) {
-    return x2;
-  }
-};
-
-const reduceY1 = {
-  reduce(I, X, {y1}) {
-    return y1;
-  }
-};
-
-const reduceY2 = {
-  reduce(I, X, {y2}) {
-    return y2;
-  }
-};
