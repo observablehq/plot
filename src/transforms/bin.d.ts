@@ -29,11 +29,12 @@ export type BinReducer =
 
 export type BinReducerFunction = (values: any[], extent: {x1: any; y1: any; x2: any; y2: any}) => any;
 
+// TODO scope, label
 export interface BinReducerImplementation {
   reduce(index: number[], values: any[], extent: {x1: any; y1: any; x2: any; y2: any}): any;
 }
 
-export interface BinOutputOptions {
+export interface BinOutputOptions extends BinOptions {
   data?: BinReducer | null;
   filter?: BinReducer | null;
   sort?: BinReducer | null;
@@ -41,7 +42,7 @@ export interface BinOutputOptions {
 }
 
 /** How to reduce binned channel values. */
-export type BinOutputs = ChannelReducers<BinReducer> & BinOptions & BinOutputOptions;
+export type BinOutputs = ChannelReducers<BinReducer> & BinOutputOptions;
 
 export function binX<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;
 

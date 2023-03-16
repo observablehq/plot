@@ -95,9 +95,7 @@ export interface Channel {
    */
   type?: ScaleType;
 
-  /**
-   * If true, values are optional for this channel. Defaults to false.
-   */
+  /** If true, values are optional for this channel. Defaults to false. */
   optional?: boolean;
 
   /**
@@ -151,8 +149,8 @@ export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale?: Chan
 export type ChannelValueIntervalSpec = ChannelValueSpec | {value: ChannelValue; interval?: Interval}; // TODO scale override?
 
 /**
- * In addition to imputing scale domains from aggregated channel values in
- * ascending or descending order, a few methods are available:
+ * The available inputs for imputing scale domains. In addition to a named
+ * channel, an input may be specified as:
  *
  * * *data* - impute from mark data
  * * *width* - impute from |*x2* - *x1*|
@@ -161,39 +159,61 @@ export type ChannelValueIntervalSpec = ChannelValueSpec | {value: ChannelValue; 
  */
 export type ChannelDomainValue = ChannelName | "data" | "width" | "height" | null;
 
-/**
- * Additional options for imputing scale domains from channel values. These
- * options may be specified separately for each scale or shared.
- */
+/** Options for imputing scale domains from channel values. */
 export interface ChannelDomainOptions {
+  /**
+   * How to produce a singular value (for subsequent sorting) from aggregated
+   * channel values. Defaults to *max*. A reducer may be specified as:
+   *
+   * * *first* - the first value, in input order
+   * * *last* - the last value, in input order
+   * * *count* - the number of elements (frequency)
+   * * *distinct* - the number of distinct values
+   * * *sum* - the sum of values
+   * * *min* - the minimum value
+   * * *min-index* - the zero-based index of the minimum value
+   * * *max* - the maximum value
+   * * *max-index* - the zero-based index of the maximum value
+   * * *mean* - the mean value (average)
+   * * *median* - the median value
+   * * *mode* - the value with the most occurrences
+   * * *pXX* - the percentile value, where XX is a number in [00,99]
+   * * *deviation* - the standard deviation
+   * * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+   * * a function to be passed the array of values
+   * * an object with a *reduce* method
+   *
+   * In the last case, the *reduce* method is repeatedly passed an index (an
+   * array of integers) and the channel’s array of values; it must then return
+   * the corresponding aggregate value for the bin.
+   */
   reduce?: Reducer | true;
+
+  /** If true, use descending instead of ascending order. */
   reverse?: boolean;
-  limit?: number;
+
+  /**
+   * If a positive number, limit the domain to the first *n* sorted values; if a
+   * negative number, limit the domain to the last *-n* sorted values. Otherwise
+   * slices the sorted domain from *lo* (inclusive) to *hi* (exclusive); if
+   * either *lo* or *hi* are negative, it indicates an offset from the end of
+   * the array; if *lo* is undefined it defaults to 0, and if *hi* is undefined
+   * it defaults to Infinity.
+   */
+  limit?: number | [lo?: number, hi?: number];
 }
 
 /** How to derive a scale’s domain from a channel’s values. */
 export type ChannelDomainValueSpec = ChannelDomainValue | ({value: ChannelDomainValue} & ChannelDomainOptions);
 
-/**
- * How to impute the domain for scales based on the associated channels’ values.
- * Each key corresponds to the name of a scale for which to impute the domain;
- * the value the specifies which values to aggregate and reduce, and how to
- * order and truncate the resulting values.
- */
+/** How to impute scale domains from channel values. */
 export type ChannelDomainSort = {[key in ScaleName]?: ChannelDomainValueSpec} & ChannelDomainOptions;
 
-/**
- * How to reduce the desired output channels of an aggregating transform, such
- * as the group or bin transform.
- */
+/** How to reduce channel values, e.g. when binning or grouping. */
 export type ChannelReducers<T = Reducer> = {[key in ChannelName]?: T | {reduce: T; scale?: Channel["scale"]} | null};
 
-/**
- * The abstract (unscaled) values, and associated scale, per channel.
- */
+/** Abstract (unscaled) values, and associated scale, per channel. */
 export type ChannelStates = {[key in ChannelName]?: {value: any[]; scale: ScaleName | null}};
 
-/**
- * The possibly-scaled values for each channel.
- */
+/** Possibly-scaled values for each channel. */
 export type ChannelValues = {[key in ChannelName]?: any[]} & {channels: ChannelStates};
