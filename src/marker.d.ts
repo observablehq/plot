@@ -1,8 +1,11 @@
-export type MarkerName = "arrow" | "dot" | "circle" | "circle-fill" | "circle-stroke";
-
-export type MarkerFunction = (color: string, context: {document: Document}) => SVGMarkerElement;
-
-export type Marker = MarkerName | MarkerFunction;
+/** How to decorate control points. */
+export type Marker =
+  | "arrow"
+  | "dot"
+  | "circle"
+  | "circle-fill"
+  | "circle-stroke"
+  | ((color: string, context: {document: Document}) => SVGMarkerElement);
 
 export interface MarkerOptions {
   /**
