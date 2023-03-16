@@ -14,7 +14,7 @@ export function valueof(data, value, type) {
     ? maybeTypedMap(data, value, type)
     : valueType === "number" || value instanceof Date || valueType === "boolean"
     ? map(data, constant(value), type)
-    : value && typeof value.transform === "function"
+    : typeof value?.transform === "function"
     ? maybeTypedArrayify(value.transform(data), type)
     : maybeTypedArrayify(value, type);
 }
@@ -128,7 +128,7 @@ export function arrayify(data) {
 // An optimization of type.from(values, f): if the given values are already an
 // instanceof the desired array type, the faster values.map method is used.
 export function map(values, f, type = Array) {
-  return values instanceof type ? values.map(f) : type.from(values, f);
+  return values == null ? values : values instanceof type ? values.map(f) : type.from(values, f);
 }
 
 // An optimization of type.from(values): if the given values are already an
