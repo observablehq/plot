@@ -414,8 +414,9 @@ export function impliedNumber(value, impliedValue) {
   if ((value = number(value)) !== impliedValue) return value;
 }
 
+// https://www.w3.org/TR/CSS21/grammar.html
 const validClassName =
-  /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/;
+  /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/i;
 
 export function maybeClassName(name) {
   if (name === undefined) return `plot-${Math.random().toString(16).slice(2)}`;
