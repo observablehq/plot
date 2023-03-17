@@ -15,7 +15,7 @@ export async function industryUnemploymentShare() {
           x: "date",
           y: "unemployed",
           fill: "industry",
-          offset: "expand",
+          offset: "normalize",
           title: "industry"
         })
       ),
