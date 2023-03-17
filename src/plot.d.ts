@@ -2,7 +2,7 @@ import type {ChannelValue} from "./channel.js";
 import type {LegendOptions} from "./legends.js";
 import type {Data, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
-import type {Scale, ScaleDefaults, ScaleOptions} from "./scales.js";
+import type {Scale, ScaleDefaults, ScaleName, ScaleOptions} from "./scales.js";
 
 export interface PlotOptions extends ScaleDefaults {
   // dimensions
@@ -346,8 +346,8 @@ export interface PlotFacetOptions {
  * methods to allow sharing of scales and legends across plots.
  */
 export interface Plot {
-  scale(name: string): Scale | undefined;
-  legend(name: string, options?: LegendOptions): HTMLElement | undefined;
+  scale(name: ScaleName): Scale | undefined;
+  legend(name: ScaleName, options?: LegendOptions): HTMLElement | undefined;
 }
 
 /**
