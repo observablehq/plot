@@ -2570,7 +2570,7 @@ The stack transform supports diverging stacks: negative values are stacked below
 After all values have been stacked from zero, an optional **offset** can be applied to translate or scale the stacks. The following **offset** methods are supported:
 
 - null (default) - a zero baseline
-- *expand* (or *normalize*) - rescale each stack to fill [0, 1]
+- *normalize* (or *expand*) - rescale each stack to fill [0, 1]
 - *center* (or *silhouette*) - align the centers of all stacks
 - *wiggle* - translate stacks to minimize apparent movement
 - a function to be passed a nested index, and start, end, and *z* values
