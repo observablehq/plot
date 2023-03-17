@@ -65,8 +65,8 @@ export interface WindowOptions {
    */
   anchor?: "start" | "middle" | "end";
 
-  /** The shift option is deprecated. See **anchor**. */
-  shift?: never; // was "leading" | "centered" | "trailing";
+  /** @deprecated See **anchor**. */
+  shift?: "leading" | "centered" | "trailing";
 
   /** If the **strict** option is true, the output start values or end values or
    * both (depending on the **anchor**) of each series may be undefined since
