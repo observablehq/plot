@@ -71,26 +71,104 @@ export interface StackOptions {
   z?: ChannelValue;
 }
 
+/**
+ * Transforms a length channel *x* into starting and ending position channels
+ * *x1* and *x2* by “stacking” elements that share a given *y* position. The
+ * starting position of each element equals the ending position of the preceding
+ * element in the stack. Non-positive values are stacked to the left of zero,
+ * with *x2* to the left of *x1*. A new *x* channel is derived that represents
+ * the midpoint between *x1* and *x2*, for example to place a label. If not
+ * specified, the input channel *x* defaults to the constant one. Elements can
+ * be stacked in a given *order*. After stacking, an optional *offset* can be
+ * applied.
+ */
 export function stackX<T>(options?: T & StackOptions): Transformed<T>;
 
+/**
+ * Transforms a length channel *x* into starting and ending position channels
+ * *x1* and *x2* by “stacking” elements that share a given *y* position. The
+ * starting position of each element equals the ending position of the preceding
+ * element in the stack. Non-positive values are stacked to the left of zero,
+ * with *x2* to the left of *x1*. A new *x* channel is derived that represents
+ * the midpoint between *x1* and *x2*, for example to place a label. If not
+ * specified, the input channel *x* defaults to the constant one. Elements can
+ * be stacked in a given *order*. After stacking, an optional *offset* can be
+ * applied.
+ */
 export function stackX<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
 
+/**
+ * Like **stackX**, but returns the starting position *x1* as the *x* channel,
+ * for example to position a dot on the left-hand side of each element of a
+ * stack.
+ */
 export function stackX1<T>(options?: T & StackOptions): Transformed<T>;
 
+/**
+ * Like **stackX**, but returns the starting position *x1* as the *x* channel,
+ * for example to position a dot on the left-hand side of each element of a
+ * stack.
+ */
 export function stackX1<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
 
+/**
+ * Like **stackX**, but returns the starting position *x2* as the *x* channel,
+ * for example to position a dot on the right-hand side of each element of a
+ * stack.
+ */
 export function stackX2<T>(options?: T & StackOptions): Transformed<T>;
 
+/**
+ * Like **stackX**, but returns the starting position *x2* as the *x* channel,
+ * for example to position a dot on the right-hand side of each element of a
+ * stack.
+ */
 export function stackX2<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
 
+/**
+ * Transforms a length channel *y* into starting and ending position channels
+ * *y1* and *y2* by “stacking” elements that share a given *x* position. The
+ * starting position of each element equals the ending position of the preceding
+ * element in the stack. Non-positive values are stacked below zero, with *y2*
+ * below *y1*. A new *y* channel is derived that represents the midpoint between
+ * *y1* and *y2*, for example to place a label. If not specified, the input
+ * channel *y* defaults to the constant one. Elements can be stacked in a given
+ * *order*. After stacking, an optional *offset* can be applied.
+ */
 export function stackY<T>(options?: T & StackOptions): Transformed<T>;
 
+/**
+ * Transforms a length channel *y* into starting and ending position channels
+ * *y1* and *y2* by “stacking” elements that share a given *x* position. The
+ * starting position of each element equals the ending position of the preceding
+ * element in the stack. Non-positive values are stacked below zero, with *y2*
+ * below *y1*. A new *y* channel is derived that represents the midpoint between
+ * *y1* and *y2*, for example to place a label. If not specified, the input
+ * channel *y* defaults to the constant one. Elements can be stacked in a given
+ * *order*. After stacking, an optional *offset* can be applied.
+ */
 export function stackY<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
 
+/**
+ * Like **stackY**, but returns the starting position *y1* as the *y* channel,
+ * for example to position a dot at the bottom of each element of a stack.
+ */
 export function stackY1<T>(options?: T & StackOptions): Transformed<T>;
 
+/**
+ * Like **stackY**, but returns the starting position *y1* as the *y* channel,
+ * for example to position a dot at the bottom of each element of a stack.
+ */
 export function stackY1<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
 
+/**
+ * Like **stackY**, but returns the ending position *y2* as the *y* channel,
+ * for example to position a dot at the top of each element of a stack.
+ */
 export function stackY2<T>(options?: T & StackOptions): Transformed<T>;
 
+/**
+ * Like **stackY**, but returns the ending position *y2* as the *y* channel,
+ * for example to position a dot at the top of each element of a stack.
+ */
 export function stackY2<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
