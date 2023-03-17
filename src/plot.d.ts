@@ -346,8 +346,20 @@ export interface PlotFacetOptions {
  * methods to allow sharing of scales and legends across plots.
  */
 export interface Plot {
+  /**
+   * Returns this plot’s scale with the given *name*, or undefined if this plot
+   * does not use the specified scale.
+   */
   scale(name: ScaleName): Scale | undefined;
-  legend(name: ScaleName, options?: LegendOptions): HTMLElement | undefined;
+
+  /**
+   * Generates a legend for the scale with the specified *name* and the given
+   * *options*, returning either an SVG or HTML element depending on the scale
+   * and the desired legend type. If this plot does not use the specified scale,
+   * returns undefined. Currently supports only *color*, *opacity*, and *symbol*
+   * scales.
+   */
+  legend(name: ScaleName, options?: LegendOptions): SVGSVGElement | HTMLElement | undefined;
 }
 
 /**
