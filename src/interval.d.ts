@@ -27,7 +27,7 @@ export interface IntervalImplementation<T> {
    * This method is idempotent: if the specified value is already floored to the
    * current interval, the same value is returned. Furthermore, the returned
    * value is the minimum expressible value of the associated interval, such
-   * that floor(floor(*value*) - *epsilon*) returns the preceeding interval
+   * that floor(floor(*value*) - *epsilon*) returns the preceding interval
    * boundary value.
    */
   floor(value: T): T;
