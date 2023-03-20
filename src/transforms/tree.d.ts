@@ -3,42 +3,50 @@ import type {CompareFunction, Transformed} from "./basic.js";
 
 export interface TreeTransformOptions {
   /**
-   * A channel specifying each node’s hierarchy location. The **path** channel
-   * is typically slash-separated, as with UNIX-based file systems or URLs.
-   * Defaults to identity.
+   * The location of each node in the hierarchy; typically slash-separated
+   * strings, as with UNIX-based file systems or URLs. Defaults to identity,
+   * assuming the mark’s data are path strings.
    */
   path?: ChannelValue;
+
   /**
-   * The path separator; defaults to forward slash (/).
+   * The path separator, used for inferring the hierarchy from the **path**
+   * channel; defaults to forward slash (/).
    */
   delimiter?: string;
+
   /**
-   * If the **treeAnchor** is *left*, the root of the tree will be aligned with
-   * the left side of the frame; if **treeAnchor** is *right*, the root of the
-   * tree will be aligned with the right side of the frame; use the
-   * **insetLeft** and **insetRight** scale options if horizontal padding is
-   * desired, say to make room for labels.
+   * How to orient the tree. If the **treeAnchor** is *left*, the root of the
+   * tree will be aligned with the left side of the frame; if **treeAnchor** is
+   * *right*, the root of the tree will be aligned with the right side of the
+   * frame; use the **insetLeft** and **insetRight** *x* scale options if
+   * horizontal padding is desired, say to make room for labels.
    */
   treeAnchor?: "left" | "right";
+
   /**
-   * The default **treeLayout** implements the Reingold–Tilford “tidy” algorithm
-   * based on Buchheim _et al._’s linear time approach. Use
+   * How to layout the tree. The default **treeLayout** implements the
+   * Reingold–Tilford “tidy” algorithm. Use
    * [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster)
-   * instead to align leaf nodes; see also **Plot.cluster**.
+   * instead to align leaf nodes; see also Plot.cluster.
    */
   treeLayout?: () => any;
+
   /**
-   * If the **treeSeparation** is not null, it is a function that is passed two
-   * nodes in the hierarchy and returns the desired (relative) amount of
-   * separation; see [d3-hierarchy’s
+   * How much space to reserve between adjacent nodes in the layout. If the
+   * **treeSeparation** is not null, it is a function that is passed two nodes
+   * in the hierarchy and returns the desired (relative) amount of separation;
+   * see [d3-hierarchy’s
    * _tree_.separation](https://github.com/d3/d3-hierarchy/blob/main/README.md#tree_separation)
    * for more. By default, non-siblings are at least twice as far apart as
    * siblings.
    */
   treeSeparation?: CompareFunction | null;
+
   /**
-   * If the **treeSort** option is not null, it is typically a function that is
-   * passed two nodes in the hierarchy and compares them, similar to
+   * How to order nodes prior to laying them out. If the **treeSort** option is
+   * not null, it is typically a function that is passed two nodes in the
+   * hierarchy and compares them, similar to
    * [_array_.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort);
    * see [d3-hierarchy’s
    * _node_.sort](https://github.com/d3/d3-hierarchy/blob/main/README.md#node_sort)
@@ -50,13 +58,10 @@ export interface TreeTransformOptions {
 }
 
 /**
- *  Based on the **tree** options (**path**, **delimiter**, **treeAnchor**,
- *  **treeLayout**, **treeSeparation**, and **treeSort**), populates the **x**
- *  and **y** channels with the positions for each node. The following defaults
- *  are also applied: the default **frameAnchor** inherits the **treeAnchor**.
- *  This transform is intended to be used with **dot**, **text**, and other
- *  point-based marks. This transform is rarely used directly; see the **tree**
- *  compound mark.
+ * Populates the *x* and *y* channels with the positions for each node, and
+ * applies a default **frameAnchor** based on the specified **treeAnchor**. This
+ * transform is intended to be used with dot, text, and other point-based marks.
+ * This transform is rarely used directly; see the tree mark.
  *
  * The treeNode transform will derive output columns for any *options* that have
  * one of the following named node values:
@@ -74,14 +79,11 @@ export interface TreeTransformOptions {
 export function treeNode<T>(options?: T & TreeTransformOptions): Transformed<T>;
 
 /**
- *  Based on the **tree** options (**path**, **delimiter**, **treeAnchor**,
- *  **treeLayout**, **treeSeparation**, and **treeSort**), populates the **x1**,
- *  **y1**, **x2**, and **y2** channels. The following defaults are also
- *  applied: the default **curve** is *bump-x*, the default **stroke** is #555,
- *  the default **strokeWidth** is 1.5, and the default **strokeOpacity** is
- *  0.5. This transform is intended to be used with **link**, **arrow**, and
- *  other two-point-based marks. This transform is rarely used directly; see the
- *  **tree** compound mark.
+ * Populates the *x1*, *y1*, *x2*, and *y2* channels, and applies the following
+ * defaults: **curve** is *bump-x*, **stroke** is #555, **strokeWidth** is 1.5,
+ * and **strokeOpacity** is 0.5. This transform is intended to be used with
+ * link, arrow, and other two-point-based marks. This transform is rarely used
+ * directly; see the tree mark.
  *
  * The treeLink transform will derive output columns for any *options* that have
  * one of the following named link values:
@@ -94,8 +96,7 @@ export function treeNode<T>(options?: T & TreeTransformOptions): Transformed<T>;
  * * *parent:name* - the parent node’s name (the last part of its path)
  * * *parent:path* - the parent node’s full, normalized, slash-separated path
  * * *parent:depth* - the distance from the parent node to the root
- * * *parent:height* - the distance from the parent node to its deepest
- *   descendant
+ * * *parent:height* - the distance from the parent node to its deepest descendant
  *
  * In addition, if any option value is specified as an object with a **node**
  * method, a derived output column will be generated by invoking the **node**
