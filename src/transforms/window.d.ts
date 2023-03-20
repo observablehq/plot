@@ -68,7 +68,8 @@ export interface WindowOptions {
   /** @deprecated See **anchor**. */
   shift?: "leading" | "centered" | "trailing";
 
-  /** If the **strict** option is true, the output start values or end values or
+  /**
+   * If the **strict** option is true, the output start values or end values or
    * both (depending on the **anchor**) of each series may be undefined since
    * there are not enough elements to create a window of size **k**; output
    * values may also be undefined if some of the input values in the
