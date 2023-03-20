@@ -44,28 +44,6 @@ export interface NormalizeOptions {
  * * a function to be passed an array of values, returning the desired basis
  */
 export function normalizeX<T>(options?: T & NormalizeOptions): Transformed<T>;
-
-/**
- * Normalize series values relative to the given basis. For example, if the
- * series values are [*x₀*, *x₁*, *x₂*, …] and the *first* basis is used, the
- * mapped series values would be [*x₀* / *x₀*, *x₁* / *x₀*, *x₂* / *x₀*, …] as
- * in an index chart. The **basis** option specifies how to normalize the series
- * values.
- *
- * The following basis methods are supported:
- *
- * * *first* - the first value, as in an index chart; the default
- * * *last* - the last value
- * * *min* - the minimum value
- * * *max* - the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *pXX* - the percentile value, where XX is a number in [00,99]
- * * *sum* - the sum of values
- * * *extent* - the minimum is mapped to zero, and the maximum to one
- * * *deviation* - each value is transformed by subtracting the mean and then dividing by the standard deviation
- * * a function to be passed an array of values, returning the desired basis
- */
 export function normalizeX<T>(basis?: NormalizeBasis, options?: T): Transformed<T>;
 
 /**
@@ -90,28 +68,6 @@ export function normalizeX<T>(basis?: NormalizeBasis, options?: T): Transformed<
  * * a function to be passed an array of values, returning the desired basis
  */
 export function normalizeY<T>(options?: T & NormalizeOptions): Transformed<T>;
-
-/**
- * Normalize series values relative to the given basis. For example, if the
- * series values are [*y₀*, *y₁*, *y₂*, …] and the *first* basis is used, the
- * mapped series values would be [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* / *y₀*, …] as
- * in an index chart. The **basis** option specifies how to normalize the series
- * values.
- *
- * The following basis methods are supported:
- *
- * * *first* - the first value, as in an index chart; the default
- * * *last* - the last value
- * * *min* - the minimum value
- * * *max* - the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *pXX* - the percentile value, where XX is a number in [00,99]
- * * *sum* - the sum of values
- * * *extent* - the minimum is mapped to zero, and the maximum to one
- * * *deviation* - each value is transformed by subtracting the mean and then dividing by the standard deviation
- * * a function to be passed an array of values, returning the desired basis
- */
 export function normalizeY<T>(basis?: NormalizeBasis, options?: T): Transformed<T>;
 
 /**
