@@ -114,20 +114,6 @@ export function windowX<T>(windowOptions?: WindowOptions | number, options?: T):
  * ```
  */
 export function windowY<T>(options?: T & WindowOptions): Transformed<T>;
-
-/**
- * Computes a moving window of the *y* channel around each data point and then
- * derives a summary statistic from values in the current window, say to compute
- * rolling averages, rolling minimums, or rolling maximums. The window options
- * can be specified as the first argument, or grouped with the *options*. For
- * example, the following are equivalent:
- *
- * ```js
- * Plot.windowY(24, {x: "Date", y: "Anomaly"});
- * Plot.windowY({k: 24, reduce: "mean", x: "Date", y: "Anomaly"});
- * Plot.windowY({k: 24, reduce: "mean"}, {x: "Date", y: "Anomaly"});
- * ```
- */
 export function windowY<T>(windowOptions?: WindowOptions | number, options?: T): Transformed<T>;
 
 /**
