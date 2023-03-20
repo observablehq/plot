@@ -1,32 +1,29 @@
 import type {ChannelValueSpec} from "../channel.js";
 import type {Initialized} from "./basic.js";
 
-export type DodgeAnchorX = "right" | "left" | "middle";
+export type DodgeXAnchor = "right" | "left" | "middle";
 
-export type DodgeAnchorY = "top" | "bottom" | "middle";
+export type DodgeYAnchor = "top" | "bottom" | "middle";
 
-export interface DodgeOptionsX {
-  /** The vertical position of the mark. */
-  y?: ChannelValueSpec;
-  /** The radius of the mark. */
+export interface DodgeOptions {
+  /** The radius (area) of the mark. */
   r?: ChannelValueSpec;
-  /** The side of the frame used as an anchor. */
-  anchor?: DodgeAnchorX;
   /** A number of pixels added to the radius of the mark. */
   padding?: number;
 }
 
-export interface DodgeOptionsY {
-  /** The horizontal position of the mark. */
-  x?: ChannelValueSpec;
+export interface DodgeXOptions extends DodgeOptions {
   /** The vertical position of the mark. */
   y?: ChannelValueSpec;
-  /** The radius of the mark. */
-  r?: ChannelValueSpec;
-  /** The side of the frame used as an anchor. */
-  anchor?: DodgeAnchorY;
-  /** A number of pixels added to the radius of the mark. */
-  padding?: number;
+  /** The side of the frame used as an anchor; defaults to *left*. */
+  anchor?: DodgeXAnchor;
+}
+
+export interface DodgeYOptions extends DodgeOptions {
+  /** The horizontal position of the mark. */
+  x?: ChannelValueSpec;
+  /** The side of the frame used as an anchor; defaults to *bottom*. */
+  anchor?: DodgeYAnchor;
 }
 
 /**
@@ -39,12 +36,12 @@ export interface DodgeOptionsY {
  * descending radius by default; you can disable this behavior by setting the
  * **sort** or **reverse** option. The *y* position channel is unchanged.
  */
-export function dodgeX<T>(options?: T & DodgeOptionsX): Initialized<T>;
-export function dodgeX<T>(dodgeOptions?: DodgeOptionsX | DodgeAnchorX, options?: T): Initialized<T>;
+export function dodgeX<T>(options?: T & DodgeXOptions): Initialized<T>;
+export function dodgeX<T>(dodgeOptions?: DodgeXOptions | DodgeXAnchor, options?: T): Initialized<T>;
 
 /**
  * Given marks arranged along the *x* axis, the dodgeY transform piles them
- * horizontally by defining a *y* position channel that avoids overlapping. With
+ * vertically by defining a *y* position channel that avoids overlapping. With
  * the *middle* anchor the piles will grow from the center in both directions;
  * with the *top* or *bottom* anchors, the piles will grow from the specified
  * anchor towards the opposite direction. The size of the mark is given by the
@@ -52,5 +49,5 @@ export function dodgeX<T>(dodgeOptions?: DodgeOptionsX | DodgeAnchorX, options?:
  * descending radius by default; you can disable this behavior by setting the
  * **sort** or **reverse** option. The *x* position channel is unchanged.
  */
-export function dodgeY<T>(options?: T & DodgeOptionsY): Initialized<T>;
-export function dodgeY<T>(dodgeOptions?: DodgeOptionsY | DodgeAnchorY, options?: T): Initialized<T>;
+export function dodgeY<T>(options?: T & DodgeYOptions): Initialized<T>;
+export function dodgeY<T>(dodgeOptions?: DodgeYOptions | DodgeYAnchor, options?: T): Initialized<T>;
