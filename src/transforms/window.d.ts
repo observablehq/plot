@@ -23,7 +23,7 @@ export type WindowReducer = WindowReducerName | WindowReducerFunction;
 
 export interface WindowOptions {
   /**
-   * The size —number of consecutive values— in the window; includes the current
+   * The size (number of consecutive values) in the window; includes the current
    * value.
    */
   k: number;
