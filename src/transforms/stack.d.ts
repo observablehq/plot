@@ -3,10 +3,10 @@ import type {Transformed} from "./basic.js";
 
 export type StackOffsetName =
   | "center"
-  | "expand" // deprecated; use normalize
   | "normalize"
-  | "silhouette" // deprecated; use center
-  | "wiggle";
+  | "wiggle"
+  | ("expand" & Record<never, never>) // deprecated; use normalize
+  | ("silhouette" & Record<never, never>); // deprecated; use center
 
 export type StackOffsetFunction = (stacks: number[][][], y1: number[], y2: number[], z: any[]) => void;
 
