@@ -5,7 +5,7 @@ import {dot} from "./dot.js";
 import {line, lineX, lineY} from "./line.js";
 import {ruleX, ruleY} from "./rule.js";
 import {barX, barY} from "./bar.js";
-import {rect, rectX, rectY} from "./rect.js";
+import {rectX, rectY} from "./rect.js";
 import {cell} from "./cell.js";
 import {frame} from "./frame.js";
 import {bin, binX, binY} from "../transforms/bin.js";
@@ -62,7 +62,7 @@ export function autoSpec(data, options) {
     mark =
       sizeValue != null || sizeReduce != null
         ? "dot"
-        : xZero || yZero || colorReduce != null // histogram or heatmap
+        : isZeroReducer(xReduce) || isZeroReducer(yReduce) || colorReduce != null // histogram or heatmap
         ? "bar"
         : xValue != null && yValue != null
         ? isOrdinal((X ??= materializeValue(data, x))) ||
@@ -75,19 +75,43 @@ export function autoSpec(data, options) {
         : null;
   }
 
+  // TODO: should we just always materialize in here?
+  X ??= materializeValue(data, x);
+  Y ??= materializeValue(data, y);
+
+  // If zero-ness is not specified, default based on whether the resolved mark
+  // type will include a zero baseline.
+  // TODO: This still fails on the heatmaps, which define separate x1 and x2 on
+  // barX, or separate y1 and y2 on barY, such that the bar is not actually
+  // standing on the baseline, and there shouldn't be a zero.
+  // TODO: Exception for binning? Idk what that code was doing before
+  if (mark === "area" || mark === "bar" || mark === "rule") {
+    if (!(isOrdinalReduced(xReduce, X) && isOrdinalReduced(yReduce, Y))) {
+      if (isOrdinalReduced(xReduce, X)) {
+        yZero ??= true;
+      } else if (isOrdinalReduced(yReduce, Y)) {
+        xZero ??= true;
+      } else if (Y && isMonotonic(Y)) {
+        xZero ??= true;
+      } else {
+        yZero ??= true;
+      }
+    }
+  }
+
   return {
     fx: fx ?? null,
     fy: fy ?? null,
     x: {
       value: xValue ?? null,
       reduce: xReduce ?? null,
-      ...(xZero !== undefined && {zero: xZero}), // TODO realize default
+      zero: xZero ?? null,
       ...xOptions
     },
     y: {
       value: yValue ?? null,
       reduce: yReduce ?? null,
-      ...(yZero !== undefined && {zero: yZero}), // TODO realize default
+      zero: yZero ?? null,
       ...yOptions
     },
     color: {
@@ -171,7 +195,7 @@ export function auto(data, options) {
           ? barY
           : isOrdinalReduced(yReduce, Y)
           ? barX
-          : rect;
+          : rectY;
         colorMode = "fill";
         break;
       default:
@@ -213,13 +237,6 @@ export function auto(data, options) {
     if (transform === bin || transform === binY) markOptions.y = {value: Y, ...yOptions};
     markOptions = transform(transformOptions, markOptions);
   }
-
-  // If zero-ness is not specified, default based on whether the resolved mark
-  // type will include a zero baseline. TODO Move this to autoSpec.
-  if (xZero === undefined)
-    xZero = X && transform !== binX && (mark === barX || mark === areaX || mark === rectX || mark === ruleY);
-  if (yZero === undefined)
-    yZero = Y && transform !== binY && (mark === barY || mark === areaY || mark === rectY || mark === ruleX);
 
   // In the case of filled marks (particularly bars and areas) the frame and
   // rules should come after the mark; in the case of stroked marks

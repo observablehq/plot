@@ -1,6 +1,18 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+// Tanner's bug
+export async function autoLineZero() {
+  const industries = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);
+  return Plot.auto(industries, {x: "date", y: {value: "unemployed", zero: true}, color: "industry"}).plot()
+}
+
+// Jeff's bug
+export async function autoBarNonZeroReducer() {
+  const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.auto(athletes, {x: "date_of_birth", y: { value: "height", reduce: "mean" }, mark: "bar"}).plot()
+}
+
 export async function autoHistogram() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.auto(athletes, {x: "weight"}).plot();
