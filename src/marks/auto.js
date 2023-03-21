@@ -88,13 +88,13 @@ export function autoSpec(data, options) {
   if (mark === "area" || mark === "bar" || mark === "rule") {
     if (!(isOrdinalReduced(xReduce, X) && isOrdinalReduced(yReduce, Y))) {
       if (isOrdinalReduced(xReduce, X)) {
-        yZero ??= true;
+        if (Y) yZero ??= true;
       } else if (isOrdinalReduced(yReduce, Y)) {
-        xZero ??= true;
+        if (X) xZero ??= true;
       } else if (Y && isMonotonic(Y)) {
-        xZero ??= true;
+        if (X) xZero ??= true;
       } else {
-        yZero ??= true;
+        if (Y) yZero ??= true;
       }
     }
   }
