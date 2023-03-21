@@ -178,7 +178,7 @@ export function maybeOutputs(outputs, inputs, asOutput = maybeOutput) {
 
 export function maybeOutput(name, reduce, inputs, asEvaluator = maybeEvaluator) {
   let scale; // optional per-channel scale override
-  if (isObject(reduce) && typeof reduce.reduce !== "function") (scale = reduce.scale), (reduce = reduce.reduce);
+  if (isObject(reduce) && "scale" in reduce) (scale = reduce.scale), (reduce = reduce.reduce);
   const evaluator = asEvaluator(name, reduce, inputs);
   const [output, setOutput] = column(evaluator.label);
   let O;

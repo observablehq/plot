@@ -140,7 +140,7 @@ export type ChannelValue =
  * object to override the scale that would normally be associated with the
  * channel.
  */
-export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale?: Channel["scale"]}; // TODO label
+export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale: Channel["scale"]}; // TODO label
 
 /**
  * In some contexts, when specifying a mark channel’s value, you can provide a
@@ -210,7 +210,7 @@ export type ChannelDomainValueSpec = ChannelDomainValue | ({value: ChannelDomain
 export type ChannelDomainSort = {[key in ScaleName]?: ChannelDomainValueSpec} & ChannelDomainOptions;
 
 /** How to reduce channel values, e.g. when binning or grouping. */
-export type ChannelReducers<T = Reducer> = {[key in ChannelName]?: T | {reduce: T; scale?: Channel["scale"]} | null};
+export type ChannelReducers<T = Reducer> = {[key in ChannelName]?: T | {reduce: T; scale: Channel["scale"]} | null};
 
 /** Abstract (unscaled) values, and associated scale, per channel. */
 export type ChannelStates = {[key in ChannelName]?: {value: any[]; scale: ScaleName | null}};
