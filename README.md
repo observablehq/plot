@@ -2557,6 +2557,7 @@ The following **order** methods are supported:
 
 - null (default) - input order
 - *value* - ascending value order (or descending with **reverse**)
+- *x* for stackY, or *y* for stackX - alias of *value*
 - *sum* - order series by their total value
 - *appearance* - order series by the position of their maximum value
 - *inside-out* - order the earliest-appearing series on the inside
