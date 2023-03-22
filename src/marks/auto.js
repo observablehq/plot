@@ -75,21 +75,17 @@ export function autoSpec(data, options) {
         : null;
   }
 
-  // TODO: should we just always materialize in here?
-  X ??= materializeValue(data, x);
-  Y ??= materializeValue(data, y);
-
-  // If zero-ness is not specified, default based on whether the resolved mark
-  // type will include a zero baseline.
-  // TODO: This still fails on the heatmaps, which define separate x1 and x2 on
-  // barX, or separate y1 and y2 on barY, such that the bar is not actually
-  // standing on the baseline, and there shouldn't be a zero.
+  // Update the default zero-ness depending on the inferred mark.
   // TODO: Exception for binning? Idk what that code was doing before
   if (mark === "area" || mark === "bar" || mark === "rule") {
-    if (!(isOrdinalReduced(xReduce, X) && isOrdinalReduced(yReduce, Y))) {
-      if (isOrdinalReduced(xReduce, X)) {
+    // Don't set zeros if both dimensions are ordinal, or if there's a
+    // colorReduce, implying a 2D group/bin
+    const xOrdinal = isOrdinalReduced(xReduce, (X ??= materializeValue(data, x)));
+    const yOrdinal = isOrdinalReduced(yReduce, (Y ??= materializeValue(data, y)));
+    if (!(xOrdinal && yOrdinal) && !colorReduce) {
+      if (xOrdinal) {
         if (Y) yZero ??= true;
-      } else if (isOrdinalReduced(yReduce, Y)) {
+      } else if (yOrdinal) {
         if (X) xZero ??= true;
       } else if (Y && isMonotonic(Y)) {
         if (X) xZero ??= true;
