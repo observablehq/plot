@@ -6,7 +6,7 @@ it("Plot.autoSpec makes a histogram from a quantitative dimension", () => {
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "value"}), {
     fx: null,
     fy: null,
-    x: {value: "value", reduce: null},
+    x: {value: "value", reduce: null, zero: false},
     y: {value: null, reduce: "count", zero: true},
     color: {value: null, reduce: null},
     size: {value: null, reduce: null},
@@ -19,7 +19,7 @@ it("Plot.autoSpec makes a bar chart from an ordinal dimension", () => {
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "value", color: "blue"}), {
     fx: null,
     fy: null,
-    x: {value: "value", reduce: null},
+    x: {value: "value", reduce: null, zero: false},
     y: {value: null, reduce: "count", zero: true},
     color: {value: null, reduce: null, color: "blue"},
     size: {value: null, reduce: null},
@@ -36,8 +36,8 @@ it("Plot.autoSpec makes a line from a monotonic dimension", () => {
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "date", y: "value"}), {
     fx: null,
     fy: null,
-    x: {value: "date", reduce: null},
-    y: {value: "value", reduce: null},
+    x: {value: "date", reduce: null, zero: false},
+    y: {value: "value", reduce: null, zero: false},
     color: {value: null, reduce: null},
     size: {value: null, reduce: null},
     mark: "line"
@@ -53,8 +53,8 @@ it("Plot.autoSpec makes a dot plot from two quantitative dimensions", () => {
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "x", y: "y"}), {
     fx: null,
     fy: null,
-    x: {value: "x", reduce: null},
-    y: {value: "y", reduce: null},
+    x: {value: "x", reduce: null, zero: false},
+    y: {value: "y", reduce: null, zero: false},
     color: {value: null, reduce: null},
     size: {value: null, reduce: null},
     mark: "dot"
@@ -73,8 +73,8 @@ it("Plot.autoSpec makes a faceted heatmap", () => {
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "x", y: "y", fy: "f", color: "count"}), {
     fx: null,
     fy: "f",
-    x: {value: "x", reduce: null},
-    y: {value: "y", reduce: null},
+    x: {value: "x", reduce: null, zero: false},
+    y: {value: "y", reduce: null, zero: false},
     color: {value: null, reduce: "count"},
     size: {value: null, reduce: null},
     mark: "bar"
