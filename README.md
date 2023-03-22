@@ -2557,10 +2557,12 @@ The following **order** methods are supported:
 
 - null (default) - input order
 - *value* - ascending value order (or descending with **reverse**)
-- *x* for stackY, or *y* for stackX - alias of *value*
+- *x* - alias of *value*; for stackY only
+- *y* - alias of *value*; for stackX only
 - *sum* - order series by their total value
 - *appearance* - order series by the position of their maximum value
-- *inside-out* - order the earliest-appearing series on the inside
+- *inside-out* - order the earliest-appearing series on the inside (default for
+  the *wiggle* offset)
 - a named field or function of data - order data by priority
 - an array of *z* values
 
@@ -2571,8 +2573,8 @@ The stack transform supports diverging stacks: negative values are stacked below
 After all values have been stacked from zero, an optional **offset** can be applied to translate or scale the stacks. The following **offset** methods are supported:
 
 - null (default) - a zero baseline
-- *normalize* (or *expand*) - rescale each stack to fill [0, 1]
-- *center* (or *silhouette*) - align the centers of all stacks
+- *normalize* - rescale each stack to fill [0, 1]
+- *center* - align the centers of all stacks
 - *wiggle* - translate stacks to minimize apparent movement
 - a function to be passed a nested index, and start, end, and *z* values
 

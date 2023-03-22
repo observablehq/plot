@@ -48,15 +48,10 @@ export interface StackOptions {
    * - *y* - alias of *value*; for stackX only
    * - *sum* - order series by their total value
    * - *appearance* - order series by the position of their maximum value
-   * - *inside-out* - order the earliest-appearing series on the inside
-   *   (recommended for the *wiggle* offset)
+   * - *inside-out* - order the earliest-appearing series on the inside (default
+   *   for the *wiggle* offset)
    * - a named field or function of data - order data by priority
    * - an array enumerating all the *z* values in the desired order
-   *
-   * The **reverse** option reverses the effective order. For the *value* order,
-   * Plot.stackY uses the *y* value while Plot.stackX uses the *x* value. For
-   * the *appearance* order, Plot.stackY uses the *x* position of the maximum
-   * *y* value while Plot.stackX uses the *y* position of the maximum *x* value.
    */
   order?: StackOrder | null;
 
