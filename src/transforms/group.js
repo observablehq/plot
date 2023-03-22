@@ -303,7 +303,7 @@ export function maybeSort(facets, sort, reverse) {
 
 function reduceReduce(reduce) {
   console.warn("deprecated reduce interface; implement reduceIndex instead.");
-  return {reduceIndex: reduce.reduce.bind(reduce)};
+  return {...reduce, reduceIndex: reduce.reduce.bind(reduce)};
 }
 
 function reduceFunction(f) {
