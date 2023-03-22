@@ -26,8 +26,8 @@ export interface StackOptions {
    * applied to translate or scale the stacks:
    *
    * - null (default) - a zero baseline
-   * - *normalize* (or *expand*) - rescale each stack to fill [0, 1]
-   * - *center* (or *silhouette*) - align the centers of all stacks
+   * - *normalize* - rescale each stack to fill [0, 1]
+   * - *center* - align the centers of all stacks
    * - *wiggle* - translate stacks to minimize apparent movement
    * - a function to be passed a nested index, and start, end, and *z* values
    *
