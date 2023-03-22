@@ -96,11 +96,39 @@ export type ScaleType =
   | "identity";
 
 export interface ScaleDefaults extends InsetOptions {
+  /**
+   * If true, clamp input values to the scale’s domain. Clamping is typically
+   * used in conjunction with setting an explicit domain since if the domain is
+   * inferred, no values will be outside the domain. Clamping is useful for
+   * focusing on a subset of the data while ensuring that extreme values remain
+   * visible, but use caution: clamped values may need an annotation to avoid
+   * misinterpretation.
+   */
   clamp?: boolean;
+  /**
+   * If true (or a tick count), extend the domain to nice round values. Defaults
+   * to 1, 2 or 5 times a power of 10 for linear scales, and meaningful time
+   * intervals for utc and time scales. Pass an interval such as *minute*,
+   * *wednesday* or *month* to specify what constitutes a nice round value.
+   */
   nice?: boolean | number | NiceInterval;
+  /**
+   * Whether the domain must include zero.
+   */
   zero?: boolean;
+  /**
+   * If true, round the output value of a position scale to the nearest integer
+   * (whole pixel).
+   */
   round?: boolean;
+  /**
+   * Where to distribute point and band scales (0 = at start, 0.5 = at middle, 1
+   * = at end).
+   */
   align?: number;
+  /**
+   * How much of the range to reserve to inset first and last point or band.
+   */
   padding?: number;
 
   // axis options
@@ -291,4 +319,13 @@ export interface Scale extends ScaleOptions {
   invert?(t: any): any;
 }
 
+/**
+ * Creates a standalone scale. The *options* object must define at least one
+ * scale. For example, here is a linear color scale with the default domain of
+ * [0, 1] and default scheme *turbo*:
+ *
+ * ```js
+ * const color = Plot.scale({color: {type: "linear"}});
+ * ```
+ */
 export function scale(options?: {[name in ScaleName]?: ScaleOptions}): any;
