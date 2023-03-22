@@ -44,7 +44,8 @@ export interface StackOptions {
    *
    * - null (default) - input order
    * - *value* - ascending value order (or descending with **reverse**)
-   * - *x* for stackY, or *y* for stackX - alias of *value*
+   * - *x* - alias of *value*; for stackY only
+   * - *y* - alias of *value*; for stackX only
    * - *sum* - order series by their total value
    * - *appearance* - order series by the position of their maximum value
    * - *inside-out* - order the earliest-appearing series on the inside
