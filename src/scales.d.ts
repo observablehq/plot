@@ -389,26 +389,108 @@ export interface ScaleOptions extends ScaleDefaults {
    */
   paddingOuter?: number;
 
-  // axis and legend options
-  legend?: LegendType | boolean | null; // for color, opacity, and symbol scales
+  /**
+   * If true, produces a legend for the scale (only *color*, *opacity*, and
+   * *symbol* scales are currently supported). For quantitative color scales,
+   * the legend defaults to *ramp* but may be set to *swatches* for discrete
+   * scale types such as *threshold*. An opacity scale is treated as a color
+   * scale with varying transparency. The symbol legend is combined with color
+   * if they encode the same channels. For more control, see *plot*.**legend**.
+   */
+  legend?: LegendType | boolean | null;
+
+  /**
+   * For a continuous scale axis (or *ramp* color legend), defines the ticks as
+   * an approximate number of ticks, an explicit array of tick values, or an
+   * interval such as *day* or *month*.
+   */
   ticks?: number | RangeInterval | Iterable<any>;
+
+  /**
+   * The length of tick vectors in pixels; negative values extend in the
+   * opposite direction.
+   */
   tickSize?: number;
+
+  /**
+   * The default approximate number of ticks is computed as the ratio between
+   * the axis’s length and this option, which defaults to 80 pixels for *x* and
+   * *fx*, and 35 pixels for *y* and *fy*.
+   */
   tickSpacing?: number;
+
+  /**
+   * The separation between the tick vector and its label (in pixels; default
+   * 3).
+   */
   tickPadding?: number;
+
+  /**
+   * The tick label format specifier. String specifiers are passed to
+   * [d3-format](https://github.com/d3/d3-format) for numeric scales, and
+   * [d3-time-format](https://github.com/d3/d3-time-format) for *time* and *utc*
+   * scales. If a function, it is passed the tick value and tick index, and
+   * returns a string. Plot also provides multilingual format helpers for
+   * convenience: **formatIsoDate**, **formatWeekDay** and **formatMonth**.
+   */
   tickFormat?: string | ((t: any, i: number) => any) | null;
+
+  /**
+   * The rotation angle of tick labels in degrees (default 0).
+   */
   tickRotate?: number;
+
+  /**
+   * The font-variant attribute for axis ticks; defaults to tabular-nums for
+   * quantitative axes.
+   */
   fontVariant?: string;
+
+  /**
+   * A short label representing the axis in the accessibility tree.
+   */
   ariaLabel?: string;
+
+  /**
+   * A textual description for the axis.
+   */
   ariaDescription?: string;
+
+  /**
+   * Anchor for the axis label.
+   */
   labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
   labelOffset?: number;
+
+  /**
+   * Whether a line should be drawn on the axis.
+   */
   line?: boolean;
 }
 
 export interface Scale extends ScaleOptions {
+  /**
+   * The scale’s materialized bandwidth (for a point or band scale); equal to
+   * the step minus any padding.
+   */
   bandwidth?: number;
+
+  /**
+   * The scale’s materialized step (for a point or band scale), denoting the
+   * distance between two consecutive ticks, in pixels. See bandwidth.
+   */
   step?: number;
+
+  /**
+   * The scale’s materialized forward function, transforming a value in the
+   * input domain into a value in the output range.
+   */
   apply(t: any): any;
+
+  /**
+   * The scale’s materialized reverse function, returning a value in the input
+   * domain from a given value in the output range.
+   */
   invert?(t: any): any;
 }
 
