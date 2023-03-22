@@ -105,7 +105,7 @@ export function autoSpec(data, options) {
     x: {
       value: xValue ?? null,
       reduce: xReduce ?? null,
-      zero: xZero ?? null,
+      zero: xZero ?? false,
       ...xOptions
     },
     y: {
