@@ -62,7 +62,7 @@ export function autoSpec(data, options) {
     mark =
       sizeValue != null || sizeReduce != null
         ? "dot"
-        : xZero || yZero || colorReduce != null // histogram or heatmap
+        : isZeroReducer(xReduce) || isZeroReducer(yReduce) || colorReduce != null // histogram or heatmap
         ? "bar"
         : xValue != null && yValue != null
         ? isOrdinal((X ??= materializeValue(data, x))) ||
@@ -171,7 +171,7 @@ export function auto(data, options) {
           ? barY
           : isOrdinalReduced(yReduce, Y)
           ? barX
-          : rect;
+          : rectY;
         colorMode = "fill";
         break;
       default:
@@ -217,9 +217,9 @@ export function auto(data, options) {
   // If zero-ness is not specified, default based on whether the resolved mark
   // type will include a zero baseline. TODO Move this to autoSpec.
   if (xZero === undefined)
-    xZero = X && transform !== binX && (mark === barX || mark === areaX || mark === rectX || mark === ruleY);
+    xZero = X && transform !== binX && transform !== bin && (mark === barX || mark === areaX || mark === rectX || mark === ruleY);
   if (yZero === undefined)
-    yZero = Y && transform !== binY && (mark === barY || mark === areaY || mark === rectY || mark === ruleX);
+    yZero = Y && transform !== binY && transform !== bin && (mark === barY || mark === areaY || mark === rectY || mark === ruleX);
 
   // In the case of filled marks (particularly bars and areas) the frame and
   // rules should come after the mark; in the case of stroked marks
@@ -253,6 +253,7 @@ function isMonotonic(values) {
 // (but note that they can also be specified as a {transform} object such as
 // Plot.identity). We don’t support reducers for the faceting, but for symmetry
 // with x and y we allow facets to be specified as {value} objects.
+// TODO Normalize mark name to lowercase?
 function normalizeOptions({x, y, color, size, fx, fy, mark} = {}) {
   if (!isOptions(x)) x = makeOptions(x);
   if (!isOptions(y)) y = makeOptions(y);
