@@ -2126,9 +2126,9 @@ The following aggregation methods are supported:
 * *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
 * *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
 * a function to be passed the array of values for each bin and the extent of the bin
-* an object with a *reduce* method, and optionally a *scope*
+* an object with a *reduceIndex* method, and optionally a *scope*
 
-In the last case, the *reduce* method is repeatedly passed three arguments: the index for each bin (an array of integers), the input channel’s array of values, and the extent of the bin (an object {x1, x2, y1, y2}); it must then return the corresponding aggregate value for the bin. If the reducer object’s *scope* is “data”, then the *reduce* method is first invoked for the full data; the return value of the *reduce* method is then made available as a third argument (making the extent the fourth argument). Similarly if the *scope* is “facet”, then the *reduce* method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s bins. (This optional *scope* is used by the *proportion* and *proportion-facet* reducers.)
+In the last case, the *reduceIndex* method is repeatedly passed three arguments: the index for each bin (an array of integers), the input channel’s array of values, and the extent of the bin (an object {x1, x2, y1, y2}); it must then return the corresponding aggregate value for the bin. If the reducer object’s *scope* is “data”, then the *reduceIndex* method is first invoked for the full data; the return value of the *reduceIndex* method is then made available as a third argument (making the extent the fourth argument). Similarly if the *scope* is “facet”, then the *reduceIndex* method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s bins. (This optional *scope* is used by the *proportion* and *proportion-facet* reducers.)
 
 Most aggregation methods require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
 
@@ -2277,9 +2277,9 @@ The following aggregation methods are supported:
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * a function - passed the array of values for each group
-* an object with a *reduce* method, an optionally a *scope*
+* an object with a *reduceIndex* method, an optionally a *scope*
 
-In the last case, the *reduce* method is repeatedly passed two arguments: the index for each group (an array of integers), and the input channel’s array of values; it must then return the corresponding aggregate value for the group. If the reducer object’s *scope* is “data”, then the *reduce* method is first invoked for the full data; the return value of the *reduce* method is then made available as a third argument. Similarly if the *scope* is “facet”, then the *reduce* method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s groups. (This optional *scope* is used by the *proportion* and *proportion-facet* reducers.)
+In the last case, the *reduceIndex* method is repeatedly passed two arguments: the index for each group (an array of integers), and the input channel’s array of values; it must then return the corresponding aggregate value for the group. If the reducer object’s *scope* is “data”, then the *reduceIndex* method is first invoked for the full data; the return value of the *reduceIndex* method is then made available as a third argument. Similarly if the *scope* is “facet”, then the *reduceIndex* method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s groups. (This optional *scope* is used by the *proportion* and *proportion-facet* reducers.)
 
 Most aggregation methods require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
 
@@ -2357,9 +2357,9 @@ The following map methods are supported:
 * *rank* - the rank of each value in the sorted array
 * *quantile* - the rank, normalized between 0 and 1
 * a function to be passed an array of values, returning new values
-* an object that implements the *map* method
+* an object that implements the *mapIndex* method
 
-If a function is used, it must return an array of the same length as the given input. If a *map* method is used, it is repeatedly passed the index for each series (an array of integers), the corresponding input channel’s array of values, and the output channel’s array of values; it must populate the slots specified by the index in the output array.
+If a function is used, it must return an array of the same length as the given input. If a *mapIndex* method is used, it is repeatedly passed the index for each series (an array of integers), the corresponding input channel’s array of values, and the output channel’s array of values; it must populate the slots specified by the index in the output array.
 
 The Plot.normalizeX and Plot.normalizeY transforms normalize series values relative to the given basis. For example, if the series values are [*y₀*, *y₁*, *y₂*, …] and the *first* basis is used, the mapped series values would be [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* / *y₀*, …] as in an index chart. The **basis** option specifies how to normalize the series values. The following basis methods are supported:
 
@@ -2849,7 +2849,7 @@ The following aggregation methods are supported:
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *mode* - the value with the most occurrences
 * a function to be passed the array of values for each bin and the extent of the bin
-* an object with a *reduce* method
+* an object with a *reduceIndex* method
 
 See also the [hexgrid](#hexgrid) mark.
 

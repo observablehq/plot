@@ -6,7 +6,7 @@ export type MapFunction<S, T = S> = (values: S[]) => T[];
 export type MapName = "cumsum" | "rank" | "quantile";
 
 export interface MapImplementation<S, T = S> {
-  map(index: number[], source: S[], target: T[]): void;
+  mapIndex(index: number[], source: S[], target: T[]): void;
 }
 
 export type Map = MapImplementation<any> | MapFunction<any> | MapName;

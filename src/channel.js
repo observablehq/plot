@@ -107,7 +107,7 @@ export function channelDomain(data, facets, channels, facetChannels, options) {
       X.domain = () => {
         let domain = rollup(
           range(XV),
-          (I) => reducer.reduce(I, YV),
+          (I) => reducer.reduceIndex(I, YV),
           (i) => XV[i]
         );
         domain = sort(domain, reverse ? descendingGroup : ascendingGroup);

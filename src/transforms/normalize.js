@@ -42,7 +42,7 @@ export function normalize(basis) {
 
 function normalizeBasis(basis) {
   return {
-    map(I, S, T) {
+    mapIndex(I, S, T) {
       const b = +basis(I, S);
       for (const i of I) {
         T[i] = S[i] === null ? NaN : S[i] / b;
@@ -56,7 +56,7 @@ function normalizeAccessor(f) {
 }
 
 const normalizeExtent = {
-  map(I, S, T) {
+  mapIndex(I, S, T) {
     const [s1, s2] = extent(I, (i) => S[i]),
       d = s2 - s1;
     for (const i of I) {
@@ -80,7 +80,7 @@ const normalizeLast = normalizeBasis((I, S) => {
 });
 
 const normalizeDeviation = {
-  map(I, S, T) {
+  mapIndex(I, S, T) {
     const m = mean(I, (i) => S[i]);
     const d = deviation(I, (i) => S[i]);
     for (const i of I) {

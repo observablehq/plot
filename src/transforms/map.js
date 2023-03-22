@@ -1,5 +1,5 @@
 import {count, group, rank} from "d3";
-import {maybeZ, take, valueof, maybeInput, column} from "../options.js";
+import {column, isObject, maybeInput, maybeZ, take, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
 export function mapX(map, options = {}) {
@@ -31,7 +31,7 @@ export function map(outputs = {}, options = {}) {
       const MX = channels.map(({setOutput}) => setOutput(new Array(data.length)));
       for (const facet of facets) {
         for (const I of Z ? group(facet, (i) => Z[i]).values() : [facet]) {
-          channels.forEach(({map}, i) => map.map(I, X[i], MX[i]));
+          channels.forEach(({map}, i) => map.mapIndex(I, X[i], MX[i]));
         }
       }
       return {data, facets};
@@ -44,7 +44,9 @@ export function map(outputs = {}, options = {}) {
 const mapAlias = map;
 
 function maybeMap(map) {
-  if (map && typeof map.map === "function") return map;
+  if (map == null) throw new Error("missing map");
+  if (typeof map.mapIndex === "function") return map;
+  if (typeof map.map === "function" && isObject(map)) return mapMap(map); // N.B. array.map
   if (typeof map === "function") return mapFunction(map);
   switch (`${map}`.toLowerCase()) {
     case "cumsum":
@@ -57,6 +59,11 @@ function maybeMap(map) {
   throw new Error(`invalid map: ${map}`);
 }
 
+function mapMap(map) {
+  console.warn("deprecated map interface; implement mapIndex instead.");
+  return {mapIndex: map.map.bind(map)};
+}
+
 function rankQuantile(V) {
   const n = count(V) - 1;
   return rank(V).map((r) => r / n);
@@ -64,7 +71,7 @@ function rankQuantile(V) {
 
 function mapFunction(f) {
   return {
-    map(I, S, T) {
+    mapIndex(I, S, T) {
       const M = f(take(S, I));
       if (M.length !== I.length) throw new Error("map function returned a mismatched length");
       for (let i = 0, n = I.length; i < n; ++i) T[I[i]] = M[i];
@@ -73,7 +80,7 @@ function mapFunction(f) {
 }
 
 const mapCumsum = {
-  map(I, S, T) {
+  mapIndex(I, S, T) {
     let sum = 0;
     for (const i of I) T[i] = sum += S[i];
   }
