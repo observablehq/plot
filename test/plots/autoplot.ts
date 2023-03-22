@@ -1,5 +1,22 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import * as htl from "htl";
+
+export async function autoMatrix() {
+  return htl.html`<div style="display: flex; flex-wrap: wrap;">
+    <style>svg { width: 320px; }</style>
+    ${await autoHistogram()}
+    ${await autoBarZero()}
+    ${await autoLineZero()}
+    ${await autoBarNonZeroReducer()}
+    ${await autoNullReduceOrdinal()}
+    ${await autoAreaColor()}
+    ${await autoHeatmap()}
+    ${await autoRuleZero()}
+    ${await autoBarMeanZero()}
+  </div>`
+}
+
 
 // Tanner's bug
 export async function autoLineZero() {

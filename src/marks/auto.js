@@ -12,6 +12,8 @@ import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../mark.js";
 
+// TODO: normalize mark to lowercase sooner???
+
 export function autoSpec(data, options) {
   options = normalizeOptions(options);
 
@@ -48,10 +50,6 @@ export function autoSpec(data, options) {
     sizeReduce = "count";
   }
 
-  // Determine the default zero-ness.
-  if (xZero === undefined) xZero = isZeroReducer(xReduce) ? true : undefined;
-  if (yZero === undefined) yZero = isZeroReducer(yReduce) ? true : undefined;
-
   // TODO Shorthand: array of primitives should result in a histogram
   if (xValue == null && yValue == null) throw new Error("must specify x or y");
   if (xReduce != null && yValue == null) throw new Error("reducing x requires y");
@@ -75,24 +73,71 @@ export function autoSpec(data, options) {
         : null;
   }
 
-  // Update the default zero-ness depending on the inferred mark.
-  // TODO: Exception for binning? Idk what that code was doing before
-  if (mark === "area" || mark === "bar" || mark === "rule") {
-    // Don't set zeros if both dimensions are ordinal, or if there's a
-    // colorReduce, implying a 2D group/bin
-    const xOrdinal = isOrdinalReduced(xReduce, (X ??= materializeValue(data, x)));
-    const yOrdinal = isOrdinalReduced(yReduce, (Y ??= materializeValue(data, y)));
-    if (!(xOrdinal && yOrdinal) && !colorReduce) {
-      if (xOrdinal) {
-        if (Y) yZero ??= true;
-      } else if (yOrdinal) {
-        if (X) xZero ??= true;
-      } else if (Y && isMonotonic(Y)) {
-        if (X) xZero ??= true;
+  // Determine the default zero-ness.
+  if (xZero === undefined) xZero = isZeroReducer(xReduce) ? true : undefined;
+  if (yZero === undefined) yZero = isZeroReducer(yReduce) ? true : undefined;
+
+  // // TODO: Exception for binning? Idk what that code was doing before
+  // if ((xZero === undefined || yZero === undefined) && (mark === "area" || mark === "bar" || mark === "rule")) {
+  //   // Don't set zeros if both dimensions are ordinal, or if there's a
+  //   // colorReduce, implying a 2D group/bin
+  //   const xOrdinal = isOrdinalReduced(xReduce, (X ??= materializeValue(data, x)));
+  //   const yOrdinal = isOrdinalReduced(yReduce, (Y ??= materializeValue(data, y)));
+  //   if (!(xOrdinal && yOrdinal) && !colorReduce && !sizeReduce) {
+  //     if (xOrdinal) {
+  //       if (yZero === undefined) yZero = !!Y;
+  //       if (xZero === undefined) xZero = false;
+  //     } else if (yOrdinal) {
+  //       if (X) xZero ??= true;
+  //     } else if (Y && isMonotonic(Y)) {
+  //       if (X) xZero ??= true;
+  //     } else {
+  //       if (Y) yZero ??= true;
+  //     }
+  //   }
+  // }
+
+  X ??= materializeValue(data, x);
+  Y ??= materializeValue(data, y);
+
+  switch (`${mark}`.toLowerCase()) {
+    case "area":
+      if (yZero) {
+        // areaY, do nothing
+      } else if (xZero || (Y && isMonotonic(Y))) {
+        // areaX
+        if (xZero === undefined) xZero = true;
       } else {
-        if (Y) yZero ??= true;
+        // areaY
+        if (yZero === undefined) yZero = true;
       }
-    }
+      break;
+    case "rule":
+      if (X) {
+        // ruleX
+        if (yZero === undefined) yZero = yValue != null || yReduce != null;
+      } else {
+        // ruleY
+        if (xZero === undefined) xZero = xValue != null || xReduce != null;
+      }
+      break;
+    case "bar":
+      mark = yZero
+        ? isOrdinalReduced(xReduce, X)
+          ? barY
+          : rectY
+        : xZero
+        ? isOrdinalReduced(yReduce, Y)
+          ? barX
+          : rectX
+        : isOrdinalReduced(xReduce, X) && isOrdinalReduced(yReduce, Y)
+        ? cell
+        : isOrdinalReduced(xReduce, X)
+        ? barY
+        : isOrdinalReduced(yReduce, Y)
+        ? barX
+        : rectY;
+      break;
   }
 
   return {
@@ -341,3 +386,27 @@ function isReducer(reduce) {
 function isHighCardinality(value) {
   return value ? new InternSet(value).size > value.length >> 1 : false;
 }
+
+/* SKETCH
+
+export function autoSpec(data, options) {
+    // TODO: allowlist instead of denylist
+    const {x, y, fx, fy, color, size, mark} = autoImpl()
+    // don't instantiate! redact and expose information about what would be done
+    return {x, y, fx, fy, color, size, mark};
+}
+
+function autoImpl() {
+    // decide mark impl
+    // decide transform impl
+    // everything but instantiating!!
+    return {...options, markImpl, markOptions, transformImpl, transformOptions}
+}
+
+export function auto(data, options) {
+    const {markImpl, markOptions, transformImpl, transformOptions, xZero, yZero, fx, fy, colorMode} = autoImpl(options)
+    // now actually instantiate
+    return marks(...);
+}
+
+*/
