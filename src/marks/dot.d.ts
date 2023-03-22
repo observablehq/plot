@@ -8,6 +8,12 @@ export interface DotOptions extends MarkOptions {
   y?: ChannelValueSpec;
   r?: ChannelValueSpec | number;
   rotate?: ChannelValue | number;
+  /**
+   * The categorical symbol; if a channel, bound to the *symbol* scale. A
+   * constant symbol can be specified by a name such as *star*, or by its
+   * implementation as a function of the *context* and *size*. Defaults to
+   * *circle* for the **dot** mark, and *hexagon* for the **hexagon** mark.
+   */
   symbol?: ChannelValueSpec | SymbolType;
   frameAnchor?: FrameAnchor;
 }
