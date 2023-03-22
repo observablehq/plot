@@ -174,7 +174,7 @@ function binn(
             for (const [b, extent] of bin(g)) {
               if (filter && !filter.reduce(b, extent)) continue;
               groupFacet.push(i++);
-              groupData.push(reduceData.reduce(b, data, extent));
+              groupData.push(reduceData.reduceIndex(b, data, extent));
               if (K) GK.push(k);
               if (Z) GZ.push(G === Z ? f : Z[b[0]]);
               if (F) GF.push(G === F ? f : F[b[0]]);
@@ -437,37 +437,37 @@ function mid1(x1, x2) {
 }
 
 const reduceX = {
-  reduce(I, X, {x1, x2}) {
+  reduceIndex(I, X, {x1, x2}) {
     return mid1(x1, x2);
   }
 };
 
 const reduceY = {
-  reduce(I, X, {y1, y2}) {
+  reduceIndex(I, X, {y1, y2}) {
     return mid1(y1, y2);
   }
 };
 
 const reduceX1 = {
-  reduce(I, X, {x1}) {
+  reduceIndex(I, X, {x1}) {
     return x1;
   }
 };
 
 const reduceX2 = {
-  reduce(I, X, {x2}) {
+  reduceIndex(I, X, {x2}) {
     return x2;
   }
 };
 
 const reduceY1 = {
-  reduce(I, X, {y1}) {
+  reduceIndex(I, X, {y1}) {
     return y1;
   }
 };
 
 const reduceY2 = {
-  reduce(I, X, {y2}) {
+  reduceIndex(I, X, {y2}) {
     return y2;
   }
 };

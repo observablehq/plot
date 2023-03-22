@@ -17,7 +17,7 @@ export async function reducerScaleOverrideFunction() {
 }
 
 export async function reducerScaleOverrideImplementation() {
-  return reducerScaleOverride({reduce: (index, values) => d3.mode(index, (i) => values[i])});
+  return reducerScaleOverride({reduceIndex: (index, values) => d3.mode(index, (i) => values[i])});
 }
 
 export async function reducerScaleOverrideName() {

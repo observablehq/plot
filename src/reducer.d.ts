@@ -29,7 +29,7 @@ export type ReducerFunction = (values: any[]) => any;
 
 // TODO scope, label
 export interface ReducerImplementation {
-  reduce(index: number[], values: any[]): any;
+  reduceIndex(index: number[], values: any[]): any;
 }
 
 export type Reducer = ReducerName | ReducerFunction | ReducerImplementation;

@@ -31,7 +31,7 @@ export type BinReducerFunction = (values: any[], extent: {x1: any; y1: any; x2: 
 
 // TODO scope, label
 export interface BinReducerImplementation {
-  reduce(index: number[], values: any[], extent: {x1: any; y1: any; x2: any; y2: any}): any;
+  reduceIndex(index: number[], values: any[], extent: {x1: any; y1: any; x2: any; y2: any}): any;
 }
 
 export interface BinOutputOptions extends BinOptions {
