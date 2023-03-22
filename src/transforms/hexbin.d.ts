@@ -43,6 +43,7 @@ export interface HexbinOptions {
  *   the bin
  * * an object with a *reduce* method
  *
+ * This transform defaults the *symbol* option of the **dot** mark to *hexagon*.
  * See also the **hexgrid** mark.
  */
 export function hexbin<T>(outputs?: ChannelReducers, options?: T & HexbinOptions): Transformed<T>;
