@@ -127,13 +127,30 @@ export interface ScaleDefaults extends InsetOptions {
    */
   align?: number;
   /**
-   * How much of the range to reserve to inset first and last point or band.
+   * How much of the range to reserve to inset first and last point or band;
+   * defaults to 0.5 (50%) for point scales, and 0.1 (10%) for band scales.
    */
   padding?: number;
 
-  // axis options
+  /**
+   * The axis anchor, for position scales. Equivalent to the **anchor** option
+   * of the **axisX** or **axisY** marks.
+   */
   axis?: AxisAnchor | "both" | boolean | null; // for position scales
+
+  /**
+   * Whether to show a grid aligned with the scale’s ticks. The option can be
+   * specified as true, in which case it will create a grid with 0.1 opacity, or
+   * as a string specifying the grid color, which defaults to currentColor. It
+   * can also be specified as an approximate number of ticks, an interval, or an
+   * array of tick values. Use the **grid** mark if you need more control.
+   */
   grid?: boolean | string | RangeInterval | Iterable<any>;
+
+  /**
+   * The scale’s label, to be shown on the axis or legend. Use null to disable
+   * the default label inferred from the corresponding channels’ definitions.
+   */
   label?: string | null;
 }
 
@@ -174,25 +191,74 @@ export interface ScaleOptions extends ScaleDefaults {
   type?: ScaleType | null;
 
   /**
-   * For continuous data: [*min*, *max*]. Can be [*max*, *min*] to reverse the scale.
+   * A scale’s domain is the extent of its inputs (abstract values). It is
+   * typically inferred automatically from the channel values.
+   *
+   * For continuous data: [*min*, *max*]. Can be [*max*, *min*] to reverse the
+   * scale.
    *
    * For ordinal data: [...*values*], in order.
    */
   domain?: Iterable<any>;
 
   /**
-   * For continuous data: [*min*, *max*]. Can be [*max*, *min*] to reverse the scale.
+   * A scale’s range is the extent of its outputs (visual values). It is
+   * typically inferred automatically from the domain and the plot’s dimensions
+   * (for positional scales).
+   *
+   * For continuous data: [*min*, *max*]. Can be [*max*, *min*] to reverse the
+   * scale.
    *
    * For ordinal data: [...*values*], in order.
    */
   range?: Iterable<any>;
 
+  /**
+   * The output (visual value) to use for invalid (or unknown, null, N/A…) input
+   * values. Defaults to null, filtering out the corresponding marks.
+   */
   unknown?: any;
+
+  /**
+   * Whether to reverse the scale’s range. Note that by default, when the *y*
+   * scale is continuous, the *max* value points to the top of the screen,
+   * whereas ordinal values are ranked from top to bottom.
+   */
   reverse?: boolean;
+
+  /**
+   * A transform to apply to any value before scaling:
+   *
+   * ```js
+   * x: {transform: d => Math.log(1+d)} // custom log1p scale
+   * ```
+   *
+   * See also **percent** and **interval**.
+   */
   transform?: (t: any) => any;
 
-  // quantitative scale options
+  /**
+   * For data at regular intervals, such as integer values or daily samples, the
+   * *scale*.**interval** option can be used to enforce uniformity. The
+   * specified *interval*—such as d3.utcMonth—must expose an
+   * *interval*.floor(*value*), *interval*.offset(*value*), and
+   * *interval*.range(*start*, *stop*) functions. The option can also be
+   * specified as a number, in which case it will be promoted to a numeric
+   * interval with the given step. The option can alternatively be specified as
+   * a string (*second*, *minute*, *hour*, *day*, *week*, *month*, *quarter*,
+   * *half*, *year*, *monday*, *tuesday*, *wednesday*, *thursday*, *friday*,
+   * *saturday*, *sunday*) naming the corresponding UTC interval. This option
+   * sets the default *scale*.transform to the given interval’s *interval*.floor
+   * function. In addition, the default *scale*.domain is an array of
+   * uniformly-spaced values spanning the extent of the values associated with
+   * the scale.
+   */
   interval?: RangeInterval;
+
+  /**
+   * Shorthand for the percentages scale transform, which maps proportions [0, 1]
+   * to [0, 100].
+   */
   percent?: boolean;
 
   /**
@@ -275,25 +341,52 @@ export interface ScaleOptions extends ScaleDefaults {
    */
   interpolate?: Interpolate;
 
-  // power scale options
+  /** Power scale exponent (*e.g.* 0.5 for sqrt; defaults to 1). */
   exponent?: number;
 
-  // log scale options
+  /** Log scale base, to control tick values (*e.g.* 2; defaults to 10). */
   base?: number;
 
-  // symlog scale options
+  /**
+   * Symlog scale constant, expressing the magnitude of the linear region around
+   * the origin (defaults to 1).
+   */
   constant?: number;
 
-  // quantize and quantile scale options
+  /**
+   * For a quantile scale, the number of quantiles (creates *n* - 1 thresholds);
+   * for a quantize scale, the approximate number of thresholds. Defaults to 5.
+   */
   n?: number;
-  quantiles?: number; // deprecated; use n instead
 
-  // diverging scale options
+  /**
+   * @deprecated use *n* instead.
+   */
+  quantiles?: number;
+
+  /**
+   * For a diverging scale, the *pivot* value (defaults to 0, except for the
+   * diverging-log scale where it defaults to 1). By default, all diverging
+   * scales are symmetric around the pivot; set *symmetric* to false if you want
+   * to cover the whole extent on both sides.
+   */
   pivot?: any;
+
+  /**
+   * For a diverging scale, whether the scale is symmetric around the *pivot*.
+   * Defaults to true; set to false if you want to cover the whole extent on
+   * both sides.
+   */
   symmetric?: boolean;
 
-  // position scale options
+  /**
+   * For a band scale, how much of the range to reserve to separate adjacent bands.
+   */
   paddingInner?: number;
+  /**
+   * For a band scale, how much of the range to reserve to inset first and last
+   * bands.
+   */
   paddingOuter?: number;
 
   // axis and legend options
