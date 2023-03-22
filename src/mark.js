@@ -44,7 +44,7 @@ export class Mark {
       Object.entries(channels)
         .map(([name, channel]) => {
           const {value} = channel;
-          if (isOptions(value) && "value" in value) {
+          if (isOptions(value)) {
             channel = {...channel, value: value.value};
             if (value.scale !== undefined) channel.scale = value.scale;
           }
