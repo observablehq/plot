@@ -10,7 +10,7 @@ export interface VectorShapeImplementation {
   draw(context: CanvasPath, length: number, radius: number): void;
 }
 
-export type VectorShapeSpec = VectorShapeName | VectorShapeImplementation;
+export type VectorShape = VectorShapeName | VectorShapeImplementation;
 
 export interface VectorOptions extends MarkOptions {
   /** A channel for the horizontal position. */
@@ -29,7 +29,7 @@ export interface VectorOptions extends MarkOptions {
   /** Vector rotation, in degrees; with rotate = 0, the shape points up. */
   rotate?: ChannelValue;
   /** Vector shape, as a name (*arrow* or *spike*), or as a custom implementation. */
-  shape?: VectorShapeSpec;
+  shape?: VectorShape;
   /** Vector anchor; by default a vector is anchored at its base (*start*). */
   anchor?: "start" | "middle" | "end";
   /**
