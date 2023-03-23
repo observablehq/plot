@@ -1,16 +1,16 @@
 import {ascending, InternSet} from "d3";
-import {isOrdinal, labelof, valueof, isOptions, isColor, isObject} from "../options.js";
-import {areaX, areaY} from "./area.js";
-import {dot} from "./dot.js";
-import {line, lineX, lineY} from "./line.js";
-import {ruleX, ruleY} from "./rule.js";
-import {barX, barY} from "./bar.js";
-import {rectX, rectY} from "./rect.js";
-import {cell} from "./cell.js";
-import {frame} from "./frame.js";
+import {marks} from "../mark.js";
+import {isColor, isObject, isOptions, isOrdinal, labelof, valueof} from "../options.js";
 import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
-import {marks} from "../mark.js";
+import {areaX, areaY} from "./area.js";
+import {barX, barY} from "./bar.js";
+import {cell} from "./cell.js";
+import {dot} from "./dot.js";
+import {frame} from "./frame.js";
+import {line, lineX, lineY} from "./line.js";
+import {rectX, rectY} from "./rect.js";
+import {ruleX, ruleY} from "./rule.js";
 
 export function autoSpec(data, options) {
   const {x, y, fx, fy, color, size, mark} = autoImpl(data, options);
@@ -142,43 +142,41 @@ function autoImpl(data, options) {
     z: Z,
     r: S ?? undefined // treat null size as undefined for default constant radius
   };
-  let transform;
+  let transformImpl;
   let transformOptions = {[colorMode]: colorReduce ?? undefined, r: sizeReduce ?? undefined};
   if (xReduce != null && yReduce != null) {
     throw new Error(`cannot reduce both x and y`); // for now at least
   } else if (yReduce != null) {
     transformOptions.y = yReduce;
-    transform = isOrdinal(X) ? groupX : binX;
+    transformImpl = isOrdinal(X) ? groupX : binX;
   } else if (xReduce != null) {
     transformOptions.x = xReduce;
-    transform = isOrdinal(Y) ? groupY : binY;
+    transformImpl = isOrdinal(Y) ? groupY : binY;
   } else if (colorReduce != null || sizeReduce != null) {
     if (X && Y) {
-      transform = isOrdinal(X) && isOrdinal(Y) ? group : isOrdinal(X) ? binY : isOrdinal(Y) ? binX : bin;
+      transformImpl = isOrdinal(X) && isOrdinal(Y) ? group : isOrdinal(X) ? binY : isOrdinal(Y) ? binX : bin;
     } else if (X) {
-      transform = isOrdinal(X) ? groupX : binX;
+      transformImpl = isOrdinal(X) ? groupX : binX;
     } else if (Y) {
-      transform = isOrdinal(Y) ? groupY : binY;
+      transformImpl = isOrdinal(Y) ? groupY : binY;
     }
   }
-  if (transform) {
-    if (transform === bin || transform === binX) markOptions.x = {value: X, ...xOptions};
-    if (transform === bin || transform === binY) markOptions.y = {value: Y, ...yOptions};
-  }
+
+  // When using the bin transform, pass through additional options (e.g., thresholds).
+  if (transformImpl === bin || transformImpl === binX) markOptions.x = {value: X, ...xOptions};
+  if (transformImpl === bin || transformImpl === binY) markOptions.y = {value: Y, ...yOptions};
 
   // If zero-ness is not specified, default based on whether the resolved mark
   // type will include a zero baseline.
   if (xZero === undefined)
     xZero =
       X &&
-      transform !== bin &&
-      transform !== binX &&
+      !(transformImpl === bin || transformImpl === binX) &&
       (markImpl === barX || markImpl === areaX || markImpl === rectX || markImpl === ruleY);
   if (yZero === undefined)
     yZero =
       Y &&
-      transform !== bin &&
-      transform !== binY &&
+      !(transformImpl === bin || transformImpl === binY) &&
       (markImpl === barY || markImpl === areaY || markImpl === rectY || markImpl === ruleX);
 
   return {
@@ -187,13 +185,13 @@ function autoImpl(data, options) {
     x: {
       value: xValue ?? null,
       reduce: xReduce ?? null,
-      zero: xZero ?? false,
+      zero: !!xZero,
       ...xOptions
     },
     y: {
       value: yValue ?? null,
       reduce: yReduce ?? null,
-      zero: yZero ?? false,
+      zero: !!yZero,
       ...yOptions
     },
     color: {
@@ -208,34 +206,32 @@ function autoImpl(data, options) {
     mark,
     markImpl,
     markOptions,
-    transform,
+    transformImpl,
     transformOptions,
     colorMode
   };
 }
 
 export function auto(data, options) {
-  let {
+  const {
     fx,
     fy,
     x: {zero: xZero},
     y: {zero: yZero},
     markImpl,
     markOptions,
-    transform,
+    transformImpl,
     transformOptions,
     colorMode
   } = autoImpl(data, options);
-
-  if (transform) markOptions = transform(transformOptions, markOptions);
 
   // In the case of filled marks (particularly bars and areas) the frame and
   // rules should come after the mark; in the case of stroked marks
   // (particularly dots and lines) they should come before the mark.
   const frames = fx != null || fy != null ? frame({strokeOpacity: 0.1}) : null;
   const rules = [xZero ? ruleX([0]) : null, yZero ? ruleY([0]) : null];
-  markImpl = markImpl(data, markOptions);
-  return colorMode === "stroke" ? marks(frames, rules, markImpl) : marks(frames, markImpl, rules);
+  const mark = markImpl(data, transformImpl ? transformImpl(transformOptions, markOptions) : markOptions);
+  return colorMode === "stroke" ? marks(frames, rules, mark) : marks(frames, mark, rules);
 }
 
 // TODO What about sorted within series?
