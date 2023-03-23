@@ -242,7 +242,9 @@ export interface PlotOptions extends ScaleDefaults {
   /**
    * Options for projection. A projection is an alternative to the *x* and *y*
    * scales for encoding position, and is typically used to convert polygonal
-   * geometry in spherical coordinates to a planar visual representation.
+   * geometry in spherical coordinates to a planar visual representation. For
+   * planar (already-projected) coordinates, use the identity projection, or the
+   * reflect-y projection if *y* points up.
    */
   projection?: ProjectionOptions | ProjectionName | ProjectionFactory | ProjectionImplementation | null;
 
