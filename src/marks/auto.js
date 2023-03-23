@@ -12,6 +12,34 @@ import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../mark.js";
 
+export function autoCompile(data, options) {
+  let {
+    fx,
+    fy,
+    x: {zero: xZero},
+    y: {zero: yZero},
+    markImpl,
+    markOptions,
+    transform,
+    transformOptions,
+    colorMode
+  } = autoImpl(data, options);
+
+  const markOptionsString = transform
+    ? `Plot.${transform.name}(${JSON.stringify(transformOptions)}, ${JSON.stringify(markOptions)})`
+    : JSON.stringify(markOptions);
+  const frame = fx != null || fy != null ? `Plot.frame({strokeOpacity: 0.1})` : null;
+  const rules = [xZero ? `Plot.ruleX([0])` : null, yZero ? `Plot.ruleY([0])` : null];
+  const mark = `Plot.${markImpl.name}(data, ${markOptionsString})`;
+  return `Plot.plot({
+  marks: [
+    ${(colorMode === "stroke" ? [frame, ...rules, mark] : [frame, mark, ...rules])
+      .filter((mark) => mark)
+      .join(",\n    ")}
+  ]
+})`;
+}
+
 export function autoSpec(data, options) {
   const {x, y, fx, fy, color, size, mark} = autoImpl(data, options);
   return {x, y, fx, fy, color, size, mark};

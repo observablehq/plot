@@ -1,6 +1,19 @@
 import * as Plot from "@observablehq/plot";
 import assert from "assert";
 
+it("Plot.autoCompile compiles to explicit marks", () => {
+  const data = [{value: 1}, {value: 1}, {value: 38}];
+  assert.strictEqual(
+    Plot.autoCompile(data, {x: "value"}),
+    `Plot.plot({
+  marks: [
+    Plot.rectY(data, Plot.binX({"y":"count"}, {"x":{"value":[1,1,38]}})),
+    Plot.ruleY([0])
+  ]
+})`
+  );
+});
+
 it("Plot.autoSpec makes a histogram from a quantitative dimension", () => {
   const data = [{value: 1}, {value: 1}, {value: 38}];
   assert.deepStrictEqual(Plot.autoSpec(data, {x: "value"}), {
