@@ -12,7 +12,7 @@ export async function stackedBar() {
           x: (d, i) => i,
           fill: (d, i) => i,
           insetLeft: 1,
-          offset: "expand"
+          offset: "normalize"
         })
       )
     ]
