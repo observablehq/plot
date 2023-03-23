@@ -2561,8 +2561,7 @@ The following **order** methods are supported:
 - *y* - alias of *value*; for stackY only
 - *sum* - order series by their total value
 - *appearance* - order series by the position of their maximum value
-- *inside-out* - order the earliest-appearing series on the inside (default for
-  the *wiggle* offset)
+- *inside-out* (default with *wiggle*) - order the earliest-appearing series on the inside
 - a named field or function of data - order data by priority
 - an array of *z* values
 
