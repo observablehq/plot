@@ -1,6 +1,18 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+// Tanner's bug https://github.com/observablehq/plot/issues/1365
+export async function autoLineZero() {
+  const industries = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);
+  return Plot.auto(industries, {x: "date", y: {value: "unemployed", zero: true}, color: "industry"}).plot();
+}
+
+// Jeff's bug https://github.com/observablehq/plot/issues/1340
+export async function autoBarNonZeroReducer() {
+  const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.auto(athletes, {x: "date_of_birth", y: {value: "height", reduce: "mean"}, mark: "bar"}).plot();
+}
+
 export async function autoHistogram() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.auto(athletes, {x: "weight"}).plot();
@@ -81,14 +93,14 @@ export async function autoDotOrdCont() {
   return Plot.auto(penguins, {x: "culmen_length_mm", y: "species"}).plot();
 }
 
+export async function autoDotZero() {
+  const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
+  return Plot.auto(alphabet, {x: {value: "frequency", zero: true}, y: "letter"}).plot();
+}
+
 export async function autoBar() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
   return Plot.auto(alphabet, {x: "frequency", y: "letter", mark: "bar"}).plot();
-}
-
-export async function autoBarZero() {
-  const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
-  return Plot.auto(alphabet, {x: {value: "frequency", zero: true}, y: "letter"}).plot();
 }
 
 export async function autoConnectedScatterplot() {
@@ -197,11 +209,6 @@ export async function autoBarStackColorConstant() {
   return Plot.auto(athletes, {x: "height", color: "gold"}).plot();
 }
 
-export async function autoBarMeanZero() {
-  const weather = await d3.csv<any>("data/seattle-weather.csv", d3.autoType);
-  return Plot.auto(weather, {x: "date", y: {value: "temp_max", reduce: "mean", zero: true}}).plot();
-}
-
 export async function autoBarMode() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.auto(penguins, {x: "island", y: {value: "species", reduce: "mode"}, mark: "bar"}).plot();
@@ -210,6 +217,11 @@ export async function autoBarMode() {
 export async function autoLineMean() {
   const weather = await d3.csv<any>("data/seattle-weather.csv", d3.autoType);
   return Plot.auto(weather, {x: "date", y: {value: "temp_max", reduce: "mean"}}).plot();
+}
+
+export async function autoLineMeanZero() {
+  const weather = await d3.csv<any>("data/seattle-weather.csv", d3.autoType);
+  return Plot.auto(weather, {x: "date", y: {value: "temp_max", reduce: "mean", zero: true}}).plot();
 }
 
 export async function autoLineMeanColor() {
