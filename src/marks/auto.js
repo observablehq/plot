@@ -89,47 +89,45 @@ function autoImpl(data, options) {
 
   // Determine the mark implementation.
   let markImpl;
-  if (mark != null) {
-    switch (`${mark}`.toLowerCase()) {
-      case "dot":
-        markImpl = dot;
-        colorMode = "stroke";
-        break;
-      case "line":
-        markImpl = X && Y ? line : X ? lineX : lineY; // 1d line by index
-        colorMode = "stroke";
-        if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
-        break;
-      case "area":
-        markImpl = yZero ? areaY : xZero || (Y && isMonotonic(Y)) ? areaX : areaY; // favor areaY if unsure
-        colorMode = "fill";
-        if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
-        break;
-      case "rule":
-        markImpl = X ? ruleX : ruleY;
-        colorMode = "stroke";
-        break;
-      case "bar":
-        markImpl = yZero
-          ? isOrdinalReduced(xReduce, X)
-            ? barY
-            : rectY
-          : xZero
-          ? isOrdinalReduced(yReduce, Y)
-            ? barX
-            : rectX
-          : isOrdinalReduced(xReduce, X) && isOrdinalReduced(yReduce, Y)
-          ? cell
-          : isOrdinalReduced(xReduce, X)
+  switch (mark) {
+    case "dot":
+      markImpl = dot;
+      colorMode = "stroke";
+      break;
+    case "line":
+      markImpl = X && Y ? line : X ? lineX : lineY; // 1d line by index
+      colorMode = "stroke";
+      if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
+      break;
+    case "area":
+      markImpl = yZero ? areaY : xZero || (Y && isMonotonic(Y)) ? areaX : areaY; // favor areaY if unsure
+      colorMode = "fill";
+      if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
+      break;
+    case "rule":
+      markImpl = X ? ruleX : ruleY;
+      colorMode = "stroke";
+      break;
+    case "bar":
+      markImpl = yZero
+        ? isOrdinalReduced(xReduce, X)
           ? barY
-          : isOrdinalReduced(yReduce, Y)
+          : rectY
+        : xZero
+        ? isOrdinalReduced(yReduce, Y)
           ? barX
-          : rectY;
-        colorMode = "fill";
-        break;
-      default:
-        throw new Error(`invalid mark: ${mark}`);
-    }
+          : rectX
+        : isOrdinalReduced(xReduce, X) && isOrdinalReduced(yReduce, Y)
+        ? cell
+        : isOrdinalReduced(xReduce, X)
+        ? barY
+        : isOrdinalReduced(yReduce, Y)
+        ? barX
+        : rectY;
+      colorMode = "fill";
+      break;
+    default:
+      throw new Error(`invalid mark: ${mark}`);
   }
 
   // Determine the mark options.
@@ -257,7 +255,6 @@ function isMonotonic(values) {
 // (but note that they can also be specified as a {transform} object such as
 // Plot.identity). We don’t support reducers for the faceting, but for symmetry
 // with x and y we allow facets to be specified as {value} objects.
-// TODO Normalize mark name to lowercase?
 function normalizeOptions({x, y, color, size, fx, fy, mark} = {}) {
   if (!isOptions(x)) x = makeOptions(x);
   if (!isOptions(y)) y = makeOptions(y);
@@ -265,6 +262,7 @@ function normalizeOptions({x, y, color, size, fx, fy, mark} = {}) {
   if (!isOptions(size)) size = makeOptions(size);
   if (isOptions(fx)) ({value: fx} = makeOptions(fx));
   if (isOptions(fy)) ({value: fy} = makeOptions(fy));
+  if (mark != null) mark = `${mark}`.toLowerCase();
   return {x, y, color, size, fx, fy, mark};
 }
 
