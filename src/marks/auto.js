@@ -5,7 +5,7 @@ import {dot} from "./dot.js";
 import {line, lineX, lineY} from "./line.js";
 import {ruleX, ruleY} from "./rule.js";
 import {barX, barY} from "./bar.js";
-import {rect, rectX, rectY} from "./rect.js";
+import {rectX, rectY} from "./rect.js";
 import {cell} from "./cell.js";
 import {frame} from "./frame.js";
 import {bin, binX, binY} from "../transforms/bin.js";
@@ -13,8 +13,23 @@ import {group, groupX, groupY} from "../transforms/group.js";
 import {marks} from "../mark.js";
 
 export function autoSpec(data, options) {
+  const {x, y, fx, fy, color, size, mark} = autoImpl(data, options);
+  return {x, y, fx, fy, color, size, mark};
+}
+
+function autoImpl(data, options) {
   options = normalizeOptions(options);
 
+  // Greedily materialize columns for type inference; we’ll need them anyway to
+  // plot! Note that we don’t apply any type inference to the fx and fy
+  // channels, if present; these are always ordinal (at least for now).
+  const {x, y, color, size} = options;
+  const X = materializeValue(data, x);
+  const Y = materializeValue(data, y);
+  const C = materializeValue(data, color);
+  const S = materializeValue(data, size);
+
+  // Compute the default options.
   let {
     fx,
     fy,
@@ -24,10 +39,6 @@ export function autoSpec(data, options) {
     size: {value: sizeValue, reduce: sizeReduce}, // TODO constant radius?
     mark
   } = options;
-
-  // Lazily materialize x and y columns for type inference, if needed.
-  const {x, y} = options;
-  let X, Y;
 
   // Determine the default reducer, if any.
   if (xReduce === undefined)
@@ -42,8 +53,8 @@ export function autoSpec(data, options) {
     colorReduce == null &&
     xReduce == null &&
     yReduce == null &&
-    (xValue == null || isOrdinal((X ??= materializeValue(data, x)))) &&
-    (yValue == null || isOrdinal((Y ??= materializeValue(data, y))))
+    (xValue == null || isOrdinal(X)) &&
+    (yValue == null || isOrdinal(Y))
   ) {
     sizeReduce = "count";
   }
@@ -65,9 +76,7 @@ export function autoSpec(data, options) {
         : isZeroReducer(xReduce) || isZeroReducer(yReduce) || colorReduce != null // histogram or heatmap
         ? "bar"
         : xValue != null && yValue != null
-        ? isOrdinal((X ??= materializeValue(data, x))) ||
-          isOrdinal((Y ??= materializeValue(data, y))) ||
-          (xReduce == null && yReduce == null && !isMonotonic(X) && !isMonotonic(Y))
+        ? isOrdinal(X) || isOrdinal(Y) || (xReduce == null && yReduce == null && !isMonotonic(X) && !isMonotonic(Y))
           ? "dot"
           : "line"
         : xValue != null || yValue != null
@@ -75,89 +84,33 @@ export function autoSpec(data, options) {
         : null;
   }
 
-  return {
-    fx: fx ?? null,
-    fy: fy ?? null,
-    x: {
-      value: xValue ?? null,
-      reduce: xReduce ?? null,
-      ...(xZero !== undefined && {zero: xZero}), // TODO realize default
-      ...xOptions
-    },
-    y: {
-      value: yValue ?? null,
-      reduce: yReduce ?? null,
-      ...(yZero !== undefined && {zero: yZero}), // TODO realize default
-      ...yOptions
-    },
-    color: {
-      value: colorValue ?? null,
-      reduce: colorReduce ?? null,
-      ...(colorColor !== undefined && {color: colorColor})
-    },
-    size: {
-      value: sizeValue ?? null,
-      reduce: sizeReduce ?? null
-    },
-    mark
-  };
-}
-
-export function auto(data, options) {
-  options = normalizeOptions(options);
-
-  // Greedily materialize columns for type inference; we’ll need them anyway to
-  // plot! Note that we don’t apply any type inference to the fx and fy
-  // channels, if present; these are always ordinal (at least for now).
-  const {x, y, color, size} = options;
-  const X = materializeValue(data, x);
-  const Y = materializeValue(data, y);
-  const C = materializeValue(data, color);
-  const S = materializeValue(data, size);
-
-  // Compute the default options via autoSpec.
-  let {
-    fx,
-    fy,
-    x: {reduce: xReduce, zero: xZero, ...xOptions},
-    y: {reduce: yReduce, zero: yZero, ...yOptions},
-    color: {color: colorColor, reduce: colorReduce},
-    size: {reduce: sizeReduce},
-    mark
-  } = autoSpec(data, {
-    ...options,
-    x: {...x, value: X},
-    y: {...y, value: Y},
-    color: {...color, value: C},
-    size: {...size, value: S}
-  });
-
   let Z; // may be set to null to disable series-by-color for line and area
   let colorMode; // "fill" or "stroke"
 
   // Determine the mark implementation.
+  let markImpl;
   if (mark != null) {
     switch (`${mark}`.toLowerCase()) {
       case "dot":
-        mark = dot;
+        markImpl = dot;
         colorMode = "stroke";
         break;
       case "line":
-        mark = X && Y ? line : X ? lineX : lineY; // 1d line by index
+        markImpl = X && Y ? line : X ? lineX : lineY; // 1d line by index
         colorMode = "stroke";
         if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
         break;
       case "area":
-        mark = yZero ? areaY : xZero || (Y && isMonotonic(Y)) ? areaX : areaY; // favor areaY if unsure
+        markImpl = yZero ? areaY : xZero || (Y && isMonotonic(Y)) ? areaX : areaY; // favor areaY if unsure
         colorMode = "fill";
         if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
         break;
       case "rule":
-        mark = X ? ruleX : ruleY;
+        markImpl = X ? ruleX : ruleY;
         colorMode = "stroke";
         break;
       case "bar":
-        mark = yZero
+        markImpl = yZero
           ? isOrdinalReduced(xReduce, X)
             ? barY
             : rectY
@@ -211,23 +164,78 @@ export function auto(data, options) {
   if (transform) {
     if (transform === bin || transform === binX) markOptions.x = {value: X, ...xOptions};
     if (transform === bin || transform === binY) markOptions.y = {value: Y, ...yOptions};
-    markOptions = transform(transformOptions, markOptions);
   }
 
   // If zero-ness is not specified, default based on whether the resolved mark
-  // type will include a zero baseline. TODO Move this to autoSpec.
+  // type will include a zero baseline.
   if (xZero === undefined)
-    xZero = X && transform !== binX && transform !== bin && (mark === barX || mark === areaX || mark === rectX || mark === ruleY);
+    xZero =
+      X &&
+      transform !== bin &&
+      transform !== binX &&
+      (markImpl === barX || markImpl === areaX || markImpl === rectX || markImpl === ruleY);
   if (yZero === undefined)
-    yZero = Y && transform !== binY && transform !== bin && (mark === barY || mark === areaY || mark === rectY || mark === ruleX);
+    yZero =
+      Y &&
+      transform !== bin &&
+      transform !== binY &&
+      (markImpl === barY || markImpl === areaY || markImpl === rectY || markImpl === ruleX);
+
+  return {
+    fx: fx ?? null,
+    fy: fy ?? null,
+    x: {
+      value: xValue ?? null,
+      reduce: xReduce ?? null,
+      zero: xZero ?? false,
+      ...xOptions
+    },
+    y: {
+      value: yValue ?? null,
+      reduce: yReduce ?? null,
+      zero: yZero ?? false,
+      ...yOptions
+    },
+    color: {
+      value: colorValue ?? null,
+      reduce: colorReduce ?? null,
+      ...(colorColor !== undefined && {color: colorColor})
+    },
+    size: {
+      value: sizeValue ?? null,
+      reduce: sizeReduce ?? null
+    },
+    mark,
+    markImpl,
+    markOptions,
+    transform,
+    transformOptions,
+    colorMode
+  };
+}
+
+export function auto(data, options) {
+  let {
+    fx,
+    fy,
+    x: {zero: xZero},
+    y: {zero: yZero},
+    markImpl,
+    markOptions,
+    transform,
+    transformOptions,
+    colorMode
+  } = autoImpl(data, options);
+
+  if (transform) markOptions = transform(transformOptions, markOptions);
 
   // In the case of filled marks (particularly bars and areas) the frame and
   // rules should come after the mark; in the case of stroked marks
   // (particularly dots and lines) they should come before the mark.
   const frames = fx != null || fy != null ? frame({strokeOpacity: 0.1}) : null;
   const rules = [xZero ? ruleX([0]) : null, yZero ? ruleY([0]) : null];
-  mark = mark(data, markOptions);
-  return colorMode === "stroke" ? marks(frames, rules, mark) : marks(frames, mark, rules);
+  markImpl = markImpl(data, markOptions);
+  return colorMode === "stroke" ? marks(frames, rules, markImpl) : marks(frames, markImpl, rules);
 }
 
 // TODO What about sorted within series?
