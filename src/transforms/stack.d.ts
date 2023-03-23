@@ -8,18 +8,21 @@ export type StackOffsetName =
   | ("expand" & Record<never, never>) // deprecated; use normalize
   | ("silhouette" & Record<never, never>); // deprecated; use center
 
-export type StackOffsetFunction = (stacks: number[][][], y1: number[], y2: number[], z: any[]) => void;
+export type StackOffsetFunction = (index: number[][][], y1: number[], y2: number[], z: any[]) => void;
 
+/** How the baseline of stacked layers may be offset. */
 export type StackOffset = StackOffsetName | StackOffsetFunction;
 
 export type StackOrderName = "value" | "x" | "y" | "z" | "sum" | "appearance" | "inside-out";
 
+/** How to order layers prior to stacking. */
 export type StackOrder =
   | StackOrderName
   | (string & Record<never, never>) // field name; see also https://github.com/microsoft/TypeScript/issues/29729
   | ((d: any, i: number) => any) // function of data
   | any[]; // explicit ordinal values
 
+/** Options for the stack transform. */
 export interface StackOptions {
   /**
    * After all values have been stacked from zero, an optional **offset** can be
@@ -35,7 +38,9 @@ export interface StackOptions {
    * the stack’s position. Both the *center* and *wiggle* offsets ensure that
    * the lowest element across stacks starts at zero for better default axes.
    * The *wiggle* offset is recommended for streamgraphs, and if used, changes
-   * the default order to *inside-out*.
+   * the default **order** to *inside-out*.
+   *
+   * For details on the *wiggle* offset, see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
    */
   offset?: StackOffset | null;
 
@@ -43,27 +48,26 @@ export interface StackOptions {
    * The order in which stacks are layered:
    *
    * - null (default) - input order
-   * - *value* - ascending value order (or descending with **reverse**)
-   * - *x* - alias of *value*; for stackY only
-   * - *y* - alias of *value*; for stackX only
-   * - *sum* - order series by their total value
-   * - *appearance* - order series by the position of their maximum value
-   * - *inside-out* - order the earliest-appearing series on the inside (default
-   *   for the *wiggle* offset)
-   * - a named field or function of data - order data by priority
+   * - *value* - ascending value (or descending with **reverse**)
+   * - *x* - alias of *value*; for stackX only
+   * - *y* - alias of *value*; for stackY only
+   * - *sum* - total value per series
+   * - *appearance* - position of maximum value per series
+   * - *inside-out* (default with *wiggle*) - order the earliest-appearing series on the inside
+   * - a named field or function of data - natural order
    * - an array enumerating all the *z* values in the desired order
+   *
+   * For details on the *inside-out* order, see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
    */
   order?: StackOrder | null;
 
-  /**
-   * If true, reverse the effective order of the stacks.
-   */
+  /** If true, reverse the effective order of the stacks. */
   reverse?: boolean;
 
   /**
    * The *z* channel defines the series of each value in the stack. Used when
-   * the *order* is sum, appearance, inside-out, or an explicit array of z
-   * values.
+   * the **order** is *sum*, *appearance*, *inside-out*, or an explicit array of
+   * *z* values.
    */
   z?: ChannelValue;
 }
@@ -75,9 +79,7 @@ export interface StackOptions {
  * element in the stack. Non-positive values are stacked to the left of zero,
  * with *x2* to the left of *x1*. A new *x* channel is derived that represents
  * the midpoint between *x1* and *x2*, for example to place a label. If not
- * specified, the input channel *x* defaults to the constant one. Elements can
- * be stacked in a given *order*. After stacking, an optional *offset* can be
- * applied.
+ * specified, the input channel *x* defaults to the constant one.
  */
 export function stackX<T>(options?: T & StackOptions): Transformed<T>;
 export function stackX<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
@@ -105,8 +107,7 @@ export function stackX2<T>(stackOptions?: StackOptions, options?: T): Transforme
  * element in the stack. Non-positive values are stacked below zero, with *y2*
  * below *y1*. A new *y* channel is derived that represents the midpoint between
  * *y1* and *y2*, for example to place a label. If not specified, the input
- * channel *y* defaults to the constant one. Elements can be stacked in a given
- * *order*. After stacking, an optional *offset* can be applied.
+ * channel *y* defaults to the constant one.
  */
 export function stackY<T>(options?: T & StackOptions): Transformed<T>;
 export function stackY<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
