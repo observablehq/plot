@@ -1,4 +1,5 @@
 import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
 
 export async function functionContour() {
   return Plot.plot({
@@ -12,7 +13,8 @@ export async function functionContour() {
         x1: 0,
         y1: 0,
         x2: 4 * Math.PI,
-        y2: 4 * Math.PI * (350 / 580)
+        y2: 4 * Math.PI * (350 / 580),
+        thresholds: d3.ticks(-80, 50, 10) // testing explicit thresholds
       })
     ]
   });

@@ -7,7 +7,7 @@ export type ThresholdsName = "freedman-diaconis" | "scott" | "sturges" | "auto";
 
 export type ThresholdsFunction = (values: any[], min: any, max: any) => any[];
 
-export type Thresholds = ThresholdsName | ThresholdsFunction | RangeInterval;
+export type Thresholds = ThresholdsName | ThresholdsFunction | RangeInterval | Iterable<any>;
 
 export interface BinOptions {
   /**
