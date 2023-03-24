@@ -21,8 +21,8 @@ export interface VectorOptions extends MarkOptions {
   x?: ChannelValueSpec;
 
   /**
-   * The vertical position of the vector’s anchor point; an optional channel bound to the
-   * *y* scale. Default depends on the **frameAnchor**.
+   * The vertical position of the vector’s anchor point; an optional channel
+   * bound to the *y* scale. Default depends on the **frameAnchor**.
    */
   y?: ChannelValueSpec;
 
