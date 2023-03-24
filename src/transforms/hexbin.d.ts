@@ -4,8 +4,8 @@ import type {Initialized} from "./basic.js";
 /** Options for the hexbin transform. */
 export interface HexbinOptions {
   /**
-   * The horizontal distance between centers of neighboring (pointy-topped)
-   * hexagons, in pixels; defaults to 20.
+   * The distance between centers of neighboring hexagons, in pixels; defaults
+   * to 20.
    */
   binWidth?: number;
 
