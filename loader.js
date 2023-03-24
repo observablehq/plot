@@ -1,7 +1,7 @@
-import {transform, applySourceMap, installSourceMapSupport, resolveTsPath} from "@esbuild-kit/core-utils";
+import {transform, installSourceMapSupport, resolveTsPath} from "@esbuild-kit/core-utils";
 import {getTsconfig} from "get-tsconfig";
 
-const sourcemaps = installSourceMapSupport();
+const applySourceMap = installSourceMapSupport();
 const tsExtensionsPattern = /\.([cm]?ts|[tj]sx)$/;
 const tsconfig = getTsconfig();
 const tsconfigRaw = tsconfig?.config;
@@ -28,7 +28,7 @@ export async function load(url, context, defaultLoad) {
     const transformed = await transform(code, url, {tsconfigRaw});
     return {
       format: "module",
-      source: applySourceMap(transformed, url, sourcemaps)
+      source: applySourceMap(transformed, url)
     };
   }
   return loaded;
