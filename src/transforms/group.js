@@ -245,6 +245,8 @@ export function maybeReduce(reduce, value, fallback = invalidReduce) {
       return reduceFirst;
     case "last":
       return reduceLast;
+    case "identity":
+      return reduceIdentity;
     case "count":
       return reduceCount;
     case "distinct":

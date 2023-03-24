@@ -33,6 +33,7 @@ export type ReducerPercentile =
 export type ReducerName =
   | "first"
   | "last"
+  | "identity"
   | "count"
   | "distinct"
   | "sum"
