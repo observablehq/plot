@@ -11,31 +11,33 @@ export type Thresholds = ThresholdsName | ThresholdsFunction | RangeInterval;
 
 export interface BinOptions {
   /**
-   * Whether the distribution is cumulative (use -1 for the [complementary
-   * cumulative](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29))
+   * If true or a positive number, produce a cumulative distribution; if a
+   * negative number, produce a [complementary cumulative](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29)
+   * distribution; if false or zero (the default), produce a probability
+   * distribution.
    */
   cumulative?: boolean | number;
+
   /**
    * The domain, or a function that receives the values and returns the
    * domain. Values outside the domain will be omitted.
    */
   domain?: ((values: any[]) => [min: any, max: any]) | [min: any, max: any];
+
   /**
    * The **thresholds** value may be specified as:
    *
    * * *auto* (default) - Scott’s rule, capped at 200
-   * * *freedman-diaconis* - the [Freedman–Diaconis
-   *   rule](https://en.wikipedia.org/wiki/Freedman–Diaconis_rule)
-   * * *scott* - [Scott’s normal reference
-   *   rule](https://en.wikipedia.org/wiki/Histogram#Scott.27s_normal_reference_rule)
-   * * *sturges* - [Sturges’
-   *   formula](https://en.wikipedia.org/wiki/Histogram#Sturges.27_formula)
+   * * *freedman-diaconis* - the [Freedman–Diaconis rule](https://en.wikipedia.org/wiki/Freedman–Diaconis_rule)
+   * * *scott* - [Scott’s normal reference rule](https://en.wikipedia.org/wiki/Histogram#Scott.27s_normal_reference_rule)
+   * * *sturges* - [Sturges’ formula](https://en.wikipedia.org/wiki/Histogram#Sturges.27_formula)
    * * a count (hint) representing the desired number of bins
    * * an array of *n* threshold values for *n* - 1 bins
    * * an interval or time interval (see also **interval**)
    * * a function that returns an array, count, or time interval
    */
   thresholds?: Thresholds;
+
   /**
    * An alternative way of specifying the bins thresholds. It may be either an
    * interval (object with a floor method), a time interval such as *day*, or a
@@ -71,16 +73,19 @@ export interface BinOutputOptions extends BinOptions {
    * input order.
    */
   data?: BinReducer | null;
+
   /**
    * The filter reducer, defaults to a check on empty bins. Use null to return
    * all bins, for example to impute sum=0 for a line chart.
    */
   filter?: BinReducer | null;
+
   /**
    * The order in which the bins are generated, specified as an aggregation
    * method (defaults to ascending).
    */
   sort?: BinReducer | null;
+
   /**
    * Reverse the order in which the bins are generated.
    */
@@ -107,8 +112,7 @@ export type BinOutputs = ChannelReducers<BinReducer> & BinOutputOptions;
  * * *count* - the number of elements (frequency)
  * * *distinct* - the number of distinct values
  * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted
- *   frequency)
+ * * *proportion* - the sum proportional to the overall total (weighted frequency)
  * * *proportion-facet* - the sum proportional to the facet total
  * * *min* - the minimum value
  * * *min-index* - the zero-based index of the minimum value
@@ -119,16 +123,14 @@ export type BinOutputs = ChannelReducers<BinReducer> & BinOutputOptions;
  * * *mode* - the value with the most occurrences
  * * *pXX* - the percentile value, where XX is a number in [00,99]
  * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s
- *   algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+ * * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
  * * *x* - the middle of the bin’s *x* extent (when binning on *x*)
  * * *x1* - the lower bound of the bin’s *x* extent (when binning on *x*)
  * * *x2* - the upper bound of the bin’s *x* extent (when binning on *x*)
  * * *y* - the middle of the bin’s *y* extent (when binning on *y*)
  * * *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
  * * *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
- * * a function to be passed the array of values for each bin and the extent of
- *   the bin
+ * * a function to be passed the array of values for each bin and the extent of the bin
  * * an object with a *reduce* method, and optionally a *scope*
  *
  * Most aggregation methods require binding the output channel to an input
@@ -163,8 +165,7 @@ export function binX<T>(outputs?: BinOutputs, options?: T & BinOptions): Transfo
  * * *count* - the number of elements (frequency)
  * * *distinct* - the number of distinct values
  * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted
- *   frequency)
+ * * *proportion* - the sum proportional to the overall total (weighted frequency)
  * * *proportion-facet* - the sum proportional to the facet total
  * * *min* - the minimum value
  * * *min-index* - the zero-based index of the minimum value
@@ -175,16 +176,14 @@ export function binX<T>(outputs?: BinOutputs, options?: T & BinOptions): Transfo
  * * *mode* - the value with the most occurrences
  * * *pXX* - the percentile value, where XX is a number in [00,99]
  * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s
- *   algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+ * * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
  * * *x* - the middle of the bin’s *x* extent (when binning on *x*)
  * * *x1* - the lower bound of the bin’s *x* extent (when binning on *x*)
  * * *x2* - the upper bound of the bin’s *x* extent (when binning on *x*)
  * * *y* - the middle of the bin’s *y* extent (when binning on *y*)
  * * *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
  * * *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
- * * a function to be passed the array of values for each bin and the extent of
- *   the bin
+ * * a function to be passed the array of values for each bin and the extent of the bin
  * * an object with a *reduce* method, and optionally a *scope*
  *
  * Most aggregation methods require binding the output channel to an input
@@ -219,8 +218,7 @@ export function binY<T>(outputs?: BinOutputs, options?: T & BinOptions): Transfo
  * * *count* - the number of elements (frequency)
  * * *distinct* - the number of distinct values
  * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted
- *   frequency)
+ * * *proportion* - the sum proportional to the overall total (weighted frequency)
  * * *proportion-facet* - the sum proportional to the facet total
  * * *min* - the minimum value
  * * *min-index* - the zero-based index of the minimum value
@@ -231,16 +229,14 @@ export function binY<T>(outputs?: BinOutputs, options?: T & BinOptions): Transfo
  * * *mode* - the value with the most occurrences
  * * *pXX* - the percentile value, where XX is a number in [00,99]
  * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s
- *   algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+ * * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
  * * *x* - the middle of the bin’s *x* extent (when binning on *x*)
  * * *x1* - the lower bound of the bin’s *x* extent (when binning on *x*)
  * * *x2* - the upper bound of the bin’s *x* extent (when binning on *x*)
  * * *y* - the middle of the bin’s *y* extent (when binning on *y*)
  * * *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
  * * *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
- * * a function to be passed the array of values for each bin and the extent of
- *   the bin
+ * * a function to be passed the array of values for each bin and the extent of the bin
  * * an object with a *reduce* method, and optionally a *scope*
  *
  * Most aggregation methods require binding the output channel to an input
