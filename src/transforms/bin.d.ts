@@ -3,60 +3,115 @@ import type {RangeInterval} from "../interval.js";
 import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 
-/** The built-in thresholds implementations. */
+/**
+ * The built-in thresholds implementations; one of:
+ *
+ * - *auto* (default) - like *scott*, but capped at 200 bins
+ * - *freedman-diaconis* - the [Freedman–Diaconis rule](https://en.wikipedia.org/wiki/Freedman–Diaconis_rule)
+ * - *scott* - [Scott’s normal reference rule](https://en.wikipedia.org/wiki/Histogram#Scott.27s_normal_reference_rule)
+ * - *sturges* - [Sturges’ formula](https://en.wikipedia.org/wiki/Histogram#Sturges.27_formula)
+ */
 export type ThresholdsName = "freedman-diaconis" | "scott" | "sturges" | "auto";
 
-/** How to subdivide a continuous domain into discrete bins (based on data). */
-export type ThresholdsFunction<T = number | Date> = (values: T[], min: T, max: T) => T[] | RangeInterval<T> | number;
+/**
+ * A functional shorthand thresholds implementation; given an array of observed
+ * *values* from the domain, and the *min* and *max* representing the extent of
+ * the domain, returns the corresponding desired thresholds as one of:
+ *
+ * - a range interval
+ * - an array of *n* threshold values for *n* - 1 bins
+ * - a count representing the desired number of bins (a hint; not guaranteed)
+ */
+export type ThresholdsFunction<T = any> = (values: T[], min: T, max: T) => RangeInterval<T> | T[] | number;
 
-/** How to subdivide a continuous domain into discrete bins. */
-export type Thresholds<T = number | Date> = ThresholdsName | ThresholdsFunction<T> | RangeInterval<T> | T[] | number;
+/**
+ * How to subdivide a continuous domain into discrete bins; one of:
+ *
+ * - a named threshold implementation such as *auto* (default) or *sturges*
+ * - a function that returns an array, count, or range interval
+ * - a range interval
+ * - an array of *n* threshold values for *n* - 1 bins
+ * - a count representing the desired number of bins (a hint; not guaranteed)
+ *
+ * When thresholds are specified as a desired number of bins, or with the
+ * built-in thresholds implementations,
+ * [d3.ticks](https://github.com/d3/d3-array/blob/main/README.md#ticks) is used
+ * for numeric domains and
+ * [d3.utcTicks](https://github.com/d3/d3-time/blob/main/README.md#utcTicks) is
+ * used for temporal domains.
+ */
+export type Thresholds<T = any> = ThresholdsName | ThresholdsFunction<T> | RangeInterval<T> | T[] | number;
 
-/** Options for the bin transform. */
-export interface BinOptions<T = number | Date> {
+/** Options for the bin transform, with a domain of type T. */
+export interface BinOptions<T = any> {
   /**
-   * If true or a positive number, produce a cumulative distribution; if a
-   * negative number, produce a [complementary cumulative](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29)
-   * distribution; if false or zero (the default), produce a frequency
+   * If false or zero (default), produce a frequency distribution; if true or a
+   * positive number, produce a cumulative distribution; if a negative number,
+   * produce a [complementary cumulative](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29)
    * distribution.
    */
   cumulative?: boolean | number;
 
   /**
-   * The domain of allowed values; if specified, values outside the domain will
-   * be ignored; otherwise defaults to the extent [*min*, *max*] of input
-   * values. If a function, it is passed the input values and must return the
-   * domain. When **thresholds** are specified as an interval and the default
-   * domain is used, the start and end of the domain will be extended to align
-   * with the interval.
+   * The domain of allowed values; optional. If specified as [*min*, *max*],
+   * values outside this extent will be ignored. If a function, it is passed the
+   * observed input values and must return the domain [*min*, *max*]. When
+   * **thresholds** are specified as an interval and no domain is specified, the
+   * effective domain will be extended to align with the interval.
    */
   domain?: ((values: T[]) => [min: T, max: T]) | [min: T, max: T];
 
   /**
-   * How to subdivide the domain into bins. May be one of:
+   * How to subdivide the domain into discrete bins; defaults to *auto*; one of:
    *
-   * * *auto* (default) - Scott’s rule, capped at 200 bins
-   * * *freedman-diaconis* - the [Freedman–Diaconis rule](https://en.wikipedia.org/wiki/Freedman–Diaconis_rule)
-   * * *scott* - [Scott’s normal reference rule](https://en.wikipedia.org/wiki/Histogram#Scott.27s_normal_reference_rule)
-   * * *sturges* - [Sturges’ formula](https://en.wikipedia.org/wiki/Histogram#Sturges.27_formula)
-   * * a count representing the desired number of bins (a hint; not guaranteed)
-   * * an array of *n* threshold values for *n* - 1 bins
-   * * an interval; see **interval**
-   * * a function that returns an array, count, or interval
+   * - a named threshold implementation such as *auto* (default) or *sturges*
+   * - a function that returns an array, count, or range interval
+   * - a range interval
+   * - an array of *n* threshold values for *n* - 1 bins
+   * - a count representing the desired number of bins (a hint; not guaranteed)
+   *
+   * For example, for about ten bins:
+   *
+   * ```js
+   * Plot.rectY(numbers, Plot.binX({y: "count"}, {thresholds: 10}))
+   * ```
    */
   thresholds?: Thresholds<T>;
 
   /**
-   * How to subdivide the domain into bins; an alternative to **thresholds**.
-   * May be either: an interval object that implements *floor*, *offset*, and
-   * *range* methods; a named time interval such as *day*; or a number. If a
-   * number *n*, threshold values are consecutive multiples of *n* that span the
-   * domain.
+   * How to subdivide the domain into discrete bins; a stricter alternative to
+   * the **thresholds** option allowing the use of shorthand numeric intervals;
+   * one of:
+   *
+   * - an object that implements *floor*, *offset*, and *range* methods
+   * - a named time interval such as *day* (for date intervals)
+   * - a number (for number intervals), defining intervals at integer multiples of *n*
+   *
+   * For example, for integer bins:
+   *
+   * ```js
+   * Plot.rectY(numbers, Plot.binX({y: "count"}, {interval: 1}))
+   * ```
    */
   interval?: RangeInterval<T>;
 }
 
-/** How to reduce binned values. */
+/**
+ * How to reduce binned values; one of:
+ *
+ * - a standard reducer name, such as *count* or *first*
+ * - *x* - the middle of the bin’s *x* extent (when binning on *x*)
+ * - *x1* - the lower bound of the bin’s *x* extent (when binning on *x*)
+ * - *x2* - the upper bound of the bin’s *x* extent (when binning on *x*)
+ * - *y* - the middle of the bin’s *y* extent (when binning on *y*)
+ * - *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
+ * - *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
+ * - a function that takes an array of values and returns the reduced value
+ * - an object that implements the *reduceIndex* method
+ *
+ * When a reducer function or implementation is used with the bin transform, it
+ * is passed the bin extent {x1, x2, y1, y2} as an additional argument.
+ */
 export type BinReducer =
   | Reducer
   | BinReducerFunction
@@ -69,16 +124,16 @@ export type BinReducer =
   | "y2";
 
 /** A functional bin reducer implementation. */
-export type BinReducerFunction = (values: any[], extent: {x1: any; y1: any; x2: any; y2: any}) => any;
+export type BinReducerFunction<S = any, T = S> = (values: S[], extent: {x1: any; y1: any; x2: any; y2: any}) => T;
 
 /** A bin reducer implementation. */
-export interface BinReducerImplementation {
+export interface BinReducerImplementation<S = any, T = S> {
   /**
    * Given an *index* representing the contents of the current bin, the array of
    * input channel *values*, and the current bin’s *extent*, returns the
-   * corresponding reduced value to output.
+   * corresponding reduced output value.
    */
-  reduceIndex(index: number[], values: any[], extent: {x1: any; y1: any; x2: any; y2: any}): any;
+  reduceIndex(index: number[], values: S[], extent: {x1: any; y1: any; x2: any; y2: any}): T;
   // TODO scope
   // TODO label
 }
@@ -89,13 +144,17 @@ export interface BinOutputOptions extends BinOptions {
    * How to reduce data; defaults to the identity reducer, outputting the array
    * of data for each bin in input order.
    */
-  data?: BinReducer | null;
+  data?: BinReducer;
 
   /**
    * How to filter bins: if the reducer emits a falsey value, the bin will be
    * dropped; by default, empty bins are dropped. Use null to disable filtering
    * and return all bins, for example to impute missing zeroes when summing
    * values for a line chart.
+   *
+   * ```js
+   * Plot.binX({y: "count", filter: null}, {x: "weight"})
+   * ```
    */
   filter?: BinReducer | null;
 
@@ -116,7 +175,11 @@ export interface BinOutputOptions extends BinOptions {
   reverse?: boolean;
 }
 
-/** How to reduce binned channel values. */
+/**
+ * How to reduce binned channel values.
+ *
+ * TODO default **title** and **href** reducers
+ */
 export type BinOutputs = ChannelReducers<BinReducer> & BinOutputOptions;
 
 /**
@@ -129,46 +192,23 @@ export type BinOutputs = ChannelReducers<BinReducer> & BinOutputOptions;
  * Plot.rectY(penguins, Plot.binX({y: "count"}, {x: "culmen_length_mm"}))
  * ```
  *
- * The following aggregation methods are supported:
- *
- * * *first* - the first value, in input order
- * * *last* - the last value, in input order
- * * *count* - the number of elements (frequency)
- * * *distinct* - the number of distinct values
- * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted frequency)
- * * *proportion-facet* - the sum proportional to the facet total
- * * *min* - the minimum value
- * * *min-index* - the zero-based index of the minimum value
- * * *max* - the maximum value
- * * *max-index* - the zero-based index of the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *mode* - the value with the most occurrences
- * * *pXX* - the percentile value, where XX is a number in [00,99]
- * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
- * * *x* - the middle of the bin’s *x* extent (when binning on *x*)
- * * *x1* - the lower bound of the bin’s *x* extent (when binning on *x*)
- * * *x2* - the upper bound of the bin’s *x* extent (when binning on *x*)
- * * *y* - the middle of the bin’s *y* extent (when binning on *y*)
- * * *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
- * * *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
- * * a function to be passed the array of values for each bin and the extent of the bin
- * * an object with a *reduce* method, and optionally a *scope*
- *
  * Most aggregation methods require binding the output channel to an input
  * channel; for example, if you want the **y** output channel to be a *sum* (not
  * merely a count), there should be a corresponding **y** input channel
  * specifying which values to sum. If there is not, *sum* will be equivalent to
  * *count*.
  *
- * To control how *x* is divided into bins, the following options are supported:
+ * TODO Group on {z, fill, stroke}, then optionally on y, then bin x. Will not
+ * group on y if generating explicit y, y1, or y2 output channel. Otherwise
+ * generates implicit y output channel.
  *
- * * **thresholds** - the threshold values; see below
- * * **interval** - an alternative method of specifying thresholds
- * * **domain** - values outside the domain will be omitted
- * * **cumulative** - if positive, each bin will contain all lesser bins
+ * TODO If no explicit x output channel, generates x1 and x2 output channels
+ * representing the extent of each bin, and x output channels representing the
+ * midpoint, say for for labels.
+ *
+ * TODO x defaults to identity
+ *
+ * TODO default insetLeft and insetRight
  */
 export function binX<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;
 
@@ -182,46 +222,23 @@ export function binX<T>(outputs?: BinOutputs, options?: T & BinOptions): Transfo
  * Plot.rectX(penguins, Plot.binY({x: "count"}, {y: "culmen_length_mm"}))
  * ```
  *
- * The following aggregation methods are supported:
- *
- * * *first* - the first value, in input order
- * * *last* - the last value, in input order
- * * *count* - the number of elements (frequency)
- * * *distinct* - the number of distinct values
- * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted frequency)
- * * *proportion-facet* - the sum proportional to the facet total
- * * *min* - the minimum value
- * * *min-index* - the zero-based index of the minimum value
- * * *max* - the maximum value
- * * *max-index* - the zero-based index of the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *mode* - the value with the most occurrences
- * * *pXX* - the percentile value, where XX is a number in [00,99]
- * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
- * * *x* - the middle of the bin’s *x* extent (when binning on *x*)
- * * *x1* - the lower bound of the bin’s *x* extent (when binning on *x*)
- * * *x2* - the upper bound of the bin’s *x* extent (when binning on *x*)
- * * *y* - the middle of the bin’s *y* extent (when binning on *y*)
- * * *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
- * * *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
- * * a function to be passed the array of values for each bin and the extent of the bin
- * * an object with a *reduce* method, and optionally a *scope*
- *
  * Most aggregation methods require binding the output channel to an input
  * channel; for example, if you want the **y** output channel to be a *sum* (not
  * merely a count), there should be a corresponding **y** input channel
  * specifying which values to sum. If there is not, *sum* will be equivalent to
  * *count*.
  *
- * To control how *y* is divided into bins, the following options are supported:
+ * TODO Group on {z, fill, stroke}, then optionally on x, then bin y. Will not
+ * group on x if generating explicit x, x1, or x2 output channel. Otherwise
+ * generates implicit x output channel.
  *
- * * **thresholds** - the threshold values; see below
- * * **interval** - an alternative method of specifying thresholds
- * * **domain** - values outside the domain will be omitted
- * * **cumulative** - if positive, each bin will contain all lesser bins
+ * If no explicit y output channel, generates y1 and y2 output channels
+ * representing the extent of each bin, and y output channels representing the
+ * midpoint, say for for labels.
+ *
+ * TODO y defaults to identity
+ *
+ * TODO default insetTop and insetBottom
  */
 export function binY<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;
 
@@ -235,49 +252,28 @@ export function binY<T>(outputs?: BinOutputs, options?: T & BinOptions): Transfo
  * Plot.rect(penguins, Plot.bin({fill: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm"}))
  * ```
  *
- * The following aggregation methods are supported:
- *
- * * *first* - the first value, in input order
- * * *last* - the last value, in input order
- * * *count* - the number of elements (frequency)
- * * *distinct* - the number of distinct values
- * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted frequency)
- * * *proportion-facet* - the sum proportional to the facet total
- * * *min* - the minimum value
- * * *min-index* - the zero-based index of the minimum value
- * * *max* - the maximum value
- * * *max-index* - the zero-based index of the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *mode* - the value with the most occurrences
- * * *pXX* - the percentile value, where XX is a number in [00,99]
- * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
- * * *x* - the middle of the bin’s *x* extent (when binning on *x*)
- * * *x1* - the lower bound of the bin’s *x* extent (when binning on *x*)
- * * *x2* - the upper bound of the bin’s *x* extent (when binning on *x*)
- * * *y* - the middle of the bin’s *y* extent (when binning on *y*)
- * * *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
- * * *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
- * * a function to be passed the array of values for each bin and the extent of the bin
- * * an object with a *reduce* method, and optionally a *scope*
- *
  * Most aggregation methods require binding the output channel to an input
  * channel; for example, if you want the **fill** output channel to be a *sum*
  * (not merely a count), there should be a corresponding **fill** input channel
  * specifying which values to sum. If there is not, *sum* will be equivalent to
  * *count*.
  *
- * To control how *x* and *y* are divided into bins, the following options are supported:
- *
- * * **thresholds** - the threshold values; see below
- * * **interval** - an alternative method of specifying thresholds
- * * **domain** - values outside the domain will be omitted
- * * **cumulative** - if positive, each bin will contain all lesser bins
- *
  * To pass separate binning options for *x* and *y*, the **x** and **y** input
  * channels can be specified as an object with the options above and a **value**
  * option to specify the input channel values. (🌶 NOT TYPED.)
+ *
+ * If no explicit x output channel, generates x1 and x2 output channels
+ * representing the extent of each bin, and x output channels representing the
+ * midpoint, say for for labels.
+
+ * Likewise if no explicit y output channel, generates y1 and y2 output channels
+ * representing the extent of each bin, and y output channels representing the
+ * midpoint, say for for labels.
+ *
+ * TODO Group on {z, fill, stroke}, then bin on x and y.
+ *
+ * TODO tuple defaults
+ *
+ * TODO default insetTop, insetRight, insetBottom, insetLeft
  */
 export function bin<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;

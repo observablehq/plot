@@ -118,12 +118,12 @@ export interface Channel {
 /**
  * A channel’s values may be expressed as:
  *
- * * a function that returns the corresponding value for each datum
- * * a field name, to extract the corresponding value for each datum
- * * an iterable of values, typically of the same length as the data
- * * a channel transform that returns an iterable of values given the data
- * * a constant date, number, or boolean
- * * null to represent no value
+ * - a function that returns the corresponding value for each datum
+ * - a field name, to extract the corresponding value for each datum
+ * - an iterable of values, typically of the same length as the data
+ * - a channel transform that returns an iterable of values given the data
+ * - a constant date, number, or boolean
+ * - null to represent no value
  */
 export type ChannelValue =
   | Iterable<any> // column of values
@@ -152,10 +152,10 @@ export type ChannelValueIntervalSpec = ChannelValueSpec | {value: ChannelValue; 
  * The available inputs for imputing scale domains. In addition to a named
  * channel, an input may be specified as:
  *
- * * *data* - impute from mark data
- * * *width* - impute from |*x2* - *x1*|
- * * *height* - impute from |*y2* - *y1*|
- * * null - impute from input order
+ * - *data* - impute from mark data
+ * - *width* - impute from |*x2* - *x1*|
+ * - *height* - impute from |*y2* - *y1*|
+ * - null - impute from input order
  */
 export type ChannelDomainValue = ChannelName | "data" | "width" | "height" | null;
 
@@ -163,31 +163,15 @@ export type ChannelDomainValue = ChannelName | "data" | "width" | "height" | nul
 export interface ChannelDomainOptions {
   /**
    * How to produce a singular value (for subsequent sorting) from aggregated
-   * channel values. Defaults to *max*. A reducer may be specified as:
+   * channel values; one of:
    *
-   * * *first* - the first value, in input order
-   * * *last* - the last value, in input order
-   * * *count* - the number of elements (frequency)
-   * * *distinct* - the number of distinct values
-   * * *sum* - the sum of values
-   * * *min* - the minimum value
-   * * *min-index* - the zero-based index of the minimum value
-   * * *max* - the maximum value
-   * * *max-index* - the zero-based index of the maximum value
-   * * *mean* - the mean value (average)
-   * * *median* - the median value
-   * * *mode* - the value with the most occurrences
-   * * *pXX* - the percentile value, where XX is a number in [00,99]
-   * * *deviation* - the standard deviation
-   * * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
-   * * a function to be passed the array of values
-   * * an object with a *reduce* method
-   *
-   * In the last case, the *reduce* method is repeatedly passed an index (an
-   * array of integers) and the channel’s array of values; it must then return
-   * the corresponding aggregate value for the bin.
+   * - true (default) - alias for *max*
+   * - false or null - disabled; don’t impute the scale domain
+   * - a named reducer implementation such as *count* or *sum*
+   * - a function that takes an array of values and returns the reduced value
+   * - an object that implements the *reduceIndex* method
    */
-  reduce?: Reducer | true;
+  reduce?: Reducer | boolean | null;
 
   /** If true, use descending instead of ascending order. */
   reverse?: boolean;

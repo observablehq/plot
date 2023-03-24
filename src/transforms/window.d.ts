@@ -1,60 +1,70 @@
-import type {ReducerPercentile} from "../reducer.js";
+import type {ReducerFunction, ReducerPercentile} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 import type {Map} from "./map.js";
 
+/**
+ * The built-in window reducer implementations; one of:
+ *
+ * - *difference* - the difference between the last and first window value
+ * - *ratio* - the ratio of the last and first window value
+ * - *first* - the first value
+ * - *last* - the last value
+ * - *deviation* - the standard deviation
+ * - *sum* - the sum of values
+ * - *min* - the minimum value
+ * - *max* - the maximum value
+ * - *mean* - the mean (average) value
+ * - *median* - the median value
+ * - *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+ * - *mode* - the mode (most common occurrence)
+ * - *pXX* - the percentile value, where XX is a number in [00,99]
+ */
 export type WindowReducerName =
+  | "difference" // specific to window
+  | "ratio" // specific to window
+  | "first"
+  | "last"
   | "deviation"
+  | "sum"
+  | "min"
   | "max"
   | "mean"
   | "median"
-  | "min"
-  | "mode"
-  | "sum"
   | "variance"
-  | "difference"
-  | "ratio"
-  | "first"
-  | "last"
+  | "mode"
   | ReducerPercentile;
 
-export type WindowReducerFunction = (values: any[]) => any;
+/**
+ * How to reduce aggregated (windowed) values; one of:
+ *
+ * - a named window reducer implementation such as *mean* or *difference*
+ * - a function that takes an array of values and returns the reduced value
+ */
+export type WindowReducer = WindowReducerName | ReducerFunction;
 
-export type WindowReducer = WindowReducerName | WindowReducerFunction;
-
+/** Options for the window transform. */
 export interface WindowOptions {
   /**
-   * The size (number of consecutive values) in the window; includes the current
-   * value.
+   * The required size (number of consecutive values) in the window; includes
+   * the current value.
    */
   k: number;
 
   /**
    * How to produce a summary statistic from the **k** values in the current
-   * window. The reducer may be specified as:
+   * window; one of:
    *
-   * * *min* - the minimum
-   * * *max* - the maximum
-   * * *mean* (default) - the mean (average)
-   * * *median* - the median
-   * * *mode* - the mode (most common occurrence)
-   * * *pXX* - the percentile value, where XX is a number in [00,99]
-   * * *sum* - the sum of values
-   * * *deviation* - the standard deviation
-   * * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
-   * * *difference* - the difference between the last and first window value
-   * * *ratio* - the ratio of the last and first window value
-   * * *first* - the first value
-   * * *last* - the last value
-   * * a function to be passed an array of **k** values
+   * - a named window reducer implementation such as *mean* or *difference*
+   * - a function that takes an array of values and returns the reduced value
    */
   reduce?: WindowReducer;
 
   /**
    * How to align the rolling window, placing the current value:
    *
-   * * *start* - as the first element in the window
-   * * *middle* (default) - in the middle of the window, rounding down if **k** is even
-   * * *end* - as the last element in the window
+   * - *start* - as the first element in the window
+   * - *middle* (default) - in the middle of the window, rounding down if **k** is even
+   * - *end* - as the last element in the window
    */
   anchor?: "start" | "middle" | "end";
 
@@ -62,12 +72,6 @@ export interface WindowOptions {
   shift?: "leading" | "centered" | "trailing";
 
   /**
-   * If true, the output start values or end values or both (depending on the
-   * **anchor**) of each series may be undefined since there are not enough
-   * elements to create a window of size **k**; output values may also be
-   * undefined if some of the input values in the corresponding window are
-   * undefined.
-   *
    * If false (the default), the window will be automatically truncated as
    * needed, and undefined input values are ignored. For example, if **k** is 24
    * and **anchor** is *middle*, then the initial 11 values have effective
@@ -75,48 +79,56 @@ export interface WindowOptions {
    * effective window sizes of 23, 22, 21, … 12. Values computed with a
    * truncated window may be noisy; if you would prefer to not show this data,
    * set the **strict** option to true.
+   *
+   * If true, the output start values or end values or both (depending on the
+   * **anchor**) of each series may be undefined since there are not enough
+   * elements to create a window of size **k**; output values may also be
+   * undefined if some of the input values in the corresponding window are
+   * undefined.
    */
   strict?: boolean;
 }
 
 /**
- * Computes a moving window of *x*, *x1*, and *x2* channel values and then
- * derives a summary statistic from values in the current window, say to compute
- * a rolling average. The window options can be specified as the first argument,
- * or grouped with the *options*. For example, the following are equivalent:
+ * Groups data into series using the first channel of *z*, *fill*, or *stroke*
+ * (if any), then derives new *x*, *x1*, and *x2* channels by computing a moving
+ * window of channel values and deriving reduced values from the window. For
+ * example, to compute a rolling average in *x*:
  *
  * ```js
  * Plot.windowX(24, {x: "Anomaly", y: "Date"});
- * Plot.windowX({k: 24, reduce: "mean", x: "Anomaly", y: "Date"});
- * Plot.windowX({k: 24, reduce: "mean"}, {x: "Anomaly", y: "Date"});
  * ```
+ *
+ * If *windowOptions* is a number, it is shorthand for the window size **k**.
  */
-export function windowX<T>(options?: T & WindowOptions): Transformed<T>;
 export function windowX<T>(windowOptions?: WindowOptions | number, options?: T): Transformed<T>;
+export function windowX<T>(options?: T & WindowOptions): Transformed<T>;
 
 /**
- * Computes a moving window of *y*, *y1*, and *y2* channel values around and
- * then derives a summary statistic from values in the current window, say to
- * compute a rolling average. The window options can be specified as the first
- * argument, or grouped with the *options*. For example, the following are
- * equivalent:
+ * Groups data into series using the first channel of *z*, *fill*, or *stroke*
+ * (if any), then derives new *y*, *y1*, and *y2* channels by computing a moving
+ * window of channel values and deriving reduced values from the window. For
+ * example, to compute a rolling average in *y*:
  *
  * ```js
  * Plot.windowY(24, {x: "Date", y: "Anomaly"});
- * Plot.windowY({k: 24, reduce: "mean", x: "Date", y: "Anomaly"});
- * Plot.windowY({k: 24, reduce: "mean"}, {x: "Date", y: "Anomaly"});
  * ```
+ *
+ * If *windowOptions* is a number, it is shorthand for the window size **k**.
  */
-export function windowY<T>(options?: T & WindowOptions): Transformed<T>;
 export function windowY<T>(windowOptions?: WindowOptions | number, options?: T): Transformed<T>;
+export function windowY<T>(options?: T & WindowOptions): Transformed<T>;
 
 /**
- * Returns a window map method suitable for use with Plot.map. The options are
- * the window size *k*, or an object with properties *k*, *anchor*, *reduce*, or
- * *strict*.
+ * Given the specified window *options*, returns a corresponding map
+ * implementation for use with the map transform, allowing the window transform
+ * to be applied to arbitrary channels instead of only *x* and *y*. For example,
+ * to compute a rolling average for the *title* channel:
  *
  * ```js
- * Plot.map({y: Plot.window(24)}, {x: "Date", y: "Close", stroke: "Symbol"})
+ * Plot.map({title: Plot.window(24)}, {x: "Date", title: "Anomaly"})
  * ```
+ *
+ * If *options* is a number, it is shorthand for the window size **k**.
  */
 export function window(options?: WindowOptions | number): Map;

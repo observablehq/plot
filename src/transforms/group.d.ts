@@ -8,7 +8,7 @@ export interface GroupOutputOptions {
    * How to reduce data; defaults to the identity reducer, outputting the array
    * of data for each group in input order.
    */
-  data?: Reducer | null;
+  data?: Reducer;
 
   /**
    * How to filter groups: if the reducer emits a falsey value, the group will
@@ -19,11 +19,11 @@ export interface GroupOutputOptions {
   filter?: Reducer | null;
 
   /**
-   * How to order groups. By default, groups are returned in ascending natural
-   * order along *x*, *y*, and *z* (or *fill* or *stroke*). Group order affects
-   * draw order of overlapping marks, and may be useful in conjunction with the
-   * stack transform which defaults to input order. For example to place the
-   * smallest group within each stack on the baseline:
+   * How to order groups; if null (default), groups are returned in ascending
+   * natural order along *x*, *y*, and *z* (or *fill* or *stroke*). Group order
+   * affects draw order of overlapping marks, and may be useful in conjunction
+   * with the stack transform which defaults to input order. For example to
+   * place the smallest group within each stack on the baseline:
    *
    * ```js
    * Plot.groupX({y: "count", sort: "count"}, {fill: "sex", x: "sport"})
@@ -39,224 +39,120 @@ export interface GroupOutputOptions {
 export type GroupOutputs = ChannelReducers & GroupOutputOptions;
 
 /**
- * Aggregates ordinal or categorical data—such as names—into groups and then
- * computes summary statistics for each group such as a count or sum. Groups are
- * computed on the first channel of *z*, *fill*, or *stroke*, if any. If none of
- * *z*, *fill*, or *stroke* are channels, then all data (within each facet) is
- * placed into a single group.
+ * Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then for
+ * each channel in the specified *outputs*, applies the corresponding *reduce*
+ * method to produce new channel values from the grouped input channel values.
+ * Each *reduce* method may be one of:
+ *
+ * - a named reducer implementation such as *count* or *sum*
+ * - a function that takes an array of values and returns the reduced value
+ * - an object that implements the *reduceIndex* method
+ *
+ * For example, for a horizontal stacked bar chart:
  *
  * ```js
- * Plot.groupZ({x: "proportion"}, {fill: "species"})
+ * Plot.barX(penguins, Plot.groupZ({x: "proportion"}, {fill: "species"}))
  * ```
  *
- * The following aggregation methods are supported:
+ * If **title** is not in *outputs* but is in *options*, it defaults to
+ * summarizing the most common values. If **href** is not in *output* but is in
+ * *options*, it defaults to *first*.
  *
- * * *first* - the first value, in input order
- * * *last* - the last value, in input order
- * * *count* - the number of elements (frequency)
- * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted
- *   frequency)
- * * *proportion-facet* - the sum proportional to the facet total
- * * *min* - the minimum value
- * * *min-index* - the zero-based index of the minimum value
- * * *max* - the maximum value
- * * *max-index* - the zero-based index of the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *mode* - the value with the most occurrences
- * * *pXX* - the percentile value, where XX is a number in [00,99]
- * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s
- *   algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
- * * a function - passed the array of values for each group
- * * an object with a *reduce* method, an optionally a *scope*
- *
- * Most aggregation methods require binding the output channel to an input
- * channel; for example, if you want the **r** output channel to be a *sum* (not
- * merely a count), there should be a corresponding **r** input channel
- * specifying which values to sum.
- *
- * You can control whether a channel is computed before or after grouping. If a
- * channel is declared only in *options* (and it is not a special group-eligible
- * channel such as *x*, *y*, *z*, *fill*, or *stroke*), it will be computed
- * after grouping and be passed the grouped data: each datum is the array of
- * input data corresponding to the current group.
- *
- * The default reducer for the **title** channel returns a summary list of the
- * top 5 values with the corresponding number of occurrences.
- *
- * See also **groupX**, **groupY**, and **group** if you need to group by *x*,
- * *y*, or both.
+ * Non-grouping channels declared in *options* but not *outputs* are computed on
+ * reduced data after grouping, which defaults to the array of data for the
+ * current group.
  */
 export function groupZ<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
 
 /**
- * Aggregates ordinal or categorical data—such as names—into groups and then
- * computes summary statistics for each group such as a count or sum. Typically
- * used with the **barY** mark for a categorical histogram. Groups are computed
- * on *x* and the first channel of *z*, *fill*, or *stroke*, if any.
+ * Groups on the *x* input channel; then subdivides groups on the first channel
+ * of *z*, *fill*, or *stroke*, if any; and then for each channel in the
+ * specified *outputs*, applies the corresponding *reduce* method to produce new
+ * channel values from the grouped input channel values. Each *reduce* method
+ * may be one of:
+ *
+ * - a named reducer implementation such as *count* or *sum*
+ * - a function that takes an array of values and returns the reduced value
+ * - an object that implements the *reduceIndex* method
+ *
+ * For example, for a vertical bar chart of species by total mass:
  *
  * ```js
- * Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
+ * Plot.barY(penguins, Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"}))
  * ```
  *
- * The following aggregation methods are supported:
+ * If **x** is not in *options*, it defaults to identity, assuming that the data
+ * is ordinal. If **x** is not in *outputs*, it defaults to *first*; the *x1*
+ * and *x2* channels, if any, will also be dropped from the returned *options*.
+ * If **title** is not in *outputs* but is in *options*, it defaults to
+ * summarizing the most common values. If **href** is not in *output* but is in
+ * *options*, it defaults to *first*.
  *
- * * *first* - the first value, in input order
- * * *last* - the last value, in input order
- * * *count* - the number of elements (frequency)
- * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted
- *   frequency)
- * * *proportion-facet* - the sum proportional to the facet total
- * * *min* - the minimum value
- * * *min-index* - the zero-based index of the minimum value
- * * *max* - the maximum value
- * * *max-index* - the zero-based index of the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *mode* - the value with the most occurrences
- * * *pXX* - the percentile value, where XX is a number in [00,99]
- * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s
- *   algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
- * * a function - passed the array of values for each group
- * * an object with a *reduce* method, an optionally a *scope*
- *
- * Most aggregation methods require binding the output channel to an input
- * channel; for example, if you want the **r** output channel to be a *sum* (not
- * merely a count), there should be a corresponding **r** input channel
- * specifying which values to sum.
- *
- * You can control whether a channel is computed before or after grouping. If a
- * channel is declared only in *options* (and it is not a special group-eligible
- * channel such as *x*, *y*, *z*, *fill*, or *stroke*), it will be computed
- * after grouping and be passed the grouped data: each datum is the array of
- * input data corresponding to the current group.
- *
- * The default reducer for the **title** channel returns a summary list of the
- * top 5 values with the corresponding number of occurrences.
- *
- * The outputs may also include *filter* and *sort* options (with *reverse*) to
- * specify which groups are generated. Use filter: null to generate empty
- * groups, for example to impute sum=0 for a line chart. The *sort* option can
- * also target the domain of an associated scale such as *x*, *fx* or *fy*.
- *
- * See also **groupZ**, **groupY**, and **group** if you need to group by
- * series, *y*, or both *x* and *y*.
+ * Non-grouping channels declared in *options* but not *outputs* are computed on
+ * reduced data after grouping, which defaults to the array of data for the
+ * current group.
  */
 export function groupX<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
 
 /**
- * Aggregates ordinal or categorical data—such as names—into groups and then
- * computes summary statistics for each group such as a count or sum. Typically
- * used with the **barX** mark for a categorical histogram. Groups are computed
- * on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
+ * Groups on the *y* channel; then subdivides groups on the first channel of
+ * *z*, *fill*, or *stroke*, if any; and then for each channel in the specified
+ * *outputs*, applies the corresponding *reduce* method to produce new channel
+ * values from the grouped input channel values. Each *reduce* method may be one
+ * of:
+ *
+ * - a named reducer implementation such as *count* or *sum*
+ * - a function that takes an array of values and returns the reduced value
+ * - an object that implements the *reduceIndex* method
+ *
+ * For example, for a vertical bar chart of species by total mass:
  *
  * ```js
- * Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
+ * Plot.barY(penguins, Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"}))
  * ```
  *
- * The following aggregation methods are supported:
+ * If **y** is not in *options*, it defaults to identity, assuming that the data
+ * is ordinal. If **y** is not in *outputs*, it defaults to *first*; the *y1*
+ * and *y2* channels, if any, will also be dropped from the returned *options*.
+ * If **title** is not in *outputs* but is in *options*, it defaults to
+ * summarizing the most common values. If **href** is not in *output* but is in
+ * *options*, it defaults to *first*.
  *
- * * *first* - the first value, in input order
- * * *last* - the last value, in input order
- * * *count* - the number of elements (frequency)
- * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted
- *   frequency)
- * * *proportion-facet* - the sum proportional to the facet total
- * * *min* - the minimum value
- * * *min-index* - the zero-based index of the minimum value
- * * *max* - the maximum value
- * * *max-index* - the zero-based index of the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *mode* - the value with the most occurrences
- * * *pXX* - the percentile value, where XX is a number in [00,99]
- * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s
- *   algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
- * * a function - passed the array of values for each group
- * * an object with a *reduce* method, an optionally a *scope*
- *
- * Most aggregation methods require binding the output channel to an input
- * channel; for example, if you want the **r** output channel to be a *sum* (not
- * merely a count), there should be a corresponding **r** input channel
- * specifying which values to sum.
- *
- * You can control whether a channel is computed before or after grouping. If a
- * channel is declared only in *options* (and it is not a special group-eligible
- * channel such as *x*, *y*, *z*, *fill*, or *stroke*), it will be computed
- * after grouping and be passed the grouped data: each datum is the array of
- * input data corresponding to the current group.
- *
- * The default reducer for the **title** channel returns a summary list of the
- * top 5 values with the corresponding number of occurrences.
- *
- * The outputs may also include *filter* and *sort* options (with *reverse*) to
- * specify which groups are generated. Use filter: null to generate empty
- * groups, for example to impute sum=0 for a line chart. The *sort* option can
- * also target the domain of an associated scale such as *y*, *fx* or *fy*.
- *
- * See also **groupZ**, **groupX**, and **group** if you need to group by
- * series, *x*, or both *x* and *y*.
+ * Non-grouping channels declared in *options* but not *outputs* are computed on
+ * reduced data after grouping, which defaults to the array of data for the
+ * current group.
  */
 export function groupY<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
 
 /**
- * Aggregates ordinal or categorical data—such as names—into groups and then
- * computes summary statistics for each group such as a count or sum. Typically
- * used with the **cell** mark for a categorical heatmap. Groups are computed on
- * *x* and *y*, and the first channel of *z*, *fill*, or *stroke*, if any.
+ * Groups on the *x* and *y* channels; then subdivides groups on the first
+ * channel of *z*, *fill*, or *stroke*, if any; and then for each channel in the
+ * specified *outputs*, applies the corresponding *reduce* method to produce new
+ * channel values from the grouped input channel values. Each *reduce* method
+ * may be one of:
+ *
+ * - a named reducer implementation such as *count* or *sum*
+ * - a function that takes an array of values and returns the reduced value
+ * - an object that implements the *reduceIndex* method
+ *
+ * For example, for a heatmap of penguins by species and island:
  *
  * ```js
- * Plot.group({fill: "count"}, {x: "island", y: "species"})
+ * Plot.cell(penguins, Plot.group({fill: "count"}, {x: "island", y: "species"}))
  * ```
  *
- * The following aggregation methods are supported:
+ * If neither **x** nor **y** are in *options*, then **x** and **y** default to
+ * accessors assuming that *data* contains tuples [[*x₀*, *y₀*], [*x₁*, *y₁*],
+ * [*x₂*, *y₂*], …]. If **x** is not in *outputs*, it defaults to *first*; the
+ * *x1* and *x2* channels, if any, will also be dropped from the returned
+ * *options*. Likewise if **y** is not in *outputs*, it defaults to *first*; the
+ * *y1* and *y2* channels, if any, will also be dropped from the returned
+ * *options*. If **title** is not in *outputs* but is in *options*, it defaults
+ * to summarizing the most common values. If **href** is not in *output* but is
+ * in *options*, it defaults to *first*.
  *
- * * *first* - the first value, in input order
- * * *last* - the last value, in input order
- * * *count* - the number of elements (frequency)
- * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted
- *   frequency)
- * * *proportion-facet* - the sum proportional to the facet total
- * * *min* - the minimum value
- * * *min-index* - the zero-based index of the minimum value
- * * *max* - the maximum value
- * * *max-index* - the zero-based index of the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *mode* - the value with the most occurrences
- * * *pXX* - the percentile value, where XX is a number in [00,99]
- * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s
- *   algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
- * * a function - passed the array of values for each group
- * * an object with a *reduce* method, an optionally a *scope*
- *
- * Most aggregation methods require binding the output channel to an input
- * channel; for example, if you want the **r** output channel to be a *sum* (not
- * merely a count), there should be a corresponding **r** input channel
- * specifying which values to sum.
- *
- * You can control whether a channel is computed before or after grouping. If a
- * channel is declared only in *options* (and it is not a special group-eligible
- * channel such as *x*, *y*, *z*, *fill*, or *stroke*), it will be computed
- * after grouping and be passed the grouped data: each datum is the array of
- * input data corresponding to the current group.
- *
- * The default reducer for the **title** channel returns a summary list of the
- * top 5 values with the corresponding number of occurrences.
- *
- * The outputs may also include *filter* and *sort* options (with *reverse*) to
- * specify which groups are generated. Use filter: null to generate empty
- * groups, for example to impute sum=0 for empty cells.
- *
- * See also **groupZ**, **groupX**, and **groupY** if you need to group by
- * series, *x*, or *y*.
+ * Non-grouping channels declared in *options* but not *outputs* are computed on
+ * reduced data after grouping, which defaults to the array of data for the
+ * current group.
  */
 export function group<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;

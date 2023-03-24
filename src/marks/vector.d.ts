@@ -6,6 +6,7 @@ export type VectorShapeName = "arrow" | "spike";
 
 /** A vector shape implementation. */
 export interface VectorShapeImplementation {
+  /** Draws a shape of the given *length* and *radius* to the given *context*. */
   draw(context: CanvasPath, length: number, radius: number): void;
 }
 
@@ -53,9 +54,9 @@ export interface VectorOptions extends MarkOptions {
    * The vector’s position along its orientation relative to its anchor point; a
    * constant. Assuming a default **rotate** angle of 0°, one of:
    *
-   * * *start* - from [*x*, *y*] to [*x*, *y* - *l*]
-   * * *middle* (default) - from [*x*, *y* + *l* / 2] to [*x*, *y* - *l* / 2]
-   * * *end* - from [*x*, *y* + *l*] to [*x*, *y*]
+   * - *start* - from [*x*, *y*] to [*x*, *y* - *l*]
+   * - *middle* (default) - from [*x*, *y* + *l* / 2] to [*x*, *y* - *l* / 2]
+   * - *end* - from [*x*, *y* + *l*] to [*x*, *y*]
    *
    * where [*x*, *y*] is the vector’s anchor point and *l* is the vector’s
    * (possibly scaled) length in pixels.
