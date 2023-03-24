@@ -10,9 +10,8 @@ export interface HexbinOptions {
   binWidth?: number;
 
   /**
-   * How to group data prior to binning. If not specified, defaults to the
-   * *fill* channel, if any, or the *stroke* channel, if any. If null, bins will
-   * not be subdivided.
+   * How to subdivide bins. If not specified, defaults to the *fill* channel, if
+   * any, or the *stroke* channel, if any. If null, bins will not be subdivided.
    */
   z?: ChannelValue;
 }
