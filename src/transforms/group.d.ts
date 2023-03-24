@@ -2,27 +2,40 @@ import type {ChannelReducers} from "../channel.js";
 import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 
+/** Options for outputs of the group transform. */
 export interface GroupOutputOptions {
   /**
-   * The data reducer; defaults to the subset of data corresponding to the
-   * group in input order.
+   * How to reduce data; defaults to the identity reducer, outputting the array
+   * of data for each group in input order.
    */
   data?: Reducer | null;
+
   /**
-   * The filter reducer, defaults to a check on empty groups. Use null to return
-   * all groups, for example to impute sum=0 for a line chart.
+   * How to filter groups: if the reducer emits a falsey value, the group will
+   * be dropped; by default, empty groups are dropped. Use null to disable
+   * filtering and return all groups, for example to impute missing zeroes when
+   * summing values for a line chart.
    */
   filter?: Reducer | null;
+
   /**
-   * The order in which the groups are generated.
+   * How to order groups. By default, groups are returned in ascending natural
+   * order along *x*, *y*, and *z* (or *fill* or *stroke*). Group order affects
+   * draw order of overlapping marks, and may be useful in conjunction with the
+   * stack transform which defaults to input order. For example to place the
+   * smallest group within each stack on the baseline:
+   *
+   * ```js
+   * Plot.groupX({y: "count", sort: "count"}, {fill: "sex", x: "sport"})
+   * ```
    */
   sort?: Reducer | null;
-  /**
-   * Reverse the order in which the groups are generated.
-   */
+
+  /** If true, reverse the order of generated groups; defaults to false. */
   reverse?: boolean;
 }
 
+/** How to reduce grouped channel values. */
 export type GroupOutputs = ChannelReducers & GroupOutputOptions;
 
 /**
