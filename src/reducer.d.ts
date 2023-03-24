@@ -25,11 +25,12 @@ export type ReducerName =
   | "mode"
   | ReducerPercentile;
 
-export type ReducerFunction = (values: any[]) => any;
+export type ReducerFunction<S = any, T = S> = (values: S[]) => T;
 
-// TODO scope, label
-export interface ReducerImplementation {
-  reduceIndex(index: number[], values: any[]): any;
+export interface ReducerImplementation<S = any, T = S> {
+  reduceIndex(index: number[], values: S[]): T;
+  // TODO scope
+  // TODO label
 }
 
 /** How to reduce aggregated values. */

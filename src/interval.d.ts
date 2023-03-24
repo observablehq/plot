@@ -82,10 +82,10 @@ export interface NiceIntervalImplementation<T> extends RangeIntervalImplementati
 type LiteralInterval<T> = T extends Date ? TimeIntervalName : T extends number ? number : never;
 
 /** How to partition a continuous range into discrete intervals. */
-export type Interval<T = any> = LiteralInterval<T> | IntervalImplementation<T>;
+export type Interval<T = number | Date> = LiteralInterval<T> | IntervalImplementation<T>;
 
 /** An interval that supports the range method, say for thresholds or ticks. */
-export type RangeInterval<T = any> = LiteralInterval<T> | RangeIntervalImplementation<T>;
+export type RangeInterval<T = number | Date> = LiteralInterval<T> | RangeIntervalImplementation<T>;
 
 /** An interval that can be used to nice a scale domain. */
-export type NiceInterval<T = any> = LiteralInterval<T> | NiceIntervalImplementation<T>;
+export type NiceInterval<T = number | Date> = LiteralInterval<T> | NiceIntervalImplementation<T>;

@@ -7,13 +7,13 @@ import type {Transformed} from "./basic.js";
 export type ThresholdsName = "freedman-diaconis" | "scott" | "sturges" | "auto";
 
 /** How to subdivide a continuous domain into discrete bins (based on data). */
-export type ThresholdsFunction = (values: any[], min: any, max: any) => any[] | RangeInterval | number;
+export type ThresholdsFunction<T = number | Date> = (values: T[], min: T, max: T) => T[] | RangeInterval<T> | number;
 
 /** How to subdivide a continuous domain into discrete bins. */
-export type Thresholds = ThresholdsName | ThresholdsFunction | RangeInterval | any[];
+export type Thresholds<T = number | Date> = ThresholdsName | ThresholdsFunction<T> | RangeInterval<T> | T[] | number;
 
 /** Options for the bin transform. */
-export interface BinOptions {
+export interface BinOptions<T = number | Date> {
   /**
    * If true or a positive number, produce a cumulative distribution; if a
    * negative number, produce a [complementary cumulative](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29)
@@ -30,7 +30,7 @@ export interface BinOptions {
    * domain is used, the start and end of the domain will be extended to align
    * with the interval.
    */
-  domain?: ((values: any[]) => [min: any, max: any]) | [min: any, max: any];
+  domain?: ((values: T[]) => [min: T, max: T]) | [min: T, max: T];
 
   /**
    * How to subdivide the domain into bins. May be one of:
@@ -44,7 +44,7 @@ export interface BinOptions {
    * * an interval; see **interval**
    * * a function that returns an array, count, or interval
    */
-  thresholds?: Thresholds;
+  thresholds?: Thresholds<T>;
 
   /**
    * How to subdivide the domain into bins; an alternative to **thresholds**.
@@ -53,7 +53,7 @@ export interface BinOptions {
    * number *n*, threshold values are consecutive multiples of *n* that span the
    * domain.
    */
-  interval?: RangeInterval;
+  interval?: RangeInterval<T>;
 }
 
 /** How to reduce binned values. */
