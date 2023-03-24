@@ -3,52 +3,60 @@ import type {RangeInterval} from "../interval.js";
 import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 
+/** The built-in thresholds implementations. */
 export type ThresholdsName = "freedman-diaconis" | "scott" | "sturges" | "auto";
 
-export type ThresholdsFunction = (values: any[], min: any, max: any) => any[];
+/** How to subdivide a continuous domain into discrete bins (based on data). */
+export type ThresholdsFunction = (values: any[], min: any, max: any) => any[] | RangeInterval | number;
 
-export type Thresholds = ThresholdsName | ThresholdsFunction | RangeInterval | Iterable<any>;
+/** How to subdivide a continuous domain into discrete bins. */
+export type Thresholds = ThresholdsName | ThresholdsFunction | RangeInterval | any[];
 
+/** Options for the bin transform. */
 export interface BinOptions {
   /**
    * If true or a positive number, produce a cumulative distribution; if a
    * negative number, produce a [complementary cumulative](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29)
-   * distribution; if false or zero (the default), produce a probability
+   * distribution; if false or zero (the default), produce a frequency
    * distribution.
    */
   cumulative?: boolean | number;
 
   /**
-   * The domain, or a function that receives the values and returns the
-   * domain. Values outside the domain will be omitted.
+   * The domain of allowed values; if specified, values outside the domain will
+   * be ignored; otherwise defaults to the extent [*min*, *max*] of input
+   * values. If a function, it is passed the input values and must return the
+   * domain. When **thresholds** are specified as an interval and the default
+   * domain is used, the start and end of the domain will be extended to align
+   * with the interval.
    */
   domain?: ((values: any[]) => [min: any, max: any]) | [min: any, max: any];
 
   /**
-   * The **thresholds** value may be specified as:
+   * How to subdivide the domain into bins. May be one of:
    *
-   * * *auto* (default) - Scott’s rule, capped at 200
+   * * *auto* (default) - Scott’s rule, capped at 200 bins
    * * *freedman-diaconis* - the [Freedman–Diaconis rule](https://en.wikipedia.org/wiki/Freedman–Diaconis_rule)
    * * *scott* - [Scott’s normal reference rule](https://en.wikipedia.org/wiki/Histogram#Scott.27s_normal_reference_rule)
    * * *sturges* - [Sturges’ formula](https://en.wikipedia.org/wiki/Histogram#Sturges.27_formula)
-   * * a count (hint) representing the desired number of bins
+   * * a count representing the desired number of bins (a hint; not guaranteed)
    * * an array of *n* threshold values for *n* - 1 bins
-   * * an interval or time interval (see also **interval**)
-   * * a function that returns an array, count, or time interval
+   * * an interval; see **interval**
+   * * a function that returns an array, count, or interval
    */
   thresholds?: Thresholds;
 
   /**
-   * An alternative way of specifying the bins thresholds. It may be either an
-   * interval (object with a floor method), a time interval such as *day*, or a
-   * number. If a number *n*, threshold values are consecutive multiples of *n*
-   * that span the domain. When the thresholds are specified as an interval, and
-   * the default **domain** is used, the domain will automatically be extended
-   * to start and end to align with the interval.
+   * How to subdivide the domain into bins; an alternative to **thresholds**.
+   * May be either: an interval object that implements *floor*, *offset*, and
+   * *range* methods; a named time interval such as *day*; or a number. If a
+   * number *n*, threshold values are consecutive multiples of *n* that span the
+   * domain.
    */
   interval?: RangeInterval;
 }
 
+/** How to reduce binned values. */
 export type BinReducer =
   | Reducer
   | BinReducerFunction
@@ -60,35 +68,51 @@ export type BinReducer =
   | "y1"
   | "y2";
 
+/** A functional bin reducer implementation. */
 export type BinReducerFunction = (values: any[], extent: {x1: any; y1: any; x2: any; y2: any}) => any;
 
-// TODO scope, label
+/** A bin reducer implementation. */
 export interface BinReducerImplementation {
+  /**
+   * Given an *index* representing the contents of the current bin, the array of
+   * input channel *values*, and the current bin’s *extent*, returns the
+   * corresponding reduced value to output.
+   */
   reduceIndex(index: number[], values: any[], extent: {x1: any; y1: any; x2: any; y2: any}): any;
+  // TODO scope
+  // TODO label
 }
 
+/** Options for outputs of the bin transform. */
 export interface BinOutputOptions extends BinOptions {
   /**
-   * The data reducer; defaults to the array of values that belong to the bin in
-   * input order.
+   * How to reduce data; defaults to the identity reducer, outputting the array
+   * of data for each bin in input order.
    */
   data?: BinReducer | null;
 
   /**
-   * The filter reducer, defaults to a check on empty bins. Use null to return
-   * all bins, for example to impute sum=0 for a line chart.
+   * How to filter bins: if the reducer emits a falsey value, the bin will be
+   * dropped; by default, empty bins are dropped. Use null to disable filtering
+   * and return all bins, for example to impute missing zeroes when summing
+   * values for a line chart.
    */
   filter?: BinReducer | null;
 
   /**
-   * The order in which the bins are generated, specified as an aggregation
-   * method (defaults to ascending).
+   * How to order bins. By default, bins are returned in ascending natural order
+   * along *x*, *y*, and *z* (or *fill* or *stroke*). Bin order affects draw
+   * order of overlapping marks, and may be useful in conjunction with the stack
+   * transform which defaults to input order. For example to place the smallest
+   * bin within each stack on the baseline:
+   *
+   * ```js
+   * Plot.binX({y: "count", sort: "count"}, {fill: "sex", x: "weight"})
+   * ```
    */
   sort?: BinReducer | null;
 
-  /**
-   * Reverse the order in which the bins are generated.
-   */
+  /** If true, reverse the order of generated bins; defaults to false. */
   reverse?: boolean;
 }
 

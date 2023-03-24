@@ -32,4 +32,5 @@ export interface ReducerImplementation {
   reduceIndex(index: number[], values: any[]): any;
 }
 
+/** How to reduce aggregated values. */
 export type Reducer = ReducerName | ReducerFunction | ReducerImplementation;
