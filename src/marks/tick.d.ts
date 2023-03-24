@@ -26,12 +26,12 @@ export interface TickYOptions extends MarkOptions, Omit<InsetOptions, "insetTop"
 
 /**
  * Returns a new tickX mark for the given *data* and *options*. The **x**
- * channel indicates the vertical position of the tick, and the optional **y**
- * channel defines a band scale, for categorical ticks. For example, to create a
- * barcode plot of penguins’ weights:
+ * channel specifies the horizontal position of the tick, and the optional **y**
+ * categorical channel specifies its vertical position. For example, to create
+ * a horizontal barcode plot of penguins’ weights:
  *
  * ```js
- * Plot.tickY(penguins, { y: "body_mass_g", x: "sex", stroke: "species" })
+ * Plot.tickX(penguins, { x: "body_mass_g", y: "sex", stroke: "species" })
  * ```
  *
  * **x** defaults to identity, assuming that *data* contains numbers. If the
@@ -41,9 +41,9 @@ export function tickX(data?: Data, options?: TickXOptions): TickX;
 
 /**
  * Returns a new tickY mark for the given *data* and *options*. The **y**
- * channel indicates the vertical position of the tick, and the optional **x**
- * channel defines a band scale, for categorical ticks. For example, to create a
- * barcode plot of penguins’ weights:
+ * channel specifies the vertical position of the tick, and the optional **x**
+ * categorical channel specifies its horizontal position. For example, to create
+ * a vertical barcode plot of penguins’ weights:
  *
  * ```js
  * Plot.tickY(penguins, { y: "body_mass_g", x: "sex", stroke: "species" })
