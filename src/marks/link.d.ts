@@ -7,7 +7,7 @@ import type {MarkerOptions} from "../marker.js";
 export interface LinkOptions extends MarkOptions, MarkerOptions, CurveAutoOptions {
   /** The horizontal position, for vertical links; bound to the *x* scale. */
   x?: ChannelValueSpec;
-  /** The vertical position, for horizontal links; bound to the *x* scale. */
+  /** The vertical position, for horizontal links; bound to the *y* scale. */
   y?: ChannelValueSpec;
   /** The starting horizontal position; bound to the *x* scale. */
   x1?: ChannelValueSpec;
