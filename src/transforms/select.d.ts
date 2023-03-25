@@ -1,83 +1,78 @@
 import type {ChannelValue} from "../channel.js";
 import type {Transformed} from "./basic.js";
 
-export type SelectorName = "first" | "last" | "min" | "max"; // TODO restrict based on context
-
-export type SelectorFunction = (index: number[], values: any[] | null) => number[];
-
-export type SelectorChannel<T> = {[key in keyof T]?: SelectorName | SelectorFunction};
-
-/** How to select points within each series. */
-export type Selector<T> = SelectorName | SelectorFunction | SelectorChannel<T>;
+/**
+ * How to select points within each series; one of:
+ *
+ * - *first* - the first point by input order
+ * - *last* - the last point by input order
+ * - a {*channel*: *min*} object - the minimum point by channel value
+ * - a {*channel*: *max*} object - the maximum point by channel value
+ * - a {*channel*: function} object to filter by series index and channel values
+ * - a function to filter by series index
+ *
+ * A selector function is given an *index* representing the contents of the
+ * current series, the input channel’s array of *source* values (if a channel is
+ * specified), and returns the corresponding subset of *index* to be selected.
+ */
+export type Selector<T> =
+  | "first"
+  | "last"
+  | ((index: number[]) => number[])
+  | {[key in keyof T]?: "min" | "max" | ((index: number[], values: any[]) => number[])};
 
 /** Options for the select transform. */
 export interface SelectOptions {
+  /**
+   * How to group data into series. If not specified, series will be determined
+   * by the **fill** channel, if any, or the **stroke** channel, if any.
+   */
   z?: ChannelValue;
 }
 
 /**
- * Groups points into series according to the *z* channel, or the *fill* or
- * *stroke* channel if no *z* channel is provided, then selects points from each
- * series based on the given selector. The selector can be specified as:
- *
- * - *first* - the first point by input order
- * - *last* - the last point by input order
- * - a {*channel*: *min*} object - the minimum point by the given *channel*’s value
- * - a {*channel*: *max*} object - the maximum point by the given *channel*’s value
- * - a {*channel*: function} object to filter based on series index and channel values
- * - a function to filter based on series index
- *
- * For example to select the maximum point of the *y* channel, like selectMaxY:
+ * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
+ * then selects points from each series based on the given *selector*. For
+ * example to select the maximum point of the **y** channel, as selectMaxY:
  *
  * ```js
  * Plot.text(data, Plot.select({y: "max"}, options))
  * ```
- *
- * When the selector is specified as a function, it is passed the index of each
- * series as input, along with channel values if a *channel* name was given; it
- * must return the corresponding index of selected points (a subset of the
- * passed-in index).
  */
 export function select<T>(selector: Selector<T>, options?: T & SelectOptions): Transformed<T>;
 
 /**
- * Groups points into series according to the *z* channel, or the *fill* or
- * *stroke* channel if no *z* channel is provided, and then selects the first
- * point from each series in input order.
+ * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
+ * then selects the first point from each series in input order.
  */
 export function selectFirst<T>(options?: T & SelectOptions): Transformed<T>;
 
 /**
- * Groups points into series according to the *z* channel, or the *fill* or
- * *stroke* channel if no *z* channel is provided, and then selects the last
- * point from each series in input order.
+ * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
+ * then selects the last point from each series in input order.
  */
 export function selectLast<T>(options?: T & SelectOptions): Transformed<T>;
 
 /**
- * Groups points into series according to the *z* channel, or the *fill* or
- * *stroke* channel if no *z* channel is provided, and then selects the minimum
- * point from each series based on *x* channel value.
+ * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
+ * then selects the minimum point from each series based on **x** channel value.
  */
 export function selectMinX<T>(options?: T & SelectOptions): Transformed<T>;
 
 /**
- * Groups points into series according to the *z* channel, or the *fill* or
- * *stroke* channel if no *z* channel is provided, and then selects the minimum
- * point from each series based on *y* channel value.
+ * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
+ * then selects the minimum point from each series based on **y** channel value.
  */
 export function selectMinY<T>(options?: T & SelectOptions): Transformed<T>;
 
 /**
- * Groups points into series according to the *z* channel, or the *fill* or
- * *stroke* channel if no *z* channel is provided, and then selects the maximum
- * point from each series based on *x* channel value.
+ * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
+ * then selects the maximum point from each series based on **x** channel value.
  */
 export function selectMaxX<T>(options?: T & SelectOptions): Transformed<T>;
 
 /**
- * Groups points into series according to the *z* channel, or the *fill* or
- * *stroke* channel if no *z* channel is provided, and then selects the maximum
- * point from each series based on *y* channel value.
+ * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
+ * then selects the maximum point from each series based on **y** channel value.
  */
 export function selectMaxY<T>(options?: T & SelectOptions): Transformed<T>;

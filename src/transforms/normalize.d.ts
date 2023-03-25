@@ -49,23 +49,23 @@ export interface NormalizeOptions {
 }
 
 /**
- * Groups data into series using the first channel of *z*, *fill*, or *stroke*
- * (if any), then derives new *x*, *x1*, and *x2* channels for each
- * corresponding input channel by normalizing to the given *basis*. For example,
- * if the series values are [*x₀*, *x₁*, *x₂*, …] and the *first* basis is used,
- * the derived series values would be [*x₀* / *x₀*, *x₁* / *x₀*, *x₂* / *x₀*, …]
- * as in an index chart.
+ * Groups data into series using the first channel of **z**, **fill**, or
+ * **stroke** (if any), then derives new **x**, **x1**, and **x2** channels for
+ * each corresponding input channel by normalizing to the given *basis*. For
+ * example, if the series values are [*x₀*, *x₁*, *x₂*, …] and the *first* basis
+ * is used, the derived series values would be [*x₀* / *x₀*, *x₁* / *x₀*, *x₂* /
+ * *x₀*, …] as in an index chart.
  */
 export function normalizeX<T>(basis?: NormalizeBasis, options?: T): Transformed<T>;
 export function normalizeX<T>(options?: T & NormalizeOptions): Transformed<T>;
 
 /**
- * Groups data into series using the first channel of *z*, *fill*, or *stroke*
- * (if any), then derives new *y*, *y1*, and *y2* channels for each
- * corresponding input channel by normalizing to the given *basis*. For example,
- * if the series values are [*y₀*, *y₁*, *y₂*, …] and the *first* basis is used,
- * the derived series values would be [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* / *y₀*, …]
- * as in an index chart.
+ * Groups data into series using the first channel of **z**, **fill**, or
+ * **stroke** (if any), then derives new **y**, **y1**, and **y2** channels for
+ * each corresponding input channel by normalizing to the given *basis*. For
+ * example, if the series values are [*y₀*, *y₁*, *y₂*, …] and the *first* basis
+ * is used, the derived series values would be [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* /
+ * *y₀*, …] as in an index chart.
  */
 export function normalizeY<T>(basis?: NormalizeBasis, options?: T): Transformed<T>;
 export function normalizeY<T>(options?: T & NormalizeOptions): Transformed<T>;
@@ -73,7 +73,8 @@ export function normalizeY<T>(options?: T & NormalizeOptions): Transformed<T>;
 /**
  * Given a normalize *basis*, returns a corresponding map implementation for use
  * with the map transform, allowing the normalization of arbitrary channels
- * instead of only *x* and *y*. For example, to normalize the *title* channel:
+ * instead of only **x** and **y**. For example, to normalize the **title**
+ * channel:
  *
  * ```js
  * Plot.map({title: Plot.normalize("first")}, {x: "Date", title: "Close", stroke: "Symbol"})

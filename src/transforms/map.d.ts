@@ -51,22 +51,22 @@ export type MapOutputs = {[key in ChannelName]?: Map};
 export interface MapOptions {
   /**
    * How to group data into series. If not specified, series will be determined
-   * by the *fill* channel, if any, or the *stroke* channel, if any.
+   * by the **fill** channel, if any, or the **stroke** channel, if any.
    */
   z?: ChannelValue;
 }
 
 /**
- * Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then
- * applies the specified *map* method to each of the *x*, *x1*, and *x2*
- * channels in the specified *options* to produce new channel values for each
- * series. The *map* method may be one of:
+ * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
+ * then applies the specified *map* method to each of the **x**, **x1**, and
+ * **x2** channels in the specified *options* to produce new channel values for
+ * each series. The *map* method may be one of:
  *
  * - a named map implementation such as *cumsum* or *rank*
  * - a function to be passed an array of values, returning new values
  * - an object that implements the *mapIndex* method
  *
- * For example, to produce a cumulative sum of random numbers on the *x*
+ * For example, to produce a cumulative sum of random numbers on the **x**
  * channel:
  *
  * ```js
@@ -76,16 +76,16 @@ export interface MapOptions {
 export function mapX<T>(map: Map, options?: T & MapOptions): Transformed<T>;
 
 /**
- * Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then
- * applies the specified map method to each of the *y*, *y1*, and *y2* channels
- * in the specified *options* to produce new channel values for each series. The
- * *map* method may be one of:
+ * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
+ * then applies the specified map method to each of the **y**, **y1**, and
+ * **y2** channels in the specified *options* to produce new channel values for
+ * each series. The *map* method may be one of:
  *
  * - a named map implementation such as *cumsum* or *rank*
  * - a function to be passed an array of values, returning new values
  * - an object that implements the *mapIndex* method
  *
- * For example, to produce a cumulative sum of random numbers on the *y*
+ * For example, to produce a cumulative sum of random numbers on the **y**
  * channel:
  *
  * ```js
@@ -95,16 +95,16 @@ export function mapX<T>(map: Map, options?: T & MapOptions): Transformed<T>;
 export function mapY<T>(map: Map, options?: T & MapOptions): Transformed<T>;
 
 /**
- * Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then for
- * each channel in the specified *outputs*, applies the corresponding *map*
- * method to produce new channel values for each series. Each *map* method may
- * be one of:
+ * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
+ * then for each channel in the specified *outputs*, applies the corresponding
+ * *map* method to produce new channel values for each series. Each *map* method
+ * may be one of:
  *
  * - a named map implementation such as *cumsum* or *rank*
  * - a function to be passed an array of values, returning new values
  * - an object that implements the *mapIndex* method
  *
- * For example, to produce a cumulative sum of random numbers on the *y*
+ * For example, to produce a cumulative sum of random numbers on the **y**
  * channel:
  *
  * ```js

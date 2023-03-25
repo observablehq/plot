@@ -8,9 +8,13 @@ import type {GroupOutputOptions} from "./group.js";
  * The built-in thresholds implementations; one of:
  *
  * - *auto* (default) - like *scott*, but capped at 200 bins
- * - *freedman-diaconis* - the [Freedman–Diaconis rule](https://en.wikipedia.org/wiki/Freedman–Diaconis_rule)
- * - *scott* - [Scott’s normal reference rule](https://en.wikipedia.org/wiki/Histogram#Scott.27s_normal_reference_rule)
- * - *sturges* - [Sturges’ formula](https://en.wikipedia.org/wiki/Histogram#Sturges.27_formula)
+ * - *freedman-diaconis* - the [Freedman–Diaconis rule][1]
+ * - *scott* - [Scott’s normal reference rule][2]
+ * - *sturges* - [Sturges’ formula][3]
+ *
+ * [1]: https://en.wikipedia.org/wiki/Freedman–Diaconis_rule
+ * [2]: https://en.wikipedia.org/wiki/Histogram#Scott.27s_normal_reference_rule
+ * [3]: https://en.wikipedia.org/wiki/Histogram#Sturges.27_formula
  */
 export type ThresholdsName = "freedman-diaconis" | "scott" | "sturges" | "auto";
 
@@ -35,11 +39,11 @@ export type ThresholdsFunction<T = any> = (values: T[], min: T, max: T) => Range
  * - a count representing the desired number of bins (a hint; not guaranteed)
  *
  * When thresholds are specified as a desired number of bins, or with the
- * built-in thresholds implementations,
- * [d3.ticks](https://github.com/d3/d3-array/blob/main/README.md#ticks) is used
- * for numeric domains and
- * [d3.utcTicks](https://github.com/d3/d3-time/blob/main/README.md#utcTicks) is
- * used for temporal domains.
+ * built-in thresholds implementations, [d3.ticks][1] is used for numeric
+ * domains and [d3.utcTicks][2] is used for temporal domains.
+ *
+ * [1]: https://github.com/d3/d3-array/blob/main/README.md#ticks
+ * [2]: https://github.com/d3/d3-time/blob/main/README.md#utcTicks
  */
 export type Thresholds<T = any> = ThresholdsName | ThresholdsFunction<T> | RangeInterval<T> | T[] | number;
 
@@ -48,8 +52,9 @@ export interface BinOptions {
   /**
    * If false or zero (default), produce a frequency distribution; if true or a
    * positive number, produce a cumulative distribution; if a negative number,
-   * produce a [complementary cumulative](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29)
-   * distribution.
+   * produce a [complementary cumulative][1] distribution.
+   *
+   * [1]: https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29
    */
   cumulative?: boolean | number;
 
@@ -101,12 +106,12 @@ export interface BinOptions {
  * How to reduce binned values; one of:
  *
  * - a generic reducer name, such as *count* or *first*
- * - *x* - the middle of the bin’s *x* extent (when binning on *x*)
- * - *x1* - the lower bound of the bin’s *x* extent (when binning on *x*)
- * - *x2* - the upper bound of the bin’s *x* extent (when binning on *x*)
- * - *y* - the middle of the bin’s *y* extent (when binning on *y*)
- * - *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
- * - *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
+ * - *x* - the middle of the bin’s **x** extent (when binning on **x**)
+ * - *x1* - the lower bound of the bin’s **x** extent (when binning on **x**)
+ * - *x2* - the upper bound of the bin’s **x** extent (when binning on **x**)
+ * - *y* - the middle of the bin’s **y** extent (when binning on **y**)
+ * - *y1* - the lower bound of the bin’s **y** extent (when binning on **y**)
+ * - *y2* - the upper bound of the bin’s **y** extent (when binning on **y**)
  * - a function that takes an array of values and returns the reduced value
  * - an object that implements the *reduceIndex* method
  *
