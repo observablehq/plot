@@ -2287,7 +2287,7 @@ Most aggregation methods require binding the output channel to an input channel;
 Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
 ```
 
-You can control whether a channel is computed before or after grouping. If a channel is declared only in *options* (and it is not a special group-eligible channel such as *x*, *y*, *z*, *fill*, or stroke), it will be computed after grouping and be passed the grouped data: each datum is the array of input data corresponding to the current group.
+You can control whether a channel is computed before or after grouping. If a channel is declared only in *options* (and it is not a special group-eligible channel such as *x*, *y*, *z*, *fill*, or *stroke*), it will be computed after grouping and be passed the grouped data: each datum is the array of input data corresponding to the current group.
 
 ```js
 Plot.groupX({y: "count"}, {x: "species", title: group => group.map(d => d.body_mass_g).join("\n")})

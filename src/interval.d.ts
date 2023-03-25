@@ -1,4 +1,9 @@
-/** The built-in time intervals; UTC or local time, depending on context. */
+/**
+ * The built-in time intervals; UTC or local time, depending on context. The
+ * *week* interval is an alias for *sunday*. The *quarter* interval is every
+ * three months, and the *half* interval is every six months, aligned at the
+ * start of the year.
+ */
 export type TimeIntervalName =
   | "second"
   | "minute"
@@ -65,15 +70,15 @@ export interface RangeIntervalImplementation<T> extends IntervalImplementation<T
  */
 export interface NiceIntervalImplementation<T> extends RangeIntervalImplementation<T> {
   /**
-   * Returns a new date representing the earliest interval boundary date after
-   * or equal to date. For example, d3.timeDay.ceil(date) typically returns
-   * 12:00 AM local time on the date following the given date.
+   * Returns the value representing the least interval boundary value greater
+   * than or equal to the specified *value*. For example, day.ceil(*date*)
+   * typically returns 12:00 AM on the date following the given date.
    *
    * This method is idempotent: if the specified date is already ceilinged to
-   * the current interval, a new date with an identical time is returned.
-   * Furthermore, the returned date is the maximum expressible value of the
-   * associated interval, such that interval.ceil(interval.ceil(date) + 1)
-   * returns the following interval boundary date.
+   * the current interval, the same value is returned. Furthermore, the returned
+   * value is the maximum expressible value of the associated interval, such
+   * that ceil(ceil(*value*) + *epsilon*) returns the following interval
+   * boundary value.
    */
   ceil(value: T): T;
 }
@@ -81,11 +86,32 @@ export interface NiceIntervalImplementation<T> extends RangeIntervalImplementati
 /** A literal that can be automatically promoted to an interval. */
 type LiteralInterval<T> = T extends Date ? TimeIntervalName : T extends number ? number : never;
 
-/** How to partition a continuous range into discrete intervals. */
+/**
+ * How to partition a continuous range into discrete intervals; one of:
+ *
+ * - an object that implements *floor* and *offset* methods
+ * - a named time interval such as *day* (for date intervals)
+ * - a number (for number intervals), defining intervals at integer multiples of *n*
+ */
 export type Interval<T = any> = LiteralInterval<T> | IntervalImplementation<T>;
 
-/** An interval that supports the range method, say for thresholds or ticks. */
+/**
+ * An interval that also supports the *range* method, used to subdivide a
+ * continuous range into discrete partitions, say for thresholds or ticks; one
+ * of:
+ *
+ * - an object that implements *floor*, *offset*, and *range* methods
+ * - a named time interval such as *day* (for date intervals)
+ * - a number (for number intervals), defining intervals at integer multiples of *n*
+ */
 export type RangeInterval<T = any> = LiteralInterval<T> | RangeIntervalImplementation<T>;
 
-/** An interval that can be used to nice a scale domain. */
+/**
+ * A range interval that also supports the *ceil* method, used to nice a scale
+ * domain; one of:
+ *
+ * - an object that implements *floor*, *ceil*, *offset*, and *range* methods
+ * - a named time interval such as *day* (for date intervals)
+ * - a number (for number intervals), defining intervals at integer multiples of *n*
+ */
 export type NiceInterval<T = any> = LiteralInterval<T> | NiceIntervalImplementation<T>;

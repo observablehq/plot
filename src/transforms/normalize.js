@@ -57,8 +57,8 @@ function normalizeAccessor(f) {
 
 const normalizeExtent = {
   mapIndex(I, S, T) {
-    const [s1, s2] = extent(I, (i) => S[i]),
-      d = s2 - s1;
+    const [s1, s2] = extent(I, (i) => S[i]);
+    const d = s2 - s1;
     for (const i of I) {
       T[i] = S[i] === null ? NaN : (S[i] - s1) / d;
     }
