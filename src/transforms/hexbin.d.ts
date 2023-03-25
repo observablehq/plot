@@ -17,39 +17,30 @@ export interface HexbinOptions {
 }
 
 /**
- * Groups points specified by the *x* and *y* channels into hexagonal bins in
- * scaled coordinates (pixels), computing new *x* and *y* channels as the
- * centers of each bin, and deriving new output channels by applying the
- * specified reducers (such as *count*) to each bin’s values. The first of the
- * *z*, *fill*, or *stroke* channels, if any, will be used to subdivide bins.
+ * Bins hexagonally on the scaled **x** and **y** channels; then subdivides bins
+ * on the first channel of **z**, **fill**, or **stroke**, if any; and lastly
+ * for each channel in the specified *outputs*, applies the corresponding
+ * *reduce* method to produce new channel values from the binned input channel
+ * values. Each *reduce* method may be one of:
  *
- * The hexbin transform can be applied to any mark that consumes *x* and *y*,
- * such as the dot, image, text, and vector marks. For the dot mark, the
- * **symbol** option defaults to *hexagon*, and the *r* option defaults to half
- * the **binWidth**. If a **fill** output channel is declared, the **stroke**
- * option defaults to *none*.
+ * - a named reducer implementation such as *count* or *sum*
+ * - a function that takes an array of values and returns the reduced value
+ * - an object that implements the *reduceIndex* method
  *
- * The reducer for each channel in *outputs* may be specified as:
+ * For example, for a heatmap of observed culmen lengths and depths:
  *
- * * *first* - the first value, in input order
- * * *last* - the last value, in input order
- * * *count* - the number of elements (frequency)
- * * *distinct* - the number of distinct values
- * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted frequency)
- * * *proportion-facet* - the sum proportional to the facet total
- * * *min* - the minimum value
- * * *min-index* - the zero-based index of the minimum value
- * * *max* - the maximum value
- * * *max-index* - the zero-based index of the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
- * * *mode* - the value with the most occurrences
- * * a function to be passed the array of values for each bin
- * * an object with a *reduceIndex* method
+ * ```js
+ * Plot.dot(penguins, Plot.hexbin({fill: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm"}))
+ * ```
  *
- * See also the hexgrid mark.
+ * The hexbin transform can be applied to any mark that consumes **x** and
+ * **y**, such as the dot, image, text, and vector marks; it is intended for
+ * aggregating continuous quantitative or temporal data, such as temperatures or
+ * times, into discrete hexagonal bins. For the dot mark, the **symbol** option
+ * defaults to *hexagon*, and the *r* option defaults to half the **binWidth**.
+ * If a **fill** output channel is declared, the **stroke** option defaults to
+ * *none*.
+ *
+ * To draw empty hexagons, see the hexgrid mark.
  */
 export function hexbin<T>(outputs?: ChannelReducers, options?: T & HexbinOptions): Initialized<T>;

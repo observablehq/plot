@@ -2,13 +2,13 @@ import type {ChannelReducers} from "../channel.js";
 import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 
-/** Options for outputs of the group transform. */
-export interface GroupOutputOptions {
+/** Options for outputs of the group (and bin) transform. */
+export interface GroupOutputOptions<T = Reducer> {
   /**
-   * How to reduce data; defaults to the identity reducer, outputting the array
+   * How to reduce data; defaults to the identity reducer, outputting the subset
    * of data for each group in input order.
    */
-  data?: Reducer;
+  data?: T;
 
   /**
    * How to filter groups: if the reducer emits a falsey value, the group will
@@ -16,7 +16,7 @@ export interface GroupOutputOptions {
    * filtering and return all groups, for example to impute missing zeroes when
    * summing values for a line chart.
    */
-  filter?: Reducer | null;
+  filter?: T | null;
 
   /**
    * How to order groups; if null (default), groups are returned in ascending
@@ -29,7 +29,7 @@ export interface GroupOutputOptions {
    * Plot.groupX({y: "count", sort: "count"}, {fill: "sex", x: "sport"})
    * ```
    */
-  sort?: Reducer | null;
+  sort?: T | null;
 
   /** If true, reverse the order of generated groups; defaults to false. */
   reverse?: boolean;

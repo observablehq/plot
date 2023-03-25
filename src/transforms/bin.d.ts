@@ -2,6 +2,7 @@ import type {ChannelReducers, ChannelValue} from "../channel.js";
 import type {RangeInterval} from "../interval.js";
 import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
+import type {GroupOutputOptions} from "./group.js";
 
 /**
  * The built-in thresholds implementations; one of:
@@ -143,43 +144,6 @@ export interface BinReducerImplementation<S = any, T = S> {
   // TODO label
 }
 
-/** Options for outputs of the bin transform. */
-export interface BinOutputOptions extends BinOptions {
-  /**
-   * How to reduce data; defaults to the identity reducer, outputting the array
-   * of data for each bin in input order.
-   */
-  data?: BinReducer;
-
-  /**
-   * How to filter bins: if the reducer emits a falsey value, the bin will be
-   * dropped; by default, empty bins are dropped. Use null to disable filtering
-   * and return all bins, for example to impute missing zeroes when summing
-   * values for a line chart.
-   *
-   * ```js
-   * Plot.binX({y: "count", filter: null}, {x: "weight"})
-   * ```
-   */
-  filter?: BinReducer | null;
-
-  /**
-   * How to order bins. By default, bins are returned in ascending natural order
-   * along *x*, *y*, and *z* (or *fill* or *stroke*). Bin order affects draw
-   * order of overlapping marks, and may be useful with the stack transform
-   * which defaults to input order. For example to place the smallest bin within
-   * each stack on the baseline:
-   *
-   * ```js
-   * Plot.binX({y: "count", sort: "count"}, {fill: "sex", x: "weight"})
-   * ```
-   */
-  sort?: BinReducer | null;
-
-  /** If true, reverse the order of generated bins; defaults to false. */
-  reverse?: boolean;
-}
-
 /**
  * When binning on **x** or **y**, you can specify the channel values as a
  * {value} object to provide separate bin options for each.
@@ -196,7 +160,7 @@ export type BinYInputs<T> = Omit<T, "y"> & {y?: ChannelValueBinSpec} & BinOption
 export type BinInputs<T> = Omit<T, "x" | "y"> & {x?: ChannelValueBinSpec; y?: ChannelValueBinSpec} & BinOptions;
 
 /** Output channels (and options) for the bin transform. */
-export type BinOutputs = ChannelReducers<BinReducer> & BinOutputOptions;
+export type BinOutputs = ChannelReducers<BinReducer> & GroupOutputOptions<BinReducer> & BinOptions;
 
 /**
  * Bins on the **x** channel; then subdivides bins on the first channel of
