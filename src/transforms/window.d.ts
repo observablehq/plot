@@ -101,7 +101,7 @@ export interface WindowOptions {
  *
  * If *windowOptions* is a number, it is shorthand for the window size **k**.
  */
-export function windowX<T>(windowOptions?: WindowOptions | number, options?: T): Transformed<T>;
+export function windowX<T>(windowOptions?: WindowOptions | WindowOptions["k"], options?: T): Transformed<T>;
 export function windowX<T>(options?: T & WindowOptions): Transformed<T>;
 
 /**
@@ -116,7 +116,7 @@ export function windowX<T>(options?: T & WindowOptions): Transformed<T>;
  *
  * If *windowOptions* is a number, it is shorthand for the window size **k**.
  */
-export function windowY<T>(windowOptions?: WindowOptions | number, options?: T): Transformed<T>;
+export function windowY<T>(windowOptions?: WindowOptions | WindowOptions["k"], options?: T): Transformed<T>;
 export function windowY<T>(options?: T & WindowOptions): Transformed<T>;
 
 /**
@@ -131,4 +131,4 @@ export function windowY<T>(options?: T & WindowOptions): Transformed<T>;
  *
  * If *options* is a number, it is shorthand for the window size **k**.
  */
-export function window(options?: WindowOptions | number): Map;
+export function window(options?: WindowOptions | WindowOptions["k"]): Map;
