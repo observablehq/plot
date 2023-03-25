@@ -1,4 +1,4 @@
-import type {ChannelReducers, ChannelValue} from "../channel.js";
+import type {ChannelReducers, ChannelValueBinSpec} from "../channel.js";
 import type {RangeInterval} from "../interval.js";
 import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
@@ -148,12 +148,6 @@ export interface BinReducerImplementation<S = any, T = S> {
   // TODO scope
   // TODO label
 }
-
-/**
- * When binning on **x** or **y**, you can specify the channel values as a
- * {value} object to provide separate bin options for each.
- */
-export type ChannelValueBinSpec = ChannelValue | ({value: ChannelValue} & BinOptions);
 
 /** Inputs to the binX transform. */
 export type BinXInputs<T> = Omit<T, "x"> & {x?: ChannelValueBinSpec} & BinOptions;

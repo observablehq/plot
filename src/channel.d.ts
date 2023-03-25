@@ -1,6 +1,7 @@
 import type {Interval} from "./interval.js";
 import type {Reducer} from "./reducer.js";
 import type {ScaleName, ScaleType} from "./scales.js";
+import type {BinOptions} from "./transforms/bin.js";
 
 /** Lazily-constructed channel values derived from data. */
 export interface ChannelTransform {
@@ -147,6 +148,18 @@ export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale?: Chan
  * {value, interval} object to specify an associated interval.
  */
 export type ChannelValueIntervalSpec = ChannelValueSpec | {value: ChannelValue; interval?: Interval}; // TODO scale override?
+
+/**
+ * When binning on **x** or **y**, you can specify the channel values as a
+ * {value} object to provide separate bin options for each.
+ */
+export type ChannelValueBinSpec = ChannelValue | ({value: ChannelValue} & BinOptions);
+
+/**
+ * For marks that use a one-dimensional dense interval transform, such as lineX
+ * and areaY; here interval must be a mark-level option.
+ */
+export type ChannelValueDenseBinSpec = ChannelValue | ({value: ChannelValue; scale?: Channel["scale"]} & Omit<BinOptions, "interval">); // prettier-ignore
 
 /**
  * The available inputs for imputing scale domains. In addition to a named

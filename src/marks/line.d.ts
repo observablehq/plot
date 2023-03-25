@@ -1,4 +1,4 @@
-import type {ChannelValue, ChannelValueSpec} from "../channel.js";
+import type {ChannelValue, ChannelValueDenseBinSpec, ChannelValueSpec} from "../channel.js";
 import type {CurveAutoOptions} from "../curve.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import type {MarkerOptions} from "../marker.js";
@@ -11,12 +11,12 @@ export interface LineOptions extends MarkOptions, MarkerOptions, CurveAutoOption
 }
 
 export interface LineXOptions extends LineOptions, BinOptions {
-  y?: ChannelValueSpec & Omit<BinOptions, "interval">; // interval must be mark-level option
+  y?: ChannelValueDenseBinSpec;
   reduce?: BinReducer;
 }
 
 export interface LineYOptions extends LineOptions, BinOptions {
-  x?: ChannelValueSpec & Omit<BinOptions, "interval">; // interval must be mark-level option
+  x?: ChannelValueDenseBinSpec;
   reduce?: BinReducer;
 }
 
