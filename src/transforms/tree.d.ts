@@ -1,6 +1,7 @@
 import type {ChannelValue} from "../channel.js";
 import type {CompareFunction, Transformed} from "./basic.js";
 
+/** Options for the tree transform. */
 export interface TreeTransformOptions {
   /**
    * The location of each node in the hierarchy; typically slash-separated
@@ -16,43 +17,48 @@ export interface TreeTransformOptions {
   delimiter?: string;
 
   /**
-   * How to orient the tree. If the **treeAnchor** is *left*, the root of the
-   * tree will be aligned with the left side of the frame; if **treeAnchor** is
-   * *right*, the root of the tree will be aligned with the right side of the
-   * frame; use the **insetLeft** and **insetRight** *x* scale options if
-   * horizontal padding is desired, say to make room for labels.
+   * How to orient the tree; one of:
+   *
+   * - *left* (default) - place the root on the left, with children extending right
+   * - *right* - place the root on the right, with children extending left
+   *
+   * Use the **insetLeft** and **insetRight** *x* scale options if horizontal
+   * padding is desired, say to make room for labels.
    */
   treeAnchor?: "left" | "right";
 
   /**
-   * How to layout the tree. The default **treeLayout** implements the
-   * Reingold–Tilford “tidy” algorithm. Use
-   * [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster)
-   * instead to align leaf nodes; see also Plot.cluster.
+   * How to layout the tree; defaults to [d3.tree][1] which implements the
+   * Reingold–Tilford “tidy” algorithm. Use [d3.cluster][2] instead to align
+   * leaf nodes; see also Plot.cluster.
+   *
+   * [1]: https://github.com/d3/d3-hierarchy/blob/main/README.md#tree
+   * [2]: https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster
    */
   treeLayout?: () => any;
 
   /**
-   * How much space to reserve between adjacent nodes in the layout. If the
+   * How much space to reserve between adjacent nodes in the layout; by default,
+   * non-siblings are at least twice as far apart as siblings. If the
    * **treeSeparation** is not null, it is a function that is passed two nodes
    * in the hierarchy and returns the desired (relative) amount of separation;
-   * see [d3-hierarchy’s
-   * _tree_.separation](https://github.com/d3/d3-hierarchy/blob/main/README.md#tree_separation)
-   * for more. By default, non-siblings are at least twice as far apart as
-   * siblings.
+   * see [d3-hierarchy’s _tree_.separation][1] for more.
+   *
+   * [1]: https://github.com/d3/d3-hierarchy/blob/main/README.md#tree_separation
    */
   treeSeparation?: CompareFunction | null;
 
   /**
-   * How to order nodes prior to laying them out. If the **treeSort** option is
-   * not null, it is typically a function that is passed two nodes in the
-   * hierarchy and compares them, similar to
-   * [_array_.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort);
-   * see [d3-hierarchy’s
-   * _node_.sort](https://github.com/d3/d3-hierarchy/blob/main/README.md#node_sort)
-   * for more. The **treeSort** option can also be specified as a string, in
-   * which case it refers either to a named column in data, or if it starts with
-   * “node:”, a node value such as node:name.
+   * How to order nodes prior to laying them out; by default, nodes are laid out
+   * in input order. If the **treeSort** option is not null, it is typically a
+   * function that is passed two nodes in the hierarchy and compares them,
+   * similar to [_array_.sort][1]; see [d3-hierarchy’s _node_.sort][2] for more.
+   * The **treeSort** option can also be specified as a string, in which case it
+   * refers either to a named column in data, or if it starts with “node:”, a
+   * node value such as *node:name*.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+   * [2]: https://github.com/d3/d3-hierarchy/blob/main/README.md#node_sort
    */
   treeSort?: CompareFunction | {node: (node: any) => any} | string | null;
 }
