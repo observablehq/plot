@@ -1,4 +1,4 @@
-import type {ChannelReducers} from "../channel.js";
+import type {ChannelReducers, ChannelValue} from "../channel.js";
 import type {RangeInterval} from "../interval.js";
 import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
@@ -42,8 +42,8 @@ export type ThresholdsFunction<T = any> = (values: T[], min: T, max: T) => Range
  */
 export type Thresholds<T = any> = ThresholdsName | ThresholdsFunction<T> | RangeInterval<T> | T[] | number;
 
-/** Options for the bin transform, with a domain of type T. */
-export interface BinOptions<T = any> {
+/** Options for the bin transform. */
+export interface BinOptions {
   /**
    * If false or zero (default), produce a frequency distribution; if true or a
    * positive number, produce a cumulative distribution; if a negative number,
@@ -59,7 +59,7 @@ export interface BinOptions<T = any> {
    * **thresholds** are specified as an interval and no domain is specified, the
    * effective domain will be extended to align with the interval.
    */
-  domain?: ((values: T[]) => [min: T, max: T]) | [min: T, max: T];
+  domain?: ((values: any[]) => [min: any, max: any]) | [min: any, max: any];
 
   /**
    * How to subdivide the domain into discrete bins; defaults to *auto*; one of:
@@ -76,7 +76,7 @@ export interface BinOptions<T = any> {
    * Plot.rectY(numbers, Plot.binX({y: "count"}, {thresholds: 10}))
    * ```
    */
-  thresholds?: Thresholds<T>;
+  thresholds?: Thresholds;
 
   /**
    * How to subdivide the domain into discrete bins; a stricter alternative to
@@ -93,7 +93,7 @@ export interface BinOptions<T = any> {
    * Plot.rectY(numbers, Plot.binX({y: "count"}, {interval: 1}))
    * ```
    */
-  interval?: RangeInterval<T>;
+  interval?: RangeInterval;
 }
 
 /**
@@ -180,6 +180,21 @@ export interface BinOutputOptions extends BinOptions {
   reverse?: boolean;
 }
 
+/**
+ * When binning on **x** or **y**, you can specify the channel values as a
+ * {value} object to provide separate bin options for each.
+ */
+export type ChannelValueBinSpec = ChannelValue | ({value: ChannelValue} & BinOptions);
+
+/** Inputs to the binX transform. */
+export type BinXInputs<T> = Omit<T, "x"> & {x?: ChannelValueBinSpec} & BinOptions;
+
+/** Inputs to the binY transform. */
+export type BinYInputs<T> = Omit<T, "y"> & {y?: ChannelValueBinSpec} & BinOptions;
+
+/** Inputs to the bin transform. */
+export type BinInputs<T> = Omit<T, "x" | "y"> & {x?: ChannelValueBinSpec; y?: ChannelValueBinSpec} & BinOptions;
+
 /** Output channels (and options) for the bin transform. */
 export type BinOutputs = ChannelReducers<BinReducer> & BinOutputOptions;
 
@@ -213,7 +228,7 @@ export type BinOutputs = ChannelReducers<BinReducer> & BinOutputOptions;
  * will be dropped from the returned *options*. The **insetLeft** and
  * **insetRight** options default to 0.5.
  */
-export function binX<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;
+export function binX<T>(outputs?: BinOutputs, options?: BinXInputs<T>): Transformed<T>;
 
 /**
  * Bins on the **y** channel; then subdivides bins on the first channel of
@@ -245,7 +260,7 @@ export function binX<T>(outputs?: BinOutputs, options?: T & BinOptions): Transfo
  * will be dropped from the returned *options*. The **insetTop** and
  * **insetBottom** options default to 0.5.
  */
-export function binY<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;
+export function binY<T>(outputs?: BinOutputs, options?: BinYInputs<T>): Transformed<T>;
 
 /**
  * Bins on the **x** and **y** channels; then subdivides bins on the first
@@ -278,9 +293,5 @@ export function binY<T>(outputs?: BinOutputs, options?: T & BinOptions): Transfo
  * **y2** output channels representing the vertical extent of each bin and a
  * **y** output channel representing the vertical midpoint. The **insetTop**,
  * **insetRight**, **insetBottom**, and **insetLeft** options default to 0.5.
- *
- * TODO To pass separate binning options for *x* and *y*, the **x** and **y**
- * input channels can be specified as an object with the options above and a
- * **value** option to specify the input channel values. (🌶 NOT TYPED.)
  */
-export function bin<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;
+export function bin<T>(outputs?: BinOutputs, options?: BinInputs<T>): Transformed<T>;
