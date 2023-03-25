@@ -99,7 +99,7 @@ export interface BinOptions<T = any> {
 /**
  * How to reduce binned values; one of:
  *
- * - a standard reducer name, such as *count* or *first*
+ * - a generic reducer name, such as *count* or *first*
  * - *x* - the middle of the bin’s *x* extent (when binning on *x*)
  * - *x1* - the lower bound of the bin’s *x* extent (when binning on *x*)
  * - *x2* - the upper bound of the bin’s *x* extent (when binning on *x*)
@@ -123,15 +123,20 @@ export type BinReducer =
   | "y1"
   | "y2";
 
-/** A functional bin reducer implementation. */
+/**
+ * A shorthand functional bin reducer implementation: given an array of input
+ * channel *values*, and the current bin’s *extent*, returns the corresponding
+ * reduced output value.
+ */
 export type BinReducerFunction<S = any, T = S> = (values: S[], extent: {x1: any; y1: any; x2: any; y2: any}) => T;
 
 /** A bin reducer implementation. */
 export interface BinReducerImplementation<S = any, T = S> {
   /**
-   * Given an *index* representing the contents of the current bin, the array of
-   * input channel *values*, and the current bin’s *extent*, returns the
-   * corresponding reduced output value.
+   * Given an *index* representing the contents of the current bin, the input
+   * channel’s array of *values*, and the current bin’s *extent*, returns the
+   * corresponding reduced output value. If no input channel is supplied (e.g.,
+   * as with the *count* reducer) then *values* may be undefined.
    */
   reduceIndex(index: number[], values: S[], extent: {x1: any; y1: any; x2: any; y2: any}): T;
   // TODO scope
@@ -176,9 +181,7 @@ export interface BinOutputOptions extends BinOptions {
 }
 
 /**
- * How to reduce binned channel values.
- *
- * TODO default **title** and **href** reducers
+ * Output channels (and options) for the bin transform.
  */
 export type BinOutputs = ChannelReducers<BinReducer> & BinOutputOptions;
 

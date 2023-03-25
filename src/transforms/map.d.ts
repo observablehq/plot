@@ -20,11 +20,10 @@ export type MapName = "cumsum" | "rank" | "quantile";
 /** A map implementation. */
 export interface MapImplementation<S = any, T = S> {
   /**
-   * Given the *index* for each series (an array of integers), the input
+   * Given an *index* representing the contents of the current series, the input
    * channel’s array of *source* values, and the output channel’s array of
    * *target* values, populates the slots in *target* specified by *index* with
-   * the desired mapped output values. This method is invoked separately for
-   * each series.
+   * the desired mapped output values.
    */
   mapIndex(index: number[], source: S[], target: T[]): void;
 }
@@ -38,7 +37,14 @@ export interface MapImplementation<S = any, T = S> {
  */
 export type Map = MapImplementation | MapFunction | MapName;
 
-/** Outputs for the map transform. */
+/**
+ * Outputs for the map transform. Each declared output channel must have a
+ * corresponding input channel in *options*.
+ *
+ * When **x1** or **x2** is in *outputs*, reads the input channel **x** if
+ * **x1** or **x2** is not in *options*; likewise for **y1** or **y2**, reads
+ * the input channel **y** if **y1** or **y2** is not in *options*.
+ */
 export type MapOutputs = {[key in ChannelName]?: Map};
 
 /** Options for the map transform. */
@@ -104,8 +110,5 @@ export function mapY<T>(map: Map, options?: T & MapOptions): Transformed<T>;
  * ```js
  * Plot.map({y: "cumsum"}, {y: d3.randomNormal()})
  * ```
- *
- * Each declared channel in *outputs* must have a corresponding input channel in
- * *options*.
  */
 export function map<T>(outputs?: MapOutputs, options?: T & MapOptions): Transformed<T>;

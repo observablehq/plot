@@ -193,7 +193,20 @@ export type ChannelDomainValueSpec = ChannelDomainValue | ({value: ChannelDomain
 /** How to impute scale domains from channel values. */
 export type ChannelDomainSort = {[key in ScaleName]?: ChannelDomainValueSpec} & ChannelDomainOptions;
 
-/** How to reduce channel values, e.g. when binning or grouping. */
+/**
+ * Output channels for aggregating transforms, such as bin and group. Each
+ * declared output channel has an associated reducer, and typically a
+ * corresponding input channel in *options*. Non-grouping channels declared in
+ * *options* but not *outputs* are computed on reduced data after grouping,
+ * which defaults to the array of data for the current group.
+ *
+ * If **title** is in *options* but not *outputs*, the reducer defaults to
+ * summarizing the most common values. If **href** is in *options* but not
+ * *outputs*, the reducer defaults to *first*. When **x1** or **x2** is in
+ * *outputs*, reads the input channel **x** if **x1** or **x2** is not in
+ * *options*; likewise for **y1** or **y2**, reads the input channel **y** if
+ * **y1** or **y2** is not in *options*.
+ */
 export type ChannelReducers<T = Reducer> = {[key in ChannelName]?: T | {reduce: T; scale?: Channel["scale"]} | null};
 
 /** Abstract (unscaled) values, and associated scale, per channel. */

@@ -35,7 +35,7 @@ export interface GroupOutputOptions {
   reverse?: boolean;
 }
 
-/** How to reduce grouped channel values. */
+/** Output channels (and options) for the group transform. */
 export type GroupOutputs = ChannelReducers & GroupOutputOptions;
 
 /**
@@ -53,14 +53,6 @@ export type GroupOutputs = ChannelReducers & GroupOutputOptions;
  * ```js
  * Plot.barX(penguins, Plot.groupZ({x: "proportion"}, {fill: "species"}))
  * ```
- *
- * If **title** is not in *outputs* but is in *options*, it defaults to
- * summarizing the most common values. If **href** is not in *output* but is in
- * *options*, it defaults to *first*.
- *
- * Non-grouping channels declared in *options* but not *outputs* are computed on
- * reduced data after grouping, which defaults to the array of data for the
- * current group.
  */
 export function groupZ<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
 
@@ -84,13 +76,6 @@ export function groupZ<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
  * If **x** is not in *options*, it defaults to identity, assuming that the data
  * is ordinal. If **x** is not in *outputs*, it defaults to *first*; the *x1*
  * and *x2* channels, if any, will also be dropped from the returned *options*.
- * If **title** is not in *outputs* but is in *options*, it defaults to
- * summarizing the most common values. If **href** is not in *output* but is in
- * *options*, it defaults to *first*.
- *
- * Non-grouping channels declared in *options* but not *outputs* are computed on
- * reduced data after grouping, which defaults to the array of data for the
- * current group.
  */
 export function groupX<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
 
@@ -114,13 +99,6 @@ export function groupX<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
  * If **y** is not in *options*, it defaults to identity, assuming that the data
  * is ordinal. If **y** is not in *outputs*, it defaults to *first*; the *y1*
  * and *y2* channels, if any, will also be dropped from the returned *options*.
- * If **title** is not in *outputs* but is in *options*, it defaults to
- * summarizing the most common values. If **href** is not in *output* but is in
- * *options*, it defaults to *first*.
- *
- * Non-grouping channels declared in *options* but not *outputs* are computed on
- * reduced data after grouping, which defaults to the array of data for the
- * current group.
  */
 export function groupY<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
 
@@ -147,12 +125,6 @@ export function groupY<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
  * *x1* and *x2* channels, if any, will also be dropped from the returned
  * *options*. Likewise if **y** is not in *outputs*, it defaults to *first*; the
  * *y1* and *y2* channels, if any, will also be dropped from the returned
- * *options*. If **title** is not in *outputs* but is in *options*, it defaults
- * to summarizing the most common values. If **href** is not in *output* but is
- * in *options*, it defaults to *first*.
- *
- * Non-grouping channels declared in *options* but not *outputs* are computed on
- * reduced data after grouping, which defaults to the array of data for the
- * current group.
+ * *options*.
  */
 export function group<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
