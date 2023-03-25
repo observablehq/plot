@@ -45,10 +45,9 @@ export interface VectorOptions extends MarkOptions {
   length?: ChannelValueSpec;
 
   /**
-   * The vector’s orientation (rotation angle); either a constant number in
-   * degrees clockwise, or an optional channel (with no associated scale).
-   * Defaults to 0 degrees with the vector pointing up; positive angles proceed
-   * clockwise.
+   * The vector’s orientation (rotation angle); either a constant number, or an
+   * optional channel (with no associated scale). Defaults to 0 degrees with the
+   * vector pointing up; positive angles proceed clockwise.
    */
   rotate?: ChannelValue;
 
