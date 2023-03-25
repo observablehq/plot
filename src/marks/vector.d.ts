@@ -1,7 +1,12 @@
 import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 
-/** The built-in vector shape implementations. */
+/**
+ * The built-in vector shape implementations; one of:
+ *
+ * - *arrow* - a straight line with an open arrowhead at the end (↑)
+ * - *spike* - an isosceles triangle with a flat base (▲)
+ */
 export type VectorShapeName = "arrow" | "spike";
 
 /** A vector shape implementation. */
@@ -10,7 +15,7 @@ export interface VectorShapeImplementation {
   draw(context: CanvasPath, length: number, radius: number): void;
 }
 
-/** How to draw a vector. */
+/** How to draw a vector: either a named shape or a custom implementation. */
 export type VectorShape = VectorShapeName | VectorShapeImplementation;
 
 /** Options for the vector mark. */

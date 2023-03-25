@@ -1,14 +1,14 @@
 import type {ChannelValue, ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
 import type {Interval} from "../interval.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
-import type {SymbolImplementation, SymbolName} from "../symbol.js";
+import type {SymbolType} from "../symbol.js";
 
 export interface DotOptions extends MarkOptions {
   x?: ChannelValueSpec;
   y?: ChannelValueSpec;
   r?: ChannelValueSpec | number;
   rotate?: ChannelValue | number;
-  symbol?: ChannelValueSpec | SymbolName | SymbolImplementation;
+  symbol?: ChannelValueSpec | SymbolType;
   frameAnchor?: FrameAnchor;
 }
 
