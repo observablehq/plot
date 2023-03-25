@@ -166,9 +166,9 @@ export interface BinOutputOptions extends BinOptions {
   /**
    * How to order bins. By default, bins are returned in ascending natural order
    * along *x*, *y*, and *z* (or *fill* or *stroke*). Bin order affects draw
-   * order of overlapping marks, and may be useful in conjunction with the stack
-   * transform which defaults to input order. For example to place the smallest
-   * bin within each stack on the baseline:
+   * order of overlapping marks, and may be useful with the stack transform
+   * which defaults to input order. For example to place the smallest bin within
+   * each stack on the baseline:
    *
    * ```js
    * Plot.binX({y: "count", sort: "count"}, {fill: "sex", x: "weight"})
@@ -180,103 +180,107 @@ export interface BinOutputOptions extends BinOptions {
   reverse?: boolean;
 }
 
-/**
- * Output channels (and options) for the bin transform.
- */
+/** Output channels (and options) for the bin transform. */
 export type BinOutputs = ChannelReducers<BinReducer> & BinOutputOptions;
 
 /**
- * Aggregates continuous data—quantitative or temporal values such as
- * temperatures or times—into discrete bins and then computes summary statistics
- * for each bin such as a count or sum. The binX transform is often used in
- * conjunction with the rectY mark, to make histograms.
+ * Bins on the **x** channel; then subdivides bins on the first channel of
+ * **z**, **fill**, or **stroke**, if any; then further subdivides bins on the
+ * **y** channel, if any and if none of **y**, **y1**, and **y2** are in
+ * *outputs*; and lastly for each channel in the specified *outputs*, applies
+ * the corresponding *reduce* method to produce new channel values from the
+ * binned input channel values. Each *reduce* method may be one of:
  *
- * ```
+ * - a named reducer implementation such as *count* or *sum*
+ * - a function that takes an array of values and returns the reduced value
+ * - an object that implements the *reduceIndex* method
+ *
+ * For example, for a histogram of observed culmen lengths:
+ *
+ * ```js
  * Plot.rectY(penguins, Plot.binX({y: "count"}, {x: "culmen_length_mm"}))
  * ```
  *
- * Most aggregation methods require binding the output channel to an input
- * channel; for example, if you want the **y** output channel to be a *sum* (not
- * merely a count), there should be a corresponding **y** input channel
- * specifying which values to sum. If there is not, *sum* will be equivalent to
- * *count*.
+ * The binX transform is often used with the rectY mark to make histograms; it
+ * is intended for aggregating continuous quantitative or temporal data, such as
+ * temperatures or times, into discrete bins. See the groupX transform for
+ * ordinal or categorical data.
  *
- * TODO Group on {z, fill, stroke}, then optionally on y, then bin x. Will not
- * group on y if generating explicit y, y1, or y2 output channel. Otherwise
- * generates implicit y output channel.
- *
- * TODO If no explicit x output channel, generates x1 and x2 output channels
- * representing the extent of each bin, and x output channels representing the
- * midpoint, say for for labels.
- *
- * TODO x defaults to identity
- *
- * TODO default insetLeft and insetRight
+ * If **x** is not in *options*, it defaults to identity. If **x** is not in
+ * *outputs*, by default produces **x1** and **x2** output channels representing
+ * the extent of each bin and an **x** output channel representing the bin
+ * midpoint, say for for labels. If **y** is not in outputs, **y1** and **y2**
+ * will be dropped from the returned *options*. The **insetLeft** and
+ * **insetRight** options default to 0.5.
  */
 export function binX<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;
 
 /**
- * Aggregates continuous data—quantitative or temporal values such as
- * temperatures or times—into discrete bins and then computes summary statistics
- * for each bin such as a count or sum. The binY transform is often used in
- * conjunction with the rectX mark, to make vertical histograms.
+ * Bins on the **y** channel; then subdivides bins on the first channel of
+ * **z**, **fill**, or **stroke**, if any; then further subdivides bins on the
+ * **x** channel, if any and if none of **x**, **x1**, and **x2** are in
+ * *outputs*; and lastly for each channel in the specified *outputs*, applies
+ * the corresponding *reduce* method to produce new channel values from the
+ * binned input channel values. Each *reduce* method may be one of:
  *
- * ```
+ * - a named reducer implementation such as *count* or *sum*
+ * - a function that takes an array of values and returns the reduced value
+ * - an object that implements the *reduceIndex* method
+ *
+ * For example, for a histogram of observed culmen lengths:
+ *
+ * ```js
  * Plot.rectX(penguins, Plot.binY({x: "count"}, {y: "culmen_length_mm"}))
  * ```
  *
- * Most aggregation methods require binding the output channel to an input
- * channel; for example, if you want the **y** output channel to be a *sum* (not
- * merely a count), there should be a corresponding **y** input channel
- * specifying which values to sum. If there is not, *sum* will be equivalent to
- * *count*.
+ * The binY transform is often used with the rectX mark to make histograms; it
+ * is intended for aggregating continuous quantitative or temporal data, such as
+ * temperatures or times, into discrete bins. See the groupY transform for
+ * ordinal or categorical data.
  *
- * TODO Group on {z, fill, stroke}, then optionally on x, then bin y. Will not
- * group on x if generating explicit x, x1, or x2 output channel. Otherwise
- * generates implicit x output channel.
- *
- * If no explicit y output channel, generates y1 and y2 output channels
- * representing the extent of each bin, and y output channels representing the
- * midpoint, say for for labels.
- *
- * TODO y defaults to identity
- *
- * TODO default insetTop and insetBottom
+ * If **y** is not in *options*, it defaults to identity. If **y** is not in
+ * *outputs*, by default produces **y1** and **y2** output channels representing
+ * the extent of each bin and a **y** output channel representing the bin
+ * midpoint, say for for labels. If **x** is not in outputs, **x1** and **x2**
+ * will be dropped from the returned *options*. The **insetTop** and
+ * **insetBottom** options default to 0.5.
  */
 export function binY<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;
 
 /**
- * Aggregates continuous data—quantitative or temporal values such as
- * temperatures or times—into discrete *x* and *y* bins and then computes
- * summary statistics for each bin such as a count or sum. The bin transform is
- * often used in conjunction with the rect mark, to make heatmaps.
+ * Bins on the **x** and **y** channels; then subdivides bins on the first
+ * channel of **z**, **fill**, or **stroke**, if any; and lastly for each
+ * channel in the specified *outputs*, applies the corresponding *reduce* method
+ * to produce new channel values from the binned input channel values. Each
+ * *reduce* method may be one of:
  *
- * ```
+ * - a named reducer implementation such as *count* or *sum*
+ * - a function that takes an array of values and returns the reduced value
+ * - an object that implements the *reduceIndex* method
+ *
+ * For example, for a heatmap of observed culmen lengths and depths:
+ *
+ * ```js
  * Plot.rect(penguins, Plot.bin({fill: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm"}))
  * ```
  *
- * Most aggregation methods require binding the output channel to an input
- * channel; for example, if you want the **fill** output channel to be a *sum*
- * (not merely a count), there should be a corresponding **fill** input channel
- * specifying which values to sum. If there is not, *sum* will be equivalent to
- * *count*.
+ * The bin transform is often used with the rect mark to make heatmaps; it is
+ * intended for aggregating continuous quantitative or temporal data, such as
+ * temperatures or times, into discrete bins. See the group transform for
+ * ordinal or categorical data.
  *
- * To pass separate binning options for *x* and *y*, the **x** and **y** input
- * channels can be specified as an object with the options above and a **value**
- * option to specify the input channel values. (🌶 NOT TYPED.)
+ * If neither **x** nor **y** are in *options*, then **x** and **y** default to
+ * accessors assuming that *data* contains tuples [[*x₀*, *y₀*], [*x₁*, *y₁*],
+ * [*x₂*, *y₂*], …]. If **x** is not in *outputs*, by default produces **x1**
+ * and **x2** output channels representing the horizontal extent of each bin and
+ * a **x** output channel representing the horizontal midpoint, say for for
+ * labels. Likewise if **y** is not in *outputs*, by default produces **y1** and
+ * **y2** output channels representing the vertical extent of each bin and a
+ * **y** output channel representing the vertical midpoint. The **insetTop**,
+ * **insetRight**, **insetBottom**, and **insetLeft** options default to 0.5.
  *
- * If no explicit x output channel, generates x1 and x2 output channels
- * representing the extent of each bin, and x output channels representing the
- * midpoint, say for for labels.
-
- * Likewise if no explicit y output channel, generates y1 and y2 output channels
- * representing the extent of each bin, and y output channels representing the
- * midpoint, say for for labels.
- *
- * TODO Group on {z, fill, stroke}, then bin on x and y.
- *
- * TODO tuple defaults
- *
- * TODO default insetTop, insetRight, insetBottom, insetLeft
+ * TODO To pass separate binning options for *x* and *y*, the **x** and **y**
+ * input channels can be specified as an object with the options above and a
+ * **value** option to specify the input channel values. (🌶 NOT TYPED.)
  */
 export function bin<T>(outputs?: BinOutputs, options?: T & BinOptions): Transformed<T>;

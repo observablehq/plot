@@ -21,9 +21,9 @@ export interface GroupOutputOptions {
   /**
    * How to order groups; if null (default), groups are returned in ascending
    * natural order along *x*, *y*, and *z* (or *fill* or *stroke*). Group order
-   * affects draw order of overlapping marks, and may be useful in conjunction
-   * with the stack transform which defaults to input order. For example to
-   * place the smallest group within each stack on the baseline:
+   * affects draw order of overlapping marks, and may be useful with the stack
+   * transform which defaults to input order. For example to place the smallest
+   * group within each stack on the baseline:
    *
    * ```js
    * Plot.groupX({y: "count", sort: "count"}, {fill: "sex", x: "sport"})
@@ -39,10 +39,10 @@ export interface GroupOutputOptions {
 export type GroupOutputs = ChannelReducers & GroupOutputOptions;
 
 /**
- * Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then for
- * each channel in the specified *outputs*, applies the corresponding *reduce*
- * method to produce new channel values from the grouped input channel values.
- * Each *reduce* method may be one of:
+ * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
+ * then for each channel in the specified *outputs*, applies the corresponding
+ * *reduce* method to produce new channel values from the grouped input channel
+ * values. Each *reduce* method may be one of:
  *
  * - a named reducer implementation such as *count* or *sum*
  * - a function that takes an array of values and returns the reduced value
@@ -57,8 +57,8 @@ export type GroupOutputs = ChannelReducers & GroupOutputOptions;
 export function groupZ<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
 
 /**
- * Groups on the *x* input channel; then subdivides groups on the first channel
- * of *z*, *fill*, or *stroke*, if any; and then for each channel in the
+ * Groups on the **x** channel; then subdivides groups on the first channel of
+ * **z**, **fill**, or **stroke**, if any; and then for each channel in the
  * specified *outputs*, applies the corresponding *reduce* method to produce new
  * channel values from the grouped input channel values. Each *reduce* method
  * may be one of:
@@ -73,41 +73,49 @@ export function groupZ<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
  * Plot.barY(penguins, Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"}))
  * ```
  *
- * If **x** is not in *options*, it defaults to identity, assuming that the data
- * is ordinal. If **x** is not in *outputs*, it defaults to *first*; the *x1*
- * and *x2* channels, if any, will also be dropped from the returned *options*.
+ * The groupX transform is often used with the barY mark to make bar charts; it
+ * is intended for aggregating ordinal or categorical data, such as names. See
+ * the binX transform for continuous data.
+ *
+ * If **x** is not in *options*, it defaults to identity. If **x** is not in
+ * *outputs*, it defaults to *first*, and the **x1** and **x2** channels, if
+ * any, will be dropped from the returned *options*.
  */
 export function groupX<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
 
 /**
- * Groups on the *y* channel; then subdivides groups on the first channel of
- * *z*, *fill*, or *stroke*, if any; and then for each channel in the specified
- * *outputs*, applies the corresponding *reduce* method to produce new channel
- * values from the grouped input channel values. Each *reduce* method may be one
- * of:
+ * Groups on the **y** channel; then subdivides groups on the first channel of
+ * **z**, **fill**, or **stroke**, if any; and then for each channel in the
+ * specified *outputs*, applies the corresponding *reduce* method to produce new
+ * channel values from the grouped input channel values. Each *reduce* method
+ * may be one of:
  *
  * - a named reducer implementation such as *count* or *sum*
  * - a function that takes an array of values and returns the reduced value
  * - an object that implements the *reduceIndex* method
  *
- * For example, for a vertical bar chart of species by total mass:
+ * For example, for a horizontal bar chart of species by total mass:
  *
  * ```js
- * Plot.barY(penguins, Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"}))
+ * Plot.barX(penguins, Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"}))
  * ```
  *
- * If **y** is not in *options*, it defaults to identity, assuming that the data
- * is ordinal. If **y** is not in *outputs*, it defaults to *first*; the *y1*
- * and *y2* channels, if any, will also be dropped from the returned *options*.
+ * The groupY transform is often used with the barX mark to make bar charts; it
+ * is intended for aggregating ordinal or categorical data, such as names. See
+ * the binY transform for continuous data.
+ *
+ * If **y** is not in *options*, it defaults to identity. If **y** is not in
+ * *outputs*, it defaults to *first*, and the **y1** and **y2** channels, if
+ * any, will be dropped from the returned *options*.
  */
 export function groupY<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
 
 /**
- * Groups on the *x* and *y* channels; then subdivides groups on the first
- * channel of *z*, *fill*, or *stroke*, if any; and then for each channel in the
- * specified *outputs*, applies the corresponding *reduce* method to produce new
- * channel values from the grouped input channel values. Each *reduce* method
- * may be one of:
+ * Groups on the **x** and **y** channels; then subdivides groups on the first
+ * channel of **z**, **fill**, or **stroke**, if any; and then for each channel
+ * in the specified *outputs*, applies the corresponding *reduce* method to
+ * produce new channel values from the grouped input channel values. Each
+ * *reduce* method may be one of:
  *
  * - a named reducer implementation such as *count* or *sum*
  * - a function that takes an array of values and returns the reduced value
@@ -119,12 +127,16 @@ export function groupY<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
  * Plot.cell(penguins, Plot.group({fill: "count"}, {x: "island", y: "species"}))
  * ```
  *
+ * The group transform is often used with the cell mark to make heatmaps; it is
+ * intended for aggregating ordinal or categorical data, such as names. See the
+ * bin transform for continuous data.
+ *
  * If neither **x** nor **y** are in *options*, then **x** and **y** default to
  * accessors assuming that *data* contains tuples [[*x₀*, *y₀*], [*x₁*, *y₁*],
- * [*x₂*, *y₂*], …]. If **x** is not in *outputs*, it defaults to *first*; the
- * *x1* and *x2* channels, if any, will also be dropped from the returned
- * *options*. Likewise if **y** is not in *outputs*, it defaults to *first*; the
- * *y1* and *y2* channels, if any, will also be dropped from the returned
+ * [*x₂*, *y₂*], …]. If **x** is not in *outputs*, it defaults to *first*, and
+ * the **x1** and **x2** channels, if any, will be dropped from the returned
+ * *options*. Likewise if **y** is not in *outputs*, it defaults to *first*, and
+ * the **y1** and **y2** channels, if any, will be dropped from the returned
  * *options*.
  */
 export function group<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
