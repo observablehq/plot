@@ -1,53 +1,75 @@
 import type {ChannelValueSpec} from "../channel.js";
 import type {Initialized} from "./basic.js";
 
-export type DodgeXAnchor = "right" | "left" | "middle";
-
-export type DodgeYAnchor = "top" | "bottom" | "middle";
-
+/** Options for the dodge transform. */
 export interface DodgeOptions {
-  /** The radius (area) of the mark. */
+  /**
+   * The radii of dodged circles; either a constant radius in pixels or a
+   * channel bound to the *r* scale (by default a *sqrt* scale, hence encoding
+   * effective area); defaults to 3 pixels. The minimum distance between two
+   * dodge circles is their combined radii plus any optional **padding**.
+   */
   r?: ChannelValueSpec;
-  /** A number of pixels added to the radius of the mark. */
+
+  /**
+   * The minimum additional separation between dodged circles, in pixels, added
+   * to their combined radii **r**; defaults to 1. When stroking circles, the
+   * padding can be set to same value as the **strokeWidth** to avoid
+   * overlapping strokes.
+   */
   padding?: number;
 }
 
+/** Options for the dodgeX transform. */
 export interface DodgeXOptions extends DodgeOptions {
-  /** The vertical position of the mark. */
+  /** The vertical position of the dodged circle centers. */
   y?: ChannelValueSpec;
-  /** The side of the frame used as an anchor; defaults to *left*. */
-  anchor?: DodgeXAnchor;
+
+  /**
+   * How to orient piles of dodged circles; one of:
+   *
+   * - *left* (default) - grow from the left to the right
+   * - *middle* - grow from the center out, in both horizontal directions
+   * - *right* - grow from the right to the left
+   */
+  anchor?: "right" | "left" | "middle";
 }
 
+/** Options for the dodgeY transform. */
 export interface DodgeYOptions extends DodgeOptions {
-  /** The horizontal position of the mark. */
+  /** The horizontal position of the dodged circle centers. */
   x?: ChannelValueSpec;
-  /** The side of the frame used as an anchor; defaults to *bottom*. */
-  anchor?: DodgeYAnchor;
+
+  /**
+   * How to orient piles of dodged circles; one of:
+   *
+   * - *bottom* (default) - grow from the bottom up
+   * - *middle* - grow from the center out, in both vertical directions
+   * - *top* - grown from the top down
+   */
+  anchor?: "top" | "bottom" | "middle";
 }
 
 /**
- * Given marks arranged along the *y* axis, the dodgeX transform piles them
- * horizontally by defining a *x* position channel that avoids overlapping. With
- * the *middle* anchor the piles will grow from the center in both directions;
- * with the *left* or *right* anchors, the piles will grow from the specified
- * anchor towards the opposite direction. The size of the mark is given by the
- * radius channel *r* plus an optional **padding**. The data is sorted by
- * descending radius by default; you can disable this behavior by setting the
- * **sort** or **reverse** option. The *y* position channel is unchanged.
+ * Given a **y** position channel, derives a new **x** position channel that
+ * places circles of the given radius **r** to avoid overlap. The order in which
+ * circles are placed, which defaults to descending radius **r** to place the
+ * largest circles first, significantly affects the overall layout; use the
+ * **sort** or **reverse** mark options to change the order.
+ *
+ * If *dodgeOptions* is a string, it is shorthand for the dodge **anchor**.
  */
+export function dodgeX<T>(dodgeOptions?: DodgeXOptions | DodgeXOptions["anchor"], options?: T): Initialized<T>;
 export function dodgeX<T>(options?: T & DodgeXOptions): Initialized<T>;
-export function dodgeX<T>(dodgeOptions?: DodgeXOptions | DodgeXAnchor, options?: T): Initialized<T>;
 
 /**
- * Given marks arranged along the *x* axis, the dodgeY transform piles them
- * vertically by defining a *y* position channel that avoids overlapping. With
- * the *middle* anchor the piles will grow from the center in both directions;
- * with the *top* or *bottom* anchors, the piles will grow from the specified
- * anchor towards the opposite direction. The size of the mark is given by the
- * radius channel *r* plus an optional **padding**. The data is sorted by
- * descending radius by default; you can disable this behavior by setting the
- * **sort** or **reverse** option. The *x* position channel is unchanged.
+ * Given an **x** position channel, derives a new **y** position channel that
+ * places circles of the given radius **r** to avoid overlap. The order in which
+ * circles are placed, which defaults to descending radius **r** to place the
+ * largest circles first, significantly affects the overall layout; use the
+ * **sort** or **reverse** mark options to change the order.
+ *
+ * If *dodgeOptions* is a string, it is shorthand for the dodge **anchor**.
  */
+export function dodgeY<T>(dodgeOptions?: DodgeYOptions | DodgeYOptions["anchor"], options?: T): Initialized<T>;
 export function dodgeY<T>(options?: T & DodgeYOptions): Initialized<T>;
-export function dodgeY<T>(dodgeOptions?: DodgeYOptions | DodgeYAnchor, options?: T): Initialized<T>;
