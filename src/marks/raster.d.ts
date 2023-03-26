@@ -6,27 +6,31 @@ import type {Interval} from "../interval.js";
 export type RasterInterpolateName = "nearest" | "barycentric" | "random-walk";
 
 /**
- * A spatial interpolation implementation. A function that returns a flat array
- * of *width* × *height* values, with the following arguments:
- *
- * - *index* - an array of numeric indexes into the channels *x*, *y*, *value*
- * - *width* - the width of the raster grid; a positive integer
- * - *height* - the height of the raster grid; a positive integer
- * - *x* - an array of values representing the *x*-position of samples
- * - *y* - an array of values representing the *y*-position of samples
- * - *value* - an array of values representing the sample’s observed value
+ * A spatial interpolation implementation. A function that receives samples’
+ * positions and values and returns a flat array of *width* × *height* values.
  *
  * So, *x*[*index*[0]] represents the *x*-position of the first sample,
  * *y*[*index*[0]] its *y*-position, and *value*[*index*[0]] its value (*e.g.*,
  * the observed height for a topographic map).
  */
 export type RasterInterpolateFunction = (
+  /** An array of numeric indexes into the channels *x*, *y*, *value*. */
   index: number[],
+
+  /** The width of the raster grid; a positive integer. */
   width: number,
+
+  /** The height of the raster grid; a positive integer. */
   height: number,
-  X: number[],
-  Y: number[],
-  V: any[]
+
+  /** An array of values representing the *x*-position of samples. */
+  x: number[],
+
+  /** An array of values representing the *y*-position of samples. */
+  y: number[],
+
+  /** An array of values representing the sample’s observed value. */
+  values: any[]
 ) => any[];
 
 /** A spatial interpolation method. */
@@ -61,54 +65,65 @@ export type RasterSampler = (x: number, y: number, facet: number[] & {fx: any; f
 export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity"> {
   /** The horizontal coordinate of a sample. */
   x?: ChannelValueSpec;
+
   /** The vertical coordinate of a sample. */
   y?: ChannelValueSpec;
+
   /**
    * The lower value of *x*, on the left edge of the raster (right edge if
    * reversed).
    */
   x1?: number;
+
   /**
    * The higher value of *x*, on the right edge of the raster (left edge if
    * reversed).
    */
   x2?: number;
+
   /**
    * The lower value of *y*, on the top edge of the raster (bottom edge if
    * reversed).
    */
   y1?: number;
+
   /**
    * The higher value of *y*, on the bottom edge of the raster (top edge if
    * reversed).
    */
   y2?: number;
+
   /**
    * The width of the raster grid, in actual columns of pixels. The grid might
    * be scaled to the frame’s dimensions.
    */
   width?: number;
+
   /**
    * The height of the raster grid, in actual rows of pixels. The grid might be
    * scaled to the frame’s dimensions.
    */
   height?: number;
+
   /**
    * The screen size of a raster pixel, used to determine the height and width
    * of the raster from the frame’s dimensions; defaults to 1
    */
   pixelSize?: number;
+
   /**
    * The sampling interval, used to determine the height and width of the raster
    * from the frame’s dimensions and the *x* and *y* extents.
    */
   interval?: Interval;
+
   /**
    * A non-negative pixel radius for smoothing; defaults to 0. Note that
    * blurring is applied on the values (before the color scale is applied) if
    * quantitative, and after (on the materialized pixels), if ordinal.
    */
   blur?: number;
+
   /**
    * The spatial interpolation method, when using *data* samples. One of:
    *
@@ -122,20 +137,24 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
    * - a function - custom interpolation
    */
   interpolate?: RasterInterpolate | "none" | null;
+
   /**
-   * The [image-rendering
-   * attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering);
-   * defaults to *auto* (bilinear). The option may be set to *pixelated* to
-   * disable bilinear interpolation for a sharper image; however, note that this
-   * is not supported in WebKit
+   * The [image-rendering attribute][1]; defaults to *auto* (bilinear). The
+   * option may be set to *pixelated* to disable bilinear interpolation for a
+   * sharper image; however, note that this is not supported in WebKit.
+   *
+   * [1]:
+   * https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering
    */
   imageRendering?: string;
+
   /**
    * The fill, typically bound to the *color* scale. Can be specified as a
    * constant, a channel based on the sample *data*, or as a function *f*(*x*,
    * *y*) to be evaluated at each pixel if the *data* is not provided.
    */
   fill?: ChannelValueSpec | RasterSampler;
+
   /**
    * The opacity, typically bound to the *opacity* scale. Can be specified as a
    * constant, a channel based on the sample *data*, or as a function *f*(*x*,
