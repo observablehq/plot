@@ -1185,7 +1185,7 @@ The box mark is a composite mark consisting of four marks:
 
 * a [rule](#rule) representing the extreme values (not including outliers)
 * a [bar](#bar) representing the interquartile range (trimmed to the data)
-* a [tick](#tick) represent the median value, and
+* a [tick](#tick) representing the median value, and
 * a [dot](#dot) representing outliers, if any
 
 The given *options* are passed through to these underlying marks, with the exception of the following options:
