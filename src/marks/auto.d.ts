@@ -8,8 +8,8 @@ type MarkType = "dot" | "line" | "area" | "rule" | "bar";
 
 export interface AutoOptions {
   /**
-   * The horizontal spatial encoding. If *y* is set without *x*, the *x* channel
-   * will default to the **count** reducer to produce a histogram; you can
+   * The horizontal spatial encoding. If **y** is set without **x**, the **x** channel
+   * will default to the *count* reducer to produce a histogram; you can
    * override this by passing {reduce: null}.
    */
   x?: ChannelValue | Reducer | ({value?: ChannelValue; reduce?: Reducer | null; zero?: boolean} & BinOptions);
