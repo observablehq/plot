@@ -61,7 +61,7 @@ export interface AutoSpec extends AutoOptions {
 /**
  * Returns a fully-specified *auto* options object, with nothing left undefined.
  * This is mostly for internal use, but it can be used to “lock down” the
- * specification of an *auto* mark, or to inspect the decisions its heuristic is
+ * specification of an **auto** mark, or to inspect the decisions its heuristic is
  * making.
  */
 export function autoSpec(data?: Data, options?: AutoOptions): AutoSpec;
