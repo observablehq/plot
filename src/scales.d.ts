@@ -503,4 +503,4 @@ export interface Scale extends ScaleOptions {
  * const color = Plot.scale({color: {type: "linear"}});
  * ```
  */
-export function scale(options?: {[name in ScaleName]?: ScaleOptions}): any;
+export function scale(options?: {[name in ScaleName]?: ScaleOptions}): Scale;
