@@ -1,21 +1,25 @@
 import type {ChannelTransform, ChannelValue} from "./channel.js";
 import type {Data} from "./mark.js";
 
+/** Something like Array, Float32Array, etc. */
+type ArrayishConstructor = (new (...args: any) => any) & {from: (data: Data) => Iterable<any> & ArrayLike<any>};
+
 /**
- * Given an iterable *data* and some *value* accessor (such as a field name),
- * returns an array (a column) of the specified *type* with the corresponding
- * value of each element of the data.
+ * Given some *data* and a channel *value* definition (such as a field name or
+ * function accessor), returns an array (a column) of the specified *type* with
+ * the corresponding value of each element of the data.
  *
  * If *type* is specified, it must be Array or a similar class that implements
- * the
- * [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)
- * interface such as a typed array.
+ * the [Array.from][1] interface such as a typed array.
  *
  * Plot.valueof is not guaranteed to return a new array. When a transform method
  * is used, or when the given *value* is an array that is compatible with the
  * requested *type*, the array may be returned as-is without making a copy.
+ *
+ * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
  */
-export function valueof(data: Data | null, value: ChannelValue | null, type?: any): any[] | null;
+export function valueof(data: Data | null, value: ChannelValue | null, type?: ArrayConstructor): any[] | null;
+export function valueof<T extends ArrayishConstructor>(data: Data | null, value: ChannelValue | null, type: T): InstanceType<T> | null; // prettier-ignore
 
 /**
  * This helper for constructing derived columns returns a [*column*,
