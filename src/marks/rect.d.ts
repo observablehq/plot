@@ -72,18 +72,17 @@ export interface RectOptions extends MarkOptions, InsetOptions, StackOptions {
   interval?: Interval;
 
   /**
-   * The [*x*
-   * radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for
-   * rounded corners.
+   * The [*x* radius][1] for rounded corners.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx
    */
   rx?: number | string;
 
   /**
-   * The [*y*
-   * radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for
-   * rounded corners.
+   * The [*y* radius][1] for rounded corners.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry
    */
-  ry?: number | string;
 }
 
 /** Options for the rectX mark. */
