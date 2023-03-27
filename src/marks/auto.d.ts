@@ -3,6 +3,11 @@ import type {CompoundMark, Data} from "../mark.js";
 import type {Reducer} from "../reducer.js";
 import type {BinOptions} from "../transforms/bin.js";
 
+/**
+ * One of the categories of mark; *line* includes lineX and lineY; *area*
+ * includes areaX and areaY; *rule* includes ruleX and ruleY; *bar* includes
+ * barX, barY, rectX, and rectY; and *dot* is just dot.
+ */
 type MarkType = "dot" | "line" | "area" | "rule" | "bar";
 
 export interface AutoOptions {
