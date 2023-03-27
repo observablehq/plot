@@ -5,25 +5,20 @@ import type {BinOptions, BinReducer} from "../transforms/bin.js";
 /** Options for the linearRegressionX and linearRegressionY marks. */
 interface LinearRegressionOptions extends MarkOptions, BinOptions {
   /**
-   * A channel for the dependent variable **x**.
-   */
-  x?: ChannelValueSpec;
-  /**
-   * A channel for the dependent variable **y**.
-   */
-  y?: ChannelValueSpec;
-  /**
    * The series, for multiple regressions.
    */
   z?: ChannelValue;
+
   /**
    * The confidence interval in [0, 1), or 0 to hide bands; defaults to 0.95.
    */
   ci?: number;
+
   /**
    * The distance (in pixels) between samples of the confidence band; defaults to 4.
    */
   precision?: number;
+
   /**
    * Reducer for when the independent variable is binned with an **interval**. For example, to create a trend line on the maximum value of the AAPL ticker by month:
    *
@@ -40,6 +35,11 @@ export interface LinearRegressionXOptions extends LinearRegressionOptions {
    * A channel for the independent variable **y**.
    */
   y?: ChannelValueDenseBinSpec;
+
+  /**
+   * A channel for the dependent variable **x**.
+   */
+  x?: ChannelValueSpec;
 }
 
 /** Options for the linearRegressionY mark. */
@@ -48,6 +48,11 @@ export interface LinearRegressionYOptions extends LinearRegressionOptions {
    * A channel for the independent variable **y**.
    */
   x?: ChannelValueDenseBinSpec;
+
+  /**
+   * A channel for the dependent variable **y**.
+   */
+  y?: ChannelValueSpec;
 }
 
 /**
