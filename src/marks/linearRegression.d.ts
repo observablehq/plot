@@ -25,7 +25,11 @@ interface LinearRegressionOptions extends MarkOptions, BinOptions {
    */
   precision?: number;
   /**
-   * 🌶 How is this used?
+   * Reducer for when the independent variable is binned with an **interval**. For example, to create a trend line on the maximum value of the AAPL ticker by month:
+   *
+   * ```js
+   * Plot.linearRegressionY(aapl, {x: "Date", y: "Close", interval: "month", reduce: "max"})
+   * ```
    */
   reduce?: BinReducer;
 }
