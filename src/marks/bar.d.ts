@@ -6,7 +6,6 @@ import type {StackOptions} from "../transforms/stack.js";
 
 /** Options for the barX and barY marks. */
 interface BarOptions extends MarkOptions, InsetOptions, StackOptions {
-
   /**
    * The [*x* radius][1] for rounded corners.
    *
