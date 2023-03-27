@@ -199,7 +199,7 @@ export function autoSpec(data?: Data, options?: AutoOptions): AutoSpec;
  * For example, for a histogram of penguins binned by weight:
  *
  * ```js
- * Plot.auto(penguins, {x: "weight"})
+ * Plot.auto(penguins, {x: "body_mass_g"})
  * ```
  */
 export function auto(data?: Data, options?: AutoOptions): CompoundMark;
