@@ -40,6 +40,9 @@ export interface CellOptions extends MarkOptions, InsetOptions {
  *   *band*
  * - **y** - the vertical position; bound to the *y* scale, which must be *band*
  *
+ * If **x** is quantitative, use a **barX** mark instead. Likewise, if **y** is
+ * quantitative, use a **barY** mark instead.
+ *
  * The **stroke** defaults to none. The **fill** defaults to currentColor if the
  * stroke is none, and to none otherwise.
  *
