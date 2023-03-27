@@ -181,7 +181,7 @@ export interface AutoSpec extends AutoOptions {
  * For example, if you pass in:
  *
  * ```js
- * Plot.autoSpec(penguins, {x: "weight"})
+ * Plot.autoSpec(penguins, {x: "body_mass_g"})
  * ```
  *
  * the returned object will have **y** set to {value: null, reduce: "count"} and
