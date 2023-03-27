@@ -123,7 +123,7 @@ export interface AutoOptions {
   /**
    * A type of mark; for example, the type *bar* encompasses bar, barX, and
    * barY. Used to guide what sort of mark **auto** should use. It should be
-   * thought of as as an override; *auto* should usually do the right thing
+   * thought of as an override; *auto* should usually do the right thing
    * without it, and will try its best with it, but setting the mark type may
    * lead to a nonsensical plot.
    */
