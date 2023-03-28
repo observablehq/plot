@@ -28,8 +28,8 @@ export interface DotOptions extends MarkOptions {
   r?: ChannelValueSpec | number;
 
   /**
-   * An angle to rotate the **symbol** around its center. Defaults to 0 degrees,
-   * pointing up. Obviously inoperant with the *circle* symbol.
+   * An angle to rotate the **symbol** around its center, in degrees clockwise.
+   * Defaults to 0°, pointing up. Obviously inoperant with the *circle* symbol.
    */
   rotate?: ChannelValue | number;
 
@@ -60,12 +60,16 @@ export interface DotOptions extends MarkOptions {
 /** Options for the dotX mark. */
 export interface DotXOptions extends Omit<DotOptions, "y"> {
   /**
-   *
+   * The vertical position of the dot’s center, typically bound to the *y*
+   * scale. If an **interval** is specified, such as *day*, **y** is transformed
+   * to the middle of the day. If the interval is specified as a number *n*,
+   * **y** will be the midpoint of two consecutive multiples of *n* that bracket
+   * **y**.
    */
   y?: ChannelValueIntervalSpec;
 
   /**
-   *
+   * An interval (such as *day* or a number), to bin *y* values.
    */
   interval?: Interval;
 }
@@ -73,12 +77,16 @@ export interface DotXOptions extends Omit<DotOptions, "y"> {
 /** Options for the dotY mark. */
 export interface DotYOptions extends Omit<DotOptions, "x"> {
   /**
-   *
+   * The horizontal position of the dot’s center, typically bound to the *x*
+   * scale. If an **interval** is specified, such as *day*, **x** is transformed
+   * to the middle of the day. If the interval is specified as a number *n*,
+   * **x** will be the midpoint of two consecutive multiples of *n* that bracket
+   * **x**.
    */
   x?: ChannelValueIntervalSpec;
 
   /**
-   *
+   * An interval (such as *day* or a number), to bin *x* values.
    */
   interval?: Interval;
 }
