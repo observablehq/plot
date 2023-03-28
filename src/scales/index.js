@@ -3,8 +3,8 @@
 export const position = Symbol("position");
 
 // Color scales default to the turbo interpolator for quantitative data, and to
-// the Tableau10 scheme for ordinal data. In the future, color scales may also
-// have an associated legend.
+// the Tableau10 scheme for ordinal data. Color scales may also have an
+// associated legend.
 export const color = Symbol("color");
 
 // Radius scales default to the sqrt type, have a default range of [0, 3], and a
@@ -19,7 +19,7 @@ export const length = Symbol("length");
 // the maximum value of associated channels.
 export const opacity = Symbol("opacity");
 
-// Symbol scales have a default range of d3.symbols.
+// Symbol scales have a default range of categorical symbols.
 export const symbol = Symbol("symbol");
 
 // TODO Rather than hard-coding the list of known scale names, collect the names
