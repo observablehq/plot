@@ -13,6 +13,7 @@ export type Interpolate =
   | (<T>(a: T, b: T) => (t: number) => T)
   | ((t: number) => any);
 
+/** Built-in color schemes, cased. */
 type ColorSchemeCase =
   | "Accent"
   | "Category10"
@@ -65,12 +66,16 @@ type ColorSchemeCase =
   | "Rainbow"
   | "Sinebow";
 
+/** Built-in color schemes. */
 export type ColorScheme = ColorSchemeCase | (Lowercase<ColorSchemeCase> & Record<never, never>);
 
+/** Scale names. */
 export type ScaleName = "x" | "y" | "fx" | "fy" | "r" | "color" | "opacity" | "symbol" | "length";
 
+/** Key-value object containing the instanciated scales’ apply functions. */
 export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any};
 
+/** The scale’s type. */
 export type ScaleType =
   | "linear"
   | "pow"
@@ -95,6 +100,7 @@ export type ScaleType =
   | "quantize"
   | "identity";
 
+/** Options for scales, may be defined at the top-level. */
 export interface ScaleDefaults extends InsetOptions {
   /**
    * If true, clamp input values to the scale’s domain. Clamping is typically
@@ -105,6 +111,7 @@ export interface ScaleDefaults extends InsetOptions {
    * misinterpretation.
    */
   clamp?: boolean;
+
   /**
    * If true (or a tick count), extend the domain to nice round values. Defaults
    * to 1, 2 or 5 times a power of 10 for linear scales, and meaningful time
@@ -112,20 +119,24 @@ export interface ScaleDefaults extends InsetOptions {
    * *wednesday* or *month* to specify what constitutes a nice round value.
    */
   nice?: boolean | number | NiceInterval;
+
   /**
    * Whether the domain must include zero.
    */
   zero?: boolean;
+
   /**
    * If true, round the output value of a position scale to the nearest integer
    * (whole pixel).
    */
   round?: boolean;
+
   /**
    * Where to distribute point and band scales (0 = at start, 0.5 = at middle, 1
    * = at end).
    */
   align?: number;
+
   /**
    * How much of the range to reserve to inset first and last point or band;
    * defaults to 0.5 (50%) for point scales, and 0.1 (10%) for band scales.
@@ -154,6 +165,7 @@ export interface ScaleDefaults extends InsetOptions {
   label?: string | null;
 }
 
+/** Options for scales. */
 export interface ScaleOptions extends ScaleDefaults {
   /**
    * For quantitative data:
@@ -451,20 +463,19 @@ export interface ScaleOptions extends ScaleDefaults {
    */
   ariaLabel?: string;
 
-  /**
-   * A textual description for the axis.
-   */
+  /** A textual description for the axis. */
   ariaDescription?: string;
 
-  /**
-   * Anchor for the axis label.
-   */
+  /** Anchor for the axis label. */
   labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
-  labelOffset?: number;
 
   /**
-   * Whether a line should be drawn on the axis.
+   * The label position offset (in pixels; default depends on margins and
+   * orientation).
    */
+  labelOffset?: number;
+
+  /** Whether a line should be drawn on the axis. */
   line?: boolean;
 }
 
