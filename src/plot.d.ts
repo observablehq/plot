@@ -240,9 +240,19 @@ export interface PlotOptions extends ScaleDefaults {
   length?: ScaleOptions;
 
   /**
-   * Options for projection. A projection is an alternative to the *x* and *y*
-   * scales for encoding position, and is typically used to convert polygonal
-   * geometry in spherical coordinates to a planar visual representation.
+   * Options for projection; one of:
+   *
+   * - a named built-in projection such as *albers-usa*
+   * - a projection implementation, implementing the projection.*stream* method
+   * - a function that returns a projection implementation
+   * - a projection options object
+   * - null, for no projection
+   *
+   * A projection is an alternative to the *x* and *y* scales for encoding
+   * position, and is typically used to convert polygonal geometry in spherical
+   * coordinates to a planar visual representation. For planar (projected)
+   * coordinates, use the *identity* projection, or the *reflect-y* projection
+   * if *y* points up.
    */
   projection?: ProjectionOptions | ProjectionName | ProjectionFactory | ProjectionImplementation | null;
 
