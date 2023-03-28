@@ -17,7 +17,7 @@ export interface LineOptions extends MarkOptions, MarkerOptions, CurveAutoOption
   y?: ChannelValueSpec;
 
   /**
-   * If specified, the **z** channel defines series
+   * If specified, the **z** channel defines series, creating separate lines.
    */
   z?: ChannelValue;
 }
