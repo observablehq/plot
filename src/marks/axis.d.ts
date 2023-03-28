@@ -11,6 +11,7 @@ import type {TickXOptions, TickYOptions} from "./tick.js";
  */
 export type AxisAnchor = "top" | "right" | "bottom" | "left";
 
+/** Options for the grid marks. */
 interface GridOptions {
   /**
    * The grid anchor. For when the grid lines extend from a given position on
@@ -56,6 +57,7 @@ interface GridOptions {
   color?: MarkOptions["stroke"];
 }
 
+/** Options for the axis marks. */
 interface AxisOptions extends GridOptions, MarkOptions, TextOptions {
   /**
    * The axis orientation.
@@ -144,49 +146,49 @@ export interface GridXOptions extends GridOptions, Omit<RuleXOptions, "interval"
 export interface GridYOptions extends GridOptions, Omit<RuleYOptions, "interval"> {}
 
 /**
- *
+ * 🌶 todo
  */
 export function axisY(data?: Data, options?: AxisYOptions): CompoundMark;
 export function axisY(options?: AxisYOptions): CompoundMark;
 
 /**
- *
+ * 🌶 todo
  */
 export function axisFy(data?: Data, options?: AxisYOptions): CompoundMark;
 export function axisFy(options?: AxisYOptions): CompoundMark;
 
 /**
- *
+ * 🌶 todo
  */
 export function axisX(data?: Data, options?: AxisXOptions): CompoundMark;
 export function axisX(options?: AxisXOptions): CompoundMark;
 
 /**
- *
+ * 🌶 todo
  */
 export function axisFx(data?: Data, options?: AxisXOptions): CompoundMark;
 export function axisFx(options?: AxisXOptions): CompoundMark;
 
 /**
- *
+ * 🌶 todo
  */
 export function gridY(data?: Data, options?: GridYOptions): RenderableMark;
 export function gridY(options?: GridYOptions): RenderableMark;
 
 /**
- *
+ * 🌶 todo
  */
 export function gridFy(data?: Data, options?: GridYOptions): RenderableMark;
 export function gridFy(options?: GridYOptions): RenderableMark;
 
 /**
- *
+ * 🌶 todo
  */
 export function gridX(data?: Data, options?: GridXOptions): RenderableMark;
 export function gridX(options?: GridXOptions): RenderableMark;
 
 /**
- *
+ * 🌶 todo
  */
 export function gridFx(data?: Data, options?: GridXOptions): RenderableMark;
 export function gridFx(options?: GridXOptions): RenderableMark;
