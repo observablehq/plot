@@ -58,48 +58,55 @@ interface GridOptions {
 
 interface AxisOptions extends GridOptions, MarkOptions, TextOptions {
   /**
-   *
+   * The axis orientation.
+   */
+  anchor?: AxisAnchor;
+
+  /**
+   * The length of tick vectors in pixels; negative values extend in the
+   * opposite direction.
    */
   tickSize?: ScaleOptions["tickSize"];
 
   /**
-   *
+   * The separation between the tick vector and its label (in pixels; default
+   * 3).
    */
   tickPadding?: ScaleOptions["tickPadding"];
 
   /**
-   *
+   * The tick label format specifier. String specifiers are passed to
+   * [d3-format](https://github.com/d3/d3-format) for numeric scales, and
+   * [d3-time-format](https://github.com/d3/d3-time-format) for *time* and *utc*
+   * scales. If a function, it is passed the tick value and tick index, and
+   * returns a string. Plot also provides multilingual format helpers for
+   * convenience: **formatIsoDate**, **formatWeekDay** and **formatMonth**.
    */
   tickFormat?: ScaleOptions["tickFormat"];
 
   /**
-   *
+   * The rotation angle of tick labels in degrees (default 0).
    */
   tickRotate?: ScaleOptions["tickRotate"];
 
   /**
-   * 🌶 Not sure this exists?
+   * 🌶 Not sure this actually exists?
    */
   grid?: ScaleOptions["grid"];
 
-  /**
-   *
-   */
+  /** Whether a line should be drawn on the axis. */
   line?: ScaleOptions["line"];
 
-  /**
-   *
-   */
+  /** A string to label the axis. */
   label?: ScaleOptions["label"];
 
   /**
-   *
+   * The label position offset (in pixels; default depends on margins and
+   * orientation).
    */
   labelOffset?: ScaleOptions["labelOffset"];
 
-  /**
-   *
-   */
+  /** The label anchor: *top*, *right*, *bottom*, *left*, or *center*. */
   labelAnchor?: ScaleOptions["labelAnchor"];
 
   /**
