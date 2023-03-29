@@ -230,7 +230,11 @@ export interface MarkOptions {
    */
   marginLeft?: number;
 
-  /** A textual description for the mark; a constant. */
+  /**
+   * The [aria-description][1]; a constant textual description.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-description
+   */
   ariaDescription?: string;
 
   /**
@@ -242,20 +246,25 @@ export interface MarkOptions {
   ariaHidden?: string;
 
   /**
-   * A short label representing the value in the accessibility tree; a channel.
+   * The [aria-label][1]; a channel specifying short textual labels representing
+   * the value in the accessibility tree.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label
    */
   ariaLabel?: ChannelValue;
 
   /**
-   * The [pointer events][1] (*e.g.*, *none*); a constant.
+   * The [pointer-events][1] property; a constant string such as *none*.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
    */
   pointerEvents?: string;
 
   /**
-   * An accessible, short-text description (a string of text, possibly with
-   * newlines); a channel.
+   * The [title][1]; a channel specifying accessible, short textual descriptions
+   * as strings (possibly with newlines).
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title
    */
   title?: ChannelValue;
 
