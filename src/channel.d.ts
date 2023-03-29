@@ -169,6 +169,12 @@ export type ChannelValueDenseBinSpec = ChannelValue | ({value: ChannelValue; sca
  * - *width* - impute from |*x2* - *x1*|
  * - *height* - impute from |*y2* - *y1*|
  * - null - impute from input order
+ *
+ * If the *x* channel is not defined, the *x2* channel will be used instead if
+ * available, and similarly for *y* and *y2*; this is useful for marks that
+ * implicitly stack. The *data* input is typically used in conjunction with a
+ * custom **reduce** function, as when the built-in single-channel reducers are
+ * insufficient.
  */
 export type ChannelDomainValue = ChannelName | "data" | "width" | "height" | null;
 
@@ -190,12 +196,22 @@ export interface ChannelDomainOptions {
   reverse?: boolean;
 
   /**
-   * If a positive number, limit the domain to the first *n* sorted values; if a
-   * negative number, limit the domain to the last *-n* sorted values. Otherwise
-   * slices the sorted domain from *lo* (inclusive) to *hi* (exclusive); if
-   * either *lo* or *hi* are negative, it indicates an offset from the end of
-   * the array; if *lo* is undefined it defaults to 0, and if *hi* is undefined
-   * it defaults to Infinity.
+   * If a positive number, limit the domain to the first *n* sorted values. If a
+   * negative number, limit the domain to the last *-n* sorted values. Hence, a
+   * positive **limit** with **reverse** true will return the top *n* values in
+   * descending order.
+   *
+   * If an array [*lo*, *hi*], slices the sorted domain from *lo* (inclusive) to
+   * *hi* (exclusive). As with [*array*.slice][1], if either *lo* or *hi* are
+   * negative, it indicates an offset from the end of the array; if *lo* is
+   * undefined it defaults to 0, and if *hi* is undefined it defaults to
+   * Infinity.
+   *
+   * Note: limiting the imputed domain of one scale, say *x*, does not affect
+   * the imputed domain of another scale, say *y*; each scale domain is imputed
+   * independently.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
    */
   limit?: number | [lo?: number, hi?: number];
 }

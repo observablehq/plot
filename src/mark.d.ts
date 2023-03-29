@@ -5,6 +5,13 @@ import type {plot} from "./plot.js";
 import type {ScaleFunctions} from "./scales.js";
 import type {InitializerFunction, SortOrder, TransformFunction} from "./transforms/basic.js";
 
+/**
+ * How to anchor a mark relative to the plot’s frame; one of:
+ *
+ * - *middle* - centered in the middle
+ * - in the middle of one of the edges: *top*, *right*, *bottom*, *left*
+ * - in one of the corners: *top-left*, *top-right*, *bottom-right*, *bottom-left*
+ */
 export type FrameAnchor =
   | "middle"
   | "top-left"
@@ -16,6 +23,12 @@ export type FrameAnchor =
   | "bottom-left"
   | "left";
 
+/**
+ * A mark’s data; one of:
+ *
+ * - an array, typed array, or other iterable
+ * - an object with a length property and indexed values
+ */
 export type Data = Iterable<any> | ArrayLike<any>;
 
 /**
@@ -49,11 +62,69 @@ export type Markish = RenderableMark | RenderFunction | Markish[] | null | undef
 
 /** Shared options for all marks. */
 export interface MarkOptions {
-  // transforms
+  /**
+   * Applies a transform to filter the mark’s index according to the given
+   * channel values; only truthy values are retained. For example, to show only
+   * data whose body mass is greater than 3,000g:
+   *
+   * ```js
+   * filter: (d) => d.body_mass_g > 3000
+   * ```
+   *
+   * Note that filtering only affects the rendered mark index, not the
+   * associated channel values, and thus has no effect on imputed scale domains.
+   */
   filter?: ChannelValue;
+
+  /**
+   * Applies a transform to reverse the order of the mark’s index, say for
+   * reverse input order.
+   */
   reverse?: boolean;
+
+  /**
+   * Either applies a transform to sort the mark’s render index by the specified
+   * channel values, or imputes ordinal scale domains from this mark’s channels.
+   *
+   * When imputing ordinal scale domains from channel values, the **sort**
+   * option is an object whose keys are ordinal scale names such as *x* or *fx*,
+   * and whose values are channel names such as *y*, *y1*, or *y2*. For example,
+   * to impute the *y* scale’s domain from the associated *x* channel values in
+   * ascending order:
+   *
+   * ```js
+   * sort: {y: "x"}
+   * ```
+   *
+   * For different sort options for different scales, replace the channel name
+   * with a *value* object and per-scale options:
+   *
+   * ```js
+   * sort: {y: {value: "x", reverse: true}}
+   * ```
+   *
+   * When sorting the mark’s render index, the **sort** option is instead one
+   * of:
+   *
+   * - a function for comparing data, returning a signed number
+   * - a channel value definition for sorting given values in ascending order
+   * - a {value, order} object for sorting given values
+   * - a {channel, order} object for sorting the named channel’s values
+   *
+   * For example, to render in order of ascending body mass:
+   *
+   * ```js
+   * sort: "body_mass_g"
+   * ```
+   *
+   * See also the Plot.sort transform.
+   */
   sort?: SortOrder | ChannelDomainSort;
+
+  /** A custom mark transform. */
   transform?: TransformFunction;
+
+  /** A custom mark initializer. */
   initializer?: InitializerFunction;
 
   /**
