@@ -5,23 +5,28 @@ import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 export interface DensityOptions extends MarkOptions {
   /** The horizontal point position, typically bound to the *x* scale. */
   x?: ChannelValueSpec;
+
   /** The vertical point position, typically bound to the *y* scale. */
   y?: ChannelValueSpec;
+
   /**
    * Group points into series and create independent contours for each series.
    */
   z?: ChannelValue;
+
   /**
    * The **weight** channel, which defaults to 1, specifies the weight of each
    * point. Non-positive weights are allowed, making associated points
    * repulsive.
    */
   weight?: ChannelValue;
+
   /**
    * The **bandwidth** option, which defaults to 20, specifies the standard
    * deviation of the Gaussian kernel used for estimation in pixels.
    */
   bandwidth?: number;
+
   /**
    * The **thresholds** option, which defaults to 20, specifies one more than
    * the number of contours that will be computed at uniformly-spaced intervals
