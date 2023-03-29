@@ -9,6 +9,7 @@ export interface GeoOptions extends MarkOptions {
    * is a GeoJSON object or an iterable of GeoJSON objects.
    */
   geometry?: ChannelValue;
+
   /**
    * The size of Point and MultiPoint geometries, defaults to 3 pixels. When
    * **r** is specified as a number, it is interpreted as a constant radius in
