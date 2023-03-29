@@ -1,5 +1,22 @@
 # Observable Plot - Changelog
 
+
+## 0.6.5
+
+*Not released, draft change log with respect to the main branch.*
+
+Documents all the public API (marks, transforms, scales, and other options) with TypeScript definitions and JSDoc comments. This allows the user to access precise inline documentation in popular code editors, and to formally check that the options are called in a correct way. This documentation is a first pass, and will be refined later based on user feedback; please open issues when you feel that the inline documentation is incomplete, missing an example, or unclear.
+
+Auto mark, autoSpec & zero.
+
+Automatically opts-out of opacity scale when all the *strokeOpacity*, *fillOpacity* and *opacity* channel values are numbers in the [0, 1] bracket (#1310).
+
+Renames the reduce implementation method as reduceIndex, and the map implementation method as mapIndex, to limit confusion. The older names (resp. reduce and map) are still supported, but considered deprecated.
+
+Implements scale overrides with the **raster** mark (#1318). Implements named intervals for the **nice** option (#1332). Implements the **unknown** option for quantile scales (#1321). Accepts bigint values in input channels (#1299). Adds *quarter* and *half* named intervals for quarters and half-years (#1312). 
+
+Fixes a bug where domain sorting had a non-deterministic behavior for non-orderable values ([#1348](https://github.com/observablehq/plot/pull/1348)). Fixes a bug where mixed-case class names were rejected (#1347). Fixed a crash when explicit NaN ticks were passed to an axis (#1335). Fixes inconsistencies of channel domain sorting when used with transforms (#1315, #1316). Removes duplicates from channel-derived domain (#1314).
+
 ## 0.6.4
 
 [Released February 28, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.4)
