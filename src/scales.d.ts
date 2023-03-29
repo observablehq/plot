@@ -1,6 +1,6 @@
 import type {InsetOptions} from "./inset.js";
 import type {NiceInterval, RangeInterval} from "./interval.js";
-import type {LegendType} from "./legends.js";
+import type {LegendOptions} from "./legends.js";
 import type {AxisAnchor} from "./marks/axis.js";
 
 /**
@@ -521,7 +521,7 @@ export interface ScaleOptions extends ScaleDefaults {
    *
    * For *color*, *opacity*, and *symbol* scales only. See also *plot*.legend.
    */
-  legend?: LegendType | boolean | null;
+  legend?: LegendOptions["legend"] | boolean | null;
 
   /**
    * The desired approximate number of axis ticks, or an explicit array of tick
