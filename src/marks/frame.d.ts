@@ -3,8 +3,8 @@ import type {MarkOptions, RenderableMark} from "../mark.js";
 
 export interface FrameOptions extends MarkOptions, InsetOptions {
   /**
-   * Only renders that side of the frame. The *rx*, *ry*, *fill*, and
-   * *fillOpacity* options are then ignored.
+   * If not null, only renders that side of the frame. The *rx*, *ry*, *fill*,
+   * and *fillOpacity* options are then ignored.
    */
   anchor?: "top" | "right" | "bottom" | "left" | null;
 
