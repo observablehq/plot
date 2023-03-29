@@ -231,10 +231,26 @@ export interface MarkOptions {
    */
   marginLeft?: number;
 
-  // accessibility and interaction
+  /** A textual description for the mark. */
   ariaDescription?: string;
+
+  /**
+   * The [aria-hidden][1] state, indicating whether the element is exposed to an
+   * accessibility API.
+   *
+   * [1]:
+   * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden
+   */
   ariaHidden?: string;
+
+  /** A short label representing the value in the accessibility tree. */
   ariaLabel?: ChannelValue;
+
+  /**
+   * The [pointer events][1] (*e.g.*, *none*).
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
+   */
   pointerEvents?: string;
   title?: ChannelValue;
 
