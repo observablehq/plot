@@ -5,18 +5,42 @@ import type {MarkerOptions} from "../marker.js";
 
 /** Options for the link mark. */
 export interface LinkOptions extends MarkOptions, MarkerOptions, CurveAutoOptions {
-  /** The horizontal position, for vertical links; bound to the *x* scale. */
+  /**
+   * The horizontal position, for vertical links; bound to the *x* scale. **x**
+   * specifies defaults for both **x1** and **x2**.
+   */
   x?: ChannelValueSpec;
-  /** The vertical position, for horizontal links; bound to the *y* scale. */
+
+  /**
+   * The vertical position, for horizontal links; bound to the *y* scale. **y**
+   * specifies defaults for both **y1** and **y2**.
+   */
   y?: ChannelValueSpec;
-  /** The starting horizontal position; bound to the *x* scale. */
+
+  /**
+   * The starting horizontal position; bound to the *x* scale. **x1** specifies
+   * defaults for **x2**.
+   */
   x1?: ChannelValueSpec;
-  /** The ending vertical position; bound to the *y* scale. */
+
+  /**
+   * The starting vertical position; bound to the *y* scale. **y1** specifies
+   * defaults for **y2**.
+   */
   y1?: ChannelValueSpec;
-  /** The starting horizontal position; bound to the *x* scale. */
+
+  /**
+   * The ending horizontal position; bound to the *x* scale. **x2** specifies
+   * defaults for **x1**.
+   */
   x2?: ChannelValueSpec;
-  /** The ending vertical position; bound to the *y* scale. */
+
+  /**
+   * The ending vertical position; bound to the *y* scale. **y2** specifies
+   * defaults for **y1**.
+   */
   y2?: ChannelValueSpec;
+
   /**
    * The **curve** option controls interpolation between points. Since a link
    * always has two points by definition, only the following curves (or a custom
