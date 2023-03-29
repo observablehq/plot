@@ -2,7 +2,7 @@ import type {ChannelDomainSort, Channels, ChannelValue, ChannelValues, ChannelVa
 import type {Context} from "./context.js";
 import type {Dimensions} from "./dimensions.js";
 import type {plot} from "./plot.js";
-import type {ScaleFunctions} from "./scales.js";
+import type {InstanciatedScales} from "./scales.js";
 import type {InitializerFunction, SortOrder, TransformFunction} from "./transforms/basic.js";
 
 /**
@@ -40,8 +40,8 @@ export type Data = Iterable<any> | ArrayLike<any>;
 export type RenderFunction = (
   /** The mark’s (filtered and transformed) index. */
   index: number[],
-  /** The plot’s scale functions. */
-  scales: ScaleFunctions,
+  /** The plot’s instanciated scales. */
+  scales: InstanciatedScales,
   /** The mark’s (possibly scaled and transformed) channel values. */
   values: ChannelValues,
   /** The plot’s dimensions. */
@@ -459,5 +459,5 @@ export class RenderableMark extends Mark {
 /** A compound Mark, comprising other marks. */
 export type CompoundMark = Markish[] & Pick<Mark, "plot">;
 
-/** Given an array of marks, returns a compound mark; supports *mark.plot shorthand. */
+/** Given an array of marks, returns a compound mark; supports *mark*.plot shorthand. */
 export function marks(...marks: Markish[]): CompoundMark;

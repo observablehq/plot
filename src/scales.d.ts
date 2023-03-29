@@ -160,10 +160,9 @@ export type ColorScheme = ColorSchemeCase | (Lowercase<ColorSchemeCase> & Record
 export type ScaleName = "x" | "y" | "fx" | "fy" | "r" | "color" | "opacity" | "symbol" | "length";
 
 /**
- * The instantiated scales’ apply functions; passed to marks and initializers
- * for rendering.
+ * The instantiated scales; passed to marks and initializers for rendering.
  */
-export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any};
+export type InstanciatedScales = {[key in ScaleName]?: Scale};
 
 /**
  * The supported scale types. For quantitative data, one of:

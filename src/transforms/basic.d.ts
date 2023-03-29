@@ -1,7 +1,7 @@
 import type {ChannelName, Channels, ChannelValue} from "../channel.js";
 import type {Context} from "../context.js";
 import type {Dimensions} from "../dimensions.js";
-import type {ScaleFunctions} from "../scales.js";
+import type {InstanciatedScales} from "../scales.js";
 
 /**
  * A mark transform function is passed the mark’s *data* and a nested index into
@@ -40,7 +40,7 @@ export type InitializerFunction = (
   data: any[],
   facets: number[][],
   channels: Channels,
-  scales: ScaleFunctions,
+  scales: InstanciatedScales,
   dimensions: Dimensions,
   context: Context
 ) => {
