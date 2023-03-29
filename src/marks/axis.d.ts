@@ -355,25 +355,105 @@ export function axisFx(data?: Data, options?: AxisXOptions): CompoundMark;
 export function axisFx(options?: AxisXOptions): CompoundMark;
 
 /**
- * 🌶 todo
- */
-export function gridY(data?: Data, options?: GridYOptions): RenderableMark;
-export function gridY(options?: GridYOptions): RenderableMark;
-
-/**
- * 🌶 todo
- */
-export function gridFy(data?: Data, options?: GridYOptions): RenderableMark;
-export function gridFy(options?: GridYOptions): RenderableMark;
-
-/**
- * 🌶 todo
+ * Draws vertical grid lines aligned on *x* values.
+ *
+ * The optional *data* is an array of tick values—it defaults to the scale’s
+ * ticks.
+ *
+ * The following options are supported:
+ *
+ * * **strokeDasharray** - the [stroke dasharray][1] for dashed lines, defaults
+ *   to null
+ *
+ * The following options are supported as constant or data-driven channels:
+ *
+ * - **stroke** - the grid color, defaults to currentColor
+ * - **strokeWidth** - the grid’s line width, defaults to 1
+ * - **strokeOpacity** - the stroke opacity, defaults to 0.1
+ * - **y1** - the start of the line, a channel of y positions.
+ * - **y2** - the end of the line, a channel of y positions.
+ *
+ * All the other common options are supported when applicable (e.g., **title**).
+ *
+ * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray
  */
 export function gridX(data?: Data, options?: GridXOptions): RenderableMark;
 export function gridX(options?: GridXOptions): RenderableMark;
 
 /**
- * 🌶 todo
+ * Draws vertical grid lines aligned on *fx* values.
+ *
+ * The optional *data* is an array of tick values—it defaults to the scale’s
+ * domain.
+ *
+ * The following options are supported:
+ *
+ * * **strokeDasharray** - the [stroke dasharray][1] for dashed lines, defaults
+ *   to null
+ *
+ * The following options are supported as constant or data-driven channels:
+ *
+ * - **stroke** - the grid color, defaults to currentColor
+ * - **strokeWidth** - the grid’s line width, defaults to 1
+ * - **strokeOpacity** - the stroke opacity, defaults to 0.1
+ * - **y1** - the start of the line, a channel of y positions.
+ * - **y2** - the end of the line, a channel of y positions.
+ *
+ * All the other common options are supported when applicable (e.g., **title**).
+ *
+ * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray
  */
 export function gridFx(data?: Data, options?: GridXOptions): RenderableMark;
 export function gridFx(options?: GridXOptions): RenderableMark;
+
+/**
+ * Draws horizontal grid lines aligned on *y* values.
+ *
+ * The optional *data* is an array of tick values—it defaults to the scale’s
+ * ticks.
+ *
+ * The following options are supported:
+ *
+ * * **strokeDasharray** - the [stroke dasharray][1] for dashed lines, defaults
+ *   to null
+ *
+ * The following options are supported as constant or data-driven channels:
+ *
+ * - **stroke** - the grid color, defaults to currentColor
+ * - **strokeWidth** - the grid’s line width, defaults to 1
+ * - **strokeOpacity** - the stroke opacity, defaults to 0.1
+ * - **x1** - the start of the line, a channel of x positions.
+ * - **x2** - the end of the line, a channel of x positions.
+ *
+ * All the other common options are supported when applicable (e.g., **title**).
+ *
+ * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray
+ */
+export function gridY(data?: Data, options?: GridYOptions): RenderableMark;
+export function gridY(options?: GridYOptions): RenderableMark;
+
+/**
+ * Draws vertical grid lines aligned on *fy* values.
+ *
+ * The optional *data* is an array of tick values—it defaults to the scale’s
+ * domain.
+ *
+ * The following options are supported:
+ *
+ * * **strokeDasharray** - the [stroke dasharray][1] for dashed lines, defaults
+ *   to null
+ *
+ * The following options are supported as constant or data-driven channels:
+ *
+ * - **stroke** - the grid color, defaults to currentColor
+ * - **strokeWidth** - the grid’s line width, defaults to 1
+ * - **strokeOpacity** - the stroke opacity, defaults to 0.1
+ * - **x1** - the start of the line, a channel of x positions.
+ * - **x2** - the end of the line, a channel of x positions.
+ *
+ * All the other common options are supported when applicable (e.g., **title**).
+ *
+ * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray
+ */
+export function gridFy(data?: Data, options?: GridYOptions): RenderableMark;
+export function gridFy(options?: GridYOptions): RenderableMark;
