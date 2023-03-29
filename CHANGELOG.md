@@ -5,7 +5,7 @@
 
 *Not released, draft change log with respect to the main branch.*
 
-Documents all the public API (marks, transforms, scales, and other options) with TypeScript definitions and JSDoc comments. This allows the user to access precise inline documentation in popular code editors, and to formally check that the options are called in a correct way. This documentation is a first pass, and will be refined later based on user feedback; please open issues when you feel that the inline documentation is incomplete, missing an example, or unclear.
+TypeScript! Plot now exports TypeScript type declarations (.d.ts) with extensive documentation for Plot’s public API, including marks, transforms, and scales. This allows code editors, including VS Code, to offer better autocompletions, to surface inline documentation when writing or reading Plot code, and even to validate types when calling functions or passing options. If you have suggestions or clarifications on how to improve the documentation, please open an issue or discussion, or send us a pull request.
 
 Auto mark, autoSpec & zero.
 
