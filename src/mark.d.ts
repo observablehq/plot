@@ -252,32 +252,158 @@ export interface MarkOptions {
    * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
    */
   pointerEvents?: string;
+
+  /**
+   * An accessible, short-text description (a string of text, possibly with
+   * newlines).
+   */
   title?: ChannelValue;
 
-  // aesthetics
+  /**
+   * If the **clip** option is *frame* (or equivalently true), the mark is
+   * clipped to the frame’s dimensions; if the **clip** option is null (or
+   * equivalently false), the mark is not clipped. If the **clip** option is
+   * *sphere*, then a geographic projection is required and the mark will be
+   * clipped to the projected sphere (_e.g._, the front hemisphere when using
+   * the orthographic projection).
+   */
   clip?: "frame" | "sphere" | boolean | null;
+
+  /**
+   * A constant horizontal offset—possibly including a 0.5px offset on
+   * low-density screens—, in pixels. See **dy** for the vertical offset.
+   */
   dx?: number;
+
+  /**
+   * A constant vertical offset—possibly including a 0.5px offset on low-density
+   * screens—, in pixels. See **dx** for the horizontal offset.
+   */
   dy?: number;
+
+  /**
+   * The fill color, a constant valid CSS string, or a channel, typically bound
+   * to the *color* scale. If all color values across all channels are valid CSS
+   * colors, the *color* scale defaults to identity.
+   */
   fill?: ChannelValueSpec;
+
+  /**
+   * The fill opacity, a constant between 0 and 1, or a channel, typically bound
+   * to the *opacity* scale. If all opacity channel values across all marks are
+   * in the [0, 1] range, the *opacity* scale defaults to identity.
+   */
   fillOpacity?: ChannelValueSpec;
+
+  /**
+   * The stroke color, to paint the outline of each shape. A constant valid CSS
+   * string, or a channel, typically bound to the *color* scale. If all color
+   * values across all channels are valid CSS colors, the *color* scale defaults
+   * to identity.
+   */
   stroke?: ChannelValueSpec;
+
+  /**
+   * The [stroke-dasharray][1], defining the pattern of dashes and gaps used to
+   * paint the outline of the shape. Can be specified as:
+   * - a single number; _e.g._ 4 for dashes of 4 pixels separated by gaps of 4
+   *   pixels
+   * - a string with as many numbers as necessary, separated by spaces; _e.g._
+   *   *10 2* for dashes of 10 pixels, separated by gaps of 2 pixels.
+   *
+   * [1]:
+   * https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray
+   */
   strokeDasharray?: string | number;
+
+  /**
+   * An offset for the stroke-dasharray. A typical setting is ½ of the first
+   * value of the mark’s dash-array, for visual balance.
+   */
   strokeDashoffset?: string | number;
+
+  /**
+   * How to cap lines (*butt*, *round*, or *square*). See [stroke-linecap][1].
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linecap
+   */
   strokeLinecap?: string;
+
+  /**
+   * How to join lines (*bevel*, *miter*, *miter-clip*, or *round*). See [stroke-linejoin][1].
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-linejoin
+   */
   strokeLinejoin?: string;
+
+  /**
+   * A limit to the length of *miter* joins. See [stroke-miterlimit][1].
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-miterlimit
+   */
   strokeMiterlimit?: number;
+
+  /**
+   * The stroke opacity, a constant between 0 and 1, or a channel, typically
+   * bound to the *opacity* scale. If all opacity channel values across all
+   * marks are in the [0, 1] range, the *opacity* scale defaults to identity.
+   */
   strokeOpacity?: ChannelValueSpec;
+
+  /**
+   * A constant or variable stroke width (in pixels).
+   */
   strokeWidth?: ChannelValueSpec;
+
+  /**
+   * An object opacity; a constant in [0, 1], or a channel bound to the
+   * *opacity* scale.  If all opacity channel values across all marks are in the
+   * [0, 1] range, the *opacity* scale defaults to identity.
+   */
   opacity?: ChannelValueSpec;
+
+  /**
+   * The [blend mode][1] (*e.g.*, *multiply*).
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode
+   */
   mixBlendMode?: string;
+
+  /**
+   * The [paint order][1], defaults to null (equivalent to *fill*) for all
+   * geometric marks, which are filled before the stroke is applied; defaults to
+   * *stroke* for text marks, to create a “halo” around text while keeping it readable.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order
+   */
   paintOrder?: string;
+
+  /**
+   * The [shape-rendering mode][1] (*e.g.*, *crispEdges*).
+   *
+   * [1]:
+   * https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering
+   */
   shapeRendering?: string;
 
-  // links
+  /**
+   * A channel of URLs to link to. For example, to create a gallery:
+   *
+   * ```js
+   * Plot.image(*gallery*, {x: (d, i) => i, href: "link", target: "_blank"})
+   * ```
+   */
   href?: ChannelValue;
+
+  /**
+   * The link target (e.g., *_blank* for a new window); for use with the **href** channel.
+   */
   target?: string;
 
-  // custom channels
+  /**
+   * Custom channels, usually declared by an initializer that desires a channel
+   * that is not supported by the downstream mark.
+   */
   channels?: Channels;
 }
 

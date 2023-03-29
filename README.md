@@ -786,7 +786,7 @@ All marks support the following optional channels:
 * **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
 * **strokeWidth** - a stroke width (in pixels)
 * **opacity** - an object opacity; bound to the *opacity* scale
-* **title** - a tooltip (a string of text, possibly with newlines)
+* **title** - an accessible, short-text description (a string of text, possibly with newlines)
 * **href** - a URL to link to
 * **ariaLabel** - a short label representing the value in the accessibility tree
 
