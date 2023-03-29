@@ -127,14 +127,14 @@ export interface MarkOptions {
   initializer?: InitializerFunction;
 
   /**
-   * The horizontal facet position, an optional channel for mark-level faceting
-   * bound to the *fx* scale.
+   * The horizontal facet position, a channel for mark-level faceting bound to
+   * the *fx* scale.
    */
   fx?: ChannelValue;
 
   /**
-   * The vertical facet position, an optional channel for mark-level faceting
-   * bound to the *fy* scale.
+   * The vertical facet position, a channel for mark-level faceting bound to the
+   * *fy* scale.
    */
   fy?: ChannelValue;
 
@@ -230,25 +230,24 @@ export interface MarkOptions {
    */
   marginLeft?: number;
 
-  /** A textual description for the mark. */
+  /** A textual description for the mark; a constant. */
   ariaDescription?: string;
 
   /**
-   * The [aria-hidden][1] state, indicating whether the element is exposed to an
-   * accessibility API.
+   * The [aria-hidden][1] state; a constant indicating whether the element is
+   * exposed to an accessibility API.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden
    */
   ariaHidden?: string;
 
   /**
-   * A short label representing the value in the accessibility tree; an optional
-   * channel.
+   * A short label representing the value in the accessibility tree; a channel.
    */
   ariaLabel?: ChannelValue;
 
   /**
-   * The [pointer events][1] (*e.g.*, *none*); an optional constant.
+   * The [pointer events][1] (*e.g.*, *none*); a constant.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
    */
@@ -256,7 +255,7 @@ export interface MarkOptions {
 
   /**
    * An accessible, short-text description (a string of text, possibly with
-   * newlines); an optional channel.
+   * newlines); a channel.
    */
   title?: ChannelValue;
 
@@ -284,10 +283,10 @@ export interface MarkOptions {
   dy?: number;
 
   /**
-   * The [fill][1]; a constant CSS color string, or an optional channel
-   * typically bound to the *color* scale. If all channel values are valid CSS
-   * colors, by default the channel will not be bound to the *color* scale,
-   * interpreting the colors literally.
+   * The [fill][1]; a constant CSS color string, or a channel typically bound to
+   * the *color* scale. If all channel values are valid CSS colors, by default
+   * the channel will not be bound to the *color* scale, interpreting the colors
+   * literally.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill
    */
