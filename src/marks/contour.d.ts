@@ -12,12 +12,14 @@ export interface ContourOptions extends Omit<RasterOptions, "interval" | "imageR
    * **blur** option.
    */
   smooth?: boolean;
+
   /**
    * The value can be specified as a channel based on the sample *data*, or as a
    * function *f*(*x*, *y*) to be evaluated at each pixel if the *data* is not
    * provided.
    */
   value?: ChannelValue | RasterSampler;
+
   /**
    * How to subdivide the domain into discrete level sets; defaults to *auto*;
    * one of:
@@ -37,6 +39,7 @@ export interface ContourOptions extends Omit<RasterOptions, "interval" | "imageR
    * See also the **interval** option.
    */
   thresholds?: Thresholds;
+
   /**
    * An alternative way of specifying the contour thresholds. For example to
    * create an isoline every 15 meters on a topographic map:
@@ -90,20 +93,11 @@ export interface ContourOptions extends Omit<RasterOptions, "interval" | "imageR
  *  })
  * ```
  *
- * The resolution of the underlying raster grid may be specified with the
- * following options:
+ * The resolution of the rectangular raster image may be specified with
+ * **width** and **height**.
  *
- * * **width** - the number of pixels on each horizontal line
- * * **height** - the number of lines; a positive integer
- *
- * The raster dimensions may also be imputed from the extent of *x* and *y* and
- * a pixel size:
- *
- * * **x1** - the starting horizontal position; bound to the *x* scale
- * * **x2** - the ending horizontal position; bound to the *x* scale
- * * **y1** - the starting vertical position; bound to the *y* scale
- * * **y2** - the ending vertical position; bound to the *y* scale
- * * **pixelSize** - the screen size of a raster pixel; defaults to 1
+ * The raster dimensions may alternatively be imputed from a rectangular extent
+ * *x1*, *y1*, *x2*, *y2* and a **pixelSize**.
  */
 export function contour(options?: ContourOptions): Contour;
 export function contour(data?: Data, options?: ContourOptions): Contour;

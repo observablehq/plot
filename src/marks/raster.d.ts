@@ -127,7 +127,7 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
   /**
    * The spatial interpolation method, when using *data* samples. One of:
    *
-   * - *none* (or null) - assign each sample to the containing pixel
+   * - *none* (or null, default) - assign each sample to the containing pixel
    * - *nearest* - assign each pixel to the closest sample’s value (Voronoi
    *   diagram)
    * - *barycentric* - apply barycentric interpolation over the Delaunay
@@ -178,18 +178,11 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
  * functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster
  * grid (without interpolation).
  *
- * The resolution of the rectangular raster image may be specified with the following options:
+ * The resolution of the rectangular raster image may be specified with
+ * **width** and **height**.
  *
- * * **width** - the number of pixels on each horizontal line
- * * **height** - the number of lines; a positive integer
- *
- * The raster dimensions may also be imputed from the extent of *x* and *y* and a pixel size:
- *
- * * **x1** - the starting horizontal position; bound to the *x* scale
- * * **x2** - the ending horizontal position; bound to the *x* scale
- * * **y1** - the starting vertical position; bound to the *y* scale
- * * **y2** - the ending vertical position; bound to the *y* scale
- * * **pixelSize** - the screen size of a raster pixel; defaults to 1
+ * The raster dimensions may alternatively be imputed from a rectangular extent
+ * *x1*, *y1*, *x2*, *y2* and a **pixelSize**.
  */
 export function raster(options?: RasterOptions): Raster;
 export function raster(data?: Data, options?: RasterOptions): Raster;
@@ -234,8 +227,22 @@ export const interpolateNearest: RasterInterpolateFunction;
  * SIGGRAPH 2020.
  */
 export function interpolatorRandomWalk(options?: {
+  /**
+   * A source of pseudo-random numbers in [0, 1). Called at each step of the
+   * random walk algorithm with arguments *x*, *y*, and *step*.
+   */
   random?: RandomSource;
+
+  /**
+   * The random walk ends by “snapping” to the closest sample if closer than
+   * this distance (in pixels).
+   */
   minDistance?: number;
+
+  /**
+   * After this number of steps, which defaults to 3, lift the minDistance
+   * requirement and snap to the closest sample.
+   */
   maxSteps?: number;
 }): RasterInterpolateFunction;
 
