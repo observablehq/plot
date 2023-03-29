@@ -2,9 +2,11 @@ import type {ChannelValue, ChannelValueIntervalSpec, ChannelValueSpec} from "../
 import type {Interval} from "../interval.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 
-/** The [text
- * anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor)
- * for horizontal position. */
+/**
+ * The [text anchor][1] for horizontal position.
+ *
+ * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor
+ */
 export type TextAnchor = "start" | "middle" | "end";
 
 /** The line anchor for vertical position. */
@@ -33,20 +35,49 @@ export type TextOverflow =
 
 /** Options for the text mark. */
 export interface TextOptions extends MarkOptions {
+  /**
+   * The horizontal position, typically bound to the *x* mark.
+   */
   x?: ChannelValueSpec;
+
+  /**
+   * The vertical position, typically bound to the *y* mark.
+   */
   y?: ChannelValueSpec;
+
+  /**
+   * The text contents, with line breaks ('\n', '\r\n', or '\r') denoting
+   * separate lines, rendered as tspan elements spaced with a relative
+   * **lineHeight** that defaults to 1. The text can be split in lines of a
+   * given **lineWidth**, specified in ems (e.g. 10 for about 20 characters).
+   * Lines might be split on words that contain a soft-hyphen (\xad), replacing
+   * it with a dash (-) and a line feed. To truncate longer texts, see the
+   * **textOverflow** option.
+   */
   text?: ChannelValue;
+
+  /**
+   * If either of the **x** or **y** channels are not specified, the
+   * corresponding position is controlled by the **frameAnchor** option, which
+   * defaults to *middle*. If the text is anchored to the *left* of the frame,
+   * its default **textAnchor** is *start*; if anchored to the *right* of the
+   * frame, *end*; otherwise, *center*.
+   */
   frameAnchor?: FrameAnchor;
 
   /**
-   * The [text
-   * anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor)
-   * for horizontal position; start, end, or middle.
+   * The [text anchor][1] for horizontal position; start, end, or middle.
+   * Defaults to *center* unless the **frameAnchor** mentions *left* or *right*.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor
    */
   textAnchor?: TextAnchor;
 
   /**
-   * The line anchor for vertical position; top, bottom, or middle.
+   * The line anchor for vertical position; *top*, *bottom*, or *middle*.
+   * Defaults to *middle* unless the **frameAnchor** option includes *top* (or
+   * *bottom*), in which case it defaults to *top* (resp. *bottom*), so that the
+   * text is contained in the frame.
    */
   lineAnchor?: LineAnchor;
 
@@ -79,9 +110,10 @@ export interface TextOptions extends MarkOptions {
   /** If true, changes the default fontFamily and metrics to monospace. */
   monospace?: boolean;
 
-  /** The font name; defaults to
-   * [system-ui](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui).
-   * For example, to use a custom font stack:
+  /**
+   *
+   * The font name; defaults to [system-ui][1]. For example, to use a custom
+   * font stack:
    *
    * ```js
    * Plot.text(labels, {
@@ -89,6 +121,8 @@ export interface TextOptions extends MarkOptions {
    *   fontFamily: "'Atkinson Hyperlegible',Roboto,sans-serif",
    * })
    * ```
+   *
+   * [1]: https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui
    */
   fontFamily?: string;
 
@@ -96,29 +130,29 @@ export interface TextOptions extends MarkOptions {
   fontSize?: ChannelValue;
 
   /**
-   * The [font
-   * style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style);
-   * defaults to normal.
+   * The [font style][1]; defaults to normal.
    *
    * For italic font, use fontStyle: "italic".
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/font-style
    */
   fontStyle?: string;
 
   /**
-   * The [font
-   * variant](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant);
-   * defaults to normal.
+   * The [font variant][1]; defaults to normal.
    *
    * For tabular numbers, use fontVariant: "tabular-nums".
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant
    */
   fontVariant?: string;
 
   /**
-   * The [font
-   * weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight);
-   * defaults to normal.
+   * The [font weight][1]; defaults to normal.
    *
    * For a boldface font, use *e.g.* fontWeight: "bold" or fontWeight: 700.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight
    */
   fontWeight?: string | number;
 
@@ -142,12 +176,7 @@ export interface TextYOptions extends Omit<TextOptions, "x"> {
 
 /**
  * Returns a new text mark for the given *data* and *options*. The **text**
- * channel specifies the textual contents of the mark, with line breaks ('\n',
- * '\r\n', or '\r') denoting separate lines, rendered as tspan elements spaced
- * with a relative **lineHeight** that defaults to 1. The text can be split in
- * lines of a given **lineWidth**, specified in ems (e.g. 10 for about 20
- * characters). Lines might be split on words that contain a soft-hyphen (\xad),
- * replacing it with a dash (-) and a line feed.
+ * channel specifies the (possibly multi-line) textual contents of the mark.
  *
  * If the text is specified as numbers or dates, a default formatter will
  * automatically be applied, and the **fontVariant** will default to
