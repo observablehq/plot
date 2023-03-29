@@ -70,7 +70,7 @@ function dodge(y, x, anchor, padding, options) {
     if (!channels[x]) throw new Error(`missing channel: ${x}`);
     ({[x]: X} = applyPosition(channels, scales, context));
     const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
-    if (R) R = valueof(R.value, scales[R.scale] || identity, Float64Array);
+    if (R) R = valueof(R.value, scales[R.scale]?.apply || identity, Float64Array);
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
     const Y = new Float64Array(X.length);

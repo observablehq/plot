@@ -98,7 +98,7 @@ export class Raster extends AbstractRaster {
     return super.scale(channels, scales, context);
   }
   render(index, scales, values, dimensions, context) {
-    const color = scales[values.channels.fill?.scale] ?? ((x) => x);
+    const color = scales[values.channels.fill?.scale]?.apply ?? ((x) => x);
     const {x: X, y: Y} = values;
     const {document} = context;
     const [x1, y1, x2, y2] = renderBounds(values, dimensions, context);

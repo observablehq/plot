@@ -55,11 +55,11 @@ export function facetGroups(data, {fx, fy}) {
 }
 
 export function facetTranslate(fx, fy, {marginTop, marginLeft}) {
-  return fx && fy
-    ? ({x, y}) => `translate(${fx(x) - marginLeft},${fy(y) - marginTop})`
-    : fx
-    ? ({x}) => `translate(${fx(x) - marginLeft},0)`
-    : ({y}) => `translate(0,${fy(y) - marginTop})`;
+  return fx?.apply && fy?.apply
+    ? ({x, y}) => `translate(${fx.apply(x) - marginLeft},${fy.apply(y) - marginTop})`
+    : fx?.apply
+    ? ({x}) => `translate(${fx.apply(x) - marginLeft},0)`
+    : ({y}) => `translate(0,${fy.apply(y) - marginTop})`;
 }
 
 // Returns an index that for each facet lists all the elements present in other
