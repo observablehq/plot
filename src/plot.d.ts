@@ -36,11 +36,11 @@ export interface PlotOptions extends ScaleDefaults {
   aspectRatio?: number | boolean | null;
 
   /**
-   * Shorthand to set the same default for all four margins: marginTop,
-   * marginRight, marginBottom, and marginLeft. Otherwise, the default margins
-   * depend on the maximum margins of the plot’s marks. While most marks default
-   * to zero margins (because they are drawn inside the chart area), Plot’s axis
-   * marks have non-zero default margins.
+   * Shorthand to set the same default for all four margins: **marginTop**,
+   * **marginRight**, **marginBottom**, and **marginLeft**. Otherwise, the
+   * default margins depend on the maximum margins of the plot’s marks. While
+   * most marks default to zero margins (because they are drawn inside the chart
+   * area), Plot’s axis marks have non-zero default margins.
    */
   margin?: number;
 
