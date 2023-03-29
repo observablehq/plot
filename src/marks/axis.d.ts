@@ -117,12 +117,13 @@ interface AxisOptions extends GridOptions, MarkOptions, TextOptions {
   textStroke?: MarkOptions["stroke"];
 
   /**
-   * Text labels stroke opacity.
+   * Text labels stroke opacity (needs textStroke).
    */
   textStrokeOpacity?: MarkOptions["strokeOpacity"];
 
   /**
-   * Text labels stroke width.
+   * Text labels stroke width, used to limit occlusion; defaults to 4 (needs
+   * textStroke).
    */
   textStrokeWidth?: MarkOptions["strokeWidth"];
 
@@ -146,25 +147,209 @@ export interface GridXOptions extends GridOptions, Omit<RuleXOptions, "interval"
 export interface GridYOptions extends GridOptions, Omit<RuleYOptions, "interval"> {}
 
 /**
- * 🌶 todo
+ * Draws an axis to document the visual encoding of the *y* scale. The axis mark
+ * is a composite mark comprised of (up to) three marks: a **vector** for ticks,
+ * a **text** for tick labels, and another **text** for an axis label.
+ *
+ * By default, the *data* are tick values sampled from the scale’s domain. If
+ * desired, you can specify the axis mark’s data explicitly (_e.g._ as an array
+ * of numbers), or use one of the following options:
+ *
+ * - **ticks** - the approximate number of ticks to generate, or interval, or
+ *   array of values
+ * - **tickSpacing** - the approximate number of pixels between ticks (if
+ *   **ticks** is not specified)
+ * - **interval** - an interval or time interval
+ *
+ * In addition to the standard mark options, the axis mark supports the
+ * following options:
+ *
+ * - **anchor** - the orientation: *left*, *right*
+ * - **tickSize** - the length of the tick vector (in pixels; default 6)
+ * - **tickPadding** - the separation between the tick vector and its label (in
+ *   pixels; default 3)
+ * - **tickFormat** - either a function or specifier string to format tick
+ *   values
+ * - **tickRotate** - whether to rotate tick labels (an angle in degrees
+ *   clockwise; default 0)
+ * - **fontVariant** - the font-variant attribute for ticks; defaults to
+ *   tabular-nums for quantitative axes
+ * - **label** - a string to label the axis; defaults to the scale’s label,
+ *   perhaps with an arrow
+ * - **labelAnchor** - the label anchor: *top*, *bottom*, or *center*
+ * - **labelOffset** - the label position offset (in pixels; defaults to the
+ *   margin - 3)
+ * - **color** - the color of the ticks and labels (defaults to *currentColor*)
+ * - **textStroke** - the color of the stroke around tick labels (defaults to
+ *   *none*)
+ * - **textStrokeOpacity** - the opacity of the stroke around tick labels
+ * - **textStrokeWidth** - the thickness of the stroke around tick labels (in
+ *   pixels)
+ *
+ * The axis mark’s [**facetAnchor**](#facetanchor) option defaults to
+ * *right-empty* if anchor is *right*, and *left-empty* if anchor is *left*.
+ * This ensures the proper positioning of the axis with respect to empty facets.
+ *
+ * The axis mark’s default margins depend on its orientation (**anchor**) as
+ * follows, in order of **marginTop**, **marginRight**, **marginBottom**, and
+ * **marginLeft**, in pixels:
+ *
+ * * *right* - 20, 40, 20, 0
+ * * *left* - 20, 0, 20, 40
+ *
+ * For simplicity’s sake and for consistent layout across plots, axis margins
+ * are not automatically sized to make room for tick labels; instead, shorten
+ * your tick labels (for example using the *k* SI-prefix tick format, or setting
+ * a *scale*.transform to show thousands or millions, or setting the
+ * **textOverflow** option to *ellipsis* and the **lineWidth** option to clip
+ * long labels) or increase the margins as needed.
  */
 export function axisY(data?: Data, options?: AxisYOptions): CompoundMark;
 export function axisY(options?: AxisYOptions): CompoundMark;
 
 /**
- * 🌶 todo
+ * Draws an axis to document the visual encoding of the *fy* scale. The axis
+ * mark is a composite mark comprised of (up to) three marks: a **vector** for
+ * ticks, a **text** for tick labels, and another **text** for an axis label.
+ *
+ * By default, the *data* are the facet scale’s domain. In addition to the
+ * standard mark options, the axis mark supports the following options:
+ *
+ * - **anchor** - the orientation: *left*, *right*
+ * - **tickSize** - the length of the tick vector (in pixels; default 6)
+ * - **tickPadding** - the separation between the tick vector and its label (in
+ *   pixels; default 3)
+ * - **tickFormat** - either a function or specifier string to format tick
+ *   values
+ * - **tickRotate** - whether to rotate tick labels (an angle in degrees
+ *   clockwise; default 0)
+ * - **fontVariant** - the font-variant attribute for ticks
+ * - **label** - a string to label the axis; defaults to the scale’s label
+ * - **labelAnchor** - the label anchor: *top*, *bottom*, or *center*
+ * - **labelOffset** - the label position offset (in pixels; defaults to the
+ *   margin - 3)
+ * - **color** - the color of the ticks and labels (defaults to *currentColor*)
+ * - **textStroke** - the color of the stroke around tick labels (defaults to
+ *   *none*)
+ * - **textStrokeOpacity** - the opacity of the stroke around tick labels
+ * - **textStrokeWidth** - the thickness of the stroke around tick labels (in
+ *   pixels)
+ *
+ * The axis mark’s default margins depend on its orientation (**anchor**) as
+ * follows, in order of **marginTop**, **marginRight**, **marginBottom**, and
+ * **marginLeft**, in pixels:
+ *
+ * - *right* - 20, 40, 20, 0
+ * - *left* - 20, 0, 20, 40
+ *
+ * For simplicity’s sake and for consistent layout across plots, axis margins
+ * are not automatically sized to make room for tick labels; instead, shorten
+ * your tick labels (maybe setting the **textOverflow** option to *ellipsis* and
+ * the **lineWidth** option to clip long labels) or increase the margins as
+ * needed.
  */
 export function axisFy(data?: Data, options?: AxisYOptions): CompoundMark;
 export function axisFy(options?: AxisYOptions): CompoundMark;
 
 /**
- * 🌶 todo
+ * Draws an axis to document the visual encoding of the *x* scale. The axis mark
+ * is a composite mark comprised of (up to) three marks: a **vector** for ticks,
+ * a **text** for tick labels, and another **text** for an axis label.
+ *
+ * By default, the *data* are tick values sampled from the scale’s domain. If
+ * desired, you can specify the axis mark’s data explicitly (_e.g._ as an array
+ * of numbers), or use one of the following options:
+ *
+ * - **ticks** - the approximate number of ticks to generate, or interval, or
+ *   array of values
+ * - **tickSpacing** - the approximate number of pixels between ticks (if
+ *   **ticks** is not specified)
+ * - **interval** - an interval or time interval
+ *
+ * In addition to the standard mark options, the axis mark supports the
+ * following options:
+ *
+ * - **anchor** - the orientation: *top*, *bottom*
+ * - **tickSize** - the length of the tick vector (in pixels; default 6)
+ * - **tickPadding** - the separation between the tick vector and its label (in
+ *   pixels; default 3)
+ * - **tickFormat** - either a function or specifier string to format tick
+ *   values
+ * - **tickRotate** - whether to rotate tick labels (an angle in degrees
+ *   clockwise; default 0)
+ * - **fontVariant** - the font-variant attribute for ticks; defaults to
+ *   tabular-nums for quantitative axes
+ * - **label** - a string to label the axis; defaults to the scale’s label,
+ *   perhaps with an arrow
+ * - **labelAnchor** - the label anchor: *top*, *bottom*, or *center*
+ * - **labelOffset** - the label position offset (in pixels; defaults to the
+ *   margin - 3)
+ * - **color** - the color of the ticks and labels (defaults to *currentColor*)
+ * - **textStroke** - the color of the stroke around tick labels (defaults to
+ *   *none*)
+ * - **textStrokeOpacity** - the opacity of the stroke around tick labels
+ * - **textStrokeWidth** - the thickness of the stroke around tick labels (in
+ *   pixels)
+ *
+ * The axis mark’s **facetAnchor** option defaults to *bottom-empty* if anchor
+ * is *bottom*, and *top-empty* if anchor is *top*. This ensures the proper
+ * positioning of the axis with respect to empty facets.
+ *
+ * The axis mark’s default margins depend on its orientation (**anchor**) as
+ * follows, in order of **marginTop**, **marginRight**, **marginBottom**, and
+ * **marginLeft**, in pixels:
+ *
+ * - *top* - 30, 20, 0, 20
+ * - *bottom* - 0, 20, 30, 20
+ *
+ * For simplicity’s sake and for consistent layout across plots, axis margins
+ * are not automatically sized to make room for tick labels; instead, shorten
+ * your tick labels (for example using the *k* SI-prefix tick format, or setting
+ * a *scale*.transform to show thousands or millions, or setting the
+ * **lineWidth** option to wrap long labels), or rotate them.
  */
 export function axisX(data?: Data, options?: AxisXOptions): CompoundMark;
 export function axisX(options?: AxisXOptions): CompoundMark;
 
 /**
- * 🌶 todo
+ * Draws an axis to document the visual encoding of the *fx* scale. The axis
+ * mark is a composite mark comprised of (up to) three marks: a **vector** for
+ * ticks, a **text** for tick labels, and another **text** for an axis label.
+ *
+ * By default, the *data* are the facet scale’s domain. In addition to the
+ * standard mark options, the axis mark supports the following options:
+ *
+ * - **anchor** - the orientation: *left*, *right*
+ * - **tickSize** - the length of the tick vector (in pixels; default 6)
+ * - **tickPadding** - the separation between the tick vector and its label (in
+ *   pixels; default 3)
+ * - **tickFormat** - either a function or specifier string to format tick
+ *   values
+ * - **tickRotate** - whether to rotate tick labels (an angle in degrees
+ *   clockwise; default 0)
+ * - **fontVariant** - the font-variant attribute for ticks
+ * - **label** - a string to label the axis; defaults to the scale’s label
+ * - **labelAnchor** - the label anchor: *top*, *bottom*, or *center*
+ * - **labelOffset** - the label position offset (in pixels; defaults to the
+ *   margin - 3)
+ * - **color** - the color of the ticks and labels (defaults to *currentColor*)
+ * - **textStroke** - the color of the stroke around tick labels (defaults to
+ *   *none*)
+ * - **textStrokeOpacity** - the opacity of the stroke around tick labels
+ * - **textStrokeWidth** - the thickness of the stroke around tick labels (in
+ *   pixels)
+ *
+ * The axis mark’s default margins depend on its orientation (**anchor**) as
+ * follows, in order of **marginTop**, **marginRight**, **marginBottom**, and
+ * **marginLeft**, in pixels:
+ *
+ * - *top* - 30, 20, 0, 20
+ * - *bottom* - 0, 20, 30, 20
+ *
+ * For simplicity’s sake and for consistent layout across plots, axis margins
+ * are not automatically sized to make room for tick labels; instead, shorten
+ * your tick labels (maybe setting the **lineWidth** option to wrap long labels)
+ * or rotate them.
  */
 export function axisFx(data?: Data, options?: AxisXOptions): CompoundMark;
 export function axisFx(options?: AxisXOptions): CompoundMark;
