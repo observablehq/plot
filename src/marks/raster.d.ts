@@ -71,25 +71,33 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
 
   /**
    * The lower value of *x*, on the left edge of the raster (right edge if
-   * reversed).
+   * reversed). Defaults to the minimum of the **x** channel, if given,
+   * otherwise to 0, enabling to set up the raster coordinate system with a
+   * **width**.
    */
   x1?: number;
 
   /**
    * The higher value of *x*, on the right edge of the raster (left edge if
-   * reversed).
+   * reversed). Defaults to the maximum of the **x** channel, if given,
+   * otherwise to **width**, enabling to set up the raster coordinate system
+   * with a **width**.
    */
   x2?: number;
 
   /**
    * The lower value of *y*, on the top edge of the raster (bottom edge if
-   * reversed).
+   * reversed). Defaults to the minimum of the **y** channel, if given,
+   * otherwise to 0, enabling to set up the raster coordinate system with a
+   * **height**.
    */
   y1?: number;
 
   /**
    * The higher value of *y*, on the bottom edge of the raster (top edge if
-   * reversed).
+   * reversed). Defaults to the maximum of the **y** channel, if given,
+   * otherwise to **height**, enabling to set up the raster coordinate system with a
+   * **height**.
    */
   y2?: number;
 
