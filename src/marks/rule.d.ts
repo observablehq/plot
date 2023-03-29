@@ -12,19 +12,21 @@ interface RuleOptions extends MarkOptions {
 export interface RuleXOptions extends RuleOptions, Omit<InsetOptions, "insetLeft" | "insetRight"> {
   /** The horizontal position of the tick; a channel bound to the *x* scale. */
   x?: ChannelValueSpec;
+
   /**
    * The vertical position of the tick, specified as a value and an interval;
    * bound to the *y* scale.
    */
   y?: ChannelValueIntervalSpec;
+
   /**
    * The vertical starting position of the tick; a channel bound to the *y*
    * scale.
    */
   y1?: ChannelValueSpec;
+
   /**
-   * The vertical ending position of the tick; a channel bound to the *y*
-   * scale.
+   * The vertical ending position of the tick; a channel bound to the *y* scale.
    */
   y2?: ChannelValueSpec;
 }
@@ -36,24 +38,27 @@ export interface RuleYOptions extends RuleOptions, Omit<InsetOptions, "insetTop"
    * bound to the *x* scale.
    */
   x?: ChannelValueIntervalSpec;
+
   /**
    * The horizontal starting position of the tick; a channel bound to the *x*
    * scale.
    */
   x1?: ChannelValueSpec;
+
   /**
    * The horizontal ending position of the tick; a channel bound to the *x*
    * scale.
    */
   x2?: ChannelValueSpec;
+
   /** The vertical position of the tick; a channel bound to the *y* scale. */
   y?: ChannelValueSpec;
 }
 
 /**
- * Returns a new ruleX mark for the given *data* and *options*. The **x**
- * channel specifies the horizontal position of the tick, and the **y1** and
- * **y2** optional channels specify its vertical extent.
+ * An vertical rule. The **x** channel specifies the horizontal position of the
+ * rule, and the **y1** and **y2** optional channels specify its vertical
+ * extent.
  *
  * For example, to create a candlestick chart of the AAPL ticker:
  *
@@ -62,15 +67,15 @@ export interface RuleYOptions extends RuleOptions, Omit<InsetOptions, "insetTop"
  * ```
  *
  * **x** defaults to identity, assuming that *data* contains numbers. The
- * vertical dimension can be specified as **y** with a value and an interval;
- * if it is ordinal instead of quantitative or temporal, use **tickX**.
+ * vertical dimension can be specified as **y** with a value and an interval; if
+ * it is ordinal instead of quantitative or temporal, use **tickX**.
  */
 export function ruleX(data?: Data, options?: RuleXOptions): RuleX;
 
 /**
- * Returns a new ruleY mark for the given *data* and *options*. The **y**
- * channel specifies the vertical position of the tick, and the **x1** and
- * **x2** optional channels specify its horizontal extent.
+ * An horizontal rule. The **y** channel specifies the vertical position of the
+ * rule, and the **x1** and **x2** optional channels specify its horizontal
+ * extent.
  *
  * For example, this shows the high value of the AAPL ticker as a small rule:
  *
