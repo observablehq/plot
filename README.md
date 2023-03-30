@@ -1503,7 +1503,7 @@ Returns a new *fy* grid with the given *options*.
 
 ### Hexgrid
 
-The hexgrid mark can be used to support marks using the [hexbin](#hexbin) layout.
+The hexgrid mark can be used to support marks using the [hexbin](#hexbin) transform.
 
 #### Plot.hexgrid(*options*)
 
