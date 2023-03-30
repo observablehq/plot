@@ -7,7 +7,8 @@ import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 interface RuleOptions extends MarkOptions {
   /**
    * How to convert a continuous value (**y** for ruleX, or **x** for ruleY)
-   * into an interval; one of:
+   * into an interval (**y1** and **y2** for ruleX, or **x1** and **x2** for
+   * ruleY); one of:
    *
    * - an object that implements *floor*, *offset*, and *range* methods
    * - a named time interval such as *day* (for date intervals)

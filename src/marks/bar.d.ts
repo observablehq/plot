@@ -26,7 +26,8 @@ interface BarOptions extends MarkOptions, InsetOptions, StackOptions {
 
   /**
    * How to convert a continuous value (**x** for barX, or **y** for barY) into
-   * an interval; one of:
+   * an interval (**x1** and **x2** for barX, or **y1** and **y2** for barY);
+   * one of:
    *
    * - an object that implements *floor*, *offset*, and *range* methods
    * - a named time interval such as *day* (for date intervals)
@@ -39,6 +40,9 @@ interface BarOptions extends MarkOptions, InsetOptions, StackOptions {
    * ```js
    * Plot.barY(alphabet, {x: "letter", y: "frequency", interval: 0.01})
    * ```
+   *
+   * Setting this option disables the implicit stack transform (stackX or barX,
+   * or stackY for barY).
    */
   interval?: Interval;
 }
@@ -46,30 +50,83 @@ interface BarOptions extends MarkOptions, InsetOptions, StackOptions {
 /** Options for the barX mark. */
 export interface BarXOptions extends BarOptions {
   /**
-   * The bar’s width as a quantitative channel, bound to the *x* scale. The
-   * implicit **stackX** transform stacks bars horizontally.
+   * The horizontal position (or length/width) channel, typically bound to the
+   * *x* scale.
+   *
+   * If the **interval** option is specified, then **x1** and **x2** are derived
+   * from **x**, representing the lower and upper bound of the containing
+   * interval, respectively. Otherwise, if neither **x1** nor **x2** is
+   * specified, an implicit stackX transform is applied and **x** defaults to
+   * the identity function, assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
+   * Lastly, if only one of **x1** or **x2** is specified, the other defaults to
+   * **x**, which defaults to zero.
    */
   x?: ChannelValueIntervalSpec;
 
-  /** The bar’s starting position, bound to the *x* scale. */
+  /**
+   * The required primary (starting) horizontal position channel, typically
+   * bound to the *x* scale. Setting this option disables the implicit stackX
+   * transform.
+   */
   x1?: ChannelValueSpec;
 
-  /** The bar’s ending position, bound to the *x* scale. */
+  /**
+   * The required secondary (ending) horizontal position channel, typically
+   * bound to the *x* scale. Setting this option disables the implicit stackX
+   * transform.
+   */
   x2?: ChannelValueSpec;
 
-  /** The bar’s horizontal position, bound to the *y* band scale. */
+  /**
+   * The optional vertical position of the bar; a categorical channel typically
+   * bound to the *y* scale. If not specified, the bar spans the vertical extent
+   * of the frame; otherwise the *y* scale must be a *band* scale.
+   *
+   * If *y* represents quantitative or temporal values, use a rectX mark
+   * instead.
+   */
   y?: ChannelValueSpec;
 }
 
 /** Options for the barY mark. */
 export interface BarYOptions extends BarOptions {
   /**
-   * The bar’s height as a quantitative channel, bound to the *y* scale. The
-   * implicit **stackY** transform stacks bars vertically.
+   * The vertical position (or length/height) channel, typically bound to the
+   * *y* scale.
+   *
+   * If the **interval** option is specified, then **y1** and **y2** are derived
+   * from **y**, representing the lower and upper bound of the containing
+   * interval, respectively. Otherwise, if neither **y1** nor **y2** is
+   * specified, an implicit stackY transform is applied and **y** defaults to
+   * the identity function, assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
+   * Lastly, if only one of **y1** or **y2** is specified, the other defaults to
+   * **y**, which defaults to zero.
    */
   y?: ChannelValueIntervalSpec;
+
+  /**
+   * The required primary (starting) vertical position channel, typically bound
+   * to the *y* scale. Setting this option disables the implicit stackY
+   * transform.
+   */
   y1?: ChannelValueSpec;
+
+  /**
+   * The required secondary (ending) horizontal position channel, typically
+   * bound to the *y* scale. Setting this option disables the implicit stackY
+   * transform.
+   */
   y2?: ChannelValueSpec;
+
+  /**
+   * The optional horizontal position of the bar; a categorical channel
+   * typically bound to the *x* scale. If not specified, the bar spans the
+   * horizontal extent of the frame; otherwise the *x* scale must be a *band*
+   * scale.
+   *
+   * If *x* represents quantitative or temporal values, use a rectY mark
+   * instead.
+   */
   x?: ChannelValueSpec;
 }
 
