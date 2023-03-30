@@ -4,6 +4,7 @@ import type {Interval} from "../interval.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import type {StackOptions} from "../transforms/stack.js";
 
+/** Options for marks that render rectangles, including bar, cell, and rect. */
 export interface RectCornerOptions {
   /**
    * The rounded corner [*x*-radius][1], either in pixels or as a percentage of
