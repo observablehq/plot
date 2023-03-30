@@ -942,8 +942,8 @@ For vertical or horizontal arrows, the **x** option can be specified as shorthan
 
 The arrow mark supports the [standard mark options](#marks). The **stroke** defaults to currentColor. The **fill** defaults to none. The **strokeWidth** defaults to 1.5, and the **strokeMiterlimit** defaults to one. The following additional options are supported:
 
-* **bend** - the bend angle, in degrees; defaults to zero
-* **headAngle** - the arrowhead angle, in degrees; defaults to 22.5°
+* **bend** - the bend angle, in degrees; defaults to zero; true for 22.5°
+* **headAngle** - the arrowhead angle, in degrees; defaults to 60°
 * **headLength** - the arrowhead scale; defaults to 8
 * **insetEnd** - inset at the end of the arrow (useful if the arrow points to a dot)
 * **insetStart** - inset at the start of the arrow

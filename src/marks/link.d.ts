@@ -59,7 +59,7 @@ export interface LinkOptions extends MarkOptions, MarkerOptions, CurveAutoOption
 
 /**
  * Returns a new link mark for the given *data* and *options*, drawing line
- * segments (curves) to connect pairs of points. For example, to draw a link
+ * segments (curves) connecting pairs of points. For example, to draw a link
  * connecting an observation from 1980 with an observation from 2015 in a
  * scatterplot of population and revenue inequality of U.S. cities:
  *

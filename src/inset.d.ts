@@ -1,10 +1,10 @@
 /** Options for insetting rectangular shapes. */
 export interface InsetOptions {
   /**
-   * Shorthand to set the same default for all four insets: insetTop,
-   * insetRight, insetBottom, and insetLeft. All insets typically default to
-   * zero, though not always (say, a rect mark and a ban transform). A positive
-   * inset reduces effective area, while a negative inset increases it.
+   * Shorthand to set the same default for all four insets: **insetTop**,
+   * **insetRight**, **insetBottom**, and **insetLeft**. All insets typically
+   * default to zero, though not always (say when using bin transform). A
+   * positive inset reduces effective area, while a negative inset increases it.
    */
   inset?: number;
 
