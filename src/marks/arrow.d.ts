@@ -58,7 +58,7 @@ export interface ArrowOptions extends MarkOptions {
   headLength?: number;
 
   /**
-   * Shorthand for insetStart and insetEnd, in pixels.
+   * Shorthand for **insetStart** and **insetEnd**.
    */
   inset?: number;
 
@@ -84,29 +84,15 @@ export interface ArrowOptions extends MarkOptions {
  * Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015", bend: true})
  * ```
  *
- * The following channels are required:
- *
- * - **x1** - the starting horizontal position; bound to the *x* scale
- * - **y1** - the starting vertical position; bound to the *y* scale
- * - **x2** - the ending horizontal position; bound to the *x* scale
- * - **y2** - the ending vertical position; bound to the *y* scale
- *
- * For vertical or horizontal arrows, the **x** option can be specified as
- * shorthand for **x1** and **x2**, and the **y** option can be specified as
- * shorthand for **y1** and **y2**, respectively.
+ * The starting point is specified by **x1** and **y1**, and the ending point by
+ * **x2** and **y2** (or **x** for vertical arrows, and **y** for horizontal
+ * arrows). The arrow’s shape configuration options include the **bend** angle,
+ * **headAngle** and **headLength**, as well as insets (**insetEnd** and
+ * **insetStart**).
  *
  * The **stroke** defaults to currentColor. The **fill** defaults to none. The
  * **strokeWidth** defaults to 1.5, and the **strokeMiterlimit** defaults to
- * one. The following additional options are supported:
- *
- * - **bend** - the bend angle, in degrees; defaults to zero (true for 22.5°)
- * - **headAngle** - the arrowhead angle, in degrees; defaults to 60°
- * - **headLength** - the arrowhead length, in pixels; defaults to 8. Disable
- *   the arrow with headLength = 0
- * - **insetEnd** - inset at the end of the arrow (useful if the arrow points to
- *   a dot)
- * - **insetStart** - inset at the start of the arrow
- * - **inset** - shorthand for the two insets
+ * one.
  */
 export function arrow(data?: Data, options?: ArrowOptions): Arrow;
 
