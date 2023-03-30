@@ -49,7 +49,7 @@ export interface LegendOptions {
   color?: string;
   /** The desired fill color of symbols; use *color* for a redundant encoding. For *symbol* legends only. */
   fill?: string;
-  /** The desired fill opacity of symbols. For *symbol* legends only. */
+  /** The desired fill opacity of symbols. For *symbol* and *color* legends. */
   fillOpacity?: number;
   /** The desired stroke color of symbols; use *color* for a redundant encoding. For *symbol* legends only. */
   stroke?: string;

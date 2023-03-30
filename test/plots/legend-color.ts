@@ -435,3 +435,11 @@ export function colorSchemesQuantitative() {
   }
   return div;
 }
+
+export async function colorLegendOpacity() {
+  return Plot.legend({color: {domain: ["Dream", "Torgersen", "Biscoe"]}, fillOpacity: 0.5});
+}
+
+export async function colorLegendOpacityRamp() {
+  return Plot.legend({color: {domain: [0, 1000]}, fillOpacity: 0.5});
+}
