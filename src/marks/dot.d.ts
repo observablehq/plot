@@ -48,12 +48,11 @@ export interface DotOptions extends MarkOptions {
   symbol?: ChannelValueSpec | SymbolType;
 
   /**
-   * The frame anchor may be specified as one of the four sides (*top*, *right*,
-   * *bottom*, *left*), one of the four corners (*top-left*, *top-right*,
-   * *bottom-right*, *bottom-left*), or the *middle* of the frame. It controls
-   * any component of the dot’s position not specified by **x** or **y**. For
-   * example, for a dots distributed in a horizontal line positioned at the top
-   * of the frame:
+   * The frame anchor specifies defaults for **x** and **y** based on the plot’s
+   * frame; it may be one of the four sides (*top*, *right*, *bottom*, *left*),
+   * one of the four corners (*top-left*, *top-right*, *bottom-right*,
+   * *bottom-left*), or the *middle* of the frame. For example, for dots
+   * distributed horizontally at the top of the frame:
    *
    * ```js
    * Plot.dot(data, {x: "date", frameAnchor: "top"})
@@ -93,8 +92,9 @@ export interface DotYOptions extends Omit<DotOptions, "x"> {
 }
 
 /**
- * Draws circles, or other symbols, as in a scatterplot. For example, a
- * scatterplot of sales by fruit type (category) and units sold (quantitative):
+ * Returns a new dot mark for the given *data* and *options* that draws circles,
+ * or other symbols, as in a scatterplot. For example, a scatterplot of sales by
+ * fruit type (category) and units sold (quantitative):
  *
  * ```js
  * Plot.dot(sales, {x: "units", y: "fruit"})
