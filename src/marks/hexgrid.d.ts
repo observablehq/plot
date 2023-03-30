@@ -4,28 +4,29 @@ import type {MarkOptions, RenderableMark} from "../mark.js";
 export interface HexgridOptions extends MarkOptions {
   /**
    * The distance between centers of neighboring hexagons, in pixels; defaults
-   * to 20. Should reflect the binWidth of the **hexbin** transform.
+   * to 20. Should match the **binWidth** of the hexbin transform.
    */
   binWidth?: number;
 }
 
 /**
- * The hexgrid mark can be used to support marks using the **hexbin** transform.
- * Its default **stroke** (currentColor) and strokeOpacity (0.1) are similar to
- * the **grid** mark’s defaults. To create a hexagonal grid, associated with a
- * binning, use the same **binWidth**:
+ * The hexgrid decoration mark complements the hexbin transform, showing the
+ * outlines of all hexagons spanning the frame with a default **stroke** of
+ * *currentColor* and a default **strokeOpacity** of 0.1, similar to the the
+ * default axis grids. For example:
  *
  * ```js
- * Plot.plot({marks: [
- *   Plot.hexagon(Plot.hexbin({fill: "count"}, {binWidth: 12, x: "weight", y: "economy"})),
- *   Plot.hexgrid({binWidth: 12})
- * ]})
+ * Plot.plot({
+ *   marks: [
+ *     Plot.hexagon(Plot.hexbin({fill: "count"}, {binWidth: 12, x: "weight", y: "economy"})),
+ *     Plot.hexgrid({binWidth: 12})
+ *   ]
+ * })
  * ```
  *
- * The hexagons span the entire frame—encompassing in particular empty hexagons
- * that the **hexbin** transform does not generate. The grid is clipped by the
- * frame. This is a stroke-only mark, and fill color is not supported: use the
- * **frame** mark with the **fill** option instead.
+ * Note that the **binWidth** option of the hexgrid mark should match that of
+ * the hexbin transform. The grid is clipped by the frame. This is a stroke-only
+ * mark, and **fill** is not supported; to fill the frame, use the frame mark.
  */
 export function hexgrid(options?: HexgridOptions): Hexgrid;
 
