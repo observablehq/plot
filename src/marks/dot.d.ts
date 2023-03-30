@@ -51,8 +51,8 @@ export interface DotOptions extends MarkOptions {
    * The frame anchor specifies defaults for **x** and **y** based on the plot’s
    * frame; it may be one of the four sides (*top*, *right*, *bottom*, *left*),
    * one of the four corners (*top-left*, *top-right*, *bottom-right*,
-   * *bottom-left*), or the *middle* of the frame. For example, for a dots
-   * distributed in a horizontal line positioned at the top of the frame:
+   * *bottom-left*), or the *middle* of the frame. For example, for dots
+   * distributed horizontally at the top of the frame:
    *
    * ```js
    * Plot.dot(data, {x: "date", frameAnchor: "top"})
