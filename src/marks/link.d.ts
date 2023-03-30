@@ -6,76 +6,70 @@ import type {MarkerOptions} from "../marker.js";
 /** Options for the link mark. */
 export interface LinkOptions extends MarkOptions, MarkerOptions, CurveAutoOptions {
   /**
-   * The horizontal position, for vertical links; bound to the *x* scale. **x**
-   * specifies defaults for both **x1** and **x2**.
+   * The horizontal position, for vertical links; typically bound to the *x*
+   * scale; shorthand for setting defaults for both **x1** and **x2**.
    */
   x?: ChannelValueSpec;
 
   /**
-   * The vertical position, for horizontal links; bound to the *y* scale. **y**
-   * specifies defaults for both **y1** and **y2**.
+   * The vertical position, for horizontal links; typically bound to the *y*
+   * scale; shorthand for setting defaults for both **y1** and **y2**.
    */
   y?: ChannelValueSpec;
 
   /**
-   * The starting horizontal position; bound to the *x* scale. **x1** specifies
-   * defaults for **x2**.
+   * The starting horizontal position; typically bound to the *x* scale; also
+   * sets a default for **x2**.
    */
   x1?: ChannelValueSpec;
 
   /**
-   * The starting vertical position; bound to the *y* scale. **y1** specifies
-   * defaults for **y2**.
+   * The starting vertical position; typically bound to the *y* scale; also sets
+   * a default for **y2**.
    */
   y1?: ChannelValueSpec;
 
   /**
-   * The ending horizontal position; bound to the *x* scale. **x2** specifies
-   * defaults for **x1**.
+   * The ending horizontal position; typically bound to the *x* scale; also sets
+   * a default for **x1**.
    */
   x2?: ChannelValueSpec;
 
   /**
-   * The ending vertical position; bound to the *y* scale. **y2** specifies
-   * defaults for **y1**.
+   * The ending vertical position; typically bound to the *y* scale; also sets a
+   * default for **y1**.
    */
   y2?: ChannelValueSpec;
 
   /**
-   * The **curve** option controls interpolation between points. Since a link
-   * always has two points by definition, only the following curves (or a custom
+   * The curve (interpolation) method for connecting adjacent points.
+   *
+   * Since a link has exactly two points, only the following curves (or a custom
    * curve) are recommended: *linear*, *step*, *step-after*, *step-before*,
    * *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing
-   * a fill since a straight line has zero area. For a curved link, you can use
-   * a bent [arrow](#arrow) (with no arrowhead, if desired).
+   * a fill since a straight line has zero area. For a curved link, use an arrow
+   * mark with the **bend** option.
+   *
+   * If the plot uses a spherical **projection**, the default *auto* **curve**
+   * will render links as geodesics; to draw a straight line instead, use the
+   * *linear* **curve** instead.
    */
   curve?: CurveAutoOptions["curve"];
 }
 
 /**
- * The link mark draws line segments (or curves) connecting pairs of points. For
- * example, to draw a link connecting the situation in 1980 with the situation
- * in 2015 on a scatterplot representing the population and inequality of
- * revenues in U.S. cities:
+ * Returns a new link mark for the given *data* and *options*, drawing line
+ * segments (curves) to connect pairs of points. For example, to draw a link
+ * connecting an observation from 1980 with an observation from 2015 in a
+ * scatterplot of population and revenue inequality of U.S. cities:
  *
  * ```js
  * Plot.link(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015"})
  * ```
  *
- * The following channels are required:
- *
- * - **x1** - the starting horizontal position; bound to the *x* scale
- * - **y1** - the starting vertical position; bound to the *y* scale
- * - **x2** - the ending horizontal position; bound to the *x* scale
- * - **y2** - the ending vertical position; bound to the *y* scale
- *
- * For vertical or horizontal links, the **x** option can be specified as
- * shorthand for **x1** and **x2**, and the **y** option can be specified as
- * shorthand for **y1** and **y2**, respectively.
- *
- * The link mark supports **curve** options to control interpolation between
- * points, and **marker** options to add a marker (such as a dot or an
- * arrowhead) on each of the control points.
+ * If the plot uses a spherical **projection**, the default *auto* **curve**
+ * will render links as geodesics; to draw a straight line instead, use the
+ * *linear* **curve** instead.
  */
 export function link(data?: Data, options?: LinkOptions): Link;
 
