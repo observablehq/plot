@@ -3,44 +3,46 @@ import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 
 /** Options for the image mark. */
 export interface ImageOptions extends MarkOptions {
-  /** The horizontal position of the image; typically bound to the *x* scale. */
+  /**
+   * The horizontal position channel specifying the image’s center; typically
+   * bound to the *x* scale.
+   */
   x?: ChannelValueSpec;
 
-  /** The vertical position of the image; typically bound to the *y* scale. */
+  /**
+   * The vertical position channel specifying the image’s center; typically
+   * bound to the *y* scale.
+   */
   y?: ChannelValueSpec;
 
   /**
-   * The image width (in pixels, default 16). Images with a nonpositive width or
-   * height are not drawn. If a **width** is specified but not a **height**, or
-   * *vice versa*, the one defaults to the other.
+   * The image width in pixels. When a number, it is interpreted as a constant
+   * radius in pixels; otherwise it is interpreted as a channel. Also sets the
+   * default **height**; if neither are set, defaults to 16. Images with a
+   * nonpositive width are not drawn.
    */
   width?: ChannelValue;
 
   /**
-   * The image height (in pixels, default 16). Images with a nonpositive width
-   * or height are not drawn. If a **width** is specified but not a **height**,
-   * or *vice versa*, the one defaults to the other.
+   * The image height in pixels. When a number, it is interpreted as a constant
+   * radius in pixels; otherwise it is interpreted as a channel. Also sets the
+   * default **height**; if neither are set, defaults to 16. Images with a
+   * nonpositive height are not drawn.
    */
   height?: ChannelValue;
 
   /**
-   * The URL (or relative path) of each image (required). If **src** is
-   * specified as a string that starts with a dot, slash, or URL protocol
-   * (*e.g.*, “https:”) it is assumed to be a constant; otherwise it is
-   * interpreted as a channel.
+   * The required image URL (or relative path). If a string that starts with a
+   * dot, slash, or URL protocol (*e.g.*, “https:”) it is assumed to be a
+   * constant; otherwise it is interpreted as a channel.
    */
   src?: ChannelValue;
 
   /**
-   * The image [aspect ratio][1]; defaults to “xMidYMid meet”.
+   * The image [aspect ratio][1]; defaults to *xMidYMid meet*. To crop the image
+   * instead of scaling it to fit, use *xMidYMid slice*.
    *
-   * To crop the image instead of scaling it to fit, set **preserveAspectRatio**
-   * to “xMidYMid slice”. The **imageRendering** option may be set to
-   * *pixelated* to disable bilinear interpolation on enlarged images; however,
-   * note that this is not supported in WebKit.
-   *
-   * [1]:
-   * https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio
    */
   preserveAspectRatio?: string;
 
@@ -53,8 +55,10 @@ export interface ImageOptions extends MarkOptions {
   crossOrigin?: string;
 
   /**
-   * Position of the image relative to the frame if any of **x** or **y** are
-   * not specified.
+   * The frame anchor specifies defaults for **x** and **y** based on the plot’s
+   * frame; it may be one of the four sides (*top*, *right*, *bottom*, *left*),
+   * one of the four corners (*top-left*, *top-right*, *bottom-right*,
+   * *bottom-left*), or the *middle* of the frame.
    */
   frameAnchor?: FrameAnchor;
 
@@ -63,45 +67,25 @@ export interface ImageOptions extends MarkOptions {
    * option may be set to *pixelated* to disable bilinear interpolation for a
    * sharper image; however, note that this is not supported in WebKit.
    *
-   * [1]:
-   * https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering
    */
   imageRendering?: string;
 }
 
 /**
- * Draws images as in a scatterplot. For example, portraits of U.S. presidents
- * by date of inauguration and favorability:
+ * Returns a new image mark for the given *data* and *options* that draws images
+ * as in a scatterplot. For example, portraits of U.S. presidents by date of
+ * inauguration and favorability:
  *
  * ```js
  * Plot.image(presidents, {x: "inauguration", y: "favorability", src: "portrait"})
  * ```
  *
- * The required **src** option specifies the URL (or relative path) of each
- * image. If **src** is specified as a string that starts with a dot, slash, or
- * URL protocol (*e.g.*, “https:”) it is assumed to be a constant; otherwise it
- * is interpreted as a channel.
- *
- * In addition to the standard mark options, the following optional channels are
- * supported:
- *
- * * **x** - the horizontal position
- * * **y** - the vertical position
- * * **width** - the image width (in pixels)
- * * **height** - the image height (in pixels)
- *
- * If either of the **x** or **y** channels are not specified, the corresponding
- * position is controlled by the **frameAnchor** option. If neither the **x**
- * nor **y** nor **frameAnchor** options are specified, *data* is assumed to be
- * an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that
- * **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
- *
- * The following image-specific constant options are also supported:
- * **preserveAspectRatio**, **crossOrigin**, and **imageRendering**.
- *
- * Images are drawn in input order, with the last data drawn on top. If sorting
- * is needed, say to mitigate overplotting, consider a [sort and reverse
- * transform](#transforms).
+ * If either **x** or **y** is not specified, the default is determined by the
+ * **frameAnchor** option. If none of **x**, **y**, and **frameAnchor** are
+ * specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*,
+ * *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** =
+ * [*y₀*, *y₁*, *y₂*, …].
  */
 export function image(data?: Data, options?: ImageOptions): Image;
 
