@@ -17,9 +17,8 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn --frozen-lockfile
@@ -28,8 +27,7 @@ jobs:
           yarn run eslint src test --format=compact
       - run: yarn run prettier --check src test
       - run: yarn test:mocha
-      - name: Test artifacts
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: test-output-changes
