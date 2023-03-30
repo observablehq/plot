@@ -53,13 +53,13 @@ export interface BarXOptions extends BarOptions {
    * The horizontal position (or length/width) channel, typically bound to the
    * *x* scale.
    *
-   * If the **interval** option is specified, then **x1** and **x2** are derived
-   * from **x**, representing the lower and upper bound of the containing
-   * interval, respectively. Otherwise, if neither **x1** nor **x2** is
-   * specified, an implicit stackX transform is applied and **x** defaults to
-   * the identity function, assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
-   * Lastly, if only one of **x1** or **x2** is specified, the other defaults to
-   * **x**, which defaults to zero.
+   * If neither **x1** nor **x2** nor **interval** is specified, an implicit
+   * stackX transform is applied and **x** defaults to the identity function,
+   * assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. Otherwise if an **interval**
+   * is specified, then **x1** and **x2** are derived from **x**, representing
+   * the lower and upper bound of the containing interval, respectively.
+   * Otherwise, if only one of **x1** or **x2** is specified, the other defaults
+   * to **x**, which defaults to zero.
    */
   x?: ChannelValueIntervalSpec;
 
@@ -94,13 +94,13 @@ export interface BarYOptions extends BarOptions {
    * The vertical position (or length/height) channel, typically bound to the
    * *y* scale.
    *
-   * If the **interval** option is specified, then **y1** and **y2** are derived
-   * from **y**, representing the lower and upper bound of the containing
-   * interval, respectively. Otherwise, if neither **y1** nor **y2** is
-   * specified, an implicit stackY transform is applied and **y** defaults to
-   * the identity function, assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
-   * Lastly, if only one of **y1** or **y2** is specified, the other defaults to
-   * **y**, which defaults to zero.
+   * If neither **y1** nor **y2** nor **interval** is specified, an implicit
+   * stackY transform is applied and **y** defaults to the identity function,
+   * assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. Otherwise if an **interval**
+   * is specified, then **y1** and **y2** are derived from **y**, representing
+   * the lower and upper bound of the containing interval, respectively.
+   * Otherwise, if only one of **y1** or **y2** is specified, the other defaults
+   * to **y**, which defaults to zero.
    */
   y?: ChannelValueIntervalSpec;
 
@@ -131,92 +131,79 @@ export interface BarYOptions extends BarOptions {
 }
 
 /**
- * The barX mark draws horizontal bars, rectangles with a vertical ordinal base
- * and an horizontal quantitative extent. For an horizontal bar chart of letter
- * frequencies in English literature:
+ * Returns a new horizontal bar mark for the given *data* and *options*; the
+ * required *x* values must be quantitative, and the optional *y* values must be
+ * ordinal. For example, for a horizontal bar chart of English letter frequency:
  *
  * ```js
- * Plot.barX(alphabet, {x: "frequency", y: "letter", fill: "steelblue"})
+ * Plot.barX(alphabet, {x: "frequency", y: "letter"})
  * ```
  *
- * The following channels are required:
+ * If neither **x1** nor **x2** nor **interval** is specified, an implicit
+ * stackX transform is applied and **x** defaults to the identity function,
+ * assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. Otherwise if an **interval** is
+ * specified, then **x1** and **x2** are derived from **x**, representing the
+ * lower and upper bound of the containing interval, respectively. Otherwise, if
+ * only one of **x1** or **x2** is specified, the other defaults to **x**, which
+ * defaults to zero.
  *
- * * **x1** - the starting horizontal position; bound to the *x* scale
- * * **x2** - the ending horizontal position; bound to the *x* scale
- *
- * If neither the **x1** nor **x2** option is specified, the **x** option may be
- * specified as shorthand to apply an implicit **stackX** transform; this is the
- * typical configuration for an horizontal bar chart with bars aligned at   *x*
- * = 0. If the **x** option is not specified, it defaults to the identity
- * function. If *options* is undefined, then **y** defaults to the index of
- * *data*; this allows an array of numbers to be passed to Plot.barX to make a
- * quick sequential bar chart:
- *
- * ```js
- * Plot.barX([1, 2, 3, 0, 2])
- * ```
- *
- * If an **interval** is specified, such as *day* or a number, **x1** and **x2**
- * can be derived from **x**.
- *
- * The optional **y** channel specifies the vertical position; bound to the *y*
- * scale, which must be *band*. If the **y** channel is not specified, the bar
- * will span the full vertical extent of the plot (or facet).
- *
- * The **barX** mark is often used in conjunction with the **binY** transform.
+ * The optional **y** ordinal channel specifies the vertical position; it is
+ * typically bound to the *y* scale, which must be a *band* scale. If the **y**
+ * channel is not specified, the bar will span the vertical extent of the plot’s
+ * frame. The barX mark is often used in conjunction with the groupY transform.
  * For a stacked histogram of penguins by species, colored by sex:
  *
  * ```js
- * Plot.barX(*penguins*, Plot.groupY({x: "count"}, {y: "species", fill: "sex"}))
+ * Plot.barX(penguins, Plot.groupY({x: "count"}, {y: "species", fill: "sex"}))
  * ```
  *
- * If the **y** channel is quantitative, consider using the **rectX** mark
- * instead, possibly with a **binY** transform.
+ * If *y* is quantitative, use the rectX mark instead, possibly with a binY
+ * transform.
+*
+ * If *options* is undefined, then **y** defaults to the zero-based index of
+ * *data* [0, 1, 2, …], allowing a quick bar chart from an array of numbers:
+ *
+ * ```js
+ * Plot.barX([4, 9, 24, 46, 66, 7])
+ * ```
  */
 export function barX(data?: Data, options?: BarXOptions): BarX;
 
 /**
- * The barY mark draws vertical bars, rectangles with an horizontal ordinal base
- * and a vertical quantitative extent. For a bar chart of letter frequencies in
- * English literature:
+ * Returns a new vertical bar mark for the given *data* and *options*; the
+ * required *y* values must be quantitative, and the optional *x* values must be
+ * ordinal. For example, for a vertical bar chart of English letter frequency:
  *
  * ```js
- * Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "steelblue"})
+ * Plot.barY(alphabet, {y: "frequency", x: "letter"})
  * ```
+ * If neither **y1** nor **y2** nor **interval** is specified, an implicit
+ * stackY transform is applied and **y** defaults to the identity function,
+ * assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. Otherwise if an **interval** is
+ * specified, then **y1** and **y2** are derived from **y**, representing the
+ * lower and upper bound of the containing interval, respectively. Otherwise, if
+ * only one of **y1** or **y2** is specified, the other defaults to **y**, which
+ * defaults to zero.
  *
- * The following channels are required:
- *
- * * **y1** - the starting vertical position; bound to the *y* scale
- * * **y2** - the ending vertical position; bound to the *y* scale
- *
- * If neither the **y1** nor **y2** option is specified, the **y** option may be
- * specified as shorthand to apply an implicit **stackY** transform; this is the
- * typical configuration for a vertical bar chart with bars aligned at *y* = 0.
- * If the **y** option is not specified, it defaults to the identity function.
- * If *options* is undefined, then **x** defaults to the index of *data*; this
- * allows an array of numbers to be passed to Plot.barY to make a quick
- * sequential bar chart:
+ * The optional **x** ordinal channel specifies the horizontal position; it is
+ * typically bound to the *x* scale, which must be a *band* scale. If the **x**
+ * channel is not specified, the bar will span the horizontal extent of the
+ * plot’s frame. The barY mark is often used in conjunction with the groupX
+ * transform. For a stacked histogram of penguins by species, colored by sex:
  *
  * ```js
- * Plot.barY([1, 2, 3, 0, 2])
+ * Plot.barY(penguins, Plot.groupX({y: "count"}, {x: "species", fill: "sex"}))
  * ```
  *
- * If an **interval** is specified, such as *day* or a number, **y1** and **y2**
- * can be derived from **y**.
+ * If *x* is quantitative, use the rectY mark instead, possibly with a binX
+ * transform.
  *
- * The optional **x** channel specifies the horizontal position; bound to the
- * *x* scale, which must be *band*. If the **x** channel is not specified, the
- * bar will span the full horizontal extent of the plot (or facet).
- *
- * The **barY** mark is often used in conjunction with the **binX** transform.
- * For a stacked histogram of penguins by species, colored by sex:
+ * If *options* is undefined, then **x** defaults to the zero-based index of
+ * *data* [0, 1, 2, …], allowing a quick bar chart from an array of numbers:
  *
  * ```js
- * Plot.barY(*penguins*, Plot.groupX({y: "count"}, {x: "species", fill: "sex"}))
+ * Plot.barY([4, 9, 24, 46, 66, 7])
  * ```
- *
- * If the **x** channel is quantitative, consider using the **rectY** mark
- * instead, possibly with a **binX** transform.
  */
 export function barY(data?: Data, options?: BarYOptions): BarY;
 

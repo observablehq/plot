@@ -101,6 +101,13 @@ export interface RuleYOptions extends RuleOptions, Omit<InsetOptions, "insetTop"
  * Plot.ruleX(aapl, {x: "Date", y1: "Open", y2: "Close"})
  * ```
  *
+ * The ruleX mark is often used to highlight specific *x* values. For example,
+ * to draw a rule at *x* = 0:
+ *
+ * ```js
+ * Plot.ruleX([0])
+ * ```
+ *
  * If *y* represents ordinal values, use a tickX mark instead.
  */
 export function ruleX(data?: Data, options?: RuleXOptions): RuleX;
@@ -115,6 +122,13 @@ export function ruleX(data?: Data, options?: RuleXOptions): RuleX;
  *
  * ```js
  * Plot.ruleY(aapl, {x: "Date", y: "Close", interval: "month"})
+ * ```
+ *
+ * The ruleY mark is often used to highlight specific *y* values. For example,
+ * to draw a rule at *y* = 0:
+ *
+ * ```js
+ * Plot.ruleY([0])
  * ```
  *
  * If *x* represents ordinal values, use a tickY mark instead.
