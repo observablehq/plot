@@ -41,16 +41,16 @@ export interface RuleXOptions extends RuleOptions, Omit<InsetOptions, "insetLeft
   y?: ChannelValueIntervalSpec;
 
   /**
-   * The primary (starting) vertical position of the tick; a channel bound to
-   * the *y* scale.
+   * The primary (starting, often bottom) vertical position of the tick; a
+   * channel bound to the *y* scale.
    *
    * If *y* represents ordinal values, use a tickX mark instead.
    */
   y1?: ChannelValueSpec;
 
   /**
-   * The secondary (ending) vertical position of the tick; a channel bound to
-   * the *y* scale.
+   * The secondary (ending, often top) vertical position of the tick; a channel
+   * bound to the *y* scale.
    *
    * If *y* represents ordinal values, use a tickX mark instead.
    */
@@ -67,16 +67,16 @@ export interface RuleYOptions extends RuleOptions, Omit<InsetOptions, "insetTop"
   x?: ChannelValueIntervalSpec;
 
   /**
-   * The primary (starting) horizontal position of the tick; a channel bound to
-   * the *x* scale.
+   * The primary (starting, often left) horizontal position of the tick; a
+   * channel bound to the *x* scale.
    *
    * If *x* represents ordinal values, use a tickY mark instead.
    */
   x1?: ChannelValueSpec;
 
   /**
-   * The secondary (ending) horizontal position of the tick; a channel bound to
-   * the *x* scale.
+   * The secondary (ending, often right) horizontal position of the tick; a
+   * channel bound to the *x* scale.
    *
    * If *x* represents ordinal values, use a tickY mark instead.
    */

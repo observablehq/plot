@@ -18,14 +18,20 @@ export interface RectOptions extends MarkOptions, InsetOptions, StackOptions {
   x?: ChannelValueIntervalSpec;
 
   /**
-   * The **x1** channel or constant describes the left edge of the rect. Note
-   * that if x2 < x1 the positions are swapped, so that the rect is always
-   * defined.
+   * The required primary (starting, often left) horizontal position channel,
+   * typically bound to the *x* scale. Setting this option disables the rectX
+   * mark’s implicit stackX transform.
+   *
+   * If *x* represents ordinal values, use a bar or cell mark instead.
    */
   x1?: ChannelValueSpec;
 
   /**
-   * The **x2** channel or constant describes the right edge of the rect.
+   * The required secondary (ending, often right) horizontal position channel,
+   * typically bound to the *x* scale. Setting this option disables the rectX
+   * mark’s implicit stackX transform.
+   *
+   * If *x* represents ordinal values, use a bar or cell mark instead.
    */
   x2?: ChannelValueSpec;
 
@@ -41,9 +47,7 @@ export interface RectOptions extends MarkOptions, InsetOptions, StackOptions {
   y?: ChannelValueIntervalSpec;
 
   /**
-   * The **y1** channel or constant describes the bottom edge of the rect. Note
-   * that if y2 < y1 the positions are swapped, so that the rect is always
-   * defined.
+   * The **y1** channel or constant describes the bottom edge of the rect.
    */
   y1?: ChannelValueSpec;
 
@@ -53,36 +57,43 @@ export interface RectOptions extends MarkOptions, InsetOptions, StackOptions {
   y2?: ChannelValueSpec;
 
   /**
-   * An interval used to derive the **x1** and **x2** channels from **x**, and
-   * the **y1** and **y2** channels from **y**. If both **x** and **y** are
-   * defined this way, and you want a different interval on each axis, use the
-   * {value, interval} channel syntax.
+   * How to convert a continuous value (**x** for rectY, **y** for rectX, or
+   * both for rect) into an interval (**x1** and **x2** for rectY, or **y1** and
+   * **y2** for rectX, or both for rect); one of:
    *
-   * For example, to display a continuous checkerboard pattern:
+   * - an object that implements *floor*, *offset*, and *range* methods
+   * - a named time interval such as *day* (for date intervals)
+   * - a number (for number intervals), defining intervals at integer multiples of *n*
+   *
+   * For example, for a scatterplot of penguin culmen length *vs.* depth, using
+   * rects of half-millimeter width and height:
    *
    * ```js
-   * Plot.rect(d3.cross("12345678", "12345678"), {
-   *   x: ([i, j]) => i,
-   *   y: ([i, j]) => j,
-   *   interval: 1,
-   *   fill: ([i, j]) => i % 2 ^ j % 2
-   * })
+   * Plot.rect(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", interval: 0.5})
    * ```
+   *
+   * Setting this option disables the implicit stack transform (stackX for rectX,
+   * or stackY for rectY).
    */
   interval?: Interval;
 
   /**
-   * The [*x* radius][1] for rounded corners.
+   * The rounded corner [*x*-radius][1], either in pixels or as a percentage of
+   * the bar width. If **rx** is not specified, it defaults to **ry** if
+   * present, and otherwise draws square corners.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx
    */
   rx?: number | string;
 
   /**
-   * The [*y* radius][1] for rounded corners.
+   * The rounded corner [*y*-radius][1], either in pixels or as a percentage of
+   * the bar height. If **ry** is not specified, it defaults to **rx** if
+   * present, and otherwise draws square corners.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry
    */
+  ry?: number | string;
 }
 
 /** Options for the rectX mark. */
