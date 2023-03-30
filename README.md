@@ -1976,7 +1976,7 @@ Equivalent to [Plot.vector](#plotvectordata-options) except that the **shape** d
 
 ## Decorations
 
-Decorations are static marks that do not represent data. Currently this includes only [Plot.frame](#frame), although internally Plot’s axes are implemented as decorations and may in the future be exposed here for more flexible configuration.
+Decorations are marks that do not directly represent data. Currently this includes [Plot.frame](#frame), as well as the [axes](#axis) and [grid](#grid) marks described above.
 
 ### Frame
 
