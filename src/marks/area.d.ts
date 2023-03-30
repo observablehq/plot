@@ -136,11 +136,22 @@ export function area(data?: Data, options?: AreaOptions): Area;
 /**
  * Returns a new vertically-oriented area for the given *data* and *options*,
  * where the baseline and topline share **y** values, as in a time-series area
- * chart where time goes up↑.
+ * chart where time goes up↑. For example, to plot Apple’s daily stock price:
  *
  * ```js
  * Plot.areaX(aapl, {y: "Date", x: "Close"})
  * ```
+ *
+ * If neither **x1** nor **x2** is specified, an implicit stackX transform is
+ * applied and **x** defaults to the identity function, assuming that *data* =
+ * [*x₀*, *x₁*, *x₂*, …]. Otherwise, if only one of **x1** or **x2** is
+ * specified, the other defaults to **x**, which defaults to zero.
+ *
+ * If an **interval** is specified, **y** values are binned accordingly,
+ * allowing zeroes for empty bins instead of interpolating across gaps. This is
+ * recommended to “regularize” sampled data; for example, if your data
+ * represents timestamped observations and you expect one observation per day,
+ * use *day* as the **interval**.
  *
  * Variable aesthetic channels are supported: if the **fill** is defined as a
  * channel, the area will be broken into contiguous overlapping sections when
@@ -156,11 +167,22 @@ export function areaX(data?: Data, options?: AreaXOptions): Area;
 /**
  * Returns a new horizontally-oriented area for the given *data* and *options*,
  * where the baseline and topline share **x** values, as in a time-series area
- * chart where time goes right→.
+ * chart where time goes right→. For example, to plot Apple’s daily stock price:
  *
  * ```js
  * Plot.areaY(aapl, {x: "Date", y: "Close"})
  * ```
+ *
+ * If neither **y1** nor **y2** is specified, an implicit stackY transform is
+ * applied and **y** defaults to the identity function, assuming that *data* =
+ * [*y₀*, *y₁*, *y₂*, …]. Otherwise, if only one of **y1** or **y2** is
+ * specified, the other defaults to **y**, which defaults to zero.
+ *
+ * If an **interval** is specified, **x** values are binned accordingly,
+ * allowing zeroes for empty bins instead of interpolating across gaps. This
+ * is recommended to “regularize” sampled data; for example, if your data
+ * represents timestamped observations and you expect one observation per day,
+ * use *day* as the **interval**.
  *
  * Variable aesthetic channels are supported: if the **fill** is defined as a
  * channel, the area will be broken into contiguous overlapping sections when
