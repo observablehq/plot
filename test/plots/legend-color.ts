@@ -437,9 +437,13 @@ export function colorSchemesQuantitative() {
 }
 
 export async function colorLegendOpacity() {
-  return Plot.legend({color: {domain: ["Dream", "Torgersen", "Biscoe"]}, fillOpacity: 0.5});
+  return Plot.legend({color: {domain: ["Dream", "Torgersen", "Biscoe"]}, opacity: 0.5});
 }
 
 export async function colorLegendOpacityRamp() {
-  return Plot.legend({color: {domain: [0, 1000]}, fillOpacity: 0.5});
+  return Plot.legend({color: {domain: [0, 1000]}, opacity: 0.5});
+}
+
+export function colorLegendOpacityOrdinalRamp() {
+  return Plot.legend({color: {type: "ordinal", domain: "ABCDEFGHIJ"}, legend: "ramp", opacity: 0.5});
 }

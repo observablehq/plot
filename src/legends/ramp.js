@@ -20,11 +20,13 @@ export function legendRamp(color, options) {
     tickFormat,
     fontVariant = inferFontVariant(color),
     round = true,
-    fillOpacity,
+    opacity,
     className
   } = options;
   const context = createContext(options);
   className = maybeClassName(className);
+  opacity = maybeNumberChannel(opacity)[1];
+
   if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg", context)
@@ -97,7 +99,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("image")
-      .attr("opacity", maybeNumberChannel(fillOpacity)[1])
+      .attr("opacity", opacity)
       .attr("x", marginLeft)
       .attr("y", marginTop)
       .attr("width", width - marginLeft - marginRight)
@@ -119,6 +121,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("g")
+      .attr("opacity", opacity)
       .selectAll()
       .data(range)
       .enter()
@@ -139,6 +142,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("g")
+      .attr("opacity", opacity)
       .selectAll()
       .data(domain)
       .enter()

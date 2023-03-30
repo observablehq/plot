@@ -50,6 +50,10 @@ export async function symbolLegendOpacityFill() {
   return Plot.legend({symbol: {domain: ["Dream", "Torgersen", "Biscoe"]}, fill: "red", fillOpacity: 0.5});
 }
 
+export async function symbolLegendOpacityColor() {
+  return Plot.legend({color: {domain: "ABCDEF"}, symbol: {domain: "ABCDEF"}, strokeOpacity: 0.5});
+}
+
 export async function symbolLegendOpacityStroke() {
   return Plot.legend({symbol: {domain: ["Dream", "Torgersen", "Biscoe"]}, stroke: "red", strokeOpacity: 0.5});
 }

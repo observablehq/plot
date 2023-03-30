@@ -45,14 +45,33 @@ export interface LegendOptions {
    */
   className?: string | null;
 
-  /** The constant color the ramp; defaults to black. For *ramp* *opacity* legends only. */
+  /**
+   * The constant color the ramp; defaults to black. For *ramp* *opacity*
+   * legends only.
+   */
   color?: string;
-  /** The desired fill color of symbols; use *color* for a redundant encoding. For *symbol* legends only. */
+
+  /**
+   * The desired fill color of symbols; use *color* for a redundant encoding.
+   * For *symbol* legends only.
+   */
   fill?: string;
-  /** The desired fill opacity of symbols. For *symbol* and *color* legends. */
+
+  /** The desired fill opacity of symbols. For *symbol* legends only. */
   fillOpacity?: number;
-  /** The desired stroke color of symbols; use *color* for a redundant encoding. For *symbol* legends only. */
+
+  /**
+   * The desired opacity of the color swatches or ramp. For *color* legends
+   * only.
+   */
+  opacity?: number;
+
+  /**
+   * The desired stroke color of symbols; use *color* for a redundant encoding.
+   * For *symbol* legends only.
+   */
   stroke?: string;
+
   /** The desired stroke opacity of symbols. For *symbol* legends only. */
   strokeOpacity?: number;
   /** The desired stroke width of symbols. For *symbol* legends only. */
