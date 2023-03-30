@@ -5,6 +5,21 @@ import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
 /** Options for the ruleX and ruleY marks. */
 interface RuleOptions extends MarkOptions {
+  /**
+   * How to convert a continuous value (**y** for ruleX, or **x** for ruleY)
+   * into an interval; one of:
+   *
+   * - an object that implements *floor*, *offset*, and *range* methods
+   * - a named time interval such as *day* (for date intervals)
+   * - a number (for number intervals), defining intervals at integer multiples of *n*
+   *
+   * For example, to bin Apple’s daily stock price by month, plotting a sequence
+   * of barcodes showing monthly distributions:
+   *
+   * ```js
+   * Plot.ruleY(aapl, {x: "Date", y: "Close", interval: "month"})
+   * ```
+   */
   interval?: Interval;
 }
 
