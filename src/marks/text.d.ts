@@ -181,14 +181,11 @@ export interface TextYOptions extends Omit<TextOptions, "x"> {
  * If the text is specified as numbers or dates, a default formatter will
  * automatically be applied, and the **fontVariant** will default to
  * tabular-nums instead of normal. For more control over number and date
- * formatting, consider
- * [*number*.toLocaleString](https://observablehq.com/@mbostock/number-formatting),
- * [*date*.toLocaleString](https://observablehq.com/@mbostock/date-formatting),
- * [d3-format](https://github.com/d3/d3-format), or
- * [d3-time-format](https://github.com/d3/d3-time-format). If **text** is not
- * specified, it defaults to the identity function for primitive data (such as
- * numbers, dates, and strings), and to the zero-based index [0, 1, 2, …] for
- * objects (so that something identifying is visible by default).
+ * formatting, consider [*number*.toLocaleString][1],
+ * [*date*.toLocaleString][2], [d3-format][3], or [d3-time-format][4]. If
+ * **text** is not specified, it defaults to the identity function for primitive
+ * data (such as numbers, dates, and strings), and to the zero-based index [0,
+ * 1, 2, …] for objects (so that something identifying is visible by default).
  *
  * Common font options include **fontFamily**, **fontSize**, **fontStyle**,
  * **fontWeight**, and **monospace**.
@@ -196,12 +193,19 @@ export interface TextYOptions extends Omit<TextOptions, "x"> {
  * The optional **x** and **y** channels specify the position of the text in
  * data space. For screen-space positioning if **x** or **y** is omitted, use
  * one of the **frameAnchor** options. Relative to its anchor, the text can be
- * aligned with the **textAnchor** and **lineAnchor** options, and translated
- * with the common **dx** and **dy** options. The text can be rotated with the
- * **rotate** option, that defaults to 0°.
+ * aligned with the **textAnchor** and **lineAnchor** options, translated with
+ * the common **dx** and **dy** options, or rotated with the **rotate** option.
  *
  * The **textOverflow** option can be used to truncate lines of text longer than
  * the given **lineWidth**.
+ *
+ * [1]: https://observablehq.com/@mbostock/number-formatting
+ *
+ * [2]: https://observablehq.com/@mbostock/date-formatting
+ *
+ * [3]: https://github.com/d3/d3-format
+ *
+ * [4]: https://github.com/d3/d3-time-format
  */
 export function text(data?: Data, options?: TextOptions): Text;
 
