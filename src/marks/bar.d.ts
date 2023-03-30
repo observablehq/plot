@@ -140,8 +140,9 @@ export interface BarYOptions extends BarOptions {
 
 /**
  * Returns a new horizontal bar mark for the given *data* and *options*; the
- * required *x* values must be quantitative, and the optional *y* values must be
- * ordinal. For example, for a horizontal bar chart of English letter frequency:
+ * required *x* values should be quantitative or temporal, and the optional *y*
+ * values should be ordinal. For example, for a horizontal bar chart of English
+ * letter frequency:
  *
  * ```js
  * Plot.barX(alphabet, {x: "frequency", y: "letter"})
@@ -180,8 +181,9 @@ export function barX(data?: Data, options?: BarXOptions): BarX;
 
 /**
  * Returns a new vertical bar mark for the given *data* and *options*; the
- * required *y* values must be quantitative, and the optional *x* values must be
- * ordinal. For example, for a vertical bar chart of English letter frequency:
+ * required *y* values should be quantitative or temporal, and the optional *x*
+ * values should be ordinal. For example, for a vertical bar chart of English
+ * letter frequency:
  *
  * ```js
  * Plot.barY(alphabet, {y: "frequency", x: "letter"})

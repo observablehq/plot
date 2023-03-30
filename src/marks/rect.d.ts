@@ -7,13 +7,18 @@ import type {StackOptions} from "../transforms/stack.js";
 /** Options for the rect mark. */
 export interface RectOptions extends MarkOptions, InsetOptions, StackOptions {
   /**
-   * A {value, interval} channel defining derived **x1** and **x2** channels;
-   * for example, to make timestamps extend from the start to the end of the
-   * day:
+   * The horizontal position (or length/width) channel, typically bound to the
+   * *x* scale.
+   *
+   * If an **interval** is specified, then **x1** and **x2** are derived from
+   * **x**, representing the lower and upper bound of the containing interval,
+   * respectively. For example, for a vertical bar chart of items sold by day:
    *
    * ```js
-   * Plot.rect(sales, {x: {value: "date", interval: "day"}, y1: 0, y2: "items"})
+   * Plot.rectY(sales, {x: "date", interval: "day", y2: "items"})
    * ```
+   *
+   * If *x* represents ordinal values, use a bar or cell mark instead.
    */
   x?: ChannelValueIntervalSpec;
 
@@ -36,23 +41,36 @@ export interface RectOptions extends MarkOptions, InsetOptions, StackOptions {
   x2?: ChannelValueSpec;
 
   /**
-   * A {value, interval} channel defining derived **y1** and **y2** channels;
-   * for example, to represent values as bars of height 1 rounded to the closest
-   * integer:
+   * The vertical position (or length/height) channel, typically bound to the
+   * *y* scale.
+   *
+   * If an **interval** is specified, then **y1** and **y2** are derived from
+   * **y**, representing the lower and upper bound of the containing interval,
+   * respectively. For example, for a horizontal bar chart of items sold by day:
    *
    * ```js
-   * Plot.rect(sales, {x: "date", y: {value: "items", interval: 1}})
+   * Plot.rectX(sales, {y: "date", interval: "day", x2: "items"})
    * ```
+   *
+   * If *y* represents ordinal values, use a bar or cell mark instead.
    */
   y?: ChannelValueIntervalSpec;
 
   /**
-   * The **y1** channel or constant describes the bottom edge of the rect.
+   * The required primary (starting, often bottom) vertical position channel,
+   * typically bound to the *y* scale. Setting this option disables the rectY
+   * mark’s implicit stackY transform.
+   *
+   * If *y* represents ordinal values, use a bar or cell mark instead.
    */
   y1?: ChannelValueSpec;
 
   /**
-   * The **y2** channel or constant describes the top edge of the rect.
+   * The required secondary (ending, often top) vertical position channel,
+   * typically bound to the *y* scale. Setting this option disables the rectY
+   * mark’s implicit stackY transform.
+   *
+   * If *y* represents ordinal values, use a bar or cell mark instead.
    */
   y2?: ChannelValueSpec;
 
@@ -98,63 +116,79 @@ export interface RectOptions extends MarkOptions, InsetOptions, StackOptions {
 
 /** Options for the rectX mark. */
 export interface RectXOptions extends RectOptions {
+  /**
+   * The horizontal position (or length/width) channel, typically bound to the
+   * *x* scale.
+   *
+   * If neither **x1** nor **x2** is specified, an implicit stackX transform is
+   * applied and **x** defaults to the identity function, assuming that *data* =
+   * [*x₀*, *x₁*, *x₂*, …]. Otherwise, if only one of **x1** or **x2** is
+   * specified, the other defaults to **x**, which defaults to zero.
+   */
   x?: ChannelValueSpec; // disallow x interval
 }
 
 /** Options for the rectY mark. */
 export interface RectYOptions extends RectOptions {
+  /**
+   * The vertical position (or length/height) channel, typically bound to the
+   * *y* scale.
+   *
+   * If neither **y1** nor **y2** is specified, an implicit stackY transform is
+   * applied and **y** defaults to the identity function, assuming that *data* =
+   * [*y₀*, *y₁*, *y₂*, …]. Otherwise, if only one of **y1** or **y2** is
+   * specified, the other defaults to **y**, which defaults to zero.
+   */
   y?: ChannelValueSpec; // disallow y interval
 }
 
 /**
- * Returns a rect mark for the given *data* and *options*. The shape extends
+ * Returns a rect mark for the given *data* and *options*. The rectangle extends
  * horizontally from **x1** to **x2**, and vertically from **y1** to **y2**. The
- * position channels can be specified directly, but they are often derived with
- * a transform, or with an interval. For example, to create a heatmap of
- * athletes, binned by weight and height:
+ * position channels are often derived with a transform. For example, to create
+ * a heatmap of athletes, binned by weight and height:
  *
  * ```js
  * Plot.rect(athletes, Plot.bin({fill: "proportion"}, {x: "weight", y: "height"}))
  * ```
  *
- * When a dimension extends from zero, for example for a histogram where the
- * height of each bin reflects a count of values, prefer the rectY mark, which
- * includes a stack transform; similarly, prefer the rectX mark if the width
- * extends from zero.
+ * When **y** extends from zero, for example for a histogram where the height of
+ * each rect reflects a count of values, use the rectY mark for an implicit
+ * stackY transform; similarly, if **x** extends from zero, use the rectX mark
+ * for an implicit stackX transform.
+ *
+ * If an **interval** is specified, then **x1** and **x2** are derived from
+ * **x**, and **y1** and **y2** are derived from **y**, each representing the
+ * lower and upper bound of the containing interval, respectively.
+ *
+ * Both *x* and *y* should be quantitative or temporal; otherwise, use a bar or
+ * cell mark.
  */
 export function rect(data?: Data, options?: RectOptions): Rect;
 
 /**
- * Like rect, but if neither the **x1** nor **x2** option is specified, the
- * **x** option may be specified as shorthand to apply an implicit **stackX**
- * transform; this is the typical configuration for a histogram with rects
- * aligned at *x* = 0.
- *
- * For example, to create a vertical histogram of athletes by height:
+ * Like rect, but if neither **x1** nor **x2** is specified, an implicit stackX
+ * transform is applied to **x**, and if **x** is not specified, it defaults to
+ * the identity function, assuming that *data* is an array of numbers [*x₀*,
+ * *x₁*, *x₂*, …]. For example, for a vertical histogram of athletes by height
+ * with rects aligned at *x* = 0:
  *
  * ```js
- * Plot.rectX(olympians, Plot.binY({ x: "count" }, { y: "height" }))
+ * Plot.rectX(olympians, Plot.binY({x: "count"}, {y: "height"}))
  * ```
- *
- * If the **x** option is not specified, it defaults to the identity function,
- * assuming that *data* is an array of numbers [*x₀*, *x₁*, *x₂*, …].
  */
 export function rectX(data?: Data, options?: RectXOptions): Rect;
 
 /**
- * Like rect, but if neither the **y1** nor **y2** option is specified, the
- * **y** option may be specified as shorthand to apply an implicit **stackY**
- * transform; this is the typical configuration for a histogram with rects
- * aligned at *y* = 0.
- *
- * For example, to create a horizontal histogram of athletes by weight:
+ * Like rect, but if neither **y1** nor **y2** is specified, apply an implicit
+ * stackY transform is applied to **y**, and if **y** is not specified, it
+ * defaults to the identity function, assuming that *data* is an array of
+ * numbers [*y₀*, *y₁*, *y₂*, …]. For example, for a horizontal histogram of
+ * athletes by weight with rects aligned at *y* = 0:
  *
  * ```js
- * Plot.rectY(olympians, Plot.binX({ y: "count" }, { x: "weight" }))
+ * Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))
  * ```
- *
- * If the **y** option is not specified, it defaults to the identity function,
- * assuming that *data* is an array of numbers [*y₀*, *y₁*, *y₂*, …].
  */
 export function rectY(data?: Data, options?: RectYOptions): Rect;
 
