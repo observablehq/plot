@@ -41,7 +41,7 @@ interface BarOptions extends MarkOptions, InsetOptions, StackOptions {
    * Plot.barY(alphabet, {x: "letter", y: "frequency", interval: 0.01})
    * ```
    *
-   * Setting this option disables the implicit stack transform (stackX or barX,
+   * Setting this option disables the implicit stack transform (stackX for barX,
    * or stackY for barY).
    */
   interval?: Interval;
@@ -64,16 +64,20 @@ export interface BarXOptions extends BarOptions {
   x?: ChannelValueIntervalSpec;
 
   /**
-   * The required primary (starting) horizontal position channel, typically
-   * bound to the *x* scale. Setting this option disables the implicit stackX
-   * transform.
+   * The required primary (starting, often left) horizontal position channel,
+   * typically bound to the *x* scale. Setting this option disables the implicit
+   * stackX transform.
+   *
+   * If *x* represents ordinal values, use a cell mark instead.
    */
   x1?: ChannelValueSpec;
 
   /**
-   * The required secondary (ending) horizontal position channel, typically
-   * bound to the *x* scale. Setting this option disables the implicit stackX
-   * transform.
+   * The required secondary (ending, often right) horizontal position channel,
+   * typically bound to the *x* scale. Setting this option disables the implicit
+   * stackX transform.
+   *
+   * If *x* represents ordinal values, use a cell mark instead.
    */
   x2?: ChannelValueSpec;
 
@@ -105,16 +109,20 @@ export interface BarYOptions extends BarOptions {
   y?: ChannelValueIntervalSpec;
 
   /**
-   * The required primary (starting) vertical position channel, typically bound
-   * to the *y* scale. Setting this option disables the implicit stackY
-   * transform.
+   * The required primary (starting, often bottom) vertical position channel,
+   * typically bound to the *y* scale. Setting this option disables the implicit
+   * stackY transform.
+   *
+   * If *y* represents ordinal values, use a cell mark instead.
    */
   y1?: ChannelValueSpec;
 
   /**
-   * The required secondary (ending) horizontal position channel, typically
-   * bound to the *y* scale. Setting this option disables the implicit stackY
-   * transform.
+   * The required secondary (ending, often top) horizontal position channel,
+   * typically bound to the *y* scale. Setting this option disables the implicit
+   * stackY transform.
+   *
+   * If *y* represents ordinal values, use a cell mark instead.
    */
   y2?: ChannelValueSpec;
 
@@ -132,8 +140,9 @@ export interface BarYOptions extends BarOptions {
 
 /**
  * Returns a new horizontal bar mark for the given *data* and *options*; the
- * required *x* values must be quantitative, and the optional *y* values must be
- * ordinal. For example, for a horizontal bar chart of English letter frequency:
+ * required *x* values should be quantitative or temporal, and the optional *y*
+ * values should be ordinal. For example, for a horizontal bar chart of English
+ * letter frequency:
  *
  * ```js
  * Plot.barX(alphabet, {x: "frequency", y: "letter"})
@@ -158,7 +167,8 @@ export interface BarYOptions extends BarOptions {
  * ```
  *
  * If *y* is quantitative, use the rectX mark instead, possibly with a binY
- * transform.
+ * transform. If *x* is ordinal, use the cell mark instead, possibly with a
+ * group transform.
  *
  * If *options* is undefined, then **y** defaults to the zero-based index of
  * *data* [0, 1, 2, …], allowing a quick bar chart from an array of numbers:
@@ -171,8 +181,9 @@ export function barX(data?: Data, options?: BarXOptions): BarX;
 
 /**
  * Returns a new vertical bar mark for the given *data* and *options*; the
- * required *y* values must be quantitative, and the optional *x* values must be
- * ordinal. For example, for a vertical bar chart of English letter frequency:
+ * required *y* values should be quantitative or temporal, and the optional *x*
+ * values should be ordinal. For example, for a vertical bar chart of English
+ * letter frequency:
  *
  * ```js
  * Plot.barY(alphabet, {y: "frequency", x: "letter"})
@@ -196,7 +207,8 @@ export function barX(data?: Data, options?: BarXOptions): BarX;
  * ```
  *
  * If *x* is quantitative, use the rectY mark instead, possibly with a binX
- * transform.
+ * transform. If *y* is ordinal, use the cell mark instead, possibly with a
+ * group transform.
  *
  * If *options* is undefined, then **x** defaults to the zero-based index of
  * *data* [0, 1, 2, …], allowing a quick bar chart from an array of numbers:

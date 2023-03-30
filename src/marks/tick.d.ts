@@ -11,7 +11,7 @@ export interface TickXOptions extends MarkOptions, Omit<InsetOptions, "insetLeft
   x?: ChannelValueSpec;
 
   /**
-   * The optional vertical position of the tick; a categorical channel typically
+   * The optional vertical position of the tick; an ordinal channel typically
    * bound to the *y* scale. If not specified, the tick spans the vertical
    * extent of the frame; otherwise the *y* scale must be a *band* scale.
    *
@@ -30,10 +30,9 @@ export interface TickYOptions extends MarkOptions, Omit<InsetOptions, "insetTop"
   y?: ChannelValueSpec;
 
   /**
-   * The optional horizontal position of the tick; a categorical channel
-   * typically bound to the *x* scale. If not specified, the tick spans the
-   * horizontal extent of the frame; otherwise the *x* scale must be a *band*
-   * scale.
+   * The optional horizontal position of the tick; an ordinal channel typically
+   * bound to the *x* scale. If not specified, the tick spans the horizontal
+   * extent of the frame; otherwise the *x* scale must be a *band* scale.
    *
    * If *x* represents quantitative or temporal values, use a ruleY mark
    * instead.
@@ -45,8 +44,8 @@ export interface TickYOptions extends MarkOptions, Omit<InsetOptions, "insetTop"
  * Returns a new horizontally-positioned tickX mark (a vertical line, |) for the
  * given *data* and *options*. The **x** channel specifies the tick’s horizontal
  * position and defaults to identity, assuming that *data* = [*x₀*, *x₁*, *x₂*,
- * …]; the optional **y** categorical channel specifies its vertical position.
- * For example, for a horizontal barcode plot of penguins’ weights:
+ * …]; the optional **y** ordinal channel specifies its vertical position. For
+ * example, for a horizontal barcode plot of penguins’ weights:
  *
  * ```js
  * Plot.tickX(penguins, {x: "body_mass_g", y: "sex", stroke: "species"})
@@ -60,7 +59,7 @@ export function tickX(data?: Data, options?: TickXOptions): TickX;
  * Returns a new vertically-positioned tickY mark (a horizontal line, —) for the
  * given *data* and *options*. The **y** channel specifies the vertical position
  * of the tick and defaults to identity, assuming that *data* = [*y₀*, *y₁*,
- * *y₂*, …]; the optional **x** categorical channel specifies its horizontal
+ * *y₂*, …]; the optional **x** ordinal channel specifies its horizontal
  * position. For example, for a vertical barcode plot of penguins’ weights:
  *
  * ```js
