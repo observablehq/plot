@@ -159,7 +159,7 @@ export interface BarYOptions extends BarOptions {
  *
  * If *y* is quantitative, use the rectX mark instead, possibly with a binY
  * transform.
-*
+ *
  * If *options* is undefined, then **y** defaults to the zero-based index of
  * *data* [0, 1, 2, …], allowing a quick bar chart from an array of numbers:
  *
