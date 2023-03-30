@@ -41,7 +41,13 @@ export async function textOverflow() {
     "👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩👁️‍🗨️👩‍❤️‍💋‍👩", // composed emoji
     "🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿.🧑🏾.👨🏻.👧🏼.👦🏽.🧒🏿" // fitz modifiers
   ];
-  const options: Plot.TextOverflow[] = ["clip-start", "clip-end", "ellipsis-start", "ellipsis-middle", "ellipsis-end"];
+  const options: Plot.TextOptions["textOverflow"][] = [
+    "clip-start",
+    "clip-end",
+    "ellipsis-start",
+    "ellipsis-middle",
+    "ellipsis-end"
+  ];
   return Plot.plot({
     width: 800,
     marginLeft: 180,
