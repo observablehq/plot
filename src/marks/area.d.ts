@@ -38,8 +38,8 @@ export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
 
   /**
    * The optional ordinal **z** channel, for grouping data into (possibly
-   * stacked) series to be drawn as separate areas. If not specified, it
-   * defaults to **fill** if a channel, or **stroke** if a channel.
+   * stacked) series to be drawn as separate areas; defaults to **fill** if a
+   * channel, or **stroke** if a channel.
    */
   z?: ChannelValue;
 }
@@ -59,9 +59,9 @@ export interface AreaXOptions extends Omit<AreaOptions, "y1" | "y2">, BinOptions
 
   /**
    * The vertical position channel, typically bound to the *y* scale; defaults
-   * to the zero-based index of the data.
+   * to the zero-based index of the data [0, 1, 2, …].
    *
-   * If an **interval** is specified, **x** values are binned accordingly,
+   * If an **interval** is specified, **y** values are binned accordingly,
    * allowing zeroes for empty bins instead of interpolating across gaps. This
    * is recommended to “regularize” sampled data; for example, if your data
    * represents timestamped observations and you expect one observation per day,
@@ -77,6 +77,9 @@ export interface AreaXOptions extends Omit<AreaOptions, "y1" | "y2">, BinOptions
    * ```js
    * Plot.areaX(data, {y: "value", interval: 0.5, reduce: "count"})
    * ```
+   *
+   * To default to zero instead of showing gaps in data, as when the observed
+   * value represents a quantity, use the *sum* reducer.
    */
   reduce?: BinReducer;
 }
@@ -85,7 +88,7 @@ export interface AreaXOptions extends Omit<AreaOptions, "y1" | "y2">, BinOptions
 export interface AreaYOptions extends Omit<AreaOptions, "x1" | "x2">, BinOptions {
   /**
    * The horizontal position channel, typically bound to the *x* scale; defaults
-   * to the zero-based index of the data.
+   * to the zero-based index of the data [0, 1, 2, …].
    *
    * If an **interval** is specified, **x** values are binned accordingly,
    * allowing zeroes for empty bins instead of interpolating across gaps. This
@@ -114,6 +117,9 @@ export interface AreaYOptions extends Omit<AreaOptions, "x1" | "x2">, BinOptions
    * ```js
    * Plot.areaY(records, {x: "Date", interval: "month", reduce: "count"})
    * ```
+   *
+   * To default to zero instead of showing gaps in data, as when the observed
+   * value represents a quantity, use the *sum* reducer.
    */
   reduce?: BinReducer;
 }
@@ -148,7 +154,7 @@ export function area(data?: Data, options?: AreaOptions): Area;
 export function areaX(data?: Data, options?: AreaXOptions): Area;
 
 /**
- * Returns a new horizontall-oriented area for the given *data* and *options*,
+ * Returns a new horizontally-oriented area for the given *data* and *options*,
  * where the baseline and topline share **x** values, as in a time-series area
  * chart where time goes right→.
  *
