@@ -27,6 +27,7 @@ export type ReducerPercentile =
  * - *variance* - the variance per [Welford’s algorithm][1]
  * - *mode* - the value with the most occurrences
  * - *pXX* - the percentile value, where XX is a number in [00,99]
+ * - *identity* - the array of values
  *
  * [1]: https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm
  */

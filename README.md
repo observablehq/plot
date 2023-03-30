@@ -2121,6 +2121,7 @@ The following aggregation methods are supported:
 * *pXX* - the percentile value, where XX is a number in [00,99]
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+* *identity* - the array of values
 * *x* - the middle of the bin’s *x* extent (when binning on *x*)
 * *x1* - the lower bound of the bin’s *x* extent (when binning on *x*)
 * *x2* - the upper bound of the bin’s *x* extent (when binning on *x*)
@@ -2278,6 +2279,7 @@ The following aggregation methods are supported:
 * *pXX* - the percentile value, where XX is a number in [00,99]
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+* *identity* - the array of values
 * a function - passed the array of values for each group
 * an object with a *reduceIndex* method, an optionally a *scope*
 
@@ -2852,6 +2854,7 @@ The following aggregation methods are supported:
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *mode* - the value with the most occurrences
+* *identity* - the array of values
 * a function to be passed the array of values for each bin and the extent of the bin
 * an object with a *reduceIndex* method
 
