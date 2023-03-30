@@ -16,7 +16,7 @@ interface BarOptions extends MarkOptions, InsetOptions, StackOptions {
   rx?: number | string;
 
   /**
-   * The rounded corner [*y*-radius[1], either in pixels or as a percentage of
+   * The rounded corner [*y*-radius][1], either in pixels or as a percentage of
    * the bar height. If **ry** is not specified, it defaults to **rx** if
    * present, and otherwise draws square corners.
    *
