@@ -1,4 +1,3 @@
-
 # Observable Plot
 
 **Observable Plot** is a JavaScript library for exploratory data visualization. If you are new to Plot, we highly recommend first reading these notebooks to introduce Plot’s core concepts such as *marks* and *scales*:
