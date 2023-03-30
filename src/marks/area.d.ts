@@ -7,31 +7,31 @@ import type {StackOptions} from "../transforms/stack.js";
 /** Options for the area, areaX, and areaY marks. */
 export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
   /**
-   * The required primary horizontal position channel, typically bound to the
-   * *x* scale. It typically represents the area’s baseline. For areaX, setting
-   * this option disables the implicit stackX transform.
+   * The required primary horizontal position channel, representing the area’s
+   * baseline, typically bound to the *x* scale. For areaX, setting this option
+   * disables the implicit stackX transform.
    */
   x1?: ChannelValueSpec;
 
   /**
-   * The optional secondary horizontal position channel, typically bound to the
-   * *x* scale; if not specified, **x1** is used. It typically represents the
-   * area’s topline. For areaX, setting this option disables the implicit stackX
+   * The optional secondary horizontal position channel, representing the area’s
+   * topline, typically bound to the *x* scale; if not specified, **x1** is
+   * used. For areaX, setting this option disables the implicit stackX
    * transform.
    */
   x2?: ChannelValueSpec;
 
   /**
-   * The required primary vertical position channel, typically bound to the *y*
-   * scale. It typically represents the area’s baseline. For areaY, setting this option
+   * The required primary vertical position channel, representing the area’s
+   * baseline, typically bound to the *y* scale. For areaY, setting this option
    * disables the implicit stackY transform.
    */
   y1?: ChannelValueSpec;
 
   /**
-   * The optional secondary vertical position channel, typically bound to the
-   * *y* scale; if not specified, **y1** is used. It typically represents the
-   * area’s topline. For areaY, setting this option disables the implicit stackY
+   * The optional secondary vertical position channel, representing the area’s
+   * topline, typically bound to the *y* scale; if not specified, **y1** is
+   * used. For areaY, setting this option disables the implicit stackY
    * transform.
    */
   y2?: ChannelValueSpec;
