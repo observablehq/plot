@@ -4,22 +4,30 @@ import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
 /** Options for the tickX mark. */
 export interface TickXOptions extends MarkOptions, Omit<InsetOptions, "insetLeft" | "insetRight"> {
-  /** The horizontal position of the tick; a channel bound to the *x* scale. */
-  x?: ChannelValueSpec;
   /**
-   * The vertical position of the tick; an optional categorical channel bound to
-   * the *y* scale.
+   * The horizontal position of the tick; a channel typically bound to the *x*
+   * scale.
+   */
+  x?: ChannelValueSpec;
+
+  /**
+   * The vertical position of the tick; an optional categorical channel
+   * typically bound to the *y* scale.
    */
   y?: ChannelValueSpec;
 }
 
 /** Options for the tickY mark. */
 export interface TickYOptions extends MarkOptions, Omit<InsetOptions, "insetTop" | "insetBottom"> {
-  /** The vertical position of the tick; a channel bound to the *y* scale. */
-  y?: ChannelValueSpec;
   /**
-   * The horizontal position of the tick; an optional categorical channel bound
-   * to the *x* scale.
+   * The vertical position of the tick; a channel typically bound to the *y*
+   * scale.
+   */
+  y?: ChannelValueSpec;
+
+  /**
+   * The horizontal position of the tick; an optional categorical channel
+   * typically bound to the *x* scale.
    */
   x?: ChannelValueSpec;
 }
