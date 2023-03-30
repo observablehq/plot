@@ -52,7 +52,7 @@ export interface LinkOptions extends MarkOptions, MarkerOptions, CurveAutoOption
    *
    * If the plot uses a spherical **projection**, the default *auto* **curve**
    * will render links as geodesics; to draw a straight line instead, use the
-   * *linear* **curve** instead.
+   * *linear* **curve**.
    */
   curve?: CurveAutoOptions["curve"];
 }
@@ -69,7 +69,7 @@ export interface LinkOptions extends MarkOptions, MarkerOptions, CurveAutoOption
  *
  * If the plot uses a spherical **projection**, the default *auto* **curve**
  * will render links as geodesics; to draw a straight line instead, use the
- * *linear* **curve** instead.
+ * *linear* **curve**.
  */
 export function link(data?: Data, options?: LinkOptions): Link;
 
