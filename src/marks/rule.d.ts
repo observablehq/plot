@@ -10,23 +10,33 @@ interface RuleOptions extends MarkOptions {
 
 /** Options for the ruleX mark. */
 export interface RuleXOptions extends RuleOptions, Omit<InsetOptions, "insetLeft" | "insetRight"> {
-  /** The horizontal position of the tick; a channel bound to the *x* scale. */
+  /**
+   * The horizontal position of the tick; an optional channel bound to the *x*
+   * scale. If not specified, the rule will be horizontally centered in the
+   * plot’s frame.
+   */
   x?: ChannelValueSpec;
 
   /**
-   * The vertical position of the tick, specified as a value and an interval;
-   * bound to the *y* scale.
+   * Shorthand for specifying both the primary and secondary vertical position
+   * of the tick as the bounds of the containing interval; can only be used in
+   * conjunction with the **interval** option.
    */
   y?: ChannelValueIntervalSpec;
 
   /**
-   * The vertical starting position of the tick; a channel bound to the *y*
-   * scale.
+   * The primary (starting) vertical position of the tick; a channel bound to
+   * the *y* scale.
+   *
+   * If *y* represents ordinal values, use a tickX mark instead.
    */
   y1?: ChannelValueSpec;
 
   /**
-   * The vertical ending position of the tick; a channel bound to the *y* scale.
+   * The secondary (ending) vertical position of the tick; a channel bound to
+   * the *y* scale.
+   *
+   * If *y* represents ordinal values, use a tickX mark instead.
    */
   y2?: ChannelValueSpec;
 }
@@ -34,58 +44,64 @@ export interface RuleXOptions extends RuleOptions, Omit<InsetOptions, "insetLeft
 /** Options for the ruleY mark. */
 export interface RuleYOptions extends RuleOptions, Omit<InsetOptions, "insetTop" | "insetBottom"> {
   /**
-   * The horizontal position of the tick, specified as a value and an interval;
-   * bound to the *x* scale.
+   * Shorthand for specifying both the primary and secondary horizontal position
+   * of the tick as the bounds of the containing interval; can only be used in
+   * conjunction with the **interval** option.
    */
   x?: ChannelValueIntervalSpec;
 
   /**
-   * The horizontal starting position of the tick; a channel bound to the *x*
-   * scale.
+   * The primary (starting) horizontal position of the tick; a channel bound to
+   * the *x* scale.
+   *
+   * If *x* represents ordinal values, use a tickY mark instead.
    */
   x1?: ChannelValueSpec;
 
   /**
-   * The horizontal ending position of the tick; a channel bound to the *x*
-   * scale.
+   * The secondary (ending) horizontal position of the tick; a channel bound to
+   * the *x* scale.
+   *
+   * If *x* represents ordinal values, use a tickY mark instead.
    */
   x2?: ChannelValueSpec;
 
-  /** The vertical position of the tick; a channel bound to the *y* scale. */
+  /**
+   * The vertical position of the tick; an optional channel bound to the *y*
+   * scale. If not specified, the rule will be vertically centered in the plot’s
+   * frame.
+   */
   y?: ChannelValueSpec;
 }
 
 /**
- * An vertical rule. The **x** channel specifies the horizontal position of the
- * rule, and the **y1** and **y2** optional channels specify its vertical
- * extent.
- *
- * For example, to create a candlestick chart of the AAPL ticker:
+ * Returns a new horizontally-positioned ruleX mark (a vertical line, |) for the
+ * given *data* and *options*. The **x** channel specifies the rule’s horizontal
+ * position and defaults to identity, assuming that *data* = [*x₀*, *x₁*, *x₂*,
+ * …]; the optional **y1** and **y2** channels specify its vertical extent. For
+ * example, for a candlestick chart of Apple’s daily stock price:
  *
  * ```js
- * Plot.ruleX(aapl, { x: "Date", y1: "Open", y2: "Close" })
+ * Plot.ruleX(aapl, {x: "Date", y1: "Open", y2: "Close"})
  * ```
  *
- * **x** defaults to identity, assuming that *data* contains numbers. The
- * vertical dimension can be specified as **y** with a value and an interval; if
- * it is ordinal instead of quantitative or temporal, use **tickX**.
+ * If *y* represents ordinal values, use a tickX mark instead.
  */
 export function ruleX(data?: Data, options?: RuleXOptions): RuleX;
 
 /**
- * An horizontal rule. The **y** channel specifies the vertical position of the
- * rule, and the **x1** and **x2** optional channels specify its horizontal
- * extent.
- *
- * For example, this shows the high value of the AAPL ticker as a small rule:
+ * Returns a new vertically-positioned ruleY mark (a horizontal line, —) for the
+ * given *data* and *options*. The **y** channel specifies the vertical position
+ * of the rule and defaults to identity, assuming that *data* = [*y₀*, *y₁*,
+ * *y₂*, …]; the optional **x1** and **x2** channels specify its horizontal
+ * extent. For example, to bin Apple’s daily stock price by month, plotting a
+ * sequence of barcodes showing monthly distributions:
  *
  * ```js
- * Plot.ruleY(aapl, { y: "High", x: {value: "Date", interval: "day"} })
+ * Plot.ruleY(aapl, {x: "Date", y: "Close", interval: "month"})
  * ```
  *
- * **y** defaults to identity, assuming that *data* contains numbers. The
- * horizontal dimension can be specified as **x** with a value and an interval;
- * if it is ordinal instead of quantitative or temporal, use **tickY**.
+ * If *x* represents ordinal values, use a tickY mark instead.
  */
 export function ruleY(data?: Data, options?: RuleYOptions): RuleY;
 

@@ -15,7 +15,7 @@ export interface TickXOptions extends MarkOptions, Omit<InsetOptions, "insetLeft
    * bound to the *y* scale. If not specified, the tick spans the vertical
    * extent of the frame; otherwise the *y* scale must be a *band* scale.
    *
-   * If **y** represents quantitative or temporal values, use a ruleX mark
+   * If *y* represents quantitative or temporal values, use a ruleX mark
    * instead.
    */
   y?: ChannelValueSpec;
@@ -35,7 +35,7 @@ export interface TickYOptions extends MarkOptions, Omit<InsetOptions, "insetTop"
    * horizontal extent of the frame; otherwise the *x* scale must be a *band*
    * scale.
    *
-   * If **x** represents quantitative or temporal values, use a ruleY mark
+   * If *x* represents quantitative or temporal values, use a ruleY mark
    * instead.
    */
   x?: ChannelValueSpec;
@@ -52,8 +52,7 @@ export interface TickYOptions extends MarkOptions, Omit<InsetOptions, "insetTop"
  * Plot.tickX(penguins, {x: "body_mass_g", y: "sex", stroke: "species"})
  * ```
  *
- * If **y** represents quantitative or temporal values, use a ruleX mark
- * instead.
+ * If *y* represents quantitative or temporal values, use a ruleX mark instead.
  */
 export function tickX(data?: Data, options?: TickXOptions): TickX;
 
@@ -62,14 +61,13 @@ export function tickX(data?: Data, options?: TickXOptions): TickX;
  * given *data* and *options*. The **y** channel specifies the vertical position
  * of the tick and defaults to identity, assuming that *data* = [*y₀*, *y₁*,
  * *y₂*, …]; the optional **x** categorical channel specifies its horizontal
- * position. For example, fpr a vertical barcode plot of penguins’ weights:
+ * position. For example, for a vertical barcode plot of penguins’ weights:
  *
  * ```js
  * Plot.tickY(penguins, {y: "body_mass_g", x: "sex", stroke: "species"})
  * ```
  *
- * If **x** represents quantitative or temporal values, use a ruleY mark
- * instead.
+ * If *x* represents quantitative or temporal values, use a ruleY mark instead.
  */
 export function tickY(data?: Data, options?: TickYOptions): TickY;
 
