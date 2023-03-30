@@ -65,6 +65,11 @@ export interface WindowOptions {
    * - *start* - as the first element in the window
    * - *middle* (default) - in the middle of the window, rounding down if **k** is even
    * - *end* - as the last element in the window
+   *
+   * Note that *start* and *end* are relative to input order, not natural
+   * ascending order by value. For example, if the data is in reverse
+   * chronological order, then the meaning of *start* and *end* is effectively
+   * reversed because the first data point is the most recent.
    */
   anchor?: "start" | "middle" | "end";
 
