@@ -1,70 +1,56 @@
 import type {ChannelValueSpec} from "../channel.js";
 import type {InsetOptions} from "../inset.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {RectCornerOptions} from "./rect.js";
 
 /** Options for the cell mark. */
-export interface CellOptions extends MarkOptions, InsetOptions {
+export interface CellOptions extends MarkOptions, InsetOptions, RectCornerOptions {
+  /**
+   * The horizontal position of the cell; an optional ordinal channel typically
+   * bound to the *x* scale. If not specified, the cell spans the horizontal
+   * extent of the frame; otherwise the *x* scale must be a *band* scale.
+   *
+   * If *x* represents quantitative or temporal values, use a barX mark instead;
+   * if *y* is also quantitative or temporal, use a rect mark.
+   */
   x?: ChannelValueSpec;
+
+  /**
+   * The vertical position of the cell; an optional ordinal channel typically
+   * bound to the *y* scale. If not specified, the cell spans the vertical
+   * extent of the frame; otherwise the *y* scale must be a *band* scale.
+   *
+   * If *y* represents quantitative or temporal values, use a barY mark instead;
+   * if *x* is also quantitative or temporal, use a rect mark.
+   */
   y?: ChannelValueSpec;
-
-  /**
-   * The [*x* radius][1] for rounded corners.
-   *
-   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx
-   */
-  rx?: number | string;
-
-  /**
-   * The [*y* radius][1] for rounded corners.
-   *
-   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry
-   */
-  ry?: number | string;
 }
 
 /**
- * Draws rectangular cells where both *x* and *y* are ordinal, typically in
- * conjunction with a *fill* channel to encode value.
- *
- * For example, given *data* that represents the IMDB rating of Simpsons
- * episodes across seasons, the following returns a heatmap:
+ * Returns a rectangular cell mark for the given *data* and *options*. Along
+ * with **x** and/or **y**, a **fill** channel is typically specified to encode
+ * value as color. For example, for a heatmap of the IMDb ratings of Simpons
+ * episodes by season:
  *
  * ```js
  * Plot.cell(simpsons, {x: "number_in_season", y: "season", fill: "imdb_rating"})
  * ```
  *
- * In addition to the standard mark options, including insets and rounded
- * corners, the following optional channels are supported:
+ * If neither **x** nor **y** are specified, *data* is assumed to be an array of
+ * pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*,
+ * *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
  *
- * - **x** - the horizontal position; bound to the *x* scale, which must be
- *   *band*
- * - **y** - the vertical position; bound to the *y* scale, which must be *band*
- *
- * If **x** is quantitative, use a **barX** mark instead. Likewise, if **y** is
- * quantitative, use a **barY** mark instead.
- *
- * The **stroke** defaults to none. The **fill** defaults to currentColor if the
- * stroke is none, and to none otherwise.
- *
- * If neither the **x** nor **y** options are specified, *data* is assumed to be
- * an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that
- * **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
- *
- * To build a matrix of cells from an array of tuples [[*x₀*, *y₀*, *v₀*],
- * [*x₁*, *y₁*, *v₁*], [*x₂*, *y₂*, *v₂*], …]:
- *
- * ```js
- * Plot.cell(values, {fill: "2"})
- * ```
+ * Both **x** and **y** should be ordinal; if only **x** is quantitative (or
+ * temporal), use a barX mark; if only **y** is quantitative, use a barY mark;
+ * if both are quantitative, use a rect mark.
  */
 export function cell(data?: Data, options?: CellOptions): Cell;
 
 /**
- * Like **cell**, with an undefined **y**; the **x** option defaults to [0, 1,
- * 2, …], and if the **fill** option is not specified and **stroke** is not a
- * channel, the fill defaults to the identity function and assumes that *data* =
- * [*x₀*, *x₁*, *x₂*, …]. For a quick horizontal stripe map visualizating an
- * array of numbers:
+ * Like cell, but **x** defaults to the zero-based index [0, 1, 2, …], and if
+ * **stroke** is not a channel, **fill** defaults to the identity function,
+ * assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. For a quick horizontal stripe
+ * map visualizating an array of numbers:
  *
  * ```js
  * Plot.cellX(values)
@@ -73,11 +59,10 @@ export function cell(data?: Data, options?: CellOptions): Cell;
 export function cellX(data?: Data, options?: CellOptions): Cell;
 
 /**
- * Like **cell**, with an undefined **x**; the **y** option defaults to [0, 1,
- * 2, …], and if the **fill** option is not specified and **stroke** is not a
- * channel, the fill defaults to the identity function and assumes that *data* =
- * [*y₀*, *y₁*, *y₂*, …]. For a quick vertical stripe map visualizating an array
- * of numbers:
+ * Like cell, but **y** defaults to the zero-based index [0, 1, 2, …], and if
+ * **stroke** is not a channel, **fill** defaults to the identity function,
+ * assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. For a quick vertical stripe map
+ * visualizating an array of numbers:
  *
  * ```js
  * Plot.cellY(values)
