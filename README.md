@@ -305,9 +305,7 @@ Plot automatically generates [axis](#axis) and optionally [grid](#grid) marks fo
 * *scale*.**ariaLabel** - a short label representing the axis in the accessibility tree
 * *scale*.**ariaDescription** - a textual description for the axis
 
-Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **label**, **axis**, **inset**, **round**, **align**, and **padding**.
-
-If the **grid** option is true, show a grid with the currentColor stroke; if specified as a string, show a grid with the specified stroke color; if an approximate number of ticks, an interval, or an array of tick values, show corresponding grid lines.
+Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **label**, **axis**, **inset**, **round**, **align**, and **padding**. If the **grid** option is true, show a grid with the currentColor stroke; if specified as a string, show a grid with the specified stroke color; if an approximate number of ticks, an interval, or an array of tick values, show corresponding grid lines.
 
 ### Projection options
 
