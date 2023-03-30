@@ -7,18 +7,40 @@ import type {StackOptions} from "../transforms/stack.js";
 /** Options for the barX and barY marks. */
 interface BarOptions extends MarkOptions, InsetOptions, StackOptions {
   /**
-   * The [*x* radius][1] for rounded corners.
+   * The rounded corner [*x*-radius][1], either in pixels or as a percentage of
+   * the bar width. If **rx** is not specified, it defaults to **ry** if
+   * present, and otherwise draws square corners.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx
    */
   rx?: number | string;
 
   /**
-   * The [*y* radius][1] for rounded corners.
+   * The rounded corner [*y*-radius[1], either in pixels or as a percentage of
+   * the bar height. If **ry** is not specified, it defaults to **rx** if
+   * present, and otherwise draws square corners.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry
    */
   ry?: number | string;
+
+  /**
+   * How to convert a continuous value (**x** for barX, or **y** for barY) into
+   * an interval; one of:
+   *
+   * - an object that implements *floor*, *offset*, and *range* methods
+   * - a named time interval such as *day* (for date intervals)
+   * - a number (for number intervals), defining intervals at integer multiples of *n*
+   *
+   * For example, for a scatterplot showing the frequency distribution of
+   * English letters, where the vertical extent of each bar covers a unit
+   * percentage:
+   *
+   * ```js
+   * Plot.barY(alphabet, {x: "letter", y: "frequency", interval: 0.01})
+   * ```
+   */
+  interval?: Interval;
 }
 
 /** Options for the barX mark. */
@@ -37,15 +59,6 @@ export interface BarXOptions extends BarOptions {
 
   /** The bar’s horizontal position, bound to the *y* band scale. */
   y?: ChannelValueSpec;
-
-  /**
-   * If an **interval** is specified, such as *day* or a number, **x1** and
-   * **x2** can be derived from **x**: the interval’s floor is invoked for each
-   * *x* to produce *x1*, and its offset is invoked for each *x1* to produce
-   * *x2*. If the interval is specified as a number *n*, *x1* and *x2* are taken
-   * as the two consecutive multiples of *n* that bracket *x*.
-   */
-  interval?: Interval;
 }
 
 /** Options for the barY mark. */
@@ -58,15 +71,6 @@ export interface BarYOptions extends BarOptions {
   y1?: ChannelValueSpec;
   y2?: ChannelValueSpec;
   x?: ChannelValueSpec;
-
-  /**
-   * If an **interval** is specified, such as *day* or a number, **y1** and
-   * **y2** can be derived from **y**: the interval’s floor is invoked for each
-   * *y* to produce *y1*, and its offset is invoked for each *y1* to produce
-   * *y2*. If the interval is specified as a number *n*, *y1* and *y2* are taken
-   * as the two consecutive multiples of *n* that bracket *x*.
-   */
-  interval?: Interval;
 }
 
 /**
