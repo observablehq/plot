@@ -4,8 +4,29 @@ import type {Interval} from "../interval.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import type {StackOptions} from "../transforms/stack.js";
 
+/** Options for marks that render rectangles, including bar, cell, and rect. */
+export interface RectCornerOptions {
+  /**
+   * The rounded corner [*x*-radius][1], either in pixels or as a percentage of
+   * the rect width. If **rx** is not specified, it defaults to **ry** if
+   * present, and otherwise draws square corners.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx
+   */
+  rx?: number | string;
+
+  /**
+   * The rounded corner [*y*-radius][1], either in pixels or as a percentage of
+   * the rect height. If **ry** is not specified, it defaults to **rx** if
+   * present, and otherwise draws square corners.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry
+   */
+  ry?: number | string;
+}
+
 /** Options for the rect mark. */
-export interface RectOptions extends MarkOptions, InsetOptions, StackOptions {
+export interface RectOptions extends MarkOptions, InsetOptions, RectCornerOptions, StackOptions {
   /**
    * The horizontal position (or length/width) channel, typically bound to the
    * *x* scale.
@@ -94,24 +115,6 @@ export interface RectOptions extends MarkOptions, InsetOptions, StackOptions {
    * or stackY for rectY).
    */
   interval?: Interval;
-
-  /**
-   * The rounded corner [*x*-radius][1], either in pixels or as a percentage of
-   * the bar width. If **rx** is not specified, it defaults to **ry** if
-   * present, and otherwise draws square corners.
-   *
-   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx
-   */
-  rx?: number | string;
-
-  /**
-   * The rounded corner [*y*-radius][1], either in pixels or as a percentage of
-   * the bar height. If **ry** is not specified, it defaults to **rx** if
-   * present, and otherwise draws square corners.
-   *
-   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry
-   */
-  ry?: number | string;
 }
 
 /** Options for the rectX mark. */
@@ -145,8 +148,8 @@ export interface RectYOptions extends RectOptions {
 /**
  * Returns a rect mark for the given *data* and *options*. The rectangle extends
  * horizontally from **x1** to **x2**, and vertically from **y1** to **y2**. The
- * position channels are often derived with a transform. For example, to create
- * a heatmap of athletes, binned by weight and height:
+ * position channels are often derived with a transform. For example, for a
+ * heatmap of athletes, binned by weight and height:
  *
  * ```js
  * Plot.rect(athletes, Plot.bin({fill: "proportion"}, {x: "weight", y: "height"}))

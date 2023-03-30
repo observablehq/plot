@@ -1,29 +1,12 @@
 import type {ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
-import type {Interval} from "../interval.js";
 import type {InsetOptions} from "../inset.js";
+import type {Interval} from "../interval.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import type {StackOptions} from "../transforms/stack.js";
+import type {RectCornerOptions} from "./rect.js";
 
 /** Options for the barX and barY marks. */
-interface BarOptions extends MarkOptions, InsetOptions, StackOptions {
-  /**
-   * The rounded corner [*x*-radius][1], either in pixels or as a percentage of
-   * the bar width. If **rx** is not specified, it defaults to **ry** if
-   * present, and otherwise draws square corners.
-   *
-   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx
-   */
-  rx?: number | string;
-
-  /**
-   * The rounded corner [*y*-radius][1], either in pixels or as a percentage of
-   * the bar height. If **ry** is not specified, it defaults to **rx** if
-   * present, and otherwise draws square corners.
-   *
-   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry
-   */
-  ry?: number | string;
-
+interface BarOptions extends MarkOptions, InsetOptions, RectCornerOptions, StackOptions {
   /**
    * How to convert a continuous value (**x** for barX, or **y** for barY) into
    * an interval (**x1** and **x2** for barX, or **y1** and **y2** for barY);
@@ -82,7 +65,7 @@ export interface BarXOptions extends BarOptions {
   x2?: ChannelValueSpec;
 
   /**
-   * The optional vertical position of the bar; a categorical channel typically
+   * The optional vertical position of the bar; a ordinal channel typically
    * bound to the *y* scale. If not specified, the bar spans the vertical extent
    * of the frame; otherwise the *y* scale must be a *band* scale.
    *
@@ -127,10 +110,9 @@ export interface BarYOptions extends BarOptions {
   y2?: ChannelValueSpec;
 
   /**
-   * The optional horizontal position of the bar; a categorical channel
-   * typically bound to the *x* scale. If not specified, the bar spans the
-   * horizontal extent of the frame; otherwise the *x* scale must be a *band*
-   * scale.
+   * The optional horizontal position of the bar; a ordinal channel typically
+   * bound to the *x* scale. If not specified, the bar spans the horizontal
+   * extent of the frame; otherwise the *x* scale must be a *band* scale.
    *
    * If *x* represents quantitative or temporal values, use a rectY mark
    * instead.
