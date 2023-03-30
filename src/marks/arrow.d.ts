@@ -4,95 +4,97 @@ import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 /** Options for the arrow mark. */
 export interface ArrowOptions extends MarkOptions {
   /**
-   * The horizontal position, shorthand for both **x1** and **x2** for vertical
-   * arrows; bound to the *x* scale.
+   * The horizontal position, for vertical arrows; typically bound to the *x*
+   * scale; shorthand for setting defaults for both **x1** and **x2**.
    */
   x?: ChannelValueSpec;
 
   /**
-   * The vertical position, shorthand for both **y1** and **y2** for horizontal
-   * arrows; bound to the *y* scale.
+   * The vertical position, for horizontal arrows; typically bound to the *y*
+   * scale; shorthand for setting defaults for both **y1** and **y2**.
    */
   y?: ChannelValueSpec;
 
   /**
-   * The horizontal position of the start point; bound to the *x* scale.
+   * The starting horizontal position; typically bound to the *x* scale; also
+   * sets a default for **x2**.
    */
   x1?: ChannelValueSpec;
 
   /**
-   * The vertical position of the start point; bound to the *y* scale.
+   * The starting vertical position; typically bound to the *y* scale; also sets
+   * a default for **y2**.
    */
   y1?: ChannelValueSpec;
 
   /**
-   * The horizontal position of the end point; bound to the *x* scale.
+   * The ending horizontal position; typically bound to the *x* scale; also sets
+   * a default for **x1**.
    */
   x2?: ChannelValueSpec;
 
   /**
-   * The vertical position of the end point; bound to the *y* scale.
+   * The ending vertical position; typically bound to the *y* scale; also sets a
+   * default for **y1**.
    */
   y2?: ChannelValueSpec;
 
   /**
-   * The bend angle, in degrees, sets the angle between the straight line
-   * between the two points and the outgoing direction of the arrow from the
-   * start point. It must be within ±90°. A positive angle will produce a
-   * clockwise curve; a negative angle will produce a counterclockwise curve;
-   * zero (the default) will produce a straight line. Use true for 22.5°.
+   * The angle, a constant in degrees, between the straight line intersecting
+   * the arrow’s two control points and the outgoing tangent direction of the
+   * arrow from the start point. The angle must be within ±90°; a positive angle
+   * will produce a clockwise curve, while a negative angle will produce a
+   * counterclockwise curve; zero (the default) will produce a straight line.
+   * Use true for 22.5°.
    */
   bend?: number | boolean;
 
   /**
-   * The **headAngle**, in degrees, determines how pointy the arrowhead is; it
-   * is typically between 0° and 180°. Defaults to 60.
+   * How pointy the arrowhead is, in degrees; a constant typically between 0°
+   * and 180°, and defaults to 60°.
    */
   headAngle?: number;
 
   /**
-   * The **headLength** determines the scale of the arrowhead relative to the
-   * stroke width. Assuming the default of stroke width 1.5px, the
-   * **headLength** is the length of the arrowhead’s side in pixels.
+   * The size of the arrowhead relative to the **strokeWidth**; a constant.
+   * Assuming the default of stroke width 1.5px, this is the length of the
+   * arrowhead’s side in pixels.
    */
   headLength?: number;
 
   /**
-   * Shorthand for **insetStart** and **insetEnd**.
+   * Shorthand to set the same default for **insetStart** and **insetEnd**.
    */
   inset?: number;
 
   /**
-   * Inset at the start of the arrow, in pixels (useful if the arrow emerges
-   * from a dot). Defaults to 0.
+   * The starting inset, a constant in pixels; defaults to 0. A positive inset
+   * shortens the arrow by moving the starting point towards the endpoint point,
+   * while a negative inset extends it by moving the starting point in the
+   * opposite direction. A positive starting inset may be useful if the arrow
+   * emerges from a dot.
    */
   insetStart?: number;
 
   /**
-   * Inset at the end of the arrow, in pixels (useful if the arrow points to a
-   * dot). Defaults to 0.
+   * The ending inset, a constant in pixels; defaults to 0. A positive inset
+   * shortens the arrow by moving the ending point towards the starting point,
+   * while a negative inset extends it by moving the ending point in the
+   * opposite direction. A positive ending inset may be useful if the arrow
+   * points to a dot.
    */
   insetEnd?: number;
 }
 
 /**
- * Draws (possibly swoopy) arrows connecting pairs of points. For example, to
- * display arrows connecting two points in a scatterplot that represent the
- * population vs income inequality in 1980 and 2015 for U.S. cities:
+ * Returns a new arrow mark for the given *data* and *options*, drawing
+ * (possibly swoopy) arrows connecting pairs of points. For example, to draw an
+ * arrow connecting an observation from 1980 with an observation from 2015 in a
+ * scatterplot of population and revenue inequality of U.S. cities:
  *
  * ```js
  * Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015", bend: true})
  * ```
- *
- * The starting point is specified by **x1** and **y1**, and the ending point by
- * **x2** and **y2** (or **x** for vertical arrows, and **y** for horizontal
- * arrows). The arrow’s shape configuration options include the **bend** angle,
- * **headAngle** and **headLength**, as well as insets (**insetEnd** and
- * **insetStart**).
- *
- * The **stroke** defaults to currentColor. The **fill** defaults to none. The
- * **strokeWidth** defaults to 1.5, and the **strokeMiterlimit** defaults to
- * one.
  */
 export function arrow(data?: Data, options?: ArrowOptions): Arrow;
 
