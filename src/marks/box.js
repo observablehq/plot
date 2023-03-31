@@ -1,5 +1,6 @@
-import {min, max, quantile} from "d3";
+import {max, min, quantile} from "d3";
 import {marks} from "../mark.js";
+import {identity} from "../options.js";
 import {groupX, groupY, groupZ} from "../transforms/group.js";
 import {map} from "../transforms/map.js";
 import {barX, barY} from "./bar.js";
@@ -11,7 +12,7 @@ export function boxX(data, options = {}) {
   // Returns a composite mark for producing a horizontal box plot, applying the
   // necessary statistical transforms. The boxes are grouped by y, if present.
   const {
-    x = {transform: (x) => x},
+    x = identity,
     y = null,
     fill = "#ccc",
     fillOpacity,
@@ -34,7 +35,7 @@ export function boxY(data, options = {}) {
   // Returns a composite mark for producing a vertical box plot, applying the
   // necessary statistical transforms. The boxes are grouped by x, if present.
   const {
-    y = {transform: (y) => y},
+    y = identity,
     x = null,
     fill = "#ccc",
     fillOpacity,
