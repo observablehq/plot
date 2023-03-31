@@ -11,9 +11,9 @@ export interface AutoOptions {
    * If **y** is set without **x**, **x** defaults to the *count* reducer to
    * produce a histogram; you can override this by passing {reduce: null}.
    *
-   * Setting **reduce** will automatically bin or group on **y**.
+   * TODO Setting **reduce** will automatically bin or group on **y**.
    *
-   * Setting **zero** draws a vertical rule where *x* = 0.
+   * TODO Setting **zero** draws a vertical rule where *x* = 0.
    */
   x?: ChannelValue | Reducer | ({value?: ChannelValue; reduce?: Reducer | null; zero?: boolean} & BinOptions);
 
@@ -72,49 +72,16 @@ export interface AutoOptions {
 }
 
 /**
- * An auto options object with nothing left undefined. Automatically inferred
- * mark type, reducers, and zero (baseline) options will be filled in; anything
- * else left undefined will be null.
+ * An auto options object with nothing left undefined; the inferred mark type,
+ * reducers, and zero (baseline) options will be filled in.
  */
 export interface AutoSpec extends AutoOptions {
-  /**
-   * Like auto’s **x** option, but with nothing left undefined. The reduce value
-   * may be automatically inferred to be *count* if **x** wasn’t set and a
-   * histogram will be drawn.
-   */
   x: {value: ChannelValue; reduce: Reducer | null; zero: boolean} & BinOptions;
-
-  /**
-   * Like auto’s **y** option, but with nothing left undefined. The reduce value
-   * may be automatically inferred to be *count* if **y** wasn’t set and a
-   * histogram will be drawn.
-   */
   y: {value: ChannelValue; reduce: Reducer | null; zero: boolean} & BinOptions;
-
-  /**
-   * Like auto’s **color** option, but with nothing left undefined.
-   */
   color: {value: ChannelValue; reduce: Reducer | null; color: string};
-
-  /**
-   * Like auto’s **size** option, but with nothing left undefined.
-   */
   size: {value: ChannelValue; reduce: Reducer | null};
-
-  /**
-   * Like auto’s **fx** option, but with nothing left undefined.
-   */
   fx: ChannelValue;
-
-  /**
-   * Like auto’s **fy** option, but with nothing left undefined.
-   */
   fy: ChannelValue;
-
-  /**
-   * Like auto’s **mark** option, but never undefined; if no mark type was
-   * passed in, shows the inferred mark type that will be rendered.
-   */
   mark: NonNullable<AutoOptions["mark"]>;
 }
 
