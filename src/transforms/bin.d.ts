@@ -81,6 +81,8 @@ export interface BinOptions {
    * ```js
    * Plot.rectY(numbers, Plot.binX({y: "count"}, {thresholds: 10}))
    * ```
+   *
+   * See also the **interval** option.
    */
   thresholds?: Thresholds;
 
