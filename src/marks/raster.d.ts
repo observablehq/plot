@@ -11,29 +11,23 @@ import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 export type RasterInterpolateName = "nearest" | "barycentric" | "random-walk";
 
 /**
- * A spatial interpolation implementation. A function that receives samples’
- * positions and values and returns a flat array of *width* × *height* values.
- *
- * So, *x*[*index*[0]] represents the *x*-position of the first sample,
+ * A spatial interpolation implementation function that receives samples’
+ * positions and values and returns a flat array of *width*×*height* values.
+ * *x*[*index*[0]] represents the *x*-position of the first sample,
  * *y*[*index*[0]] its *y*-position, and *value*[*index*[0]] its value (*e.g.*,
  * the observed height for a topographic map).
  */
 export type RasterInterpolateFunction = (
   /** An array of numeric indexes into the channels *x*, *y*, *value*. */
   index: number[],
-
-  /** The width of the raster grid; a positive integer. */
+  /** The width of the raster grid in pixels; a positive integer. */
   width: number,
-
-  /** The height of the raster grid; a positive integer. */
+  /** The height of the raster grid in pixels; a positive integer. */
   height: number,
-
   /** An array of values representing the *x*-position of samples. */
   x: number[],
-
   /** An array of values representing the *y*-position of samples. */
   y: number[],
-
   /** An array of values representing the sample’s observed value. */
   values: any[]
 ) => any[];
@@ -52,22 +46,16 @@ export type RandomSource = () => number;
 
 /**
  * A sampler function, which returns a value for the given *x* and *y* values in
- * the current *facet*. For example, to create side-by-side color plots of two
- * functions of *x* and *y*:
- *
- * ```js
- * Plot.raster({
- *   fill: (x, y, {fx}) => fx(x) * y,
- *   fx: [Math.sin, Math.cos],
- *   x1: 0,
- *   y1: 0,
- *   x2: 4 * Math.PI,
- *   y2: 2,
- *   interval: 0.2
- * });
- * ```
+ * the current *facet*.
  */
-export type RasterSampler = (x: number, y: number, facet: number[] & {fx: any; fy: any}) => any;
+export type RasterSampler = (
+  /** The horizontal position. */
+  x: number,
+  /** The vertical position. */
+  y: number,
+  /** The current facet index, and corresponding *fx* and *fy* value. */
+  facet: number[] & {fx: any; fy: any}
+) => any;
 
 /** Options for the raster mark. */
 export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity"> {
@@ -206,8 +194,7 @@ export function raster(options?: RasterOptions): Raster;
  * Applies a simple forward mapping of samples, binning them into pixels in the
  * raster grid without any blending or interpolation. If multiple samples map to
  * the same pixel, the last one wins; this can introduce bias if the points are
- * not in random order, so use Plot.**shuffle** to randomize the input if
- * needed.
+ * not in random order, so use Plot.shuffle to randomize the input if needed.
  */
 export const interpolateNone: RasterInterpolateFunction;
 
@@ -215,14 +202,14 @@ export const interpolateNone: RasterInterpolateFunction;
  * Constructs a Delaunay triangulation of the samples, and then for each pixel
  * in the raster grid, determines the triangle that covers the pixel’s centroid
  * and interpolates the values associated with the triangle’s vertices using
- * [barycentric
- * coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system). If
- * the interpolated values are ordinal or categorical (_i.e._, anything other
- * than numbers or dates), then one of the three values will be picked randomly
- * weighted by the barycentric coordinates; the given *random* number generator
- * will be used, which defaults to a [linear congruential
- * generator](https://github.com/d3/d3-random/blob/main/README.md#randomLcg)
- * with a fixed seed (for deterministic results).
+ * [barycentric coordinates][1]. If the interpolated values are ordinal or
+ * categorical (_i.e._, anything other than numbers or dates), then one of the
+ * three values will be picked randomly weighted by the barycentric coordinates;
+ * the given *random* number generator will be used, which defaults to a [linear
+ * congruential generator][2] with a fixed seed (for deterministic results).
+ *
+ * [1]: https://en.wikipedia.org/wiki/Barycentric_coordinate_system
+ * [2]: https://github.com/d3/d3-random/blob/main/README.md#randomLcg
  */
 export function interpolatorBarycentric(options?: {random?: RandomSource}): RasterInterpolateFunction;
 
@@ -234,17 +221,19 @@ export const interpolateNearest: RasterInterpolateFunction;
 
 /**
  * For each pixel in the raster grid, initiates a random walk, stopping when
- * either the walk is within a given distance (*minDistance*) of a sample or the
- * maximum allowable number of steps (*maxSteps*) have been taken, and then
- * assigning the current pixel the closest sample’s value. The random walk uses
- * the “walk on spheres” algorithm in two dimensions described by [Sawhney and
- * Crane](https://www.cs.cmu.edu/~kmcrane/Projects/MonteCarloGeometryProcessing/index.html),
- * SIGGRAPH 2020.
+ * either the walk is within a given distance (**minDistance**) of a sample or
+ * the maximum allowable number of steps (**maxSteps**) have been taken, and
+ * then assigning the current pixel the closest sample’s value. The random walk
+ * uses the “walk on spheres” algorithm in two dimensions described by [Sawhney
+ * and Crane][1], SIGGRAPH 2020.
+ *
+ * [1]: https://www.cs.cmu.edu/~kmcrane/Projects/MonteCarloGeometryProcessing/index.html
  */
 export function interpolatorRandomWalk(options?: {
   /**
-   * A source of pseudo-random numbers in [0, 1). Called at each step of the
-   * random walk algorithm with arguments *x*, *y*, and *step*.
+   * An optional source of pseudo-random numbers in [0, 1). Called at each step
+   * of the random walk algorithm with arguments *x*, *y*, and *step*. If not
+   * specified, defaults to a seeded random number generator.
    */
   random?: RandomSource;
 
@@ -255,7 +244,7 @@ export function interpolatorRandomWalk(options?: {
   minDistance?: number;
 
   /**
-   * After this number of steps, which defaults to 3, lift the minDistance
+   * After this number of steps, which defaults to 3, lift the **minDistance**
    * requirement and snap to the closest sample.
    */
   maxSteps?: number;

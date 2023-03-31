@@ -8,8 +8,8 @@ import type {RasterOptions, RasterSampler} from "./raster.js";
 export interface ContourOptions extends Omit<RasterOptions, "interval" | "imageRendering"> {
   /**
    * Whether to apply linear interpolation after marching squares when computing
-   * contour polygons (defaults to true). For smoother contours, see the
-   * **blur** option.
+   * contour polygons; defaults to true. For smoother contours, see the **blur**
+   * option.
    */
   smooth?: boolean;
 
