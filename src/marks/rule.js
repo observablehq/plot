@@ -151,8 +151,8 @@ function applyRuleStyles(selection, mark, channels) {
 function sphereRuleX(projection, X, Y1, Y2) {
   const path = geoPath(projection);
   X = coerceNumbers(X);
-  Y1 = coerceNumbers(Y1) ?? X.slice().fill(-90);
-  Y2 = coerceNumbers(Y2) ?? X.slice().fill(90);
+  Y1 = coerceNumbers(Y1) ?? X.slice().fill(-80);
+  Y2 = coerceNumbers(Y2) ?? X.slice().fill(80);
   return (i) =>
     path({
       type: "LineString",
@@ -168,11 +168,13 @@ function sphereRuleY(projection, Y, X1, X2) {
   const path = geoPath(projection);
   Y = coerceNumbers(Y);
   X1 = coerceNumbers(X1) ?? Y.slice().fill(-180);
-  X2 = coerceNumbers(X2) ?? Y.slice().fill(180.1);
+  X2 = coerceNumbers(X2) ?? Y.slice().fill(180);
   return (i) =>
     path({
       type: "LineString",
-      coordinates: range(X1[i], X2[i], 1).map((x) => [x, Y[i]])
+      coordinates: range(X1[i], X2[i], 1)
+        .concat(X2[i])
+        .map((x) => [x, Y[i]])
     });
 }
 

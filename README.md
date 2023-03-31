@@ -1786,6 +1786,8 @@ If the **x** option is not specified, it defaults to the identity function and a
 
 If an **interval** is specified, such as d3.utcDay, **y1** and **y2** can be derived from **y**: *interval*.floor(*y*) is invoked for each *y* to produce *y1*, and *interval*.offset(*y1*) is invoked for each *y1* to produce *y2*. If the interval is specified as a number *n*, *y1* and *y2* are taken as the two consecutive multiples of *n* that bracket *y*.
 
+If a top-level **projection** is specified, the rule draws a parallel with a step of 1 degree for spherical projections—1 unit for planar projections—with **y1** and **y2** defaulting to -180° and 180° respectively.
+
 #### Plot.ruleY(*data*, *options*)
 
 ```js
@@ -1805,6 +1807,8 @@ Returns a new rule↔︎ with the given *data* and *options*. In addition to the
 If the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is specified, it is shorthand for the **x2** option with **x1** equal to zero; this is the typical configuration for a horizontal lollipop chart with rules aligned at *x* = 0. If the **x1** channel is not specified, the rule will start at the left edge of the plot (or facet). If the **x2** channel is not specified, the rule will end at the right edge of the plot (or facet).
 
 If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*.
+
+If a top-level **projection** is specified, the rule draws a meridian, with **y1** and **y2** defaulting to -80° and 80° respectively.
 
 ### Text
 
