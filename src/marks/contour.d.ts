@@ -41,42 +41,36 @@ export interface ContourOptions extends Omit<RasterOptions, "interval" | "imageR
   thresholds?: Thresholds;
 
   /**
-   * An alternative way of specifying the contour thresholds. For example to
-   * create an isoline every 15 meters on a topographic map:
+   * How to subdivide the domain into discrete level sets; a stricter
+   * alternative to the **thresholds** option allowing the use of shorthand
+   * numeric intervals; one of:
+   *
+   * - an object that implements *floor*, *offset*, and *range* methods
+   * - a named time interval such as *day* (for date intervals)
+   * - a number (for number intervals), defining intervals at integer multiples of *n*
+   *
+   * For example to create an isoline every 10 meters on a topographic map:
    *
    * ```js
-   * Plot.contour(volcano.values, {interval: 15, width: volcano.width, height: volcano.height, value: Plot.identity})
+   * Plot.contour(volcano.values, {interval: 10, width: volcano.width, height: volcano.height})
    * ```
    */
   interval?: RangeInterval;
 }
 
 /**
- * Return a contour mark, which creates contour polygons from spatial samples.
- * If *data* is provided, it represents discrete samples in abstract coordinates
- * *x* and *y*; the *value* channel specifies further abstract values (_e.g._,
- * height in a topographic map) to be spatially interpolated to produce a raster
- * grid of quantitative values (like in the **raster** mark), and lastly
- * contours via marching squares, which are rendered as vector polygons.
- *
+ * Returns a new contour mark, which creates contour polygons from spatial
+ * samples. If *data* is provided, it represents discrete samples in abstract
+ * coordinates **x** and **y**; the **value** channel specifies further abstract
+ * values (_e.g._, height in a topographic map) to be spatially interpolated to
+ * produce a raster grid of quantitative values (like in the raster mark), and
+ * lastly contours via marching squares, which are rendered as vector polygons.
  * For example, to generate filled contours from a topographic map, where the
  * color corresponds to the contour threshold value:
  *
  * ```js
- * Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity, fill: "value"})
+ * Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
  * ```
- *
- * For smoother contours, the **blur** option (default 0) specifies a
- * non-negative pixel radius for smoothing prior to applying marching squares.
- * The **smooth** option (default true) specifies whether to apply linear
- * interpolation after marching squares when computing contour polygons. The
- * **thresholds** and **interval** options specify the contour thresholds; see
- * the **bin** transform for details.
- *
- * With the exception of the *x*, *y*, *x1*, *y1*, *x2*, *y2*, and *value*
- * channels, the contour mark’s channels are not evaluated on the initial *data*
- * but rather on the contour multipolygons generated in the initializer, as in
- * the example above.
  *
  * The **fill** and **fillOpacity** channels may alternatively be specified as
  * functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the
@@ -84,23 +78,15 @@ export interface ContourOptions extends Omit<RasterOptions, "interval" | "imageR
  * contour plot of a two-dimensional function:
  *
  * ```js
- * Plot.contour({
- *   fill: (x, y) => Math.sin(x) * Math.cos(y),
- *   x1: 0,
- *   y1: 0,
- *   x2: 4 * Math.PI,
- *   y2: 4 * Math.PI
- *  })
+ * Plot.contour({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
  * ```
  *
- * The resolution of the rectangular raster image may be specified with
- * **width** and **height**.
- *
- * The raster dimensions may alternatively be imputed from a rectangular extent
- * *x1*, *y1*, *x2*, *y2* and a **pixelSize**.
+ * With the exception of the **x**, **y**, and **value** channels, the contour
+ * mark’s channels are not evaluated on the initial *data* but rather on the
+ * generated contour multipolygons.
  */
-export function contour(options?: ContourOptions): Contour;
 export function contour(data?: Data, options?: ContourOptions): Contour;
+export function contour(options?: ContourOptions): Contour;
 
 /** The contour mark. */
 export class Contour extends RenderableMark {}
