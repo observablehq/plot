@@ -11,8 +11,14 @@ import type {TickXOptions, TickYOptions} from "./tick.js";
  */
 export type AxisAnchor = "top" | "right" | "bottom" | "left";
 
+/** The subset of scale options for grids. */
+type GridScaleOptions = Pick<ScaleOptions, "interval" | "ticks" | "tickSpacing">;
+
+/** The subset of scale options for axes. */
+type AxisScaleOptions = Pick<ScaleOptions, "tickSize" | "tickPadding" | "tickFormat" | "tickRotate" | "label" | "labelOffset" | "labelAnchor">; // prettier-ignore
+
 /** Options for the grid marks. */
-export interface GridOptions {
+export interface GridOptions extends GridScaleOptions {
   /**
    * The grid anchor. For when the grid lines extend from a given position on
    * the opposite dimension. For example, a horizontal grid line that starts at
@@ -25,83 +31,17 @@ export interface GridOptions {
   anchor?: AxisAnchor;
 
   /**
-   * For data at regular intervals, such as integer values or daily samples, the
-   * **interval** option can be used to enforce uniformity. The specified
-   * *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*),
-   * *interval*.offset(*value*), and *interval*.range(*start*, *stop*)
-   * functions. The option can also be specified as a number, in which case it
-   * will be promoted to a numeric interval with the given step. The option can
-   * alternatively be specified as a string (*second*, *minute*, *hour*, *day*,
-   * *week*, *month*, *quarter*, *half*, *year*, *monday*, *tuesday*,
-   * *wednesday*, *thursday*, *friday*, *saturday*, *sunday*) naming the
-   * corresponding UTC interval.
-   */
-  interval?: ScaleOptions["interval"];
-
-  /**
-   * For a continuous scale grid, defines the ticks as an approximate number of
-   * ticks, an explicit array of tick values, or an interval such as *day* or
-   * *month*.
-   */
-  ticks?: ScaleOptions["ticks"];
-
-  /**
-   * The approximate number of pixels between ticks (if **ticks** is not
-   * specified).
-   */
-  tickSpacing?: ScaleOptions["tickSpacing"];
-
-  /**
    * The color of the ticks (defaults to *currentColor*, equivalent to **stroke**).
    */
   color?: MarkOptions["stroke"];
 }
 
 /** Options for the axis marks. */
-export interface AxisOptions extends GridOptions, MarkOptions, TextOptions {
+export interface AxisOptions extends GridOptions, MarkOptions, TextOptions, AxisScaleOptions {
   /**
    * The axis orientation.
    */
   anchor?: AxisAnchor;
-
-  /**
-   * The length of tick vectors in pixels; negative values extend in the
-   * opposite direction.
-   */
-  tickSize?: ScaleOptions["tickSize"];
-
-  /**
-   * The separation between the tick vector and its label (in pixels; default
-   * 3).
-   */
-  tickPadding?: ScaleOptions["tickPadding"];
-
-  /**
-   * The tick label format specifier. String specifiers are passed to
-   * [d3-format](https://github.com/d3/d3-format) for numeric scales, and
-   * [d3-time-format](https://github.com/d3/d3-time-format) for *time* and *utc*
-   * scales. If a function, it is passed the tick value and tick index, and
-   * returns a string. Plot also provides multilingual format helpers for
-   * convenience: **formatIsoDate**, **formatWeekDay** and **formatMonth**.
-   */
-  tickFormat?: ScaleOptions["tickFormat"];
-
-  /**
-   * The rotation angle of tick labels in degrees (default 0).
-   */
-  tickRotate?: ScaleOptions["tickRotate"];
-
-  /** A string to label the axis. */
-  label?: ScaleOptions["label"];
-
-  /**
-   * The label position offset (in pixels; default depends on margins and
-   * orientation).
-   */
-  labelOffset?: ScaleOptions["labelOffset"];
-
-  /** The label anchor: *top*, *right*, *bottom*, *left*, or *center*. */
-  labelAnchor?: ScaleOptions["labelAnchor"];
 
   /**
    * Text labels stroke color, used to limit occlusion; defaults to null.
