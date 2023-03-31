@@ -3,131 +3,72 @@ import type {CompoundMark, Data} from "../mark.js";
 import type {Reducer} from "../reducer.js";
 import type {BinOptions} from "../transforms/bin.js";
 
-/**
- * One of the categories of mark; *line* includes lineX and lineY; *area*
- * includes areaX and areaY; *rule* includes ruleX and ruleY; *bar* includes
- * barX, barY, rectX, and rectY; and *dot* is just dot.
- */
-type MarkType = "dot" | "line" | "area" | "rule" | "bar";
-
+/** Options for the auto mark. */
 export interface AutoOptions {
   /**
-   * The horizontal spatial encoding. If **y** is set without **x**, the **x**
-   * channel will default to the *count* reducer to produce a histogram; you can
-   * override this by passing {reduce: null}.
+   * The horizontal position channel and reducer.
+   *
+   * If **y** is set without **x**, **x** defaults to the *count* reducer to
+   * produce a histogram; you can override this by passing {reduce: null}.
+   *
+   * Setting **reduce** will automatically bin or group on **y**.
+   *
+   * Setting **zero** draws a vertical rule where *x* = 0.
    */
-  x?:
-    | ChannelValue
-    | Reducer
-    | ({
-        /**
-         * A string representing a column of your data, or an accessor function.
-         */
-        value?: ChannelValue;
-
-        /**
-         * A string representing a reducer, or your own reducer function.
-         * Setting a reducer on **x** will automatically bin or group on **y**.
-         */
-        reduce?: Reducer | null;
-
-        /**
-         * Draws a vertical baseline where x is 0.
-         */
-        zero?: boolean;
-      } & BinOptions);
+  x?: ChannelValue | Reducer | ({value?: ChannelValue; reduce?: Reducer | null; zero?: boolean} & BinOptions);
 
   /**
-   * The vertical spatial encoding. If **x** is set without **y**, the **y**
-   * channel will default to the *count* reducer to produce a histogram; you can
-   * override this by passing {reduce: null}.
+   * The vertical position channel and reducer.
+   *
+   * If **x** is set without **y**, **y** defaults to the *count* reducer to
+   * produce a histogram; you can override this by passing {reduce: null}.
    */
-  y?:
-    | ChannelValue
-    | Reducer
-    | ({
-        /**
-         * A string representing a column of your data, or an accessor function.
-         */
-        value?: ChannelValue;
-
-        /**
-         * A string representing a reducer, or your own reducer function.
-         * Setting a reducer on **y** will automatically bin or group on **x**.
-         */
-        reduce?: Reducer | null;
-
-        /**
-         * Draws a horizontal baseline where y is 0.
-         */
-        zero?: boolean;
-      } & BinOptions);
+  y?: ChannelValue | Reducer | ({value?: ChannelValue; reduce?: Reducer | null; zero?: boolean} & BinOptions);
 
   /**
-   * The color encoding, which corresponds to the stroke channel for dots,
-   * lines, and rules, and the fill channel for areas and bars.
+   * The color channel and reducer.
+   *
+   * which corresponds to the stroke channel for dots, lines, and rules, and the
+   * fill channel for areas and bars.
+   *
+   * Setting **reduce** will automatically bin or group on both **x** and **y**.
    */
-  color?:
-    | ChannelValue
-    | Reducer
-    | {
-        /**
-         * A string representing a column of your data, or an accessor function.
-         */
-        value?: ChannelValue;
-
-        /**
-         * A string representing a reducer, or your own reducer function.
-         * Setting a reducer on **color** will automatically bin or group on
-         * both **x** and **y**.
-         */
-        reduce?: Reducer | null;
-
-        /**
-         * A valid CSS color.
-         */
-        color?: string;
-      };
+  color?: ChannelValue | Reducer | {value?: ChannelValue; reduce?: Reducer | null; color?: string};
 
   /**
+   * The size channel and reducer.
+   *
    * The size encoding corresponds to the radius channel of dots; it may
    * correspond to the length of vectors in the future.
+   *
+   * Setting **reduce** will automatically bin or group on both **x** and **y**.
    */
-  size?:
-    | ChannelValue
-    | Reducer
-    | {
-        /**
-         * A string representing a column of your data, or an accessor function.
-         */
-        value?: ChannelValue;
-
-        /**
-         * A string representing a reducer, or your own reducer function.
-         * Setting a reducer on **size** will automatically bin or group on both
-         * **x** and **y**.
-         */
-        reduce?: Reducer | null;
-      };
+  size?: ChannelValue | Reducer | {value?: ChannelValue; reduce?: Reducer | null};
 
   /**
-   * The horizontal facet dimension.
+   * The horizontal facet position channel, for mark-level faceting, bound to
+   * the *fx* scale.
    */
   fx?: ChannelValue | {value?: ChannelValue};
 
   /**
-   * The vertical facet dimension.
+   * The vertical facet position channel, for mark-level faceting, bound to the
+   * *fy* scale.
    */
   fy?: ChannelValue | {value?: ChannelValue};
 
   /**
    * A type of mark; for example, the type *bar* encompasses bar, barX, and
    * barY. Used to guide what sort of mark **auto** should use. It should be
-   * thought of as an override; *auto* should usually do the right thing
-   * without it, and will try its best with it, but setting the mark type may
-   * lead to a nonsensical plot.
+   * thought of as an override; *auto* should usually do the right thing without
+   * it, and will try its best with it, but setting the mark type may lead to a
+   * nonsensical plot.
+   *
+   * One of the categories of mark; *line* includes lineX and lineY; *area*
+   * includes areaX and areaY; *rule* includes ruleX and ruleY; *bar* includes
+   * barX, barY, rectX, and rectY; and *dot* is just dot.
    */
-  mark?: MarkType;
+  mark?: "dot" | "line" | "area" | "rule" | "bar";
 }
 
 /**
@@ -174,7 +115,7 @@ export interface AutoSpec extends AutoOptions {
    * Like auto’s **mark** option, but never undefined; if no mark type was
    * passed in, shows the inferred mark type that will be rendered.
    */
-  mark: MarkType;
+  mark: NonNullable<AutoOptions["mark"]>;
 }
 
 /**

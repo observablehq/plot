@@ -127,13 +127,13 @@ export interface MarkOptions {
   initializer?: InitializerFunction;
 
   /**
-   * The horizontal facet position, a channel for mark-level faceting bound to
+   * The horizontal facet position channel, for mark-level faceting, bound to
    * the *fx* scale.
    */
   fx?: ChannelValue;
 
   /**
-   * The vertical facet position, a channel for mark-level faceting bound to the
+   * The vertical facet position channel, for mark-level faceting, bound to the
    * *fy* scale.
    */
   fy?: ChannelValue;
