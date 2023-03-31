@@ -1,8 +1,13 @@
 import type {ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
-import type {Interval} from "../interval.js";
 
-/** The built-in spatial interpolation methods. */
+/**
+ * The built-in spatial interpolation methods; one of:
+ *
+ * - *nearest* - assign each pixel to the closest sample’s value (Voronoi diagram)
+ * - *barycentric* - apply barycentric interpolation over the Delaunay triangulation
+ * - *random-walk* - apply a random walk from each pixel, stopping when near a sample
+ */
 export type RasterInterpolateName = "nearest" | "barycentric" | "random-walk";
 
 /**
@@ -33,7 +38,10 @@ export type RasterInterpolateFunction = (
   values: any[]
 ) => any[];
 
-/** A spatial interpolation method. */
+/**
+ * A spatial interpolation method; either a named built-in interpolation method,
+ * or a custom interpolation function.
+ */
 export type RasterInterpolate = RasterInterpolateName | RasterInterpolateFunction;
 
 /**
@@ -63,67 +71,66 @@ export type RasterSampler = (x: number, y: number, facet: number[] & {fx: any; f
 
 /** Options for the raster mark. */
 export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity"> {
-  /** The horizontal coordinate of a sample. */
+  /** The horizontal position channel, typically bound to the *x* scale. */
   x?: ChannelValueSpec;
-
-  /** The vertical coordinate of a sample. */
+  /** The vertical position channel, typically bound to the *y* scale. */
   y?: ChannelValueSpec;
 
   /**
-   * The lower value of *x*, on the left edge of the raster (right edge if
-   * reversed). Defaults to the minimum of the **x** channel, if given,
-   * otherwise to 0, enabling to set up the raster coordinate system with a
-   * **width**.
+   * The starting horizontal position (typically the left edge) of the raster
+   * domain; the lower bound of the *x* scale.
+   *
+   * If **width** is specified, defaults to 0; otherwise, if *data* is
+   * specified, defaults to the frame’s left coordinate in *x*. If *data* is not
+   * specified (as when **value** is a function of *x* and *y*), you must
+   * specify **x1** explicitly.
    */
   x1?: number;
 
   /**
-   * The higher value of *x*, on the right edge of the raster (left edge if
-   * reversed). Defaults to the maximum of the **x** channel, if given,
-   * otherwise to **width**, enabling to set up the raster coordinate system
-   * with a **width**.
+   * The ending horizontal position (typically the right edge) of the raster
+   * domain; the upper bound of the *x* scale.
+   *
+   * If **width** is specified, defaults to **width**; otherwise, if *data* is
+   * specified, defaults to the frame’s right coordinate in *x*. If *data* is
+   * not specified (as when **value** is a function of *x* and *y*), you must
+   * specify **x2** explicitly.
    */
   x2?: number;
 
   /**
-   * The lower value of *y*, on the top edge of the raster (bottom edge if
-   * reversed). Defaults to the minimum of the **y** channel, if given,
-   * otherwise to 0, enabling to set up the raster coordinate system with a
-   * **height**.
+   * The starting vertical position (typically the bottom edge) of the raster
+   * domain; the lower bound of the *y* scale.
+   *
+   * If **height** is specified, defaults to 0; otherwise, if *data* is
+   * specified, defaults to the frame’s top coordinate in *y*. If *data* is not
+   * specified (as when **value** is a function of *x* and *y*), you must
+   * specify **y1** explicitly.
    */
   y1?: number;
 
   /**
-   * The higher value of *y*, on the bottom edge of the raster (top edge if
-   * reversed). Defaults to the maximum of the **y** channel, if given,
-   * otherwise to **height**, enabling to set up the raster coordinate system with a
-   * **height**.
+   * The ending vertical position (typically the bottom edge) of the raster
+   * domain; the lower bound of the *y* scale.
+   *
+   * If **height** is specified, defaults to **height**; otherwise, if *data* is
+   * specified, defaults to the frame’s bottom coordinate in *y*. If *data* is
+   * not specified (as when **value** is a function of *x* and *y*), you must
+   * specify **y2** explicitly.
    */
   y2?: number;
 
-  /**
-   * The width of the raster grid, in actual columns of pixels. The grid might
-   * be scaled to the frame’s dimensions.
-   */
+  /** The width (number of columns) of the raster grid, in actual pixels. */
   width?: number;
 
-  /**
-   * The height of the raster grid, in actual rows of pixels. The grid might be
-   * scaled to the frame’s dimensions.
-   */
+  /** The height (number of rows) of the raster grid, in actual pixels. */
   height?: number;
 
   /**
-   * The screen size of a raster pixel, used to determine the height and width
-   * of the raster from the frame’s dimensions; defaults to 1
+   * The effective screen size of a raster pixel, used to determine the height
+   * and width of the raster from the frame’s dimensions; defaults to 1.
    */
   pixelSize?: number;
-
-  /**
-   * The sampling interval, used to determine the height and width of the raster
-   * from the frame’s dimensions and the *x* and *y* extents.
-   */
-  interval?: Interval;
 
   /**
    * A non-negative pixel radius for smoothing; defaults to 0. Note that
@@ -136,13 +143,8 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
    * The spatial interpolation method, when using *data* samples. One of:
    *
    * - *none* (or null, default) - assign each sample to the containing pixel
-   * - *nearest* - assign each pixel to the closest sample’s value (Voronoi
-   *   diagram)
-   * - *barycentric* - apply barycentric interpolation over the Delaunay
-   *   triangulation
-   * - *random-walk* - apply a random walk from each pixel, stopping when near a
-   *   sample
-   * - a function - custom interpolation
+   * - a named interpolation method, such as *nearest*, *barycentric*, or *random-walk*
+   * - a custom interpolation function
    */
   interpolate?: RasterInterpolate | "none" | null;
 
@@ -151,8 +153,7 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
    * option may be set to *pixelated* to disable bilinear interpolation for a
    * sharper image; however, note that this is not supported in WebKit.
    *
-   * [1]:
-   * https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering
    */
   imageRendering?: string;
 
@@ -172,11 +173,11 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
 }
 
 /**
- * Returns a raster mark, which renders a raster image from spatial samples. If
- * data is provided, it represents discrete samples in abstract coordinates *x*
- * and *y*; the **fill** and **fillOpacity** channels specify further abstract
- * values (_e.g._, height in a topographic map) to be spatially interpolated to
- * produce an image.
+ * Returns a raster mark which renders a raster image from spatial samples. If
+ * *data* is provided, it represents discrete samples in abstract coordinates
+ * **x** and **y**; the **fill** and **fillOpacity** channels specify further
+ * abstract values (_e.g._, height in a topographic map) to be spatially
+ * interpolated to produce an image.
  *
  * ```js
  * Plot.raster(volcano.values, {width: volcano.width, height: volcano.height})
@@ -186,14 +187,20 @@ export interface RasterOptions extends Omit<MarkOptions, "fill" | "fillOpacity">
  * functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster
  * grid (without interpolation).
  *
- * The resolution of the rectangular raster image may be specified with
- * **width** and **height**.
+ * ```js
+ * Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
+ * ```
  *
- * The raster dimensions may alternatively be imputed from a rectangular extent
- * *x1*, *y1*, *x2*, *y2* and a **pixelSize**.
+ * If **width** is specified, **x1** defaults to 0 and **x2** defaults to
+ * **width**; likewise, if **height** is specified, **y1** defaults to 0 and
+ * **y2** defaults to **height**. Otherwise, if *data* is specified, **x1**,
+ * **y1**, **x2**, and **y2** respectively default to the frame’s left, top,
+ * right, and bottom coordinates. Lastly, if *data* is not specified (as when
+ * **value** is a function of *x* and *y*), you must specify all of **x1**,
+ * **x2**, **y1**, and **y2** to define the raster domain.
  */
-export function raster(options?: RasterOptions): Raster;
 export function raster(data?: Data, options?: RasterOptions): Raster;
+export function raster(options?: RasterOptions): Raster;
 
 /**
  * Applies a simple forward mapping of samples, binning them into pixels in the
