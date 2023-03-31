@@ -4,13 +4,6 @@ import type {RuleXOptions, RuleYOptions} from "./rule.js";
 import type {TextOptions} from "./text.js";
 import type {TickXOptions, TickYOptions} from "./tick.js";
 
-/**
- * The axis anchor, *top* or *bottom* for horizontal axes and their associated
- * vertical grids; *left* or *right* for vertical axes and their associated
- * horizontal grids.
- */
-export type AxisAnchor = "top" | "right" | "bottom" | "left";
-
 /** The subset of scale options for grids. */
 type GridScaleOptions = Pick<ScaleOptions, "interval" | "ticks" | "tickSpacing">;
 
@@ -20,50 +13,38 @@ type AxisScaleOptions = Pick<ScaleOptions, "tickSize" | "tickPadding" | "tickFor
 /** Options for the grid marks. */
 export interface GridOptions extends GridScaleOptions {
   /**
-   * The grid anchor. For when the grid lines extend from a given position on
-   * the opposite dimension. For example, a horizontal grid line that starts at
-   * the first *x* for which the *y* value is higher than the current grid tick:
+   * The side of the frame on which to place the axis: *top* or *bottom* for
+   * horizontal axes (*x* and *fx*) and their associated vertical grids, or
+   * *left* or *right* for vertical axes (*y* and *fy*) and their associated
+   * horizontal grids.
+   *
+   * TODO Describe the effect on grids if both **x** and **y** are specified.
+   * For when the grid lines extend from a given position on the opposite
+   * dimension. For example, a horizontal grid line that starts at the first *x*
+   * for which the *y* value is higher than the current grid tick:
    *
    * ```js
    * Plot.gridY({x: (y) => AAPL.find((d) => d.Close >= y)?.Date, insetLeft: -6, anchor: "right"})
    * ```
    */
-  anchor?: AxisAnchor;
+  anchor?: "top" | "right" | "bottom" | "left";
 
   /**
    * The color of the ticks (defaults to *currentColor*, equivalent to **stroke**).
+   *
+   * TODO Describe for both grid and axes.
    */
   color?: MarkOptions["stroke"];
 }
 
 /** Options for the axis marks. */
 export interface AxisOptions extends GridOptions, MarkOptions, TextOptions, AxisScaleOptions {
-  /**
-   * The axis orientation.
-   */
-  anchor?: AxisAnchor;
-
-  /**
-   * Text labels stroke color, used to limit occlusion; defaults to null.
-   */
+  /** Tick label stroke color, used to limit occlusion; defaults to null. */
   textStroke?: MarkOptions["stroke"];
-
-  /**
-   * Text labels stroke opacity (needs textStroke).
-   */
+  /** Tick label stroke opacity (needs textStroke). */
   textStrokeOpacity?: MarkOptions["strokeOpacity"];
-
-  /**
-   * Text labels stroke width, used to limit occlusion; defaults to 4 (needs
-   * textStroke).
-   */
+  /** Tick label stroke width, used to limit occlusion; defaults to 4 (needs **textStroke**). */
   textStrokeWidth?: MarkOptions["strokeWidth"];
-
-  /**
-   * The color of the ticks and labels (defaults to *currentColor*, equivalent
-   * to **stroke** for tick vectors, and **fill** for tick text labels).
-   */
-  color?: MarkOptions["stroke"];
 }
 
 /** Options for the axisX and axisFx marks. */

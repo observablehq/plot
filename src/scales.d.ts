@@ -1,7 +1,7 @@
 import type {InsetOptions} from "./inset.js";
 import type {NiceInterval, RangeInterval} from "./interval.js";
 import type {LegendOptions} from "./legends.js";
-import type {AxisAnchor} from "./marks/axis.js";
+import type {AxisOptions} from "./marks/axis.js";
 
 /**
  * How to interpolate range (output) values for continuous scales; one of:
@@ -299,7 +299,7 @@ export interface ScaleDefaults extends InsetOptions {
    *
    * For position scales only.
    */
-  axis?: AxisAnchor | "both" | boolean | null;
+  axis?: AxisOptions["anchor"] | "both" | boolean | null;
 
   /**
    * Whether to show a grid aligned with the scale’s ticks. If true, show a grid
