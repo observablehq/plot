@@ -1,5 +1,6 @@
-import {min, max, quantile} from "d3";
+import {max, min, quantile} from "d3";
 import {marks} from "../mark.js";
+import {identity} from "../options.js";
 import {groupX, groupY, groupZ} from "../transforms/group.js";
 import {map} from "../transforms/map.js";
 import {barX, barY} from "./bar.js";
@@ -11,7 +12,7 @@ export function boxX(data, options = {}) {
   // Returns a composite mark for producing a horizontal box plot, applying the
   // necessary statistical transforms. The boxes are grouped by y, if present.
   const {
-    x = {transform: (x) => x},
+    x = identity,
     y = null,
     fill = "#ccc",
     fillOpacity,
@@ -34,7 +35,7 @@ export function boxY(data, options = {}) {
   // Returns a composite mark for producing a vertical box plot, applying the
   // necessary statistical transforms. The boxes are grouped by x, if present.
   const {
-    y = {transform: (y) => y},
+    y = identity,
     x = null,
     fill = "#ccc",
     fillOpacity,
@@ -60,20 +61,20 @@ function oqr(values) {
   return values.map((v) => (v < r1 || v > r2 ? v : NaN));
 }
 
-function loqr1(values, value) {
-  const lo = quartile1(values, value) * 2.5 - quartile3(values, value) * 1.5;
+function loqr1(values) {
+  const lo = quartile1(values) * 2.5 - quartile3(values) * 1.5;
   return min(values, (d) => (d >= lo ? d : NaN));
 }
 
-function hiqr2(values, value) {
-  const hi = quartile3(values, value) * 2.5 - quartile1(values, value) * 1.5;
+function hiqr2(values) {
+  const hi = quartile3(values) * 2.5 - quartile1(values) * 1.5;
   return max(values, (d) => (d <= hi ? d : NaN));
 }
 
-function quartile1(values, value) {
-  return quantile(values, 0.25, value);
+function quartile1(values) {
+  return quantile(values, 0.25);
 }
 
-function quartile3(values, value) {
-  return quantile(values, 0.75, value);
+function quartile3(values) {
+  return quantile(values, 0.75);
 }
