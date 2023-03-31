@@ -3,59 +3,50 @@ import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
 /** Options for the density mark. */
 export interface DensityOptions extends MarkOptions {
-  /** The horizontal point position, typically bound to the *x* scale. */
+  /** The horizontal position channel, typically bound to the *x* scale. */
   x?: ChannelValueSpec;
-
-  /** The vertical point position, typically bound to the *y* scale. */
+  /** The vertical position channel, typically bound to the *y* scale. */
   y?: ChannelValueSpec;
 
   /**
-   * Group points into series and create independent contours for each series.
+   * An optional ordinal channel for grouping, producing independent contours
+   * for each group. If not specified, it defaults to **fill** if a channel, or
+   * **stroke** if a channel.
    */
   z?: ChannelValue;
 
   /**
-   * The **weight** channel, which defaults to 1, specifies the weight of each
-   * point. Non-positive weights are allowed, making associated points
-   * repulsive.
+   * An optional weight channel specifying the relative contribution of each
+   * point. If not specified, all points have a constant weight of 1.
+   * Non-positive weights are allowed, making associated points repulsive.
    */
   weight?: ChannelValue;
 
   /**
-   * The **bandwidth** option, which defaults to 20, specifies the standard
-   * deviation of the Gaussian kernel used for estimation in pixels.
+   * The bandwidth, a number in pixels which defaults to 20, specifies the
+   * standard deviation of the Gaussian kernel used for density estimation. A
+   * larger value will produce smoother contours.
    */
   bandwidth?: number;
 
   /**
-   * The **thresholds** option, which defaults to 20, specifies one more than
-   * the number of contours that will be computed at uniformly-spaced intervals
-   * between 0 (exclusive) and the maximum density (exclusive). The
-   * **thresholds** option may also be specified as an array or iterable of
-   * explicit density values.
+   * How many contours to produce, and at what density; either a number, by
+   * default 20, specifying one more than the number of contours that will be
+   * computed at uniformly-spaced intervals between 0 (exclusive) and the
+   * maximum density (exclusive); or, an iterable of explicit density values.
    */
   thresholds?: number | Iterable<number>;
 }
 
 /**
- * Draws contours representing the estimated density of the two-dimensional
- * points given by the **x** and **y** channels, and possibly weighted by the
- * **weight** channel. If either of the **x** or **y** channels are not
- * specified, the corresponding position is controlled by the **frameAnchor**
- * option.
+ * Returns a mark that draws contours representing the estimated density of the
+ * two-dimensional points given by **x** and **y**, and possibly weighted by
+ * **weight**. If either **x** or **y** is not specified, it defaults to the
+ * respective middle of the plot’s frame.
  *
- * The **thresholds** option, which defaults to 20, specifies one more than the
- * number of contours that will be computed at uniformly-spaced intervals
- * between 0 (exclusive) and the maximum density (exclusive). The **thresholds**
- * option may also be specified as an array or iterable of explicit density
- * values. The **bandwidth** option, which defaults to 20, specifies the
- * standard deviation of the Gaussian kernel used for estimation in pixels.
- *
- * If a **z**, **stroke** or **fill** channel is specified, the input points are
- * grouped by series, and separate sets of contours are generated for each
- * series. If the **stroke** or **fill** is specified as *density*, a color
- * channel is constructed with values representing the density threshold value
- * of each contour.
+ * If the **stroke** or **fill** is specified as *density*, a color channel is
+ * constructed with values representing the density threshold value of each
+ * contour.
  */
 export function density(data?: Data, options?: DensityOptions): Density;
 
