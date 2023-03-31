@@ -148,29 +148,31 @@ function applyRuleStyles(selection, mark, channels) {
   applyChannelStyles(selection, mark, channels);
 }
 
-// TODO Y1, Y2; configurable precision?
-function sphereRuleX(projection, X) {
+function sphereRuleX(projection, X, Y1, Y2) {
   const path = geoPath(projection);
   X = coerceNumbers(X);
+  Y1 = coerceNumbers(Y1) ?? X.slice().fill(-90);
+  Y2 = coerceNumbers(Y2) ?? X.slice().fill(90);
   return (i) =>
     path({
       type: "LineString",
       coordinates: [
-        [X[i], -90],
-        [X[i], 0],
-        [X[i], 90]
+        [X[i], Y1[i]],
+        [X[i], (Y1[i] + Y2[i]) / 2],
+        [X[i], Y2[i]]
       ]
     });
 }
 
-// TODO X1, X2; configurable precision
-function sphereRuleY(projection, Y) {
+function sphereRuleY(projection, Y, X1, X2) {
   const path = geoPath(projection);
   Y = coerceNumbers(Y);
+  X1 = coerceNumbers(X1) ?? Y.slice().fill(-180);
+  X2 = coerceNumbers(X2) ?? Y.slice().fill(180.1);
   return (i) =>
     path({
       type: "LineString",
-      coordinates: range(-180, 181, 3).map((x) => [x, Y[i]])
+      coordinates: range(X1[i], X2[i], 1).map((x) => [x, Y[i]])
     });
 }
 
