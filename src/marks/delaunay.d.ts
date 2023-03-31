@@ -5,9 +5,9 @@ import type {MarkerOptions} from "../marker.js";
 
 /** Options for the Delaunay marks. */
 export interface DelaunayOptions extends MarkOptions, MarkerOptions, CurveOptions {
-  /** A channel for the horizontal position, typically bound to the *x* scale. */
+  /** The horizontal position channel, typically bound to the *x* scale. */
   x?: ChannelValueSpec;
-  /** A channel for the vertical position, typically bound to the *y* scale. */
+  /** The vertical position channel, typically bound to the *y* scale. */
   y?: ChannelValueSpec;
   /** An optional ordinal channel for grouping to produce multiple (possibly overlapping) triangulations. */
   z?: ChannelValue;

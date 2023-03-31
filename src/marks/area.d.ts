@@ -37,9 +37,9 @@ export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
   y2?: ChannelValueSpec;
 
   /**
-   * The optional ordinal **z** channel, for grouping data into (possibly
-   * stacked) series to be drawn as separate areas; defaults to **fill** if a
-   * channel, or **stroke** if a channel.
+   * An optional ordinal channel for grouping data into (possibly stacked)
+   * series to be drawn as separate areas; defaults to **fill** if a channel, or
+   * **stroke** if a channel.
    */
   z?: ChannelValue;
 }
