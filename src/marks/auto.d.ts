@@ -6,69 +6,93 @@ import type {BinOptions} from "../transforms/bin.js";
 /** Options for the auto mark. */
 export interface AutoOptions {
   /**
-   * The horizontal position channel and reducer.
+   * The horizontal position channel (**value**) and reducer (**reduce**).
    *
-   * If **y** is set without **x**, **x** defaults to the *count* reducer to
-   * produce a histogram; you can override this by passing {reduce: null}.
+   * The **x** channel is required if a **y** channel is not specified;
+   * otherwise it is optional.
    *
-   * TODO Setting **reduce** will automatically bin or group on **y**.
+   * If an **x** **reduce** is specified, a **y** channel is required and a
+   * **y** reduce is not allowed; the **y** channel will be grouped, and the
+   * reducer will be applied to each group’s associated **x** channel values (if
+   * any). If a **y** channel is set, but no **x** channel, the **x** **reduce**
+   * defaults to *count* to produce a histogram by grouping on **y**; disable
+   * this by setting the **x** **reduce** to null.
    *
-   * TODO Setting **zero** draws a vertical rule where *x* = 0.
+   * The **zero** option, if true, draws a vertical rule at *x* = 0, and ensures
+   * that the default *x* scale domain includes 0.
    */
   x?: ChannelValue | Reducer | ({value?: ChannelValue; reduce?: Reducer | null; zero?: boolean} & BinOptions);
 
   /**
-   * The vertical position channel and reducer.
+   * The vertical position channel (**value**) and reducer (**reduce**).
    *
-   * If **x** is set without **y**, **y** defaults to the *count* reducer to
-   * produce a histogram; you can override this by passing {reduce: null}.
+   * The **y** channel is required if an **x** channel is not specified;
+   * otherwise it is optional.
+   *
+   * If a **y** **reduce** is specified, an **x** channel is required, and an
+   * **x** reduce is not allowed; the **x** channel will be grouped, and the
+   * reducer will be applied to each group’s associated **y** channel values (if
+   * any). If a **x** channel is set, but no **y** channel, the **y** **reduce**
+   * defaults to *count* to produce a histogram by grouping on **x**; disable
+   * this by setting the **y** **reduce** to null.
+   *
+   * The **zero** option, if true, draws a horizontal rule at *y* = 0, and
+   * ensures that the default *y* scale domain includes 0.
    */
   y?: ChannelValue | Reducer | ({value?: ChannelValue; reduce?: Reducer | null; zero?: boolean} & BinOptions);
 
   /**
-   * The color channel and reducer.
+   * The color channel (**value**) and reducer (**reduce**), or a constant color
+   * such as *red* for aesthetics (**color**). This option corresponds to the
+   * **stroke** channel for dots, lines, and rules, and the **fill** channel for
+   * areas and bars. If a color channel or reducer is specified, the constant
+   * color is ignored.
    *
-   * which corresponds to the stroke channel for dots, lines, and rules, and the
-   * fill channel for areas and bars.
-   *
-   * Setting **reduce** will automatically bin or group on both **x** and **y**.
+   * If neither a **x** nor **y** **reduce** is specified, but a **color**
+   * **reduce** is specified, both the **x** and **y** channels (if any) will be
+   * grouped, and the reducer will be applied to each group’s associated
+   * **color** channel values (if any), say to produce a heatmap.
    */
   color?: ChannelValue | Reducer | {value?: ChannelValue; reduce?: Reducer | null; color?: string};
 
   /**
-   * The size channel and reducer.
+   * The size channel (**value**) and reducer (**reduce**). This option
+   * corresponds to the **r** channel for dots; it may correspond to the
+   * **length** of vectors in the future.
    *
-   * The size encoding corresponds to the radius channel of dots; it may
-   * correspond to the length of vectors in the future.
-   *
-   * Setting **reduce** will automatically bin or group on both **x** and **y**.
+   * If neither a **x** nor **y** **reduce** is specified, but a **size**
+   * **reduce** is specified, both the **x** and **y** channels (if any) will be
+   * grouped, and the reducer will be applied to each group’s associated
+   * **size** channel values (if any), say to produce a binned scatterplot.
    */
   size?: ChannelValue | Reducer | {value?: ChannelValue; reduce?: Reducer | null};
 
   /**
-   * The horizontal facet position channel, for mark-level faceting, bound to
-   * the *fx* scale.
+   * The horizontal facet position channel (**value**), for mark-level faceting,
+   * bound to the *fx* scale.
    */
   fx?: ChannelValue | {value?: ChannelValue};
 
   /**
-   * The vertical facet position channel, for mark-level faceting, bound to the
-   * *fy* scale.
+   * The vertical facet position channel (**value**), for mark-level faceting,
+   * bound to the *fy* scale.
    */
   fy?: ChannelValue | {value?: ChannelValue};
 
   /**
-   * A type of mark; for example, the type *bar* encompasses bar, barX, and
-   * barY. Used to guide what sort of mark **auto** should use. It should be
-   * thought of as an override; *auto* should usually do the right thing without
-   * it, and will try its best with it, but setting the mark type may lead to a
-   * nonsensical plot.
+   * The desired mark type; one of:
    *
-   * One of the categories of mark; *line* includes lineX and lineY; *area*
-   * includes areaX and areaY; *rule* includes ruleX and ruleY; *bar* includes
-   * barX, barY, rectX, and rectY; and *dot* is just dot.
+   * - *area* - an area
+   * - *bar* - a rect, cell, or bar (depending on the data type)
+   * - *dot* - a dot
+   * - *line* - a line
+   * - *rule* - a rule
+   *
+   * Whenever possible, avoid setting the mark type; the default mark type
+   * should usually suffice, and setting an explicit mark type may lead to a
+   * nonsensical plot (especially if you change other options).
    */
-  mark?: "dot" | "line" | "area" | "rule" | "bar";
+  mark?: "area" | "bar" | "dot" | "line" | "rule";
 }
 
 /**
@@ -89,7 +113,7 @@ export interface AutoSpec extends AutoOptions {
  * Returns a fully-specified *options* object for the auto mark, with nothing
  * left undefined. This is mostly for internal use, but can be used to “lock
  * down” the specification of an auto mark or to interrogate its behavior. For
- * example, if you pass in:
+ * example, if you say
  *
  * ```js
  * Plot.autoSpec(penguins, {x: "body_mass_g"})
