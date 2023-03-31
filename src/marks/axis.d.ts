@@ -12,7 +12,7 @@ import type {TickXOptions, TickYOptions} from "./tick.js";
 export type AxisAnchor = "top" | "right" | "bottom" | "left";
 
 /** Options for the grid marks. */
-interface GridOptions {
+export interface GridOptions {
   /**
    * The grid anchor. For when the grid lines extend from a given position on
    * the opposite dimension. For example, a horizontal grid line that starts at
@@ -58,7 +58,7 @@ interface GridOptions {
 }
 
 /** Options for the axis marks. */
-interface AxisOptions extends GridOptions, MarkOptions, TextOptions {
+export interface AxisOptions extends GridOptions, MarkOptions, TextOptions {
   /**
    * The axis orientation.
    */
@@ -90,14 +90,6 @@ interface AxisOptions extends GridOptions, MarkOptions, TextOptions {
    * The rotation angle of tick labels in degrees (default 0).
    */
   tickRotate?: ScaleOptions["tickRotate"];
-
-  /**
-   * 🌶 Not sure this actually exists?
-   */
-  grid?: ScaleOptions["grid"];
-
-  /** Whether a line should be drawn on the axis. */
-  line?: ScaleOptions["line"];
 
   /** A string to label the axis. */
   label?: ScaleOptions["label"];
