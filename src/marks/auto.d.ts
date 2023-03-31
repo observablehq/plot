@@ -72,8 +72,8 @@ export interface AutoOptions {
 }
 
 /**
- * An auto options object with nothing left undefined; the inferred mark type,
- * reducers, and zero (baseline) options will be filled in.
+ * An auto options object with nothing left undefined, as returned by
+ * Plot.autoSpec; the mark type, reducers, and other options will be populated.
  */
 export interface AutoSpec extends AutoOptions {
   x: {value: ChannelValue; reduce: Reducer | null; zero: boolean} & BinOptions;
@@ -86,30 +86,27 @@ export interface AutoSpec extends AutoOptions {
 }
 
 /**
- * Returns a fully-specified *auto* options object, with nothing left undefined.
- * This is mostly for internal use, but it can be used to “lock down” the
- * specification of an **auto** mark, or to inspect the decisions its heuristic
- * is making.
- *
- * For example, if you pass in:
+ * Returns a fully-specified *options* object for the auto mark, with nothing
+ * left undefined. This is mostly for internal use, but can be used to “lock
+ * down” the specification of an auto mark or to interrogate its behavior. For
+ * example, if you pass in:
  *
  * ```js
  * Plot.autoSpec(penguins, {x: "body_mass_g"})
  * ```
  *
- * the returned object will have **y** set to {value: null, reduce: "count"} and
- * **mark** set to *bar*, which tells you that a histogram will be rendered.
+ * the returned object will have **y** set to {value: null, reduce: *count*} and
+ * **mark** set to *bar*, telling you that a histogram will be rendered.
  */
 export function autoSpec(data?: Data, options?: AutoOptions): AutoSpec;
 
 /**
- * Automatically selects a mark type that best represents the dimensions of the
- * given data according to some simple heuristics. Plot.auto seeks to provide a
- * useful initial plot as quickly as possible through opinionated defaults, and
- * to accelerate exploratory analysis by letting you refine views with minimal
- * changes to code.
- *
- * For example, for a histogram of penguins binned by weight:
+ * Returns a new mark whose implementation is chosen dynamically to best
+ * represent the dimensions of the given *data* specified in *options*,
+ * according to a few simple heuristics. The auto mark seeks to provide a useful
+ * initial plot as quickly as possible through opinionated defaults, and to
+ * accelerate exploratory analysis by letting you refine views with minimal
+ * changes to code. For example, for a histogram of penguins binned by weight:
  *
  * ```js
  * Plot.auto(penguins, {x: "body_mass_g"})
