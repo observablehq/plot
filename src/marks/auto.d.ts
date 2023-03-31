@@ -78,7 +78,7 @@ export interface AutoOptions {
 export interface AutoSpec extends AutoOptions {
   x: {value: ChannelValue; reduce: Reducer | null; zero: boolean} & BinOptions;
   y: {value: ChannelValue; reduce: Reducer | null; zero: boolean} & BinOptions;
-  color: {value: ChannelValue; reduce: Reducer | null; color: string};
+  color: {value: ChannelValue; reduce: Reducer | null; color?: string};
   size: {value: ChannelValue; reduce: Reducer | null};
   fx: ChannelValue;
   fy: ChannelValue;
