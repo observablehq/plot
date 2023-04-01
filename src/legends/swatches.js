@@ -12,14 +12,20 @@ function maybeScale(scale, key) {
   return s;
 }
 
-export function legendSwatches(color, options) {
+export function legendSwatches(color, {opacity, ...options} = {}) {
   if (!isOrdinalScale(color) && !isThresholdScale(color))
     throw new Error(`swatches legend requires ordinal or threshold color scale (not ${color.type})`);
   return legendItems(
     color,
     options,
     (selection, scale) =>
-      selection.append("svg").attr("fill", scale.scale).append("rect").attr("width", "100%").attr("height", "100%"),
+      selection
+        .append("svg")
+        .attr("fill", scale.scale)
+        .attr("fill-opacity", maybeNumberChannel(opacity)[1])
+        .append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%"),
     (className) => `.${className}-swatch svg {
         width: var(--swatchWidth);
         height: var(--swatchHeight);

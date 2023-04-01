@@ -653,6 +653,7 @@ Categorical and ordinal color legends are rendered as swatches, unless *options*
 * *options*.**columns** - the number of swatches per row
 * *options*.**marginLeft** - the legend’s left margin
 * *options*.**className** - a class name, that defaults to a randomly generated string scoping the styles
+* *options*.**opacity** - the swatch fill opacity
 * *options*.**width** - the legend’s width (in pixels)
 
 Symbol legends are rendered as swatches and support the options above in addition to the following options:
@@ -679,6 +680,7 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * *options*.**marginRight** - the legend’s right margin
 * *options*.**marginBottom** - the legend’s bottom margin
 * *options*.**marginLeft** - the legend’s left margin
+* *options*.**opacity** - the ramp’s fill opacity
 
 The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [layout options](#layout-options).
 

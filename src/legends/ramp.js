@@ -1,7 +1,7 @@
 import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {createContext, create} from "../context.js";
-import {map} from "../options.js";
+import {map, maybeNumberChannel} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
@@ -20,10 +20,12 @@ export function legendRamp(color, options) {
     tickFormat,
     fontVariant = inferFontVariant(color),
     round = true,
+    opacity,
     className
   } = options;
   const context = createContext(options);
   className = maybeClassName(className);
+  opacity = maybeNumberChannel(opacity)[1];
   if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg", context)
@@ -96,6 +98,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("image")
+      .attr("opacity", opacity)
       .attr("x", marginLeft)
       .attr("y", marginTop)
       .attr("width", width - marginLeft - marginRight)
@@ -117,6 +120,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("g")
+      .attr("fill-opacity", opacity)
       .selectAll()
       .data(range)
       .enter()
@@ -137,6 +141,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("g")
+      .attr("fill-opacity", opacity)
       .selectAll()
       .data(domain)
       .enter()

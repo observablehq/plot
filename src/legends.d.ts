@@ -51,6 +51,8 @@ export interface LegendOptions {
   fill?: string;
   /** The desired fill opacity of symbols. For *symbol* legends only. */
   fillOpacity?: number;
+  /** The desired opacity of the color swatches or ramp. For *color* legends only. */
+  opacity?: number;
   /** The desired stroke color of symbols; use *color* for a redundant encoding. For *symbol* legends only. */
   stroke?: string;
   /** The desired stroke opacity of symbols. For *symbol* legends only. */
