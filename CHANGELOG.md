@@ -4,7 +4,7 @@
 
 [Released April 1, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.5)
 
-**TypeScript!** Plot now exports TypeScript type declarations (.d.ts) with precise types and documentation for all of Plot’s public API. This allows code editors such as VS Code to offer better autocompletions, complete with inline documentation. For example, if you type “Plot.g”, Plot.geo is now suggested:
+**TypeScript!** Plot now exports TypeScript type declarations (.d.ts) with precise types and documentation for all of Plot’s public API. This allows code editors such as VS Code to offer better suggestions, complete with inline documentation. For example, if you type “Plot.g”, Plot.geo is now suggested:
 
 <img src="./img/ts-property.png" width="840" alt="A screenshot of VS Code, showing suggested completions for Plot.g, including geo, geoCentroid, graticule, and other methods. A details panel showing documentation for Plot.geo, the top suggestion, is also shown.">
 
