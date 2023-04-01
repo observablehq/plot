@@ -4,23 +4,21 @@
 
 [Released March 31, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.5)
 
-TypeScript! Plot now exports TypeScript type declarations (.d.ts) with extensive documentation for Plot’s public API, including marks, transforms, and scales. This allows code editors, including VS Code, to offer better autocompletions, to surface inline documentation when writing or reading Plot code, and even to validate types when calling functions or passing options. If you have suggestions or clarifications on how to improve the documentation, please open an issue or discussion, or send us a pull request.
+TypeScript! Plot now exports TypeScript type declarations (.d.ts) with extensive documentation for Plot’s public API, including marks, transforms, and scales.
 
-autoSpec now materializes the **zero** option.
+[screenshots TK]
 
-Fix auto mark: no display with non-zero reducer and bar mark.
+This allows code editors such as VS Code to offer better autocompletions, to surface inline documentation when writing or reading Plot code, and even to validate types when calling functions or passing options. If you have suggestions or clarifications on how to improve the documentation, please open an issue or discussion, or send us a pull request.
 
-Fix auto mark: no display with zero: true.
+The **strokeOpacity**, **fillOpacity**, and **opacity** channels now opt-out of the *opacity* scale by default when all values are numbers in the range [0, 1]; to opt-in to the *opacity* scale, specify a scale override. The raster mark now also supports scale overrides.
 
-Automatically opts-out of opacity scale when all the *strokeOpacity*, *fillOpacity* and *opacity* channel values are numbers in the [0, 1] bracket (#1310).
+The interfaces for reduce and map implementations have changed. To better disambiguate from arrays, reduce implementations now have a reduceIndex method instead of a reduce method, and map implementations now have a mapIndex method instead of a map method. The old interfaces are now deprecated.
 
-Renames the reduce implementation method as reduceIndex, and the map implementation method as mapIndex, to limit confusion. The older names (resp. reduce and map) are still supported, but considered deprecated.
+The scale **nice** option now accepts named time intervals such as *day* and *week*. Thew new *quarter* and *half* named time intervals represent quarters (three months) and half-years (six months). The quantile scale now supports the **unknown** option. Bigint channels are now supported; the values are coerced to numbers. Color legends now support the **opacity** option.
 
-Implements scale overrides with the raster mark (#1318). Implements named intervals for the **nice** option (#1332). Implements the **unknown** option for quantile scales (#1321). Accepts bigint values in input channels (#1299). Adds *quarter* and *half* named intervals for quarters and half-years (#1312).
+Fix Plot.auto to render correctly when a non-zero **redce** is used in conjunction with the *bar* **mark**, and in some cases when the **zero** option is specified. The **zero** option no longer changes the default mark type, and Plot.autoSpec now materializes the **zero** option.
 
-The ramp legend now supports the **opacity** option.
-
-Fixes a bug where domain sorting had a non-deterministic behavior for non-orderable values ([#1348](https://github.com/observablehq/plot/pull/1348)). Fixes a bug where mixed-case class names were rejected (#1347). Fixed a crash when explicit NaN ticks were passed to an axis (#1335). Fixes inconsistencies of channel domain sorting when used with transforms (#1315, #1316). Removes duplicates from channel-derived domain (#1314).
+Fix a crash in the axis text mark when a NaN tick is specified. Fix the **className** option to allow mixed-case class names. Fix channel-derived scale domains for non-orderable values, in conjunction with transforms, and when duplicate values are present.
 
 ## 0.6.4
 
