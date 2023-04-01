@@ -22,7 +22,7 @@ interface LinearRegressionOptions extends MarkOptions, BinOptions {
    * for linearRegressionX) when the independent variable (**x** for
    * linearRegressionY, or **y** for linearRegressionX) is binned with an
    * **interval**; defaults to *first*. For example, for a trend line on the
-   * maximum value of the Apple’s stack price by month:
+   * maximum value of the Apple’s stock price by month:
    *
    * ```js
    * Plot.linearRegressionY(aapl, {x: "Date", y: "Close", interval: "month", reduce: "max"})
