@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g opacity="0.5">
+  <g fill-opacity="0.5">
     <rect x="0" y="18" width="23" height="10" fill="rgb(35, 23, 27)"></rect>
     <rect x="24" y="18" width="23" height="10" fill="rgb(72, 96, 230)"></rect>
     <rect x="48" y="18" width="23" height="10" fill="rgb(42, 171, 238)"></rect>
