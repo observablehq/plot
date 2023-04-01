@@ -26,7 +26,6 @@ export function legendRamp(color, options) {
   const context = createContext(options);
   className = maybeClassName(className);
   opacity = maybeNumberChannel(opacity)[1];
-
   if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg", context)

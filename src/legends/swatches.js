@@ -12,7 +12,7 @@ function maybeScale(scale, key) {
   return s;
 }
 
-export function legendSwatches(color, {opacity, ...options}) {
+export function legendSwatches(color, {opacity, ...options} = {}) {
   if (!isOrdinalScale(color) && !isThresholdScale(color))
     throw new Error(`swatches legend requires ordinal or threshold color scale (not ${color.type})`);
   return legendItems(
