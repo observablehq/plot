@@ -1091,7 +1091,7 @@ The axis mark’s default margins depend on its orientation (**anchor**) as foll
 * *bottom* - 0, 20, 30, 20
 * *left* - 20, 0, 20, 40
 
-For simplicity’s sake and for consistent layout across plots, axis margins are not automatically sized to make room for tick labels; instead, shorten your tick labels (for example using the *k* SI-prefix tick format, or setting a *scale*.transform to show thousands or millions, or setting the **lineWidth** option to wrap long labels) or increase the margins as needed.
+For simplicity’s sake and for consistent layout across plots, axis margins are not automatically sized to make room for tick labels; instead, shorten your tick labels (for example using the *k* SI-prefix tick format, or setting a *scale*.transform to show thousands or millions, or setting the **textOverflow** option to *ellipsis* and the **lineWidth** option to clip long labels) or increase the margins as needed.
 
 #### Plot.axisX(*data*, *options*)
 

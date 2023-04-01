@@ -1,7 +1,7 @@
 import type {InsetOptions} from "./inset.js";
 import type {NiceInterval, RangeInterval} from "./interval.js";
 import type {LegendOptions} from "./legends.js";
-import type {AxisAnchor} from "./marks/axis.js";
+import type {AxisOptions} from "./marks/axis.js";
 
 /**
  * How to interpolate range (output) values for continuous scales; one of:
@@ -294,12 +294,22 @@ export interface ScaleDefaults extends InsetOptions {
   padding?: number;
 
   /**
-   * Where to place the implicit axis; equivalent to the **anchor** option of
-   * the axis mark.
+   * The side of the frame on which to place the implicit axis: *top* or
+   * *bottom* for *x* or *fx*, or *left* or *right* for *y* or *fy*. The default
+   * depends on the scale:
    *
-   * For position scales only.
+   * - *x* - *bottom*
+   * - *y* - *left*
+   * - *fx* - *top* if there is a *bottom* *x* axis, and otherwise *bottom*
+   * - *fy* - *right* if there is a *left* *y* axis, and otherwise *right*
+   *
+   * If *both*, an implicit axis will be rendered on both sides of the plot
+   * (*top* and *bottom* for *x* or *fx*, or *left* and *right* for *y* or
+   * *fy*). If null, the implicit axis is suppressed.
+   *
+   * For position axes only.
    */
-  axis?: AxisAnchor | "both" | boolean | null;
+  axis?: AxisOptions["anchor"] | "both" | boolean | null;
 
   /**
    * Whether to show a grid aligned with the scale’s ticks. If true, show a grid
@@ -313,7 +323,8 @@ export interface ScaleDefaults extends InsetOptions {
 
   /**
    * A textual label to show on the axis or legend; if null, show no label. By
-   * default the scale label is inferred from channel definitions.
+   * default the scale label is inferred from channel definitions, possibly with
+   * an arrow (↑, →, ↓, or ←) to indicate the direction of increasing value.
    *
    * For axes and legends only.
    */
@@ -533,7 +544,8 @@ export interface ScaleOptions extends ScaleDefaults {
 
   /**
    * The length of axis tick marks in pixels; negative values extend in the
-   * opposite direction.
+   * opposite direction. Defaults to 6 for *x* and *y* axes and *color* and
+   * *opacity* *ramp* legends, and 0 for *fx* and *fy* axes.
    *
    * For axes and legends.
    */
@@ -550,7 +562,8 @@ export interface ScaleOptions extends ScaleDefaults {
 
   /**
    * The distance between an axis tick mark and its associated text label (in
-   * pixels); defaults to 3.
+   * pixels); often defaults to 3, but may be affected by **tickSize** and
+   * **tickRotate**.
    */
   tickPadding?: number;
 
@@ -585,8 +598,13 @@ export interface ScaleOptions extends ScaleDefaults {
   ariaDescription?: string;
 
   /**
-   * Where to place the axis **label**; either *center* or one of the frame
-   * sides: *top*, *right*, *bottom*, *left*.
+   * Where to place the axis **label** relative to the plot’s frame. For
+   * vertical position scales (*y* and *fy*), may be *top*, *bottom*, or
+   * *center*; for horizontal position scales (*x* and *fx*), may be *left*,
+   * *right*, or *center*. Defaults to *center* for ordinal scales (including
+   * *fx* and *fy*), and otherwise *top* for *y*, and *right* for *x*.
+   *
+   * For position axes only.
    */
   labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
 
