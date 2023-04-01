@@ -1,5 +1,7 @@
 # Observable Plot
 
+<img src="./img/plot.svg" width="320" alt="The Observable Plot logo, spelling out the letters P-L-O-T in pastel shapes.">
+
 **Observable Plot** is a JavaScript library for exploratory data visualization. If you are new to Plot, we highly recommend first reading these notebooks to introduce Plot’s core concepts such as *marks* and *scales*:
 
 * [Introduction](https://observablehq.com/@observablehq/plot?collection=@observablehq/plot) - a quick tour, and Plot’s motivations
