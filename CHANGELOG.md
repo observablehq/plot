@@ -6,13 +6,19 @@
 
 TypeScript! Plot now exports TypeScript type declarations (.d.ts) with extensive documentation for Plot’s public API, including marks, transforms, and scales. This allows code editors, including VS Code, to offer better autocompletions, to surface inline documentation when writing or reading Plot code, and even to validate types when calling functions or passing options. If you have suggestions or clarifications on how to improve the documentation, please open an issue or discussion, or send us a pull request.
 
-Auto mark, autoSpec & zero.
+autoSpec now materializes the **zero** option.
+
+Fix auto mark: no display with non-zero reducer and bar mark.
+
+Fix auto mark: no display with zero: true.
 
 Automatically opts-out of opacity scale when all the *strokeOpacity*, *fillOpacity* and *opacity* channel values are numbers in the [0, 1] bracket (#1310).
 
 Renames the reduce implementation method as reduceIndex, and the map implementation method as mapIndex, to limit confusion. The older names (resp. reduce and map) are still supported, but considered deprecated.
 
-Implements scale overrides with the **raster** mark (#1318). Implements named intervals for the **nice** option (#1332). Implements the **unknown** option for quantile scales (#1321). Accepts bigint values in input channels (#1299). Adds *quarter* and *half* named intervals for quarters and half-years (#1312).
+Implements scale overrides with the raster mark (#1318). Implements named intervals for the **nice** option (#1332). Implements the **unknown** option for quantile scales (#1321). Accepts bigint values in input channels (#1299). Adds *quarter* and *half* named intervals for quarters and half-years (#1312).
+
+The ramp legend now supports the **opacity** option.
 
 Fixes a bug where domain sorting had a non-deterministic behavior for non-orderable values ([#1348](https://github.com/observablehq/plot/pull/1348)). Fixes a bug where mixed-case class names were rejected (#1347). Fixed a crash when explicit NaN ticks were passed to an axis (#1335). Fixes inconsistencies of channel domain sorting when used with transforms (#1315, #1316). Removes duplicates from channel-derived domain (#1314).
 
