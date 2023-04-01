@@ -97,7 +97,6 @@ export * from "./gistemp-anomaly.js";
 export * from "./google-trends-ridgeline.js";
 export * from "./graticule.js";
 export * from "./greek-gods.js";
-export * from "./grid-choropleth-dx.js";
 export * from "./grid-choropleth.js";
 export * from "./grouped-rects.js";
 export * from "./hadcrut-warming-stripes.js";
