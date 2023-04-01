@@ -22,10 +22,10 @@ export function legendSwatches(color, {opacity, ...options}) {
       selection
         .append("svg")
         .attr("fill", scale.scale)
+        .attr("fill-opacity", maybeNumberChannel(opacity)[1])
         .append("rect")
         .attr("width", "100%")
-        .attr("height", "100%")
-        .attr("opacity", maybeNumberChannel(opacity)[1]),
+        .attr("height", "100%"),
     (className) => `.${className}-swatch svg {
         width: var(--swatchWidth);
         height: var(--swatchHeight);

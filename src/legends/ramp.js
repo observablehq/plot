@@ -121,7 +121,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("g")
-      .attr("opacity", opacity)
+      .attr("fill-opacity", opacity)
       .selectAll()
       .data(range)
       .enter()
@@ -142,7 +142,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("g")
-      .attr("opacity", opacity)
+      .attr("fill-opacity", opacity)
       .selectAll()
       .data(domain)
       .enter()
