@@ -1,6 +1,6 @@
-import type {CompoundMark, Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {CompoundMark, Data, MarkOptions} from "../mark.js";
 import type {ScaleOptions} from "../scales.js";
-import type {RuleXOptions, RuleYOptions} from "./rule.js";
+import type {RuleX, RuleXOptions, RuleY, RuleYOptions} from "./rule.js";
 import type {TextOptions} from "./text.js";
 import type {TickXOptions, TickYOptions} from "./tick.js";
 
@@ -42,6 +42,13 @@ export interface GridOptions extends GridScaleOptions {
    * texts; defaults to *currentColor*.
    */
   color?: MarkOptions["stroke"];
+
+  /**
+   * A shorthand for setting both **fillOpacity** and **strokeOpacity**; affects
+   * the stroke opacity of tick vectors and grid rules, and the fill opacity of
+   * tick texts and axis label texts; defaults to 1 for axes and 0.1 for grids.
+   */
+  opacity?: MarkOptions["opacity"];
 }
 
 /** Options for the axis marks. */
@@ -166,105 +173,37 @@ export function axisFx(data?: Data, options?: AxisXOptions): CompoundMark;
 export function axisFx(options?: AxisXOptions): CompoundMark;
 
 /**
- * Draws vertical grid lines aligned on *x* values.
- *
- * The optional *data* is an array of tick values—it defaults to the scale’s
- * ticks.
- *
- * The following options are supported:
- *
- * * **strokeDasharray** - the [stroke dasharray][1] for dashed lines, defaults
- *   to null
- *
- * The following options are supported as constant or data-driven channels:
- *
- * - **stroke** - the grid color, defaults to currentColor
- * - **strokeWidth** - the grid’s line width, defaults to 1
- * - **strokeOpacity** - the stroke opacity, defaults to 0.1
- * - **y1** - the start of the line, a channel of y positions.
- * - **y2** - the end of the line, a channel of y positions.
- *
- * All the other common options are supported when applicable (e.g., **title**).
- *
- * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray
+ * Returns a new horizontally-positioned ruleX mark (a vertical line, |) that
+ * renders a grid for the *x* scale. The *data* defaults to tick values sampled
+ * from the *x* scale’s domain; if desired, specify the *data* explicitly, or
+ * use one of the **ticks**, **tickSpacing**, or **interval** options.
  */
-export function gridX(data?: Data, options?: GridXOptions): RenderableMark;
-export function gridX(options?: GridXOptions): RenderableMark;
+export function gridX(data?: Data, options?: GridXOptions): RuleX;
+export function gridX(options?: GridXOptions): RuleX;
 
 /**
- * Draws vertical grid lines aligned on *fx* values.
- *
- * The optional *data* is an array of tick values—it defaults to the scale’s
- * domain.
- *
- * The following options are supported:
- *
- * * **strokeDasharray** - the [stroke dasharray][1] for dashed lines, defaults
- *   to null
- *
- * The following options are supported as constant or data-driven channels:
- *
- * - **stroke** - the grid color, defaults to currentColor
- * - **strokeWidth** - the grid’s line width, defaults to 1
- * - **strokeOpacity** - the stroke opacity, defaults to 0.1
- * - **y1** - the start of the line, a channel of y positions.
- * - **y2** - the end of the line, a channel of y positions.
- *
- * All the other common options are supported when applicable (e.g., **title**).
- *
- * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray
+ * Returns a new horizontally-positioned ruleX mark (a vertical line, |) that
+ * renders a grid for the *fx* scale. The *data* defaults to the *fx* scale’s
+ * domain; if desired, specify the *data* explicitly, or use the **ticks**
+ * option.
  */
-export function gridFx(data?: Data, options?: GridXOptions): RenderableMark;
-export function gridFx(options?: GridXOptions): RenderableMark;
+export function gridFx(data?: Data, options?: GridXOptions): RuleX;
+export function gridFx(options?: GridXOptions): RuleX;
 
 /**
- * Draws horizontal grid lines aligned on *y* values.
- *
- * The optional *data* is an array of tick values—it defaults to the scale’s
- * ticks.
- *
- * The following options are supported:
- *
- * * **strokeDasharray** - the [stroke dasharray][1] for dashed lines, defaults
- *   to null
- *
- * The following options are supported as constant or data-driven channels:
- *
- * - **stroke** - the grid color, defaults to currentColor
- * - **strokeWidth** - the grid’s line width, defaults to 1
- * - **strokeOpacity** - the stroke opacity, defaults to 0.1
- * - **x1** - the start of the line, a channel of x positions.
- * - **x2** - the end of the line, a channel of x positions.
- *
- * All the other common options are supported when applicable (e.g., **title**).
- *
- * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray
+ * Returns a new vertically-positioned ruleY mark (a horizontal line, —) that
+ * renders a grid for the *y* scale. The *data* defaults to tick values sampled
+ * from the *y* scale’s domain; if desired, specify the *data* explicitly, or
+ * use one of the **ticks**, **tickSpacing**, or **interval** options.
  */
-export function gridY(data?: Data, options?: GridYOptions): RenderableMark;
-export function gridY(options?: GridYOptions): RenderableMark;
+export function gridY(data?: Data, options?: GridYOptions): RuleY;
+export function gridY(options?: GridYOptions): RuleY;
 
 /**
- * Draws vertical grid lines aligned on *fy* values.
- *
- * The optional *data* is an array of tick values—it defaults to the scale’s
- * domain.
- *
- * The following options are supported:
- *
- * * **strokeDasharray** - the [stroke dasharray][1] for dashed lines, defaults
- *   to null
- *
- * The following options are supported as constant or data-driven channels:
- *
- * - **stroke** - the grid color, defaults to currentColor
- * - **strokeWidth** - the grid’s line width, defaults to 1
- * - **strokeOpacity** - the stroke opacity, defaults to 0.1
- * - **x1** - the start of the line, a channel of x positions.
- * - **x2** - the end of the line, a channel of x positions.
- *
- * All the other common options are supported when applicable (e.g., **title**).
- *
- * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray
+ * Returns a new vertically-positioned ruleY mark (a horizontal line, —) that
+ * renders a grid for the *fy* scale. The *data* defaults to the *fy* scale’s
+ * domain; if desired, specify the *data* explicitly, or use the **ticks**
+ * option.
  */
-export function gridFy(data?: Data, options?: GridYOptions): RenderableMark;
-export function gridFy(options?: GridYOptions): RenderableMark;
+export function gridFy(data?: Data, options?: GridYOptions): RuleY;
+export function gridFy(options?: GridYOptions): RuleY;
