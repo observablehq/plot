@@ -273,11 +273,14 @@ export interface MarkOptions {
    *
    * - *frame* or true - clip to the plot’s frame (inner area)
    * - *sphere* - clip to the projected sphere (*e.g.*, front hemisphere)
+   * - a CSS [basic shape][1], such as *circle()*
    * - null or false - do not clip
    *
    * The *sphere* clip option requires a geographic projection.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/basic-shape
    */
-  clip?: "frame" | "sphere" | boolean | null;
+  clip?: "frame" | "sphere" | "circle()" | (string & Record<never, never>) | boolean | null;
 
   /**
    * The horizontal offset in pixels; a constant option. On low-density screens,

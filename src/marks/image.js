@@ -113,7 +113,15 @@ export class Image extends Mark {
 }
 
 export function image(data, options = {}) {
-  let {x, y, ...remainingOptions} = options;
+  let {
+    x,
+    y,
+    r,
+    width = typeof r === "number" ? 2 * r : undefined,
+    clip = typeof r === "number" ? "circle()" : undefined,
+    ...remainingOptions
+  } = options;
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
-  return new Image(data, {...remainingOptions, x, y});
+
+  return new Image(data, {...remainingOptions, width, clip, x, y});
 }

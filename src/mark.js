@@ -62,7 +62,7 @@ export class Mark {
     this.marginRight = +marginRight;
     this.marginBottom = +marginBottom;
     this.marginLeft = +marginLeft;
-    this.clip = maybeClip(clip);
+    [this.clip, this.clipShape] = maybeClip(clip);
     // Super-faceting currently disallow position channels; in the future, we
     // could allow position to be specified in fx and fy in addition to (or
     // instead of) x and y.

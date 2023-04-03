@@ -1,0 +1,87 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="540" viewBox="0 0 640 540" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="74.87026797107615" x2="74.87026797107615" y1="0" y2="510"></line>
+    <line x1="191.38664398128458" x2="191.38664398128458" y1="0" y2="510"></line>
+    <line x1="307.90301999149295" x2="307.90301999149295" y1="0" y2="510"></line>
+    <line x1="424.41939600170144" x2="424.41939600170144" y1="0" y2="510"></line>
+    <line x1="540.9357720119099" x2="540.9357720119099" y1="0" y2="510"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(74.87026797107615,510)" d="M0,0L0,6"></path>
+    <path transform="translate(191.38664398128458,510)" d="M0,0L0,6"></path>
+    <path transform="translate(307.90301999149295,510)" d="M0,0L0,6"></path>
+    <path transform="translate(424.41939600170144,510)" d="M0,0L0,6"></path>
+    <path transform="translate(540.9357720119099,510)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(74.87026797107615,510)">1800</text>
+    <text y="0.71em" transform="translate(191.38664398128458,510)">1850</text>
+    <text y="0.71em" transform="translate(307.90301999149295,510)">1900</text>
+    <text y="0.71em" transform="translate(424.41939600170144,510)">1950</text>
+    <text y="0.71em" transform="translate(540.9357720119099,510)">2000</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,510)">Date of first inauguration</text>
+  </g>
+  <g aria-label="image" transform="translate(0.5,0.5)">
+    <image style="clip-path: ellipse(30% 50%);" x="20" y="225" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/160px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg"><title>George Washington</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="38.279455550829425" y="169.9558222446256" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg/160px-John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg"><title>John Adams</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="47.59464057847724" y="276.015054751952" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg/160px-Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg"><title>Thomas Jefferson</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="66.237771161208" y="119.1391656423809" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/James_Madison.jpg/160px-James_Madison.jpg"><title>James Madison</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="84.88090174393875" y="225" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/James_Monroe_White_House_portrait_1819.jpg/160px-James_Monroe_White_House_portrait_1819.jpg"><title>James Monroe</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="103.5240323266695" y="170.07793082853442" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/JQA_Photo.tif/lossy-page1-160px-JQA_Photo.tif.jpg"><title>John Quincy Adams</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="112.84559761803487" y="275.81314578600023" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Andrew_jackson_head.jpg/165px-Andrew_jackson_head.jpg"><title>Andrew Jackson</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="131.48872820076565" y="119.26478504253421" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Martin_Van_Buren_edit.jpg/160px-Martin_Van_Buren_edit.jpg"><title>Martin Van Buren</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="140.81029349213102" y="326.6262915720004" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/William_Henry_Harrison_daguerreotype_edit.jpg/160px-William_Henry_Harrison_daguerreotype_edit.jpg"><title>William Henry Harrison</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="141.0080816673756" y="384.6259543282418" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/John_Tyler%2C_Jr.jpg/160px-John_Tyler%2C_Jr.jpg"><title>John Tyler</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="150.1318587834964" y="225" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/JKP.jpg/160px-JKP.jpg"><title>James K. Polk</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="159.4534240748618" y="68.45163925653401" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Zachary_Taylor_restored_and_cropped.jpg/160px-Zachary_Taylor_restored_and_cropped.jpg"><title>Zachary Taylor</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="162.5925138239047" y="168.35432870938905" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Fillmore.jpg/160px-Fillmore.jpg"><title>Millard Fillmore</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="168.77498936622712" y="435.5474511330634" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29.jpg/160px-Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29.jpg"><title>Franklin Pierce</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="178.09655465759252" y="275.81314578600023" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/James_Buchanan.jpg/160px-James_Buchanan.jpg"><title>James Buchanan</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="187.4181199489579" y="17.638493470533774" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Abraham_Lincoln_O-77_matte_collodion_print.jpg/160px-Abraham_Lincoln_O-77_matte_collodion_print.jpg"><title>Abraham Lincoln</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="197.0076563164611" y="121.66816408626926" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Andrew_Johnson_photo_portrait_head_and_shoulders%2C_c1870-1880-Edit1.jpg/160px-Andrew_Johnson_photo_portrait_head_and_shoulders%2C_c1870-1880-Edit1.jpg"><title>Andrew Johnson</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="206.06125053168864" y="209.64086139533714" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Ulysses_S_Grant_by_Brady_c1870-restored.jpg/160px-Ulysses_S_Grant_by_Brady_c1870-restored.jpg"><title>Ulysses S. Grant</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="224.70438111441936" y="310.33430615135165" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/President_Rutherford_Hayes_1870_-_1880_Restored.jpg/160px-President_Rutherford_Hayes_1870_-_1880_Restored.jpg"><title>Rutherford B. Hayes</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="234.0259464057848" y="367.5803402543252" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/James_Abram_Garfield%2C_photo_portrait_seated.jpg/160px-James_Abram_Garfield%2C_photo_portrait_seated.jpg"><title>James A. Garfield</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="235.2956188855806" y="78.1017558993909" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Chester_Alan_Arthur.jpg/160px-Chester_Alan_Arthur.jpg"><title>Chester A. Arthur</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="243.34751169715014" y="254.06759578242657" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Grover_Cleveland_-_NARA_-_518139_%28cropped%29.jpg/160px-Grover_Cleveland_-_NARA_-_518139_%28cropped%29.jpg"><title>Grover Cleveland</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="252.66907698851554" y="175.11970102998575" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Benjamin_Harrison%2C_head_and_shoulders_bw_photo%2C_1896.jpg/160px-Benjamin_Harrison%2C_head_and_shoulders_bw_photo%2C_1896.jpg"><title>Benjamin Harrison</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="271.3122075712463" y="412.0070746414147" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Mckinley.jpg/160px-Mckinley.jpg"><title>William McKinley</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="281.86516376010206" y="297.431065195717" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/President_Roosevelt_-_Pach_Bros.jpg/160px-President_Roosevelt_-_Pach_Bros.jpg"><title>Theodore Roosevelt</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="299.2705231816248" y="225" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/William_Howard_Taft_-_Harris_and_Ewing.jpg/160px-William_Howard_Taft_-_Harris_and_Ewing.jpg"><title>William Howard Taft</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="308.5920884729902" y="159.737347942525" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Thomas_Woodrow_Wilson%2C_Harris_%26_Ewing_bw_photo_portrait%2C_1919.jpg/160px-Thomas_Woodrow_Wilson%2C_Harris_%26_Ewing_bw_photo_portrait%2C_1919.jpg"><title>Woodrow Wilson</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="327.235219055721" y="333.56357247756057" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Warren_G_Harding-Harris_%26_Ewing.jpg/160px-Warren_G_Harding-Harris_%26_Ewing.jpg"><title>Warren G. Harding</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="332.8562313908975" y="107.05669334845823" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Calvin_Coolidge_cph.3g10777_%28cropped%29.jpg/160px-Calvin_Coolidge_cph.3g10777_%28cropped%29.jpg"><title>Calvin Coolidge</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="345.8783496384517" y="259.52116036535136" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/President_Hoover_portrait.jpg/165px-President_Hoover_portrait.jpg"><title>Herbert Hoover</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="355.1999149298171" y="202.2751262623778" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/FDR_1944_Color_Portrait.jpg/160px-FDR_1944_Color_Portrait.jpg"><title>Franklin D. Roosevelt</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="383.4134410888983" y="151.59971860076308" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/TRUMAN_58-766-06_CROPPED.jpg/160px-TRUMAN_58-766-06_CROPPED.jpg"><title>Harry S. Truman</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="401.53339004678855" y="237.16364992826237" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959.jpg/160px-Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959.jpg"><title>Dwight D. Eisenhower</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="420.1765206295193" y="292.08571909972795" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/John_F._Kennedy%2C_White_House_color_photo_portrait.jpg/160px-John_F._Kennedy%2C_White_House_color_photo_portrait.jpg"><title>John F. Kennedy</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="426.78647384091875" y="113.09283571091905" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/37_Lyndon_Johnson_3x4.jpg/160px-37_Lyndon_Johnson_3x4.jpg"><title>Lyndon B. Johnson</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="438.8196512122501" y="192.73691554117298" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Richard_Nixon_presidential_portrait_%281%29.jpg/160px-Richard_Nixon_presidential_portrait_%281%29.jpg"><title>Richard Nixon</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="451.75244576775845" y="340.7371420148321" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Gerald_Ford_presidential_portrait.jpg/160px-Gerald_Ford_presidential_portrait.jpg"><title>Gerald Ford</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="457.4627817949809" y="63.86922216713762" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/JimmyCarterPortrait2.jpg/160px-JimmyCarterPortrait2.jpg"><title>Jimmy Carter</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="466.7843470863462" y="243.55006132717318" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Official_Portrait_of_President_Reagan_1981.jpg/165px-Official_Portrait_of_President_Reagan_1981.jpg"><title>Ronald Reagan</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="485.427477669077" y="158.21575517582158" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/George_H._W._Bush_presidential_portrait_%28cropped%29.jpg/160px-George_H._W._Bush_presidential_portrait_%28cropped%29.jpg"><title>George H. W. Bush</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="494.74904296044235" y="294.3632071131734" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Bill_Clinton.jpg/160px-Bill_Clinton.jpg"><title>Bill Clinton</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="513.392173543173" y="209.02890096182188" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/160px-George-W-Bush.jpeg"><title>George W. Bush</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="532.0353041259038" y="123.69459481047016" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Official_portrait_of_Barack_Obama.jpg/160px-Official_portrait_of_Barack_Obama.jpg"><title>Barack Obama</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="550.6784347086347" y="253.45563534891124" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/160px-Donald_Trump_official_portrait.jpg"><title>Donald Trump</title></image>
+    <image style="clip-path: ellipse(30% 50%);" x="560" y="174.50774059647057" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Joe_Biden_presidential_portrait.jpg/160px-Joe_Biden_presidential_portrait.jpg"><title>Joe Biden</title></image>
+  </g>
+</svg>

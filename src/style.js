@@ -304,7 +304,9 @@ export function* groupIndex(I, position, {z}, channels) {
 export function maybeClip(clip) {
   if (clip === true) clip = "frame";
   else if (clip === false) clip = null;
-  return maybeKeyword(clip, "clip", ["frame", "sphere"]);
+  return typeof clip === "string" && /^(circle|ellipse|inset|polygon|rectangle)\([^)]*\)$/.test(clip)
+    ? [, clip]
+    : [maybeKeyword(clip, "clip", ["frame", "sphere"])];
 }
 
 // Note: may mutate selection.node!
@@ -374,6 +376,7 @@ export function applyIndirectStyles(selection, mark, dimensions, context) {
 
 export function applyDirectStyles(selection, mark) {
   applyStyle(selection, "mix-blend-mode", mark.mixBlendMode);
+  applyStyle(selection, "clip-path", mark.clipShape);
   applyAttr(selection, "opacity", mark.opacity);
 }
 
