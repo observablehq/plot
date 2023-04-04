@@ -1529,10 +1529,13 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **y** - the vertical position; bound to the *y* scale
 * **width** - the image width (in pixels)
 * **height** - the image height (in pixels)
+* **r** - the image radius, for rounded images; bound to the *r* scale
 
 If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
-The **width** and **height** options default to 16 pixels and can be specified as either a channel or constant. When the width or height is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Images with a nonpositive width or height are not drawn. If a **width** is specified but not a **height**, or *vice versa*, the one defaults to the other. Images do not support either a fill or a stroke.
+The **width** and **height** options default to 16 pixels (unless **r** is specified) and can be specified as either a channel or constant. When the width or height is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Images with a nonpositive width or height are not drawn. If a **width** is specified but not a **height**, or *vice versa*, the one defaults to the other. Images do not support either a fill or a stroke.
+
+The **r** option, if specified as a constant or a channel, defaults **clip** to *circle()*, and defaults **width** and **height** to twice the effective radius, thus allowing to draw the image as a disc of the given radius.
 
 The following image-specific constant options are also supported:
 
