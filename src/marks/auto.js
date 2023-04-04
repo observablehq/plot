@@ -11,6 +11,8 @@ import {frame} from "./frame.js";
 import {line, lineX, lineY} from "./line.js";
 import {rectX, rectY} from "./rect.js";
 import {ruleX, ruleY} from "./rule.js";
+import {boxX, boxY} from "./box.js";
+import {voronoi} from "./delaunay.js";
 
 export function autoSpec(data, options) {
   const {x, y, fx, fy, color, size, mark} = autoImpl(data, options);
@@ -125,6 +127,14 @@ function autoImpl(data, options) {
         ? barX
         : rectY;
       colorMode = "fill";
+      break;
+    case "box":
+      markImpl = isOrdinalReduced(xReduce, X) ? boxY : boxX;
+      colorMode = "fill";
+      break;
+    case "voronoi":
+      markImpl = voronoi;
+      colorMode = "stroke";
       break;
     default:
       throw new Error(`invalid mark: ${mark}`);
