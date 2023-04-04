@@ -1,6 +1,7 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
+titleTemplate: "The JavaScript library for exploratory data visualization"
 
 hero:
   name: "Observable Plot"
@@ -25,8 +26,8 @@ features:
     details: "Plot doesn’t have chart types. Instead, it has layered geometric shapes such as bars, dots, and lines."
     link: https://observablehq.com/@observablehq/plot-marks
     linkText: Learn more
-  - title: Scales, axes and legends
-    details: "Scales map an abstract value such as time or temperature to a visual value such as x- or y-position or color."
+  - title: Scales, axes, and legends
+    details: "Scales map an abstract value such as time or temperature to a visual value such as position or color."
     link: https://observablehq.com/@observablehq/plot-scales
     linkText: Learn more
   - title: Transforms
@@ -46,3 +47,12 @@ features:
     link: https://observablehq.com/@observablehq/plot-mapping
     linkText: Learn about D3
 ---
+
+<style>
+
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, hsl(200deg 100% 65%), hsl(-90deg 85% 57%));
+}
+
+</style>
