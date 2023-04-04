@@ -32,6 +32,15 @@ export interface ImageOptions extends MarkOptions {
   height?: ChannelValue;
 
   /**
+   * The image radius, for rounded images. When a number, it is interpreted as a
+   * constant radius in pixels; otherwise it is interpreted as a channel,
+   * typically bound to the *r* scale. Also sets the default **clip** option to
+   * _circle()_, and the default **height** and **width** to twice its effective
+   * value.
+   */
+  r?: ChannelValue;
+
+  /**
    * The required image URL (or relative path). If a string that starts with a
    * dot, slash, or URL protocol (*e.g.*, “https:”) it is assumed to be a
    * constant; otherwise it is interpreted as a channel.
