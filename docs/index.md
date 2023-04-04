@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Observable Plot"
-  text: "A JavaScript library for visualizing tabular data"
+  text: "The JavaScript library for exploratory data visualization"
   tagline: "Create expressive charts with concise code"
   image:
     src: /plot.svg
