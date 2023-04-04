@@ -301,11 +301,8 @@ export function plot(options = {}) {
     }
   }
 
-  figure.scale = exposeScales(scaleDescriptors);
-  figure.legend = exposeLegends(scaleDescriptors, context, options);
-
-  const w = consumeWarnings();
-  if (w > 0) {
+  const warnings = consumeWarnings();
+  if (warnings.length > 0) {
     select(svg)
       .append("text")
       .attr("x", width)
@@ -315,8 +312,16 @@ export function plot(options = {}) {
       .attr("font-family", "initial") // fix emoji rendering in Chrome
       .text("\u26a0\ufe0f") // emoji variation selector
       .append("title")
-      .text(`${w.toLocaleString("en-US")} warning${w === 1 ? "" : "s"}. Please check the console.`);
+      .text(
+        `${warnings.length.toLocaleString("en-US")} warning${
+          warnings.length === 1 ? "" : "s"
+        }. Please check the console.`
+      );
   }
+
+  figure.scale = exposeScales(scaleDescriptors);
+  figure.legend = exposeLegends(scaleDescriptors, context, options);
+  figure.warnings = warnings;
 
   return figure;
 }

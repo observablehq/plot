@@ -11,14 +11,25 @@ import {frame} from "./frame.js";
 import {line, lineX, lineY} from "./line.js";
 import {rectX, rectY} from "./rect.js";
 import {ruleX, ruleY} from "./rule.js";
+import {warn} from "../warnings.js";
 
 export function autoSpec(data, options) {
   const {x, y, fx, fy, color, size, mark} = autoImpl(data, options);
   return {x, y, fx, fy, color, size, mark};
 }
 
+function isUnderspecifiedReduce({value, reduce}) {
+  // TODO: are there reducers other than count that need no input?
+  return value === undefined && reduce !== undefined && reduce !== "count";
+}
+
 function autoImpl(data, options) {
   options = normalizeOptions(options);
+
+  for (const channel of ["x", "y", "color", "size"]) {
+    if (isUnderspecifiedReduce(options[channel]))
+      throw new Error(`setting ${channel} to reduce to "${options[channel].reduce}" requires setting a field`);
+  }
 
   // Greedily materialize columns for type inference; we’ll need them anyway to
   // plot! Note that we don’t apply any type inference to the fx and fy
@@ -82,6 +93,10 @@ function autoImpl(data, options) {
         : xValue != null || yValue != null
         ? "rule"
         : null;
+  }
+
+  if (mark === "dot" && isOrdinalReduced(sizeReduce, S)) {
+    warn("Data with an ordinal size will be filtered out.");
   }
 
   let Z; // may be set to null to disable series-by-color for line and area

@@ -1,12 +1,12 @@
-let warnings = 0;
+let warnings = [];
 
 export function consumeWarnings() {
   const w = warnings;
-  warnings = 0;
+  warnings = [];
   return w;
 }
 
 export function warn(message) {
   console.warn(message);
-  ++warnings;
+  warnings.push(message);
 }
