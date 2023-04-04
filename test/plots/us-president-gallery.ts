@@ -23,7 +23,7 @@ export async function usPresidentGallery() {
   });
 }
 
-export async function usPresidentGalleryRadius() {
+export async function usPresidentGalleryEllipse() {
   const data = await d3.csv<any>("data/us-president-favorability.csv", d3.autoType);
   return Plot.plot({
     height: 540,
@@ -43,6 +43,31 @@ export async function usPresidentGalleryRadius() {
           padding: -2,
           anchor: "middle",
           clip: "ellipse(30% 50%)"
+        })
+      )
+    ]
+  });
+}
+
+export async function usPresidentGalleryRadius() {
+  const data = await d3.csv<any>("data/us-president-favorability.csv", d3.autoType);
+  return Plot.plot({
+    height: 240,
+    x: {
+      label: "Date of first inauguration",
+      inset: 30,
+      grid: true
+    },
+    r: {range: [0, 40]},
+    marks: [
+      Plot.image(
+        data,
+        Plot.dodgeY({
+          x: "First Inauguration Date",
+          src: "Portrait URL",
+          title: "Name",
+          r: "Very Favorable %",
+          anchor: "middle"
         })
       )
     ]
