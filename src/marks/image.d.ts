@@ -32,11 +32,10 @@ export interface ImageOptions extends MarkOptions {
   height?: ChannelValue;
 
   /**
-   * The image radius, for rounded images. When a number, it is interpreted as a
-   * constant radius in pixels; otherwise it is interpreted as a channel,
-   * typically bound to the *r* scale. Also defaults **height** and **width** to
-   * twice its effective value, and clips the image to a circle, unless **clip**
-   * is set to null.
+   * The image clip radius, for circular images. If null (default), images are
+   * not clipped; when a number, it is interpreted as a constant in pixels;
+   * otherwise it is interpreted as a channel, typically bound to the *r* scale.
+   * Also defaults **height** and **width** to twice its value.
    */
   r?: ChannelValue;
 
