@@ -4,7 +4,7 @@ import {defineConfig} from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Observable Plot",
-  description: "A concise API for exploratory data visualization",
+  description: "The JavaScript library for exploratory data visualization",
   vite: {
     resolve: {
       alias: {
@@ -21,7 +21,8 @@ export default defineConfig({
     },
     nav: [
       {text: "Home", link: "/"},
-      {text: "Examples", link: "/examples"}
+      {text: "Examples", link: "/examples"},
+      {text: "D3", link: "https://d3js.org"}
     ],
     sidebar: [
       {

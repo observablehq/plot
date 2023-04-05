@@ -18,7 +18,7 @@ hero:
       text: Why Plot?
       link: /why-plot
     - theme: alt
-      text: See examples
+      text: Examples
       link: /examples
 
 features:
