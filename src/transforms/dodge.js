@@ -17,7 +17,7 @@ function maybeAnchor(anchor) {
 
 export function dodgeX(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
-  let {anchor = "left", padding = 1} = maybeAnchor(dodgeOptions);
+  let {anchor = "left", padding = 1, r = options.r} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "left":
       anchor = anchorXLeft;
@@ -31,12 +31,12 @@ export function dodgeX(dodgeOptions = {}, options = {}) {
     default:
       throw new Error(`unknown dodge anchor: ${anchor}`);
   }
-  return dodge("x", "y", anchor, number(padding), options);
+  return dodge("x", "y", anchor, number(padding), r, options);
 }
 
 export function dodgeY(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
-  let {anchor = "bottom", padding = 1} = maybeAnchor(dodgeOptions);
+  let {anchor = "bottom", padding = 1, r = options.r} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "top":
       anchor = anchorYTop;
@@ -50,16 +50,16 @@ export function dodgeY(dodgeOptions = {}, options = {}) {
     default:
       throw new Error(`unknown dodge anchor: ${anchor}`);
   }
-  return dodge("y", "x", anchor, number(padding), options);
+  return dodge("y", "x", anchor, number(padding), r, options);
 }
 
 function mergeOptions(options) {
   const {anchor, padding, ...rest} = options;
-  return [{anchor, padding}, rest];
+  const {r} = rest; // don’t consume r; allow it to propagate
+  return [{anchor, padding, r}, rest];
 }
 
-function dodge(y, x, anchor, padding, options) {
-  const {r} = options;
+function dodge(y, x, anchor, padding, r, options) {
   if (r != null && typeof r !== "number") {
     const {channels, sort, reverse} = options;
     options = {...options, channels: {r: {value: r, scale: "r"}, ...maybeNamed(channels)}};
@@ -69,12 +69,12 @@ function dodge(y, x, anchor, padding, options) {
     let {[x]: X, r: R} = channels;
     if (!channels[x]) throw new Error(`missing channel: ${x}`);
     ({[x]: X} = applyPosition(channels, scales, context));
-    const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
+    const cr = R ? undefined : r !== undefined ? number(r) : this.r !== undefined ? this.r : 3;
     if (R) R = valueof(R.value, scales[R.scale] || identity, Float64Array);
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
     const Y = new Float64Array(X.length);
-    const radius = R ? (i) => R[i] : () => r;
+    const radius = R ? (i) => R[i] : () => cr;
     for (let I of facets) {
       const tree = IntervalTree();
       I = I.filter(R ? (i) => finite(X[i]) && positive(R[i]) : (i) => finite(X[i]));
@@ -94,7 +94,7 @@ function dodge(y, x, anchor, padding, options) {
         tree.queryInterval(l - padding, h + padding, ([, , j]) => {
           const yj = Y[j] - y0;
           const dx = X[i] - X[j];
-          const dr = padding + (R ? R[i] + R[j] : 2 * r);
+          const dr = padding + (R ? R[i] + R[j] : 2 * cr);
           const dy = Math.sqrt(dr * dr - dx * dx);
           intervals[k++] = yj - dy;
           intervals[k++] = yj + dy;
