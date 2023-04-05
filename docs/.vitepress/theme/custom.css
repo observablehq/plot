@@ -4,4 +4,5 @@
   --vp-c-brand-lighter: hsl(-90 85% 80%);
   --vp-c-brand-dark: hsl(-90 85% 57%);
   --vp-c-brand-darker: hsl(-90 85% 40%);
+  --vp-font-family-base: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
 }

@@ -13,38 +13,38 @@ hero:
   actions:
     - theme: brand
       text: Get started
-      link: /markdown-examples
+      link: /getting-started
     - theme: alt
       text: Why Plot?
-      link: /markdown-examples
+      link: /why-plot
     - theme: alt
       text: See examples
-      link: /api-examples
+      link: /examples
 
 features:
   - title: Marks and channels
     details: "Plot doesn’t have chart types. Instead, it has layered geometric shapes such as bars, dots, and lines."
-    link: https://observablehq.com/@observablehq/plot-marks
+    link: /marks
     linkText: Learn more
   - title: Scales, axes, and legends
     details: "Scales map an abstract value such as time or temperature to a visual value such as position or color."
-    link: https://observablehq.com/@observablehq/plot-scales
+    link: /scales
     linkText: Learn more
   - title: Transforms
     details: "Data often needs to be derived (say grouped or binned) before plotting. Let Plot transform data for you."
-    link: https://observablehq.com/@observablehq/plot-transforms
+    link: /transforms
     linkText: Learn more
   - title: Facets
     details: "Faceting produces small multiples by partitioning data into discrete sets and repeating the plot for each set, allowing comparison."
-    link: https://observablehq.com/@observablehq/plot-facets
+    link: /facets
     linkText: Learn more
   - title: Maps and projections
     details: "Plot supports GeoJSON and D3’s spherical projection system for geographic maps."
-    link: https://observablehq.com/@observablehq/plot-mapping
+    link: /maps
     linkText: Learn more
   - title: Built with D3
     details: "Plot is built by the same team as D3, using D3. If you already know D3, you’ll be right at home with Plot."
-    link: https://observablehq.com/@observablehq/plot-mapping
+    link: https://d3js.org
     linkText: Learn about D3
 ---
 
