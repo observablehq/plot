@@ -3,7 +3,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import Render from "../components/Render.js";
-import RenderSnippet from "../components/Render.js";
 
 const sales = [
   {units: 10, fruit: "peach"},
@@ -31,7 +30,7 @@ sales = [
 
 To make a plot, we bind columns of data to visual properties of marks. Since these visual properties encode abstract data, we call them *channels*. For example, we can encode the *units* column as the *x*-position and the *fruit* column as the *y*-position.
 
-<RenderSnippet :mark='Plot.dot(sales, {x: "units", y: "fruit"})' />
+<Render :mark='Plot.dot(sales, {x: "units", y: "fruit"})' />
 
 ```js
 Plot.dot(sales, {x: "units", y: "fruit"}).plot()
@@ -45,7 +44,7 @@ The *x*-values {10, 20, …} are numbers representing units sold, not pixels. Un
 
 Named columns are convenient for tabular data represented as an array of objects, but for greater flexibility we can use a function to feed abstract values to a channel. Channel functions are repeatedly invoked for each element in the data, being passed the datum (by convention *d*) and zero-based index (*i*). These functions can also perform data processing; for example, perhaps *units* is in thousands.
 
-<RenderSnippet :mark='Plot.dot(sales, {x: (d) => d.units * 1000, y: (d) => d.fruit})' />
+<Render :mark='Plot.dot(sales, {x: (d) => d.units * 1000, y: (d) => d.fruit})' />
 
 ```js
 Plot.dot(sales, {x: (d) => d.units * 1000, y: (d) => d.fruit}).plot()
@@ -53,19 +52,17 @@ Plot.dot(sales, {x: (d) => d.units * 1000, y: (d) => d.fruit}).plot()
 
 Named columns are also nice because they allow Plot to label the axes automatically, making the meaning of the plot more apparent. These labels are lost above, but we could add them back if desired by using the *scale*.**label** option.
 
-<RenderSnippet :mark='Plot.dot(sales, {x: (d) => d.units, y: (d) => d.fruit})' :options='{x: {label: "units →"}}' />
+<Render :mark='Plot.dot(sales, {x: (d) => d.units, y: (d) => d.fruit})' :options='{x: {label: "units →"}}' />
 
 ```js{3}
-Plot.dot(sales, {x: (d) => d.units, y: (d) => d.fruit}).plot({
-  x: {
-    label: "units →"
-  }
-})
+Plot
+  .dot(sales, {x: (d) => d.units, y: (d) => d.fruit})
+  .plot({x: {label: "units →"}})
 ```
 
 An equivalent (and more efficient) way to specify channel values is with parallel arrays. Here it doesn’t really matter what’s in the data as long as each channel has an array of values of the same length as the data. This approach is well-suited to columnar data structures such as [Arquero](/@uwdata/introducing-arquero?collection=@uwdata/arquero).
 
-<RenderSnippet :mark='Plot.dot([0, 1, 2, 3], {
+<Render :mark='Plot.dot([0, 1, 2, 3], {
   x: [10, 20, 40, 30],
   y: ["peach", "pear", "plum", "plum"]
 })' />
@@ -79,7 +76,7 @@ Plot.dot([0, 1, 2, 3], {
 
 Many marks provide default channel definitions for even more concise shorthand. If we pass [[*x₁*, *y₁*], [*x₂*, *y₂*], [*x₃*, *y₃*], [*x₄*, *y₄*]] as data, we can use the dot’s default *x* and *y* channel definitions.
 
-<RenderSnippet :mark='Plot.dot([
+<Render :mark='Plot.dot([
   [10, "peach"],
   [20, "pear"],
   [40, "plum"],
@@ -97,6 +94,15 @@ Plot.dot([
 
 Plots can have multiple marks. Marks are layered such that the last mark is drawn on top. Each mark has its own data, channels, and options. However, marks share scales. Hence, multiple marks can be used to combine datasets: the scales’ domains are inferred from the *union* of associated data. For example, if you *want* to draw each dot using a separate mark, you can, though it’s less efficient and more verbose.
 
+<Render :options='{
+  marks: [
+    Plot.dot([[10, "peach"]]), // x₁, y₁
+    Plot.dot([[20, "pear"]]), // x₂, y₂
+    Plot.dot([[40, "plum"]]), // etc.
+    Plot.dot([[30, "plum"]])
+  ]
+}' />
+
 ```js
 Plot.plot({
   marks: [
@@ -110,7 +116,14 @@ Plot.plot({
 
 Marks can also be used as annotations for values with special meaning, such as the [rule](/@observablehq/plot-rule?collection=@observablehq/plot) at *x* = 0 below.
 
-```js
+<Render :options='{
+  marks: [
+    Plot.dot(sales, {x: "units", y: "fruit"}),
+    Plot.ruleX([0]) // a rule at x = 0
+  ]
+}' />
+
+```js{4}
 Plot.plot({
   marks: [
     Plot.dot(sales, {x: "units", y: "fruit"}),
