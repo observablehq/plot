@@ -42,6 +42,7 @@ function maybePathChannel(value) {
 export class Image extends Mark {
   constructor(data, options = {}) {
     let {x, y, r, width, height, src, preserveAspectRatio, crossOrigin, frameAnchor, imageRendering} = options;
+    if (r == null) r = undefined;
     if (r === undefined && width === undefined && height === undefined) width = height = 16;
     else if (width === undefined && height !== undefined) width = height;
     else if (height === undefined && width !== undefined) height = width;
