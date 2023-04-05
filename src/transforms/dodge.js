@@ -17,7 +17,7 @@ function maybeAnchor(anchor) {
 
 export function dodgeX(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
-  let {anchor = "left", padding = 1, r} = maybeAnchor(dodgeOptions);
+  let {anchor = "left", padding = 1, r = options.r} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "left":
       anchor = anchorXLeft;
@@ -36,7 +36,7 @@ export function dodgeX(dodgeOptions = {}, options = {}) {
 
 export function dodgeY(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
-  let {anchor = "bottom", padding = 1, r} = maybeAnchor(dodgeOptions);
+  let {anchor = "bottom", padding = 1, r = options.r} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "top":
       anchor = anchorYTop;
