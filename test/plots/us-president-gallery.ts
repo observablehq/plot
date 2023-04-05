@@ -17,7 +17,7 @@ export async function usPresidentGallery() {
     width: 960,
     height: 300,
     marks: [
-      Plot.image(data, {...dodge, width: 60, src: "Portrait URL"}),
+      Plot.image(data, {...dodge, width: 60, src: "Portrait URL", clip: null}),
       Plot.dot(data, {...dodge, stroke: "white", dy: -5})
     ]
   });
