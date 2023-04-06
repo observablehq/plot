@@ -24,7 +24,8 @@ export async function trafficHorizon() {
         (f) => (t) =>
           `≥${f(t)}`
       )(d3.format(",")),
-      legend: true
+      legend: true,
+      label: "Traffic (vehicles/hour)"
     },
     fy: {
       axis: null,

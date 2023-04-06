@@ -6,7 +6,8 @@ export async function hexbinSymbol() {
   return Plot.plot({
     grid: true,
     symbol: {
-      legend: true
+      legend: true,
+      label: null
     },
     marks: [Plot.dot(penguins, Plot.hexbin({r: "count"}, {symbol: "sex", x: "culmen_depth_mm", y: "culmen_length_mm"}))]
   });

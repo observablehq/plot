@@ -69,7 +69,7 @@ function reindexStyle(root) {
   for (const style of root.querySelectorAll("style")) {
     const name = `plot${index++ ? `-${index}` : ""}`;
     const parent = style.parentNode;
-    const uid = parent.getAttribute("class");
+    const uid = parent.getAttribute("class").split(" ")[0];
     for (const child of [parent, ...parent.querySelectorAll("[class]")]) {
       child.setAttribute("class", child.getAttribute("class").replace(new RegExp(`\\b${uid}\\b`, "g"), name));
     }

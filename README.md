@@ -648,7 +648,8 @@ If there is no scale with the given *scaleName* on the given *plot*, then *plot*
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
 
-* *options*.**tickFormat** - a format function for the labels
+* *options*.**label** - the scale’s label
+* *options*.**tickFormat** - a format function for the domain values
 * *options*.**swatchSize** - the size of the swatch (if square)
 * *options*.**swatchWidth** - the swatches’ width
 * *options*.**swatchHeight** - the swatches’ height

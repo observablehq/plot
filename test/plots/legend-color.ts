@@ -19,9 +19,9 @@ export function colorLegendCategoricalColumns() {
         "Finance",
         "Self-employed",
         "Other"
-      ]
+      ],
+      label: "Industry"
     },
-    label: "Hello",
     columns: "180px"
   });
 }

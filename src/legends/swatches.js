@@ -89,7 +89,7 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
     columns,
     tickFormat,
     fontVariant = inferFontVariant(scale),
-    // TODO label,
+    label = scale.label,
     swatchSize = 15,
     swatchWidth = swatchSize,
     swatchHeight = swatchSize,
@@ -112,10 +112,23 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
       `
     );
 
-  let extraStyle;
+  const hasTitle = label != null && label !== "";
+  const palette = hasTitle
+    ? swatches.call((div) => div.append("div").attr("class", `${className}-title`).text(label)).append("div")
+    : swatches;
+  palette.classed(`${className}-palette`, true);
+
+  let extraStyle = hasTitle
+    ? `
+      .${className}-title {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.4em;
+      }`
+    : "";
 
   if (columns != null) {
-    extraStyle = `
+    extraStyle += `
       .${className}-swatch {
         display: flex;
         align-items: center;
@@ -132,7 +145,7 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
       }
     `;
 
-    swatches
+    palette
       .style("columns", columns)
       .selectAll()
       .data(scale.domain)
@@ -144,10 +157,10 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
         item.append("div").attr("class", `${className}-label`).attr("title", tickFormat).text(tickFormat)
       );
   } else {
-    extraStyle = `
-      .${className} {
+    extraStyle += `
+      .${className}-palette {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         min-height: 33px;
         flex-wrap: wrap;
       }
@@ -158,7 +171,7 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
       }
     `;
 
-    swatches
+    palette
       .selectAll()
       .data(scale.domain)
       .enter()
