@@ -16,12 +16,12 @@ async function kitten({
   });
 }
 
-export async function kittenClipNull() {
-  return kitten({r: 49, clip: null}); // TODO remove this test? clip has no effect
+export async function kittenConstant() {
+  return kitten({r: 49});
 }
 
-export async function kittenConstant() {
-  return kitten({r: 49}); // TODO test combining width, height, and r
+export async function kittenConstantWidthHeight() {
+  return kitten({r: 49, width: 200, height: 200});
 }
 
 export async function kittenVariable() {
