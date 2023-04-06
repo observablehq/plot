@@ -39,10 +39,6 @@ Plot.barY(alphabet.filter(d => /[aeiou]/i.test(d.letter)), {x: "letter", y: "fre
 
 Here’s another example using a filter transform to control which text labels are displayed in a dense scatterplot.
 
-```js-observable
-metros = FileAttachment("metros.csv").csv({typed: true})
-```
-
 ```js-todo
 viewof dofilter = Inputs.toggle({label: "Filter labels", value: true})
 ```
@@ -74,6 +70,18 @@ Plot.plot({
   ]
 })
 ```
+
+The *metros* data can be loaded in many ways:
+
+::: code-group
+```js [Using Observable’s file attachments]
+metros = FileAttachment("metros.csv").csv({typed: true})
+```
+```js [Using d3-dsv]
+const metros = await d3.csv("metros.csv", d3.autoType);
+```
+:::
+
 
 Together the **sort** and **reverse** transforms allow control over *z*-order, which can be important when addressing overplotting. If the sort option is a function but does not take exactly one argument, it is assumed to be a [comparator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description); otherwise, the sort option is interpreted as a channel value definition and thus may be either a column name, accessor function, or array of values.
 
