@@ -2,6 +2,7 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import CSRPlot from "../components/CSRPlot.vue";
 import Render from "../components/Render.js";
 
 const sales = [
@@ -23,9 +24,11 @@ Transforms provide a convenient mechanism for deriving data while plotting. All 
 
 For example, to take the toy bar chart of English letter frequency and only draw bars for letters that commonly form vowels:
 
-```js
-Plot.barY(alphabet, {filter: d => /[aeiou]/i.test(d.letter), x: "letter", y: "frequency"}).plot()
-```
+<CSRPlot plot='Plot.barY(data, {
+  filter: d => /[aeiou]/i.test(d.letter),
+  x: "letter",
+  y: "frequency"
+}).plot()' :height=480 dataset="alphabet.csv" />
 
 ```js-observable
 alphabet = FileAttachment("alphabet.csv").csv({typed: true})
