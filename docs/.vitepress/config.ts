@@ -26,7 +26,7 @@ export default defineConfig({
             content = content.replace(/\bd3\.(random(?!Lcg)\w+)\b/g, "d3.\$1.source(d3.randomLcg(42))");
             if (/^Plot\.plot\(/.test(content)) {
               const options = content.slice(9);
-              return `<Render
+              return `<PlotRender
                 :options='${md.utils.escapeHtml(options)}'
               />\n<div class="blocks">\n`;
             } else {
@@ -35,7 +35,7 @@ export default defineConfig({
               if (!match) throw new Error("mark.plot not found");
               const mark = content.replace(re, "");
               const options = `(${match[1] || "{}"})`;
-              return `<Render
+              return `<PlotRender
                 :mark='${md.utils.escapeHtml(mark)}'
                 :options='${md.utils.escapeHtml(options)}'
               />\n<div class="blocks">\n`;

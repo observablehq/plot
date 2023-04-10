@@ -2,14 +2,10 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import Render from "../components/Render.js";
-
-const sales = [
-  {units: 10, fruit: "peach"},
-  {units: 20, fruit: "pear"},
-  {units: 40, fruit: "plum"},
-  {units: 30, fruit: "plum"}
-];
+import PlotRender from "./components/PlotRender.js";
+import alphabet from "./data/alphabet.ts";
+import metros from "./data/metros.ts";
+import bls from "./data/bls.ts";
 
 </script>
 
@@ -23,76 +19,63 @@ Transforms provide a convenient mechanism for deriving data while plotting. All 
 
 For example, to take the toy bar chart of English letter frequency and only draw bars for letters that commonly form vowels:
 
-```js
-Plot.barY(alphabet, {filter: d => /[aeiou]/i.test(d.letter), x: "letter", y: "frequency"}).plot()
+:::plot
+```js{4}
+Plot.plot({
+  marks: [
+    Plot.barY(alphabet, {
+      filter: (d) => /[aeiou]/i.test(d.letter),
+      x: "letter",
+      y: "frequency"
+    })
+  ]
+})
 ```
-
-```js-observable
-alphabet = FileAttachment("alphabet.csv").csv({typed: true})
-```
+:::
 
 The **filter** transform is similar to filtering the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), except that it will preserve [faceting](/facets) and will not affect inferred [scale domains](/scales); domains are inferred from the unfiltered channel values.
 
-```js
-Plot.barY(alphabet.filter(d => /[aeiou]/i.test(d.letter)), {x: "letter", y: "frequency"}).plot()
+:::plot
+```js{4}
+Plot.plot({
+  marks: [
+    Plot.barY(
+      alphabet.filter((d) => /[aeiou]/i.test(d.letter)),
+      {x: "letter", y: "frequency"}
+    )
+  ]
+})
 ```
+:::
 
 Here’s another example using a filter transform to control which text labels are displayed in a dense scatterplot.
 
-```js-todo
-viewof dofilter = Inputs.toggle({label: "Filter labels", value: true})
-```
-
-```js
+:::plot
+```js{10}
 Plot.plot({
   grid: true,
-  inset: 10,
-  x: {
-    type: "log",
-    label: "Population →",
-    tickFormat: "~s"
-  },
-  y: {
-    label: "↑ Inequality"
-  },
+  x: {type: "log"},
   marks: [
     Plot.dot(metros, {
       x: "POP_2015",
-      y: "R90_10_2015",
-      r: 2.5}),
+      y: "R90_10_2015"
+    }),
     Plot.text(metros, {
+      filter: "highlight",
       x: "POP_2015",
       y: "R90_10_2015",
-      filter: dofilter ? "highlight" : null,
       text: "nyt_display",
+      frameAnchor: "bottom",
       dy: -6
     })
   ]
 })
 ```
-
-The *metros* data can be loaded in many ways:
-
-::: code-group
-```js [Using Observable’s file attachments]
-metros = FileAttachment("metros.csv").csv({typed: true})
-```
-```js [Using d3-dsv]
-const metros = await d3.csv("metros.csv", d3.autoType);
-```
 :::
-
 
 Together the **sort** and **reverse** transforms allow control over *z*-order, which can be important when addressing overplotting. If the sort option is a function but does not take exactly one argument, it is assumed to be a [comparator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description); otherwise, the sort option is interpreted as a channel value definition and thus may be either a column name, accessor function, or array of values.
 
-```js-observable
-bls = FileAttachment("bls-metro-unemployment.csv").csv({typed: true})
-```
-
-```js-todo
-viewof dosort = Inputs.toggle({label: "Sort lines", value: true})
-```
-
+:::plot
 ```js
 Plot.plot({
   y: {
@@ -109,12 +92,13 @@ Plot.plot({
       x: "date",
       y: "unemployment",
       z: "division",
-      sort: dosort && (d => /, MI /.test(d.division)),
-      stroke: d => /, MI /.test(d.division)
+      sort: (d) => /, MI /.test(d.division),
+      stroke: (d) => /, MI /.test(d.division)
     })
   ]
 })
 ```
+:::
 
 The basic transforms are composable: the *filter* transform is applied first, then *sort*, *reverse*, and lastly the custom *transform*, if any.
 
