@@ -2,7 +2,7 @@ import {select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext, create} from "./context.js";
 import {createDimensions} from "./dimensions.js";
-import {createFacets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilter} from "./facet.js";
+import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslate, facetFilter} from "./facet.js";
 import {createLegends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
@@ -57,7 +57,7 @@ export function plot(options = {}) {
   // All the possible facets are given by the domains of the fx or fy scales, or
   // the cross-product of these domains if we facet by both x and y. We sort
   // them in order to apply the facet filters afterwards.
-  const facets = createFacets(channelsByScale, options);
+  let facets = createFacets(channelsByScale, options);
 
   if (facets !== undefined) {
     const topFacetsIndex = topFacetState ? facetFilter(facets, topFacetState) : undefined;
@@ -237,9 +237,9 @@ export function plot(options = {}) {
   if (facets !== undefined) {
     const facetDomains = {x: fx?.domain(), y: fy?.domain()};
 
-    // Sort the facets to match the fx and fy domains; this is needed because
-    // the facets were constructed prior to the fx and fy scales.
-    facets.sort(facetOrder(facetDomains));
+    // Sort and filter the facets to match the fx and fy domains; this is needed
+    // because the facets were constructed prior to the fx and fy scales.
+    facets = recreateFacets(facets, facetDomains);
 
     // Render the facets.
     select(svg)
