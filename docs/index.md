@@ -19,7 +19,7 @@ hero:
       link: /why-plot
     - theme: alt
       text: Examples
-      link: /examples
+      link: https://observablehq.com/@observablehq/plot-gallery
 
 features:
   - title: Marks and channels

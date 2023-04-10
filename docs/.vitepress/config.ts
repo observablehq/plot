@@ -56,7 +56,7 @@ export default defineConfig({
     },
     nav: [
       {text: "Home", link: "/"},
-      {text: "Examples", link: "/examples"},
+      {text: "Examples", link: "https://observablehq.com/@observablehq/plot-gallery"},
       {
         text: "Help",
         items: [
