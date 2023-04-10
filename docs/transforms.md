@@ -104,7 +104,8 @@ The basic transforms are composable: the *filter* transform is applied first, th
 
 For greater control, you can also implement a custom **transform** function. This function takes *data* and *facets* as arguments and returns the same, where *data* is the associated mark’s data and *facets* is an array of indexes into that data. If the mark is not faceted, then *facets* will contain a single facet representing the entire data: [0, 1, … *data*.length - 1].
 
-```js
+:::plot
+```js{16-23}
 Plot.plot({
   y: {
     grid: true,
@@ -120,24 +121,19 @@ Plot.plot({
       x: "date",
       y: "unemployment",
       z: "division",
-      transform: customTransform
+      transform: (data, facets) => ({
+        data,
+        facets: facets.map((facet) => {
+          return facet.filter((i) => {
+            return /, MI /.test(data[i].division);
+          });
+        })
+      })
     })
   ]
 })
 ```
-
-```js
-function customTransform(data, facets) {
-  return {
-    data,
-    facets: facets.map(facet => {
-      return facet.filter(i => {
-        return /, MI /.test(data[i].division);
-      });
-    })
-  };
-}
-```
+:::
 
 Plot’s option transforms, listed below, do more than populate the **transform** function: they derive new mark options and channels. These transforms take a mark’s *options* object (and possibly transform-specific options as the first argument) and return a new, transformed, *options*. Option transforms are composable: you can pass an *options* objects through more than one transform before passing it to a mark. You can also reuse the same transformed *options* on multiple marks.
 
