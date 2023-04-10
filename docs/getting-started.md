@@ -17,6 +17,8 @@ Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: d3.randomNormal()})).plo
 ```
 :::
 
+[Edit this on Observable →](https://observablehq.com/d/80126d030307e0ef)
+
 This code uses *mark*.plot shorthand, which is convenient for plots with only a single mark. To layer multiple marks, use Plot.plot instead.
 
 :::plot
@@ -30,7 +32,7 @@ Plot.plot({
 ```
 :::
 
-[Try Plot on Observable →](https://observablehq.com)
+[Edit this on Observable →](https://observablehq.com/d/c61f5404cd713543)
 
 Observable includes a variety of Plot snippets when you click **+** to add a cell, as well as convenient [sample datasets](https://observablehq.com/@observablehq/sample-datasets) to try out Plot features. Or upload a CSV or JSON file to start playing with your data. You can even use [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell), which uses Plot’s [auto mark](./auto) under the hood, to create quick charts without writing code! You can then eject to JavaScript by clicking **+** to see the equivalent Plot code.
 
