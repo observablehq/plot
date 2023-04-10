@@ -2,7 +2,6 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import PlotRender from "./components/PlotRender.js";
 
 </script>
 
