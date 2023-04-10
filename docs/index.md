@@ -25,23 +25,18 @@ features:
   - title: Marks and channels
     details: "Plot doesn’t have chart types. Instead, it has layered geometric shapes such as bars, dots, and lines."
     link: /marks
-    linkText: Learn more
   - title: Scales, axes, and legends
     details: "Scales map an abstract value such as time or temperature to a visual value such as position or color."
     link: /scales
-    linkText: Learn more
   - title: Data transforms
     details: "Plot can derive data for you, say to bin quantitative values or compute a rolling average."
     link: /transforms
-    linkText: Learn more
   - title: Facets
     details: "Small multiples facilitate comparison by repeating a plot across partitions of data."
     link: /facets
-    linkText: Learn more
   - title: Maps and projections
     details: "Plot supports GeoJSON and D3’s spherical projection system for geographic maps."
     link: /maps
-    linkText: Learn more
   - title: Built with D3
     details: "Plot is built by the same team as D3. If you know some D3, you’ll be right at home with Plot."
     link: https://d3js.org
