@@ -437,7 +437,7 @@ function maybeMarkFacet(mark, topFacetState, options) {
   // top-level facet option.
   if (
     (groups.size > 1 || (groups.size === 1 && channels.fx && channels.fy && [...groups][0][1].size > 1)) &&
-    (arrayify(mark.data)?.length ?? NaN) === (data.length ?? NaN)
+    (data.length > 0 && arrayify(mark.data)?.length === data.length)
   ) {
     warn(
       `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
