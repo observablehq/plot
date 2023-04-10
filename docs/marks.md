@@ -148,34 +148,6 @@ Plot.plot({
 ```
 :::
 
-A mark may bypass the default scale for a channel, such as when the **fill** channel’s values are all valid CSS colors.
-
-:::plot
-```js
-Plot.barX([8, 6, 7, 5, 3, 0, 9], {
-  y: (x, i) => i,
-  fill: (x) => x > 8 ? "red" : "currentColor"
-}).plot()
-```
-:::
-
-But rather than supplying literal values to channels, it is typically better to provide abstract values and use scales. In addition to centralizing the encoding definition (if used by multiple marks), it allows Plot to generate a legend.
-
-:::plot
-```js
-Plot.plot({
-  color: {
-    domain: ["normal", "high"],
-    range: ["currentColor", "red"],
-    legend: true
-  },
-  marks: [
-    Plot.barX([8, 6, 7, 5, 3, 0, 9], {y: (x, i) => i, fill: (x) => x > 8 ? "high" : "normal"})
-  ]
-})
-```
-:::
-
 ## Marks have tidy data
 
 A single mark can draw multiple shapes. A mark generally produces a shape—such as a rectangle or circle—for each element in the data. So this array of seven [*x*, *y*] tuples will produce seven stroked circles when passed to Plot.dot:
@@ -433,3 +405,35 @@ Plot
   .plot({y: {label: null, tickFormat: ""}})
 ```
 :::
+
+If the **fill** option is a function, it is interpreted as a channel.
+
+:::plot
+```js
+Plot
+  .barX(timeseries, {x: "population", y: "year", fill: (d) => d.year})
+  .plot({y: {label: null, tickFormat: ""}})
+```
+:::
+
+Lastly, note that while channels are normally bound to a [scale](#marks-use-scales), you can bypass the *color* scale here by supplying literal color values to the **fill** channel.
+
+:::plot
+```js
+Plot
+  .barX(timeseries, {x: "population", y: "year", fill: (d) => d.year & 1 ? "red" : "currentColor"})
+  .plot({y: {label: null, tickFormat: ""}})
+```
+:::
+
+But rather than supplying literal values, it is more semantic to provide abstract values and use scales. In addition to centralizing the encoding definition (if used by multiple marks), it allows Plot to generate a legend.
+
+:::plot
+```js
+Plot
+  .barX(timeseries, {x: "population", y: "year", fill: (d) => d.year & 1 ? "odd" : "even"})
+  .plot({y: {label: null, tickFormat: ""}, color: {legend: true}})
+```
+:::
+
+You can then specify the *color* scale’s **domain** and **range** to control the encoding.
