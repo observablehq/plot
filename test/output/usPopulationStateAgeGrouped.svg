@@ -1,0 +1,263 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="430" viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="facet" transform="translate(1,0)">
+    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(84,400)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(84,400)">CA</text>
+    </g>
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
+      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
+      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
+      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
+      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
+      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
+      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
+      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
+      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
+      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
+      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,400)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,367.2946945969975)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,334.589389193995)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,301.88408379099246)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,269.1787783879899)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,236.47347298498738)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,203.76816758198487)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,171.06286217898233)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,138.35755677597982)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,105.65225137297733)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,72.94694596997482)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,40.241640566972286)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+      <text y="0.32em" transform="translate(40,400)">0.0M</text>
+      <text y="0.32em" transform="translate(40,367.2946945969975)">0.5M</text>
+      <text y="0.32em" transform="translate(40,334.589389193995)">1.0M</text>
+      <text y="0.32em" transform="translate(40,301.88408379099246)">1.5M</text>
+      <text y="0.32em" transform="translate(40,269.1787783879899)">2.0M</text>
+      <text y="0.32em" transform="translate(40,236.47347298498738)">2.5M</text>
+      <text y="0.32em" transform="translate(40,203.76816758198487)">3.0M</text>
+      <text y="0.32em" transform="translate(40,171.06286217898233)">3.5M</text>
+      <text y="0.32em" transform="translate(40,138.35755677597982)">4.0M</text>
+      <text y="0.32em" transform="translate(40,105.65225137297733)">4.5M</text>
+      <text y="0.32em" transform="translate(40,72.94694596997482)">5.0M</text>
+      <text y="0.32em" transform="translate(40,40.241640566972286)">5.5M</text>
+    </g>
+    <g aria-label="bar">
+      <rect x="44" width="8" y="70.43301996486764" height="329.56698003513236" fill="#d53e4f"><title>&lt;10</title></rect>
+      <rect x="53" width="8" y="61.8048371146691" height="338.1951628853309" fill="#f46d43"><title>10-19</title></rect>
+      <rect x="62" width="8" y="20" height="380" fill="#fdae61"><title>20-29</title></rect>
+      <rect x="71" width="8" y="49.784263756238744" height="350.2157362437613" fill="#fee08b"><title>30-39</title></rect>
+      <rect x="80" width="8" y="61.221570698111975" height="338.778429301888" fill="#ffffbf"><title>40-49</title></rect>
+      <rect x="89" width="8" y="70.19355171870683" height="329.80644828129317" fill="#e6f598"><title>50-59</title></rect>
+      <rect x="98" width="8" y="155.5303931263776" height="244.4696068736224" fill="#abdda4"><title>60-69</title></rect>
+      <rect x="107" width="8" y="268.4149132749974" height="131.5850867250026" fill="#66c2a5"><title>70-79</title></rect>
+      <rect x="116" width="8" y="314.22222566488597" height="85.77777433511403" fill="#3288bd"><title>≥80</title></rect>
+    </g>
+    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(99,0)">
+    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(84,400)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(84,400)">TX</text>
+    </g>
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
+      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
+      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
+      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
+      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
+      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
+      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
+      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
+      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
+      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
+      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
+    </g>
+    <g aria-label="bar">
+      <rect x="44" width="8" y="139.46358479409858" height="260.53641520590145" fill="#d53e4f"><title>&lt;10</title></rect>
+      <rect x="53" width="8" y="144.2099749460147" height="255.7900250539853" fill="#f46d43"><title>10-19</title></rect>
+      <rect x="62" width="8" y="141.8604912164738" height="258.1395087835262" fill="#fdae61"><title>20-29</title></rect>
+      <rect x="71" width="8" y="153.3670679951906" height="246.6329320048094" fill="#fee08b"><title>30-39</title></rect>
+      <rect x="80" width="8" y="168.07058837705083" height="231.92941162294917" fill="#ffffbf"><title>40-49</title></rect>
+      <rect x="89" width="8" y="181.20608559666954" height="218.79391440333046" fill="#e6f598"><title>50-59</title></rect>
+      <rect x="98" width="8" y="240.95449228886355" height="159.04550771113645" fill="#abdda4"><title>60-69</title></rect>
+      <rect x="107" width="8" y="315.52311189259575" height="84.47688810740425" fill="#66c2a5"><title>70-79</title></rect>
+      <rect x="116" width="8" y="352.10772439067006" height="47.89227560932994" fill="#3288bd"><title>≥80</title></rect>
+    </g>
+    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(197,0)">
+    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(84,400)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(84,400)">NY</text>
+    </g>
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
+      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
+      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
+      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
+      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
+      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
+      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
+      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
+      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
+      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
+      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
+    </g>
+    <g aria-label="bar">
+      <rect x="44" width="8" y="248.25098051366265" height="151.74901948633735" fill="#d53e4f"><title>&lt;10</title></rect>
+      <rect x="53" width="8" y="240.03239890833137" height="159.96760109166863" fill="#f46d43"><title>10-19</title></rect>
+      <rect x="62" width="8" y="210.68429310494702" height="189.31570689505298" fill="#fdae61"><title>20-29</title></rect>
+      <rect x="71" width="8" y="229.58213808352076" height="170.41786191647924" fill="#fee08b"><title>30-39</title></rect>
+      <rect x="80" width="8" y="228.79904225095123" height="171.20095774904877" fill="#ffffbf"><title>40-49</title></rect>
+      <rect x="89" width="8" y="219.7532126507564" height="180.2467873492436" fill="#e6f598"><title>50-59</title></rect>
+      <rect x="98" width="8" y="262.95123036498256" height="137.04876963501744" fill="#abdda4"><title>60-69</title></rect>
+      <rect x="107" width="8" y="324.1200938814398" height="75.8799061185602" fill="#66c2a5"><title>70-79</title></rect>
+      <rect x="116" width="8" y="347.4039165463886" height="52.59608345361141" fill="#3288bd"><title>≥80</title></rect>
+    </g>
+    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(295,0)">
+    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(84,400)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(84,400)">FL</text>
+    </g>
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
+      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
+      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
+      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
+      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
+      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
+      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
+      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
+      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
+      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
+      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
+    </g>
+    <g aria-label="bar">
+      <rect x="44" width="8" y="255.3763545805932" height="144.6236454194068" fill="#d53e4f"><title>&lt;10</title></rect>
+      <rect x="53" width="8" y="247.52119432890004" height="152.47880567109996" fill="#f46d43"><title>10-19</title></rect>
+      <rect x="62" width="8" y="230.07435292983592" height="169.92564707016408" fill="#fdae61"><title>20-29</title></rect>
+      <rect x="71" width="8" y="241.95645202518995" height="158.04354797481005" fill="#fee08b"><title>30-39</title></rect>
+      <rect x="80" width="8" y="231.53000066271278" height="168.46999933728722" fill="#ffffbf"><title>40-49</title></rect>
+      <rect x="89" width="8" y="219.27159432339178" height="180.72840567660822" fill="#e6f598"><title>50-59</title></rect>
+      <rect x="98" width="8" y="242.70978602984272" height="157.29021397015728" fill="#abdda4"><title>60-69</title></rect>
+      <rect x="107" width="8" y="294.326083944191" height="105.673916055809" fill="#66c2a5"><title>70-79</title></rect>
+      <rect x="116" width="8" y="333.30956518296466" height="66.69043481703534" fill="#3288bd"><title>≥80</title></rect>
+    </g>
+    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(393,0)">
+    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(84,400)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(84,400)">PA</text>
+    </g>
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
+      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
+      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
+      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
+      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
+      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
+      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
+      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
+      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
+      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
+      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
+    </g>
+    <g aria-label="bar">
+      <rect x="44" width="8" y="304.5704321661843" height="95.42956783381572" fill="#d53e4f"><title>&lt;10</title></rect>
+      <rect x="53" width="8" y="294.81856043294937" height="105.18143956705063" fill="#f46d43"><title>10-19</title></rect>
+      <rect x="62" width="8" y="287.98773034647826" height="112.01226965352174" fill="#fdae61"><title>20-29</title></rect>
+      <rect x="71" width="8" y="300.5491186350527" height="99.45088136494729" fill="#fee08b"><title>30-39</title></rect>
+      <rect x="80" width="8" y="292.3805107363772" height="107.61948926362282" fill="#ffffbf"><title>40-49</title></rect>
+      <rect x="89" width="8" y="276.93791586301984" height="123.06208413698016" fill="#e6f598"><title>50-59</title></rect>
+      <rect x="98" width="8" y="302.4377192008545" height="97.56228079914553" fill="#abdda4"><title>60-69</title></rect>
+      <rect x="107" width="8" y="344.34230749700276" height="55.657692502997236" fill="#66c2a5"><title>70-79</title></rect>
+      <rect x="116" width="8" y="359.7679610221613" height="40.23203897783873" fill="#3288bd"><title>≥80</title></rect>
+    </g>
+    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(491,0)">
+    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(84,400)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(84,400)">IL</text>
+    </g>
+    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
+      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
+      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
+      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
+      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
+      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
+      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
+      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
+      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
+      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
+      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
+    </g>
+    <g aria-label="bar">
+      <rect x="44" width="8" y="294.0556110685081" height="105.94438893149191" fill="#d53e4f"><title>&lt;10</title></rect>
+      <rect x="53" width="8" y="287.75643842666824" height="112.24356157333176" fill="#f46d43"><title>10-19</title></rect>
+      <rect x="62" width="8" y="282.93207882667133" height="117.06792117332867" fill="#fdae61"><title>20-29</title></rect>
+      <rect x="71" width="8" y="287.36593708015636" height="112.63406291984364" fill="#fee08b"><title>30-39</title></rect>
+      <rect x="80" width="8" y="288.9936801300638" height="111.00631986993619" fill="#ffffbf"><title>40-49</title></rect>
+      <rect x="89" width="8" y="284.003046757398" height="115.99695324260199" fill="#e6f598"><title>50-59</title></rect>
+      <rect x="98" width="8" y="313.2576153873298" height="86.74238461267021" fill="#abdda4"><title>60-69</title></rect>
+      <rect x="107" width="8" y="352.3273732217566" height="47.6726267782434" fill="#66c2a5"><title>70-79</title></rect>
+      <rect x="116" width="8" y="368.67171877568546" height="31.328281224314537" fill="#3288bd"><title>≥80</title></rect>
+    </g>
+    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+    </g>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(41,20)">↑ population</text>
+  </g>
+</svg>
