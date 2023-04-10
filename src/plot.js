@@ -436,6 +436,7 @@ function maybeMarkFacet(mark, topFacetState, options) {
   // Warn for the common pitfall of wanting to facet mapped data with the
   // top-level facet option.
   if (
+    data.length > 0 &&
     (groups.size > 1 || (groups.size === 1 && channels.fx && channels.fy && [...groups][0][1].size > 1)) &&
     arrayify(mark.data)?.length === data.length
   ) {
