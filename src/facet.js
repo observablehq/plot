@@ -1,4 +1,4 @@
-import {cross, rollup, sum} from "d3";
+import {InternMap, cross, rollup, sum} from "d3";
 import {range} from "./options.js";
 import {createScales} from "./scales.js";
 
@@ -16,16 +16,24 @@ export function createFacets(channelsByScale, options) {
     : undefined;
 }
 
-// Returns an accessor function that returns the order of the given facet value
-// in the associated facet scales’ domains.
-export function facetOrder({x: X, y: Y}) {
-  const xi = X && new Map(X.map((v, i) => [v, i]));
-  const yi = Y && new Map(Y.map((v, i) => [v, i]));
-  return X && Y
-    ? (a, b) => xi.get(a.x) - xi.get(b.x) || yi.get(a.y) - yi.get(b.y)
-    : X
-    ? (a, b) => xi.get(a.x) - xi.get(b.x)
-    : (a, b) => yi.get(a.y) - yi.get(b.y);
+export function recreateFacets(facets, {x: X, y: Y}) {
+  X &&= new InternMap(X.map((x, i) => [x, i]));
+  Y &&= new InternMap(Y.map((y, i) => [y, i]));
+  return facets
+    .filter(
+      X && Y // remove any facets no longer present in the domain
+        ? (f) => X.has(f.x) && Y.has(f.y)
+        : X
+        ? (f) => X.has(f.x)
+        : (f) => Y.has(f.y)
+    )
+    .sort(
+      X && Y // reorder facets to match the new scale domains
+        ? (a, b) => X.get(a.x) - X.get(b.x) || Y.get(a.y) - Y.get(b.y)
+        : X
+        ? (a, b) => X.get(a.x) - X.get(b.x)
+        : (a, b) => Y.get(a.y) - Y.get(b.y)
+    );
 }
 
 // Returns a (possibly nested) Map of [[key1, index1], [key2, index2], …]
