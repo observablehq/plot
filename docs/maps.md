@@ -263,18 +263,3 @@ Projections can work with any mark that consumes continuous *x* and *y* channels
 To learn more about this topic, see our hands-on tutorials: [Build your first map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-map-with-observable-plot), and [Build your first choropleth map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-choropleth-map-with-observable-plot).
 
 The datasets used on this page respectively contain the locations and opening dates of all the Walmart stores in the contiguous US; and the winner and margin in each county in the U.S. presidential election of 2020. We load and process a TopoJSON file describing the counties and states.
-
-walmarts = FileAttachment("walmarts.tsv").tsv({typed: true})
-
-elections = FileAttachment("us-presidential-election-2020.csv").csv()
-
-us = FileAttachment("us-counties-10m.json").json()
-
-nation = topojson.feature(us, us.objects.nation)
-
-states = topojson.feature(us, us.objects.states)
-
-statemesh = topojson.mesh(us, us.objects.states, (a, b) => a !== b)
-
-counties = topojson.feature(us, us.objects.counties)
-
