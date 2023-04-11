@@ -29,7 +29,7 @@ features:
     details: "Scales map an abstract value such as time or temperature to a visual value such as position or color."
     link: /scales
   - title: Data transforms
-    details: "Plot can derive data for you, say to bin quantitative values or compute a rolling average."
+    details: "Derive data on-the-fly while plotting, say to bin quantitative values or compute a rolling average."
     link: /transforms
   - title: Facets
     details: "Small multiples facilitate comparison by repeating a plot across partitions of data."
