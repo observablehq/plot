@@ -57,7 +57,7 @@ Plot.barX(penguins.map((d) => d.species), Plot.groupY()).plot()
 
 ## Plot is composable
 
-Simple components can gain power through composition, such as layering multiple [marks](./marks.md) into a single plot. But Plot takes the traditional *grammar of graphics* approach to a new level. For example, here’s a custom compound mark combining an line, area, and rule:
+Simple components can gain power through composition, such as layering multiple [marks](./marks.md) into a single plot. Take the traditional *grammar of graphics* approach to a new level with compound marks, such as this one comprising a rule, area, and line:
 
 ```js
 function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
