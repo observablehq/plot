@@ -75,9 +75,9 @@ const gene = "AAAAGAGTGAAGATGCTGGAGACGAGTGAAGCATTCACTTTAGGGAAAGCGAGGCAAGAGCGTTTC
 
 # Shorthand
 
-We designed Observable Plot’s API to be succinct so that when you want to visualize data, you can do it quickly and without struggling to remember Plot’s API.
+<!-- We designed Observable Plot’s API to be succinct so that when you want to visualize data, you can do it quickly and without struggling to remember Plot’s API. -->
 
-This notebook showcases Plot’s “shorthand” syntax where no options are specified—only data. To use this shorthand, the data must have a specific structure: either a one-dimensional array of values [*v₀*, *v₁*, *v₂*, …] or a two-dimensional array of tuples [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …].
+The most concise form of Plot is its “shorthand” syntax where no options are specified—only data. To use this shorthand, the data must have a specific structure: either a one-dimensional array of values [*v₀*, *v₁*, *v₂*, …] or a two-dimensional array of tuples [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …].
 
 Let’s start with the one-dimensional form: an array of numbers.
 
@@ -98,7 +98,7 @@ Plot.lineY(numbers).plot()
 ```
 :::
 
-The *y*-axis above represents price in U.S. dollars. The *x*-axis represents the index of the data: the first value ${numbers[0]} is shown at *x* = 0, the second value ${numbers[1]} at *x* = 1, and so on. In other words, *x* represents the number of (trading) days since January 1, 2018. It’d be nicer to have an *x*-axis that shows dates here, but it’s still convenient to see the trend in stock price quickly.
+The *y*-axis above represents price in U.S. dollars. The *x*-axis represents the index of the data: the first value {{numbers[0]}} is shown at *x* = 0, the second value {{numbers[1]}} at *x* = 1, and so on. In other words, *x* represents the number of (trading) days since January 1, 2018. It’d be nicer to have an *x*-axis that shows dates here, but it’s still convenient to see the trend in stock price quickly.
 
 If we pass the numbers to [Plot.areaY](./marks/area.md) instead, we’ll get a simple area chart with a baseline implicitly at *y* = 0.
 
@@ -108,7 +108,7 @@ Plot.areaY(numbers, {}).plot()
 ```
 :::
 
-Similarly if we use [Plot.rectY](./marks/rect.md), we’ll get a series of vertical bars. This implicitly uses the [*interval* transform](./transforms/interval.md) such that the first rect spans from *x* = 0 to *x* = 1, the second from *x* = 1 to *x* = 2, and so on, with a horizontal inset to separate adjacent rects.
+Similarly if we use [Plot.rectY](./marks/rect.md), we’ll get a series of vertical bars. This implicitly uses the [interval transform](./transforms/interval.md) such that the first rect spans from *x* = 0 to *x* = 1, the second from *x* = 1 to *x* = 2, and so on, with a horizontal inset to separate adjacent rects.
 
 :::plot
 ```js
@@ -195,6 +195,14 @@ gene = "AAAAGAGTGAAGATGCTGGAGACGAGTGAAGCATTCACTTTAGGGAAAGCGAGGCAAGAGCGTTTCAGAAGA
 :::plot
 ```js
 Plot.barY(gene, Plot.groupX()).plot()
+```
+:::
+
+And here’s the [dodge transform](./transforms/dodge.md) for a beeswarm plot:
+
+:::plot
+```js
+Plot.dotX(numbers, Plot.dodgeY()).plot()
 ```
 :::
 
