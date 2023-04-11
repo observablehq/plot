@@ -4,6 +4,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import anscombe from "./data/anscombe.ts";
 import barley from "./data/barley.ts";
+import olympians from "./data/olympians.ts";
 import penguins from "./data/penguins.ts";
 
 </script>
