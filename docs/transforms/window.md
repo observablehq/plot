@@ -1,6 +1,6 @@
 # Window
 
-Plot.**windowY** and Plot.**windowX** are specialized [map transforms](https://observablehq.com/@observablehq/plot-map?collection=@observablehq/plot), which take a series of numeric values as input and average them (or, more generically, reduce them) over a sliding window:
+Plot.**windowY** and Plot.**windowX** are specialized [map transforms](https://observablehq.com/@observablehq/plot-map), which take a series of numeric values as input and average them (or, more generically, reduce them) over a sliding window:
 
 <!-- viewof k = Inputs.range([1, 20], { value: 7, step: 1, label: "k" }) -->
 

@@ -75,7 +75,7 @@ Plot.plot({
 })
 ```
 
-With the [*bin* transform](./bin.md), sized dots can also be used as an alternative to a [rect-based](./rect.md) heatmap to show a two-dimensional distribution.
+With the [*bin* transform](../transforms/bin.md), sized dots can also be used as an alternative to a [rect-based](./rect.md) heatmap to show a two-dimensional distribution.
 
 ```js
 Plot.plot({
@@ -209,4 +209,4 @@ As another example of a scatterplot with an ordinal dimension, we can plot age g
 }
 ```
 
-Another visualization technique supported by the dot mark is the [quantile-quantile (QQ) plot](/d/6bb4330bca6eba2b); this is used to compare univariate two distributions.
+Another visualization technique supported by the dot mark is the [quantile-quantile (QQ) plot](https://observablehq.com/d/6bb4330bca6eba2b); this is used to compare univariate two distributions.

@@ -1,6 +1,6 @@
 # Rect
 
-The **rect** mark draws a rectangular, axis-aligned region defined by the channels *x1*, *y1*, *x2*, and *y2*. It is most often used in conjunction with the [bin transform](./bin.md) to produce a histogram. The **rectX** mark is shorthand for *x1* = zero, *x2* = *x*, while the **rectY** mark is shorthand for *y1* = zero, *y2* = *y*. For example, below is a histogram of (log) daily trade volume for Apple stock.
+The **rect** mark draws a rectangular, axis-aligned region defined by the channels *x1*, *y1*, *x2*, and *y2*. It is most often used in conjunction with the [bin transform](../transforms/bin.md) to produce a histogram. The **rectX** mark is shorthand for *x1* = zero, *x2* = *x*, while the **rectY** mark is shorthand for *y1* = zero, *y2* = *y*. For example, below is a histogram of (log) daily trade volume for Apple stock.
 
 ```js
 Plot.plot({
@@ -20,7 +20,7 @@ Plot.plot({
 
 The rect mark is closely related to the [bar mark](./bar.md). Both generate a rectangle; the difference is in how the coordinates are specified. For a bar, one side is a quantitative interval (*e.g.*, from 0 to a number of units sold) while the other is an ordinal or categorical value (*e.g.*, a fruit name); whereas for a rect, both sides are quantitative intervals. Hence a bar is used for a bar chart but a rect is needed for a histogram.
 
-As another example, below we recreate a [chart by Max Roser](https://ourworldindata.org/poverty-minimum-growth-needed) that visualizes global poverty. Each rect here represents a country: *x* encodes the country’s population, while *y* encodes the proportion of the country’s population living in poverty; hence the rect *area* encodes the number of people living in poverty. Rects are [stacked](./stack.md) along *x* in order of descending *y*.
+As another example, below we recreate a [chart by Max Roser](https://ourworldindata.org/poverty-minimum-growth-needed) that visualizes global poverty. Each rect here represents a country: *x* encodes the country’s population, while *y* encodes the proportion of the country’s population living in poverty; hence the rect *area* encodes the number of people living in poverty. Rects are [stacked](../transforms/stack.md) along *x* in order of descending *y*.
 
 ```js
 Plot.plot({

@@ -82,7 +82,7 @@ Plot.plot({
 })
 ```
 
-As an alternative to Plot.geo with point geometries, you can pass longitude and latitude to Plot.dot’s _x_ and _y_ channels, and indeed many of Plot’s basic marks can be projected (like we did with the [line](./line.md) mark for the _Beagle_’s route). You can even mix the two types of marks, depending on how your dataset is structured! Maps often layer several marks, as the [Mapping with Plot](./mapping.md) notebook illustrates.
+As an alternative to Plot.geo with point geometries, you can pass longitude and latitude to Plot.dot’s _x_ and _y_ channels, and indeed many of Plot’s basic marks can be projected (like we did with the [line](./line.md) mark for the _Beagle_’s route). You can even mix the two types of marks, depending on how your dataset is structured! Maps often layer several marks, as the [Mapping with Plot](../maps.md) notebook illustrates.
 
 The geo mark’s _geometry_ channel can be used to generate geometry from a non-GeoJSON data source. For example, to visualize the shockwave created by the explosion of the Hunga Tonga–Hunga Haʻapai volcano on January 15, 2022 with a series of geodesic circles of increasing radius:
 
@@ -122,7 +122,7 @@ radii = d3.range(10, 171, 10) // degrees radii of circles to be centered around 
 tonga = [-175.38, -20.57]
 ```
 
-Lastly, Plot.geo is not limited to spherical geometries. [Plot’s projection system](./maps.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
+Lastly, Plot.geo is not limited to spherical geometries. [Plot’s projection system](../maps.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
 
 ---
 

@@ -20,7 +20,7 @@ Plot.plot({
 })
 ```
 
-If there are too many data points, labels may be hard to read due to occlusion. The [*filter* transform](./transforms.md) can be used to label only some data. In the connected scatterplot below (recreating Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009), every fifth year is labeled. In the future, we expect Plot will have an automatic labeling transform, perhaps similar to Philippe Rivière’s [Occlusion](https://observablehq.com/@fil/occlusion).
+If there are too many data points, labels may be hard to read due to occlusion. The [*filter* transform](../transforms.md) can be used to label only some data. In the connected scatterplot below (recreating Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009), every fifth year is labeled. In the future, we expect Plot will have an automatic labeling transform, perhaps similar to Philippe Rivière’s [Occlusion](https://observablehq.com/@fil/occlusion).
 
 ```js
 Plot.plot({
@@ -39,7 +39,7 @@ Plot.plot({
 })
 ```
 
-For line charts with multiple series, you often wish to label only the start or end of the line. This can be done by slicing the data, as below (note this data is in reverse chronological order, so the first element in the data is the most recent), or by using the [select transform](./select.md).
+For line charts with multiple series, you often wish to label only the start or end of the line. This can be done by slicing the data, as below (note this data is in reverse chronological order, so the first element in the data is the most recent), or by using the [select transform](../transforms/select.md).
 
 ```js
 Plot.plot({
@@ -77,7 +77,7 @@ Plot.plot({
 })
 ```
 
-A text mark can also be used to visualize data directly, similar to a [dot mark](./dot.md) in a scatterplot. Below a “stem and leaf” plot of Caltrain’s Palo Alto station schedule uses [stacked](./stack.md) text. The *fill* channel provides a color encoding to distinguish local trains that make every stop (*N* in black), limited trains that make fewer stops (*L* in orange), and “baby bullet” trains that make the fewest stops (*B* in red).
+A text mark can also be used to visualize data directly, similar to a [dot mark](./dot.md) in a scatterplot. Below a “stem and leaf” plot of Caltrain’s Palo Alto station schedule uses [stacked](../transforms/stack.md) text. The *fill* channel provides a color encoding to distinguish local trains that make every stop (*N* in black), limited trains that make fewer stops (*L* in orange), and “baby bullet” trains that make the fewest stops (*B* in red).
 
 ```js
 Plot.plot({

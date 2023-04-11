@@ -138,14 +138,14 @@ Plot’s option transforms, listed below, do more than populate the **transform*
 
 Plot’s built-in options transforms are:
 
-* [group](./group.md) - group ordinal data and derive summary statistics, *e.g.* counts
-* [bin](./bin.md) - bin quantitative data and derive summary statistics, *e.g.* counts
-* [stack](./stack.md) - stack series, *e.g.* convert *y* to *y1* and *y2*
-* [map](./map.md) - map values per series, *e.g.* for a cumulative sum
-* [window](./window.md) - map values per windowed series, *e.g.* for a rolling average
-* [select](./select.md) - extract a value per series, *e.g.* the last value
-* [interval](./interval.md) - convert a single value to an interval [start, stop]
-* [dodge](./dodge.md) - lift points from a one-dimensional layout to prevent occlusion
-* [hexbin](./hexbin.md) - aggregate two-dimensional points into discrete hexagonal bins
+* [group](./transforms/group.md) - group ordinal data and derive summary statistics, *e.g.* counts
+* [bin](./transforms/bin.md) - bin quantitative data and derive summary statistics, *e.g.* counts
+* [stack](./transforms/stack.md) - stack series, *e.g.* convert *y* to *y1* and *y2*
+* [map](./transforms/map.md) - map values per series, *e.g.* for a cumulative sum
+* [window](./transforms/window.md) - map values per windowed series, *e.g.* for a rolling average
+* [select](./transforms/select.md) - extract a value per series, *e.g.* the last value
+* [interval](./transforms/interval.md) - convert a single value to an interval [start, stop]
+* [dodge](./transforms/dodge.md) - lift points from a one-dimensional layout to prevent occlusion
+* [hexbin](./transforms/hexbin.md) - aggregate two-dimensional points into discrete hexagonal bins
 
 When working with custom transforms, keep in mind that every transform needs to be compatible with the faceting system, which partitions the original dataset into discrete subsets.

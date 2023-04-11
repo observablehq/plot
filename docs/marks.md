@@ -43,7 +43,7 @@ If you aren’t yet up-and-running with Plot, read our [quickstart guide](./gett
 
 ## Marks are geometric shapes
 
-Plot provides a variety of mark types, such as [bar](./bar.md), [dot](./dot.md), and [line](./line.md). Think of marks as the “visual vocabulary”—the painter’s palette 🎨, but of shapes instead of colors—that you pull from when composing a chart. Each mark type produces a certain type of geometric shape. For example, the dot mark draws stroked circles by default.
+Plot provides a variety of mark types, such as [bar](./marks/bar.md), [dot](./marks/dot.md), and [line](./marks/line.md). Think of marks as the “visual vocabulary”—the painter’s palette 🎨, but of shapes instead of colors—that you pull from when composing a chart. Each mark type produces a certain type of geometric shape. For example, the dot mark draws stroked circles by default.
 
 :::plot
 ```js
@@ -245,10 +245,10 @@ While Plot aspires to give good defaults and helpful warnings, Plot won’t prev
 
 In particular, beware the simple “bar”! A bar mark is used for a bar chart, but a rect mark is needed for a histogram. Plot has four different mark types for drawing rectangles:
 
-- use [rect](./rect.md) when both *x* and *y* are quantitative
-- use [barX](./bar.md) when *x* is ordinal and *y* is quantitative
-- use [barY](./bar.md) when *x* is quantitative and *y* is ordinal
-- use [cell](./cell.md) when both *x* and *y* are ordinal
+- use [rect](./marks/rect.md) when both *x* and *y* are quantitative
+- use [barX](./marks/bar.md) when *x* is ordinal and *y* is quantitative
+- use [barY](./marks/bar.md) when *x* is quantitative and *y* is ordinal
+- use [cell](./marks/cell.md) when both *x* and *y* are ordinal
 
 Plot encourages you to think about data types as you visualize because data types often imply semantics. For example, do you notice anything strange about the bar chart below?
 
@@ -354,7 +354,7 @@ Plot.barX({length: 7}, {
 Because Plot strives to be concise, there are many default behaviors, some of which can be subtle. If Plot isn’t doing what you expect, try disabling the defaults by specifying options explicitly.
 :::
 
-Some marks even provide default [transforms](./transforms.md), say for [stacking](./stack.md)!
+Some marks even provide default [transforms](./transforms.md), say for [stacking](./transforms/stack.md)!
 
 In addition to the standard options such as **fill** and **stroke** that are supported by all mark types, each mark type can support options unique to that type. For example, the dot mark takes a **symbol** option so you can draw things other than circles.
 

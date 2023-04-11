@@ -1,6 +1,6 @@
 # Interval
 
-The interval transform turns a discrete *value* into an interval [*start*, *stop*]. For example, if *value* is an instant in time, the interval transform could return a *start* of UTC midnight and a *stop* of the UTC midnight the following day. The interval transform is most commonly used for “bar” charts of temporal data, where you in fact want [rects](/@observablehq/plot-rect?collection=@observablehq/plot) rather than [bars](/@observablehq/plot-bar?collection=@observablehq/plot) because time is continuous, not discrete.
+The interval transform turns a discrete *value* into an interval [*start*, *stop*]. For example, if *value* is an instant in time, the interval transform could return a *start* of UTC midnight and a *stop* of the UTC midnight the following day. The interval transform is most commonly used for “bar” charts of temporal data, where you in fact want [rects](../marks/rect.md) rather than [bars](../marks/bar.md) because time is continuous, not discrete.
 
 Consider for example the bar chart below of the trade volume of Apple stock. Because bars are used, *x* is ordinal. And because the regularity of ordinal values is not specified (*i.e.*, because Plot has no way of knowing that this is daily data), every distinct value must have its own label, leading to crowding. If a day were missing data, it would be difficult to spot.
 
@@ -85,4 +85,4 @@ Plot.plot({
 })
 ```
 
-The interval transform is not a standalone transform, but a builtin option with the [rect](/@observablehq/plot-rect?collection=@observablehq/plot), [bar](/@observablehq/plot-bar?collection=@observablehq/plot), and [rule](/@observablehq/plot-rule?collection=@observablehq/plot) marks.
+The interval transform is not a standalone transform, but a builtin option with the [rect](../marks/rect.md), [bar](../marks/bar.md), and [rule](../marks/rule.md) marks.

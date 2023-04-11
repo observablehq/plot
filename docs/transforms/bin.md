@@ -1,8 +1,8 @@
 # Bin
 
-The bin transform groups quantitative data—continuous measurements such as heights, weights, or temperatures—into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is like a [group transform](/@observablehq/plot-group?collection=@observablehq/plot) for quantitative data, and is most often used to make histograms or heatmaps.
+The bin transform groups quantitative data—continuous measurements such as heights, weights, or temperatures—into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is like a [group transform](./group.md) for quantitative data, and is most often used to make histograms or heatmaps.
 
-The **binX** transform bins data on *x*. This can be used to produce a *y* channel of counts, along with *x1* and *x2* channels representing the bin thresholds, suitable for the [rectY mark](/@observablehq/plot-rect?collection=@observablehq/plot) as shown below. (A similar **binY** transform bins on *y*, producing *y1*, *y2*, and typically *x*.) Because the bin transform operates on quantitative data, a rect is used instead of a [bar](/@observablehq/plot-bar?collection=@observablehq/plot).
+The **binX** transform bins data on *x*. This can be used to produce a *y* channel of counts, along with *x1* and *x2* channels representing the bin thresholds, suitable for the [rectY mark](../marks/rect.md) as shown below. (A similar **binY** transform bins on *y*, producing *y1*, *y2*, and typically *x*.) Because the bin transform operates on quantitative data, a rect is used instead of a [bar](../marks/bar.md).
 
 ```js
 Plot.plot({
@@ -33,7 +33,7 @@ Plot.plot({
 })
 ```
 
-While the rect mark is the most common pairing with the bin transform, you can use other marks, such as an [area](/@observablehq/plot-area?collection=@observablehq/plot) and [line](/@observablehq/plot-line?collection=@observablehq/plot). With a continuous mark, you should set the bin transform’s _filter_ option to null so that empty bins are included in the output; otherwise, the area or line would mislead by interpolating over missing bins.
+While the rect mark is the most common pairing with the bin transform, you can use other marks, such as an [area](../marks/area.md) and [line](../marks/line.md). With a continuous mark, you should set the bin transform’s _filter_ option to null so that empty bins are included in the output; otherwise, the area or line would mislead by interpolating over missing bins.
 
 ```js
 Plot.plot({
@@ -86,7 +86,7 @@ Plot.plot({
 })
 ```
 
-While binX and binY bin on *x* and *y*, respectively, you can further partition (subdivide) bins by an additional *z* dimension. If the *z* dimension is undefined, it defaults to either the *fill* or *stroke* dimension. This can be used in conjunction with the rect mark’s implicit [stack transform](/@observablehq/plot-stack?collection=@observablehq/plot) to produce a stacked histogram, which is useful to compare distributions across an ordinal dimension.
+While binX and binY bin on *x* and *y*, respectively, you can further partition (subdivide) bins by an additional *z* dimension. If the *z* dimension is undefined, it defaults to either the *fill* or *stroke* dimension. This can be used in conjunction with the rect mark’s implicit [stack transform](./stack.md) to produce a stacked histogram, which is useful to compare distributions across an ordinal dimension.
 
 ```js
 Plot.plot({

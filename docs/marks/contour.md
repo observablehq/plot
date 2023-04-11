@@ -26,11 +26,11 @@ Plot.contour(volcano.values, {
 })
 ```
 
-Similar to the [bin transform](./bin.md), the levels for which contours are computed can be specified either with the **interval** option (_e.g._, interval: 10 on the volcano elevation data means one contour every 10 meters); or with the **thresholds** option, which, if specified as a number, indicates an approximate number of contours. (See the [API documentation](https://github.com/observablehq/plot/blob/main/README.md#bin) for more details.)
+Similar to the [bin transform](../transforms/bin.md), the levels for which contours are computed can be specified either with the **interval** option (_e.g._, interval: 10 on the volcano elevation data means one contour every 10 meters); or with the **thresholds** option, which, if specified as a number, indicates an approximate number of contours. (See the [API documentation](https://github.com/observablehq/plot/blob/main/README.md#bin) for more details.)
 
 ## Sampled data
 
-When the data is not on a grid, or when that grid is not rectangular (for example through the use of a [projection](./maps.md)), a spatial interpolation strategy can be specified; it defaults to _nearest_. The cell below reads the water vapor data for November 2022, downloaded from [NASA’s Earth Observations website](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV) as a CSV grid with a coarse resolution of 360&times;180 values. The values are in centimeters.
+When the data is not on a grid, or when that grid is not rectangular (for example through the use of a [projection](../maps.md)), a spatial interpolation strategy can be specified; it defaults to _nearest_. The cell below reads the water vapor data for November 2022, downloaded from [NASA’s Earth Observations website](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV) as a CSV grid with a coarse resolution of 360&times;180 values. The values are in centimeters.
 
 ```js
 vapor = (await FileAttachment("MYDAL2_M_SKY_WV_2022-11-01_rgb_360x180.csv").csv({array: true}))

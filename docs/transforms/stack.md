@@ -1,6 +1,6 @@
 # Stack
 
-The **stackY** transform replaces the *y* channel with *y1* and *y2* channels to form vertical “stacks” grouped on *x*. (There’s also a **stackX** transform that replaces *x* with *x1* and *x2* for horizontal stacking grouped on *y*.) For example, consider this [line](/@observablehq/plot-line?collection=@observablehq/plot) chart of Florence Nightingale’s data on deaths in the Crimean War.
+The **stackY** transform replaces the *y* channel with *y1* and *y2* channels to form vertical “stacks” grouped on *x*. (There’s also a **stackX** transform that replaces *x* with *x1* and *x2* for horizontal stacking grouped on *y*.) For example, consider this [line](../marks/line.md) chart of Florence Nightingale’s data on deaths in the Crimean War.
 
 ```js
 Plot.plot({
@@ -17,7 +17,7 @@ Plot.plot({
 })
 ```
 
-If we visualized this data with non-stacked [areas](/@observablehq/plot-area?collection=@observablehq/plot), using the _y2_ channel instead of _y_, the areas would overlap and be hard to read even with multiply blending.
+If we visualized this data with non-stacked [areas](../marks/area.md), using the _y2_ channel instead of _y_, the areas would overlap and be hard to read even with multiply blending.
 
 ```js
 Plot.plot({
@@ -45,7 +45,7 @@ Plot.plot({
 })
 ```
 
-The stack transform works with [bars](/@observablehq/plot-bar?collection=@observablehq/plot), too. (With an ordinal *x*-axis of dates, we must format the ticks manually; Plot might get smarter in the future.)
+The stack transform works with [bars](../marks/bar.md), too. (With an ordinal *x*-axis of dates, we must format the ticks manually; Plot might get smarter in the future.)
 
 ```js
 Plot.plot({
@@ -189,7 +189,7 @@ With the *expand* offset, the stack transform will compute the proportion of eac
 }
 ```
 
-If the null offset is used for a zero baseline, then negative values will be stacked downwards from the baseline, producing a diverging stacked chart. This is especially useful for splitting series into two categories, such as in the chart of the gender and age of U.S. congress members below. This chart uses the stackY2 transform to position [dots](/@observablehq/plot-dot?collection=@observablehq/plot).
+If the null offset is used for a zero baseline, then negative values will be stacked downwards from the baseline, producing a diverging stacked chart. This is especially useful for splitting series into two categories, such as in the chart of the gender and age of U.S. congress members below. This chart uses the stackY2 transform to position [dots](../marks/dot.md).
 
 ```js
 Plot.plot({

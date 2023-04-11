@@ -211,7 +211,7 @@ Plot.plot({
 
 When using *z*, lines are drawn in input order. The *sort* transform above places the red lines on top of the gray ones to improve readability.
 
-As an alternative to *z*, you can render multiple lines using multiple marks. While more verbose, this allows you to choose different options for each line. For example, below we plot the a 14-day moving average of the daily highs and lows in temperate San Francisco using the [window transform](./window.md).
+As an alternative to *z*, you can render multiple lines using multiple marks. While more verbose, this allows you to choose different options for each line. For example, below we plot the a 14-day moving average of the daily highs and lows in temperate San Francisco using the [window transform](../transforms/window.md).
 
 ```js
 Plot.plot({

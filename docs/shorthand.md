@@ -15,7 +15,7 @@ numbers = [
 ]
 ```
 
-These numbers represent the daily opening price of Apple stock starting on January 1, 2018. For a simple line chart, we can pass the data to [Plot.lineY](./line.md) to construct a *line* mark, and then call *line*.plot.
+These numbers represent the daily opening price of Apple stock starting on January 1, 2018. For a simple line chart, we can pass the data to [Plot.lineY](./marks/line.md) to construct a *line* mark, and then call *line*.plot.
 
 ```js
 Plot.lineY(numbers).plot()
@@ -23,37 +23,37 @@ Plot.lineY(numbers).plot()
 
 The *y*-axis above represents price in U.S. dollars. The *x*-axis represents the index of the data: the first value ${numbers[0]} is shown at *x* = 0, the second value ${numbers[1]} at *x* = 1, and so on. In other words, *x* represents the number of (trading) days since January 1, 2018. It’d be nicer to have an *x*-axis that shows dates here, but it’s still convenient to see the trend in stock price quickly.
 
-If we pass the numbers to [Plot.areaY](./area.md) instead, we’ll get a simple area chart with a baseline implicitly at *y* = 0.
+If we pass the numbers to [Plot.areaY](./marks/area.md) instead, we’ll get a simple area chart with a baseline implicitly at *y* = 0.
 
 ```js
 Plot.areaY(numbers, {}).plot()
 ```
 
-Similarly if we use [Plot.rectY](./rect.md), we’ll get a series of vertical bars. This implicitly uses the [*interval* transform](./interval.md) such that the first rect spans from *x* = 0 to *x* = 1, the second from *x* = 1 to *x* = 2, and so on, with a horizontal inset to separate adjacent rects.
+Similarly if we use [Plot.rectY](./marks/rect.md), we’ll get a series of vertical bars. This implicitly uses the [*interval* transform](./transforms/interval.md) such that the first rect spans from *x* = 0 to *x* = 1, the second from *x* = 1 to *x* = 2, and so on, with a horizontal inset to separate adjacent rects.
 
 ```js
 Plot.rectY(numbers).plot()
 ```
 
-[Plot.barY](./bar.md) produces a visually similar result but with different semantics: *x* is now ordinal (a *band* scale) rather than quantitative (*linear*). An ordinal axis labels every tick, which appear at the middle of each bar rather than between rects.
+[Plot.barY](./marks/bar.md) produces a visually similar result but with different semantics: *x* is now ordinal (a *band* scale) rather than quantitative (*linear*). An ordinal axis labels every tick, which appear at the middle of each bar rather than between rects.
 
 ```js
 Plot.barY(numbers).plot()
 ```
 
-Like Plot.barY, [Plot.cellX](./cell.md) implies that *x* is ordinal. But now instead of a *y* channel the numeric value is encoded as the *fill* color. The default quantitative color scheme is *turbo*; higher values are reddish, and lower values blueish.
+Like Plot.barY, [Plot.cellX](./marks/cell.md) implies that *x* is ordinal. But now instead of a *y* channel the numeric value is encoded as the *fill* color. The default quantitative color scheme is *turbo*; higher values are reddish, and lower values blueish.
 
 ```js
 Plot.cellX(numbers).plot()
 ```
 
-If we don’t care about the order of our data and we instead just want to look at the one-dimensional distribution of values, we can use [Plot.dotX](./dot.md).
+If we don’t care about the order of our data and we instead just want to look at the one-dimensional distribution of values, we can use [Plot.dotX](./marks/dot.md).
 
 ```js
 Plot.dotX(numbers).plot()
 ```
 
-Alternatively, we can use [Plot.ruleX](./rule.md) to draw a vertical rule at each value. In this case, Plot.ruleX behaves identically to [Plot.tickX](./tick.md). (If there *were* a *y* channel, then Plot.tickX would imply that *y* is ordinal whereas Plot.ruleX would imply that *y* is quantitative.) It is common to use the rule shorthand to annotate special *x* or *y* values in plots, such as *y* = 0, in conjunction with other marks.
+Alternatively, we can use [Plot.ruleX](./marks/rule.md) to draw a vertical rule at each value. In this case, Plot.ruleX behaves identically to [Plot.tickX](./marks/tick.md). (If there *were* a *y* channel, then Plot.tickX would imply that *y* is ordinal whereas Plot.ruleX would imply that *y* is quantitative.) It is common to use the rule shorthand to annotate special *x* or *y* values in plots, such as *y* = 0, in conjunction with other marks.
 
 ```js
 Plot.ruleX(numbers).plot()
@@ -63,31 +63,31 @@ Plot.ruleX(numbers).plot()
 Plot.tickX(numbers).plot()
 ```
 
-We could even use [Plot.vectorX](./vector.md) here to draw little up-pointing arrows. (Typically the vector mark is used in conjunction with the *rotate* and *length* options to control the direction and magnitude of each vector.)
+We could even use [Plot.vectorX](./marks/vector.md) here to draw little up-pointing arrows. (Typically the vector mark is used in conjunction with the *rotate* and *length* options to control the direction and magnitude of each vector.)
 
 ```js
 Plot.vectorX(numbers).plot()
 ```
 
-While not particularly readable due to occlusion, we can use [Plot.textX](./text.md) to draw a label at each value, too.
+While not particularly readable due to occlusion, we can use [Plot.textX](./marks/text.md) to draw a label at each value, too.
 
 ```js
 Plot.textX(numbers).plot()
 ```
 
-For a more formal method of summarizing a one-dimensional distribution, we can use [Plot.boxX](./box.md) to create a horizontal boxplot. The gray band represents the interquartile range; the black whiskers show the extrema (not including outliers); and the thick black stroke represents the median; any outliers (none in this dataset) are drawn as dots.
+For a more formal method of summarizing a one-dimensional distribution, we can use [Plot.boxX](./marks/box.md) to create a horizontal boxplot. The gray band represents the interquartile range; the black whiskers show the extrema (not including outliers); and the thick black stroke represents the median; any outliers (none in this dataset) are drawn as dots.
 
 ```js
 Plot.boxX(numbers).plot()
 ```
 
-Some of Plot’s transforms support shorthand syntax, too. For example, we can use Plot.rectY with [Plot.binX](./bin.md) to generate a histogram—another common way to visualize a one-dimensional distribution.
+Some of Plot’s transforms support shorthand syntax, too. For example, we can use Plot.rectY with [Plot.binX](./transforms/bin.md) to generate a histogram—another common way to visualize a one-dimensional distribution.
 
 ```js
 Plot.rectY(numbers, Plot.binX()).plot()
 ```
 
-Similarly [Plot.groupX](./group.md) can be used to group and count ordinal data, such as the frequency of bases in a random DNA sequence.
+Similarly [Plot.groupX](./transforms/group.md) can be used to group and count ordinal data, such as the frequency of bases in a random DNA sequence.
 
 gene = "AAAAGAGTGAAGATGCTGGAGACGAGTGAAGCATTCACTTTAGGGAAAGCGAGGCAAGAGCGTTTCAGAAGACGAAACCTGGTAGGTGCACTCACCACAG"
 
@@ -202,6 +202,6 @@ matrix = [
 Plot.cell(matrix).plot()
 ```
 
-Plot has a few marks that don’t currently provide meaningful shorthand. The [arrow](./arrow.md) and [link](./link.md) marks both require a start (*x1*, *y1*) and end (*x2*, *y2*) point; and the [image](./image.md) mark requires a source URL (*src*).
+Plot has a few marks that don’t currently provide meaningful shorthand. The [arrow](./marks/arrow.md) and [link](./marks/link.md) marks both require a start (*x1*, *y1*) and end (*x2*, *y2*) point; and the [image](./marks/image.md) mark requires a source URL (*src*).
 
 This concludes our tour of Plot shorthand. While none of these charts are particularly groundbreaking, we hope you find this shorthand convenient the next time you want a quick look at some data. And if the shorthand view is useful, you can then enhance it by adding options!

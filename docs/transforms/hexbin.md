@@ -1,6 +1,6 @@
 # Hexbin
 
-The **hexbin** transform aggregates two-dimensional points (in *x* and *y*) into discrete hexagonal bins. Like the [bin transform](/@observablehq/plot-bin), you can then compute summary statistics for each bin, such as a count, sum, or proportion. The hexbin transform is most often used to make heatmaps; it is an alternative to dense scatterplots that may suffer from occlusion.
+The **hexbin** transform aggregates two-dimensional points (in *x* and *y*) into discrete hexagonal bins. Like the [bin transform](./bin.md), you can then compute summary statistics for each bin, such as a count, sum, or proportion. The hexbin transform is most often used to make heatmaps; it is an alternative to dense scatterplots that may suffer from occlusion.
 
 The hexbin transform produces *x* and *y* channels representing the centers of the hexagonal bins. The hexbin transform operates in “screen space” (_i.e._, in pixel coordinates) after the *x* and *y* scales have been applied to the input data. Only hexagons with at least one constituent point are generated.
 

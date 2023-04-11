@@ -12,7 +12,7 @@ Let’s begin with [**centroid**](https://github.com/observablehq/plot/blob/main
 Plot.dot(counties.features, Plot.centroid()).plot({projection: "albers-usa"})
 ```
 
-The centroid and geoCentroid transforms can be used by any mark that consumes the x and y channels, not only dots! For instance, to create labels for the counties whose names start with V—this is more interesting than it seems—, we use the [text](/@observablehq/plot-text) mark:
+The centroid and geoCentroid transforms can be used by any mark that consumes the x and y channels, not only dots! For instance, to create labels for the counties whose names start with V—this is more interesting than it seems—, we use the [text](../marks/text.md) mark:
 
 ```js
 Plot.plot({
@@ -43,7 +43,7 @@ Plot.plot({
 })
 ```
 
-Or, with the [voronoiMesh](/@observablehq/plot-voronoi) mark:
+Or, with the [voronoiMesh](../marks/delaunay.md) mark:
 
 ```js
 Plot.voronoiMesh(counties.features, Plot.centroid()).plot({projection: "albers"})
@@ -87,7 +87,7 @@ Plot.plot({
 })
 ```
 
-The geoCentroid transform is slightly faster than the centroid initializer—which might be useful if you have tens of thousands of features and want to show their density on a [hexbin map](https://observablehq.com/@observablehq/plot-mapping?collection=@observablehq/plot):
+The geoCentroid transform is slightly faster than the centroid initializer—which might be useful if you have tens of thousands of features and want to show their density on a [hexbin map](https://observablehq.com/@observablehq/plot-mapping):
 
 ```js
 Plot.dot(counties.features, Plot.hexbin({r:"count"}, Plot.geoCentroid())).plot({projection: "albers"})

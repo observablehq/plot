@@ -77,7 +77,7 @@ arealineY(aapl, {x: "Date", y: "Close", color: "steelblue"}).plot()
 ```
 :::
 
-Plot uses this technique internally: the [box mark](./box.md) and [axis mark](./axis.md) are both compound marks.
+Plot uses this technique internally: the [box mark](./marks/box.md) and [axis mark](./marks/axis.md) are both compound marks.
 
 :::plot
 ```js
@@ -85,7 +85,7 @@ Plot.boxX(penguins, {x: "body_mass_g", y: "species"}).plot()
 ```
 :::
 
-Plot’s transforms are composable, too. For example, to combine the [group transform](./group.md) with the [stack transform](./stack.md), simply pass the result of the group transform to the stack transform.
+Plot’s transforms are composable, too. For example, to combine the [group transform](./transforms/group.md) with the [stack transform](./transforms/stack.md), simply pass the result of the group transform to the stack transform.
 
 :::plot
 ```js

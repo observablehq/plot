@@ -1,8 +1,8 @@
 # Group
 
-You often want to aggregate data before visualizing; for example, given a set of penguin observations you may wish to count the number of each species seen. Plot’s group transforms let you derive summary values for each group, such as a count, sum, or proportion. The group transform is like a [bin transform](/@observablehq/plot-bin?collection=@observablehq/plot) for ordinal or categorical data, and is most often used to make bar charts.
+You often want to aggregate data before visualizing; for example, given a set of penguin observations you may wish to count the number of each species seen. Plot’s group transforms let you derive summary values for each group, such as a count, sum, or proportion. The group transform is like a [bin transform](./bin.md) for ordinal or categorical data, and is most often used to make bar charts.
 
-The **groupX** transform groups data by *x*. This can be used to produce a *y* channel of counts suitable for the [barY mark](/@observablehq/plot-bar?collection=@observablehq/plot), as shown below. (A similar **groupY** transforms groups on *y*.)
+The **groupX** transform groups data by *x*. This can be used to produce a *y* channel of counts suitable for the [barY mark](../marks/bar.md), as shown below. (A similar **groupY** transforms groups on *y*.)
 
 ```js
 Plot.plot({
@@ -30,7 +30,7 @@ Plot.plot({
 })
 ```
 
-The group transform should generally not be used if the primary dimension (*e.g.*, *x* for groupX) is temporal or quantitative (continuous) rather than ordinal or categorical (discrete). If this is the case, you should use the [bin transform](/@observablehq/plot-bin?collection=@observablehq/plot), say with a [rect mark](/@observablehq/plot-rect?collection=@observablehq/plot) instead of a bar mark.
+The group transform should generally not be used if the primary dimension (*e.g.*, *x* for groupX) is temporal or quantitative (continuous) rather than ordinal or categorical (discrete). If this is the case, you should use the [bin transform](./bin.md), say with a [rect mark](../marks/rect.md) instead of a bar mark.
 
 Each grouped output channel (the keys of the object passed as the first argument to the group transform) has an associated reducer which controls how the summary value for each group is derived. The examples above use *count*, but a variety of built-in reducers are provided:
 
@@ -81,7 +81,7 @@ Plot.plot({
 })
 ```
 
-Below, a [rule](/@observablehq/plot-rule?collection=@observablehq/plot) shows the observed minimum and maximum body mass for each species, while a red [tick](/@observablehq/plot-tick?collection=@observablehq/plot) shows the median. (See the related [boxplot example](/@observablehq/plot-box).)
+Below, a [rule](../marks/rule.md) shows the observed minimum and maximum body mass for each species, while a red [tick](../marks/tick.md) shows the median. (See the related [boxplot example](../marks/box.md).)
 
 ```js
 Plot.plot({
@@ -120,7 +120,7 @@ Plot.plot({
 })
 ```
 
-The group transform can be composed with other transforms, such as the [filter transform](/@observablehq/plot-transforms?collection=@observablehq/plot), say to compute the frequency only of vowels. When the *proportion* reducer is used, the basis is still the entire (unfiltered) dataset.
+The group transform can be composed with other transforms, such as the [filter transform](../transforms.md), say to compute the frequency only of vowels. When the *proportion* reducer is used, the basis is still the entire (unfiltered) dataset.
 
 ```js
 Plot.plot({
@@ -135,7 +135,7 @@ Plot.plot({
 })
 ```
 
-Grouping can be combined with [faceting](/@observablehq/plot-facets?collection=@observablehq/plot) to create small multiples where the data is subdivided into facets before being grouped.
+Grouping can be combined with [faceting](../facets.md) to create small multiples where the data is subdivided into facets before being grouped.
 
 ```js
 Plot.plot({
@@ -226,7 +226,7 @@ Plot.plot({
 })
 ```
 
-Lastly, the **group** transform groups on both *x* and *y*. This is typically used in conjunction with a [cell](/@observablehq/plot-cell?collection=@observablehq/plot) or [dot](/@observablehq/plot-dot?collection=@observablehq/plot) to produce a discrete heatmap. Below, we plot the maximum observed temperature in Seattle between 2012 and 2015 where *y* = month and *x* = day of the month.
+Lastly, the **group** transform groups on both *x* and *y*. This is typically used in conjunction with a [cell](../marks/cell.md) or [dot](../marks/dot.md) to produce a discrete heatmap. Below, we plot the maximum observed temperature in Seattle between 2012 and 2015 where *y* = month and *x* = day of the month.
 
 ```js
 Plot.plot({

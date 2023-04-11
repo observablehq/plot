@@ -398,7 +398,7 @@ Note that we are using the **unknown** option to set the color of invalid values
 
 ## Continuous radius
 
-For [dot marks](./dot.md), the *r* channel makes the dots’ area proportional to the associated quantitative value. The default range for the associated *r* scale is constructed such that a zero value maps to zero for an accurate areal encoding, while the first quartile of values is mapped to a radius of three pixels; this tends to be more stable with varying data. Adjust the dot size as needed by specifying an explicit range.
+For [dot marks](./marks/dot.md), the *r* channel makes the dots’ area proportional to the associated quantitative value. The default range for the associated *r* scale is constructed such that a zero value maps to zero for an accurate areal encoding, while the first quartile of values is mapped to a radius of three pixels; this tends to be more stable with varying data. Adjust the dot size as needed by specifying an explicit range.
 
 <!-- viewof radius = Inputs.range([1, 20], {label: "Radius", step: 0.1, value: 8}) -->
 

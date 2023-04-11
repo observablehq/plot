@@ -14,13 +14,13 @@ const lookup = d3.index(counties.features, (d) => d.id);
 
 To make a map, follow the order of things described by the painter Wassily Kandinsky in _Point and Line to Plane_ ([1926](https://www.wassilykandinsky.net/book-117.php)): lay out your planes (areas, filled polygons), draw lines above them (contours, arrows), then finally put dots on top. (You can add labels, too.)
 
-Plot’s [**projection**](./maps.md) option is going to be your paint tool. Where classic charts are concerned, the **x** and **y** axes are independent, and generally represent different dimensions of the data, with different types of scales. Once a projection is set in Plot, though, it takes over the x and y dimensions, which now _jointly_ represent a location on a surface (flat, or spherical). For any location on that surface, the projection function will indicate the corresponding position on the map.
+Plot’s **projection** option is going to be your paint tool. Where classic charts are concerned, the **x** and **y** axes are independent, and generally represent different dimensions of the data, with different types of scales. Once a projection is set in Plot, though, it takes over the x and y dimensions, which now _jointly_ represent a location on a surface (flat, or spherical). For any location on that surface, the projection function will indicate the corresponding position on the map.
 
 In practice, the ⟨_x_, _y_⟩ pair denotes the horizontal and vertical coordinates of a point, for planar geometries; and for spherical geometries, it corresponds to the _longitude_ and _latitude_, in degrees. The projection you select will determine where and how geometries in that space will be drawn on the screen.
 
 ## Geometries
 
-The [**geo**](./geo.md) mark draws geographic features, such as polygons and lines, connecting points through the shortest path (which, on the sphere, is not a straight line, but a geodesic or “great circle” line). We use this mark to show the outline of the contiguous United States—the canvas on which we’ll make maps in this notebook.
+The [**geo**](./marks/geo.md) mark draws geographic features, such as polygons and lines, connecting points through the shortest path (which, on the sphere, is not a straight line, but a geodesic or “great circle” line). We use this mark to show the outline of the contiguous United States—the canvas on which we’ll make maps in this notebook.
 
 :::plot
 ```js
@@ -39,7 +39,7 @@ _Note:_ Marks that expect _x_ or _y_ to be ordinal scales, such as bars, cells, 
 
 ## Dots (& symbols)
 
-To plot locations as dots on a map, use [the dot mark](./dot.md), passing longitudes as the **x** channel and latitudes as the **y** channel. All the options of dot can be used, like for example the **stroke** color for each dot, or the **symbol** channel. The map below represents the opening year of every Walmart store in the contiguous United States.
+To plot locations as dots on a map, use [the dot mark](./marks/dot.md), passing longitudes as the **x** channel and latitudes as the **y** channel. All the options of dot can be used, like for example the **stroke** color for each dot, or the **symbol** channel. The map below represents the opening year of every Walmart store in the contiguous United States.
 
 :::plot
 ```js
@@ -253,7 +253,7 @@ TODO fix vector mark which doesn't render.
 
 ## More marks: image, rect, link, arrow, line
 
-Projections can work with any mark that consumes continuous *x* and *y* channels—as well as marks that use *x1* and *y1*, *x2* and *y2*. Use the [image](./image.md) mark to center an image at the given location. The [arrow](./arrow.md) and [link](./link.md) marks connect two points, and can be used in thematic mapping to express, say, trade flows between countries. The [rect](./rect.md) mark creates a rectangle from two opposite corners, and can be used to draw a selection (brush), an inset, a bounding-box…
+Projections can work with any mark that consumes continuous *x* and *y* channels—as well as marks that use *x1* and *y1*, *x2* and *y2*. Use the [image](./marks/image.md) mark to center an image at the given location. The [arrow](./marks/arrow.md) and [link](./marks/link.md) marks connect two points, and can be used in thematic mapping to express, say, trade flows between countries. The [rect](./marks/rect.md) mark creates a rectangle from two opposite corners, and can be used to draw a selection (brush), an inset, a bounding-box…
 
 
 ---

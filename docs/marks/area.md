@@ -70,7 +70,7 @@ Plot.plot({
 })
 ```
 
-The band above is spikey; we can smooth it by applying a 14-day moving average to the *y1* and *y2* channels with the [window transform](./window.md), and do the same for a midline. We can also add a *y*-rule to indicate the freezing point, 32°F.
+The band above is spikey; we can smooth it by applying a 14-day moving average to the *y1* and *y2* channels with the [window transform](../transforms/window.md), and do the same for a midline. We can also add a *y*-rule to indicate the freezing point, 32°F.
 
 ```js
 Plot.plot({
@@ -184,7 +184,7 @@ Plot.plot({
 construction = bls.filter(d => d.industry === "Construction")
 ```
 
-An area mark’s *z* channel groups data along an ordinal (discrete) dimension, producing multiple areas. This is typically used with the [stack transform](./stack.md) for a stacked area chart or streamgraph, but it can also be used for overlapping areas.
+An area mark’s *z* channel groups data along an ordinal (discrete) dimension, producing multiple areas. This is typically used with the [stack transform](../transforms/stack.md) for a stacked area chart or streamgraph, but it can also be used for overlapping areas.
 
 ```js
 Plot.plot({
