@@ -35,7 +35,7 @@ We recommend D3 for *bespoke* data visualizations, and only if you decide the ex
 
 ## Plot is concise
 
-With its concise and (hopefully) memorable API, Observable Plot lets you try out ideas quickly. You can make a meaningful chart with as little as one line of code.
+With its concise and memorable API, Observable Plot lets you try out ideas quickly. You can make a meaningful chart with as little as one line of code.
 
 :::plot
 ```js
@@ -45,7 +45,7 @@ Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "specie
 
 And it’s not just about shortening the time to your first chart, but how quickly you can pivot among different views of your data. Our hope with Plot is that you’ll spend less time reading the docs, searching for code to copy-paste, and debugging—and more time asking questions of data. With faster iteration, you can find more insights.
 
-What makes Plot concise? In a word: *defaults*. If you specify the semantics—your data and the desired encodings—Plot will figure out the rest. And the beauty of defaults is that you can override them as needed. This is ideal for exploratory analysis: you can invest very little in an initial chart, but as you see start to see something interesting, you can progressively customize the chart to make it better.
+What makes Plot concise? In a word: *defaults*. If you specify the semantics—your data and the desired encodings—Plot will figure out the rest. And the beauty of defaults is that you can override them as needed. This is ideal for exploratory analysis: you can invest very little in an initial chart, but as you start to see something interesting, you can progressively customize the chart to make it better.
 
 Also: [transforms](./transforms.md). Munging data, not assigning visual encodings, is most of the work of data analysis. Plot’s transforms let you aggregate and derive data within your plot specification, reducing the time spent preparing data. For example, if you have an array of categorical values (penguin species), you can quickly count them with the group transform.
 
@@ -104,7 +104,7 @@ Mark options are plain JavaScript objects, so you can also share (possibly trans
 
 ## Plot is extensible
 
-Plot isn’t a new language; it’s “just” vanilla JavaScript. Plot embraces JavaScript, letting you can plug in your own functions for accessors, reducers, transforms… and even custom marks! Plot is *intended* to be *extended*—we can’t wait to see where you take it.
+Plot isn’t a new language; it’s “just” vanilla JavaScript. Plot embraces JavaScript, letting you plug in your own functions for accessors, reducers, transforms… and even custom marks! Plot is *intended* to be *extended*—we can’t wait to see where you take it.
 
 And Plot generates SVG, so you can style it with CSS and manipulate it just like you do with D3. (See [Mike Freeman’s tooltip plugin](https://observablehq.com/@mkfreeman/plot-tooltip) for a great example of extending Plot this way.)
 

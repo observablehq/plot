@@ -64,11 +64,11 @@ import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm"
 
 :::
 
- We recommend using the ES module bundle as it automatically loads Plot’s dependency on D3, and because ES modules are the modern way. But for those you need it, the provided UMD bundle is AMD-compatible and exports the `Plot` global when loaded as a plain script.
+ We recommend using the ES module bundle as it automatically loads Plot’s dependency on D3, and because ES modules are the modern way. But for those who need it, the provided UMD bundle is AMD-compatible and exports the `Plot` global when loaded as a plain script.
 
 ## Installing Plot locally
 
-If you’re developing a web application using Node, you can install Plot via npm, yarn, pnpm, or your preferred package manager.
+If you’re developing a web application using Node, you can install Plot via yarn, npm, pnpm, or your preferred package manager.
 
 :::code-group
 
@@ -92,10 +92,10 @@ You can then load Plot into your app as:
 import * as Plot from "@observablehq/plot";
 ```
 
-To optimize tree-shaking, you can instead import specific symbols:
+You can instead import specific symbols if you prefer:
 
 ```js
-import {barX, barY} from "@observablehq/plot";
+import {barY, groupX} from "@observablehq/plot";
 ```
 
 ## First light with Plot
