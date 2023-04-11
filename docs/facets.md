@@ -15,10 +15,6 @@ Faceting produces horizontal and/or vertical [small multiples](https://en.wikipe
 
 Faceting may either be specified at the top level of the plot or on individual marks. The mark-level **fx** and **fy** options allow marks to define facet channels. For example, we can recreate the “trellis” plot of Barley yields constructed by [Becker *et al.*](https://hci.stanford.edu/courses/cs448b/papers/becker-trellis-jcgs.pdf)
 
-```js
-barley = FileAttachment("barley.csv").csv({typed: true})
-```
-
 :::plot
 ```js
 Plot.plot({
@@ -49,10 +45,6 @@ The plot above uses the mark **sort** option to order the points within each sub
 
 The top-level **facet** option is an alternative to the mark **fx** and **fy** option and is useful when multiple marks share the same data; the facet.**x** and facet.**y** channels are then shared by all marks that use the facet data. (Other marks will be repeated across facets.) For example, we can visualize the famous [Anscombe’s quartet](https://en.wikipedia.org/wiki/Anscombe's_quartet) as a scatterplot with horizontal facets.
 
-```js
-anscombe = FileAttachment("anscombe.csv").csv({typed: true})
-```
-
 :::plot
 ```js
 Plot.plot({
@@ -70,6 +62,7 @@ Plot.plot({
     Plot.dot(anscombe, {x: "x", y: "y", stroke: "currentColor", fill: "white"})
   ]
 })
+```
 :::
 
 You can also mix datasets with different structures, for example to add an annotation on a specific facet.
@@ -83,7 +76,7 @@ Plot.plot({
   y: {grid: true},
   facet: {marginRight: 70},
   marks: [
-    Plot.ruleX([0]),
+    Plot.frame(),
     Plot.barX(penguins, Plot.groupY({x: "count"}, {fy: "island", y: "species", fill: "sex"})),
     Plot.text([`Did you know? The Adelie species is the only one on Torgersen Island.`], {
       fy: ["Torgersen"],
@@ -129,10 +122,6 @@ Plot.plot({
 :::
 
 When using top-level faceting, if your data is parallel to the facet data (*i.e.*, the same length and order) but not strictly equal (`===`), you can enable faceting by specifying the *mark*.**facet** option to *include* (or equivalently true). Likewise you can disable faceting by setting the *mark*.**facet** option to null or false. Finally, the mark.**facet** option supports the _exclude_ option to select all data points that are _not_ part of the current facet, allowing “background” marks for context.
-
-```js
-penguins = FileAttachment("penguins.csv").csv({typed: true})
-```
 
 :::plot
 ```js
