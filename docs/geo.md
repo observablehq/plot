@@ -17,7 +17,7 @@ Plot.geo(counties, {fill: (d) => d.properties.unemployment}).plot({
 
 The [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) above shows county-level unemployment rates for the contiguous United States. To create it, we join a collection of county polygons (a GeoJSON file) with a table of unemployment rates (a CSV file): the _fill_ function looks up the unemployment rate for the given county. The data is prepared and explained in the [appendix below](#appendix).
 
-A geo mark’s data is typically [GeoJSON](https://geojson.org/). You can pass a single GeoJSON object, a feature or geometry collection, or an array or iterable of GeoJSON objects. The map below combines Point, LineString, and MultiPolygon geometries to track Charles Darwin’s voyage on HMS _Beagle_. (Data via [Benjamin Schmidt](/@bmschmidt/data-driven-projections-darwins-world).)
+A geo mark’s data is typically [GeoJSON](https://geojson.org/). You can pass a single GeoJSON object, a feature or geometry collection, or an array or iterable of GeoJSON objects. The map below combines Point, LineString, and MultiPolygon geometries to track Charles Darwin’s voyage on HMS _Beagle_. (Data via [Benjamin Schmidt](https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world).)
 
 ```js
 land = FileAttachment("land.json").json() // multi-polygon representing land area
@@ -35,7 +35,7 @@ london = ({type: "Point", coordinates: [-0.13, 51.5]}) // London’s longitude a
 Plot.geo([land, beagle, london]).plot({projection: "equirectangular"})
 ```
 
-To improve this map, we can fill the land, thicken the line, increase the point size, add a bit of color to the [line](/@observablehq/plot-line) mark, and a caption. We can also adopt the [Equal Earth](https://equal-earth.com/equal-earth-projection.html) projection designed by Bojan Šavrič, Bernhard Jenny, and Tom Patterson.
+To improve this map, we can fill the land, thicken the line, increase the point size, add a bit of color to the [line](./line.md) mark, and a caption. We can also adopt the [Equal Earth](https://equal-earth.com/equal-earth-projection.html) projection designed by Bojan Šavrič, Bernhard Jenny, and Tom Patterson.
 
 ```js
 Plot.plot({
@@ -82,7 +82,7 @@ Plot.plot({
 })
 ```
 
-As an alternative to Plot.geo with point geometries, you can pass longitude and latitude to Plot.dot’s _x_ and _y_ channels, and indeed many of Plot’s basic marks can be projected (like we did with the [line](/@observablehq/plot-line) mark for the _Beagle_’s route). You can even mix the two types of marks, depending on how your dataset is structured! Maps often layer several marks, as the [Mapping with Plot](/@observablehq/plot-mapping) notebook illustrates.
+As an alternative to Plot.geo with point geometries, you can pass longitude and latitude to Plot.dot’s _x_ and _y_ channels, and indeed many of Plot’s basic marks can be projected (like we did with the [line](./line.md) mark for the _Beagle_’s route). You can even mix the two types of marks, depending on how your dataset is structured! Maps often layer several marks, as the [Mapping with Plot](./mapping.md) notebook illustrates.
 
 The geo mark’s _geometry_ channel can be used to generate geometry from a non-GeoJSON data source. For example, to visualize the shockwave created by the explosion of the Hunga Tonga–Hunga Haʻapai volcano on January 15, 2022 with a series of geodesic circles of increasing radius:
 
@@ -122,7 +122,7 @@ radii = d3.range(10, 171, 10) // degrees radii of circles to be centered around 
 tonga = [-175.38, -20.57]
 ```
 
-Lastly, Plot.geo is not limited to spherical geometries. [Plot’s projection system](/@observablehq/plot-projection) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
+Lastly, Plot.geo is not limited to spherical geometries. [Plot’s projection system](./maps.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
 
 ---
 

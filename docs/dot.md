@@ -75,7 +75,7 @@ Plot.plot({
 })
 ```
 
-With the [*bin* transform](/@observablehq/plot-bin?collection=@observablehq/plot), sized dots can also be used as an alternative to a [rect-based](/@observablehq/plot-rect?collection=@observablehq/plot) heatmap to show a two-dimensional distribution.
+With the [*bin* transform](./bin.md), sized dots can also be used as an alternative to a [rect-based](./rect.md) heatmap to show a two-dimensional distribution.
 
 ```js
 Plot.plot({
@@ -125,7 +125,7 @@ Plot.plot({
 })
 ```
 
-Dots, together with [rules](/@observablehq/plot-rule?collection=@observablehq/plot), can be used as a stylistic alternative to [bars](/@observablehq/plot-bar?collection=@observablehq/plot) to produce a “lollipop” chart. Sadly these lollipops cannot actually be eaten.
+Dots, together with [rules](./rule.md), can be used as a stylistic alternative to [bars](./bar.md) to produce a “lollipop” chart. Sadly these lollipops cannot actually be eaten.
 
 ```js
 Plot.plot({

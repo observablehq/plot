@@ -1,6 +1,6 @@
 # Cell
 
-The **cell** mark is positioned in *x*, *y*, or both, where *x* and *y* are ordinal (or categorical) rather than quantitative. Hence, the plot’s *x* and *y* scales are [band scales](/@observablehq/plot-scales?collection=@observablehq/plot). Cells typically also have a *fill* color encoding. For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high ratings are dark green, while low ratings are dark pink. (The worst episode ever — cue Comic Book Guy — is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga) featuring Lady Gaga.)
+The **cell** mark is positioned in *x*, *y*, or both, where *x* and *y* are ordinal (or categorical) rather than quantitative. Hence, the plot’s *x* and *y* scales are [band scales](./scales.md). Cells typically also have a *fill* color encoding. For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high ratings are dark green, while low ratings are dark pink. (The worst episode ever — cue Comic Book Guy — is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga) featuring Lady Gaga.)
 
 ```js
 Plot.plot({
@@ -35,7 +35,7 @@ Plot.plot({
 })
 ```
 
-With [faceting](/@observablehq/plot-facets?collection=@observablehq/plot), we can produce a calendar of multiple years, where *x* represents weeks and *y* represents days. Below shows almost twenty years of daily changes of the Dow Jones Industrial Average.
+With [faceting](./facets.md), we can produce a calendar of multiple years, where *x* represents weeks and *y* represents days. Below shows almost twenty years of daily changes of the Dow Jones Industrial Average.
 
 ```js
 Plot.plot({
@@ -69,7 +69,7 @@ Plot.plot({
 })
 ```
 
-The cell mark can be combined with the [group transform](/@observablehq/plot-group?collection=@observablehq/plot), which groups data by ordinal value. (The [bin transform](/@observablehq/plot-bin?collection=@observablehq/plot), on the other hand, is intended for use with the [rect mark](/@observablehq/plot-rect?collection=@observablehq/plot).) The heatmap below shows the maximum observed temperature by month (*y*) and date (*x*) in Seattle from 2012 through 2015.
+The cell mark can be combined with the [group transform](./group.md), which groups data by ordinal value. (The [bin transform](./bin.md), on the other hand, is intended for use with the [rect mark](./rect.md).) The heatmap below shows the maximum observed temperature by month (*y*) and date (*x*) in Seattle from 2012 through 2015.
 
 ```js
 Plot.plot({
@@ -126,7 +126,7 @@ Plot.plot({
 })
 ```
 
-When a cell’s position represents a time period, such as a year, consider using a [bar](/@observablehq/plot-bar?collection=@observablehq/plot) instead of a cell. A cell is used below, but we must be careful to specify the *x*-domain explicitly; otherwise we might not notice missing years as ordinal domains are inferred from the set of distinct input values. Bars also have the advantage of accurately representing time periods of varying length, such as months.
+When a cell’s position represents a time period, such as a year, consider using a [bar](./bar.md) instead of a cell. A cell is used below, but we must be careful to specify the *x*-domain explicitly; otherwise we might not notice missing years as ordinal domains are inferred from the set of distinct input values. Bars also have the advantage of accurately representing time periods of varying length, such as months.
 
 ```js
 hadcrut = (await FileAttachment("hadcrut-annual.txt").text())

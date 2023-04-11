@@ -1,6 +1,6 @@
 # Line
 
-The **line** mark draws two-dimensional lines as in a line chart. It is closely related to the [area mark](/@observablehq/plot-area?collection=@observablehq/plot). For example, below is a line chart of the closing price of Apple stock.
+The **line** mark draws two-dimensional lines as in a line chart. It is closely related to the [area mark](./area.md). For example, below is a line chart of the closing price of Apple stock.
 
 ```js
 Plot.plot({
@@ -27,7 +27,7 @@ Plot.plot({
 })
 ```
 
-The **lineY** mark provides default channel definitions of *x* = index and *y* = identity, letting you pass an array of numbers as data. (The **lineX** mark similarly provides *x* = identity and *y* = index defaults for lines that go up↑ instead of to the right→.) Below, a random walk is made using [d3.cumsum](/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](/@d3/d3-random?collection=@d3/d3-random).
+The **lineY** mark provides default channel definitions of *x* = index and *y* = identity, letting you pass an array of numbers as data. (The **lineX** mark similarly provides *x* = identity and *y* = index defaults for lines that go up↑ instead of to the right→.) Below, a random walk is made using [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
 
 ```js
 Plot.plot({
@@ -211,7 +211,7 @@ Plot.plot({
 
 When using *z*, lines are drawn in input order. The *sort* transform above places the red lines on top of the gray ones to improve readability.
 
-As an alternative to *z*, you can render multiple lines using multiple marks. While more verbose, this allows you to choose different options for each line. For example, below we plot the a 14-day moving average of the daily highs and lows in temperate San Francisco using the [window transform](/@observablehq/plot-window?collection=@observablehq/plot).
+As an alternative to *z*, you can render multiple lines using multiple marks. While more verbose, this allows you to choose different options for each line. For example, below we plot the a 14-day moving average of the daily highs and lows in temperate San Francisco using the [window transform](./window.md).
 
 ```js
 Plot.plot({
@@ -261,7 +261,7 @@ Plot.plot({
 })
 ```
 
-Interpolation is controlled by the *curve* property. The default curve is linear, which draws straight line segments between pairs of adjacent points. Step curves are nice for emphasizing when the value changes, while basis and Catmull–Rom curves are nice for smoothing. See the [D3 documentation](/@d3/curves) for more about curves. In the plot of unemployed construction workers below, try chosing a different curve.
+Interpolation is controlled by the *curve* property. The default curve is linear, which draws straight line segments between pairs of adjacent points. Step curves are nice for emphasizing when the value changes, while basis and Catmull–Rom curves are nice for smoothing. See the [D3 documentation](https://observablehq.com/@d3/curves) for more about curves. In the plot of unemployed construction workers below, try chosing a different curve.
 
 <!-- viewof curve = Inputs.select([
   "linear",

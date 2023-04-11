@@ -1,6 +1,6 @@
 # Image
 
-The **image** mark centers an image at the given position in *x* and *y*, similar to the [dot mark](/@observablehq/plot-dot?collection=@observablehq/plot). For example, the scatterplot below shows recent [Astronomy Picture of the Day](https://apod.nasa.gov/apod/astropix.html) entries from NASA; *x* represents the date, and *y* represents the date’s weekday.
+The **image** mark centers an image at the given position in *x* and *y*, similar to the [dot mark](./dot.md). For example, the scatterplot below shows recent [Astronomy Picture of the Day](https://apod.nasa.gov/apod/astropix.html) entries from NASA; *x* represents the date, and *y* represents the date’s weekday.
 
 ```js
 // https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=100
@@ -23,7 +23,7 @@ Plot.plot({
 })
 ```
 
-As another example, the scatterplot below (contributed by [Robert Lesser](/@rlesser)) shows the favorability of U.S. presidents over time. Sorry, Nixon! The default size of an image is only 16×16 pixels, but it can be increased if we want to show more detail, at the risk of also increasing occlusion. Images are drawn in input order, and hence the more recent presidents are drawn on top below.
+As another example, the scatterplot below (contributed by [Robert Lesser](https://observablehq.com/@rlesser)) shows the favorability of U.S. presidents over time. Sorry, Nixon! The default size of an image is only 16×16 pixels, but it can be increased if we want to show more detail, at the risk of also increasing occlusion. Images are drawn in input order, and hence the more recent presidents are drawn on top below.
 
 <!-- viewof metric = Inputs.select([
   {
@@ -135,7 +135,7 @@ icons = ({
 })
 ```
 
-A convenient alternative, if the symbols are available as a text font, is to use a [text mark](/@observablehq/plot-text?collection=@observablehq/plot), for example with emoji like in the chart below. In the future, we plan on adding a [proportional symbol mark](https://github.com/observablehq/plot/issues/41) to Plot with symbols designed to maximize differentiability.
+A convenient alternative, if the symbols are available as a text font, is to use a [text mark](./text.md), for example with emoji like in the chart below. In the future, we plan on adding a [proportional symbol mark](https://github.com/observablehq/plot/issues/41) to Plot with symbols designed to maximize differentiability.
 
 ```js
 Plot.plot({

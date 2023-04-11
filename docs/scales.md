@@ -46,7 +46,7 @@ If the *type* is “time”, the ticks will be in local time rather than UTC. Be
 Plot.plot({x: {type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)]}, grid: true})
 ```
 
-When plotting values that vary widely, such as the luminosity of stars in an [HR diagram](/@mbostock/hertzsprung-russell-diagram), a [logarithmic transformation](http://github.com/d3/d3-scale#log-scales) may improve readability; this can be enabled with type “log”. This defaults to base-10 ticks with exponential notation.
+When plotting values that vary widely, such as the luminosity of stars in an [HR diagram](https://observablehq.com/@mbostock/hertzsprung-russell-diagram), a [logarithmic transformation](http://github.com/d3/d3-scale#log-scales) may improve readability; this can be enabled with type “log”. This defaults to base-10 ticks with exponential notation.
 
 ```js
 Plot.plot({x: {type: "log", domain: [1e0, 1e5]}, grid: true})
@@ -398,7 +398,7 @@ Note that we are using the **unknown** option to set the color of invalid values
 
 ## Continuous radius
 
-For [dot marks](/@observablehq/plot-dot?collection=@observablehq/plot), the *r* channel makes the dots’ area proportional to the associated quantitative value. The default range for the associated *r* scale is constructed such that a zero value maps to zero for an accurate areal encoding, while the first quartile of values is mapped to a radius of three pixels; this tends to be more stable with varying data. Adjust the dot size as needed by specifying an explicit range.
+For [dot marks](./dot.md), the *r* channel makes the dots’ area proportional to the associated quantitative value. The default range for the associated *r* scale is constructed such that a zero value maps to zero for an accurate areal encoding, while the first quartile of values is mapped to a radius of three pixels; this tends to be more stable with varying data. Adjust the dot size as needed by specifying an explicit range.
 
 <!-- viewof radius = Inputs.range([1, 20], {label: "Radius", step: 0.1, value: 8}) -->
 

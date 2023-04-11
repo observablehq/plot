@@ -138,14 +138,14 @@ Plot’s option transforms, listed below, do more than populate the **transform*
 
 Plot’s built-in options transforms are:
 
-* [group](/@observablehq/plot-group?collection=@observablehq/plot) - group ordinal data and derive summary statistics, *e.g.* counts
-* [bin](/@observablehq/plot-bin?collection=@observablehq/plot) - bin quantitative data and derive summary statistics, *e.g.* counts
-* [stack](/@observablehq/plot-stack?collection=@observablehq/plot) - stack series, *e.g.* convert *y* to *y1* and *y2*
-* [map](/@observablehq/plot-map?collection=@observablehq/plot) - map values per series, *e.g.* for a cumulative sum
-* [window](/@observablehq/plot-window?collection=@observablehq/plot) - map values per windowed series, *e.g.* for a rolling average
-* [select](/@observablehq/plot-select?collection=@observablehq/plot) - extract a value per series, *e.g.* the last value
-* [interval](/@observablehq/plot-interval?collection=@observablehq/plot) - convert a single value to an interval [start, stop]
-* [dodge](/@observablehq/plot-dodge?collection=@observablehq/plot) - lift points from a one-dimensional layout to prevent occlusion
-* [hexbin](/@observablehq/plot-hexbin?collection=@observablehq/plot) - aggregate two-dimensional points into discrete hexagonal bins
+* [group](./group.md) - group ordinal data and derive summary statistics, *e.g.* counts
+* [bin](./bin.md) - bin quantitative data and derive summary statistics, *e.g.* counts
+* [stack](./stack.md) - stack series, *e.g.* convert *y* to *y1* and *y2*
+* [map](./map.md) - map values per series, *e.g.* for a cumulative sum
+* [window](./window.md) - map values per windowed series, *e.g.* for a rolling average
+* [select](./select.md) - extract a value per series, *e.g.* the last value
+* [interval](./interval.md) - convert a single value to an interval [start, stop]
+* [dodge](./dodge.md) - lift points from a one-dimensional layout to prevent occlusion
+* [hexbin](./hexbin.md) - aggregate two-dimensional points into discrete hexagonal bins
 
 When working with custom transforms, keep in mind that every transform needs to be compatible with the faceting system, which partitions the original dataset into discrete subsets.

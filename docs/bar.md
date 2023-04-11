@@ -55,11 +55,11 @@ Plot.plot({
 })
 ```
 
-The bar mark is closely related to the [rect mark](/@observablehq/plot-rect?collection=@observablehq/plot). Both generate a rectangle; the difference is in how the coordinates are specified. For a bar, one side is a quantitative interval (*e.g.*, from 0 to a percentage) while the other is an ordinal or categorical value (*e.g.*, an English letter); whereas for a rect, both sides are quantitative intervals. Hence a bar is used for a bar chart but a rect is needed for a histogram.
+The bar mark is closely related to the [rect mark](./rect.md). Both generate a rectangle; the difference is in how the coordinates are specified. For a bar, one side is a quantitative interval (*e.g.*, from 0 to a percentage) while the other is an ordinal or categorical value (*e.g.*, an English letter); whereas for a rect, both sides are quantitative intervals. Hence a bar is used for a bar chart but a rect is needed for a histogram.
 
-The bar mark should generally not be used if the independent dimension (*e.g.*, *x* for barY) is temporal rather than ordinal. In this case, you should use the rect mark with the [interval transform](/@observablehq/plot-interval?collection=@observablehq/plot).
+The bar mark should generally not be used if the independent dimension (*e.g.*, *x* for barY) is temporal rather than ordinal. In this case, you should use the rect mark with the [interval transform](./interval.md).
 
-A bar’s ordinal dimension uses a [band scale](/@d3/d3-scaleband?collection=@d3/d3-scale) with a bit of padding to separate bars. For finer separation, you can set the *x*-scale’s padding to zero and use an inset. The bar mark supports four options for insetting the sides of the bar: *insetTop*, *insetRight*, *insetBottom*, and *insetLeft*. The *inset* option is shorthand for setting all four sides to the same value. The chart below separates each bar by a single pixel.
+A bar’s ordinal dimension uses a [band scale](https://observablehq.com/@d3/d3-scaleband?collection=@d3/d3-scale) with a bit of padding to separate bars. For finer separation, you can set the *x*-scale’s padding to zero and use an inset. The bar mark supports four options for insetting the sides of the bar: *insetTop*, *insetRight*, *insetBottom*, and *insetLeft*. The *inset* option is shorthand for setting all four sides to the same value. The chart below separates each bar by a single pixel.
 
 ```js
 Plot.plot({
@@ -76,7 +76,7 @@ Plot.plot({
 })
 ```
 
-Band scales round by default, which can leave extra space between the axes and the bars; set the corresponding scale’s align to zero or one, or disable rounding, if you don’t want a gap. The domain is sorted naturally (alphabetically) by default; set the domain explicitly to change the order. (See [Scales](/@observablehq/plot-scales?collection=@observablehq/plot) for more.) For example, descending frequency:
+Band scales round by default, which can leave extra space between the axes and the bars; set the corresponding scale’s align to zero or one, or disable rounding, if you don’t want a gap. The domain is sorted naturally (alphabetically) by default; set the domain explicitly to change the order. (See [Scales](./scales.md) for more.) For example, descending frequency:
 
 ```js
 Plot.plot({
@@ -215,7 +215,7 @@ Plot.plot({
 })
 ```
 
-With the [stack transform](/@observablehq/plot-stack?collection=@observablehq/plot), a one-dimensional bar can show the proportions of each value relative to the whole, as a compact alternative to a pie or donut chart.
+With the [stack transform](./stack.md), a one-dimensional bar can show the proportions of each value relative to the whole, as a compact alternative to a pie or donut chart.
 
 ```js
 Plot.plot({
@@ -249,7 +249,7 @@ Plot.plot({
 })
 ```
 
-[Faceting](/@observablehq/plot-facets?collection=@observablehq/plot) can produce a grouped bar chart. The chart below shows the populations of the six most-populous states broken down by age group. The youngest age group (<10) is on the left in red, while the oldest age group (≥80) is on the right in blue.
+[Faceting](./facets.md) can produce a grouped bar chart. The chart below shows the populations of the six most-populous states broken down by age group. The youngest age group (<10) is on the left in red, while the oldest age group (≥80) is on the right in blue.
 
 ```js
 stateage = {
@@ -285,6 +285,6 @@ Plot.plot({
 })
 ```
 
-Bars are often used in conjunction with transforms: the [*group* transform](/@observablehq/plot-group?collection=@observablehq/plot) groups data by discrete value so that bar length can represent the size (frequency) of each group; the [*stack* transform](/@observablehq/plot-stack?collection=@observablehq/plot) can arrange bars into stacks, as in a stacked bar chart. The [*bin* transform](/@observablehq/plot-bin?collection=@observablehq/plot), which can be used to construct histograms of quantitative data, is typically paired with the [*rect* mark](/@observablehq/plot-rect?collection=@observablehq/plot) instead of bar.
+Bars are often used in conjunction with transforms: the [*group* transform](./group.md) groups data by discrete value so that bar length can represent the size (frequency) of each group; the [*stack* transform](./stack.md) can arrange bars into stacks, as in a stacked bar chart. The [*bin* transform](./bin.md), which can be used to construct histograms of quantitative data, is typically paired with the [*rect* mark](./rect.md) instead of bar.
 
 Bars support a *z* channel to control *z*-order. This is typically only needed to control occlusion when bars overlap. Bars also support the SVG *rx* and *ry* attributes for rounding, along with the standard SVG style attributes.

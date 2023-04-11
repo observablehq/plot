@@ -25,7 +25,7 @@ Plot.plot({
 })
 ```
 
-Each Voronoi cell is associated with a particular data point, and channels such as **stroke**, **fill**, **fillOpacity**, **strokeOpacity**, **href**, _etc._, work as they do on other marks, such as [dots](/@observablehq/plot-dot).
+Each Voronoi cell is associated with a particular data point, and channels such as **stroke**, **fill**, **fillOpacity**, **strokeOpacity**, **href**, _etc._, work as they do on other marks, such as [dots](./dot.md).
 
 The Voronoi diagram is clipped to the frame. To show the local density of a scatterplot, one can draw the whole boundary at once with the Plot.voronoiMesh mark. Given a constant **stroke**, the mesh mark will only draw the boundaries of the Voronoi cells once, whereas the default voronoi mark will draw shared boundaries twice. The mesh defaults to a **strokeWidth** of 1 and a **strokeOpacity** of 0.2.
 

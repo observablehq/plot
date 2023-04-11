@@ -10,7 +10,7 @@ Plot.plot({
 })
 ```
 
-Areas are often used in conjunction with [line](/@observablehq/plot-line?collection=@observablehq/plot) and [rule](/@observablehq/plot-rule?collection=@observablehq/plot) marks to accentuate the topline and baseline:
+Areas are often used in conjunction with [line](./line.md) and [rule](./rule.md) marks to accentuate the topline and baseline:
 
 ```js
 Plot.plot({
@@ -25,7 +25,7 @@ Plot.plot({
 })
 ```
 
-With the default channel definitions of *x* = index and *y* = identity, you can pass an array of numbers as data. Below, a random walk is constructed with [d3.cumsum](/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](/@d3/d3-random?collection=@d3/d3-random).
+With the default channel definitions of *x* = index and *y* = identity, you can pass an array of numbers as data. Below, a random walk is constructed with [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
 
 ```js
 numbers = d3.cumsum({length: 600}, d3.randomNormal())
@@ -70,7 +70,7 @@ Plot.plot({
 })
 ```
 
-The band above is spikey; we can smooth it by applying a 14-day moving average to the *y1* and *y2* channels with the [window transform](/@observablehq/plot-window?collection=@observablehq/plot), and do the same for a midline. We can also add a *y*-rule to indicate the freezing point, 32°F.
+The band above is spikey; we can smooth it by applying a 14-day moving average to the *y1* and *y2* channels with the [window transform](./window.md), and do the same for a midline. We can also add a *y*-rule to indicate the freezing point, 32°F.
 
 ```js
 Plot.plot({
@@ -168,7 +168,7 @@ Plot.plot({
 })
 ```
 
-Interpolation is controlled by the *curve* property. The default curve is linear, which draws straight line segments between pairs of adjacent points. Step curves are nice for emphasizing when the value changes, while basis and Catmull–Rom curves are nice for smoothing. See the [D3 documentation](/@d3/curves?collection=@d3/d3-shape) for more about curves. In the plot of unemployed construction workers below, try chosing a different curve.
+Interpolation is controlled by the *curve* property. The default curve is linear, which draws straight line segments between pairs of adjacent points. Step curves are nice for emphasizing when the value changes, while basis and Catmull–Rom curves are nice for smoothing. See the [D3 documentation](https://observablehq.com/@d3/curves?collection=@d3/d3-shape) for more about curves. In the plot of unemployed construction workers below, try chosing a different curve.
 
 ```js
 Plot.plot({
@@ -184,7 +184,7 @@ Plot.plot({
 construction = bls.filter(d => d.industry === "Construction")
 ```
 
-An area mark’s *z* channel groups data along an ordinal (discrete) dimension, producing multiple areas. This is typically used with the [stack transform](/@observablehq/plot-stack?collection=@observablehq/plot) for a stacked area chart or streamgraph, but it can also be used for overlapping areas.
+An area mark’s *z* channel groups data along an ordinal (discrete) dimension, producing multiple areas. This is typically used with the [stack transform](./stack.md) for a stacked area chart or streamgraph, but it can also be used for overlapping areas.
 
 ```js
 Plot.plot({

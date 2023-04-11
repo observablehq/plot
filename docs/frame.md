@@ -24,7 +24,7 @@ Plot.plot({
 })
 ```
 
-Unlike other marks, a frame never takes data; the first argument to Plot.frame is the *options* object. (For a similar data-driven mark, see [Plot.rect](/@observablehq/plot-rect?collection=@observablehq/plot).)
+Unlike other marks, a frame never takes data; the first argument to Plot.frame is the *options* object. (For a similar data-driven mark, see [Plot.rect](./rect.md).)
 
 ```js
 Plot.plot({
