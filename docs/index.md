@@ -55,7 +55,7 @@ features:
 
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, hsl(200deg 100% 65%), hsl(-90deg 85% 57%));
+  --vp-home-hero-name-background: linear-gradient(-30deg, hsl(200deg 100% 65%), var(--vp-c-brand-dark));
 }
 
 </style>

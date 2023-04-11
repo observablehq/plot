@@ -1,9 +1,9 @@
 :root {
-  --vp-c-brand: hsl(-90 85% 57%);
-  --vp-c-brand-light: hsl(-90 85% 70%);
-  --vp-c-brand-lighter: hsl(-90 85% 80%);
-  --vp-c-brand-dark: hsl(-90 85% 57%);
-  --vp-c-brand-darker: hsl(-90 85% 40%);
+  --vp-c-brand-lighter: #d893ff;
+  --vp-c-brand-light: #be7bff;
+  --vp-c-brand: #a463f2;
+  --vp-c-brand-dark: #8a4cd8;
+  --vp-c-brand-darker: #7135be;
   --vp-font-family-base: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
 }
 
