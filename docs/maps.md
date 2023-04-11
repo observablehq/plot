@@ -61,7 +61,7 @@ Plot.plot({
 :::
 
 :::warning
-TODO legend: true
+TODO legend: true crashes with `TypeError: canvas.getContext is not a function`
 :::
 
 ## Facets
@@ -190,7 +190,7 @@ Plot.plot({
 :::
 
 :::warning
-TODO fix density mark
+TODO fix density mark, crashes with `TypeError: Cannot set property parentNode of #<Node> which has`.
 :::
 
 ## Text
@@ -248,7 +248,7 @@ Plot.plot({
 :::
 
 :::warning
-TODO fix vector mark
+TODO fix vector mark which doesn't render.
 :::
 
 ## More marks: image, rect, link, arrow, line
