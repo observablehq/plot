@@ -19,7 +19,7 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 
 Observable Plot is informed by more than [ten years’ experience](https://observablehq.com/@mbostock/10-years-of-open-source-visualization) developing [D3](https://d3js.org), the web’s most popular library for data visualization.
 
-We’ve long said that *D3 makes things possible, not necessarily easy.* And that’s true regardless of the task at hand. D3 makes the hard things *possible*, yes, but even the easy things are often not *easy*.
+We’ve long said that *D3 makes things possible, not necessarily easy.* And that’s true regardless of the task at hand. D3 makes the hard things *possible*, yes, but even the easy things like a basic histogram are often not *easy*.
 
 **Plot’s goal is to make the easy things easy, and fast, and then some.**
 
