@@ -1,4 +1,4 @@
-# Area
+# Area mark
 
 The **areaY** mark draws the region between a baseline (*y1*) and a topline (*y2*) as in an area chart. When the baseline is *y* = 0, the *y* channel can be specified instead of *y1* and *y2*. For example, here is an area chart of Apple’s stock price.
 

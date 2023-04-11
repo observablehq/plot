@@ -1,4 +1,4 @@
-# Frame
+# Frame mark
 
 A frame draws a box around the plot area.
 

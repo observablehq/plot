@@ -1,4 +1,4 @@
-# Image
+# Image mark
 
 The **image** mark centers an image at the given position in *x* and *y*, similar to the [dot mark](./dot.md). For example, the scatterplot below shows recent [Astronomy Picture of the Day](https://apod.nasa.gov/apod/astropix.html) entries from NASA; *x* represents the date, and *y* represents the date’s weekday.
 

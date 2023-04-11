@@ -82,11 +82,11 @@ export default defineConfig({
         items: [
           {text: "Getting started", link: "/getting-started"},
           {text: "Why Plot?", link: "/why-plot"},
-          {text: "Marks and channels", link: "/marks"},
-          {text: "Scales, axes, and legends", link: "/scales"},
+          {text: "Marks", link: "/marks"},
+          {text: "Scales", link: "/scales"},
           {text: "Transforms", link: "/transforms"},
           {text: "Facets", link: "/facets"},
-          {text: "Maps and projections", link: "/maps"},
+          {text: "Maps", link: "/maps"}, // TODO projections?
           {text: "Shorthand", link: "/shorthand"}
         ]
       },

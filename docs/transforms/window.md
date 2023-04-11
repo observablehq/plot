@@ -1,4 +1,4 @@
-# Window
+# Window transform
 
 Plot.**windowY** and Plot.**windowX** are specialized [map transforms](https://observablehq.com/@observablehq/plot-map), which take a series of numeric values as input and average them (or, more generically, reduce them) over a sliding window:
 

@@ -1,4 +1,4 @@
-# Bar
+# Bar mark
 
 Bars have an ordinal dimension, such as a name or category, and a quantitative dimension, a number. Bars come in two orientations: **barX** extends horizontally→ as in a bar chart, and **barY** extends vertically↑ as in a column chart. For example, the plot below shows the frequency of letters in the English language. The *letter* dimension is ordinal, while the *frequency* dimension is quantitative, representing how often the given letter appears.
 

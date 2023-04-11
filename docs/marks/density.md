@@ -1,4 +1,4 @@
-# Density
+# Density mark
 
 The Density mark shows the estimated density of two-dimensional point clouds. Contours guide the eye towards the local peaks of concentration of the data, much like a topographic map does with elevation. This is especially useful given overplotting in dense datasets.
 

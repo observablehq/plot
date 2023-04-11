@@ -1,4 +1,4 @@
-# Link
+# Link mark
 
 The **link** mark draws a straight line between two points in *x* and *y*. For example, below we show the rising inequality (and population) in various U.S. cities from 1980 to 2015. Each link represents two observations of a city: the city’s population (*x*) and inequality (*y*) in 1980, and the same in 2015. The link’s color redundantly encodes the change in inequality: red indicates rising inequality, while blue (there are only four) indicates declining inequality.
 

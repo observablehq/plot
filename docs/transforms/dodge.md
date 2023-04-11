@@ -1,4 +1,4 @@
-# Dodge
+# Dodge transform
 
 Given a position dimension (either *x* or *y*), the **dodge** transform computes the other position dimension such that dots are packed densely without overlapping. The **dodgeX** transform computes *x* (horizontal position) given *y* (vertical position), while the **dodgeY** transform computes *y* given *x*.
 

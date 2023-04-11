@@ -1,4 +1,4 @@
-# Geo
+# Geo mark
 
 The **geo** mark draws geographic features and other polygonal geometry, often as maps. It works with Plot’s flexible [geographic projection system](https://observablehq.com/@observablehq/plot-projections${location.search}).
 
@@ -124,11 +124,7 @@ tonga = [-175.38, -20.57]
 
 Lastly, Plot.geo is not limited to spherical geometries. [Plot’s projection system](../maps.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
 
----
-
-## Appendix
-
-### GeoJSON, TopoJSON and other formats for geographic information
+## GeoJSON and TopoJSON
 
 The GeoJSON format is a common way to represent geographic shapes: it can be used to specify geometries such as points (Point and MultiPoint), lines (LineString, MultiLineString), and areas (Polygon, MultiPolygon). Geometries can also be assembled and connected to properties (such as names, values…), to create Features.
 

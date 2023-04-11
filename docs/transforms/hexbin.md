@@ -1,4 +1,4 @@
-# Hexbin
+# Hexbin transform
 
 The **hexbin** transform aggregates two-dimensional points (in *x* and *y*) into discrete hexagonal bins. Like the [bin transform](./bin.md), you can then compute summary statistics for each bin, such as a count, sum, or proportion. The hexbin transform is most often used to make heatmaps; it is an alternative to dense scatterplots that may suffer from occlusion.
 

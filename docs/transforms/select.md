@@ -1,4 +1,4 @@
-# Select
+# Select transform
 
 The select transform filters marks. It is similar to the basic [filter transform](../transforms.md) except that it provides convenient shorthand for pulling a single value out of each series. The data are grouped into series using the *z*, *fill*, or *stroke* channel in the same fashion as the [area](../marks/area.md) and [line](../marks/line.md) marks.
 

@@ -1,4 +1,4 @@
-# Cell
+# Cell mark
 
 The **cell** mark is positioned in *x*, *y*, or both, where *x* and *y* are ordinal (or categorical) rather than quantitative. Hence, the plot’s *x* and *y* scales are [band scales](../scales.md). Cells typically also have a *fill* color encoding. For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high ratings are dark green, while low ratings are dark pink. (The worst episode ever — cue Comic Book Guy — is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga) featuring Lady Gaga.)
 

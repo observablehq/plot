@@ -1,4 +1,4 @@
-# Interval
+# Interval transform
 
 The interval transform turns a discrete *value* into an interval [*start*, *stop*]. For example, if *value* is an instant in time, the interval transform could return a *start* of UTC midnight and a *stop* of the UTC midnight the following day. The interval transform is most commonly used for “bar” charts of temporal data, where you in fact want [rects](../marks/rect.md) rather than [bars](../marks/bar.md) because time is continuous, not discrete.
 

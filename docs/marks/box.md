@@ -1,4 +1,4 @@
-# Box
+# Box mark
 
 The box mark creates a horizontal or vertical boxplot, a type of visual summary for one-dimensional distributions. The box mark is implemented as a composite mark: it is an array of marks consisting of a [rule](./rule.md) to represent the extreme values (not including outliers), a [bar](./bar.md) to represent the interquartile range (trimmed to the data), a [tick](./tick.md) to represent the median value, and a [dot](./dot.md) to represent outliers, if any. The box mark uses the [group transform](../transforms/group.md) to group and aggregate data.
 

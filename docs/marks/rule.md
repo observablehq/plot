@@ -1,4 +1,4 @@
-# Rule
+# Rule mark
 
 Rules are horizontal or vertical lines. A **ruleY**↔︎ has a *y*-value, while a **ruleX**↕︎ has an *x*-value. Rules are often used as annotations, say to mark the *y* = 0 baseline (in red below for emphasis) in a line chart.
 

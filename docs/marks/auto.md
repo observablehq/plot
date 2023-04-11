@@ -1,4 +1,4 @@
-# Auto
+# Auto mark
 
 The special **auto** mark automatically selects a mark type that best represents the given dimensions of the data according to some simple heuristics. For example, two quantitative dimensions make a scatterplot:
 

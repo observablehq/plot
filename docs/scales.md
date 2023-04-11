@@ -1,4 +1,4 @@
-# Scales, axes, and legends
+# Scales
 
 Scales map an abstract value such as time or temperature to a visual value such as *x*- or *y*-position or color. Scales define a plot’s coordinate system.
 

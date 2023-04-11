@@ -1,4 +1,4 @@
-# Axis
+# Axis mark
 
 Plot’s axes convey the meaning of position [scales](../scales.md): _x_ and _y_, and _fx_ and _fy_ when [faceting](../facets.md). Plot automatically adds a default axis mark for position scales; you can customize the appearance of axes either through scale options or by instantiating **axis** or **grid** marks.
 

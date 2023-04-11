@@ -1,4 +1,4 @@
-# Group
+# Group transform
 
 You often want to aggregate data before visualizing; for example, given a set of penguin observations you may wish to count the number of each species seen. Plot’s group transforms let you derive summary values for each group, such as a count, sum, or proportion. The group transform is like a [bin transform](./bin.md) for ordinal or categorical data, and is most often used to make bar charts.
 

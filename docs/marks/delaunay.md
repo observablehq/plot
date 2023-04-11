@@ -1,4 +1,4 @@
-# Delaunay
+# Delaunay mark
 
 The Delaunay marks compute the [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation), [Voronoi tessellation](https://en.wikipedia.org/wiki/Voronoi_diagram) (the dual of the Delaunay), and the [convex hull](https://en.wikipedia.org/wiki/Convex_hull) of a given set of two-dimensional points.
 

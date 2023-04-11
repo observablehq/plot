@@ -1,4 +1,4 @@
-# Tree
+# Tree mark
 
 A quick demo of Plot.tree, added in [Plot 0.4.3](https://github.com/observablehq/plot/blob/main/CHANGELOG.md#043).
 

@@ -1,4 +1,4 @@
-# Dot
+# Dot mark
 
 The **dot** mark represents data as circles, typically positioned in *x* and *y* quantitative dimensions, as in a scatterplot. For example, the scatterplot below shows the roughly-inverse relationship in a dataset of cars between power (in horsepower) in *y*↑ and fuel efficiency (in miles per gallon) in *x*→.
 

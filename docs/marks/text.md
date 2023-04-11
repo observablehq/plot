@@ -1,4 +1,4 @@
-# Text
+# Text mark
 
 The **text** mark draws text at the given *xy* position. It is often used to label other marks, such as to show the value of a bar; when space is available, this can allow faster and more accurate reading of values than an axis alone (or a tooltip).
 

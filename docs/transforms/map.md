@@ -1,4 +1,4 @@
-# Map
+# Map transform
 
 The map transform groups data into series and then transforms each series’ values, say to normalize them relative to some basis or to apply a moving average.
 

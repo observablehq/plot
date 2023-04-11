@@ -1,4 +1,4 @@
-# Centroid
+# Centroid transform
 
 Plot offers two helpers that derive centroids from GeoJSON geometries: the [centroid](https://github.com/observablehq/plot/blob/main/README.md#plotcentroidoptions) initializer, and the [geoCentroid](https://github.com/observablehq/plot/blob/main/README.md#plotgeocentroidoptions) transform.
 

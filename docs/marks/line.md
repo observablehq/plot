@@ -1,4 +1,4 @@
-# Line
+# Line mark
 
 The **line** mark draws two-dimensional lines as in a line chart. It is closely related to the [area mark](./area.md). For example, below is a line chart of the closing price of Apple stock.
 

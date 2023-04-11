@@ -1,4 +1,4 @@
-# Vector
+# Vector mark
 
 The **vector** mark represents data as little arrows, typically positioned in *x* and *y* quantitative dimensions, with a given magnitude (*length*) and direction (*rotate*), as in a vector field. For example, the plot below shows the wind speed and direction for a section of western Europe. (Based on a [LitVis example](https://github.com/gicentre/litvis/blob/master/examples/windVectors.md).)
 

@@ -1,4 +1,4 @@
-# Stack
+# Stack transform
 
 The **stackY** transform replaces the *y* channel with *y1* and *y2* channels to form vertical “stacks” grouped on *x*. (There’s also a **stackX** transform that replaces *x* with *x1* and *x2* for horizontal stacking grouped on *y*.) For example, consider this [line](../marks/line.md) chart of Florence Nightingale’s data on deaths in the Crimean War.
 

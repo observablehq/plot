@@ -1,4 +1,4 @@
-# Raster
+# Raster mark
 
 The **raster** mark paints a raster image from spatial samples. In contrast with the [image](./image.md) mark, which shows an existing image, the raster mark _creates_ an image from abstract data. (For contours from spatial samples, see the [contour mark](./contour.md).)
 
