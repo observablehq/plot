@@ -86,7 +86,8 @@ export default defineConfig({
           {text: "Scales, axes, and legends", link: "/scales"},
           {text: "Transforms", link: "/transforms"},
           {text: "Facets", link: "/facets"},
-          {text: "Maps and projections", link: "/maps"}
+          {text: "Maps and projections", link: "/maps"},
+          {text: "Shorthand", link: "/shorthand"}
         ]
       },
       {
