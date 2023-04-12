@@ -25,22 +25,6 @@ Compared to other visualization tools, including low-level tools such as D3 and 
 
 Or put more simply: **with Plot, you’ll see more charts.**
 
-## Plot and D3
-
-Plot is informed by more than [ten years’ experience](https://observablehq.com/@mbostock/10-years-of-open-source-visualization) developing [D3](https://d3js.org), the web’s most popular library for data visualization.
-
-We’ve long said that *D3 makes things possible, not necessarily easy.* And that’s true regardless of the task at hand. D3 makes hard and amazing things *possible*, yes, but even simple things that should be easy are often not. To paraphrase Amanda Cox: “Use D3 if you think it’s perfectly normal to write a hundred lines of code for a bar chart.”
-
-**Plot’s goal is to make the easy things easy, and fast, and then some.**
-
-:::tip
-Whether or not Plot succeeds at this goal is up to you—so we’d love [your feedback](https://talk.observablehq.com/c/site-feedback/3) on what you find easy or hard to do with Plot. And we encourage you to [ask for help](https://talk.observablehq.com/c/help/6) when you get stuck. We learn a lot from helping!
-:::
-
-Since Plot and D3 have different goals, they make different trade-offs. Plot is more efficient: you can make charts quickly. But it is also necessarily less expressive: bespoke visualizations with extensive animation and interaction, advanced techniques like force-directed graph layout, or even developing your own charting library, are better done with D3’s low-level API.
-
-We recommend D3 for *bespoke* data visualizations, if you decide the extra expressiveness of D3 is worth the time and effort. D3 makes sense for media organizations such as *The New York Times* or *The Pudding*, where a single graphic may be seen by a million readers, and where a team of editors can work together to advance the state of the art in visual communication; but is it the best tool for building your team’s private dashboard, or a one-off analysis? And you may be surprised how far you can get with Plot.
-
 ## Plot is concise
 
 You can make a meaningful chart in Plot with as little as one line of code.
@@ -125,6 +109,22 @@ We’ve made some concessions to perform coercion within Plot, but in general we
 <!-- ## Plot looks good
 
 Even though Plot has a minimalist aesthetic, we want it too look good. -->
+
+## Plot builds on D3
+
+Plot is informed by more than [ten years’ experience](https://observablehq.com/@mbostock/10-years-of-open-source-visualization) developing [D3](https://d3js.org), the web’s most popular library for data visualization.
+
+We’ve long said that *D3 makes things possible, not necessarily easy.* And that’s true regardless of the task at hand. D3 makes hard and amazing things *possible*, yes, but even simple things that should be easy are often not. To paraphrase Amanda Cox: “Use D3 if you think it’s perfectly normal to write a hundred lines of code for a bar chart.”
+
+**Plot’s goal is to make the easy things easy, and fast, and then some.**
+
+:::tip
+Whether or not Plot succeeds at this goal is up to you—so we’d love [your feedback](https://talk.observablehq.com/c/site-feedback/3) on what you find easy or hard to do with Plot. And we encourage you to [ask for help](https://talk.observablehq.com/c/help/6) when you get stuck. We learn a lot from helping!
+:::
+
+Since Plot and D3 have different goals, they make different trade-offs. Plot is more efficient: you can make charts quickly. But it is also necessarily less expressive: bespoke visualizations with extensive animation and interaction, advanced techniques like force-directed graph layout, or even developing your own charting library, are better done with D3’s low-level API.
+
+We recommend D3 for *bespoke* data visualizations, if you decide the extra expressiveness of D3 is worth the time and effort. D3 makes sense for media organizations such as *The New York Times* or *The Pudding*, where a single graphic may be seen by a million readers, and where a team of editors can work together to advance the state of the art in visual communication; but is it the best tool for building your team’s private dashboard, or a one-off analysis? And you may be surprised how far you can get with Plot.
 
 ## Plot powers Observable
 
