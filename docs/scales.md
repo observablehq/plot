@@ -42,7 +42,9 @@ Plot.gridX().plot({x: {domain: [0, 100], reverse: true}})
 ```
 :::
 
-If the domain is dates, Plot will default to a UTC scale. This is a linear scale with ticks based on the Gregorian calendar. (Plot uses [d3.scaleTime](https://github.com/d3/d3-scale#time_ticks)’s “multi-scale” tick format, so January shows the year.) Plot doesn’t parse dates; convert your strings to [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) instances with [d3.utcParse](https://github.com/d3/d3-time-format#utcParse) or [d3.autoType](https://github.com/d3/d3-dsv#autoType), or by passing typed: true to Observable’s FileAttachment function.
+If the domain is dates, Plot will default to a UTC scale. This is a linear scale with ticks based on the Gregorian calendar. (Plot uses [d3.scaleTime](https://github.com/d3/d3-scale#time_ticks)’s “multi-scale” tick format, so January shows the year.)
+
+<!-- Plot doesn’t parse dates; convert your strings to [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) instances with [d3.utcParse](https://github.com/d3/d3-time-format#utcParse) or [d3.autoType](https://github.com/d3/d3-dsv#autoType). -->
 
 :::plot
 ```js
@@ -148,14 +150,14 @@ While *point* and *band* scales appear visually similar when only the grid is vi
 
 <!-- viewof align = Inputs.range([0, 1], {value: 0.5, step: 0.01, label: "Align"}) -->
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
   grid: true,
   marginTop: 0.5,
   x: {
-    padding,
-    align,
+    padding: undefined, // TODO
+    align: undefined, // TODO
     round: false
   },
   marks: [
@@ -166,14 +168,14 @@ Plot.plot({
 ```
 :::
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
   grid: true,
   marginTop: 0.5,
   x: {
-    padding,
-    align,
+    padding: undefined, // TODO
+    align: undefined, // TODO
     round: false
   },
   marks: [
@@ -233,7 +235,7 @@ While position is the most salient, and thus more important, encoding, many visu
 ["Sinebow (cylical)", "sinebow"]
 ]), {label: "Color scheme", value: "turbo"}) -->
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
   color: {
@@ -248,7 +250,7 @@ Plot.plot({
 
 The default color scheme is [Turbo](https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html). A wide variety of sequential, diverging, and cyclical schemes are supported, including ColorBrewer and [Viridis](http://bids.github.io/colormap/). You can implement a custom color scheme by specifying the scale’s *range*, or by passing an *interpolate* function that takes a parameter *t* in [0, 1]. The *interpolate* option can also be used to specify a color space, or a two-argument function that takes a pair of values from the range.
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
   color: {
@@ -262,7 +264,7 @@ Plot.plot({
 ```
 :::
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
   color: {
@@ -277,7 +279,7 @@ Plot.plot({
 ```
 :::
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
   color: {
@@ -311,7 +313,7 @@ And like position scales, you can apply a *sqrt*, *pow*, *log*, or *symlog* tran
 
 Diverging color scales are intended to show positive and negative values (or more generally values above or below some *pivot* value); diverging color scales default to the “RdBu” (red–blue) color scheme.
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
   color: {
@@ -328,12 +330,12 @@ The pivot defaults to zero, but you can change it with the **pivot** option, whi
 
 <!-- viewof pivot = Inputs.range([-5, 5], {step: 0.1, value: -3, label: "Pivot"}) -->
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
   color: {
     type: "diverging",
-    pivot
+    pivot: undefined // TODO
   },
   marks: [
     Plot.cell([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], {x: d => d, fill: d => d})
@@ -377,12 +379,12 @@ Plot also provides color schemes for discrete data. Use the *categorical* type f
 ["Tableau10 (categorical, 10 colors)", "tableau10"]
 ]), {label: "Color scheme", value: "tableau10"}) -->
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
   color: {
     type: "categorical",
-    scheme: schemec
+    scheme: undefined // TODO schemec
   },
   marks: [
     Plot.cell([..."ABCDEFGHIJ"], {x: d => d, fill: d => d})
@@ -434,13 +436,13 @@ Plot.plot({
 ["Sinebow (cylical)", "sinebow"]
 ]), {label: "Color scheme", value: "turbo"}) -->
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
   color: {
     type: "ordinal",
     domain: "ABCDEFGHIJ",
-    scheme: schemeo,
+    scheme: undefined, // TODO schemeo
     unknown: "gray"
   },
   marks: [
@@ -458,11 +460,11 @@ For [dot marks](./marks/dot.md), the *r* channel makes the dots’ area proporti
 
 <!-- viewof radius = Inputs.range([1, 20], {label: "Radius", step: 0.1, value: 8}) -->
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
   r: {
-    range: [0, radius]
+    range: [0, 10] // TODO radius
   },
   marks: [
     Plot.dot([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: d => d, r: d => d, fill: "black"})
@@ -489,9 +491,7 @@ All position scales (*x*, *y*, *fx*, and *fy*) have implicit automatic ranges ba
 
 The *scale*.**transform** option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
-```js
-sftemp = FileAttachment("sf-temperatures.csv").csv({typed: true})
-```
+<!-- sftemp = FileAttachment("sf-temperatures.csv").csv({typed: true}) -->
 
 <!-- viewof celsius = Inputs.toggle({label: "Celsius"}) -->
 

@@ -5,19 +5,20 @@ export default function plot(md) {
     render(tokens, idx) {
       if (tokens[idx].nesting === 1) {
         const directive = tokens[idx].info.split(/\s+/)[1];
-        if (directive && directive !== "defer") throw new Error(`unknown plot directive: ${directive}`);
+        if (directive && directive !== "defer" && directive !== "hidden") throw new Error(`unknown plot directive: ${directive}`);
         const token = tokens[idx + 1];
         if (token.type !== "fence" || token.tag !== "code") throw new Error("missing fenced code block");
         // TODO use acorn to parse and recut
         let content = token.content;
         content = content.replace(/\bMath\.random\b/g, "d3.randomLcg(42)");
         content = content.replace(/\bd3\.(random(?!Lcg)\w+)\b/g, "d3.$1.source(d3.randomLcg(42))");
+        const suffix = `\n<div class="blocks"${directive === "hidden" ? ` style="display: none;"` : ""}>\n`;
         if (/^Plot\.plot\(/.test(content)) {
           const options = content.slice(9);
           return `<PlotRender
             ${directive ? ` mode='${directive}'` : ""}
             :options='${md.utils.escapeHtml(options)}'
-          />\n<div class="blocks">\n`;
+          />${suffix}`;
         } else {
           const re = /\.plot\((.*)\)/;
           const match = re.exec(content);
@@ -28,7 +29,7 @@ export default function plot(md) {
             ${directive ? ` mode='${directive}'` : ""}
             :mark='${md.utils.escapeHtml(mark)}'
             :options='${md.utils.escapeHtml(options)}'
-          />\n<div class="blocks">\n`;
+          />${suffix}`;
         }
       } else {
         return `</div>\n`;
