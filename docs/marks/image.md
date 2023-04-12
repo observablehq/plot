@@ -12,7 +12,6 @@ apod = (await FileAttachment("apod.json").json())
 ```
 
 ```js
-```js
 Plot.plot({
   marginLeft: 20,
   x: {inset: 8},
@@ -57,7 +56,6 @@ As another example, the scatterplot below (contributed by [Robert Lesser](https:
   label: "Favorability metric"
 }) -->
 
-```js
 ```js
 Plot.plot({
   inset: 30,
@@ -110,7 +108,6 @@ data = [
 ]
 ```
 
-```js
 ```js
 Plot.plot({
   grid: true,
