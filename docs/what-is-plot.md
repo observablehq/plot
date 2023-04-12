@@ -30,7 +30,7 @@ Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height", 
 ```
 :::
 
-Or we could try the [density mark](/@observablehq/plot-density?collection=@observablehq/plot).
+Or we could try the [density mark](./marks/density.md).
 
 :::plot
 ```js
