@@ -17,9 +17,7 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 
 # Why Plot?
 
-<!-- To be clear, we still love D3—and we’re still actively developing D3, and indeed using D3 to build Plot. But D3’s popularity obscures the fact that it was designed for a fairly niche application: *bespoke* data visualization. And with Plot, we think we now have a tool that is better suited for many, even most, visualization needs. -->
-
-Plot is for exploratory data visualization. It’s for finding insights quickly. Its API, while expressive and configurable, optimizes for conciseness and memorability. We want the time to first chart to be as fast as possible.
+Observable Plot is for exploratory data visualization. It’s for finding insights quickly. Its API, while expressive and configurable, optimizes for conciseness and memorability. We want the time to first chart to be as fast as possible.
 
 And the speed doesn’t stop there: Plot helps you quickly pivot and refine your views of data. Our hope with Plot is that you’ll spend less time reading the docs, searching for code to copy-paste, and debugging—and more time asking questions of data.
 
@@ -29,7 +27,7 @@ Or put more simply: **with Plot, you’ll see more charts.**
 
 ## Plot and D3
 
-Observable Plot is informed by more than [ten years’ experience](https://observablehq.com/@mbostock/10-years-of-open-source-visualization) developing [D3](https://d3js.org), the web’s most popular library for data visualization.
+Plot is informed by more than [ten years’ experience](https://observablehq.com/@mbostock/10-years-of-open-source-visualization) developing [D3](https://d3js.org), the web’s most popular library for data visualization.
 
 We’ve long said that *D3 makes things possible, not necessarily easy.* And that’s true regardless of the task at hand. D3 makes hard and amazing things *possible*, yes, but even simple things that should be easy are often not. To paraphrase Amanda Cox: “Use D3 if you think it’s perfectly normal to write a hundred lines of code for a bar chart.”
 
