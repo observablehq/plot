@@ -231,7 +231,7 @@ Plot.plot({
 })
 ```
 
-One-dimensional bars can also be used to highlight regions of interest. Below, for example, the expected frequency if all English letters were equally likely (${tex`\frac{1}{26}`}) is highlighted in orange.
+One-dimensional bars can also be used to highlight regions of interest. Below, for example, the expected frequency if all English letters were equally likely (¹/₂₆) is highlighted in orange.
 
 ```js
 Plot.plot({
