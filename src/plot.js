@@ -141,7 +141,7 @@ export function plot(options = {}) {
   const {fx, fy} = scales;
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
-  const context = createContext(options, subdimensions, scaleDescriptors);
+  const context = createContext(options, subdimensions, className);
 
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
