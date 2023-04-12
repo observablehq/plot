@@ -118,7 +118,7 @@ The rect mark supports the [standard mark options](#marks), including insets and
 ## rect(*data*, *options*)
 
 ```js
-Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
+Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
 ```
 
 Returns a new rect with the given *data* and *options*.
@@ -126,7 +126,7 @@ Returns a new rect with the given *data* and *options*.
 ## rectX(*data*, *options*)
 
 ```js
-Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
+Plot.rectX(olympians, Plot.binY({x: "count"}, {y: "weight"}))
 ```
 
 Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](#plotstackxstack-options); this is the typical configuration for a histogram with rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
@@ -134,7 +134,7 @@ Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **x
 ## rectY(*data*, *options*)
 
 ```js
-Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
+Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
 Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for a histogram with rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.

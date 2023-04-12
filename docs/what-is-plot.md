@@ -2,7 +2,7 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import athletes from "./data/olympians.ts";
+import olympians from "./data/olympians.ts";
 
 </script>
 
@@ -15,7 +15,7 @@ In the spirit of *show don’t tell*, here’s a scatterplot of body measurement
 :::plot
 ```js
 Plot
-  .dot(athletes, {x: "weight", y: "height", stroke: "sex"})
+  .dot(olympians, {x: "weight", y: "height", stroke: "sex"})
   .plot({color: {legend: true}})
 ```
 :::
@@ -26,7 +26,7 @@ This scatterplot suffers from overplotting: many dots are drawn in the same spot
 
 :::plot
 ```js
-Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height", fill: "sex", inset: 0})).plot()
+Plot.rect(olympians, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height", fill: "sex", inset: 0})).plot()
 ```
 :::
 
@@ -34,7 +34,7 @@ Or we could try the [density mark](./marks/density.md).
 
 :::plot
 ```js
-Plot.density(athletes, {x: "weight", y: "height", stroke: "sex"}).plot()
+Plot.density(olympians, {x: "weight", y: "height", stroke: "sex"}).plot()
 ```
 :::
 
@@ -42,7 +42,7 @@ A simpler take on this data is to focus on one dimension: weight. We can use the
 
 :::plot
 ```js
-Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})).plot()
+Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})).plot()
 ```
 :::
 
@@ -53,7 +53,7 @@ Or if we’d prefer to show the two distributions separately as small multiples,
 Plot.plot({
   grid: true,
   marks: [
-    Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight", fill: "sex", fy: "sex"})),
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", fy: "sex"})),
     Plot.ruleY([0])
   ]
 })

@@ -10,7 +10,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"})),
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"})),
     Plot.ruleY([0])
   ]
 })
@@ -27,7 +27,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight", inset: 0})),
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", inset: 0})),
     Plot.ruleY([0])
   ]
 })
@@ -41,8 +41,8 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaY(athletes, Plot.binX({y: "count", filter: null}, {x: "weight", fill: "#ccc"})),
-    Plot.lineY(athletes, Plot.binX({y: "count", filter: null}, {x: "weight"})),
+    Plot.areaY(olympians, Plot.binX({y: "count", filter: null}, {x: "weight", fill: "#ccc"})),
+    Plot.lineY(olympians, Plot.binX({y: "count", filter: null}, {x: "weight"})),
     Plot.ruleY([0])
   ]
 })
@@ -66,7 +66,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight", thresholds: "sturges"})),
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", thresholds: "sturges"})),
     Plot.ruleY([0])
   ]
 })
@@ -80,7 +80,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight", cumulative: true})),
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", cumulative: true})),
     Plot.ruleY([0])
   ]
 })
@@ -97,7 +97,7 @@ Plot.plot({
     legend: true
   },
   marks: [
-    Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})),
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})),
     Plot.ruleY([0])
   ]
 })
@@ -114,7 +114,7 @@ Plot.plot({
     legend: true
   },
   marks: [
-    Plot.rectY(athletes, Plot.stackY(Plot.binX({y: "count"}, {x: "weight", fill: "sex"}))),
+    Plot.rectY(olympians, Plot.stackY(Plot.binX({y: "count"}, {x: "weight", fill: "sex"}))),
     Plot.ruleY([0])
   ]
 })
@@ -128,7 +128,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.rectY(athletes, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "multiply"})),
+    Plot.rectY(olympians, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "multiply"})),
     Plot.ruleY([0])
   ]
 })
@@ -145,7 +145,7 @@ Plot.plot({
     scheme: "YlGnBu"
   },
   marks: [
-    Plot.barX(athletes, Plot.binX({fill: "count"}, {x: "weight"}))
+    Plot.barX(olympians, Plot.binX({fill: "count"}, {x: "weight"}))
   ]
 })
 ```
@@ -160,7 +160,7 @@ Plot.plot({
     scheme: "YlGnBu"
   },
   marks: [
-    Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height", inset: 0}))
+    Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height", inset: 0}))
   ]
 })
 ```
@@ -172,7 +172,7 @@ Plot.plot({
   grid: true,
   round: true,
   marks: [
-    Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height", fill: "sex", inset: 0}))
+    Plot.rect(olympians, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height", fill: "sex", inset: 0}))
   ]
 })
 ```
@@ -190,7 +190,7 @@ Plot.plot({
     scheme: "YlGnBu"
   },
   marks: [
-    Plot.dot(athletes, Plot.bin({r: "count"}, {x: "weight", y: "height"}))
+    Plot.dot(olympians, Plot.bin({r: "count"}, {x: "weight", y: "height"}))
   ]
 })
 ```
@@ -205,7 +205,7 @@ Plot.plot({
     range: [0, 10]
   },
   marks: [
-    Plot.dot(athletes, Plot.bin({r: "count"}, {x: "weight", y: "height", stroke: "sex"}))
+    Plot.dot(olympians, Plot.bin({r: "count"}, {x: "weight", y: "height", stroke: "sex"}))
   ]
 })
 ```
@@ -218,7 +218,7 @@ Plot.plot({
     range: [0, 14]
   },
   marks: [
-    Plot.dot(athletes, Plot.binX({r: "count"}, {x: "weight"}))
+    Plot.dot(olympians, Plot.binX({r: "count"}, {x: "weight"}))
   ]
 })
 ```
@@ -252,18 +252,18 @@ Plot.plot({
   },
   fy: {
     label: null,
-    domain: d3.groupSort(athletes, g => d3.median(g, d => d.weight), d => d.sport)
+    domain: d3.groupSort(olympians, g => d3.median(g, d => d.weight), d => d.sport)
   },
   color: {
     scheme: "YlGnBu"
   },
   facet: {
-    data: athletes,
+    data: olympians,
     marginLeft: 100,
     y: "sport"
   },
   marks: [
-    Plot.barX(athletes, Plot.binX({fill: "proportion-facet"}, {x: "weight", inset: 0.5}))
+    Plot.barX(olympians, Plot.binX({fill: "proportion-facet"}, {x: "weight", inset: 0.5}))
   ]
 })
 ```
@@ -390,7 +390,7 @@ Lastly, the bin transform changes the default [mark insets](#marks): rather than
 ## bin(*outputs*, *options*)
 
 ```js
-Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
+Plot.rect(olympians, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
 ```
 
 Bins on *x* and *y*. Also groups on the first channel of *z*, *fill*, or *stroke*, if any.
@@ -398,7 +398,7 @@ Bins on *x* and *y*. Also groups on the first channel of *z*, *fill*, or *stroke
 ## binX(*outputs*, *options*)
 
 ```js
-Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
+Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
 Bins on *x*. Also groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
@@ -406,7 +406,7 @@ Bins on *x*. Also groups on *y* and the first channel of *z*, *fill*, or *stroke
 ## binY(*outputs*, *options*)
 
 ```js
-Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
+Plot.rectX(olympians, Plot.binY({x: "count"}, {y: "weight"}))
 ```
 
 Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or *stroke*, if any.

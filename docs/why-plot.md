@@ -65,7 +65,7 @@ Plot.barX(penguins.map((d) => d.species), Plot.groupY()).plot()
 
 ## Plot is composable
 
-Simple components can gain power through composition, such as layering multiple [marks](./marks.md) into a single plot. Take the traditional *grammar of graphics* approach to a new level with custom compound marks, such as this one comprising a rule, area, and line:
+Simple components gain power through composition, such as layering multiple [marks](./marks.md) into a single plot. Plot makes it easy to define custom compound marks, such as this one comprising a rule, area, and line:
 
 ```js
 function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
@@ -77,7 +77,7 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 }
 ```
 
-You can now use this compound mark like any built-in mark:
+You can use this compound mark like any built-in mark:
 
 :::plot
 ```js
@@ -85,7 +85,7 @@ arealineY(aapl, {x: "Date", y: "Close", color: "steelblue"}).plot()
 ```
 :::
 
-Plot uses this technique internally: the [box mark](./marks/box.md) and [axis mark](./marks/axis.md) are both compound marks.
+Plot uses this technique internally: the [axis mark](./marks/axis.md) and [box mark](./marks/box.md) are both compound marks.
 
 :::plot
 ```js
@@ -108,11 +108,11 @@ Plot.plot({
 ```
 :::
 
-Mark options are plain JavaScript objects, so you can also share (possibly transformed) options across multiple marks.
+Mark options are plain JavaScript objects, so you can also share (possibly transformed) options across marks.
 
 ## Plot is extensible
 
-Plot isn’t a new language; it’s “just” vanilla JavaScript. Plot embraces JavaScript, letting you plug in your own functions for accessors, reducers, transforms… and even custom marks! Plot is *intended* to be *extended*—we can’t wait to see where you take it.
+Plot isn’t a new language; it’s “just” vanilla JavaScript. Plot embraces JavaScript, letting you plug in your own functions for accessors, reducers, transforms… even custom marks!
 
 And Plot generates SVG, so you can style it with CSS and manipulate it just like you do with D3. (See [Mike Freeman’s tooltip plugin](https://observablehq.com/@mkfreeman/plot-tooltip) for a great example of extending Plot this way.)
 

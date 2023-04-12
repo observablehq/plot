@@ -199,7 +199,7 @@ The chosen mark type depends both on the options you provide (*e.g.*, whether yo
 ## auto(*data*, *options*)
 
 ```js
-Plot.auto(athletes, {x: "height", y: "weight", color: "count"}) // equivalent to rect + bin, say
+Plot.auto(olympians, {x: "height", y: "weight", color: "count"}) // equivalent to rect + bin, say
 ```
 
 Returns an automatically-chosen mark with the given *data* and *options*, suitable for a quick view of the data.

@@ -167,7 +167,7 @@ export default {
 To use, pass your desired Plot.plot options as a prop:
 
 ```vue
-<PlotRender :options='{marks: [Plot.dot(athletes, {x: "weight", y: "height"})]}' />
+<PlotRender :options='{marks: [Plot.dot(olympians, {x: "weight", y: "height"})]}' />
 ```
 
 This website is written in Vue using VitePress, and we use server-side rendering of Plot to generate static plots—no client-side JavaScript required! This is done using Vue’s virtual DOM via Plot’s top-level **document** option; see [our GitHub](https://github.com/observablehq/plot) for details.
