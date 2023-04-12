@@ -9,7 +9,7 @@ import * as d3 from "d3";
 
 ## Try Plot online
 
-The fastest way to get started (and get help) with Plot is on [Observable](https://observablehq.com)! Plot is available by default in all Observable notebooks as part of the standard library. To use Plot on Observable, simply return the generated plot from a cell like so:
+The fastest way to get started (and get help) with Observable Plot is on [Observable](https://observablehq.com)! Plot is available by default in notebooks as part of Observable’s standard library. To use Plot, simply return the generated plot from a cell like so:
 
 :::plot
 ```js
@@ -18,21 +18,6 @@ Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: d3.randomNormal()})).plo
 :::
 
 [Edit this on Observable →](https://observablehq.com/d/80126d030307e0ef?intent=fork)
-
-This code uses *mark*.plot shorthand, which is convenient for plots with only a single mark. To layer multiple marks, use Plot.plot instead.
-
-:::plot
-```js
-Plot.plot({
-  marks: [
-    Plot.ruleY([0]),
-    Plot.lineY({length: 10000}, Plot.mapY("cumsum", {y: d3.randomNormal()}))
-  ]
-})
-```
-:::
-
-[Edit this on Observable →](https://observablehq.com/d/c61f5404cd713543?intent=fork)
 
 Observable includes a variety of Plot snippets when you click **+** to add a cell, as well as convenient [sample datasets](https://observablehq.com/@observablehq/sample-datasets) to try out Plot features. Or upload a CSV or JSON file to start playing with your data. You can even use [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell), which uses Plot’s [auto mark](./marks/auto.md) under the hood, to create quick charts without writing code! You can then eject to JavaScript by clicking **+** to see the equivalent Plot code.
 
@@ -66,7 +51,7 @@ import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm"
 
  We recommend using the ES module bundle as it automatically loads Plot’s dependency on D3, and because ES modules are the modern way. But for those who need it, the provided UMD bundle is AMD-compatible and exports the `Plot` global when loaded as a plain script.
 
-## Installing Plot locally
+## Installing Plot from npm
 
 If you’re developing a web application using Node, you can install Plot via yarn, npm, pnpm, or your preferred package manager.
 
@@ -98,11 +83,9 @@ You can instead import specific symbols if you prefer:
 import {barY, groupX} from "@observablehq/plot";
 ```
 
-## First light with Plot
+## Plot in vanilla HTML
 
-Plot.plot (or *mark*.plot when using shorthand) returns a DOM element—typically an SVG element. In Observable, you can simply return this element from your cell and Observable will display it for you.
-
-Outside of Observable, you have to connect a few dots yourself. Typically this involves selecting a DOM element from the page (such as a DIV with a unique identifier, like *myplot* below), and then inserting your generated plot into it. For example, in vanilla HTML:
+Plot returns a detached DOM element—either an [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) or [HTML figure](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) element. In vanilla web development, this means you need to insert the generated plot into the page to see it. Typically this is done by selecting a DOM element (such as a DIV with a unique identifier, like *myplot* below), and then calling [*element*.append](https://developer.mozilla.org/en-US/docs/Web/API/Element/append).
 
 ```html
 <div id="myplot"></div>
@@ -116,6 +99,8 @@ div.append(plot);
 
 </script>
 ```
+
+## Plot in React
 
 In React, you can use [useRef](https://react.dev/reference/react/useRef) to get a reference to a DOM element, and then [useEffect](https://react.dev/reference/react/useEffect) to generate and insert your plot. The example below also demonstrates asynchronously loading CSV data with [useState](https://react.dev/reference/react/useState).
 
