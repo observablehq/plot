@@ -1,3 +1,11 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import gistemp from "./data/gistemp.ts";
+
+</script>
+
 # Scales
 
 Scales map an abstract value such as time or temperature to a visual value such as *x*- or *y*-position or color. Scales define a plot’s coordinate system.
@@ -12,77 +20,105 @@ To observe scale behavior, let’s first look at some empty plots with only an *
 
 The domain of a quantitative scale is a continuous interval [*min*, *max*] where *min* and *max* are numbers, such as temperatures. Below, the first domain value (*x* = 0) corresponds to the left edge of the plot while the second (*x* = 100) corresponds to the right edge.
 
+:::plot
 ```js
-Plot.plot({x: {domain: [0, 100]}, grid: true})
+Plot.gridX().plot({x: {domain: [0, 100]}})
 ```
+:::
 
 Flipping the domain reverses the scale so that +*x* points ←left instead of right→.
 
+:::plot
 ```js
-Plot.plot({x: {domain: [100, 0]}, grid: true})
+Plot.gridX().plot({x: {domain: [100, 0]}})
 ```
+:::
 
 Alternatively, use the **reverse** option; this is convenient when the domain is implied from data rather than specified explicitly. (We’ll cover implied domains in more detail in the *inference* section below.)
 
+:::plot
 ```js
-Plot.plot({x: {domain: [0, 100], reverse: true}, grid: true})
+Plot.gridX().plot({x: {domain: [0, 100], reverse: true}})
 ```
+:::
 
 If the domain is dates, Plot will default to a UTC scale. This is a linear scale with ticks based on the Gregorian calendar. (Plot uses [d3.scaleTime](https://github.com/d3/d3-scale#time_ticks)’s “multi-scale” tick format, so January shows the year.) Plot doesn’t parse dates; convert your strings to [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) instances with [d3.utcParse](https://github.com/d3/d3-time-format#utcParse) or [d3.autoType](https://github.com/d3/d3-dsv#autoType), or by passing typed: true to Observable’s FileAttachment function.
 
+:::plot
 ```js
-Plot.plot({x: {domain: [new Date("2021-01-01"), new Date("2022-01-01")]}, grid: true})
+Plot.gridX().plot({x: {domain: [new Date("2021-01-01"), new Date("2022-01-01")]}})
 ```
+:::
 
 To force a UTC scale, say when the data is milliseconds since UNIX epoch rather than Date instances, pass “utc” as the **type** option.
 
+:::plot
 ```js
-Plot.plot({x: {type: "utc", domain: [1609459200000, 1640995200000]}, grid: true})
+Plot.gridX().plot({x: {type: "utc", domain: [1609459200000, 1640995200000]}})
 ```
+:::
 
 If the *type* is “time”, the ticks will be in local time rather than UTC. Be careful here: if your reader is in a different time zone, you may see different plots! UTC is strongly recommended if you are plotting daily (or less frequent) data.
 
+:::plot
 ```js
-Plot.plot({x: {type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)]}, grid: true})
+Plot.gridX().plot({x: {type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)]}})
 ```
+:::
 
 When plotting values that vary widely, such as the luminosity of stars in an [HR diagram](https://observablehq.com/@mbostock/hertzsprung-russell-diagram), a [logarithmic transformation](http://github.com/d3/d3-scale#log-scales) may improve readability; this can be enabled with type “log”. This defaults to base-10 ticks with exponential notation.
 
+:::plot
 ```js
-Plot.plot({x: {type: "log", domain: [1e0, 1e5]}, grid: true})
+Plot.gridX().plot({x: {type: "log", domain: [1e0, 1e5]}})
 ```
+:::
 
 If you prefer conventional notation, you can specify the **tickFormat** option to change the behavior of the axis. Note, however, that this may result in overlapping text.
 
+:::plot
 ```js
-Plot.plot({x: {type: "log", domain: [1e0, 1e5], tickFormat: ","}, grid: true})
+Plot.gridX().plot({x: {type: "log", domain: [1e0, 1e5], tickFormat: ","}})
 ```
+:::
 
 SI-prefix notation is also supported; the **tickFormat** option can either be a [d3.format](https://github.com/d3/d3-format) string or a function that takes a tick value and returns the corresponding string.
 
+:::plot
 ```js
-Plot.plot({x: {type: "log", domain: [1e0, 1e5], tickFormat: "~s"}, grid: true})
+Plot.gridX().plot({x: {type: "log", domain: [1e0, 1e5], tickFormat: "~s"}})
 ```
+:::
 
 Log scales also support a **base** option, say for powers of two. Exponential notation is only the default for base 10.
 
+:::plot
 ```js
-Plot.plot({x: {type: "log", base: 2, domain: [1e0, 1e4], ticks: 20}, grid: true})
+Plot.gridX().plot({x: {type: "log", base: 2, domain: [1e0, 1e4], ticks: 20}})
 ```
+:::
 
 The domain of a log scale cannot include (or cross) zero; for this, consider a [bi-symmetric log](https://github.com/d3/d3-scale#symlog-scales) scale instead.
 
+:::plot
 ```js
-Plot.plot({x: {type: "symlog", domain: [-10, 10]}, grid: true})
+Plot.gridX().plot({x: {type: "symlog", domain: [-10, 10]}})
 ```
+:::
 
 Power scales and square-root scales are also supported. The “pow” scale supports the **exponent** option, which defaults to 1 (for a linear scale).
 
-Plot.plot({x: {type: "sqrt", domain: [0, 100]}, grid: true})
-
+:::plot
 ```js
-Plot.plot({x: {type: "pow", exponent: 1 / 3, domain: [0, 100]}, grid: true})
+Plot.gridX().plot({x: {type: "sqrt", domain: [0, 100]}})
 ```
+:::
+
+:::plot
+```js
+Plot.gridX().plot({x: {type: "pow", exponent: 1 / 3, domain: [0, 100]}})
+```
+:::
 
 Continuous scales also support a **clamp** option, which if true, clamps input values to the scale’s domain before scaling. This is useful for preventing marks from escaping the chart area.
 
@@ -92,22 +128,27 @@ Sadly, not all data is continuous and quantitative: some data is merely ordinal 
 
 A point scale divides space into uniformly-spaced discrete values. It is commonly used for scatterplots (dot marks) of ordinal data. It is the default scale type for ordinal data on the *x* and *y* scale.
 
+:::plot
 ```js
-Plot.plot({x: {type: "point", domain: [..."ABCDEFGHIJ"]}, grid: true})
+Plot.gridX().plot({x: {type: "point", domain: [..."ABCDEFGHIJ"]}})
 ```
+:::
 
 A band scale divides space into uniformly-spaced and -sized discrete intervals. It is commonly used for bar charts (bar marks).
 
+:::plot
 ```js
-Plot.plot({x: {type: "band", domain: [..."ABCDEFGHIJ"]}, grid: true})
+Plot.gridX().plot({x: {type: "band", domain: [..."ABCDEFGHIJ"]}})
 ```
+:::
 
-While *point* and *band* scales appear visually similar when only the grid is visible, the two are not identical—they differ respective to padding. Play with the options below to get a sense of their effect on the scale’s behavior.
+While *point* and *band* scales appear visually similar when only the grid is visible, the two are not identical—they differ respective to padding. TK Play with the options below to get a sense of their effect on the scale’s behavior.
 
 <!-- viewof padding = Inputs.range([0, 1], {value: 0.1, step: 0.01, label: "Padding"}) -->
 
 <!-- viewof align = Inputs.range([0, 1], {value: 0.5, step: 0.01, label: "Align"}) -->
 
+:::plot
 ```js
 Plot.plot({
   grid: true,
@@ -123,7 +164,9 @@ Plot.plot({
   ]
 })
 ```
+:::
 
+:::plot
 ```js
 Plot.plot({
   grid: true,
@@ -139,6 +182,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 Positions scales also have a **round** option which forces the scale to snap to integer pixels. This defaults to true for point and band scales, and false for quantitative scales. Use caution with high-cardinality ordinal domains (*i.e.*, a point or band scale used to encode many different values), as rounding can lead to “wasted” space or even zero-width bands.
 
@@ -189,19 +233,22 @@ While position is the most salient, and thus more important, encoding, many visu
 ["Sinebow (cylical)", "sinebow"]
 ]), {label: "Color scheme", value: "turbo"}) -->
 
+:::plot
 ```js
 Plot.plot({
   color: {
-    scheme: schemeq
+    // scheme: schemeq
   },
   marks: [
     Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: d => d, fill: d => d})
   ]
 })
 ```
+:::
 
 The default color scheme is [Turbo](https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html). A wide variety of sequential, diverging, and cyclical schemes are supported, including ColorBrewer and [Viridis](http://bids.github.io/colormap/). You can implement a custom color scheme by specifying the scale’s *range*, or by passing an *interpolate* function that takes a parameter *t* in [0, 1]. The *interpolate* option can also be used to specify a color space, or a two-argument function that takes a pair of values from the range.
 
+:::plot
 ```js
 Plot.plot({
   color: {
@@ -213,7 +260,9 @@ Plot.plot({
   ]
 })
 ```
+:::
 
+:::plot
 ```js
 Plot.plot({
   color: {
@@ -226,7 +275,9 @@ Plot.plot({
   ]
 })
 ```
+:::
 
+:::plot
 ```js
 Plot.plot({
   color: {
@@ -238,11 +289,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 And like position scales, you can apply a *sqrt*, *pow*, *log*, or *symlog* transform; these are often useful when working with non-uniformly distributed data.
 
-```js
-html`${["log", "symlog", "sqrt", "linear"].map(type => html`<div style="position: relative;">
+<!-- html`${["log", "symlog", "sqrt", "linear"].map(type => html`<div style="position: relative;">
   <div style="position: absolute; color: white; font: bold 13px/33px var(--sans-serif); padding: 0 38px;">${type}</div>${Plot.plot({
   height: 33,
   color: {
@@ -256,11 +307,11 @@ html`${["log", "symlog", "sqrt", "linear"].map(type => html`<div style="position
   marks: [
     Plot.cellX({length: 64}, {x: (d, i) => i, fill: (d, i) => (i + 1)})
   ]
-})}`)}
-```
+})}`)} -->
 
 Diverging color scales are intended to show positive and negative values (or more generally values above or below some *pivot* value); diverging color scales default to the “RdBu” (red–blue) color scheme.
 
+:::plot
 ```js
 Plot.plot({
   color: {
@@ -271,11 +322,13 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 The pivot defaults to zero, but you can change it with the **pivot** option, which should ideally be a value near the middle of the domain.
 
 <!-- viewof pivot = Inputs.range([-5, 5], {step: 0.1, value: -3, label: "Pivot"}) -->
 
+:::plot
 ```js
 Plot.plot({
   color: {
@@ -287,9 +340,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 Here is a practical example showing observed global surface temperatures, represented as “anomalies” relative to the 1951–1980 average. Note that the “BuRd” color scheme is used since blue and red are semantically associated with cold and hot, respectively.
 
+:::plot
 ```js
 Plot.plot({
   grid: true,
@@ -303,10 +358,7 @@ Plot.plot({
   ]
 })
 ```
-
-```js
-gistemp = FileAttachment("gistemp.csv").csv({typed: true})
-```
+:::
 
 ## Discrete color
 
@@ -325,6 +377,7 @@ Plot also provides color schemes for discrete data. Use the *categorical* type f
 ["Tableau10 (categorical, 10 colors)", "tableau10"]
 ]), {label: "Color scheme", value: "tableau10"}) -->
 
+:::plot
 ```js
 Plot.plot({
   color: {
@@ -336,6 +389,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 <!-- viewof schemeo = Inputs.select(new Map([
 ["Blues (sequential, single-hue)", "blues"],
@@ -380,6 +434,7 @@ Plot.plot({
 ["Sinebow (cylical)", "sinebow"]
 ]), {label: "Color scheme", value: "turbo"}) -->
 
+:::plot
 ```js
 Plot.plot({
   color: {
@@ -393,6 +448,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 Note that we are using the **unknown** option to set the color of invalid values.
 
@@ -402,6 +458,7 @@ For [dot marks](./marks/dot.md), the *r* channel makes the dots’ area proporti
 
 <!-- viewof radius = Inputs.range([1, 20], {label: "Radius", step: 0.1, value: 8}) -->
 
+:::plot
 ```js
 Plot.plot({
   r: {
@@ -412,8 +469,9 @@ Plot.plot({
   ]
 })
 ```
+:::
 
-## Inference
+## Type inference
 
 Plot strives to be concise: rather than you laboriously specifying everything, Plot can guess by inspecting the data so you don’t have to set the **type**, **domain**, and **range** (and for color, **scheme**) of scales explicitly. But for Plot’s guesses to be accurate, your data must match Plot’s expectations. Here they are.
 
@@ -427,7 +485,7 @@ If you don’t specify a quantitative scale’s **domain**, it is the extent (mi
 
 All position scales (*x*, *y*, *fx*, and *fy*) have implicit automatic ranges based on the chart dimensions. The *x*-scale ranges from the left to right edge, while the *y*-scale ranges from the bottom to top edge, accounting for margins.
 
-## Transforms
+## Scale transforms
 
 The *scale*.**transform** option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
@@ -452,6 +510,7 @@ Plot.plot({
 
 The shorthand *scale*.**percent** option multiplies values by 100, and adds a % symbol to the default label.
 
+:::plot
 ```js
 Plot.plot({
   y: {
@@ -467,5 +526,4 @@ Plot.plot({
   ]
 })
 ```
-
-Next we’ll look at data transformations.
+:::
