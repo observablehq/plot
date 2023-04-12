@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import {h} from "vue";
+import {h, withDirectives} from "vue";
 
 class Document {
   constructor() {
@@ -99,14 +99,26 @@ class TextNode {
 }
 
 export default {
-  props: ["options", "mark"],
+  props: ["options", "mark", "mode"],
   render() {
-    return Plot.plot({
+    const options = {
       marks: [this.mark],
       ...this.options,
       style: "background: none;",
-      document: new Document(),
       className: "plot"
-    }).toHyperScript();
+    };
+    if (this.mode === "defer") {
+      return withDirectives(h("figure"), [
+        [
+          {
+            mounted(el) {
+              el.replaceWith(Plot.plot(options));
+            }
+          }
+        ]
+      ]);
+    }
+    options.document = new Document();
+    return Plot.plot(options).toHyperScript();
   }
 };
