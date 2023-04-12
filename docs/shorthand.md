@@ -104,7 +104,7 @@ If we pass the numbers to [Plot.areaY](./marks/area.md) instead, we’ll get a s
 
 :::plot
 ```js
-Plot.areaY(numbers, {}).plot()
+Plot.areaY(numbers).plot()
 ```
 :::
 
