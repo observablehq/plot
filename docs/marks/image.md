@@ -132,7 +132,7 @@ icons = ({
 })
 ```
 
-A convenient alternative, if the symbols are available as a text font, is to use a [text mark](./text.md), for example with emoji like in the chart below. In the future, we plan on adding a [proportional symbol mark](https://github.com/observablehq/plot/issues/41) to Plot with symbols designed to maximize differentiability.
+A convenient alternative, if the symbols are available as a text font, is to use a [text mark](./text.md), for example with emoji like in the chart below. A [proportional symbol mark](./dot.md) is also available, designed to maximize differentiability.
 
 ```js
 Plot.plot({
