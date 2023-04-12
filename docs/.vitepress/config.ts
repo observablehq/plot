@@ -63,7 +63,8 @@ export default defineConfig({
           {text: "Getting help", link: "/getting-help"},
           {text: "Forum", link: "https://talk.observablehq.com/c/help/6"},
           {text: "Slack", link: "https://observable-community.slack.com/ssb/redirect"},
-          {text: "Issues", link: "https://github.com/observablehq/plot/issues"}
+          {text: "Issues", link: "https://github.com/observablehq/plot/issues"},
+          {text: "Cheatsheets", link: "https://observablehq.com/@observablehq/plot-cheatsheets"}
         ]
       },
       {
@@ -82,8 +83,9 @@ export default defineConfig({
       {
         text: "Introduction",
         items: [
-          {text: "Getting started", link: "/getting-started"},
+          {text: "What is Plot?", link: "/what-is-plot"},
           {text: "Why Plot?", link: "/why-plot"},
+          {text: "Getting started", link: "/getting-started"},
           {text: "Marks", link: "/marks"},
           {text: "Scales", link: "/scales"},
           {text: "Transforms", link: "/transforms"},
@@ -139,6 +141,15 @@ export default defineConfig({
           {text: "Stack", link: "/transforms/stack"},
           {text: "Tree", link: "/transforms/tree"},
           {text: "Window", link: "/transforms/window"}
+        ]
+      },
+      {
+        text: "Features",
+        collapsed: false,
+        items: [
+          {text: "Curves", link: "/curves"},
+          {text: "Formats", link: "/formats"},
+          {text: "Markers", link: "/markers"}
         ]
       }
     ],

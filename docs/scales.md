@@ -102,7 +102,7 @@ A band scale divides space into uniformly-spaced and -sized discrete intervals. 
 Plot.plot({x: {type: "band", domain: [..."ABCDEFGHIJ"]}, grid: true})
 ```
 
-While *point* and *band* scales appear visually similar when only the grid is visible, the two are not identical — they differ respective to padding. Play with the options below to get a sense of their effect on the scale’s behavior.
+While *point* and *band* scales appear visually similar when only the grid is visible, the two are not identical—they differ respective to padding. Play with the options below to get a sense of their effect on the scale’s behavior.
 
 <!-- viewof padding = Inputs.range([0, 1], {value: 0.1, step: 0.01, label: "Padding"}) -->
 

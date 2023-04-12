@@ -1,0 +1,61 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import athletes from "./data/olympians.ts";
+
+</script>
+
+# What is Plot?
+
+**Observable Plot** is a free, open-source, vanilla JavaScript library to help you quickly visualize tabular data. It has a concise, memorable, yet expressive API, using layered marks and scales in the grammar of graphics style—and [plenty of examples](https://observablehq.com/@observablehq/plot-gallery) to learn from and copy-paste.
+
+In the spirit of *show don’t tell*, here’s a scatterplot of the height and weight of Olympic athletes (data from [Matt Riggott](https://flother.is/2017/olympic-games-data/)), broken down by sex.
+
+:::plot
+```js
+Plot
+  .dot(athletes, {x: "weight", y: "height", stroke: "sex"})
+  .plot({color: {legend: true}})
+```
+:::
+
+A plot specification assigns columns of data (*weight*, *height*, and *sex*) to visual properties of marks (**x**, **y**, and **stroke**). Plot does the rest! You can configure much more, if needed, but Plot’s goal is to help you get a meaningful visualization quickly to accelerate analysis.
+
+This scatterplot suffers from overplotting: many dots are drawn in the same spot, so it’s hard to perceive density. We can fix this by applying a [bin transform](./transforms/bin.md) to group athletes of similar height and weight (and sex), and then use opacity to encode the number of athletes in the bin.
+
+:::plot
+```js
+Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height", fill: "sex", inset: 0})).plot()
+```
+:::
+
+Or we could try the [density mark](/@observablehq/plot-density?collection=@observablehq/plot).
+
+:::plot
+```js
+Plot.density(athletes, {x: "weight", y: "height", stroke: "sex", bandwidth: 6}).plot()//1
+```
+:::
+
+A simpler take on this data is to focus on one dimension: weight. We can use the bin transform again to make a histogram with weight on the *x*-axis and frequency on the *y*-axis. This plot uses a [rect mark](./marks/rect.md) and an implicit [stack transform](./transforms/stack.md).
+
+:::plot
+```js
+Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})).plot()
+```
+:::
+
+Or if we’d prefer to show the two distributions separately as small multiples, we can [facet](./facets.md) the data along *y* (keeping the *fill* encoding for consistency, and adding grid lines and a rule at *y* = 0 to improve readability).
+
+:::plot
+```js
+Plot.plot({
+  grid: true,
+  marks: [
+    Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight", fill: "sex", fy: "sex"})),
+    Plot.ruleY([0])
+  ]
+})
+```
+:::

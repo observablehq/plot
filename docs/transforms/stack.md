@@ -169,7 +169,7 @@ The *appearance* order excels when each series has a prominent peak, such as the
 }
 ```
 
-With the *expand* offset, the stack transform will compute the proportion of each series, such that each stack spans the interval [0, 1]. The *percent* scale option then multiplies these proportions by 100 to show percentages. Very little music is actually purchased these days — nearly everything is rented by way of streaming services.
+With the *expand* offset, the stack transform will compute the proportion of each series, such that each stack spans the interval [0, 1]. The *percent* scale option then multiplies these proportions by 100 to show percentages. Very little music is actually purchased these days—nearly everything is rented by way of streaming services.
 
 ```js
 {

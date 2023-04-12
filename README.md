@@ -997,43 +997,6 @@ If an initializer desires a channel that is not supported by the downstream mark
 
 This helper composes the *initializer* function with any other transforms present in the *options*, and returns a new *options* object.
 
-## Curves
-
-A curve defines how to turn a discrete representation of a line as a sequence of points [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] into a continuous path; *i.e.*, how to interpolate between points. Curves are used by the [line](#line), [area](#area), and [link](#link) mark, and are implemented by [d3-shape](https://github.com/d3/d3-shape/blob/main/README.md#curves).
-
-The supported curve options are:
-
-* **curve** - the curve method, either a string or a function
-* **tension** - the curve tension (for fine-tuning)
-
-The following named curve methods are supported:
-
-* *basis* - a cubic basis spline (repeating the end points)
-* *basis-open* - an open cubic basis spline
-* *basis-closed* - a closed cubic basis spline
-* *bump-x* - a Bézier curve with horizontal tangents
-* *bump-y* - a Bézier curve with vertical tangents
-* *bundle* - a straightened cubic basis spline (suitable for lines only, not areas)
-* *cardinal* - a cubic cardinal spline (with one-sided differences at the ends)
-* *cardinal-open* - an open cubic cardinal spline
-* *cardinal-closed* - an closed cubic cardinal spline
-* *catmull-rom* - a cubic Catmull–Rom spline (with one-sided differences at the ends)
-* *catmull-rom-open* - an open cubic Catmull–Rom spline
-* *catmull-rom-closed* - a closed cubic Catmull–Rom spline
-* *linear* - a piecewise linear curve (*i.e.*, straight line segments)
-* *linear-closed* - a closed piecewise linear curve (*i.e.*, straight line segments)
-* *monotone-x* - a cubic spline that preserves monotonicity in *x*
-* *monotone-y* - a cubic spline that preserves monotonicity in *y*
-* *natural* - a natural cubic spline
-* *step* - a piecewise constant function where *y* changes at the midpoint of *x*
-* *step-after* - a piecewise constant function where *y* changes after *x*
-* *step-before* - a piecewise constant function where *x* changes after *y*
-* *auto* - like *linear*, but use the (possibly spherical) [projection](#projection-options), if any
-
-If *curve* is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://github.com/d3/d3-shape/blob/main/README.md#custom-curves). The *auto* curve is only available for the [line mark](#line) and [link mark](#link) and is typically used in conjunction with a spherical [projection](#projection-options) to interpolate along [geodesics](https://en.wikipedia.org/wiki/Geodesic).
-
-The tension option only has an effect on bundle, cardinal and Catmull–Rom splines (*bundle*, *cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For bundle splines, it corresponds to [beta](https://github.com/d3/d3-shape/blob/main/README.md#curveBundle_beta); for cardinal splines, [tension](https://github.com/d3/d3-shape/blob/main/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/main/README.md#curveCatmullRom_alpha).
-
 ## Spatial interpolation
 
 The [raster](#raster) and [contour](#contour) marks use spatial interpolation to populate a raster grid from a discrete set of (often ungridded) spatial samples. The **interpolate** option controls how these marks compute the raster grid. The following built-in methods are provided:
@@ -1069,55 +1032,6 @@ Constructs a Delaunay triangulation of the samples, and then for each pixel in t
 #### Plot.interpolatorRandomWalk({*random*, *minDistance* = 0.5, *maxSteps* = 2})
 
 For each pixel in the raster grid, initiates a random walk, stopping when either the walk is within a given distance (*minDistance*) of a sample or the maximum allowable number of steps (*maxSteps*) have been taken, and then assigning the current pixel the closest sample’s value. The random walk uses the “walk on spheres” algorithm in two dimensions described by [Sawhney and Crane](https://www.cs.cmu.edu/~kmcrane/Projects/MonteCarloGeometryProcessing/index.html), SIGGRAPH 2020.
-
-## Markers
-
-A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defines a graphic drawn on vertices of a [line](#line) or a [link](#link) mark. The supported marker options are:
-
-* **markerStart** - the marker for the starting point of a line segment
-* **markerMid** - the marker for any intermediate point of a line segment
-* **markerEnd** - the marker for the end point of a line segment
-* **marker** - shorthand for setting the marker on all points
-
-The following named markers are supported:
-
-* *none* (default) - no marker
-* *arrow* - an arrowhead
-* *dot* - a filled *circle* without a stroke and 2.5px radius
-* *circle*, equivalent to *circle-fill* - a filled circle with a white stroke and 3px radius
-* *circle-stroke* - a hollow circle with a colored stroke and a white fill and 3px radius
-
-If *marker* is true, it defaults to *circle*. If *marker* is a function, it will be called with a given *color* and must return an SVG marker element.
-
-The primary color of a marker is inherited from the *stroke* of the associated mark. The *arrow* marker is [automatically oriented](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/orient) such that it points in the tangential direction of the path at the position the marker is placed. The *circle* markers are centered around the given vertex. Note that for lines whose curve is not *linear*, markers are not necessarily drawn at the data positions given by *x* and *y*; marker placement is determined by the (possibly Bézier) path segments generated by the curve. To ensure that symbols are drawn at a given *x* and *y* position, consider using a [dot](#dot).
-
-## Formats
-
-These helper functions are provided for use as a *scale*.tickFormat [axis option](#position-options), as the text option for [Plot.text](#plottextdata-options), or for general use. See also [d3-format](https://github.com/d3/d3-format), [d3-time-format](https://github.com/d3/d3-time-format), and JavaScript’s built-in [date formatting](https://observablehq.com/@mbostock/date-formatting) and [number formatting](https://observablehq.com/@mbostock/number-formatting).
-
-#### Plot.formatIsoDate(*date*)
-
-```js
-Plot.formatIsoDate(new Date("2020-01-01T00:00.000Z")) // "2020-01-01"
-```
-
-Given a *date*, returns the shortest equivalent ISO 8601 UTC string. If the given *date* is not valid, returns `"Invalid Date"`.
-
-#### Plot.formatWeekday(*locale*, *format*)
-
-```js
-Plot.formatWeekday("es-MX", "long")(0) // "domingo"
-```
-
-Returns a function that formats a given week day number (from 0 = Sunday to 6 = Saturday) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [weekday format](https://tc39.es/ecma402/#datetimeformat-objects): either *narrow*, *short*, or *long*; if not specified, it defaults to *short*.
-
-#### Plot.formatMonth(*locale*, *format*)
-
-```js
-Plot.formatMonth("es-MX", "long")(0) // "enero"
-```
-
-Returns a function that formats a given month number (from 0 = January to 11 = December) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [month format](https://tc39.es/ecma402/#datetimeformat-objects): either *2-digit*, *numeric*, *narrow*, *short*, *long*; if not specified, it defaults to *short*.
 
 ## Accessibility
 
