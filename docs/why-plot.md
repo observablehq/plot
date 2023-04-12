@@ -37,9 +37,25 @@ Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "specie
 
 What makes Plot concise? In a word: *defaults*. If you specify the semantics—your data and the desired encodings—Plot will figure out the rest.
 
-The beauty of defaults is that you can override them as needed. This is ideal for exploratory analysis: you can invest very little in an initial chart, but as you start to see something interesting, you can progressively customize the chart to make it better.
+The beauty of defaults is that you can override them as needed. This is ideal for exploring: you invest minimally in the initial chart, and as you start to see something interesting, you progressively customize to improve the display. Perhaps the plot above would be easier to read with an aspect ratio proportional to the data, a grid, and a legend?
 
-Also: [transforms](./transforms.md). Munging data, not assigning visual encodings, is most of the work of data analysis. Plot’s transforms let you aggregate and derive data within your plot specification, reducing the time spent preparing data. For example, if you have an array of categorical values (penguin species), you can quickly count them with the group transform.
+:::plot
+```js
+Plot.plot({
+  grid: true,
+  aspectRatio: 1,
+  inset: 10,
+  x: {tickSpacing: 80, label: "Culmen length (mm) →"},
+  y: {tickSpacing: 80, label: "↑ Culmen depth (mm)"},
+  color: {legend: true},
+  marks: [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species"})
+  ]
+})
+```
+:::
+
+How about [transforms](./transforms.md)? Munging data, not assigning visual encodings, is often most of the work of data analysis. Plot’s transforms let you aggregate and derive data within your plot specification, reducing the time spent preparing data. For example, if you have an array of categorical values (penguin species), you can quickly count them with the group transform.
 
 :::plot
 ```js
@@ -130,4 +146,4 @@ We recommend D3 for *bespoke* data visualizations, if you decide the extra expre
 
 We designed Plot to pair beautifully with Observable: to leverage [Observable’s reactive dataflow](https://observablehq.com/@observablehq/how-observable-runs) for fluid exploration and interaction. However, Plot does not depend on Observable; use it wherever you like.
 
-Chart cell integration, snippets.
+TK Chart cell integration, snippets.
