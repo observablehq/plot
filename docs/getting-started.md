@@ -138,3 +138,36 @@ export default App;
 ```
 
 If you want to update your plot, say because your data has changed, simply throw away the old plot using [*element*.remove](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove) and then replace it with a new one. That’s done above in the useEffect’s cleanup function.
+
+## Plot in Vue
+
+In Vue, use a [render function](https://vuejs.org/guide/extras/render-function.html) with a directive that calls Plot after the component mounts.
+
+```js
+import * as Plot from "@observablehq/plot";
+import {h, withDirectives} from "vue";
+
+export default {
+  props: ["options"],
+  render() {
+    const {options} = this;
+    return withDirectives(h("figure"), [
+      [
+        {
+          mounted(el) {
+            el.replaceWith(Plot.plot(options));
+          }
+        }
+      ]
+    ]);
+  }
+};
+```
+
+To use, pass your desired Plot.plot options as a prop:
+
+```vue
+<PlotRender :options='{marks: [Plot.dot(athletes, {x: "weight", y: "height"})]}' />
+```
+
+This website is written in Vue using VitePress, and we use server-side rendering of Plot to generate static plots—no client-side JavaScript required! This is done using Vue’s virtual DOM via Plot’s top-level **document** option; see [our GitHub](https://github.com/observablehq/plot) for details.

@@ -102,7 +102,7 @@ export default {
   props: ["options", "mark", "mode"],
   render() {
     const options = {
-      marks: [this.mark],
+      marks: this.mark == null ? [] : [this.mark],
       ...this.options,
       style: "background: none;",
       className: "plot"
