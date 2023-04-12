@@ -2,7 +2,10 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {ref} from "vue";
 import gistemp from "./data/gistemp.ts";
+
+const schemeq = ref("turbo");
 
 </script>
 
@@ -162,7 +165,7 @@ Plot.plot({
   },
   marks: [
     Plot.frame({stroke: "#ccc"}),
-    Plot.tickX([..."ABCDEFGHIJ"], {x: d => d, fill: "none", stroke: "currentColor"})
+    Plot.tickX([..."ABCDEFGHIJ"], {x: (d) => d, fill: "none", stroke: "currentColor"})
   ]
 })
 ```
@@ -180,7 +183,7 @@ Plot.plot({
   },
   marks: [
     Plot.frame({stroke: "#ccc"}),
-    Plot.cell([..."ABCDEFGHIJ"], {x: d => d, fill: "none", stroke: "currentColor"})
+    Plot.cell([..."ABCDEFGHIJ"], {x: (d) => d, fill: "none", stroke: "currentColor"})
   ]
 })
 ```
@@ -235,14 +238,70 @@ While position is the most salient, and thus more important, encoding, many visu
 ["Sinebow (cylical)", "sinebow"]
 ]), {label: "Color scheme", value: "turbo"}) -->
 
+<p>
+  <label style="font-size: smaller;">
+    Color scheme:
+    <select style="all: revert;" v-model="schemeq">
+      <optgroup label="sequential, single-hue">
+        <option value="blues">Blues</option>
+        <option value="greens">Greens</option>
+        <option value="greys">Greys</option>
+        <option value="purples">Purples</option>
+        <option value="reds">Reds</option>
+        <option value="oranges">Oranges</option>
+      </optgroup>
+      <optgroup label="sequential, multi-hue">
+        <option value="turbo" selected>Turbo</option>
+        <option value="viridis">Viridis</option>
+        <option value="magma">Magma</option>
+        <option value="inferno">Inferno</option>
+        <option value="plasma">Plasma</option>
+        <option value="cividis">Cividis</option>
+        <option value="cubehelix">Cubehelix</option>
+        <option value="warm">Warm</option>
+        <option value="cool">Cool</option>
+        <option value="bugn">BuGn</option>
+        <option value="bupu">BuPu</option>
+        <option value="gnbu">GnBu</option>
+        <option value="orrd">OrRd</option>
+        <option value="pubugn">PuBuGn</option>
+        <option value="pubu">PuBu</option>
+        <option value="purd">PuRd</option>
+        <option value="rdpu">RdPu</option>
+        <option value="ylgnbu">YlGnBu</option>
+        <option value="ylgn">YlGn</option>
+        <option value="ylorbr">YlOrBr</option>
+        <option value="ylorrd">YlOrRd</option>
+      </optgroup>
+      <optgroup label="diverging">
+        <option value="brbg">BrBG</option>
+        <option value="prgn">PRGn</option>
+        <option value="piyg">PiYG</option>
+        <option value="puor">PuOr</option>
+        <option value="rdbu">RdBu</option>
+        <option value="rdgy">RdGy</option>
+        <option value="rdylbu">RdYlBu</option>
+        <option value="rdylgn">RdYlGn</option>
+        <option value="spectral">Spectral</option>
+        <option value="burd">BuRd</option>
+        <option value="buylrd">BuYlRd</option>
+      </optgroup>
+      <optgroup label="cyclical">
+        <option value="rainbow">Rainbow</option>
+        <option value="sinebow">Sinebow</option>
+      </optgroup>
+    </select>
+  </label>
+</p>
+
 :::plot hidden
 ```js
 Plot.plot({
   color: {
-    // scheme: schemeq
+    scheme: schemeq
   },
   marks: [
-    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: d => d, fill: d => d})
+    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: (d) => d, fill: (d) => d})
   ]
 })
 ```
@@ -258,7 +317,7 @@ Plot.plot({
     range: ["steelblue", "orange"] // uses d3.interpolateRgb
   },
   marks: [
-    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: d => d, fill: d => d})
+    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: (d) => d, fill: (d) => d})
   ]
 })
 ```
@@ -273,7 +332,7 @@ Plot.plot({
     interpolate: "hcl" // uses d3.interpolateHcl
   },
   marks: [
-    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: d => d, fill: d => d})
+    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: (d) => d, fill: (d) => d})
   ]
 })
 ```
@@ -287,7 +346,7 @@ Plot.plot({
     interpolate: t => `hsl(${t * 360},100%,50%)` // angry rainbow!
   },
   marks: [
-    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: d => d, fill: d => d})
+    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: (d) => d, fill: (d) => d})
   ]
 })
 ```
@@ -320,7 +379,7 @@ Plot.plot({
     type: "diverging"
   },
   marks: [
-    Plot.cell([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], {x: d => d, fill: d => d})
+    Plot.cell([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], {x: (d) => d, fill: (d) => d})
   ]
 })
 ```
@@ -338,7 +397,7 @@ Plot.plot({
     pivot: undefined // TODO
   },
   marks: [
-    Plot.cell([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], {x: d => d, fill: d => d})
+    Plot.cell([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], {x: (d) => d, fill: (d) => d})
   ]
 })
 ```
@@ -387,7 +446,7 @@ Plot.plot({
     scheme: undefined // TODO schemec
   },
   marks: [
-    Plot.cell([..."ABCDEFGHIJ"], {x: d => d, fill: d => d})
+    Plot.cell([..."ABCDEFGHIJ"], {x: (d) => d, fill: (d) => d})
   ]
 })
 ```
@@ -446,7 +505,7 @@ Plot.plot({
     unknown: "gray"
   },
   marks: [
-    Plot.cell([..."ABCDEFGHIJ", null], {x: d => d ?? "N/A", fill: d => d})
+    Plot.cell([..."ABCDEFGHIJ", null], {x: (d) => d ?? "N/A", fill: (d) => d})
   ]
 })
 ```
@@ -467,7 +526,7 @@ Plot.plot({
     range: [0, 10] // TODO radius
   },
   marks: [
-    Plot.dot([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: d => d, r: d => d, fill: "black"})
+    Plot.dot([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: (d) => d, r: (d) => d, fill: "black"})
   ]
 })
 ```
