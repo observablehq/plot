@@ -17,9 +17,21 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 
 # Why Plot?
 
+<!-- To be clear, we still love D3—and we’re still actively developing D3, and indeed using D3 to build Plot. But D3’s popularity obscures the fact that it was designed for a fairly niche application: *bespoke* data visualization. And with Plot, we think we now have a tool that is better suited for many, even most, visualization needs. -->
+
+Plot is for exploratory data visualization. It’s for finding insights quickly. Its API, while expressive and configurable, optimizes for conciseness and memorability. We want the time to first chart to be as fast as possible.
+
+And the speed doesn’t stop there: Plot helps you quickly pivot and refine your views of data. Our hope with Plot is that you’ll spend less time reading the docs, searching for code to copy-paste, and debugging—and more time asking questions of data.
+
+Compared to other visualization tools, including low-level tools such as D3 and less expressive high-level tools such as chart templates, we think you’ll be more productive exploring data with Plot. You’ll spend more time [“using vision to think”](https://www.amazon.com/Readings-Information-Visualization-Interactive-Technologies/dp/1558605339) and less time wrangling the machinery of programming.
+
+Or put more simply: **with Plot, you’ll see more charts.**
+
+## Plot and D3
+
 Observable Plot is informed by more than [ten years’ experience](https://observablehq.com/@mbostock/10-years-of-open-source-visualization) developing [D3](https://d3js.org), the web’s most popular library for data visualization.
 
-We’ve long said that *D3 makes things possible, not necessarily easy.* And that’s true regardless of the task at hand. D3 makes the hard things *possible*, yes, but even the easy things like a basic histogram are often not *easy*.
+We’ve long said that *D3 makes things possible, not necessarily easy.* And that’s true regardless of the task at hand. D3 makes hard and amazing things *possible*, yes, but even simple things that should be easy are often not. To paraphrase Amanda Cox: “Use D3 if you think it’s perfectly normal to write a hundred lines of code for a bar chart.”
 
 **Plot’s goal is to make the easy things easy, and fast, and then some.**
 
@@ -27,15 +39,13 @@ We’ve long said that *D3 makes things possible, not necessarily easy.* And tha
 Whether or not Plot succeeds at this goal is up to you—so we’d love [your feedback](https://talk.observablehq.com/c/site-feedback/3) on what you find easy or hard to do with Plot. And we encourage you to [ask for help](https://talk.observablehq.com/c/help/6) when you get stuck. We learn a lot from helping!
 :::
 
-Since Plot and D3 have different goals, they make different trade-offs. There’s no “one ring to rule them all.” Plot is more efficient: you can make charts quickly. But it is also necessarily less expressive: bespoke visualizations with extensive animation and interaction, advanced techniques like force-directed graph layout, or even developing your own charting library, are better done with D3’s low-level API. This is why we still develop and recommend both Plot and D3 for different use cases, and indeed why Plot itself uses D3.
+Since Plot and D3 have different goals, they make different trade-offs. Plot is more efficient: you can make charts quickly. But it is also necessarily less expressive: bespoke visualizations with extensive animation and interaction, advanced techniques like force-directed graph layout, or even developing your own charting library, are better done with D3’s low-level API.
 
-Plot is for *exploratory* data visualization. We highly recommend Plot because we think you’ll be more productive analyzing data with Plot’s high-level API. You can spend more time [“using vision to think”](https://www.amazon.com/Readings-Information-Visualization-Interactive-Technologies/dp/1558605339) and less time wrangling the machinery of programming. Simply put, **you’ll see more charts.** Ultimately we believe Plot will help you be more successful at finding and communicating insights.
-
-We recommend D3 for *bespoke* data visualizations, and only if you decide the extra expressiveness of D3 is worth the time and effort. D3 makes a lot of sense for media organizations such as *The New York Times* or *The Pudding*, where a single graphic may be seen by a million readers, and where a team of editors can work together to advance the state of the art in visual communication; but is it the best tool for building your team’s private dashboard, or a one-off analysis? And you may be surprised how far you can get with Plot.
+We recommend D3 for *bespoke* data visualizations, if you decide the extra expressiveness of D3 is worth the time and effort. D3 makes sense for media organizations such as *The New York Times* or *The Pudding*, where a single graphic may be seen by a million readers, and where a team of editors can work together to advance the state of the art in visual communication; but is it the best tool for building your team’s private dashboard, or a one-off analysis? And you may be surprised how far you can get with Plot.
 
 ## Plot is concise
 
-With its concise and memorable API, Observable Plot lets you try out ideas quickly. You can make a meaningful chart with as little as one line of code.
+You can make a meaningful chart in Plot with as little as one line of code.
 
 :::plot
 ```js
@@ -43,9 +53,9 @@ Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "specie
 ```
 :::
 
-And it’s not just about shortening the time to your first chart, but how quickly you can pivot among different views of your data. Our hope with Plot is that you’ll spend less time reading the docs, searching for code to copy-paste, and debugging—and more time asking questions of data. With faster iteration, you can find more insights.
+What makes Plot concise? In a word: *defaults*. If you specify the semantics—your data and the desired encodings—Plot will figure out the rest.
 
-What makes Plot concise? In a word: *defaults*. If you specify the semantics—your data and the desired encodings—Plot will figure out the rest. And the beauty of defaults is that you can override them as needed. This is ideal for exploratory analysis: you can invest very little in an initial chart, but as you start to see something interesting, you can progressively customize the chart to make it better.
+The beauty of defaults is that you can override them as needed. This is ideal for exploratory analysis: you can invest very little in an initial chart, but as you start to see something interesting, you can progressively customize the chart to make it better.
 
 Also: [transforms](./transforms.md). Munging data, not assigning visual encodings, is most of the work of data analysis. Plot’s transforms let you aggregate and derive data within your plot specification, reducing the time spent preparing data. For example, if you have an array of categorical values (penguin species), you can quickly count them with the group transform.
 

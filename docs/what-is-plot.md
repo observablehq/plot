@@ -34,7 +34,7 @@ Or we could try the [density mark](./marks/density.md).
 
 :::plot
 ```js
-Plot.density(athletes, {x: "weight", y: "height", stroke: "sex", bandwidth: 6}).plot()//1
+Plot.density(athletes, {x: "weight", y: "height", stroke: "sex"}).plot()
 ```
 :::
 
