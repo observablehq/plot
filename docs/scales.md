@@ -6,6 +6,8 @@ import {ref} from "vue";
 import gistemp from "./data/gistemp.ts";
 
 const schemeq = ref("turbo");
+const schemed = ref("rdbu");
+const interpolateq = ref("rgb");
 
 </script>
 
@@ -239,7 +241,7 @@ While position is the most salient, and thus more important, encoding, many visu
 ]), {label: "Color scheme", value: "turbo"}) -->
 
 <p>
-  <label style="font-size: smaller;">
+  <label style="font-size: smaller; color: var(--vp-c-text-2);">
     Color scheme:
     <select style="all: revert;" v-model="schemeq">
       <optgroup label="sequential, single-hue">
@@ -273,19 +275,6 @@ While position is the most salient, and thus more important, encoding, many visu
         <option value="ylorbr">YlOrBr</option>
         <option value="ylorrd">YlOrRd</option>
       </optgroup>
-      <optgroup label="diverging">
-        <option value="brbg">BrBG</option>
-        <option value="prgn">PRGn</option>
-        <option value="piyg">PiYG</option>
-        <option value="puor">PuOr</option>
-        <option value="rdbu">RdBu</option>
-        <option value="rdgy">RdGy</option>
-        <option value="rdylbu">RdYlBu</option>
-        <option value="rdylgn">RdYlGn</option>
-        <option value="spectral">Spectral</option>
-        <option value="burd">BuRd</option>
-        <option value="buylrd">BuYlRd</option>
-      </optgroup>
       <optgroup label="cyclical">
         <option value="rainbow">Rainbow</option>
         <option value="sinebow">Sinebow</option>
@@ -297,11 +286,13 @@ While position is the most salient, and thus more important, encoding, many visu
 :::plot hidden
 ```js
 Plot.plot({
+  axis: null,
+  padding: 0,
   color: {
     scheme: schemeq
   },
   marks: [
-    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: (d) => d, fill: (d) => d})
+    Plot.cell(d3.range(40), {x: (d) => d, fill: (d) => d, inset: -0.5})
   ]
 })
 ```
@@ -309,46 +300,38 @@ Plot.plot({
 
 The default color scheme is [Turbo](https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html). A wide variety of sequential, diverging, and cyclical schemes are supported, including ColorBrewer and [Viridis](http://bids.github.io/colormap/). You can implement a custom color scheme by specifying the scale’s *range*, or by passing an *interpolate* function that takes a parameter *t* in [0, 1]. The *interpolate* option can also be used to specify a color space, or a two-argument function that takes a pair of values from the range.
 
-:::plot hidden
-```js
-Plot.plot({
-  color: {
-    type: "linear",
-    range: ["steelblue", "orange"] // uses d3.interpolateRgb
-  },
-  marks: [
-    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: (d) => d, fill: (d) => d})
-  ]
-})
-```
-:::
+<p>
+  <label style="font-size: smaller; color: var(--vp-c-text-2);">
+    Color interpolate:
+    <select style="all: revert;" v-model="interpolateq">
+      <option value="rgb">rgb</option>
+      <option value="lab">lab</option>
+      <option value="hcl">hcl</option>
+      <option value="hsl">hsl</option>
+      <option value="rgb-gamma">d3.interpolateRgb.gamma(2)</option>
+      <option value="angry-rainbow">(t) => `hsl(${t * 360},100%,50%)`</option>
+    </select>
+  </label>
+</p>
 
 :::plot hidden
 ```js
 Plot.plot({
+  axis: null,
+  padding: 0,
   color: {
     type: "linear",
-    range: ["steelblue", "orange"],
-    interpolate: "hcl" // uses d3.interpolateHcl
+    ...interpolateq === "angry-rainbow"
+      ? {interpolate: (t) => `hsl(${t * 360},100%,50%)`}
+      : interpolateq === "rgb-gamma"
+      ? {range: ["steelblue", "orange"], interpolate: d3.interpolateRgb.gamma(2)}
+      : {range: ["steelblue", "orange"], interpolate: interpolateq}
   },
   marks: [
-    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: (d) => d, fill: (d) => d})
+    Plot.cell(d3.range(40), {x: (d) => d, fill: (d) => d, inset: -0.5})
   ]
 })
-```
-:::
 
-:::plot hidden
-```js
-Plot.plot({
-  color: {
-    type: "linear",
-    interpolate: t => `hsl(${t * 360},100%,50%)` // angry rainbow!
-  },
-  marks: [
-    Plot.cell([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {x: (d) => d, fill: (d) => d})
-  ]
-})
 ```
 :::
 
@@ -372,14 +355,38 @@ And like position scales, you can apply a *sqrt*, *pow*, *log*, or *symlog* tran
 
 Diverging color scales are intended to show positive and negative values (or more generally values above or below some *pivot* value); diverging color scales default to the “RdBu” (red–blue) color scheme.
 
+<p>
+  <label style="font-size: smaller; color: var(--vp-c-text-2);">
+    Color scheme:
+    <select style="all: revert;" v-model="schemed">
+      <optgroup label="diverging">
+        <option value="brbg">BrBG</option>
+        <option value="prgn">PRGn</option>
+        <option value="piyg">PiYG</option>
+        <option value="puor">PuOr</option>
+        <option value="rdbu">RdBu</option>
+        <option value="rdgy">RdGy</option>
+        <option value="rdylbu">RdYlBu</option>
+        <option value="rdylgn">RdYlGn</option>
+        <option value="spectral">Spectral</option>
+        <option value="burd">BuRd</option>
+        <option value="buylrd">BuYlRd</option>
+      </optgroup>
+    </select>
+  </label>
+</p>
+
 :::plot hidden
 ```js
 Plot.plot({
+  axis: null,
+  padding: 0,
   color: {
-    type: "diverging"
+    type: "linear",
+    scheme: schemed
   },
   marks: [
-    Plot.cell([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], {x: (d) => d, fill: (d) => d})
+    Plot.cell(d3.range(40), {x: (d) => d, fill: (d) => d, inset: -0.5})
   ]
 })
 ```
