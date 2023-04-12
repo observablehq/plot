@@ -22,19 +22,19 @@ hero:
       link: https://observablehq.com/@observablehq/plot-gallery
 
 features:
-  - title: Marks and channels
+  - title: Marks
     details: "Plot doesn’t have chart types. Instead, it has layered geometric shapes such as bars, dots, and lines."
     link: /marks
-  - title: Scales, axes, and legends
+  - title: Scales
     details: "Scales map an abstract value such as time or temperature to a visual value such as position or color."
     link: /scales
-  - title: Data transforms
+  - title: Transforms
     details: "Derive data on-the-fly while plotting, say to bin quantitative values or compute a rolling average."
     link: /transforms
   - title: Facets
     details: "Small multiples facilitate comparison by repeating a plot across partitions of data."
     link: /facets
-  - title: Maps and projections
+  - title: Maps
     details: "Plot supports GeoJSON and D3’s spherical projection system for geographic maps."
     link: /maps
   - title: Built with D3

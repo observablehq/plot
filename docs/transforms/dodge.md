@@ -168,3 +168,30 @@ Plot.plot({
   ]
 })
 ```
+
+## Dodge options
+
+The dodge transform can be applied to any mark that consumes *x* or *y* channels, such as the [dot](#dot), [image](#image), [text](#text), and [vector](#vector) marks. The dodge transforms accept the following options:
+
+* **padding** — a number of pixels added to the radius of the mark to estimate its size
+* **anchor** - the dodge anchor; defaults to *left* for dodgeX, or *bottom* for dodgeY
+
+The **anchor** option may one of *middle*, *right*, and *left* for dodgeX, and one of *middle*, *top*, and *bottom* for dodgeY. With the *middle* anchor the piles will grow from the center in both directions; with the other anchors, the piles will grow from the specified anchor towards the opposite direction.
+
+The dodge layout is highly dependent on the input data order: the circles placed first will be closest to the dodge anchor. When using the dodge layout with circles of varying radius, the data is sorted by descending radius by default; you can disable this behavior by setting the **sort** or **reverse** option.
+
+## dodgeY(*dodgeOptions*, *options*)
+
+```js
+Plot.dodgeY({x: "date"})
+```
+
+Given marks arranged along the *x* axis, the dodgeY transform piles them vertically by defining a *y* position channel that avoids overlapping. The *x* position channel is unchanged.
+
+## dodgeX(*dodgeOptions*, *options*)
+
+```js
+Plot.dodgeX({y: "value"})
+```
+
+Equivalent to Plot.dodgeY, but piling horizontally, creating a new *x* position channel that avoids overlapping. The *y* position channel is unchanged.

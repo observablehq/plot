@@ -210,3 +210,68 @@ As another example of a scatterplot with an ordinal dimension, we can plot age g
 ```
 
 Another visualization technique supported by the dot mark is the [quantile-quantile (QQ) plot](https://observablehq.com/d/6bb4330bca6eba2b); this is used to compare univariate two distributions.
+
+## Dot options
+
+Draws circles, or other symbols, as in a scatterplot.
+
+In addition to the [standard mark options](#marks), the following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale
+* **y** - the vertical position; bound to the *y* scale
+* **r** - the radius (area); bound to the *radius* scale, which defaults to *sqrt*
+* **rotate** - the rotation angle in degrees clockwise
+* **symbol** - the categorical symbol; bound to the *symbol* scale
+
+If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
+
+The following dot-specific constant options are also supported:
+
+* **r** - the effective radius (length); a number in pixels
+* **rotate** - the rotation angle in degrees clockwise; defaults to 0
+* **symbol** - the categorical symbol; defaults to circle
+* **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
+
+The **r** option can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. The radius defaults to 4.5 pixels when using the **symbol** channel, and otherwise 3 pixels. Dots with a nonpositive radius are not drawn.
+
+The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise. The **strokeWidth** defaults to 1.5. The **rotate** and **symbol** options can be specified as either channels or constants. When rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. When symbol is a valid symbol name or symbol object (implementing the draw method), it is interpreted as a constant; otherwise it is interpreted as a channel. If the **symbol** channel’s values are all symbols, symbol names, or nullish, the channel is unscaled (values are interpreted literally); otherwise, the channel is bound to the *symbol* scale.
+
+The built-in **symbol** types are: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke, based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746)). The *hexagon* symbol is also supported. You can also specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types) method.
+
+Dots are sorted by descending radius by default to mitigate overplotting; set the **sort** option to null to draw them in input order.
+
+## dot(*data*, *options*)
+
+```js
+Plot.dot(sales, {x: "units", y: "fruit"})
+```
+
+Returns a new dot with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+
+## dotX(*data*, *options*)
+
+```js
+Plot.dotX(cars.map(d => d["economy (mpg)"]))
+```
+
+Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+
+If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
+
+## dotY(*data*, *options*)
+
+```js
+Plot.dotY(cars.map(d => d["economy (mpg)"]))
+```
+
+Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+
+If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
+
+## circle(*data*, *options*)
+
+Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *circle*.
+
+## hexagon(*data*, *options*)
+
+Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *hexagon*.

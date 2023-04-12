@@ -97,3 +97,44 @@ Plot.plot({
   ]
 })
 ```
+
+## Rect options
+
+Draws rectangles where both *x* and *y* are quantitative as in a histogram. Both pairs of quantitative values represent lower and upper bounds, and often one of the lower bounds is implicitly zero. If one of the dimensions is ordinal, use a [bar](#bar) instead; if both dimensions are ordinal, use a [cell](#cell) instead. Rects are often used in conjunction with a [bin transform](#bin).
+
+The following channels are optional:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+
+Typically either **x1** and **x2** are specified, or **y1** and **y2**, or both.
+
+If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. The same is true for *y*, *y1*, and *y2*, respectively. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*. The interval may be specified either as as {x, interval} or x: {value, interval} to apply different intervals to x and y.
+
+The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
+
+## rect(*data*, *options*)
+
+```js
+Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
+```
+
+Returns a new rect with the given *data* and *options*.
+
+## rectX(*data*, *options*)
+
+```js
+Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
+```
+
+Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](#plotstackxstack-options); this is the typical configuration for a histogram with rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
+
+## rectY(*data*, *options*)
+
+```js
+Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
+```
+
+Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for a histogram with rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.

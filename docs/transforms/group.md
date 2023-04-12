@@ -247,3 +247,109 @@ Plot.plot({
   ]
 })
 ```
+
+## Group options
+
+Aggregates ordinal or categorical data—such as names—into groups and then computes summary statistics for each group such as a count or sum. The group transform is like a discrete [bin transform](#bin). There are separate transforms depending on which dimensions need grouping: [Plot.groupZ](#plotgroupzoutputs-options) for *z*; [Plot.groupX](#plotgroupxoutputs-options) for *x* and *z*; [Plot.groupY](#plotgroupyoutputs-options) for *y* and *z*; and [Plot.group](#plotgroupoutputs-options) for *x*, *y*, and *z*.
+
+Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting grouped data is an array of arrays where each inner array is a subset of the input data [[*d₀₀*, *d₀₁*, …], [*d₁₀*, *d₁₁*, …], [*d₂₀*, *d₂₁*, …], …]. Each inner array is in input order. The outer array is in natural ascending order according to the associated dimension (*x* then *y*). Empty groups are skipped. By specifying a different aggregation method for the *data* output, as described below, you can change how the grouped data is computed. The outputs may also include *filter* and *sort* options specified as aggregation methods, and a *reverse* option to reverse the order of generated groups. By default, all (non-empty) groups are generated in ascending natural order.
+
+While it is possible to compute channel values on the grouped data by defining channel values as a function, more commonly channel values are computed directly by the group transform, either implicitly or explicitly. In addition to data, the following channels are automatically aggregated:
+
+* **x** - the horizontal position of the group
+* **y** - the vertical position of the group
+* **z** - the first value of the *z* channel, if any
+* **fill** - the first value of the *fill* channel, if any
+* **stroke** - the first value of the *stroke* channel, if any
+
+The **x** output channel is only computed by the Plot.groupX and Plot.group transform; similarly the **y** output channel is only computed by the Plot.groupY and Plot.group transform.
+
+You can declare additional channels to aggregate by specifying the channel name and desired aggregation method in the *outputs* object which is the first argument to the transform. For example, to use [Plot.groupX](#plotgroupxoutputs-options) to generate a **y** channel of group counts as in a frequency histogram:
+
+```js
+Plot.groupX({y: "count"}, {x: "species"})
+```
+
+The following aggregation methods are supported:
+
+* *first* - the first value, in input order
+* *last* - the last value, in input order
+* *count* - the number of elements (frequency)
+* *sum* - the sum of values
+* *proportion* - the sum proportional to the overall total (weighted frequency)
+* *proportion-facet* - the sum proportional to the facet total
+* *min* - the minimum value
+* *min-index* - the zero-based index of the minimum value
+* *max* - the maximum value
+* *max-index* - the zero-based index of the maximum value
+* *mean* - the mean value (average)
+* *median* - the median value
+* *mode* - the value with the most occurrences
+* *pXX* - the percentile value, where XX is a number in [00,99]
+* *deviation* - the standard deviation
+* *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+* *identity* - the array of values
+* a function - passed the array of values for each group
+* an object with a *reduceIndex* method, an optionally a *scope*
+
+In the last case, the *reduceIndex* method is repeatedly passed two arguments: the index for each group (an array of integers), and the input channel’s array of values; it must then return the corresponding aggregate value for the group. If the reducer object’s *scope* is “data”, then the *reduceIndex* method is first invoked for the full data; the return value of the *reduceIndex* method is then made available as a third argument. Similarly if the *scope* is “facet”, then the *reduceIndex* method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s groups. (This optional *scope* is used by the *proportion* and *proportion-facet* reducers.)
+
+Most aggregation methods require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
+
+```js
+Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
+```
+
+You can control whether a channel is computed before or after grouping. If a channel is declared only in *options* (and it is not a special group-eligible channel such as *x*, *y*, *z*, *fill*, or *stroke*), it will be computed after grouping and be passed the grouped data: each datum is the array of input data corresponding to the current group.
+
+```js
+Plot.groupX({y: "count"}, {x: "species", title: group => group.map(d => d.body_mass_g).join("\n")})
+```
+
+This is equivalent to declaring the channel only in *outputs*.
+
+```js
+Plot.groupX({y: "count", title: group => group.map(d => d.body_mass_g).join("\n")}, {x: "species"})
+```
+
+However, if a channel is declared in both *outputs* and *options*, then the channel in *options* is computed before grouping and can be aggregated using any built-in reducer (or a custom reducer function) during the group transform.
+
+```js
+Plot.groupX({y: "count", title: masses => masses.join("\n")}, {x: "species", title: "body_mass_g"})
+```
+
+If any of **z**, **fill**, or **stroke** is a channel, the first of these channels is considered the *z* dimension and will be used to subdivide groups.
+
+The default reducer for the **title** channel returns a summary list of the top 5 values with the corresponding number of occurrences.
+
+## group(*outputs*, *options*)
+
+```js
+Plot.group({fill: "count"}, {x: "island", y: "species"})
+```
+
+Groups on *x*, *y*, and the first channel of *z*, *fill*, or *stroke*, if any.
+
+## groupX(*outputs*, *options*)
+
+```js
+Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
+```
+
+Groups on *x* and the first channel of *z*, *fill*, or *stroke*, if any.
+
+## groupY(*outputs*, *options*)
+
+```js
+Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
+```
+
+Groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
+
+## groupZ(*outputs*, *options*)
+
+```js
+Plot.groupZ({x: "proportion"}, {fill: "species"})
+```
+
+Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group.

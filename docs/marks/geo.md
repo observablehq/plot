@@ -160,3 +160,33 @@ The dataset below contains the 2016 unemployment rates for each county from the 
 ```js
 unemployment = (await FileAttachment("us-county-unemployment.csv").csv()).map(({rate, ...rest}) => ({...rest, rate: +rate}))
 ```
+
+## Geo options
+
+Draws polygons, lines, points, and other GeoJSON geometry, often in conjunction with a [geographic projection](#projection-options) to produce a thematic map. The **geometry** channel specifies the geometry (GeoJSON object) to draw; if not specified, the mark’s *data* is assumed to be GeoJSON.
+
+## Plot.geo(*data*, *options*)
+
+```js
+Plot.geo(counties, {fill: d => d.properties.rate})
+```
+
+Returns a new geo mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is the single-element array [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an iterable of GeoJSON objects.
+
+In addition to the [standard mark options](#marks), the **r** option controls the size of Point and MultiPoint geometries. It can be specified as either a channel or constant. When **r** is specified as a number, it is interpreted as a constant radius in pixels; otherwise it is interpreted as a channel and the effective radius is controlled by the *r* scale. (As with [dots](#dot), the *r* scale defaults to a *sqrt* scale such that the visual area of a point is proportional to its associated value.) If the **r** option is not specified it defaults to 3 pixels. Geometries with a nonpositive radius are not drawn. If **r** is a channel, geometries will be sorted by descending radius by default.
+
+## Plot.sphere(*options*)
+
+```js
+Plot.sphere()
+```
+
+Returns a new geo mark with a *Sphere* geometry object and the given *options*.
+
+## Plot.graticule(*options*)
+
+```js
+Plot.graticule()
+```
+
+Returns a new geo mark with a [default 10° global graticule](https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule10) geometry object and the given *options*.

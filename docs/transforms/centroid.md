@@ -92,3 +92,21 @@ The geoCentroid transform is slightly faster than the centroid initializer—whi
 ```js
 Plot.dot(counties.features, Plot.hexbin({r:"count"}, Plot.geoCentroid())).plot({projection: "albers"})
 ```
+
+## Centroid options
+
+## centroid(*options*)
+
+The centroid initializer derives **x** and **y** channels representing the planar (projected) centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
+
+```js
+Plot.dot(regions.features, Plot.centroid()).plot({projection: "reflect-y"})
+```
+
+## geoCentroid(*options*)
+
+The geoCentroid transform derives **x** and **y** channels representing the spherical centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
+
+```js
+Plot.dot(counties.features, Plot.geoCentroid()).plot({projection: "albers-usa"})
+```

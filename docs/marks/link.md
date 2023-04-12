@@ -104,3 +104,30 @@ Plot.plot({
   ]
 })
 ```
+
+## Link options
+
+[<img src="./img/link.png" width="320" height="198" alt="a chart with links">](https://observablehq.com/@observablehq/plot-link)
+
+[Source](./src/marks/link.js) · [Examples](https://observablehq.com/@observablehq/plot-link) · Draws line segments (or curves) connecting pairs of points.
+
+The following channels are required:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+
+For vertical or horizontal links, the **x** option can be specified as shorthand for **x1** and **x2**, and the **y** option can be specified as shorthand for **y1** and **y2**, respectively.
+
+The link mark supports the [standard mark options](#marks). The **stroke** defaults to currentColor. The **fill** defaults to none. The **strokeWidth** and **strokeMiterlimit** default to one.
+
+The link mark supports [curve options](#curves) to control interpolation between points, and [marker options](#markers) to add a marker (such as a dot or an arrowhead) on each of the control points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area. For a curved link, you can use a bent [arrow](#arrow) (with no arrowhead, if desired).
+
+## link(*data*, *options*)
+
+```js
+Plot.link(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015"})
+```
+
+Returns a new link with the given *data* and *options*.

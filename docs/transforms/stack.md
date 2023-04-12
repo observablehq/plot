@@ -254,3 +254,95 @@ energy = Plot.plot({
   ]
 })
 ```
+
+## Stack options
+
+Transforms a length channel into starting and ending position channels by “stacking” elements that share a given position, such as transforming the **y** input channel into **y1** and **y2** output channels after grouping on **x** as in a stacked area chart. The starting position of each element equals the ending position of the preceding element in the stack.
+
+The Plot.stackY transform groups on **x** and transforms **y** into **y1** and **y2**; the Plot.stackX transform groups on **y** and transforms **x** into **x1** and **x2**. If **y** is not specified for Plot.stackY, or if **x** is not specified for Plot.stackX, it defaults to the constant one, which is useful for constructing simple isotype charts (*e.g.*, stacked dots).
+
+The supported stack options are:
+
+- **offset** - the offset (or baseline) method
+- **order** - the order in which stacks are layered
+- **reverse** - true to reverse order
+
+The following **order** methods are supported:
+
+- null (default) - input order
+- *value* - ascending value order (or descending with **reverse**)
+- *x* - alias of *value*; for stackX only
+- *y* - alias of *value*; for stackY only
+- *sum* - order series by their total value
+- *appearance* - order series by the position of their maximum value
+- *inside-out* (default with *wiggle*) - order the earliest-appearing series on the inside
+- a named field or function of data - order data by priority
+- an array of *z* values
+
+The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y* value while Plot.stackX uses the *x* value. For the *appearance* order, Plot.stackY uses the *x* position of the maximum *y* value while Plot.stackX uses the *y* position of the maximum *x* value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort). Note that the input order (null) and *value* order can produce crossing paths: they do not guarantee a consistent series order across stacks.
+
+The stack transform supports diverging stacks: negative values are stacked below zero while positive values are stacked above zero. For Plot.stackY, the **y1** channel contains the value of lesser magnitude (closer to zero) while the **y2** channel contains the value of greater magnitude (farther from zero); the difference between the two corresponds to the input **y** channel value. For Plot.stackX, the same is true, except for **x1**, **x2**, and **x** respectively.
+
+After all values have been stacked from zero, an optional **offset** can be applied to translate or scale the stacks. The following **offset** methods are supported:
+
+- null (default) - a zero baseline
+- *normalize* - rescale each stack to fill [0, 1]
+- *center* - align the centers of all stacks
+- *wiggle* - translate stacks to minimize apparent movement
+- a function to be passed a nested index, and start, end, and *z* values
+
+If a given stack has zero total value, the *expand* offset will not adjust the stack’s position. Both the *center* and *wiggle* offsets ensure that the lowest element across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
+
+If the offset is specified as a function, it will receive four arguments: an index of stacks nested by facet and then stack, an array of start values, an array of end values, and an array of *z* values. For stackX, the start and end values correspond to *x1* and *x2*, while for stackY, the start and end values correspond to *y1* and *y2*. The offset function is then responsible for mutating the arrays of start and end values, such as by subtracting a common offset for each of the indices that pertain to the same stack.
+
+In addition to the **y1** and **y2** output channels, Plot.stackY computes a **y** output channel that represents the midpoint of **y1** and **y2**. Plot.stackX does the same for **x**. This can be used to position a label or a dot in the center of a stacked layer. The **x** and **y** output channels are lazy: they are only computed if needed by a downstream mark or transform.
+
+If two arguments are passed to the stack transform functions below, the stack-specific options (**offset**, **order**, and **reverse**) are pulled exclusively from the first *options* argument, while any channels (*e.g.*, **x**, **y**, and **z**) are pulled from second *options* argument. Options from the second argument that are not consumed by the stack transform will be passed through. Using two arguments is sometimes necessary is disambiguate the option recipient when chaining transforms.
+
+## stackY(*stack*, *options*)
+
+```js
+Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
+```
+
+Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points. The stack options (*offset*, *order*, and *reverse*) may be specified as part of the *options* object, if the only argument, or as a separate *stack* options argument.
+
+## stackY1(*stack*, *options*)
+
+```js
+Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
+```
+
+Equivalent to [Plot.stackY](#plotstackystack-options), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
+
+## stackY2(*stack*, *options*)
+
+```js
+Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
+```
+
+Equivalent to [Plot.stackY](#plotstackystack-options), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
+
+## stackX(*stack*, *options*)
+
+```js
+Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
+```
+
+See Plot.stackY, but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
+
+## stackX1(*stack*, *options*)
+
+```js
+Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
+```
+
+Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
+
+## stackX2(*stack*, *options*)
+
+```js
+Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
+```
+
+Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.

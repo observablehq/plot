@@ -66,3 +66,41 @@ Plot.plot({
   ]
 })
 ```
+
+## Tick options
+
+Draws an orthogonal line at the given horizontal ([Plot.tickX](#plottickxdata-options)) or vertical ([Plot.tickY](#plottickydata-options)) position, with an optional secondary position dimension along a band scale. (If the secondary dimension is quantitative instead of ordinal, use a [rule](#rule).) Ticks are often used to visualize distributions as in a “barcode” plot.
+
+For the required channels, see [Plot.tickX](#plottickxdata-options) and [Plot.tickY](#plottickydata-options). The tick mark supports the [standard mark options](#marks), including insets. The **stroke** defaults to currentColor.
+
+## tickX(*data*, *options*)
+
+```js
+Plot.tickX(stateage, {x: "population", y: "age"})
+```
+
+Returns a new tick↕︎ with the given *data* and *options*. The following channels are required:
+
+* **x** - the horizontal position; bound to the *x* scale
+
+The following optional channels are supported:
+
+* **y** - the vertical position; bound to the *y* scale, which must be *band*
+
+If the **y** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
+
+## tickY(*data*, *options*)
+
+```js
+Plot.tickY(stateage, {y: "population", x: "age"})
+```
+
+Returns a new tick↔︎ with the given *data* and *options*. The following channels are required:
+
+* **y** - the vertical position; bound to the *y* scale
+
+The following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale, which must be *band*
+
+If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).

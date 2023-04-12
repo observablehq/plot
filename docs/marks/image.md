@@ -290,3 +290,42 @@ Plot.image([eclipseBlob], { x: 0, src: (d) => d, width: 300 }).plot({
 Finally, the **file** protocol will load images directly from your hard-drive—this works only in a context where Plot is launched from an HTML file that is also loaded directly.
 
 Note that Plot.image will pass the *crossOrigin* option to the generated svg image elements; however browser support for this attribute is, at the time of this writing, [inexistent](https://caniuse.com/?search=svg%20crossorigin). (For more details on this topic, see “[Plot.image and crossOrigin](https://observablehq.com/@observablehq/plot-image-and-crossorigin).”)
+
+## Image options
+
+[<img src="./img/image.png" width="320" height="198" alt="a scatterplot of Presidential portraits">](https://observablehq.com/@observablehq/plot-image)
+
+[Source](./src/marks/image.js) · [Examples](https://observablehq.com/@observablehq/plot-image) · Draws images as in a scatterplot. The required **src** option specifies the URL (or relative path) of each image. If **src** is specified as a string that starts with a dot, slash, or URL protocol (*e.g.*, “https:”) it is assumed to be a constant; otherwise it is interpreted as a channel.
+
+In addition to the [standard mark options](#marks), the following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale
+* **y** - the vertical position; bound to the *y* scale
+* **width** - the image width (in pixels)
+* **height** - the image height (in pixels)
+* **r** - the image radius; bound to the *r* scale
+
+If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
+
+The **width** and **height** options default to 16 pixels (unless **r** is specified) and can be specified as either a channel or constant. When the width or height is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Images with a nonpositive width or height are not drawn. If a **width** is specified but not a **height**, or *vice versa*, the one defaults to the other. Images do not support either a fill or a stroke.
+
+The **r** option, if not null (the default), enables circular clipping; it may be specified as a constant in pixels or a channel. Use the **preserveAspectRatio** option to control which part of the image is clipped. Also defaults the **width** and **height** to twice the effective radius.
+
+The following image-specific constant options are also supported:
+
+* **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
+* **preserveAspectRatio** - the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio); defaults to “xMidYMid meet”
+* **crossOrigin** - the [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior
+* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
+
+To crop the image instead of scaling it to fit, set **preserveAspectRatio** to “xMidYMid slice”. The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation on enlarged images; however, note that this is not supported in WebKit.
+
+Images are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting, consider a [sort and reverse transform](#transforms).
+
+## image(*data*, *options*)
+
+```js
+Plot.image(presidents, {x: "inauguration", y: "favorability", src: "portrait"})
+```
+
+Returns a new image with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].

@@ -110,3 +110,54 @@ If the chart uses facets, the facet values are passed as the third argument of t
   });
 }
 ```
+
+## Contour options
+
+Renders contour polygons from spatial samples. If data is provided, it represents discrete samples in abstract coordinates *x* and *y*; the *value* channel specifies further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](#spatial-interpolation) to produce a [raster grid](#raster) of quantitative values, and lastly contours via marching squares.
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity})
+```
+
+The *value* channel may alternatively be specified as a continuous function *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
+
+```js
+Plot.contour({x1: 0, y1: 0, x2: 4, y2: 4, value: (x, y) => Math.sin(x) * Math.cos(y)})
+```
+
+The contour mark shares many options with the [raster](#raster) mark, including the **interpolate** option to specify the [spatial interpolation method](#spatial-interpolation). The interpolation method is ignored when the *value* channel is a function of *x* and *y*, and otherwise defaults to *nearest*. For smoother contours, the **blur** option (default 0) specifies a non-negative pixel radius for smoothing prior to applying marching squares. The **smooth** option (default true) specifies whether to apply linear interpolation after marching squares when computing contour polygons. The **thresholds** and **interval** options specify the contour thresholds; see the [bin transform](#bin) for details.
+
+The resolution of the raster grid may be specified with the following options:
+
+* **width** - the number of pixels on each horizontal line
+* **height** - the number of lines; a positive integer
+
+Alternatively, the raster dimensions may be imputed from the extent of *x* and *y* and a pixel size:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+* **pixelSize** - the screen size of a raster pixel; defaults to 1
+
+If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**; likewise, if **height** is specified, **y1** defaults to 0 and **y2** defaults to **height**. Otherwise, if **data** is specified, **x1**, **y1**, **x2**, and **y2** respectively default to the frame’s left, top, right, and bottom coordinates. Lastly, if **data** is not specified (as when **value** is a function of *x* and *y*), you must specify all of **x1**, **x2**, **y1**, and **y2** to define the raster domain (see below).
+
+With the exception of the *x*, *y*, *x1*, *y1*, *x2*, *y2*, and *value* channels, the contour mark’s channels are not evaluated on the initial *data* but rather on the contour multipolygons generated in the initializer. For example, to generate filled contours where the color corresponds to the contour threshold value:
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity, fill: "value"})
+```
+
+As shorthand, a single channel may be specified, in which case it is promoted to the *value* channel.
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+## contour(*data*, *options*)
+
+```js
+Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+Returns a new contour mark with the given (optional) *data* and *options*.

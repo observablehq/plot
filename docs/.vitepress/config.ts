@@ -107,6 +107,8 @@ export default defineConfig({
           {text: "Dot", link: "/marks/dot"},
           {text: "Frame", link: "/marks/frame"},
           {text: "Geo", link: "/marks/geo"},
+          {text: "Grid", link: "/marks/grid"},
+          {text: "Hexgrid", link: "/marks/hexgrid"},
           {text: "Image", link: "/marks/image"},
           {text: "Line", link: "/marks/line"},
           {text: "Linear Regression", link: "/marks/linear-regression"},
@@ -133,6 +135,7 @@ export default defineConfig({
           {text: "Map", link: "/transforms/map"},
           {text: "Select", link: "/transforms/select"},
           {text: "Stack", link: "/transforms/stack"},
+          {text: "Tree", link: "/transforms/tree"},
           {text: "Window", link: "/transforms/window"}
         ]
       }

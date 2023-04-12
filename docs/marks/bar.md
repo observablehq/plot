@@ -288,3 +288,51 @@ Plot.plot({
 Bars are often used in conjunction with transforms: the [*group* transform](../transforms/group.md) groups data by discrete value so that bar length can represent the size (frequency) of each group; the [*stack* transform](../transforms/stack.md) can arrange bars into stacks, as in a stacked bar chart. The [*bin* transform](../transforms/bin.md), which can be used to construct histograms of quantitative data, is typically paired with the [*rect* mark](./rect.md) instead of bar.
 
 Bars support a *z* channel to control *z*-order. This is typically only needed to control occlusion when bars overlap. Bars also support the SVG *rx* and *ry* attributes for rounding, along with the standard SVG style attributes.
+
+## Bar options
+
+Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)). If one dimension is temporal and the other is quantitative, as in a time-series bar chart, use the [rect mark](#rect) with the *interval* option instead. There is usually one ordinal value associated with each bar, such as a name, and two quantitative values defining a lower and upper bound. The lower bound is often not specified explicitly because it defaults to zero as in a conventional bar chart.
+
+For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options). The bar mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
+
+## barX(*data*, *options*)
+
+```js
+Plot.barX(alphabet, {y: "letter", x: "frequency"})
+```
+
+Returns a new horizontal bar↔︎ with the given *data* and *options*. The following channels are required:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+
+If neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](#plotstackxstack-options); this is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function. If *options* is undefined, then it defaults to **x2** as the identity function and **y** as the index of data; this allows an array of numbers to be passed to Plot.barX to make a quick sequential bar chart.
+
+If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*.
+
+In addition to the [standard bar channels](#bar), the following optional channels are supported:
+
+* **y** - the vertical position; bound to the *y* scale, which must be *band*
+
+If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
+
+## barY(*data*, *options*)
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency"})
+```
+
+Returns a new vertical bar↕︎ with the given *data* and *options*. The following channels are required:
+
+* **y1** - the starting vertical position; bound to the *y* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+
+If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function. If *options* is undefined, then it defaults to **y2** as the identity function and **x** as the index of data; this allows an array of numbers to be passed to Plot.barY to make a quick sequential bar chart.
+
+If an **interval** is specified, such as d3.utcDay, **y1** and **y2** can be derived from **y**: *interval*.floor(*y*) is invoked for each *y* to produce *y1*, and *interval*.offset(*y1*) is invoked for each *y1* to produce *y2*. If the interval is specified as a number *n*, *y1* and *y2* are taken as the two consecutive multiples of *n* that bracket *y*.
+
+In addition to the [standard bar channels](#bar), the following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale, which must be *band*
+
+If the **x** channel is not specified, the bar will span the full horizontal extent of the plot (or facet).

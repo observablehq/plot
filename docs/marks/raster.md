@@ -367,3 +367,48 @@ The raster mark works with faceting, allowing to select different samples on dif
   });
 }
 ```
+
+## Raster options
+
+Renders a raster image from spatial samples. If data is provided, it represents discrete samples in abstract coordinates *x* and *y*; the *fill* and *fillOpacity* channels specify further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](#spatial-interpolation) to produce an image.
+
+```js
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height})
+```
+
+The *fill* and *fillOpacity* channels may alternatively be specified as continuous functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
+
+```js
+Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
+```
+
+The resolution of the rectangular raster image may be specified with the following options:
+
+* **width** - the number of pixels on each horizontal line
+* **height** - the number of lines; a positive integer
+
+The raster dimensions may also be imputed from the extent of *x* and *y* and a pixel size:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+* **pixelSize** - the screen size of a raster pixel; defaults to 1
+
+If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**; likewise, if **height** is specified, **y1** defaults to 0 and **y2** defaults to **height**. Otherwise, if **data** is specified, **x1**, **y1**, **x2**, and **y2** respectively default to the frame’s left, top, right, and bottom coordinates. Lastly, if **data** is not specified (as when **fill** or **fillOpacity** is a function of *x* and *y*), you must specify all of **x1**, **x2**, **y1**, and **y2** to define the raster domain (see below). The **pixelSize** may be set to the inverse of the devicePixelRatio for a sharper image.
+
+The following raster-specific constant options are supported:
+
+* **interpolate** - the [spatial interpolation method](#spatial-interpolation)
+* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
+* **blur** - a non-negative pixel radius for smoothing; defaults to 0
+
+The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation for a sharper image; however, note that this is not supported in WebKit. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
+
+## raster(*data*, *options*)
+
+```js
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+```
+
+Returns a new raster mark with the given (optional) *data* and *options*.

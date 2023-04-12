@@ -448,3 +448,29 @@ The value computed for a window is imputed to the start, middle or end index of 
 <!-- shuffled = d3.shuffle(temp.slice()) -->
 
 <!-- temp = FileAttachment("temp.csv").csv({typed: true}) -->
+
+## Window options
+
+## window(*k*)
+
+```js
+Plot.map({y: Plot.window(24)}, {x: "Date", y: "Close", stroke: "Symbol"})
+```
+
+Returns a window map method for the given window size *k*, suitable for use with Plot.map. For additional options to the window transform, replace the number *k* with an object with properties *k*, *anchor*, *reduce*, or *strict*.
+
+## windowX(*k*, *options*)
+
+```js
+Plot.windowX(24, {y: "Date", x: "Anomaly"})
+```
+
+Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *anchor*, or *reduce*.
+
+## windowY(*k*, *options*)
+
+```js
+Plot.windowY(24, {x: "Date", y: "Anomaly"})
+```
+
+Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *anchor*, or *reduce*.
