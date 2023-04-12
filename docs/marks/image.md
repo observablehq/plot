@@ -293,9 +293,7 @@ Note that Plot.image will pass the *crossOrigin* option to the generated svg ima
 
 ## Image options
 
-[<img src="./img/image.png" width="320" height="198" alt="a scatterplot of Presidential portraits">](https://observablehq.com/@observablehq/plot-image)
-
-[Source](./src/marks/image.js) · [Examples](https://observablehq.com/@observablehq/plot-image) · Draws images as in a scatterplot. The required **src** option specifies the URL (or relative path) of each image. If **src** is specified as a string that starts with a dot, slash, or URL protocol (*e.g.*, “https:”) it is assumed to be a constant; otherwise it is interpreted as a channel.
+Draws images as in a scatterplot. The required **src** option specifies the URL (or relative path) of each image. If **src** is specified as a string that starts with a dot, slash, or URL protocol (*e.g.*, “https:”) it is assumed to be a constant; otherwise it is interpreted as a channel.
 
 In addition to the [standard mark options](#marks), the following optional channels are supported:
 

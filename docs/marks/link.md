@@ -107,9 +107,7 @@ Plot.plot({
 
 ## Link options
 
-[<img src="./img/link.png" width="320" height="198" alt="a chart with links">](https://observablehq.com/@observablehq/plot-link)
-
-[Source](./src/marks/link.js) · [Examples](https://observablehq.com/@observablehq/plot-link) · Draws line segments (or curves) connecting pairs of points.
+Draws line segments (or curves) connecting pairs of points.
 
 The following channels are required:
 
