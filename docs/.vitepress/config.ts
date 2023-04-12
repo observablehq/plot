@@ -60,6 +60,7 @@ export default defineConfig({
       {
         text: "Help",
         items: [
+          {text: "Getting help", link: "/getting-help"},
           {text: "Forum", link: "https://talk.observablehq.com/c/help/6"},
           {text: "Slack", link: "https://observable-community.slack.com/ssb/redirect"},
           {text: "Issues", link: "https://github.com/observablehq/plot/issues"}
@@ -68,6 +69,7 @@ export default defineConfig({
       {
         text: "News",
         items: [
+          {text: "Getting involved", link: "/getting-involved"},
           {text: "Releases", link: "https://github.com/observablehq/plot/releases"},
           {text: "Newsletter", link: "https://observablehq.com/@observablehq/plot-twist-newsletter-signup"},
           {text: "Blog", link: "https://observablehq.com/blog"},
