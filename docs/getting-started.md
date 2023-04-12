@@ -26,7 +26,7 @@ Observable includes a variety of Plot snippets when you click **+** to add a cel
   <figcaption>Observable’s chart cell lets you quickly create charts and then eject to Plot code.</figcaption>
 </figure>
 
-Observable is free for public use. You can sign up for a [Pro account](https://observablehq.com/pricing) to connect to private databases, collaborate on private notebooks, and more.
+Observable is free for public use. Sign up for a [Pro account](https://observablehq.com/pricing) to connect to private databases, collaborate on private notebooks, and more.
 
 ## Loading Plot from a CDN
 

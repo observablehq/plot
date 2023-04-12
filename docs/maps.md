@@ -5,10 +5,10 @@ import * as d3 from "d3";
 import walmarts from "./data/walmarts.ts";
 import {counties, nation, statemesh, states} from "./data/us-counties-10m.ts";
 import elections from "./data/us-presidential-election-2020.ts";
+
 const lookup = d3.index(counties.features, (d) => d.id);
 
 </script>
-
 
 # Mapping with Plot
 
@@ -22,7 +22,7 @@ In practice, the ⟨_x_, _y_⟩ pair denotes the horizontal and vertical coordin
 
 The [**geo**](./marks/geo.md) mark draws geographic features, such as polygons and lines, connecting points through the shortest path (which, on the sphere, is not a straight line, but a geodesic or “great circle” line). We use this mark to show the outline of the contiguous United States—the canvas on which we’ll make maps in this notebook.
 
-:::plot
+:::plot defer
 ```js
 Plot.plot({
   projection: "albers",
@@ -41,7 +41,7 @@ _Note:_ Marks that expect _x_ or _y_ to be ordinal scales, such as bars, cells, 
 
 To plot locations as dots on a map, use [the dot mark](./marks/dot.md), passing longitudes as the **x** channel and latitudes as the **y** channel. All the options of dot can be used, like for example the **stroke** color for each dot, or the **symbol** channel. The map below represents the opening year of every Walmart store in the contiguous United States.
 
-:::plot
+:::plot defer
 ```js
 Plot.plot({
   width: 960,
@@ -68,7 +68,7 @@ TODO legend: true crashes with `TypeError: canvas.getContext is not a function`
 
 In conjunction with facets, the dot mark tells the same story as a comic strip (“small multiples”), where each facet plots the new stores opened in every decade:
 
-:::plot
+:::plot defer
 ```js
 Plot.plot({
   width: 960,
@@ -94,7 +94,7 @@ The
 happily consume the projected coordinates (in screen/pixel space). For example,
 this voronoiMesh mark draws the catchment area of each store:
 
-:::plot
+:::plot defer
 ```js
 Plot.plot({
   width: 960,
@@ -123,7 +123,7 @@ Hexagonal bins, based on the projected coordinates. See
 [Plot.hexbin](https://observablehq.com/@observablehq/plot-hexbin) for details. Hexbins have a great visual appeal, but be aware that the underlying statistics are usually to be taken with a grain of salt. At any scale, geographic binning suffers from the
 [MAUP](https://en.wikipedia.org/wiki/Modifiable_areal_unit_problem). On a small scale map, this is compounded by the Earth’s curvature, which makes it impossible to create an accurate and regular grid. At any rate, prefer an equal-area projection to makes the different regions of the map comparable.
 
-:::plot
+:::plot defer
 ```js
 Plot.plot({
   width: 975,
@@ -160,7 +160,7 @@ TODO legend: true
 Plot.density… just works. See
 [Plot.density](https://observablehq.com/@observablehq/plot-density) for details. On a small-scale map showing the whole globe, you might have to clip the results. And, because the density is computed on the projected coordinates, it is recommended to use an equal-area projection to limit distortion.
 
-:::plot
+:::plot defer
 ```js
 Plot.plot({
   width: 960,
@@ -197,7 +197,7 @@ TODO fix density mark, crashes with `TypeError: Cannot set property parentNode o
 
 Use the **text** mark to draw labels. The _stroke_ option helps to detach the text from the background noise, and the _textAnchor_ and _dx_, _dy_ options to adjust their placement. Here, we use the [centroid](https://observablehq.com/@observablehq/plot-centroid) transform to position the text labels in the middle of each feature.
 
-:::plot
+:::plot defer
 ```js
 Plot.plot({
   projection: "albers",
@@ -222,7 +222,7 @@ Plot.plot({
 
 Did we mention [vectors](https://observablehq.com/@observablehq/plot-vector)? The map below shows the margin by which the winner of the US presidential election of 2020 won the vote in each county. The arrow’s length encodes the difference in votes, and the orientation and color show who won (<svg width=12 height=12 viewBox="-11 -11 12 12" style="display: inline-block"><path d="M0,0l-10,-6m1,3.28l-1,-3.28l3.28,-1" stroke="blue"></path></svg> for the Democratic candidate, and <svg width=12 height=12 viewBox="0 -11 12 12" style="display: inline-block"><path d="M0,0l10,-6m-1,3.28l1,-3.28l-3.28,-1" stroke="red"></path></svg> for the Republican candidate).
 
-:::plot
+:::plot defer
 ```js
 Plot.plot({
   projection: "albers-usa",

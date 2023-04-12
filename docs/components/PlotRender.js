@@ -108,11 +108,29 @@ export default {
       className: "plot"
     };
     if (this.mode === "defer") {
-      return withDirectives(h("figure"), [
+      return withDirectives(h("figure", {style: "height: 400px;"}), [
         [
           {
             mounted(el) {
-              el.replaceWith(Plot.plot(options));
+              let idling = null;
+              function observed() {
+                el.replaceWith(Plot.plot(options));
+                observer.disconnect();
+                if (idling !== null) {
+                  cancelIdleCallback(idling);
+                  idling = null;
+                }
+              }
+              const observer = new IntersectionObserver(
+                ([entry]) => {
+                  if (entry.isIntersecting) observed();
+                },
+                {rootMargin: "100px"}
+              );
+              observer.observe(el);
+              if (typeof requestIdleCallback === "function") {
+                idling = requestIdleCallback(observed);
+              }
             }
           }
         ]
