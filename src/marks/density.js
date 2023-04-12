@@ -1,12 +1,13 @@
-import {contourDensity, create, geoPath} from "d3";
+import {contourDensity, geoPath} from "d3";
+import {create} from "../context.js";
 import {Mark} from "../mark.js";
-import {coerceNumbers, maybeTuple, maybeZ, TypedArray} from "../options.js";
+import {TypedArray, coerceNumbers, maybeTuple, maybeZ} from "../options.js";
 import {applyPosition} from "../projection.js";
 import {
-  applyFrameAnchor,
-  applyDirectStyles,
-  applyIndirectStyles,
   applyChannelStyles,
+  applyDirectStyles,
+  applyFrameAnchor,
+  applyIndirectStyles,
   applyTransform,
   groupZ
 } from "../style.js";
