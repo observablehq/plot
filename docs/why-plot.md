@@ -112,19 +112,7 @@ Mark options are plain JavaScript objects, so you can also share (possibly trans
 
 ## Plot is extensible
 
-Plot isn’t a new language; it’s “just” vanilla JavaScript. Plot embraces JavaScript, letting you plug in your own functions for accessors, reducers, transforms… even custom marks!
-
-And Plot generates SVG, so you can style it with CSS and manipulate it just like you do with D3. (See [Mike Freeman’s tooltip plugin](https://observablehq.com/@mkfreeman/plot-tooltip) for a great example of extending Plot this way.)
-
-<!-- ## Plot understands data types
-
-Plot encourages you to do type coercion and parsing *outside* of the Plot. For example if you provide strings, Plot interprets the data as ordinal, whereas if you provide numbers, Plot interprets the data as quantitative.
-
-We’ve made some concessions to perform coercion within Plot, but in general we encourage you to do that elsewhere—say using Observable’s data table cell—so that you use consistent types throughout your analysis. This is better for performance since the type coercion is only done once, but more importantly, it elevates it to an explicit step, so that you can confirm that the types are what you expect. No more genes be interpreted as dates! -->
-
-<!-- ## Plot looks good
-
-Even though Plot has a minimalist aesthetic, we want it too look good. -->
+Plot isn’t a new language; it’s “just” vanilla JavaScript. Plot embraces JavaScript, letting you plug in your own functions for accessors, reducers, transforms… even custom marks! And Plot generates SVG, so you can style it with CSS and manipulate it just like you do with D3. (See [Mike Freeman’s tooltip plugin](https://observablehq.com/@mkfreeman/plot-tooltip) for a great example of extending Plot this way.)
 
 ## Plot builds on D3
 
@@ -141,9 +129,3 @@ Whether or not Plot succeeds at this goal is up to you—so we’d love [your fe
 Since Plot and D3 have different goals, they make different trade-offs. Plot is more efficient: you can make charts quickly. But it is also necessarily less expressive: bespoke visualizations with extensive animation and interaction, advanced techniques like force-directed graph layout, or even developing your own charting library, are better done with D3’s low-level API.
 
 We recommend D3 for *bespoke* data visualizations, if you decide the extra expressiveness of D3 is worth the time and effort. D3 makes sense for media organizations such as *The New York Times* or *The Pudding*, where a single graphic may be seen by a million readers, and where a team of editors can work together to advance the state of the art in visual communication; but is it the best tool for building your team’s private dashboard, or a one-off analysis? And you may be surprised how far you can get with Plot.
-
-## Plot powers Observable
-
-We designed Plot to pair beautifully with Observable: to leverage [Observable’s reactive dataflow](https://observablehq.com/@observablehq/how-observable-runs) for fluid exploration and interaction. However, Plot does not depend on Observable; use it wherever you like.
-
-TK Chart cell integration, snippets.
