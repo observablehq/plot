@@ -8,9 +8,9 @@ import athletes from "./data/olympians.ts";
 
 # What is Plot?
 
-**Observable Plot** is a free, open-source, vanilla JavaScript library to help you quickly visualize tabular data. It has a concise, memorable, yet expressive API, using layered marks and scales in the grammar of graphics style—and [plenty of examples](https://observablehq.com/@observablehq/plot-gallery) to learn from and copy-paste.
+**Observable Plot** is a free, open-source, vanilla JavaScript library to help you quickly visualize tabular data. It has a concise, memorable, yet expressive API, using [scales](./scales.md) and [layered marks](./marks.md) in the grammar of graphics style—and [plenty of examples](https://observablehq.com/@observablehq/plot-gallery) to learn from and copy-paste.
 
-In the spirit of *show don’t tell*, here’s a scatterplot of the height and weight of Olympic athletes (data from [Matt Riggott](https://flother.is/2017/olympic-games-data/)), broken down by sex.
+In the spirit of *show don’t tell*, here’s a scatterplot of body measurements of athletes from the [2016 Summer Olympics](https://flother.is/2017/olympic-games-data/).
 
 :::plot
 ```js
