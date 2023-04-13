@@ -1,39 +1,51 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import gistemp from "../data/gistemp.ts";
+import olympians from "../data/olympians.ts";
+
+</script>
+
 # Legends
 
-Plot can generate legends for *color*, *opacity*, and *symbol* [scales](./scales.md). (An opacity scale is treated as a color scale with varying transparency.) For an inline legend, use the *scale*.**legend** option:
+Plot can generate legends for *color*, *opacity*, and *symbol* [scales](./scales.md). For example, this scatterplot includes a *swatches* legend for its *categorical* *color* scale:
 
-* *scale*.**legend** - if truthy, generate a legend for the given scale
-
-If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales and symbol scales, only the *swatches* value is supported.
-
-For example, this scatterplot includes a swatches legend for the ordinal color scale:
-
+:::plot
 ```js
 Plot.plot({
   color: {
     legend: true
   },
   marks: [
-    Plot.dot(athletes, {x: "weight", y: "height", stroke: "sex"})
+    Plot.dot(olympians, {x: "weight", y: "height", stroke: "sex"})
   ]
 })
 ```
+:::
 
-Whereas this scatterplot would render a ramp legend for its diverging color scale:
+Whereas this scatterplot renders a ramp legend for its diverging color scale:
 
+:::plot defer
 ```js
 Plot.plot({
   color: {
-    type: "diverging",
+    scheme: "BuRd",
     legend: true
   },
   marks: [
+    Plot.ruleY([0]),
     Plot.dot(gistemp, {x: "Date", y: "Anomaly", stroke: "Anomaly"})
   ]
 })
 ```
+:::
 
-#### *plot*.legend(*scaleName*, *options*)
+If the **legend** scale option is true, the default legend will be produced for the scale; otherwise, the meaning of the **legend** option depends on the scale: for quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for *ordinal* *color* scales and *symbol* scales, only the *swatches* value is supported.
+
+<!-- TODO Describe the color and opacity options, and demo the symbol legend with a redundant color encoding. -->
+
+## *plot*.legend(*scaleName*, *options*)
 
 Given an existing *plot* returned by [Plot.plot](./plots.md), returns a detached legend for the *plot*’s scale with the given *scaleName*. The *scaleName* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. For example:
 
@@ -96,17 +108,16 @@ The **style** legend option allows custom styles to override Plot’s defaults; 
 
 Returns a standalone legend for the scale defined by the given *options* object. The *options* object must define at least one scale; see [scale options](./scales.md) for how to define a scale. For example, here is a ramp legend of a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 
+<PlotRender :options='{color: {type: "linear"}}' defer method="legend" />
+
 ```js
 Plot.legend({color: {type: "linear"}})
 ```
 
 The *options* object may also include any additional legend options described in the previous section. For example, to make the above legend slightly wider:
 
+<PlotRender :options='{width: 320, color: {type: "linear"}}' defer method="legend" />
+
 ```js
-Plot.legend({
-  width: 320,
-  color: {
-    type: "linear"
-  }
-})
+Plot.legend({width: 320, color: {type: "linear"}})
 ```

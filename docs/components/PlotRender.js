@@ -98,26 +98,22 @@ class TextNode {
   }
 }
 
-const plotel = new WeakMap();
-
 export default {
-  props: ["options", "mark", "mode"],
+  props: ["options", "mark", "defer", "method"],
   render() {
+    const {method = "plot"} = this;
     const options = {
       marks: this.mark == null ? [] : [this.mark],
       ...this.options,
-      style: "background: none;",
-      className: "plot"
+      className: method === "plot" ? "plot" : `plot-${method}`
     };
-    if (this.mode === "defer") {
+    if (this.defer !== undefined) {
       const mounted = (el) => {
-        if (!plotel.has(el)) plotel.set(el, el);
+        while (el.lastChild) el.lastChild.remove();
         let observer = null;
         let idling = null;
         function observed() {
-          const plot = Plot.plot(options);
-          plotel.get(el).replaceWith(plot);
-          plotel.set(el, plot);
+          el.append(Plot[method](options));
           if (observer !== null) {
             observer.disconnect();
             observer = null;
@@ -127,8 +123,7 @@ export default {
             idling = null;
           }
         }
-        const plot = plotel.get(el);
-        const rect = plot.getBoundingClientRect();
+        const rect = el.getBoundingClientRect();
         if (rect.bottom > 0 && rect.top < window.innerHeight) {
           observed();
         } else {
@@ -138,27 +133,22 @@ export default {
             },
             {rootMargin: "100px"}
           );
-          observer.observe(plot);
+          observer.observe(el);
           if (typeof requestIdleCallback === "function") {
             idling = requestIdleCallback(observed);
           }
         }
       };
-      const unmounted = (el) => {
-        plotel.get(el).remove();
-        plotel.delete(el);
-      };
-      return withDirectives(h("figure"), [
+      return withDirectives(h("div"), [
         [
           {
             mounted,
-            updated: mounted,
-            unmounted
+            updated: mounted
           }
         ]
       ]);
     }
     options.document = new Document();
-    return Plot.plot(options).toHyperScript();
+    return Plot[method](options).toHyperScript();
   }
 };

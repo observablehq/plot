@@ -20,3 +20,8 @@ figcaption {
   font-weight: 500;
   color: var(--vp-c-text-2);
 }
+
+.plot,
+.plot-legend {
+  background: none !important;
+}
