@@ -1,3 +1,11 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import sftemp from "../data/sf-temperatures.ts";
+
+</script>
+
 # Window transform
 
 Plot.**windowY** and Plot.**windowX** are specialized [map transforms](https://observablehq.com/@observablehq/plot-map), which take a series of numeric values as input and average them (or, more generically, reduce them) over a sliding window:
@@ -8,6 +16,7 @@ Plot.**windowY** and Plot.**windowX** are specialized [map transforms](https://o
 
 <!-- viewof strict = Inputs.toggle({label: "strict", value: false}) -->
 
+:::plot
 ```js
 Plot.plot({
   y: {
@@ -15,7 +24,7 @@ Plot.plot({
     label: "↑ Daily temperature range (°F)"
   },
   marks: [
-    Plot.areaY(temp, {
+    Plot.areaY(sftemp, {
       x: "date",
       y1: "low",
       y2: "high",
@@ -23,11 +32,11 @@ Plot.plot({
       fill: "#ccc"
     }),
     Plot.line(
-      temp,
+      sftemp,
       Plot.windowY({
-        k,
-        anchor,
-        strict
+        k: 7, // TODO k
+        anchor: "middle", // TODO anchor
+        strict: false // TODO strict
       }, {
         x: "date",
         y: "low",
@@ -36,11 +45,11 @@ Plot.plot({
       })
     ),
     Plot.line(
-      temp,
+      sftemp,
       Plot.windowY({
-        k,
-        anchor,
-        strict
+        k: 7, // TODO k
+        anchor: "middle", // TODO anchor
+        strict: false // TODO strict
       }, {
         x: "date",
         y: "high",
@@ -51,6 +60,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 In each data series (possibly grouped by *z* and by facet), a moving window of *k* values advances and each subset is reduced to a single value. The values are taken in input order—compose with Plot.sort if necessary (see [below](#sort)).
 
@@ -96,7 +106,7 @@ htl.html`${["min", "median", "max", "difference"].map((reduce) =>
     y: { grid: true },
     marks: [
       Plot.line(
-        temp,
+        sftemp,
         Plot.windowY({
           anchor,
           reduce,
@@ -113,19 +123,16 @@ htl.html`${["min", "median", "max", "difference"].map((reduce) =>
 
 The *mode* reducer returns the most-seen *number* in the window, and can be used to gauge if the majority of temperatures in the current window have been greater than the median temperature.
 
+:::plot
 ```js
-{
-  const reduce = "mode";
-  const median = d3.median(temp, (d) => d.middle);
-  return Plot.plot({
+Plot.plot({
     caption: `Reducer: ${reduce}`,
     marks: [
       Plot.tickX(
-        temp,
+        sftemp,
         Plot.windowY({
-          anchor,
           reduce,
-          k,
+          k: 7, // TODO k
           x: "date",
           y: (d) => Math.sign(d.middle - median)
         })
@@ -136,6 +143,7 @@ The *mode* reducer returns the most-seen *number* in the window, and can be used
   });
 }
 ```
+:::
 
 ---
 **Side note.** It would be tempting to use the *mode* reducer (or the custom function reducer) for categorical data, beyond numbers; however, the Plot.window transforms are optimized for numbers and coerce all values to a typed array of floats, precluding their use with other data types. But an equivalent Plot.map transform is possible:
@@ -158,13 +166,13 @@ The *mode* reducer returns the most-seen *number* in the window, and can be used
       options
     );
 
-  const median = d3.median(temp, (d) => d.middle);
+  const median = d3.median(sftemp, (d) => d.middle);
 
   return Plot.plot({
     caption: `Custom map`,
     marks: [
       Plot.tickX(
-        temp,
+        sftemp,
         categoricalWindowY({
           anchor: "start",
           reduce: d3.mode,
@@ -192,7 +200,7 @@ Plot.plot({
   caption: `Reducer: deviation`,
   marks: [
     Plot.areaX(
-      temp,
+      sftemp,
       Plot.windowX({
         anchor,
         reduce: "deviation",
@@ -224,11 +232,11 @@ Plot.plot({
   y: {
     nice: true,
     grid: true,
-    domain: d3.extent(temp, (d) => d.middle)
+    domain: d3.extent(sftemp, (d) => d.middle)
   },
   marks: [
     Plot.lineY(
-      temp,
+      sftemp,
       Plot.windowY({
         k: days,
         reduce: bollinger(-K),
@@ -239,7 +247,7 @@ Plot.plot({
       })
     ),
     Plot.lineY(
-      temp,
+      sftemp,
       Plot.windowY({
         k: days,
         reduce: bollinger(K),
@@ -249,7 +257,7 @@ Plot.plot({
         stroke: "#ccc"
       })
     ),
-    Plot.dot(temp, {
+    Plot.dot(sftemp, {
       x: "date",
       y: "middle",
       fill: "black",
@@ -280,11 +288,11 @@ Plot.plot({
   y: {
     nice: true,
     grid: true,
-    domain: d3.extent(temp, (d) => d.middle)
+    domain: d3.extent(sftemp, (d) => d.middle)
   },
   marks: [
     Plot.areaY(
-      temp,
+      sftemp,
       Plot.map(
         {
           y1: Plot.window({ k: days, reduce: bollinger(-K) }),
@@ -298,7 +306,7 @@ Plot.plot({
         }
       )
     ),
-    Plot.dot(temp, {
+    Plot.dot(sftemp, {
       x: "date",
       y: "middle",
       fill: "black",
@@ -320,7 +328,7 @@ And, to go a step further, we might want to display the Bollinger band as well a
     y: {
       nice: true,
       grid: true,
-      domain: d3.extent(temp, (d) => d.middle)
+      domain: d3.extent(sftemp, (d) => d.middle)
     },
     color: {
       domain: [false],
@@ -328,7 +336,7 @@ And, to go a step further, we might want to display the Bollinger band as well a
     },
     marks: [
       Plot.areaY(
-        temp,
+        sftemp,
         Plot.map(
           {
             y1: Plot.window({
@@ -352,7 +360,7 @@ And, to go a step further, we might want to display the Bollinger band as well a
       ),
 
       Plot.dot(
-        temp,
+        sftemp,
         // color dots according to their being an outlier of the bollinger band
         Plot.map(
           {
@@ -371,7 +379,7 @@ And, to go a step further, we might want to display the Bollinger band as well a
           }
         )
       ),
-      Plot.line(temp, {
+      Plot.line(sftemp, {
         x: "date",
         y: "middle",
         strokeWidth: 0.5
@@ -389,7 +397,7 @@ The value computed for a window is imputed to the start, middle or end index of 
 ```js
 {
   // add fake data gaps for demo purposes
-  const tempWithGaps = temp.slice(0, 100)
+  const tempWithGaps = sftemp.slice(0, 100)
     .map((d, i) => ({
       ...d,
       valueOrGap: [22, 53, 60, 87].includes(i) ? NaN : d.middle
