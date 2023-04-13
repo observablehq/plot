@@ -1,17 +1,31 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import aapl from "../data/aapl";
+import bls from "../data/bls-industry-unemployment";
+import sftemp from "../data/sf-temperatures";
+
+const numbers = d3.cumsum({length: 600}, d3.randomNormal.source(d3.randomLcg(42))());
+const someCloses = aapl.map(d => d.Date.getUTCMonth() < 3 ? NaN : d.Close);
+const someAapl = aapl.filter(d => d.Date.getUTCMonth() >= 3);
+const construction = bls.filter(d => d.industry === "Construction");
+
+</script>
+
 # Area mark
 
 The **areaY** mark draws the region between a baseline (*y1*) and a topline (*y2*) as in an area chart. When the baseline is *y* = 0, the *y* channel can be specified instead of *y1* and *y2*. For example, here is an area chart of Apple’s stock price.
 
+:::plot
 ```js
-Plot.plot({
-  marks: [
-    Plot.areaY(aapl, {x: "Date", y: "Close"})
-  ]
-})
+Plot.areaY(aapl, {x: "Date", y: "Close"}).plot()
 ```
+:::
 
 Areas are often used in conjunction with [line](./line.md) and [rule](./rule.md) marks to accentuate the topline and baseline:
 
+:::plot
 ```js
 Plot.plot({
   y: {
@@ -24,6 +38,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 With the default channel definitions of *x* = index and *y* = identity, you can pass an array of numbers as data. Below, a random walk is constructed with [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
 
@@ -31,33 +46,38 @@ With the default channel definitions of *x* = index and *y* = identity, you can 
 numbers = d3.cumsum({length: 600}, d3.randomNormal())
 ```
 
+:::plot
 ```js
-Plot.plot({
-  marks: [
-    Plot.areaY(numbers, {})
-  ]
-})
+Plot.areaY(numbers).plot()
 ```
+:::
 
-As with lines, points in areas are connected in input order: the first point is connected to the second point, the second is connected to the third, and so on. This typically means that area data should be sorted chronologically. If unsorted data gives you gibberish, try a *sort* transform to fix the problem.
+As with lines, points in areas are connected in input order: the first point is connected to the second point, the second is connected to the third, and so on. This typically means that area data should be sorted chronologically.
 
+:::plot
 ```js
-Plot.plot({
-  y: {
-    grid: true
-  },
-  marks: [
-    Plot.areaY(d3.shuffle(aapl.slice(0, 100)), {
-      // sort: "Date", // uncomment to fix
-      x: "Date",
-      y: "Close"
-    })
-  ]
-})
+Plot.areaY(d3.shuffle(aapl.slice(0, 100)), {
+  x: "Date",
+  y: "Close"
+}).plot({height: 200})
 ```
+:::
+
+If unsorted data gives you gibberish like the plot above, try a *sort* transform to fix the problem:
+
+:::plot
+```js{4}
+Plot.areaY(d3.shuffle(aapl.slice(0, 100)), {
+  x: "Date",
+  y: "Close",
+  sort: "Date"
+}).plot({height: 200})
+```
+:::
 
 When the baseline is not *y* = 0 but instead represents another dimension of data as in a band chart, specify *y1* and *y2* channels instead of *y*. Note that below since the *y1* and *y2* channels refer to different fields, a *y*-label is specified to improve readability.
 
+:::plot
 ```js
 Plot.plot({
   y: {
@@ -69,9 +89,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 The band above is spikey; we can smooth it by applying a 14-day moving average to the *y1* and *y2* channels with the [window transform](../transforms/window.md), and do the same for a midline. We can also add a *y*-rule to indicate the freezing point, 32°F.
 
+:::plot
 ```js
 Plot.plot({
   y: {
@@ -95,9 +117,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 While charts typically put *y* = 0 on the bottom edge, such that the area grows up, this is not required; reversing the *y*-scale will produce a “hanging” area that grows down.
 
+:::plot
 ```js
 Plot.plot({
   x: {
@@ -114,9 +138,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 The **areaY** mark is a special case of the more general **area** mark which allows the *x* definition of the baseline (*x1*) and topline (*x2*) to differ. For a vertically-oriented baseline and topline, such as when time goes up instead of right, use **areaX** and swap the *x*  and *y* channels.
 
+:::plot
 ```js
 Plot.plot({
   x: {
@@ -129,6 +155,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 If some channel values are undefined (or null or NaN), gaps will appear between adjacent points. To demonstrate, below we set the daily close value to NaN for the first three months of each year.
 
@@ -136,6 +163,7 @@ If some channel values are undefined (or null or NaN), gaps will appear between 
 someCloses = aapl.map(d => d.Date.getUTCMonth() < 3 ? NaN : d.Close)
 ```
 
+:::plot
 ```js
 Plot.plot({
   y: {
@@ -148,6 +176,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 Supplying undefined values is not the same as filtering the data: the latter will interpolate between the data points. Observe the conspicuous straight lines below!
 
@@ -155,6 +184,7 @@ Supplying undefined values is not the same as filtering the data: the latter wil
 someAapl = aapl.filter(d => d.Date.getUTCMonth() >= 3)
 ```
 
+:::plot
 ```js
 Plot.plot({
   y: {
@@ -167,18 +197,25 @@ Plot.plot({
   ]
 })
 ```
+:::
 
-Interpolation is controlled by the *curve* property. The default curve is linear, which draws straight line segments between pairs of adjacent points. Step curves are nice for emphasizing when the value changes, while basis and Catmull–Rom curves are nice for smoothing. See the [D3 documentation](https://observablehq.com/@d3/curves?collection=@d3/d3-shape) for more about curves. In the plot of unemployed construction workers below, try chosing a different curve.
+Interpolation is controlled by the *curve* property. The default curve is linear, which draws straight line segments between pairs of adjacent points. Step curves are nice for emphasizing when the value changes, while basis and Catmull–Rom curves are nice for smoothing. See the [D3 documentation](https://observablehq.com/@d3/curves?collection=@d3/d3-shape) for more about curves. In the plot of unemployed construction workers below, try choosing a different curve.
 
+:::plot
 ```js
 Plot.plot({
   marks: [
-    Plot.areaY(construction, {x: "date", y: "unemployed", curve, fillOpacity: 0.1}),
-    Plot.lineY(construction, {x: "date", y: "unemployed", curve, strokeWidth: 1}),
+    Plot.areaY(construction, {x: "date", y: "unemployed", curve: "cardinal", fillOpacity: 0.1}),
+    Plot.lineY(construction, {x: "date", y: "unemployed", curve: "cardinal", strokeWidth: 1}),
     Plot.ruleY([0])
   ]
 })
 ```
+:::
+
+:::warning
+TODO let the user choose a different curve
+:::
 
 ```js
 construction = bls.filter(d => d.industry === "Construction")
@@ -186,6 +223,7 @@ construction = bls.filter(d => d.industry === "Construction")
 
 An area mark’s *z* channel groups data along an ordinal (discrete) dimension, producing multiple areas. This is typically used with the [stack transform](../transforms/stack.md) for a stacked area chart or streamgraph, but it can also be used for overlapping areas.
 
+:::plot
 ```js
 Plot.plot({
   marks: [
@@ -194,9 +232,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 If the *z* channel is not specified, but a varying *fill* channel is, the *fill* channel is used for *z*. The *z* channel will further fallback to a varying *stroke* channel if needed.
 
+:::plot
 ```js
 Plot.plot({
   y: {
@@ -209,9 +249,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 As an alternative to overlapping or stacking, faceting can be used to produce small multiples, here arranged vertically with a shared *x*-axis.
 
+:::plot
 ```js
 Plot.plot({
   height: 600,
@@ -233,9 +275,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 Above, smaller industries such as agriculture and mining & extraction are dwarfed by larger industries such as wholesale & retail trade. To emphasize each industry’s trend, instead of comparing absolute numbers across industries, we can normalize unemployment relative to the median for each industry. Now the job loss in mining & extraction is more readily apparent.
 
+:::plot
 ```js
 Plot.plot({
   height: 600,
@@ -257,6 +301,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 ## Options
 
@@ -304,6 +349,9 @@ If the **interval** option is specified, the [binY transform](#bin) is implicitl
 ```js
 Plot.areaX(observations, {y: "date", x: "temperature", interval: "day"})
 ```
+:::warning
+TODO setup dataset
+:::
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
@@ -320,5 +368,8 @@ If the **interval** option is specified, the [binX transform](#bin) is implicitl
 ```js
 Plot.areaY(observations, {x: "date", y: "temperature", interval: "day")
 ```
+:::warning
+TODO set up observations dataset
+:::
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
