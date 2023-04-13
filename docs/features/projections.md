@@ -2,10 +2,15 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import * as topojson from "topojson-client";
 import walmarts from "../data/walmarts.ts";
-import {counties, nation, statemesh, states} from "../data/us-counties-10m.ts";
+import us from "../data/us-counties-10m.ts";
 import elections from "../data/us-presidential-election-2020.ts";
 
+const nation = topojson.feature(us, us.objects.nation);
+const states = topojson.feature(us, us.objects.states);
+const statemesh = topojson.mesh(us, us.objects.states, (a, b) => a !== b);
+const counties = topojson.feature(us, us.objects.counties);
 const lookup = d3.index(counties.features, (d) => +d.id); // TODO fix type coercion
 
 </script>

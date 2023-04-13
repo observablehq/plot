@@ -98,6 +98,8 @@ class TextNode {
   }
 }
 
+const plotel = new WeakMap();
+
 export default {
   props: ["options", "mark", "mode"],
   render() {
@@ -108,14 +110,13 @@ export default {
       className: "plot"
     };
     if (this.mode === "defer") {
-      const that = this;
       const render = (el) => {
-        if (that._plot === undefined) that._plot = el;
+        if (!plotel.has(el)) plotel.set(el, el);
         let idling = null;
         function observed() {
           const plot = Plot.plot(options);
-          that._plot.replaceWith(plot);
-          that._plot = plot;
+          plotel.get(el).replaceWith(plot);
+          plotel.set(el, plot);
           observer.disconnect();
           if (idling !== null) {
             cancelIdleCallback(idling);
@@ -137,7 +138,8 @@ export default {
         [
           {
             mounted: render,
-            updated: render
+            updated: render,
+            unmounted: (el) => plotel.get(el).remove()
           }
         ]
       ]);
