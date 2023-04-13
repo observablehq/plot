@@ -139,7 +139,10 @@ export default {
           {
             mounted: render,
             updated: render,
-            unmounted: (el) => plotel.get(el).remove()
+            unmounted: (el) => {
+              plotel.get(el).remove();
+              plotel.delete(el);
+            }
           }
         ]
       ]);
