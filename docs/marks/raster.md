@@ -1,17 +1,26 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import volcano from "../data/volcano.ts";
+
+</script>
+
 # Raster mark
 
 The **raster** mark paints a raster image from spatial samples. In contrast with the [image](./image.md) mark, which shows an existing image, the raster mark _creates_ an image from abstract data. (For contours from spatial samples, see the [contour mark](./contour.md).)
 
 Whereas a vector image represents lines, rectangles, circles as geometrical paths, a raster image (or _bitmap_) is a rectangular grid of colored pixels organized in rows and columns. The colors are usually given in levels of red, green, and blue (RGB), and often opacity (A).
 
-Consider the following grid of numbers with ${volcano.height} rows and ${volcano.width} columns. Each number represents the elevation in meters of the [Maungawhau](https://en.wikipedia.org/wiki/Maungawhau) volcano at a given location.
+Consider the following grid of numbers with {{volcano.height}} rows and {{volcano.width}} columns. Each number represents the elevation in meters of the [Maungawhau](https://en.wikipedia.org/wiki/Maungawhau) volcano at a given location.
 
 Printing the numbers directly gives the following chart—unreadable at this scale:
 
+:::plot hidden
 ```js
 Plot.plot({
-  x: { label: "column →" },
-  y: { reverse: true, label: "↓ row" },
+  x: {label: "column →"},
+  y: {reverse: true, label: "↓ row"},
   marks: [
     Plot.text(volcano.values, {
       text: Plot.identity,
@@ -19,7 +28,7 @@ Plot.plot({
       y: (d, i) => Math.floor(i / volcano.width),
       fontSize: 3
     }),
-    Plot.rect([{}], {
+    Plot.rect({length: 1}, {
       x1: 10.5,
       x2: 29.5,
       y1: 10.5,
@@ -29,13 +38,15 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 Now, let’s focus on the outlined region:
 
+:::plot hidden
 ```js
 Plot.plot({
-  x: { domain: [9.5, 30.5] },
-  y: { domain: [30.5, 9.5] },
+  x: {domain: [9.5, 30.5]},
+  y: {domain: [30.5, 9.5]},
   marks: [
     Plot.text(volcano.values, {
       text: Plot.identity,
@@ -44,17 +55,19 @@ Plot.plot({
       fontWeight: 460,
       clip: true
     }),
-    Plot.rect([{}], { x1: 10.5, x2: 29.5, y1: 10.5, y2: 29.5, stroke: "black" })
+    Plot.rect({length: 1}, {x1: 10.5, x2: 29.5, y1: 10.5, y2: 29.5, stroke: "black"})
   ]
 })
 ```
+:::
 
 … and color every number with a suitable color scale:
 
+:::plot hidden
 ```js
 Plot.plot({
-  x: { domain: [9.5, 30.5] },
-  y: { domain: [30.5, 9.5] },
+  x: {domain: [9.5, 30.5]},
+  y: {domain: [30.5, 9.5]},
   marks: [
     Plot.dot(volcano.values, {
       x: (d, i) => i % volcano.width,
@@ -72,16 +85,19 @@ Plot.plot({
       fontWeight: 460,
       clip: true
     }),
-    Plot.rect([{}], { x1: 10.5, x2: 29.5, y1: 10.5, y2: 29.5, stroke: "black" })
+    Plot.rect({length: 1}, {x1: 10.5, x2: 29.5, y1: 10.5, y2: 29.5, stroke: "black"})
   ]
 })
 ```
+:::
 
 … finally, we can forget the numbers, and zoom back out:
 
+:::plot defer
 ```js
 Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}).plot()
 ```
+:::
 
 _Voilà!_ This is the raster mark in a nutshell.
 
