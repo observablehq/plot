@@ -104,11 +104,13 @@ export default defineConfig({
           {text: "Bin", link: "/transforms/bin"},
           {text: "Centroid", link: "/transforms/centroid"},
           {text: "Dodge", link: "/transforms/dodge"},
+          {text: "Filter", link: "/transforms/filter"},
           {text: "Group", link: "/transforms/group"},
           {text: "Hexbin", link: "/transforms/hexbin"},
           {text: "Interval", link: "/transforms/interval"},
           {text: "Map", link: "/transforms/map"},
           {text: "Select", link: "/transforms/select"},
+          {text: "Sort", link: "/transforms/sort"},
           {text: "Stack", link: "/transforms/stack"},
           {text: "Tree", link: "/transforms/tree"},
           {text: "Window", link: "/transforms/window"}

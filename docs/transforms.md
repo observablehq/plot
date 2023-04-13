@@ -2,8 +2,6 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import alphabet from "./data/alphabet.ts";
-import metros from "./data/metros.ts";
 import bls from "./data/bls.ts";
 
 </script>
@@ -12,92 +10,9 @@ import bls from "./data/bls.ts";
 
 Transforms provide a convenient mechanism for deriving data while plotting. All marks support the following basic transforms:
 
-* **filter** - filters data according to the specified accessor or values
-* **sort** - sorts data according to the specified comparator, accessor, or values
-* **reverse** - reverses the sorted (or if not sorted, the input) data order
-
-For example, to take the toy bar chart of English letter frequency and only draw bars for letters that commonly form vowels:
-
-:::plot
-```js{4}
-Plot.plot({
-  marks: [
-    Plot.barY(alphabet, {
-      filter: (d) => /[aeiou]/i.test(d.letter),
-      x: "letter",
-      y: "frequency"
-    })
-  ]
-})
-```
-:::
-
-The **filter** transform is similar to filtering the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), except that it will preserve [faceting](/facets) and will not affect inferred [scale domains](/scales); domains are inferred from the unfiltered channel values.
-
-:::plot
-```js{4}
-Plot.plot({
-  marks: [
-    Plot.barY(
-      alphabet.filter((d) => /[aeiou]/i.test(d.letter)),
-      {x: "letter", y: "frequency"}
-    )
-  ]
-})
-```
-:::
-
-Here’s another example using a filter transform to control which text labels are displayed in a dense scatterplot.
-
-:::plot
-```js{10}
-Plot.plot({
-  grid: true,
-  x: {type: "log"},
-  marks: [
-    Plot.dot(metros, {
-      x: "POP_2015",
-      y: "R90_10_2015"
-    }),
-    Plot.text(metros, {
-      filter: "highlight",
-      x: "POP_2015",
-      y: "R90_10_2015",
-      text: "nyt_display",
-      frameAnchor: "bottom",
-      dy: -6
-    })
-  ]
-})
-```
-:::
-
-Together the **sort** and **reverse** transforms allow control over *z*-order, which can be important when addressing overplotting. If the sort option is a function but does not take exactly one argument, it is assumed to be a [comparator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description); otherwise, the sort option is interpreted as a channel value definition and thus may be either a column name, accessor function, or array of values.
-
-:::plot
-```js
-Plot.plot({
-  y: {
-    grid: true,
-    label: "↑ Unemployment (%)"
-  },
-  color: {
-    domain: [false, true],
-    range: ["#ccc", "red"]
-  },
-  marks: [
-    Plot.ruleY([0]),
-    Plot.line(bls, {
-      x: "date",
-      y: "unemployment",
-      z: "division",
-      sort: (d) => /, MI /.test(d.division),
-      stroke: (d) => /, MI /.test(d.division)
-    })
-  ]
-})
-```
-:::
+* [filter](./transforms/filter.md)
+* [sort](./transforms/sort.md)
+* [reverse](./transforms/sort.md#plotreverseoptions)
 
 The basic transforms are composable: the *filter* transform is applied first, then *sort*, *reverse*, and lastly the custom *transform*, if any.
 
