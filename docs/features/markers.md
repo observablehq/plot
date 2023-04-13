@@ -2,7 +2,10 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {ref} from "vue";
 import crimea from "../data/crimea.ts";
+
+const marker = ref("circle");
 
 </script>
 
@@ -25,16 +28,35 @@ The following named markers are supported:
 
 If **marker** is true, it defaults to *circle*. If **marker** is a function, it will be called with a given *color* and must return an SVG marker element.
 
-:::plot
-```js
+<p>
+  <label style="font-size: smaller; color: var(--vp-c-text-2);">
+    Marker:
+    <select style="all: revert;" v-model="marker">
+      <option>none</option>
+      <option>arrow</option>
+      <option>dot</option>
+      <option selected>circle</option>
+      <option>circle-fill</option>
+      <option>circle-stroke</option>
+    </select>
+  </label>
+</p>
+
+<PlotRender :options='{
+  marks: [
+    Plot.ruleY([0]),
+    Plot.lineY(crimea, {x: "date", y: "deaths", stroke: "cause", marker})
+  ]
+}' />
+
+```js-vue
 Plot.plot({
   marks: [
     Plot.ruleY([0]),
-    Plot.lineY(crimea, {x: "date", y: "deaths", stroke: "cause", marker: true})
+    Plot.lineY(crimea, {x: "date", y: "deaths", stroke: "cause", marker: {{JSON.stringify(marker)}}})
   ]
 })
 ```
-:::
 
 [Edit this on Observable →](https://observablehq.com/d/cfc5b4e46aa18b57?intent=fork)
 
