@@ -110,39 +110,50 @@ export default {
       className: "plot"
     };
     if (this.mode === "defer") {
-      const render = (el) => {
+      const mounted = (el) => {
         if (!plotel.has(el)) plotel.set(el, el);
+        let observer = null;
         let idling = null;
         function observed() {
           const plot = Plot.plot(options);
           plotel.get(el).replaceWith(plot);
           plotel.set(el, plot);
-          observer.disconnect();
+          if (observer !== null) {
+            observer.disconnect();
+            observer = null;
+          }
           if (idling !== null) {
             cancelIdleCallback(idling);
             idling = null;
           }
         }
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) observed();
-          },
-          {rootMargin: "100px"}
-        );
-        observer.observe(el);
-        if (typeof requestIdleCallback === "function") {
-          idling = requestIdleCallback(observed);
+        const plot = plotel.get(el);
+        const rect = plot.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          observed();
+        } else {
+          observer = new IntersectionObserver(
+            ([entry]) => {
+              if (entry.isIntersecting) observed();
+            },
+            {rootMargin: "100px"}
+          );
+          observer.observe(plot);
+          if (typeof requestIdleCallback === "function") {
+            idling = requestIdleCallback(observed);
+          }
         }
       };
-      return withDirectives(h("figure", {style: "height: 400px;"}), [
+      const unmounted = (el) => {
+        plotel.get(el).remove();
+        plotel.delete(el);
+      };
+      return withDirectives(h("figure"), [
         [
           {
-            mounted: render,
-            updated: render,
-            unmounted: (el) => {
-              plotel.get(el).remove();
-              plotel.delete(el);
-            }
+            mounted,
+            updated: mounted,
+            unmounted
           }
         ]
       ]);
