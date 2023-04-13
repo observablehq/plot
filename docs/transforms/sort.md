@@ -44,7 +44,7 @@ Plot.plot({
 Plot.sort("body_mass_g", options) // show data in ascending body mass order
 ```
 
-Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name. See also [index sorting](./scales.md#sort-options), which allows marks to be sorted by a named channel, such as *r* for radius.
+Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name. See also [index sorting](../features/scales.md#sort-options), which allows marks to be sorted by a named channel, such as *r* for radius.
 
 ## shuffle(*options*)
 

@@ -794,6 +794,7 @@ For quantile and quantize color scales, the *scale*.scheme option is used in con
 
 The following sequential scale schemes are supported for both quantitative and ordinal data:
 
+```
 * <sub><img src="./img/blues.png" width="32" height="16" alt="blues"></sub> *blues*
 * <sub><img src="./img/greens.png" width="32" height="16" alt="greens"></sub> *greens*
 * <sub><img src="./img/greys.png" width="32" height="16" alt="greys"></sub> *greys*
@@ -821,11 +822,13 @@ The following sequential scale schemes are supported for both quantitative and o
 * <sub><img src="./img/turbo.png" width="32" height="16" alt="turbo"></sub> *turbo*
 * <sub><img src="./img/warm.png" width="32" height="16" alt="warm"></sub> *warm*
 * <sub><img src="./img/cool.png" width="32" height="16" alt="cool"></sub> *cool*
+```
 
 The default color scheme, *turbo*, was chosen primarily to ensure high-contrast visibility. Color schemes such as *blues* make low-value marks difficult to see against a white background, for better or for worse. To use a subset of a continuous color scheme (or any single-argument *interpolate* function), set the *scale*.range property to the corresponding subset of [0, 1]; for example, to use the first half of the *rainbow* color scheme, use a range of [0, 0.5]. By default, the full range [0, 1] is used. If you wish to encode a quantitative value without hue, consider using *opacity* rather than *color* (e.g., use Plot.dot’s *strokeOpacity* instead of *stroke*).
 
 The following diverging scale schemes are supported:
 
+```
 * <sub><img src="./img/brbg.png" width="32" height="16" alt="brbg"></sub> *brbg*
 * <sub><img src="./img/prgn.png" width="32" height="16" alt="prgn"></sub> *prgn*
 * <sub><img src="./img/piyg.png" width="32" height="16" alt="piyg"></sub> *piyg*
@@ -837,16 +840,20 @@ The following diverging scale schemes are supported:
 * <sub><img src="./img/spectral.png" width="32" height="16" alt="spectral"></sub> *spectral*
 * <sub><img src="./img/burd.png" width="32" height="16" alt="burd"></sub> *burd*
 * <sub><img src="./img/buylrd.png" width="32" height="16" alt="buylrd"></sub> *buylrd*
+```
 
 Picking a diverging color scheme name defaults the scale type to *diverging*; set the scale type to *linear* to treat the color scheme as sequential instead. Diverging color scales support a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
 
 The following cylical color schemes are supported:
 
+```
 * <sub><img src="./img/rainbow.png" width="32" height="16" alt="rainbow"></sub> *rainbow*
 * <sub><img src="./img/sinebow.png" width="32" height="16" alt="sinebow"></sub> *sinebow*
+```
 
 The following categorical color schemes are supported:
 
+```
 * <sub><img src="./img/accent.png" width="96" height="16" alt="accent"></sub> *accent* (8 colors)
 * <sub><img src="./img/category10.png" width="120" height="16" alt="category10"></sub> *category10* (10 colors)
 * <sub><img src="./img/dark2.png" width="96" height="16" alt="dark2"></sub> *dark2* (8 colors)
@@ -857,6 +864,7 @@ The following categorical color schemes are supported:
 * <sub><img src="./img/set2.png" width="96" height="16" alt="set2"></sub> *set2* (8 colors)
 * <sub><img src="./img/set3.png" width="144" height="16" alt="set3"></sub> *set3* (12 colors)
 * <sub><img src="./img/tableau10.png" width="120" height="16" alt="tableau10"></sub> *tableau10* (10 colors)
+```
 
 The following color interpolators are supported:
 
@@ -910,7 +918,9 @@ The inset scale options can provide “breathing room” to separate marks from 
 
 In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension—such as a dot, rule, or tick—then use a *point* scale; otherwise, say for a bar, use a *band* scale. In the image below, the top *x* scale is a *point* scale while the bottom *x* scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@observablehq/plot-scales) for an interactive version.
 
+```
 <img src="./img/point-band.png" width="640" alt="point and band scales">
+````
 
 Ordinal position scales support additional options, all specified as proportions in [0, 1]:
 
