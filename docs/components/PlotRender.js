@@ -108,30 +108,36 @@ export default {
       className: "plot"
     };
     if (this.mode === "defer") {
+      const that = this;
+      const render = (el) => {
+        if (that._plot === undefined) that._plot = el;
+        let idling = null;
+        function observed() {
+          const plot = Plot.plot(options);
+          that._plot.replaceWith(plot);
+          that._plot = plot;
+          observer.disconnect();
+          if (idling !== null) {
+            cancelIdleCallback(idling);
+            idling = null;
+          }
+        }
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) observed();
+          },
+          {rootMargin: "100px"}
+        );
+        observer.observe(el);
+        if (typeof requestIdleCallback === "function") {
+          idling = requestIdleCallback(observed);
+        }
+      };
       return withDirectives(h("figure", {style: "height: 400px;"}), [
         [
           {
-            mounted(el) {
-              let idling = null;
-              function observed() {
-                el.replaceWith(Plot.plot(options));
-                observer.disconnect();
-                if (idling !== null) {
-                  cancelIdleCallback(idling);
-                  idling = null;
-                }
-              }
-              const observer = new IntersectionObserver(
-                ([entry]) => {
-                  if (entry.isIntersecting) observed();
-                },
-                {rootMargin: "100px"}
-              );
-              observer.observe(el);
-              if (typeof requestIdleCallback === "function") {
-                idling = requestIdleCallback(observed);
-              }
-            }
+            mounted: render,
+            updated: render
           }
         ]
       ]);

@@ -6,7 +6,7 @@ import walmarts from "../data/walmarts.ts";
 import {counties, nation, statemesh, states} from "../data/us-counties-10m.ts";
 import elections from "../data/us-presidential-election-2020.ts";
 
-const lookup = d3.index(counties.features, (d) => d.id);
+const lookup = d3.index(counties.features, (d) => +d.id); // TODO fix type coercion
 
 </script>
 
@@ -48,7 +48,7 @@ Plot.plot({
   height: 600,
   projection: "albers",
   color: {
-//    legend: true,
+    legend: true,
     label: "Opening year"
   },
   marks: [
@@ -58,10 +58,6 @@ Plot.plot({
   ]
 })
 ```
-:::
-
-:::warning
-TODO legend: true crashes with `TypeError: canvas.getContext is not a function`
 :::
 
 ## Facets
@@ -119,9 +115,7 @@ its outputs (see [Planar vs. Spherical Voronoi](https://observablehq.com/@observ
 
 ### Hexbin
 
-Hexagonal bins, based on the projected coordinates. See
-[Plot.hexbin](https://observablehq.com/@observablehq/plot-hexbin) for details. Hexbins have a great visual appeal, but be aware that the underlying statistics are usually to be taken with a grain of salt. At any scale, geographic binning suffers from the
-[MAUP](https://en.wikipedia.org/wiki/Modifiable_areal_unit_problem). On a small scale map, this is compounded by the Earth’s curvature, which makes it impossible to create an accurate and regular grid. At any rate, prefer an equal-area projection to makes the different regions of the map comparable.
+Hexagonal bins, based on the projected coordinates. See [Plot.hexbin](../transforms/hexbin.md) for details. Hexbins have a great visual appeal, but be aware that the underlying statistics are usually to be taken with a grain of salt. At any scale, geographic binning suffers from the [MAUP](https://en.wikipedia.org/wiki/Modifiable_areal_unit_problem). On a small scale map, this is compounded by the Earth’s curvature, which makes it impossible to create an accurate and regular grid. At any rate, prefer an equal-area projection to makes the different regions of the map comparable.
 
 :::plot defer
 ```js
@@ -132,7 +126,7 @@ Plot.plot({
     range: [0, 20]
   },
   color: {
-    // legend: true,
+    legend: true,
     label: "First year opened",
     scheme: "spectral"
   },
@@ -151,14 +145,9 @@ Plot.plot({
 ```
 :::
 
-:::warning
-TODO legend: true
-:::
-
 ### Density
 
-Plot.density… just works. See
-[Plot.density](https://observablehq.com/@observablehq/plot-density) for details. On a small-scale map showing the whole globe, you might have to clip the results. And, because the density is computed on the projected coordinates, it is recommended to use an equal-area projection to limit distortion.
+Plot.density… just works. See [Plot.density](../marks/density.md) for details. On a small-scale map showing the whole globe, you might have to clip the results. And, because the density is computed on the projected coordinates, it is recommended to use an equal-area projection to limit distortion.
 
 :::plot defer
 ```js
@@ -170,7 +159,7 @@ Plot.plot({
     scheme: "blues"
   },
   marks: [
-    void Plot.density(walmarts, {
+    Plot.density(walmarts, {
       x: "longitude",
       y: "latitude",
       bandwidth: 12,
@@ -187,10 +176,6 @@ Plot.plot({
   ]
 })
 ```
-:::
-
-:::warning
-TODO fix density mark, crashes with `TypeError: Cannot set property parentNode of #<Node> which has`.
 :::
 
 ## Text
@@ -220,7 +205,7 @@ Plot.plot({
 
 ## Vectors
 
-Did we mention [vectors](https://observablehq.com/@observablehq/plot-vector)? The map below shows the margin by which the winner of the US presidential election of 2020 won the vote in each county. The arrow’s length encodes the difference in votes, and the orientation and color show who won (<svg width=12 height=12 viewBox="-11 -11 12 12" style="display: inline-block"><path d="M0,0l-10,-6m1,3.28l-1,-3.28l3.28,-1" stroke="blue"></path></svg> for the Democratic candidate, and <svg width=12 height=12 viewBox="0 -11 12 12" style="display: inline-block"><path d="M0,0l10,-6m-1,3.28l1,-3.28l-3.28,-1" stroke="red"></path></svg> for the Republican candidate).
+Did we mention [vectors](../marks/vector.md)? The map below shows the margin by which the winner of the US presidential election of 2020 won the vote in each county. The arrow’s length encodes the difference in votes, and the orientation and color show who won (<svg width=12 height=12 viewBox="-11 -11 12 12" style="display: inline-block"><path d="M0,0l-10,-6m1,3.28l-1,-3.28l3.28,-1" stroke="blue"></path></svg> for the Democratic candidate, and <svg width=12 height=12 viewBox="0 -11 12 12" style="display: inline-block"><path d="M0,0l10,-6m-1,3.28l1,-3.28l-3.28,-1" stroke="red"></path></svg> for the Republican candidate).
 
 :::plot defer
 ```js
@@ -228,7 +213,7 @@ Plot.plot({
   projection: "albers-usa",
   width: 975,
   marks: [
-    Plot.geo(statemesh, { strokeWidth: 0.75 }),
+    Plot.geo(statemesh, {strokeWidth: 0.75}),
     Plot.geo(nation),
     Plot.vector(
       elections,
@@ -245,10 +230,6 @@ Plot.plot({
   ]
 })
 ```
-:::
-
-:::warning
-TODO fix vector mark which doesn't render.
 :::
 
 ## More marks: image, rect, link, arrow, line

@@ -539,7 +539,7 @@ Plot.plot({
 ```
 :::
 
-## Type inference
+## Scale type inference
 
 Plot strives to be concise: rather than you laboriously specifying everything, Plot can guess by inspecting the data so you don’t have to set the **type**, **domain**, and **range** (and for color, **scheme**) of scales explicitly. But for Plot’s guesses to be accurate, your data must match Plot’s expectations. Here they are.
 
