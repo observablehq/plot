@@ -7,6 +7,8 @@ import * as d3 from "d3";
 
 # Getting started
 
+Observable Plot supports a variety of environments.
+
 ## Try Plot online
 
 The fastest way to get started (and get help) with Observable Plot is on [Observable](https://observablehq.com)! Plot is available by default in notebooks as part of Observable’s standard library. To use Plot, simply return the generated plot from a cell like so:
