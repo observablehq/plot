@@ -126,22 +126,21 @@ The *mode* reducer returns the most-seen *number* in the window, and can be used
 :::plot
 ```js
 Plot.plot({
-    caption: `Reducer: ${reduce}`,
-    marks: [
-      Plot.tickX(
-        sftemp,
-        Plot.windowY({
-          reduce,
-          k: 7, // TODO k
-          x: "date",
-          y: (d) => Math.sign(d.middle - median)
-        })
-      )
-    ],
-    height: 100,
-    y: { domain: [-1, 1], tickFormat: (d) => (d < 0 ? "lower" : "higher") }
-  });
-}
+  caption: `Reducer: ${"mean"}`, // TODO reduce
+  marks: [
+    Plot.tickX(
+      sftemp,
+      Plot.windowY({
+        reduce: "mean", // TODO reduce
+        k: 7, // TODO k
+        x: "date",
+        y: (d) => Math.sign(d.middle - median)
+      })
+    )
+  ],
+  height: 100,
+  y: { domain: [-1, 1], tickFormat: (d) => (d < 0 ? "lower" : "higher") }
+})
 ```
 :::
 
