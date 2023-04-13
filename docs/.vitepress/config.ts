@@ -59,15 +59,32 @@ export default defineConfig({
           {text: "Getting started", link: "/getting-started"},
           {text: "Marks", link: "/marks"},
           {text: "Scales", link: "/scales"},
-          {text: "Transforms", link: "/transforms"},
-          {text: "Facets", link: "/facets"},
           {text: "Projections", link: "/projections"},
+          {text: "Facets", link: "/facets"},
+          {text: "Transforms", link: "/transforms"},
           {text: "Shorthand", link: "/shorthand"}
         ]
       },
       {
-        text: "Marks",
+        text: "Features",
         collapsed: false,
+        items: [
+          {text: "Plots", link: "/features/plots"},
+          {text: "Marks", link: "/features/marks"},
+          {text: "Scales", link: "/features/scales"},
+          {text: "Projections", link: "/features/projections"},
+          {text: "Facets", link: "/features/facets"},
+          {text: "Transforms", link: "/features/transforms"},
+          {text: "Accessibility", link: "/features/accessibility"},
+          {text: "Curves", link: "/features/curves"},
+          {text: "Formats", link: "/features/formats"},
+          {text: "Markers", link: "/features/markers"},
+          {text: "Spatial interpolators", link: "/features/spatial-interpolators"},
+        ]
+      },
+      {
+        text: "Marks",
+        collapsed: true,
         items: [
           {text: "Area", link: "/marks/area"},
           {text: "Arrow", link: "/marks/arrow"},
@@ -99,7 +116,7 @@ export default defineConfig({
       },
       {
         text: "Transforms",
-        collapsed: false,
+        collapsed: true,
         items: [
           {text: "Bin", link: "/transforms/bin"},
           {text: "Centroid", link: "/transforms/centroid"},
@@ -114,25 +131,6 @@ export default defineConfig({
           {text: "Stack", link: "/transforms/stack"},
           {text: "Tree", link: "/transforms/tree"},
           {text: "Window", link: "/transforms/window"}
-        ]
-      },
-      {
-        text: "Options",
-        collapsed: false,
-        items: [
-          {text: "Plot options", link: "/options/plot"},
-          {text: "Scale options", link: "/options/scales"},
-          {text: "Color options", link: "/options/colors"},
-          {text: "Projection options", link: "/options/projections"},
-          {text: "Mark options", link: "/options/marks"},
-          {text: "Facet options", link: "/options/facets"},
-          {text: "Transform options", link: "/options/transforms"},
-          {text: "Legend options", link: "/options/legends"},
-          {text: "Accessibility", link: "/options/accessibility"},
-          {text: "Curves", link: "/options/curves"},
-          {text: "Formats", link: "/options/formats"},
-          {text: "Markers", link: "/options/markers"},
-          {text: "Spatial interpolators", link: "/options/spatial-interpolators"},
         ]
       }
     ],

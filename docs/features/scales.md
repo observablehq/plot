@@ -1,4 +1,4 @@
-# Scale options
+# Scales
 
 Plot passes data through [scales](https://observablehq.com/@observablehq/plot-scales) as needed before rendering marks. A scale maps abstract values such as time or temperature to visual values such as position or color. Within a given plot, marks share scales. For example, if a plot has two Plot.line marks, both share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
 
@@ -129,7 +129,171 @@ const plot2 = Plot.plot({…, color: plot1.scale("color")});
 
 For convenience, scale objects expose a *scale*.**apply**(*input*) method which returns the scale’s output for the given *input* value. When applicable, scale objects also expose a *scale*.**invert**(*output*) method which returns the corresponding input value from the scale’s domain for the given *output* value.
 
-### Position options
+### Sort options
+
+If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
+```
+
+The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](#transforms) (such as [stack](#stack) or [bin](#bin)). When sorting on the *x*, if no such channel is defined, the *x2* channel will be used instead if available, and similarly for *y* and *y2*; this is useful for marks that implicitly stack such as [area](#area), [bar](#bar), and [rect](#rect). A sort value may also be specified as *width* or *height*, representing derived channels |*x2* - *x1*| and |*y2* - *y1*| respectively.
+
+Note that there may be multiple associated values in the secondary dimension for a given value in the primary ordinal dimension. The secondary values are therefore grouped for each associated primary value, and each group is then aggregated by applying a reducer. Lastly the primary values are sorted based on the associated reduced value in natural ascending order to produce the domain. The default reducer is *max*, but may be changed by specifying the *reduce* option. The above code is shorthand for:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reduce: "max"}})
+```
+
+Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. See the [group transform](#group) for the list of supported reducers.
+
+For descending rather than ascending order, use the *reverse* option:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
+```
+
+An additional *limit* option truncates the domain to the first *n* values after sorting. If *limit* is negative, the last *n* values are used instead. Hence, a positive *limit* with *reverse* = true will return the top *n* values in descending order. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](#transforms), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", limit: 5}})
+```
+
+If different sort options are needed for different ordinal scales, the channel name can be replaced with a *value* object with additional per-scale options.
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse: true}}})
+```
+
+If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
+
+Note: when the value of the sort option is a string or a function, it is interpreted as a [basic sort transform](#transforms). To use both sort options and a sort transform, use [Plot.sort](#plotsortorder-options).
+
+## Color scales
+
+The normal scale types—*linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal*—can be used to encode color. In addition, Plot supports special scale types for color:
+
+* *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
+* *sequential* - equivalent to *linear*
+* *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
+* *threshold* - encodes based on the specified discrete thresholds; defaults to the *rdylbu* scheme
+* *quantile* - encodes based on the computed quantile thresholds; defaults to the *rdylbu* scheme
+* *quantize* - transforms a continuous domain into quantized thresholds; defaults to the *rdylbu* scheme
+* *diverging* - like *linear*, but with a pivot; defaults to the *rdbu* scheme
+* *diverging-log* - like *log*, but with a pivot that defaults to 1; defaults to the *rdbu* scheme
+* *diverging-pow* - like *pow*, but with a pivot; defaults to the *rdbu* scheme
+* *diverging-sqrt* - like *sqrt*, but with a pivot; defaults to the *rdbu* scheme
+* *diverging-symlog* - like *symlog*, but with a pivot; defaults to the *rdbu* scheme
+
+For a *threshold* scale, the *domain* represents *n* (typically numeric) thresholds which will produce a *range* of *n* + 1 output colors; the *i*th color of the *range* applies to values that are smaller than the *i*th element of the domain and larger or equal to the *i* - 1th element of the domain. For a *quantile* scale, the *domain* represents all input values to the scale, and the *n* option specifies how many quantiles to compute from the *domain*; *n* quantiles will produce *n* - 1 thresholds, and an output range of *n* colors. For a *quantize* scale, the domain will be transformed into approximately *n* quantized values, where *n* is an option that defaults to 5.
+
+By default, all diverging color scales are symmetric around the pivot; set *symmetric* to false if you want to cover the whole extent on both sides.
+
+Color scales support two additional options:
+
+* *scale*.**scheme** - a named color scheme in lieu of a range, such as *reds*
+* *scale*.**interpolate** - in conjunction with a range, how to interpolate colors
+
+For quantile and quantize color scales, the *scale*.scheme option is used in conjunction with *scale*.**n**, which determines how many quantiles or quantized values to compute, and thus the number of elements in the scale’s range; it defaults to 5 (for quintiles in the case of a quantile scale).
+
+The following sequential scale schemes are supported for both quantitative and ordinal data:
+
+* <sub><img src="./img/blues.png" width="32" height="16" alt="blues"></sub> *blues*
+* <sub><img src="./img/greens.png" width="32" height="16" alt="greens"></sub> *greens*
+* <sub><img src="./img/greys.png" width="32" height="16" alt="greys"></sub> *greys*
+* <sub><img src="./img/oranges.png" width="32" height="16" alt="oranges"></sub> *oranges*
+* <sub><img src="./img/purples.png" width="32" height="16" alt="purples"></sub> *purples*
+* <sub><img src="./img/reds.png" width="32" height="16" alt="reds"></sub> *reds*
+* <sub><img src="./img/bugn.png" width="32" height="16" alt="bugn"></sub> *bugn*
+* <sub><img src="./img/bupu.png" width="32" height="16" alt="bupu"></sub> *bupu*
+* <sub><img src="./img/gnbu.png" width="32" height="16" alt="gnbu"></sub> *gnbu*
+* <sub><img src="./img/orrd.png" width="32" height="16" alt="orrd"></sub> *orrd*
+* <sub><img src="./img/pubu.png" width="32" height="16" alt="pubu"></sub> *pubu*
+* <sub><img src="./img/pubugn.png" width="32" height="16" alt="pubugn"></sub> *pubugn*
+* <sub><img src="./img/purd.png" width="32" height="16" alt="purd"></sub> *purd*
+* <sub><img src="./img/rdpu.png" width="32" height="16" alt="rdpu"></sub> *rdpu*
+* <sub><img src="./img/ylgn.png" width="32" height="16" alt="ylgn"></sub> *ylgn*
+* <sub><img src="./img/ylgnbu.png" width="32" height="16" alt="ylgnbu"></sub> *ylgnbu*
+* <sub><img src="./img/ylorbr.png" width="32" height="16" alt="ylorbr"></sub> *ylorbr*
+* <sub><img src="./img/ylorrd.png" width="32" height="16" alt="ylorrd"></sub> *ylorrd*
+* <sub><img src="./img/cividis.png" width="32" height="16" alt="cividis"></sub> *cividis*
+* <sub><img src="./img/inferno.png" width="32" height="16" alt="inferno"></sub> *inferno*
+* <sub><img src="./img/magma.png" width="32" height="16" alt="magma"></sub> *magma*
+* <sub><img src="./img/plasma.png" width="32" height="16" alt="plasma"></sub> *plasma*
+* <sub><img src="./img/viridis.png" width="32" height="16" alt="viridis"></sub> *viridis*
+* <sub><img src="./img/cubehelix.png" width="32" height="16" alt="cubehelix"></sub> *cubehelix*
+* <sub><img src="./img/turbo.png" width="32" height="16" alt="turbo"></sub> *turbo*
+* <sub><img src="./img/warm.png" width="32" height="16" alt="warm"></sub> *warm*
+* <sub><img src="./img/cool.png" width="32" height="16" alt="cool"></sub> *cool*
+
+The default color scheme, *turbo*, was chosen primarily to ensure high-contrast visibility. Color schemes such as *blues* make low-value marks difficult to see against a white background, for better or for worse. To use a subset of a continuous color scheme (or any single-argument *interpolate* function), set the *scale*.range property to the corresponding subset of [0, 1]; for example, to use the first half of the *rainbow* color scheme, use a range of [0, 0.5]. By default, the full range [0, 1] is used. If you wish to encode a quantitative value without hue, consider using *opacity* rather than *color* (e.g., use Plot.dot’s *strokeOpacity* instead of *stroke*).
+
+The following diverging scale schemes are supported:
+
+* <sub><img src="./img/brbg.png" width="32" height="16" alt="brbg"></sub> *brbg*
+* <sub><img src="./img/prgn.png" width="32" height="16" alt="prgn"></sub> *prgn*
+* <sub><img src="./img/piyg.png" width="32" height="16" alt="piyg"></sub> *piyg*
+* <sub><img src="./img/puor.png" width="32" height="16" alt="puor"></sub> *puor*
+* <sub><img src="./img/rdbu.png" width="32" height="16" alt="rdbu"></sub> *rdbu*
+* <sub><img src="./img/rdgy.png" width="32" height="16" alt="rdgy"></sub> *rdgy*
+* <sub><img src="./img/rdylbu.png" width="32" height="16" alt="rdylbu"></sub> *rdylbu*
+* <sub><img src="./img/rdylgn.png" width="32" height="16" alt="rdylgn"></sub> *rdylgn*
+* <sub><img src="./img/spectral.png" width="32" height="16" alt="spectral"></sub> *spectral*
+* <sub><img src="./img/burd.png" width="32" height="16" alt="burd"></sub> *burd*
+* <sub><img src="./img/buylrd.png" width="32" height="16" alt="buylrd"></sub> *buylrd*
+
+Picking a diverging color scheme name defaults the scale type to *diverging*; set the scale type to *linear* to treat the color scheme as sequential instead. Diverging color scales support a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
+
+The following cylical color schemes are supported:
+
+* <sub><img src="./img/rainbow.png" width="32" height="16" alt="rainbow"></sub> *rainbow*
+* <sub><img src="./img/sinebow.png" width="32" height="16" alt="sinebow"></sub> *sinebow*
+
+The following categorical color schemes are supported:
+
+* <sub><img src="./img/accent.png" width="96" height="16" alt="accent"></sub> *accent* (8 colors)
+* <sub><img src="./img/category10.png" width="120" height="16" alt="category10"></sub> *category10* (10 colors)
+* <sub><img src="./img/dark2.png" width="96" height="16" alt="dark2"></sub> *dark2* (8 colors)
+* <sub><img src="./img/paired.png" width="144" height="16" alt="paired"></sub> *paired* (12 colors)
+* <sub><img src="./img/pastel1.png" width="108" height="16" alt="pastel1"></sub> *pastel1* (9 colors)
+* <sub><img src="./img/pastel2.png" width="96" height="16" alt="pastel2"></sub> *pastel2* (8 colors)
+* <sub><img src="./img/set1.png" width="108" height="16" alt="set1"></sub> *set1* (9 colors)
+* <sub><img src="./img/set2.png" width="96" height="16" alt="set2"></sub> *set2* (8 colors)
+* <sub><img src="./img/set3.png" width="144" height="16" alt="set3"></sub> *set3* (12 colors)
+* <sub><img src="./img/tableau10.png" width="120" height="16" alt="tableau10"></sub> *tableau10* (10 colors)
+
+The following color interpolators are supported:
+
+* *rgb* - RGB (red, green, blue)
+* *hsl* - HSL (hue, saturation, lightness)
+* *lab* - CIELAB (*a.k.a.* “Lab”)
+* *hcl* - CIELCh<sub>ab</sub> (*a.k.a.* “LCh” or “HCL”)
+
+For example, to use CIELCh<sub>ab</sub>:
+
+```js
+Plot.plot({
+  color: {
+    range: ["red", "blue"],
+    interpolate: "hcl"
+  },
+  marks: …
+})
+```
+
+Or to use gamma-corrected RGB (via [d3-interpolate](https://github.com/d3/d3-interpolate)):
+
+```js
+Plot.plot({
+  color: {
+    range: ["red", "blue"],
+    interpolate: d3.interpolateRgb.gamma(2.2)
+  },
+  marks: …
+})
+```
+
+## Position scales
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
 
@@ -184,42 +348,115 @@ Plot automatically generates [axis](#axis) and optionally [grid](#grid) marks fo
 
 Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **label**, **axis**, **inset**, **round**, **align**, and **padding**. If the **grid** option is true, show a grid with the currentColor stroke; if specified as a string, show a grid with the specified stroke color; if an approximate number of ticks, an interval, or an array of tick values, show corresponding grid lines.
 
-### Sort options
+## Legends
 
-If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
+Plot can generate legends for *color*, *opacity*, and *symbol* [scales](#scale-options). (An opacity scale is treated as a color scale with varying transparency.) For an inline legend, use the *scale*.**legend** option:
 
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
-```
+* *scale*.**legend** - if truthy, generate a legend for the given scale
 
-The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](#transforms) (such as [stack](#stack) or [bin](#bin)). When sorting on the *x*, if no such channel is defined, the *x2* channel will be used instead if available, and similarly for *y* and *y2*; this is useful for marks that implicitly stack such as [area](#area), [bar](#bar), and [rect](#rect). A sort value may also be specified as *width* or *height*, representing derived channels |*x2* - *x1*| and |*y2* - *y1*| respectively.
+If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales and symbol scales, only the *swatches* value is supported.
 
-Note that there may be multiple associated values in the secondary dimension for a given value in the primary ordinal dimension. The secondary values are therefore grouped for each associated primary value, and each group is then aggregated by applying a reducer. Lastly the primary values are sorted based on the associated reduced value in natural ascending order to produce the domain. The default reducer is *max*, but may be changed by specifying the *reduce* option. The above code is shorthand for:
+For example, this scatterplot includes a swatches legend for the ordinal color scale:
 
 ```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reduce: "max"}})
+Plot.plot({
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.dot(athletes, {x: "weight", y: "height", stroke: "sex"})
+  ]
+})
 ```
 
-Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. See the [group transform](#group) for the list of supported reducers.
-
-For descending rather than ascending order, use the *reverse* option:
+Whereas this scatterplot would render a ramp legend for its diverging color scale:
 
 ```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
+Plot.plot({
+  color: {
+    type: "diverging",
+    legend: true
+  },
+  marks: [
+    Plot.dot(gistemp, {x: "Date", y: "Anomaly", stroke: "Anomaly"})
+  ]
+})
 ```
 
-An additional *limit* option truncates the domain to the first *n* values after sorting. If *limit* is negative, the last *n* values are used instead. Hence, a positive *limit* with *reverse* = true will return the top *n* values in descending order. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](#transforms), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
+#### *plot*.legend(*scaleName*, *options*)
+
+Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a detached legend for the *plot*’s scale with the given *scaleName*. The *scaleName* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. For example:
 
 ```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", limit: 5}})
+myplot = Plot.plot(…)
+```
+```js
+mylegend = myplot.legend("color")
 ```
 
-If different sort options are needed for different ordinal scales, the channel name can be replaced with a *value* object with additional per-scale options.
+Or, with additional *options*:
 
 ```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse: true}}})
+mylegend = myplot.legend("color", {width: 320})
 ```
 
-If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
+If there is no scale with the given *scaleName* on the given *plot*, then *plot*.legend will return undefined.
 
-Note: when the value of the sort option is a string or a function, it is interpreted as a [basic sort transform](#transforms). To use both sort options and a sort transform, use [Plot.sort](#plotsortorder-options).
+Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
+
+* *options*.**tickFormat** - a format function for the labels
+* *options*.**swatchSize** - the size of the swatch (if square)
+* *options*.**swatchWidth** - the swatches’ width
+* *options*.**swatchHeight** - the swatches’ height
+* *options*.**columns** - the number of swatches per row
+* *options*.**marginLeft** - the legend’s left margin
+* *options*.**className** - a class name, that defaults to a randomly generated string scoping the styles
+* *options*.**opacity** - the swatch fill opacity
+* *options*.**width** - the legend’s width (in pixels)
+
+Symbol legends are rendered as swatches and support the options above in addition to the following options:
+
+* *options*.**fill** - the symbol fill color
+* *options*.**fillOpacity** - the symbol fill opacity; defaults to 1
+* *options*.**stroke** - the symbol stroke color
+* *options*.**strokeOpacity** - the symbol stroke opacity; defaults to 1
+* *options*.**strokeWidth** - the symbol stroke width; defaults to 1.5
+* *options*.**r** - the symbol radius; defaults to 4.5 pixels
+
+The **fill** and **stroke** symbol legend options can be specified as “color” to apply the color scale when the symbol scale is a redundant encoding. The **fill** defaults to none. The **stroke** defaults to currentColor if the fill is none, and to none otherwise. The **fill** and **stroke** options may also be inherited from the corresponding options on an associated dot mark.
+
+Continuous color legends are rendered as a ramp, and can be configured with the following options:
+
+* *options*.**label** - the scale’s label
+* *options*.**ticks** - the desired number of ticks, or an array of tick values
+* *options*.**tickFormat** - a format function for the legend’s ticks
+* *options*.**tickSize** - the tick size
+* *options*.**round** - if true (default), round tick positions to pixels
+* *options*.**width** - the legend’s width
+* *options*.**height** - the legend’s height
+* *options*.**marginTop** - the legend’s top margin
+* *options*.**marginRight** - the legend’s right margin
+* *options*.**marginBottom** - the legend’s bottom margin
+* *options*.**marginLeft** - the legend’s left margin
+* *options*.**opacity** - the ramp’s fill opacity
+
+The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [layout options](#layout-options).
+
+#### Plot.legend(*options*)
+
+Returns a standalone legend for the scale defined by the given *options* object. The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a ramp legend of a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
+
+```js
+Plot.legend({color: {type: "linear"}})
+```
+
+The *options* object may also include any additional legend options described in the previous section. For example, to make the above legend slightly wider:
+
+```js
+Plot.legend({
+  width: 320,
+  color: {
+    type: "linear"
+  }
+})
+```

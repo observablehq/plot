@@ -1,4 +1,4 @@
-# Plot options
+# Plots
 
 ## Plot.plot(*options*)
 
