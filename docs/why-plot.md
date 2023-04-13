@@ -49,6 +49,7 @@ Plot.plot({
   y: {tickSpacing: 80, label: "↑ Culmen depth (mm)"},
   color: {legend: true},
   marks: [
+    Plot.frame(),
     Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species"})
   ]
 })
