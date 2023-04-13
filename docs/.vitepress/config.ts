@@ -115,12 +115,22 @@ export default defineConfig({
         ]
       },
       {
-        text: "Features",
+        text: "Options",
         collapsed: false,
         items: [
-          {text: "Curves", link: "/curves"},
-          {text: "Formats", link: "/formats"},
-          {text: "Markers", link: "/markers"}
+          {text: "Plot options", link: "/options/plot"},
+          {text: "Scale options", link: "/options/scales"},
+          {text: "Color options", link: "/options/colors"},
+          {text: "Projection options", link: "/options/projections"},
+          {text: "Mark options", link: "/options/marks"},
+          {text: "Facet options", link: "/options/facets"},
+          {text: "Transform options", link: "/options/transforms"},
+          {text: "Legend options", link: "/options/legends"},
+          {text: "Accessibility", link: "/options/accessibility"},
+          {text: "Curves", link: "/options/curves"},
+          {text: "Formats", link: "/options/formats"},
+          {text: "Markers", link: "/options/markers"},
+          {text: "Spatial interpolators", link: "/options/spatial-interpolators"},
         ]
       }
     ],
