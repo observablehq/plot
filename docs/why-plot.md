@@ -17,7 +17,7 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 
 # Why Plot?
 
-Observable Plot is for exploratory data visualization. It’s for finding insights quickly. Its API, while expressive and configurable, optimizes for conciseness and memorability. We want the time to first chart to be as fast as possible.
+**Observable Plot** is for exploratory data visualization. It’s for finding insights quickly. Its API, while expressive and configurable, optimizes for conciseness and memorability. We want the time to first chart to be as fast as possible.
 
 And the speed doesn’t stop there: Plot helps you quickly pivot and refine your views of data. Our hope with Plot is that you’ll spend less time reading the docs, searching for code to copy-paste, and debugging—and more time asking questions of data.
 
