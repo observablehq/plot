@@ -1,9 +1,11 @@
 # Accessibility
 
-Plot supports several [ARIA properties](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) to help build the accessibility tree. The accessibility tree is consumed by various assistive technology such as screen readers and browser add-ons to make web contents and web applications more accessible to people with disabilities. It can be inspected in the browser’s inspector.
+Plot uses [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) to make plots more accessible through assistive technology such as screen readers, browser add-ons, and browser developer tools.
 
-The aria-label and aria-description properties can be set on the SVG root element by specifying the top-level options **ariaLabel** and **ariaDescription**, which default to null.
+The [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) and [aria-description](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-description) attributes on the root SVG element can be set via the top-level **ariaLabel** and **ariaDescription** [plot options](./plots.md). These default to null.
 
-Positional axes are branded with an aria-label and an aria-description properties, which can likewise be specified as axis options. Set the aria-label with the **ariaLabel** axis option, which defaults to “x-axis” and “y-axis” for the corresponding axes (and “fx-axis” and “fy-axis” for facet axes). Set the aria-description with the **ariaDescription** axis option, which defaults to null.
+[Marks](./marks.md) automatically generate an aria-label attribute on the rendered SVG G element; this attribute includes the mark’s type, such as “dot”. The [axis mark](../marks/axis.md) and [grid mark](../marks/grid.md) also include the associated scale’s name, such as “y-axis tick”, “y-axis label”, or “x-grid”.
 
-Marks are branded with an aria-label property with the mark’s name (*e.g.*, “dot”). You can also set an optional aria-description property by specifying the mark option **ariaDescription**. A short label can be specified for each of the individual elements—*e.g.*, individual dots in a dot mark—with the mark option **ariaLabel**. A mark can be hidden from the accessibility tree by specifying the mark option **ariaHidden** to true; this allows to hide decorative elements (such as rules) and repetitive marks (such as lines that support dots, or text marks that are also represented by symbols).
+Use the **ariaLabel** mark option to apply per-instance aria-label attributes (*e.g.*, on individual dots in a scatterplot), say for a short, human-readable textual representation of each displayed data point. Use the **ariaDescription** mark option for a longer description; this is applied to the mark’s G element. These options both default to null.
+
+Setting the **ariaHidden** mark option to true hides the mark from the accessibility tree. This is useful for decorative or redundant marks (such as rules or lines between dots).
