@@ -27,7 +27,7 @@ Plot.plot({
 ```
 :::
 
-The **filter** transform is similar to filtering the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), except that it will preserve [faceting](/facets) and will not affect inferred [scale domains](/scales); domains are inferred from the unfiltered channel values.
+The **filter** transform is similar to filtering the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), except that it will preserve [faceting](../features/facets.md) and will not affect inferred [scale domains](../features/scales.md); domains are inferred from the unfiltered channel values.
 
 :::plot
 ```js{4}
@@ -67,6 +67,10 @@ Plot.plot({
 ```
 :::
 
-## Plot.filter(*test*, *options*)
+## filter(*test*, *options*)
 
-…
+```js
+Plot.filter(d => d.body_mass_g > 3000, options) // show data whose body mass is greater than 3kg
+```
+
+Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition such as a field name; truthy values are retained.

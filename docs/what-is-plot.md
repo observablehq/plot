@@ -8,7 +8,7 @@ import olympians from "./data/olympians.ts";
 
 # What is Plot?
 
-**Observable Plot** is a free, open-source, vanilla JavaScript library for visualizing tabular data, focused on accelerating exploratory data analysis. It has a concise, memorable, yet expressive API, featuring [scales](./scales.md) and [layered marks](./marks.md) in the grammar of graphics style. And there are [plenty of examples](https://observablehq.com/@observablehq/plot-gallery) to learn from and copy-paste.
+**Observable Plot** is a free, open-source, vanilla JavaScript library for visualizing tabular data, focused on accelerating exploratory data analysis. It has a concise, memorable, yet expressive API, featuring [scales](./features/scales.md) and [layered marks](./features/marks.md) in the grammar of graphics style. And there are [plenty of examples](https://observablehq.com/@observablehq/plot-gallery) to learn from and copy-paste.
 
 In the spirit of *show don’t tell*, here’s a scatterplot of body measurements of athletes from the [2016 Summer Olympics](https://flother.is/2017/olympic-games-data/).
 
@@ -46,7 +46,7 @@ Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})).plot(
 ```
 :::
 
-Or if we’d prefer to show the two distributions separately as small multiples, we can [facet](./facets.md) the data along *y* (keeping the *fill* encoding for consistency, and adding grid lines and a rule at *y* = 0 to improve readability).
+Or if we’d prefer to show the two distributions separately as small multiples, we can [facet](./features/facets.md) the data along *y* (keeping the *fill* encoding for consistency, and adding grid lines and a rule at *y* = 0 to improve readability).
 
 :::plot
 ```js

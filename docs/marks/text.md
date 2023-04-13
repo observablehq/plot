@@ -20,7 +20,7 @@ Plot.plot({
 })
 ```
 
-If there are too many data points, labels may be hard to read due to occlusion. The [*filter* transform](../transforms.md) can be used to label only some data. In the connected scatterplot below (recreating Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009), every fifth year is labeled. In the future, we expect Plot will have an automatic labeling transform, perhaps similar to Philippe Rivière’s [Occlusion](https://observablehq.com/@fil/occlusion).
+If there are too many data points, labels may be hard to read due to occlusion. The [*filter* transform](../features/transforms.md) can be used to label only some data. In the connected scatterplot below (recreating Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009), every fifth year is labeled. In the future, we expect Plot will have an automatic labeling transform, perhaps similar to Philippe Rivière’s [Occlusion](https://observablehq.com/@fil/occlusion).
 
 ```js
 Plot.plot({

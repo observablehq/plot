@@ -26,7 +26,7 @@ Plot.plot({
 })
 ```
 
-Plot.boxY groups by *x*, if present, while Plot.boxX groups by *y*, if present. If not present, a single box is generated. As [shorthand](../shorthand.md), you can pass an array of numbers to Plot.boxX or Plot.boxY.
+Plot.boxY groups by *x*, if present, while Plot.boxX groups by *y*, if present. If not present, a single box is generated. As [shorthand](../features/shorthand.md), you can pass an array of numbers to Plot.boxX or Plot.boxY.
 
 ```js
 Plot.boxX([0, 3, 4.4, 4.5, 4.6, 5, 7]).plot()
@@ -34,14 +34,14 @@ Plot.boxX([0, 3, 4.4, 4.5, 4.6, 5, 7]).plot()
 
 ## Box options
 
-Draws either horizontal boxplots where *x* is quantitative and *y* is ordinal (if present) or vertical boxplots where *y* is quantitative and *x* is ordinal (if present). Boxplots are often used to visualize one-dimensional distributions as an alternative to a histogram. (See also the [bin transform](#bin).)
+Draws either horizontal boxplots where *x* is quantitative and *y* is ordinal (if present) or vertical boxplots where *y* is quantitative and *x* is ordinal (if present). Boxplots are often used to visualize one-dimensional distributions as an alternative to a histogram. (See also the [bin transform](../transforms/bin.md).)
 
 The box mark is a composite mark consisting of four marks:
 
-* a [rule](#rule) representing the extreme values (not including outliers)
-* a [bar](#bar) representing the interquartile range (trimmed to the data)
-* a [tick](#tick) representing the median value, and
-* a [dot](#dot) representing outliers, if any
+* a [rule](../marks/rule.md) representing the extreme values (not including outliers)
+* a [bar](../marks/bar.md) representing the interquartile range (trimmed to the data)
+* a [tick](../marks/tick.md) representing the median value, and
+* a [dot](../marks/dot.md) representing outliers, if any
 
 The given *options* are passed through to these underlying marks, with the exception of the following options:
 

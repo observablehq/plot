@@ -38,14 +38,26 @@ Plot.plot({
 ```
 :::
 
-## Plot.sort(*compare*, *options*)
+## sort(*order*, *options*)
 
-…
+```js
+Plot.sort("body_mass_g", options) // show data in ascending body mass order
+```
 
-## Plot.shuffle(*options*)
+Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name. See also [index sorting](./scales.md#sort-options), which allows marks to be sorted by a named channel, such as *r* for radius.
 
-…
+## shuffle(*options*)
 
-## Plot.reverse(*options*)
+```js
+Plot.shuffle(options) // show data in random order
+```
 
-…
+Shuffles the data randomly. If a *seed* option is specified, a linear congruential generator with the given seed is used to generate random numbers deterministically; otherwise, Math.random is used.
+
+## reverse(*options*)
+
+```js
+Plot.reverse(options) // reverse the input order
+```
+
+Reverses the order of the data.

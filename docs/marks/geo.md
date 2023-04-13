@@ -82,7 +82,7 @@ Plot.plot({
 })
 ```
 
-As an alternative to Plot.geo with point geometries, you can pass longitude and latitude to Plot.dot’s _x_ and _y_ channels, and indeed many of Plot’s basic marks can be projected (like we did with the [line](./line.md) mark for the _Beagle_’s route). You can even mix the two types of marks, depending on how your dataset is structured! Maps often layer several marks, as the [Mapping with Plot](../projections.md) notebook illustrates.
+As an alternative to Plot.geo with point geometries, you can pass longitude and latitude to Plot.dot’s _x_ and _y_ channels, and indeed many of Plot’s basic marks can be projected (like we did with the [line](./line.md) mark for the _Beagle_’s route). You can even mix the two types of marks, depending on how your dataset is structured! Maps often layer several marks, as the [Mapping with Plot](../features/projections.md) notebook illustrates.
 
 The geo mark’s _geometry_ channel can be used to generate geometry from a non-GeoJSON data source. For example, to visualize the shockwave created by the explosion of the Hunga Tonga–Hunga Haʻapai volcano on January 15, 2022 with a series of geodesic circles of increasing radius:
 
@@ -122,7 +122,7 @@ radii = d3.range(10, 171, 10) // degrees radii of circles to be centered around 
 tonga = [-175.38, -20.57]
 ```
 
-Lastly, Plot.geo is not limited to spherical geometries. [Plot’s projection system](../projections.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
+Lastly, Plot.geo is not limited to spherical geometries. [Plot’s projection system](../features/projections.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
 
 ## GeoJSON and TopoJSON
 
@@ -165,7 +165,7 @@ unemployment = (await FileAttachment("us-county-unemployment.csv").csv()).map(({
 
 Draws polygons, lines, points, and other GeoJSON geometry, often in conjunction with a [geographic projection](#projection-options) to produce a thematic map. The **geometry** channel specifies the geometry (GeoJSON object) to draw; if not specified, the mark’s *data* is assumed to be GeoJSON.
 
-## Plot.geo(*data*, *options*)
+## geo(*data*, *options*)
 
 ```js
 Plot.geo(counties, {fill: d => d.properties.rate})
@@ -175,7 +175,7 @@ Returns a new geo mark with the given *data* and *options*. If *data* is a GeoJS
 
 In addition to the [standard mark options](#marks), the **r** option controls the size of Point and MultiPoint geometries. It can be specified as either a channel or constant. When **r** is specified as a number, it is interpreted as a constant radius in pixels; otherwise it is interpreted as a channel and the effective radius is controlled by the *r* scale. (As with [dots](#dot), the *r* scale defaults to a *sqrt* scale such that the visual area of a point is proportional to its associated value.) If the **r** option is not specified it defaults to 3 pixels. Geometries with a nonpositive radius are not drawn. If **r** is a channel, geometries will be sorted by descending radius by default.
 
-## Plot.sphere(*options*)
+## sphere(*options*)
 
 ```js
 Plot.sphere()
@@ -183,7 +183,7 @@ Plot.sphere()
 
 Returns a new geo mark with a *Sphere* geometry object and the given *options*.
 
-## Plot.graticule(*options*)
+## graticule(*options*)
 
 ```js
 Plot.graticule()

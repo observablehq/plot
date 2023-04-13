@@ -30,7 +30,7 @@ Similar to the [bin transform](../transforms/bin.md), the levels for which conto
 
 ## Sampled data
 
-When the data is not on a grid, or when that grid is not rectangular (for example through the use of a [projection](../projections.md)), a spatial interpolation strategy can be specified; it defaults to _nearest_. The cell below reads the water vapor data for November 2022, downloaded from [NASA’s Earth Observations website](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV) as a CSV grid with a coarse resolution of 360&times;180 values. The values are in centimeters.
+When the data is not on a grid, or when that grid is not rectangular (for example through the use of a [projection](../features/projections.md)), a spatial interpolation strategy can be specified; it defaults to _nearest_. The cell below reads the water vapor data for November 2022, downloaded from [NASA’s Earth Observations website](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV) as a CSV grid with a coarse resolution of 360&times;180 values. The values are in centimeters.
 
 ```js
 vapor = (await FileAttachment("MYDAL2_M_SKY_WV_2022-11-01_rgb_360x180.csv").csv({array: true}))

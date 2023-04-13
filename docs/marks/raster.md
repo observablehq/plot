@@ -113,7 +113,7 @@ Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90"}).plot()
 
 The raster mark above draws a point (a single pixel) for each datum, at its *x* and *y* coordinates (rounded to the closest pixel), and the value with which to color that point. The returned chart image is still composed of a single raster image.
 
-This preliminary image has issues: there are not enough points to fill the whole raster, and each pixel is too small. Many pixels remain white (or rather, transparent), where no value has been determined. The data’s location is given with longitudes and latitudes, and should use a [projection](../projections.md). And, as always, a proper color scale needs to be specified.
+This preliminary image has issues: there are not enough points to fill the whole raster, and each pixel is too small. Many pixels remain white (or rather, transparent), where no value has been determined. The data’s location is given with longitudes and latitudes, and should use a [projection](../features/projections.md). And, as always, a proper color scale needs to be specified.
 
 Let’s start by addressing the easiest: projection, and color. We’ll also use the pixelSize option to make the pixels larger (this option is specified as the width in screen pixels of a raster pixel). And a line mark will display the paths of the plane that took the samples during the measurement campaign.
 

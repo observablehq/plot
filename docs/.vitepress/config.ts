@@ -56,35 +56,31 @@ export default defineConfig({
         items: [
           {text: "What is Plot?", link: "/what-is-plot"},
           {text: "Why Plot?", link: "/why-plot"},
-          {text: "Getting started", link: "/getting-started"},
-          {text: "Marks", link: "/marks"},
-          {text: "Scales", link: "/scales"},
-          {text: "Projections", link: "/projections"},
-          {text: "Facets", link: "/facets"},
-          {text: "Transforms", link: "/transforms"},
-          {text: "Shorthand", link: "/shorthand"}
+          {text: "Getting started", link: "/getting-started"}
         ]
       },
       {
         text: "Features",
         collapsed: false,
         items: [
-          {text: "Plots", link: "/features/plots"},
           {text: "Marks", link: "/features/marks"},
           {text: "Scales", link: "/features/scales"},
+          {text: "Legends", link: "/features/legends"},
           {text: "Projections", link: "/features/projections"},
-          {text: "Facets", link: "/features/facets"},
           {text: "Transforms", link: "/features/transforms"},
-          {text: "Accessibility", link: "/features/accessibility"},
+          {text: "Facets", link: "/features/facets"},
+          {text: "Plots", link: "/features/plots"},
           {text: "Curves", link: "/features/curves"},
           {text: "Formats", link: "/features/formats"},
           {text: "Markers", link: "/features/markers"},
+          {text: "Shorthand", link: "/features/shorthand"},
           {text: "Spatial interpolators", link: "/features/spatial-interpolators"},
+          {text: "Accessibility", link: "/features/accessibility"},
         ]
       },
       {
         text: "Marks",
-        collapsed: true,
+        collapsed: false,
         items: [
           {text: "Area", link: "/marks/area"},
           {text: "Arrow", link: "/marks/arrow"},
@@ -116,7 +112,7 @@ export default defineConfig({
       },
       {
         text: "Transforms",
-        collapsed: true,
+        collapsed: false,
         items: [
           {text: "Bin", link: "/transforms/bin"},
           {text: "Centroid", link: "/transforms/centroid"},

@@ -56,7 +56,7 @@ Plot.plot({
 ```
 :::
 
-How about [transforms](./transforms.md)? Munging data, not assigning visual encodings, is often most of the work of data analysis. Plot’s transforms let you aggregate and derive data within your plot specification, reducing the time spent preparing data. For example, if you have an array of categorical values (penguin species), you can quickly count them with the group transform.
+How about [transforms](./features/transforms.md)? Munging data, not assigning visual encodings, is often most of the work of data analysis. Plot’s transforms let you aggregate and derive data within your plot specification, reducing the time spent preparing data. For example, if you have an array of categorical values (penguin species), you can quickly count them with the group transform.
 
 :::plot
 ```js
@@ -66,7 +66,7 @@ Plot.barX(penguins.map((d) => d.species), Plot.groupY()).plot()
 
 ## Plot is composable
 
-Simple components gain power through composition, such as layering multiple [marks](./marks.md) into a single plot. Plot makes it easy to define custom compound marks, such as this one comprising a rule, area, and line:
+Simple components gain power through composition, such as layering multiple [marks](./features/marks.md) into a single plot. Plot makes it easy to define custom compound marks, such as this one comprising a rule, area, and line:
 
 ```js
 function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {

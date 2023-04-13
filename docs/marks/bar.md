@@ -76,7 +76,7 @@ Plot.plot({
 })
 ```
 
-Band scales round by default, which can leave extra space between the axes and the bars; set the corresponding scale’s align to zero or one, or disable rounding, if you don’t want a gap. The domain is sorted naturally (alphabetically) by default; set the domain explicitly to change the order. (See [Scales](../scales.md) for more.) For example, descending frequency:
+Band scales round by default, which can leave extra space between the axes and the bars; set the corresponding scale’s align to zero or one, or disable rounding, if you don’t want a gap. The domain is sorted naturally (alphabetically) by default; set the domain explicitly to change the order. (See [Scales](../features/scales.md) for more.) For example, descending frequency:
 
 ```js
 Plot.plot({
@@ -249,7 +249,7 @@ Plot.plot({
 })
 ```
 
-[Faceting](../facets.md) can produce a grouped bar chart. The chart below shows the populations of the six most-populous states broken down by age group. The youngest age group (<10) is on the left in red, while the oldest age group (≥80) is on the right in blue.
+[Faceting](../features/facets.md) can produce a grouped bar chart. The chart below shows the populations of the six most-populous states broken down by age group. The youngest age group (<10) is on the left in red, while the oldest age group (≥80) is on the right in blue.
 
 ```js
 stateage = {
@@ -291,9 +291,9 @@ Bars support a *z* channel to control *z*-order. This is typically only needed t
 
 ## Bar options
 
-Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)). If one dimension is temporal and the other is quantitative, as in a time-series bar chart, use the [rect mark](#rect) with the *interval* option instead. There is usually one ordinal value associated with each bar, such as a name, and two quantitative values defining a lower and upper bound. The lower bound is often not specified explicitly because it defaults to zero as in a conventional bar chart.
+Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#barydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#barxdata-options)). If one dimension is temporal and the other is quantitative, as in a time-series bar chart, use the [rect mark](./rect.md) with the *interval* option instead. There is usually one ordinal value associated with each bar, such as a name, and two quantitative values defining a lower and upper bound. The lower bound is often not specified explicitly because it defaults to zero as in a conventional bar chart.
 
-For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options). The bar mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
+For the required channels, see [Plot.barX](#barxdata-options) and [Plot.barY](#barydata-options). The bar mark supports the [standard mark options](../features/marks.md), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
 ## barX(*data*, *options*)
 
@@ -306,11 +306,11 @@ Returns a new horizontal bar↔︎ with the given *data* and *options*. The foll
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
 
-If neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](#plotstackxstack-options); this is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function. If *options* is undefined, then it defaults to **x2** as the identity function and **y** as the index of data; this allows an array of numbers to be passed to Plot.barX to make a quick sequential bar chart.
+If neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](../transforms/stack.md); this is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function. If *options* is undefined, then it defaults to **x2** as the identity function and **y** as the index of data; this allows an array of numbers to be passed to Plot.barX to make a quick sequential bar chart.
 
 If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*.
 
-In addition to the [standard bar channels](#bar), the following optional channels are supported:
+In addition to the [standard bar channels](#bar-options), the following optional channels are supported:
 
 * **y** - the vertical position; bound to the *y* scale, which must be *band*
 
@@ -327,11 +327,11 @@ Returns a new vertical bar↕︎ with the given *data* and *options*. The follow
 * **y1** - the starting vertical position; bound to the *y* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function. If *options* is undefined, then it defaults to **y2** as the identity function and **x** as the index of data; this allows an array of numbers to be passed to Plot.barY to make a quick sequential bar chart.
+If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](../transforms/stack.md); this is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function. If *options* is undefined, then it defaults to **y2** as the identity function and **x** as the index of data; this allows an array of numbers to be passed to Plot.barY to make a quick sequential bar chart.
 
 If an **interval** is specified, such as d3.utcDay, **y1** and **y2** can be derived from **y**: *interval*.floor(*y*) is invoked for each *y* to produce *y1*, and *interval*.offset(*y1*) is invoked for each *y1* to produce *y2*. If the interval is specified as a number *n*, *y1* and *y2* are taken as the two consecutive multiples of *n* that bracket *y*.
 
-In addition to the [standard bar channels](#bar), the following optional channels are supported:
+In addition to the [standard bar channels](#bar-options), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale, which must be *band*
 

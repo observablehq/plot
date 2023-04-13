@@ -1,6 +1,6 @@
 # Axis mark
 
-Plot’s axes convey the meaning of position [scales](../scales.md): _x_ and _y_, and _fx_ and _fy_ when [faceting](../facets.md). Plot automatically adds a default axis mark for position scales; you can customize the appearance of axes either through scale options or by instantiating **axis** or **grid** marks.
+Plot’s axes convey the meaning of position [scales](../features/scales.md): _x_ and _y_, and _fx_ and _fy_ when [faceting](../features/facets.md). Plot automatically adds a default axis mark for position scales; you can customize the appearance of axes either through scale options or by instantiating **axis** or **grid** marks.
 
 Axes are important! Tailoring axes may help readers more quickly and easily interpret plots. For example, you can draw grid lines atop rather than below bars.
 
@@ -272,7 +272,7 @@ Plot.plot({
 
 ## Axis options
 
-Draws an axis to document the visual encoding of the corresponding position scale: *x* or *y*, and *fx* or *fy* if faceting. The axis mark is a [composite mark](#marks) comprised of (up to) three marks: a [vector](#vector) for ticks, a [text](#text) for tick labels, and another [text](#text) for an axis label.
+Draws an axis to document the visual encoding of the corresponding position scale: *x* or *y*, and *fx* or *fy* if faceting. The axis mark is a [composite mark](../features/marks.md#plotmarksmarks) comprised of (up to) three marks: a [vector](./vector.md) for ticks, a [text](./text.md) for tick labels, and another [text](./text.md) for an axis label.
 
 By default, the data for an axis mark are tick values sampled from the associated scale’s domain. If desired, you can specify the axis mark’s data explicitly (_e.g._ as an array of numbers), or use one of the following options:
 
@@ -280,14 +280,14 @@ By default, the data for an axis mark are tick values sampled from the associate
 * **tickSpacing** - the approximate number of pixels between ticks (if **ticks** is not specified)
 * **interval** - an interval or time interval
 
-Note that when an axis mark is declared explicitly (via the [**marks** option](#mark-options), as opposed to an implicit axis), the corresponding scale’s *scale*.ticks and *scale*.tickSpacing options are not automatically inherited by the axis mark; however, the *scale*.interval option *is* inherited, as is the *scale*.label option. You can declare multiple axis marks for the same scale with different ticks, and styles, as desired.
+Note that when an axis mark is declared explicitly (via the [**marks** option](../features/plots.md#marks), as opposed to an implicit axis), the corresponding scale’s *scale*.ticks and *scale*.tickSpacing options are not automatically inherited by the axis mark; however, the *scale*.interval option *is* inherited, as is the *scale*.label option. You can declare multiple axis marks for the same scale with different ticks, and styles, as desired.
 
-In addition to the [standard mark options](#marks), the axis mark supports the following options:
+In addition to the [standard mark options](../features/marks.md), the axis mark supports the following options:
 
 * **anchor** - the orientation: *top*, *bottom* (*x* or *fx*); *left*, *right* (*y* or *fy*); *both*; null to suppress
 * **tickSize** - the length of the tick vector (in pixels; default 6 for *x* or *y*, or 0 for *fx* or *fy*)
 * **tickPadding** - the separation between the tick vector and its label (in pixels; default 3)
-* **tickFormat** - either a function or specifier string to format tick values; see [Formats](#formats)
+* **tickFormat** - either a function or specifier string to format tick values; see [Formats](../features/formats.md)
 * **tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
 * **fontVariant** - the font-variant attribute for ticks; defaults to tabular-nums for quantitative axes
 * **label** - a string to label the axis; defaults to the scale’s label, perhaps with an arrow
@@ -298,9 +298,9 @@ In addition to the [standard mark options](#marks), the axis mark supports the f
 * **textStrokeOpacity** - the opacity of the stroke around tick labels
 * **textStrokeWidth** - the thickness of the stroke around tick labels (in pixels)
 
-As a composite mark, the **stroke** option affects the color of the tick vector, while the **fill** option affects the color the text labels; both default to the **color** option, which defaults to *currentColor*. The **x** and **y** channels, if specified, position the ticks; if not specified, the tick positions depend on the axis **anchor**. The orientation of the tick labels likewise depends on the **anchor**. See the [text mark](#text) for details on available options for the tick and axis labels.
+As a composite mark, the **stroke** option affects the color of the tick vector, while the **fill** option affects the color the text labels; both default to the **color** option, which defaults to *currentColor*. The **x** and **y** channels, if specified, position the ticks; if not specified, the tick positions depend on the axis **anchor**. The orientation of the tick labels likewise depends on the **anchor**. See the [text mark](./text.md) for details on available options for the tick and axis labels.
 
-The axis mark’s [**facetAnchor**](#facetanchor) option defaults to *top-empty* if anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
+The axis mark’s [**facetAnchor**](../features/facets.md) option defaults to *top-empty* if anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
 
 The axis mark’s default margins depend on its orientation (**anchor**) as follows, in order of **marginTop**, **marginRight**, **marginBottom**, and **marginLeft**, in pixels:
 

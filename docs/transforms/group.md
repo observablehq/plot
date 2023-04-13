@@ -120,7 +120,7 @@ Plot.plot({
 })
 ```
 
-The group transform can be composed with other transforms, such as the [filter transform](../transforms.md), say to compute the frequency only of vowels. When the *proportion* reducer is used, the basis is still the entire (unfiltered) dataset.
+The group transform can be composed with other transforms, such as the [filter transform](../features/transforms.md), say to compute the frequency only of vowels. When the *proportion* reducer is used, the basis is still the entire (unfiltered) dataset.
 
 ```js
 Plot.plot({
@@ -135,7 +135,7 @@ Plot.plot({
 })
 ```
 
-Grouping can be combined with [faceting](../facets.md) to create small multiples where the data is subdivided into facets before being grouped.
+Grouping can be combined with [faceting](../features/facets.md) to create small multiples where the data is subdivided into facets before being grouped.
 
 ```js
 Plot.plot({
