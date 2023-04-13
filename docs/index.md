@@ -34,9 +34,9 @@ features:
   - title: Facets
     details: "Small multiples facilitate comparison by repeating a plot across partitions of data."
     link: /facets
-  - title: Maps
+  - title: Projections
     details: "Plot supports GeoJSON and D3’s spherical projection system for geographic maps."
-    link: /maps
+    link: /projections
   - title: Built with D3
     details: "Plot is built by the same team as D3. If you know some D3, you’ll be right at home with Plot."
     link: https://d3js.org

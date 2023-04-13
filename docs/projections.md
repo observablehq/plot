@@ -10,7 +10,7 @@ const lookup = d3.index(counties.features, (d) => d.id);
 
 </script>
 
-# Mapping with Plot
+# Projections
 
 To make a map, follow the order of things described by the painter Wassily Kandinsky in _Point and Line to Plane_ ([1926](https://www.wassilykandinsky.net/book-117.php)): lay out your planes (areas, filled polygons), draw lines above them (contours, arrows), then finally put dots on top. (You can add labels, too.)
 

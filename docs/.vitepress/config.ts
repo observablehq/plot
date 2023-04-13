@@ -61,7 +61,7 @@ export default defineConfig({
           {text: "Scales", link: "/scales"},
           {text: "Transforms", link: "/transforms"},
           {text: "Facets", link: "/facets"},
-          {text: "Maps", link: "/maps"}, // TODO projections?
+          {text: "Projections", link: "/projections"},
           {text: "Shorthand", link: "/shorthand"}
         ]
       },
