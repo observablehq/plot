@@ -1,3 +1,11 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import penguins from "../data/penguins";
+
+</script>
+
 # Density mark
 
 The Density mark shows the estimated density of two-dimensional point clouds. Contours guide the eye towards the local peaks of concentration of the data, much like a topographic map does with elevation. This is especially useful given overplotting in dense datasets.
@@ -73,6 +81,19 @@ Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
 
 To make the contours comparable when used across facets or with different series (specified by **z**, **stroke**, or **fill**), the number of thresholds is computed on the series that reaches the highest density. For instance, the chart below shows the highest concentration of penguins, arranged by flipper length and culmen length, in the Biscoe island facet. The contours in the other facets will thus respect the values determined by the Biscoe facet, resulting in comparable density levels.
 
+:::plot
+```js
+Plot.plot({
+  axis: null,
+  marks: [
+Plot.dot(penguins, {x: "flipper_length_mm", y: "culmen_length_mm"}),
+Plot.density(penguins, {x: "flipper_length_mm", y: "culmen_length_mm"})
+  ]
+})
+```
+:::
+
+:::plot
 ```js
 Plot.plot({
   width: 928,
@@ -91,6 +112,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 Similarly, when arranged by series (here, specified with *stroke*), the series with the highest local maximum will drive the thresholds which will then be used across all the series.
 
