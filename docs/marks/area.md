@@ -32,7 +32,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaY(aapl, {x: "Date", y: "Close", fill: "#ccc"}),
+    Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.3}),
     Plot.lineY(aapl, {x: "Date", y: "Close"}),
     Plot.ruleY([0])
   ]
@@ -56,22 +56,15 @@ As with lines, points in areas are connected in input order: the first point is 
 
 :::plot
 ```js
-Plot.areaY(d3.shuffle(aapl.slice(0, 100)), {
-  x: "Date",
-  y: "Close"
-}).plot({height: 200})
+Plot.areaY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close"}).plot() // 🌶️
 ```
 :::
 
-If unsorted data gives you gibberish like the plot above, try a *sort* transform to fix the problem:
+If unsorted data gives you gibberish like the plot above, try a [sort transform](../transforms/sort.md) to fix the problem:
 
 :::plot
 ```js{4}
-Plot.areaY(d3.shuffle(aapl.slice(0, 100)), {
-  x: "Date",
-  y: "Close",
-  sort: "Date"
-}).plot({height: 200})
+Plot.areaY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close", sort: "Date"}).plot()
 ```
 :::
 
@@ -106,7 +99,7 @@ Plot.plot({
       x: "date",
       y1: "low",
       y2: "high",
-      fill: "#ccc",
+      fillOpacity: 0.3,
       k: 14
     })),
     Plot.line(sftemp, Plot.windowY({
@@ -132,7 +125,7 @@ Plot.plot({
     reverse: true
   },
   marks: [
-    Plot.areaY(aapl, {x: "Date", y: "Close", fill: "#ccc"}),
+    Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.3}),
     Plot.lineY(aapl, {x: "Date", y: "Close"}),
     Plot.ruleY([0])
   ]
@@ -149,7 +142,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaX(aapl, {y: "Date", x: "Close", fill: "#ccc"}),
+    Plot.areaX(aapl, {y: "Date", x: "Close", fillOpacity: 0.3}),
     Plot.lineX(aapl, {y: "Date", x: "Close"}),
     Plot.ruleX([0])
   ]
@@ -170,7 +163,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaY(aapl, {x: "Date", y: someCloses, fill: "#ccc"}),
+    Plot.areaY(aapl, {x: "Date", y: someCloses, fillOpacity: 0.3}),
     Plot.lineY(aapl, {x: "Date", y: someCloses}),
     Plot.ruleY([0])
   ]
@@ -191,7 +184,7 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaY(someAapl, {x: "Date", y: "Close", fill: "#ccc"}),
+    Plot.areaY(someAapl, {x: "Date", y: "Close", fillOpacity: 0.3}),
     Plot.lineY(someAapl, {x: "Date", y: "Close"}),
     Plot.ruleY([0])
   ]
@@ -303,7 +296,7 @@ Plot.plot({
 ```
 :::
 
-## Options
+## Area options
 
 Draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*) as in an area chart. Often the baseline represents *y* = 0. While not required, typically the *x* and *y* scales are both quantitative.
 
