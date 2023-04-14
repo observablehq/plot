@@ -1,83 +1,81 @@
-<div class="plot" style="--swatchWidth: 15px; --swatchHeight: 15px; columns: 180px;">
+<div class="plot-swatches plot-swatches-columns" style="columns: 180px;">
   <style>
-    .plot {
+    .plot-swatches {
       font-family: system-ui, sans-serif;
       font-size: 10px;
       margin-bottom: 0.5em;
-      margin-left: 0px;
     }
 
-    .plot-swatch svg {
-      width: var(--swatchWidth);
-      height: var(--swatchHeight);
+    .plot-swatch>svg {
       margin-right: 0.5em;
+      overflow: visible;
     }
 
-    .plot-swatch {
+    .plot-swatches-columns .plot-swatch {
       display: flex;
       align-items: center;
       break-inside: avoid;
       padding-bottom: 1px;
     }
 
-    .plot-swatch::before {
+    .plot-swatches-columns .plot-swatch::before {
       flex-shrink: 0;
     }
 
-    .plot-label {
+    .plot-swatches-columns .plot-swatch-label {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
   </style>
-  <div class="plot-swatch"><svg fill="#4e79a7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <div class="plot-swatch"><svg width="15" height="15" fill="#4e79a7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect width="100%" height="100%"></rect>
     </svg>
-    <div class="plot-label" title="Wholesale and Retail Trade">Wholesale and Retail Trade</div>
+    <div class="plot-swatch-label" title="Wholesale and Retail Trade">Wholesale and Retail Trade</div>
   </div>
-  <div class="plot-swatch"><svg fill="#f28e2c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <div class="plot-swatch"><svg width="15" height="15" fill="#f28e2c" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect width="100%" height="100%"></rect>
     </svg>
-    <div class="plot-label" title="Manufacturing">Manufacturing</div>
+    <div class="plot-swatch-label" title="Manufacturing">Manufacturing</div>
   </div>
-  <div class="plot-swatch"><svg fill="#e15759" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <div class="plot-swatch"><svg width="15" height="15" fill="#e15759" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect width="100%" height="100%"></rect>
     </svg>
-    <div class="plot-label" title="Leisure and hospitality">Leisure and hospitality</div>
+    <div class="plot-swatch-label" title="Leisure and hospitality">Leisure and hospitality</div>
   </div>
-  <div class="plot-swatch"><svg fill="#76b7b2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <div class="plot-swatch"><svg width="15" height="15" fill="#76b7b2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect width="100%" height="100%"></rect>
     </svg>
-    <div class="plot-label" title="Business services">Business services</div>
+    <div class="plot-swatch-label" title="Business services">Business services</div>
   </div>
-  <div class="plot-swatch"><svg fill="#59a14f" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <div class="plot-swatch"><svg width="15" height="15" fill="#59a14f" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect width="100%" height="100%"></rect>
     </svg>
-    <div class="plot-label" title="Construction">Construction</div>
+    <div class="plot-swatch-label" title="Construction">Construction</div>
   </div>
-  <div class="plot-swatch"><svg fill="#edc949" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <div class="plot-swatch"><svg width="15" height="15" fill="#edc949" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect width="100%" height="100%"></rect>
     </svg>
-    <div class="plot-label" title="Education and Health">Education and Health</div>
+    <div class="plot-swatch-label" title="Education and Health">Education and Health</div>
   </div>
-  <div class="plot-swatch"><svg fill="#af7aa1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <div class="plot-swatch"><svg width="15" height="15" fill="#af7aa1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect width="100%" height="100%"></rect>
     </svg>
-    <div class="plot-label" title="Government">Government</div>
+    <div class="plot-swatch-label" title="Government">Government</div>
   </div>
-  <div class="plot-swatch"><svg fill="#ff9da7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <div class="plot-swatch"><svg width="15" height="15" fill="#ff9da7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect width="100%" height="100%"></rect>
     </svg>
-    <div class="plot-label" title="Finance">Finance</div>
+    <div class="plot-swatch-label" title="Finance">Finance</div>
   </div>
-  <div class="plot-swatch"><svg fill="#9c755f" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <div class="plot-swatch"><svg width="15" height="15" fill="#9c755f" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect width="100%" height="100%"></rect>
     </svg>
-    <div class="plot-label" title="Self-employed">Self-employed</div>
+    <div class="plot-swatch-label" title="Self-employed">Self-employed</div>
   </div>
-  <div class="plot-swatch"><svg fill="#bab0ab" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <div class="plot-swatch"><svg width="15" height="15" fill="#bab0ab" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <rect width="100%" height="100%"></rect>
     </svg>
-    <div class="plot-label" title="Other">Other</div>
+    <div class="plot-swatch-label" title="Other">Other</div>
   </div>
 </div>

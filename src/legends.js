@@ -40,7 +40,7 @@ export function exposeLegends(scales, context, defaults = {}) {
 }
 
 function legendOptions({className, ...context}, {label, ticks, tickFormat} = {}, options) {
-  return inherit(options, {className: `${className}-legend`, ...context}, {label, ticks, tickFormat});
+  return inherit(options, {className, ...context}, {label, ticks, tickFormat});
 }
 
 function legendColor(color, {legend = true, ...options}) {
