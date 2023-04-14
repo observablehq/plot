@@ -26,7 +26,7 @@ onMounted(() => {
 
 # Line mark
 
-The **line mark** draws two-dimensional lines as in a line chart. It is closely related to the [area mark](./area.md). For example, below is a line chart of the closing price of Apple stock.
+The **line mark** draws two-dimensional lines as in a line chart. It is closely related to the [area mark](./area.md). Typically both the *x* and *y* scales are quantitative or temporal. For example, below is a line chart of the closing price of Apple stock.
 
 :::plot
 ```js
