@@ -62,6 +62,26 @@ Plot.plot({
 ```
 :::
 
+TK another example
+
+The band above is spikey; we can smooth it by applying a 14-day moving average to **y1** and **y2**, and do the same for a midline. We can also add a [rule](./rule.md) to indicate the freezing point, 32°F.
+
+:::plot
+```js
+Plot.plot({
+  y: {
+    label: "↑ Temperature (°F)",
+    grid: true
+  },
+  marks: [
+    Plot.ruleY([32]),
+    Plot.areaY(sftemp, Plot.windowY(14, {x: "date", y1: "low", y2: "high", fillOpacity: 0.3})),
+    Plot.line(sftemp, Plot.windowY(14, {x: "date", y: (d) => (d.low + d.high) / 2}))
+  ]
+})
+```
+:::
+
 In each data series (possibly grouped by *z* and by facet), a moving window of *k* values advances and each subset is reduced to a single value. The values are taken in input order—compose with Plot.sort if necessary (see [below](#sort)).
 
 The window transforms have four options:
