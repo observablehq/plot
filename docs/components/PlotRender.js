@@ -109,41 +109,47 @@ export default {
     };
     if (this.defer !== undefined) {
       const mounted = (el) => {
-        while (el.lastChild) el.lastChild.remove();
-        let observer = null;
-        let idling = null;
+        disconnect(); // remove old listeners
         function observed() {
+          unmounted(el); // remove old plot (and listeners)
           el.append(Plot[method](options));
-          if (observer !== null) {
-            observer.disconnect();
-            observer = null;
-          }
-          if (idling !== null) {
-            cancelIdleCallback(idling);
-            idling = null;
-          }
         }
         const rect = el.getBoundingClientRect();
         if (rect.bottom > 0 && rect.top < window.innerHeight) {
           observed();
         } else {
-          observer = new IntersectionObserver(
+          this._observer = new IntersectionObserver(
             ([entry]) => {
               if (entry.isIntersecting) observed();
             },
             {rootMargin: "100px"}
           );
-          observer.observe(el);
+          this._observer.observe(el);
           if (typeof requestIdleCallback === "function") {
-            idling = requestIdleCallback(observed);
+            this._idling = requestIdleCallback(observed);
           }
+        }
+      };
+      const unmounted = (el) => {
+        while (el.lastChild) el.lastChild.remove();
+        disconnect();
+      };
+      const disconnect = () => {
+        if (this._observer !== undefined) {
+          this._observer.disconnect();
+          this._observer = undefined;
+        }
+        if (this._idling !== undefined) {
+          cancelIdleCallback(this._idling);
+          this._idling = undefined;
         }
       };
       return withDirectives(h("div"), [
         [
           {
             mounted,
-            updated: mounted
+            updated: mounted,
+            unmounted
           }
         ]
       ]);

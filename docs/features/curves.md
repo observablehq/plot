@@ -43,9 +43,9 @@ The following named curve methods are supported:
 * *auto* - like *linear*, but use the (possibly spherical) [projection](./projections.md), if any
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2);">
+  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
     Curve:
-    <select style="all: revert;" v-model="curve">
+    <select style="margin: 0 0.5em !important; all: revert;" v-model="curve">
       <option>basis</option>
       <option>basis-open</option>
       <option>basis-closed</option>

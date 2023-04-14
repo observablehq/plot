@@ -241,9 +241,9 @@ While position is the most salient, and thus more important, encoding, many visu
 ]), {label: "Color scheme", value: "turbo"}) -->
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2);">
+  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
     Color scheme:
-    <select style="all: revert;" v-model="schemeq">
+    <select style="margin: 0 0.5em !important; all: revert;" v-model="schemeq">
       <optgroup label="sequential, single-hue">
         <option value="blues">Blues</option>
         <option value="greens">Greens</option>
@@ -301,9 +301,9 @@ Plot.plot({
 The default color scheme is [Turbo](https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html). A wide variety of sequential, diverging, and cyclical schemes are supported, including ColorBrewer and [Viridis](http://bids.github.io/colormap/). You can implement a custom color scheme by specifying the scale’s *range*, or by passing an *interpolate* function that takes a parameter *t* in [0, 1]. The *interpolate* option can also be used to specify a color space, or a two-argument function that takes a pair of values from the range.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2);">
+  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
     Color interpolate:
-    <select style="all: revert;" v-model="interpolateq">
+    <select style="margin: 0 0.5em !important; all: revert;" v-model="interpolateq">
       <option value="rgb">rgb</option>
       <option value="lab">lab</option>
       <option value="hcl">hcl</option>
@@ -356,9 +356,9 @@ And like position scales, you can apply a *sqrt*, *pow*, *log*, or *symlog* tran
 Diverging color scales are intended to show positive and negative values (or more generally values above or below some *pivot* value); diverging color scales default to the “RdBu” (red–blue) color scheme.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2);">
+  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
     Color scheme:
-    <select style="all: revert;" v-model="schemed">
+    <select style="margin: 0 0.5em !important; all: revert;" v-model="schemed">
       <optgroup label="diverging">
         <option value="brbg">BrBG</option>
         <option value="prgn">PRGn</option>

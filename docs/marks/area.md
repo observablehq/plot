@@ -2,7 +2,7 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import aapl from "../data/aapl";
+import aapl from "../data/aapl.ts";
 import bls from "../data/bls-industry-unemployment";
 import sftemp from "../data/sf-temperatures";
 

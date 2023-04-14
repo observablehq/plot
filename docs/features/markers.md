@@ -29,9 +29,9 @@ The following named markers are supported:
 If **marker** is true, it defaults to *circle*. If **marker** is a function, it will be called with a given *color* and must return an SVG marker element.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2);">
+  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
     Marker:
-    <select style="all: revert;" v-model="marker">
+    <select style="margin: 0 0.5em !important; all: revert;" v-model="marker">
       <option>none</option>
       <option>arrow</option>
       <option>dot</option>
