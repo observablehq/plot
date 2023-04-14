@@ -15,7 +15,7 @@ import {
 } from "./options.js";
 import {warn} from "./warnings.js";
 
-export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
+export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
 
 let nextClipId = 0;
 
