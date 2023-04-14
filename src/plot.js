@@ -296,7 +296,7 @@ export function plot(options = {}) {
     figure.appendChild(svg);
     if (caption != null) {
       const figcaption = document.createElement("figcaption");
-      figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+      figcaption.appendChild(caption?.ownerDocument ? caption : document.createTextNode(caption));
       figure.appendChild(figcaption);
     }
   }
