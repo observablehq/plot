@@ -3,23 +3,22 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
-import {shallowRef, onMounted} from "vue";
-import walmarts from "../data/walmarts.ts";
-import us from "../data/us-counties-10m.ts";
+import {computed, shallowRef, onMounted} from "vue";
 
 const elections = shallowRef([]);
+const walmarts = shallowRef([]);
+const us = shallowRef(null);
+const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : null);
+const states = computed(() => us.value ? topojson.feature(us.value, us.value.objects.states).features : []);
+const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : null);
+const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
+const lookup = computed(() => counties.value ? d3.index(counties.value, (d) => +d.id) : null); // TODO fix type coercion
 
 onMounted(() => {
-  d3.csv("../data/us-presidential-election-2020.csv", d3.autoType).then((data) => {
-    elections.value = data;
-  });
+  d3.csv("../data/us-presidential-election-2020.csv", d3.autoType).then((data) => (elections.value = data));
+  d3.tsv("../data/walmarts.tsv", d3.autoType).then((data) => (walmarts.value = data));
+  d3.json("../data/us-counties-10m.json").then((data) => (us.value = data));
 });
-
-const nation = topojson.feature(us, us.objects.nation);
-const states = topojson.feature(us, us.objects.states);
-const statemesh = topojson.mesh(us, us.objects.states, (a, b) => a !== b);
-const counties = topojson.feature(us, us.objects.counties);
-const lookup = d3.index(counties.features, (d) => +d.id); // TODO fix type coercion
 
 </script>
 
@@ -645,7 +644,7 @@ Plot.plot({
     Plot.geo(statemesh, { clip: "frame", strokeOpacity: 0.1 }),
     Plot.geo(nation, { clip: "frame" }),
     Plot.text(
-      states.features,
+      states,
       Plot.centroid({
         text: (d) => d.properties.name,
         textAnchor: "middle",
