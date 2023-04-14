@@ -183,6 +183,10 @@ Plot.plot({
 
 ## density(*data*, *options*)
 
+```js
+Plot.density(faithful, {x: "waiting", y: "eruptions"})
+```
+
 Draws contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of the two-dimensional points given by the **x** and **y** channels, and possibly weighted by the **weight** channel. If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
 The **thresholds** option, which defaults to 20, specifies one more than the number of contours that will be computed at uniformly-spaced intervals between 0 (exclusive) and the maximum density (exclusive). The **thresholds** option may also be specified as an array or iterable of explicit density values. The **bandwidth** option, which defaults to 20, specifies the standard deviation of the Gaussian kernel used for estimation in pixels.
