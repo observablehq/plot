@@ -28,26 +28,7 @@ export default defineConfig({
     nav: [
       {text: "Home", link: "/"},
       {text: "Examples", link: "https://observablehq.com/@observablehq/plot-gallery"},
-      {
-        text: "Help",
-        items: [
-          {text: "Getting help", link: "/getting-help"},
-          {text: "Forum", link: "https://talk.observablehq.com/c/help/6"},
-          {text: "Slack", link: "https://observable-community.slack.com/ssb/redirect"},
-          {text: "Issues", link: "https://github.com/observablehq/plot/issues"},
-          {text: "Cheatsheets", link: "https://observablehq.com/@observablehq/plot-cheatsheets"}
-        ]
-      },
-      {
-        text: "News",
-        items: [
-          {text: "Getting involved", link: "/getting-involved"},
-          {text: "Releases", link: "https://github.com/observablehq/plot/releases"},
-          {text: "Newsletter", link: "https://observablehq.com/@observablehq/plot-twist-newsletter-signup"},
-          {text: "Blog", link: "https://observablehq.com/blog"},
-          {text: "Twitter", link: "https://twitter.com/observablehq"}
-        ]
-      },
+      {text: "Community", link: "/community"},
       {text: "D3", link: "https://d3js.org"}
     ],
     sidebar: [
@@ -133,7 +114,8 @@ export default defineConfig({
     socialLinks: [
       {icon: "github", link: "https://github.com/observablehq/plot"},
       {icon: "twitter", link: "https://twitter.com/observablehq"},
-      {icon: "slack", link: "https://observable-community.slack.com/ssb/redirect"}
+      {icon: "slack", link: "https://observable-community.slack.com/ssb/redirect"},
+      {icon: "linkedin", link: "https://www.linkedin.com/company/observable"}
     ],
     footer: {
       message:
