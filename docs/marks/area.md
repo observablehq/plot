@@ -146,7 +146,7 @@ Plot.plot({
   },
   marks: [
     Plot.areaY(aapl, {filter: (d) => d.Date.getUTCMonth() >= 3, x: "Date", y: "Close", fillOpacity: 0.3}),
-    Plot.lineY(aapl, {filter: (d) => d.Date.getUTCMonth() >= 3, x: "Date", y: "Close"}),
+    Plot.lineY(aapl, {x: "Date", y: (d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close}),
     Plot.ruleY([0])
   ]
 })
