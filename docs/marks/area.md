@@ -6,8 +6,6 @@ import aapl from "../data/aapl.ts";
 import bls from "../data/bls-industry-unemployment.ts";
 import sftemp from "../data/sf-temperatures.ts";
 
-const numbers = d3.cumsum({length: 600}, d3.randomNormal.source(d3.randomLcg(42))());
-
 </script>
 
 # Area mark
@@ -43,12 +41,9 @@ With the default definitions of **x** = *index* and **y** = *identity*, you can 
 
 :::plot
 ```js
-Plot.areaY(numbers).plot()
+Plot.areaY(d3.cumsum({length: 600}, d3.randomNormal())).plot()
 ```
 :::
-```js
-numbers = d3.cumsum({length: 600}, d3.randomNormal())
-```
 
 As with [lines](./line.md), points in areas are connected in input order: the first point is connected to the second point, the second is connected to the third, and so on. Area data is typically in chronological order. Unsorted data may produce gibberish.
 
@@ -66,7 +61,7 @@ Plot.areaY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close", sort: "Date"}).plot
 ```
 :::
 
-When the baseline is not *y* = 0 but instead represents another dimension of data as in a band chart, specify **y1** and **y2** instead of **y**. Note that below since **y1** and **y2** refer to different fields, a *y*-scale label is specified to improve readability.
+When the baseline is not *y* = 0 but instead represents another dimension of data as in a band chart, specify **y1** and **y2** instead of **y**.
 
 :::plot
 ```js
@@ -80,6 +75,10 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+:::tip
+Since **y1** and **y2** refer to different fields here, a *y*-scale label is specified to improve readability.
 :::
 
 The band above is spikey; we can smooth it by applying a 14-day moving average to **y1** and **y2** with the [window transform](../transforms/window.md), and do the same for a midline. We can also add a [rule](./rule.md) to indicate the freezing point, 32°F.
@@ -98,6 +97,10 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+:::danger TODO
+Cut this example, and just link to the window transform?
 :::
 
 While charts typically put *y* = 0 on the bottom edge, such that the area grows up↑, this is not required; reversing the *y* scale will produce a “hanging” area that grows down↓.
@@ -186,6 +189,10 @@ Plot.plot({
 ```
 :::
 
+:::danger TODO
+Cut this example, and just link to the curve documentation?
+:::
+
 The **z** channel groups data along an ordinal or nominal dimension, producing multiple areas. This is typically used with the [stack transform](../transforms/stack.md) for a stacked area chart or streamgraph, but it can also be used for overlapping areas by setting **y2** instead of **y**.
 
 :::plot
@@ -197,6 +204,10 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+:::danger TODO
+Show the stacked example first, since that’s more common.
 :::
 
 If the **z** channel is not specified, but a varying **fill** channel is, the **fill** channel is used for **z**. The **z** channel will further fallback to a varying **stroke** channel if needed.
@@ -253,6 +264,10 @@ Plot.plot({
 ```
 :::
 
+:::danger TODO
+Cut this example, and the one below, and just link to the faceting documentation? Or perhaps move these examples there?
+:::
+
 Above, smaller industries such as agriculture and mining & extraction are dwarfed by larger industries such as wholesale & retail trade. To emphasize each industry’s trend, instead of comparing absolute numbers across industries, we can normalize unemployment relative to the median for each industry. Now the job loss in mining & extraction is more readily apparent.
 
 :::plot
@@ -307,10 +322,11 @@ Returns a new area with the given *data* and *options*. This constructor is used
 If the **interval** option is specified, the [binX transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
-Plot.areaY(observations, {x: "date", y: "temperature", interval: "day")
+Plot.areaY(observations, {x: "date", y: "temperature", interval: "day"})
 ```
-:::warning
-TODO set up observations dataset
+
+:::danger TODO
+Cut this example and link to the interval transform?
 :::
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
@@ -330,8 +346,9 @@ If the **interval** option is specified, the [binY transform](#bin) is implicitl
 ```js
 Plot.areaX(observations, {y: "date", x: "temperature", interval: "day"})
 ```
-:::warning
-TODO setup dataset
+
+:::danger TODO
+Cut this example and link to the interval transform?
 :::
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
@@ -342,4 +359,4 @@ The **interval** option is recommended to “regularize” sampled data; for exa
 Plot.area(aapl, {x1: "Date", y1: 0, y2: "Close"})
 ```
 
-Returns a new area with the given *data* and *options*. Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) is used in the common horizontal orientation where the baseline and topline share *x* values, while [Plot.areaX](#plotareaxdata-options) is used in the vertical orientation where the baseline and topline share *y* values.
+Returns a new area with the given *data* and *options*. This method is rarely used directly; it is only needed when the baseline and topline have neither common **x** nor **y** values. [areaY](#areay-data-options) is used in the common horizontal orientation where the baseline and topline share **x** values, while [areaX](#areax-data-options) is used in the vertical orientation where the baseline and topline share **y** values.
