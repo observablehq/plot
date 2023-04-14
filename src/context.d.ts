@@ -8,6 +8,9 @@ export interface Context {
    */
   document: Document;
 
+  /** The Plot’s (typically generated) class name, for custom styles. */
+  className: string;
+
   /** The current projection, if any. */
   projection?: GeoStreamWrapper;
 }
