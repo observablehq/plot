@@ -105,7 +105,7 @@ export default {
     const options = {
       marks: this.mark == null ? [] : [this.mark],
       ...this.options,
-      className: method === "plot" ? "plot" : `plot-${method}`
+      className: "plot"
     };
     if (this.defer !== undefined) {
       const mounted = (el) => {
