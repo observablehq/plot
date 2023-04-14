@@ -65,15 +65,13 @@ for (const [name, plot] of Object.entries(plots)) {
 }
 
 function reindexStyle(root) {
-  let index = 0;
+  const uid = "plot-d6a7b5"; // see defaultClassName
   for (const style of root.querySelectorAll("style")) {
-    const name = `plot${index++ ? `-${index}` : ""}`;
     const parent = style.parentNode;
-    const uid = parent.getAttribute("class");
     for (const child of [parent, ...parent.querySelectorAll("[class]")]) {
-      child.setAttribute("class", child.getAttribute("class").replace(new RegExp(`\\b${uid}\\b`, "g"), name));
+      child.setAttribute("class", child.getAttribute("class").replace(new RegExp(`\\b${uid}\\b`, "g"), "plot"));
     }
-    style.textContent = style.textContent.replace(new RegExp(`[.]${uid}`, "g"), `.${name}`);
+    style.textContent = style.textContent.replace(new RegExp(`[.]${uid}\\b`, "g"), `.plot`);
   }
 }
 

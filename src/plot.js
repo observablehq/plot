@@ -216,19 +216,20 @@ export function plot(options = {}) {
     .attr("aria-label", ariaLabel)
     .attr("aria-description", ariaDescription)
     .call((svg) =>
-      svg.append("style").text(`
-        .${className} {
-          display: block;
-          background: white;
-          height: auto;
-          height: intrinsic;
-          max-width: 100%;
-        }
-        .${className} text,
-        .${className} tspan {
-          white-space: pre;
-        }
-      `)
+      // Warning: if you edit this, change defaultClassName.
+      svg.append("style").text(
+        `.${className} {
+  display: block;
+  background: white;
+  height: auto;
+  height: intrinsic;
+  max-width: 100%;
+}
+.${className} text,
+.${className} tspan {
+  white-space: pre;
+}`
+      )
     )
     .call(applyInlineStyles, style)
     .node();
