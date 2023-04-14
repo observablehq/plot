@@ -161,8 +161,8 @@ function legendItems(scale, options = {}, swatch) {
 ${extraStyle}`
       )
     )
-    .style("margin-left", marginLeft === undefined ? null : `${+marginLeft}px;`)
-    .style("width", width === undefined ? null : `${width}px`)
+    .style("margin-left", marginLeft ? `${+marginLeft}px` : null)
+    .style("width", width === undefined ? null : `${+width}px`)
     .style("font-variant", impliedString(fontVariant, "normal"))
     .call(applyInlineStyles, style)
     .node();
