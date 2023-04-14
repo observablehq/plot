@@ -1,6 +1,6 @@
-<svg class="plot" font-family="system-ui, sans-serif" font-size="10" width="240" height="44" viewBox="0 0 240 44" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot-ramp" font-family="system-ui, sans-serif" font-size="10" width="240" height="44" viewBox="0 0 240 44" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
-    .plot {
+    .plot-ramp {
       display: block;
       background: white;
       height: auto;
@@ -9,7 +9,7 @@
       overflow: visible;
     }
 
-    .plot text {
+    .plot-ramp text {
       white-space: pre;
     }
   </style>

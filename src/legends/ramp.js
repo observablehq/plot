@@ -29,26 +29,27 @@ export function legendRamp(color, options) {
   if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg", context)
-    .attr("class", className)
+    .attr("class", `${className}-ramp`)
     .attr("font-family", "system-ui, sans-serif")
     .attr("font-size", 10)
     .attr("width", width)
     .attr("height", height)
     .attr("viewBox", `0 0 ${width} ${height}`)
     .call((svg) =>
-      svg.append("style").text(`
-        .${className} {
-          display: block;
-          background: white;
-          height: auto;
-          height: intrinsic;
-          max-width: 100%;
-          overflow: visible;
-        }
-        .${className} text {
-          white-space: pre;
-        }
-      `)
+      // Warning: if you edit this, change defaultClassName.
+      svg.append("style").text(
+        `.${className}-ramp {
+  display: block;
+  background: white;
+  height: auto;
+  height: intrinsic;
+  max-width: 100%;
+  overflow: visible;
+}
+.${className}-ramp text {
+  white-space: pre;
+}`
+      )
     )
     .call(applyInlineStyles, style);
 
