@@ -11,22 +11,7 @@ const marker = ref("circle");
 
 # Markers
 
-A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defines a graphic drawn on vertices of a [line](../marks/line.md) or [link](../marks/link.md) mark. The supported marker options are:
-
-* **markerStart** - the marker for the starting point of a line segment
-* **markerMid** - the marker for any intermediate point of a line segment
-* **markerEnd** - the marker for the end point of a line segment
-* **marker** - shorthand for setting the marker on all points
-
-The following named markers are supported:
-
-* *none* (default) - no marker
-* *arrow* - an arrowhead
-* *dot* - a filled *circle* without a stroke and 2.5px radius
-* *circle*, equivalent to *circle-fill* - a filled circle with a white stroke and 3px radius
-* *circle-stroke* - a hollow circle with a colored stroke and a white fill and 3px radius
-
-If **marker** is true, it defaults to *circle*. If **marker** is a function, it will be called with a given *color* and must return an SVG marker element.
+A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defines a graphic drawn on vertices of a [line](../marks/line.md) or [link](../marks/link.md) mark.
 
 <p>
   <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
@@ -35,7 +20,7 @@ If **marker** is true, it defaults to *circle*. If **marker** is a function, it 
       <option>none</option>
       <option>arrow</option>
       <option>dot</option>
-      <option selected>circle</option>
+      <option>circle</option>
       <option>circle-fill</option>
       <option>circle-stroke</option>
     </select>
@@ -59,6 +44,23 @@ Plot.plot({
 ```
 
 [Edit this on Observable →](https://observablehq.com/d/cfc5b4e46aa18b57?intent=fork)
+
+The supported marker options are:
+
+* **markerStart** - the marker for the starting point of a line segment
+* **markerMid** - the marker for any intermediate point of a line segment
+* **markerEnd** - the marker for the end point of a line segment
+* **marker** - shorthand for setting the marker on all points
+
+The following named markers are supported:
+
+* *none* (default) - no marker
+* *arrow* - an arrowhead
+* *dot* - a filled *circle* without a stroke and 2.5px radius
+* *circle*, equivalent to *circle-fill* - a filled circle with a white stroke and 3px radius
+* *circle-stroke* - a hollow circle with a colored stroke and a white fill and 3px radius
+
+If **marker** is true, it defaults to *circle*. If **marker** is a function, it will be called with a given *color* and must return an SVG marker element.
 
 The primary color of a marker is inherited from the *stroke* of the associated mark. The *arrow* marker is [automatically oriented](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/orient) such that it points in the tangential direction of the path at the position the marker is placed. The *circle* markers are centered around the given vertex.
 
