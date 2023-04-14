@@ -40,6 +40,12 @@ export interface ImageOptions extends MarkOptions {
   r?: ChannelValue;
 
   /**
+   * The rotation angle, in degrees clockwise. When a number, it is interpreted
+   * as a constant; otherwise it is interpreted as a channel.
+   */
+  rotate?: ChannelValue;
+
+  /**
    * The required image URL (or relative path). If a string that starts with a
    * dot, slash, or URL protocol (*e.g.*, “https:”) it is assumed to be a
    * constant; otherwise it is interpreted as a channel.

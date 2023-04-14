@@ -24,10 +24,18 @@ export async function kittenConstantWidthHeight() {
   return kitten({r: 49, width: 200, height: 200});
 }
 
+export async function kittenConstantRotate() {
+  return kitten({r: 49, rotate: 10});
+}
+
 export async function kittenVariable() {
   return kitten({r: (d, i) => i});
 }
 
 export async function kittenVariableDodge() {
   return kitten(Plot.dodgeY({r: (d, i) => i}));
+}
+
+export async function kittenVariableRotate() {
+  return kitten({r: 49, rotate: (d, i) => (i - 12) * 20});
 }

@@ -12,6 +12,7 @@ import {
   impliedString
 } from "../style.js";
 import {withDefaultSort} from "./dot.js";
+import {template} from "../template.js";
 
 const defaults = {
   ariaLabel: "image",
@@ -41,7 +42,7 @@ function maybePathChannel(value) {
 
 export class Image extends Mark {
   constructor(data, options = {}) {
-    let {x, y, r, width, height, src, preserveAspectRatio, crossOrigin, frameAnchor, imageRendering} = options;
+    let {x, y, r, width, height, rotate, src, preserveAspectRatio, crossOrigin, frameAnchor, imageRendering} = options;
     if (r == null) r = undefined;
     if (r === undefined && width === undefined && height === undefined) width = height = 16;
     else if (width === undefined && height !== undefined) width = height;
@@ -50,6 +51,7 @@ export class Image extends Mark {
     const [vr, cr] = maybeNumberChannel(r);
     const [vw, cw] = maybeNumberChannel(width, cr !== undefined ? cr * 2 : undefined);
     const [vh, ch] = maybeNumberChannel(height, cr !== undefined ? cr * 2 : undefined);
+    const [va, ca] = maybeNumberChannel(rotate, 0);
     super(
       data,
       {
@@ -58,6 +60,7 @@ export class Image extends Mark {
         r: {value: vr, scale: "r", filter: positive, optional: true},
         width: {value: vw, filter: positive, optional: true},
         height: {value: vh, filter: positive, optional: true},
+        rotate: {value: va, optional: true},
         src: {value: vs, optional: true}
       },
       withDefaultSort(options),
@@ -65,6 +68,7 @@ export class Image extends Mark {
     );
     this.src = cs;
     this.width = cw;
+    this.rotate = ca;
     this.height = ch;
     this.r = cr;
     this.preserveAspectRatio = impliedString(preserveAspectRatio, "xMidYMid");
@@ -74,8 +78,8 @@ export class Image extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {x: X, y: Y, width: W, height: H, r: R, src: S} = channels;
-    const {r, width, height} = this;
+    const {x: X, y: Y, width: W, height: H, r: R, rotate: A, src: S} = channels;
+    const {r, width, height, rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
@@ -91,6 +95,9 @@ export class Image extends Mark {
           .attr("y", position(Y, H, R, cy, height, r))
           .attr("width", W ? (i) => W[i] : width !== undefined ? width : R ? (i) => R[i] * 2 : r * 2)
           .attr("height", H ? (i) => H[i] : height !== undefined ? height : R ? (i) => R[i] * 2 : r * 2)
+          // TODO: combine x, y, rotate and transform-origin into a single transform
+          .attr("transform", A ? (i) => `rotate(${A[i]})` : rotate ? `rotate(${rotate})` : null)
+          .attr("transform-origin", A || rotate ? template`${X ? (i) => X[i] : cx}px ${Y ? (i) => Y[i] : cy}px` : null)
           .call(applyAttr, "href", S ? (i) => S[i] : this.src)
           .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
           .call(applyAttr, "crossorigin", this.crossOrigin)
