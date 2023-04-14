@@ -23,8 +23,8 @@ export function legendRamp(color, options) {
     opacity,
     className
   } = options;
-  className = maybeClassName(className);
   const context = createContext(options);
+  className = maybeClassName(className);
   opacity = maybeNumberChannel(opacity)[1];
   if (tickFormat === null) tickFormat = () => null;
 
