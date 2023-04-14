@@ -1,4 +1,4 @@
-import DefaultTheme from "vitepress/theme";
+import DefaultTheme from "vitepress/theme-without-fonts";
 import PlotRender from "../../components/PlotRender.js";
 import "./custom.css";
 
