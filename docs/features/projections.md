@@ -3,9 +3,17 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
+import {shallowRef, onMounted} from "vue";
 import walmarts from "../data/walmarts.ts";
 import us from "../data/us-counties-10m.ts";
-import elections from "../data/us-presidential-election-2020.ts";
+
+const elections = shallowRef([]);
+
+onMounted(() => {
+  d3.csv("../data/us-presidential-election-2020.csv", d3.autoType).then((data) => {
+    elections.value = data;
+  });
+});
 
 const nation = topojson.feature(us, us.objects.nation);
 const states = topojson.feature(us, us.objects.states);
