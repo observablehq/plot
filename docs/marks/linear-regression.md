@@ -1,6 +1,6 @@
 # Linear regression mark
 
-Regression methods show trends by creating a mathematical model of how an observation (called the _dependent variable_, typically **y**) depends on a given input (called the _independent variable_, typically **x**). A linear model posits that _y_ is determined by an underlying affine function ${tex`y = a + b x`}, where _a_ is a constant (intercept of the line on the _y_-axis when _x_ = 0) and _b_ is the slope.
+Regression methods show trends by creating a mathematical model of how an observation (called the _dependent variable_, typically **y**) depends on a given input (called the _independent variable_, typically **x**). A linear model posits that _y_ is determined by an underlying affine function *y* = *a* ﹢ *b&thinsp;x*, where _a_ is a constant (intercept of the line on the _y_-axis when _x_ = 0) and _b_ is the slope.
 
 ```js
 Plot.plot({

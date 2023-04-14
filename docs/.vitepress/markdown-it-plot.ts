@@ -11,6 +11,7 @@ export default function plot(md) {
         let content = token.content;
         content = content.replace(/\bMath\.random\b/g, "d3.randomLcg(42)");
         content = content.replace(/\bd3\.(random(?!Lcg)\w+)\b/g, "d3.$1.source(d3.randomLcg(42))");
+        content = content.replace(/\bd3\.shuffle\b/g, "d3.shuffler(d3.randomLcg(42))");
         const suffix = `\n<div class="blocks"${directives.includes("hidden") ? ` style="display: none;"` : ""}>\n`;
         if (/^Plot\.plot\(/.test(content)) {
           const options = content.slice(9);

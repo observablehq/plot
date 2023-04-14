@@ -1,11 +1,18 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import metros from "../data/metros.ts";
+
+</script>
+
 # Arrow mark
 
-The **arrow** mark represents data as directional arrows between two points in *x* and *y* quantitative dimensions. It is similar to the [link mark](./link.md), except it draws an arrowhead and is suitable for directed edges. With the *bend* option, it can also be made swoopy. For example, below we show the rising inequality (and population) in various U.S. cities from 1980 to 2015. Each arrow represents two observations of a city: the city’s population (*x*) and inequality (*y*) in 1980, and the same in 2015. The arrow’s color redundantly encodes the change in inequality: red indicates rising inequality, while blue (there are only four) indicates declining inequality.
+The **arrow** mark represents data as directional arrows between two points in *x* and *y* quantitative dimensions. It is similar to the [link mark](./link.md), except it draws an arrowhead and is suitable for directed edges. With the *bend* option, it can be made swoopy. For example, below we show the rising inequality (and population) in various U.S. cities from 1980 to 2015. Each arrow represents two observations of a city: the city’s population (*x*) and inequality (*y*) in 1980, and the same in 2015. The arrow’s color redundantly encodes the change in inequality: red indicates rising inequality, while blue (there are only four) indicates declining inequality.
 
+:::plot
 ```js
 Plot.plot({
-  width,
-  height: Math.min(600, width),
   grid: true,
   inset: 10,
   x: {
@@ -20,7 +27,8 @@ Plot.plot({
     type: "diverging",
     scheme: "burd",
     label: "Change in inequality from 1980 to 2015",
-    legend: true,
+    // legend: true,
+    symmetric: false,
     ticks: 6,
     tickFormat: "+f"
   },
@@ -39,12 +47,13 @@ Plot.plot({
       filter: "highlight",
       text: "nyt_display",
       fill: "currentColor",
-      stroke: "white",
+      stroke: "var(--vp-c-bg)",
       dy: -6
     })
   ]
 })
 ```
+:::
 
 ## Options
 

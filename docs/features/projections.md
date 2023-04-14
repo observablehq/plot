@@ -21,9 +21,9 @@ const lookup = d3.index(counties.features, (d) => +d.id); // TODO fix type coerc
 This section needs to be restructured and edited.
 :::
 
-Plot’s projection system opens the door for all kinds of geographic maps (and more). Once set, the top-level **projection** option takes over the *x* and *y* [scales](/@observablehq/plot-scales) and considers associated channels as _jointly_ describing a location on a surface, typically the globe of the Earth.
+Plot’s projection system opens the door for all kinds of geographic maps (and more). Once set, the top-level **projection** option takes over the *x* and *y* [scales](../features/scales.md) and considers associated channels as _jointly_ describing a location on a surface, typically the globe of the Earth.
 
-Projections apply to any point-based mark, but are most commonly used with the [geo mark](/@observablehq/plot-geo). Below, we create a [composite mark](https://github.com/observablehq/plot/blob/main/README.md#plotmarksmarks) consisting of three geos: a graticule showing lines of constant latitude and longitude, a set of polygons showing land area, and the outline of the sphere.
+Projections apply to any point-based mark, but are most commonly used with the [geo mark](../marks/geo.md). Below, we create a [composite mark](./marks.md#marks-marks) consisting of three geos: a graticule showing lines of constant latitude and longitude, a set of polygons showing land area, and the outline of the sphere.
 
 ```js
 globe = Plot.marks([Plot.graticule(), Plot.geo(land, {fill: "currentColor"}), Plot.sphere()])
@@ -391,7 +391,7 @@ However, as soon as the region to be displayed extends beyond a certain area, th
 
 Many projections seek a certain balance between the distortions; for that reason, they are called compromise projections. The built-in Equal-Earth projection belongs to that rather large family.
 
-As you learn more about projections, you should also let your sense of aesthetics guide you, in particular as you explore the extended palette of possibilities offered by D3 projections: they can all be used within Plot. Check out the [Extended Projections](/@observablehq/plot-extended-projections) notebook and see them in action!
+As you learn more about projections, you should also let your sense of aesthetics guide you, in particular as you explore the extended palette of possibilities offered by D3 projections: they can all be used within Plot. Check out the [Extended Projections](https://observablehq.com/@observablehq/plot-extended-projections) notebook and see them in action!
 
 ## Line sampling
 

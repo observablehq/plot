@@ -35,7 +35,7 @@ Plot.plot({
 })
 ```
 
-With [faceting](../facets.md), we can produce a calendar of multiple years, where *x* represents weeks and *y* represents days. Below shows almost twenty years of daily changes of the Dow Jones Industrial Average.
+With [faceting](../features/facets.md), we can produce a calendar of multiple years, where *x* represents weeks and *y* represents days. Below shows almost twenty years of daily changes of the Dow Jones Industrial Average.
 
 ```js
 Plot.plot({
