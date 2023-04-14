@@ -153,11 +153,11 @@ export default {
   props: ["options"],
   render() {
     const {options} = this;
-    return withDirectives(h("figure"), [
+    return withDirectives(h("div"), [
       [
         {
           mounted(el) {
-            el.replaceWith(Plot.plot(options));
+            el.append(Plot.plot(options));
           }
         }
       ]
