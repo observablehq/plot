@@ -143,6 +143,10 @@ https://data.world/data-society/the-simpsons-by-the-data
 Eitan Lees
 https://talk.observablehq.com/t/diverging-stacked-bar-chart-in-plot/6028
 
+## tdf-stage-8-2017.csv
+2017 Tour de France Stage 8 elevation profile
+Unknown
+
 ## traffic.csv
 Moritz Klack
 https://observablehq.com/@moklick

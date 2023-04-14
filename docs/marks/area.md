@@ -37,7 +37,7 @@ Plot.plot({
 ```
 :::
 
-With the default definitions of **x** = *index* and **y** = [identity](../features/transforms.md#identity), you can pass an array of numbers as data. Below, a random walk is constructed with [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
+With the default definitions of **x** = index and **y** = [identity](../features/transforms.md#identity), you can pass an array of numbers as data. Below, a random walk is constructed with [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
 
 :::plot
 ```js
@@ -56,7 +56,7 @@ Plot.areaY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close"}).plot() // 🌶️
 If your data isn’t sorted, use the [sort transform](../transforms/sort.md).
 
 :::plot
-```js{4}
+```js
 Plot.areaY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close", sort: "Date"}).plot()
 ```
 :::
