@@ -1,8 +1,27 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+
+</script>
+
 # Grid mark
 
-## Grid options
-
 Draws an axis-aligned grid.
+
+:::plot
+```js
+Plot.gridX().plot({x: {type: "linear"}})
+```
+:::
+
+:::plot
+```js
+Plot.gridX(d3.range(101), {stroke: Plot.identity, strokeOpacity: 1}).plot()
+```
+:::
+
+## Grid options
 
 The optional *data* is an array of tick values—it defaults to the scale’s ticks. The grid mark draws a line for each tick value, across the whole frame.
 
@@ -12,13 +31,13 @@ The following options are supported:
 
 The following options are supported as constant or data-driven channels:
 
-* **stroke** - the grid color, defaults to currentColor
+* **stroke** - the grid color, defaults to *currentColor*
 * **strokeWidth** - the grid’s line width, defaults to 1
 * **strokeOpacity** - the stroke opacity, defaults to 0.1
-* **y1** - the start of the line, a channel of y positions.
-* **y2** - the end of the line, a channel of y positions.
+* **y1** - the start of the line, a channel of *y* positions
+* **y2** - the end of the line, a channel of *y* positions
 
-All the other common options are supported when applicable (e.g., **title**).
+All the other common options are supported when applicable (*e.g.*, **title**).
 
 ## gridX(*data*, *options*)
 
