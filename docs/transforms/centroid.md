@@ -3,11 +3,16 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
-import us from "../data/us-counties-10m.ts";
+import {computed, shallowRef, onMounted} from "vue";
 
-const countymesh = topojson.mesh(us, us.objects.counties);
-const statemesh = topojson.mesh(us, us.objects.states);
-const counties = topojson.feature(us, us.objects.counties).features;
+const us = shallowRef(null);
+const countymesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.counties) : {type: null});
+const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states) : {type: null});
+const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
+
+onMounted(() => {
+  d3.json("../data/us-counties-10m.json").then((data) => (us.value = data));
+});
 
 </script>
 
@@ -48,7 +53,7 @@ Plot.plot({
 
 Or, with the [voronoi mark](../marks/delaunay.md):
 
-:::plot
+:::plot defer
 ```js
 Plot.voronoi(counties, Plot.centroid()).plot({projection: "albers"})
 ```
@@ -60,7 +65,7 @@ While the centroid transform computes the centroid of a geometry _after_ project
 
 As an [initializer](../features/transforms.md#initializers), the centroid transform operates _after_ the geometries have been projected to screen coordinates. The resulting **x** and **y** channels reference the pixel coordinates of the planar centroid of the _projected_ shapes. No assumption is made about the geometries: they can be in any coordinate system, and the returned value is in the frame—as long as the projected geometry returns at least one visible point.
 
-:::plot
+:::plot defer
 ```js
 Plot.dot(counties, Plot.centroid()).plot({projection: "albers-usa"})
 ```
@@ -72,7 +77,7 @@ The centroid initializer derives **x** and **y** channels representing the plana
 
 The geoCentroid transform is more specialized as the **x** and **y** channels it derives represent the longitudes and latitudes of the centroids of the given GeoJSON geometries, before projection. It expects the geometries to be specified in _spherical_ coordinates. It is more correct, in a geospatial sense—for example, the spherical centroid always represents the center of mass of the original shape, and it will be rotated exactly in line with the projection’s rotate argument. However, this also means that it might land outside the frame if only a part of the land mass is visible, and might be clipped by the projection. In practice, the difference is generally imperceptible.
 
-:::plot
+:::plot defer
 ```js
 Plot.dot(counties, Plot.geoCentroid()).plot({projection: "albers-usa"})
 ```
@@ -80,7 +85,7 @@ Plot.dot(counties, Plot.geoCentroid()).plot({projection: "albers-usa"})
 
 The geoCentroid transform is slightly faster than the centroid initializer—which might be useful if you have tens of thousands of features and want to show their density on a [hexbin map](../transforms/hexbin.md):
 
-:::plot
+:::plot defer
 ```js
 Plot.dot(counties, Plot.hexbin({r:"count"}, Plot.geoCentroid())).plot({projection: "albers"})
 ```

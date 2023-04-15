@@ -2,12 +2,16 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import {ref} from "vue";
-import diamonds from "../data/diamonds.ts";
+import {ref, shallowRef, onMounted} from "vue";
 import faithful from "../data/faithful.ts";
 import penguins from "../data/penguins.ts";
 
 const skew = ref(0);
+const diamonds = shallowRef([]);
+
+onMounted(() => {
+  d3.csv("../data/diamonds.csv", d3.autoType).then((data) => (diamonds.value = data));
+});
 
 </script>
 

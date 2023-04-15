@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
 export default {
-  watch: ["./testdata/volcano.json"],
+  watch: ["../public/data/volcano.json"],
   load([file]) {
     return JSON.parse(fs.readFileSync(file, "utf-8"));
   }

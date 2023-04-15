@@ -8,9 +8,9 @@ import {computed, shallowRef, onMounted} from "vue";
 const elections = shallowRef([]);
 const walmarts = shallowRef([]);
 const us = shallowRef(null);
-const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : null);
+const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
 const states = computed(() => us.value ? topojson.feature(us.value, us.value.objects.states).features : []);
-const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : null);
+const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
 const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
 const lookup = computed(() => counties.value ? d3.index(counties.value, (d) => +d.id) : null); // TODO fix type coercion
 

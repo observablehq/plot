@@ -80,7 +80,7 @@ Plot.plot({
 
 TK another example
 
-The band above is spikey; we can smooth it by applying a 14-day moving average to **y1** and **y2**, and do the same for a midline. We can also add a [rule](./rule.md) to indicate the freezing point, 32°F.
+The band above is spikey; we can smooth it by applying a 14-day moving average to **y1** and **y2**, and do the same for a midline. We can also add a [rule](../marks/rule.md) to indicate the freezing point, 32°F.
 
 :::plot
 ```js

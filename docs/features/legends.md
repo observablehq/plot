@@ -2,8 +2,22 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import gistemp from "../data/gistemp.ts";
-import olympians from "../data/olympians.ts";
+import {shallowRef, onMounted} from "vue";
+
+const olympians = shallowRef([
+  {weight: 31, height: 1.21, sex: "female"},
+  {weight: 170, height: 2.21, sex: "male"}
+]);
+
+const gistemp = shallowRef([
+  {Date: new Date("1880-01-01"), Anomaly: -0.78},
+  {Date: new Date("2016-12-01"), Anomaly: 1.35}
+]);
+
+onMounted(() => {
+  d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
+  d3.csv("../data/gistemp.csv", d3.autoType).then((data) => (gistemp.value = data));
+});
 
 </script>
 
@@ -11,7 +25,7 @@ import olympians from "../data/olympians.ts";
 
 Plot can generate legends for *color*, *opacity*, and *symbol* [scales](./scales.md). For example, this scatterplot includes a *swatches* legend for its *categorical* *color* scale:
 
-:::plot
+:::plot defer
 ```js
 Plot.plot({
   color: {

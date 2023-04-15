@@ -2,10 +2,19 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {shallowRef, onMounted} from "vue";
 import anscombe from "../data/anscombe.ts";
 import barley from "../data/barley.ts";
-import olympians from "../data/olympians.ts";
 import penguins from "../data/penguins.ts";
+
+const olympians = shallowRef([
+  {weight: 31, height: 1.21, sex: "female"},
+  {weight: 170, height: 2.21, sex: "male"}
+]);
+
+onMounted(() => {
+  d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
+});
 
 </script>
 
@@ -93,7 +102,7 @@ To make room for the facet axes, you may need to specify the facet.**marginTop**
 
 When faceting, two additional band scales may be configured: _fx_ and _fy_. These are driven by the facet.**x** and facet.**y** channels, respectively, which must be supplied strictly ordinal (*i.e.*, discrete) values; each distinct value defines a facet. Quantitative data must be discretized for faceting, say by rounding or binning. This can be done through the *scale*.**transform** option on the relevant facet scale. The example below shows a box plot of athlete’s weights, faceted by height—with classes created by binning heights every 10cm.
 
-:::plot
+:::plot defer
 ```js
 Plot.plot({
   height: 400,

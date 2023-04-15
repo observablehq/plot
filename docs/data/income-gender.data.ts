@@ -2,7 +2,7 @@ import fs from "node:fs";
 import {csvParse} from "d3";
 
 export default {
-  watch: ["./testdata/income-gender.csv"],
+  watch: ["../public/data/income-gender.csv"],
   load([file]) {
     return csvParse(fs.readFileSync(file, "utf-8"));
   }
