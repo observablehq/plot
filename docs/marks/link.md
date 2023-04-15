@@ -20,9 +20,9 @@ onMounted(() => {
 
 # Link mark
 
-The **link mark** draws a straight line between two points [**x1**, **y1**] and [**x2**, **y2**] in quantitative dimensions. It is similar to the [arrow mark](./arrow.md), except it draws a straight line (or geodesic when used with a [spherical projection](../features/projections.md)).
+The **link mark** draws a straight line between two points [**x1**, **y1**] and [**x2**, **y2**] in quantitative dimensions. It is similar to the [arrow mark](./arrow.md), except it draws a straight line—or geodesic when used with a [spherical projection](../features/projections.md).
 
-For example, below we show the rising inequality (and population) in various U.S. cities from 1980 to 2015. Each link represents two observations of a city: the city’s population (**x**) and inequality (**y**) in 1980, and the same in 2015. The link’s **stroke** redundantly encodes the change in inequality: red indicates rising inequality, while blue (there are only four) indicates declining inequality.
+For example, the chart below shows the rising inequality (and population) in various U.S. cities from 1980 to 2015. Each link represents two observations of a city: the city’s population (**x**) and inequality (**y**) in 1980, and the same in 2015. The link’s **stroke** redundantly encodes the change in inequality: red indicates rising inequality, while blue (there are only four) indicates declining inequality.
 
 :::plot defer
 ```js
@@ -97,7 +97,7 @@ gods = [
 ]
 ```
 
-When used with a [spherical projection](../features/projections.md) and the default [*auto* curve](../features/curves.md), the link mark will render a geodesic: the shortest path between two points on the surface of the sphere. Setting the **curve** to *linear* will instead draw a straight line between the projected points. For example, below we draw two links from San Francisco to Paris.
+With a [spherical projection](../features/projections.md) and the default [*auto* curve](../features/curves.md), the link mark will render a geodesic: the shortest path between two points on the surface of the sphere. Setting the **curve** to *linear* will instead draw a straight line between the projected points. For example, below we draw two links from San Francisco to Paris.
 
 :::plot defer
 ```js
@@ -107,7 +107,7 @@ Plot.plot({
     Plot.sphere(),
     Plot.geo(land, {fill: "currentColor", fillOpacity: 0.3}),
     Plot.link({length: 1}, {curve: "linear", stroke: "red", ...xy}),
-    Plot.link({length: 1}, {markerEnd: "arrow", strokeWidth: 1.5, ...xy})
+    Plot.link({length: 1}, {markerStart: "dot", markerEnd: "arrow", strokeWidth: 1.5, ...xy})
   ]
 })
 ```
@@ -117,7 +117,7 @@ Plot.plot({
 xy = ({x1: -122.4194, y1: 37.7749, x2: 2.3522, y2: 48.8566})
 ```
 
-Like a [rule](./rule.md), a link can also serve as annotation to support interpretation. Whereas a rule is strictly horizontal or vertical, however, a link can generate [diagonal lines](http://kelsocartography.com/blog/?p=2074). The following chart depicts the gender gap in wages, segmented by education and age, in the U.S. A regular grid would make the gender disparity much less clear, even with the domains explicitly set to be equal.
+Like a [rule](./rule.md), a link can also serve as annotation. Whereas a rule is strictly horizontal or vertical, however, a link can generate [diagonal lines](http://kelsocartography.com/blog/?p=2074). The following chart depicts the gender gap in wages, segmented by education and age, in the U.S. A regular grid would make the gender disparity much less clear, even with the domains explicitly set to be equal.
 
 :::plot
 ```js
