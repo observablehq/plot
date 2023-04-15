@@ -68,9 +68,7 @@ Plot.plot({
 
 ## Frame options
 
-Draws a simple frame around the entire plot (or facet).
-
-The frame mark supports the [standard mark options](#marks), and the **rx** and **ry** options to set the [*x* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) and [*y* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners. It does not accept any data or support channels. The default **stroke** is currentColor, and the default **fill** is none.
+The frame mark supports the [standard mark options](#marks), and the **rx** and **ry** options to set the [*x* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) and [*y* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners. It does not accept any data or support channels. The default **stroke** is *currentColor*, and the default **fill** is *none*.
 
 If the **anchor** option is specified as one of *left*, *right*, *top*, or *bottom*, that side is rendered as a single line (and the **fill**, **fillOpacity**, **rx**, and **ry** options are ignored).
 
@@ -80,4 +78,4 @@ If the **anchor** option is specified as one of *left*, *right*, *top*, or *bott
 Plot.frame({stroke: "red"})
 ```
 
-Returns a new frame with the specified *options*.
+Returns a new frame mark with the specified *options*.
