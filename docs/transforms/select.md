@@ -1,30 +1,43 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import {shallowRef, onMounted} from "vue";
+
+const stocks = shallowRef([]);
+
+onMounted(() => {
+  Promise.all([
+    d3.csv("../data/aapl.csv", d3.autoType),
+    d3.csv("../data/amzn.csv", d3.autoType),
+    d3.csv("../data/goog.csv", d3.autoType),
+    d3.csv("../data/ibm.csv", d3.autoType)
+  ]).then((datas) => {
+    stocks.value = d3.zip(["AAPL", "AMZN", "GOOG", "IBM"], datas).flatMap(([Symbol, data]) => data.map(d => ({Symbol, ...d})));
+  });
+});
+
+</script>
+
 # Select transform
 
-The select transform filters marks. It is similar to the basic [filter transform](../features/transforms.md) except that it provides convenient shorthand for pulling a single value out of each series. The data are grouped into series using the *z*, *fill*, or *stroke* channel in the same fashion as the [area](../marks/area.md) and [line](../marks/line.md) marks.
+The **select transform** filters a mark’s index; it is like the [filter transform](../transforms/filter.md), except that it provides convenient shorthand for pulling a single value out of each series. The data are grouped into series using the **z**, **fill**, or **stroke** channel in the same fashion as the [area](../marks/area.md) and [line](../marks/line.md) marks.
 
-<!-- stocks = (await Promise.all([FileAttachment("aapl.csv"), FileAttachment("amzn.csv"), FileAttachment("goog.csv"), FileAttachment("ibm.csv")]
-  .map(async file => [file.name.slice(0, -4).toUpperCase(), await file.csv({typed: "true"})])))
-  .flatMap(([Symbol, data]) => data.map(d => ({Symbol, ...d}))) -->
+For example, here the select transform is used to label the last point in each series of a multi-series line chart with a [text mark](../marks/text.md).
 
+:::plot defer
 ```js
 Plot.plot({
   marginRight: 40,
-  y: {
-    grid: true,
-    label: "↑ Price ($)"
-  },
+  y: {grid: true},
   marks: [
+    Plot.ruleY([0]),
     Plot.line(stocks, {x: "Date", y: "Close", stroke: "Symbol"}),
     Plot.text(stocks, Plot.selectLast({x: "Date", y: "Close", z: "Symbol", text: "Symbol", textAnchor: "start", dx: 3}))
   ]
 })
 ```
-
-## Select options
-
-Selects a value from each series, say to label a line or annotate extremes.
-
-The select transform derives a filtered mark index; it does not affect the mark’s data or channels. It is similar to the basic [filter transform](#transforms) except that provides convenient shorthand for pulling a single value out of each series. The data are grouped into series using the *z*, *fill*, or *stroke* channel in the same fashion as the [area](#area) and [line](#line) marks.
+:::
 
 ## select(*selector*, *options*)
 
