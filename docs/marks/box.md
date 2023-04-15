@@ -1,7 +1,25 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import {shallowRef, onMounted} from "vue";
+import morley from "../data/morley.ts";
+
+const diamonds = shallowRef([]);
+
+onMounted(() => {
+  d3.csv("../data/diamonds.csv", d3.autoType).then((data) => (diamonds.value = data));
+});
+
+</script>
+
 # Box mark
 
-The box mark creates a horizontal or vertical boxplot, a type of visual summary for one-dimensional distributions. The box mark is implemented as a composite mark: it is an array of marks consisting of a [rule](./rule.md) to represent the extreme values (not including outliers), a [bar](./bar.md) to represent the interquartile range (trimmed to the data), a [tick](./tick.md) to represent the median value, and a [dot](./dot.md) to represent outliers, if any. The box mark uses the [group transform](../transforms/group.md) to group and aggregate data.
+The **box mark** summarizes one-dimensional distributions as boxplots. It is a [composite mark](../features/marks.md#marks-marks) consisting of a [rule](./rule.md) to represent the extreme values (not including outliers), a [bar](./bar.md) to represent the interquartile range (trimmed to the data), a [tick](./tick.md) to represent the median value, and a [dot](./dot.md) to represent any outliers. The [group transform](../transforms/group.md) is used to group and aggregate data.
 
+For example, the boxplot below shows [A.A. Michelson’s experimental measurements](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/morley.html) of the speed of light. (Speed is in km/sec minus 299,000.)
+
+:::plot
 ```js
 Plot.plot({
   y: {
@@ -13,7 +31,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
+[boxY](#boxy-data-options) produces vertical boxplots; for horizontal boxplots, use [boxX](#boxx-data-options) and swap **x** and **y**.
+
+:::plot
 ```js
 Plot.plot({
   x: {
@@ -25,18 +47,42 @@ Plot.plot({
   ]
 })
 ```
+:::
 
-Plot.boxY groups by *x*, if present, while Plot.boxX groups by *y*, if present. If not present, a single box is generated. As [shorthand](../features/shorthand.md), you can pass an array of numbers to Plot.boxX or Plot.boxY.
+As [shorthand](../features/shorthand.md), you can pass an array of numbers for a single boxplot.
 
+:::plot
 ```js
 Plot.boxX([0, 3, 4.4, 4.5, 4.6, 5, 7]).plot()
 ```
+:::
+
+Since the box mark uses the [group transform](../transforms/group.md), the secondary dimension must be ordinal. To group quantitative values, bin manually, say with [Math.floor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor); see [#1330](https://github.com/observablehq/plot/issues/1330).
+
+:::plot defer
+```js
+Plot.plot({
+  y: {
+    grid: true,
+    label: "↑ Price"
+  },
+  x: {
+    interval: 0.5,
+    label: "Carats →",
+    labelAnchor: "right",
+    tickFormat: (x) => x.toFixed(1)
+  },
+  marks: [
+    Plot.ruleY([0]),
+    Plot.boxY(diamonds, {x: (d) => Math.floor(d.carat * 2) / 2, y: "price"})
+  ]
+})
+```
+:::
 
 ## Box options
 
-Draws either horizontal boxplots where *x* is quantitative and *y* is ordinal (if present) or vertical boxplots where *y* is quantitative and *x* is ordinal (if present). Boxplots are often used to visualize one-dimensional distributions as an alternative to a histogram. (See also the [bin transform](../transforms/bin.md).)
-
-The box mark is a composite mark consisting of four marks:
+The box mark is a [composite mark](../features/marks.md#marks-marks) consisting of four marks:
 
 * a [rule](../marks/rule.md) representing the extreme values (not including outliers)
 * a [bar](../marks/bar.md) representing the interquartile range (trimmed to the data)
@@ -45,7 +91,7 @@ The box mark is a composite mark consisting of four marks:
 
 The given *options* are passed through to these underlying marks, with the exception of the following options:
 
-* **fill** - the fill color of the bar; defaults to gray
+* **fill** - the fill color of the bar; defaults to #ccc
 * **fillOpacity** - the fill opacity of the bar; defaults to 1
 * **stroke** - the stroke color of the rule, tick, and dot; defaults to *currentColor*
 * **strokeOpacity** - the stroke opacity of the rule, tick, and dot; defaults to 1
@@ -57,7 +103,7 @@ The given *options* are passed through to these underlying marks, with the excep
 Plot.boxX(simpsons.map(d => d.imdb_rating))
 ```
 
-Returns a horizontal boxplot mark. If the **x** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **y** option is not specified, it defaults to null; if the **y** option is specified, it should represent an ordinal (discrete) value.
+Returns a horizontal box mark. If the **x** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **y** option is not specified, it defaults to null; if the **y** option is specified, it should represent an ordinal (discrete) value.
 
 ## boxY(*data*, *options*)
 
@@ -65,4 +111,4 @@ Returns a horizontal boxplot mark. If the **x** option is not specified, it defa
 Plot.boxY(simpsons.map(d => d.imdb_rating))
 ```
 
-Returns a vertical boxplot mark. If the **y** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **x** option is not specified, it defaults to null; if the **x** option is specified, it should represent an ordinal (discrete) value.
+Returns a vertical box mark. If the **y** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **x** option is not specified, it defaults to null; if the **x** option is specified, it should represent an ordinal (discrete) value.
