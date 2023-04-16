@@ -1,52 +1,36 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import alphabet from "../data/alphabet.ts";
+import civilizations from "../data/civilizations.ts";
+
+</script>
+
 # Bar mark
 
-Bars have an ordinal dimension, such as a name or category, and a quantitative dimension, a number. Bars come in two orientations: **barX** extends horizontally→ as in a bar chart, and **barY** extends vertically↑ as in a column chart. For example, the plot below shows the frequency of letters in the English language. The *letter* dimension is ordinal, while the *frequency* dimension is quantitative, representing how often the given letter appears.
+The **bar mark** draws bars as in a bar chart. It comes in two orientations: [barY](#bary-data-options) extends vertically↑ as in a vertical bar chart or column chart, while [barX](#barx-data-options) extends horizontally→ as in a (horizontal) bar chart. For example, the bar chart below shows the frequency of letters in the English language.
 
+:::plot
 ```js
-Plot.plot({
-  marks: [
-    Plot.barY(alphabet, {x: "letter", y: "frequency"})
-  ]
-})
+Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
+:::
 
-We can improve this plot by adding a *y*-grid, a rule at *y* = 0, and a warm gray fill to reduce contrast.
+There is typically one ordinal value associated with each bar, such as a name (or above, letter), and two quantitative values defining a lower and upper bound; the lower bound is often not specified (as above) because it defaults to zero. For barY, **x** is ordinal and **y** is quantitative, whereas for barX, **y** is ordinal and **x** is quantitative.
 
+:::tip
+For a time-series bar chart, where one dimension is temporal and the other is quantitative, use the [rect mark](./rect.md) with the **interval** option instead.
+:::
+
+We can improve this plot by adding a grid, a rule at *y* = 0, and the **percent** *y*-scale option.
+
+:::plot
 ```js
 Plot.plot({
   y: {
-    grid: true
-  },
-  marks: [
-    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "#bab0ab"}),
-    Plot.ruleY([0])
-  ]
-})
-```
-
-To transform values, specify a function rather than a named field. For example, to show percentages instead of proportions, multiply *frequency* by 100:
-
-```js
-Plot.plot({
-  y: {
-    label: "↑ Frequency (%)",
-    grid: true
-  },
-  marks: [
-    Plot.barY(alphabet, {x: "letter", y: d => d.frequency * 100}),
-    Plot.ruleY([0])
-  ]
-})
-```
-
-You can alternatively apply a transform to all channels associated with a particular scale using the scale’s *transform* option.
-
-```js
-Plot.plot({
-  y: {
-    label: "↑ Frequency (%)",
     grid: true,
-    transform: d => d * 100
+    percent: true
   },
   marks: [
     Plot.barY(alphabet, {x: "letter", y: "frequency"}),
@@ -54,20 +38,23 @@ Plot.plot({
   ]
 })
 ```
+:::
 
-The bar mark is closely related to the [rect mark](./rect.md). Both generate a rectangle; the difference is in how the coordinates are specified. For a bar, one side is a quantitative interval (*e.g.*, from 0 to a percentage) while the other is an ordinal or categorical value (*e.g.*, an English letter); whereas for a rect, both sides are quantitative intervals. Hence a bar is used for a bar chart but a rect is needed for a histogram.
+<!-- The bar mark is closely related to the [rect mark](./rect.md). Both generate a rectangle; the difference is in how the coordinates are specified. For a bar, one side is a quantitative interval (*e.g.*, from 0 to a percentage) while the other is an ordinal or categorical value (*e.g.*, an English letter); whereas for a rect, both sides are quantitative intervals. Hence a bar is used for a bar chart but a rect is needed for a histogram. -->
 
-The bar mark should generally not be used if the independent dimension (*e.g.*, *x* for barY) is temporal rather than ordinal. In this case, you should use the rect mark with the [interval transform](../transforms/interval.md).
+<!-- The bar mark should generally not be used if the independent dimension (*e.g.*, *x* for barY) is temporal rather than ordinal. In this case, you should use the rect mark with the [interval transform](../transforms/interval.md). -->
 
-A bar’s ordinal dimension uses a [band scale](https://observablehq.com/@d3/d3-scaleband?collection=@d3/d3-scale) with a bit of padding to separate bars. For finer separation, you can set the *x*-scale’s padding to zero and use an inset. The bar mark supports four options for insetting the sides of the bar: *insetTop*, *insetRight*, *insetBottom*, and *insetLeft*. The *inset* option is shorthand for setting all four sides to the same value. The chart below separates each bar by a single pixel.
+A bar’s ordinal dimension uses a [band scale](https://github.com/d3/d3-scale/blob/main/README.md#band-scales) with a default **padding** of 0.1 to separate bars. For finer separation, you can set the *x*-scale **padding** to zero and use inset. The bar mark supports four options for insetting the sides of the bar: **insetTop**, **insetRight**, **insetBottom**, and **insetLeft**. The **inset** option is shorthand for setting all four sides to the same value. The chart below separates each bar by a single pixel.
 
+:::plot
 ```js
 Plot.plot({
   x: {
     padding: 0
   },
   y: {
-    grid: true
+    grid: true,
+    percent: true
   },
   marks: [
     Plot.barY(alphabet, {x: "letter", y: "frequency", insetLeft: 0.5, insetRight: 0.5}),
@@ -75,44 +62,45 @@ Plot.plot({
   ]
 })
 ```
+:::
 
-Band scales round by default, which can leave extra space between the axes and the bars; set the corresponding scale’s align to zero or one, or disable rounding, if you don’t want a gap. The domain is sorted naturally (alphabetically) by default; set the domain explicitly to change the order. (See [Scales](../features/scales.md) for more.) For example, descending frequency:
+<!-- Band scales round by default, which can leave extra space between the axes and the bars; set the corresponding scale’s align to zero or one, or disable rounding, if you don’t want a gap. -->
 
+Ordinal domains are sorted naturally (lexicographically) by default. You can set the **domain** [scale option](../features/scales.md) explicitly to change the order, or use the **sort** [mark option](../features/marks.md#mark-options) to derive the scale domain from a channel. For example, to sort **x** by descending **y**:
+
+:::plot
 ```js
 Plot.plot({
-  x: {
-    domain: d3.sort(alphabet, d => -d.frequency).map(d => d.letter)
-  },
   y: {
-    grid: true
+    grid: true,
+    percent: true
   },
   marks: [
-    Plot.barY(alphabet, {x: "letter", y: "frequency"}),
+    Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}}),
     Plot.ruleY([0])
   ]
 })
 ```
+:::
 
 If you specify a single quantitative value, as above, the bar spans from zero to the given value; you can specify a [*min*, *max*] extent instead by specifying two values. For example, here is a historical timeline of civilizations, where each has a beginning and an end.
 
+:::plot
 ```js
 Plot.plot({
-  height: civilizations.length * 16,
-  marginLeft: 120,
+  marginLeft: 130,
+  axis: null,
   x: {
     axis: "top",
     grid: true,
-    tickFormat: formatYear
-  },
-  y: {
-    axis: null,
-    domain: d3.sort(civilizations, d => d.start).map(d => d.civilization)
+    tickFormat: (x) => x < 0 ? `${-x} BC` : `${x} AD`
   },
   marks: [
     Plot.barX(civilizations, {
       x1: "start",
       x2: "end",
-      y: "civilization"
+      y: "civilization",
+      sort: {y: "x1"}
     }),
     Plot.text(civilizations, {
       x: "start",
@@ -124,12 +112,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
-The above uses a text mark to label the bars directly instead of a *y*-axis. It also uses a custom tick format for the *x*-axis to show the calendar era.
-
-```js
-formatYear = year => year < 0 ? `${-year} BC` : `${year} AD`
-```
+:::tip
+The above uses a [text mark](../marks/text.md) to label the bars directly instead of a *y*-axis. It also uses a custom tick format for the *x*-axis to show the calendar era.
+:::
 
 For (horizontal) bar charts, consider setting the chart height based on the number of bars to allow the chart to expand or contract automatically to fit the dataset.
 
@@ -290,8 +277,6 @@ Bars are often used in conjunction with transforms: the [*group* transform](../t
 Bars support a *z* channel to control *z*-order. This is typically only needed to control occlusion when bars overlap. Bars also support the SVG *rx* and *ry* attributes for rounding, along with the standard SVG style attributes.
 
 ## Bar options
-
-Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#barydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#barxdata-options)). If one dimension is temporal and the other is quantitative, as in a time-series bar chart, use the [rect mark](./rect.md) with the *interval* option instead. There is usually one ordinal value associated with each bar, such as a name, and two quantitative values defining a lower and upper bound. The lower bound is often not specified explicitly because it defaults to zero as in a conventional bar chart.
 
 For the required channels, see [Plot.barX](#barxdata-options) and [Plot.barY](#barydata-options). The bar mark supports the [standard mark options](../features/marks.md), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 

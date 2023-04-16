@@ -39,6 +39,9 @@ Geonames
 https://www.geonames.org/about.html
 https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/
 
+## civilizations.csv
+unknown
+
 ## covid-ihme-projected-deaths.csv
 Institute for Health Metrics and Evaluation
 https://covid19.healthdata.org/
