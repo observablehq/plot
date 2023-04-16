@@ -57,7 +57,7 @@ Plot.plot({
     percent: true
   },
   marks: [
-    Plot.barY(alphabet, {x: "letter", y: "frequency", insetLeft: 0.5, insetRight: 0.5}),
+    Plot.barY(alphabet, {x: "letter", y: "frequency", inset: 0.5}),
     Plot.ruleY([0])
   ]
 })
