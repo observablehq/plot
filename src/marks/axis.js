@@ -2,8 +2,9 @@ import {extent, format, utcFormat} from "d3";
 import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
-import {range, valueof, arrayify, constant, keyword, identity, number} from "../options.js";
-import {isNoneish, isIterable, isTemporal, maybeRangeInterval, orderof} from "../options.js";
+import {arrayify, constant, identity, keyword, number, range, valueof} from "../options.js";
+import {isIterable, isNoneish, isTemporal, orderof} from "../options.js";
+import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
 import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -124,16 +125,9 @@ function axisKy(
         })
       : null,
     !isNoneish(fill) && label !== null
-      ? text([], {
-          fill,
-          fillOpacity,
-          ...options,
-          lineWidth: undefined,
-          textOverflow: undefined,
-          facet: "super",
-          x: null,
-          y: null,
-          initializer: function (data, facets, channels, scales, dimensions) {
+      ? text(
+          [],
+          labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
             const scale = scales[k];
             const {marginTop, marginRight, marginBottom, marginLeft} = (k === "y" && dimensions.inset) || dimensions;
             const cla = labelAnchor ?? (scale.bandwidth ? "center" : "top");
@@ -160,8 +154,8 @@ function axisKy(
                 }
               }
             };
-          }
-        })
+          })
+        )
       : null
   );
 }
@@ -233,16 +227,9 @@ function axisKx(
         })
       : null,
     !isNoneish(fill) && label !== null
-      ? text([], {
-          fill,
-          fillOpacity,
-          ...options,
-          lineWidth: undefined,
-          textOverflow: undefined,
-          facet: "super",
-          x: null,
-          y: null,
-          initializer: function (data, facets, channels, scales, dimensions) {
+      ? text(
+          [],
+          labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
             const scale = scales[k];
             const {marginTop, marginRight, marginBottom, marginLeft} = (k === "x" && dimensions.inset) || dimensions;
             const cla = labelAnchor ?? (scale.bandwidth ? "center" : "right");
@@ -266,8 +253,8 @@ function axisKx(
                 }
               }
             };
-          }
-        })
+          })
+        )
       : null
   );
 }
@@ -493,6 +480,30 @@ function gridDefaults({
   ...options
 }) {
   return {stroke, strokeOpacity, strokeWidth, ...options};
+}
+
+function labelOptions(
+  {fill, fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, monospace, pointerEvents, shapeRendering},
+  initializer
+) {
+  // Only propagate these options if constant.
+  [, fill] = maybeColorChannel(fill);
+  [, fillOpacity] = maybeNumberChannel(fillOpacity);
+  return {
+    facet: "super",
+    x: null,
+    y: null,
+    fill,
+    fillOpacity,
+    fontFamily,
+    fontSize,
+    fontStyle,
+    fontWeight,
+    monospace,
+    pointerEvents,
+    shapeRendering,
+    initializer
+  };
 }
 
 function axisMark(mark, k, ariaLabel, data, options, initialize) {
