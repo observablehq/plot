@@ -2290,6 +2290,11 @@ make-dir@^3.1.0:
   dependencies:
     semver "^6.0.0"
 
+mark.js@^8.11.1:
+  version "8.11.1"
+  resolved "https://registry.yarnpkg.com/mark.js/-/mark.js-8.11.1.tgz#180f1f9ebef8b0e638e4166ad52db879beb2ffc5"
+  integrity sha512-1I+1qpDt4idfgLQG+BNWmrqku+7/2bi5nLf4YwF8y8zXvmfiTBY3PV3ZibfrjBueCByROpuBjLLFCajqkgYoLQ==
+
 markdown-it-container@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/markdown-it-container/-/markdown-it-container-3.0.0.tgz#1d19b06040a020f9a827577bb7dbf67aa5de9a5b"
@@ -2428,7 +2433,7 @@ nanoid@3.3.3:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.3.tgz#fd8e8b7aa761fe807dba2d1b98fb7241bb724a25"
   integrity sha512-p1sjXuopFs0xg+fPASzQ28agW1oHD7xDsd9Xkf3T15H3c/cifrFHVwrh74PdoklAPi+i7MdRsE47vm2r6JoB+w==
 
-nanoid@^3.3.4:
+nanoid@^3.3.6:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.6.tgz#443380c856d6e9f9824267d960b4236ad583ea4c"
   integrity sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==
@@ -2584,11 +2589,11 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.3.1:
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
 postcss@^8.1.10, postcss@^8.4.21:
-  version "8.4.21"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.21.tgz#c639b719a57efc3187b13a1d765675485f4134f4"
-  integrity sha512-tP7u/Sn/dVxK2NnruI4H9BG+x+Wxz6oeZ1cJ8P6G/PZY0IKk4k/63TDsQf2kQq3+qoJeLm2kIBUNlZe3zgb4Zg==
+  version "8.4.22"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.22.tgz#c29e6776b60ab3af602d4b513d5bd2ff9aa85dc1"
+  integrity sha512-XseknLAfRHzVWjCEtdviapiBtfLdgyzExD50Rg2ePaucEesyh8Wv4VPdW0nbyDa1ydbrAxV19jvMT4+LFmcNUA==
   dependencies:
-    nanoid "^3.3.4"
+    nanoid "^3.3.6"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
@@ -2707,9 +2712,9 @@ robust-predicates@^3.0.0:
   integrity sha512-ndEIpszUHiG4HtDsQLeIuMvRsDnn8c8rYStabochtUeCvfuvNptb5TUbVD68LRAILPX7p9nqQGh4xJgn3EHS/g==
 
 rollup@^3.18.0, rollup@^3.7.0:
-  version "3.20.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.20.2.tgz#f798c600317f216de2e4ad9f4d9ab30a89b690ff"
-  integrity sha512-3zwkBQl7Ai7MFYQE0y1MeQ15+9jsi7XxfrqwTb/9EK8D9C9+//EBR4M+CuA1KODRaNbFez/lWxA5vhEGZp4MUg==
+  version "3.20.3"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.20.3.tgz#932754ecadd5a03ed98e827d6ffd060936a7c986"
+  integrity sha512-u6/O1X42CAZ79rbk+smyONJQLTpwFBL7InpRa/AVWia5lq60w5J/PUsVHCOgSolN0X9R2GjQ41fZm3x28Hk1lA==
   optionalDependencies:
     fsevents "~2.3.2"
 
@@ -3050,10 +3055,10 @@ vite@^4.0.0, vite@^4.2.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitepress@^1.0.0-alpha.69:
-  version "1.0.0-alpha.69"
-  resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-1.0.0-alpha.69.tgz#c2d5d2be6ff4aec53d1b9c3304eff85fd868bab1"
-  integrity sha512-d7Vz+S/1i/7szVUSOHJf12APtoGlHXIJXzDvXLChhlE000TVzWoYX6rUAchjJzfxdFjng3Eo96ZkPs7OJxDjMg==
+vitepress@^1.0.0-alpha.71:
+  version "1.0.0-alpha.71"
+  resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-1.0.0-alpha.71.tgz#eea397bd7a66208e3079672844e388e63a6e2b0d"
+  integrity sha512-UkmDuNO+paGq0ba5WVhwasR1BCQ0owlPStnjtCRd/cfzXB+VBAiZFK9pglVQaf/tDBFQOuHZkrkfgp5ka69hIg==
   dependencies:
     "@docsearch/css" "^3.3.3"
     "@docsearch/js" "^3.3.3"
@@ -3061,6 +3066,7 @@ vitepress@^1.0.0-alpha.69:
     "@vue/devtools-api" "^6.5.0"
     "@vueuse/core" "^10.0.2"
     body-scroll-lock "4.0.0-beta.0"
+    mark.js "^8.11.1"
     minisearch "^6.0.1"
     shiki "^0.14.1"
     vite "^4.2.1"
