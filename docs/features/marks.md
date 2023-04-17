@@ -323,7 +323,7 @@ Plot.barX({length: 7}, {
 :::
 
 :::info
-This example uses parallel arrays, an alternative method of specifying [channels](#marks-have-channels). There are seven (7) bars in total. The first element in each array gives the **x** and **y** values for the first bar (4 and 0); the second element gives the values for the second bar (3 and 1); and so on. This is convenient here for supplying hard-coded values, but more commonly channel values are derived from data.
+This example uses parallel arrays, an alternative method of specifying [channels](#marks-have-channels). There are seven (7) bars in total. The first element in each array gives the **x** and **y** values for the first bar (8 and 0); the second element gives the values for the second bar (6 and 1); and so on. This is convenient here for supplying hard-coded values, but more commonly channel values are derived from data.
 :::
 
 …produces the same result as this…
