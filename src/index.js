@@ -26,7 +26,7 @@ export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {tree, cluster} from "./marks/tree.js";
 export {Vector, vector, vectorX, vectorY, spike} from "./marks/vector.js";
-export {valueof, column, identity} from "./options.js";
+export {valueof, column, identity, indexOf} from "./options.js";
 export {filter, reverse, sort, shuffle, basic as transform, initializer} from "./transforms/basic.js";
 export {bin, binX, binY} from "./transforms/bin.js";
 export {centroid, geoCentroid} from "./transforms/centroid.js";

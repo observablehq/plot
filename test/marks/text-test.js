@@ -17,11 +17,7 @@ it("text() has the expected defaults", () => {
         c.value
       )
     ),
-    [
-      [1, 3],
-      [2, 4],
-      [0, 1]
-    ]
+    [[1, 3], [2, 4], Uint32Array.of(0, 1)]
   );
   assert.deepStrictEqual(
     Object.values(text.channels).map((c) => c.scale),
