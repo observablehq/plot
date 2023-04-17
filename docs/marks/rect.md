@@ -53,7 +53,7 @@ More commonly, the rect mark is used to produce histograms or heatmaps of quanti
 
 :::plot
 ```js
-Plot.rectY(bins, {x1: "x0", x2: "x1", y: "length"}).plot()
+Plot.rectY(bins, {x1: "x0", x2: "x1", y: "length"}).plot({round: true})
 ```
 :::
 
@@ -92,9 +92,11 @@ For overlapping rects, you can opt-out of the implicit stack transform by specif
 :::plot defer
 ```js
 Plot.plot({
+  style: "isolation: isolate;",
+  round: true,
   color: {legend: true},
   marks: [
-    Plot.rectY(olympians, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "multiply"})),
+    Plot.rectY(olympians, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "difference"})),
     Plot.ruleY([0])
   ]
 })
