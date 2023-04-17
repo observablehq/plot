@@ -1,7 +1,31 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import {shallowRef, onMounted} from "vue";
+import alphabet from "../data/alphabet.ts";
+import cars from "../data/cars.ts";
+
+const aapl = shallowRef([]);
+const diamonds = shallowRef([]);
+const gistemp = shallowRef([
+  {Date: new Date("1880-01-01"), Anomaly: -0.78},
+  {Date: new Date("2016-12-01"), Anomaly: 1.35}
+]);
+
+onMounted(() => {
+  d3.csv("../data/aapl.csv", d3.autoType).then((data) => (aapl.value = data));
+  d3.csv("../data/diamonds.csv", d3.autoType).then((data) => (diamonds.value = data));
+  d3.csv("../data/gistemp.csv", d3.autoType).then((data) => (gistemp.value = data));
+});
+
+</script>
+
 # Dot mark
 
-The **dot** mark represents data as circles, typically positioned in *x* and *y* quantitative dimensions, as in a scatterplot. For example, the scatterplot below shows the roughly-inverse relationship in a dataset of cars between power (in horsepower) in *y*↑ and fuel efficiency (in miles per gallon) in *x*→.
+The **dot mark** draws circles or other symbols, typically positioned in **x** and **y** quantitative dimensions, as in a scatterplot. For example, the scatterplot below shows the roughly-inverse relationship in a dataset of cars between power (in horsepower) in *y*↑ and fuel efficiency (in miles per gallon) in *x*→.
 
+:::plot
 ```js
 Plot.plot({
   grid: true,
@@ -10,30 +34,34 @@ Plot.plot({
   ]
 })
 ```
+:::
 
-Using a functional definition of *x*, we can instead plot the roughly-linear relationship when fuel efficiency is represented as gallons per 100 miles (similar to the liters per 100 km metric used in countries that have adopted the metric system). Note that this data set contains nulls; these are converted to NaN to prevent coercion to zero.
+Using a functional definition of **x**, we can instead plot the roughly-linear relationship when fuel efficiency is represented as gallons per 100 miles, similar to the liters per 100 km metric used in countries that have adopted the metric system.
 
+:::plot
 ```js
 Plot.plot({
   grid: true,
   inset: 10,
-  x: {
-    label: "Fuel consumption (gallons per 100 miles) →"
-  },
-  y: {
-    label: "↑ Horsepower"
-  },
+  x: {label: "Fuel consumption (gallons per 100 miles) →"},
+  y: {label: "↑ Horsepower"},
   marks: [
     Plot.dot(cars, {
-      x: d => 100 / (d["economy (mpg)"] ?? NaN),
+      x: (d) => 100 / (d["economy (mpg)"] ?? NaN),
       y: "power (hp)"
     })
   ]
 })
 ```
+:::
 
-Dots support *stroke* and *fill* channels in addition to position along *x* and *y*. Below, color is used as a redundant encoding with *y*-position to emphasize the rising trend in average global surface temperatures. A diverging color scale assigns values below the mean blue and above the mean red. Plot can optionally generate the associated legend.
+:::info
+This data contains nulls; nullish coalescing (`??`) to NaN prevents coercion to zero.
+:::
 
+Dots support **stroke** and **fill** channels in addition to position along **x** and **y**. Below, color is used as a redundant encoding to emphasize the rising trend in average global surface temperatures. A *diverging* color scale assigns values below zero blue and above zero red.
+
+:::plot defer
 ```js
 Plot.plot({
   y: {
@@ -42,9 +70,7 @@ Plot.plot({
     label: "↑ Surface temperature anomaly (°F)"
   },
   color: {
-    type: "diverging",
-    scheme: "BuRd",
-    legend: true
+    scheme: "BuRd"
   },
   marks: [
     Plot.ruleY([0]),
@@ -52,31 +78,34 @@ Plot.plot({
   ]
 })
 ```
+:::
 
-Dots also support an *r* channel allowing the size of dots to represent data. Below, each dot represents a trading day; the *x*-position represents the day’s change, while the *y*-position and area (*r*) represent the day’s trading volume. As you might expect, days with higher volatility have higher trading volume.
+Dots also support an **r** channel allowing the size of dots to represent data. Below, each dot represents a trading day; the *x*-position represents the day’s change, while the *y*-position and area (**r**) represent the day’s trading volume. As you might expect, days with higher volatility have higher trading volume.
 
+:::plot defer
 ```js
 Plot.plot({
   grid: true,
   x: {
     label: "Daily change (%) →",
     tickFormat: "+f",
-    transform: d => d * 100
+    percent: true
   },
   y: {
-    label: "↑ Daily trading volume",
     type: "log",
-    tickFormat: "~s"
+    label: "↑ Daily trading volume"
   },
   marks: [
     Plot.ruleX([0]),
-    Plot.dot(aapl, {x: d => (d.Close - d.Open) / d.Open, y: "Volume", r: "Volume"})
+    Plot.dot(aapl, {x: (d) => (d.Close - d.Open) / d.Open, y: "Volume", r: "Volume"})
   ]
 })
 ```
+:::
 
-With the [*bin* transform](../transforms/bin.md), sized dots can also be used as an alternative to a [rect-based](./rect.md) heatmap to show a two-dimensional distribution.
+With the [bin transform](../transforms/bin.md), sized dots can also be used as an alternative to a [rect-based](./rect.md) heatmap to show a two-dimensional distribution.
 
+:::plot defer
 ```js
 Plot.plot({
   height: 640,
@@ -95,9 +124,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 While dots are typically positioned in two dimensions (*x* and *y*), one-dimensional dots (only *x* or only *y*) are also supported. Below, dot area is used to represent the frequency of letters in the English language as a compact alternative to a bar chart.
 
+:::plot
 ```js
 Plot.plot({
   marks: [
@@ -105,6 +136,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 Dots can also be used to mark observations in low-density data, so it’s easy to distinguish what was observed from what is interpolated. For example, the connected scatterplot below plots how the relationship between annual per capita driving and the price of gasoline has changed over time. (This recreates Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009.)
 
@@ -120,7 +152,7 @@ Plot.plot({
   marks: [
     Plot.line(driving, {x: "miles", y: "gas", curve: "catmull-rom"}),
     Plot.dot(driving, {x: "miles", y: "gas", fill: "currentColor"}),
-    Plot.text(driving, {filter: d => d.year % 5 === 0, x: "miles", y: "gas", text: "year", dy: -8})
+    Plot.text(driving, {filter: (d) => d.year % 5 === 0, x: "miles", y: "gas", text: "year", dy: -8})
   ]
 })
 ```
@@ -135,7 +167,7 @@ Plot.plot({
   },
   y: {
     label: "↑ Frequency (%)",
-    transform: d => d * 100
+    transform: (d) => d * 100
   },
   marks: [
     Plot.ruleY([0]),
@@ -151,7 +183,7 @@ Sometimes, a scatterplot may have an ordinal dimension on either *x* and *y*, as
 stateage = {
   const data = await FileAttachment("us-population-state-age.csv").csv({typed: true});
   const ages = data.columns.slice(1); // convert wide data to tidy data
-  return Object.assign(ages.flatMap(age => data.map(d => ({state: d.name, age, population: d[age]}))), {ages});
+  return Object.assign(ages.flatMap(age => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
 }
 ```
 
@@ -164,7 +196,7 @@ stateage = {
     x: {
       axis: "top",
       label: "Percent (%) →",
-      transform: d => d * 100
+      transform: (d) => d * 100
     },
     y: {
       axis: null
@@ -198,7 +230,7 @@ As another example of a scatterplot with an ordinal dimension, we can plot age g
     },
     y: {
       label: "↑ Percent of population (%)",
-      transform: d => d * 100
+      transform: (d) => d * 100
     },
     marks: [
       Plot.ruleY([0]),
@@ -212,8 +244,6 @@ As another example of a scatterplot with an ordinal dimension, we can plot age g
 Another visualization technique supported by the dot mark is the [quantile-quantile (QQ) plot](https://observablehq.com/d/6bb4330bca6eba2b); this is used to compare univariate two distributions.
 
 ## Dot options
-
-Draws circles, or other symbols, as in a scatterplot.
 
 In addition to the [standard mark options](#marks), the following optional channels are supported:
 
@@ -251,7 +281,7 @@ Returns a new dot with the given *data* and *options*. If neither the **x** nor 
 ## dotX(*data*, *options*)
 
 ```js
-Plot.dotX(cars.map(d => d["economy (mpg)"]))
+Plot.dotX(cars.map((d) => d["economy (mpg)"]))
 ```
 
 Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
@@ -261,7 +291,7 @@ If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*in
 ## dotY(*data*, *options*)
 
 ```js
-Plot.dotY(cars.map(d => d["economy (mpg)"]))
+Plot.dotY(cars.map((d) => d["economy (mpg)"]))
 ```
 
 Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
