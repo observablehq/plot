@@ -38,7 +38,7 @@ For a time-series bar chart, where *x* is temporal and *y* is quantitative or *v
 
 <!-- The bar mark should generally not be used if the independent dimension (*e.g.*, *x* for barY) is temporal rather than ordinal. In this case, you should use the rect mark with the [interval transform](../transforms/interval.md). -->
 
-Above, since **y** was specified instead of **y1** and **y2**, the bar spans from zero to the given *y* value; in fact, barY applies an implicit [stackY transform](../transforms/stack.md) if you only specify a single quantitative value, and likewise barX implicitly applies stackX. The stacked horizontal bar chart below draws one bar (of unit width in **x**) per penguin, colored and sorted by the penguin’s body mass, and grouped by species along **y**.
+Above, since **y** was specified instead of **y1** and **y2**, the bar spans from zero to the given *y* value: if you only specify a single quantitative value, barY applies an implicit [stackY transform](../transforms/stack.md) and likewise barX implicitly applies stackX. The stacked horizontal bar chart below draws one bar (of unit width in **x**) per penguin, colored and sorted by the penguin’s body mass, and grouped by species along **y**.
 
 :::plot defer
 ```js
