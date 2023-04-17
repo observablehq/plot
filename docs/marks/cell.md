@@ -88,7 +88,7 @@ Plot.plot({
 ```
 :::
 
-A one-dimensional cell is produced by specifying only **x** or only **y**. The plot below collapses the history of *The Simpsons* to a single line. Note that the *x*-ticks must be specified explicitly to avoid occlusion: by default, every cell would have its own tick.
+A one-dimensional cell is produced by specifying only **x** or only **y**. The plot below collapses the history of *The Simpsons* to a single line.
 
 :::plot defer
 ```js
@@ -111,14 +111,14 @@ Plot.plot({
 :::
 
 :::info
-Here a tick is drawn for the first episode of each season; the *x*-scale domain is the unique id of all episodes. To format the tick label, we lookup the row corresponding to the tick’s episode identifier and return the *season* field.
+Here the *x*-scale domain contains the *id* of every episode. An ordinal scale by default draws a tick for every domain value; setting **ticks** to just the first episode of each season prevents overlapping labels. The **tickFormat** function finds the row corresponding to the episode id and returns the corresponding *season* number.
 :::
 
 One-dimensional cells can be a compact alternative to a bar chart, where the *fill* color of the cell replaces the length of the bar. However, position is a more salient encoding and should be preferred to color if space is available.
 
 :::plot
 ```js
-Plot.cell(alphabet, {x: "letter", fill: "frequency"}).plot({color: {scheme: "YlGnBu"}})
+Plot.cell(alphabet, {x: "letter", fill: "frequency"}).plot()
 ```
 :::
 
