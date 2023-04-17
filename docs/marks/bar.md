@@ -152,7 +152,7 @@ Plot
 :::
 
 :::tip
-You can also make a time-series bar chart with a [rect mark](./rect.md), possibly with the [bin transform](../transforms/bin.md) to bin observations.
+You can also make a time-series bar chart with a [rect mark](./rect.md), possibly with the [bin transform](../transforms/bin.md) to bin observations at regular intervals.
 :::
 
 A bar’s ordinal dimension is optional; if missing, the bar spans the chart along this dimension. Such bars typically also have a color encoding. For example, here are [warming stripes](https://showyourstripes.info/) showing the increase in average temperature globally over the last 172 years.
@@ -213,7 +213,7 @@ Plot.plot({
 
 ## Bar options
 
-For the required channels, see [barX](#barx-data-options) and [barY](#bary-data-options). The bar mark supports the [standard mark options](../features/marks.md), including insets and rounded corners. The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
+For required channels, see [barX](#barx-data-options) and [barY](#bary-data-options). The bar mark supports the [standard mark options](../features/marks.md), including insets and rounded corners. The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
 ## barX(*data*, *options*)
 
@@ -221,7 +221,7 @@ For the required channels, see [barX](#barx-data-options) and [barY](#bary-data-
 Plot.barX(alphabet, {y: "letter", x: "frequency"})
 ```
 
-Returns a new horizontal bar↔︎ with the given *data* and *options*. The following channels are required:
+Returns a new horizontal→ bar with the given *data* and *options*. The following channels are required:
 
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
@@ -240,7 +240,7 @@ If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be der
 Plot.barY(alphabet, {x: "letter", y: "frequency"})
 ```
 
-Returns a new vertical bar↕︎ with the given *data* and *options*. The following channels are required:
+Returns a new vertical↑ bar with the given *data* and *options*. The following channels are required:
 
 * **y1** - the starting vertical position; bound to the *y* scale
 * **y2** - the ending vertical position; bound to the *y* scale
