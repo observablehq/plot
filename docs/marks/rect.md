@@ -53,7 +53,7 @@ More commonly, the rect mark is used to produce histograms or heatmaps of quanti
 
 :::plot
 ```js
-Plot.rectY(bins, {x1: "x0", x2: "x1", y2: "length"}).plot()
+Plot.rectY(bins, {x1: "x0", x2: "x1", y: "length"}).plot()
 ```
 :::
 
@@ -62,7 +62,7 @@ bins = d3.bin()(d3.range(1000).map(d3.randomNormal()))
 ```
 
 :::info
-Note that d3.bin represents bins as {*x0*, *x1*, *length*} objects, whereas the rect mark expects the *x* extent to be specified as **x1** and **x2**.
+d3.bin uses *x0* and *x1* to represent the lower and upper bound of each bin, whereas the rect mark uses **x1** and **x2**. The *length* field is the count of values in each bin, which is encoded as **y**.
 :::
 
 Most often, the rect mark is paired with the [bin transform](../transforms/bin.md) to bin quantitative values as part of the plot itself. As an added bonus, this sets default [inset options](../features/marks.md#mark-options) for a 1px gap separating adjacent rects, improving readability.
