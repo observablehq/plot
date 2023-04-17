@@ -1,65 +1,132 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import * as topojson from "topojson-client";
+import {computed, shallowRef, onMounted} from "vue";
+
+const diamonds = shallowRef([]);
+const seattle = shallowRef([]);
+const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
+const povcalnet = shallowRef([]);
+const us = shallowRef(null);
+const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
+const countyboxes = computed(() => counties.value.map((d) => d3.geoBounds(d).flat()));
+const bins = d3.bin()(d3.range(1000).map(d3.randomNormal.source(d3.randomLcg(42))()));
+
+onMounted(() => {
+  d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
+  d3.csv("../data/diamonds.csv", d3.autoType).then((data) => (diamonds.value = data));
+  d3.csv("../data/seattle-weather.csv", d3.autoType).then((data) => (seattle.value = data));
+  d3.csv("../data/povcalnet.csv", d3.autoType).then((data) => (povcalnet.value = data));
+  d3.json("../data/us-counties-10m.json").then((data) => (us.value = data));
+});
+
+</script>
+
 # Rect mark
 
 :::tip
 The rect mark is one of several marks in Plot for drawing rectangles; it should be used when both dimensions are quantitative. See also [bar](./bar.md) and [cell](./cell.md).
 :::
 
-The **rect** mark draws a rectangular, axis-aligned region defined by the channels *x1*, *y1*, *x2*, and *y2*. It is most often used in conjunction with the [bin transform](../transforms/bin.md) to produce a histogram. The **rectX** mark is shorthand for *x1* = zero, *x2* = *x*, while the **rectY** mark is shorthand for *y1* = zero, *y2* = *y*. For example, below is a histogram of (log) daily trade volume for Apple stock.
+The **rect mark** draws axis-aligned rectangles defined by **x1**, **y1**, **x2**, and **y2**. For example, here we display geographic bounding boxes of U.S. counties represented as [*x1*, *y1*, *x2*, *y2*] tuples, where *x1* & *x2* are degrees longitude and *y1* & *y2* are degrees latitude.
 
+:::plot defer
 ```js
 Plot.plot({
-  x: {
-    round: true,
-    label: "Trade volume (log₁₀) →"
-  },
-  y: {
-    grid: true
-  },
+  projection: "albers-usa",
   marks: [
-    Plot.rectY(aapl, Plot.binX({y: "count"}, {x: d => Math.log10(d.Volume)})),
+    Plot.rect(countyboxes, {
+      x1: "0", // or ([x1]) => x1
+      y1: "1", // or ([, y1]) => y1
+      x2: "2", // or ([,, x2]) => x2
+      y2: "3", // or ([,,, y2]) => y2
+      stroke: "currentColor"
+    })
+  ]
+})
+```
+:::
+
+More commonly, the rect mark is used to produce histograms or heatmaps of quantitative data. For example, given some binned observations computed by [d3.bin](https://github.com/d3/d3-array/blob/main/README.md#bins), we can produce a basic histogram with [rectY](#recty-data-options) as follows:
+
+:::plot
+```js
+Plot.rectY(bins, {x1: "x0", x2: "x1", y2: "length"}).plot()
+```
+:::
+
+```js
+bins = d3.bin()(d3.range(1000).map(d3.randomNormal()))
+```
+
+:::info
+Note that d3.bin represents bins as {*x0*, *x1*, *length*} objects, whereas the rect mark expects the *x* extent to be specified as **x1** and **x2**.
+:::
+
+Most often, the rect mark is paired with the [bin transform](../transforms/bin.md) to bin quantitative values as part of the plot itself. As an added bonus, this sets default [inset options](../features/marks.md#mark-options) for a 1px gap separating adjacent rects, improving readability.
+
+:::plot
+```js
+Plot.rectY(d3.range(1000).map(d3.randomNormal()), Plot.binX()).plot()
+```
+:::
+
+Like the [bar mark](./bar.md), the rect mark has two convenience constructors for common orientations: [rectX](#rectx-data-options) is for horizontal→ rects and applies an implicit [stackX transform](../transforms/stack.md#stackx-stack-options), while [rectY](#recty-data-options) is for vertical↑ rects and applies an implicit [stackY transform](../transforms/stack.md#stacky-stack-options).
+
+:::plot defer
+```js
+Plot.plot({
+  color: {legend: true},
+  marks: [
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})),
     Plot.ruleY([0])
   ]
 })
 ```
+:::
 
-The rect mark is closely related to the [bar mark](./bar.md). Both generate a rectangle; the difference is in how the coordinates are specified. For a bar, one side is a quantitative interval (*e.g.*, from 0 to a number of units sold) while the other is an ordinal or categorical value (*e.g.*, a fruit name); whereas for a rect, both sides are quantitative intervals. Hence a bar is used for a bar chart but a rect is needed for a histogram.
+For overlapping rects, you can opt-out of the implicit stack transform by specifying either **x1** or **x2** for rectX, and likewise either **y1** or **y2** for rectY.
 
-As another example, below we recreate a [chart by Max Roser](https://ourworldindata.org/poverty-minimum-growth-needed) that visualizes global poverty. Each rect here represents a country: *x* encodes the country’s population, while *y* encodes the proportion of the country’s population living in poverty; hence the rect *area* encodes the number of people living in poverty. Rects are [stacked](../transforms/stack.md) along *x* in order of descending *y*.
-
+:::plot defer
 ```js
 Plot.plot({
-  width: 928,
-  x: {
-    label: "Population (millions) →"
-  },
-  y: {
-    label: "↑ Proportion living on less than $30 per day (%)",
-    transform: d => d * 100,
-    grid: true
-  },
+  color: {legend: true},
   marks: [
-    Plot.rectY(povcalnet, Plot.stackX({
-      filter: d => ["N", "A"].includes(d.CoverageType),
-      x: "ReqYearPopulation",
-      order: "HeadCount",
-      reverse: true,
-      y2: "HeadCount", // y2 to avoid stacking by y
-      title: d => `${d.CountryName}\n${(d.HeadCount * 100).toFixed(1)}%`,
-      insetLeft: 0.2,
-      insetRight: 0.2
-    })),
+    Plot.rectY(olympians, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "multiply"})),
     Plot.ruleY([0])
   ]
 })
 ```
+:::
 
-rectX and rectY are suitable for one-dimensional histograms, while rect is for two-dimensional histograms, also known as heatmaps, where density is represented by the *fill* color encoding. (A similar plot can be made with [dots](./dot.md), if you’d prefer a size encoding. If both *x* and *y* are ordinal dimensions, use a [cell](./cell.md) instead; and if one is an ordinal dimension and the other is quantitative, use a [bar](./bar.md).)
+:::warning
+The **mixBlendMode** option can be very slow to render if there are many elements, but is useful for avoiding occlusion. More than two overlapping histograms may also be hard to read.
+:::
 
+The rect mark and bin transform naturally support [faceting](../features/facets.md), too.
+
+:::plot defer
+```js
+Plot.plot({
+  marks: [
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fy: "sex"})),
+    Plot.ruleY([0])
+  ]
+})
+```
+:::
+
+The [rect constructor](#rect-data-options), again with the [bin transform](../transforms/bin.md), can produce two-dimensional histograms (heatmaps) where density is represented by the **fill** color encoding.
+
+:::plot defer
 ```js
 Plot.plot({
   height: 640,
+  marginLeft: 60,
   color: {
-    scheme: "bupu",
+    scheme: "BuPu",
     type: "symlog"
   },
   marks: [
@@ -67,44 +134,62 @@ Plot.plot({
   ]
 })
 ```
+:::
 
-The rect mark supports four options for insetting the sides of the rect: *insetTop*, *insetRight*, *insetBottom*, and *insetLeft*. (The bin transform automatically applies a half-pixel inset on the relevant sides.) The *inset* option is shorthand for setting all four sides to the same value. Compare the heatmap below to the one above.
+:::tip
+A similar plot can be made with the [dot mark](./dot.md), if you’d prefer a size encoding.
+:::
 
+Below we recreate an uncommon [chart by Max Roser](https://ourworldindata.org/poverty-minimum-growth-needed) that visualizes global poverty. Each rect represents a country: *x* encodes the country’s population, while *y* encodes the proportion of that population living in poverty; hence area represents the number of people living in poverty. Rects are [stacked](../transforms/stack.md) along *x* in order of descending *y*.
+
+:::plot defer
 ```js
 Plot.plot({
-  height: 640,
-  round: true,
-  color: {
-    scheme: "bupu",
-    type: "symlog"
-  },
+  x: {label: "Population (millions) →"},
+  y: {percent: true, label: "↑ Proportion living on less than $30 per day (%)"},
   marks: [
-    Plot.rect(diamonds, Plot.bin({fill: "count"}, {x: "carat", y: "price", thresholds: 100, inset: 0}))
-  ]
-})
-```
-
-The rect mark exposes SVG’s [*rx* and *ry* attributes](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners. The rounded corners will get squished if the rects are too small, which may not be desirable.
-
-```js
-Plot.plot({
-  x: {
-    round: true,
-    label: "Trade volume (log₁₀) →"
-  },
-  y: {
-    grid: true
-  },
-  marks: [
-    Plot.rectY(aapl, Plot.binX({y: "count"}, {rx: 8, x: d => Math.log10(d.Volume)})),
+    Plot.rectY(povcalnet, Plot.stackX({
+      filter: (d) => ["N", "A"].includes(d.CoverageType),
+      x: "ReqYearPopulation",
+      order: "HeadCount",
+      reverse: true,
+      y2: "HeadCount", // y2 to avoid stacking by y
+      title: (d) => `${d.CountryName}\n${(d.HeadCount * 100).toFixed(1)}%`,
+      insetLeft: 0.2,
+      insetRight: 0.2
+    })),
     Plot.ruleY([0])
   ]
 })
 ```
+:::
+
+The [interval transform](../transforms/interval.md) may be used to convert a single value in *x* or *y* (or both) into an extent. For example, the chart below shows the observed daily maximum temperature in Seattle for the year 2015. The day-in-month and month-in-year numbers are expanded to unit intervals by setting the **interval** option to 1.
+
+:::plot defer
+```js
+Plot.plot({
+  aspectRatio: 1,
+  y: {ticks: 12, tickFormat: Plot.formatMonth("en", "narrow")},
+  marks: [
+    Plot.rect(seattle, {
+      filter: (d) => d.date.getUTCFullYear() === 2015,
+      x: (d) => d.date.getUTCDate(),
+      y: (d) => d.date.getUTCMonth(),
+      interval: 1,
+      fill: "temp_max",
+      inset: 0.5
+    })
+  ]
+})
+```
+:::
+
+:::tip
+A similar chart could be made with the [cell mark](./cell.md) using ordinal *x* and *y* scales instead, or with the [dot mark](./dot.md) as a scatterplot.
+:::
 
 ## Rect options
-
-Draws rectangles where both *x* and *y* are quantitative as in a histogram. Both pairs of quantitative values represent lower and upper bounds, and often one of the lower bounds is implicitly zero. If one of the dimensions is ordinal, use a [bar](#bar) instead; if both dimensions are ordinal, use a [cell](#cell) instead. Rects are often used in conjunction with a [bin transform](#bin).
 
 The following channels are optional:
 
@@ -115,9 +200,9 @@ The following channels are optional:
 
 Typically either **x1** and **x2** are specified, or **y1** and **y2**, or both.
 
-If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. The same is true for *y*, *y1*, and *y2*, respectively. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*. The interval may be specified either as as {x, interval} or x: {value, interval} to apply different intervals to x and y.
+If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each **x** to produce **x1**, and *interval*.offset(*x1*) is invoked for each **x1** to produce **x2**. The same is true for **y**, **y1**, and **y2**, respectively. If the interval is specified as a number *n*, **x1** and **x2** are taken as the two consecutive multiples of *n* that bracket **x**.
 
-The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
+The rect mark supports the [standard mark options](../features/marks.md#mark-options), including insets and rounded corners. The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
 ## rect(*data*, *options*)
 
@@ -133,7 +218,7 @@ Returns a new rect with the given *data* and *options*.
 Plot.rectX(olympians, Plot.binY({x: "count"}, {y: "weight"}))
 ```
 
-Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](#plotstackxstack-options); this is the typical configuration for a histogram with rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
+Equivalent to [rect](#rect-data-options), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](../transforms/stack.md); this is the typical configuration for a histogram with horizontal→ rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
 
 ## rectY(*data*, *options*)
 
@@ -141,4 +226,4 @@ Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **x
 Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
-Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for a histogram with rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
+Equivalent to [rect](#rect-data-options), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](../transforms/stack.md); this is the typical configuration for a histogram with vertical↑ rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.

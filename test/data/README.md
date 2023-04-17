@@ -134,6 +134,10 @@ unknown
 Dr. Kristen Gorman
 https://github.com/allisonhorst/palmerpenguins
 
+## povcalnet.csv
+Our World in Data
+https://ourworldindata.org/poverty-minimum-growth-needed
+
 ## seattle-weather.csv
 NOAA/Vega
 https://github.com/vega/vega-datasets/blob/master/scripts/weather.py
