@@ -1,106 +1,101 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import {shallowRef, onMounted} from "vue";
+import alphabet from "../data/alphabet.ts";
+import hadcrut from "../data/hadcrut.ts";
+
+const dji = shallowRef([]);
+const seattle = shallowRef([]);
+const simpsons = shallowRef(d3.cross(d3.range(1, 29), d3.range(1, 26), (x, y) => ({season: x, number_in_season: y})));
+
+onMounted(() => {
+  d3.csv("../data/dji.csv", d3.autoType).then((data) => (dji.value = data));
+  d3.csv("../data/seattle-weather.csv", d3.autoType).then((data) => (seattle.value = data));
+  d3.csv("../data/simpsons.csv", d3.autoType).then((data) => (simpsons.value = data));
+});
+
+</script>
+
 # Cell mark
 
 :::tip
 The cell mark is one of several marks in Plot for drawing rectangles; it should be used when both dimensions are ordinal. See also [bar](./bar.md) and [rect](./rect.md).
 :::
 
-The **cell** mark is positioned in *x*, *y*, or both, where *x* and *y* are ordinal (or categorical) rather than quantitative. Hence, the plot’s *x* and *y* scales are [band scales](../features/scales.md). Cells typically also have a *fill* color encoding. For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high ratings are dark green, while low ratings are dark pink. (The worst episode ever — cue Comic Book Guy — is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga) featuring Lady Gaga.)
+The **cell mark** draws rectangles positioned in two ordinal dimensions. Hence, the plot’s *x* and *y* scales are [band scales](../features/scales.md). Cells typically also have a **fill** color encoding.
 
+For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high IMDb ratings are dark green, while low ratings are dark pink. (The worst episode ever—cue Comic Book Guy—is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga).)
+
+:::plot defer
 ```js
 Plot.plot({
-  height: 640,
-  padding: 0.05,
+  padding: 0,
   grid: true,
-  x: {
-    axis: "top",
-    label: "Season"
-  },
-  y: {
-    label: "Episode"
-  },
-  color: {
-    type: "linear",
-    scheme: "PiYG"
-  },
+  x: {axis: "top", label: "Season"},
+  y: {label: "Episode"},
+  color: {type: "linear", scheme: "PiYG"},
   marks: [
-    Plot.cell(simpsons, {
-      x: "season",
-      y: "number_in_season",
-      fill: "imdb_rating",
-      // rx: 20 // uncomment for circles
-    }),
-    Plot.text(simpsons, {
-      x: "season",
-      y: "number_in_season",
-      text: d => d.imdb_rating?.toFixed(1),
-      title: "title"
-    })
+    Plot.cell(simpsons, {x: "season", y: "number_in_season", fill: "imdb_rating", inset: 0.5}),
+    Plot.text(simpsons, {x: "season", y: "number_in_season", text: (d) => d.imdb_rating?.toFixed(1), fill: "black", title: "title"})
   ]
 })
 ```
+:::
 
-With [faceting](../features/facets.md), we can produce a calendar of multiple years, where *x* represents weeks and *y* represents days. Below shows almost twenty years of daily changes of the Dow Jones Industrial Average.
+With [faceting](../features/facets.md), we can produce a calendar of multiple years, where **x** represents week-of-year and **y** represents day-of-week. Below shows almost twenty years of daily changes of the Dow Jones Industrial Average.
 
+:::plot defer
 ```js
 Plot.plot({
-  height: 1400,
-  x: {
-    axis: null,
-    padding: 0,
-  },
-  y: {
-    padding: 0,
-    tickFormat: Plot.formatWeekday("en", "narrow"),
-    tickSize: 0
-  },
-  fy: {
-    reverse: true
-  },
-  color: {
-    type: "diverging",
-    scheme: "PiYG"
-  },
+  padding: 0,
+  x: {axis: null},
+  y: {tickFormat: Plot.formatWeekday("en", "narrow"), tickSize: 0},
+  fy: {tickFormat: ""},
+  color: {scheme: "PiYG"},
   marks: [
-    Plot.cell(DJI, {
-      x: d => d3.utcWeek.count(d3.utcYear(d.Date), d.Date),
-      y: d => d.Date.getUTCDay(),
-      fy: d => d.Date.getUTCFullYear(),
-      fill: (d, i) => i > 0 ? (d.Close - DJI[i - 1].Close) / DJI[i - 1].Close : NaN,
-      title: (d, i) => i > 0 ? ((d.Close - DJI[i - 1].Close) / DJI[i - 1].Close * 100).toFixed(1) : NaN,
+    Plot.cell(dji, {
+      x: (d) => d3.utcWeek.count(d3.utcYear(d.Date), d.Date),
+      y: (d) => d.Date.getUTCDay(),
+      fy: (d) => d.Date.getUTCFullYear(),
+      fill: (d, i) => i > 0 ? (d.Close - dji[i - 1].Close) / dji[i - 1].Close : NaN,
+      title: (d, i) => i > 0 ? ((d.Close - dji[i - 1].Close) / dji[i - 1].Close * 100).toFixed(1) : NaN,
       inset: 0.5
     })
   ]
 })
 ```
+:::
 
-The cell mark can be combined with the [group transform](../transforms/group.md), which groups data by ordinal value. (The [bin transform](../transforms/bin.md), on the other hand, is intended for use with the [rect mark](./rect.md).) The heatmap below shows the maximum observed temperature by month (*y*) and date (*x*) in Seattle from 2012 through 2015.
+The cell mark can be combined with the [group transform](../transforms/group.md), which groups data by ordinal value. (The [bin transform](../transforms/bin.md), on the other hand, is intended for quantitative data and is typically paired with the [rect mark](./rect.md).) The heatmap below shows the maximum observed temperature by month (**y**) and date (**x**) in Seattle from 2012 through 2015.
 
+:::plot defer
 ```js
 Plot.plot({
   height: 300,
   padding: 0,
-  y: {
-    tickFormat: Plot.formatMonth("en", "short")
-  },
+  y: {tickFormat: Plot.formatMonth("en", "short")},
   marks: [
     Plot.cell(seattle, Plot.group({fill: "max"}, {
-      x: d => d.date.getUTCDate(),
-      y: d => d.date.getUTCMonth(),
+      x: (d) => d.date.getUTCDate(),
+      y: (d) => d.date.getUTCMonth(),
       fill: "temp_max",
       inset: 0.5
     }))
   ]
 })
 ```
+:::
 
-A one-dimensional cell is produced by specifying only *x* or only *y*. The plot below collapses the history of *The Simpsons* to a single line. Note that the *x*-ticks must be specified explicitly to avoid occlusion: by default, every cell would have its own tick.
+A one-dimensional cell is produced by specifying only **x** or only **y**. The plot below collapses the history of *The Simpsons* to a single line. Note that the *x*-ticks must be specified explicitly to avoid occlusion: by default, every cell would have its own tick.
 
+:::plot defer
 ```js
 Plot.plot({
   x: {
-    round: false,
-    ticks: simpsons.filter(d => d.number_in_season === 1).map(d => d.id),
-    tickFormat: i => simpsons.find(d => d.id === i).season,
+    ticks: simpsons.filter((d) => d.number_in_season === 1).map((d) => d.id),
+    tickFormat: (x) => simpsons.find((d) => d.id === x).season,
     label: "Season →",
     labelAnchor: "right"
   },
@@ -113,45 +108,32 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+:::info
+Here a tick is drawn for the first episode of each season; the *x*-scale domain is the unique id of all episodes. To format the tick label, we lookup the row corresponding to the tick’s episode identifier and return the *season* field.
+:::
 
 One-dimensional cells can be a compact alternative to a bar chart, where the *fill* color of the cell replaces the length of the bar. However, position is a more salient encoding and should be preferred to color if space is available.
 
+:::plot
 ```js
+Plot.cell(alphabet, {x: "letter", fill: "frequency"}).plot({color: {scheme: "YlGnBu"}})
+```
+:::
+
+When ordinal data is regular, such as the yearly observations of the warming stripes below, use the **interval** scale option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://github.com/d3/d3-time/blob/main/README.md#api-reference), or a custom implementation.
+
+:::plot
+```js{5}
 Plot.plot({
   x: {
+    ticks: d3.ticks(...d3.extent(hadcrut, (d) => d.year), 10),
+    tickFormat: "d",
+    interval: 1, // recommended in case of missing data
     label: null
   },
   color: {
-    scheme: "YlGnBu"
-  },
-  marks: [
-    Plot.cell(alphabet, {x: "letter", fill: "frequency"})
-  ]
-})
-```
-
-When a cell’s position represents a time period, such as a year, consider using a [bar](./bar.md) instead of a cell. A cell is used below, but we must be careful to specify the *x*-domain explicitly; otherwise we might not notice missing years as ordinal domains are inferred from the set of distinct input values. Bars also have the advantage of accurately representing time periods of varying length, such as months.
-
-```js
-hadcrut = (await FileAttachment("hadcrut-annual.txt").text())
-  .trim().split(/\n/g) // split into lines
-  .map(line => line.split(/\s+/g)) // split each line into fields
-  .map(([year, anomaly]) => ({ // extract the year and median anomaly
-    year: +year, // convert to number
-    anomaly: +anomaly // convert to number
-  }))
-```
-
-```js
-Plot.plot({
-  x: {
-    round: false,
-    ticks: d3.ticks(...d3.extent(hadcrut, d => d.year), 10),
-    domain: d3.range(d3.min(hadcrut, d => d.year), d3.max(hadcrut, d => d.year) + 1),
-    label: null
-  },
-  color: {
-    type: "diverging",
     scheme: "BuRd"
   },
   marks: [
@@ -159,19 +141,22 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+:::tip
+When an ordinal scale domain has high cardinality, the **ticks** scale option can be used to specify which ticks to label. Alternatively, consider using a quantitative or temporal scale instead, as by switching to a [bar mark](./bar.md).
+:::
 
 ## Cell options
 
-Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value. Cells are often used in conjunction with a [group transform](#group). If both dimensions are temporal or quantitative, as in a heatmap, use the [rect mark](#rect) with the [bin transform](#bin) instead.
-
-In addition to the [standard mark options](#marks), including insets and rounded corners, the following optional channels are supported:
+In addition to the [standard mark options](../features/marks.md#mark-options), including insets and rounded corners, the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale, which must be *band*
 * **y** - the vertical position; bound to the *y* scale, which must be *band*
 
-If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). Typically either *x*, *y*, or both are specified; see [Plot.frame](#frame) if you want a simple frame decoration around the plot.
+If **x** is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if **y** is not specified, the cell will span the full vertical extent of the plot (or facet). Typically either **x**, **y**, or both are specified; use a [frame mark](./frame.md) to decorate the plot’s frame.
 
-The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
+The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
 ## cell(*data*, *options*)
 
@@ -184,15 +169,15 @@ Returns a new cell with the given *data* and *options*. If neither the **x** nor
 ## cellX(*data*, *options*)
 
 ```js
-Plot.cellX(simpsons.map(d => d.imdb_rating))
+Plot.cellX(simpsons.map((d) => d.imdb_rating))
 ```
 
-Equivalent to [Plot.cell](#plotcelldata-options), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [cell](#cell-data-options), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 ## cellY(*data*, *options*)
 
 ```js
-Plot.cellY(simpsons.map(d => d.imdb_rating))
+Plot.cellY(simpsons.map((d) => d.imdb_rating))
 ```
 
-Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [cell](#cell-data-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].

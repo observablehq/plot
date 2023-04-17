@@ -134,7 +134,7 @@ Plot.plot({
 The **percent** scale option is useful for showing percentages; it applies a [scale transform](../features/scales.md#scale-transforms) that multiplies associated channel values by 100.
 :::
 
-When the ordinal dimension is regular, such as the yearly observations of the time-series bar chart of world population below, use the **interval** option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://github.com/d3/d3-time/blob/main/README.md#api-reference), or a custom implementation.
+When ordinal data is regular, such as the yearly observations of the time-series bar chart of world population below, use the **interval** option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://github.com/d3/d3-time/blob/main/README.md#api-reference), or a custom implementation.
 
 <p>
   <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
@@ -160,13 +160,13 @@ A bar’s ordinal dimension is optional; if missing, the bar spans the chart alo
 :::plot
 ```js
 Plot.plot({
-  x: {round: true},
+  x: {round: true, tickFormat: "d"},
   color: {scheme: "BuRd"},
   marks: [
     Plot.barX(hadcrut, {
       x: "year",
       fill: "anomaly",
-      interval: "year", // yearly data
+      interval: 1, // annual observations
       inset: 0 // no gaps
     })
   ]
