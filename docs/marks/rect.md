@@ -103,7 +103,7 @@ Plot.plot({
 ```
 :::
 
-:::warning
+:::warning CAUTION
 While the **mixBlendMode** option is useful for mitigating occlusion, it can be slow to render if there are many elements. More than two overlapping histograms may also be hard to read.
 :::
 
