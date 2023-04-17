@@ -725,46 +725,6 @@ const plot2 = Plot.plot({…, color: plot1.scale("color")});
 
 For convenience, scale objects expose a *scale*.**apply**(*input*) method which returns the scale’s output for the given *input* value. When applicable, scale objects also expose a *scale*.**invert**(*output*) method which returns the corresponding input value from the scale’s domain for the given *output* value.
 
-## Sort options
-
-If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
-```
-
-The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](./transforms.md) (such as [stack](../transforms/stack.md) or [bin](../transforms/bin.md)). When sorting on the *x*, if no such channel is defined, the *x2* channel will be used instead if available, and similarly for *y* and *y2*; this is useful for marks that implicitly stack such as [area](../marks/area.md), [bar](../marks/bar.md), and [rect](../marks/rect.md). A sort value may also be specified as *width* or *height*, representing derived channels |*x2* - *x1*| and |*y2* - *y1*| respectively.
-
-Note that there may be multiple associated values in the secondary dimension for a given value in the primary ordinal dimension. The secondary values are therefore grouped for each associated primary value, and each group is then aggregated by applying a reducer. Lastly the primary values are sorted based on the associated reduced value in natural ascending order to produce the domain. The default reducer is *max*, but may be changed by specifying the *reduce* option. The above code is shorthand for:
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reduce: "max"}})
-```
-
-Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. See the [group transform](../transforms/group.md) for the list of supported reducers.
-
-For descending rather than ascending order, use the *reverse* option:
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
-```
-
-An additional *limit* option truncates the domain to the first *n* values after sorting. If *limit* is negative, the last *n* values are used instead. Hence, a positive *limit* with *reverse* = true will return the top *n* values in descending order. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](../transforms/filter.md), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", limit: 5}})
-```
-
-If different sort options are needed for different ordinal scales, the channel name can be replaced with a *value* object with additional per-scale options.
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse: true}}})
-```
-
-If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
-
-Note: when the value of the sort option is a string or a function, it is interpreted as a [basic sort transform](../transforms/sort.md). To use both sort options and a sort transform, use [Plot.sort](../transforms/sort.md#plotsortcompare-options).
-
 ## Color scales
 
 The normal scale types—*linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal*—can be used to encode color. In addition, Plot supports special scale types for color:
