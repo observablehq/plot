@@ -102,7 +102,7 @@ Plot.plot({
 :::
 
 :::warning
-The **mixBlendMode** option can be very slow to render if there are many elements, but is useful for avoiding occlusion. More than two overlapping histograms may also be hard to read.
+While the **mixBlendMode** option is useful for mitigating occlusion, it can be slow to render if there are many elements. More than two overlapping histograms may also be hard to read.
 :::
 
 The rect mark and bin transform naturally support [faceting](../features/facets.md), too.
@@ -164,7 +164,7 @@ Plot.plot({
 ```
 :::
 
-The [interval transform](../transforms/interval.md) may be used to convert a single value in *x* or *y* (or both) into an extent. For example, the chart below shows the observed daily maximum temperature in Seattle for the year 2015. The day-in-month and month-in-year numbers are expanded to unit intervals by setting the **interval** option to 1.
+The [interval transform](../transforms/interval.md) may be used to convert a single value in **x** or **y** (or both) into an extent. For example, the chart below shows the observed daily maximum temperature in Seattle for the year 2015. The day-in-month and month-in-year numbers are expanded to unit intervals by setting the **interval** option to 1.
 
 :::plot defer
 ```js
