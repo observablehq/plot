@@ -75,9 +75,11 @@ const gene = "AAAAGAGTGAAGATGCTGGAGACGAGTGAAGCATTCACTTTAGGGAAAGCGAGGCAAGAGCGTTTC
 
 # Shorthand
 
-<!-- We designed Observable Plot’s API to be succinct so that when you want to visualize data, you can do it quickly and without struggling to remember Plot’s API. -->
-
 The most concise form of Plot is its “shorthand” syntax where no options are specified—only data. To use this shorthand, the data must have a specific structure: either a one-dimensional array of values [*v₀*, *v₁*, *v₂*, …] or a two-dimensional array of tuples [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …].
+
+While none of these charts are particularly groundbreaking, we hope you find this shorthand convenient the next time you want a quick look at some data. And if the shorthand view is useful, you can then enhance it by adding options!
+
+## One dimension
 
 Let’s start with the one-dimensional form: an array of numbers.
 
@@ -90,7 +92,7 @@ numbers = [
 ]
 ```
 
-These numbers represent the daily opening price of Apple stock starting on January 1, 2018. For a simple line chart, we can pass the data to [Plot.lineY](../marks/line.md) to construct a *line* mark, and then call *line*.plot.
+These numbers represent the daily opening price of Apple stock starting on January 1, 2018. For a simple line chart, we can pass the data to [Plot.lineY](../marks/line.md) to construct a line mark, and then call *line*.plot.
 
 :::plot
 ```js
@@ -205,6 +207,8 @@ And here’s the [dodge transform](../transforms/dodge.md) for a beeswarm plot:
 Plot.dotX(numbers, Plot.dodgeY()).plot()
 ```
 :::
+
+## Two dimensions
 
 Now let’s switch to a two-dimensional array of tuples [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …]. The *x*-values here are times (Date instances at UTC midnight); the *y*-values again are the daily opening price of Apple stock.
 
@@ -321,6 +325,6 @@ Plot.cell(matrix).plot()
 ```
 :::
 
-Plot has a few marks that don’t currently provide meaningful shorthand. The [arrow](../marks/arrow.md) and [link](../marks/link.md) marks both require a start (*x1*, *y1*) and end (*x2*, *y2*) point; and the [image](../marks/image.md) mark requires a source URL (*src*).
+## Caveats
 
-This concludes our tour of Plot shorthand. While none of these charts are particularly groundbreaking, we hope you find this shorthand convenient the next time you want a quick look at some data. And if the shorthand view is useful, you can then enhance it by adding options!
+Plot has a few marks that don’t currently provide meaningful shorthand. The [arrow](../marks/arrow.md) and [link](../marks/link.md) marks both require a start (*x1*, *y1*) and end (*x2*, *y2*) point; and the [image](../marks/image.md) mark requires a source URL (*src*).
