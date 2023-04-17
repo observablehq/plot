@@ -1,5 +1,9 @@
 # Rect mark
 
+:::tip
+The rect mark is one of several marks in Plot for drawing rectangles; it should be used when both dimensions are quantitative. See also [bar](./bar.md) and [cell](./cell.md).
+:::
+
 The **rect** mark draws a rectangular, axis-aligned region defined by the channels *x1*, *y1*, *x2*, and *y2*. It is most often used in conjunction with the [bin transform](../transforms/bin.md) to produce a histogram. The **rectX** mark is shorthand for *x1* = zero, *x2* = *x*, while the **rectY** mark is shorthand for *y1* = zero, *y2* = *y*. For example, below is a histogram of (log) daily trade volume for Apple stock.
 
 ```js

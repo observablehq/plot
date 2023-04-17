@@ -2,15 +2,32 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {ref} from "vue";
 import alphabet from "../data/alphabet.ts";
 import civilizations from "../data/civilizations.ts";
 import hadcrut from "../data/hadcrut.ts";
 import penguins from "../data/penguins.ts";
 import statepop from "../data/us-state-population-2010-2019.ts";
 
+const checked = ref(true);
+
+const timeseries = [
+  {year: 2014, population: 7295.290765},
+  {year: 2015, population: 7379.797139},
+  {year: 2016, population: 7464.022049},
+  {year: 2017, population: 7547.858925},
+  // {year: 2018, population: 7631.091040},
+  {year: 2019, population: 7713.468100},
+  {year: 2020, population: 7794.798739}
+];
+
 </script>
 
 # Bar mark
+
+:::tip
+The bar mark is one of several marks in Plot for drawing rectangles; it should be used when one dimension is ordinal and the other is quantitative. See also [rect](./rect.md) and [cell](./cell.md).
+:::
 
 The **bar mark** comes in two orientations: [barY](#bary-data-options) extends vertically↑ as in a vertical bar chart or column chart, while [barX](#barx-data-options) extends horizontally→ as in a (horizontal) bar chart. For example, the bar chart below shows the frequency of letters in the English language.
 
@@ -29,14 +46,6 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}}
 :::
 
 There is typically one ordinal value associated with each bar, such as a name (or above, letter), and two quantitative values defining a lower and upper bound; the lower bound is often not specified (as above) because it defaults to zero. For barY, **x** is ordinal and **y1** & **y2** are quantitative, whereas for barX, **y** is ordinal and **x1** & **x2** are quantitative.
-
-:::tip
-For a time-series bar chart, where *x* is temporal and *y* is quantitative or *vice versa*, use the [rect mark](./rect.md) with the **interval** option instead.
-:::
-
-<!-- The bar mark is closely related to the [rect mark](./rect.md). Both generate a rectangle; the difference is in how the coordinates are specified. For a bar, one side is a quantitative interval (*e.g.*, from 0 to a percentage) while the other is an ordinal or categorical value (*e.g.*, an English letter); whereas for a rect, both sides are quantitative intervals. Hence a bar is used for a bar chart but a rect is needed for a histogram. -->
-
-<!-- The bar mark should generally not be used if the independent dimension (*e.g.*, *x* for barY) is temporal rather than ordinal. In this case, you should use the rect mark with the [interval transform](../transforms/interval.md). -->
 
 Above, since **y** was specified instead of **y1** and **y2**, the bar spans from zero to the given *y* value: if you only specify a single quantitative value, barY applies an implicit [stackY transform](../transforms/stack.md) and likewise barX implicitly applies stackX. The stacked horizontal bar chart below draws one bar (of unit width in **x**) per penguin, colored and sorted by the penguin’s body mass, and grouped by species along **y**.
 
@@ -125,6 +134,27 @@ Plot.plot({
 The **percent** scale option is useful for showing percentages; it applies a [scale transform](../features/scales.md#scale-transforms) that multiplies associated channel values by 100.
 :::
 
+When the ordinal dimension is regular, such as the yearly observations of the time-series bar chart of world population below, use the **interval** option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://github.com/d3/d3-time/blob/main/README.md#api-reference), or a custom implementation.
+
+<p>
+  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
+    Use <b>interval</b>:
+    <input style="margin: 0 0.5em !important; all: revert;" type="checkbox" v-model="checked">
+  </label>
+</p>
+
+:::plot
+```js
+Plot
+  .barY(timeseries, {x: "year", y: "population"})
+  .plot({x: {tickFormat: "", interval: checked ? 1 : undefined}})
+```
+:::
+
+:::tip
+You can also make a time-series bar chart with a [rect mark](./rect.md), possibly with the [bin transform](../transforms/bin.md) to bin observations.
+:::
+
 A bar’s ordinal dimension is optional; if missing, the bar spans the chart along this dimension. Such bars typically also have a color encoding. For example, here are [warming stripes](https://showyourstripes.info/) showing the increase in average temperature globally over the last 172 years.
 
 :::plot
@@ -163,23 +193,6 @@ Plot.plot({
 Although barX applies an implicit stackX transform, [textX](./text.md) does not; this example uses an explicit stackX transform in both cases for clarity.
 :::
 
-<!-- One-dimensional bars can also be used to highlight regions of interest. Below, for example, the expected frequency if all English letters were equally likely (¹/₂₆) is highlighted in orange. -->
-
-<!-- :::plot
-```js
-Plot.plot({
-  y: {
-    grid: true
-  },
-  marks: [
-    Plot.barY([1 / 26], {fill: "orange", fillOpacity: 0.4}),
-    Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}}),
-    Plot.ruleY([0])
-  ]
-})
-```
-::: -->
-
 For a grouped bar chart, use [faceting](../features/facets.md). The chart below uses **fy** to partition the bar chart of penguins by island.
 
 :::plot defer
@@ -197,42 +210,6 @@ Plot.plot({
 })
 ```
 :::
-
-<!-- ```js
-stateage = {
-  const data = await FileAttachment("us-population-state-age.csv").csv({typed: true});
-  const ages = data.columns.slice(1); // convert wide data to tidy data
-  return Object.assign(ages.flatMap(age => data.map(d => ({state: d.name, age, population: d[age]}))), {ages});
-}
-``` -->
-
-<!-- ```js
-Plot.plot({
-  x: {
-    axis: null,
-    domain: stateage.ages
-  },
-  y: {
-    grid: true,
-    tickFormat: "s"
-  },
-  color: {
-    domain: stateage.ages,
-    scheme: "spectral"
-  },
-  fx: {
-    domain: d3.groupSort(stateage, v => d3.sum(v, d => -d.population), d => d.state).slice(0, 6),
-    label: null,
-    tickSize: 6
-  },
-  marks: [
-    Plot.barY(stateage, {fx: "state", x: "age", y: "population", fill: "age", title: "age"}),
-    Plot.ruleY([0])
-  ]
-})
-``` -->
-
-<!-- Bars support a **z** channel to control the order in which they are drawn. No, they don’t. You use the sort transform. -->
 
 ## Bar options
 
