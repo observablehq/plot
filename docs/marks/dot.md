@@ -23,7 +23,7 @@ onMounted(() => {
 
 # Dot mark
 
-The **dot mark** draws circles or other symbols, typically positioned in **x** and **y** quantitative dimensions, as in a scatterplot. For example, the scatterplot below shows the roughly-inverse relationship in a dataset of cars between power (in horsepower) in *y*↑ and fuel efficiency (in miles per gallon) in *x*→.
+The **dot mark** draws circles or other symbols positioned in **x** and **y** as in a scatterplot. For example, the scatterplot below shows the roughly-inverse relationship in a dataset of cars between power (in horsepower) in *y*↑ and fuel efficiency (in miles per gallon) in *x*→.
 
 :::plot
 ```js
