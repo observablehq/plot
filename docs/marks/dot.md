@@ -8,15 +8,18 @@ import cars from "../data/cars.ts";
 
 const aapl = shallowRef([]);
 const diamonds = shallowRef([]);
-const gistemp = shallowRef([
-  {Date: new Date("1880-01-01"), Anomaly: -0.78},
-  {Date: new Date("2016-12-01"), Anomaly: 1.35}
-]);
+const gistemp = shallowRef([{Date: new Date("1880-01-01"), Anomaly: -0.78}, {Date: new Date("2016-12-01"), Anomaly: 1.35}]);
+const stateage = shallowRef([]);
+const xy = Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state"});
 
 onMounted(() => {
   d3.csv("../data/aapl.csv", d3.autoType).then((data) => (aapl.value = data));
   d3.csv("../data/diamonds.csv", d3.autoType).then((data) => (diamonds.value = data));
   d3.csv("../data/gistemp.csv", d3.autoType).then((data) => (gistemp.value = data));
+  d3.csv("../data/us-population-state-age.csv", d3.autoType).then((data) => {
+    const ages = data.columns.slice(1); // convert wide data to tidy data
+    stateage.value = Object.assign(ages.flatMap(age => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
+  });
 });
 
 </script>
@@ -126,94 +129,59 @@ Plot.plot({
 ```
 :::
 
-While dots are typically positioned in two dimensions (*x* and *y*), one-dimensional dots (only *x* or only *y*) are also supported. Below, dot area is used to represent the frequency of letters in the English language as a compact alternative to a bar chart.
+While dots are typically positioned in two dimensions (**x** and **y**), one-dimensional dots (only **x** or only **y**) are also supported. Below, dot area is used to represent the frequency of letters in the English language as a compact alternative to a bar chart.
+
+:::plot
+```js
+Plot.dot(alphabet, {x: "letter", r: "frequency"}).plot()
+```
+:::
+
+Dots, together with [rules](./rule.md), can be used as a stylistic alternative to [bars](./bar.md) to produce a lollipop 🍭 chart. (Sadly they cannot be eaten.)
 
 :::plot
 ```js
 Plot.plot({
+  x: {label: null, tickPadding: 6, tickSize: 0},
+  y: {percent: true},
   marks: [
-    Plot.dot(alphabet, {x: "letter", r: "frequency", fill: "currentColor"})
+    Plot.ruleX(alphabet, {x: "letter", y: "frequency", strokeWidth: 2}),
+    Plot.dot(alphabet, {x: "letter", y: "frequency", fill: "currentColor", r: 4})
   ]
 })
 ```
 :::
 
-Dots can also be used to mark observations in low-density data, so it’s easy to distinguish what was observed from what is interpolated. For example, the connected scatterplot below plots how the relationship between annual per capita driving and the price of gasoline has changed over time. (This recreates Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009.)
-
-```js
-Plot.plot({
-  grid: true,
-  x: {
-    label: "Miles driven (per capita per year) →"
-  },
-  y: {
-    label: "↑ Price of gas (average per gallon, adjusted)"
-  },
-  marks: [
-    Plot.line(driving, {x: "miles", y: "gas", curve: "catmull-rom"}),
-    Plot.dot(driving, {x: "miles", y: "gas", fill: "currentColor"}),
-    Plot.text(driving, {filter: (d) => d.year % 5 === 0, x: "miles", y: "gas", text: "year", dy: -8})
-  ]
-})
-```
-
-Dots, together with [rules](./rule.md), can be used as a stylistic alternative to [bars](./bar.md) to produce a “lollipop” chart. Sadly these lollipops cannot actually be eaten.
-
-```js
-Plot.plot({
-  x: {
-    label: null,
-    tickSize: 0
-  },
-  y: {
-    label: "↑ Frequency (%)",
-    transform: (d) => d * 100
-  },
-  marks: [
-    Plot.ruleY([0]),
-    Plot.ruleX(alphabet, {x: "letter", y: "frequency", fill: "black"}),
-    Plot.dot(alphabet, {x: "letter", y: "frequency", fill: "black", r: 4})
-  ]
-})
-```
-
 Sometimes, a scatterplot may have an ordinal dimension on either *x* and *y*, as in the plot below comparing the demographics of states: color represents age group, and *x* represents the proportion of the state’s population in that age group. A *reduce* transform is used to pull out the minimum and maximum values for each state such that a rule can span the extent for better Gestalt grouping.
 
+:::plot defer
 ```js
-stateage = {
-  const data = await FileAttachment("us-population-state-age.csv").csv({typed: true});
-  const ages = data.columns.slice(1); // convert wide data to tidy data
-  return Object.assign(ages.flatMap(age => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
-}
+Plot.plot({
+  height: 660,
+  axis: null,
+  grid: true,
+  x: {
+    axis: "top",
+    label: "Percent (%) →",
+    percent: true
+  },
+  color: {
+    scheme: "spectral",
+    domain: stateage.ages, // in order
+    legend: true
+  },
+  marks: [
+    Plot.ruleX([0]),
+    Plot.ruleY(stateage, Plot.groupY({x1: "min", x2: "max"}, {...xy, sort: {y: "x1"}})),
+    Plot.dot(stateage, {...xy, fill: "age", title: "age"}),
+    Plot.text(stateage, Plot.selectMinX({...xy, textAnchor: "end", dx: -6, text: "state"}))
+  ]
+})
 ```
+:::
 
 ```js
-{
-  const xy = Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state"});
-  return Plot.plot({
-    height: 660,
-    grid: true,
-    x: {
-      axis: "top",
-      label: "Percent (%) →",
-      transform: (d) => d * 100
-    },
-    y: {
-      axis: null
-    },
-    color: {
-      scheme: "spectral",
-      domain: stateage.ages, // in order
-      legend: true
-    },
-    marks: [
-      Plot.ruleX([0]),
-      Plot.ruleY(stateage, Plot.groupY({x1: "min", x2: "max"}, xy)),
-      Plot.dot(stateage, {...xy, fill: "age", title: "age"}),
-      Plot.text(stateage, Plot.selectMinX({...xy, textAnchor: "end", dx: -6, text: "state"}))
-    ]
-  });
-}
+xy = Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state"})
 ```
 
 As another example of a scatterplot with an ordinal dimension, we can plot age groups along the *x*-axis and connect states with lines. This emphasizes the overall age distribution of the United States, while giving a hint to variation across states.
