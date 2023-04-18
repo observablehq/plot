@@ -1,6 +1,72 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import {shallowRef, onMounted} from "vue";
+
+const presidents = shallowRef([]);
+
+onMounted(() => {
+  d3.csv("../data/us-president-favorability.csv", d3.autoType).then((data) => (presidents.value = data));
+});
+
+</script>
+
 # Image mark
 
-The **image** mark centers an image at the given position in *x* and *y*, similar to the [dot mark](./dot.md). For example, the scatterplot below shows recent [Astronomy Picture of the Day](https://apod.nasa.gov/apod/astropix.html) entries from NASA; *x* represents the date, and *y* represents the date’s weekday.
+The **image mark** draws images centered at the given position in **x** and **y**. It is often used to construct scatterplots in place of a [dot mark](./dot.md).
+
+:::plot defer
+```js
+Plot.plot({
+  inset: 22,
+  y: {
+    label: "First inauguration date →",
+  },
+  y: {
+    grid: true,
+    label: "Net favorability (%)",
+    percent: true,
+    tickFormat: "+f"
+  },
+  marks: [
+    Plot.ruleY([0]),
+    Plot.image(presidents, {
+      x: "First Inauguration Date",
+      y: (d) => (d["Very Favorable %"] + d["Somewhat Favorable %"] - d["Very Unfavorable %"] - d["Somewhat Unfavorable %"]) / 100,
+      r: 22,
+      preserveAspectRatio: "xMidYMin slice", // try not to clip heads
+      src: "Portrait URL",
+      title: "Name"
+    })
+  ]
+})
+```
+:::
+
+:::plot defer
+```js
+Plot.plot({
+  inset: 30,
+  width: 960,
+  height: 300,
+  marks: [
+    Plot.image(
+      presidents,
+      Plot.dodgeY({
+        x: "First Inauguration Date",
+        r: 22,
+        preserveAspectRatio: "xMidYMin slice", // try not to clip heads
+        src: "Portrait URL",
+        title: "Name"
+      })
+    )
+  ]
+})
+```
+:::
+
+For example, the scatterplot below shows recent [Astronomy Picture of the Day](https://apod.nasa.gov/apod/astropix.html) entries from NASA; *x* represents the date, and *y* represents the date’s weekday.
 
 ```js
 // https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=100
