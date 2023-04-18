@@ -57,19 +57,21 @@ Plot.plot({
 ```
 :::
 
-Yet rules can also be used to visualize data. Below, a random normal distribution is plotted with rules, looking a bit like the [emission spectrum of Hydrogen](https://en.wikipedia.org/wiki/Hydrogen_spectral_series). Reducing opacity allows better perception of density when rules overlap.
+Yet rules can also be used to visualize data. Below, a random normal distribution is plotted with rules, looking a bit like the [emission spectrum of Hydrogen](https://en.wikipedia.org/wiki/Hydrogen_spectral_series).
 
 :::plot
 ```js
 Plot.plot({
-  x: {
-    domain: [-4, 4]
-  },
+  x: {domain: [-4, 4]},
   marks: [
-    Plot.ruleX({length: 500}, {x: d3.randomNormal(), strokeOpacity: 0.2}),
+    Plot.ruleX({length: 500}, {x: d3.randomNormal(), strokeOpacity: 0.2})
   ]
 })
 ```
+:::
+
+:::tip
+Reducing opacity allows better perception of density when rules overlap.
 :::
 
 Rules can also serve as an alternative to an [area mark](./area.md) as in a band chart, provided the data is sufficiently dense: using the **y1** and **y2** channels, you can limit the extent of a rule along the secondary dimension. And rules support a **stroke** color encoding. The rules below plot the daily minimum and maximimum temperature for Seattle.
