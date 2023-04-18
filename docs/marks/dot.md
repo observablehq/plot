@@ -2,7 +2,8 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import {shallowRef, onMounted} from "vue";
+import * as topojson from "topojson-client";
+import {computed, shallowRef, onMounted} from "vue";
 import alphabet from "../data/alphabet.ts";
 import cars from "../data/cars.ts";
 import penguins from "../data/penguins.ts";
@@ -12,6 +13,10 @@ const congress = shallowRef([]);
 const diamonds = shallowRef([]);
 const gistemp = shallowRef([{Date: new Date("1880-01-01"), Anomaly: -0.78}, {Date: new Date("2016-12-01"), Anomaly: 1.35}]);
 const stateage = shallowRef([]);
+const us = shallowRef(null);
+const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states) : {type: null});
+const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
+
 const xy = Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state"});
 
 onMounted(() => {
@@ -19,6 +24,14 @@ onMounted(() => {
   d3.csv("../data/us-congress-members.csv", d3.autoType).then((data) => (congress.value = data));
   d3.csv("../data/diamonds.csv", d3.autoType).then((data) => (diamonds.value = data));
   d3.csv("../data/gistemp.csv", d3.autoType).then((data) => (gistemp.value = data));
+  Promise.all([
+    d3.json("../data/us-counties-10m.json"),
+    d3.csv("../data/us-county-population.csv")
+  ]).then(([_us, _population]) => {
+    const map = new Map(_population.map((d) => [d.state + d.county, +d.population]));
+    _us.objects.counties.geometries.forEach((g) => (g.properties.population = map.get(g.id)));
+    us.value = _us;
+  });
   d3.csv("../data/us-population-state-age.csv", d3.autoType).then((data) => {
     const ages = data.columns.slice(1); // convert wide data to tidy data
     stateage.value = Object.assign(ages.flatMap(age => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
@@ -268,6 +281,23 @@ The [dodge transform](../transforms/dodge.md) can also be used to produce beeswa
 
 :::danger TODO
 Demonstrate sorting by descending **r** as in a bubble map.
+:::
+
+:::plot defer
+```js
+Plot.plot({
+  projection: "albers-usa",
+  marks: [
+    Plot.geo(statemesh),
+    Plot.dot(counties, Plot.geoCentroid({
+      r: (d) => d.properties.population,
+      fill: "currentColor",
+      stroke: "var(--vp-c-bg)",
+      strokeWidth: 1
+    }))
+  ]
+})
+```
 :::
 
 The dot mark can also be used to construct a [quantile-quantile (QQ) plot](https://observablehq.com/@observablehq/qq-plot) for comparing two univariate distributions.
