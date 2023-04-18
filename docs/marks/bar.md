@@ -138,7 +138,7 @@ When ordinal data is regular, such as the yearly observations of the time-series
 
 <p>
   <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
-    Use <b>interval</b>:
+    <span>Use <b>interval</b>:</span>
     <input style="margin: 0 0.5em !important; all: revert;" type="checkbox" v-model="checked">
   </label>
 </p>

@@ -3,11 +3,12 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
-import {computed, shallowRef, onMounted} from "vue";
+import {computed, ref, shallowRef, onMounted} from "vue";
 import alphabet from "../data/alphabet.ts";
 import cars from "../data/cars.ts";
 import penguins from "../data/penguins.ts";
 
+const checked = ref(true);
 const aapl = shallowRef([]);
 const congress = shallowRef([]);
 const diamonds = shallowRef([]);
@@ -279,9 +280,14 @@ The stackY2 transform places each dot at the upper bound of the associated stack
 The [dodge transform](../transforms/dodge.md) can also be used to produce beeswarm plots; this is particularly effective when dots have varying radius.
 :::
 
-:::danger TODO
-Demonstrate sorting by descending **r** as in a bubble map.
-:::
+Dots are sorted by descending radius by default to mitigate occlusion; the smallest dots are drawn on top. Set the **sort** option to null to draw them in input order.
+
+<p>
+  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
+    <span>Use default <b>sort</b>:</span>
+    <input style="margin: 0 0.5em !important; all: revert;" type="checkbox" v-model="checked">
+  </label>
+</p>
 
 :::plot defer
 ```js
@@ -293,7 +299,8 @@ Plot.plot({
       r: (d) => d.properties.population,
       fill: "currentColor",
       stroke: "var(--vp-c-bg)",
-      strokeWidth: 1
+      strokeWidth: 1,
+      sort: checked ? undefined : null
     }))
   ]
 })
@@ -327,8 +334,6 @@ The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if th
 
 The built-in **symbol** types are: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke, based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746)). The *hexagon* symbol is also supported. You can also specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types) method.
 
-Dots are sorted by descending radius by default to mitigate overplotting; set the **sort** option to null to draw them in input order.
-
 ## dot(*data*, *options*)
 
 ```js
@@ -343,7 +348,7 @@ Returns a new dot with the given *data* and *options*. If neither the **x** nor 
 Plot.dotX(cars.map((d) => d["economy (mpg)"]))
 ```
 
-Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [dot](#dot-data-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
 
@@ -353,14 +358,14 @@ If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*in
 Plot.dotY(cars.map((d) => d["economy (mpg)"]))
 ```
 
-Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [dot](#dot-data-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
 
 ## circle(*data*, *options*)
 
-Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *circle*.
+Equivalent to [dot](#dot-data-options) except that the **symbol** option is set to *circle*.
 
 ## hexagon(*data*, *options*)
 
-Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *hexagon*.
+Equivalent to [dot](#dot-data-options) except that the **symbol** option is set to *hexagon*.
