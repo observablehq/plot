@@ -46,7 +46,7 @@ Given only one dimension of data, it makes a histogram:
 
 :::plot defer
 ```js
-Plot.auto(olympians, {x: "height"}).plot()
+Plot.auto(olympians, {x: "weight"}).plot()
 ```
 :::
 
@@ -70,17 +70,15 @@ As you can see from that **reduce** property, the auto mark has some special syn
 
 :::plot defer
 ```js
-Plot.auto(olympians, {x: "height", y: "weight", color: "count"}).plot()
+Plot.auto(olympians, {x: "weight", y: "height", color: "count"}).plot()
 ```
 :::
 
 That’s equivalent to this:
 
-:::plot defer
 ```js
-Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "height", y: "weight"})).plot()
+Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"})).plot()
 ```
-:::
 
 Notice that the code above makes you think about nested functions and two different options objects, which the auto mark flattens. The auto mark infers that it should use a [rect](./rect.md); that it should [bin](../transforms/bin.md) on **x** and **y**; that the kind of color should be a **fill**; and that **fill** is an “output” of the reducer, whereas **x** and **y** are “inputs”.
 
@@ -88,7 +86,7 @@ This saves you a little bit of typing, but, more importantly, it means that swit
 
 :::plot defer
 ```js
-Plot.auto(olympians, {x: "height", y: "sex", color: "count"}).plot()
+Plot.auto(olympians, {x: "weight", y: "sex", color: "count"}).plot()
 ```
 :::
 
@@ -225,7 +223,7 @@ The chosen mark type depends both on the options you provide (*e.g.*, whether yo
 ## auto(*data*, *options*)
 
 ```js
-Plot.auto(olympians, {x: "height", y: "weight", color: "count"}) // equivalent to rect + bin, say
+Plot.auto(olympians, {x: "weight", y: "height", color: "count"}) // equivalent to rect + bin, say
 ```
 
 Returns an automatically-chosen mark with the given *data* and *options*, suitable for a quick view of the data.
