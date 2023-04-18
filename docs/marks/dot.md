@@ -43,7 +43,7 @@ onMounted(() => {
 
 # Dot mark
 
-The **dot mark** draws circles or other symbols positioned in **x** and **y** as in a scatterplot. For example, the chart below shows the roughly-inverse relationship between car power (in horsepower) in *y*↑ and fuel efficiency (in miles per gallon) in *x*→.
+The **dot mark** draws circles or other symbols positioned in **x** and **y** as in a scatterplot. For example, the chart below shows the roughly-inverse relationship between car horsepower in *y*↑ and fuel efficiency in miles per gallon in *x*→.
 
 :::plot
 ```js
@@ -51,7 +51,7 @@ Plot.dot(cars, {x: "economy (mpg)", y: "power (hp)"}).plot({grid: true})
 ```
 :::
 
-Using a function for **x**, we can instead plot the roughly-linear relationship when fuel efficiency is represented as gallons per 100 miles, similar to the liters per 100 km metric used in countries that have adopted the metric system.
+Using a function for **x**, we can instead plot the roughly-linear relationship when fuel efficiency is represented as gallons per 100 miles. (For fans of the metric system, 1 gallon per 100 miles is roughly 2.4 liters per 100 km.)
 
 :::plot
 ```js
