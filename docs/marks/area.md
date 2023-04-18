@@ -10,7 +10,7 @@ import sftemp from "../data/sf-temperatures.ts";
 
 # Area mark
 
-The **area mark** draws the region between a baseline (**x1**, **y1**) and a topline (**x2**, **y2**) as in an area chart. Often the baseline represents *y* = 0, and typically both the *x* and *y* scales are quantitative or temporal.
+The **area mark** draws the region between a baseline (**x1**, **y1**) and a topline (**x2**, **y2**) as in an area chart. Often the baseline represents *y* = 0, and because the area mark interpolates between adjacent data points, typically both the *x* and *y* scales are quantitative or temporal.
 
 :::plot
 ```js

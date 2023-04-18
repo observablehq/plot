@@ -31,7 +31,7 @@ onMounted(() => {
 
 # Line mark
 
-The **line mark** draws two-dimensional lines as in a line chart. It is closely related to the [area mark](./area.md). Typically both the *x* and *y* scales are quantitative or temporal. For example, below is a line chart of the closing price of Apple stock.
+The **line mark** draws two-dimensional lines as in a line chart. Because the line mark interpolates between adjacent data points, typically both the *x* and *y* scales are quantitative or temporal. For example, below is a line chart of the closing price of Apple stock.
 
 :::plot
 ```js
@@ -51,7 +51,7 @@ Plot.line(aapl.map((d) => [d.Date, d.Close])).plot()
 This shorthand loses the automatic *x*- and *y*-axis labels, reducing legibility. Use the **label** [scale option](../features/scales.md) to restore them.
 :::
 
-The [lineY constructor](#liney-data-options) provides default channel definitions of **x** = index and **y** = [identity](../features/transforms.md#identity), letting you pass an array of numbers as data. (The [lineX constructor](#linex-data-options) similarly provides **x** = identity and **y** = index defaults for lines that go up↑ instead of to the right→.) Below, a random walk is made using [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
+The [lineY constructor](#liney-data-options) provides default channel definitions of **x** = index and **y** = [identity](../features/transforms.md#identity), letting you pass an array of numbers as data. The [lineX constructor](#linex-data-options) similarly provides **x** = identity and **y** = index defaults for lines that go up↑ instead of to the right→. Below, a random walk is made using [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
 
 :::plot
 ```js
@@ -219,8 +219,8 @@ Plot.plot({
       x: "date",
       y: "unemployment",
       z: "division",
-      sort: (d) => /, MI /.test(d.division),
-      stroke: (d) => /, MI /.test(d.division)
+      stroke: (d) => /, MI /.test(d.division),
+      sort: {channel: "stroke"}
     })
   ]
 })

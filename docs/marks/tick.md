@@ -1,6 +1,10 @@
 # Tick mark
 
-Ticks are horizontal or vertical lines. A **tickY**↔︎ has a *y*-value, while a **tickX**↕︎ has an *x*-value. Ticks have an optional secondary position dimension (*x* for tickY and *y* for tickX); this second dimension is ordinal, unlike a [rule](./rule.md), requiring a [band scale](../features/scales.md). Ticks are often used to show one-dimensional distributions, as in the “barcode” plot below showing the proportion of population in each age bracket across U.S. states.
+:::tip
+The tick mark is one of two marks in Plot for drawing horizontal or vertical lines; it should be used when the secondary position dimension, if any, is ordinal. When it is quantitative, use a [rule](./rule.md).
+:::
+
+The **tick mark** comes in two orientations: [tickY](#ticky-data-options) draws a horizontal↔︎ line with a given *y* value, while [tickX](#tickx-data-options) draws a vertical↕︎ line with a given *x* value. Ticks have an optional secondary position dimension (**x** for tickY and **y** for tickX); this second dimension is ordinal, unlike a [rule](./rule.md), and requires a corresponding [band scale](../features/scales.md). Ticks are often used to show one-dimensional distributions, as in the “barcode” plot below showing the proportion of population in each age bracket across U.S. states.
 
 ```js
 Plot.plot({

@@ -18,6 +18,10 @@ onMounted(() => {
 
 # Rule mark
 
+:::tip
+The rule mark is one of two marks in Plot for drawing horizontal or vertical lines; it should be used when the secondary position dimension, if any, is quantitative. When it is ordinal, use a [tick](./tick.md).
+:::
+
 The **rule mark** comes in two orientations: [ruleY](#ruley-data-options) draws a horizontal↔︎ line with a given *y* value, while [ruleX](#rulex-data-options) draws a vertical↕︎ line with a given *x* value. Rules are often used as annotations, say to mark the *y* = 0 baseline (in red below for emphasis) in a line chart.
 
 :::plot
