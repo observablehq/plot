@@ -8,6 +8,7 @@ import cars from "../data/cars.ts";
 import penguins from "../data/penguins.ts";
 
 const aapl = shallowRef([]);
+const congress = shallowRef([]);
 const diamonds = shallowRef([]);
 const gistemp = shallowRef([{Date: new Date("1880-01-01"), Anomaly: -0.78}, {Date: new Date("2016-12-01"), Anomaly: 1.35}]);
 const stateage = shallowRef([]);
@@ -15,6 +16,7 @@ const xy = Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state
 
 onMounted(() => {
   d3.csv("../data/aapl.csv", d3.autoType).then((data) => (aapl.value = data));
+  d3.csv("../data/us-congress-members.csv", d3.autoType).then((data) => (congress.value = data));
   d3.csv("../data/diamonds.csv", d3.autoType).then((data) => (diamonds.value = data));
   d3.csv("../data/gistemp.csv", d3.autoType).then((data) => (gistemp.value = data));
   d3.csv("../data/us-population-state-age.csv", d3.autoType).then((data) => {
@@ -27,7 +29,7 @@ onMounted(() => {
 
 # Dot mark
 
-The **dot mark** draws circles or other symbols positioned in **x** and **y** as in a scatterplot. For example, the scatterplot below shows the roughly-inverse relationship in a dataset of cars between power (in horsepower) in *y*↑ and fuel efficiency (in miles per gallon) in *x*→.
+The **dot mark** draws circles or other symbols positioned in **x** and **y** as in a scatterplot. For example, the chart below shows the roughly-inverse relationship between car power (in horsepower) in *y*↑ and fuel efficiency (in miles per gallon) in *x*→.
 
 :::plot
 ```js
@@ -35,7 +37,7 @@ Plot.dot(cars, {x: "economy (mpg)", y: "power (hp)"}).plot({grid: true})
 ```
 :::
 
-Using a functional definition of **x**, we can instead plot the roughly-linear relationship when fuel efficiency is represented as gallons per 100 miles, similar to the liters per 100 km metric used in countries that have adopted the metric system.
+Using a function for **x**, we can instead plot the roughly-linear relationship when fuel efficiency is represented as gallons per 100 miles, similar to the liters per 100 km metric used in countries that have adopted the metric system.
 
 :::plot
 ```js
@@ -72,7 +74,7 @@ Plot.plot({
 ```
 :::
 
-Dots also support an **r** channel allowing dot size to represent quantitative value. Below, each dot represents a trading day; the *x*-position represents the day’s change, while the *y*-position and area (**r**) represent the day’s trading volume. As you might expect, days with higher volatility have higher trading volume.
+Dots also support an **r** channel allowing dot size to represent quantitative value. Below, each dot represents a day of trading; the *x*-position represents the day’s change, while the *y*-position and area (**r**) represent the day’s trading volume. As you might expect, days with higher volatility have higher trading volume.
 
 :::plot defer
 ```js
@@ -176,9 +178,7 @@ xy = Plot.normalizeX("sum", {x: "population", y: "state", z: "state"})
 To reduce code duplication, pull shared options out into an object (here `xy`) and then merge them into each mark’s options using the spread operator (`...`).
 :::
 
-:::danger TODO
-Demonstrate symbols.
-:::
+To improve accessibility, particularly for readers with color vision deficiency, the **symbol** channel can be used in addition to color (or instead of it) to represent ordinal data.
 
 :::plot defer
 ```js
@@ -187,7 +187,9 @@ Plot.plot({
   x: {label: "Body mass (g) →"},
   y: {label: "↑ Flipper length (mm)"},
   symbol: {legend: true},
-  marks: [Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})]
+  marks: [
+    Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})
+  ]
 })
 ```
 :::
@@ -208,7 +210,7 @@ Plot.dotX([
 ```
 :::
 
-Plot uses the following default symbols for stroked dots:
+There is a separate set of default symbols for stroked dots:
 
 :::plot
 ```js
@@ -224,14 +226,44 @@ Plot.dotX([
 ```
 :::
 
-The *hexagon* symbol is also supported, but not used by default.
+(There is also a *hexagon* symbol; it is primarily intended for the [hexbin transform](../transforms/hexbin.md).)
 
-:::danger TODO
-Demonstrate stacked dots (usCongressAgeGender).
+The dot mark can be combined with the [stack transform](../transforms/stack.md). The diverging stacked dot plot below shows the age and gender distribution of the U.S. Congress in 2021.
+
+:::plot defer
+```js
+Plot.plot({
+  height: 300,
+  inset: 6,
+  x: {label: "Age (years) →"},
+  y: {
+    grid: true,
+    label: "← Women · Men →",
+    labelAnchor: "center",
+    tickFormat: Math.abs
+  },
+  marks: [
+    Plot.dot(
+      congress,
+      Plot.stackY2({
+        x: (d) => 2021 - d.birth,
+        y: (d) => d.gender === "M" ? 1 : -1,
+        fill: "gender",
+        title: "full_name"
+      })
+    ),
+    Plot.ruleY([0])
+  ]
+})
+```
 :::
 
-:::danger TODO
-Mention and link to the [dodge transform](../transforms/dodge.md).
+:::info
+The stackY2 transform places each dot at the upper bound of the associated stacked interval, rather than the middle of the interval as when using stackY. Hence, the first male dot is placed at *y* = 1, and the first female dot is placed at *y* = -1.
+:::
+
+:::tip
+The [dodge transform](../transforms/dodge.md) can also be used to produce beeswarm plots; this is particularly effective when dots have varying radius.
 :::
 
 :::danger TODO
