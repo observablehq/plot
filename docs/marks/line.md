@@ -9,9 +9,14 @@ import driving from "../data/driving.ts";
 import sftemp from "../data/sf-temperatures.ts";
 import tdf from "../data/tdf.ts";
 
+const stateage = shallowRef([]);
 const stocks = shallowRef([]);
 
 onMounted(() => {
+  d3.csv("../data/us-population-state-age.csv", d3.autoType).then((data) => {
+    const ages = data.columns.slice(1); // convert wide data to tidy data
+    stateage.value = Object.assign(ages.flatMap(age => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
+  });
   Promise.all([
     d3.csv("../data/aapl.csv", d3.autoType),
     d3.csv("../data/amzn.csv", d3.autoType),
@@ -268,6 +273,29 @@ Plot.plot({
   marks: [
     Plot.lineY(aapl, {filter: (d) => d.Date.getUTCMonth() >= 3, x: "Date", y: "Close", strokeOpacity: 0.3}),
     Plot.lineY(aapl, {x: "Date", y: (d) => d.Date.getUTCMonth() < 3 ? NaN : d.Close})
+  ]
+})
+```
+:::
+
+While uncommon, you can draw a line with ordinal position values. For example below, each line represents a U.S. state; **x** represents an (ordinal) age group while **y** represents the proportion of the state’s population in that age group. This chart emphasizes the overall age distribution of the United States, while giving a hint to variation across states.
+
+:::plot defer
+```js
+Plot.plot({
+  x: {
+    domain: stateage.ages, // in age order
+    label: "Age range (years) →",
+    labelAnchor: "right"
+  },
+  y: {
+    label: "↑ Population (%)",
+    percent: true,
+    grid: true
+  },
+  marks: [
+    Plot.ruleY([0]),
+    Plot.line(stateage, Plot.normalizeY("sum", {x: "age", y: "population", z: "state", strokeWidth: 1}))
   ]
 })
 ```

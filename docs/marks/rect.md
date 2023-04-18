@@ -92,9 +92,9 @@ For overlapping rects, you can opt-out of the implicit stack transform by specif
 :::plot defer
 ```js
 Plot.plot({
-  style: "isolation: isolate;",
   round: true,
   color: {legend: true},
+  style: "isolation: isolate;", // for mix-blend-mode
   marks: [
     Plot.rectY(olympians, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "difference"})),
     Plot.ruleY([0])
