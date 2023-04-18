@@ -6,6 +6,7 @@ import plot from "./markdown-it-plot.js";
 export default defineConfig({
   title: "Observable Plot",
   description: "The JavaScript library for exploratory data visualization",
+  base: "/plot/",
   vite: {
     resolve: {
       alias: {
