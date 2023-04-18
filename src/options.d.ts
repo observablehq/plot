@@ -41,3 +41,9 @@ export function column(source?: any): [ChannelTransform, <T>(value: T) => T];
  * ```
  */
 export const identity: ChannelTransform;
+
+/**
+ * A channel transform that returns the zero-based index [0, 1, 2, …] of the
+ * data; often used as a default for mark shorthand.
+ */
+export const indexOf: ChannelTransform;

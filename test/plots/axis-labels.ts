@@ -51,3 +51,17 @@ export async function axisLabelBothReverse() {
     marks: [Plot.ruleX([{x: 0}, {x: 1}], {x: "x"}), Plot.ruleY([{y: 0}, {y: 1}], {y: "y"})]
   });
 }
+
+export async function axisLabelVaryingFill() {
+  return Plot.plot({
+    x: {domain: "ABCDEF"},
+    marks: [Plot.axisX({label: "Letter", fill: (d, i) => i})]
+  });
+}
+
+export async function axisLabelHref() {
+  return Plot.plot({
+    x: {domain: "ABCDEF"},
+    marks: [Plot.axisX({label: "Letter", href: (d) => `https://en.wikipedia.org/wiki/${d}`})]
+  });
+}
