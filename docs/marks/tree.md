@@ -19,6 +19,15 @@ onMounted(() => {
   d3.csv("../data/flare.csv", d3.autoType).then((data) => (flare.value = data));
 });
 
+function indent() {
+  return (root) => {
+    root.eachBefore((node, i) => {
+      node.y = node.depth;
+      node.x = i;
+    });
+  };
+}
+
 </script>
 
 # Tree mark
@@ -85,6 +94,42 @@ Plot.plot({
   marks: [
     Plot.cluster(flare, {path: "name", treeSort: "node:height", delimiter: ".", textStroke: "var(--vp-c-bg)"})
   ]
+})
+```
+:::
+
+Here is an example of a custom **treeLayout** implementation, assigning *node*.x and *node*.y.
+
+```js
+function indent() {
+  return (root) => {
+    root.eachBefore((node, i) => {
+      node.y = node.depth;
+      node.x = i;
+    });
+  };
+}
+```
+
+This produces an indented tree layout.
+
+:::plot defer
+```js
+Plot.plot({
+  axis: null,
+  inset: 10,
+  insetRight: 120,
+  round: true,
+  width: 200,
+  height: 3600,
+  marks: Plot.tree(flare, {
+    path: "name",
+    delimiter: ".",
+    treeLayout: indent,
+    strokeWidth: 1,
+    curve: "step-before",
+    textStroke: "none"
+  })
 })
 ```
 :::
