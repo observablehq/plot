@@ -22,7 +22,7 @@ const xy = Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state
 
 onMounted(() => {
   d3.csv("../data/aapl.csv", d3.autoType).then((data) => (aapl.value = data));
-  d3.csv("../data/us-congress-members.csv", d3.autoType).then((data) => (congress.value = data));
+  d3.csv("../data/us-congress-2023.csv", d3.autoType).then((data) => (congress.value = data));
   d3.csv("../data/diamonds.csv", d3.autoType).then((data) => (diamonds.value = data));
   d3.csv("../data/gistemp.csv", d3.autoType).then((data) => (gistemp.value = data));
   Promise.all([
@@ -244,13 +244,12 @@ Plot.dotX([
 The stroked symbols are based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746). There is also a *hexagon* symbol; it is primarily intended for the [hexbin transform](../transforms/hexbin.md). You can even specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types) method.
 :::
 
-The dot mark can be combined with the [stack transform](../transforms/stack.md). The diverging stacked dot plot below shows the age and gender distribution of the U.S. Congress in 2021.
+The dot mark can be combined with the [stack transform](../transforms/stack.md). The diverging stacked dot plot below shows the age and gender distribution of the U.S. Congress in 2023.
 
 :::plot defer
 ```js
 Plot.plot({
-  height: 300,
-  inset: 6,
+  aspectRatio: 1,
   x: {label: "Age (years) →"},
   y: {
     grid: true,
@@ -262,7 +261,7 @@ Plot.plot({
     Plot.dot(
       congress,
       Plot.stackY2({
-        x: (d) => 2021 - d.birth,
+        x: (d) => 2023 - d.birthday.getUTCFullYear(),
         y: (d) => d.gender === "M" ? 1 : -1,
         fill: "gender",
         title: "full_name"
@@ -282,7 +281,7 @@ The stackY2 transform places each dot at the upper bound of the associated stack
 The [dodge transform](../transforms/dodge.md) can also be used to produce beeswarm plots; this is particularly effective when dots have varying radius.
 :::
 
-Dots are sorted by descending radius by default to mitigate occlusion; the smallest dots are drawn on top. Set the **sort** option to null to draw them in input order.
+Dots are sorted by descending radius by default to mitigate occlusion; the smallest dots are drawn on top. Set the **sort** option to null to draw them in input order. Use the checkbox below to see the effect of sorting on a bubble map of U.S. county population.
 
 <p>
   <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
@@ -296,7 +295,7 @@ Dots are sorted by descending radius by default to mitigate occlusion; the small
 Plot.plot({
   projection: "albers-usa",
   marks: [
-    Plot.geo(statemesh),
+    Plot.geo(statemesh, {strokeOpacity: 0.4}),
     Plot.dot(counties, Plot.geoCentroid({
       r: (d) => d.properties.population,
       fill: "currentColor",
