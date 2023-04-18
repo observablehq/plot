@@ -260,6 +260,14 @@ Plot.plot({
 
 Interpolation is controlled by the [**curve** option](../features/curves.md). The default curve is *linear*, which draws straight line segments between pairs of adjacent points. A *step* curve is nice for emphasizing when the value changes, while *basis* and *catmull–rom* are nice for smoothing.
 
+:::danger TODO
+Demonstrate horizon charts.
+:::
+
+:::danger TODO
+The RIAA revenue stacked area chart is nice; maybe it could be included here too?
+:::
+
 ## Area options
 
 The following channels are required:

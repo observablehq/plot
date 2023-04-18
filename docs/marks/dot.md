@@ -5,6 +5,7 @@ import * as d3 from "d3";
 import {shallowRef, onMounted} from "vue";
 import alphabet from "../data/alphabet.ts";
 import cars from "../data/cars.ts";
+import penguins from "../data/penguins.ts";
 
 const aapl = shallowRef([]);
 const diamonds = shallowRef([]);
@@ -176,7 +177,23 @@ Demonstrate sorting by descending **r** as in a bubble map.
 :::
 
 :::danger TODO
+Demonstrate stacked dots (usCongressAgeGender).
+:::
+
+:::danger TODO
 Demonstrate symbols.
+:::
+
+:::plot defer
+```js
+Plot.plot({
+  grid: true,
+  x: {label: "Body mass (g) →"},
+  y: {label: "↑ Flipper length (mm)"},
+  symbol: {legend: true},
+  marks: [Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})]
+})
+```
 :::
 
 :::danger TODO
