@@ -113,6 +113,10 @@ Plot.plot({
 ```
 :::
 
+:::danger TODO
+Mention and link to the [hexbin transform](../transforms/hexbin.md) (hexagon dot).
+:::
+
 While dots are typically positioned in two dimensions (**x** and **y**), one-dimensional dots (only **x** or only **y**) are also supported. Below, dot area is used to represent the frequency of letters in the English language as a compact alternative to a bar chart.
 
 :::plot
@@ -197,11 +201,7 @@ Plot.plot({
 :::
 
 :::danger TODO
-Demonstrate hexbin and hexagon?
-:::
-
-:::danger TODO
-Demonstrate dodge?
+Mention and link to the [dodge transform](../transforms/dodge.md).
 :::
 
 The dot mark can also be used to construct a [quantile-quantile (QQ) plot](https://observablehq.com/@observablehq/qq-plot) for comparing two univariate distributions.
