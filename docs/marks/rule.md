@@ -74,7 +74,7 @@ Plot.plot({
 Reducing opacity allows better perception of density when rules overlap.
 :::
 
-Rules can also serve as an alternative to an [area mark](./area.md) as in a band chart, provided the data is sufficiently dense: using the **y1** and **y2** channels, you can limit the extent of a rule along the secondary dimension. And rules support a **stroke** color encoding. The rules below plot the daily minimum and maximimum temperature for Seattle.
+Rules can also serve as an alternative to an [area mark](./area.md) as in a band chart, provided the data is sufficiently dense: you can limit the extent of a rule along the secondary dimension (**y1** and **y2** channels for ruleX, and **x1** and **x2** channels for ruleY) rather than having it span the frame. And rules support a **stroke** color encoding. The rules below plot the daily minimum and maximimum temperature for Seattle.
 
 :::plot defer
 ```js
@@ -106,7 +106,7 @@ Plot.plot({
 ```
 :::
 
-Rules can also be used for visually grouping, such as in the [dot plot](./dot.md) below showing the decline of *The Simpsons*. The rules indicate the extent (minimum and maximum) for each season, computed via the [group transform](../transforms/group.md), while a red line shows the median rating trend.
+Rules can be used to connect graphical elements, such as in the [dot plot](./dot.md) below showing the decline of *The Simpsons*. The rules indicate the extent (minimum and maximum) for each season, computed via the [group transform](../transforms/group.md), while a red line shows the median rating trend.
 
 :::plot defer
 ```js
