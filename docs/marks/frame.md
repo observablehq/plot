@@ -11,7 +11,7 @@ const framed = ref(true);
 
 # Frame mark
 
-A frame draws a box around the plot area.
+The **frame mark** draws a rectangle around the plot area.
 
 :::plot
 ```js
@@ -23,7 +23,7 @@ Frames are most commonly used in conjunction with facets to provide better separ
 
 <p>
   <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
-    Show frame:
+    <span>Show frame:</span>
     <input style="margin: 0 0.5em !important; all: revert;" type="checkbox" v-model="framed">
   </label>
 </p>
@@ -42,7 +42,7 @@ Plot.plot({
 ```
 :::
 
-Unlike other marks, a frame never takes data; the first argument to [frame](#frame-options-1) is the *options* object. (For a similar data-driven mark, see [Plot.rect](./rect.md).)
+Unlike most marks, a frame never takes *data*; the first argument to [frame](#frame-options-1) is the *options* object. (For data-driven rectangles, see the [rect mark](./rect.md).)
 
 :::plot
 ```js
