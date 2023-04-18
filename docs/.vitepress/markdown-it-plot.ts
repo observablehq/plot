@@ -20,7 +20,7 @@ export default function plot(md) {
             :options='${md.utils.escapeHtml(options)}'
           />${suffix}`;
         } else {
-          const re = /\.plot\((.*)\)/;
+          const re = /\.plot\((.*)\)/s;
           const match = re.exec(content);
           if (!match) throw new Error("mark.plot not found");
           const mark = content.replace(re, "");

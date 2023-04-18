@@ -3,7 +3,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import aapl from "../data/aapl.ts";
-import bls from "../data/bls-industry-unemployment.ts";
+import industries from "../data/bls-industry-unemployment.ts";
 import sftemp from "../data/sf-temperatures.ts";
 
 </script>
@@ -163,7 +163,7 @@ Plot.plot({
     label: "↑ Unemployed (thousands)"
   },
   marks: [
-    Plot.areaY(bls, {x: "date", y: "unemployed", fill: "industry"}),
+    Plot.areaY(industries, {x: "date", y: "unemployed", fill: "industry"}),
     Plot.ruleY([0])
   ]
 })
@@ -184,7 +184,7 @@ Plot.plot({
     label: "↑ Unemployed (thousands)"
   },
   marks: [
-    Plot.areaY(bls, {x: "date", y: "unemployed", fill: "industry", offset: "wiggle"}),
+    Plot.areaY(industries, {x: "date", y: "unemployed", fill: "industry", offset: "wiggle"}),
   ]
 })
 ```
@@ -198,8 +198,8 @@ The **z** channel (either implicitly or explicitly) is typically used with the [
 ```js
 Plot.plot({
   marks: [
-    Plot.areaY(bls, {x: "date", y2: "unemployed", z: "industry", fillOpacity: 0.1}),
-    Plot.lineY(bls, {x: "date", y: "unemployed", z: "industry", strokeWidth: 1})
+    Plot.areaY(industries, {x: "date", y2: "unemployed", z: "industry", fillOpacity: 0.1}),
+    Plot.lineY(industries, {x: "date", y: "unemployed", z: "industry", strokeWidth: 1})
   ]
 })
 ```
@@ -235,8 +235,8 @@ Plot.plot({
     label: null
   },
   marks: [
-    Plot.areaY(bls, {x: "date", y: "unemployed", fy: "industry", fillOpacity: 0.2}),
-    Plot.lineY(bls, {x: "date", y: "unemployed", fy: "industry", strokeWidth: 1})
+    Plot.areaY(industries, {x: "date", y: "unemployed", fy: "industry", fillOpacity: 0.2}),
+    Plot.lineY(industries, {x: "date", y: "unemployed", fy: "industry", strokeWidth: 1})
   ]
 })
 ```
@@ -255,8 +255,8 @@ Plot.plot({
     label: null
   },
   marks: [
-    Plot.areaY(bls, Plot.normalizeY("median", {x: "date", y: "unemployed", fy: "industry", fillOpacity: 0.2})),
-    Plot.lineY(bls, Plot.normalizeY("median", {x: "date", y: "unemployed", fy: "industry", strokeWidth: 1}))
+    Plot.areaY(industries, Plot.normalizeY("median", {x: "date", y: "unemployed", fy: "industry", fillOpacity: 0.2})),
+    Plot.lineY(industries, Plot.normalizeY("median", {x: "date", y: "unemployed", fy: "industry", strokeWidth: 1}))
   ]
 })
 ```
