@@ -125,7 +125,7 @@ The **weight** channel specifies the contribution of each data point to the esti
 
 <p>
   <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex;">
-    Skew (-F/+M):
+    <span>Skew (-F/+M):</span>
     <input type="range" style="all: revert; margin: 0 0.5em;" v-model.number="skew" min="-1" max="1" step="0.01">
     <span style="font-variant-numeric: tabular-nums;">{{skew.toLocaleString("en-US", {minimumFractionDigits: 2, signDisplay: "always"})}}</span>
   </label>
