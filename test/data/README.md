@@ -215,3 +215,8 @@ U.K. Office for National Statistics
 A recreation of “Who owns Britain?” by Richard Speigal; proportion plot chart type by Stephanie Evergreen
 https://www.linkedin.com/feed/update/urn:li:activity:6758306750174138368/
 https://stephanieevergreen.com/proportion-plots/
+
+## wind.csv
+Gridded wind data
+https://github.com/gicentre/litvis/blob/main/examples/windVectors.md
+https://www.remss.com/measurements/ccmp/
