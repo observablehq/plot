@@ -66,7 +66,7 @@ Plot.barX(penguins.map((d) => d.species), Plot.groupY()).plot()
 
 ## Plot is composable
 
-Simple components gain power through composition, such as layering multiple [marks](./features/marks.md) into a single plot. Plot makes it easy to define custom compound marks, such as this one comprising a rule, area, and line:
+Simple components gain power through composition, such as layering multiple [marks](./features/marks.md) into a single plot. Plot makes it easy to define custom composite marks, such as this one comprising a rule, area, and line:
 
 ```js
 function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
@@ -78,7 +78,7 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 }
 ```
 
-You can use this compound mark like any built-in mark:
+You can use this composite mark like any built-in mark:
 
 :::plot
 ```js
@@ -86,7 +86,7 @@ arealineY(aapl, {x: "Date", y: "Close", color: "steelblue"}).plot()
 ```
 :::
 
-Plot uses this technique internally: the [axis mark](./marks/axis.md) and [box mark](./marks/box.md) are both compound marks.
+Plot uses this technique internally: the [axis mark](./marks/axis.md) and [box mark](./marks/box.md) are both composite marks.
 
 :::plot
 ```js
