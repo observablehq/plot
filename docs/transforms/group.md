@@ -1,6 +1,10 @@
 # Group transform
 
-You often want to aggregate data before visualizing; for example, given a set of penguin observations you may wish to count the number of each species seen. Plot’s group transforms let you derive summary values for each group, such as a count, sum, or proportion. The group transform is like a [bin transform](./bin.md) for ordinal or categorical data, and is most often used to make bar charts.
+:::tip
+The group transform is for aggregating ordinal or nominal data. For quantitative or temporal data, use the [bin transform](./bin.md).
+:::
+
+The **group transform** groups ordinal data—discrete values such as name, type, species, or category. You can then compute summary statistics for each group, such as a count, sum, or proportion. The group transform is most often used to make bar charts.
 
 The **groupX** transform groups data by *x*. This can be used to produce a *y* channel of counts suitable for the [barY mark](../marks/bar.md), as shown below. (A similar **groupY** transforms groups on *y*.)
 
@@ -30,7 +34,7 @@ Plot.plot({
 })
 ```
 
-The group transform should generally not be used if the primary dimension (*e.g.*, *x* for groupX) is temporal or quantitative (continuous) rather than ordinal or categorical (discrete). If this is the case, you should use the [bin transform](./bin.md), say with a [rect mark](../marks/rect.md) instead of a bar mark.
+<!-- The group transform should generally not be used if the primary dimension (*e.g.*, *x* for groupX) is temporal or quantitative (continuous) rather than ordinal or categorical (discrete). If this is the case, you should use the [bin transform](./bin.md), say with a [rect mark](../marks/rect.md) instead of a bar mark. -->
 
 Each grouped output channel (the keys of the object passed as the first argument to the group transform) has an associated reducer which controls how the summary value for each group is derived. The examples above use *count*, but a variety of built-in reducers are provided:
 

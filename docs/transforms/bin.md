@@ -1,6 +1,10 @@
 # Bin transform
 
-The bin transform groups quantitative data—continuous measurements such as heights, weights, or temperatures—into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is like a [group transform](./group.md) for quantitative data, and is most often used to make histograms or heatmaps.
+:::tip
+The bin transform is for aggregating quantitative or temporal data. For ordinal or nominal data, use the [group transform](./group.md).
+:::
+
+The **bin transform** groups quantitative data—continuous measurements such as heights, weights, or temperatures—into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is most often used to make histograms or heatmaps.
 
 The **binX** transform bins data on *x*. This can be used to produce a *y* channel of counts, along with *x1* and *x2* channels representing the bin thresholds, suitable for the [rectY mark](../marks/rect.md) as shown below. (A similar **binY** transform bins on *y*, producing *y1*, *y2*, and typically *x*.) Because the bin transform operates on quantitative data, a rect is used instead of a [bar](../marks/bar.md).
 
