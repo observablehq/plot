@@ -170,6 +170,10 @@ Plot.plot({
 ```
 :::
 
+:::warning CAUTION
+This area charts uses color  but does not show the color [legend](../features/legends.md). This should usally be avoided because color cannot be interpreted without a legend or labels.
+:::
+
 Or, as a streamgraph with the **offset** stack transform option:
 
 :::plot
