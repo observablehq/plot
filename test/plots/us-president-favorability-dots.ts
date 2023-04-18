@@ -23,7 +23,9 @@ export async function usPresidentFavorabilityDots() {
         y: (d) =>
           (d["Very Favorable %"] + d["Somewhat Favorable %"] - d["Very Unfavorable %"] - d["Somewhat Unfavorable %"]) /
           100,
-        width: 60,
+        r: 30,
+        stroke: "white",
+        preserveAspectRatio: "xMidYMin slice",
         src: "Portrait URL",
         title: "Name"
       })
