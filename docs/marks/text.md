@@ -1,164 +1,138 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import {shallowRef, onMounted} from "vue";
+import alphabet from "../data/alphabet.ts";
+import caltrain from "../data/caltrain.ts";
+import driving from "../data/driving.ts";
+
+const travelers = shallowRef([]);
+
+onMounted(() => {
+  d3.csv("../data/travelers.csv", d3.autoType).then((data) => (travelers.value = data));
+});
+
+</script>
+
 # Text mark
 
-The **text** mark draws text at the given *xy* position. It is often used to label other marks, such as to show the value of a bar; when space is available, this can allow faster and more accurate reading of values than an axis alone (or a tooltip).
+The **text mark** draws text at the given position in **x** and **y**. It is often used to label other marks, such as to show the value of a [bar](./bar.md). When space is available, direct labeling can allow faster and more accurate reading of values than an axis alone (or a tooltip).
 
+:::plot
 ```js
 Plot.plot({
-  x: {
-    label: null
-  },
+  label: null,
   y: {
     grid: true,
     label: "↑ Frequency (%)",
-    transform: d => d * 100
+    percent: true
   },
   marks: [
     Plot.barY(alphabet, {x: "letter", y: "frequency"}),
-    Plot.text(alphabet, {x: "letter", y: "frequency", text: d => (d.frequency * 100).toFixed(1), dy: -5}),
+    Plot.text(alphabet, {x: "letter", y: "frequency", text: (d) => (d.frequency * 100).toFixed(1), dy: -6, lineAnchor: "bottom"}),
     Plot.ruleY([0])
   ]
 })
 ```
+:::
 
-If there are too many data points, labels may be hard to read due to occlusion. The [*filter* transform](../features/transforms.md) can be used to label only some data. In the connected scatterplot below (recreating Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009), every fifth year is labeled. In the future, we expect Plot will have an automatic labeling transform, perhaps similar to Philippe Rivière’s [Occlusion](https://observablehq.com/@fil/occlusion).
+:::tip
+For formatting numbers and dates, consider [*number*.toLocaleString](https://observablehq.com/@mbostock/number-formatting), [*date*.toLocaleString](https://observablehq.com/@mbostock/date-formatting), [d3-format](https://github.com/d3/d3-format), or [d3-time-format](https://github.com/d3/d3-time-format).
+:::
 
+If there are too many data points, labels may overlap, making them hard to read. Use the [filter transform](../transforms/filter.md) to chose which points to label. In the connected scatterplot below, recreating Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009, every fifth year is labeled.
+
+:::plot
 ```js
 Plot.plot({
+  inset: 10,
   grid: true,
-  x: {
-    label: "Miles driven (per capita per year) →"
-  },
-  y: {
-    label: "↑ Price of gas (average per gallon, adjusted)"
-  },
+  x: {label: "Miles driven (per person-year) →"},
+  y: {label: "↑ Cost of gasoline ($ per gallon)"},
   marks: [
-    Plot.line(driving, {x: "miles", y: "gas", curve: "catmull-rom"}),
-    Plot.dot(driving, {x: "miles", y: "gas", fill: "currentColor"}),
-    Plot.text(driving, {filter: d => d.year % 5 === 0, x: "miles", y: "gas", text: d => `${d.year}`, dy: -8})
+    Plot.line(driving, {x: "miles", y: "gas", curve: "catmull-rom", marker: true}),
+    Plot.text(driving, {filter: (d) => d.year % 5 === 0, x: "miles", y: "gas", text: (d) => `${d.year}`, dy: -6, lineAnchor: "bottom"})
   ]
 })
 ```
+:::
 
-For line charts with multiple series, you often wish to label only the start or end of the line. This can be done by slicing the data, as below (note this data is in reverse chronological order, so the first element in the data is the most recent), or by using the [select transform](../transforms/select.md).
+:::tip
+If you’d like automatic labeling, please upvote [#27](https://github.com/observablehq/plot/issues/27).
+:::
 
+For line charts with multiple series, you may wish to label only the start or end of each series; this can be done using the [select transform](../transforms/select.md), as shown in the chart below comparing the number of daily travelers at airports in the U.S. between 2019 and 2020. The impact of the COVID-19 pandemic is dramatic.
+
+:::plot defer
 ```js
 Plot.plot({
   y: {
     grid: true,
-    nice: true,
     label: "↑ Travelers per day (millions)",
-    transform: d => d / 1e6
+    transform: (d) => d / 1e6 // convert to millions
   },
   marks: [
     Plot.ruleY([0]),
-    Plot.line(travelers, {
-      x: "date",
-      y: "previous",
-      stroke: "#bab0ab"
-    }),
-    Plot.line(travelers, {
-      x: "date",
-      y: "current"
-    }),
-    Plot.text(travelers.slice(0, 1), {
-      x: "date",
-      y: "previous",
-      text: ["2019"],
-      fill: "#8a817c",
-      dy: "-0.5em"
-    }),
-    Plot.text(travelers.slice(0, 1), {
-      x: "date",
-      y: "current",
-      text: ["2020"],
-      dy: "1.2em"
-    })
+    Plot.line(travelers, {x: "date", y: "previous", strokeOpacity: 0.5}),
+    Plot.line(travelers, {x: "date", y: "current"}),
+    Plot.text(travelers, Plot.selectFirst({x: "date", y: "previous", text: ["2019"], fillOpacity: 0.5, lineAnchor: "bottom", dy: -6})),
+    Plot.text(travelers, Plot.selectFirst({x: "date", y: "current", text: ["2020"], lineAnchor: "top", dy: 6}))
   ]
 })
 ```
+:::
 
-A text mark can also be used to visualize data directly, similar to a [dot mark](./dot.md) in a scatterplot. Below a “stem and leaf” plot of Caltrain’s Palo Alto station schedule uses [stacked](../transforms/stack.md) text. The *fill* channel provides a color encoding to distinguish local trains that make every stop (*N* in black), limited trains that make fewer stops (*L* in orange), and “baby bullet” trains that make the fewest stops (*B* in red).
+:::info
+The select transform uses *input* order to determine the meaning of *first* and *last*. Since this dataset is in reverse chronological order, and the first element is the most recent.
+:::
 
+A text mark can also be used to visualize data directly, similar to a [dot mark](./dot.md) in a scatterplot. Below a “stem and leaf” plot of Caltrain’s Palo Alto station schedule uses [stacked](../transforms/stack.md) text. The **fill** channel provides a color encoding to distinguish trains that make every stop (<span style="border-bottom: solid currentColor 3px;">N</span>), limited trains that make fewer stops (<span style="border-bottom: solid peru 3px;">L</span>), and “baby bullet” trains that make the fewest stops (<span style="border-bottom: solid brown 3px;">B</span>).
+
+:::plot
 ```js
 Plot.plot({
   width: 240,
   axis: null,
-  y: {
-    domain: d3.range(4, 25).map(String)
-  },
-  color: {
-    domain: "NLB",
-    range: ["currentColor", "peru", "brown"],
-    legend: true
-  },
+  x: {type: "point"},
+  y: {type: "point", domain: d3.range(4, 25)},
+  color: {domain: "NLB", range: ["currentColor", "peru", "brown"], legend: true},
   marks: [
-    Plot.text([[1, "4"]], {
-      text: ["Northbound"],
-      textAnchor: "start"
-    }),
-    Plot.text([[-1, "4"]], {
-      text: ["Southbound"],
-      textAnchor: "end"
-    }),
-    Plot.text(new Set(caltrain.map(d => d.hours)), {
-      x: 0,
-      y: d => d,
-      text: d => `${(d - 1) % 12 + 1}${(d % 24) >= 12 ? "p": "a"}`
-    }),
-    Plot.text(caltrain, Plot.stackX2({
-      filter: d => d.orientation === "N",
-      x: 1,
-      y: "hours",
-      text: d => d.minutes.padStart(2, "0"),
-      title: d => `${d.time} ${d.line}`,
-      fill: "type",
-      textAnchor: "start"
-    })),
-    Plot.text(caltrain, Plot.stackX2({
-      filter: d => d.orientation === "S",
-      x: -1,
-      y: "hours",
-      text: d => d.minutes.padStart(2, "0"),
-      title: d => `${d.time} ${d.line}`,
-      fill: "type",
-      textAnchor: "end"
-    })),
+    Plot.text([[0.5, 4]], {text: ["Northbound"], textAnchor: "start", dx: 16}),
+    Plot.text([[-0.5, 4]], {text: ["Southbound"], textAnchor: "end", dx: -16}),
+    Plot.text(d3.range(5, 25), {x: 0, y: Plot.identity, text: (y) => `${y % 12 || 12}${y % 24 >= 12 ? "p": "a"}`}),
+    Plot.text(caltrain, Plot.stackX2({x: (d) => d.orientation === "N" ? 1 : -1, y: "hours", fill: "type", text: "minutes"})),
     Plot.ruleX([-0.5, 0.5])
   ]
 })
 ```
+:::
 
-The *title* channel specifies a tooltip to be displayed when the user mouses over the text. This is used above to show the time and number of each train.
+:::info
+Since the **textAnchor** option is a constant rather than a channel, separate text marks are used for the *Northbound* and *Southbound* labels.
+:::
 
-The text mark provides channels for *x*, *y*, *z* (for *z*-order), *text*, *title*, *fill*, and *rotate*. All other options are constants. So, if you want some labels to be left-aligned and others to be right-aligned, as above, use separate text marks with different *textAnchor* options.
+The **x** and **y** channels are optional; a one-dimensional text mark can be produced by specifying only one position dimension. If both **x** and **y** are not defined, the text mark assumes that the data is an iterable of points [[*x₁*, *y₁*], [*x₂*, *y₂*], …], allowing for [shorthand](../features/shorthand.md). Furthermore, the default **text** channel is the associated datum’s index. (This is rarely what you want, but at least it gets something on the screen.)
 
-The *x* and *y* channels are optional; a one-dimensional text mark can be produced by specifying only one of *x* or *y*. If both the *x* and *y* channels are not defined, the text mark assumes that the data is an iterable of points [[*x₁*, *y₁*], [*x₂*, *y₂*], …], allowing for shorthand. Furthermore, the default *text* channel is the associated datum’s index. (This is rarely what you want, but at least it gets something on the screen.)
-
-```js
-points = Array.from({length: 10}, (_, i) => [1.2 - Math.sin(1 + i / 5), Math.cos(i / 6)])
-```
-
+:::plot
 ```js
 Plot.plot({
+  aspectRatio: 1,
+  inset: 10,
   grid: true,
-  x: {
-    domain: [0, 1]
-  },
-  y: {
-    domain: [0, 1]
-  },
   marks: [
-    Plot.line(points),
-    Plot.dot(points, {fill: "white", r: 6}),
-    Plot.text(points)
+    Plot.text(d3.range(151).map((i) => [
+      Math.sqrt(i) * Math.sin(i / 10),
+      Math.sqrt(i) * Math.cos(i / 10)
+    ]))
   ]
 })
 ```
+:::
 
-The text mark exposes the following SVG text attributes as options: [*textAnchor*](https://www.w3.org/TR/SVG11/text.html#TextAnchorProperty), [*fontFamily*](https://www.w3.org/TR/SVG11/text.html#FontFamilyProperty), [*fontSize*](https://www.w3.org/TR/SVG11/text.html#FontSizeProperty), [*fontStyle*](https://www.w3.org/TR/SVG11/text.html#FontStyleProperty), [*fontVariant*](https://www.w3.org/TR/SVG11/text.html#FontVariantProperty), [*fontWeight*](https://www.w3.org/TR/SVG11/text.html#FontWeightProperty), and [*rotate*](https://www.w3.org/TR/SVG11/text.html#TSpanElementRotateAttribute). The [*dx*](https://www.w3.org/TR/SVG11/text.html#TSpanElementDXAttribute) and [*dy*](https://www.w3.org/TR/SVG11/text.html#TSpanElementDYAttribute) attributes are supported, and must be specified in pixels. If the *x* or *y* channels are not specified, the *frameAnchor* option indicates where the text should go in the chart: top-left, middle, bottom-right, etc.
+The text mark will generate multiple lines if the **text** contains newline characters (`\n`). This may be useful for longer annotations.
 
-The text mark supports the creation of multiple lines of text with [tspan](https://www.w3.org/TR/SVG11/text.html#TSpanElement) elements, in two ways. First, you can provide the line information with newline characters:
-
+:::plot
 ```js
 Plot.plot({
   height: 200,
@@ -184,14 +158,15 @@ and so cold`], {frameAnchor: "middle"})
   ]
 })
 ```
+:::
 
-Second, if the text is not already wrapped, the *lineWidth* option triggers a line wrapping algorithm. This option must be specified as a number in *em* (i.e. font-size) units. For performance and simplicity, Plot does not measure the text exactly, but instead uses a heuristic to evaluate the length of each character. When a word contains a [soft-hyphen](https://en.wikipedia.org/wiki/Soft_hyphen) (\\xad), it might be replaced by a dash and a line feed. Using the *monospace* option overrides that heuristic for fixed-width fonts, and counts the characters instead.
+Alternatively, the **lineWidth** option enables automatic line wrapping. This option must be specified as a number in [ems](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units). When a word contains a [soft-hyphen](https://en.wikipedia.org/wiki/Soft_hyphen) (`\xad`), it may be replaced by a hyphen when wrapping. The **textOverflow** option can also be used to truncate lines that exceed the specified line width.
 
+:::plot
 ```js
 Plot.plot({
-  height: 200,
-  marginBottom: 12,
-  x: { type: "point", align: 0, axis: "top", tickSize: 0 },
+  height: 320,
+  x: {type: "point", align: 0, axis: "top", tickSize: 0},
   marks: [
     Plot.text(
       [
@@ -200,33 +175,30 @@ Plot.plot({
         "Circumambulate the city of a dreamy Sabbath afternoon. Go from Corlears Hook to Coenties Slip, and from thence, by Whitehall, northward. What do you see?—Posted like silent sentinels all around the town, stand thousands upon thousands of mortal men fixed in ocean reveries. Some leaning against the spiles; some seated upon the pier-heads; some looking over the bulwarks of ships from China; some high aloft in the rigging, as if striving to get a still better seaward peep. But these are all landsmen; of week days pent up in lath and plaster—tied to counters, nailed to benches, clinched to desks. How then is this? Are the green fields gone? What do they here?"
       ],
       {
-        frameAnchor: "top",
-        fontSize: 9,
         x: (d, i) => 1 + i, // paragraph number
         lineWidth: 20,
-        textAnchor: "start",
-        lineHeight: 1.3,
-        // monospace: true,
-        clip: true
+        frameAnchor: "top",
+        textAnchor: "start"
       }
     )
   ]
 })
 ```
+:::
 
-The *lineAnchor* option controls the line anchor for vertical position; top, bottom, or middle; and the *lineHeight* option specifies the line height in ems.
+:::warning CAUTION
+For performance and simplicity, Plot does not measure text exactly and instead uses an approximate heuristic. If Plot’s automatic wrapping is not doing what you want, consider hard wrapping with manual newlines (`\n`) instead. There is also a **monospace** option suitable for fixed-width fonts.
+:::
 
 ## Text options
-
-Draws a text label at the specified position.
 
 The following channels are required:
 
 * **text** - the text contents (a string, possibly with multiple lines)
 
-If the **text** contains `\n`, `\r\n`, or `\r`, it will be rendered as multiple lines via tspan elements. If the **text** is specified as numbers or dates, a default formatter will automatically be applied, and the **fontVariant** will default to tabular-nums instead of normal. For more control over number and date formatting, consider [*number*.toLocaleString](https://observablehq.com/@mbostock/number-formatting), [*date*.toLocaleString](https://observablehq.com/@mbostock/date-formatting), [d3-format](https://github.com/d3/d3-format), or [d3-time-format](https://github.com/d3/d3-time-format). If **text** is not specified, it defaults to the identity function for primitive data (such as numbers, dates, and strings), and to the zero-based index [0, 1, 2, …] for objects (so that something identifying is visible by default).
+If the **text** contains `\n`, `\r\n`, or `\r`, it will be rendered as multiple lines. If the **text** is specified as numbers or dates, a default formatter will automatically be applied, and the **fontVariant** will default to *tabular-nums* instead of *normal*. If **text** is not specified, it defaults to [identity](../features/transforms.md#identity) for primitive data (such as numbers, dates, and strings), and to the zero-based index [0, 1, 2, …] for objects (so that something identifying is visible by default).
 
-In addition to the [standard mark options](#marks), the following optional channels are supported:
+In addition to the [standard mark options](../features/marks.md#mark-options), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
@@ -237,21 +209,21 @@ If either of the **x** or **y** channels are not specified, the corresponding po
 
 The following text-specific constant options are also supported:
 
-* **textAnchor** - the [text anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor) for horizontal position; start, end, or middle
-* **lineAnchor** - the line anchor for vertical position; top, bottom, or middle
+* **textAnchor** - the [text anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor) for horizontal position; *start*, *end*, or *middle*
+* **lineAnchor** - the line anchor for vertical position; *top*, *bottom*, or *middle*
 * **lineHeight** - the line height in ems; defaults to 1
 * **lineWidth** - the line width in ems, for wrapping; defaults to Infinity
 * **textOverflow** - how to wrap or clip lines longer than the specified line width
-* **monospace** - if true, changes the default fontFamily and metrics to monospace
-* **fontFamily** - the font name; defaults to [system-ui](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
+* **monospace** - if true, changes the default **fontFamily** and metrics to monospace
+* **fontFamily** - the font name; defaults to [*system-ui*](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 * **fontSize** - the font size in pixels; defaults to 10
-* **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to normal
-* **fontVariant** - the [font variant](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant); defaults to normal
-* **fontWeight** - the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight); defaults to normal
+* **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to *normal*
+* **fontVariant** - the [font variant](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant); defaults to *normal*
+* **fontWeight** - the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight); defaults to *normal*
 * **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
 
-If a **lineWidth** is specified, input text values will be wrapped as needed to fit while preserving existing newlines. The line wrapping implementation is rudimentary: it replaces the space before the word that overflows with a line feed (\n). Lines might also be split on words that contain a soft-hyphen (\xad), replacing it with a dash (-) and a line feed. For non-ASCII, non-U.S. English text, or for when a different font is used, you may get better results by hard-wrapping the text yourself (by supplying line feeds in the input). If the **monospace** option is truthy, the default **fontFamily** changes to “ui-monospace, monospace”, and the **lineWidth** option is interpreted as characters (ch) rather than ems.
+If a **lineWidth** is specified, input text values will be wrapped as needed to fit while preserving existing newlines. The line wrapping implementation is rudimentary: it replaces the space before the word that overflows with a line feed (`\n`). Lines might also be split on words that contain a soft-hyphen (`\xad`), replacing it with a hyphen (-). For non-ASCII, non-U.S. English text, or for when a different font is used, you may get better results by hard-wrapping the text yourself (by supplying line feeds in the input). If the **monospace** option is truthy, the default **fontFamily** changes to monospace and the **lineWidth** option is interpreted as characters (ch) rather than ems.
 
 The **textOverflow** option can be used to truncate lines of text longer than the given **lineWidth**. If the mark does not have a **title** channel, a title with the non-truncated text is also added. The following **textOverflow** values are supported:
 
@@ -266,20 +238,32 @@ The **fontSize** and **rotate** options can be specified as either channels or c
 
 If the **frameAnchor** option is not specified, then **textAnchor** and **lineAnchor** default to middle. Otherwise, **textAnchor** defaults to start if **frameAnchor** is on the left, end if **frameAnchor** is on the right, and otherwise middle. Similarly, **lineAnchor** defaults to top if **frameAnchor** is on the top, bottom if **frameAnchor** is on the bottom, and otherwise middle.
 
-The **paintOrder** option defaults to “stroke” and the **strokeWidth** option defaults to 3. By setting **fill** to the foreground color and **stroke** to the background color (such as black and white, respectively), you can surround text with a “halo” which may improve legibility against a busy background.
+The **paintOrder** option defaults to *stroke* and the **strokeWidth** option defaults to 3. By setting **fill** to the foreground color and **stroke** to the background color (such as *black* and *white*, respectively), you can surround text with a “halo” which may improve legibility against a busy background.
 
 ## text(*data*, *options*)
+
+```js
+Plot.text(driving, {x: "miles", y: "gas", text: "year"})
+```
 
 Returns a new text mark with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 ## textX(*data*, *options*)
 
-Equivalent to [Plot.text](#plottextdata-options), except **x** defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+```js
+Plot.textX(alphabet.map((d) => d.frequency))
+```
+
+Equivalent to [text](#text-data-options), except **x** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
 
 ## textY(*data*, *options*)
 
-Equivalent to [Plot.text](#plottextdata-options), except **y** defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+```js
+Plot.textY(alphabet.map((d) => d.frequency))
+```
+
+Equivalent to [text](#text-data-options), except **y** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.

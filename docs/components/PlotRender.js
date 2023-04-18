@@ -104,6 +104,7 @@ export default {
     const {method = "plot"} = this;
     const options = {
       marks: this.mark == null ? [] : [this.mark],
+      width: 688, // better default for VitePress
       ...this.options,
       className: "plot"
     };

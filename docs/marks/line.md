@@ -102,15 +102,11 @@ There is also no requirement that **y** be dependent on **x**; lines can also be
 Plot.plot({
   inset: 10,
   grid: true,
-  x: {
-    label: "Miles driven (per person-year) →"
-  },
-  y: {
-    label: "↑ Cost of gasoline ($ per gallon)"
-  },
+  x: {label: "Miles driven (per person-year) →"},
+  y: {label: "↑ Cost of gasoline ($ per gallon)"},
   marks: [
-    Plot.line(driving, {x: "miles", y: "gas", curve: "catmull-rom", marker: "circle"}),
-    Plot.text(driving, {filter: d => d.year % 5 === 0, x: "miles", y: "gas", text: d => `${d.year}`, dy: -8})
+    Plot.line(driving, {x: "miles", y: "gas", curve: "catmull-rom", marker: true}),
+    Plot.text(driving, {filter: (d) => d.year % 5 === 0, x: "miles", y: "gas", text: (d) => `${d.year}`, dy: -8})
   ]
 })
 ```
