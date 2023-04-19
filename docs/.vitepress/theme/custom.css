@@ -41,6 +41,10 @@
   align-items: center;
 }
 
+.label-input ~ .label-input {
+  margin-left: 1em;
+}
+
 .label-input > input,
 .label-input > select {
   margin: 0 0.5em !important;

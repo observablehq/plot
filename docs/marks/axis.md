@@ -3,59 +3,62 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {ref} from "vue";
+import aapl from "../data/aapl.ts";
 import alphabet from "../data/alphabet.ts";
+import penguins from "../data/penguins.ts";
 
-const grid = ref(true);
+const anchor = ref("bottom");
+const facetAnchor = ref("auto");
+
+const responses = [
+  {name: "Family in feud with Zucker­bergs", value: 0.17},
+  {name: "Committed 671 birthdays to memory", value: 0.19},
+  {name: "Ex is doing too well", value: 0.10},
+  {name: "High school friends all dead now", value: 0.15},
+  {name: "Discovered how to “like” things mentally", value: 0.27},
+  {name: "Not enough politics", value: 0.12}
+];
 
 </script>
 
 # Axis mark
 
-The **axis mark** conveys the meaning of a position [scale](../features/scales.md): _x_ or _y_, and _fx_ or _fy_ when [faceting](../features/facets.md). Plot automatically adds default axis marks as needed, but you can customize the appearance of axes either through scale options or by instantiating **axis** or **grid** marks.
+The **axis mark** conveys the meaning of a position [scale](../features/scales.md): _x_ or _y_, and _fx_ or _fy_ when [faceting](../features/facets.md). Plot automatically adds default axis marks as needed, but you can customize the appearance of axes either through scale options or by explicitly declaring an axis mark.
 
-Axes are important! Tailoring axes may help readers more quickly and easily interpret plots. For example, you can draw grid lines atop rather than below bars.
-
-<p>
-  <label class="label-input">
-    Show grid:
-    <input type="checkbox" v-model="grid">
-  </label>
-</p>
+For example, the **axis** scale option specifies the side of the frame to draw the axis. Setting it to *both* will repeat the axis on both sides.
 
 :::plot
 ```js
 Plot.plot({
-  height: 546,
-  x: {percent: true},
+  x: {percent: true, grid: true, axis: "both"},
   marks: [
-    Plot.axisX({anchor: "top", label: "Frequency (%) →"}),
-    Plot.axisY({anchor: "left", label: null}),
-    Plot.barX(alphabet, {x: "frequency", y: "letter", fill: "steelblue", sort: {y: "width"}}),
-    grid ? Plot.gridX({interval: 1, stroke: "#fff", strokeOpacity: 1}) : null,
+    Plot.barX(alphabet, {x: "frequency", y: "letter"}),
     Plot.ruleX([0])
   ]
 })
 ```
 :::
 
-The **interval** option above instructs the grid lines to be drawn at unit intervals, _i.e._ whole percentages. As an alternative, you can use the **ticks** option to specify the desired number of ticks or the **tickSpacing** option to specify the desired separation between adjacent ticks in pixels.
+The above is equivalent to declaring two explicit axis marks, one with the *top* **anchor** and the other with the *bottom* **anchor**, and one explicit [grid mark](./grid.md). A benefit of declaring explicit axes is that you can draw them atop other marks.
 
-You can add a second axis for a given scale to repeat axes on both sides of a plot. The orientation of the axis is controlled by the **anchor** option.
-
+:::plot
 ```js
 Plot.plot({
-  height: 556,
   x: {percent: true},
   marks: [
-    Plot.gridX({interval: 1}),
-    Plot.axisX({anchor: "top", label: "Frequency (%) →"}),
+    Plot.axisX({anchor: "top"}),
     Plot.axisX({anchor: "bottom", label: null}),
-    Plot.axisY({anchor: "left", label: null}),
-    Plot.barX(alphabet, {x: "frequency", y: "letter", fill: "steelblue"}),
+    Plot.barX(alphabet, {x: "frequency", y: "letter"}),
+    Plot.gridX({interval: 1, stroke: "var(--vp-c-bg)", strokeOpacity: 0.5}),
     Plot.ruleX([0])
   ]
 })
 ```
+:::
+
+:::info
+The **interval** option above instructs the grid lines to be drawn at unit intervals, _i.e._ whole percentages. As an alternative, you can use the **ticks** option to specify the desired number of ticks or the **tickSpacing** option to specify the desired separation between adjacent ticks in pixels.
+:::
 
 If you don’t declare an axis mark for a position scale, Plot will implicitly add one for you below (before) all other marks. To disable an implicit axis, set the _scale_.**axis** option to null for the corresponding scale; or, set the top-level **axis** option to null to disable all implicit axes.
 
@@ -65,14 +68,12 @@ Plot’s axis mark is a composite mark comprised of:
 * a [text](./text.md) for tick labels
 * a [text](./text.md) for an axis label
 
-Plot’s grid mark is a specially-configured [rule](./rule.md).
-
 As such, you can take advantage of the full capabilities of these marks. For example, you can use the text mark’s **lineWidth** option to wrap long tick labels (and even soft hyphens). Note this option is expressed in ems, not pixels, and you may have to reserve additional **marginBottom** to make room for multiple lines.
 
+:::plot
 ```js
 Plot.plot({
   y: {percent: true},
-  caption: md`Data: *The Onion*’s “Why Are We Leaving Facebook?”`,
   marks: [
     Plot.axisX({label: null, lineWidth: 8, marginBottom: 40}),
     Plot.axisY({label: "↑ Responses (%)"}),
@@ -81,9 +82,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 Or, you can use the **textAnchor** option to extend the *y*-axis tick labels to the right and into the frame, and the **fill** option to specify the color of the text.
 
+:::plot
 ```js
 Plot.plot({
   marginTop: 0,
@@ -91,27 +94,31 @@ Plot.plot({
   x: {ticks: 4, label: "Yield (kg) →"},
   marks: [
     Plot.barX([42, 17, 32], {y: ["🍌 banana", "🍎 apple", "🍐 pear"]}),
-    Plot.axisY({textAnchor: "start", fill: "white", fontWeight: "bold", dx: 14})
+    Plot.axisY({textAnchor: "start", fill: "var(--vp-c-bg)", dx: 14})
   ]
 })
 ```
+:::
 
-Layering several marks makes it possible to create [ggplot2-style axes](https://ggplot2.tidyverse.org/reference/guide_axis.html) with a filled frame and white grid lines.
+Layering several marks makes it possible to create [ggplot2-style axes](https://ggplot2.tidyverse.org/reference/guide_axis.html) with a filled [frame](./frame.md) and white grid lines.
 
+:::plot
 ```js
 Plot.plot({
   inset: 10,
   marks: [
     Plot.frame({fill: "#eaeaea"}),
-    Plot.gridY({stroke: "#fff", strokeOpacity: 1}),
-    Plot.gridX({stroke: "#fff", strokeOpacity: 1}),
-    Plot.line(aapl, {x: "Date", y: "Close"})
+    Plot.gridY({stroke: "white", strokeOpacity: 1}),
+    Plot.gridX({stroke: "white", strokeOpacity: 1}),
+    Plot.line(aapl, {x: "Date", y: "Close", stroke: "black"})
   ]
 })
 ```
+:::
 
 Or you could emulate the style of *The New York Times*, with tick labels above dashed grid lines, and a custom tick format to show units (here dollars) on the first tick.
 
+:::plot
 ```js
 Plot.plot({
   round: true,
@@ -134,9 +141,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
-You can emulate [Datawrapper’s time axes](https://blog.datawrapper.de/new-axis-ticks/) using `\n` (the newline character) for multi-line tick labels, plus a bit of date math to detect the first month of each year.
+You can emulate [Datawrapper’s time axes](https://blog.datawrapper.de/new-axis-ticks/) using `\n` (the line feed character) for multi-line tick labels, plus a bit of date math to detect the first month of each year.
 
+:::plot
 ```js
 Plot.plot({
   marks: [
@@ -147,7 +156,7 @@ Plot.plot({
       ticks: 20,
       tickFormat: (
         (formatYear, formatMonth) => (x) =>
-          d3.utcMonth.count(d3.utcYear(x), x) < 1
+          x.getUTCMonth() === 0
             ? `${formatMonth(x)}\n${formatYear(x)}`
             : formatMonth(x)
       )(d3.utcFormat("%Y"), d3.utcFormat("%b"))
@@ -155,27 +164,34 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+:::tip
+In the future, Plot may generate multi-line time axis labels by default. If you’re interested in this feature, please upvote [#1285](https://github.com/observablehq/plot/issues/1285).
+:::
 
 Alternatively, you can add multiple axes with options for hierarchical time intervals, here showing weeks, months, and years.
 
+:::plot
 ```js
 Plot.plot({
-  width: 960,
   x: {round: true, nice: d3.utcWeek},
   y: {inset: 6},
   marks: [
-    Plot.frame({fill: "#eaeaea"}),
+    Plot.frame({fill: "currentColor", fillOpacity: 0.1}),
     Plot.frame({anchor: "bottom"}),
     Plot.axisX({ticks: "year", tickSize: 28, tickPadding: -11, tickFormat: "  %Y", textAnchor: "start"}),
     Plot.axisX({ticks: "month", tickSize: 16, tickPadding: -11, tickFormat: "  %b", textAnchor: "start"}),
-    Plot.gridX({ticks: "week", stroke: "#fff", strokeOpacity: 1, insetBottom: -0.5}),
+    Plot.gridX({ticks: "week", stroke: "var(--vp-c-bg)", strokeOpacity: 1, insetBottom: -0.5}),
     Plot.line(aapl.slice(-340, -10), {x: "Date", y: "Close", curve: "step"})
   ]
 })
 ```
+:::
 
 You can even style an axis dynamically based on data! The data associated with an axis or grid mark are the tick values sampled from the associated scale’s domain. If you don’t specify the data explicitly, the ticks will be chosen through a combination of the **ticks**, **tickSpacing**, and **interval** options.
 
+:::plot
 ```js
 Plot.plot({
   marginRight: 0,
@@ -183,27 +199,35 @@ Plot.plot({
     Plot.ruleY([0]),
     Plot.line(aapl, {x: "Date", y: "Close"}),
     Plot.gridY({x: (y) => aapl.find((d) => d.Close >= y)?.Date, insetLeft: -6}),
-    Plot.axisY({x: (y) => aapl.find((d) => d.Close >= y)?.Date, insetLeft: -6, textStroke: "white"})
+    Plot.axisY({x: (y) => aapl.find((d) => d.Close >= y)?.Date, insetLeft: -6, textStroke: "var(--vp-c-bg)"})
   ]
 })
 ```
+:::
 
 The color of an axis can be controlled with the **color**, **stroke**, and **fill** options, which affect the axis’ component marks differently. The **stroke** option affects the tick vector; the **fill** option affects the label texts. The **color** option is shorthand for setting both **fill** and **stroke**. While these options are typically set to constant colors (such as _red_ or the default _currentColor_), they can be specified as channels to assign colors dynamically based on the associated tick value.
 
+:::plot
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {color: "red"}).plot() // text fill and tick stroke
 ```
+:::
 
+:::plot
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {stroke: Plot.identity, strokeWidth: 3, tickSize: 10}).plot() // tick stroke
 ```
+:::
 
+:::plot
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {fill: "red"}).plot() // text fill
 ```
+:::
 
 To draw an outline around the tick labels, say to improve legibility when drawing an axes atop other marks, use the **textStroke** (default _none_), **textStrokeWidth** (default 3), and **textStrokeOpacity**  (default 1) options.
 
+:::plot
 ```js
 Plot.plot({
   height: 40,
@@ -211,6 +235,7 @@ Plot.plot({
   x: {domain: [0, 100]},
   marks: [
     Plot.axisX({
+      fill: "black",
       stroke: "white",
       textStroke: "white",
       textStrokeWidth: 3,
@@ -219,6 +244,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 When faceting, the *x*- and *y*-axes are typically repeated across facets. A *bottom*-anchored *x*-axis is by default drawn on any facet _with empty space below it_; conversely, a *top*-anchored *x*-axis is drawn on any facet _with empty space above it_. Similarly, a *left*-anchored *y*-axis is drawn on facets with empty space to the left, and a *right*-anchored *y*-axis is drawn on facets with empty space to the right.
 
@@ -234,27 +260,47 @@ If the default behavior isn’t what you want, use the *mark*.**facetAnchor** op
 * _left-empty_ - show on any facet with space to the left (a superset of _left_)
 * null - show on every facet
 
-The interactive chart below shows the different possibilities. Note that we place the facet *fx*-axis (in <span style="color: blue;">blue</span>) opposite the *x*-axis (in <span style="color: red;">red</span>).
+The interactive chart below shows the different possibilities. Note that we place the facet *fx*-axis (in <span style="border-bottom: solid 2px var(--vp-c-green);">green</span>) opposite the *x*-axis (in <span style="border-bottom: solid 2px var(--vp-c-red);">red</span>).
 
-<!-- viewof anchor = Inputs.select(["bottom", "top"], {label: htl.html`<i>x</i>-axis anchor`}) -->
+<p>
+  <label class="label-input">
+    anchor:
+    <select v-model="anchor">
+      <option>bottom</option>
+      <option>top</option>
+    </select>
+  </label>
+  <label class="label-input">
+    facetAnchor:
+    <select v-model="facetAnchor">
+      <option>auto</option>
+      <option>bottom-empty</option>
+      <option>bottom</option>
+      <option>top-empty</option>
+      <option>top</option>
+      <option>null</option>
+    </select>
+  </label>
+</p>
 
-<!-- viewof facetAnchor = Inputs.select(["auto", "bottom-empty", "bottom", "top-empty", "top", null], {label: "facetAnchor", format: String}) -->
-
+:::plot
 ```js
-chart = Plot.plot({
+Plot.plot({
   facet: {marginRight: 80},
   grid: true,
   marks: [
     Plot.frame(),
     Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fx: "sex", fy: "species"}),
     Plot.axisX({color: "red", anchor, facetAnchor: facetAnchor === "auto" ? undefined : facetAnchor}),
-    Plot.axisFx({color: "blue", anchor: anchor === "top" ? "bottom" : "top"}) // place fx axis opposite x
+    Plot.axisFx({color: "green", anchor: anchor === "top" ? "bottom" : "top"}) // place fx axis opposite x
   ]
 })
 ```
+:::
 
 The **labelAnchor** option controls the position of the axis label. For the *x* or *fx* axis, the label anchor may be *left*, *center*, or *right*. It defaults to *center* for ordinal scales and *right* for quantitative scales.
 
+:::plot
 ```js
 Plot.plot({
   height: 80,
@@ -270,9 +316,11 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 For the *y* and *fy* axis, the label anchor may be *top*, *center*, or *bottom*. It defaults to *center* for ordinal scales and *top* for quantitative scales. When the label anchor is *center*, the label is rotated by 90° to fit, though you may need to adjust the margins to avoid overlap between the tick labels and the axis label.
 
+:::plot
 ```js
 Plot.plot({
   grid: true,
@@ -287,18 +335,17 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 ## Axis options
 
-Draws an axis to document the visual encoding of the corresponding position scale: *x* or *y*, and *fx* or *fy* if faceting. The axis mark is a [composite mark](../features/marks.md#plotmarksmarks) comprised of (up to) three marks: a [vector](./vector.md) for ticks, a [text](./text.md) for tick labels, and another [text](./text.md) for an axis label.
-
-By default, the data for an axis mark are tick values sampled from the associated scale’s domain. If desired, you can specify the axis mark’s data explicitly (_e.g._ as an array of numbers), or use one of the following options:
+By default, the *data* for an axis mark are tick values sampled from the associated scale’s domain. If desired, you can specify the *data* explicitly (_e.g._ as an array of numbers), or use one of the following options:
 
 * **ticks** - the approximate number of ticks to generate, or interval, or array of values
 * **tickSpacing** - the approximate number of pixels between ticks (if **ticks** is not specified)
 * **interval** - an interval or time interval
 
-Note that when an axis mark is declared explicitly (via the [**marks** option](../features/plots.md#marks), as opposed to an implicit axis), the corresponding scale’s *scale*.ticks and *scale*.tickSpacing options are not automatically inherited by the axis mark; however, the *scale*.interval option *is* inherited, as is the *scale*.label option. You can declare multiple axis marks for the same scale with different ticks, and styles, as desired.
+Note that when an axis mark is declared explicitly (via the [**marks** plot option](../features/plots.md#marks), as opposed to an implicit axis), the corresponding scale’s *scale*.ticks and *scale*.tickSpacing options are not automatically inherited by the axis mark; however, the *scale*.interval option *is* inherited, as is the *scale*.label option. You can declare multiple axis marks for the same scale with different ticks, and styles, as desired.
 
 In addition to the [standard mark options](../features/marks.md), the axis mark supports the following options:
 
