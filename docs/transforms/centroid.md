@@ -18,7 +18,7 @@ onMounted(() => {
 
 # Centroid transform
 
-Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid-options) and [geoCentroid](#geocentroid-options). These transforms can be used by any mark that accepts **x** and **y** channels, not only dots! For instance, to label the U.S. counties with names starting with V—this is more interesting than it seems—we can use a [text mark](../marks/text.md):
+Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid-options) and [geoCentroid](#geocentroid-options). These transforms can be used by any mark that accepts **x** and **y** channels. For instance, to label the U.S. counties with names starting with V—this is more interesting than it seems—we can use a [dot mark](../marks/dot.md) and a [text mark](../marks/text.md).
 
 :::plot defer
 ```js
@@ -51,7 +51,7 @@ Plot.plot({
 ```
 :::
 
-Or, with the [voronoi mark](../marks/delaunay.md):
+Also fun, we can pass the centroid to the [voronoi mark](../marks/delaunay.md).
 
 :::plot defer
 ```js
@@ -61,8 +61,6 @@ Plot.voronoi(counties, Plot.centroid()).plot({projection: "albers"})
 
 While the centroid transform computes the centroid of a geometry _after_ projection, the geoCentroid transform computes it _before_ projection, then projects the resulting coordinates. This difference has a few implications, as follows.
 
-## centroid(*options*)
-
 As an [initializer](../features/transforms.md#initializers), the centroid transform operates _after_ the geometries have been projected to screen coordinates. The resulting **x** and **y** channels reference the pixel coordinates of the planar centroid of the _projected_ shapes. No assumption is made about the geometries: they can be in any coordinate system, and the returned value is in the frame—as long as the projected geometry returns at least one visible point.
 
 :::plot defer
@@ -71,9 +69,6 @@ Plot.dot(counties, Plot.centroid()).plot({projection: "albers-usa"})
 ```
 :::
 
-The centroid initializer derives **x** and **y** channels representing the planar (projected) centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
-
-## geoCentroid(*options*)
 
 The geoCentroid transform is more specialized as the **x** and **y** channels it derives represent the longitudes and latitudes of the centroids of the given GeoJSON geometries, before projection. It expects the geometries to be specified in _spherical_ coordinates. It is more correct, in a geospatial sense—for example, the spherical centroid always represents the center of mass of the original shape, and it will be rotated exactly in line with the projection’s rotate argument. However, this also means that it might land outside the frame if only a part of the land mass is visible, and might be clipped by the projection. In practice, the difference is generally imperceptible.
 
@@ -90,5 +85,19 @@ The geoCentroid transform is slightly faster than the centroid initializer—whi
 Plot.dot(counties, Plot.hexbin({r:"count"}, Plot.geoCentroid())).plot({projection: "albers"})
 ```
 :::
+
+## centroid(*options*)
+
+```js
+Plot.centroid({geometry: Plot.identity})
+```
+
+The centroid initializer derives **x** and **y** channels representing the planar (projected) centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
+
+## geoCentroid(*options*)
+
+```js
+Plot.geoCentroid({geometry: Plot.identity})
+```
 
 The geoCentroid transform derives **x** and **y** channels representing the spherical centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.

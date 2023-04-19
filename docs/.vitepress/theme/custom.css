@@ -45,6 +45,10 @@
   align-items: center;
 }
 
+.label-input > label {
+  display: inline-flex;
+}
+
 .label-input ~ .label-input {
   margin-left: 1em;
 }
