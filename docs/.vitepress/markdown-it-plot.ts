@@ -17,7 +17,7 @@ export default function plot(md) {
         if (/^Plot\.plot\(/.test(content)) {
           const options = content.slice(9);
           return `<PlotRender
-            ${directives.join(" ")}
+            ${directives.includes("defer") ? "defer" : ""}
             :options='${md.utils.escapeHtml(options)}'
           />${suffix}`;
         } else {
@@ -27,7 +27,7 @@ export default function plot(md) {
           const mark = content.replace(re, "");
           const options = `(${match[1] || "{}"})`;
           return `<PlotRender
-            ${directives.join(" ")}
+            ${directives.includes("defer") ? "defer" : ""}
             :mark='${md.utils.escapeHtml(mark)}'
             :options='${md.utils.escapeHtml(options)}'
           />${suffix}`;

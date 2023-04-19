@@ -99,16 +99,21 @@ class TextNode {
 }
 
 export default {
-  props: ["options", "mark", "defer", "method"],
+  props: {
+    options: Object,
+    mark: Object,
+    defer: Boolean,
+    method: {type: String, default: "plot"}
+  },
   render() {
-    const {method = "plot"} = this;
+    const {method} = this;
     const options = {
       marks: this.mark == null ? [] : [this.mark],
       width: 688, // better default for VitePress
       ...this.options,
       className: "plot"
     };
-    if (this.defer !== undefined) {
+    if (this.defer) {
       const mounted = (el) => {
         disconnect(); // remove old listeners
         function observed() {

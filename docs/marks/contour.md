@@ -1,5 +1,9 @@
 # Contour mark
 
+:::tip
+To produce a heatmap instead of contours, see the [raster mark](./raster.md).
+:::
+
 The **contour** mark generates smooth contours from spatial samples. It is closely related to the [raster mark](./raster.md), employing the same spatial interpolation techniques to transform samples {*x*, *y*, *value*} into a raster grid; but instead of returning that grid as an image, it then derives contour polygons via [marching squares](https://github.com/d3/d3-contour). These polygons are drawn as SVG paths, and can receive fill and stroke properties as well as any other common options such as opacity, title, _etc._
 
 _Note: this notebook only presents the specificities of the contour mark; please see the [raster mark](./raster.md) for details on options that are shared between the two marks._

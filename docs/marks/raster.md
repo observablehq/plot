@@ -2,251 +2,169 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {shallowRef, onMounted} from "vue";
 import volcano from "../data/volcano.ts";
+
+const ca55 = shallowRef([]);
+const grid = {"width": 10, "height": 10, "values": d3.cross(d3.range(10), d3.range(10), (x, y) => x * y)};
+
+onMounted(() => {
+  d3.csv("../data/ca55-south.csv", d3.autoType).then((data) => (ca55.value = data));
+});
 
 </script>
 
 # Raster mark
 
-The **raster** mark paints a raster image from spatial samples. In contrast with the [image](./image.md) mark, which shows an existing image, the raster mark _creates_ an image from abstract data. (For contours from spatial samples, see the [contour mark](./contour.md).)
-
-Whereas a vector image represents lines, rectangles, circles as geometrical paths, a raster image (or _bitmap_) is a rectangular grid of colored pixels organized in rows and columns. The colors are usually given in levels of red, green, and blue (RGB), and often opacity (A).
-
-Consider the following grid of numbers with {{volcano.height}} rows and {{volcano.width}} columns. Each number represents the elevation in meters of the [Maungawhau](https://en.wikipedia.org/wiki/Maungawhau) volcano at a given location.
-
-Printing the numbers directly gives the following chart—unreadable at this scale:
-
-:::plot hidden
-```js
-Plot.plot({
-  x: {label: "column →"},
-  y: {reverse: true, label: "↓ row"},
-  marks: [
-    Plot.text(volcano.values, {
-      text: Plot.identity,
-      x: (d, i) => i % volcano.width,
-      y: (d, i) => Math.floor(i / volcano.width),
-      fontSize: 3
-    }),
-    Plot.rect({length: 1}, {
-      x1: 10.5,
-      x2: 29.5,
-      y1: 10.5,
-      y2: 29.5,
-      stroke: "currentColor"
-    })
-  ]
-})
-```
+:::tip
+To produce contours instead of a heatmap, see the [contour mark](./contour.md).
 :::
 
-Now, let’s focus on the outlined region:
+The **raster mark** renders a [raster image](https://en.wikipedia.org/wiki/Raster_graphics)—that is, an image formed by discrete pixels in a grid, not a vector graphic like other marks. And whereas the [image mark](./image.md) shows an *existing* image, the raster mark *creates* one from abstract data, either by [interpolating spatial samples](../features/spatial-interpolators.md) (arbitrary points in **x** and **y**) or by sampling a continuous function *f*(*x*,*y*) along the grid.
 
-:::plot hidden
-```js
-Plot.plot({
-  x: {domain: [9.5, 30.5]},
-  y: {domain: [30.5, 9.5]},
-  marks: [
-    Plot.text(volcano.values, {
-      text: Plot.identity,
-      x: (d, i) => i % volcano.width,
-      y: (d, i) => Math.floor(i / volcano.width),
-      fontWeight: 460,
-      clip: true
-    }),
-    Plot.rect({length: 1}, {x1: 10.5, x2: 29.5, y1: 10.5, y2: 29.5, stroke: "black"})
-  ]
-})
-```
-:::
-
-… and color every number with a suitable color scale:
-
-:::plot hidden
-```js
-Plot.plot({
-  x: {domain: [9.5, 30.5]},
-  y: {domain: [30.5, 9.5]},
-  marks: [
-    Plot.dot(volcano.values, {
-      x: (d, i) => i % volcano.width,
-      y: (d, i) => Math.floor(i / volcano.width),
-      fill: Plot.identity,
-      r: 16,
-      dy: -12,
-      symbol: "square",
-      clip: true
-    }),
-    Plot.text(volcano.values, {
-      text: Plot.identity,
-      x: (d, i) => i % volcano.width,
-      y: (d, i) => Math.floor(i / volcano.width),
-      fontWeight: 460,
-      clip: true
-    }),
-    Plot.rect({length: 1}, {x1: 10.5, x2: 29.5, y1: 10.5, y2: 29.5, stroke: "black"})
-  ]
-})
-```
-:::
-
-… finally, we can forget the numbers, and zoom back out:
+For example, the heatmap below shows the topography of the [Maungawhau](https://en.wikipedia.org/wiki/Maungawhau) volcano, produced from a {{volcano.width}}×{{volcano.height}} grid of elevation samples in meters.
 
 :::plot defer
 ```js
-Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}).plot()
+Plot.plot({
+  color: {label: "Elevation (m)", legend: true},
+  marks: [
+    Plot.raster(volcano.values, {width: volcano.width, height: volcano.height})
+  ]
+})
 ```
 :::
 
-_Voilà!_ This is the raster mark in a nutshell.
-
-But that is not all: most of the time, the data you want to draw isn’t already laid out on a convenient rectangular grid, as the volcano dataset above. For instance, an image can be described by triplets of ⟨_x_, _y_, _value_⟩. These triplets live on a plane, but _x_ and _y_ are not necessarily integers, and not necessarily inside the raster frame; furthermore, they are not given in a specific order.
-
-The raster mark also covers with this type of data; however, it needs a different way to specify the information.
-
-The dataset below was acquired in the 1960s by the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), and describes the IGRF (International Geomagnetic Reference Field) measured by plane fly-overs in 1955.
+The grid (`volcano.values` above) is a list of numbers `[103, 104, 104, …]` representing elevations. The first number `103` is the elevation of the bottom-left corner. This grid is in [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order), meaning that the values for the first row are followed by the second row, then the third, and so on. Here’s a smaller grid to demonstrate the concept.
 
 ```js
-Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90"}).plot()
-```
-
-The raster mark above draws a point (a single pixel) for each datum, at its *x* and *y* coordinates (rounded to the closest pixel), and the value with which to color that point. The returned chart image is still composed of a single raster image.
-
-This preliminary image has issues: there are not enough points to fill the whole raster, and each pixel is too small. Many pixels remain white (or rather, transparent), where no value has been determined. The data’s location is given with longitudes and latitudes, and should use a [projection](../features/projections.md). And, as always, a proper color scale needs to be specified.
-
-Let’s start by addressing the easiest: projection, and color. We’ll also use the pixelSize option to make the pixels larger (this option is specified as the width in screen pixels of a raster pixel). And a line mark will display the paths of the plane that took the samples during the measurement campaign.
-
-```js
-projection = ({
-  type: "mercator",
-  domain: {
-    type: "MultiPoint",
-    coordinates: ca55.map((d) => [d.LONGITUDE, d.LATITUDE])
-  }
+grid = ({
+  "width": 10,
+  "height": 10,
+  "values": [
+     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+     0,  1,  2,  3,  4,  5,  6,  7,  8,  9,
+     0,  2,  4,  6,  8, 10, 12, 14, 16, 18,
+     0,  3,  6,  9, 12, 15, 18, 21, 24, 27,
+     0,  4,  8, 12, 16, 20, 24, 28, 32, 36,
+     0,  5, 10, 15, 20, 25, 30, 35, 40, 45,
+     0,  6, 12, 18, 24, 30, 36, 42, 48, 54,
+     0,  7, 14, 21, 28, 35, 42, 49, 56, 63,
+     0,  8, 16, 24, 32, 40, 48, 56, 64, 72,
+     0,  9, 18, 27, 36, 45, 54, 63, 72, 81
+  ]
 })
 ```
 
+Since this grid is small, we can visualize it directly with a [text mark](./text.md) using the same color encoding. Notice that the image below is flipped vertically relative to the data: the first row of the data is the *bottom* of the image because below *y* points up↑.
+
+:::plot
 ```js
 Plot.plot({
-  projection,
-  inset: 10,
-  height: 500,
-  color: { type: "diverging" },
+  x: {domain: [0, grid.width], label: "column →"},
+  y: {domain: [0, grid.height], label: "↑ row"},
   marks: [
-    Plot.line(ca55, {
-      x: "LONGITUDE",
-      y: "LATITUDE",
-      z: "LINE_NUMB-SEG",
-      markerEnd: "arrow",
-      strokeOpacity: 0.3,
-      strokeWidth: 1
-    }),
-    Plot.raster(ca55, {
-      x: "LONGITUDE",
-      y: "LATITUDE",
-      fill: "MAG_IGRF90",
-      pixelSize: 5,
-      imageRendering: "pixelated"
+    Plot.text(grid.values, {
+      text: Plot.identity,
+      fill: Plot.identity,
+      x: (d, i) => i % grid.width + 0.5,
+      y: (d, i) => Math.floor(i / grid.width) + 0.5
     })
   ]
 })
 ```
+:::
 
-*Note: unfortunately Safari does not respect the image-rendering: pixelated property for images in SVG. Until this is fixed, if you want to draw “big pixels” on the Web, it is recommended to use [rect](./rect.md) or [dot](./dot.md) instead, and switch to the raster mark for higher-density images only.*
+Also notice that the grid points are offset by 0.5: they represent the *middle* of each pixel rather than the corner. Below, the raster mark is laid under the text mark to show the raster image.
 
-## Spatial interpolation
+:::plot defer
+```js
+Plot.plot({
+  marks: [
+    Plot.raster(grid.values, {
+      width: grid.width,
+      height: grid.height,
+      imageRendering: "pixelated" // to better show the grid
+    }),
+    Plot.text(grid.values, {
+      text: Plot.identity,
+      x: (d, i) => i % grid.width + 0.5,
+      y: (d, i) => Math.floor(i / grid.width) + 0.5
+    })
+  ]
+})
+```
+:::
+
+:::warning CAUTION
+Safari does not currently support the **imageRendering** option.
+:::
+
+While the raster mark provides convenient shorthand for strictly gridded data, as above, it *also* works with samples in arbitrary positions (and arbitrary order). For example, in 1955 the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/) measured the Earth’s magnetic field by taking periodic measurements from flying planes. Each sample recorded the longitude and latitude alongside the strength of the [IGRF](https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field) in [nanoteslers]().
+
+```csv
+`LONGITUDE,LATITUDE,MAG_IGRF90
+-2.36216,51.70945,7
+-2.36195,51.71727,6
+-2.36089,51.72404,9
+-2.35893,51.73758,12
+-2.35715,51.7532,18
+-2.35737,51.76636,24
+```
+
+Using a [dot mark](./dot.md), we can make a quick scatterplot to see the irregular grid. We’ll use a *diverging* color scale to distinguish positive and negative values.
+
+:::plot defer
+```js
+Plot.dot(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", title: "MAG_IGRF90"}).plot({color: {type: "diverging"}})
+```
+:::
+
+And using a [line mark](./line.md), we can connect the line segments to reveal the flight paths.
+
+:::plot defer
+```js
+Plot.line(ca55, {x: "LONGITUDE", y: "LATITUDE", stroke: "MAG_IGRF90", z: "LINE_NUMB-SEG"}).plot({color: {type: "diverging"}})
+```
+:::
 
 The image above starts to be readable, but it would be frustrating not to do more with this dataset. It contains many measurements, painstakingly sampled across England, and we should try and extend them to create a complete map. This is the role of the **interpolate** methods of the raster mark. Methods, plural, because there is more than one way to do spatial interpolation.
 
-The first interpolation method (and easiest to think about) is *nearest*: to color a given location ⟨*x*, *y*⟩ on the raster, it finds the nearest sample in the dataset. Note that, in this method and others, the position of a pixel is defined at its center—the first pixel at the top-left is not ⟨0, 0⟩, but ⟨0.5, 0.5⟩. The _nearest_ interpolation method fills the map with Voronoi cells—called Thiessen polygons in the cartographic lingo.
+But with the raster mark’s **interpolate** option, we can see a continuous image! The *nearest* interpolation method assigns the value of the each pixel in the raster grid based on the nearest sample in the dataset. In effect, this produces a Voronoi diagram.
 
+:::plot defer
 ```js
-plotca.legend("color")
+Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "nearest"}).plot({color: {type: "diverging"}})
 ```
+:::
 
+:::tip
+You can also make this Voronoi diagram with the [voronoi mark](./delaunay.md).
+:::
+
+If we believe that the observed phenomenon is actually continuous, it might be better to use the _barycentric_ interpolation, which first covers the region with triangles whose vertices are data points, then interpolates values inside each triangle with a linear gradient between the three values. (Points outside the convex hull are extrapolated.)
+
+:::plot defer
 ```js
-plotca = Plot.plot({
-  projection,
-  inset: 10,
-  height: 500,
-  marginBottom: 2,
-  color: { type: "diverging" },
-  marks: [
-    Plot.raster(ca55, {
-      x: "LONGITUDE",
-      y: "LATITUDE",
-      fill: "MAG_IGRF90",
-      interpolate: "nearest"
-    }),
-    Plot.frame()
-  ]
-})
+Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "barycentric"}).plot({color: {type: "diverging"}})
 ```
-
-If we make the hypothesis that the phenomenon that we observe is actually continuous, it might be better to use the _barycentric_ interpolation, which first covers the region with triangles whose vertices are data points, then interpolates values inside each triangle with a linear gradient between the three values. (Points outside the convex hull are extrapolated with a specific heuristic.)
-
-```js
-Plot.plot({
-  projection,
-  inset: 10,
-  height: 500,
-  marginBottom: 2,
-  color: { type: "diverging" },
-  marks: [
-    Plot.raster(ca55, {
-      x: "LONGITUDE",
-      y: "LATITUDE",
-      fill: "MAG_IGRF90",
-      interpolate: "barycentric"
-    }),
-    Plot.frame()
-  ]
-})
-```
+:::
 
 Finally, you can use the _random-walk_ method. It is based on the following idea: to estimate the value at a given location ⟨*x*, *y*⟩, we first check if that location is touching one of the data points (_i.e._, is at a distance lesser than 0.5 pixel). If that is the case, we use the value at that point, and stop. Otherwise, we make a small step in a random direction, and repeat the process. To make this reasonably performant, this intuition is implemented with the [walk on spheres](https://observablehq.com/@fil/walk-on-spheres) algorithm, limited to 2 consecutive jumps.
 
+:::plot defer
 ```js
-Plot.plot({
-  projection,
-  inset: 10,
-  height: 500,
-  marginBottom: 2,
-  color: { type: "diverging" },
-  marks: [
-    Plot.raster(ca55, {
-      x: "LONGITUDE",
-      y: "LATITUDE",
-      fill: "MAG_IGRF90",
-      interpolate: "random-walk"
-    }),
-    Plot.frame()
-  ]
-})
+Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "random-walk"}).plot({color: {type: "diverging"}})
 ```
+:::
 
 With the _random-walk_ method, the image is grainy (and the grain reflects the uncertainty). We can use the _blur_ parameter to make it smoother:
 
+:::plot defer
 ```js
-Plot.plot({
-  projection,
-  inset: 10,
-  height: 500,
-  marginBottom: 2,
-  color: { type: "diverging" },
-  marks: [
-    Plot.raster(ca55, {
-      x: "LONGITUDE",
-      y: "LATITUDE",
-      fill: "MAG_IGRF90",
-      interpolate: "random-walk",
-      blur: 5
-    }),
-    Plot.frame()
-  ]
-})
+Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "random-walk", blur: 5}).plot({color: {type: "diverging"}})
 ```
+:::
 
 All these interpolation methods are also exposed as functions so you can use them outside of Plot, or configure them more precisely. If none of them covers your needs, it is even possible to define your own as a function that receives an array of indices into the data, the associated channels x, y, and value, and facet information. See the [API documentation](https://github.com/observablehq/plot/blob/main/README.md#spatial-interpolation) for details.
 
