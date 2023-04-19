@@ -10,7 +10,7 @@ import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./mark
 import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
 import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeIntervalTransform} from "./options.js";
-import {createProjection} from "./projection.js";
+import {createProjection, getGeometryChannels} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
@@ -416,13 +416,24 @@ function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
       const channel = channels[name];
       const {scale} = channel;
       if (scale != null && filter(scale)) {
-        const scaleChannels = channelsByScale.get(scale);
-        if (scaleChannels !== undefined) scaleChannels.push(channel);
-        else channelsByScale.set(scale, [channel]);
+        if (scale === "projection") {
+          // TODO only do this if there’s no projection
+          const [x, y] = getGeometryChannels(channel);
+          addScaleChannel(channelsByScale, "x", x);
+          addScaleChannel(channelsByScale, "y", y);
+        } else {
+          addScaleChannel(channelsByScale, scale, channel);
+        }
       }
     }
   }
   return channelsByScale;
+}
+
+function addScaleChannel(channelsByScale, scale, channel) {
+  const scaleChannels = channelsByScale.get(scale);
+  if (scaleChannels !== undefined) scaleChannels.push(channel);
+  else channelsByScale.set(scale, [channel]);
 }
 
 // Returns the facet groups, and possibly fx and fy channels, associated with
@@ -518,8 +529,8 @@ function inferAxes(marks, channelsByScale, options) {
   } = options;
 
   // Disable axes if the corresponding scale is not present.
-  if (projection || (!isScaleOptions(x) && !hasScaleChannel("x", marks))) xAxis = xGrid = null;
-  if (projection || (!isScaleOptions(y) && !hasScaleChannel("y", marks))) yAxis = yGrid = null;
+  if (projection || (!isScaleOptions(x) && !hasPositionChannel("x", marks))) xAxis = xGrid = null;
+  if (projection || (!isScaleOptions(y) && !hasPositionChannel("y", marks))) yAxis = yGrid = null;
   if (!channelsByScale.has("fx")) fxAxis = fxGrid = null;
   if (!channelsByScale.has("fy")) fyAxis = fyGrid = null;
 
@@ -647,10 +658,11 @@ function hasAxis(marks, k) {
   return marks.some((m) => m.ariaLabel?.startsWith(prefix));
 }
 
-function hasScaleChannel(k, marks) {
+function hasPositionChannel(k, marks) {
   for (const mark of marks) {
     for (const key in mark.channels) {
-      if (mark.channels[key].scale === k) {
+      const {scale} = mark.channels[key];
+      if (scale === k || scale === "projection") {
         return true;
       }
     }

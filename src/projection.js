@@ -14,6 +14,7 @@ import {
   geoOrthographic,
   geoPath,
   geoStereographic,
+  geoStream,
   geoTransform,
   geoTransverseMercator
 } from "d3";
@@ -229,10 +230,10 @@ export function project(cx, cy, values, projection) {
 // construct the projection), we have to test the raw projection option rather
 // than the materialized projection; therefore we must be extremely careful that
 // the logic of this function exactly matches Projection above!
-export function projectionAspectRatio(projection, marks) {
+export function projectionAspectRatio(projection) {
   if (typeof projection?.stream === "function") return defaultAspectRatio;
   if (isObject(projection)) projection = projection.type;
-  if (projection == null) return hasGeometry(marks) ? defaultAspectRatio : undefined;
+  if (projection == null) return;
   if (typeof projection !== "function") {
     const {aspectRatio} = namedProjection(projection);
     if (aspectRatio) return aspectRatio;
@@ -254,7 +255,22 @@ export function applyPosition(channels, scales, {projection}) {
   return position;
 }
 
-function hasGeometry(marks) {
-  for (const mark of marks) if (mark.channels.geometry) return true;
-  return false;
+export function getGeometryChannels(channel) {
+  const X = [];
+  const Y = [];
+  const x = {scale: "x", value: X};
+  const y = {scale: "y", value: Y};
+  const sink = {
+    point(x, y) {
+      X.push(x);
+      Y.push(y);
+    },
+    lineStart() {},
+    lineEnd() {},
+    polygonStart() {},
+    polygonEnd() {},
+    sphere() {}
+  };
+  for (const object of channel.value) geoStream(object, sink);
+  return [x, y];
 }
