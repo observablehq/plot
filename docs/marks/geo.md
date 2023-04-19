@@ -53,6 +53,30 @@ Plot.plot({
 
 A geo mark’s data is typically [GeoJSON](https://geojson.org/). You can pass a single GeoJSON object, a feature or geometry collection, or an array or iterable of GeoJSON objects.
 
+:::danger TODO
+Can we demonstrate using the geo mark *without* a projection, but with *x* and *y* scales?
+:::
+
+:::plot
+```js
+Plot.plot({
+  x: {domain: [new Date("2020-01-01"), new Date("2021-01-01")]},
+  y: {domain: [0, 2]},
+  marks: [
+    Plot.geo({
+      type: "Polygon",
+      coordinates: [[
+        [new Date("2020-01-01"), 0],
+        [new Date("2020-02-01"), 2],
+        [new Date("2020-03-01"), 1],
+        [new Date("2020-01-01"), 0]
+      ]]
+    })
+  ]
+})
+```
+:::
+
 The radius of Point and MultiPoint geometries is specified via the **r** option. It can be a constant number in pixels (as with London above), or a channel. If it a channel, geometries are sorted by descending radius, and the effective radius is controlled by the _r_ scale, which defaults to _sqrt_ such that the area of a point is proportional to its value. Points with a negative radius are not rendered.
 
 :::plot defer
@@ -60,10 +84,11 @@ The radius of Point and MultiPoint geometries is specified via the **r** option.
 Plot.plot({
   projection: "equirectangular",
   style: "overflow: visible;",
+  color: {zero: true, legend: true},
   marks: [
     Plot.geo(land, {fill: "currentColor", fillOpacity: 0.2}),
     Plot.sphere(),
-    Plot.geo(earthquakes, {r: (d) => Math.exp(d.properties.mag), fill: "red", fillOpacity: 0.2, stroke: "red"})
+    Plot.geo(earthquakes, {r: (d) => Math.exp(d.properties.mag), fill: (d) => (d.properties.sig), fillOpacity: 0.2, stroke: (d) => (d.properties.sig), title: (d) => d.properties.title, href: (d) => d.properties.url, target: "_blank"})
   ]
 })
 ```
@@ -84,6 +109,10 @@ Plot.plot({
 :::
 
 As an alternative to Plot.geo with point geometries, you can pass longitude and latitude to Plot.dot’s _x_ and _y_ channels, and indeed many of Plot’s basic marks can be projected (like we did with the [line](./line.md) mark for the _Beagle_’s route). You can even mix the two types of marks, depending on how your dataset is structured! Maps often layer several marks, as the [Mapping with Plot](../features/projections.md) notebook illustrates.
+
+:::danger TODO
+The above paragraph should move to the projections guide since it’s not about the geo mark.
+:::
 
 The geo mark’s _geometry_ channel can be used to generate geometry from a non-GeoJSON data source. For example, to visualize the shockwave created by the explosion of the Hunga Tonga–Hunga Haʻapai volcano on January 15, 2022 with a series of geodesic circles of increasing radius:
 
