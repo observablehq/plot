@@ -7,7 +7,7 @@
   --vp-font-family-base: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
 }
 
-figcaption {
+.vp-doc figcaption {
   line-height: 20px;
   font-size: 12px;
   font-weight: 500;
@@ -21,9 +21,9 @@ figcaption {
   color: var(--vp-c-text-2);
 }
 
-.plot,
-.plot-ramp {
-  background: none !important;
+.vp-doc .plot,
+.vp-doc .plot-ramp {
+  background: none;
 }
 
 :root.dark marker[stroke=white] {

@@ -3,6 +3,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {shallowRef, onMounted} from "vue";
+import penguins from "../data/penguins.ts";
 
 const presidents = shallowRef([]);
 
@@ -14,29 +15,21 @@ onMounted(() => {
 
 # Image mark
 
-The **image mark** draws images centered at the given position in **x** and **y**. It is often used to construct scatterplots in place of a [dot mark](./dot.md).
+The **image mark** draws images centered at the given position in **x** and **y**. It is often used to construct scatterplots in place of a [dot mark](./dot.md). For example, the chart below, based on one by [Robert Lesser](https://observablehq.com/@rlesser/when-presidents-fade-away), shows the favorability of U.S. presidents over time alongside their portraits.
 
 :::plot defer
 ```js
 Plot.plot({
-  inset: 22,
-  y: {
-    label: "First inauguration date →",
-  },
-  y: {
-    grid: true,
-    label: "Net favorability (%)",
-    percent: true,
-    tickFormat: "+f"
-  },
+  inset: 20,
+  x: {label: "First inauguration date →"},
+  y: {grid: true, label: "↑ Net favorability (%)", tickFormat: "+f"},
   marks: [
     Plot.ruleY([0]),
     Plot.image(presidents, {
       x: "First Inauguration Date",
-      y: (d) => (d["Very Favorable %"] + d["Somewhat Favorable %"] - d["Very Unfavorable %"] - d["Somewhat Unfavorable %"]) / 100,
-      r: 22,
-      preserveAspectRatio: "xMidYMin slice", // try not to clip heads
+      y: (d) => d["Very Favorable %"] + d["Somewhat Favorable %"] - d["Very Unfavorable %"] - d["Somewhat Unfavorable %"],
       src: "Portrait URL",
+      width: 40,
       title: "Name"
     })
   ]
@@ -44,18 +37,47 @@ Plot.plot({
 ```
 :::
 
+Images are drawn in input order by default. This dataset is ordered chronologically, and hence above the more recent presidents are drawn on top. You can change the order with the [sort transform](../transforms/sort.md).
+
+With the **r** option, images will be clipped to circles of the given radius. Use the [**preserveAspectRatio** option](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio) to control which part of the image appears within the circle; below, we favor the top part of the image to show the presidential head.
+
 :::plot defer
 ```js
 Plot.plot({
-  inset: 30,
-  width: 960,
-  height: 300,
+  x: {inset: 20, label: "First inauguration date →"},
+  y: {insetTop: 4, grid: true, label: "↑ Any opinion (%)", tickFormat: "+f"},
+  marks: [
+    Plot.ruleY([0]),
+    Plot.image(presidents, {
+      x: "First Inauguration Date",
+      y: (d) => d["Very Favorable %"] + d["Somewhat Favorable %"] + d["Very Unfavorable %"] + d["Somewhat Unfavorable %"],
+      src: "Portrait URL",
+      r: 20,
+      preserveAspectRatio: "xMidYMin slice",
+      title: "Name"
+    })
+  ]
+})
+```
+:::
+
+:::tip
+You can also use the **r** channel as a size encoding, and the **rotate** channel, as with dots.
+:::
+
+The **r** option works well with the [dodge transform](../transforms/dodge.md) for an image beeswarm plot. This chart isn’t particularly interesting because new presidents are inaugurated at a fairly consistent rate, but at least it avoids overlapping portraits.
+
+:::plot defer
+```js
+Plot.plot({
+  inset: 20,
+  height: 280,
   marks: [
     Plot.image(
       presidents,
       Plot.dodgeY({
         x: "First Inauguration Date",
-        r: 22,
+        r: 20, // clip to a circle
         preserveAspectRatio: "xMidYMin slice", // try not to clip heads
         src: "Portrait URL",
         title: "Name"
@@ -66,299 +88,56 @@ Plot.plot({
 ```
 :::
 
-For example, the scatterplot below shows recent [Astronomy Picture of the Day](https://apod.nasa.gov/apod/astropix.html) entries from NASA; *x* represents the date, and *y* represents the date’s weekday.
+The default size of an image is only 16×16 pixels. This may be acceptable if the image is a small glyph, such as a categorical symbol in a scatterplot. But often you will want to set **width**, **height**, or **r** to increase the image size.
 
-```js
-// https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=100
-apod = (await FileAttachment("apod.json").json())
-    .filter(d => d.media_type === "image") // only consider images
-    .map(({date, ...d}) => ({...d, date: new Date(date)})) // coerce dates
-    .sort((a, b) => d3.descending(a.date, b.date)) // chronological
-    .map((d, i) => (d.index = i, d)) // add an index.
-```
-
+:::plot defer
 ```js
 Plot.plot({
-  marginLeft: 20,
-  x: {inset: 8},
-  y: {type: "point", grid: true, tickFormat: Plot.formatWeekday("en", "narrow")},
-  marks: [
-    Plot.image(apod.slice(0, 40), {x: "date", y: d => d.date.getUTCDay(), src: "url", title: "title"})
-  ]
-})
-```
-
-As another example, the scatterplot below (contributed by [Robert Lesser](https://observablehq.com/@rlesser)) shows the favorability of U.S. presidents over time. Sorry, Nixon! The default size of an image is only 16×16 pixels, but it can be increased if we want to show more detail, at the risk of also increasing occlusion. Images are drawn in input order, and hence the more recent presidents are drawn on top below.
-
-<!-- viewof metric = Inputs.select([
-  {
-    name: "Net favorability",
-    value: (d) =>
-      d["Very Favorable %"] +
-      d["Somewhat Favorable %"] -
-      d["Very Unfavorable %"] -
-      d["Somewhat Unfavorable %"]
-  },
-  {
-    name: "Favorable",
-    value: (d) =>
-      d["Very Favorable %"] +
-      d["Somewhat Favorable %"]
-  },
-  {
-    name: "Unfavorable",
-    value: (d) =>
-      d["Very Unfavorable %"] +
-      d["Somewhat Unfavorable %"]
-  },
-  {
-    name: "Undecided",
-    value: (d) =>
-      d["Don’t know %"] +
-      d["Have not heard of them %"]
-  },
-], {
-  format: d => d.name,
-  label: "Favorability metric"
-}) -->
-
-```js
-Plot.plot({
-  inset: 30,
-  width: 960,
-  height: 600,
-  x: {
-    label: "Date of first inauguration →"
-  },
-  y: {
-    grid: true,
-    label: `↑ ${metric.name} (%)`,
-    percent: true,
-    tickFormat: "+f"
-  },
+  aspectRatio: 1,
+  grid: true,
+  x: {label: "Favorable opinion (%) →"},
+  y: {label: "↑ Unfavorable opinion (%)"},
   marks: [
     Plot.ruleY([0]),
-    Plot.image(
-      favorability,
-      {
-        x: "First Inauguration Date",
-        y: d => metric.value(d) / 100,
-        width: 60,
-        src: "Portrait URL",
-        title: d => `${d.Name}\n${d["First Inauguration Date"].getUTCFullYear()}`
-      }
-    )
+    Plot.ruleX([0]),
+    Plot.image(presidents, {
+      x: (d) => d["Very Favorable %"] + d["Somewhat Favorable %"],
+      y: (d) => d["Very Unfavorable %"] + d["Somewhat Unfavorable %"],
+      src: "Portrait URL",
+      title: "Name"
+    })
   ]
 })
 ```
+:::
 
-Images can also be used in scatterplot to produce categorical symbols:
+If—*for reasons*—you want to style the plot with a background image, you can do that using the top-level **style** option rather than an image mark. Below, the penguins dataset is visualized atop of a picture of NOAA’s [South Pole Atmospheric Research Observatory](https://unsplash.com/photos/GnP7PjxGeHs). (These penguins were observed in Antarctica, though on the [peninsula](https://en.wikipedia.org/wiki/Antarctic_Peninsula) rather than near the pole.)
 
-```js
-data = [
-  [0.241, "x"],
-  [0.367, "x"],
-  [0.036, "x"],
-  [0.112, "o"],
-  [0.382, "x"],
-  [0.594, "x"],
-  [0.516, "o"],
-  [0.634, "o"],
-  [0.612, "x"],
-  [0.271, "x"],
-  [0.241, "x"],
-  [0.955, "x"],
-  [0.336, "x"],
-  [0.307, "o"],
-  [0.747, "x"]
-]
-```
-
+:::plot defer
 ```js
 Plot.plot({
+  margin: 30,
+  inset: 10,
   grid: true,
-  x: {inset: 8, axis: null},
-  y: {domain: [0, 1]},
-  marks: [
-    Plot.ruleY([0, 1]),
-    Plot.image(data, {
-      x: (d, i) => i,
-      y: ([value]) => value,
-      src: ([, type]) => icons[type]
-    })
-  ]
-})
-```
-
-```js
-// https://feathericons.com/
-icons = ({
-  o: await FileAttachment("activity.svg").url(),
-  x: await FileAttachment("x-square.svg").url()
-})
-```
-
-A convenient alternative, if the symbols are available as a text font, is to use a [text mark](./text.md), for example with emoji like in the chart below. A [proportional symbol mark](./dot.md) is also available, designed to maximize differentiability.
-
-```js
-Plot.plot({
-  inset: 8,
-  grid: true,
-  x: {axis: null},
-  height: 280,
-  marks: [
-    Plot.ruleY([0, 1]),
-    Plot.text(data, {
-      x: (d, i) => i,
-      y: ([y]) => y,
-      text: ([, type]) => type === "x" ? "❎" : "💎",
-      fontSize: 17
-    })
-  ]
-})
-```
-
-Back to images, if we want to scale them, we have to compute their *width* (or *height*) explicitly: there is no *r* channel like for dot marks, and no associated scale. Remember to compute the *width* or *height* with a square root to make the symbol’s *area* proportional to the quantity it describes.
-
-```js
-Plot.plot({
-  grid: true,
-  x: {axis: null, inset: 16},
-  y: {domain: [0, 1]},
-  marks: [
-    Plot.ruleY([0, 1]),
-    Plot.image(data, {
-      x: (d, i) => i,
-      y: ([value]) => value,
-      width: ([value]) => Math.sqrt(value) * 30,
-      src: ([, type]) => icons[type]
-    })
-  ]
-})
-```
-
-Images can be of any format supported by your browser—note that the spec, however, covers only JPEG, PNG and SVG (the behavior for animated GIFs is left to the browser).
-
-Images are referenced by the *src* channel, a string matching one of the following protocols: **https**, **http**, **blob**, **file**, or **data**.
-
-Set the image size with the *width* and *height* options, either as a constant number or a channel. (If only one is specified, *width* defaults to *height* and *vice versa*.)
-
-```js
-Plot.image(apod.slice(0, 10), {x: "index", src: "url", height: 120}).plot({height: 160})
-```
-
-Control how the image fills the space with the [*preserveAspectRatio*](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio) option. A few typical options appear in the following menu below.
-
-<!-- viewof preserveAspectRatio = Inputs.select(
-  [
-    "none",
-    "xMidYMin meet",
-    "xMidYMid meet",
-    "xMidYMax meet",
-    "xMidYMin slice",
-    "xMidYMid slice",
-    "xMidYMax slice"
-  ],
-  {
-    label: "preserveAspectRatio",
-    value: "xMidYMid meet" // default
-  }
-) -->
-
-```js
-Plot.plot({
-  marginLeft: 0,
-  marginRight: 0,
-  x: {type: "point"},
-  height: 160,
-  marks: [
-    Plot.image(apod.slice(0, 10), {
-      x: "index",
-      src: "url",
-      width: 64,
-      height: 100,
-      preserveAspectRatio
-    })
-  ]
-})
-```
-
-As we mentioned above, the *src* channel can be specified with several different protocols. These introduce tiny nuances in the way the image is loaded into the plot, and the browser’s security model might preclude some operations, such as downloading a png copy of the chart. We’ll explore these in details in the following section.
-
-The **http**  protocol is never considered secure (with the possible exception of a server set on localhost). Your browser will probably accept to load the image and display it on the plot, but it will not allow any operation such as the rasterization needed to “download as PNG”.
-
-The **https** protocol is considered secure if the images are hosted on the same server, for example the url of an observable file attachment:
-
-https://science.nasa.gov/southern-jupiter-perijove-3
-
-```js
-Plot.image([{ url: junoAttachedUrl }], { x: 0, src: "url", width: 300 }).plot({
-  width: 300,
-  x: { axis: null },
-  height: 250
-})
-```
-
-However, when an image is hosted on a server with a different domain name (‘cross-origin’), it is considered secure only if it was explicitly called with a crossOrigin: anonymous header and the server allows it. If it doesn’t, you can use a proxy. To see the difference, use the “Download PNG” option on the gallery below, which uses a CORS proxy, and on the gallery above, which takes its images directly from the APOD website.
-
-```js
-Plot.image(apod.slice(10, 10 + width / 182), {
-  x: (d,i) => i,
-  src: d => `https://corsproxy.io/?${encodeURIComponent(d.url)}`,
-  width: 182,
-  height: 300,
-  preserveAspectRatio: "xMidYMid slice",
-  //crossOrigin: "anonymous" // this option is not supported by any browser
-}).plot({
-  width,
-  x: { axis: null, type:"point" },
-  height: 320,
-  marginLeft: 0,
-  marginRight: 0
-})
-```
-
-The **data** protocol allows to use images that are defined as a full URL. This can be handy for SVG images.
-
-<!-- xSquareIconDataUrl = `data:image/svg+xml;utf8,${await FileAttachment("x-square.svg").text()}` -->
-
-<!-- activityIconDataUrl = `data:image/svg+xml;utf8,${await FileAttachment("activity.svg").text()}` -->
-
-```js
-Plot.plot({
+  style: {
+    padding: 10,
+    color: "black",
+    background: `url(https://images.unsplash.com/photo-1561990170-6d82faed96e7?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=noaa-GnP7PjxGeHs-unsplash.jpg&w=1376)`,
+    backgroundSize: "cover"
+  },
   marks: [
     Plot.frame(),
-    Plot.image(data, {
-      src: d => d[1] === "o" ? activityIconDataUrl : xSquareIconDataUrl,
-      x: (d, i) => i,
-      y: null
-    })
-  ],
-  x: {type: "point"}
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "white", stroke: "black"})
+  ]
 })
 ```
-
-The **blob** protocol allows to use images that have been stored in memory, like the eclipseBlob below:
-
-<!-- eclipseBlob = FileAttachment("eclipse_js.jpg").blob().then(URL.createObjectURL) -->
-
-```js
-Plot.image([eclipseBlob], { x: 0, src: (d) => d, width: 300 }).plot({
-  width: 300,
-  x: { axis: null },
-  height: 250
-})
-```
-
-Finally, the **file** protocol will load images directly from your hard-drive—this works only in a context where Plot is launched from an HTML file that is also loaded directly.
-
-Note that Plot.image will pass the *crossOrigin* option to the generated svg image elements; however browser support for this attribute is, at the time of this writing, [inexistent](https://caniuse.com/?search=svg%20crossorigin). (For more details on this topic, see “[Plot.image and crossOrigin](https://observablehq.com/@observablehq/plot-image-and-crossorigin).”)
+:::
 
 ## Image options
 
-Draws images as in a scatterplot. The required **src** option specifies the URL (or relative path) of each image. If **src** is specified as a string that starts with a dot, slash, or URL protocol (*e.g.*, “https:”) it is assumed to be a constant; otherwise it is interpreted as a channel.
+The required **src** option specifies the URL (or relative path) of each image. If **src** is specified as a string that starts with a dot, slash, or URL protocol (*e.g.*, “https:”) it is assumed to be a constant; otherwise it is interpreted as a channel.
 
-In addition to the [standard mark options](#marks), the following optional channels are supported:
+In addition to the [standard mark options](../features/marks.md#mark-options), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
@@ -375,13 +154,13 @@ The **r** option, if not null (the default), enables circular clipping; it may b
 The following image-specific constant options are also supported:
 
 * **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
-* **preserveAspectRatio** - the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio); defaults to “xMidYMid meet”
+* **preserveAspectRatio** - the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio); defaults to *xMidYMid meet*
 * **crossOrigin** - the [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior
 * **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
 
-To crop the image instead of scaling it to fit, set **preserveAspectRatio** to “xMidYMid slice”. The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation on enlarged images; however, note that this is not supported in WebKit.
+To crop the image instead of scaling it to fit, set **preserveAspectRatio** to *xMidYMid slice*. The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation on enlarged images; however, note that this is not supported in WebKit.
 
-Images are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting, consider a [sort and reverse transform](#transforms).
+Images are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting, consider a [sort transform](../transforms/sort.md).
 
 ## image(*data*, *options*)
 
