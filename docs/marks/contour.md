@@ -39,6 +39,31 @@ Plot.contour(volcano.values, {width: volcano.width, height: volcano.height}).plo
 ```
 :::
 
+Whereas the **value** option produces isolines suitable for stroking, the **fill** option produces filled contours. Setting the **fill** to [identity](../features/transforms.md#identity) will apply a color encoding to the contour values, allowing the contour values to be read via a *color* legend.
+
+:::plot defer
+```js
+Plot.plot({
+  color: {
+    legend: true,
+    label: "Elevation (m)"
+  },
+  marks: [
+    Plot.contour(volcano.values, {
+      width: volcano.width,
+      height: volcano.height,
+      fill: Plot.identity,
+      stroke: "black"
+    })
+  ]
+})
+```
+:::
+
+:::info
+Contours are drawn in ascending value order, with the highest value on top; hence, filled contour polygons overlap! If you are interested in isobands, please upvote [#1420](https://github.com/observablehq/plot/issues/1420).
+:::
+
 The grid (`volcano.values` above) is a list of numbers `[103, 104, 104, …]`. The first number `103` is the elevation of the bottom-left corner. This grid is in [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order), meaning that the elevations of the first row are followed by the second row, then the third, and so on. Here’s a smaller grid to demonstrate the concept.
 
 ```js
