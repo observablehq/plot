@@ -108,7 +108,8 @@ class DelaunayLink extends Mark {
       select(this)
         .selectAll()
         .data(newIndex)
-        .join("path")
+        .enter()
+        .append("path")
         .call(applyDirectStyles, mark)
         .attr("d", (i) => {
           const p = path();
