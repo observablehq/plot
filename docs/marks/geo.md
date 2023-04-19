@@ -1,74 +1,108 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import * as topojson from "topojson-client";
+import {computed, shallowRef, onMounted} from "vue";
+
+const beagle = shallowRef([]);
+const us = shallowRef(null);
+const world = shallowRef(null);
+const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
+const land = computed(() => world.value ? topojson.feature(world.value, world.value.objects.land) : {type: null});
+
+onMounted(() => {
+  d3.text("../data/beagle.csv").then((text) => (beagle.value = d3.csvParseRows(text).map(d3.autoType)));
+  d3.json("../data/countries-110m.json").then((data) => (world.value = data));
+  Promise.all([
+    d3.json("../data/us-counties-10m.json"),
+    d3.csv("../data/us-county-unemployment.csv")
+  ]).then(([_us, _unemployment]) => {
+    const map = new Map(_unemployment.map((d) => [d.id, +d.rate]));
+    _us.objects.counties.geometries.forEach((g) => (g.properties.unemployment = map.get(g.id)));
+    us.value = _us;
+  });
+});
+
+</script>
+
 # Geo mark
 
-The **geo** mark draws geographic features and other polygonal geometry, often as maps. It works with Plot’s flexible [geographic projection system](https://observablehq.com/@observablehq/plot-projections${location.search}).
+The **geo mark** draws geographic features—polygons, lines, points, and other GeoJSON geometry—often as thematic maps. It works with Plot’s [projection system](../features/projections.md). For example, the [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) below shows unemployment by county in the United States.
 
+:::plot defer
 ```js
-Plot.geo(counties, {fill: (d) => d.properties.unemployment}).plot({
+Plot.plot({
   projection: "albers-usa",
   color: {
     type: "quantile",
-    n: 8,
+    n: 9,
     scheme: "blues",
     label: "Unemployment (%)",
     legend: true
-  }
+  },
+  marks: [
+    Plot.geo(counties, {
+      fill: (d) => d.properties.unemployment,
+      title: (d) => `${d.properties.name}\n${d.properties.unemployment}%`
+    })
+  ]
 })
 ```
-
-The [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) above shows county-level unemployment rates for the contiguous United States. To create it, we join a collection of county polygons (a GeoJSON file) with a table of unemployment rates (a CSV file): the _fill_ function looks up the unemployment rate for the given county. The data is prepared and explained in the [appendix below](#appendix).
+:::
 
 A geo mark’s data is typically [GeoJSON](https://geojson.org/). You can pass a single GeoJSON object, a feature or geometry collection, or an array or iterable of GeoJSON objects. The map below combines Point, LineString, and MultiPolygon geometries to track Charles Darwin’s voyage on HMS _Beagle_. (Data via [Benjamin Schmidt](https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world).)
 
-```js
-land = FileAttachment("land.json").json() // multi-polygon representing land area
-```
-
-```js
-beagle = FileAttachment("beagle.json").json() // line representing the Beagle’s route
-```
-
-```js
-london = ({type: "Point", coordinates: [-0.13, 51.5]}) // London’s longitude and latitude
-```
-
-```js
-Plot.geo([land, beagle, london]).plot({projection: "equirectangular"})
-```
-
-To improve this map, we can fill the land, thicken the line, increase the point size, add a bit of color to the [line](./line.md) mark, and a caption. We can also adopt the [Equal Earth](https://equal-earth.com/equal-earth-projection.html) projection designed by Bojan Šavrič, Bernhard Jenny, and Tom Patterson.
-
+:::plot defer
 ```js
 Plot.plot({
-  projection: "equal-earth",
+  projection: "equirectangular",
   marks: [
-    Plot.geo(land, {fill: "currentColor"}),
-    Plot.graticule(),
-    Plot.line(beagle.coordinates, {stroke: (d, i) => i, z: null, strokeWidth: 2}),
-    Plot.geo(london, {fill: "red", r: 5}),
-    Plot.sphere()
-  ],
-  caption: htl.html`The voyage of Charles Darwin aboard HMS <i>Beagle</i>, 1831–1836.`
+    Plot.geo(land), // MultiPolygon
+    Plot.line(beagle, {stroke: "red"}), // [[lon, lat], …]
+    Plot.geo({type: "Point", coordinates: [-0.13, 51.5]}, {fill: "red"}) // London
+  ]
 })
 ```
+:::
 
-Note how the line uses the default _auto_ **curve** option, which interpolates by using the shortest path which, on the sphere, follows the great circle. Try and change the code above to specify curve: "linear" on the line mark, and see the difference!
+:::info
+Note that line segments are geodesics, following the shortest path between two points on the surface of the sphere, and wrapping around the antimeridian at 180° longitude.
+:::
 
-The convenience helper Plot.**graticule** draws a uniform grid of meridians (constant longitude) and parallels (constant latitude) every 10° between ±80° latitude (for the polar regions, meridians every 90°). Plot.**sphere**, for its part, draws the outline of the projected sphere.
+The geo mark supports both constant and channel values for the common mark options (such as **fill** and **stroke**). The constant <span style="border-bottom: solid 2px red;">red</span> color above allowed us to style the Point representing London. A variable channel, in turn, produces a different color for each geometry based on the associated datum. Below color reveals the westward direction of the Beagle’s journey around the world, starting and ending in London.
 
+:::plot defer
 ```js
 Plot.plot({
-  inset: 4,
-  height: 400,
-  projection: {type: "orthographic", rotate: [0, -35, 20]},
-  marks: [Plot.graticule({strokeOpacity: 0.5}), Plot.sphere()]
+  projection: "equirectangular",
+  marks: [
+    Plot.geo(land),
+    Plot.line(beagle, {stroke: (d, i) => i, z: null})
+  ]
 })
 ```
+:::
 
-Like all marks, geo accepts both constant and channel values for the common mark options (such as fill, stroke, opacity…). The constant <b style="color: red;">red</b> color above allowed us to style the Point representing London. A variable channel, in turn, produces a different color for each geometry based on the associated datum.
+:::info
+**z** is set to null because **stroke** is quantitative and we only want to draw a single line.
+:::
 
-The radius of Point and MultiPoint geometries is specified via the *r* option. It can be a constant number in pixels (as with London above), or a channel. If it a channel, geometries are sorted by descending radius, and the effective radius is controlled by the _r_ scale, which defaults to _sqrt_ such that the area of a point is proportional to its value. Points with a negative radius are not rendered.
+The [graticule](#graticule-options) helper draws a uniform grid of meridians (constant longitude) and parallels (constant latitude) every 10° between ±80° latitude (for the polar regions, meridians every 90°). The [sphere](#sphere-options) helper draws the outline of the projected sphere.
 
-earthquakes = (await fetch("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson")).json()
+:::plot
+```js
+Plot.plot({
+  inset: 2,
+  projection: {type: "orthographic", rotate: [0, -30, 20]},
+  marks: [Plot.graticule({strokeOpacity: 0.3}), Plot.sphere()]
+})
+```
+:::
+
+The radius of Point and MultiPoint geometries is specified via the **r** option. It can be a constant number in pixels (as with London above), or a channel. If it a channel, geometries are sorted by descending radius, and the effective radius is controlled by the _r_ scale, which defaults to _sqrt_ such that the area of a point is proportional to its value. Points with a negative radius are not rendered.
+
+<!-- earthquakes = (await fetch("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson")).json() -->
 
 ```js
 Plot.plot({
@@ -124,46 +158,9 @@ tonga = [-175.38, -20.57]
 
 Lastly, Plot.geo is not limited to spherical geometries. [Plot’s projection system](../features/projections.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
 
-## GeoJSON and TopoJSON
-
-The GeoJSON format is a common way to represent geographic shapes: it can be used to specify geometries such as points (Point and MultiPoint), lines (LineString, MultiLineString), and areas (Polygon, MultiPolygon). Geometries can also be assembled and connected to properties (such as names, values…), to create Features.
-
-For various reasons, features are often stored in a different format than GeoJSON. A common format is TopoJSON, which both offers a more compact representation (faster loading times), and facilitates topological operations such as merging polygons, computing meshes of edges, etc. Before feeding these to Plot.geo, you have to convert them to GeoJSON with the [topojson-client](https://github.com/topojson/topojson-client) library—automatically available in Observable notebooks. Other libraries exist that can read various formats used to encode geographic shapes—such as shapefiles, geoparquet, _etc._ In all cases, there exists a way to create a GeoJSON representation from these files, that we can pass to Plot.geo.
-
-In fact, in the case of TopoJSON files, the code that does the job is shorter than our explanation! See below how we extract the *nation* feature, aggregate the edges between states in *statemesh*, and retrieve the counties as a FeatureCollection, all from a single file *us-counties-10m.json*, saved as a TopoJSON file attachment.
-
-```js
-us = FileAttachment("us-counties-10m.json").json()
-```
-
-```js
-nation = topojson.feature(us, us.objects.nation)
-```
-
-```js
-statemesh = topojson.mesh(us, us.objects.states, (a, b) => a !== b)
-```
-
-```js
-counties = {
-  const rate = new Map(unemployment.map(({id, rate}) => [id, rate]));
-  const counties = topojson.feature(us, us.objects.counties);
-  for (const county of counties.features) county.properties.unemployment = rate.get(county.id);
-  return counties;
-}
-```
-
-### Tabular data
-
-The dataset below contains the 2016 unemployment rates for each county from the [U.S. Bureau of Labor Statistics](https://www.bls.gov/lau/tables.htm). Above, we index them by the county’s [FIPS code](https://en.wikipedia.org/wiki/FIPS_county_code) for faster access when joining them with the geometries.
-
-```js
-unemployment = (await FileAttachment("us-county-unemployment.csv").csv()).map(({rate, ...rest}) => ({...rest, rate: +rate}))
-```
-
 ## Geo options
 
-Draws polygons, lines, points, and other GeoJSON geometry, often in conjunction with a [geographic projection](#projection-options) to produce a thematic map. The **geometry** channel specifies the geometry (GeoJSON object) to draw; if not specified, the mark’s *data* is assumed to be GeoJSON.
+The **geometry** channel specifies the geometry (GeoJSON object) to draw; if not specified, the mark’s *data* is assumed to be GeoJSON.
 
 ## geo(*data*, *options*)
 
