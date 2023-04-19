@@ -55,11 +55,7 @@ Plot.plot({
 :::
 
 :::info
-The math above is based on the [Remote Sensing Systems](https://www.remss.com/measurements/ccmp/) documentation:
-
-> Standard U and V coordinates apply, meaning the positive U is to the right and positive V is above the axis. U and V are relative to true north. CCMP winds are expressed using the oceanographic convention, meaning a wind blowing toward the Northeast has a positive U component and a positive V component.
->
-> Longitude is given in degrees East from 0.125 to 359.875 and latitude is given in degrees North with negative values representing southern locations.
+Regarding this data, [Remote Sensing Systems](https://www.remss.com/measurements/ccmp/) says: *“Standard U and V coordinates apply, meaning the positive U is to the right and positive V is above the axis. U and V are relative to true north. CCMP winds are expressed using the oceanographic convention, meaning a wind blowing toward the Northeast has a positive U component and a positive V component… Longitude is given in degrees East from 0.125 to 359.875 and latitude is given in degrees North with negative values representing southern locations.”*
 :::
 
 The **shape** option controls the vector’s appearance, while the **anchor** option positions the vector relative to its anchor point specified in **x** and **y**. The [spike constructor](#spike-data-options) sets the **shape** to *spike* and the **anchor** to *start*. For example, this can be used to produce a [spike map](https://observablehq.com/@observablehq/plot-spike) of U.S. county population.
@@ -73,7 +69,7 @@ Plot.plot({
   style: "overflow: visible;",
   marks: [
     Plot.geo(statemesh, {strokeOpacity: 0.5}),
-    Plot.spike(counties, Plot.geoCentroid({length: (d) => d.properties.population, stroke: "var(--vp-c-red)"}))
+    Plot.spike(counties, Plot.geoCentroid({length: (d) => d.properties.population, stroke: "red"}))
   ]
 })
 ```
