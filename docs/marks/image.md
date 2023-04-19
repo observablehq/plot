@@ -153,7 +153,7 @@ The **r** option, if not null (the default), enables circular clipping; it may b
 
 The following image-specific constant options are also supported:
 
-* **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
+* **frameAnchor** - how to position the image within the frame; defaults to *middle*
 * **preserveAspectRatio** - the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio); defaults to *xMidYMid meet*
 * **crossOrigin** - the [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior
 * **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)

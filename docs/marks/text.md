@@ -220,7 +220,7 @@ The following text-specific constant options are also supported:
 * **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to *normal*
 * **fontVariant** - the [font variant](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant); defaults to *normal*
 * **fontWeight** - the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight); defaults to *normal*
-* **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
+* **frameAnchor** - how to position the text within the frame; defaults to *middle*
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
 
 If a **lineWidth** is specified, input text values will be wrapped as needed to fit while preserving existing newlines. The line wrapping implementation is rudimentary: it replaces the space before the word that overflows with a line feed (`\n`). Lines might also be split on words that contain a soft-hyphen (`\xad`), replacing it with a hyphen (-). For non-ASCII, non-U.S. English text, or for when a different font is used, you may get better results by hard-wrapping the text yourself (by supplying line feeds in the input). If the **monospace** option is truthy, the default **fontFamily** changes to monospace and the **lineWidth** option is interpreted as characters (ch) rather than ems.

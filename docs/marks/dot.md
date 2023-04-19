@@ -312,7 +312,7 @@ The dot mark can also be used to construct a [quantile-quantile (QQ) plot](https
 
 ## Dot options
 
-In addition to the [standard mark options](#marks), the following optional channels are supported:
+In addition to the [standard mark options](../features/marks.md#mark-options), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
@@ -327,7 +327,7 @@ The following dot-specific constant options are also supported:
 * **r** - the effective radius (length); a number in pixels
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
 * **symbol** - the categorical symbol; defaults to circle
-* **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
+* **frameAnchor** - how to position the dot within the frame; defaults to *middle*
 
 The **r** option can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. The radius defaults to 4.5 pixels when using the **symbol** channel, and otherwise 3 pixels. Dots with a nonpositive radius are not drawn.
 

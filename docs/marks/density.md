@@ -7,6 +7,8 @@ import faithful from "../data/faithful.ts";
 import penguins from "../data/penguins.ts";
 
 const skew = ref(0);
+const bandwidth = ref(20);
+const thresholds = ref(20);
 const diamonds = shallowRef([]);
 
 onMounted(() => {
@@ -17,7 +19,7 @@ onMounted(() => {
 
 # Density mark
 
-The density mark shows the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. Contours guide the eye towards the local peaks of concentration of the data, much like a topographic map does with elevation. This is especially useful given overplotting in dense datasets.
+The **density mark** shows the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. Contours guide the eye towards the local peaks of concentration of the data, much like a topographic map does with elevation. This is especially useful given overplotting in dense datasets.
 
 :::plot
 ```js
@@ -32,29 +34,40 @@ Plot.plot({
 ```
 :::
 
-The **bandwidth** option specifies the radius of the [Gaussian kernel](https://en.wikipedia.org/wiki/Gaussian_function) describing the influence of each point as a function of distance; this kernel is summed over a discrete grid covering the plot, and then contours (*isolines*) are derived for values between 0 (exclusive) and the maximum density (exclusive) using the [marching squares algorithm](https://en.wikipedia.org/wiki/Marching_squares). (Internally, the bandwidth is rounded based on the precision of the underlying discrete grid.)
+The **bandwidth** option specifies the radius of the [Gaussian kernel](https://en.wikipedia.org/wiki/Gaussian_function) describing the influence of each point as a function of distance; this kernel is summed over a discrete grid covering the plot, and then contours (*isolines*) are derived for values between 0 (exclusive) and the maximum density (exclusive) using the [marching squares algorithm](https://en.wikipedia.org/wiki/Marching_squares).
 
-<!-- ```js
-viewof bandwidth = Inputs.range([0, 40], {label: "Bandwidth", value: 20, step: 0.2})
-``` -->
+<p>
+  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex;">
+    <span>Bandwidth:</span>
+    <input type="range" style="all: revert; margin: 0 0.5em;" v-model.number="bandwidth" min="0" max="40" step="0.2">
+    <span style="font-variant-numeric: tabular-nums;">{{bandwidth.toLocaleString("en-US", {minimumFractionDigits: 1})}}</span>
+  </label>
+</p>
 
-<!-- ```js
+:::plot defer
+```js
 Plot.plot({
   inset: 20,
   marks: [
-    Plot.density(faithful, {x: "waiting", y: "eruptions", bandwidth: undefined}), // TODO
+    Plot.density(faithful, {x: "waiting", y: "eruptions", bandwidth}),
     Plot.dot(faithful, {x: "waiting", y: "eruptions"})
   ]
 })
-``` -->
+```
+:::
 
-The **thresholds** option specifies the number of contour lines (minus one) to be computed. For example, with 4 thresholds and a maximum density of 10, contour lines would be drawn for the values 2.5, 5, and 7.5. The default number of thresholds is 20. (You can also pass the thresholds as an explicit array of values.)
+The **thresholds** option specifies the number of contour lines (minus one) to be computed, or an explicit array of threshold values. For example, with 4 thresholds and a maximum density of 10, contour lines would be drawn for the values 2.5, 5, and 7.5. The default number of thresholds is 20.
 
-<!-- ```js
-viewof thresholds = Inputs.range([1, 40], {label: "Thresholds", value: 20, step: 1})
-``` -->
+<p>
+  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex;">
+    <span>Thresholds:</span>
+    <input type="range" style="all: revert; margin: 0 0.5em;" v-model.number="thresholds" min="1" max="40" step="1">
+    <span style="font-variant-numeric: tabular-nums;">{{thresholds}}</span>
+  </label>
+</p>
 
-<!-- ```js
+:::plot defer
+```js
 Plot.plot({
   inset: 20,
   marks: [
@@ -62,7 +75,8 @@ Plot.plot({
     Plot.dot(faithful, {x: "waiting", y: "eruptions"})
   ]
 })
-``` -->
+```
+:::
 
 The density mark also works with one-dimensional values:
 
@@ -185,14 +199,24 @@ Plot.plot({
 ```
 :::
 
+## Density options
+
+In addition to the [standard mark options](../features/marks.md#mark-options), the following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale
+* **y** - the vertical position; bound to the *y* scale
+* **weight** - the contribution to the estimated density
+
+If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
+
+The **thresholds** option, which defaults to 20, specifies one more than the number of contours that will be computed at uniformly-spaced intervals between 0 (exclusive) and the maximum density (exclusive). The **thresholds** option may also be specified as an array or iterable of explicit density values. The **bandwidth** option, which defaults to 20, specifies the standard deviation of the Gaussian kernel used for estimation in pixels.
+
+If a **z**, **stroke** or **fill** channel is specified, the input points are grouped by series, and separate sets of contours are generated for each series. If the **stroke** or **fill** is specified as *density*, a color channel is constructed with values representing the density threshold value of each contour.
+
 ## density(*data*, *options*)
 
 ```js
 Plot.density(faithful, {x: "waiting", y: "eruptions"})
 ```
 
-Draws contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of the two-dimensional points given by the **x** and **y** channels, and possibly weighted by the **weight** channel. If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
-
-The **thresholds** option, which defaults to 20, specifies one more than the number of contours that will be computed at uniformly-spaced intervals between 0 (exclusive) and the maximum density (exclusive). The **thresholds** option may also be specified as an array or iterable of explicit density values. The **bandwidth** option, which defaults to 20, specifies the standard deviation of the Gaussian kernel used for estimation in pixels.
-
-If a **z**, **stroke** or **fill** channel is specified, the input points are grouped by series, and separate sets of contours are generated for each series. If the **stroke** or **fill** is specified as *density*, a color channel is constructed with values representing the density threshold value of each contour.
+Returns a new density mark for the given *data* and *options*.

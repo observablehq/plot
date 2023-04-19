@@ -306,7 +306,7 @@ The following channels are required:
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
 
-In addition to the [standard mark options](#marks), the following optional channels are supported:
+In addition to the [standard mark options](../features/marks.md#mark-options), the following optional channels are supported:
 
 * **z** - a categorical value to group data into series
 
