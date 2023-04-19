@@ -3,6 +3,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {shallowRef, onMounted} from "vue";
+import penguins from "../data/penguins.ts";
 import volcano from "../data/volcano.ts";
 
 const ca55 = shallowRef([]);
@@ -11,6 +12,13 @@ const grid = {"width": 10, "height": 10, "values": d3.cross(d3.range(10), d3.ran
 onMounted(() => {
   d3.csv("../data/ca55-south.csv", d3.autoType).then((data) => (ca55.value = data));
 });
+
+function mandelbrot(x, y) {
+  for (let n = 0, zr = 0, zi = 0; n < 80; ++n) {
+    [zr, zi] = [zr * zr - zi * zi + x, 2 * zr * zi + y];
+    if (zr * zr + zi * zi > 4) return n;
+  }
+}
 
 </script>
 
@@ -22,7 +30,7 @@ To produce contours instead of a heatmap, see the [contour mark](./contour.md).
 
 The **raster mark** renders a [raster image](https://en.wikipedia.org/wiki/Raster_graphics)—that is, an image formed by discrete pixels in a grid, not a vector graphic like other marks. And whereas the [image mark](./image.md) shows an *existing* image, the raster mark *creates* one from abstract data, either by [interpolating spatial samples](../features/spatial-interpolators.md) (arbitrary points in **x** and **y**) or by sampling a continuous function *f*(*x*,*y*) along the grid.
 
-For example, the heatmap below shows the topography of the [Maungawhau](https://en.wikipedia.org/wiki/Maungawhau) volcano, produced from a {{volcano.width}}×{{volcano.height}} grid of elevation samples in meters.
+For example, the heatmap below shows the topography of the [Maungawhau](https://en.wikipedia.org/wiki/Maungawhau) volcano, produced from a {{volcano.width}}×{{volcano.height}} grid of elevation samples.
 
 :::plot defer
 ```js
@@ -35,7 +43,7 @@ Plot.plot({
 ```
 :::
 
-The grid (`volcano.values` above) is a list of numbers `[103, 104, 104, …]` representing elevations. The first number `103` is the elevation of the bottom-left corner. This grid is in [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order), meaning that the values for the first row are followed by the second row, then the third, and so on. Here’s a smaller grid to demonstrate the concept.
+The grid (`volcano.values` above) is a list of numbers `[103, 104, 104, …]`. The first number `103` is the elevation of the bottom-left corner. This grid is in [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order), meaning that the elevations of the first row are followed by the second row, then the third, and so on. Here’s a smaller grid to demonstrate the concept.
 
 ```js
 grid = ({
@@ -56,11 +64,12 @@ grid = ({
 })
 ```
 
-Since this grid is small, we can visualize it directly with a [text mark](./text.md) using the same color encoding. Notice that the image below is flipped vertically relative to the data: the first row of the data is the *bottom* of the image because below *y* points up↑.
+We can visualize this small grid directly with a [text mark](./text.md) using the same color encoding. Notice that the image below is flipped vertically relative to the data: the first row of the data is the *bottom* of the image because below *y* points up↑.
 
 :::plot
 ```js
 Plot.plot({
+  grid: true,
   x: {domain: [0, grid.width], label: "column →"},
   y: {domain: [0, grid.height], label: "↑ row"},
   marks: [
@@ -88,6 +97,7 @@ Plot.plot({
     }),
     Plot.text(grid.values, {
       text: Plot.identity,
+      fill: "white",
       x: (d, i) => i % grid.width + 0.5,
       y: (d, i) => Math.floor(i / grid.width) + 0.5
     })
@@ -100,7 +110,7 @@ Plot.plot({
 Safari does not currently support the **imageRendering** option.
 :::
 
-While the raster mark provides convenient shorthand for strictly gridded data, as above, it *also* works with samples in arbitrary positions (and arbitrary order). For example, in 1955 the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/) measured the Earth’s magnetic field by taking periodic measurements from flying planes. Each sample recorded the longitude and latitude alongside the strength of the [IGRF](https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field) in [nanoteslers]().
+While the raster mark provides convenient shorthand for strictly gridded data, as above, it *also* works with samples in arbitrary positions (and arbitrary order). For example, in 1955 the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/) measured the Earth’s magnetic field by plane. Each sample recorded the longitude and latitude alongside the strength of the [IGRF](https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field) in [nanoteslers]().
 
 ```csv
 `LONGITUDE,LATITUDE,MAG_IGRF90
@@ -128,9 +138,9 @@ Plot.line(ca55, {x: "LONGITUDE", y: "LATITUDE", stroke: "MAG_IGRF90", z: "LINE_N
 ```
 :::
 
-The image above starts to be readable, but it would be frustrating not to do more with this dataset. It contains many measurements, painstakingly sampled across England, and we should try and extend them to create a complete map. This is the role of the **interpolate** methods of the raster mark. Methods, plural, because there is more than one way to do spatial interpolation.
+The image above starts to be readable, but it would be frustrating to not do more with this data given all the effort that went into collecting it! Fortunately the raster mark’s **interpolate** option can quickly produce a continuous image.
 
-But with the raster mark’s **interpolate** option, we can see a continuous image! The *nearest* interpolation method assigns the value of the each pixel in the raster grid based on the nearest sample in the dataset. In effect, this produces a Voronoi diagram.
+The *nearest* interpolator assigns the value of each pixel in the grid using the nearest sample in the data. In effect, this produces a Voronoi diagram.
 
 :::plot defer
 ```js
@@ -142,7 +152,7 @@ Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolat
 You can also make this Voronoi diagram with the [voronoi mark](./delaunay.md).
 :::
 
-If we believe that the observed phenomenon is actually continuous, it might be better to use the _barycentric_ interpolation, which first covers the region with triangles whose vertices are data points, then interpolates values inside each triangle with a linear gradient between the three values. (Points outside the convex hull are extrapolated.)
+If the observed phenomenon is continuous, we can use the _barycentric_ interpolator. This constructs a Delaunay triangulation of the samples, and then paints each triangle by interpolating the values of the triangle’s vertices in [barycentric coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system). (Points outside the convex hull are extrapolated.)
 
 :::plot defer
 ```js
@@ -150,7 +160,7 @@ Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolat
 ```
 :::
 
-Finally, you can use the _random-walk_ method. It is based on the following idea: to estimate the value at a given location ⟨*x*, *y*⟩, we first check if that location is touching one of the data points (_i.e._, is at a distance lesser than 0.5 pixel). If that is the case, we use the value at that point, and stop. Otherwise, we make a small step in a random direction, and repeat the process. To make this reasonably performant, this intuition is implemented with the [walk on spheres](https://observablehq.com/@fil/walk-on-spheres) algorithm, limited to 2 consecutive jumps.
+Finally, the _random-walk_ interpolator assigns the value at each grid location simply by taking a random walk that stops after reaching a minimum distance from any sample! The interpolator uses the [walk on spheres](https://observablehq.com/@fil/walk-on-spheres) algorithm, limited to 2 consecutive jumps.
 
 :::plot defer
 ```js
@@ -158,7 +168,7 @@ Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolat
 ```
 :::
 
-With the _random-walk_ method, the image is grainy (and the grain reflects the uncertainty). We can use the _blur_ parameter to make it smoother:
+With the _random-walk_ method, the image is grainy, reflecting the uncertainty of the random walk. Use the **blur** option to make it smoother.
 
 :::plot defer
 ```js
@@ -166,84 +176,31 @@ Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolat
 ```
 :::
 
-All these interpolation methods are also exposed as functions so you can use them outside of Plot, or configure them more precisely. If none of them covers your needs, it is even possible to define your own as a function that receives an array of indices into the data, the associated channels x, y, and value, and facet information. See the [API documentation](https://github.com/observablehq/plot/blob/main/README.md#spatial-interpolation) for details.
+:::tip
+If none of the built-in [spatial interpolators](../features/spatial-interpolators.md) suffice, you can write your own as a custom function!
+:::
 
-Choosing the best spatial interpolation method strongly depends on the use case, and on what the values represent. Both examples above—the volcano elevation and the geomagnetic reference field—are numeric values that reflect a continuous quantitative dimension. But we can use spatial interpolation on discrete, categorical values too. The methods included in Plot have all been implemented in such a way that they can be applied both to quantitative or categorical dimensions. Our next example features the [iris dataset](https://archive.ics.uci.edu/ml/datasets/iris), which encodes the lengths of petals and sepals of different irises, together with their species.
+The raster mark can interpolate categorical values, too! Below, this creates an interesting “map” of penguin species in the space of culment length _vs._ depth.
 
-```js
-irisChart = Plot.plot({
-  inset: 30,
-  color: { scheme: "category10", legend: true },
-  marks: [
-    Plot.raster(iris, {
-      interpolate: interpolateIris,
-      x: "petalLength",
-      y: "sepalLength",
-      fill: "species",
-      fillOpacity: 0.8,
-      blur: blurIris
-    }),
-    Plot.dot(iris, {
-      x: "petalLength",
-      y: "sepalLength",
-      fill: "species",
-      stroke: "white"
-    })
-  ]
-})
-```
-
-<!-- viewof interpolateIris = Inputs.radio(
-  [null, "nearest", "random-walk", "barycentric"],
-  {
-    value: "random-walk",
-    label: "interpolate",
-    format: (d) => d ?? "null"
-  }
-) -->
-
-<!-- viewof blurIris = Inputs.range([0, 10], { value: 0, label: "blur radius", step: 1 }) -->
-
-For ordinal values, such as the species of an iris, there is no way to represent the “weighted mean” of ${iriscolor("setosa")}, ${iriscolor("versicolor")} and ${iriscolor("virginica")}—so the spatial interpolation switches to a different strategy. In the categorical case, the spatial interpolators mix the different values with a dice roll: when a point represent setosa with a probability of 1/2, versicolor 1/3 and virginica 1/6, we take a random number between 0 and 1 and decide on setosa if it’s less that 0.5, versicolor if less than 5/6, and virginica otherwise.
-
-This creates an interesting “map” of the species in the space of petal length _vs._ sepal length. If you read the background color as the possible distribution of species in the different regions, you begin to get a feel for what each interpolation method does.
-
-In this case the _random-walk_ method is clearly the best: where there are enough samples of the same color, the interpolated color is almost solid. In other words, we can be pretty sure that a new iris whose measurements are in the ${iriscolor("versicolor")} region would indeed be versicolor. Where there is more doubt—either because we’re in a region that has both ${iriscolor("versicolor")} and ${iriscolor("virginica")}, or because we’re far from any existing sample—there is more noise. In that case, the local mixing of colors corresponds (more or less) to the relative probabilities of each species. (This map of probabilities is what a machine-learning algorithm tries to figure.)
-
-And, if you find that the dithering is not to your taste, you can also add some blurring. Note that in this case we blur the resulting _image_, instead of the data—this is the only possibility, since the data cannot be interpolated.
-
-## Working with opacity
-
-The examples above have been colorful, demonstrating the **fill** output of the raster mark. Another possibility is to set a constant fill and a variable **fillOpacity** channel. Everything works the same, but the generated image is now a mask with a variable opacity. For example, the image below adds a blue tint to the map, with a density that corresponds to the data.
-
+:::plot defer
 ```js
 Plot.plot({
-  projection,
-  inset: 10,
-  height: 500,
-  opacity: { transform: Math.abs },
+  color: {legend: true},
   marks: [
-    Plot.line(ca55, {
-      x: "LONGITUDE",
-      y: "LATITUDE",
-      z: "LINE_NUMB-SEG",
-      strokeWidth: 1,
-      markerEnd: "arrow"
-    }),
-    Plot.raster(ca55, {
-      x: "LONGITUDE",
-      y: "LATITUDE",
-      fill: "steelblue",
-      fillOpacity: "MAG_IGRF90",
-      interpolate: "nearest"
-    })
+    Plot.raster(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", interpolate: "random-walk"}),
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
   ]
 })
 ```
+:::
 
-## Function sampling
+As an alternative to interpolating samples, you can supply values as a continuous function *f*(*x*,*y*); the raster mark will invoke this function for the midpoint of each pixel in the raster grid, similar to a WebGL fragment shader. For example, below we visualize the [Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set) by counting the number of iterations needed until the point “escapes”.
 
-But that is not all! Sometimes you want to color every pixel in a rectangle with a function that depends on the location ⟨*x*, *y*⟩, similar to a WebGL fragment shader. This case is also supported by the raster mark: when the **fill** channel is defined as a function and there is no data, that function is called repeatedly, for each pixel, with the coordinates (in data space) where the value should be computed. This is useful in mathematics, for example to draw the fractal defined by [Mandelbrot](https://en.wikipedia.org/wiki/Mandelbrot_set)’s function, which tells us whether a certain recursive sequence diverges, and how fast, given two parameters *x* and *y*:
+:::plot defer
+```js
+Plot.raster({fill: mandelbrot, x1: -2, x2: 1, y1: -1.164, y2: 1.164}).plot({aspectRatio: 1})
+```
+:::
 
 ```js
 function mandelbrot(x, y) {
@@ -251,66 +208,30 @@ function mandelbrot(x, y) {
     [zr, zi] = [zr * zr - zi * zi + x, 2 * zr * zi + y];
     if (zr * zr + zi * zi > 4) return n;
   }
-  // undefined if it has converged, for a transparent pixel
 }
 ```
 
+Or to visualize the arctangent function:
+
+:::plot defer
 ```js
-Plot.plot({
-  height: 500,
-  marks: [
-    Plot.raster({
-      fill: mandelbrot,
-      pixelSize: 1 / devicePixelRatio,
-      x1: -2,
-      x2: 1,
-      y1: -1.164,
-      y2: 1.164
-    })
-  ]
-})
+Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)}).plot()
 ```
+:::
 
-## Faceting
-
-The raster mark works with faceting, allowing to select different samples on different facets (say, by time). In the case of the function fill, however, since there is no data, the method for faceting is a bit different than usual: facets are passed to the function as the third argument.
-
-```js
-{
-  const lin = (x) => x / (4 * Math.PI);
-  const { sin, cos } = Math;
-  return Plot.plot({
-    width: 450,
-    height: 420,
-    color: { type: "diverging" },
-    fx: { tickFormat: (f) => f?.name },
-    fy: { tickFormat: (f) => f?.name },
-    marks: [
-      Plot.raster({
-        fill: (x, y, { fx, fy }) => fx(x) * fy(y),
-        fx: [sin, sin, lin, lin],
-        fy: [cos, lin, lin, cos],
-        x1: 0,
-        y1: 0,
-        x2: 4 * Math.PI,
-        y2: 4 * Math.PI,
-        interval: 0.2
-      }),
-      Plot.frame()
-    ]
-  });
-}
-```
+:::tip
+When faceting, the sample function *f*(*x*,*y*) is passed a third argument of the facet values {*fx*, *fy*}.
+:::
 
 ## Raster options
 
-Renders a raster image from spatial samples. If data is provided, it represents discrete samples in abstract coordinates *x* and *y*; the *fill* and *fillOpacity* channels specify further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](#spatial-interpolation) to produce an image.
+If *data* is provided, it represents discrete samples in abstract coordinates **x** and **y**; the **fill** and **fillOpacity** channels specify further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](../features/spatial-interpolators.md) to produce an image.
 
 ```js
 Plot.raster(volcano.values, {width: volcano.width, height: volcano.height})
 ```
 
-The *fill* and *fillOpacity* channels may alternatively be specified as continuous functions *f*(*x*, *y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
+The **fill** and **fillOpacity** channels may alternatively be specified as continuous functions *f*(*x*,*y*) to be evaluated at each pixel centroid of the raster grid (without interpolation).
 
 ```js
 Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)})
@@ -333,16 +254,16 @@ If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**
 
 The following raster-specific constant options are supported:
 
-* **interpolate** - the [spatial interpolation method](#spatial-interpolation)
+* **interpolate** - the [spatial interpolation method](../features/spatial-interpolators.md)
 * **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
 * **blur** - a non-negative pixel radius for smoothing; defaults to 0
 
-The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation for a sharper image; however, note that this is not supported in WebKit. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
+The **imageRendering** option may be set to *pixelated* for a sharper image. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
 
 ## raster(*data*, *options*)
 
 ```js
-Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height})
 ```
 
 Returns a new raster mark with the given (optional) *data* and *options*.
