@@ -30,7 +30,7 @@ To produce contours instead of a heatmap, see the [contour mark](./contour.md).
 
 The **raster mark** renders a [raster image](https://en.wikipedia.org/wiki/Raster_graphics)—that is, an image formed by discrete pixels in a grid, not a vector graphic like other marks. And whereas the [image mark](./image.md) shows an *existing* image, the raster mark *creates* one from abstract data, either by [interpolating spatial samples](../features/spatial-interpolators.md) (arbitrary points in **x** and **y**) or by sampling a continuous function *f*(*x*,*y*) along the grid.
 
-For example, the heatmap below shows the topography of the [Maungawhau](https://en.wikipedia.org/wiki/Maungawhau) volcano, produced from a {{volcano.width}}×{{volcano.height}} grid of elevation samples.
+For example, the heatmap below shows the topography of the [Maungawhau volcano](https://en.wikipedia.org/wiki/Maungawhau), produced from a {{volcano.width}}×{{volcano.height}} grid of elevation samples.
 
 :::plot defer
 ```js
@@ -110,10 +110,10 @@ Plot.plot({
 Safari does not currently support the **imageRendering** option.
 :::
 
-While the raster mark provides convenient shorthand for strictly gridded data, as above, it *also* works with samples in arbitrary positions (and arbitrary order). For example, in 1955 the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/) measured the Earth’s magnetic field by plane. Each sample recorded the longitude and latitude alongside the strength of the [IGRF](https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field) in [nanoteslers]().
+While the raster mark provides convenient shorthand for strictly gridded data, as above, it *also* works with samples in arbitrary positions and arbitrary order. For example, in 1955 the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/) measured the Earth’s magnetic field by plane. Each sample recorded the longitude and latitude alongside the strength of the [IGRF](https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field) in [nanoteslers]().
 
 ```csv
-`LONGITUDE,LATITUDE,MAG_IGRF90
+LONGITUDE,LATITUDE,MAG_IGRF90
 -2.36216,51.70945,7
 -2.36195,51.71727,6
 -2.36089,51.72404,9
@@ -126,7 +126,7 @@ Using a [dot mark](./dot.md), we can make a quick scatterplot to see the irregul
 
 :::plot defer
 ```js
-Plot.dot(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", title: "MAG_IGRF90"}).plot({color: {type: "diverging"}})
+Plot.dot(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90"}).plot({color: {type: "diverging"}})
 ```
 :::
 
@@ -194,7 +194,7 @@ Plot.plot({
 ```
 :::
 
-As an alternative to interpolating samples, you can supply values as a continuous function *f*(*x*,*y*); the raster mark will invoke this function for the midpoint of each pixel in the raster grid, similar to a WebGL fragment shader. For example, below we visualize the [Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set) by counting the number of iterations needed until the point “escapes”.
+As an alternative to interpolating discrete samples, you can supply values as a continuous function *f*(*x*,*y*); the raster mark will invoke this function for the midpoint of each pixel in the raster grid, similar to a WebGL fragment shader. For example, below we visualize the [Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set) by counting the number of iterations needed until the point “escapes”.
 
 :::plot defer
 ```js

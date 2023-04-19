@@ -127,6 +127,10 @@ https://github.com/vincentarelbundock/Rdatasets/blob/master/csv/datasets/morley.
 Vega
 https://github.com/vega/vega-datasets/blob/master/SOURCES.md#moviesjson
 
+## MYDAL2_M_SKY_WV_2022-11-01_rgb_360x180.csv
+Aqua/MODIS water vapor, NASA Earth Observations
+https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV
+
 ## nc-absentee-votes.csv
 unknown
 
