@@ -197,53 +197,10 @@ Positions scales also have a **round** option which forces the scale to snap to 
 
 While position is the most salient, and thus more important, encoding, many visualizations also employ a color encoding. As with position, the default type of quantitative color scale is *linear*: the difference in value should be proportional to the perceived difference in color.
 
-<!-- viewof schemeq = Inputs.select(new Map([
-["Blues (sequential, single-hue)", "blues"],
-["Greens (sequential, single-hue)", "greens"],
-["Greys (sequential, single-hue)", "greys"],
-["Purples (sequential, single-hue)", "purples"],
-["Reds (sequential, single-hue)", "reds"],
-["Oranges (sequential, single-hue)", "oranges"],
-["Turbo (sequential, multi-hue)", "turbo"],
-["Viridis (sequential, multi-hue)", "viridis"],
-["Magma (sequential, multi-hue)", "magma"],
-["Inferno (sequential, multi-hue)", "inferno"],
-["Plasma (sequential, multi-hue)", "plasma"],
-["Cividis (sequential, multi-hue)", "cividis"],
-["Cubehelix (sequential, multi-hue)", "cubehelix"],
-["Warm (sequential, multi-hue)", "warm"],
-["Cool (sequential, multi-hue)", "cool"],
-["BuGn (sequential, multi-hue)", "bugn"],
-["BuPu (sequential, multi-hue)", "bupu"],
-["GnBu (sequential, multi-hue)", "gnbu"],
-["OrRd (sequential, multi-hue)", "orrd"],
-["PuBuGn (sequential, multi-hue)", "pubugn"],
-["PuBu (sequential, multi-hue)", "pubu"],
-["PuRd (sequential, multi-hue)", "purd"],
-["RdPu (sequential, multi-hue)", "rdpu"],
-["YlGnBu (sequential, multi-hue)", "ylgnbu"],
-["YlGn (sequential, multi-hue)", "ylgn"],
-["YlOrBr (sequential, multi-hue)", "ylorbr"],
-["YlOrRd (sequential, multi-hue)", "ylorrd"],
-["BrBG (diverging)", "brbg"],
-["PRGn (diverging)", "prgn"],
-["PiYG (diverging)", "piyg"],
-["PuOr (diverging)", "puor"],
-["RdBu (diverging)", "rdbu"],
-["RdGy (diverging)", "rdgy"],
-["RdYlBu (diverging)", "rdylbu"],
-["RdYlGn (diverging)", "rdylgn"],
-["Spectral (diverging)", "spectral"],
-["BuRd (diverging)", "burd"],
-["BuYlRd (diverging)", "buylrd"],
-["Rainbow (cyclical)", "rainbow"],
-["Sinebow (cylical)", "sinebow"]
-]), {label: "Color scheme", value: "turbo"}) -->
-
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
+  <label class="label-input">
     Color scheme:
-    <select style="margin: 0 0.5em !important; all: revert;" v-model="schemeq">
+    <select v-model="schemeq">
       <optgroup label="sequential, single-hue">
         <option value="blues">Blues</option>
         <option value="greens">Greens</option>
@@ -301,9 +258,9 @@ Plot.plot({
 The default color scheme is [Turbo](https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html). A wide variety of sequential, diverging, and cyclical schemes are supported, including ColorBrewer and [Viridis](http://bids.github.io/colormap/). You can implement a custom color scheme by specifying the scale’s *range*, or by passing an *interpolate* function that takes a parameter *t* in [0, 1]. The *interpolate* option can also be used to specify a color space, or a two-argument function that takes a pair of values from the range.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
+  <label class="label-input">
     Color interpolate:
-    <select style="margin: 0 0.5em !important; all: revert;" v-model="interpolateq">
+    <select v-model="interpolateq">
       <option value="rgb">rgb</option>
       <option value="lab">lab</option>
       <option value="hcl">hcl</option>
@@ -356,9 +313,9 @@ And like position scales, you can apply a *sqrt*, *pow*, *log*, or *symlog* tran
 Diverging color scales are intended to show positive and negative values (or more generally values above or below some *pivot* value); diverging color scales default to the “RdBu” (red–blue) color scheme.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
+  <label class="label-input">
     Color scheme:
-    <select style="margin: 0 0.5em !important; all: revert;" v-model="schemed">
+    <select v-model="schemed">
       <optgroup label="diverging">
         <option value="brbg">BrBG</option>
         <option value="prgn">PRGn</option>

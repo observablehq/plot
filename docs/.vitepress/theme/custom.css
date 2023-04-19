@@ -33,3 +33,16 @@
 .vp-doc :not(pre) > code {
   line-height: 1.5;
 }
+
+.label-input {
+  font-size: smaller;
+  color: var(--vp-c-text-2);
+  display: inline-flex;
+  align-items: center;
+}
+
+.label-input > input,
+.label-input > select {
+  margin: 0 0.5em !important;
+  all: revert;
+}

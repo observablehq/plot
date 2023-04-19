@@ -14,9 +14,9 @@ const numbers = d3.range(20).map(d3.randomLcg(42));
 A curve defines how to turn a discrete representation of a line as a sequence of points [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] into a continuous path; *i.e.*, how to interpolate between points. Curves are used by the [line](../marks/line.md), [area](../marks/area.md), and [link](../marks/link.md) marks, and are implemented by [d3-shape](https://github.com/d3/d3-shape/blob/main/README.md#curves).
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
+  <label class="label-input">
     Curve:
-    <select style="margin: 0 0.5em !important; all: revert;" v-model="curve">
+    <select v-model="curve">
       <option>basis</option>
       <option>basis-open</option>
       <option>basis-closed</option>

@@ -22,9 +22,9 @@ Plot.frame().plot({x: {domain: [0, 1], grid: true}})
 Frames are most commonly used in conjunction with facets to provide better separation (Gestalt grouping) of faceted marks. Without a frame, it can be hard to tell where one facet ends and the next begins.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
-    <span>Show frame:</span>
-    <input style="margin: 0 0.5em !important; all: revert;" type="checkbox" v-model="framed">
+  <label class="label-input">
+    Show frame:
+    <input type="checkbox" v-model="framed">
   </label>
 </p>
 

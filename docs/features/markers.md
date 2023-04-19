@@ -14,9 +14,9 @@ const marker = ref("circle");
 A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defines a graphic drawn on vertices of a [line](../marks/line.md) or [link](../marks/link.md) mark.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
+  <label class="label-input">
     Marker:
-    <select style="margin: 0 0.5em !important; all: revert;" v-model="marker">
+    <select v-model="marker">
       <option>none</option>
       <option>arrow</option>
       <option>dot</option>

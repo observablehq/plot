@@ -41,9 +41,9 @@ Plot.plot({
 The **bandwidth** option specifies the radius of the [Gaussian kernel](https://en.wikipedia.org/wiki/Gaussian_function) describing the influence of each point as a function of distance; this kernel is summed over a discrete grid covering the plot, and then contours (*isolines*) are derived for values between 0 (exclusive) and the maximum density (exclusive) using the [marching squares algorithm](https://en.wikipedia.org/wiki/Marching_squares).
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex;">
-    <span>Bandwidth:</span>
-    <input type="range" style="all: revert; margin: 0 0.5em;" v-model.number="bandwidth" min="0" max="40" step="0.2">
+  <label class="label-input">
+    Bandwidth:
+    <input type="range" v-model.number="bandwidth" min="0" max="40" step="0.2">
     <span style="font-variant-numeric: tabular-nums;">{{bandwidth.toLocaleString("en-US", {minimumFractionDigits: 1})}}</span>
   </label>
 </p>
@@ -63,9 +63,9 @@ Plot.plot({
 The **thresholds** option specifies the number of contour lines (minus one) to be computed, or an explicit array of threshold values. For example, with 4 thresholds and a maximum density of 10, contour lines would be drawn for the values 2.5, 5, and 7.5. The default number of thresholds is 20.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex;">
-    <span>Thresholds:</span>
-    <input type="range" style="all: revert; margin: 0 0.5em;" v-model.number="thresholds" min="1" max="40" step="1">
+  <label class="label-input">
+    Thresholds:
+    <input type="range" v-model.number="thresholds" min="1" max="40" step="1">
     <span style="font-variant-numeric: tabular-nums;">{{thresholds}}</span>
   </label>
 </p>
@@ -142,9 +142,9 @@ Plot.plot({
 The **weight** channel specifies the contribution of each data point to the estimated density; it defaults to 1, weighing each point equally. This can be used to give some points more influence than others. Try adjusting the skew slider below to transition between female- and male-weighted density.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex;">
-    <span>Skew (-F/+M):</span>
-    <input type="range" style="all: revert; margin: 0 0.5em;" v-model.number="skew" min="-1" max="1" step="0.01">
+  <label class="label-input">
+    Skew (-F/+M):
+    <input type="range" v-model.number="skew" min="-1" max="1" step="0.01">
     <span style="font-variant-numeric: tabular-nums;">{{skew.toLocaleString("en-US", {minimumFractionDigits: 2, signDisplay: "always"})}}</span>
   </label>
 </p>

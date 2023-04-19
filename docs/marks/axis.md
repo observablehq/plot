@@ -1,11 +1,28 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import {ref} from "vue";
+import alphabet from "../data/alphabet.ts";
+
+const grid = ref(true);
+
+</script>
+
 # Axis mark
 
-Plot’s axes convey the meaning of position [scales](../features/scales.md): _x_ and _y_, and _fx_ and _fy_ when [faceting](../features/facets.md). Plot automatically adds a default axis mark for position scales; you can customize the appearance of axes either through scale options or by instantiating **axis** or **grid** marks.
+The **axis mark** conveys the meaning of a position [scale](../features/scales.md): _x_ or _y_, and _fx_ or _fy_ when [faceting](../features/facets.md). Plot automatically adds default axis marks as needed, but you can customize the appearance of axes either through scale options or by instantiating **axis** or **grid** marks.
 
 Axes are important! Tailoring axes may help readers more quickly and easily interpret plots. For example, you can draw grid lines atop rather than below bars.
 
-<!-- viewof grid = Inputs.toggle({label: "Show grid", value: true}) -->
+<p>
+  <label class="label-input">
+    Show grid:
+    <input type="checkbox" v-model="grid">
+  </label>
+</p>
 
+:::plot
 ```js
 Plot.plot({
   height: 546,
@@ -19,6 +36,7 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 The **interval** option above instructs the grid lines to be drawn at unit intervals, _i.e._ whole percentages. As an alternative, you can use the **ticks** option to specify the desired number of ticks or the **tickSpacing** option to specify the desired separation between adjacent ticks in pixels.
 

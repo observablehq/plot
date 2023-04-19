@@ -284,9 +284,9 @@ The [dodge transform](../transforms/dodge.md) can also be used to produce beeswa
 Dots are sorted by descending radius by default to mitigate occlusion; the smallest dots are drawn on top. Set the **sort** option to null to draw them in input order. Use the checkbox below to see the effect of sorting on a bubble map of U.S. county population.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
+  <label class="label-input">
     <span>Use default <b>sort</b>:</span>
-    <input style="margin: 0 0.5em !important; all: revert;" type="checkbox" v-model="checked">
+    <input type="checkbox" v-model="checked">
   </label>
 </p>
 

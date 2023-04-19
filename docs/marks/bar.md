@@ -137,9 +137,9 @@ The **percent** scale option is useful for showing percentages; it applies a [sc
 When ordinal data is regular, such as the yearly observations of the time-series bar chart of world population below, use the **interval** option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://github.com/d3/d3-time/blob/main/README.md#api-reference), or a custom implementation.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex; align-items: center;">
+  <label class="label-input">
     <span>Use <b>interval</b>:</span>
-    <input style="margin: 0 0.5em !important; all: revert;" type="checkbox" v-model="checked">
+    <input type="checkbox" v-model="checked">
   </label>
 </p>
 

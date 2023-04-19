@@ -34,9 +34,9 @@ The regression line is fit using the [least squares](https://en.wikipedia.org/wi
 Use the slider below to build a linear model from a subset of the data with **m** points. As you can see, the model gives a line as soon as two points are available, and gets more refined and stable as the size of the subset increases.
 
 <p>
-  <label style="font-size: smaller; color: var(--vp-c-text-2); display: flex;">
+  <label class="label-input">
     <span>Number of points <b>m</b>:</span>
-    <input type="range" style="all: revert; margin: 0 0.5em;" v-model.number="m" min="0" :max="cars.length" step="1">
+    <input type="range" v-model.number="m" min="0" :max="cars.length" step="1">
     <span style="font-variant-numeric: tabular-nums;">{{m.toLocaleString("en-US")}}</span>
   </label>
 </p>
