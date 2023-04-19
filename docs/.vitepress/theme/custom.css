@@ -30,6 +30,10 @@
   stroke: var(--vp-c-bg);
 }
 
+:root.dark marker[fill=white] {
+  fill: var(--vp-c-bg);
+}
+
 .vp-doc :not(pre) > code {
   line-height: 1.5;
 }
