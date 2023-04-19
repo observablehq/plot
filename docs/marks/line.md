@@ -2,6 +2,7 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import * as topojson from "topojson-client";
 import {computed, shallowRef, onMounted} from "vue";
 import aapl from "../data/aapl.ts";
 import bls from "../data/bls.ts";
@@ -9,10 +10,15 @@ import driving from "../data/driving.ts";
 import sftemp from "../data/sf-temperatures.ts";
 import tdf from "../data/tdf.ts";
 
+const beagle = shallowRef([]);
 const stateage = shallowRef([]);
 const stocks = shallowRef([]);
+const world = shallowRef(null);
+const land = computed(() => world.value ? topojson.feature(world.value, world.value.objects.land) : {type: null});
 
 onMounted(() => {
+  d3.text("../data/beagle.csv").then((text) => (beagle.value = d3.csvParseRows(text).map(d3.autoType)));
+  d3.json("../data/countries-110m.json").then((data) => (world.value = data));
   d3.csv("../data/us-population-state-age.csv", d3.autoType).then((data) => {
     const ages = data.columns.slice(1); // convert wide data to tidy data
     stateage.value = Object.assign(ages.flatMap(age => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
@@ -295,6 +301,43 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+With a [spherical projection](../features/projections.md), line segments become [geodesics](https://en.wikipedia.org/wiki/Great-circle_distance), taking the shortest path between two points on the sphere and wrapping around the antimeridian at 180° longitude. The line below shows Charles Darwin’s voyage on HMS _Beagle_. (Data via [Benjamin Schmidt](https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world).)
+
+:::plot defer
+```js
+Plot.plot({
+  projection: "equirectangular",
+  marks: [
+    Plot.geo(land), // MultiPolygon
+    Plot.line(beagle, {stroke: "red"}), // [[lon, lat], …]
+    Plot.geo({type: "Point", coordinates: [-0.13, 51.5]}, {fill: "red"}) // London
+  ]
+})
+```
+:::
+
+:::tip
+Disable spherical interpolation by setting the **curve** option to *linear* instead of the default *auto*.
+:::
+
+Naturally, a projected line can use varying color, too. Below, color reveals the westward direction of the Beagle’s journey around the world, starting and ending in London.
+
+:::plot defer
+```js
+Plot.plot({
+  projection: "equirectangular",
+  marks: [
+    Plot.geo(land),
+    Plot.line(beagle, {stroke: (d, i) => i, z: null})
+  ]
+})
+```
+:::
+
+:::info
+Setting **z** to null forces a single line; we want the **stroke** to vary within the line instead of producing a separate line for each color.
 :::
 
 Interpolation is controlled by the [**curve** option](../features/curves.md). The default curve is *linear*, which draws straight line segments between pairs of adjacent points. A *step* curve is nice for emphasizing when the value changes, while *basis* and *catmull–rom* are nice for smoothing.

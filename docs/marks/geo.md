@@ -5,14 +5,14 @@ import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import {computed, shallowRef, onMounted} from "vue";
 
-const beagle = shallowRef([]);
 const us = shallowRef(null);
+const earthquakes = shallowRef([]);
 const world = shallowRef(null);
 const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
 const land = computed(() => world.value ? topojson.feature(world.value, world.value.objects.land) : {type: null});
 
 onMounted(() => {
-  d3.text("../data/beagle.csv").then((text) => (beagle.value = d3.csvParseRows(text).map(d3.autoType)));
+  d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson").then((data) => (earthquakes.value = data));
   d3.json("../data/countries-110m.json").then((data) => (world.value = data));
   Promise.all([
     d3.json("../data/us-counties-10m.json"),
@@ -28,7 +28,7 @@ onMounted(() => {
 
 # Geo mark
 
-The **geo mark** draws geographic features—polygons, lines, points, and other GeoJSON geometry—often as thematic maps. It works with Plot’s [projection system](../features/projections.md). For example, the [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) below shows unemployment by county in the United States.
+The **geo mark** draws geographic features—polygons, lines, points, and other geometry—often as thematic maps. It works with Plot’s [projection system](../features/projections.md). For example, the [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) below shows unemployment by county in the United States.
 
 :::plot defer
 ```js
@@ -51,42 +51,25 @@ Plot.plot({
 ```
 :::
 
-A geo mark’s data is typically [GeoJSON](https://geojson.org/). You can pass a single GeoJSON object, a feature or geometry collection, or an array or iterable of GeoJSON objects. The map below combines Point, LineString, and MultiPolygon geometries to track Charles Darwin’s voyage on HMS _Beagle_. (Data via [Benjamin Schmidt](https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world).)
+A geo mark’s data is typically [GeoJSON](https://geojson.org/). You can pass a single GeoJSON object, a feature or geometry collection, or an array or iterable of GeoJSON objects.
+
+The radius of Point and MultiPoint geometries is specified via the **r** option. It can be a constant number in pixels (as with London above), or a channel. If it a channel, geometries are sorted by descending radius, and the effective radius is controlled by the _r_ scale, which defaults to _sqrt_ such that the area of a point is proportional to its value. Points with a negative radius are not rendered.
 
 :::plot defer
 ```js
 Plot.plot({
   projection: "equirectangular",
+  style: "overflow: visible;",
   marks: [
-    Plot.geo(land), // MultiPolygon
-    Plot.line(beagle, {stroke: "red"}), // [[lon, lat], …]
-    Plot.geo({type: "Point", coordinates: [-0.13, 51.5]}, {fill: "red"}) // London
+    Plot.geo(land, {fill: "currentColor", fillOpacity: 0.2}),
+    Plot.sphere(),
+    Plot.geo(earthquakes, {r: (d) => Math.exp(d.properties.mag), fill: "red", fillOpacity: 0.2, stroke: "red"})
   ]
 })
 ```
 :::
 
-:::info
-Note that line segments are geodesics, following the shortest path between two points on the surface of the sphere, and wrapping around the antimeridian at 180° longitude.
-:::
-
-The geo mark supports both constant and channel values for the common mark options (such as **fill** and **stroke**). The constant <span style="border-bottom: solid 2px red;">red</span> color above allowed us to style the Point representing London. A variable channel, in turn, produces a different color for each geometry based on the associated datum. Below color reveals the westward direction of the Beagle’s journey around the world, starting and ending in London.
-
-:::plot defer
-```js
-Plot.plot({
-  projection: "equirectangular",
-  marks: [
-    Plot.geo(land),
-    Plot.line(beagle, {stroke: (d, i) => i, z: null})
-  ]
-})
-```
-:::
-
-:::info
-**z** is set to null because **stroke** is quantitative and we only want to draw a single line.
-:::
+Like other marks, the geo mark supports both constant and channel values for the standard mark options such as **fill** and **stroke**. The constant <span style="border-bottom: solid 2px red;">red</span> color above allowed us to style the Point representing London. A variable channel, in turn, produces a different color for each geometry based on the associated datum.
 
 The [graticule](#graticule-options) helper draws a uniform grid of meridians (constant longitude) and parallels (constant latitude) every 10° between ±80° latitude (for the polar regions, meridians every 90°). The [sphere](#sphere-options) helper draws the outline of the projected sphere.
 
@@ -99,22 +82,6 @@ Plot.plot({
 })
 ```
 :::
-
-The radius of Point and MultiPoint geometries is specified via the **r** option. It can be a constant number in pixels (as with London above), or a channel. If it a channel, geometries are sorted by descending radius, and the effective radius is controlled by the _r_ scale, which defaults to _sqrt_ such that the area of a point is proportional to its value. Points with a negative radius are not rendered.
-
-<!-- earthquakes = (await fetch("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson")).json() -->
-
-```js
-Plot.plot({
-  projection: "equirectangular",
-  marks: [
-    Plot.graticule(),
-    Plot.geo(land, {fill: "#ccc"}),
-    Plot.geo(earthquakes, {r: d => Math.exp(d.properties.mag)}),
-    Plot.sphere()
-  ]
-})
-```
 
 As an alternative to Plot.geo with point geometries, you can pass longitude and latitude to Plot.dot’s _x_ and _y_ channels, and indeed many of Plot’s basic marks can be projected (like we did with the [line](./line.md) mark for the _Beagle_’s route). You can even mix the two types of marks, depending on how your dataset is structured! Maps often layer several marks, as the [Mapping with Plot](../features/projections.md) notebook illustrates.
 
@@ -165,7 +132,7 @@ The **geometry** channel specifies the geometry (GeoJSON object) to draw; if not
 ## geo(*data*, *options*)
 
 ```js
-Plot.geo(counties, {fill: d => d.properties.rate})
+Plot.geo(counties, {fill: (d) => d.properties.rate})
 ```
 
 Returns a new geo mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is the single-element array [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an iterable of GeoJSON objects.
