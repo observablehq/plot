@@ -53,69 +53,52 @@ Plot.plot({
 
 A geo mark’s data is typically [GeoJSON](https://geojson.org/). You can pass a single GeoJSON object, a feature or geometry collection, or an array or iterable of GeoJSON objects.
 
-:::danger TODO
-Can we demonstrate using the geo mark *without* a projection, but with *x* and *y* scales?
-:::
-
-:::plot
-```js
-Plot.plot({
-  x: {domain: [new Date("2020-01-01"), new Date("2021-01-01")]},
-  y: {domain: [0, 2]},
-  marks: [
-    Plot.geo({
-      type: "Polygon",
-      coordinates: [[
-        [new Date("2020-01-01"), 0],
-        [new Date("2020-02-01"), 2],
-        [new Date("2020-03-01"), 1],
-        [new Date("2020-01-01"), 0]
-      ]]
-    })
-  ]
-})
-```
-:::
-
-The radius of Point and MultiPoint geometries is specified via the **r** option. It can be a constant number in pixels (as with London above), or a channel. If it a channel, geometries are sorted by descending radius, and the effective radius is controlled by the _r_ scale, which defaults to _sqrt_ such that the area of a point is proportional to its value. Points with a negative radius are not rendered.
+The size of Point and MultiPoint geometries is controlled by the **r** option. For example below, we show earthquakes in the last seven days with a magnitude of 2.5 or higher reported by the [USGS](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php). As with the [dot mark](./dot.md), the effective radius is controlled by the *r* scale, which is by default a *sqrt* scale such that the area of a point is proportional to its value. And likewise point geometries are by default sorted by descending radius to reduce occlusion, drawing the smallest circles on top. Set the **sort** option to null to use input order instead.
 
 :::plot defer
 ```js
 Plot.plot({
   projection: "equirectangular",
   style: "overflow: visible;",
-  color: {zero: true, legend: true},
   marks: [
     Plot.geo(land, {fill: "currentColor", fillOpacity: 0.2}),
     Plot.sphere(),
-    Plot.geo(earthquakes, {r: (d) => Math.exp(d.properties.mag), fill: (d) => (d.properties.sig), fillOpacity: 0.2, stroke: (d) => (d.properties.sig), title: (d) => d.properties.title, href: (d) => d.properties.url, target: "_blank"})
+    Plot.geo(earthquakes, {
+      r: (d) => Math.pow(10, d.properties.mag),
+      fill: "red",
+      fillOpacity: 0.2,
+      stroke: "red",
+      title: (d) => d.properties.title,
+      href: (d) => d.properties.url,
+      target: "_blank"
+    })
   ]
 })
 ```
 :::
 
-Like other marks, the geo mark supports both constant and channel values for the standard mark options such as **fill** and **stroke**. The constant <span style="border-bottom: solid 2px red;">red</span> color above allowed us to style the Point representing London. A variable channel, in turn, produces a different color for each geometry based on the associated datum.
+:::tip
+Click on any of the earthquakes above to see details.
+:::
 
-The [graticule](#graticule-options) helper draws a uniform grid of meridians (constant longitude) and parallels (constant latitude) every 10° between ±80° latitude (for the polar regions, meridians every 90°). The [sphere](#sphere-options) helper draws the outline of the projected sphere.
+The [graticule](#graticule-options) helper draws a uniform grid of meridians (lines of constant longitude) and parallels (lines of constant latitude) every 10° between ±80° latitude; for the polar regions, meridians are drawn every 90°. The [sphere](#sphere-options) helper draws the outline of the projected sphere.
 
 :::plot
 ```js
 Plot.plot({
   inset: 2,
   projection: {type: "orthographic", rotate: [0, -30, 20]},
-  marks: [Plot.graticule({strokeOpacity: 0.3}), Plot.sphere()]
+  marks: [
+    Plot.sphere({fill: "var(--vp-c-bg-alt)", stroke: "currentColor"}),
+    Plot.graticule({strokeOpacity: 0.3})
+  ]
 })
 ```
 :::
 
-As an alternative to Plot.geo with point geometries, you can pass longitude and latitude to Plot.dot’s _x_ and _y_ channels, and indeed many of Plot’s basic marks can be projected (like we did with the [line](./line.md) mark for the _Beagle_’s route). You can even mix the two types of marks, depending on how your dataset is structured! Maps often layer several marks, as the [Mapping with Plot](../features/projections.md) notebook illustrates.
+The geo mark’s **geometry** channel can be used to generate geometry from a non-GeoJSON data source. For example, below we visualize the shockwave created by the explosion of the [Hunga Tonga–Hunga Haʻapai volcano](https://en.wikipedia.org/wiki/2021–22_Hunga_Tonga–Hunga_Haʻapai_eruption_and_tsunami) on January 15, 2022 with a series of geodesic circles of increasing radius.
 
-:::danger TODO
-The above paragraph should move to the projections guide since it’s not about the geo mark.
-:::
-
-The geo mark’s _geometry_ channel can be used to generate geometry from a non-GeoJSON data source. For example, to visualize the shockwave created by the explosion of the Hunga Tonga–Hunga Haʻapai volcano on January 15, 2022 with a series of geodesic circles of increasing radius:
-
+:::plot defer
 ```js
 Plot.plot({
   projection: {
@@ -126,37 +109,28 @@ Plot.plot({
     legend: true,
     label: "Distance from Tonga (km)",
     transform: (d) => 111.2 * d, // degrees to km
-    nice: true
+    zero: true
   },
   marks: [
     Plot.geo(land),
-    Plot.geo(radii, {
-      geometry: d3
-        .geoCircle()
-        .center(tonga)
-        .radius((r) => r),
+    Plot.geo([0.5, 179.5].concat(d3.range(10, 171, 10)), {
+      geometry: d3.geoCircle().center([-175.38, -20.57]).radius((r) => r),
       stroke: (r) => r,
       strokeWidth: 2
     }),
-    Plot.geo({ type: "Point", coordinates: tonga }, { fill: "red", r: 4 }),
     Plot.sphere()
   ]
 })
 ```
+:::
 
-```js
-radii = d3.range(10, 171, 10) // degrees radii of circles to be centered around Tonga
-```
-
-```js
-tonga = [-175.38, -20.57]
-```
-
-Lastly, Plot.geo is not limited to spherical geometries. [Plot’s projection system](../features/projections.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
+Lastly, the geo mark is not limited to spherical geometries! [Plot’s projection system](../features/projections.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
 
 ## Geo options
 
 The **geometry** channel specifies the geometry (GeoJSON object) to draw; if not specified, the mark’s *data* is assumed to be GeoJSON.
+
+In addition to the [standard mark options](../features/marks.md#mark-options), the **r** option controls the size of Point and MultiPoint geometries. It can be specified as either a channel or constant. When **r** is specified as a number, it is interpreted as a constant radius in pixels; otherwise it is interpreted as a channel and the effective radius is controlled by the *r* scale. If the **r** option is not specified it defaults to 3 pixels. Geometries with a nonpositive radius are not drawn. If **r** is a channel, geometries will be sorted by descending radius by default.
 
 ## geo(*data*, *options*)
 
@@ -165,8 +139,6 @@ Plot.geo(counties, {fill: (d) => d.properties.rate})
 ```
 
 Returns a new geo mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is the single-element array [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an iterable of GeoJSON objects.
-
-In addition to the [standard mark options](../features/marks.md#mark-options), the **r** option controls the size of Point and MultiPoint geometries. It can be specified as either a channel or constant. When **r** is specified as a number, it is interpreted as a constant radius in pixels; otherwise it is interpreted as a channel and the effective radius is controlled by the *r* scale. (As with [dots](#dot), the *r* scale defaults to a *sqrt* scale such that the visual area of a point is proportional to its associated value.) If the **r** option is not specified it defaults to 3 pixels. Geometries with a nonpositive radius are not drawn. If **r** is a channel, geometries will be sorted by descending radius by default.
 
 ## sphere(*options*)
 
@@ -182,4 +154,4 @@ Returns a new geo mark with a *Sphere* geometry object and the given *options*.
 Plot.graticule()
 ```
 
-Returns a new geo mark with a [default 10° global graticule](https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule10) geometry object and the given *options*.
+Returns a new geo mark with a [10° global graticule](https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule10) geometry object and the given *options*.
