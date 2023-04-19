@@ -19,6 +19,10 @@ onMounted(() => {
 
 # Density mark
 
+:::tip
+For contours of spatially-distributed quantitative values, see the [contour mark](./contour.md).
+:::
+
 The **density mark** shows the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. Contours guide the eye towards the local peaks of concentration of the data, much like a topographic map does with elevation. This is especially useful given overplotting in dense datasets.
 
 :::plot

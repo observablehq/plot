@@ -26,7 +26,7 @@ function mandelbrot(x, y) {
 # Contour mark
 
 :::tip
-To produce a heatmap instead of contours, see the [raster mark](./raster.md).
+To produce a heatmap instead of contours, see the [raster mark](./raster.md). For contours of estimated point density, see the [density mark](./density.md).
 :::
 
 The **contour mark** draws [isolines](https://en.wikipedia.org/wiki/Contour_line) to delineate regions above and below a particular continuous value. These contours are computed by applying the [marching squares algorithm](https://en.wikipedia.org/wiki/Marching_squares) to a discrete grid. Like the [raster mark](./raster.md), the grid can be constructed either by [interpolating spatial samples](../features/spatial-interpolators.md) (arbitrary points in **x** and **y**) or by sampling a continuous function *f*(*x*,*y*) along the grid.
