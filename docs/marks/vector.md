@@ -8,7 +8,7 @@ import {poisson} from "../components/poisson.js";
 import {octave, perlin2} from "../components/perlin.js";
 
 const noise = octave(perlin2, 2);
-const wind = shallowRef([]);
+const wind = shallowRef([{longitude: -9.875, latitude: 45.125}, {longitude: 9.875, latitude: 59.875}, {u: 0, v: 0}, {u: 0, v: 12.184501776503668}]);
 const us = shallowRef(null);
 const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states) : {type: null});
 const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
