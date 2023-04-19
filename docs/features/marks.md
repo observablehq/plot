@@ -440,7 +440,7 @@ You can then specify the *color* scale’s **domain** and **range** to control t
 
 ## Mark options
 
-Marks visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](../marks/bar.md) to [Plot.plot](./plots.md) will produce a bar for each element in the associated data. Multiple marks can be layered into [plots](./plots.md).
+Marks visualize data as geometric shapes such as bars, dots, and lines. A single mark can generate multiple shapes: for example, passing a [Plot.barY](../marks/bar.md) to [Plot.plot](./plots.md) will produce a bar for each element in the associated data. Multiple marks can be layered into [plots](./plots.md).
 
 Mark constructors take two arguments: **data** and **options**. Together these describe a tabular dataset and how to visualize it. Option values that must be the same for all of a mark’s generated shapes are known as *constants*, whereas option values that may vary across a mark’s generated shapes are known as *channels*. Channels are typically bound to [scales](./scales.md) and encode abstract data values, such as time or temperature, as visual values, such as position or color. (Channels can also be used to order ordinal domains; see [sort options](./scales.md#sort-options).)
 

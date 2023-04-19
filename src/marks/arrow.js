@@ -153,7 +153,7 @@ export class Arrow extends Mark {
 
 // Returns the center of a circle that goes through the two given points ⟨ax,ay⟩
 // and ⟨bx,by⟩ and has radius r. There are two such points; use the sign +1 or
-// -1 to chose between them. Returns [NaN, NaN] if r is too small.
+// -1 to choose between them. Returns [NaN, NaN] if r is too small.
 function pointPointCenter([ax, ay], [bx, by], r, sign) {
   const dx = bx - ax,
     dy = by - ay,
