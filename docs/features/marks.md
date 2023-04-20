@@ -566,6 +566,10 @@ For marks that support the **frameAnchor** option, it may be specified as one of
 
 ## Sort option
 
+:::danger TODO
+This should probably move to the [scales guide](./scales.md), given that the [sort transform](../transforms/sort.md) is covered separately.
+:::
+
 If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
 
 ```js

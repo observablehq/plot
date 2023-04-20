@@ -8,7 +8,7 @@ import alphabet from "../data/alphabet.ts";
 import cars from "../data/cars.ts";
 import penguins from "../data/penguins.ts";
 
-const checked = ref(true);
+const sorted = ref(true);
 const aapl = shallowRef([]);
 const congress = shallowRef([]);
 const diamonds = shallowRef([]);
@@ -286,7 +286,7 @@ Dots are sorted by descending radius by default to mitigate occlusion; the small
 <p>
   <label class="label-input">
     Use default sort:
-    <input type="checkbox" v-model="checked">
+    <input type="checkbox" v-model="sorted">
   </label>
 </p>
 
@@ -301,7 +301,7 @@ Plot.plot({
       fill: "currentColor",
       stroke: "var(--vp-c-bg)",
       strokeWidth: 1,
-      sort: checked ? undefined : null
+      sort: sorted ? undefined : null
     }))
   ]
 })
