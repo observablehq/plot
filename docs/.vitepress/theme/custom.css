@@ -1,0 +1,57 @@
+:root {
+  --vp-c-brand-lighter: #d893ff;
+  --vp-c-brand-light: #be7bff;
+  --vp-c-brand: #a463f2;
+  --vp-c-brand-dark: #8a4cd8;
+  --vp-c-brand-darker: #7135be;
+  --vp-font-family-base: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+}
+
+.vp-doc figcaption {
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+}
+
+.VPMenuGroup .title {
+  line-height: 28px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc .plot,
+.vp-doc .plot-ramp {
+  background: none;
+}
+
+:root.dark marker[stroke="white"] {
+  stroke: var(--vp-c-bg);
+}
+
+:root.dark marker[fill="white"] {
+  fill: var(--vp-c-bg);
+}
+
+.vp-doc :not(pre) > code {
+  line-height: 1.5;
+}
+
+.label-input {
+  font-size: smaller;
+  color: var(--vp-c-text-2);
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1em;
+}
+
+.label-input > label {
+  display: inline-flex;
+}
+
+.label-input > input,
+.label-input > select {
+  margin: 0 0.5em !important;
+  all: revert;
+}

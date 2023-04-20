@@ -39,6 +39,9 @@ Geonames
 https://www.geonames.org/about.html
 https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/
 
+## civilizations.csv
+unknown
+
 ## covid-ihme-projected-deaths.csv
 Institute for Health Metrics and Evaluation
 https://covid19.healthdata.org/
@@ -62,6 +65,10 @@ https://github.com/hemanrobinson/preattentive/blob/a58dd4795d0ee063a38a2d7bf3381
 ## diamonds.csv
 ggplot2 “diamonds” dataset (carat and price columns only)
 https://github.com/tidyverse/ggplot2/blob/master/data-raw/diamonds.csv
+
+## dji.csv
+Dow Jones Industrial Average daily data
+Yahoo! Finance
 
 ## driving.csv
 Based on Hannah Fairfield’s Driving Shifts Into Reverse
@@ -95,6 +102,10 @@ https://data.giss.nasa.gov/gistemp/
 Met Office Hadley Centre
 https://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/series_format.html
 
+## ipos.csv
+“The Facebook Offering: How It Compares”, The New York Times
+https://archive.nytimes.com/www.nytimes.com/interactive/2012/05/17/business/dealbook/how-the-facebook-offering-compares.html?hp
+
 ## libor.csv
 CBO
 https://www.cbo.gov/topics/budget/accuracy-projections
@@ -120,12 +131,20 @@ https://github.com/vincentarelbundock/Rdatasets/blob/master/csv/datasets/morley.
 Vega
 https://github.com/vega/vega-datasets/blob/master/SOURCES.md#moviesjson
 
+## MYDAL2_M_SKY_WV_2022-11-01_rgb_360x180.csv
+Aqua/MODIS water vapor, NASA Earth Observations
+https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV
+
 ## nc-absentee-votes.csv
 unknown
 
 ## penguins.csv
 Dr. Kristen Gorman
 https://github.com/allisonhorst/palmerpenguins
+
+## povcalnet.csv
+Our World in Data
+https://ourworldindata.org/poverty-minimum-growth-needed
 
 ## seattle-weather.csv
 NOAA/Vega
@@ -143,6 +162,10 @@ https://data.world/data-society/the-simpsons-by-the-data
 Eitan Lees
 https://talk.observablehq.com/t/diverging-stacked-bar-chart-in-plot/6028
 
+## tdf-stage-8-2017.csv
+2017 Tour de France Stage 8 elevation profile
+Unknown
+
 ## traffic.csv
 Moritz Klack
 https://observablehq.com/@moklick
@@ -150,6 +173,10 @@ https://observablehq.com/@moklick
 ## travelers.csv
 TSA
 https://www.tsa.gov/coronavirus/passenger-throughput
+
+## us-congress-2023.csv
+Members of U.S. Congress, April 2023
+https://github.com/unitedstates/congress-legislators
 
 ## us-counties-10m.json
 U.S. Atlas TopoJSON 3.0.0
@@ -196,3 +223,8 @@ U.K. Office for National Statistics
 A recreation of “Who owns Britain?” by Richard Speigal; proportion plot chart type by Stephanie Evergreen
 https://www.linkedin.com/feed/update/urn:li:activity:6758306750174138368/
 https://stephanieevergreen.com/proportion-plots/
+
+## wind.csv
+Gridded wind data
+https://github.com/gicentre/litvis/blob/main/examples/windVectors.md
+https://www.remss.com/measurements/ccmp/

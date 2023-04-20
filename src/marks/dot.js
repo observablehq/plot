@@ -51,7 +51,7 @@ export class Dot extends Mark {
     this.symbol = csymbol;
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
 
-    // Give a hint to the symbol scale; this allows the symbol scale to chose
+    // Give a hint to the symbol scale; this allows the symbol scale to choose
     // appropriate default symbols based on whether the dots are filled or
     // stroked, and for the symbol legend to match the appearance of the dots.
     const {channels} = this;

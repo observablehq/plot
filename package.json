@@ -34,7 +34,10 @@
     "test:tsc": "tsc",
     "prepublishOnly": "rm -rf dist && rollup -c",
     "postpublish": "git push && git push --tags",
-    "dev": "vite"
+    "dev": "vite",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "_moduleAliases": {
     "@observablehq/plot": "./src/index.js"
@@ -59,13 +62,15 @@
     "htl": "^0.3.0",
     "js-beautify": "1",
     "jsdom": "^21.0.0",
+    "markdown-it-container": "^3.0.0",
     "mocha": "^10.0.0",
     "module-alias": "^2.0.0",
     "prettier": "^2.7.1",
     "rollup": "^3.7.0",
     "topojson-client": "^3.1.0",
     "typescript": "^5.0.2",
-    "vite": "^4.0.0"
+    "vite": "^4.0.0",
+    "vitepress": "^1.0.0-alpha.72"
   },
   "dependencies": {
     "d3": "^7.8.0",
