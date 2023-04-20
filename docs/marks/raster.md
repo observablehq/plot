@@ -180,7 +180,7 @@ Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolat
 If none of the built-in [spatial interpolators](../features/spatial-interpolators.md) suffice, you can write your own as a custom function!
 :::
 
-The raster mark can interpolate categorical values, too! Below, this creates an interesting “map” of penguin species in the space of culment length _vs._ depth.
+The raster mark can interpolate categorical values, too! Below, this creates an interesting “map” of penguin species in the space of culmen length _vs._ depth.
 
 :::plot defer
 ```js
