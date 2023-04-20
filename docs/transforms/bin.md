@@ -311,7 +311,7 @@ To control how the quantitative dimensions *x* and *y* are divided into bins, th
 
 These options may be specified either on the *options* or *outputs* object. If the **domain** option is not specified, it defaults to the minimum and maximum of the corresponding dimension (*x* or *y*), possibly niced to match the threshold interval to ensure that the first and last bin have the same width as other bins. If **cumulative** is negative (-1 by convention), each bin will contain all *greater* bins rather than all *lesser* bins, representing the [complementary cumulative distribution](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29).
 
-To pass separate binning options for **x** and **y**, use as an object with the options above and a **value** option to specify the input channel values.
+To pass separate binning options for **x** and **y**, use an object with the options above and a **value** option to specify the input channel values.
 
 ```js
 Plot.binX({y: "count"}, {x: {thresholds: 20, value: "culmen_length_mm"}})
