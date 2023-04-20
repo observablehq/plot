@@ -285,7 +285,7 @@ Dots are sorted by descending radius by default to mitigate occlusion; the small
 
 <p>
   <label class="label-input">
-    <span>Use default <b>sort</b>:</span>
+    Use default sort:
     <input type="checkbox" v-model="checked">
   </label>
 </p>

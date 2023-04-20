@@ -170,7 +170,7 @@ The **cumulative** option produces a cumulative distribution. Below, each bin re
 
 <p>
   <div class="label-input">
-    <span>Cumulative:</span>
+    Cumulative:
     <label style="margin-left: 0.5em; font-variant: tabular-nums;"><input type="radio" name="cumulative" value="-1" v-model="cumulatives" /> -1 (reverse)</label>
     <label style="margin-left: 0.5em; font-variant: tabular-nums;"><input type="radio" name="cumulative" value="+1" checked v-model="cumulatives" /> +1 (true)</label>
   </div>

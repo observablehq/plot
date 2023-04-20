@@ -91,7 +91,7 @@ The dodge transform differs from the [stack transform](./stack.md) in that the d
 
 <p>
   <label class="label-input">
-    <span>Radius (r):</span>
+    Radius (r):
     <input type="range" v-model.number="r" min="0.5" max="10" step="0.1">
     <span style="font-variant-numeric: tabular-nums;">{{r.toLocaleString("en-US", {minimumFractionDigits: 1})}}</span>
   </label>
@@ -112,7 +112,7 @@ The dodge transform also supports a **padding** option (default 1), which specif
 
 <p>
   <label class="label-input">
-    <span>Padding:</span>
+    Padding:
     <input type="range" v-model.number="padding" min="-1" max="5" step="0.1">
     <span style="font-variant-numeric: tabular-nums;">{{padding.toLocaleString("en-US", {minimumFractionDigits: 1})}}</span>
   </label>

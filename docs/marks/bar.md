@@ -138,7 +138,7 @@ When ordinal data is regular, such as the yearly observations of the time-series
 
 <p>
   <label class="label-input">
-    <span>Use <b>interval</b>:</span>
+    Use interval:
     <input type="checkbox" v-model="checked">
   </label>
 </p>

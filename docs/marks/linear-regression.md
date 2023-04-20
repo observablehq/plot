@@ -35,7 +35,7 @@ Use the slider below to build a linear model from a subset of the data with **m*
 
 <p>
   <label class="label-input">
-    <span>Number of points <b>m</b>:</span>
+    Number of points (m):
     <input type="range" v-model.number="m" min="0" :max="cars.length" step="1">
     <span style="font-variant-numeric: tabular-nums;">{{m.toLocaleString("en-US")}}</span>
   </label>
