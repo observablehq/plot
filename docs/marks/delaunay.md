@@ -10,9 +10,9 @@ import penguins from "../data/penguins.ts";
 
 Given set of points in **x** and **y**, the **Delaunay marks** compute the [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation), its dual the [Voronoi tessellation](https://en.wikipedia.org/wiki/Voronoi_diagram), and the [convex hull](https://en.wikipedia.org/wiki/Convex_hull).
 
-The [voronoi mark](#voronoi-data-options) computes the region closest (or *Voronoi cell*) to each point. The cell can be empty if another point shares the exact same coordinates. Together, the cells cover the entire plot. Voronoi diagrams can group related points with color, for example.
+The [voronoi mark](#voronoi-data-options) computes the region closest to each point (its *Voronoi cell*). The cell can be empty if another point shares the exact same coordinates. Together, the cells cover the entire plot. Voronoi diagrams can group related points with color, for example.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-voronoi-scatterplot
 ```js
 Plot.plot({
   color: {legend: true},
@@ -29,7 +29,7 @@ Each cell is associated with a particular data point, and channels such as **str
 
 To show the local density of a scatterplot, one can draw the whole boundary at once with [voronoiMesh](#voronoimesh-data-options). Whereas the [voronoi mark](#voronoi-data-options) will draw shared cell boundaries twice, the mesh will draw them only once.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-voronoi-mesh
 ```js
 Plot.plot({
   marks: [
@@ -42,7 +42,7 @@ Plot.plot({
 
 The boundary between two neighboring Voronoi cells is a line segment defined by equal distance from their two respective points. The construction of the Voronoi diagram involves the computation of the Delaunay graph, which defines these neighbors. Use [delaunayMesh](#delaunaymesh-data-options) to draw the graph.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-delaunay-mesh
 ```js
 Plot.plot({
   marks: [
@@ -57,7 +57,7 @@ As shown above, the Delaunay graph is computed separately for each color; specif
 
 Another derivative of the Delaunay graph is the convex hull of a set of points: the polygon with the minimum perimeter that contains all the points. The [hull mark](#hull-data-options) will draw this hull.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-convex-hull
 ```js
 Plot.plot({
   marks: [
@@ -70,7 +70,7 @@ Plot.plot({
 
 Using independent series is not recommended in the case of the voronoi and voronoiMesh marks as it will result in an unreadable chart due to overlapping Voronoi diagrams, but it can be useful to color the links of the Delaunay graph based on some property of data, such as the body mass of penguins below.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-delaunay-links
 ```js
 Plot.plot({
   color: {legend: true},
@@ -87,7 +87,7 @@ The link color is driven by one arbitrary extremity of each edge; this might cha
 
 The Delaunay marks can be one-dimensional, too.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-one-dimensional-voronoi
 ```js
 Plot.plot({
   marks: [
