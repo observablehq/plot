@@ -19,6 +19,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: 'yarn'
       - run: yarn --frozen-lockfile
       - run: yarn docs:build
       - uses: actions/configure-pages@v3
