@@ -171,7 +171,7 @@ Plot.plot({
 :::
 
 :::warning CAUTION
-This area chart uses color but does not include a [legend](../features/legends.md). This should usally be avoided because color cannot be interpreted without a legend or labels.
+This area chart uses color but does not include a [legend](../features/legends.md). This should usually be avoided because color cannot be interpreted without a legend, titles, or labels.
 :::
 
 Or, as a streamgraph with the **offset** stack transform option:
