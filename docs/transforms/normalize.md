@@ -6,7 +6,7 @@ import {shallowRef, onMounted} from "vue";
 
 const stateage = shallowRef([]);
 const stocks = shallowRef([]);
-const xy = Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state"});
+const xy = Plot.normalizeX("sum", {z: "state", x: "population", y: "state"});
 
 onMounted(() => {
   Promise.all([
@@ -27,7 +27,7 @@ onMounted(() => {
 
 # Normalize transform
 
-The **normalize transform** is a specialized [map transform](./map.md) that normalizes series values relative to some basis, say to convert absolute values into relative values. For example, here is an index chart—a type of line chart—showing the return of several stocks relative to their closing price on a particular date.
+The **normalize transform** is a specialized [map transform](./map.md) that normalizes series values relative to some basis, say to convert absolute values into relative values. For example, here is an index chart—a type of multi-series line chart—showing the return of several stocks relative to their closing price on a particular date.
 
 :::plot defer
 ```js
@@ -64,7 +64,7 @@ The [select transform](./select.md) is used to label the endpoints of each line.
 :::
 
 :::info
-An [immediately-invoked function expression](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) (IIFE) is used to for the **tickFormat** option such that the [d3.format](https://github.com/d3/d3-format) only needs to be constructed once as a performance optimization.
+As a performance optimization, an [immediately-invoked function expression](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) (IIFE) is used above for the **tickFormat** option so that the [d3.format](https://github.com/d3/d3-format) only needs to be constructed once.
 :::
 
 The normalize transform converts absolute values into relative ones. So, if **y** is [*y₀*, *y₁*, *y₂*, …] and the *first* basis is used with [normalizeY](#normalizey-basis-options), the resulting output **y** channel is [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* / *y₀*, …]. But it’s a bit more complicated than this in practice since **y** is first grouped by **z**, **fill**, or **stroke** into separate series.
@@ -98,7 +98,7 @@ Plot.plot({
 :::
 
 ```js
-xy = Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state"})
+xy = Plot.normalizeX("sum", {z: "state", x: "population", y: "state"})
 ```
 
 :::tip
@@ -107,7 +107,7 @@ To reduce code duplication, pull shared options out into an object (here `xy`) a
 
 ## Normalize options
 
-The **basis** option specifies how to normalize the series values. The following basis methods are supported:
+The **basis** option specifies how to normalize the series values; it is one of:
 
 * *first* - the first value, as in an index chart; the default
 * *last* - the last value
@@ -135,7 +135,13 @@ Returns a normalize map method for the given *basis*, suitable for use with the 
 Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
-Like [mapX](./map.md#mapx-map-options), but applies the normalize map method with the given *basis*.
+Like [mapX](./map.md#mapx-map-options), but applies the normalize map method with the given *basis*. The **basis** option can also be mixed into the specified *options* like so:
+
+```js
+Plot.normalizeX({basis: "first", y: "Date", x: "Close", stroke: "Symbol"})
+```
+
+If not specified, the *basis* defaults to *first*.
 
 ## normalizeY(*basis*, *options*)
 
@@ -143,4 +149,10 @@ Like [mapX](./map.md#mapx-map-options), but applies the normalize map method wit
 Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
-Like [mapY](./map.md#mapy-map-options), but applies the normalize map method with the given *basis*.
+Like [mapY](./map.md#mapy-map-options), but applies the normalize map method with the given *basis*. The **basis** option can also be mixed into the specified *options* like so:
+
+```js
+Plot.normalizeY({basis: "first", x: "Date", y: "Close", stroke: "Symbol"})
+```
+
+If not specified, the *basis* defaults to *first*.
