@@ -102,7 +102,7 @@ Plot.plot({
 
 Layering several marks makes it possible to create [ggplot2-style axes](https://ggplot2.tidyverse.org/reference/guide_axis.html) with a filled [frame](./frame.md) and white grid lines.
 
-:::plot https://observablehq.com/@observablehq/plot-ggplot-style-axes
+:::plot https://observablehq.com/@observablehq/plot-ggplot2-style-axes
 ```js
 Plot.plot({
   inset: 10,
