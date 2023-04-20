@@ -30,7 +30,7 @@ onMounted(() => {
 
 The **geo mark** draws geographic features—polygons, lines, points, and other geometry—often as thematic maps. It works with Plot’s [projection system](../features/projections.md). For example, the [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) below shows unemployment by county in the United States.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-us-choropleth
 ```js
 Plot.plot({
   projection: "albers-usa",
@@ -55,7 +55,7 @@ A geo mark’s data is typically [GeoJSON](https://geojson.org/). You can pass a
 
 The size of Point and MultiPoint geometries is controlled by the **r** option. For example below, we show earthquakes in the last seven days with a magnitude of 2.5 or higher reported by the [USGS](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php). As with the [dot mark](./dot.md), the effective radius is controlled by the *r* scale, which is by default a *sqrt* scale such that the area of a point is proportional to its value. And likewise point geometries are by default sorted by descending radius to reduce occlusion, drawing the smallest circles on top. Set the **sort** option to null to use input order instead.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-live-earthquake-map
 ```js
 Plot.plot({
   projection: "equirectangular",
@@ -83,7 +83,7 @@ Click on any of the earthquakes above to see details.
 
 The [graticule](#graticule-options) helper draws a uniform grid of meridians (lines of constant longitude) and parallels (lines of constant latitude) every 10° between ±80° latitude; for the polar regions, meridians are drawn every 90°. The [sphere](#sphere-options) helper draws the outline of the projected sphere.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-sphere-and-graticule
 ```js
 Plot.plot({
   inset: 2,
@@ -98,7 +98,7 @@ Plot.plot({
 
 The geo mark’s **geometry** channel can be used to generate geometry from a non-GeoJSON data source. For example, below we visualize the shockwave created by the explosion of the [Hunga Tonga–Hunga Haʻapai volcano](https://en.wikipedia.org/wiki/2021–22_Hunga_Tonga–Hunga_Haʻapai_eruption_and_tsunami) on January 15, 2022 with a series of geodesic circles of increasing radius.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-shockwave
 ```js
 Plot.plot({
   projection: {
