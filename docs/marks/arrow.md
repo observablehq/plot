@@ -16,7 +16,7 @@ The **arrow mark** draws arrows between two points [**x1**, **y1**] and [**x2**,
 
 For example, below we show the rising inequality (and population) in various U.S. cities from 1980 to 2015. Each arrow represents two observations of a city: the city’s population (**x**) and inequality (**y**) in 1980, and the same in 2015. The arrow’s **stroke** redundantly encodes the change in inequality: red indicates rising inequality, while blue (there are only four) indicates declining inequality.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-arrow-variation-chart
 ```js
 Plot.plot({
   grid: true,
@@ -60,7 +60,7 @@ Plot.plot({
 
 The arrow mark is also useful for drawing directed graph edges, say representing transition frequencies in a finite state machine.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-finite-state-machine
 ```js
 Plot.plot({
   inset: 60,
