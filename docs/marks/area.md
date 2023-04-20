@@ -12,7 +12,7 @@ import sftemp from "../data/sf-temperatures.ts";
 
 The **area mark** draws the region between a baseline (**x1**, **y1**) and a topline (**x2**, **y2**) as in an area chart. Often the baseline represents *y* = 0, and because the area mark interpolates between adjacent data points, typically both the *x* and *y* scales are quantitative or temporal.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-area-simple
 ```js
 Plot.areaY(aapl, {x: "Date", y: "Close"}).plot()
 ```
@@ -22,7 +22,7 @@ The area mark has three constructors: [areaY](#areay-data-options) for when the 
 
 The area mark is often paired with a [line](./line.md) and [rule](./rule.md) mark to accentuate the topline and baseline.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-area-and-line
 ```js
 Plot.plot({
   y: {
@@ -39,7 +39,7 @@ Plot.plot({
 
 With the default definitions of **x** = index and **y** = [identity](../features/transforms.md#identity), you can pass an array of numbers as data. Below, a random walk is constructed with [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-random-walk-area
 ```js
 Plot.areaY(d3.cumsum({length: 600}, d3.randomNormal())).plot()
 ```
@@ -47,7 +47,7 @@ Plot.areaY(d3.cumsum({length: 600}, d3.randomNormal())).plot()
 
 As with [lines](./line.md), points in areas are connected in input order: the first point is connected to the second point, the second is connected to the third, and so on. Area data is typically in chronological order. Unsorted data may produce gibberish.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-area-sort
 ```js
 Plot.areaY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close"}).plot() // 🌶️
 ```
@@ -55,7 +55,7 @@ Plot.areaY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close"}).plot() // 🌶️
 
 If your data isn’t sorted, use the [sort transform](../transforms/sort.md).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-area-sort
 ```js
 Plot.areaY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close", sort: "Date"}).plot()
 ```
@@ -63,7 +63,7 @@ Plot.areaY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close", sort: "Date"}).plot
 
 When the baseline is not *y* = 0 but instead represents another dimension of data as in a band chart, specify **y1** and **y2** instead of **y**.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-temperature-band
 ```js
 Plot.plot({
   y: {
@@ -83,7 +83,7 @@ Since **y1** and **y2** refer to different fields here, a *y*-scale label is spe
 
 While charts typically put *y* = 0 on the bottom edge, such that the area grows up↑, this is not required; reversing the *y* scale will produce a “hanging” area that grows down↓.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-top-down-area-chart
 ```js
 Plot.plot({
   x: {
@@ -104,7 +104,7 @@ Plot.plot({
 
 For a vertically-oriented baseline and topline, such as when time goes up↑ instead of right→, use [areaX](#areax-data-options) instead of [areaY](#areay-data-options) and swap **x** and **y**.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-vertical-area-chart
 ```js
 Plot.plot({
   x: {
@@ -121,7 +121,7 @@ Plot.plot({
 
 If some channel values are undefined (or null or NaN), gaps will appear between adjacent points. To demonstrate, below we set the **y** value to NaN for the first three months of each year.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-area-chart-with-missing-data
 ```js
 Plot.plot({
   y: {
@@ -155,7 +155,7 @@ Plot.plot({
 
 If a **fill** channel is specified, it is assumed to be ordinal or nominal; data is grouped into series and then implicitly [stacked](../transforms/stack.md).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-stacked-areas
 ```js
 Plot.plot({
   y: {
@@ -176,7 +176,7 @@ This area chart uses color but does not include a [legend](../features/legends.m
 
 Or, as a streamgraph with the **offset** stack transform option:
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-centered-streamgraph
 ```js
 Plot.plot({
   y: {
@@ -194,7 +194,7 @@ The **z** channel determines how data is grouped: if the **z** channel is not sp
 
 The **z** channel (either implicitly or explicitly) is typically used with the [stack transform](../transforms/stack.md) for a stacked area chart or streamgraph. You can disable the implicit stack transform and produce overlapping areas by setting **y2** instead of **y**.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-overlapping-areas
 ```js
 Plot.plot({
   marks: [
@@ -207,7 +207,7 @@ Plot.plot({
 
 To vary **fill** within a single series, set the **z** option to null.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-variable-fill-area
 ```js
 Plot.plot({
   color: {
@@ -224,7 +224,7 @@ Plot.plot({
 
 As an alternative to overlapping or stacking, faceting can be used to produce small multiples, here arranged vertically with a shared *x*-axis.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-faceted-areas
 ```js
 Plot.plot({
   height: 600,
@@ -244,7 +244,7 @@ Plot.plot({
 
 Above, smaller industries such as agriculture and mining & extraction are dwarfed by larger industries such as wholesale & retail trade. To emphasize each industry’s trend, instead of comparing absolute numbers across industries, we can normalize unemployment relative to the median for each industry. Now the job loss in mining & extraction is more readily apparent.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-faceted-areas
 ```js
 Plot.plot({
   height: 600,
