@@ -2,47 +2,24 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {computed, ref, shallowRef, onMounted} from "vue";
 import alphabet from "../data/alphabet.ts";
 import metros from "../data/metros.ts";
+
+const filtered = ref(true);
 
 </script>
 
 # Filter transform
 
-The **filter** transform filters data according to the specified accessor or values.
+The **filter transform** filters a mark’s index to show a subset of the data. It is available both as the **filter** [mark option](../features/marks.md#mark-options) and as an explicit [filter transform](#filter-test-options). For example, below the **filter** option controls which text labels are displayed in a dense scatterplot.
 
-For example, to take the toy bar chart of English letter frequency and only draw bars for letters that commonly form vowels:
-
-:::plot
-```js{4}
-Plot.plot({
-  marks: [
-    Plot.barY(alphabet, {
-      filter: (d) => /[aeiou]/i.test(d.letter),
-      x: "letter",
-      y: "frequency"
-    })
-  ]
-})
-```
-:::
-
-The **filter** transform is similar to filtering the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), except that it will preserve [faceting](../features/facets.md) and will not affect inferred [scale domains](../features/scales.md); domains are inferred from the unfiltered channel values.
-
-:::plot
-```js{4}
-Plot.plot({
-  marks: [
-    Plot.barY(
-      alphabet.filter((d) => /[aeiou]/i.test(d.letter)),
-      {x: "letter", y: "frequency"}
-    )
-  ]
-})
-```
-:::
-
-Here’s another example using a filter transform to control which text labels are displayed in a dense scatterplot.
+<p>
+  <label class="label-input">
+    Use filter:
+    <input type="checkbox" v-model="filtered">
+  </label>
+</p>
 
 :::plot
 ```js{10}
@@ -55,7 +32,7 @@ Plot.plot({
       y: "R90_10_2015"
     }),
     Plot.text(metros, {
-      filter: "highlight",
+      filter: filtered ? "highlight" : null,
       x: "POP_2015",
       y: "R90_10_2015",
       text: "nyt_display",
@@ -67,10 +44,68 @@ Plot.plot({
 ```
 :::
 
+:::tip
+As an alternative to the filter transform here, you could set the **text** channel value to null using a function: `text: (d) => d.highlight ? d.nyt_display : null`.
+:::
+
+Or, to highlight the vowels in a bar chart of English letter frequency, you can use a filtered bar with a <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> stroke. A filtered mark allows you to set options on a subset of the data, even if those options—such as mark insets—are not expressible as a channels.
+
+:::plot
+```js{8}
+Plot.plot({
+  marks: [
+    Plot.barY(alphabet, {
+      x: "letter",
+      y: "frequency"
+    }),
+    Plot.barY(alphabet, {
+      filter: (d) => /[aeiouy]/i.test(d.letter),
+      x: "letter",
+      y: "frequency",
+      stroke: "red",
+      strokeWidth: 3,
+      inset: -3 // expand the bars
+    })
+  ]
+})
+```
+:::
+
+Since the filter transform only affects the mark’s index and not the channel values, it does not affect the default scale domains. Below, the *x* scale contains every English letter, even though the only the bars for the vowels are shown.
+
+:::plot
+```js
+Plot.plot({
+  marks: [
+    Plot.barY(alphabet, {
+      filter: (d) => /[aeiouy]/i.test(d.letter),
+      x: "letter",
+      y: "frequency"
+    })
+  ]
+})
+```
+:::
+
+If you want to drop values completely, you could filter the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter).
+
+:::plot
+```js{4}
+Plot.plot({
+  marks: [
+    Plot.barY(
+      alphabet.filter((d) => /[aeiouy]/i.test(d.letter)),
+      {x: "letter", y: "frequency"}
+    )
+  ]
+})
+```
+:::
+
 ## filter(*test*, *options*)
 
 ```js
-Plot.filter(d => d.body_mass_g > 3000, options) // show data whose body mass is greater than 3kg
+Plot.filter((d) => /[aeiouy]/i.test(d.letter), {x: "letter", y: "frequency"})
 ```
 
 Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition such as a field name; truthy values are retained.
