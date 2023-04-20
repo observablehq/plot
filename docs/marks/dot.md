@@ -45,7 +45,7 @@ onMounted(() => {
 
 The **dot mark** draws circles or other symbols positioned in **x** and **y** as in a scatterplot. For example, the chart below shows the roughly-inverse relationship between car horsepower in *y*↑ and fuel efficiency in miles per gallon in *x*→.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-basic-scatterplot
 ```js
 Plot.dot(cars, {x: "economy (mpg)", y: "power (hp)"}).plot({grid: true})
 ```
@@ -53,7 +53,7 @@ Plot.dot(cars, {x: "economy (mpg)", y: "power (hp)"}).plot({grid: true})
 
 Using a function for **x**, we can instead plot the roughly-linear relationship when fuel efficiency is represented as gallons per 100 miles. (For fans of the metric system, 1 gallon per 100 miles is roughly 2.4 liters per 100 km.)
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-derived-value-scatterplot
 ```js
 Plot.plot({
   grid: true,
@@ -69,7 +69,7 @@ Plot.plot({
 
 Dots support **stroke** and **fill** channels in addition to position along **x** and **y**. Below, color is used as a redundant encoding to emphasize the rising trend in average global surface temperatures. A *diverging* color scale encodes values below zero blue and above zero red.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-colored-scatterplot
 ```js
 Plot.plot({
   y: {
@@ -90,7 +90,7 @@ Plot.plot({
 
 Dots also support an **r** channel allowing dot size to represent quantitative value. Below, each dot represents a day of trading; the *x*-position represents the day’s change, while the *y*-position and area (**r**) represent the day’s trading volume. As you might expect, days with higher volatility have higher trading volume.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-proportional-symbol-scatterplot
 ```js
 Plot.plot({
   grid: true,
@@ -113,7 +113,7 @@ Plot.plot({
 
 With the [bin transform](../transforms/bin.md), sized dots can also be used as an alternative to a [rect-based](./rect.md) heatmap to show a two-dimensional distribution.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-proportional-dot-heatmap
 ```js
 Plot.plot({
   height: 640,
@@ -135,7 +135,7 @@ For hexagonal binning, use the [hexbin transform](../transforms/hexbin.md) inste
 
 While dots are typically positioned in two dimensions (**x** and **y**), one-dimensional dots (only **x** or only **y**) are also supported. Below, dot area is used to represent the frequency of letters in the English language as a compact alternative to a bar chart.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dot-area-chart
 ```js
 Plot.dot(alphabet, {x: "letter", r: "frequency"}).plot()
 ```
@@ -143,7 +143,7 @@ Plot.dot(alphabet, {x: "letter", r: "frequency"}).plot()
 
 Dots, together with [rules](./rule.md), can be used as a stylistic alternative to [bars](./bar.md) to produce a lollipop 🍭 chart. (Sadly these lollipops cannot be eaten.)
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-lollipop
 ```js
 Plot.plot({
   x: {label: null, tickPadding: 6, tickSize: 0},
@@ -158,7 +158,7 @@ Plot.plot({
 
 A dot may have an ordinal dimension on either **x** and **y**, as in the plot below comparing the demographics of states: color represents age group, **y** represents the state, and **x** represents the proportion of the state’s population in that age group. The [normalize transform](../transforms/normalize.md) is used to compute the relative proportion of each age group within each state, while the [group transform](../transforms/group.md) is used to pull out the *min* and *max* values for each state for a horizontal [rule](./rule.md).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-dot-plot
 ```js
 Plot.plot({
   height: 660,
@@ -194,7 +194,7 @@ To reduce code duplication, pull shared options out into an object (here `xy`) a
 
 To improve accessibility, particularly for readers with color vision deficiency, the **symbol** channel can be used in addition to color (or instead of it) to represent ordinal data.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-symbol-channel
 ```js
 Plot.plot({
   grid: true,
@@ -246,7 +246,7 @@ The stroked symbols are based on [Heman Robinson’s research](https://www.tandf
 
 The dot mark can be combined with the [stack transform](../transforms/stack.md). The diverging stacked dot plot below shows the age and gender distribution of the U.S. Congress in 2023.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-stacked-dots
 ```js
 Plot.plot({
   aspectRatio: 1,
@@ -290,7 +290,7 @@ Dots are sorted by descending radius by default to mitigate occlusion; the small
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-dot-sort
 ```js
 Plot.plot({
   projection: "albers-usa",
