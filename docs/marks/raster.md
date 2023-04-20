@@ -112,7 +112,7 @@ Safari does not currently support the **imageRendering** option.
 
 While the raster mark provides convenient shorthand for strictly gridded data, as above, it *also* works with samples in arbitrary positions and arbitrary order. For example, in 1955 the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/) measured the Earth’s magnetic field by plane. Each sample recorded the longitude and latitude alongside the strength of the [IGRF](https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field) in [nanoteslers]().
 
-```csv
+```
 LONGITUDE,LATITUDE,MAG_IGRF90
 -2.36216,51.70945,7
 -2.36195,51.71727,6
