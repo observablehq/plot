@@ -28,7 +28,7 @@ The **cell mark** draws rectangles positioned in two ordinal dimensions. Hence, 
 
 For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high IMDb ratings are dark green, while low ratings are dark pink. (The worst episode ever—cue Comic Book Guy—is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga).)
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-simpsons-ratings
 ```js
 Plot.plot({
   padding: 0,
@@ -46,7 +46,7 @@ Plot.plot({
 
 With [faceting](../features/facets.md), we can produce a calendar of multiple years, where **x** represents week-of-year and **y** represents day-of-week. Below shows almost twenty years of daily changes of the Dow Jones Industrial Average.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-dow-jones-calendar
 ```js
 Plot.plot({
   padding: 0,
@@ -70,7 +70,7 @@ Plot.plot({
 
 The cell mark can be combined with the [group transform](../transforms/group.md), which groups data by ordinal value. (The [bin transform](../transforms/bin.md), on the other hand, is intended for quantitative data and is typically paired with the [rect mark](./rect.md).) The heatmap below shows the maximum observed temperature by month (**y**) and date (**x**) in Seattle from 2012 through 2015.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-seattle-temperature-heatmap
 ```js
 Plot.plot({
   height: 300,
@@ -90,7 +90,7 @@ Plot.plot({
 
 A one-dimensional cell is produced by specifying only **x** or only **y**. The plot below collapses the history of *The Simpsons* to a single line.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-simpsons-barcode
 ```js
 Plot.plot({
   x: {
@@ -116,7 +116,7 @@ Here the *x*-scale domain contains the *id* of every episode. An ordinal scale b
 
 One-dimensional cells can be a compact alternative to a bar chart, where the *fill* color of the cell replaces the length of the bar. However, position is a more salient encoding and should be preferred to color if space is available.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-colored-cells
 ```js
 Plot.cell(alphabet, {x: "letter", fill: "frequency"}).plot()
 ```
@@ -124,7 +124,7 @@ Plot.cell(alphabet, {x: "letter", fill: "frequency"}).plot()
 
 When ordinal data is regular, such as the yearly observations of the warming stripes below, use the **interval** scale option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://github.com/d3/d3-time/blob/main/README.md#api-reference), or a custom implementation.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-ordinal-scale-interval-2
 ```js{5}
 Plot.plot({
   x: {
