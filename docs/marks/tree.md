@@ -32,7 +32,7 @@ function indent() {
 
 # Tree mark
 
-The **tree mark** produces tree diagrams. It is a [composite mark](../features/marks.md#marks-marks) consisting of a [link](./link.md) to render links from parent to child, an optional [dot](./dot.md) for nodes, and a [text](./text.md) for node labels. The link mark uses the [treeLink transform](../transforms/tree.md#treelink-options), while the dot and text marks use the [treeNode transform](../transforms/tree.md#treenode-options).
+The **tree mark** produces tree diagrams using the [tree transform](../transforms/tree.md). It is a [composite mark](../features/marks.md#marks-marks), consisting of a [link](./link.md) to render links from parent to child, an optional [dot](./dot.md) for nodes, and a [text](./text.md) for node labels. The link mark uses the [treeLink transform](../transforms/tree.md#treelink-options), while the dot and text marks use the [treeNode transform](../transforms/tree.md#treenode-options).
 
 For example, here is a little family tree of Greek gods.
 
@@ -52,16 +52,8 @@ Plot.plot({
 
 Here `gods` is an array of slash-separated paths, similar to paths in a file system. Each path represents the hierarchical position of a node in the tree.
 
-```js
-gods = [
-  "Chaos/Gaia/Mountains",
-  "Chaos/Gaia/Pontus",
-  "Chaos/Gaia/Uranus",
-  "Chaos/Gaia",
-  "Chaos/Eros",
-  "Chaos/Erebus",
-  "Chaos/Tartarus"
-]
+```js-vue
+gods = {{JSON.stringify(gods, null, 2)}}
 ```
 
 As a more complete example, here is a visualization of a software package hierarchy.

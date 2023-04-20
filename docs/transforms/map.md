@@ -1,6 +1,6 @@
 # Map transform
 
-The map transform groups data into series and then transforms each series’ values, say to normalize them relative to some basis or to apply a moving average.
+The **map transform** groups data into series and then transforms each series’ values, say to normalize them relative to some basis or to apply a moving average.
 
 Like the [group](./group.md) and [bin](./bin.md) transforms, the Plot.map transform takes two arguments: an *outputs* object that describes the output channels to compute, and an *options* object that describes the input channels and any additional options. For example, the *cumsum* map method computes the cumulative sum.
 

@@ -104,6 +104,7 @@ export default defineConfig({
           {text: "Hexbin", link: "/transforms/hexbin"},
           {text: "Interval", link: "/transforms/interval"},
           {text: "Map", link: "/transforms/map"},
+          {text: "Normalize", link: "/transforms/normalize"},
           {text: "Select", link: "/transforms/select"},
           {text: "Sort", link: "/transforms/sort"},
           {text: "Stack", link: "/transforms/stack"},
