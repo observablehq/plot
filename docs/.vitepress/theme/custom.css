@@ -55,3 +55,20 @@
   margin: 0 0.5em !important;
   all: revert;
 }
+
+body::after {
+    float: left;
+    top: 1.5em;
+    position: absolute;
+    transform: rotate(-45deg);
+    background: var(--vp-c-brand);
+    color: white;
+    font-weight: bold;
+    left: -3em;
+    padding-left: 3em;    padding-right: 3em;
+    padding-top: .5em;    padding-bottom: .5em;
+    border: 0px;
+    margin: 0;
+    z-index: 999999999;
+    content: "⚠️ W.I.P. ⚠️";
+}
