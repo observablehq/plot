@@ -21,7 +21,6 @@ A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defi
       <option>arrow</option>
       <option>dot</option>
       <option>circle</option>
-      <option>circle-fill</option>
       <option>circle-stroke</option>
     </select>
   </label>
