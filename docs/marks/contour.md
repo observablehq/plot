@@ -33,7 +33,7 @@ The **contour mark** draws [isolines](https://en.wikipedia.org/wiki/Contour_line
 
 For example, the contours below show the topography of the [Maungawhau volcano](https://en.wikipedia.org/wiki/Maungawhau), produced from a {{volcano.width}}×{{volcano.height}} grid of elevation samples.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-stroked-contours
 ```js
 Plot.contour(volcano.values, {width: volcano.width, height: volcano.height}).plot()
 ```
@@ -41,7 +41,7 @@ Plot.contour(volcano.values, {width: volcano.width, height: volcano.height}).plo
 
 Whereas the **value** option produces isolines suitable for stroking, the **fill** option produces filled contours. Setting the **fill** to [identity](../features/transforms.md#identity) will apply a color encoding to the contour values, allowing the contour values to be read via a *color* legend.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-filled-contours
 ```js
 Plot.plot({
   color: {
@@ -87,7 +87,7 @@ grid = ({
 
 We can visualize this small grid directly with a [text mark](./text.md) using the same color encoding. Notice that the image below is flipped vertically relative to the data: the first row of the data is the *bottom* of the image because below *y* points up↑.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-small-grid-contours
 ```js
 Plot.plot({
   grid: true,
@@ -107,7 +107,7 @@ Plot.plot({
 
 Also notice that the grid points are offset by 0.5: they represent the *middle* of each pixel rather than the corner. Below, the contour mark is laid under the text mark to show filled contours.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-small-grid-contours
 ```js
 Plot.plot({
   marks: [
@@ -144,7 +144,7 @@ LONGITUDE,LATITUDE,MAG_IGRF90
 
 Using a [dot mark](./dot.md), we can make a quick scatterplot to see the irregular grid. We’ll use a *diverging* color scale to distinguish positive and negative values.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-igrf90-dots
 ```js
 Plot.dot(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90"}).plot({color: {type: "diverging"}})
 ```
@@ -152,7 +152,7 @@ Plot.dot(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90"}).plot({color:
 
 Pass the same arguments to the contour mark for continuous contours.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-igrf90-contours
 ```js
 Plot.contour(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90"}).plot({color: {type: "diverging"}})
 ```
@@ -160,7 +160,7 @@ Plot.contour(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90"}).plot({co
 
 As with the raster mark, the **blur** option applies a Gaussian blur to the underlying raster grid, resulting in smoother contours.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-blurred-contours
 ```js
 Plot.contour(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", blur: 4}).plot({color: {type: "diverging"}})
 ```
@@ -172,7 +172,7 @@ The contour mark also supports the **interpolate** option for control over [spat
 
 Naturally, the contour mark is compatible with Plot’s [projection system](../features/projections.md). The chart below shows global atmospheric water vapor measurements from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV) in the [Equal Earth projection](https://en.wikipedia.org/wiki/Equal_Earth_projection) by Šavrič *et al.*
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-contours-projection
 ```js
 Plot.plot({
   projection: "equal-earth",
@@ -205,7 +205,7 @@ Plot.plot({
 
 As an alternative to interpolating discrete samples, you can supply values as a continuous function *f*(*x*,*y*); the contour mark will invoke this function for the midpoint of each pixel in the raster grid, similar to a WebGL fragment shader. For example, below we visualize the trigonometric function sin(*x*) cos(*y*), producing a checkerboard-like pattern.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-function-contour-2
 ```js
 Plot.plot({
   aspectRatio: 1,
