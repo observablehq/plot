@@ -26,21 +26,16 @@ A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defi
   </label>
 </p>
 
-<PlotRender :options='{
-  marks: [
-    Plot.ruleY([0]),
-    Plot.lineY(crimea, {x: "date", y: "deaths", stroke: "cause", marker})
-  ]
-}' />
-
+:::plot
 ```js-vue
 Plot.plot({
   marks: [
     Plot.ruleY([0]),
-    Plot.lineY(crimea, {x: "date", y: "deaths", stroke: "cause", marker: {{JSON.stringify(marker)}}})
+    Plot.lineY(crimea, {x: "date", y: "deaths", stroke: "cause", marker: "{{marker}}"})
   ]
 })
 ```
+:::
 
 [Edit this on Observable →](https://observablehq.com/d/cfc5b4e46aa18b57?intent=fork)
 

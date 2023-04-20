@@ -3,7 +3,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {computed, ref, shallowRef, onMounted} from "vue";
+import {useDark} from "../components/useDark.js";
 
+const dark = useDark();
 const cumulatives = ref("+1");
 const cumulative = computed(() => +cumulatives.value);
 const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
@@ -41,8 +43,10 @@ The binX transform takes **x** as input and outputs **x1** and **x2** representi
 While the binX transform is often used to generate **y**, it can output any channel. Below, the **fill** channel represents count per bin, resulting in a one-dimensional heatmap.
 
 :::plot
-```js
-Plot.rect(olympians, Plot.binX({fill: "count"}, {x: "weight"})).plot()
+```js-vue
+Plot
+  .rect(olympians, Plot.binX({fill: "count"}, {x: "weight"}))
+  .plot({color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"}})
 ```
 :::
 
@@ -107,8 +111,10 @@ Plot.plot({
 You can produce a two-dimensional heatmap with bin transform and a rect mark by generating a **fill** output channel. Below, color encodes the number of athletes in each bin (of similar height and weight).
 
 :::plot defer
-```js
-Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"})).plot()
+```js-vue
+Plot
+  .rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
+  .plot({color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"}})
 ```
 :::
 
@@ -192,12 +198,13 @@ Plot.plot({
 The bin transform works with Plot’s [faceting system](../features/facets.md), partitioning bins by facet. Below, we compare the weight distributions of athletes within each sport using the *proportion-facet* reducer. Sports are sorted by median weight: gymnasts tend to be the lightest, and basketball players the heaviest.
 
 :::plot defer
-```js
+```js-vue
 Plot.plot({
   marginLeft: 100,
   padding: 0,
   x: {grid: true},
   fy: {domain: d3.groupSort(olympians.filter((d) => d.weight), (g) => d3.median(g, (d) => d.weight), (d) => d.sport)},
+  color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"},
   marks: [Plot.rect(olympians, Plot.binX({fill: "proportion-facet"}, {x: "weight", fy: "sport", inset: 0.5}))]
 })
 ```
@@ -343,7 +350,7 @@ Lastly, the bin transform changes the default [mark insets](../features/marks.md
 ## bin(*outputs*, *options*)
 
 ```js
-Plot.rect(olympians, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
+Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
 ```
 
 Bins on **x** and **y**. Also groups on the first channel of **z**, **fill**, or **stroke**, if any.

@@ -1,278 +1,155 @@
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import {computed, ref, watchEffect, shallowRef, onMounted} from "vue";
+import {useDark} from "../components/useDark.js";
+import cars from "../data/cars.ts";
+
+const binWidth = ref(20);
+const dark = useDark();
+const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
+
+onMounted(() => {
+  d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
+});
+
+</script>
+
 # Hexbin transform
 
-The **hexbin** transform aggregates two-dimensional points (in *x* and *y*) into discrete hexagonal bins. Like the [bin transform](./bin.md), you can then compute summary statistics for each bin, such as a count, sum, or proportion. The hexbin transform is most often used to make heatmaps; it is an alternative to dense scatterplots that may suffer from occlusion.
+The **hexbin transform** groups two-dimensional quantitative data—continuous measurements such as heights, weights, or temperatures—into discrete hexagonal bins. You can then compute summary statistics for each bin, such as a *count*, *sum*, or *proportion*. The hexbin transform is most often used to make heatmaps with the [dot mark](../marks/dot.md).
 
-The hexbin transform produces *x* and *y* channels representing the centers of the hexagonal bins. The hexbin transform operates in “screen space” (_i.e._, in pixel coordinates) after the *x* and *y* scales have been applied to the input data. Only hexagons with at least one constituent point are generated.
+For example, the heatmap below shows the weights and heights of Olympic athletes. The color of each hexagon represents the number (*count*) of athletes with similar weight and height.
 
-The hexbin transform is typically paired with the hexagon mark, which is simply the dot mark with the **symbol** option set to _hexagon_.
+:::plot defer
+```js-vue
+Plot
+  .dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"}))
+  .plot({color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"}})
+```
+:::
 
+Whereas the [bin transform](./bin.md) produces rectangular bins and operates on abstract data, the hexbin transform produces hexagonal bins and operates in “screen space” (_i.e._, pixel coordinates) after the *x* and *y* scales have been applied to the data. And whereas the bin transform produces **x1**, **y1**, **x2**, **y2** representing rectangular extents, the hexbin transform produces **x** and **y** representing hexagon centers.
+
+To produce an areal encoding as in a bubble map, output **r**. In this case, the default range of the *r* scale is set such that the hexagons do not overlap. The **binWidth** option, which defaults to 20, specifies the distance between centers of neighboring hexagons in pixels.
+
+<p>
+  <label class="label-input">
+    Bin width:
+    <input type="range" v-model.number="binWidth" min="0" max="40" step="0.1">
+    <span style="font-variant-numeric: tabular-nums;">{{binWidth.toLocaleString("en-US", {minimumFractionDigits: 1})}}</span>
+  </label>
+</p>
+
+:::plot defer
+```js
+Plot
+  .dot(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height", binWidth}))
+  .plot()
+```
+:::
+
+If desired, you can output both **fill** and **r** for a redundant encoding.
+
+:::plot defer
+```js-vue
+Plot
+  .dot(olympians, Plot.hexbin({fill: "count", r: "count"}, {x: "weight", y: "height", stroke: "currentColor"}))
+  .plot({color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"}})
+```
+:::
+
+:::tip
+Setting a **stroke** ensures that the smallest hexagons are visible.
+:::
+
+Alternatively, the **fill** and **r** channels can encode independent (or “bivariate”) dimensions of data. Below, the **r** channel uses *count* as before, while the **fill** channel uses *mode* to show the most frequent sex of athletes in each hexagon. The larger athletes are more likely to be <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">male</span>, while the smaller athletes are more likely to be <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">female</span>.
+
+:::plot defer
+```js
+Plot
+  .dot(olympians, Plot.hexbin({fill: "mode", r: "count"}, {x: "weight", y: "height", fill: "sex"}))
+  .plot()
+```
+:::
+
+Using **z**, the hexbin transform will partition hexagons by ordinal value. If **z** is not specified, it defaults to **fill** (if there is no **fill** output channel) or **stroke** (if there is no **stroke** output channel). Setting **z** to *sex* in the chart above, and switching to **stroke** instead of **fill**, produces separate overlapping hexagons for each sex.
+
+:::plot defer
+```js
+Plot
+  .dot(olympians, Plot.hexbin({stroke: "mode", r: "count"}, {x: "weight", y: "height", z: "sex", stroke: "sex"}))
+  .plot()
+```
+:::
+
+The hexbin transform can be paired with any mark that supports **x** and **y** channels (which is almost all of them). The [text mark](../marks/text.md) is useful for labelling. By setting the **text** output channel, you can derive the text from the binned contents.
+
+:::plot defer
+```js
+Plot
+  .text(olympians, Plot.hexbin({text: "count"}, {x: "weight", y: "height"}))
+  .plot()
+```
+:::
+
+The [hexgrid mark](../marks/hexgrid.md) draws the base hexagonal grid as a mesh. This is useful for showing the empty hexagons, since the hexbin transform does not output empty bins (and unlike the bin transform, the hexbin transform does not currently support the **filter** option).
+
+:::plot defer
 ```js
 Plot.plot({
-  color: {
-    scheme: "ylgnbu"
-  },
   marks: [
-    Plot.hexagon(
-      cars,
-      Plot.hexbin(
-        { fill: "count" },
-        { x: "displacement (cc)", y: "economy (mpg)" }
-      )
-    )
+    Plot.hexgrid(),
+    Plot.dot(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height", fill: "currentColor"}))
   ]
 })
 ```
+:::
 
-Above, the _fill_ output channel encodes the number (*count*) of points in each hexagonal bin as a sequential color. The _r_ output channel can be used instead for an areal encoding. When an _r_ output channel is used, the default range of the _r_ scale is set such that the hexagons cannot overlap.
+The hexbin transform defaults the **symbol** option to *hexagon*, but you can override it. The [circle constructor](../marks/dot.md#circle-data-options) changes it to *circle*.
 
+:::plot defer
 ```js
-Plot.plot({
-  marks: [
-    Plot.hexagon(
-      cars,
-      Plot.hexbin(
-        { r: "count" },
-        { x: "displacement (cc)", y: "economy (mpg)" }
-      )
-    )
-  ]
-})
+Plot.circle(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height"})).plot()
 ```
+:::
 
-A redundant encoding can be generated with both _fill_ and _r_.
+Hexbins work best when there is an interesting density of dots in the center of the chart, but sometimes hexagons “escape” the edge of the frame and cover the axes. To prevent this, you can use the **inset** [scale option](../features/scales.md) to reserve space on the edges of the frame.
 
-```js
-Plot.plot({
-  color: {
-    scheme: "ylgnbu"
-  },
-  marks: [
-    Plot.hexagon(
-      cars,
-      Plot.hexbin(
-        { r: "count", fill: "count" },
-        {
-          x: "displacement (cc)",
-          y: "economy (mpg)",
-          stroke: "black",
-          strokeWidth: 1
-        }
-      )
-    )
-  ]
-})
+
+:::plot defer
+```js-vue
+Plot
+  .dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"}))
+  .plot({inset: 10, color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"}})
 ```
+:::
 
-Alternatively, the _fill_ and _r_ channels can encode independent (or “bivariate”) dimensions of data. Below, the _r_ channel encodes density (the number of cars in each hexagonal bin), while the _fill_ channel encodes the average weight of cars in each bin. As you might expect, weight is positively correlated with engine displacement and inversely correlated with fuel economy.
+:::tip
+You can also set the dot’s **clip** option to true to prevent the hexagons from escaping.
+:::
 
-```js
+Alternatively, use the [axis mark](../marks/axis.md) to draw axes on top of the hexagons.
+
+:::plot defer
+```js-vue
 Plot.plot({
-  color: {
-    legend: true
-  },
+  color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"},
   marks: [
-    Plot.hexagon(
-      cars,
-      Plot.hexbin(
-        {r: "count", fill: "mean"},
-        {x:  "displacement (cc)", y: "economy (mpg)", fill: "weight (lb)"}
-      )
-    )
-  ]
-})
-```
-
-Each binned output channel (the keys of the object passed as the first argument to the hexbin transform) has an associated reducer which controls how the summary value for each group is derived. A variety of built-in reducers are provided:
-
-* *count* - the number of observations in each group
-* *sum* - the sum of values
-* *proportion* - like *sum*, but divided by the total
-* *proportion-facet* - like *sum*, but divided by the facet’s total
-* *min* - the minimum value
-* *max* - the maximum value
-* *mean*  - the mean (average) value
-* *median* - the median value
-* *variance* - an unbiased estimator of [population variance](https://github.com/d3/d3-array/blob/master/README.md#variance)
-* *deviation* - the [standard deviation](https://github.com/d3/d3-array/blob/master/README.md#deviation)
-* *first* - the first value (in input order)
-* *last* - the last value (in input order)
-
-You can also implement a custom reducer: this function is repeatedly passed the array of data for each group and should return the corresponding summary value.
-
-Given a *z* input channel, the hexbin transform can generate coincident hexagons for separate series. If the *z* channel is not specified, it defaults to the *fill* input channel (if there is no *fill* output channel), or the *stroke* input channel (if there is no *stroke* output channel). Below, cars are categorized by number of cylinders. A few hexagons are coincident, representing cars with similar fuel economy and displacement but a different number of cylinders.
-
-```js
-Plot.plot({
-  color: {
-    type: "ordinal",
-    scheme: "spectral",
-    legend: true
-  },
-  marks: [
-    Plot.hexagon(
-      cars,
-      Plot.hexbin(
-        { r: "count" },
-        { x: "displacement (cc)", y: "economy (mpg)", stroke: "cylinders" }
-      )
-    )
-  ]
-})
-```
-
-If you pair the hexbin transform with Plot.dot instead of Plot.hexagon, you can set the **symbol** option to something other than _hexagon_.
-
-<!-- viewof symbol = Inputs.select(["circle", "hexagon", "square", "wye", "cross"], {label: "Symbol"}) -->
-
-```js
-Plot.plot({
-  marks: [
-    Plot.dot(
-      cars,
-      Plot.hexbin(
-        { r: "count" },
-        { x: "displacement (cc)", y: "economy (mpg)", symbol }
-      )
-    )
-  ]
-})
-```
-
-The **binWidth** option specifies the width of the pointy-topped hexagonal bins in pixels—defaults to 20. If an _r_ output channel is not generated, the hexbin transform will product a default **r** option of half the bin width such that hexagons (or circles) are contiguous.
-
-<!-- viewof binWidth = Inputs.range([1, 40], {label: "Bin width", step: 1, value: 10}) -->
-
-```js
-Plot.plot({
-  marks: [
-    Plot.dot(
-      cars,
-      Plot.hexbin(
-        { r: "count" },
-        { x: "displacement (cc)", y: "economy (mpg)", binWidth }
-      )
-    )
-  ]
-})
-```
-
-The hexbin layout can be paired with any mark that supports _x_ and _y_ channels. The Plot.text mark is useful for labelling.
-
-```js
-Plot.plot({
-  inset: 10,
-  color: { scheme: "ylgnbu" },
-  marks: [
-    Plot.hexagon(
-      cars,
-      Plot.hexbin(
-        { fill: "count" },
-        { x: "displacement (cc)", y: "economy (mpg)" }
-      )
-    ),
-    Plot.text(
-      cars,
-      Plot.hexbin(
-        { text: "count" },
-        {
-          x: "displacement (cc)",
-          y: "economy (mpg)",
-          fill: "black",
-          stroke: "white"
-        }
-      )
-    )
-  ]
-})
-```
-
-The Plot.hexgrid decoration mark is the similar to the axis **grid** option: it draws the base hexagonal grid as a mesh. Use the common options (_e.g._, **stroke**) to style it. For consistency, pass the same **binWidth** option to all the marks.
-
-```js
-Plot.plot({
-  color: { scheme: "ylgnbu" },
-  marks: [
-    Plot.dot(
-      cars,
-      Plot.hexbin(
-        { fill: "count" },
-        { x: "displacement (cc)", y: "economy (mpg)" }
-      )
-    ),
-    Plot.hexgrid()
-  ]
-})
-```
-
-Hexbins work best when there is an interesting density of dots in the center of the chart, but sometimes hexagons near the extrema of the _x_ and _y_ domains will appear to “bleed” and cover the axes. To mitigate this, you can use the **inset** option to recenter the data or set the **clip** option to true.
-
-```js
-Plot.plot({
-  inset: 10,
-  color: { scheme: "ylgnbu" },
-  marks: [
-    Plot.dot(
-      cars,
-      Plot.hexbin(
-        { fill: "count" },
-        {
-          x: "displacement (cc)",
-          y: "economy (mpg)",
-          stroke: "lightgray",
-          strokeWidth: 1
-        }
-      )
-    )
-  ]
-})
-```
-
-```js
-Plot.plot({
-  color: { scheme: "ylgnbu" },
-  marks: [
-    Plot.dot(
-      cars,
-      Plot.hexbin(
-        { fill: "count" },
-        { x: "displacement (cc)", y: "economy (mpg)", clip: true }
-      )
-    ),
-    Plot.hexgrid()
-  ]
-})
-```
-
-Since Plot version 0.6.3, you can also draw the axes on top of hexagons.
-
-```js
-Plot.plot({
-  color: { scheme: "ylgnbu" },
-  marks: [
-    Plot.dot(
-      cars,
-      Plot.hexbin(
-        { fill: "count" },
-        {
-          x: "displacement (cc)",
-          y: "economy (mpg)",
-          stroke: "lightgray",
-          strokeWidth: 1
-        }
-      )
-    ),
+    Plot.dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"})),
+    Plot.axisX(),
     Plot.axisY()
   ]
 })
 ```
+:::
 
 ## Hexbin options
 
-The hexbin transform can be applied to any mark that consumes *x* and *y*, such as the [dot](#dot), [image](#image), [text](#text), and [vector](#vector) marks. It aggregates values into hexagonal bins of the given **binWidth** (in pixels) and computes new position channels *x* and *y* as the centers of each bin. It can also create new channels by applying a specified reducer to each bin, such as the *count* of elements in the bin.
+The *options* must specify the **x** and **y** channels. The **binWidth** option (default 20) defines the distance between centers of neighboring hexagons in pixels. If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins.
 
-## hexbin(*outputs*, *options*)
-
-Aggregates the given input channels into hexagonal bins, creating output channels with the reduced data. The *options* must specify the **x** and **y** channels. The **binWidth** option (default 20) defines the distance between centers of neighboring hexagons in pixels. If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. The *outputs* options are similar to the [bin transform](#bin); each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.
+The *outputs* options are similar to the [bin transform](./bin.md); each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.
 
 The following aggregation methods are supported:
 
@@ -289,11 +166,17 @@ The following aggregation methods are supported:
 * *max-index* - the zero-based index of the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
-* *deviation* - the standard deviation
+* *deviation* - the [standard deviation](https://github.com/d3/d3-array/blob/master/README.md#deviation)
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *mode* - the value with the most occurrences
 * *identity* - the array of values
 * a function to be passed the array of values for each bin and the extent of the bin
 * an object with a *reduceIndex* method
 
-See also the [hexgrid](#hexgrid) mark.
+## hexbin(*outputs*, *options*)
+
+```js
+Plot.dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"}))
+```
+
+Bins (hexagonally) on **x** and **y**. Also groups on the first channel of **z**, **fill**, or **stroke**, if any.

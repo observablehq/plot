@@ -41,21 +41,16 @@ A curve defines how to turn a discrete representation of a line as a sequence of
   </label>
 </p>
 
-<PlotRender :options='{
-  marks: [
-    Plot.lineY(numbers, {curve}),
-    Plot.dotY(numbers, {x: (d, i) => i})
-  ]
-}' />
-
+:::plot
 ```js-vue
 Plot.plot({
   marks: [
-    Plot.lineY(numbers, {curve: {{JSON.stringify(curve)}}}),
+    Plot.lineY(numbers, {curve: "{{curve}}"}),
     Plot.dotY(numbers, {x: (d, i) => i})
   ]
 })
 ```
+:::
 
 The supported curve options are:
 

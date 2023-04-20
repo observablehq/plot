@@ -9,6 +9,7 @@ export default function plot(md) {
         if (token.type !== "fence" || token.tag !== "code") throw new Error("missing fenced code block");
         // TODO use acorn to parse and recut
         let content = token.content;
+        if (token.info === "js-vue") content = content.replace(/"{{([^}]*)}}"/g, "$1");
         content = content.replace(/\bMath\.random\b/g, "d3.randomLcg(42)");
         content = content.replace(/\bd3\.(random(?!Lcg)\w+)\b/g, "d3.$1.source(d3.randomLcg(42))");
         content = content.replace(/\bd3\.shuffle\b/g, "d3.shuffler(d3.randomLcg(42))");
