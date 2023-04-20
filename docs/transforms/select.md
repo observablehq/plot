@@ -21,7 +21,7 @@ onMounted(() => {
 
 # Select transform
 
-The **select transform** filters a mark’s index to show a subset of the data. It is a specialized [filter transform](./filter.md) that provides convenient shorthand for pulling a single value out of each series. For example, below selectLast is used to label the last value in a line chart.
+The **select transform** filters a mark’s index to show a subset of the data. It is a specialized [filter transform](./filter.md) that pulls a single value out of each series. For example, below selectLast is used to label the last value in a line chart.
 
 :::plot
 ```js

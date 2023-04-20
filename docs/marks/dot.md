@@ -156,7 +156,7 @@ Plot.plot({
 ```
 :::
 
-A dot may have an ordinal dimension on either **x** and **y**, as in the plot below comparing the demographics of states: color represents age group, **y** represents the state, and **x** represents the proportion of the state’s population in that age group. The [group transform](../transforms/group.md) is used to pull out the *min* and *max* values for each state for a horizontal [rule](./rule.md).
+A dot may have an ordinal dimension on either **x** and **y**, as in the plot below comparing the demographics of states: color represents age group, **y** represents the state, and **x** represents the proportion of the state’s population in that age group. The [normalize transform](../transforms/normalize.md) is used to compute the relative proportion of each age group within each state, while the [group transform](../transforms/group.md) is used to pull out the *min* and *max* values for each state for a horizontal [rule](./rule.md).
 
 :::plot defer
 ```js
