@@ -3,17 +3,17 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {shallowRef, onMounted} from "vue";
+import aapl from "../data/aapl.ts";
 
 const stocks = shallowRef([]);
 
 onMounted(() => {
   Promise.all([
-    d3.csv("../data/aapl.csv", d3.autoType),
     d3.csv("../data/amzn.csv", d3.autoType),
     d3.csv("../data/goog.csv", d3.autoType),
     d3.csv("../data/ibm.csv", d3.autoType)
   ]).then((datas) => {
-    stocks.value = d3.zip(["AAPL", "AMZN", "GOOG", "IBM"], datas).flatMap(([Symbol, data]) => data.map(d => ({Symbol, ...d})));
+    stocks.value = d3.zip(["AAPL", "AMZN", "GOOG", "IBM"], [aapl].concat(datas)).flatMap(([Symbol, data]) => data.map(d => ({Symbol, ...d})));
   });
 });
 
@@ -21,14 +21,45 @@ onMounted(() => {
 
 # Select transform
 
-The **select transform** filters a mark’s index; it is like the [filter transform](../transforms/filter.md), except that it provides convenient shorthand for pulling a single value out of each series. The data are grouped into series using the **z**, **fill**, or **stroke** channel in the same fashion as the [area](../marks/area.md) and [line](../marks/line.md) marks.
+The **select transform** filters a mark’s index to show a subset of the data. It is a specialized [filter transform](./filter.md) that provides convenient shorthand for pulling a single value out of each series. For example, below selectLast is used to label the last value in a line chart.
 
-For example, here the select transform is used to label the last point in each series of a multi-series line chart with a [text mark](../marks/text.md).
+:::plot
+```js
+Plot.plot({
+  y: {grid: true},
+  marks: [
+    Plot.ruleY([0]),
+    Plot.line(aapl, {x: "Date", y: "Close"}),
+    Plot.text(aapl, Plot.selectLast({x: "Date", y: "Close", text: "Close", frameAnchor: "bottom", dy: -6}))
+  ]
+})
+```
+:::
+
+The select transform uses input order to determine the meaning of *first* and *last*. Since this dataset is in chronological order, the last element is the most recent.
+
+Using selectMinY and selectMaxY, you can label the extreme values.
+
+:::plot
+```js
+Plot.plot({
+  y: {grid: true},
+  marks: [
+    Plot.ruleY([0]),
+    Plot.line(aapl, {x: "Date", y: "Close"}),
+    Plot.text(aapl, Plot.selectMinY({x: "Date", y: "Close", text: "Close", frameAnchor: "top", dy: 6})),
+    Plot.text(aapl, Plot.selectMaxY({x: "Date", y: "Close", text: "Close", frameAnchor: "bottom", dy: -6}))
+  ]
+})
+```
+:::
+
+The select transform groups data into series using the **z**, **fill**, or **stroke** channel in the same fashion as the [area](../marks/area.md) and [line](../marks/line.md) marks. Below, the select transform is used to label the last point in each series of a multi-series line chart.
 
 :::plot defer
 ```js
 Plot.plot({
-  marginRight: 40,
+  style: "overflow: visible;",
   y: {grid: true},
   marks: [
     Plot.ruleY([0]),
@@ -41,56 +72,97 @@ Plot.plot({
 
 ## select(*selector*, *options*)
 
-Selects the points of each series selected by the *selector*, which can be specified either as a function which receives as input the index of the series, the shorthand “first” or “last”, or as a {*key*: *value*} object with exactly one *key* being the name of a channel and the *value* being a function which receives as input the index of the series and the channel values. The *value* may alternatively be specified as the shorthand “min” and “max” which respectively select the minimum and maximum points for the specified channel.
-
-For example, to select the point within each series that is the closest to the median of the *y* channel:
-
 ```js
-Plot.select({
-  y: (I, V) => {
-    const median = d3.median(I, i => V[i]);
-    const i = d3.least(I, i => Math.abs(V[i] - median));
-    return [i];
-  }
-}, {
-  x: "year",
-  y: "revenue",
-  fill: "format"
-})
+Plot.select("first", {x: "Date", y: "Close"}) // selectFirst
+```
+```js
+Plot.select({y: "min"}, {x: "Date", y: "Close"}) // selectMinY
 ```
 
-To pick three points at random in each series:
+Selects the points in each series determined by the given *selector*, which is one of:
+
+- a named selector, either *first* or *last*,
+- a function which receives as input the series index, or
+- a {*name*: *value*} object (with exactly one *name*).
+
+In the last case, *name* is the name of a channel and *value* is a value selector, which is one of:
+
+- a named selector, either *min* or *max*, or
+- a function which receives as input the series index and the channel values.
+
+For example, to select the point in each city with the highest temperature (“selectMaxFill”):
 
 ```js
-Plot.select(I => d3.shuffle(I.slice()).slice(0, 3), {z: "year", ...})
+Plot.select({fill: "max"}, {x: "date", y: "city", z: "city", fill: "temperature"})
 ```
 
-To pick the point in each city with the highest temperature:
+A selector function must return the selected index: a subset of the passed-in series index. For example, selectFirst and selectMinY can be implemented using functions like so:
 
 ```js
-Plot.select({fill: "max"}, {x: "date", y: "city", fill: "temperature", z: "city"})
+Plot.select((I) => [I[0]], {x: "Date", y: "Close"}) // selectFirst
+```
+```js
+Plot.select({y: (I, Y) => [d3.least(I, (i) => Y[i])]}, {x: "Date", y: "Close"}) // selectMinY
+```
+
+Or, to select the point within each series that is the closest to the median of **y**:
+
+```js
+Plot.select({y: selectorMedian}, {x: "year", y: "revenue", fill: "format"})
+```
+
+```js
+function selectorMedian(I, V) {
+  const median = d3.median(I, (i) => V[i]);
+  const i = d3.least(I, (i) => Math.abs(V[i] - median));
+  return [i];
+}
 ```
 
 ## selectFirst(*options*)
+
+```js
+Plot.selectFirst({x: "Date", y: "Close"})
+```
 
 Selects the first point of each series according to input order.
 
 ## selectLast(*options*)
 
+```js
+Plot.selectLast({x: "Date", y: "Close"})
+```
+
 Selects the last point of each series according to input order.
 
 ## selectMinX(*options*)
+
+```js
+Plot.selectMinX({x: "Date", y: "Close"})
+```
 
 Selects the leftmost point of each series.
 
 ## selectMinY(*options*)
 
+```js
+Plot.selectMinY({x: "Date", y: "Close"})
+```
+
 Selects the lowest point of each series.
 
 ## selectMaxX(*options*)
 
+```js
+Plot.selectMaxX({x: "Date", y: "Close"})
+```
+
 Selects the rightmost point of each series.
 
 ## selectMaxY(*options*)
+
+```js
+Plot.selectMaxY({x: "Date", y: "Close"})
+```
 
 Selects the highest point of each series.
