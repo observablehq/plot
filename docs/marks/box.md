@@ -19,7 +19,7 @@ The **box mark** summarizes one-dimensional distributions as boxplots. It is a [
 
 For example, the boxplot below shows [A.A. Michelson’s experimental measurements](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/morley.html) of the speed of light. (Speed is in km/sec minus 299,000.)
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-vertical-box-plot
 ```js
 Plot.plot({
   y: {
@@ -35,7 +35,7 @@ Plot.plot({
 
 [boxY](#boxy-data-options) produces vertical boxplots; for horizontal boxplots, use [boxX](#boxx-data-options) and swap **x** and **y**.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-horizontal-box-plot
 ```js
 Plot.plot({
   x: {
@@ -51,7 +51,7 @@ Plot.plot({
 
 As [shorthand](../features/shorthand.md), you can pass an array of numbers for a single boxplot.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-box-plot
 ```js
 Plot.boxX([0, 3, 4.4, 4.5, 4.6, 5, 7]).plot()
 ```
@@ -59,7 +59,7 @@ Plot.boxX([0, 3, 4.4, 4.5, 4.6, 5, 7]).plot()
 
 Since the box mark uses the [group transform](../transforms/group.md), the secondary dimension must be ordinal. To group quantitative values, bin manually, say with [Math.floor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor); see [#1330](https://github.com/observablehq/plot/issues/1330).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-binned-box-plot
 ```js
 Plot.plot({
   y: {
