@@ -31,7 +31,7 @@ The bar mark is one of several marks in Plot for drawing rectangles; it should b
 
 The **bar mark** comes in two orientations: [barY](#bary-data-options) extends vertically↑ as in a vertical bar chart or column chart, while [barX](#barx-data-options) extends horizontally→ as in a (horizontal) bar chart. For example, the bar chart below shows the frequency of letters in the English language.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-vertical-bars
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
@@ -39,7 +39,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 
 Ordinal domains are sorted naturally (alphabetically) by default. Either set the [scale **domain**](../features/scales.md) explicitly to change the order, or use the mark [**sort** option](../features/marks.md#sort-option) to derive the scale domain from a channel. For example, to sort **x** by descending **y**:
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-vertical-bars
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}}).plot()
 ```
@@ -49,7 +49,7 @@ There is typically one ordinal value associated with each bar, such as a name (o
 
 Above, since **y** was specified instead of **y1** and **y2**, the bar spans from zero to the given *y* value: if you only specify a single quantitative value, barY applies an implicit [stackY transform](../transforms/stack.md) and likewise barX implicitly applies stackX. The stacked horizontal bar chart below draws one bar (of unit width in **x**) per penguin, colored and sorted by the penguin’s body mass, and grouped by species along **y**.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-colored-stacked-bar-chart
 ```js
 Plot.plot({
   marginLeft: 60,
@@ -70,7 +70,7 @@ The [group transform](../transforms/group.md) with the *count* reducer could be 
 
 You can specify a [*min*, *max*] extent instead and opt-out of the implicit stack transform by specifying two quantitative values: **x1** and **x2** for barX, or **y1** and **y2** for barY. For example, here is a historical timeline of civilizations, where each has a beginning and an end.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-civilizations-timeline
 ```js
 Plot.plot({
   marginLeft: 130,
@@ -105,7 +105,7 @@ This uses a [text mark](../marks/text.md) to label the bars directly instead of 
 
 For a diverging bar chart, simply specify a negative value. The chart below shows change in population from 2010 to 2019. States whose population increased are <span :style="{borderBottom: `solid ${d3.schemePiYG[3][2]} 3px`}">green</span>, while states whose population decreased are <span :style="{borderBottom: `solid ${d3.schemePiYG[3][0]} 3px`}">pink</span>. (Puerto Rico’s population declined sharply after hurricanes Maria and Irma.)
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-state-population-change
 ```js
 Plot.plot({
   label: null,
@@ -143,7 +143,7 @@ When ordinal data is regular, such as the yearly observations of the time-series
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-ordinal-scale-interval
 ```js
 Plot
   .barY(timeseries, {x: "year", y: "population"})
@@ -157,7 +157,7 @@ You can also make a time-series bar chart with a [rect mark](./rect.md), possibl
 
 A bar’s ordinal dimension is optional; if missing, the bar spans the chart along this dimension. Such bars typically also have a color encoding. For example, here are [warming stripes](https://showyourstripes.info/) showing the increase in average temperature globally over the last 172 years.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-warming-stripes-2
 ```js
 Plot.plot({
   x: {round: true, tickFormat: "d"},
@@ -176,7 +176,7 @@ Plot.plot({
 
 With the [stack transform](../transforms/stack.md), a one-dimensional bar can show the proportions of each value relative to the whole, as a compact alternative to a pie or donut chart.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-stacked-percentages
 ```js
 Plot.plot({
   x: {percent: true},
@@ -195,7 +195,7 @@ Although barX applies an implicit stackX transform, [textX](./text.md) does not;
 
 For a grouped bar chart, use [faceting](../features/facets.md). The chart below uses **fy** to partition the bar chart of penguins by island.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-grouped-unit-chart
 ```js
 Plot.plot({
   marginLeft: 60,
