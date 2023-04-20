@@ -27,7 +27,7 @@ The **axis mark** conveys the meaning of a position [scale](../features/scales.m
 
 For example, the **axis** scale option specifies the side of the frame to draw the axis. Setting it to *both* will repeat the axis on both sides.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-axis-both
 ```js
 Plot.plot({
   x: {percent: true, grid: true, axis: "both"},
@@ -41,7 +41,7 @@ Plot.plot({
 
 The above is equivalent to declaring two explicit axis marks, one with the *top* **anchor** and the other with the *bottom* **anchor**, and one explicit [grid mark](./grid.md). A benefit of declaring explicit axes is that you can draw them atop other marks.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-axis-both
 ```js
 Plot.plot({
   x: {percent: true},
@@ -70,7 +70,7 @@ Plot’s axis mark is a composite mark comprised of:
 
 As such, you can take advantage of the full capabilities of these marks. For example, you can use the text mark’s **lineWidth** option to wrap long tick labels (and even soft hyphens). Note this option is expressed in ems, not pixels, and you may have to reserve additional **marginBottom** to make room for multiple lines.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-wrap-tick-labels
 ```js
 Plot.plot({
   y: {percent: true},
@@ -86,7 +86,7 @@ Plot.plot({
 
 Or, you can use the **textAnchor** option to extend the *y*-axis tick labels to the right and into the frame, and the **fill** option to specify the color of the text.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-anchor-tick-labels
 ```js
 Plot.plot({
   marginTop: 0,
@@ -102,7 +102,7 @@ Plot.plot({
 
 Layering several marks makes it possible to create [ggplot2-style axes](https://ggplot2.tidyverse.org/reference/guide_axis.html) with a filled [frame](./frame.md) and white grid lines.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-ggplot-style-axes
 ```js
 Plot.plot({
   inset: 10,
@@ -118,7 +118,7 @@ Plot.plot({
 
 Or you could emulate the style of *The New York Times*, with tick labels above dashed grid lines, and a custom tick format to show units (here dollars) on the first tick.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-nyt-style-axes
 ```js
 Plot.plot({
   round: true,
@@ -145,7 +145,7 @@ Plot.plot({
 
 You can emulate [Datawrapper’s time axes](https://blog.datawrapper.de/new-axis-ticks/) using `\n` (the line feed character) for multi-line tick labels, plus a bit of date math to detect the first month of each year.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-datawrapper-style-date-axis
 ```js
 Plot.plot({
   marks: [
@@ -172,7 +172,7 @@ In the future, Plot may generate multi-line time axis labels by default. If you�
 
 Alternatively, you can add multiple axes with options for hierarchical time intervals, here showing weeks, months, and years.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-multiscale-date-axis
 ```js
 Plot.plot({
   x: {round: true, nice: d3.utcWeek},
@@ -191,7 +191,7 @@ Plot.plot({
 
 You can even style an axis dynamically based on data! The data associated with an axis or grid mark are the tick values sampled from the associated scale’s domain. If you don’t specify the data explicitly, the ticks will be chosen through a combination of the **ticks**, **tickSpacing**, and **interval** options.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-data-based-axis
 ```js
 Plot.plot({
   marginRight: 0,
@@ -207,19 +207,19 @@ Plot.plot({
 
 The color of an axis can be controlled with the **color**, **stroke**, and **fill** options, which affect the axis’ component marks differently. The **stroke** option affects the tick vector; the **fill** option affects the label texts. The **color** option is shorthand for setting both **fill** and **stroke**. While these options are typically set to constant colors (such as _red_ or the default _currentColor_), they can be specified as channels to assign colors dynamically based on the associated tick value.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-colored-axes
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {color: "red"}).plot() // text fill and tick stroke
 ```
 :::
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-colored-axes
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {stroke: Plot.identity, strokeWidth: 3, tickSize: 10}).plot() // tick stroke
 ```
 :::
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-colored-axes
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {fill: "red"}).plot() // text fill
 ```
@@ -227,7 +227,7 @@ Plot.axisX(d3.ticks(0, 1, 10), {fill: "red"}).plot() // text fill
 
 To draw an outline around the tick labels, say to improve legibility when drawing an axes atop other marks, use the **textStroke** (default _none_), **textStrokeWidth** (default 3), and **textStrokeOpacity**  (default 1) options.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-colored-axes
 ```js
 Plot.plot({
   height: 40,
@@ -283,7 +283,7 @@ The interactive chart below shows the different possibilities. Note that we plac
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-facetanchor
 ```js
 Plot.plot({
   facet: {marginRight: 80},
@@ -300,7 +300,7 @@ Plot.plot({
 
 The **labelAnchor** option controls the position of the axis label. For the *x* or *fx* axis, the label anchor may be *left*, *center*, or *right*. It defaults to *center* for ordinal scales and *right* for quantitative scales.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-labelanchor
 ```js
 Plot.plot({
   height: 80,
@@ -320,7 +320,7 @@ Plot.plot({
 
 For the *y* and *fy* axis, the label anchor may be *top*, *center*, or *bottom*. It defaults to *center* for ordinal scales and *top* for quantitative scales. When the label anchor is *center*, the label is rotated by 90° to fit, though you may need to adjust the margins to avoid overlap between the tick labels and the axis label.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-labelanchor
 ```js
 Plot.plot({
   grid: true,
