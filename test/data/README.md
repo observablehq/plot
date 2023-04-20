@@ -102,6 +102,10 @@ https://data.giss.nasa.gov/gistemp/
 Met Office Hadley Centre
 https://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/series_format.html
 
+## ipos.csv
+“The Facebook Offering: How It Compares”, The New York Times
+https://archive.nytimes.com/www.nytimes.com/interactive/2012/05/17/business/dealbook/how-the-facebook-offering-compares.html?hp
+
 ## libor.csv
 CBO
 https://www.cbo.gov/topics/budget/accuracy-projections
