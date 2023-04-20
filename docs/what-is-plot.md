@@ -10,7 +10,7 @@ const olympians = shallowRef([
 ]);
 
 onMounted(() => {
-  d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
+  d3.csv("./data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
 });
 
 </script>
