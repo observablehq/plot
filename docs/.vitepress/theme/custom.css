@@ -43,14 +43,11 @@
   color: var(--vp-c-text-2);
   display: inline-flex;
   align-items: center;
+  margin-right: 1em;
 }
 
 .label-input > label {
   display: inline-flex;
-}
-
-.label-input ~ .label-input {
-  margin-left: 1em;
 }
 
 .label-input > input,

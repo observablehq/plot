@@ -150,7 +150,7 @@ export default {
           this._idling = undefined;
         }
       };
-      return withDirectives(h("div"), [
+      return withDirectives(h("span"), [
         [
           {
             mounted,

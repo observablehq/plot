@@ -14,7 +14,7 @@ export default function plot(md) {
         content = content.replace(/\bd3\.shuffle\b/g, "d3.shuffler(d3.randomLcg(42))");
         content = content.replace(/"red"/g, '"var(--vp-c-red)"');
         content = content.replace(/"green"/g, '"var(--vp-c-green)"');
-        const suffix = `\n<div class="blocks"${directives.includes("hidden") ? ` style="display: none;"` : ""}>\n`;
+        const suffix = `\n${directives.includes("hidden") ? `<div style="display: none;">\n` : ""}`;
         if (/^Plot\.plot\(/.test(content)) {
           const options = content.slice(9);
           return `<PlotRender
@@ -34,7 +34,8 @@ export default function plot(md) {
           />${suffix}`;
         }
       } else {
-        return `</div>\n`;
+        const directives = tokens[idx - 2].info.split(/\s+/).slice(1);
+        return `${directives.includes("hidden") ? `</div>` : ""}\n`;
       }
     }
   });
