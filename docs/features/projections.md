@@ -25,7 +25,7 @@ onMounted(() => {
 # Projections
 
 :::danger TODO
-This section needs to be restructured and edited.
+This guide is still under construction. 🚧 Please come back when it’s finished.
 :::
 
 Plot’s projection system opens the door for all kinds of geographic maps (and more). Once set, the top-level **projection** option takes over the *x* and *y* [scales](../features/scales.md) and considers associated channels as _jointly_ describing a location on a surface, typically the globe of the Earth.

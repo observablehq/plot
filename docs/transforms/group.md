@@ -1,5 +1,9 @@
 # Group transform
 
+:::danger TODO
+This guide is still under construction. 🚧 Please come back when it’s finished.
+:::
+
 :::tip
 The group transform is for aggregating ordinal or nominal data. For quantitative or temporal data, use the [bin transform](./bin.md).
 :::

@@ -1,5 +1,9 @@
 # Plots
 
+:::danger TODO
+This guide is still under construction. 🚧 Please come back when it’s finished.
+:::
+
 ## plot(*options*)
 
 Renders a new plot given the specified *options* and returns the corresponding SVG or HTML figure element. All *options* are optional.

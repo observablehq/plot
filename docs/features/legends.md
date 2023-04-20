@@ -23,6 +23,10 @@ onMounted(() => {
 
 # Legends
 
+:::danger TODO
+This guide is still under construction. 🚧 Please come back when it’s finished.
+:::
+
 Plot can generate legends for *color*, *opacity*, and *symbol* [scales](./scales.md). For example, this scatterplot includes a *swatches* legend for its *categorical* *color* scale:
 
 :::plot defer
