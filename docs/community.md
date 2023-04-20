@@ -1,4 +1,4 @@
-# Community
+# Community 🏠 {#community}
 
 Learning Plot? Love data visualization? Don’t go it alone! Join our community to get help, be inspired, and do the same for others.
 
