@@ -8,6 +8,10 @@ import sftemp from "../data/sf-temperatures.ts";
 
 # Window transform
 
+:::danger TODO
+This guide is still under construction. 🚧 Please come back when it’s finished.
+:::
+
 The Plot.windowX and Plot.windowY transforms compute a moving window around each data point and then derive a summary statistic from values in the current window, say to compute rolling averages, rolling minimums, or rolling maximums.
 
 ```js

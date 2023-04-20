@@ -13,6 +13,10 @@ const interpolateq = ref("rgb");
 
 # Scales
 
+:::danger TODO
+This guide is still under construction. 🚧 Please come back when it’s finished.
+:::
+
 Scales map an abstract value such as time or temperature to a visual value such as *x*- or *y*-position or color. Scales define a plot’s coordinate system.
 
 In Plot, scales are named: **x** or **y** for position; **fx** or **fy** for facet position; **r** for radius; or **color**. A plot can have multiple scales but at most one scale of a given name. Mark channels are bound to scales; for example, a dot’s **x** channel is bound to the **x** scale. The channel name and the scale name are often the same, but not always; for example, a bar’s **y1** and **y2** channels are both bound to the **y** scale.

@@ -20,6 +20,10 @@ onMounted(() => {
 
 # Facets
 
+:::danger TODO
+This guide is still under construction. 🚧 Please come back when it’s finished.
+:::
+
 Faceting produces horizontal and/or vertical [small multiples](https://en.wikipedia.org/wiki/Small_multiple) by partitioning data into discrete sets and repeating the plot for each set, allowing comparison.
 
 Faceting may either be specified at the top level of the plot or on individual marks. The mark-level **fx** and **fy** options allow marks to define facet channels. For example, we can recreate the “trellis” plot of Barley yields constructed by [Becker *et al.*](https://hci.stanford.edu/courses/cs448b/papers/becker-trellis-jcgs.pdf)
