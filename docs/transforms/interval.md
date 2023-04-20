@@ -79,17 +79,13 @@ Plot.plot({
 As an added bonus, the **fontVariant** and **type** options are no longer needed because Plot now understands that the *x* scale, despite being *ordinal*, represents daily observations.
 :::
 
-The **interval** option can also be used for quantitative and temporal scales as shorthand for the **transform** option. This enforces uniformity, say rounding timed observations down to the nearest hour, which may be helpful for the [stack transform](./stack.md) among other uses.
+The **interval** option can also be used for quantitative and temporal scales as shorthand for the **transform** scale option. This enforces uniformity, say rounding timed observations down to the nearest hour, which may be helpful for the [stack transform](./stack.md) among other uses.
 
 :::info
 The interval transform is not a standalone transform, but an option on marks and scales.
 :::
 
-:::danger TODO
-The meaning of the **interval** mark option depends on the mark: line, area, bar, rect, dot.
-:::
-
-While rare, the interval transform can also be used with barY to convert a discrete *y* value into an interval [*y1*, *y2*], and similarly with barX to convert *x* to [*x1*, *x2*].
+The meaning of the **interval** mark option depends on the associated mark, such as line, bar, rect, or dot. For example, for the [barY mark](../marks/bar.md), the **interval** option affects converts a singular *y* value into an interval [*y1*, *y2*]. In the contrived example below, notice that the vertical↕︎ extent of each bar spans an interval of 10 million, rather than extending to *y* = 0.
 
 :::plot
 ```js
