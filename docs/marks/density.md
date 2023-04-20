@@ -25,7 +25,7 @@ For contours of spatially-distributed quantitative values, see the [contour mark
 
 The **density mark** shows the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. Contours guide the eye towards the local peaks of concentration of the data, much like a topographic map does with elevation. This is especially useful given overplotting in dense datasets.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-point-cloud-density
 ```js
 Plot.plot({
   inset: 10,
@@ -48,7 +48,7 @@ The **bandwidth** option specifies the radius of the [Gaussian kernel](https://e
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-density-options
 ```js
 Plot.plot({
   inset: 20,
@@ -70,7 +70,7 @@ The **thresholds** option specifies the number of contour lines (minus one) to b
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-density-options
 ```js
 Plot.plot({
   inset: 20,
@@ -84,7 +84,7 @@ Plot.plot({
 
 The density mark also works with one-dimensional values:
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-one-dimensional-density
 ```js
 Plot.plot({
   height: 100,
@@ -100,7 +100,7 @@ Plot.plot({
 
 By using the _density_ keyword as a **fill** or **stroke** color, you can draw regions with a sequential color encoding.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-density-stroke
 ```js
 Plot.plot({
   inset: 10,
@@ -126,7 +126,7 @@ Plot.plot({
 })
 ``` -->
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-density-faceted
 ```js
 Plot.plot({
   marks: [
@@ -149,7 +149,7 @@ The **weight** channel specifies the contribution of each data point to the esti
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-density-weighted
 ```js
 Plot.plot({
   inset: 10,
@@ -176,7 +176,7 @@ Plot.plot({
 
 You can specify a negative weight for points that the density contours should avoid, resulting in regions of influence that do not overlap.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-non-overlapping-density-regions
 ```js
 Plot.plot({
   inset: 10,
