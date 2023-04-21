@@ -19,7 +19,7 @@ onMounted(() => {
 # Bin transform
 
 :::tip
-The bin transform is for aggregating quantitative or temporal data. For ordinal or nominal data, use the [group transform](./group.md).
+The bin transform is for aggregating quantitative or temporal data. For ordinal or nominal data, use the [group transform](./group.md). See also the [hexbin transform](./hexbin.md).
 :::
 
 The **bin transform** groups quantitative or temporal data—continuous measurements such as heights, weights, or temperatures—into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is most often used to make histograms or heatmaps with the [rect mark](../marks/rect.md).
@@ -42,7 +42,7 @@ The binX transform takes **x** as input and outputs **x1** and **x2** representi
 
 While the binX transform is often used to generate **y**, it can output any channel. Below, the **fill** channel represents count per bin, resulting in a one-dimensional heatmap.
 
-:::plot
+:::plot defer
 ```js-vue
 Plot
   .rect(olympians, Plot.binX({fill: "count"}, {x: "weight"}))
@@ -118,7 +118,7 @@ Plot
 ```
 :::
 
-The bin transform also outputs **x** and **y** channels representing bin centers. These can be used to place a [dot mark](../marks/dot.md) whose size again represents the number  of athletes in each bin.
+The bin transform also outputs **x** and **y** channels representing bin centers. These can be used to place a [dot mark](../marks/dot.md) whose size again represents the number of athletes in each bin.
 
 :::plot defer
 ```js
