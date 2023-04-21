@@ -14,7 +14,7 @@ const m = ref(0);
 
 The **linear regression** mark draws [linear regression](https://en.wikipedia.org/wiki/Linear_regression) lines with confidence bands, representing the estimated linear relation of a dependent variable (typically **y**) on an independent variable (typically **x**). Below we can see that, in this example dataset at least, the weight of a car is a good linear predictor of its power.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-cars-linear-regression
 ```js
 Plot.plot({
   marks: [
@@ -41,7 +41,7 @@ Use the slider below to build a linear model from a subset of the data with **m*
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-linear-regression-confidence-band
 ```js
 Plot.plot({
   marks: [
@@ -59,7 +59,7 @@ When operating on a subset of the data (the “training dataset”, in machine l
 
 This type of model is regularly criticized for pushing people to the wrong conclusions about their data when the actual underlying structure or process is nonlinear. For example, if you measure the relationship between culmen depth and length in a mixed population of penguins, it is positively correlated in each of the three species (bigger penguins with the longer culmens also tend to have the deeper ones); however, the Gentoo population has a smaller aspect ratio of depth against length, and the overall correlation across the three species is negative. This is called [Simpson’s paradox](https://en.wikipedia.org/wiki/Simpson%27s_paradox), and it applies to any data that contains underlying populations with different properties or outcomes.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-linear-regression-simpson
 ```js
 Plot.plot({
   grid: true,
@@ -75,7 +75,7 @@ Plot.plot({
 
 Finally, note that regression is not a symmetric method: the model computed to express _y_ as a function of _x_ (linearRegressionY) doesn’t give the same result as the regression of _x_ as a function of _y_ (linearRegressionX) unless the points are all perfectly aligned. In the worst case, where the two variables are statistically independent, the linear regression of _y_ against _x_ is an horizontal line, whereas the linear regression of _x_ against _y_ is a vertical line.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-linear-regression-is-not-symmetric
 ```js
 Plot.plot({
   marks: [
