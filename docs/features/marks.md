@@ -42,7 +42,7 @@ This guide is still under construction. 🚧 Please come back when it’s finish
 Observable Plot doesn’t have chart types; instead, you construct charts by layering **marks** in the *grammar of graphics* style. Plot builds on the ideas of [Leland Wilkinson](https://link.springer.com/book/10.1007/0-387-28695-0), [Hadley Wickham](https://vita.had.co.nz/papers/layered-grammar.html), [Jacques Bertin](https://www.esri.com/en-us/esri-press/browse/semiology-of-graphics-diagrams-networks-maps), and others. Here’s a crash course on Plot’s marks.
 
 :::tip
-If you aren’t yet up-and-running with Plot, read our [quickstart guide](../getting-started.md) or try these examples [on Observable](https://observablehq.com). Tinkering with the code below will give a better sense of how Plot works.
+If you aren’t yet up-and-running with Plot, read our [getting started guide](../getting-started.md) or try these examples [on Observable](https://observablehq.com). Tinkering with the code below will give a better sense of how Plot works.
 :::
 
 ## Marks are geometric shapes
