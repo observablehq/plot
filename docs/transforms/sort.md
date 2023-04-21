@@ -95,11 +95,11 @@ You could say `sort: {channel: "stroke"}` here to avoid repeating the test funct
 The index order also affects the behavior of certain transforms such as [stack](./stack.md) and [dodge](./dodge.md).
 
 <p>
-  <div class="label-input">
+  <span class="label-input">
     Sort x order:
     <label style="margin-left: 0.5em;"><input type="radio" name="order" value="ascending" v-model="order" /> ascending</label>
     <label style="margin-left: 0.5em;"><input type="radio" name="order" value="descending" v-model="order" /> descending</label>
-  </div>
+  </span>
 </p>
 
 :::plot

@@ -175,11 +175,11 @@ Plot.plot({
 The **cumulative** option produces a cumulative distribution. Below, each bin represents the number of athletes with the given weight *or less*. To have each bin represent the number of athletes with the given weight *or more*, set **cumulative** to −1.
 
 <p>
-  <div class="label-input">
+  <span class="label-input">
     Cumulative:
     <label style="margin-left: 0.5em; font-variant: tabular-nums;"><input type="radio" name="cumulative" value="-1" v-model="cumulatives" /> -1 (reverse)</label>
     <label style="margin-left: 0.5em; font-variant: tabular-nums;"><input type="radio" name="cumulative" value="+1" v-model="cumulatives" /> +1 (true)</label>
-  </div>
+  </span>
 </p>
 
 :::plot

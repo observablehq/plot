@@ -27,7 +27,7 @@ For example, the band chart below shows the daily high and low temperature in Sa
 <p>
   <label class="label-input">
     <span>Window size (k):</span>
-    <input type="range" v-model.number="k" min="1" max="100" step="1">
+    <input type="range" v-model.number="k" min="1" max="100" step="1" />
     <span style="font-variant-numeric: tabular-nums;">{{k.toLocaleString("en-US")}}</span>
   </label>
 </p>
@@ -53,12 +53,18 @@ The **k** option specifies the window size: the number of consecutive elements i
 The **anchor** specifies how to align the rolling window with the data. If *middle* (the default), the window is centered around the current data point; for time-series data, this means the window will incorporate values from the future as well as the past. Setting **anchor** to *end* will compute a trailing moving average.
 
 <p>
-  <div class="label-input">
+  <span class="label-input">
     Anchor:
-    <label style="margin-left: 0.5em; font-variant: tabular-nums;"><input type="radio" name="anchor" value="start" v-model="anchor" /> start</label>
-    <label style="margin-left: 0.5em; font-variant: tabular-nums;"><input type="radio" name="anchor" value="middle" v-model="anchor" /> middle</label>
-    <label style="margin-left: 0.5em; font-variant: tabular-nums;"><input type="radio" name="anchor" value="end" v-model="anchor" /> end</label>
-  </div>
+    <label style="margin-left: 0.5em;">
+      <input type="radio" name="anchor" value="start" v-model="anchor" /> start
+    </label>
+    <label style="margin-left: 0.5em;">
+      <input type="radio" name="anchor" value="middle" v-model="anchor" /> middle
+    </label>
+    <label style="margin-left: 0.5em;">
+      <input type="radio" name="anchor" value="end" v-model="anchor" /> end
+    </label>
+  </span>
 </p>
 
 :::plot
@@ -76,14 +82,14 @@ Plot.plot({
 ```
 :::
 
-The window transform uses input order, not natural order by value, to determine the meaning of *start* and *end*. When the data is in reverse chronological order, the meaning of *start* and *end* is effectively reversed because the first data point is the most recent.
+The window transform uses input order, not natural order by value, to determine the meaning of *start* and *end*. When the data is in reverse chronological order, the meaning of *start* and *end* is effectively reversed because the first data point is the most recent. Use a [sort transform](./sort.md) to change the order as needed.
 
 If **strict** is false (the default), the window size is effectively reduced at the start or end of each series or both, depending on the **anchor**. Values computed with a truncated window may be noisy; if you would prefer to not show this data instead, set the **strict** option to true.
 
 <p>
   <label class="label-input">
     Strict:
-    <input type="checkbox" v-model="strict">
+    <input type="checkbox" v-model="strict" />
   </label>
 </p>
 
