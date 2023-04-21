@@ -32,7 +32,7 @@ The **raster mark** renders a [raster image](https://en.wikipedia.org/wiki/Raste
 
 For example, the heatmap below shows the topography of the [Maungawhau volcano](https://en.wikipedia.org/wiki/Maungawhau), produced from a {{volcano.width}}×{{volcano.height}} grid of elevation samples.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-volcano-raster
 ```js
 Plot.plot({
   color: {label: "Elevation (m)", legend: true},
@@ -66,7 +66,7 @@ grid = ({
 
 We can visualize this small grid directly with a [text mark](./text.md) using the same color encoding. Notice that the image below is flipped vertically relative to the data: the first row of the data is the *bottom* of the image because below *y* points up↑.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-small-grid-raster
 ```js
 Plot.plot({
   grid: true,
@@ -86,7 +86,7 @@ Plot.plot({
 
 Also notice that the grid points are offset by 0.5: they represent the *middle* of each pixel rather than the corner. Below, the raster mark is laid under the text mark to show the raster image.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-small-grid-raster
 ```js
 Plot.plot({
   marks: [
@@ -124,7 +124,7 @@ LONGITUDE,LATITUDE,MAG_IGRF90
 
 Using a [dot mark](./dot.md), we can make a quick scatterplot to see the irregular grid. We’ll use a *diverging* color scale to distinguish positive and negative values.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-igrf90-dots
 ```js
 Plot.dot(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90"}).plot({color: {type: "diverging"}})
 ```
@@ -132,7 +132,7 @@ Plot.dot(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90"}).plot({color:
 
 And using a [line mark](./line.md), we can connect the line segments to reveal the flight paths.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-igrf90-flight-paths
 ```js
 Plot.line(ca55, {x: "LONGITUDE", y: "LATITUDE", stroke: "MAG_IGRF90", z: "LINE_NUMB-SEG"}).plot({color: {type: "diverging"}})
 ```
@@ -142,7 +142,7 @@ The image above starts to be readable, but it would be frustrating to not do mor
 
 The *nearest* interpolator assigns the value of each pixel in the grid using the nearest sample in the data. In effect, this produces a Voronoi diagram.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-igfr90-raster
 ```js
 Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "nearest"}).plot({color: {type: "diverging"}})
 ```
@@ -154,7 +154,7 @@ You can also make this Voronoi diagram with the [voronoi mark](./delaunay.md).
 
 If the observed phenomenon is continuous, we can use the _barycentric_ interpolator. This constructs a Delaunay triangulation of the samples, and then paints each triangle by interpolating the values of the triangle’s vertices in [barycentric coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system). (Points outside the convex hull are extrapolated.)
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-igfr90-barycentric
 ```js
 Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "barycentric"}).plot({color: {type: "diverging"}})
 ```
@@ -162,7 +162,7 @@ Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolat
 
 Finally, the _random-walk_ interpolator assigns the value at each grid location simply by taking a random walk that stops after reaching a minimum distance from any sample! The interpolator uses the [walk on spheres](https://observablehq.com/@fil/walk-on-spheres) algorithm, limited to 2 consecutive jumps.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-igrf90-random-walk
 ```js
 Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "random-walk"}).plot({color: {type: "diverging"}})
 ```
@@ -170,7 +170,7 @@ Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolat
 
 With the _random-walk_ method, the image is grainy, reflecting the uncertainty of the random walk. Use the **blur** option to make it smoother.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-igrf90-random-walk
 ```js
 Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "random-walk", blur: 5}).plot({color: {type: "diverging"}})
 ```
@@ -182,7 +182,7 @@ If none of the built-in [spatial interpolators](../features/spatial-interpolator
 
 The raster mark can interpolate categorical values, too! Below, this creates an interesting “map” of penguin species in the space of culmen length _vs._ depth.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-nominal-random-walk
 ```js
 Plot.plot({
   color: {legend: true},
@@ -196,7 +196,7 @@ Plot.plot({
 
 As an alternative to interpolating discrete samples, you can supply values as a continuous function *f*(*x*,*y*); the raster mark will invoke this function for the midpoint of each pixel in the raster grid, similar to a WebGL fragment shader. For example, below we visualize the [Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set) by counting the number of iterations needed until the point “escapes”.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-mandelbrot-raster
 ```js
 Plot.raster({fill: mandelbrot, x1: -2, x2: 1, y1: -1.164, y2: 1.164}).plot({aspectRatio: 1})
 ```
@@ -213,7 +213,7 @@ function mandelbrot(x, y) {
 
 Or to visualize the arctangent function:
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-arctangent-raster
 ```js
 Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)}).plot()
 ```
