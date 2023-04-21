@@ -160,7 +160,7 @@ and so cold`], {frameAnchor: "middle"})
 ```
 :::
 
-Alternatively, the **lineWidth** option enables automatic line wrapping. This option must be specified as a number in [ems](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units). When a word contains a [soft-hyphen](https://en.wikipedia.org/wiki/Soft_hyphen) (`\xad`), it may be replaced by a hyphen when wrapping. The **textOverflow** option can also be used to truncate lines that exceed the specified line width.
+Alternatively, the **lineWidth** option enables automatic line wrapping. This option must be specified as a number in [ems](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units). When a word contains a [soft-hyphen](https://en.wikipedia.org/wiki/Soft_hyphen) (`\xad`), it may be replaced by a hyphen when wrapping. The **textOverflow** option can also be used to truncate lines that exceed the specified line width, like in the incipit of Herman Melville’s *Moby-Dick* (1851).
 
 :::plot
 ```js
