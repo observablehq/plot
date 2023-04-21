@@ -87,6 +87,13 @@ You can instead import specific symbols if you prefer:
 import {barY, groupX} from "@observablehq/plot";
 ```
 
+Plot includes TypeScript declarations with extensive documentation. We highly recommend using an editor with enhanced code completion such as Visual Studio Code or Observable.
+
+<figure>
+  <img style="border: solid 1px var(--vp-c-text-3); display: inline;" src="./ts-property.png">
+  <figcaption>Modern editors surface documentation and type hints as you write Plot code.</figcaption>
+</figure>
+
 ## Plot in vanilla HTML
 
 Plot returns a detached DOM element—either an [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) or [HTML figure](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) element. In vanilla web development, this means you need to insert the generated plot into the page to see it. Typically this is done by selecting a DOM element (such as a DIV with a unique identifier, like *myplot* below), and then calling [*element*.append](https://developer.mozilla.org/en-US/docs/Web/API/Element/append).
