@@ -24,7 +24,7 @@ The **link mark** draws straight lines between two points [**x1**, **y1**] and [
 
 For example, the chart below shows the rising inequality (and population) in various U.S. cities from 1980 to 2015. Each link represents two observations of a city: the city’s population (**x**) and inequality (**y**) in 1980, and the same in 2015. The link’s **stroke** redundantly encodes the change in inequality: red indicates rising inequality, while blue (there are only four) indicates declining inequality.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-link-variation-chart
 ```js
 Plot.plot({
   grid: true,
@@ -68,7 +68,7 @@ Plot.plot({
 
 The link mark is used by the composite [tree mark](./tree.md) to render a link from parent to child in a hierarchy. The [treeLink transform](../transforms/tree.md) sets the default [curve option](../features/curves.md) to *bump-x*.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-tree-and-link
 ```js
 Plot.plot({
   axis: null,
@@ -99,7 +99,7 @@ gods = [
 
 With a [spherical projection](../features/projections.md) and the default [*auto* curve](../features/curves.md), the link mark will render a geodesic: the shortest path between two points on the surface of the sphere. Setting the **curve** to *linear* will instead draw a straight line between the projected points. For example, below we draw two links from San Francisco to Paris.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-projected-link
 ```js
 Plot.plot({
   projection: "equal-earth",
@@ -119,7 +119,7 @@ xy = ({x1: -122.4194, y1: 37.7749, x2: 2.3522, y2: 48.8566})
 
 Like a [rule](./rule.md), a link can also serve as annotation. Whereas a rule is strictly horizontal or vertical, however, a link can generate [diagonal lines](http://kelsocartography.com/blog/?p=2074). The following chart depicts the gender gap in wages, segmented by education and age, in the U.S. A regular grid would make the gender disparity much less clear, even with the domains explicitly set to be equal.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-gender-income-inequality
 ```js
 Plot.plot({
   aspectRatio: 1,
