@@ -67,7 +67,7 @@ Plot.plot({
 
 While the groupX transform is often used to generate **y**, it can output any channel. Below, the **fill** channel represents count per group, resulting in a one-dimensional heatmap.
 
-:::plot
+:::plot defer
 ```js-vue
 Plot.plot({
   marginBottom: 80,
