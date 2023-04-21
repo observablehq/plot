@@ -19,10 +19,10 @@ onMounted(() => {
 # Bin transform
 
 :::tip
-The bin transform is for aggregating quantitative or temporal data. For ordinal or nominal data, use the [group transform](./group.md).
+The bin transform is for aggregating quantitative or temporal data. For ordinal or nominal data, use the [group transform](./group.md). See also the [hexbin transform](./hexbin.md).
 :::
 
-The **bin transform** groups quantitative data—continuous measurements such as heights, weights, or temperatures—into discrete bins. You can then compute summary statistics for each bin, such as a *count*, *sum*, or *proportion*. The bin transform is most often used to make histograms or heatmaps with the [rect mark](../marks/rect.md).
+The **bin transform** groups quantitative or temporal data—continuous measurements such as heights, weights, or temperatures—into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is most often used to make histograms or heatmaps with the [rect mark](../marks/rect.md).
 
 For example, here is a histogram showing the distribution of weights of Olympic athletes.
 
@@ -42,7 +42,7 @@ The binX transform takes **x** as input and outputs **x1** and **x2** representi
 
 While the binX transform is often used to generate **y**, it can output any channel. Below, the **fill** channel represents count per bin, resulting in a one-dimensional heatmap.
 
-:::plot
+:::plot defer
 ```js-vue
 Plot
   .rect(olympians, Plot.binX({fill: "count"}, {x: "weight"}))
@@ -118,7 +118,7 @@ Plot
 ```
 :::
 
-The bin transform also outputs **x** and **y** channels representing bin centers. These can be used to place a [dot mark](../marks/dot.md) whose size again represents the number  of athletes in each bin.
+The bin transform also outputs **x** and **y** channels representing bin centers. These can be used to place a [dot mark](../marks/dot.md) whose size again represents the number of athletes in each bin.
 
 :::plot defer
 ```js
@@ -227,11 +227,11 @@ Plot.plot({
 
 ## Bin options
 
-Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting binned data is an array of arrays where each inner array is a subset of the input data [[*d₁*, …], [*d₀*, …], …]. Each inner array is in input order. The outer array is in ascending order according to the associated dimension (*x* then *y*).
+Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting binned data is an array of arrays where each inner array is a subset of the input data [[*d₁*, *d₂*, …], [*d₀*, …], …]. Each inner array is in input order. The outer array is in ascending order according to the associated dimension (*x* then *y*).
 
-By specifying a reducer for the *data* output, as described below, you can change how the binned data is computed. The outputs may also include **filter** and **sort** options specified as reducers, and a **reverse** option to reverse the order of generated bins. By default, empty bins are omitted, and non-empty bins are generated in ascending threshold order.
+By specifying a reducer for the **data** output, as described below, you can change how the binned data is computed. The outputs may also include **filter** and **sort** options specified as reducers, and a **reverse** option to reverse the order of generated bins. By default, empty bins are omitted, and non-empty bins are generated in ascending threshold order.
 
-In addition to data, the following channels are automatically aggregated:
+In addition to data, the following channels are automatically output:
 
 * **x1** - the starting horizontal position of the bin
 * **x2** - the ending horizontal position of the bin
@@ -245,7 +245,7 @@ In addition to data, the following channels are automatically aggregated:
 
 The **x1**, **x2**, and **x** output channels are only computed by the binX and bin transform; similarly the **y1**, **y2**, and **y** output channels are only computed by the binY and bin transform. The **x** and **y** output channels are lazy: they are only computed if needed by a downstream mark or transform. Conversely, the **x1** and **x2** outputs default to undefined if **x** is explicitly defined; and the **y1** and **y2** outputs default to undefined if **y** is explicitly defined.
 
-You can declare additional channels to aggregate by specifying the channel name and desired reducer in the *outputs* object which is the first argument to the transform. For example, to use binX to generate a **y** channel of bin counts as in a frequency histogram:
+You can declare additional output channels by specifying the channel name and desired reducer in the *outputs* object which is the first argument to the transform. For example, to use binX to generate a **y** channel of bin counts as in a frequency histogram:
 
 ```js
 Plot.binX({y: "count"}, {x: "culmen_length_mm"})
@@ -281,9 +281,11 @@ The following named reducers are supported:
 In addition, a reducer may be specified as:
 
 * a function to be passed the array of values for each bin and the extent of the bin
-* an object with a *reduceIndex* method, and optionally a *scope*
+* an object with a **reduceIndex** method, and optionally a **scope**
 
-In the last case, the *reduceIndex* method is repeatedly passed three arguments: the index for each bin (an array of integers), the input channel’s array of values, and the extent of the bin (an object {x1, x2, y1, y2}); it must then return the corresponding aggregate value for the bin. If the reducer object’s *scope* is “data”, then the *reduceIndex* method is first invoked for the full data; the return value of the *reduceIndex* method is then made available as a third argument (making the extent the fourth argument). Similarly if the *scope* is “facet”, then the *reduceIndex* method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s bins. (This optional *scope* is used by the *proportion* and *proportion-facet* reducers.)
+In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each bin (an array of integers), the input channel’s array of values, and the extent of the bin (an object {x1, x2, y1, y2}); it must then return the corresponding aggregate value for the bin.
+
+If the reducer object’s **scope** is *data*, then the **reduceIndex** method is first invoked for the full data; the return value of the **reduceIndex** method is then made available as a third argument (making the extent the fourth argument). Similarly if the **scope** is *facet*, then the **reduceIndex** method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s bins. (This optional **scope** is used by the *proportion* and *proportion-facet* reducers.)
 
 Most reducers require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
 

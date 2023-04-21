@@ -24,7 +24,9 @@ Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: d3.randomNormal()})).plo
 Observable includes a variety of Plot snippets when you click **+** to add a cell, as well as convenient [sample datasets](https://observablehq.com/@observablehq/sample-datasets) to try out Plot features. Or upload a CSV or JSON file to start playing with your data. You can even use [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell), which uses Plot’s [auto mark](./marks/auto.md) under the hood, to create quick charts without writing code! You can then eject to JavaScript by clicking **+** to see the equivalent Plot code.
 
 <figure>
-  <video autoplay="" loop="" muted="" style="border: solid 1px var(--vp-c-text-3); display: inline;"><source src="https://videos.ctfassets.net/uklh5xrq1p2j/14CmTWsGQifvA5jZ8s0Usw/6efc7defa063038f8eb65bb269cb3823/Chart_Cell_Demo_Take_2_shorter.mp4" type="video/mp4"></video>
+  <video autoplay loop muted playsinline style="border: solid 1px var(--vp-c-text-3); display: inline;">
+    <source src="https://videos.ctfassets.net/uklh5xrq1p2j/14CmTWsGQifvA5jZ8s0Usw/6efc7defa063038f8eb65bb269cb3823/Chart_Cell_Demo_Take_2_shorter.mp4" type="video/mp4">
+  </video>
   <figcaption>Observable’s chart cell lets you quickly create charts and then eject to Plot code.</figcaption>
 </figure>
 
@@ -84,6 +86,13 @@ You can instead import specific symbols if you prefer:
 ```js
 import {barY, groupX} from "@observablehq/plot";
 ```
+
+Plot includes TypeScript declarations with extensive documentation. We highly recommend using an editor with enhanced code completion such as Visual Studio Code or Observable.
+
+<figure>
+  <img style="border: solid 1px var(--vp-c-text-3); display: inline;" src="./ts-property.png">
+  <figcaption>Modern editors surface documentation and type hints as you write Plot code.</figcaption>
+</figure>
 
 ## Plot in vanilla HTML
 

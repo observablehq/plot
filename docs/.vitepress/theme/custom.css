@@ -52,6 +52,7 @@
 
 .label-input > input,
 .label-input > select {
-  margin: 0 0.5em !important;
   all: revert;
+  margin: 0 0.5em !important;
+  accent-color: var(--vp-c-brand);
 }

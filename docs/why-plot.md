@@ -117,7 +117,19 @@ Plot isn’t a new language; it’s “just” vanilla JavaScript. Plot embraces
 
 ## Plot builds on D3
 
-Plot is informed by more than [ten years’ experience](https://observablehq.com/@mbostock/10-years-of-open-source-visualization) developing [D3](https://d3js.org), the web’s most popular library for data visualization.
+Plot is informed by our more than [ten years’ experience](https://observablehq.com/@mbostock/10-years-of-open-source-visualization) developing [D3](https://d3js.org), the web’s most popular library for data visualization.
+
+Plot uses D3 to implement a wide variety of features:
+
+- scales (ticks, color schemes, number formatting)
+- shapes (areas, lines, curves, symbols, stacks)
+- planar geometry (Delaunay, Voronoi, contours, density estimation)
+- spherical geometry (geographic projections)
+- data manipulation (group, rollup, bin, statistics)
+- tree diagrams
+- … and more!
+
+If you already know some D3, you’ll find many parts of Plot familiar.
 
 We’ve long said that *D3 makes things possible, not necessarily easy.* And that’s true regardless of the task at hand. D3 makes hard and amazing things *possible*, yes, but even simple things that should be easy are often not. To paraphrase Amanda Cox: “Use D3 if you think it’s perfectly normal to write a hundred lines of code for a bar chart.”
 

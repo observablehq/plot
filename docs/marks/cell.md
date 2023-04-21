@@ -73,7 +73,6 @@ The cell mark can be combined with the [group transform](../transforms/group.md)
 :::plot defer https://observablehq.com/@observablehq/plot-seattle-temperature-heatmap
 ```js
 Plot.plot({
-  height: 300,
   padding: 0,
   y: {tickFormat: Plot.formatMonth("en", "short")},
   marks: [

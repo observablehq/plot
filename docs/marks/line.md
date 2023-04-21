@@ -38,7 +38,7 @@ onMounted(() => {
 
 The **line mark** draws two-dimensional lines as in a line chart. Because the line mark interpolates between adjacent data points, typically both the *x* and *y* scales are quantitative or temporal. For example, below is a line chart of the closing price of Apple stock.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-simple-line-chart
 ```js
 Plot.line(aapl, {x: "Date", y: "Close"}).plot({y: {grid: true}})
 ```
@@ -46,7 +46,7 @@ Plot.line(aapl, {x: "Date", y: "Close"}).plot({y: {grid: true}})
 
 If the **x** and **y** options are not defined, the line mark assumes that the data is an iterable of points [[*x₁*, *y₁*], [*x₂*, *y₂*], …], allowing for [shorthand](../features/shorthand.md).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-line-chart
 ```js
 Plot.line(aapl.map((d) => [d.Date, d.Close])).plot()
 ```
@@ -58,7 +58,7 @@ This shorthand loses the automatic *x*- and *y*-axis labels, reducing legibility
 
 The [lineY constructor](#liney-data-options) provides default channel definitions of **x** = index and **y** = [identity](../features/transforms.md#identity), letting you pass an array of numbers as data. The [lineX constructor](#linex-data-options) similarly provides **x** = identity and **y** = index defaults for lines that go up↑ instead of to the right→. Below, a random walk is made using [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-liney
 ```js
 Plot.lineY(d3.cumsum({length: 600}, d3.randomNormal())).plot()
 ```
@@ -66,7 +66,7 @@ Plot.lineY(d3.cumsum({length: 600}, d3.randomNormal())).plot()
 
 As with [areas](./area.md), points in lines are connected in input order: the first point is connected to the second point, the second is connected to the third, and so on. Line data is typically in chronological order. Unsorted data may produce gibberish.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-line-sort
 ```js
 Plot.lineY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close"}).plot() // 🌶️
 ```
@@ -74,7 +74,7 @@ Plot.lineY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close"}).plot() // 🌶️
 
 If your data isn’t sorted, use the [sort transform](../transforms/sort.md).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-line-sort
 ```js
 Plot.lineY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close", sort: "Date"}).plot()
 ```
@@ -82,7 +82,7 @@ Plot.lineY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close", sort: "Date"}).plot
 
 While the *x* scale of a line chart often represents time, this is not required. For example, we can plot the elevation profile of a Tour de France stage—and imagine how tiring it must be to start a climb after riding 160km! ⛰🚴💦
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-tour-de-france-elevation-profile
 ```js
 Plot.plot({
   x: {
@@ -100,9 +100,9 @@ Plot.plot({
 ```
 :::
 
-There is also no requirement that **y** be dependent on **x**; lines can also be used in connected scatterplots to show two independent (but often correlated) variables. (See also [phase plots](https://en.wikipedia.org/wiki/Phase_portrait).) The chart below recreates Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009.
+There is no requirement that **y** be dependent on **x**; lines can be used in connected scatterplots to show two independent (but often correlated) variables. (See also [phase plots](https://en.wikipedia.org/wiki/Phase_portrait).) The chart below recreates Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-connected-scatterplot
 ```js
 Plot.plot({
   inset: 10,
@@ -119,7 +119,7 @@ Plot.plot({
 
 To draw multiple lines, use the **z** channel to group [tidy data](https://r4ds.had.co.nz/tidy-data.html) into series. For example, the chart below shows unemployment rates of various metro areas from the Bureau of Labor Statistics; the **z** value is the metro division name.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-multiple-line-chart
 ```js
 Plot.plot({
   y: {
@@ -142,7 +142,7 @@ If your data is not tidy, you can use [*array*.flatMap](https://developer.mozill
 
 If a **stroke** (or **fill**) channel is specified, the **z** option defaults to the same, automatically grouping series. For this reason, both **stroke** and **z** are typically ordinal or categorical.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-indexed-line-chart
 ```js
 Plot.plot({
   style: "overflow: visible;",
@@ -178,7 +178,7 @@ Here the [normalize transform](../transforms/normalize.md) normalizes each time 
 
 Varying-color lines are supported. If the **stroke** value varies within series, the line will be segmented by color. (The same behavior applies to other channels, such as **strokeWidth** and **title**.) Specifying the **z** channel (say to null for a single series) is recommended.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-varying-stroke-line
 ```js
 Plot.plot({
   x: {
@@ -203,7 +203,7 @@ Plot.plot({
 
 Color encodings can also be used to highlight specific series, such as here to emphasize high unemployment in Michigan.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-multiple-line-highlight
 ```js
 Plot.plot({
   y: {
@@ -232,7 +232,7 @@ When using **z**, lines are drawn in input order. The [sort transform](../transf
 
 As an alternative to **z**, you can render multiple lines using multiple marks. While more verbose, this allows you to choose different options for each line. For example, below we plot the a 14-day moving average of the daily highs and lows in temperate San Francisco using the [window transform](../transforms/window.md).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-moving-average-line
 ```js
 Plot.plot({
   y: {
@@ -250,7 +250,7 @@ Plot.plot({
 
 If some channel values are undefined (or null or NaN), gaps will appear between adjacent points. To demonstrate, below we set the **y** value to NaN for the first three months of each year.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-line-chart-with-gaps
 ```js
 Plot.plot({
   y: {
@@ -265,7 +265,7 @@ Plot.plot({
 
 Supplying undefined values is not the same as filtering the data: the latter will interpolate between the data points. Observe the conspicuous straight lines below!
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-line-chart-with-gaps
 ```js
 Plot.plot({
   y: {
@@ -281,7 +281,7 @@ Plot.plot({
 
 While uncommon, you can draw a line with ordinal position values. For example below, each line represents a U.S. state; **x** represents an (ordinal) age group while **y** represents the proportion of the state’s population in that age group. This chart emphasizes the overall age distribution of the United States, while giving a hint to variation across states.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-ordinal-line
 ```js
 Plot.plot({
   x: {
@@ -304,7 +304,7 @@ Plot.plot({
 
 With a [spherical projection](../features/projections.md), line segments become [geodesics](https://en.wikipedia.org/wiki/Great-circle_distance), taking the shortest path between two points on the sphere and wrapping around the antimeridian at 180° longitude. The line below shows Charles Darwin’s voyage on HMS _Beagle_. (Data via [Benjamin Schmidt](https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world).)
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-spherical-line
 ```js
 Plot.plot({
   projection: "equirectangular",
@@ -323,7 +323,7 @@ Disable spherical interpolation by setting the **curve** option to *linear* inst
 
 Naturally, a projected line can use varying color, too. Below, color reveals the westward direction of the Beagle’s journey around the world, starting and ending in London.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-spherical-line-with-a-varying-stroke
 ```js
 Plot.plot({
   projection: "equirectangular",
