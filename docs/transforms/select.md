@@ -36,7 +36,7 @@ Plot.plot({
 ```
 :::
 
-The select transform uses input order to determine the meaning of *first* and *last*. Since this dataset is in chronological order, the last element is the most recent.
+The select transform uses input order, not natural order by value, to determine the meaning of *first* and *last*. Since this dataset is in reverse chronological order, the first element is the most recent.
 
 Using selectMinY and selectMaxY, you can label the extreme values.
 

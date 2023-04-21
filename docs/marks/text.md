@@ -84,7 +84,7 @@ Plot.plot({
 :::
 
 :::warning CAUTION
-The select transform uses input order to determine the meaning of *first* and *last*. Since this dataset is in reverse chronological order, the first element is the most recent.
+The select transform uses input order, not natural order by value, to determine the meaning of *first* and *last*. Since this dataset is in reverse chronological order, the first element is the most recent.
 :::
 
 A text mark can also be used to visualize data directly, similar to a [dot mark](./dot.md) in a scatterplot. Below a “stem and leaf” plot of Caltrain’s Palo Alto station schedule uses [stacked](../transforms/stack.md) text. The **fill** channel provides a color encoding to distinguish trains that make every stop (<span style="border-bottom: solid currentColor 3px;">N</span>), limited trains that make fewer stops (<span style="border-bottom: solid peru 3px;">L</span>), and “baby bullet” trains that make the fewest stops (<span style="border-bottom: solid brown 3px;">B</span>).
