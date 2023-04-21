@@ -36,7 +36,7 @@ The **tree mark** produces tree diagrams using the [tree transform](../transform
 
 For example, here is a little family tree of Greek gods.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-tree-and-link
 ```js
 Plot.plot({
   axis: null,
@@ -58,7 +58,7 @@ gods = {{JSON.stringify(gods, null, 2)}}
 
 As a more complete example, here is a visualization of a software package hierarchy.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-tree-flare
 ```js
 Plot.plot({
   axis: null,
@@ -75,7 +75,7 @@ Plot.plot({
 
 The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://github.com/d3/d3-hierarchy/blob/main/README.md#tree), by default. The [cluster](#cluster-data-options) convenience method sets **treeLayout** to [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster), aligning the leaf nodes.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-cluster-flare
 ```js
 Plot.plot({
   axis: null,
@@ -105,7 +105,7 @@ function indent() {
 
 This produces an indented tree layout.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-custom-tree-layout
 ```js
 Plot.plot({
   axis: null,
