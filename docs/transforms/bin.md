@@ -66,7 +66,7 @@ Plot.plot({
 :::
 
 :::tip
-You can invoke the stack transform explicitly as `Plot.stackY(Plot.binX({y: "count"}, {x: "weight", fill: "sex"}))`, producing an identical chart.
+You can invoke the stack transform explicitly as `Plot.stackY(Plot.binX({y: "count"}, {x: "weight", fill: "sex"}))` to produce an identical chart.
 :::
 
 You can opt-out of the implicit stackY transform by having binX generate **y1** or **y2** instead of **y** (and similarly **x1** or **x2** for stackX and binY). When overlapping marks, use either opacity or blending to make the overlap visible.
