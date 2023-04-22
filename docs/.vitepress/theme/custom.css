@@ -1,4 +1,5 @@
 :root {
+  --vp-c-blue: #0092ff;
   --vp-c-brand-lighter: #d893ff;
   --vp-c-brand-light: #be7bff;
   --vp-c-brand: #a463f2;
@@ -40,7 +41,6 @@
 
 .label-input {
   font-size: smaller;
-  color: var(--vp-c-text-2);
   display: inline-flex;
   align-items: center;
   margin-right: 1em;

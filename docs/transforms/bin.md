@@ -66,18 +66,17 @@ Plot.plot({
 :::
 
 :::tip
-You can invoke the stack transform explicitly as `Plot.stackY(Plot.binX({y: "count"}, {x: "weight", fill: "sex"}))`, producing an identical chart.
+You can invoke the stack transform explicitly as `Plot.stackY(Plot.binX({y: "count"}, {x: "weight", fill: "sex"}))` to produce an identical chart.
 :::
 
 You can opt-out of the implicit stackY transform by having binX generate **y1** or **y2** instead of **y** (and similarly **x1** or **x2** for stackX and binY). When overlapping marks, use either opacity or blending to make the overlap visible.
 
 :::plot defer https://observablehq.com/@observablehq/plot-overlapping-histogram
-```js
+```js-vue
 Plot.plot({
-  style: "isolation: isolate;", // for mix-blend-mode
   y: {grid: true},
   marks: [
-    Plot.rectY(olympians, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "difference"})),
+    Plot.rectY(olympians, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "{{dark ? "screen" : "multiply"}}"})),
     Plot.ruleY([0])
   ]
 })
@@ -175,11 +174,11 @@ Plot.plot({
 The **cumulative** option produces a cumulative distribution. Below, each bin represents the number of athletes with the given weight *or less*. To have each bin represent the number of athletes with the given weight *or more*, set **cumulative** to −1.
 
 <p>
-  <div class="label-input">
+  <span class="label-input">
     Cumulative:
     <label style="margin-left: 0.5em; font-variant: tabular-nums;"><input type="radio" name="cumulative" value="-1" v-model="cumulatives" /> -1 (reverse)</label>
     <label style="margin-left: 0.5em; font-variant: tabular-nums;"><input type="radio" name="cumulative" value="+1" v-model="cumulatives" /> +1 (true)</label>
-  </div>
+  </span>
 </p>
 
 :::plot

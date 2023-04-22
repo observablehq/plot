@@ -260,7 +260,7 @@ If the default behavior isn’t what you want, use the *mark*.**facetAnchor** op
 * _left-empty_ - show on any facet with space to the left (a superset of _left_)
 * null - show on every facet
 
-The interactive chart below shows the different possibilities. Note that we place the facet *fx*-axis (in <span style="border-bottom: solid 2px var(--vp-c-green);">green</span>) opposite the *x*-axis (in <span style="border-bottom: solid 2px var(--vp-c-red);">red</span>).
+The interactive chart below shows the different possibilities. Note that we place the facet *fx*-axis (in <span style="border-bottom: solid 2px var(--vp-c-blue);">blue</span>) opposite the *x*-axis (in <span style="border-bottom: solid 2px var(--vp-c-red);">red</span>).
 
 <p>
   <label class="label-input">
@@ -292,7 +292,7 @@ Plot.plot({
     Plot.frame(),
     Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fx: "sex", fy: "species"}),
     Plot.axisX({color: "red", anchor, facetAnchor: facetAnchor === "auto" ? undefined : facetAnchor}),
-    Plot.axisFx({color: "green", anchor: anchor === "top" ? "bottom" : "top"}) // place fx axis opposite x
+    Plot.axisFx({color: "blue", anchor: anchor === "top" ? "bottom" : "top"}) // place fx axis opposite x
   ]
 })
 ```

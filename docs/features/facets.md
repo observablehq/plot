@@ -37,17 +37,15 @@ Plot.plot({
   x: {nice: true},
   y: {inset: 5},
   color: {type: "categorical"},
-  facet: {data: barley, y: "site", marginRight: 90},
+  facet: {marginRight: 90},
   marks: [
     Plot.frame(),
     Plot.dot(barley, {
       x: "yield",
       y: "variety",
+      fy: "site",
       stroke: "year",
-      sort: {
-        y: {value: "x", reduce: "median", reverse: true},
-        fy: {value: "x", reduce: "median", reverse: true}
-      }
+      sort: {y: "x", fy: "x", reduce: "median", reverse: true}
     })
   ]
 })

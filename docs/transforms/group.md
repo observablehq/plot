@@ -129,15 +129,14 @@ You can invoke the stack transform explicitly as `Plot.stackY(Plot.groupX({y: "c
 You can opt-out of the implicit stackY transform by having groupX generate **y1** or **y2** instead of **y** (and similarly **x1** or **x2** for stackX and groupY). When overlapping marks, use either opacity or blending to make the overlap visible.
 
 :::plot defer
-```js
+```js-vue
 Plot.plot({
-  style: "isolation: isolate;", // for mix-blend-mode
   marginBottom: 100,
   x: {label: null, tickRotate: 90},
   y: {grid: true},
   color: {legend: true},
   marks: [
-    Plot.barY(olympians, Plot.groupX({y2: "count"}, {x: "sport", fill: "sex", mixBlendMode: "difference"})),
+    Plot.barY(olympians, Plot.groupX({y2: "count"}, {x: "sport", fill: "sex", mixBlendMode: "{{dark ? "screen" : "multiply"}}"})),
     Plot.ruleY([0])
   ]
 })
@@ -326,7 +325,7 @@ Plot.plot({
 :::
 
 :::info
-Although barX applies an implicit stackX transform, [textX](./text.md) does not; this example uses an explicit stackX transform in both cases for clarity, and to pass the additional **order** and **reverse** options to place the largest sport on the left. The [filter transform](./filter.md) is applied after the stack transform to hide the labels on the smallest sports where the bars are too thin.
+Although barX applies an implicit stackX transform, [textX](../marks/text.md) does not; this example uses an explicit stackX transform in both cases for clarity, and to pass the additional **order** and **reverse** options to place the largest sport on the left. The [filter transform](./filter.md) is applied after the stack transform to hide the labels on the smallest sports where the bars are too thin.
 :::
 
 ## Group options
