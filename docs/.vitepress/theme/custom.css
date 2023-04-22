@@ -57,3 +57,7 @@
   margin: 0 0.5em !important;
   accent-color: var(--vp-c-brand);
 }
+
+.vp-doc td {
+  white-space: nowrap;
+}
