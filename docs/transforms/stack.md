@@ -192,7 +192,7 @@ Plot.plot({
 :::
 
 :::warning CAUTION
-The **reverse** option is also used by the [sort transform](./sort.md). To disambiguate, pass the *stack* options separating using the two-argument form of the stack transform.
+The **reverse** option is also used by the [sort transform](./sort.md). To disambiguate, pass the *stack* options separately using the two-argument form of the stack transform.
 :::
 
 The *value* **order** is worth special mention: it sorts each stack by value independently such that the order of layers can change, emphasizing the changing ranks of layers. This is sometimes called a “ribbon” chart. (In fact, the default null **order** supports changing order of layers, too! But most often data comes already sorted by series.)

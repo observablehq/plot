@@ -51,12 +51,12 @@ export default defineConfig({
         text: "Features",
         collapsed: false,
         items: [
+          {text: "Plots", link: "/features/plots"},
           {text: "Marks", link: "/features/marks"},
           {text: "Scales", link: "/features/scales"},
           {text: "Projections", link: "/features/projections"},
           {text: "Transforms", link: "/features/transforms"},
           {text: "Facets", link: "/features/facets"},
-          {text: "Plots", link: "/features/plots"},
           {text: "Legends", link: "/features/legends"},
           {text: "Curves", link: "/features/curves"},
           {text: "Formats", link: "/features/formats"},
