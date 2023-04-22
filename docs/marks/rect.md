@@ -4,7 +4,9 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import {computed, shallowRef, onMounted} from "vue";
+import {useDark} from "../components/useDark.js";
 
+const dark = useDark();
 const diamonds = shallowRef([]);
 const seattle = shallowRef([]);
 const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
@@ -90,13 +92,12 @@ Plot.plot({
 For overlapping rects, you can opt-out of the implicit stack transform by specifying either **x1** or **x2** for rectX, and likewise either **y1** or **y2** for rectY.
 
 :::plot defer
-```js
+```js-vue
 Plot.plot({
   round: true,
   color: {legend: true},
-  style: "isolation: isolate;", // for mix-blend-mode
   marks: [
-    Plot.rectY(olympians, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "difference"})),
+    Plot.rectY(olympians, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "{{dark ? "screen" : "multiply"}}"})),
     Plot.ruleY([0])
   ]
 })
