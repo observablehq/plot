@@ -38,7 +38,7 @@ Plot.plot({
 ```
 :::
 
-The binX transform takes **x** as input and outputs **x1** and **x2** representing the extent of each bin in *x*. The *outputs* argument (here `{y: "count"}`) declares additional output channels (**y**) and the associated reducer (*count*). Hence the height of each rect above represents the number of athletes in the corresponding bin, *i.e.*, the number of atheletes with a similar weight.
+The binX transform takes **x** as input and outputs **x1** and **x2** representing the extent of each bin in *x*. The *outputs* argument (here `{y: "count"}`) declares additional output channels (**y**) and the associated reducer (*count*). Hence the height of each rect above represents the number of athletes in the corresponding bin, *i.e.*, the number of athletes with a similar weight.
 
 While the binX transform is often used to generate **y**, it can output any channel. Below, the **fill** channel represents count per bin, resulting in a one-dimensional heatmap.
 

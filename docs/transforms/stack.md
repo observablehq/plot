@@ -295,7 +295,7 @@ Plot.plot({
 The stackY2 transform places each dot at the upper bound of the associated stacked interval, rather than the middle of the interval as when using stackY. Hence, the first male dot is placed at *y* = 1, and the first female dot is placed at *y* = -1.
 :::
 
-When visualizing [Likert scale](https://en.wikipedia.org/wiki/Likert_scale) survey results we may wish to place <span :style="{borderWidth: 2, borderBottomStyle: 'solid', borderImage: `linear-gradient(to right, ${d3.schemeRdBu[5][0]}, ${d3.schemeRdBu[5][1]}) 2`}">negative</span> (disagreeing) responses on the left and <span :style="{borderWidth: 2, borderBottomStyle: 'solid', borderImage: `linear-gradient(to right, ${d3.schemeRdBu[5][3]}, ${d3.schemeRdBu[5][4]}) 2`}">positive</span> (agreeing) responses on the right, leaving <span :style="{borderBottom: `solid 2px ${d3.schemeRdBu[5][2]}`}">neutral</span> responses in the middle. This is acheived below using a custom **offset** function.
+When visualizing [Likert scale](https://en.wikipedia.org/wiki/Likert_scale) survey results we may wish to place <span :style="{borderWidth: 2, borderBottomStyle: 'solid', borderImage: `linear-gradient(to right, ${d3.schemeRdBu[5][0]}, ${d3.schemeRdBu[5][1]}) 2`}">negative</span> (disagreeing) responses on the left and <span :style="{borderWidth: 2, borderBottomStyle: 'solid', borderImage: `linear-gradient(to right, ${d3.schemeRdBu[5][3]}, ${d3.schemeRdBu[5][4]}) 2`}">positive</span> (agreeing) responses on the right, leaving <span :style="{borderBottom: `solid 2px ${d3.schemeRdBu[5][2]}`}">neutral</span> responses in the middle. This is achieved below using a custom **offset** function.
 
 :::plot defer
 ```js

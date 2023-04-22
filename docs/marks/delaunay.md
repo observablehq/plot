@@ -104,7 +104,7 @@ Plot.plot({
 Plot.delaunayLink(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
 ```
 
-Draws links for each edge of the Delaunay triangulation of the points given by the **x** and **y** channels. Supports the same options as the [link mark](#link), except that **x1**, **y1**, **x2**, and **y2** are derived automatically from **x** and **y**. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the link inherits the corresponding channel value from one of its two endpoints arbitrarily.
+Draws links for each edge of the Delaunay triangulation of the points given by the **x** and **y** channels. Supports the same options as the [link mark](./link.md), except that **x1**, **y1**, **x2**, and **y2** are derived automatically from **x** and **y**. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the link inherits the corresponding channel value from one of its two endpoints arbitrarily.
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate Delaunay triangulations are constructed for each group.
 
@@ -134,9 +134,9 @@ If a **z** channel is specified, the input points are grouped by *z*, and separa
 Plot.voronoi(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
 ```
 
-Draws polygons for each cell of the Voronoi tesselation of the points given by the **x** and **y** channels.
+Draws polygons for each cell of the Voronoi tessellation of the points given by the **x** and **y** channels.
 
-If a **z** channel is specified, the input points are grouped by *z*, and separate Voronoi tesselations are constructed for each group.
+If a **z** channel is specified, the input points are grouped by *z*, and separate Voronoi tessellations are constructed for each group.
 
 ## voronoiMesh(*data*, *options*)
 
@@ -144,6 +144,6 @@ If a **z** channel is specified, the input points are grouped by *z*, and separa
 Plot.voronoiMesh(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
 ```
 
-Draws a mesh for the cell boundaries of the Voronoi tesselation of the points given by the **x** and **y** channels. The **stroke** option defaults to _currentColor_, and the **strokeOpacity** defaults to 0.2. The **fill** option is not supported. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the mesh inherits the corresponding channel value from one of its constituent points arbitrarily.
+Draws a mesh for the cell boundaries of the Voronoi tessellation of the points given by the **x** and **y** channels. The **stroke** option defaults to _currentColor_, and the **strokeOpacity** defaults to 0.2. The **fill** option is not supported. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the mesh inherits the corresponding channel value from one of its constituent points arbitrarily.
 
-If a **z** channel is specified, the input points are grouped by *z*, and separate Voronoi tesselations are constructed for each group.
+If a **z** channel is specified, the input points are grouped by *z*, and separate Voronoi tessellations are constructed for each group.

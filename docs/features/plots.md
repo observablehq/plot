@@ -80,15 +80,15 @@ Plot.plot({
 ```
 :::
 
-A plot can have multiple marks, and each mark has its own data. For exampe, say we had a similar table `goog` representing the daily price of Google stock for the same period. Below, the <span style="border-bottom: solid 2px var(--vp-c-blue);">blue</span> line represents Apple stock, while the <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> line represents Google stock.
+A plot can have multiple marks, and each mark has its own data. For example, say we had a similar table `goog` representing the daily price of Google stock for the same period. Below, the <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> line represents Google stock, while the <span style="border-bottom: solid 2px var(--vp-c-blue);">blue</span> line represents Apple stock.
 
 :::plot defer
 ```js
 Plot.plot({
   marks: [
     Plot.ruleY([0]),
-    Plot.lineY(aapl, {x: "Date", y: "Close", stroke: "blue"}),
-    Plot.lineY(goog, {x: "Date", y: "Close", stroke: "red"})
+    Plot.lineY(goog, {x: "Date", y: "Close", stroke: "red"}),
+    Plot.lineY(aapl, {x: "Date", y: "Close", stroke: "blue"})
   ]
 })
 ```

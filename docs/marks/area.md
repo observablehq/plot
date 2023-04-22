@@ -78,7 +78,7 @@ Plot.plot({
 :::
 
 :::tip
-Since **y1** and **y2** refer to different fields here, a *y*-scale label is specified to improve readability. Also, the band above is spikey; you can smooth it by applying a [window transform](../transforms/window.md).
+Since **y1** and **y2** refer to different fields here, a *y*-scale label is specified to improve readability. Also, the band above is spiky; you can smooth it by applying a [window transform](../transforms/window.md).
 :::
 
 While charts typically put *y* = 0 on the bottom edge, such that the area grows up↑, this is not required; reversing the *y* scale will produce a “hanging” area that grows down↓.

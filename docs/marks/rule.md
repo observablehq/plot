@@ -74,7 +74,7 @@ Plot.plot({
 Reducing opacity allows better perception of density when rules overlap.
 :::
 
-Rules can also serve as an alternative to an [area mark](./area.md) as in a band chart, provided the data is sufficiently dense: you can limit the extent of a rule along the secondary dimension (**y1** and **y2** channels for ruleX, and **x1** and **x2** channels for ruleY) rather than having it span the frame. And rules support a **stroke** color encoding. The rules below plot the daily minimum and maximimum temperature for Seattle.
+Rules can also serve as an alternative to an [area mark](./area.md) as in a band chart, provided the data is sufficiently dense: you can limit the extent of a rule along the secondary dimension (**y1** and **y2** channels for ruleX, and **x1** and **x2** channels for ruleY) rather than having it span the frame. And rules support a **stroke** color encoding. The rules below plot the daily minimum and maximum temperature for Seattle.
 
 :::plot defer
 ```js

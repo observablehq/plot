@@ -102,7 +102,7 @@ function bollinger(N, K) {
 }
 ```
 
-The `bollinger` map method above is implemented atop the [window transform](./window.md), computing the mean of values within the rolling window, and then offseting the mean by a multiple of the rolling deviation.
+The `bollinger` map method above is implemented atop the [window transform](./window.md), computing the mean of values within the rolling window, and then offsetting the mean by a multiple of the rolling deviation.
 
 The map transform is akin to running [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the input channel’s values with the given map method. However, the map transform is series-aware: the data are first grouped into series using the **z**, **fill**, or **stroke** channel in the same fashion as the [area](../marks/area.md) and [line](../marks/line.md) marks so that series are processed independently.
 
