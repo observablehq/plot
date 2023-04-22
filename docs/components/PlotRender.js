@@ -108,8 +108,10 @@ export default {
   render() {
     const {method} = this;
     const options = {
-      marks: this.mark == null ? [] : [this.mark],
-      width: 688, // better default for VitePress
+      ...(method === "plot" && {
+        marks: this.mark == null ? [] : [this.mark],
+        width: 688 // better default for VitePress
+      }),
       ...this.options,
       className: "plot"
     };
