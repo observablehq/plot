@@ -24,7 +24,7 @@ The rule mark is one of two marks in Plot for drawing horizontal or vertical lin
 
 The **rule mark** comes in two orientations: [ruleY](#ruley-data-options) draws a horizontal↔︎ line with a given *y* value, while [ruleX](#rulex-data-options) draws a vertical↕︎ line with a given *x* value. Rules are often used as annotations, say to mark the *y* = 0 baseline (in red below for emphasis) in a line chart.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-rule-zero
 ```js
 Plot.plot({
   y: {
@@ -40,7 +40,7 @@ Plot.plot({
 
 As annotations, rules often have a hard-coded array of literal values as data. This [shorthand](../features/shorthand.md) utilizes the default [identity](../features/transforms.md#identity) definition of the rule’s position (**y** for ruleY and **x** for ruleX).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-rule-one
 ```js
 Plot.plot({
   y: {
@@ -59,7 +59,7 @@ Plot.plot({
 
 Yet rules can also be used to visualize data. Below, a random normal distribution is plotted with rules, looking a bit like the [emission spectrum of Hydrogen](https://en.wikipedia.org/wiki/Hydrogen_spectral_series).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-rule-random
 ```js
 Plot.plot({
   x: {domain: [-4, 4]},
@@ -83,7 +83,7 @@ Plot.plot({
   color: {scheme: "BuRd"},
   marks: [
     Plot.ruleY([0]),
-    Plot.ruleX(seattle, {x: "date", y1: "temp_min", y2: "temp_max", stroke: "temp_max"})
+    Plot.ruleX(seattle, {x: "date", y1: "temp_min", y2: "temp_max", stroke: "temp_min"})
   ]
 })
 ```
@@ -91,7 +91,7 @@ Plot.plot({
 
 In the dense [candlestick chart](https://observablehq.com/@observablehq/observable-plot-candlestick) below, three rules are drawn for each trading day: a gray rule spans the chart, showing gaps for weekends and holidays; a black rule spans the day’s low and high; and a green or red rule spans the day’s open and close.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-candlestick-chart
 ```js
 Plot.plot({
   inset: 6,
@@ -108,7 +108,7 @@ Plot.plot({
 
 Rules can be used to connect graphical elements, such as in the [dot plot](./dot.md) below showing the decline of *The Simpsons*. The rules indicate the extent (minimum and maximum) for each season, computed via the [group transform](../transforms/group.md), while a red line shows the median rating trend.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-simpsons-decline
 ```js
 Plot.plot({
   marks: [
@@ -122,7 +122,7 @@ Plot.plot({
 
 Rules can also be a stylistic choice, as in the lollipop 🍭 chart below, serving the role of a skinny [bar](./bar.md) topped with a [dot](./dot.md).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-lollipop
 ```js
 Plot.plot({
   x: {label: null, tickPadding: 6, tickSize: 0},

@@ -19,7 +19,7 @@ onMounted(() => {
 
 The **text mark** draws text at the given position in **x** and **y**. It is often used to label other marks, such as to show the value of a [bar](./bar.md). When space is available, direct labeling can allow faster and more accurate reading of values than an axis alone (or a tooltip).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-labeled-bars
 ```js
 Plot.plot({
   label: null,
@@ -43,7 +43,7 @@ For formatting numbers and dates, consider [*number*.toLocaleString](https://obs
 
 If there are too many data points, labels may overlap, making them hard to read. Use the [filter transform](../transforms/filter.md) to choose which points to label. In the connected scatterplot below, recreating Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009, every fifth year is labeled.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-connected-scatterplot
 ```js
 Plot.plot({
   inset: 10,
@@ -64,7 +64,7 @@ If you’d like automatic labeling, please upvote [#27](https://github.com/obser
 
 For line charts with multiple series, you may wish to label only the start or end of each series; this can be done using the [select transform](../transforms/select.md), as shown in the chart below comparing the number of daily travelers at airports in the U.S. between 2019 and 2020. The impact of the COVID-19 pandemic is dramatic.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-labeled-line-chart
 ```js
 Plot.plot({
   y: {
@@ -89,7 +89,7 @@ The select transform uses input order, not natural order by value, to determine 
 
 A text mark can also be used to visualize data directly, similar to a [dot mark](./dot.md) in a scatterplot. Below a “stem and leaf” plot of Caltrain’s Palo Alto station schedule uses [stacked](../transforms/stack.md) text. The **fill** channel provides a color encoding to distinguish trains that make every stop (<span style="border-bottom: solid currentColor 3px;">N</span>), limited trains that make fewer stops (<span style="border-bottom: solid peru 3px;">L</span>), and “baby bullet” trains that make the fewest stops (<span style="border-bottom: solid brown 3px;">B</span>).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-caltrain-schedule
 ```js
 Plot.plot({
   width: 240,
@@ -114,7 +114,7 @@ Since the **textAnchor** option is a constant rather than a channel, separate te
 
 The **x** and **y** channels are optional; a one-dimensional text mark can be produced by specifying only one position dimension. If both **x** and **y** are not defined, the text mark assumes that the data is an iterable of points [[*x₁*, *y₁*], [*x₂*, *y₂*], …], allowing for [shorthand](../features/shorthand.md). Furthermore, the default **text** channel is the associated datum’s index. (This is rarely what you want, but at least it gets something on the screen.)
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-text-spiral
 ```js
 Plot.plot({
   aspectRatio: 1,
@@ -132,7 +132,7 @@ Plot.plot({
 
 The text mark will generate multiple lines if the **text** contains newline characters (`\n`). This may be useful for longer annotations.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-this-is-just-to-say
 ```js
 Plot.plot({
   height: 200,
@@ -160,9 +160,9 @@ and so cold`], {frameAnchor: "middle"})
 ```
 :::
 
-Alternatively, the **lineWidth** option enables automatic line wrapping. This option must be specified as a number in [ems](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units). When a word contains a [soft-hyphen](https://en.wikipedia.org/wiki/Soft_hyphen) (`\xad`), it may be replaced by a hyphen when wrapping. The **textOverflow** option can also be used to truncate lines that exceed the specified line width.
+Alternatively, the **lineWidth** option enables automatic line wrapping. This option must be specified as a number in [ems](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units). When a word contains a [soft-hyphen](https://en.wikipedia.org/wiki/Soft_hyphen) (`\xad`), it may be replaced by a hyphen when wrapping. The **textOverflow** option can also be used to truncate lines that exceed the specified line width, like in the incipit of Herman Melville’s *Moby-Dick* (1851).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-moby-dick
 ```js
 Plot.plot({
   height: 320,

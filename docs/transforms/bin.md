@@ -26,7 +26,7 @@ The **bin transform** groups quantitative or temporal data—continuous measurem
 
 For example, here is a histogram showing the distribution of weights of Olympic athletes.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-a-simple-histogram
 ```js
 Plot.plot({
   y: {grid: true},
@@ -42,7 +42,7 @@ The binX transform takes **x** as input and outputs **x1** and **x2** representi
 
 While the binX transform is often used to generate **y**, it can output any channel. Below, the **fill** channel represents count per bin, resulting in a one-dimensional heatmap.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-colored-bins
 ```js-vue
 Plot
   .rect(olympians, Plot.binX({fill: "count"}, {x: "weight"}))
@@ -52,7 +52,7 @@ Plot
 
 You can partition bins using **z**. If **z** is undefined, it defaults to **fill** or **stroke**, if any. In conjunction with the rectY mark’s implicit [stackY transform](./stack.md), this will produce a stacked histogram.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-vertical-histogram
 ```js
 Plot.plot({
   y: {grid: true},
@@ -71,7 +71,7 @@ You can invoke the stack transform explicitly as `Plot.stackY(Plot.binX({y: "cou
 
 You can opt-out of the implicit stackY transform by having binX generate **y1** or **y2** instead of **y** (and similarly **x1** or **x2** for stackX and binY). When overlapping marks, use either opacity or blending to make the overlap visible.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-overlapping-histogram
 ```js-vue
 Plot.plot({
   y: {grid: true},
@@ -95,7 +95,7 @@ The bin transform comes in three orientations:
 
 As you might guess, the binY transform with the rectX mark produces a histogram with horizontal→ rects.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-horizontal-histogram
 ```js
 Plot.plot({
   x: {grid: true},
@@ -109,7 +109,7 @@ Plot.plot({
 
 You can produce a two-dimensional heatmap with bin transform and a rect mark by generating a **fill** output channel. Below, color encodes the number of athletes in each bin (of similar height and weight).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-olympians-heatmap
 ```js-vue
 Plot
   .rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
@@ -119,7 +119,7 @@ Plot
 
 The bin transform also outputs **x** and **y** channels representing bin centers. These can be used to place a [dot mark](../marks/dot.md) whose size again represents the number of athletes in each bin.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-dot-heatmap
 ```js
 Plot.plot({
   r: {range: [0, 6]}, // generate slightly smaller dots
@@ -132,7 +132,7 @@ Plot.plot({
 
 We can add the **stroke** channel to show overlapping distributions by sex.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dot-heatmap
 ```js
 Plot.plot({
   r: {range: [0, 6]},
@@ -145,7 +145,7 @@ Plot.plot({
 
 Similarly the binX and binY transforms generate respective **x** and **y** channels for one-dimensional binning.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dot-bins
 ```js
 Plot.plot({
   r: {range: [0, 14]},
@@ -158,7 +158,7 @@ Plot.plot({
 
 In addition to rect and dot, you can even use continuous marks such as [area](../marks/area.md) and [line](../marks/line.md). In this case you should set the bin transform’s **filter** option to null so that empty bins are included in the output; otherwise, the area or line would mislead by interpolating over missing bins.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-density-estimation
 ```js
 Plot.plot({
   y: {grid: true},

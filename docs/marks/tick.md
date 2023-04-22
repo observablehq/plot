@@ -27,7 +27,7 @@ The **tick mark** comes in two orientations: [tickY](#ticky-data-options) draws 
 
 Ticks are often used to show one-dimensional distributions, as in the “barcode” plot below showing the proportion of the population in each age bracket across U.S. states.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-barcode
 ```js
 Plot.plot({
   x: {
@@ -51,7 +51,7 @@ Plot.plot({
 
 Both ticks and [bars](./bar.md) have an ordinal secondary position dimension; a tick is therefore convenient for stroking the upper bound of a bar for emphasis, as in the bar chart below. A separate [rule](./rule.md) is also used to denote *y* = 0.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-bar-and-tick
 ```js
 Plot.plot({
   x: {label: null},
@@ -67,7 +67,7 @@ Plot.plot({
 
 When there is no secondary position dimension, a tick behaves identically to a [rule](./rule.md). While a one-dimensional rule and tick are equivalent, a one-dimensional rule is generally preferred, if only because the name “rule” is more descriptive. But as an example below, a random normal distribution is plotted below with ticks.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-random-ticks
 ```js
 Plot.plot({
   x: {domain: [-4, 4]},

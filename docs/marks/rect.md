@@ -34,7 +34,7 @@ The rect mark is one of several marks in Plot for drawing rectangles; it should 
 
 The **rect mark** draws axis-aligned rectangles defined by **x1**, **y1**, **x2**, and **y2**. For example, here we display geographic bounding boxes of U.S. counties represented as [*x1*, *y1*, *x2*, *y2*] tuples, where *x1* & *x2* are degrees longitude and *y1* & *y2* are degrees latitude.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-county-boxes
 ```js
 Plot.plot({
   projection: "albers-usa",
@@ -53,7 +53,7 @@ Plot.plot({
 
 More commonly, the rect mark is used to produce histograms or heatmaps of quantitative data. For example, given some binned observations computed by [d3.bin](https://github.com/d3/d3-array/blob/main/README.md#bins), we can produce a basic histogram with [rectY](#recty-data-options) as follows:
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-rects-and-bins
 ```js
 Plot.rectY(bins, {x1: "x0", x2: "x1", y: "length"}).plot({round: true})
 ```
@@ -69,7 +69,7 @@ d3.bin uses *x0* and *x1* to represent the lower and upper bound of each bin, wh
 
 Most often, the rect mark is paired with the [bin transform](../transforms/bin.md) to bin quantitative values as part of the plot itself. As an added bonus, this sets default [inset options](../features/marks.md#mark-options) for a 1px gap separating adjacent rects, improving readability.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-rects-and-bins
 ```js
 Plot.rectY(d3.range(1000).map(d3.randomNormal()), Plot.binX()).plot()
 ```
@@ -77,7 +77,7 @@ Plot.rectY(d3.range(1000).map(d3.randomNormal()), Plot.binX()).plot()
 
 Like the [bar mark](./bar.md), the rect mark has two convenience constructors for common orientations: [rectX](#rectx-data-options) is for horizontal→ rects and applies an implicit [stackX transform](../transforms/stack.md#stackx-stack-options), while [rectY](#recty-data-options) is for vertical↑ rects and applies an implicit [stackY transform](../transforms/stack.md#stacky-stack-options).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-vertical-histogram
 ```js
 Plot.plot({
   color: {legend: true},
@@ -91,7 +91,7 @@ Plot.plot({
 
 For overlapping rects, you can opt-out of the implicit stack transform by specifying either **x1** or **x2** for rectX, and likewise either **y1** or **y2** for rectY.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-overlapping-histogram
 ```js-vue
 Plot.plot({
   round: true,
@@ -110,7 +110,7 @@ While the **mixBlendMode** option is useful for mitigating occlusion, it can be 
 
 The rect mark and bin transform naturally support [faceting](../features/facets.md), too.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-overlapping-histogram
 ```js
 Plot.plot({
   marks: [
@@ -123,7 +123,7 @@ Plot.plot({
 
 The [rect constructor](#rect-data-options), again with the [bin transform](../transforms/bin.md), can produce two-dimensional histograms (heatmaps) where density is represented by the **fill** color encoding.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-continuous-dimensions-heatmap
 ```js
 Plot.plot({
   height: 640,
@@ -145,7 +145,7 @@ A similar plot can be made with the [dot mark](./dot.md), if you’d prefer a si
 
 Below we recreate an uncommon [chart by Max Roser](https://ourworldindata.org/poverty-minimum-growth-needed) that visualizes global poverty. Each rect represents a country: *x* encodes the country’s population, while *y* encodes the proportion of that population living in poverty; hence area represents the number of people living in poverty. Rects are [stacked](../transforms/stack.md) along *x* in order of descending *y*.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-cumulative-distribution-of-income
 ```js
 Plot.plot({
   x: {label: "Population (millions) →"},
@@ -169,7 +169,7 @@ Plot.plot({
 
 The [interval transform](../transforms/interval.md) may be used to convert a single value in **x** or **y** (or both) into an extent. For example, the chart below shows the observed daily maximum temperature in Seattle for the year 2015. The day-in-month and month-in-year numbers are expanded to unit intervals by setting the **interval** option to 1.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-seattle-heatmap-quantitative
 ```js
 Plot.plot({
   aspectRatio: 1,

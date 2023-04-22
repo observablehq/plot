@@ -31,7 +31,7 @@ onMounted(() => {
 
 The **vector mark** draws little arrows, typically positioned in **x** and **y** quantitative dimensions, with an optional magnitude (**length**) and direction (**rotate**), as in a vector field. For example, the chart below, based on a [LitVis example](https://github.com/gicentre/litvis/blob/main/examples/windVectors.md), shows wind speed and direction for a section of western Europe.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-wind-map
 ```js
 Plot.plot({
   inset: 10,
@@ -60,7 +60,7 @@ Regarding this data, [Remote Sensing Systems](https://www.remss.com/measurements
 
 The **shape** option controls the vector’s appearance, while the **anchor** option positions the vector relative to its anchor point specified in **x** and **y**. The [spike constructor](#spike-data-options) sets the **shape** to *spike* and the **anchor** to *start*. For example, this can be used to produce a [spike map](https://observablehq.com/@observablehq/plot-spike) of U.S. county population.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-spike-map-example
 ```js
 Plot.plot({
   width: 688,
@@ -77,7 +77,7 @@ Plot.plot({
 
 Lastly, here is an example showing a Perlin noise field, just because it’s pretty:
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-perlin-noise
 ```js
 Plot.plot({
   inset: 6,
