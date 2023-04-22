@@ -1,8 +1,9 @@
 :root {
   --vp-c-blue: #0092ff;
+  --vp-c-purple: #a463f2;
   --vp-c-brand-lighter: #d893ff;
   --vp-c-brand-light: #be7bff;
-  --vp-c-brand: #a463f2;
+  --vp-c-brand: var(--vp-c-purple);
   --vp-c-brand-dark: #8a4cd8;
   --vp-c-brand-darker: #7135be;
   --vp-font-family-base: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;

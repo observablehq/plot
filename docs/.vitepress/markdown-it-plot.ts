@@ -16,6 +16,7 @@ export default function plot(md) {
         content = content.replace(/"red"/g, '"var(--vp-c-red)"');
         content = content.replace(/"green"/g, '"var(--vp-c-green)"');
         content = content.replace(/"blue"/g, '"var(--vp-c-blue)"');
+        content = content.replace(/"purple"/g, '"var(--vp-c-purple)"');
         const suffix = `\n${directives.includes("hidden") ? `<div style="display: none;">\n` : ""}`;
         if (/^Plot\.plot\(/.test(content)) {
           const options = content.slice(9);

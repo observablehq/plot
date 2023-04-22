@@ -120,7 +120,7 @@ Plot.plot({
   inset: 10,
   grid: true,
   style: {
-    padding: 10,
+    padding: "10px",
     color: "black",
     background: `url(https://images.unsplash.com/photo-1561990170-6d82faed96e7?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=noaa-GnP7PjxGeHs-unsplash.jpg&w=1376)`,
     backgroundSize: "cover"

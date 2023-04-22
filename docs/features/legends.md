@@ -63,25 +63,6 @@ If the **legend** scale option is true, the default legend will be produced for 
 
 <!-- TODO Describe the color and opacity options, and demo the symbol legend with a redundant color encoding. -->
 
-## *plot*.legend(*scaleName*, *options*)
-
-Given an existing *plot* returned by [Plot.plot](./plots.md), returns a detached legend for the *plot*’s scale with the given *scaleName*. The *scaleName* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. For example:
-
-```js
-myplot = Plot.plot(…)
-```
-```js
-mylegend = myplot.legend("color")
-```
-
-Or, with additional *options*:
-
-```js
-mylegend = myplot.legend("color", {width: 320})
-```
-
-If there is no scale with the given *scaleName* on the given *plot*, then *plot*.legend will return undefined.
-
 Categorical and ordinal color legends are rendered as swatches, unless the **legend** option is set to *ramp*. The swatches can be configured with the following options:
 
 * **tickFormat** - a format function for the labels
