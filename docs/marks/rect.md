@@ -124,12 +124,12 @@ Plot.plot({
 The [rect constructor](#rect-data-options), again with the [bin transform](../transforms/bin.md), can produce two-dimensional histograms (heatmaps) where density is represented by the **fill** color encoding.
 
 :::plot defer https://observablehq.com/@observablehq/plot-continuous-dimensions-heatmap
-```js
+```js-vue
 Plot.plot({
   height: 640,
   marginLeft: 60,
   color: {
-    scheme: "BuPu",
+    scheme: "{{dark ? "turbo" : "YlGnBu"}}",
     type: "symlog"
   },
   marks: [

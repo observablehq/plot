@@ -62,6 +62,7 @@ Since the box mark uses the [group transform](../transforms/group.md), the secon
 :::plot defer https://observablehq.com/@observablehq/plot-binned-box-plot
 ```js
 Plot.plot({
+  marginLeft: 60,
   y: {
     grid: true,
     label: "↑ Price"

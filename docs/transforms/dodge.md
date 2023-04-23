@@ -4,6 +4,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {ref, shallowRef, onMounted} from "vue";
 import cars from "../data/cars.ts";
+import penguins from "../data/penguins.ts";
 
 const anchor = ref("middle");
 const r = ref(3);
@@ -47,6 +48,20 @@ Plot.plot({
 ```
 :::
 
+The dodge transform works with Plot’s [faceting system](../features/facets.md), allowing independent beeswarm plots on discrete partitions of the data. Below, penguins are grouped by species and colored by sex, while vertical↕︎ position (**y**) encodes body mass.
+
+:::plot defer
+```js
+Plot.plot({
+  y: {grid: true},
+  color: {legend: true},
+  marks: [
+    Plot.dot(penguins, Plot.dodgeX("middle", {fx: "species", y: "body_mass_g", fill: "sex"}))
+  ]
+})
+```
+:::
+
 Beeswarm plots avoid the occlusion problem of dense scatterplots and barcode plots.
 
 :::plot
@@ -79,7 +94,7 @@ The **anchor** option specifies the layout baseline: the optimal output position
 Plot.plot({
   height: 180,
   marks: [
-    Plot.dot(cars, Plot.dodgeY({x: "weight (lb)", fill: "currentColor", anchor}))
+    Plot.dot(cars, Plot.dodgeY(anchor, {x: "weight (lb)", fill: "currentColor"}))
   ]
 })
 ```
