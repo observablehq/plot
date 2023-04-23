@@ -275,12 +275,19 @@ export function mid(x1, x2) {
 export function maybeInterval(interval, type) {
   if (interval == null) return;
   if (typeof interval === "number") {
-    const n = interval;
-    return {
-      floor: (d) => n * Math.floor(d / n),
-      offset: (d) => d + n, // note: no optional step for simplicity
-      range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => n * x)
-    };
+    if (0 < interval && interval < 1 && Number.isInteger(1 / interval)) interval = -1 / interval;
+    const n = Math.abs(interval);
+    return interval < 0
+      ? {
+          floor: (d) => Math.floor(d * n) / n,
+          offset: (d) => (d * n + 1) / n, // note: no optional step for simplicity
+          range: (lo, hi) => rangei(Math.ceil(lo * n), hi * n).map((x) => x / n)
+        }
+      : {
+          floor: (d) => Math.floor(d / n) * n,
+          offset: (d) => d + n, // note: no optional step for simplicity
+          range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => x * n)
+        };
   }
   if (typeof interval === "string") return (type === "time" ? maybeTimeInterval : maybeUtcInterval)(interval);
   if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
