@@ -184,15 +184,15 @@ Plot.plot({
   },
   color: {legend: true},
   marks: [
-    Plot.areaY(riaa, {x: "year", y: "revenue", z: "format", fill: "group", order: "appearance", reverse}),
+    Plot.areaY(riaa, Plot.stackY({order: "appearance", reverse}, {x: "year", y: "revenue", z: "format", fill: "group"})),
     Plot.ruleY([0])
   ]
 })
 ```
 :::
 
-:::warning CAUTION
-The **reverse** option is also used by the [sort transform](./sort.md). To disambiguate, pass the *stack* options separately using the two-argument form of the stack transform.
+:::tip
+The **reverse** option is also used by the [sort transform](./sort.md). To disambiguate, pass the *stack* options separately using the two-argument form of the stack transform as above.
 :::
 
 The *value* **order** is worth special mention: it sorts each stack by value independently such that the order of layers can change, emphasizing the changing ranks of layers. This is sometimes called a “ribbon” chart. (In fact, the default null **order** supports changing order of layers, too! But most often data comes already sorted by series.)
@@ -255,7 +255,7 @@ Plot.plot({
     percent: true
   },
   marks: [
-    Plot.areaY(riaa, {x: "year", y: "revenue", z: "format", fill: "group", offset: "normalize", order: "group", reverse: true}),
+    Plot.areaY(riaa, Plot.stackY({offset: "normalize", order: "group", reverse: true}, {x: "year", y: "revenue", z: "format", fill: "group"})),
     Plot.ruleY([0, 1])
   ]
 })
