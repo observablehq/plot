@@ -98,49 +98,21 @@ TODO Quantitative data must be manually discretized for faceting, say by roundin
 :::plot defer
 ```js
 Plot.plot({
-  y: {
+  fy: {
     grid: true,
     tickFormat: ".1f",
     interval: 0.1,
     reverse: true
   },
   marks: [
-    Plot.boxX(olympians.filter((d) => d.height), {x: "weight", y: "height"})
-  ]
-})
-```
-:::
-
-:::plot defer
-```js
-Plot.plot({
-  // height: 400,
-  // marginTop: 0,
-  // marginLeft: 60,
-  // x: {inset: 10, grid: true, label: "weight (kg) →"},
-  // y: {axis: null, inset: 2},
-  // color: {legend: true},
-  fy: {
-    transform: (d) => d ? Math.floor(d * 10) / 10 : NaN,
-    // tickFormat: (d) => d.toFixed(1),
-    // label: "height (m) →",
-    // reverse: true
-  },
-  facet: {
-    // data: olympians,
-    // y: "height",
-    // marginLeft: 60
-  },
-  marks: [
-    Plot.frame({stroke: "#aaa", strokeWidth: 0.5}),
-    Plot.boxX(olympians, {x: "weight", y: "sex", fy: "height", stroke: "sex", r: 1})
+    Plot.boxX(olympians.filter((d) => d.height), {x: "weight", fy: "height"})
   ]
 })
 ```
 :::
 
 :::tip
-If you are interested in faceting for quantitative data, please upvote [#14](https://github.com/observablehq/plot/issues/14).
+If you are interested in automatic faceting for quantitative data, please upvote [#14](https://github.com/observablehq/plot/issues/14).
 :::
 
 TODO Two-dimensional faceting.

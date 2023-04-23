@@ -81,6 +81,30 @@ Plot.plot({
 ```
 :::
 
+This chart is slightly easier to construct with [faceting](../features/facets.md) using the [**interval** scale option](../transforms/interval.md) on the *fx* scale. (This technique cannot be used with the *x* scale above because the scale interval transform is applied *after* the box mark applies the group transform.)
+
+:::plot defer https://observablehq.com/@observablehq/plot-binned-box-plot
+```js
+Plot.plot({
+  marginLeft: 60,
+  y: {
+    grid: true,
+    label: "↑ Price"
+  },
+  fx: {
+    interval: 0.5,
+    label: "Carats →",
+    labelAnchor: "right",
+    tickFormat: (x) => x.toFixed(1)
+  },
+  marks: [
+    Plot.ruleY([0]),
+    Plot.boxY(diamonds, {fx: "carat", y: "price"})
+  ]
+})
+```
+:::
+
 ## Box options
 
 The box mark is a [composite mark](../features/marks.md#marks-marks) consisting of four marks:
