@@ -24,7 +24,7 @@ onMounted(() => {
 This guide is still under construction. 🚧 Please come back when it’s finished.
 :::
 
-Faceting produces [small multiples](https://en.wikipedia.org/wiki/Small_multiple) by partitioning data and repeating a plot for each partition, allowing comparison. Faceting is typically enabled by declaring either the horizontal↔︎ facet channel **fx**, the vertical↕︎ facet channel **fy**, or both for two-dimensional faceting.
+Faceting produces [small multiples](https://en.wikipedia.org/wiki/Small_multiple) by partitioning data and repeating a plot for each partition, allowing comparison. Faceting is typically enabled by declaring the horizontal↔︎ facet channel **fx**, the vertical↕︎ facet channel **fy**, or both for two-dimensional faceting.
 
 For example, using the dot’s **fy** channel to declare vertical↕︎ facets, below we recreate the Trellis display (“reminiscent of garden trelliswork”) of [Becker *et al.*](https://hci.stanford.edu/courses/cs448b/papers/becker-trellis-jcgs.pdf), showing the yields of several varieties of barley across several sites for the years <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">1931</span> and <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">1932</span>.
 
@@ -91,13 +91,63 @@ Plot.plot({
 Here the sort order has changed slightly: the *y* and *fy* domains are sorted by the median **x1** values, which are the yields for 1931.
 :::
 
-Faceting requires ordinal or categorical data. The associated *fx* and *fy* scales are [band scales](./scales.md#discrete-position). Quantitative data must be manually discretized for faceting, say by rounding or binning. (If you are interested in faceting for quantitative data, please upvote [#14](https://github.com/observablehq/plot/issues/14).)
+Faceting requires ordinal or categorical data because there are always a discrete number of facets; the associated *fx* and *fy* scales are [band scales](./scales.md#discrete-position).
 
-Faceting may either be specified at the top level of the plot or on individual marks.
+TODO Quantitative data must be manually discretized for faceting, say by rounding or binning. Quantitative data must be discretized for faceting, say by rounding or binning. This can be done through the *scale*.**transform** option on the relevant facet scale. The example below shows a box plot of athlete’s weights, faceted by height—with classes created by binning heights every 10cm.
 
-The mark-level **fx** and **fy** options allow marks to define facet channels.
+:::plot defer
+```js
+Plot.plot({
+  y: {
+    grid: true,
+    tickFormat: ".1f",
+    interval: 0.1,
+    reverse: true
+  },
+  marks: [
+    Plot.boxX(olympians.filter((d) => d.height), {x: "weight", y: "height"})
+  ]
+})
+```
+:::
 
-You can also mix datasets with different structures, for example to add an annotation on a specific facet.
+:::plot defer
+```js
+Plot.plot({
+  // height: 400,
+  // marginTop: 0,
+  // marginLeft: 60,
+  // x: {inset: 10, grid: true, label: "weight (kg) →"},
+  // y: {axis: null, inset: 2},
+  // color: {legend: true},
+  fy: {
+    transform: (d) => d ? Math.floor(d * 10) / 10 : NaN,
+    // tickFormat: (d) => d.toFixed(1),
+    // label: "height (m) →",
+    // reverse: true
+  },
+  facet: {
+    // data: olympians,
+    // y: "height",
+    // marginLeft: 60
+  },
+  marks: [
+    Plot.frame({stroke: "#aaa", strokeWidth: 0.5}),
+    Plot.boxX(olympians, {x: "weight", y: "sex", fy: "height", stroke: "sex", r: 1})
+  ]
+})
+```
+:::
+
+:::tip
+If you are interested in faceting for quantitative data, please upvote [#14](https://github.com/observablehq/plot/issues/14).
+:::
+
+TODO Two-dimensional faceting.
+
+TODO Simulating facet wrap with a row number facet.
+
+TODO Per-facet marks, say for annotations. You can also mix datasets with different structures, for example to add an annotation on a specific facet.
 
 :::plot
 ```js
@@ -120,9 +170,6 @@ Plot.plot({
 })
 ```
 :::
-
-
-Note that empty facets are not rendered.
 
 ## Mark facet options
 
@@ -161,31 +208,9 @@ The **facetAnchor** option controls the placement of the mark with respect to th
 * *top-empty*, *right-empty*, *bottom-empty*, or *left-empty* - display the mark on facets that have an empty space on the specified side (the empty space being either the margin, or an empty facet); this is the default for axis marks
 * *empty* - display the mark on empty facets only
 
-## Plot facet options
-
-The top-level **facet** option is an alternative to the mark **fx** and **fy** option and is useful when multiple marks share the same data; the facet.**x** and facet.**y** channels are then shared by all marks that use the facet data. (Other marks will be repeated across facets.) For example, we can visualize the famous [Anscombe’s quartet](https://en.wikipedia.org/wiki/Anscombe's_quartet) as a scatterplot with horizontal facets.
-
-:::plot
-```js
-Plot.plot({
-  grid: true,
-  inset: 10,
-  width: 928,
-  height: 240,
-  facet: {
-    data: anscombe,
-    x: "series"
-  },
-  marks: [
-    Plot.frame(),
-    Plot.line(anscombe, {x: "x", y: "y", stroke: "#ccc"}),
-    Plot.dot(anscombe, {x: "x", y: "y", stroke: "currentColor", fill: "white"})
-  ]
-})
-```
-:::
-
 When using top-level faceting, if your data is parallel to the facet data (*i.e.*, the same length and order) but not strictly equal (`===`), you can enable faceting by specifying the *mark*.**facet** option to *include* (or equivalently true). Likewise you can disable faceting by setting the *mark*.**facet** option to null or false. Finally, the mark.**facet** option supports the _exclude_ option to select all data points that are _not_ part of the current facet, allowing “background” marks for context.
+
+When top-level faceting is used, the default *auto* setting is equivalent to *include* when the mark data is strictly equal to the top-level facet data; otherwise it is equivalent to null. When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the top-level facet data: the data must have the same length and order. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
 
 :::plot
 ```js
@@ -216,25 +241,31 @@ Plot.plot({
 ```
 :::
 
-To make room for the facet axes, you may need to specify the facet.**marginTop**, facet.**marginRight**, facet.**marginBottom**, or facet.**marginLeft** option.
+## Plot facet options
 
-The following top-level facet constant options are also supported:
+The top-level **facet** option is an alternative to the mark **fx** and **fy** option and is useful when multiple marks share the same data; the facet.**x** and facet.**y** channels are then shared by all marks that use the facet data. (Other marks will be repeated across facets.)
 
-* facet.**marginTop** - the top margin
-* facet.**marginRight** - the right margin
-* facet.**marginBottom** - the bottom margin
-* facet.**marginLeft** - the left margin
-* facet.**margin** - shorthand for the four margins
-* facet.**grid** - if true, draw grid lines for each facet
-* facet.**label** - if null, disable default facet axis labels
+For example, we can visualize the famous [Anscombe’s quartet](https://en.wikipedia.org/wiki/Anscombe's_quartet) as a scatterplot with horizontal facets.
 
-When specified at the top level, the following options indicate which data should be faceted, and how:
-
-* facet.**data** - the data to be faceted
-* facet.**x** - the horizontal position; bound to the *fx* scale, which must be *band*
-* facet.**y** - the vertical position; bound to the *fy* scale, which must be *band*
-
-With top-level faceting, any mark that uses the specified facet data will be faceted by default, whereas marks that use different data will be repeated across all facets.
+:::plot
+```js
+Plot.plot({
+  grid: true,
+  inset: 10,
+  width: 928,
+  height: 240,
+  facet: {
+    data: anscombe,
+    x: "series"
+  },
+  marks: [
+    Plot.frame(),
+    Plot.line(anscombe, {x: "x", y: "y", stroke: "#ccc"}),
+    Plot.dot(anscombe, {x: "x", y: "y", stroke: "currentColor", fill: "white"})
+  ]
+})
+```
+:::
 
 Here is an example of top-level faceting:
 
@@ -251,7 +282,25 @@ Plot.plot({
 })
 ```
 
-When top-level faceting is used, the default *auto* setting is equivalent to *include* when the mark data is strictly equal to the top-level facet data; otherwise it is equivalent to null. When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the top-level facet data: the data must have the same length and order. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
+When specified at the top level, the following options indicate which data should be faceted, and how:
+
+* facet.**data** - the data to be faceted
+* facet.**x** - the horizontal position; bound to the *fx* scale, which must be *band*
+* facet.**y** - the vertical position; bound to the *fy* scale, which must be *band*
+
+With top-level faceting, any mark that uses the specified facet data will be faceted by default, whereas marks that use different data will be repeated across all facets.
+
+To make room for the facet axes, you may need to specify the facet.**marginTop**, facet.**marginRight**, facet.**marginBottom**, or facet.**marginLeft** option.
+
+The following top-level facet constant options are also supported:
+
+* facet.**marginTop** - the top margin
+* facet.**marginRight** - the right margin
+* facet.**marginBottom** - the bottom margin
+* facet.**marginLeft** - the left margin
+* facet.**margin** - shorthand for the four margins
+* facet.**grid** - if true, draw grid lines for each facet
+* facet.**label** - if null, disable default facet axis labels
 
 ## Facet scales
 
@@ -260,32 +309,4 @@ When faceting, two additional band scales may be configured:
 * *fx* - the horizontal position, a *band* scale
 * *fy* - the vertical position, a *band* scale
 
-When faceting, two additional band scales may be configured: _fx_ and _fy_. These are driven by the facet.**x** and facet.**y** channels, respectively, which must be supplied strictly ordinal (*i.e.*, discrete) values; each distinct value defines a facet. Quantitative data must be discretized for faceting, say by rounding or binning. This can be done through the *scale*.**transform** option on the relevant facet scale. The example below shows a box plot of athlete’s weights, faceted by height—with classes created by binning heights every 10cm.
-
-:::plot defer
-```js
-Plot.plot({
-  height: 400,
-  marginTop: 0,
-  marginLeft: 60,
-  x: {inset: 10, grid: true, label: "weight (kg) →"},
-  y: {axis: null, inset: 2},
-  color: {legend: true},
-  fy: {
-    transform: (d) => d ? Math.floor(d * 10) / 10 : "",
-    tickFormat: (d) => d ? d.toFixed(1) : "N/A",
-    label: "height (m) →",
-    reverse: true
-  },
-  facet: {
-    data: olympians,
-    y: "height",
-    marginLeft: 60
-  },
-  marks: [
-    Plot.frame({stroke: "#aaa", strokeWidth: 0.5}),
-    Plot.boxX(olympians, {x: "weight", y: "sex", stroke: "sex", r: 1})
-  ]
-})
-```
-:::
+When faceting, two additional band scales may be configured: _fx_ and _fy_. These are driven by the facet.**x** and facet.**y** channels, respectively, which must be supplied strictly ordinal (*i.e.*, discrete) values; each distinct value defines a facet.
