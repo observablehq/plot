@@ -13,34 +13,20 @@ const projection = ref("equirectangular");
 const dark = useDark();
 const westport = shallowRef({type: null});
 const earthquakes = shallowRef([]);
-// const elections = shallowRef([]);
 const walmarts = shallowRef([]);
 const world = shallowRef(null);
 const land = computed(() => world.value ? topojson.feature(world.value, world.value.objects.land) : {type: null});
 const us = shallowRef(null);
 const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
-const states = computed(() => us.value ? topojson.feature(us.value, us.value.objects.states).features : []);
 const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
-// const countymesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.counties, (a, b) => a !== b) : {type: null});
-// const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
-// const lookup = computed(() => counties.value ? d3.index(counties.value, (d) => +d.id) : null); // TODO fix type coercion
 
 onMounted(() => {
   d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson").then((data) => (earthquakes.value = data.features.map((f) => ({longitude: f.geometry.coordinates[0], latitude: f.geometry.coordinates[1], magnitude: f.properties.mag}))));
   d3.json("../data/countries-110m.json").then((data) => (world.value = data));
-  // d3.csv("../data/us-presidential-election-2020.csv", d3.autoType).then((data) => (elections.value = data));
   d3.tsv("../data/walmarts.tsv", d3.autoType).then((data) => (walmarts.value = data));
   d3.json("../data/westport-house.json").then((data) => (westport.value = data));
   d3.json("../data/us-counties-10m.json").then((data) => (us.value = data));
 });
-
-function globe() {
-  return Plot.marks(
-    Plot.graticule(),
-    Plot.geo(land.value, {fill: "currentColor"}),
-    Plot.sphere()
-  );
-}
 
 </script>
 
@@ -241,86 +227,6 @@ Plot.plot({
 
 :::info
 This uses the [**interval** scale option](../transforms/interval.md) to bin temporal data into facets by decade.
-:::
-
-TODO The [Delaunay marks](../marks/delaunay.md) happily consume the projected coordinates.
-
-:::plot defer
-```js
-Plot.plot({
-  // width: 960,
-  // height: 600,
-  projection: "albers",
-  marks: [
-    Plot.geo(nation),
-    Plot.dot(walmarts, {x: "longitude", y: "latitude", fill: "currentColor", r: 1}),
-    Plot.voronoiMesh(walmarts, {x: "longitude", y: "latitude"})
-  ]
-})
-```
-:::
-
-:::warning CAUTION
-Distances between projected points are not exactly proportional to the corresponding distances on the sphere. This [creates a discrepancy](https://observablehq.com/@observablehq/planar-vs-spherical-voronoi) between the planar Voronoi diagram and its spherical counterpart. For greater accuracy, use [d3-geo-voronoi](https://github.com/Fil/d3-geo-voronoi) with the [geo mark](../marks/geo.md).
-:::
-
-TODO Hexagonal bins, based on the projected coordinates. See [Plot.hexbin](../transforms/hexbin.md) for details. Hexbins have a great visual appeal, but be aware that the underlying statistics are usually to be taken with a grain of salt. At any scale, geographic binning suffers from the [MAUP](https://en.wikipedia.org/wiki/Modifiable_areal_unit_problem). On a small scale map, this is compounded by the Earth’s curvature, which makes it impossible to create an accurate and regular grid. At any rate, prefer an equal-area projection to makes the different regions of the map comparable.
-
-:::plot defer
-```js
-Plot.plot({
-  width: 975,
-  projection: "albers",
-  r: {
-    range: [0, 20]
-  },
-  color: {
-    legend: true,
-    label: "First year opened",
-    scheme: "spectral"
-  },
-  marks: [
-    Plot.geo(statemesh, { strokeOpacity: 0.25 }),
-    Plot.geo(nation),
-    Plot.dot(
-      walmarts,
-      Plot.hexbin(
-        { r: "count", fill: "min" },
-        { x: "longitude", y: "latitude", fill: "date" }
-      )
-    )
-  ]
-})
-```
-:::
-
-TODO Plot.density… just works. On a small-scale map showing the whole globe, you might have to clip the results. And, because the density is computed on the projected coordinates, it is recommended to use an equal-area projection to limit distortion.
-
-:::plot defer
-```js-vue
-Plot.plot({
-  width: 960,
-  height: 600,
-  projection: "albers",
-  color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"},
-  marks: [
-    Plot.density(walmarts, {
-      x: "longitude",
-      y: "latitude",
-      bandwidth: 12,
-      fill: "density"
-    }),
-    Plot.dot(walmarts, {
-      x: "longitude",
-      y: "latitude",
-      r: 1,
-      fill: "currentColor"
-    }),
-    Plot.geo(statemesh, { strokeOpacity: 0.3 }),
-    Plot.geo(nation)
-  ]
-})
-```
 :::
 
 Projections can work with any mark that consumes continuous *x* and *y* channels—as well as marks that use *x1* and *y1*, *x2* and *y2*. Use the [image](../marks/image.md) mark to center an image at the given location. The [arrow](../marks/arrow.md) and [link](../marks/link.md) marks connect two points, and can be used in thematic mapping to express, say, trade flows between countries. The [rect](../marks/rect.md) mark creates a rectangle from two opposite corners, and can be used to draw a selection (brush), an inset, a bounding-box…
