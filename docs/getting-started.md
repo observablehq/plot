@@ -53,7 +53,7 @@ import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm"
 
 :::
 
- We recommend using the ES module bundle as it automatically loads Plot’s dependency on D3, and because ES modules are the modern way. But for those who need it, the provided UMD bundle is AMD-compatible and exports the `Plot` global when loaded as a plain script.
+We recommend using the ES module bundle as it automatically loads Plot’s dependency on D3, and because ES modules are the modern way. But for those who need it, the provided UMD bundle is AMD-compatible and exports the `Plot` global when loaded as a plain script.
 
 ## Installing Plot from npm
 
