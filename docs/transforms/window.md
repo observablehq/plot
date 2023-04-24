@@ -32,7 +32,7 @@ For example, the band chart below shows the daily high and low temperature in Sa
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-window-line-area
 ```js
 Plot.plot({
   y: {
@@ -67,7 +67,7 @@ The **anchor** specifies how to align the rolling window with the data. If *midd
   </span>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-window-anchor
 ```js
 Plot.plot({
   y: {
@@ -93,7 +93,7 @@ If **strict** is false (the default), the window size is effectively reduced at 
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-window-anchor
 ```js
 Plot.plot({
   y: {
@@ -112,7 +112,7 @@ The **strict** option can also have a dramatic effect if some data is missing: w
 
 The **reduce** option specifies how to compute the output value for the current window. It defaults to *mean* for a rolling average. Below, the rolling <span style="border-bottom: solid 2px var(--vp-c-blue)">minimum</span>, <span style="border-bottom: solid 2px var(--vp-c-red)">maximum</span>, and <span style="border-bottom: solid 2px;">median</span> are shown. The window transform supports most of the same reducers as [bin](./bin.md) and [group](./group.md), and you can implement a custom reducer as a function if needed.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-window-reduce
 ```js
 Plot.plot({
   y: {
@@ -131,7 +131,7 @@ Plot.plot({
 
 While the windowY transform derives **y** (and **y1** and **y2**), and the windowX transform likewise derives **x**, **x1**, and **x2**, you can use the [map transform](./map.md) directly for other channels. For example, the chart below uses a variable **stroke** to encode slope: the monthly change in unemployment rate for each metropolitan division. The slope is computed with a window of size 2 and the *difference* reducer.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-window-and-map
 ```js
 Plot.plot({
   y: {grid: true},
