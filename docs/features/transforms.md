@@ -244,4 +244,4 @@ This method is used by Plot’s transforms to derive channels; the associated co
 Plot.contour(data, {width: w, height: h, fill: Plot.identity})
 ```
 
-This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data:
+This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data.
