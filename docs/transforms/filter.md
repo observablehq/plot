@@ -21,7 +21,7 @@ The **filter transform** filters a mark’s index to show a subset of the data. 
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-filter-demo
 ```js{10}
 Plot.plot({
   grid: true,
@@ -52,7 +52,7 @@ The filter transform can be applied either via the **filter** [mark option](../f
 
 To highlight the vowels in a bar chart of English letter frequency, you can use a filtered bar with a <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> stroke. A filtered mark allows you to set options on a subset of the data, even if those options—such as mark insets—are not expressible as a channels.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-filtered-bars
 ```js{8}
 Plot.plot({
   marks: [
@@ -75,7 +75,7 @@ Plot.plot({
 
 Since the filter transform only affects the mark’s index and not the channel values, it does not affect the default scale domains. Below, the *x* scale contains every English letter, even though the only the bars for the vowels are shown.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-filtered-bars
 ```js
 Plot.plot({
   marks: [
@@ -91,7 +91,7 @@ Plot.plot({
 
 If you want to drop values completely, you can filter the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-filtered-bars
 ```js{4}
 Plot.plot({
   marks: [
