@@ -10,17 +10,27 @@ import {octave, perlin2} from "../components/perlin.js";
 const noise = octave(perlin2, 2);
 const wind = shallowRef([{longitude: -9.875, latitude: 45.125}, {longitude: 9.875, latitude: 59.875}, {u: 0, v: 0}, {u: 0, v: 12.184501776503668}]);
 const us = shallowRef(null);
-const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states) : {type: null});
+const nation = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.nation) : {type: null});
+const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
 const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
 
 onMounted(() => {
   d3.csv("../data/wind.csv", d3.autoType).then((data) => (wind.value = data));
   Promise.all([
     d3.json("../data/us-counties-10m.json"),
-    d3.csv("../data/us-county-population.csv")
-  ]).then(([_us, _population]) => {
-    const map = new Map(_population.map((d) => [d.state + d.county, +d.population]));
-    _us.objects.counties.geometries.forEach((g) => (g.properties.population = map.get(g.id)));
+    d3.csv("../data/us-county-population.csv"),
+    d3.csv("../data/us-presidential-election-2020.csv")
+  ]).then(([_us, _population, _election]) => {
+    const population = new Map(_population.map((d) => [d.state + d.county, +d.population]));
+    const election = new Map(_election.map((d) => [d.fips, d]));
+    for (const g of _us.objects.counties.geometries) {
+      g.properties.population = population.get(g.id);
+      const e = election.get(g.id);
+      if (e) {
+        g.properties.margin2020 = +e.margin2020;
+        g.properties.votes = +e.votes;
+      }
+    }
     us.value = _us;
   });
 });
@@ -54,6 +64,30 @@ Plot.plot({
 Regarding this data, [Remote Sensing Systems](https://www.remss.com/measurements/ccmp/) says: *“Standard U and V coordinates apply, meaning the positive U is to the right and positive V is above the axis. U and V are relative to true north. CCMP winds are expressed using the oceanographic convention, meaning a wind blowing toward the Northeast has a positive U component and a positive V component… Longitude is given in degrees East from 0.125 to 359.875 and latitude is given in degrees North with negative values representing southern locations.”*
 :::
 
+Vectors can be used with Plot’s [projection system](../features/projections.md). The map below shows the margin by which the winner of the US presidential election of 2020 won the vote in each county. The arrow’s length encodes the difference in votes, and the orientation and color show who won (<svg width=12 height=12 viewBox="-11 -11 12 12" style="display: inline-block"><path d="M0,0l-10,-6m1,3.28l-1,-3.28l3.28,-1" stroke="var(--vp-c-blue)" stroke-width="1.5"></path></svg> for the Democratic candidate, and <svg width=12 height=12 viewBox="0 -11 12 12" style="display: inline-block"><path d="M0,0l10,-6m-1,3.28l1,-3.28l-3.28,-1" stroke="var(--vp-c-red)" stroke-width="1.5"></path></svg> for the Republican candidate).
+
+:::plot defer
+```js
+Plot.plot({
+  projection: "albers-usa",
+  length: {type: "sqrt", transform: Math.abs},
+  marks: [
+    Plot.geo(statemesh, {strokeWidth: 0.5}),
+    Plot.geo(nation),
+    Plot.vector(
+      counties,
+      Plot.centroid({
+        anchor: "start",
+        length: (d) => d.properties.margin2020 * d.properties.votes,
+        stroke: (d) => d.properties.margin2020 > 0 ? "red" : "blue",
+        rotate: (d) => d.properties.margin2020 > 0 ? 60 : -60
+      })
+    )
+  ]
+})
+```
+:::
+
 The **shape** option controls the vector’s appearance, while the **anchor** option positions the vector relative to its anchor point specified in **x** and **y**. The [spike constructor](#spike-data-options) sets the **shape** to *spike* and the **anchor** to *start*. For example, this can be used to produce a [spike map](https://observablehq.com/@observablehq/plot-spike) of U.S. county population.
 
 :::plot defer https://observablehq.com/@observablehq/plot-spike-map-example
@@ -65,7 +99,8 @@ Plot.plot({
   style: "overflow: visible;",
   marks: [
     Plot.geo(statemesh, {strokeOpacity: 0.5}),
-    Plot.spike(counties, Plot.geoCentroid({length: (d) => d.properties.population, stroke: "red"}))
+    Plot.geo(nation),
+    Plot.spike(counties, Plot.geoCentroid({length: (d) => d.properties.population, stroke: "green"}))
   ]
 })
 ```

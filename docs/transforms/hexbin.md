@@ -2,6 +2,7 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import * as topojson from "topojson-client";
 import {computed, ref, watchEffect, shallowRef, onMounted} from "vue";
 import {useDark} from "../components/useDark.js";
 import cars from "../data/cars.ts";
@@ -9,9 +10,15 @@ import cars from "../data/cars.ts";
 const binWidth = ref(20);
 const dark = useDark();
 const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
+const walmarts = shallowRef([]);
+const us = shallowRef(null);
+const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
+const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
 
 onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
+  d3.tsv("../data/walmarts.tsv", d3.autoType).then((data) => (walmarts.value = data));
+  d3.json("../data/us-counties-10m.json").then((data) => (us.value = data));
 });
 
 </script>
@@ -94,6 +101,27 @@ Plot
 ```
 :::
 
+The hexbin transform also works with Plot’s [projection system](../features/projections.md). Below, hexagon size represents the number of nearby Walmart stores, while color represents the date the first nearby Walmart store opened. (The first Walmart opened in Rogers, Arkansas.)
+
+:::plot defer
+```js
+Plot.plot({
+  projection: "albers",
+  r: {range: [0, 16]},
+  color: {scheme: "spectral", label: "First year opened", legend: true},
+  marks: [
+    Plot.geo(statemesh, {strokeOpacity: 0.5}),
+    Plot.geo(nation),
+    Plot.dot(walmarts, Plot.hexbin({r: "count", fill: "min"}, {x: "longitude", y: "latitude", fill: "date"}))
+  ]
+})
+```
+:::
+
+:::warning CAUTION
+Beware the [modifiable areal unit problem](https://en.wikipedia.org/wiki/Modifiable_areal_unit_problem). On a small scale map, this is compounded by the Earth’s curvature, which makes it impossible to create an accurate and regular grid. Use an equal-area projection in conjunction when binning.
+:::
+
 The [hexgrid mark](../marks/hexgrid.md) draws the base hexagonal grid as a mesh. This is useful for showing the empty hexagons, since the hexbin transform does not output empty bins (and unlike the bin transform, the hexbin transform does not currently support the **filter** option).
 
 :::plot defer
@@ -116,7 +144,6 @@ Plot.circle(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height"})).pl
 :::
 
 Hexbins work best when there is an interesting density of dots in the center of the chart, but sometimes hexagons “escape” the edge of the frame and cover the axes. To prevent this, you can use the **inset** [scale option](../features/scales.md) to reserve space on the edges of the frame.
-
 
 :::plot defer
 ```js-vue
