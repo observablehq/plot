@@ -32,10 +32,6 @@ onMounted(() => {
 
 # Projections
 
-:::danger TODO
-This guide is still under construction. 🚧 Please come back when it’s finished.
-:::
-
 A **projection** maps abstract coordinates in *x* and *y* to pixel positions on screen. Most often, abstract coordinates are spherical (degrees longitude and latitude), as when rendering a geographic map. For example, below we show earthquakes in the last seven days with a magnitude of 2.5 or higher as reported by the [USGS](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php). Use the slider to adjust the *orthographic* projection’s center of longitude.
 
 <p>
@@ -63,7 +59,7 @@ Plot.plot({
 
 Above, a [geo mark](../marks/geo.md) draws polygons representing land and a [sphere mark](../marks/geo.md#sphere-options) draws the outline of the globe. A [dot mark](../marks/dot.md) draws earthquakes as circles sized by magnitude.
 
-While the geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen—leaning on [d3-geo](https://github.com/d3/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping—the dot mark is not. Instead, Plot applies the projection in place of the *x* and *y* scales. This means that each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is also projection-aware.)
+While the geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen—leaning on [d3-geo](https://github.com/d3/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping—the dot mark is not. Instead, Plot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels—as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is also projection-aware.)
 
 :::info
 Marks that require *band* scales (bars, cells, and ticks) cannot be used with projections. Likewise one-dimensional marks such as rules cannot be used, though see [#1164](https://github.com/observablehq/plot/issues/1164).
@@ -170,7 +166,7 @@ Plot.plot({
 circle = d3.geoCircle().center([9, 34]).radius(radius).precision(2)()
 ```
 
-TODO Using a D3 projection.
+If none of Plot’s built-in projections meet your needs, you can use any of [D3’s extended projections](https://github.com/d3/d3-geo-projection) by specifying the **projection** option as a function that returns a D3 projection. Below, a map of Antarctica in a polar aspect of the *azimuthal-equidistant* projection.
 
 :::plot defer
 ```js
@@ -191,7 +187,7 @@ Plot.plot({
 ```
 :::
 
-While this notebook mostly details spherical projections, sometimes geometry is already on the plane. For this, use the *identity* projection. For example, below we draw a schematic of the second floor of the [Westport House](https://en.wikipedia.org/wiki/Westport_House) in Dundee, Ireland.
+While this notebook mostly details spherical projections, you can use the *identity* projection to display planar geometry. For example, below we draw a schematic of the second floor of the [Westport House](https://en.wikipedia.org/wiki/Westport_House) in Dundee, Ireland.
 
 :::plot defer
 ```js
@@ -203,7 +199,7 @@ Plot.geo(westport).plot({projection: {type: "identity", domain: westport}})
 There’s also a *reflect-y* projection in case *y* points up↑.
 :::
 
-TODO Facets. A comic strip plotting the new Walmart stores opened in each decade.
+Naturally, Plot’s projection system is compatible with its [faceting system](./facets.md). Below, a comic strip of sorts showing the locations of Walmart store openings in past decades.
 
 :::plot defer
 ```js
@@ -229,15 +225,16 @@ Plot.plot({
 This uses the [**interval** scale option](../transforms/interval.md) to bin temporal data into facets by decade.
 :::
 
-Projections can work with any mark that consumes continuous *x* and *y* channels—as well as marks that use *x1* and *y1*, *x2* and *y2*. Use the [image](../marks/image.md) mark to center an image at the given location. The [arrow](../marks/arrow.md) and [link](../marks/link.md) marks connect two points, and can be used in thematic mapping to express, say, trade flows between countries. The [rect](../marks/rect.md) mark creates a rectangle from two opposite corners, and can be used to draw a selection (brush), an inset, a bounding-box…
+To learn more about this topic, see our hands-on tutorials:
 
-:::info
-To learn more about this topic, see our hands-on tutorials: [Build your first map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-map-with-observable-plot), and [Build your first choropleth map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-choropleth-map-with-observable-plot).
-:::
+* [Build your first map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-map-with-observable-plot)
+* [Build your first choropleth map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-choropleth-map-with-observable-plot)
 
 ## Projection options
 
-The top-level **projection** option applies a two-dimensional (often geographic) projection in place of *x* and *y* scales. It is typically used in conjunction with a [geo mark](../marks/geo.md) to produce a map, but can be used with any mark that supports *x* and *y* channels, such as [dot](../marks/dot.md), [text](../marks/text.md), [arrow](../marks/arrow.md), and [rect](../marks/rect.md). For marks that use *x1*, *y1*, *x2*, and *y2* channels, the two projected points are ⟨*x1*, *y1*⟩ and ⟨*x2*, *y2*⟩; otherwise, the projected point is ⟨*x*, *y*⟩. The following built-in named projections are supported:
+The top-level **projection** option applies a two-dimensional (often geographic) projection in place of **x** and **y** scales. It is typically used in conjunction with a [geo mark](../marks/geo.md) to produce a map, but can be used with any mark that supports **x** and **y** channels, such as [dot](../marks/dot.md), [text](../marks/text.md), [arrow](../marks/arrow.md), and [rect](../marks/rect.md). For marks that use **x1**, **y1**, **x2**, and **y2** channels, the two projected points are ⟨*x1*, *y1*⟩ and ⟨*x2*, *y2*⟩; otherwise, the projected point is ⟨*x*, *y*⟩.
+
+The following built-in named projections are supported:
 
 * *equirectangular* - the equirectangular, or *plate carrée*, projection
 * *orthographic* - the orthographic projection
@@ -257,23 +254,23 @@ The top-level **projection** option applies a two-dimensional (often geographic)
 * *reflect-y* - like the identity projection, but *y* points up
 * null (default) - the null projection for pre-projected geometry in screen coordinates
 
-In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({width, height, ...options}) and returns such a projection. In the last case, the width and height represent the frame dimensions minus any insets.
+In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({*width*, *height*, ...*options*}) and returns such a projection. In the last case, the width and height represent the frame dimensions minus any insets.
 
 If the **projection** option is specified as an object, the following additional projection options are supported:
 
-* projection.**type** - one of the projection names above
-* projection.**parallels** - the [standard parallels](https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels) (for conic projections only)
-* projection.**precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
-* projection.**rotate** - a two- or three- element array of Euler angles to rotate the sphere
-* projection.**domain** - a GeoJSON object to fit in the center of the (inset) frame
-* projection.**inset** - inset by the given amount in pixels when fitting to the frame (default zero)
-* projection.**insetLeft** - inset from the left edge of the frame (defaults to inset)
-* projection.**insetRight** - inset from the right edge of the frame (defaults to inset)
-* projection.**insetTop** - inset from the top edge of the frame (defaults to inset)
-* projection.**insetBottom** - inset from the bottom edge of the frame (defaults to inset)
-* projection.**clip** - the projection clipping method
+* **type** - one of the projection names above
+* **parallels** - the [standard parallels](https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels) (for conic projections only)
+* **precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
+* **rotate** - a two- or three- element array of Euler angles to rotate the sphere
+* **domain** - a GeoJSON object to fit in the center of the (inset) frame
+* **inset** - inset by the given amount in pixels when fitting to the frame (default zero)
+* **insetLeft** - inset from the left edge of the frame (defaults to inset)
+* **insetRight** - inset from the right edge of the frame (defaults to inset)
+* **insetTop** - inset from the top edge of the frame (defaults to inset)
+* **insetBottom** - inset from the bottom edge of the frame (defaults to inset)
+* **clip** - the projection clipping method
 
-The following projection clipping methods are supported for projection.**clip**:
+The following projection clipping methods are supported for **clip**:
 
 * *frame* or true (default) - clip to the extent of the frame (including margins but not insets)
 * a number - clip to a great circle of the given radius in degrees centered around the origin
