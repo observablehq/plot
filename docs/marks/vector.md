@@ -36,11 +36,7 @@ The **vector mark** draws little arrows, typically positioned in **x** and **y**
 Plot.plot({
   inset: 10,
   aspectRatio: 1,
-  color: {
-    label: "Speed (m/s)",
-    zero: true,
-    legend: true
-  },
+  color: {label: "Speed (m/s)", zero: true, legend: true},
   marks: [
     Plot.vector(wind, {
       x: "longitude",
@@ -74,6 +70,8 @@ Plot.plot({
 })
 ```
 :::
+
+You can even implement a custom **shape** by supplying an object with a **draw** method. This method takes a *context* for drawing paths and the *length* of the vector. See the [moon phase calendar](https://observablehq.com/@observablehq/plot-phases-of-the-moon) for an example.
 
 Lastly, here is an example showing a Perlin noise field, just because it’s pretty:
 

@@ -232,8 +232,8 @@ Plot.plot({
   },
   marks: [
     Plot.frame(),
-    Plot.line(anscombe, {x: "x", y: "y", stroke: "#ccc"}),
-    Plot.dot(anscombe, {x: "x", y: "y", stroke: "currentColor", fill: "white"})
+    Plot.line(anscombe, {x: "x", y: "y"}),
+    Plot.dot(anscombe, {x: "x", y: "y"})
   ]
 })
 ```
