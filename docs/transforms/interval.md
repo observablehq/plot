@@ -90,7 +90,6 @@ The meaning of the **interval** mark option depends on the associated mark, such
 :::plot https://observablehq.com/@observablehq/plot-interval-bars
 ```js
 Plot.plot({
-  height: 400,
   marginBottom: 80,
   x: {
     type: "band", // ⚠️ not utc
