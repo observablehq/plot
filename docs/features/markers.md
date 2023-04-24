@@ -11,7 +11,7 @@ const marker = ref("circle");
 
 # Markers
 
-A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defines a graphic drawn on vertices of a [line](../marks/line.md) or [link](../marks/link.md) mark.
+A **marker** defines a graphic drawn on vertices of a [line](../marks/line.md) or [link](../marks/link.md) mark.
 
 <p>
   <label class="label-input">
@@ -26,7 +26,7 @@ A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defi
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/d/cfc5b4e46aa18b57?intent=fork
 ```js-vue
 Plot.plot({
   marks: [
@@ -36,8 +36,6 @@ Plot.plot({
 })
 ```
 :::
-
-[Edit this on Observable →](https://observablehq.com/d/cfc5b4e46aa18b57?intent=fork)
 
 The supported marker options are:
 
@@ -54,7 +52,7 @@ The following named markers are supported:
 * *circle*, equivalent to *circle-fill* - a filled circle with a white stroke and 3px radius
 * *circle-stroke* - a hollow circle with a colored stroke and a white fill and 3px radius
 
-If **marker** is true, it defaults to *circle*. If **marker** is a function, it will be called with a given *color* and must return an SVG marker element.
+If **marker** is true, it defaults to *circle*. If **marker** is a function, it will be called with a given *color* and must return an [SVG marker element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker).
 
 The primary color of a marker is inherited from the *stroke* of the associated mark. The *arrow* marker is [automatically oriented](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/orient) such that it points in the tangential direction of the path at the position the marker is placed. The *circle* markers are centered around the given vertex.
 

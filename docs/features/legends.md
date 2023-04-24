@@ -26,7 +26,7 @@ onMounted(() => {
 
 # Legends
 
-Plot can generate legends for *color*, *opacity*, and *symbol* [scales](./scales.md). For example, the scatterplot below of body measurements of Olympic athletes includes a legend for its *color* scale, allowing the meaning of color to be interpreted by the reader. (The axes similarly document the meaning of the *x* and *y* position scales.)
+Plot can generate **legends** for *color*, *opacity*, and *symbol* [scales](./scales.md). For example, the scatterplot below of body measurements of Olympic athletes includes a legend for its *color* scale, allowing the meaning of color to be interpreted by the reader. (The axes similarly document the meaning of the *x* and *y* position scales.)
 
 :::plot defer
 ```js

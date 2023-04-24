@@ -1,6 +1,6 @@
 # Accessibility
 
-Plot uses [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) to make plots more accessible through assistive technology such as screen readers, browser add-ons, and browser developer tools.
+Plot uses [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) to make plots more **accessible** through assistive technology such as screen readers, browser add-ons, and browser developer tools.
 
 The [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) and [aria-description](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-description) attributes on the root SVG element can be set via the top-level **ariaLabel** and **ariaDescription** [plot options](./plots.md). These default to null.
 

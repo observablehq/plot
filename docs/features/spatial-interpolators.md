@@ -1,6 +1,6 @@
 # Spatial interpolators
 
-The [raster](../marks/raster.md) and [contour](../marks/contour.md) marks use spatial interpolation to populate a raster grid from a discrete set of (often ungridded) spatial samples. The **interpolate** option controls how these marks compute the raster grid. The following built-in methods are provided:
+The [raster](../marks/raster.md) and [contour](../marks/contour.md) marks use **spatial interpolators** to populate a raster grid from a discrete set of (often ungridded) spatial samples. The **interpolate** option controls how these marks compute the raster grid. The following built-in methods are provided:
 
 * *none* (or null) - assign each sample to the containing pixel
 * *nearest* - assign each pixel to the closest sample’s value (Voronoi diagram)

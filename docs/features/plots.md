@@ -23,7 +23,7 @@ onMounted(() => {
 
 # Plots
 
-To render a plot in Observable Plot, call [plot](#plot-options) (typically as `Plot.plot`), passing in the desired *options*. This function returns an SVG or HTML figure element.
+To render a **plot** in Observable Plot, call [plot](#plot-options) (typically as `Plot.plot`), passing in the desired *options*. This function returns an SVG or HTML figure element.
 
 :::plot
 ```js
