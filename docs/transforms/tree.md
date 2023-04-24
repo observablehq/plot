@@ -42,7 +42,7 @@ The **tree transform** is rarely used directly; the two variants, [treeNode](#tr
 
 As a contrived example, we can construct the equivalent of the tree mark using a [link](../marks/link.md), [dot](../marks/dot.md), and [text](../marks/text.md), and the corresponding tree transforms.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-tree-and-link
 ```js
 Plot.plot({
   axis: null,
