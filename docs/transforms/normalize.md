@@ -64,7 +64,7 @@ The [select transform](./select.md) is used to label the endpoints of each line.
 :::
 
 :::info
-As a performance optimization, an [immediately-invoked function expression](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) (IIFE) is used above for the **tickFormat** option so that the [d3.format](https://github.com/d3/d3-format) only needs to be constructed once.
+This example uses an [immediately-invoked function expression (IIFE)](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) for the **tickFormat** option so that the [d3.format](https://github.com/d3/d3-format) only needs to be constructed once.
 :::
 
 The normalize transform converts absolute values into relative ones. So, if **y** is [*y₀*, *y₁*, *y₂*, …] and the *first* basis is used with [normalizeY](#normalizey-basis-options), the resulting output **y** channel is [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* / *y₀*, …]. But it’s a bit more complicated than this in practice since **y** is first grouped by **z**, **fill**, or **stroke** into separate series.
