@@ -23,7 +23,7 @@ Given one position dimension (either **x** or **y**), the **dodge** transform co
 
 The dodge transform is commonly used to produce beeswarm 🐝 plots, a way of showing a one-dimensional distribution that preserves the visual identity of individual data points. For example, the dots below represent the weights of cars; the rough shape of the pile gives a sense of the overall distribution (peaking around 2,100 pounds), and you can hover an individual dot to see which car it represents.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dodge-cars
 ```js
 Plot.plot({
   height: 160,
@@ -36,7 +36,7 @@ Plot.plot({
 
 Compare this to a conventional histogram using a [rect mark](../marks/rect.md).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dodge-cars
 ```js
 Plot.plot({
   height: 180,
@@ -50,7 +50,7 @@ Plot.plot({
 
 The dodge transform works with Plot’s [faceting system](../features/facets.md), allowing independent beeswarm plots on discrete partitions of the data. Below, penguins are grouped by species and colored by sex, while vertical↕︎ position (**y**) encodes body mass.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-dodge-penguins
 ```js
 Plot.plot({
   y: {grid: true},
@@ -64,13 +64,13 @@ Plot.plot({
 
 Beeswarm plots avoid the occlusion problem of dense scatterplots and barcode plots.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dodge-cars
 ```js
 Plot.dotX(cars, {x: "weight (lb)"}).plot()
 ```
 :::
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dodge-cars
 ```js
 Plot.ruleX(cars, {x: "weight (lb)"}).plot()
 ```
@@ -89,7 +89,7 @@ The **anchor** option specifies the layout baseline: the optimal output position
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dodge-cars
 ```js
 Plot.plot({
   height: 180,
@@ -112,7 +112,7 @@ The dodge transform differs from the [stack transform](./stack.md) in that the d
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-variable-radius-dodge
 ```js
 Plot.plot({
   height: 180,
@@ -133,7 +133,7 @@ The dodge transform also supports a **padding** option (default 1), which specif
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-variable-radius-dodge
 ```js
 Plot.plot({
   height: 180,
@@ -146,7 +146,7 @@ Plot.plot({
 
 If **r** is a channel, the dodge transform will position circles of varying radius. The chart below shows twenty years of IPO offerings leading up to Facebook’s $104B offering in 2012; each circle is sized proportionally to the associated company’s valuation at IPO. (This data comes from [“The Facebook Offering: How It Compares”](https://archive.nytimes.com/www.nytimes.com/interactive/2012/05/17/business/dealbook/how-the-facebook-offering-compares.html?hp) by Jeremy Ashkenas, Matthew Bloch, Shan Carter, and Amanda Cox.) Facebook’s valuation was nearly four times that of Google, the previous record. The 2000 [dot-com bubble](https://en.wikipedia.org/wiki/Dot-com_bubble) is also visible.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-the-facebook-ipo
 ```js
 Plot.plot({
   insetRight: 10,
@@ -179,7 +179,7 @@ Plot.plot({
 
 The dodge transform can be use with any mark that supports **x** and **y** position. Below, we use the [text mark](../marks/text.md) instead to show company valuations (in billions).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-text-dodge
 ```js
 Plot.plot({
   insetRight: 10,
@@ -204,7 +204,7 @@ The dodge transform places dots sequentially, each time finding the closest posi
 
 To adjust the dodge layout, use the [sort transform](./sort.md). For example, if the **sort** option uses the same column as **x**, the dots are arranged in piles leaning right.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dodge-sort
 ```js
 Plot.plot({
   height: 180,
@@ -217,7 +217,7 @@ Plot.plot({
 
 Reversing the sort order produces piles leaning left.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dodge-sort
 ```js
 Plot.plot({
   height: 180,
