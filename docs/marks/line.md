@@ -5,12 +5,12 @@ import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import {computed, shallowRef, onMounted} from "vue";
 import aapl from "../data/aapl.ts";
-import bls from "../data/bls.ts";
 import driving from "../data/driving.ts";
 import sftemp from "../data/sf-temperatures.ts";
 import tdf from "../data/tdf.ts";
 
 const beagle = shallowRef([]);
+const bls = shallowRef([]);
 const stateage = shallowRef([]);
 const stocks = shallowRef([]);
 const world = shallowRef(null);
@@ -18,6 +18,7 @@ const land = computed(() => world.value ? topojson.feature(world.value, world.va
 
 onMounted(() => {
   d3.text("../data/beagle.csv").then((text) => (beagle.value = d3.csvParseRows(text).map(d3.autoType)));
+  d3.csv("../data/bls-metro-unemployment.csv", d3.autoType).then((data) => (bls.value = data));
   d3.json("../data/countries-110m.json").then((data) => (world.value = data));
   d3.csv("../data/us-population-state-age.csv", d3.autoType).then((data) => {
     const ages = data.columns.slice(1); // convert wide data to tidy data
@@ -58,7 +59,7 @@ This shorthand loses the automatic *x*- and *y*-axis labels, reducing legibility
 
 The [lineY constructor](#liney-data-options) provides default channel definitions of **x** = index and **y** = [identity](../features/transforms.md#identity), letting you pass an array of numbers as data. The [lineX constructor](#linex-data-options) similarly provides **x** = identity and **y** = index defaults for lines that go up↑ instead of to the right→. Below, a random walk is made using [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
 
-:::plot https://observablehq.com/@observablehq/plot-shorthand-liney
+:::plot defer https://observablehq.com/@observablehq/plot-shorthand-liney
 ```js
 Plot.lineY(d3.cumsum({length: 600}, d3.randomNormal())).plot()
 ```
@@ -66,7 +67,7 @@ Plot.lineY(d3.cumsum({length: 600}, d3.randomNormal())).plot()
 
 As with [areas](./area.md), points in lines are connected in input order: the first point is connected to the second point, the second is connected to the third, and so on. Line data is typically in chronological order. Unsorted data may produce gibberish.
 
-:::plot https://observablehq.com/@observablehq/plot-line-sort
+:::plot defer https://observablehq.com/@observablehq/plot-line-sort
 ```js
 Plot.lineY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close"}).plot() // 🌶️
 ```
@@ -74,7 +75,7 @@ Plot.lineY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close"}).plot() // 🌶️
 
 If your data isn’t sorted, use the [sort transform](../transforms/sort.md).
 
-:::plot https://observablehq.com/@observablehq/plot-line-sort
+:::plot defer https://observablehq.com/@observablehq/plot-line-sort
 ```js
 Plot.lineY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close", sort: "Date"}).plot()
 ```
@@ -82,7 +83,7 @@ Plot.lineY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close", sort: "Date"}).plot
 
 While the *x* scale of a line chart often represents time, this is not required. For example, we can plot the elevation profile of a Tour de France stage—and imagine how tiring it must be to start a climb after riding 160km! ⛰🚴💦
 
-:::plot https://observablehq.com/@observablehq/plot-tour-de-france-elevation-profile
+:::plot defer https://observablehq.com/@observablehq/plot-tour-de-france-elevation-profile
 ```js
 Plot.plot({
   x: {
@@ -102,7 +103,7 @@ Plot.plot({
 
 There is no requirement that **y** be dependent on **x**; lines can be used in connected scatterplots to show two independent (but often correlated) variables. (See also [phase plots](https://en.wikipedia.org/wiki/Phase_portrait).) The chart below recreates Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009.
 
-:::plot https://observablehq.com/@observablehq/plot-connected-scatterplot
+:::plot defer https://observablehq.com/@observablehq/plot-connected-scatterplot
 ```js
 Plot.plot({
   inset: 10,
@@ -119,7 +120,7 @@ Plot.plot({
 
 To draw multiple lines, use the **z** channel to group [tidy data](https://r4ds.had.co.nz/tidy-data.html) into series. For example, the chart below shows unemployment rates of various metro areas from the Bureau of Labor Statistics; the **z** value is the metro division name.
 
-:::plot https://observablehq.com/@observablehq/plot-multiple-line-chart
+:::plot defer https://observablehq.com/@observablehq/plot-multiple-line-chart
 ```js
 Plot.plot({
   y: {
@@ -142,7 +143,7 @@ If your data is not tidy, you can use [*array*.flatMap](https://developer.mozill
 
 If a **stroke** (or **fill**) channel is specified, the **z** option defaults to the same, automatically grouping series. For this reason, both **stroke** and **z** are typically ordinal or categorical.
 
-:::plot https://observablehq.com/@observablehq/plot-indexed-line-chart
+:::plot defer https://observablehq.com/@observablehq/plot-indexed-line-chart
 ```js
 Plot.plot({
   style: "overflow: visible;",
@@ -178,7 +179,7 @@ Here the [normalize transform](../transforms/normalize.md) normalizes each time 
 
 Varying-color lines are supported. If the **stroke** value varies within series, the line will be segmented by color. (The same behavior applies to other channels, such as **strokeWidth** and **title**.) Specifying the **z** channel (say to null for a single series) is recommended.
 
-:::plot https://observablehq.com/@observablehq/plot-varying-stroke-line
+:::plot defer https://observablehq.com/@observablehq/plot-varying-stroke-line
 ```js
 Plot.plot({
   x: {
@@ -203,7 +204,7 @@ Plot.plot({
 
 Color encodings can also be used to highlight specific series, such as here to emphasize high unemployment in Michigan.
 
-:::plot https://observablehq.com/@observablehq/plot-multiple-line-highlight
+:::plot defer https://observablehq.com/@observablehq/plot-multiple-line-highlight
 ```js
 Plot.plot({
   y: {
@@ -232,7 +233,7 @@ When using **z**, lines are drawn in input order. The [sort transform](../transf
 
 As an alternative to **z**, you can render multiple lines using multiple marks. While more verbose, this allows you to choose different options for each line. For example, below we plot the a 14-day moving average of the daily highs and lows in temperate San Francisco using the [window transform](../transforms/window.md).
 
-:::plot https://observablehq.com/@observablehq/plot-moving-average-line
+:::plot defer https://observablehq.com/@observablehq/plot-moving-average-line
 ```js
 Plot.plot({
   y: {
@@ -250,7 +251,7 @@ Plot.plot({
 
 If some channel values are undefined (or null or NaN), gaps will appear between adjacent points. To demonstrate, below we set the **y** value to NaN for the first three months of each year.
 
-:::plot https://observablehq.com/@observablehq/plot-line-chart-with-gaps
+:::plot defer https://observablehq.com/@observablehq/plot-line-chart-with-gaps
 ```js
 Plot.plot({
   y: {
@@ -265,7 +266,7 @@ Plot.plot({
 
 Supplying undefined values is not the same as filtering the data: the latter will interpolate between the data points. Observe the conspicuous straight lines below!
 
-:::plot https://observablehq.com/@observablehq/plot-line-chart-with-gaps
+:::plot defer https://observablehq.com/@observablehq/plot-line-chart-with-gaps
 ```js
 Plot.plot({
   y: {

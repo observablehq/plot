@@ -4,16 +4,17 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import {computed, ref, shallowRef, onMounted} from "vue";
-import bls from "../data/bls.ts";
 import cars from "../data/cars.ts";
 
 const sorted = ref(true);
 const order = ref("ascending");
+const bls = shallowRef([]);
 const us = shallowRef(null);
 const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states) : {type: null});
 const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
 
 onMounted(() => {
+  d3.csv("../data/bls-metro-unemployment.csv", d3.autoType).then((data) => (bls.value = data));
   Promise.all([
     d3.json("../data/us-counties-10m.json"),
     d3.csv("../data/us-county-population.csv")

@@ -57,7 +57,7 @@ As shown above, the Delaunay graph is computed separately for each color; specif
 
 Another derivative of the Delaunay graph is the convex hull of a set of points: the polygon with the minimum perimeter that contains all the points. The [hull mark](#hull-data-options) will draw this hull.
 
-:::plot https://observablehq.com/@observablehq/plot-convex-hull
+:::plot defer https://observablehq.com/@observablehq/plot-convex-hull
 ```js
 Plot.plot({
   marks: [
@@ -87,7 +87,7 @@ The link color is driven by one arbitrary extremity of each edge; this might cha
 
 The Delaunay marks can be one-dimensional, too.
 
-:::plot https://observablehq.com/@observablehq/plot-one-dimensional-voronoi
+:::plot defer https://observablehq.com/@observablehq/plot-one-dimensional-voronoi
 ```js
 Plot.plot({
   marks: [

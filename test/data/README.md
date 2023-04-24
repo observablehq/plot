@@ -167,8 +167,8 @@ https://talk.observablehq.com/t/diverging-stacked-bar-chart-in-plot/6028
 Unknown
 
 ## traffic.csv
-Moritz Klack
-https://observablehq.com/@moklick
+Christopher Möller
+https://gist.github.com/chrtze/c74efb46cadb6a908bbbf5227934bfea
 
 ## travelers.csv
 TSA

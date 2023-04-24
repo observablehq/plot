@@ -84,7 +84,7 @@ Plot.plot({
 
 The density mark also works with one-dimensional values:
 
-:::plot https://observablehq.com/@observablehq/plot-one-dimensional-density
+:::plot defer https://observablehq.com/@observablehq/plot-one-dimensional-density
 ```js
 Plot.plot({
   height: 100,
@@ -126,7 +126,7 @@ Plot.plot({
 })
 ``` -->
 
-:::plot https://observablehq.com/@observablehq/plot-density-faceted
+:::plot defer https://observablehq.com/@observablehq/plot-density-faceted
 ```js
 Plot.plot({
   marks: [
@@ -149,7 +149,7 @@ The **weight** channel specifies the contribution of each data point to the esti
   </label>
 </p>
 
-:::plot https://observablehq.com/@observablehq/plot-density-weighted
+:::plot defer https://observablehq.com/@observablehq/plot-density-weighted
 ```js
 Plot.plot({
   inset: 10,
@@ -176,7 +176,7 @@ Plot.plot({
 
 You can specify a negative weight for points that the density contours should avoid, resulting in regions of influence that do not overlap.
 
-:::plot https://observablehq.com/@observablehq/plot-non-overlapping-density-regions
+:::plot defer https://observablehq.com/@observablehq/plot-non-overlapping-density-regions
 ```js
 Plot.plot({
   inset: 10,

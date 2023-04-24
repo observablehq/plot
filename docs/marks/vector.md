@@ -75,7 +75,7 @@ You can even implement a custom **shape** by supplying an object with a **draw**
 
 Lastly, here is an example showing a Perlin noise field, just because it’s pretty:
 
-:::plot https://observablehq.com/@observablehq/plot-perlin-noise
+:::plot defer https://observablehq.com/@observablehq/plot-perlin-noise
 ```js
 Plot.plot({
   inset: 6,
