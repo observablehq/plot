@@ -23,7 +23,7 @@ onMounted(() => {
 
 The **select transform** filters a mark’s index to show a subset of the data. It is a specialized [filter transform](./filter.md) that pulls a single value out of each series. For example, below selectLast is used to label the last value in a line chart.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-value-labelled-line-chart
 ```js
 Plot.plot({
   y: {grid: true},
@@ -40,7 +40,7 @@ The select transform uses input order, not natural order by value, to determine 
 
 Using selectMinY and selectMaxY, you can label the extreme values.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-value-labelled-line-chart
 ```js
 Plot.plot({
   y: {grid: true},
@@ -56,7 +56,7 @@ Plot.plot({
 
 The select transform groups data into series using the **z**, **fill**, or **stroke** channel in the same fashion as the [area](../marks/area.md) and [line](../marks/line.md) marks. Below, the select transform is used to label the last point in each series of a multi-series line chart.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-labelled-multi-line-chart
 ```js
 Plot.plot({
   style: "overflow: visible;",
