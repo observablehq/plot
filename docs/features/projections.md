@@ -4,7 +4,9 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import {computed, shallowRef, onMounted} from "vue";
+import {useDark} from "../components/useDark.js";
 
+const dark = useDark();
 const elections = shallowRef([]);
 const walmarts = shallowRef([]);
 const us = shallowRef(null);
@@ -604,14 +606,12 @@ Plot.plot({
 Plot.density… just works. See [Plot.density](../marks/density.md) for details. On a small-scale map showing the whole globe, you might have to clip the results. And, because the density is computed on the projected coordinates, it is recommended to use an equal-area projection to limit distortion.
 
 :::plot defer
-```js
+```js-vue
 Plot.plot({
   width: 960,
   height: 600,
   projection: "albers",
-  color: {
-    scheme: "blues"
-  },
+  color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"},
   marks: [
     Plot.density(walmarts, {
       x: "longitude",
@@ -659,15 +659,14 @@ Plot.plot({
 
 ## Vectors
 
-Did we mention [vectors](../marks/vector.md)? The map below shows the margin by which the winner of the US presidential election of 2020 won the vote in each county. The arrow’s length encodes the difference in votes, and the orientation and color show who won (<svg width=12 height=12 viewBox="-11 -11 12 12" style="display: inline-block"><path d="M0,0l-10,-6m1,3.28l-1,-3.28l3.28,-1" stroke="blue"></path></svg> for the Democratic candidate, and <svg width=12 height=12 viewBox="0 -11 12 12" style="display: inline-block"><path d="M0,0l10,-6m-1,3.28l1,-3.28l-3.28,-1" stroke="red"></path></svg> for the Republican candidate).
+Did we mention [vectors](../marks/vector.md)? The map below shows the margin by which the winner of the US presidential election of 2020 won the vote in each county. The arrow’s length encodes the difference in votes, and the orientation and color show who won (<svg width=12 height=12 viewBox="-11 -11 12 12" style="display: inline-block"><path d="M0,0l-10,-6m1,3.28l-1,-3.28l3.28,-1" stroke="var(--vp-c-blue)" stroke-width="1.5"></path></svg> for the Democratic candidate, and <svg width=12 height=12 viewBox="0 -11 12 12" style="display: inline-block"><path d="M0,0l10,-6m-1,3.28l1,-3.28l-3.28,-1" stroke="var(--vp-c-red)" stroke-width="1.5"></path></svg> for the Republican candidate).
 
 :::plot defer
 ```js
 Plot.plot({
   projection: "albers-usa",
-  width: 975,
   marks: [
-    Plot.geo(statemesh, {strokeWidth: 0.75}),
+    Plot.geo(statemesh, {strokeWidth: 0.5}),
     Plot.geo(nation),
     Plot.vector(
       elections,
