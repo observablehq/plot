@@ -145,7 +145,7 @@ A similar plot can be made with the [dot mark](./dot.md), if you’d prefer a si
 
 Below we recreate an uncommon [chart by Max Roser](https://ourworldindata.org/poverty-minimum-growth-needed) that visualizes global poverty. Each rect represents a country: *x* encodes the country’s population, while *y* encodes the proportion of that population living in poverty; hence area represents the number of people living in poverty. Rects are [stacked](../transforms/stack.md) along *x* in order of descending *y*.
 
-:::plot defer https://observablehq.com/@observablehq/plot-cumulative-distribution-of-income
+:::plot defer https://observablehq.com/@observablehq/plot-cumulative-distribution-of-poverty
 ```js
 Plot.plot({
   x: {label: "Population (millions) →"},
