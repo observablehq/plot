@@ -22,9 +22,9 @@ onMounted(() => {
 
 # Transforms
 
-Often the most onerous task in visualization is not visual, but logical: getting data into the right shape. For example, given a [dataset of highway traffic](https://gist.github.com/chrtze/c74efb46cadb6a908bbbf5227934bfea) measured as vehicles per hour by location, plotting every observation is straightforward: use a [dot](../marks/dot.md) or [tick](../marks/tick.md) and assign **x** = vehicles per hour and **y** = location. But to draw a quantifiable insight, we might want a summary statistic such as the *median* traffic by location. And this requires munging data. 👩‍💻
+Plot **transforms** provide a convenient mechanism for deriving data as part of the plot specification. This accelerates what is often the most onerous task in visualization: getting data into the right shape.
 
-Plot **transforms** provide a convenient mechanism for deriving data as part of the plot specification. For example, below we use the [group transform](../transforms/group.md) to group by location, and then apply the *median* reducer to summarize with a <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> tick.
+For example, given a [dataset of highway traffic](https://gist.github.com/chrtze/c74efb46cadb6a908bbbf5227934bfea) measured as vehicles per hour by location, plotting every observation is straightforward: use a [tick](../marks/tick.md) (or [dot](../marks/dot.md)) and assign **x** = vehicles per hour and **y** = location. But to draw a quantifiable insight, we may want a summary statistic such as the *median* traffic by location. 👩‍💻 Below we use the [group transform](../transforms/group.md) to group by location and apply a *median* reducer to position the <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> tick.
 
 :::plot defer
 ```js

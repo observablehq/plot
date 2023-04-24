@@ -127,7 +127,8 @@ export default defineConfig({
       {icon: "twitter", link: "https://twitter.com/observablehq"},
       {icon: "mastodon", link: "https://vis.social/@observablehq"},
       {icon: "slack", link: "https://observable-community.slack.com/ssb/redirect"},
-      {icon: "linkedin", link: "https://www.linkedin.com/company/observable"}
+      {icon: "linkedin", link: "https://www.linkedin.com/company/observable"},
+      {icon: "youtube", link: "https://www.youtube.com/c/Observablehq"}
     ],
     footer: {
       message:
