@@ -183,7 +183,7 @@ If the **transform** option is specified, it supersedes any basic transforms (*i
 
 While transform functions often produce new *data* or *facets*, they may return the passed-in *data* and *facets* as-is, and often have a side-effect of constructing derived channels. For example, the count of elements in a [groupX transform](../transforms/group.md) might be returned as a new *y* channel. In this case, the transform is typically expressed as an options transform: a function that takes a mark *options* object and returns a new, transformed options object, where the returned options object implements the **transform** option. Transform functions should not mutate the input *data* or *facets*. Likewise options transforms should not mutate the input *options* object.
 
-When implementing a custom transforms, keep in mind that every transform needs to be compatible with Plot’s [faceting system](./facets.md), which partitions the original dataset into discrete subsets.
+When implementing a custom transform for generic usage, keep in mind that it needs to be compatible with Plot’s [faceting system](./facets.md), which partitions the original dataset into discrete subsets.
 
 ## Custom initializers
 
