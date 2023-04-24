@@ -9,7 +9,7 @@ import penguins from "../data/penguins.ts";
 const dark = useDark();
 const bls = shallowRef([]);
 const olympians = shallowRef([]);
-const traffic = shallowRef([]);
+const traffic = shallowRef(["Saarbrücken-Neuhaus", "Oldenburg (Holstein)", "Holz", "Göttelborn", "Riegelsberg", "Kastel", "Neustadt i. H.-Süd", "Nettersheim", "Hasborn", "Laufeld", "Otzenhausen", "Nonnweiler", "Kirschheck", "AS Eppelborn", "Bierfeld", "Von der Heydt", "Illingen", "Hetzerath", "Groß Ippener", "Bockel", "Ladbergen", "Dibbersen", "Euskirchen/Bliesheim", "Hürth", "Lotte", "Ascheberg", "Bad Schwartau", "Schloss Burg", "Uphusen", "HB-Silbersee", "Barsbüttel", "HB-Mahndorfer See", "Glüsingen", "HB-Weserbrücke", "Hengsen", "Köln-Nord", "Hagen-Vorhalle", "Unna"].map((location, i) => ({location, date: new Date(Date.UTC(2000, 0, 1, i)), vehicles: (10 + i) ** 2.382})));
 const bins = computed(() => d3.bin().thresholds(80).value((d) => d.weight)(olympians.value));
 
 onMounted(() => {
