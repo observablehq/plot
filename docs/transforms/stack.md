@@ -53,9 +53,9 @@ const likert = Likert([
 
 The **stack transform** comes in two orientations: [stackY](#stackystack-options) replaces **y** with **y1** and **y2** to form vertical↑ stacks grouped on **x**, while [stackX](#stackx-stack-options) replaces **x** with **x1** and **x2** for horizontal→ stacks grouped on **y**.  In effect, stacking transforms a *length* into *lower* and *upper* positions: the upper position of each element equals the lower position of the next element in the stack. Stacking makes it easier to perceive a total while still showing its parts.
 
-For example, below is a stacked area chart of [deaths in the Crimean War](https://en.wikipedia.org/wiki/Florence_Nightingale#Crimean_War)—predominantly from <span :style="{borderBottom: `solid ${d3.schemeTableau10[0]} 3px`}">disease</span>—using  Florence Nightingale’s data.
+For example, below is a stacked area chart of [deaths in the Crimean War](https://en.wikipedia.org/wiki/Florence_Nightingale#Crimean_War)—predominantly from <span :style="{borderBottom: `solid ${d3.schemeTableau10[0]} 3px`}">disease</span>—using Florence Nightingale’s data.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-crimean-war-casualties
 ```js
 Plot.plot({
   y: {grid: true},
@@ -74,7 +74,7 @@ The [areaY mark](../marks/area.md) applies the stackY transform implicitly if yo
 
 The stack transform works with any mark that consumes **y1** & **y2** or **x1** & **x2**, so you can stack rects, too.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-crimean-war-recty
 ```js
 Plot.plot({
   y: {grid: true},
@@ -92,7 +92,7 @@ The [interval mark option](./interval.md) specifies the periodicity of the data;
 
 And you can stack bars if you’d prefer to treat *x* as ordinal.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-crimean-war-bary
 ```js
 Plot.plot({
   x: {
@@ -144,7 +144,7 @@ The **order** option controls the order in which the layers are stacked. It defa
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-stacking-order
 ```js
 Plot.plot({
   y: {
@@ -174,7 +174,7 @@ The **reverse** option reverses the order of layers. In conjunction with the *ap
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-stacking-order-and-reverse
 ```js
 Plot.plot({
   y: {
@@ -197,7 +197,7 @@ The **reverse** option is also used by the [sort transform](./sort.md). To disam
 
 The *value* **order** is worth special mention: it sorts each stack by value independently such that the order of layers can change, emphasizing the changing ranks of layers. This is sometimes called a “ribbon” chart. (In fact, the default null **order** supports changing order of layers, too! But most often data comes already sorted by series.)
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-ribbon-chart
 ```js
 Plot.plot({
   y: {
@@ -226,7 +226,7 @@ The **offset** option controls the baseline of stacked layers. It defaults to nu
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-stack-offset
 ```js
 Plot.plot({
   y: {
@@ -247,7 +247,7 @@ When **offset** is not null, the *y* axis is harder to use because there is no l
 
 The *normalize* **offset** is again worth special mention: it scales stacks to fill the interval [0, 1], thereby showing the relative proportion of each layer. Sales of <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">compact discs</span> accounted for over 90% of revenue in the early 2000’s, but now most revenue comes from <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[3]}`}">streaming</span>.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-normalized-stack
 ```js
 Plot.plot({
   y: {
@@ -297,7 +297,7 @@ The stackY2 transform places each dot at the upper bound of the associated stack
 
 When visualizing [Likert scale](https://en.wikipedia.org/wiki/Likert_scale) survey results we may wish to place <span :style="{borderWidth: 2, borderBottomStyle: 'solid', borderImage: `linear-gradient(to right, ${d3.schemeRdBu[5][0]}, ${d3.schemeRdBu[5][1]}) 2`}">negative</span> (disagreeing) responses on the left and <span :style="{borderWidth: 2, borderBottomStyle: 'solid', borderImage: `linear-gradient(to right, ${d3.schemeRdBu[5][3]}, ${d3.schemeRdBu[5][4]}) 2`}">positive</span> (agreeing) responses on the right, leaving <span :style="{borderBottom: `solid 2px ${d3.schemeRdBu[5][2]}`}">neutral</span> responses in the middle. This is achieved below using a custom **offset** function.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-diverging-stacked-bar
 ```js
 Plot.plot({
   x: {tickFormat: Math.abs},
