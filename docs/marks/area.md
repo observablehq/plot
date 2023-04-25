@@ -245,7 +245,7 @@ Plot.plot({
 Above, smaller industries such as agriculture and mining & extraction are dwarfed by larger industries such as wholesale & retail trade. To emphasize each industry’s trend, instead of comparing absolute numbers across industries, you could use the [normalize transform](../transforms/normalize.md).
 :::
 
-Or, as a [horizon chart](https://observablehq.com/@observablehq/plot-horizon).
+Or, as a [horizon chart](https://observablehq.com/@observablehq/plot-horizon), where the area is repeated at different scales with different colors, showing both small-scale variation in position and large-scale variation in color:
 
 :::plot defer https://observablehq.com/@observablehq/plot-faceted-areas
 ```js-vue
