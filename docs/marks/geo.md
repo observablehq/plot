@@ -129,7 +129,7 @@ Plot.plot({
 ```
 :::
 
-The geo mark supports [faceting](./facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
+The geo mark supports [faceting](../features/facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
 
 :::plot defer https://observablehq.com/@observablehq/plot-map-large-multiples
 ```js
