@@ -2,13 +2,23 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import {ref} from "vue";
+import {ref, shallowRef, onMounted} from "vue";
+import alphabet from "../data/alphabet.ts";
 import gistemp from "../data/gistemp.ts";
 
+const padding = ref(0.1);
+const align = ref(0.5);
 const schemeq = ref("turbo");
 const schemed = ref("rdbu");
 const interpolateq = ref("rgb");
 const anomaly = gistemp.map((d) => d.Anomaly);
+const aapl = shallowRef([]);
+const goog = shallowRef([]);
+
+onMounted(() => {
+  d3.csv("../data/aapl.csv", d3.autoType).then((data) => (aapl.value = data));
+  d3.csv("../data/goog.csv", d3.autoType).then((data) => (goog.value = data));
+});
 
 </script>
 
@@ -18,9 +28,7 @@ const anomaly = gistemp.map((d) => d.Anomaly);
 This guide is still under construction. 🚧 Please come back when it’s finished.
 :::
 
-**Scales** convert an abstract value such as *time* or *temperature* to a visual value such as *x*- or *y*-position or color.
-
-For example, say we had a tabular dataset `gistemp` representing the global average surface temperature ([GISTEMP](https://data.giss.nasa.gov/gistemp/)) with monthly observations from 1880–2016. The first few rows are:
+**Scales** convert an abstract value such as time or temperature to a visual value such as *x*- or *y*-position or color. For example, say we have a tabular dataset (`gistemp`) containing monthly observations of [global average surface temperature](https://data.giss.nasa.gov/gistemp/) from 1880 to 2016. The first few rows are:
 
 | Date       | Anomaly |
 |------------|--------:|
@@ -31,7 +39,7 @@ For example, say we had a tabular dataset `gistemp` representing the global aver
 | 1880-05-01 | -0.14   |
 | 1880-06-01 | -0.29   |
 
-When visualizing this data as a line chart, it is the *x* scale’s responsibility to translate a particular *Date* to a horizontal↔︎ position on screen. For example, 1880-01-01 might be mapped to *x* = 40, representing the left edge of the screen, and 2016-12-01 might be mapped to *x* = 620, representing the right edge of the screen. Likewise, the *y* scale maps an *Anomaly* value to a vertical↕︎ position.
+When visualizing this data with a [line](../marks/line.md), the *x* scale is responsible for mapping dates to horizontal↔︎ positions. For example, 1880-01-01 might be mapped to *x* = 40 (on the left) and 2016-12-01 might be mapped to *x* = 620 (on the right). Likewise, the *y* scale maps a temperature anomaly to a vertical↕︎ position.
 
 :::plot
 ```js
@@ -39,79 +47,81 @@ Plot.lineY(gistemp, {x: "Date", y: "Anomaly"}).plot()
 ```
 :::
 
+In Plot, mark channels are bound to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.html#mark-options) if needed.)
+
+Think of a scale as a function that takes an abstract value and returns the corresponding visual value. For the *y* scale above, that might look like this:
+
+```js
+function y(anomaly) {
+  const t = (anomaly - minAnomaly) / (maxAnomaly - minAnomaly); // t in [0, 1]
+  return height - marginBottom - t * (height - marginTop - marginBottom);
+}
+```
+
+The function `y` depends on a few additional details: the chart’s size and margins, and the minimum and maximum temperatures in the data:
+
+```js
+const marginTop = 20;
+const marginBottom = 30;
+const height = 400;
+const minAnomaly = d3.min(gistemp, (d) => d.Anomaly);
+const maxAnomaly = d3.max(gistemp, (d) => d.Anomaly);
+```
+
+Scales aren’t limited to horizontal and vertical position. They can also output to color, radius, length, opacity, and more. For example if we switch to a [rule](../marks/rule.md) and use the **stroke** channel instead of **y**, we get a one-dimensional heatmap:
+
 :::plot
 ```js
-Plot.tickX(gistemp, {x: "Date", stroke: "Anomaly"}).plot()
+Plot.ruleX(gistemp, {x: "Date", stroke: "Anomaly"}).plot()
 ```
 :::
 
-You can think about a scale as a function that takes an abstract value and returns the visual value. For the *x* scale above, that might look something like this:
+While the resulting chart looks different, the *color* scale here behaves similarly to the `y` function above—the only difference is that it interpolates colors (using [d3.interpolateTurbo](https://github.com/d3/d3-scale-chromatic/blob/main/README.md#interpolateTurbo)) instead of numbers (the top and bottom sides of the plot frame):
 
 ```js
-const min = d3.min(gistemp, (d) => d.Date);
-const max = d3.max(gistemp, (d) => d.Date);
-```
-
-```js
-function x(value) {
-  const t = (value - min) / (max - min); // t in [0, 1]
-  return t * (width - left - right) + right;
+function color(anomaly) {
+  const t = (anomaly - minAnomaly) / (maxAnomaly - minAnomaly); // t in [0, 1]
+  return d3.interpolateTurbo(t);
 }
 ```
 
-But things get a bit more complicated with *color*…
+Within a given plot, marks share scales. For example, if a plot has two line marks, both share the same *x* and *y* scales for a consistent encoding.
 
-```js
-function x(value) {
-  const t = (value - min) / (max - min); // t in [0, 1]
-  return interpolate(t);
-}
-```
-
-Where `interpolate` is something like d3.interpolateNumber, d3.interpolateRgb, d3.interpolateTurbo.
-
-Scales define a plot’s coordinate system.
-
-Two ways to think about scales: the _input_ and the _output_.
-
-First, what is the type of the _input_ of the scale. Ordinal, categorical (nominal), quantitative, temporal.
-
-In Plot this is roughly the *type* of the scale (_e.g._, *linear* or *ordinal*).
-
-Second, what is the type of the _output_ of the scale. Position, color, radius, length, angle. In many cases this is just what the underlying interpolator is. For position, the output is a number, so we interpolate from the left to the right side. Whereas for color, the output is a color, we need a color space such as RGB or LCh to interpolate, or a fixed color ramp such as *turbo*.
-
-In Plot this is roughly the *name* of the scale (_e.g._, *x* or *color*).
-
-There are also some special transforms we can apply as part of the visual encoding. For example, continuous transforms such as log and sqrt. And sometimes converting continuous values into discrete values, with quantile, quantize, threshold. The latter transforms especially are usually for color.
-
----
-
-Plot passes data through scales as needed before rendering marks. A scale maps abstract values such as time or temperature to visual values such as position or color. Within a given plot, marks share scales. For example, if a plot has two Plot.line marks, both share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
-
+:::plot defer
 ```js
 Plot.plot({
   marks: [
-    Plot.line(aapl, {x: "Date", y: "Close"}),
-    Plot.line(goog, {x: "Date", y: "Close"})
+    Plot.ruleY([0]),
+    Plot.lineY(goog, {x: "Date", y: "Close", stroke: "red"}),
+    Plot.lineY(aapl, {x: "Date", y: "Close", stroke: "blue"})
   ]
 })
 ```
+:::
 
----
+:::tip
+Not that we recommend them, but if you are interested in dual-axis charts, please upvote [#147](https://github.com/observablehq/plot/issues/147).
+:::
 
-In Plot, scales are named: **x** or **y** for position; **fx** or **fy** for facet position; **r** for radius; or **color**. A plot can have multiple scales but at most one scale of a given name. Mark channels are bound to scales; for example, a dot’s **x** channel is bound to the **x** scale. The channel name and the scale name are often the same, but not always; for example, a bar’s **y1** and **y2** channels are both bound to the **y** scale.
+Plot has many different scales; we can categorize them by their _input_ (**domain**) and by their _output_ (**range**).
 
-A scale is configured primarily by its input **domain** and output **range**: the domain is a set of abstract values typically derived from data, such as a time interval [*start*, *end*] or temperature interval [*cold*, *hot*]; the range is a set of visual values, such as an extent of the chart in pixels [*left*, *right*] or a color interval [*blue*, *red*].
+The **domain** is the abstract values that the scale expects as input. For quantitative or temporal data, it is typically expressed as an extent such as [*start*, *end*], [*cold*, *hot*], or [*min*, *max*]. For ordinal or nominal data, it is an array of values such as names or categories. The type of input values corresponds to the **type** scale option (_e.g._, *linear* or *ordinal*).
 
-To observe scale behavior, let’s first look at some empty plots with only an *x*-scale and some hard-coded domains. The *x*-axis reveals the resulting position (a value from the range) for the corresponding abstract value (a value from the domain).
+The **range** is the visual values that the scale generates as output. For position scales, it is typically an extent such as [*left*, *right*] or [*bottom*, *top*]; for color scales, it might be a continuous extent [*blue*, *red*] or an array of discrete colors. The type of values that a scale outputs corresponds to the *name* of the scale (_e.g._, *x* or *color*).
+
+<!-- Position, color, radius, length, angle. In many cases this is just what the underlying interpolator is. For position, the output is a number, so we interpolate from the left to the right side. Whereas for color, the output is a color, we need a color space such as RGB or LCh to interpolate, or a fixed color ramp such as *turbo*.  -->
+
+<!-- There are also some special transforms we can apply as part of the visual encoding. For example, continuous transforms such as log and sqrt. And sometimes converting continuous values into discrete values, with quantile, quantize, threshold. The latter transforms especially are usually for color. -->
+
+Let’s look at some examples to make this less abstract.
 
 ## Continuous scales
 
-The domain of a quantitative scale is a continuous interval [*min*, *max*] where *min* and *max* are numbers, such as temperatures. Below, the first domain value (*x* = 0) corresponds to the left edge of the plot while the second (*x* = 100) corresponds to the right edge.
+The domain of a quantitative scale is a continuous extent [*min*, *max*] where *min* and *max* are numbers, such as temperatures. Below, the first domain value (*x* = 0) corresponds to the left side of the plot while the second (*x* = 100) corresponds to the right side.
 
 :::plot
 ```js
-Plot.gridX().plot({x: {domain: [0, 100]}})
+Plot.plot({x: {domain: [0, 100], grid: true}})
 ```
 :::
 
@@ -119,7 +129,7 @@ Flipping the domain reverses the scale so that +*x* points ←left instead of ri
 
 :::plot
 ```js
-Plot.gridX().plot({x: {domain: [100, 0]}})
+Plot.plot({x: {domain: [100, 0], grid: true}})
 ```
 :::
 
@@ -127,65 +137,65 @@ Alternatively, use the **reverse** option; this is convenient when the domain is
 
 :::plot
 ```js
-Plot.gridX().plot({x: {domain: [0, 100], reverse: true}})
+Plot.plot({x: {domain: [0, 100], reverse: true, grid: true}})
 ```
 :::
 
-If the domain is dates, Plot will default to a UTC scale. This is a linear scale with ticks based on the Gregorian calendar. (Plot uses [d3.scaleTime](https://github.com/d3/d3-scale#time_ticks)’s “multi-scale” tick format, so January shows the year.)
+If the domain is dates, Plot will default to a UTC scale. This is a linear scale with ticks based on the Gregorian calendar.
 
 <!-- Plot doesn’t parse dates; convert your strings to [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) instances with [d3.utcParse](https://github.com/d3/d3-time-format#utcParse) or [d3.autoType](https://github.com/d3/d3-dsv#autoType). -->
 
 :::plot
 ```js
-Plot.gridX().plot({x: {domain: [new Date("2021-01-01"), new Date("2022-01-01")]}})
+Plot.plot({x: {domain: [new Date("2021-01-01"), new Date("2022-01-01")], grid: true}})
 ```
 :::
 
-To force a UTC scale, say when the data is milliseconds since UNIX epoch rather than Date instances, pass “utc” as the **type** option.
+:::tip
+We are working on better multi-line ticks for time scales; please upvote [#1285](https://github.com/observablehq/plot/issues/1285) if you are interested.
+:::
+
+To force a UTC scale, say when the data is milliseconds since UNIX epoch rather than Date instances, pass *utc* as the **type** option.
 
 :::plot
 ```js
-Plot.gridX().plot({x: {type: "utc", domain: [1609459200000, 1640995200000]}})
+Plot.plot({x: {type: "utc", domain: [1609459200000, 1640995200000], grid: true}})
 ```
 :::
 
-If the *type* is “time”, the ticks will be in local time rather than UTC. Be careful here: if your reader is in a different time zone, you may see different plots! UTC is strongly recommended if you are plotting daily (or less frequent) data.
+:::tip
+We recommend coercing strings and numbers to more specific types when you load data, rather than relying on scales to do it.
+:::
+
+If the scale **type** is *time*, the ticks will be in local time rather than UTC.
 
 :::plot
 ```js
-Plot.gridX().plot({x: {type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)]}})
+Plot.plot({x: {type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)], grid: true}})
 ```
 :::
 
-When plotting values that vary widely, such as the luminosity of stars in an [HR diagram](https://observablehq.com/@mbostock/hertzsprung-russell-diagram), a [logarithmic transformation](http://github.com/d3/d3-scale#log-scales) may improve readability; this can be enabled with type “log”. This defaults to base-10 ticks with exponential notation.
+When plotting values that vary widely, such as the luminosity of stars in an [HR diagram](https://observablehq.com/@mbostock/hertzsprung-russell-diagram), a *log* scale may improve readability. Log scales default to base-10 ticks with SI-prefix notation.
 
 :::plot
 ```js
-Plot.gridX().plot({x: {type: "log", domain: [1e0, 1e5]}})
+Plot.plot({x: {type: "log", domain: [1e0, 1e5], grid: true}})
 ```
 :::
 
-If you prefer conventional notation, you can specify the **tickFormat** option to change the behavior of the axis. Note, however, that this may result in overlapping text.
+If you prefer conventional notation, you can specify the **tickFormat** option to change the behavior of the axis. The **tickFormat** option can either be a [d3.format](https://github.com/d3/d3-format) string or a function that takes a tick value and returns the corresponding string. Note, however, that this may result in overlapping text.
 
 :::plot
 ```js
-Plot.gridX().plot({x: {type: "log", domain: [1e0, 1e5], tickFormat: ","}})
+Plot.plot({x: {type: "log", domain: [1e0, 1e5], tickFormat: ",", grid: true}})
 ```
 :::
 
-SI-prefix notation is also supported; the **tickFormat** option can either be a [d3.format](https://github.com/d3/d3-format) string or a function that takes a tick value and returns the corresponding string.
+Log scales also support a **base** option, say for powers of two. This does not affect the scale’s encoding, but it does change which ticks are shown.
 
 :::plot
 ```js
-Plot.gridX().plot({x: {type: "log", domain: [1e0, 1e5], tickFormat: "~s"}})
-```
-:::
-
-Log scales also support a **base** option, say for powers of two. Exponential notation is only the default for base 10.
-
-:::plot
-```js
-Plot.gridX().plot({x: {type: "log", base: 2, domain: [1e0, 1e4], ticks: 20}})
+Plot.plot({x: {type: "log", base: 2, domain: [1e0, 1e4], ticks: 20, grid: true}})
 ```
 :::
 
@@ -193,21 +203,21 @@ The domain of a log scale cannot include (or cross) zero; for this, consider a [
 
 :::plot
 ```js
-Plot.gridX().plot({x: {type: "symlog", domain: [-10, 10]}})
+Plot.plot({x: {type: "symlog", domain: [-10, 10], grid: true}})
 ```
 :::
 
-Power scales and square-root scales are also supported. The “pow” scale supports the **exponent** option, which defaults to 1 (for a linear scale).
+Power scales and square-root scales are also supported. The *pow* scale supports the **exponent** option, which defaults to 1 (for a linear scale).
 
 :::plot
 ```js
-Plot.gridX().plot({x: {type: "sqrt", domain: [0, 100]}})
+Plot.plot({x: {type: "sqrt", domain: [0, 100], grid: true}})
 ```
 :::
 
 :::plot
 ```js
-Plot.gridX().plot({x: {type: "pow", exponent: 1 / 3, domain: [0, 100]}})
+Plot.plot({x: {type: "pow", exponent: 1 / 3, domain: [0, 100], grid: true}})
 ```
 :::
 
@@ -215,29 +225,43 @@ Continuous scales also support a **clamp** option, which if true, clamps input v
 
 ## Discrete scales
 
-Sadly, not all data is continuous and quantitative: some data is merely ordinal such as t-shirt sizes, and some categorical (*a.k.a.* nominal) such as brands of clothing. To encode such data as position, a point or band scale is required.
+Sadly, not all data is continuous: some data is merely ordinal, such as t-shirt sizes; and some categorical (*a.k.a.* nominal), such as brands of clothing. To encode such data as position, a *point* or *band* scale is required.
 
-A point scale divides space into uniformly-spaced discrete values. It is commonly used for scatterplots (dot marks) of ordinal data. It is the default scale type for ordinal data on the *x* and *y* scale.
-
-:::plot
-```js
-Plot.gridX().plot({x: {type: "point", domain: [..."ABCDEFGHIJ"]}})
-```
-:::
-
-A band scale divides space into uniformly-spaced and -sized discrete intervals. It is commonly used for bar charts (bar marks).
+A *point* scale divides space into uniformly-spaced discrete values. It is commonly used for scatterplots (a [dot mark](../marks/dot.md)) of ordinal data. It is the default scale type for ordinal data on the *x* and *y* scale.
 
 :::plot
 ```js
-Plot.gridX().plot({x: {type: "band", domain: [..."ABCDEFGHIJ"]}})
+Plot.plot({x: {type: "point", domain: "ABCDEFGHIJ", grid: true}})
 ```
 :::
 
-While *point* and *band* scales appear visually similar when only the grid is visible, the two are not identical—they differ respective to padding. TK Play with the options below to get a sense of their effect on the scale’s behavior.
+A band scale divides space into uniformly-spaced and -sized discrete intervals. It is commonly used for bar charts (bar marks). (To show the bands, below we use a [cell](../marks/cell.md) instead of a [grid](../marks/grid.md).)
 
-<!-- viewof padding = Inputs.range([0, 1], {value: 0.1, step: 0.01, label: "Padding"}) -->
+:::plot
+```js
+Plot.plot({
+  x: {type: "band", domain: "ABCDEFGHIJ"},
+  marks: [
+    Plot.cell("ABCDEFGHIJ", {x: Plot.identity, stroke: "currentColor", strokeOpacity: 0.1})
+  ]
+})
+```
+:::
 
-<!-- viewof align = Inputs.range([0, 1], {value: 0.5, step: 0.01, label: "Align"}) -->
+While *point* and *band* scales appear visually similar when only the grid is visible, the two are not identical—they differ respective to padding. Play with the options below to get a sense of their effect on the scale’s behavior.
+
+<p>
+  <label class="label-input">
+    <span>Padding:</span>
+    <input type="range" v-model.number="padding" min="0" max="1" step="0.01">
+    <span style="font-variant-numeric: tabular-nums;">{{padding.toFixed(2)}}</span>
+  </label>
+  <label class="label-input">
+    <span>Align:</span>
+    <input type="range" v-model.number="align" min="0" max="1" step="0.01">
+    <span style="font-variant-numeric: tabular-nums;">{{align.toFixed(2)}}</span>
+  </label>
+</p>
 
 :::plot hidden
 ```js
@@ -245,13 +269,13 @@ Plot.plot({
   grid: true,
   marginTop: 0.5,
   x: {
-    padding: undefined, // TODO
-    align: undefined, // TODO
+    padding,
+    align,
     round: false
   },
   marks: [
-    Plot.frame({stroke: "#ccc"}),
-    Plot.tickX([..."ABCDEFGHIJ"], {x: (d) => d, fill: "none", stroke: "currentColor"})
+    Plot.frame({strokeOpacity: 0.3}),
+    Plot.tickX("ABCDEFGHIJ", {x: Plot.identity, stroke: "currentColor"})
   ]
 })
 ```
@@ -263,59 +287,19 @@ Plot.plot({
   grid: true,
   marginTop: 0.5,
   x: {
-    padding: undefined, // TODO
-    align: undefined, // TODO
+    padding,
+    align,
     round: false
   },
   marks: [
-    Plot.frame({stroke: "#ccc"}),
-    Plot.cell([..."ABCDEFGHIJ"], {x: (d) => d, fill: "none", stroke: "currentColor"})
+    Plot.frame({strokeOpacity: 0.3}),
+    Plot.cell("ABCDEFGHIJ", {x: Plot.identity, stroke: "currentColor"})
   ]
 })
 ```
 :::
 
 Positions scales also have a **round** option which forces the scale to snap to integer pixels. This defaults to true for point and band scales, and false for quantitative scales. Use caution with high-cardinality ordinal domains (*i.e.*, a point or band scale used to encode many different values), as rounding can lead to “wasted” space or even zero-width bands.
-
-### Sort option
-
-If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
-```
-
-The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](./transforms.md) (such as [stack](../transforms/stack.md) or [bin](../transforms/bin.md)). When sorting on the *x*, if no such channel is defined, the *x2* channel will be used instead if available, and similarly for *y* and *y2*; this is useful for marks that implicitly stack such as [area](../marks/area.md), [bar](../marks/bar.md), and [rect](../marks/rect.md). A sort value may also be specified as *width* or *height*, representing derived channels |*x2* - *x1*| and |*y2* - *y1*| respectively.
-
-Note that there may be multiple associated values in the secondary dimension for a given value in the primary ordinal dimension. The secondary values are therefore grouped for each associated primary value, and each group is then aggregated by applying a reducer. Lastly the primary values are sorted based on the associated reduced value in natural ascending order to produce the domain. The default reducer is *max*, but may be changed by specifying the *reduce* option. The above code is shorthand for:
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reduce: "max"}})
-```
-
-Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. See the [group transform](../transforms/group.md) for the list of supported reducers.
-
-For descending rather than ascending order, use the *reverse* option:
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
-```
-
-An additional *limit* option truncates the domain to the first *n* values after sorting. If *limit* is negative, the last *n* values are used instead. Hence, a positive *limit* with *reverse* = true will return the top *n* values in descending order. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](../transforms/filter.md), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", limit: 5}})
-```
-
-If different sort options are needed for different ordinal scales, the channel name can be replaced with a *value* object with additional per-scale options.
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse: true}}})
-```
-
-If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
-
-Note: when the value of the sort option is a string or a function, it is interpreted as a [basic sort transform](../transforms/sort.md). To use both sort options and a sort transform, use [Plot.sort](../transforms/sort.md#plotsortcompare-options).
 
 ## Color scales
 
@@ -952,6 +936,46 @@ Plot automatically generates [axis](../marks/axis.md) and optionally [grid](../m
 * *scale*.**ariaDescription** - a textual description for the axis
 
 Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](./facets.md)), **label**, **axis**, **inset**, **round**, **align**, and **padding**. If the **grid** option is true, show a grid with the currentColor stroke; if specified as a string, show a grid with the specified stroke color; if an approximate number of ticks, an interval, or an array of tick values, show corresponding grid lines.
+
+## Sort option
+
+If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
+```
+
+The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as **y**, **y1**, or **y2**. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](./transforms.md) (such as [stack](../transforms/stack.md) or [bin](../transforms/bin.md)). When sorting the *x* domain, if no **x** channel is defined, **x2** will be used instead if available, and similarly for *y* and **y2**; this is useful for marks that implicitly stack such as [area](../marks/area.md), [bar](../marks/bar.md), and [rect](../marks/rect.md). A sort value may also be specified as *width* or *height*, representing derived channels |*x2* - *x1*| and |*y2* - *y1*| respectively.
+
+Note that there may be multiple associated values in the secondary dimension for a given value in the primary ordinal dimension. The secondary values are therefore grouped for each associated primary value, and each group is then aggregated by applying a reducer. Lastly the primary values are sorted based on the associated reduced value in natural ascending order to produce the domain. The default reducer is *max*, but may be changed by specifying the *reduce* option. The above code is shorthand for:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reduce: "max"}})
+```
+
+Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. See the [group transform](../transforms/group.md) for the list of supported reducers.
+
+For descending rather than ascending order, use the *reverse* option:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
+```
+
+An additional *limit* option truncates the domain to the first *n* values after sorting. If *limit* is negative, the last *n* values are used instead. Hence, a positive *limit* with *reverse* = true will return the top *n* values in descending order. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](../transforms/filter.md), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", limit: 5}})
+```
+
+If different sort options are needed for different ordinal scales, the channel name can be replaced with a *value* object with additional per-scale options.
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse: true}}})
+```
+
+If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
+
+Note: when the value of the sort option is a string or a function, it is interpreted as a [basic sort transform](../transforms/sort.md). To use both sort options and a sort transform, use [Plot.sort](../transforms/sort.md#plotsortcompare-options).
 
 ## scale(*options*)
 
