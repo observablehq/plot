@@ -322,7 +322,7 @@ Plot.plot({
 Disable spherical interpolation by setting the **curve** option to *linear* instead of the default *auto*.
 :::
 
-Naturally, a projected line can use varying color, too. Below, color reveals the westward direction of the Beagle’s journey around the world, starting and ending in London.
+A projected line can use varying color, too. Below, color reveals the westward direction of the Beagle’s journey around the world, starting and ending in London.
 
 :::plot defer https://observablehq.com/@observablehq/plot-spherical-line-with-a-varying-stroke
 ```js

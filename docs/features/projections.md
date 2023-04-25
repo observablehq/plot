@@ -45,12 +45,12 @@ A **projection** maps abstract coordinates in *x* and *y* to pixel positions on 
 :::plot defer
 ```js
 Plot.plot({
-  style: "overflow: visible;",
   projection: {type: "orthographic", rotate: [-longitude, -30]},
-  r: {transform: (d) => Math.pow(10, d)}, // Richter scale
+  r: {transform: (d) => Math.pow(10, d)}, // convert Richter to amplitude
+  style: "overflow: visible;", // allow dots to escape
   marks: [
-    Plot.sphere(),
     Plot.geo(land, {fill: "currentColor", fillOpacity: 0.2}),
+    Plot.sphere(),
     Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "magnitude", stroke: "red", fill: "red", fillOpacity: 0.2})
   ]
 })
@@ -59,7 +59,7 @@ Plot.plot({
 
 Above, a [geo mark](../marks/geo.md) draws polygons representing land and a [sphere mark](../marks/geo.md#sphere-options) draws the outline of the globe. A [dot mark](../marks/dot.md) draws earthquakes as circles sized by magnitude.
 
-While the geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen—leaning on [d3-geo](https://github.com/d3/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping—the dot mark is not. Instead, Plot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels—as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is also projection-aware.)
+The geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen—leaning on [d3-geo](https://github.com/d3/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping. The dot mark is not; instead, Plot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels—as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is also projection-aware.)
 
 :::info
 Marks that require *band* scales (bars, cells, and ticks) cannot be used with projections. Likewise one-dimensional marks such as rules cannot be used, though see [#1164](https://github.com/observablehq/plot/issues/1164).
@@ -114,7 +114,7 @@ Why so many? Each projection has its strengths and weaknesses:
 - the _stereographic_ projection preserves circles, and
 - the _gnomonic_ projection displays all great circles as straight lines!
 
-No single projection is the best at everything. It is impossible, for example, for a projection to be both conformal and equal-area.
+No single projection is best at everything. It is impossible, for example, for a projection to be both conformal and equal-area.
 
 In addition to world projections, Plot provides the U.S.-centric *albers-usa* conic equal-area projection with an inset of Alaska and Hawaii. (Note that the scale for Alaska is diminished: it is projected at 0.35× its true relative area.)
 
@@ -199,7 +199,7 @@ Plot.geo(westport).plot({projection: {type: "identity", domain: westport}})
 There’s also a *reflect-y* projection in case *y* points up↑.
 :::
 
-Naturally, Plot’s projection system is compatible with its [faceting system](./facets.md). Below, a comic strip of sorts showing the locations of Walmart store openings in past decades.
+Naturally, Plot’s projection system is compatible with its [faceting system](./facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
 
 :::plot defer
 ```js
@@ -225,14 +225,14 @@ Plot.plot({
 This uses the [**interval** scale option](../transforms/interval.md) to bin temporal data into facets by decade.
 :::
 
-To learn more about this topic, see our hands-on tutorials:
+To learn more about mapping with Plot, see our hands-on tutorials:
 
 * [Build your first map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-map-with-observable-plot)
 * [Build your first choropleth map with Observable Plot](https://observablehq.com/@observablehq/build-your-first-choropleth-map-with-observable-plot)
 
 ## Projection options
 
-The top-level **projection** option applies a two-dimensional (often geographic) projection in place of **x** and **y** scales. It is typically used in conjunction with a [geo mark](../marks/geo.md) to produce a map, but can be used with any mark that supports **x** and **y** channels, such as [dot](../marks/dot.md), [text](../marks/text.md), [arrow](../marks/arrow.md), and [rect](../marks/rect.md). For marks that use **x1**, **y1**, **x2**, and **y2** channels, the two projected points are ⟨*x1*, *y1*⟩ and ⟨*x2*, *y2*⟩; otherwise, the projected point is ⟨*x*, *y*⟩.
+The **projection** [plot option](./plots.md) applies a two-dimensional (often geographic) projection in place of **x** and **y** scales. It is typically used in conjunction with a [geo mark](../marks/geo.md) to produce a map, but can be used with any mark that supports **x** and **y** channels, such as [dot](../marks/dot.md), [text](../marks/text.md), [arrow](../marks/arrow.md), and [rect](../marks/rect.md). For marks that use **x1**, **y1**, **x2**, and **y2** channels, the two projected points are ⟨*x1*, *y1*⟩ and ⟨*x2*, *y2*⟩; otherwise, the projected point is ⟨*x*, *y*⟩.
 
 The following built-in named projections are supported:
 
@@ -276,4 +276,4 @@ The following projection clipping methods are supported for **clip**:
 * a number - clip to a great circle of the given radius in degrees centered around the origin
 * null or false - do not clip
 
-Whereas the mark.**clip** option is implemented using SVG clipping, the projection.**clip** option affects the generated geometry and typically produces smaller SVG output.
+Whereas the **clip** [mark option](./marks.md#mark-options) is implemented using SVG clipping, the **clip** projection option affects the generated geometry and typically produces smaller SVG output.
