@@ -25,7 +25,7 @@ onMounted(() => {
 
 To render a **plot** in Observable Plot, call [plot](#plot-options) (typically as `Plot.plot`), passing in the desired *options*. This function returns an SVG or HTML figure element.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-hello-world
 ```js
 Plot.plot({
   marks: [
@@ -70,7 +70,7 @@ Rather than baking data into JavaScript, use [JSON](https://en.wikipedia.org/wik
 
 To use data with Plot, pass the data as the first argument to the mark constructor. We can then assign columns of data such as *Date* and *Close* to visual properties of the mark (or “channels”) such as horizontal↔︎ position **x** and vertical↕︎ position **y**.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-first-line-chart
 ```js
 Plot.plot({
   marks: [
@@ -82,7 +82,7 @@ Plot.plot({
 
 A plot can have multiple marks, and each mark has its own data. For example, say we had a similar table `goog` representing the daily price of Google stock for the same period. Below, the <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> line represents Google stock, while the <span style="border-bottom: solid 2px var(--vp-c-blue);">blue</span> line represents Apple stock.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-layered-marks
 ```js
 Plot.plot({
   marks: [
@@ -100,7 +100,7 @@ When comparing the performance of different stocks, we typically want to normali
 
 Alternatively, the tables can be combined, say with a *Symbol* column to distinguish AAPL from GOOG. This allows the use of a categorical *color* scale and legend.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-stocks-multiline-chart
 ```js
 Plot.plot({
   color: {legend: true},
@@ -120,7 +120,7 @@ Each mark may be a nested array of marks, allowing composition. Marks may also b
 
 Marks are drawn in the given order, with the last mark drawn on top. For example, below <span style="border-bottom: solid 2px var(--vp-c-green);">green</span> bars are drawn on top of <span style="border-bottom: solid 2px;">{{dark ? "white" : "black"}}</span> bars.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-marks-z-order
 ```js
 Plot.plot({
   x: {padding: 0.4},
@@ -157,7 +157,7 @@ The **aspectRatio** option, if not null, computes a default **height** such that
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-intro-to-aspectratio
 ```js
 Plot.plot({
   grid: true,
@@ -184,7 +184,7 @@ Unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecate
 
 If a **caption** is specified, Plot.plot wraps the generated SVG element in an HTML figure element with a figcaption, returning the figure. To specify an HTML caption, the caption can be specified as an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-caption
 ```js
 Plot.plot({
   caption: "Figure 1. A chart with a caption.",
