@@ -17,7 +17,10 @@ export default function plot(md) {
         content = content.replace(/"green"/g, '"var(--vp-c-green)"');
         content = content.replace(/"blue"/g, '"var(--vp-c-blue)"');
         content = content.replace(/"purple"/g, '"var(--vp-c-purple)"');
-        const suffix = `\n${directives.includes("hidden") ? `<div style="display: none;">\n` : ""}`;
+        const href = directives.find((d) => d.startsWith("https://"));
+        const suffix = `\n${directives.includes("hidden")
+          ? `<div style="display: none;">\n`
+          : `<a class="plot-fork" href="${md.utils.escapeHtml(href)}?intent=fork" target="_blank" title="Open on Observable">Fork</a>`}`;
         if (/^Plot\.plot\(/.test(content)) {
           const options = content.slice(9);
           return `<PlotRender

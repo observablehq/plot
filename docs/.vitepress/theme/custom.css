@@ -61,3 +61,21 @@
 .vp-doc td {
   white-space: nowrap;
 }
+
+a.plot-fork {
+  font-size: small;
+  position: absolute;
+  right: 0;
+  margin-top: -8px;
+  color: var(--vp-c-text-2);
+  text-decoration: none !important;
+}
+
+a.plot-fork:hover {
+  color: var(--vp-c-brand);
+}
+
+a.plot-fork::after {
+  content: " ↗︎";
+  opacity: 0.5;
+}
