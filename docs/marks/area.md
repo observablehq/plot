@@ -251,7 +251,7 @@ Or, as a [horizon chart](https://observablehq.com/@observablehq/plot-horizon).
 ```js-vue
 Plot.plot((() => {
   const bands = 7;
-  const step = +(d3.max(industries, (d) => d.unemployed) / 7).toPrecision(2);
+  const step = d3.max(industries, (d) => d.unemployed) / bands;
   return {
     height: 720,
     axis: null,
