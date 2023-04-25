@@ -27,10 +27,6 @@ onMounted(() => {
 
 # Scales
 
-:::danger TODO
-This guide is still under construction. 🚧 Please come back when it’s finished.
-:::
-
 **Scales** convert an abstract value such as time or temperature to a visual value such as *x*- or *y*-position or color. For example, say we have a tabular dataset (`gistemp`) containing monthly observations of [global average surface temperature](https://data.giss.nasa.gov/gistemp/) from 1880 to 2016. The first few rows are:
 
 | Date       | Anomaly |
@@ -42,7 +38,7 @@ This guide is still under construction. 🚧 Please come back when it’s finish
 | 1880-05-01 | -0.14   |
 | 1880-06-01 | -0.29   |
 
-When visualizing this data with a [line](../marks/line.md), the *x* scale is responsible for mapping dates to horizontal↔︎ positions. For example, 1880-01-01 might be mapped to *x* = 40 (on the left) and 2016-12-01 might be mapped to *x* = 620 (on the right). Likewise, the *y* scale maps a temperature anomaly to a vertical↕︎ position.
+When visualizing this data with a [line](../marks/line.md), the *x* scale is responsible for mapping dates to horizontal↔︎ positions. For example, 1880-01-01 might be mapped to *x* = 40 (on the left) and 2016-12-01 might be mapped to *x* = 620 (on the right). Likewise, the *y* scale maps temperature anomalies to vertical↕︎ positions.
 
 :::plot
 ```js
@@ -50,7 +46,7 @@ Plot.lineY(gistemp, {x: "Date", y: "Anomaly"}).plot()
 ```
 :::
 
-In Plot, mark channels are bound to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.html#mark-options) if needed.)
+In Plot, [mark channels](./marks.md) are bound to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.html#mark-options) if needed.)
 
 Think of a scale as a function that takes an abstract value and returns the corresponding visual value. For the *y* scale above, that might look like this:
 
@@ -106,7 +102,7 @@ Plot.plot({
 Not that we recommend them, but if you are interested in dual-axis charts, please upvote [#147](https://github.com/observablehq/plot/issues/147).
 :::
 
-Plot has many different scales; we can categorize them by their _input_ (**domain**) and by their _output_ (**range**).
+Plot has many different scales; we categorize them by their _input_ (**domain**) and _output_ (**range**).
 
 The **domain** is the abstract values that the scale expects as input. For quantitative or temporal data, it is typically expressed as an extent such as [*start*, *end*], [*cold*, *hot*], or [*min*, *max*]. For ordinal or nominal data, it is an array of values such as names or categories. The type of input values corresponds to the **type** scale option (_e.g._, *linear* or *ordinal*).
 
@@ -242,12 +238,9 @@ A band scale divides space into uniformly-spaced and -sized discrete intervals. 
 
 :::plot
 ```js
-Plot.plot({
-  x: {type: "band", domain: "ABCDEFGHIJ"},
-  marks: [
-    Plot.cell("ABCDEFGHIJ", {x: Plot.identity, stroke: "currentColor", strokeOpacity: 0.1})
-  ]
-})
+Plot
+  .cell("ABCDEFGHIJ", {x: Plot.identity, stroke: "currentColor", strokeOpacity: 0.1})
+  .plot({x: {type: "band", domain: "ABCDEFGHIJ"}})
 ```
 :::
 
@@ -730,77 +723,77 @@ For quantile and quantize color scales, the **scheme** option is used in conjunc
 
 The following sequential scale schemes are supported for both quantitative and ordinal data:
 
-```
-* <sub><img src="./img/blues.png" width="32" height="16" alt="blues"></sub> *blues*
-* <sub><img src="./img/greens.png" width="32" height="16" alt="greens"></sub> *greens*
-* <sub><img src="./img/greys.png" width="32" height="16" alt="greys"></sub> *greys*
-* <sub><img src="./img/oranges.png" width="32" height="16" alt="oranges"></sub> *oranges*
-* <sub><img src="./img/purples.png" width="32" height="16" alt="purples"></sub> *purples*
-* <sub><img src="./img/reds.png" width="32" height="16" alt="reds"></sub> *reds*
-* <sub><img src="./img/bugn.png" width="32" height="16" alt="bugn"></sub> *bugn*
-* <sub><img src="./img/bupu.png" width="32" height="16" alt="bupu"></sub> *bupu*
-* <sub><img src="./img/gnbu.png" width="32" height="16" alt="gnbu"></sub> *gnbu*
-* <sub><img src="./img/orrd.png" width="32" height="16" alt="orrd"></sub> *orrd*
-* <sub><img src="./img/pubu.png" width="32" height="16" alt="pubu"></sub> *pubu*
-* <sub><img src="./img/pubugn.png" width="32" height="16" alt="pubugn"></sub> *pubugn*
-* <sub><img src="./img/purd.png" width="32" height="16" alt="purd"></sub> *purd*
-* <sub><img src="./img/rdpu.png" width="32" height="16" alt="rdpu"></sub> *rdpu*
-* <sub><img src="./img/ylgn.png" width="32" height="16" alt="ylgn"></sub> *ylgn*
-* <sub><img src="./img/ylgnbu.png" width="32" height="16" alt="ylgnbu"></sub> *ylgnbu*
-* <sub><img src="./img/ylorbr.png" width="32" height="16" alt="ylorbr"></sub> *ylorbr*
-* <sub><img src="./img/ylorrd.png" width="32" height="16" alt="ylorrd"></sub> *ylorrd*
-* <sub><img src="./img/cividis.png" width="32" height="16" alt="cividis"></sub> *cividis*
-* <sub><img src="./img/inferno.png" width="32" height="16" alt="inferno"></sub> *inferno*
-* <sub><img src="./img/magma.png" width="32" height="16" alt="magma"></sub> *magma*
-* <sub><img src="./img/plasma.png" width="32" height="16" alt="plasma"></sub> *plasma*
-* <sub><img src="./img/viridis.png" width="32" height="16" alt="viridis"></sub> *viridis*
-* <sub><img src="./img/cubehelix.png" width="32" height="16" alt="cubehelix"></sub> *cubehelix*
-* <sub><img src="./img/turbo.png" width="32" height="16" alt="turbo"></sub> *turbo*
-* <sub><img src="./img/warm.png" width="32" height="16" alt="warm"></sub> *warm*
-* <sub><img src="./img/cool.png" width="32" height="16" alt="cool"></sub> *cool*
-```
+| preview | name |
+|:-------:|------|
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/blues.png" alt="blues"> | *blues* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/greens.png" alt="greens"> | *greens* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/greys.png" alt="greys"> | *greys* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/oranges.png" alt="oranges"> | *oranges* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/purples.png" alt="purples"> | *purples* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/reds.png" alt="reds"> | *reds* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/bugn.png" alt="bugn"> | *bugn* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/bupu.png" alt="bupu"> | *bupu* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/gnbu.png" alt="gnbu"> | *gnbu* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/orrd.png" alt="orrd"> | *orrd* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/pubu.png" alt="pubu"> | *pubu* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/pubugn.png" alt="pubugn"> | *pubugn* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/purd.png" alt="purd"> | *purd* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rdpu.png" alt="rdpu"> | *rdpu* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/ylgn.png" alt="ylgn"> | *ylgn* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/ylgnbu.png" alt="ylgnbu"> | *ylgnbu* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/ylorbr.png" alt="ylorbr"> | *ylorbr* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/ylorrd.png" alt="ylorrd"> | *ylorrd* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/cividis.png" alt="cividis"> | *cividis* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/inferno.png" alt="inferno"> | *inferno* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/magma.png" alt="magma"> | *magma* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/plasma.png" alt="plasma"> | *plasma* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/viridis.png" alt="viridis"> | *viridis* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/cubehelix.png" alt="cubehelix"> | *cubehelix* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/turbo.png" alt="turbo"> | *turbo* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/warm.png" alt="warm"> | *warm* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/cool.png" alt="cool"> | *cool* |
 
 The default color scheme, *turbo*, was chosen primarily to ensure high-contrast visibility. Color schemes such as *blues* make low-value marks difficult to see against a white background, for better or for worse. To use a subset of a continuous color scheme (or any single-argument *interpolate* function), set the *scale*.range property to the corresponding subset of [0, 1]; for example, to use the first half of the *rainbow* color scheme, use a range of [0, 0.5]. By default, the full range [0, 1] is used. If you wish to encode a quantitative value without hue, consider using *opacity* rather than *color* (e.g., use Plot.dot’s *strokeOpacity* instead of *stroke*).
 
 The following diverging scale schemes are supported:
 
-```
-* <sub><img src="./img/brbg.png" width="32" height="16" alt="brbg"></sub> *brbg*
-* <sub><img src="./img/prgn.png" width="32" height="16" alt="prgn"></sub> *prgn*
-* <sub><img src="./img/piyg.png" width="32" height="16" alt="piyg"></sub> *piyg*
-* <sub><img src="./img/puor.png" width="32" height="16" alt="puor"></sub> *puor*
-* <sub><img src="./img/rdbu.png" width="32" height="16" alt="rdbu"></sub> *rdbu*
-* <sub><img src="./img/rdgy.png" width="32" height="16" alt="rdgy"></sub> *rdgy*
-* <sub><img src="./img/rdylbu.png" width="32" height="16" alt="rdylbu"></sub> *rdylbu*
-* <sub><img src="./img/rdylgn.png" width="32" height="16" alt="rdylgn"></sub> *rdylgn*
-* <sub><img src="./img/spectral.png" width="32" height="16" alt="spectral"></sub> *spectral*
-* <sub><img src="./img/burd.png" width="32" height="16" alt="burd"></sub> *burd*
-* <sub><img src="./img/buylrd.png" width="32" height="16" alt="buylrd"></sub> *buylrd*
-```
+| preview | name |
+|:-------:|------|
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/brbg.png" alt="brbg"> | *brbg* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/prgn.png" alt="prgn"> | *prgn* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/piyg.png" alt="piyg"> | *piyg* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/puor.png" alt="puor"> | *puor* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rdbu.png" alt="rdbu"> | *rdbu* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rdgy.png" alt="rdgy"> | *rdgy* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rdylbu.png" alt="rdylbu"> | *rdylbu* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rdylgn.png" alt="rdylgn"> | *rdylgn* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/spectral.png" alt="spectral"> | *spectral* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/burd.png" alt="burd"> | *burd* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/buylrd.png" alt="buylrd"> | *buylrd* |
 
 Picking a diverging color scheme name defaults the scale type to *diverging*; set the scale type to *linear* to treat the color scheme as sequential instead. Diverging color scales support a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
 
 The following cylical color schemes are supported:
 
-```
-* <sub><img src="./img/rainbow.png" width="32" height="16" alt="rainbow"></sub> *rainbow*
-* <sub><img src="./img/sinebow.png" width="32" height="16" alt="sinebow"></sub> *sinebow*
-```
+| preview | name |
+|:-------:|------|
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rainbow.png" alt="rainbow"> | *rainbow* |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/sinebow.png" alt="sinebow"> | *sinebow* |
 
 The following categorical color schemes are supported:
 
-```
-* <sub><img src="./img/accent.png" width="96" height="16" alt="accent"></sub> *accent* (8 colors)
-* <sub><img src="./img/category10.png" width="120" height="16" alt="category10"></sub> *category10* (10 colors)
-* <sub><img src="./img/dark2.png" width="96" height="16" alt="dark2"></sub> *dark2* (8 colors)
-* <sub><img src="./img/paired.png" width="144" height="16" alt="paired"></sub> *paired* (12 colors)
-* <sub><img src="./img/pastel1.png" width="108" height="16" alt="pastel1"></sub> *pastel1* (9 colors)
-* <sub><img src="./img/pastel2.png" width="96" height="16" alt="pastel2"></sub> *pastel2* (8 colors)
-* <sub><img src="./img/set1.png" width="108" height="16" alt="set1"></sub> *set1* (9 colors)
-* <sub><img src="./img/set2.png" width="96" height="16" alt="set2"></sub> *set2* (8 colors)
-* <sub><img src="./img/set3.png" width="144" height="16" alt="set3"></sub> *set3* (12 colors)
-* <sub><img src="./img/tableau10.png" width="120" height="16" alt="tableau10"></sub> *tableau10* (10 colors)
-```
+| preview | name |
+|:-------:|------|
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/accent.png" alt="accent"> | *accent* (8 colors) |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/category10.png" alt="category10"> | *category10* (10 colors) |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/dark2.png" alt="dark2"> | *dark2* (8 colors) |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/paired.png" alt="paired"> | *paired* (12 colors) |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/pastel1.png" alt="pastel1"> | *pastel1* (9 colors) |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/pastel2.png" alt="pastel2"> | *pastel2* (8 colors) |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/set1.png" alt="set1"> | *set1* (9 colors) |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/set2.png" alt="set2"> | *set2* (8 colors) |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/set3.png" alt="set3"> | *set3* (12 colors) |
+| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/tableau10.png" alt="tableau10"> | *tableau10* (10 colors) |
 
 The following color interpolators are supported:
 
@@ -809,86 +802,58 @@ The following color interpolators are supported:
 * *lab* - CIELAB (*a.k.a.* “Lab”)
 * *hcl* - CIELCh<sub>ab</sub> (*a.k.a.* “LCh” or “HCL”)
 
-For example, to use CIELCh<sub>ab</sub>:
-
-```js
-Plot.plot({
-  color: {
-    range: ["red", "blue"],
-    interpolate: "hcl"
-  },
-  marks: …
-})
-```
-
-Or to use gamma-corrected RGB (via [d3-interpolate](https://github.com/d3/d3-interpolate)):
-
-```js
-Plot.plot({
-  color: {
-    range: ["red", "blue"],
-    interpolate: d3.interpolateRgb.gamma(2.2)
-  },
-  marks: …
-})
-```
-
 ### Position scale options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
 
-* *scale*.**inset** - inset the default range by the specified amount in pixels
-* *scale*.**round** - round the output value to the nearest integer (whole pixel)
+* **inset** - inset the default range by the specified amount in pixels
+* **round** - round the output value to the nearest integer (whole pixel)
 
 The *x* and *fx* scales support asymmetric insets for more precision. Replace inset by:
 
-* *scale*.**insetLeft** - insets the start of the default range by the specified number of pixels
-* *scale*.**insetRight** - insets the end of the default range by the specified number of pixels
+* **insetLeft** - insets the start of the default range by the specified number of pixels
+* **insetRight** - insets the end of the default range by the specified number of pixels
 
 Similarly, the *y* and *fy* scales support asymmetric insets with:
 
-* *scale*.**insetTop** - insets the top of the default range by the specified number of pixels
-* *scale*.**insetBottom** - insets the bottom of the default range by the specified number of pixels
+* **insetTop** - insets the top of the default range by the specified number of pixels
+* **insetBottom** - insets the bottom of the default range by the specified number of pixels
 
 The inset scale options can provide “breathing room” to separate marks from axes or the plot’s edge. For example, in a scatterplot with a Plot.dot with the default 3-pixel radius and 1.5-pixel stroke width, an inset of 5 pixels prevents dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
 
-In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension—such as a dot, rule, or tick—then use a *point* scale; otherwise, say for a bar, use a *band* scale. In the image below, the top *x* scale is a *point* scale while the bottom *x* scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@observablehq/plot-scales) for an interactive version.
-
-```
-<img src="./img/point-band.png" width="640" alt="point and band scales">
-````
+In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension—such as a dot, rule, or tick—then use a *point* scale; otherwise, say for a bar, use a *band* scale.
 
 Ordinal position scales support additional options, all specified as proportions in [0, 1]:
 
-* *scale*.**padding** - how much of the range to reserve to inset first and last point or band
-* *scale*.**align** - where to distribute points or bands (0 = at start, 0.5 = at middle, 1 = at end)
+* **padding** - how much of the range to reserve to inset first and last point or band
+* **align** - where to distribute points or bands (0 = at start, 0.5 = at middle, 1 = at end)
 
 For a *band* scale, you can further fine-tune padding:
 
-* *scale*.**paddingInner** - how much of the range to reserve to separate adjacent bands
-* *scale*.**paddingOuter** - how much of the range to reserve to inset first and last band
+* **paddingInner** - how much of the range to reserve to separate adjacent bands
+* **paddingOuter** - how much of the range to reserve to inset first and last band
 
 Align defaults to 0.5 (centered). Band scale padding defaults to 0.1 (10% of available space reserved for separating bands), while point scale padding defaults to 0.5 (the gap between the first point and the edge is half the distance of the gap between points, and likewise for the gap between the last point and the opposite edge). Note that rounding and mark insets (e.g., for bars and rects) also affect separation between adjacent marks.
 
 Plot automatically generates [axis](../marks/axis.md) and optionally [grid](../marks/grid.md) marks for position scales. (For more control, declare these marks explicitly.) You can configure the implicit axes with the following scale options:
 
-* *scale*.**axis** - the orientation: *top* or *bottom* (or *both*) for *x* and *fx*; *left* or *right* (or *both*) for *y* and *fy*; null to suppress
-* *scale*.**ticks** - the approximate number of ticks to generate, or interval, or array of values
-* *scale*.**tickSize** - the length of each tick (in pixels; default 6 for *x* and *y*, or 0 for *fx* and *fy*)
-* *scale*.**tickSpacing** - the approximate number of pixels between ticks (if *scale*.**ticks** is not specified)
-* *scale*.**tickPadding** - the separation between the tick and its label (in pixels; default 3)
-* *scale*.**tickFormat** - either a function or specifier string to format tick values; see [Formats](./formats.md)
-* *scale*.**tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
-* *scale*.**grid** - whether to draw grid lines across the plot for each tick
-* *scale*.**line** - if true, draw the axis line (only for *x* and *y*)
-* *scale*.**label** - a string to label the axis
-* *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
-* *scale*.**labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
-* *scale*.**fontVariant** - the font-variant attribute for axis ticks; defaults to tabular-nums for quantitative axes
-* *scale*.**ariaLabel** - a short label representing the axis in the accessibility tree
-* *scale*.**ariaDescription** - a textual description for the axis
+* **axis** - *top* or *bottom* (or *both*) for *x* and *fx*; *left* or *right* (or *both*) for *y* and *fy*; null to suppress
+* **ticks** - the approximate number of ticks to generate, or interval, or array of values
+* **tickSize** - the length of each tick (in pixels; default 6 for *x* and *y*, or 0 for *fx* and *fy*)
+* **tickSpacing** - the approximate number of pixels between ticks (if **ticks** is not specified)
+* **tickPadding** - the separation between the tick and its label (in pixels; default 3)
+* **tickFormat** - either a function or specifier string to format tick values; see [Formats](./formats.md)
+* **tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
+* **grid** - whether to draw grid lines across the plot for each tick
+* **line** - if true, draw the axis line (only for *x* and *y*)
+* **label** - a string to label the axis
+* **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
+* **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
+* **fontVariant** - the font-variant attribute for ticks; defaults to *tabular-nums* if quantitative
+* **ariaLabel** - a short label representing the axis in the accessibility tree
+* **ariaDescription** - a textual description for the axis
 
-Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](./facets.md)), **label**, **axis**, **inset**, **round**, **align**, and **padding**. If the **grid** option is true, show a grid with the currentColor stroke; if specified as a string, show a grid with the specified stroke color; if an approximate number of ticks, an interval, or an array of tick values, show corresponding grid lines.
+Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facets](./facets.md)), **label**, **axis**, **inset**, **round**, **align**, and **padding**. If the **grid** option is true, show a grid using *currentColor*; if specified as a string, show a grid with the specified color; if an approximate number of ticks, an interval, or an array of tick values, show corresponding grid lines.
 
 ## Sort option
 
@@ -928,7 +893,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse
 
 If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
 
-Note: when the value of the sort option is a string or a function, it is interpreted as a [basic sort transform](../transforms/sort.md). To use both sort options and a sort transform, use [Plot.sort](../transforms/sort.md#plotsortcompare-options).
+Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Plot.sort](../transforms/sort.md#plotsortcompare-options).
 
 ## scale(*options*)
 
