@@ -2,9 +2,12 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {useDark} from "../components/useDark.js";
 import aapl from "../data/aapl.ts";
 import industries from "../data/bls-industry-unemployment.ts";
 import sftemp from "../data/sf-temperatures.ts";
+
+const dark = useDark();
 
 </script>
 
@@ -222,47 +225,50 @@ Plot.plot({
 ```
 :::
 
-As an alternative to overlapping or stacking, faceting can be used to produce small multiples, here arranged vertically with a shared *x*-axis.
+As an alternative to overlapping or stacking, [faceting](../features/facets.md) will produce small multiples, here arranged vertically with a shared *x*-axis.
 
 :::plot defer https://observablehq.com/@observablehq/plot-faceted-areas
 ```js
 Plot.plot({
-  height: 600,
-  marginRight: 140,
+  height: 720,
   axis: null,
-  fy: {
-    axis: "right",
-    label: null
-  },
   marks: [
-    Plot.areaY(industries, {x: "date", y: "unemployed", fy: "industry", fillOpacity: 0.2}),
-    Plot.lineY(industries, {x: "date", y: "unemployed", fy: "industry", strokeWidth: 1})
+    Plot.areaY(industries, {x: "date", y: "unemployed", fy: "industry"}),
+    Plot.text(industries, Plot.selectFirst({text: "industry", fy: "industry", frameAnchor: "top-left", dx: 6, dy: 6})),
+    Plot.frame()
   ]
 })
 ```
 :::
 
-Above, smaller industries such as agriculture and mining & extraction are dwarfed by larger industries such as wholesale & retail trade. To emphasize each industry’s trend, instead of comparing absolute numbers across industries, we can normalize unemployment relative to the median for each industry. Now the job loss in mining & extraction is more readily apparent.
+:::tip
+Above, smaller industries such as agriculture and mining & extraction are dwarfed by larger industries such as wholesale & retail trade. To emphasize each industry’s trend, instead of comparing absolute numbers across industries, you could use the [normalize transform](../transforms/normalize.md).
+:::
+
+Or, as a [horizon chart](https://observablehq.com/@observablehq/plot-horizon).
 
 :::plot defer https://observablehq.com/@observablehq/plot-faceted-areas
-```js
-Plot.plot({
-  height: 600,
-  marginRight: 140,
-  axis: null,
-  fy: {
-    axis: "right",
-    label: null
-  },
-  marks: [
-    Plot.areaY(industries, Plot.normalizeY("median", {x: "date", y: "unemployed", fy: "industry", fillOpacity: 0.2})),
-    Plot.lineY(industries, Plot.normalizeY("median", {x: "date", y: "unemployed", fy: "industry", strokeWidth: 1}))
-  ]
-})
+```js-vue
+Plot.plot((() => {
+  const bands = 7;
+  const step = +(d3.max(industries, (d) => d.unemployed) / 7).toPrecision(2);
+  return {
+    height: 720,
+    axis: null,
+    y: {domain: [0, step]},
+    color: {scheme: "{{dark ? "viridis" : "YlGnBu"}}"},
+    facet: {data: industries, y: "industry"},
+    marks: [
+      d3.range(bands).map((i) => Plot.areaY(industries, {x: "date", y: (d) => d.unemployed - i * step, fill: i, clip: true})),
+      Plot.text(industries, Plot.selectFirst({text: "industry", frameAnchor: "top-left", dx: 6, dy: 6})),
+      Plot.frame()
+    ]
+  };
+})())
 ```
 :::
 
-See also the [horizon chart](https://observablehq.com/@observablehq/plot-horizon) and [ridgeline chart](https://observablehq.com/@observablehq/plot-ridgeline) examples.
+See also the [ridgeline chart](https://observablehq.com/@observablehq/plot-ridgeline) example.
 
 Interpolation is controlled by the [**curve** option](../features/curves.md). The default curve is *linear*, which draws straight line segments between pairs of adjacent points. A *step* curve is nice for emphasizing when the value changes, while *basis* and *catmull–rom* are nice for smoothing.
 
@@ -299,8 +305,6 @@ Returns a new area with the given *data* and *options*. This constructor is used
 
 If the **interval** option is specified, the [binX transform](../transforms/bin.md) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
-<!-- TODO Interactive demo of the interval option? -->
-
 ```js
 Plot.areaY(observations, {x: "date", y: "temperature", interval: "day"})
 ```
@@ -318,8 +322,6 @@ Plot.areaX(aapl, {y: "Date", x: "Close"})
 Returns a new area with the given *data* and *options*. This constructor is used when the baseline and topline share *y* values, as in a time-series area chart where time goes up↑. If neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](../transforms/stack.md); this is the typical configuration for an area chart with a baseline at *x* = 0. If the **x** option is not specified, it defaults to the identity function. The **y** option specifies the **y1** channel; and the **y1** and **y2** options are ignored.
 
 If the **interval** option is specified, the [binY transform](../transforms/bin.md) is implicitly applied to the specified *options*. The reducer of the output *x* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
-
-<!-- TODO Interactive demo of the interval option? -->
 
 ```js
 Plot.areaX(observations, {y: "date", x: "temperature", interval: "day"})
