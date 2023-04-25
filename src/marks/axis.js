@@ -22,40 +22,24 @@ function maybeAnchor({anchor} = {}, anchors) {
   return anchor === undefined ? anchors[0] : keyword(anchor, "anchor", anchors);
 }
 
-function anchorY(options) {
-  return maybeAnchor(options, ["left", "right"]);
-}
-
-function anchorFy(options) {
-  return maybeAnchor(options, ["right", "left", "inline"]);
-}
-
-function anchorX(options) {
-  return maybeAnchor(options, ["bottom", "top"]);
-}
-
-function anchorFx(options) {
-  return maybeAnchor(options, ["top", "bottom", "inline"]);
-}
-
 export function axisY() {
   const [data, options] = maybeData(...arguments);
-  return axisKy("y", anchorY(options), data, options);
+  return axisKy("y", maybeAnchor(options, ["left", "right"]), data, options);
 }
 
 export function axisFy() {
   const [data, options] = maybeData(...arguments);
-  return axisKy("fy", anchorFy(options), data, options);
+  return axisKy("fy", maybeAnchor(options, ["right", "left", "inline"]), data, options);
 }
 
 export function axisX() {
   const [data, options] = maybeData(...arguments);
-  return axisKx("x", anchorX(options), data, options);
+  return axisKx("x", maybeAnchor(options, ["bottom", "top"]), data, options);
 }
 
 export function axisFx() {
   const [data, options] = maybeData(...arguments);
-  return axisKx("fx", anchorFx(options), data, options);
+  return axisKx("fx", maybeAnchor(options, ["top", "bottom", "inline"]), data, options);
 }
 
 function axisKy(
@@ -425,22 +409,22 @@ function axisTextKx(
 
 export function gridY() {
   const [data, options] = maybeData(...arguments);
-  return gridKy("y", anchorY(options), data, options);
+  return gridKy("y", maybeAnchor(options, ["left", "right"]), data, options);
 }
 
 export function gridFy() {
   const [data, options] = maybeData(...arguments);
-  return gridKy("fy", anchorFy(options), data, options);
+  return gridKy("fy", maybeAnchor(options, ["right", "left"]), data, options);
 }
 
 export function gridX() {
   const [data, options] = maybeData(...arguments);
-  return gridKx("x", anchorX(options), data, options);
+  return gridKx("x", maybeAnchor(options, ["bottom", "top"]), data, options);
 }
 
 export function gridFx() {
   const [data, options] = maybeData(...arguments);
-  return gridKx("fx", anchorFx(options), data, options);
+  return gridKx("fx", maybeAnchor(options, ["top", "bottom"]), data, options);
 }
 
 function gridKy(
