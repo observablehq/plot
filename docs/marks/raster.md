@@ -227,7 +227,7 @@ When faceting, the sample function *f*(*x*,*y*) is passed a third argument of th
 
 The raster mark supports Plot’s [projection system](../features/projections.md). The chart below shows global atmospheric water vapor measurements from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV).
 
-:::plot defer https://observablehq.com/@observablehq/plot-contours-projection
+:::plot defer https://observablehq.com/@observablehq/plot-raster-projection
 ```js
 Plot.plot({
   projection: "equal-earth",
