@@ -25,7 +25,7 @@ Plot.plot({
 ```
 :::
 
- A linear model posits that _y_ is determined by an underlying affine function *y* = *a* ﹢ *b&thinsp;x*, where _a_ is a constant (intercept of the line on the _y_-axis when _x_ = 0) and _b_ is the slope. Given a set of points in **x** and **y**, the linear regression method returns the most likely parameters _a_ and _b_ for the linear model, as well as a confidence band showing the range where these parameters lie with a certain probability, called **ci** (for confidence interval), which defaults to 0.95.
+A linear model posits that _y_ is determined by an underlying affine function *y* = *a* ﹢ *b&thinsp;x*, where _a_ is a constant (intercept of the line on the _y_-axis when _x_ = 0) and _b_ is the slope. Given a set of points in **x** and **y**, the linear regression method returns the most likely parameters _a_ and _b_ for the linear model, as well as a confidence band showing the range where these parameters lie with a certain probability, called **ci** (for confidence interval), which defaults to 0.95.
 
 :::info
 The regression line is fit using the [least squares](https://en.wikipedia.org/wiki/Least_squares) approach. See Torben Jansen’s [“Linear regression with confidence bands”](https://observablehq.com/@toja/linear-regression-with-confidence-bands) and [this StatExchange question](https://stats.stackexchange.com/questions/101318/understanding-shape-and-calculation-of-confidence-bands-in-linear-regression) for details.

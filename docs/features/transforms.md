@@ -26,7 +26,7 @@ onMounted(() => {
 
 For example, given a [dataset of highway traffic](https://gist.github.com/chrtze/c74efb46cadb6a908bbbf5227934bfea) measured as vehicles per hour by location, plotting every observation is straightforward: use a [tick](../marks/tick.md) (or [dot](../marks/dot.md)) and assign **x** = vehicles per hour and **y** = location. But to draw a quantifiable insight, we may want a summary statistic such as the *median* traffic by location. 👩‍💻 Below we use the [group transform](../transforms/group.md) to group by location and apply a *median* reducer to position the <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> tick.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-sorted-groups
 ```js
 Plot.plot({
   marginLeft: 120,
@@ -52,7 +52,7 @@ Plot.plot({
 
 As you might expect, traffic varies significantly throughout the day, so perhaps it would be better to look at the median by hour by location? Instead of grouping only by **y**, we can group by both **x** and **y** to produce a heatmap.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-sorted-heatmap
 ```js
 Plot.plot({
   marginLeft: 120,
@@ -183,7 +183,7 @@ If the **transform** option is specified, it supersedes any basic transforms (*i
 
 While transform functions often produce new *data* or *facets*, they may return the passed-in *data* and *facets* as-is, and often have a side-effect of constructing derived channels. For example, the count of elements in a [groupX transform](../transforms/group.md) might be returned as a new *y* channel. In this case, the transform is typically expressed as an options transform: a function that takes a mark *options* object and returns a new, transformed options object, where the returned options object implements the **transform** option. Transform functions should not mutate the input *data* or *facets*. Likewise options transforms should not mutate the input *options* object.
 
-When implementing a custom transforms, keep in mind that every transform needs to be compatible with Plot’s [faceting system](./facets.md), which partitions the original dataset into discrete subsets.
+When implementing a custom transform for generic usage, keep in mind that it needs to be compatible with Plot’s [faceting system](./facets.md), which partitions the original dataset into discrete subsets.
 
 ## Custom initializers
 
@@ -244,4 +244,4 @@ This method is used by Plot’s transforms to derive channels; the associated co
 Plot.contour(data, {width: w, height: h, fill: Plot.identity})
 ```
 
-This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data:
+This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data.

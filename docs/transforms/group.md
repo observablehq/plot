@@ -25,7 +25,7 @@ The **group transform** groups ordinal or nominal data—discrete values such as
 
 For example, the bar chart below shows a distribution of Olympic athletes by sport.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-group-olympic-athletes-by-sport
 ```js
 Plot.plot({
   marginBottom: 100,
@@ -63,7 +63,7 @@ Plot.plot({
 
 While the groupX transform is often used to generate **y**, it can output to any channel. For example, by declaring **r** in *outputs*, we can generate dots of size proportional to the number of athletes in each sport.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-groups-as-dots
 ```js
 Plot.plot({
   marginBottom: 100,
@@ -78,7 +78,7 @@ Plot.plot({
 
 The **fill** channel meanwhile will produce a one-dimensional heatmap. Since there is no **y** channel below, we use a [cell](../marks/cell.md) instead of a bar.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-groups-as-cells
 ```js-vue
 Plot.plot({
   marginBottom: 80,
@@ -93,7 +93,7 @@ Plot.plot({
 
 We aren’t limited to the *count* reducer. We can use the *mode* reducer, for example, to show which sex is more prevalent in each sport: <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">men</span> are represented more often than <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">women</span> in every sport except gymnastics and fencing.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-group-and-mode-reducer
 ```js
 Plot.plot({
   marginBottom: 80,
@@ -107,7 +107,7 @@ Plot.plot({
 
 You can partition groups using **z**. If **z** is undefined, it defaults to **fill** or **stroke**, if any. In conjunction with the barY mark’s implicit [stackY transform](./stack.md), this will produce stacked bars.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-two-class-stacked-bars
 ```js
 Plot.plot({
   marginBottom: 100,
@@ -128,7 +128,7 @@ You can invoke the stack transform explicitly as `Plot.stackY(Plot.groupX({y: "c
 
 You can opt-out of the implicit stackY transform by having groupX generate **y1** or **y2** instead of **y** (and similarly **x1** or **x2** for stackX and groupY). When overlapping marks, use either opacity or blending to make the overlap visible.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-two-class-overlapping-bars
 ```js-vue
 Plot.plot({
   marginBottom: 100,
@@ -149,7 +149,7 @@ While the **mixBlendMode** option is useful for mitigating occlusion, it can be 
 
 Perhaps better would be to make a grouped bar chart using [faceting](../features/facets.md). This is accomplished by setting the **fx** channel to facet horizontally on *sport*, while the **x** channel is used within each facet to draw side-by-side bars for each *sex*. The group transform automatically partitions groups by facet.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-olympians-grouped-bar-chart
 ```js
 Plot.plot({
   marginBottom: 100,
@@ -209,7 +209,7 @@ The group transform comes in four orientations:
 
 As you might guess, the groupY transform with the barX mark produces a horizontal→ bar chart. (We must increase the **marginLeft** to avoid the *y* axis labels from being cut off.)
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-sorted-horizontal-bars
 ```js
 Plot.plot({
   marginLeft: 100,
@@ -225,7 +225,7 @@ Plot.plot({
 
 You can produce a two-dimensional heatmap with group transform and a cell mark by generating a **fill** output channel. For example, we could show the median weight of athletes by sport (**x**) and sex (**y**).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-grouped-olympians-heatmap
 ```js-vue
 Plot.plot({
   marginBottom: 80,
@@ -241,7 +241,7 @@ Plot.plot({
 
 Or, we could group athletes by sport and the number of gold medals 🥇 won. ([Michael Phelps](https://en.wikipedia.org/wiki/Michael_Phelps), the most decorated Olympian of all time, won five gold medals in the 2016 Summer Olympics. [Simone Biles](https://en.wikipedia.org/wiki/Simone_Biles) and [Katie Ledecky](https://en.wikipedia.org/wiki/Katie_Ledecky) each won four.)
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-olympians-by-gold-medals
 ```js-vue
 Plot.plot({
   marginBottom: 100,
@@ -257,7 +257,7 @@ Plot.plot({
 
 We could instead output **r** and use a [dot mark](../marks/dot.md) whose size again represents the number of athletes in each group.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-olympians-by-gold-medals-proportional-dots
 ```js-vue
 Plot.plot({
   marginBottom: 100,
@@ -273,7 +273,7 @@ Plot.plot({
 
 We can add the **stroke** channel to show overlapping distributions by sex.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-olympians-by-gold-medals-overlapping-dots
 ```js-vue
 Plot.plot({
   marginBottom: 100,
@@ -289,7 +289,7 @@ Plot.plot({
 
 To group solely on **z** (or **fill** or **stroke**), use [groupZ](#groupz-outputs-options). The single stacked bar chart below (an alternative to a pie chart) shows the proportion of athletes by sport. The *proportion* reducer converts counts into normalized proportions adding up to 1, while the *first* reducer pulls out the name of the sport for labeling.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-single-stacked-bar
 ```js
 Plot.plot({
   height: 100,

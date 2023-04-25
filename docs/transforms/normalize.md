@@ -29,7 +29,7 @@ onMounted(() => {
 
 The **normalize transform** is a specialized [map transform](./map.md) that normalizes series values relative to some basis, say to convert absolute values into relative values. For example, here is an index chart—a type of multi-series line chart—showing the return of several stocks relative to their closing price on a particular date.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-index-chart
 ```js
 Plot.plot({
   style: "overflow: visible;",
@@ -71,7 +71,7 @@ The normalize transform converts absolute values into relative ones. So, if **y*
 
 As another example, the normalize transform can be used to compute proportional demographics from absolute populations. The plot below compares the demographics of U.S. states: color represents age group, **y** represents the state, and **x** represents the proportion of the state’s population in that age group.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-dot-plot
 ```js
 Plot.plot({
   height: 660,

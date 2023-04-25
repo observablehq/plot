@@ -22,7 +22,7 @@ function bollinger(N, K) {
 
 The **map transform** groups data into series and then transforms each series’ values, say to normalize them relative to some basis or to apply a moving average. For example, below the map transform computes a cumulative sum (*cumsum*) of a series of random numbers sampled from a normal distribution—in other words, a random walk.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-random-walk-cumsum-map
 ```js
 Plot.plot({
   marks: [
@@ -35,7 +35,7 @@ Plot.plot({
 
 As another example, we can map the daily trading volume of Apple stock to a [*p*-quantile](https://en.wikipedia.org/wiki/Quantile) in [0, 1] using the *quantile* map method, where 0 represents the minimum daily trade volume and 1 represents the maximum, and then apply a 30-day rolling mean with the [window transform](./window.md) to smooth out the noise.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-quantile-map-transform
 ```js
 Plot.plot({
   marks: [
@@ -76,7 +76,7 @@ As a more practical example, we can use the map transform to construct [Bollinge
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-bollinger-band
 ```js
 Plot.plot({
   y: {

@@ -42,7 +42,7 @@ A **projection** maps abstract coordinates in *x* and *y* to pixel positions on 
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-earthquake-globe
 ```js
 Plot.plot({
   projection: {type: "orthographic", rotate: [-longitude, -30]},
@@ -91,7 +91,7 @@ Plot provides a variety of built-in projections. And as above, all world project
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-world-projections
 ```js-vue
 Plot.plot({
   projection: "{{projection}}",
@@ -118,7 +118,7 @@ No single projection is best at everything. It is impossible, for example, for a
 
 In addition to world projections, Plot provides the U.S.-centric *albers-usa* conic equal-area projection with an inset of Alaska and Hawaii. (Note that the scale for Alaska is diminished: it is projected at 0.35× its true relative area.)
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-albers-usa-projection
 ```js
 Plot.plot({
   projection: "albers-usa",
@@ -144,7 +144,7 @@ For maps that focus on a specific region, use the **domain** option to zoom in. 
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-projection-domain
 ```js
 Plot.plot({
   projection: {
@@ -168,7 +168,7 @@ circle = d3.geoCircle().center([9, 34]).radius(radius).precision(2)()
 
 If none of Plot’s built-in projections meet your needs, you can use any of [D3’s extended projections](https://github.com/d3/d3-geo-projection) by specifying the **projection** option as a function that returns a D3 projection. Below, a map of Antarctica in a polar aspect of the *azimuthal-equidistant* projection.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-polar-projection
 ```js
 Plot.plot({
   width: 688,
@@ -189,7 +189,7 @@ Plot.plot({
 
 While this notebook mostly details spherical projections, you can use the *identity* projection to display planar geometry. For example, below we draw a schematic of the second floor of the [Westport House](https://en.wikipedia.org/wiki/Westport_House) in Dundee, Ireland.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-floor-plan
 ```js
 Plot.geo(westport).plot({projection: {type: "identity", domain: westport}})
 ```
@@ -201,7 +201,7 @@ There’s also a *reflect-y* projection in case *y* points up↑.
 
 Naturally, Plot’s projection system is compatible with its [faceting system](./facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-map-small-multiples
 ```js
 Plot.plot({
   marginLeft: 0,

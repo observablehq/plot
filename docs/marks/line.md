@@ -143,7 +143,7 @@ If your data is not tidy, you can use [*array*.flatMap](https://developer.mozill
 
 If a **stroke** (or **fill**) channel is specified, the **z** option defaults to the same, automatically grouping series. For this reason, both **stroke** and **z** are typically ordinal or categorical.
 
-:::plot defer https://observablehq.com/@observablehq/plot-indexed-line-chart
+:::plot defer https://observablehq.com/@observablehq/plot-index-chart
 ```js
 Plot.plot({
   style: "overflow: visible;",

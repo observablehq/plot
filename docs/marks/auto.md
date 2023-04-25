@@ -92,7 +92,7 @@ Plot.auto(olympians, {x: "weight", y: "sex", color: "count"}).plot()
 
 Similarly, with explicit marks and transforms, changing a vertical histogram to a horizontal histogram involves switching [rectY](./rect.md#recty-data-options) to [rectX](./rect.md#rectx-data-options), [binX](../transforms/bin.md#binx-outputs-options) to [binY](../transforms/bin.md#biny-outputs-options), **x** to **y**, and **y** to **x**. With the auto mark, just specify **y** instead of **x**:
 
-:::plot https://observablehq.com/@observablehq/plot-auto-mark-vertical-histogram
+:::plot https://observablehq.com/@observablehq/plot-auto-mark-horizontal-histogram
 ```js
 Plot.auto(penguins, {y: "island"}).plot()
 ```

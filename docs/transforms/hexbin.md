@@ -29,7 +29,7 @@ The **hexbin transform** groups two-dimensional quantitative or temporal data—
 
 For example, the heatmap below shows the weights and heights of Olympic athletes. The color of each hexagon represents the number (*count*) of athletes with similar weight and height.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-olympians-hexbin
 ```js-vue
 Plot
   .dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"}))
@@ -49,7 +49,7 @@ To produce an areal encoding as in a bubble map, output **r**. In this case, the
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-hexbin-binwidth
 ```js
 Plot
   .dot(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height", binWidth}))
@@ -59,7 +59,7 @@ Plot
 
 If desired, you can output both **fill** and **r** for a redundant encoding.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-hexbin-redundant
 ```js-vue
 Plot
   .dot(olympians, Plot.hexbin({fill: "count", r: "count"}, {x: "weight", y: "height", stroke: "currentColor"}))
@@ -73,7 +73,7 @@ Setting a **stroke** ensures that the smallest hexagons are visible.
 
 Alternatively, the **fill** and **r** channels can encode independent (or “bivariate”) dimensions of data. Below, the **r** channel uses *count* as before, while the **fill** channel uses *mode* to show the most frequent sex of athletes in each hexagon. The larger athletes are more likely to be <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">male</span>, while the smaller athletes are more likely to be <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">female</span>.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-bivariate-hexbin
 ```js
 Plot
   .dot(olympians, Plot.hexbin({fill: "mode", r: "count"}, {x: "weight", y: "height", fill: "sex"}))
@@ -83,7 +83,7 @@ Plot
 
 Using **z**, the hexbin transform will partition hexagons by ordinal value. If **z** is not specified, it defaults to **fill** (if there is no **fill** output channel) or **stroke** (if there is no **stroke** output channel). Setting **z** to *sex* in the chart above, and switching to **stroke** instead of **fill**, produces separate overlapping hexagons for each sex.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-overlapping-hexbin
 ```js
 Plot
   .dot(olympians, Plot.hexbin({stroke: "mode", r: "count"}, {x: "weight", y: "height", z: "sex", stroke: "sex"}))
@@ -93,7 +93,7 @@ Plot
 
 The hexbin transform can be paired with any mark that supports **x** and **y** channels (which is almost all of them). The [text mark](../marks/text.md) is useful for labelling. By setting the **text** output channel, you can derive the text from the binned contents.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-hexbin-text
 ```js
 Plot
   .text(olympians, Plot.hexbin({text: "count"}, {x: "weight", y: "height"}))
@@ -103,7 +103,7 @@ Plot
 
 The hexbin transform also works with Plot’s [projection system](../features/projections.md). Below, hexagon size represents the number of nearby Walmart stores, while color represents the date the first nearby Walmart store opened. (The first Walmart opened in Rogers, Arkansas.)
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-hexbin-map
 ```js
 Plot.plot({
   projection: "albers",
@@ -124,7 +124,7 @@ Beware the [modifiable areal unit problem](https://en.wikipedia.org/wiki/Modifia
 
 The [hexgrid mark](../marks/hexgrid.md) draws the base hexagonal grid as a mesh. This is useful for showing the empty hexagons, since the hexbin transform does not output empty bins (and unlike the bin transform, the hexbin transform does not currently support the **filter** option).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-hexgrid-demo
 ```js
 Plot.plot({
   marks: [
@@ -137,7 +137,7 @@ Plot.plot({
 
 The hexbin transform defaults the **symbol** option to *hexagon*, but you can override it. The [circle constructor](../marks/dot.md#circle-data-options) changes it to *circle*.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-hexbin-circle
 ```js
 Plot.circle(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height"})).plot()
 ```
@@ -145,7 +145,7 @@ Plot.circle(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height"})).pl
 
 Hexbins work best when there is an interesting density of dots in the center of the chart, but sometimes hexagons “escape” the edge of the frame and cover the axes. To prevent this, you can use the **inset** [scale option](../features/scales.md) to reserve space on the edges of the frame.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-hexbin-inset
 ```js-vue
 Plot
   .dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"}))
@@ -159,7 +159,7 @@ You can also set the dot’s **clip** option to true to prevent the hexagons fro
 
 Alternatively, use the [axis mark](../marks/axis.md) to draw axes on top of the hexagons.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-hexbin-and-axes
 ```js-vue
 Plot.plot({
   color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"},

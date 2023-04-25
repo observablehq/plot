@@ -38,7 +38,7 @@ The **sort transform** sorts a mark’s index to change the effective order of d
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-dot-sort
 ```js
 Plot.plot({
   projection: "albers-usa",
@@ -64,7 +64,7 @@ The sort transform can be applied either via the **sort** [mark option](../featu
 
 As another example, in the line chart of unemployment rates below, lines for metropolitan areas in Michigan (which saw exceptionally high unemployment following the [financial crisis of 2008](https://en.wikipedia.org/wiki/2007–2008_financial_crisis), in part due to the [auto industry collapse](https://en.wikipedia.org/wiki/2008–2010_automotive_industry_crisis)) are highlighted in <span style="border-bottom: solid 2px var(--vp-c-red);">red</span>, and the **sort** option is used to draw them on top of other series.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-multiple-line-highlight
 ```js
 Plot.plot({
   y: {
@@ -103,7 +103,7 @@ The index order also affects the behavior of certain transforms such as [stack](
   </span>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dodge-cars-2
 ```js
 Plot.plot({
   height: 180,

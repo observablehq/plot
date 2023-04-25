@@ -66,7 +66,7 @@ Regarding this data, [Remote Sensing Systems](https://www.remss.com/measurements
 
 Vectors can be used with Plot’s [projection system](../features/projections.md). The map below shows the margin by which the winner of the US presidential election of 2020 won the vote in each county. The arrow’s length encodes the difference in votes, and the orientation and color show who won (<svg width=12 height=12 viewBox="-11 -11 12 12" style="display: inline-block"><path d="M0,0l-10,-6m1,3.28l-1,-3.28l3.28,-1" stroke="var(--vp-c-blue)" stroke-width="1.5"></path></svg> for the Democratic candidate, and <svg width=12 height=12 viewBox="0 -11 12 12" style="display: inline-block"><path d="M0,0l10,-6m-1,3.28l1,-3.28l-3.28,-1" stroke="var(--vp-c-red)" stroke-width="1.5"></path></svg> for the Republican candidate).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-election-wind-map
 ```js
 Plot.plot({
   projection: "albers-usa",
