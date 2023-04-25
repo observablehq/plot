@@ -111,7 +111,7 @@ Plot.plot({
 
 The [Delaunay marks](../marks/delaunay.md) also work with Plot’s [projection system](../features/projections.md), as in this Voronoi diagram showing the distribution of Walmart stores in the contiguous United States.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-walmart-voronoi
 ```js
 Plot.plot({
   projection: "albers",

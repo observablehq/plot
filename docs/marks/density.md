@@ -109,7 +109,7 @@ Plot.plot({
 
 Naturally, the density mark works with Plot’s [projection system](../features/projections.md), as in this heatmap showing the density of Walmart stores across the contiguous United States (which is a decent proxy for population density).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-walmart-density
 ```js-vue
 Plot.plot({
   projection: "albers",
