@@ -7,13 +7,17 @@ import {computed, shallowRef, onMounted} from "vue";
 
 const us = shallowRef(null);
 const earthquakes = shallowRef([]);
+const walmarts = shallowRef({type: "FeatureCollection", features: []});
 const world = shallowRef(null);
+const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
+const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
 const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
 const land = computed(() => world.value ? topojson.feature(world.value, world.value.objects.land) : {type: null});
 
 onMounted(() => {
   d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson").then((data) => (earthquakes.value = data));
   d3.json("../data/countries-110m.json").then((data) => (world.value = data));
+  d3.tsv("../data/walmarts.tsv", d3.autoType).then((data) => (walmarts.value = {type: "FeatureCollection", features: data.map((d) => ({type: "Feature", properties: {date: d.date}, geometry: {type: "Point", coordinates: [d.longitude, d.latitude]}}))}));
   Promise.all([
     d3.json("../data/us-counties-10m.json"),
     d3.csv("../data/us-county-unemployment.csv")
@@ -60,11 +64,12 @@ The size of Point and MultiPoint geometries is controlled by the **r** option. F
 Plot.plot({
   projection: "equirectangular",
   style: "overflow: visible;",
+  r: {transform: (r) => Math.pow(10, r)}, // Richter to amplitude
   marks: [
     Plot.geo(land, {fill: "currentColor", fillOpacity: 0.2}),
     Plot.sphere(),
     Plot.geo(earthquakes, {
-      r: (d) => Math.pow(10, d.properties.mag),
+      r: (d) => d.properties.mag,
       fill: "red",
       fillOpacity: 0.2,
       stroke: "red",
@@ -122,6 +127,29 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+The geo mark supports [faceting](./facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
+
+:::plot defer https://observablehq.com/@observablehq/plot-map-large-multiples
+```js
+Plot.plot({
+  margin: 0,
+  padding: 0,
+  projection: "albers",
+  fy: {interval: d3.utcYear.every(10)},
+  marks: [
+    Plot.geo(statemesh, {strokeOpacity: 0.2}),
+    Plot.geo(nation),
+    Plot.geo(walmarts, {fy: (d) => d.properties.date, r: 1.5, fill: "blue"}),
+    Plot.axisFy({frameAnchor: "top", dy: 30, tickFormat: (d) => `${d.getUTCFullYear()}’s`})
+  ]
+})
+```
+:::
+
+:::info
+This uses the [**interval** scale option](../transforms/interval.md) to bin temporal data into facets by decade.
 :::
 
 Lastly, the geo mark is not limited to spherical geometries! [Plot’s projection system](../features/projections.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
