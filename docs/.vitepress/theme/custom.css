@@ -63,19 +63,20 @@
 }
 
 a.plot-fork {
-  font-size: small;
+  font-size: 12px;
   position: absolute;
-  right: 0;
-  margin-top: -8px;
+  left: 100%;
+  margin-left: 8px;
+  margin-top: 18px;
   color: var(--vp-c-text-2);
-  text-decoration: none !important;
+}
+
+a.plot-fork::after {
+  content: " ↗︎";
+  opacity: 0.5;
 }
 
 a.plot-fork:hover {
   color: var(--vp-c-brand);
-}
-
-a.plot-fork::after {
-  content: " ↗︎";
-  opacity: 0.5;
+  text-decoration: none;
 }
