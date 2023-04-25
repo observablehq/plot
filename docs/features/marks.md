@@ -465,7 +465,7 @@ Plot.dot(sales, {x: "units", y: "fruit"}).plot()
 While a column name such as `"units"` is the most concise way of specifying channel values, values can also be specified as functions for greater flexibility, say to transform data or derive a new column on the fly. Channel functions are invoked for each datum (*d*) in the data and return the corresponding channel value. (This is similar to how D3’s [*selection*.attr](https://github.com/d3/d3-selection/blob/main/README.md#selection_attr) accepts functions, though note that Plot channel functions should return abstract values, not visual values.)
 
 ```js
-Plot.dot(sales, {x: d => d.units * 1000, y: d => d.fruit}).plot()
+Plot.dot(sales, {x: (d) => d.units * 1000, y: (d) => d.fruit}).plot()
 ```
 
 Plot also supports columnar data for greater efficiency with bigger datasets; for example, data can be specified as any array of the appropriate length (or any iterable or value compatible with [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)), and then separate arrays of values can be passed as *options*.
@@ -550,7 +550,7 @@ The color channels (**fill** and **stroke**) are bound to the *color* scale by d
 In addition to functions of data, arrays, and column names, channel values can be specified as an object with a *transform* method; this transform method is passed the mark’s array of data and must return the corresponding array of channel values. (Whereas a channel value specified as a function is invoked repeatedly for each element in the mark’s data, similar to *array*.map, the transform method is invoked only once being passed the entire array of data.) For example, to pass the mark’s data directly to the **x** channel, equivalent to [Plot.identity](./transforms.md#plotidentity):
 
 ```js
-Plot.dot(numbers, {x: {transform: data => data}})
+Plot.dot(numbers, {x: {transform: (data) => data}})
 ```
 
 The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark’s associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.

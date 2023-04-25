@@ -186,18 +186,18 @@ Plot.plot({
   inset: 10,
   color: {legend: true},
   marks: [
-    Plot.density(penguins.filter(d => d.sex), {
-      weight: d => d.sex === "FEMALE" ? 1 - skew : 1 + skew,
+    Plot.density(penguins.filter((d) => d.sex), {
+      weight: (d) => d.sex === "FEMALE" ? 1 - skew : 1 + skew,
       x: "flipper_length_mm",
       y: "culmen_length_mm",
       strokeOpacity: 0.5,
       clip: true
     }),
-    Plot.dot(penguins.filter(d => d.sex), {
+    Plot.dot(penguins.filter((d) => d.sex), {
       x: "flipper_length_mm",
       y: "culmen_length_mm",
       stroke: "sex",
-      strokeOpacity: d => d.sex === "FEMALE" ? 1 - skew : 1 + skew
+      strokeOpacity: (d) => d.sex === "FEMALE" ? 1 - skew : 1 + skew
     }),
     Plot.frame()
   ]

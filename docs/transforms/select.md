@@ -13,7 +13,7 @@ onMounted(() => {
     d3.csv("../data/goog.csv", d3.autoType),
     d3.csv("../data/ibm.csv", d3.autoType)
   ]).then((datas) => {
-    stocks.value = d3.zip(["AAPL", "AMZN", "GOOG", "IBM"], [aapl].concat(datas)).flatMap(([Symbol, data]) => data.map(d => ({Symbol, ...d})));
+    stocks.value = d3.zip(["AAPL", "AMZN", "GOOG", "IBM"], [aapl].concat(datas)).flatMap(([Symbol, data]) => data.map((d) => ({Symbol, ...d})));
   });
 });
 

@@ -298,7 +298,7 @@ Plot.plot({
 
 And like position scales, you can apply a *sqrt*, *pow*, *log*, or *symlog* transform; these are often useful when working with non-uniformly distributed data.
 
-<!-- html`${["log", "symlog", "sqrt", "linear"].map(type => html`<div style="position: relative;">
+<!-- html`${["log", "symlog", "sqrt", "linear"].map((type) => html`<div style="position: relative;">
   <div style="position: absolute; color: white; font: bold 13px/33px var(--sans-serif); padding: 0 38px;">${type}</div>${Plot.plot({
   height: 33,
   color: {
@@ -567,7 +567,7 @@ Plot.plot({
   y: {
     grid: true,
     label: `↑ Daily temperature range (°${celsius ? "C" : "F"})`,
-    transform: celsius ? f => (f - 32) * (5 / 9) : undefined // Fahrenheit to Celsius
+    transform: celsius ? (f) => (f - 32) * (5 / 9) : undefined // Fahrenheit to Celsius
   },
   marks: [
     Plot.areaY(sftemp, {x: "date", y1: "low", y2: "high"})
@@ -689,7 +689,7 @@ The *scale*.**transform** option allows you to apply a function to all values be
 Plot.plot({
   y: {
     label: "↑ Temperature (°F)",
-    transform: f => f * 9 / 5 + 32 // convert Celsius to Fahrenheit
+    transform: (f) => f * 9 / 5 + 32 // convert Celsius to Fahrenheit
   },
   marks: …
 })

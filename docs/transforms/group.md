@@ -388,19 +388,19 @@ Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
 You can control whether a channel is computed before or after grouping. If a channel is declared only in *options* (and it is not a special group-eligible channel such as **x**, **y**, **z**, **fill**, or **stroke**), it will be computed after grouping and be passed the grouped data: each datum is the array of input data corresponding to the current group.
 
 ```js
-Plot.groupX({y: "count"}, {x: "species", title: group => group.map(d => d.body_mass_g).join("\n")})
+Plot.groupX({y: "count"}, {x: "species", title: (group) => group.map((d) => d.body_mass_g).join("\n")})
 ```
 
 This is equivalent to declaring the channel only in *outputs*.
 
 ```js
-Plot.groupX({y: "count", title: group => group.map(d => d.body_mass_g).join("\n")}, {x: "species"})
+Plot.groupX({y: "count", title: (group) => group.map((d) => d.body_mass_g).join("\n")}, {x: "species"})
 ```
 
 However, if a channel is declared in both *outputs* and *options*, then the channel in *options* is computed before grouping and can be aggregated using any built-in reducer (or a custom reducer function) during the group transform.
 
 ```js
-Plot.groupX({y: "count", title: masses => masses.join("\n")}, {x: "species", title: "body_mass_g"})
+Plot.groupX({y: "count", title: (masses) => masses.join("\n")}, {x: "species", title: "body_mass_g"})
 ```
 
 If any of **z**, **fill**, or **stroke** is a channel, the first of these channels is considered the *z* dimension and will be used to subdivide groups.

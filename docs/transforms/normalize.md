@@ -15,11 +15,11 @@ onMounted(() => {
     d3.csv("../data/goog.csv", d3.autoType),
     d3.csv("../data/ibm.csv", d3.autoType)
   ]).then((datas) => {
-    stocks.value = d3.zip(["AAPL", "AMZN", "GOOG", "IBM"], datas).flatMap(([Symbol, data]) => data.map(d => ({Symbol, ...d})));
+    stocks.value = d3.zip(["AAPL", "AMZN", "GOOG", "IBM"], datas).flatMap(([Symbol, data]) => data.map((d) => ({Symbol, ...d})));
   });
   d3.csv("../data/us-population-state-age.csv", d3.autoType).then((data) => {
     const ages = data.columns.slice(1); // convert wide data to tidy data
-    stateage.value = Object.assign(ages.flatMap(age => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
+    stateage.value = Object.assign(ages.flatMap((age) => data.map((d) => ({state: d.name, age, population: d[age]}))), {ages});
   });
 });
 

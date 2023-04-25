@@ -125,7 +125,7 @@ The given *options* are passed through to these underlying marks, with the excep
 ## boxX(*data*, *options*)
 
 ```js
-Plot.boxX(simpsons.map(d => d.imdb_rating))
+Plot.boxX(simpsons.map((d) => d.imdb_rating))
 ```
 
 Returns a horizontal box mark. If the **x** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **y** option is not specified, it defaults to null; if the **y** option is specified, it should represent an ordinal (discrete) value.
@@ -133,7 +133,7 @@ Returns a horizontal box mark. If the **x** option is not specified, it defaults
 ## boxY(*data*, *options*)
 
 ```js
-Plot.boxY(simpsons.map(d => d.imdb_rating))
+Plot.boxY(simpsons.map((d) => d.imdb_rating))
 ```
 
 Returns a vertical box mark. If the **y** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **x** option is not specified, it defaults to null; if the **x** option is specified, it should represent an ordinal (discrete) value.
