@@ -72,7 +72,7 @@ Plot provides a variety of built-in projections. And as above, all world project
     Projection:
     <select v-model="projection">
       <!-- <option>albers-usa</option> -->
-      <option>albers</option>
+      <!-- <option>albers</option> -->
       <option>azimuthal-equal-area</option>
       <option>azimuthal-equidistant</option>
       <!-- <option>conic-conformal</option> -->
