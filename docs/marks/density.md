@@ -2,10 +2,17 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import {ref, shallowRef, onMounted} from "vue";
+import * as topojson from "topojson-client";
+import {computed, ref, shallowRef, onMounted} from "vue";
+import {useDark} from "../components/useDark.js";
 import faithful from "../data/faithful.ts";
 import penguins from "../data/penguins.ts";
 
+const walmarts = shallowRef([]);
+const us = shallowRef(null);
+const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
+const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
+const dark = useDark();
 const skew = ref(0);
 const bandwidth = ref(20);
 const thresholds = ref(20);
@@ -13,6 +20,8 @@ const diamonds = shallowRef([]);
 
 onMounted(() => {
   d3.csv("../data/diamonds.csv", d3.autoType).then((data) => (diamonds.value = data));
+  d3.tsv("../data/walmarts.tsv", d3.autoType).then((data) => (walmarts.value = data));
+  d3.json("../data/us-counties-10m.json").then((data) => (us.value = data));
 });
 
 </script>
@@ -96,6 +105,28 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+Naturally, the density mark works with Plot’s [projection system](../features/projections.md), as in this heatmap showing the density of Walmart stores across the contiguous United States (which is a decent proxy for population density).
+
+:::plot defer
+```js-vue
+Plot.plot({
+  projection: "albers",
+  color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"},
+  style: "overflow: visible;",
+  marks: [
+    Plot.density(walmarts, {x: "longitude", y: "latitude", bandwidth: 10, fill: "density"}),
+    Plot.geo(statemesh, {strokeOpacity: 0.3}),
+    Plot.geo(nation),
+    Plot.dot(walmarts, {x: "longitude", y: "latitude", r: 1, fill: "currentColor"})
+  ]
+})
+```
+:::
+
+:::tip
+Use an equal-area projection with the density mark.
 :::
 
 By using the _density_ keyword as a **fill** or **stroke** color, you can draw regions with a sequential color encoding.

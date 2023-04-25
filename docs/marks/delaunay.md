@@ -2,7 +2,18 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import * as topojson from "topojson-client";
+import {computed, ref, shallowRef, onMounted} from "vue";
 import penguins from "../data/penguins.ts";
+
+const walmarts = shallowRef([]);
+const us = shallowRef(null);
+const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
+
+onMounted(() => {
+  d3.tsv("../data/walmarts.tsv", d3.autoType).then((data) => (walmarts.value = data));
+  d3.json("../data/us-counties-10m.json").then((data) => (us.value = data));
+});
 
 </script>
 
@@ -97,6 +108,26 @@ Plot.plot({
 })
 ```
 :::
+
+The [Delaunay marks](../marks/delaunay.md) also work with Plot’s [projection system](../features/projections.md), as in this Voronoi diagram showing the distribution of Walmart stores in the contiguous United States.
+
+:::plot defer
+```js
+Plot.plot({
+  projection: "albers",
+  marks: [
+    Plot.geo(nation),
+    Plot.dot(walmarts, {x: "longitude", y: "latitude", fill: "currentColor", r: 1}),
+    Plot.voronoiMesh(walmarts, {x: "longitude", y: "latitude"})
+  ]
+})
+```
+:::
+
+:::warning CAUTION
+Distances between projected points are not exactly proportional to the corresponding distances on the sphere. This [creates a discrepancy](https://observablehq.com/@observablehq/planar-vs-spherical-voronoi) between the planar Voronoi diagram and its spherical counterpart. For greater accuracy, use [d3-geo-voronoi](https://github.com/Fil/d3-geo-voronoi) with the [geo mark](../marks/geo.md).
+:::
+
 
 ## delaunayLink(*data*, *options*)
 

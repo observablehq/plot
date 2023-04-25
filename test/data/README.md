@@ -224,6 +224,10 @@ A recreation of “Who owns Britain?” by Richard Speigal; proportion plot char
 https://www.linkedin.com/feed/update/urn:li:activity:6758306750174138368/
 https://stephanieevergreen.com/proportion-plots/
 
+## westport-house.json
+Second floor of the Westport House in Dundee, Ireland
+https://github.com/wrld3d/wrld-indoor-maps-api
+
 ## wind.csv
 Gridded wind data
 https://github.com/gicentre/litvis/blob/main/examples/windVectors.md
