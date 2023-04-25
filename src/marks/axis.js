@@ -341,7 +341,7 @@ function axisTextKy(
     tickPadding = Math.max(3, 9 - tickSize) + (Math.abs(tickRotate) > 60 ? 4 * Math.cos(tickRotate * radians) : 0),
     tickFormat,
     text = typeof tickFormat === "function" ? tickFormat : undefined,
-    textAnchor = anchor === "inline" ? undefined : Math.abs(tickRotate) > 60 ? "middle" : anchor === "left" ? "end" : "start",
+    textAnchor = anchor === "inline" ? undefined : Math.abs(tickRotate) > 60 ? "middle" : anchor === "left" ? "end" : "start", // prettier-ignore
     lineAnchor = anchor === "inline" ? undefined : tickRotate > 60 ? "top" : tickRotate < -60 ? "bottom" : "middle",
     fontVariant,
     inset = 0,
@@ -367,7 +367,7 @@ function axisTextKy(
       rotate: tickRotate,
       y,
       ...options,
-      dx: anchor === "inline" ? dx : anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight
+      dx: anchor === "inline" ? dx : anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight // prettier-ignore
     },
     function (scale, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
@@ -388,8 +388,8 @@ function axisTextKx(
     tickPadding = Math.max(3, 9 - tickSize) + (Math.abs(tickRotate) >= 10 ? 4 * Math.cos(tickRotate * radians) : 0),
     tickFormat,
     text = typeof tickFormat === "function" ? tickFormat : undefined,
-    textAnchor = anchor === "inline" ? undefined : Math.abs(tickRotate) >= 10 ? ((tickRotate < 0) ^ (anchor === "bottom") ? "start" : "end") : "middle",
-    lineAnchor = anchor === "inline" ? undefined : Math.abs(tickRotate) >= 10 ? "middle" : anchor === "bottom" ? "top" : "bottom",
+    textAnchor = anchor === "inline" ? undefined : Math.abs(tickRotate) >= 10 ? ((tickRotate < 0) ^ (anchor === "bottom") ? "start" : "end") : "middle", // prettier-ignore
+    lineAnchor = anchor === "inline" ? undefined : Math.abs(tickRotate) >= 10 ? "middle" : anchor === "bottom" ? "top" : "bottom", // prettier-ignore
     fontVariant,
     inset = 0,
     insetTop = inset,
@@ -414,7 +414,7 @@ function axisTextKx(
       rotate: tickRotate,
       x,
       ...options,
-      dy: anchor === "inline" ? dy : anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop
+      dy: anchor === "inline" ? dy : anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop // prettier-ignore
     },
     function (scale, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
