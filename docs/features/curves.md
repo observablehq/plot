@@ -41,7 +41,7 @@ A **curve** defines how to turn a discrete representation of a line as a sequenc
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-curve-option
 ```js-vue
 Plot.plot({
   marks: [
