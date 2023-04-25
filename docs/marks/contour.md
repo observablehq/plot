@@ -170,17 +170,16 @@ Plot.contour(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", blur: 4})
 The contour mark also supports the **interpolate** option for control over [spatial interpolation](../features/spatial-interpolators.md).
 :::
 
-Naturally, the contour mark is compatible with Plot’s [projection system](../features/projections.md). The chart below shows global atmospheric water vapor measurements from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV) in the [Equal Earth projection](https://en.wikipedia.org/wiki/Equal_Earth_projection) by Šavrič *et al.*
+The contour mark supports Plot’s [projection system](../features/projections.md). The chart below shows global atmospheric water vapor measurements from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV).
 
 :::plot defer https://observablehq.com/@observablehq/plot-contours-projection
 ```js
 Plot.plot({
   projection: "equal-earth",
   color: {
-    scheme: "blues",
-    legend: true,
+    scheme: "BuPu",
     domain: [0, 6],
-    nice: true,
+    legend: true,
     label: "Water vapor (cm)"
   },
   marks: [

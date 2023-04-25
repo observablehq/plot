@@ -96,7 +96,7 @@ Plot.plot({
   width: 688,
   projection: "albers-usa",
   length: {range: [0, 200]},
-  style: "overflow: visible;",
+  style: "overflow: visible;", // allow spikes to escape
   marks: [
     Plot.geo(statemesh, {strokeOpacity: 0.5}),
     Plot.geo(nation),

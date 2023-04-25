@@ -7,10 +7,12 @@ import penguins from "../data/penguins.ts";
 import volcano from "../data/volcano.ts";
 
 const ca55 = shallowRef([]);
+const vapor = shallowRef([]);
 const grid = {"width": 10, "height": 10, "values": d3.cross(d3.range(10), d3.range(10), (x, y) => x * y)};
 
 onMounted(() => {
   d3.csv("../data/ca55-south.csv", d3.autoType).then((data) => (ca55.value = data));
+  d3.text("../data/MYDAL2_M_SKY_WV_2022-11-01_rgb_360x180.csv").then((text) => (vapor.value = d3.csvParseRows(text).flat().map((x) => (x === "99999.0" ? NaN : +x))));
 });
 
 function mandelbrot(x, y) {
@@ -221,6 +223,36 @@ Plot.raster({x1: -1, x2: 1, y1: -1, y2: 1, fill: (x, y) => Math.atan2(y, x)}).pl
 
 :::tip
 When faceting, the sample function *f*(*x*,*y*) is passed a third argument of the facet values {*fx*, *fy*}.
+:::
+
+The raster mark supports Plot’s [projection system](../features/projections.md). The chart below shows global atmospheric water vapor measurements from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV).
+
+:::plot defer https://observablehq.com/@observablehq/plot-contours-projection
+```js
+Plot.plot({
+  projection: "equal-earth",
+  color: {
+    scheme: "BuPu",
+    domain: [0, 6],
+    legend: true,
+    label: "Water vapor (cm)"
+  },
+  marks: [
+    Plot.raster(vapor, {
+      fill: Plot.identity,
+      width: 360,
+      height: 180,
+      x1: -180,
+      y1: 90,
+      x2: 180,
+      y2: -90,
+      interpolate: "barycentric",
+      clip: "sphere"
+    }),
+    Plot.sphere({stroke: "black"})
+  ]
+})
+```
 :::
 
 ## Raster options
