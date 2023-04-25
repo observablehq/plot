@@ -94,7 +94,7 @@ This is for demonstration only; you wouldn’t normally bin “by hand” as sh
 
 But Plot’s transforms are often more convenient, especially in conjunction with Plot’s other features such as [faceting](./facets.md) and automatic grouping by **z**. For example, if we want to add a color encoding to our histogram, we simply add the **fill** option and the bin transform partitions each bin accordingly; doing this with d3.bin would be a lot more work!
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-vertical-histogram
 ```js
 Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})).plot({color: {legend: true}})
 ```
