@@ -119,7 +119,7 @@ Plot.plot({
 :::
 
 :::warning CAUTION
-Beware the [modifiable areal unit problem](https://en.wikipedia.org/wiki/Modifiable_areal_unit_problem). On a small scale map, this is compounded by the Earth’s curvature, which makes it impossible to create an accurate and regular grid. Use an equal-area projection in conjunction when binning.
+Beware the [modifiable areal unit problem](https://en.wikipedia.org/wiki/Modifiable_areal_unit_problem). On a small scale map, this is compounded by the Earth’s curvature, which makes it impossible to create an accurate and regular grid. Use an equal-area projection when binning.
 :::
 
 The [hexgrid mark](../marks/hexgrid.md) draws the base hexagonal grid as a mesh. This is useful for showing the empty hexagons, since the hexbin transform does not output empty bins (and unlike the bin transform, the hexbin transform does not currently support the **filter** option).

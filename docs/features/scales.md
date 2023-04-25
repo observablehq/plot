@@ -27,7 +27,7 @@ onMounted(() => {
 
 # Scales
 
-**Scales** convert an abstract value such as time or temperature to a visual value such as *x*- or *y*-position or color. For example, say we have a tabular dataset (`gistemp`) containing monthly observations of [global average surface temperature](https://data.giss.nasa.gov/gistemp/) from 1880 to 2016. The first few rows are:
+**Scales** convert an abstract value such as time or temperature to a visual value such as *x*→ or *y*↑ position or color. For example, say we have a dataset (`gistemp`) containing monthly observations of [global average surface temperature](https://data.giss.nasa.gov/gistemp/) from 1880 to 2016. The first few rows are:
 
 | Date       | Anomaly |
 |------------|--------:|
@@ -46,7 +46,7 @@ Plot.lineY(gistemp, {x: "Date", y: "Anomaly"}).plot()
 ```
 :::
 
-In Plot, [mark channels](./marks.md) are bound to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.html#mark-options) if needed.)
+In Plot, a [mark’s channels](./marks.md) are bound to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.html#mark-options) if needed.)
 
 Think of a scale as a function that takes an abstract value and returns the corresponding visual value. For the *y* scale above, that might look like this:
 
@@ -63,8 +63,7 @@ The function `y` depends on a few additional details: the chart’s size and mar
 const marginTop = 20;
 const marginBottom = 30;
 const height = 400;
-const minAnomaly = d3.min(gistemp, (d) => d.Anomaly);
-const maxAnomaly = d3.max(gistemp, (d) => d.Anomaly);
+const [minAnomaly, maxAnomaly] = d3.extent(gistemp, (d) => d.Anomaly);
 ```
 
 Scales aren’t limited to horizontal and vertical position. They can also output to color, radius, length, opacity, and more. For example if we switch to a [rule](../marks/rule.md) and use the **stroke** channel instead of **y**, we get a one-dimensional heatmap:
@@ -84,7 +83,7 @@ function color(anomaly) {
 }
 ```
 
-Within a given plot, marks share scales. For example, if a plot has two line marks, both share the same *x* and *y* scales for a consistent encoding.
+Within a given [plot](./plots.md), marks share scales. For example, if a plot has two line marks, both share the same *x* and *y* scales for a consistent encoding.
 
 :::plot defer
 ```js
@@ -190,7 +189,7 @@ Plot.plot({x: {type: "log", domain: [1e0, 1e5], tickFormat: ",", grid: true}})
 ```
 :::
 
-Log scales also support a **base** option, say for powers of two. This does not affect the scale’s encoding, but it does change which ticks are shown.
+Log scales also support a **base** option, say for powers of two. This does not affect the scale’s encoding, but it does change where ticks are shown.
 
 :::plot
 ```js
@@ -234,7 +233,7 @@ Plot.plot({x: {type: "point", domain: "ABCDEFGHIJ", grid: true}})
 ```
 :::
 
-A band scale divides space into uniformly-spaced and -sized discrete intervals. It is commonly used for bar charts (bar marks). (To show the bands, below we use a [cell](../marks/cell.md) instead of a [grid](../marks/grid.md).)
+A band scale divides space into uniformly-spaced and -sized discrete intervals. It is commonly used for bar charts (bar marks). To show the bands below, we use a [cell](../marks/cell.md) instead of a [grid](../marks/grid.md).
 
 :::plot
 ```js
@@ -525,11 +524,13 @@ Plot.plot({
 ```
 :::
 
-Unlike continuous color schemes for quantitative data, these discrete color schemes are optimized for low-cardinality domains. If the size of the categorical domain exceeds the number of colors in the scheme, colors will be reused; combining values into an “other” category is recommended.
+:::warning CAUTION
+Discrete color schemes are intended for data that has only a few unique values. If the size of the categorical domain exceeds the number of colors in the scheme, colors will be reused; combining values into an “other” category is recommended.
+:::
 
 ## Other scales
 
-But wait, there’s more! Plot has *opacity*, *r*, *symbol*, and *length* scales, too. For example, the *r* scale **type** defaults to *sqrt* such that when used with the [dot mark](../marks/dot.md), the resulting area is proportional to the **r** channel value. You can adjust the effective dot size by specifying an explicit **range**, as below.
+But wait, there’s more! 😅 Plot has *opacity*, *r*, *symbol*, and *length* scales, too. For example, the *r* scale **type** defaults to *sqrt* such that when used with the [dot mark](../marks/dot.md), the resulting area is proportional to the **r** channel value. You can adjust the effective dot size by specifying an explicit **range**, as below.
 
 <p>
   <label class="label-input">
