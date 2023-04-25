@@ -40,7 +40,7 @@ onMounted(() => {
 
 When visualizing this data with a [line](../marks/line.md), the *x* scale is responsible for mapping dates to horizontal↔︎ positions. For example, 1880-01-01 might be mapped to *x* = 40 (on the left) and 2016-12-01 might be mapped to *x* = 620 (on the right). Likewise, the *y* scale maps temperature anomalies to vertical↕︎ positions.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-scales-intro
 ```js
 Plot.lineY(gistemp, {x: "Date", y: "Anomaly"}).plot()
 ```
@@ -68,7 +68,7 @@ const [minAnomaly, maxAnomaly] = d3.extent(gistemp, (d) => d.Anomaly);
 
 Scales aren’t limited to horizontal and vertical position. They can also output to color, radius, length, opacity, and more. For example if we switch to a [rule](../marks/rule.md) and use the **stroke** channel instead of **y**, we get a one-dimensional heatmap:
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-scales-intro
 ```js
 Plot.ruleX(gistemp, {x: "Date", stroke: "Anomaly"}).plot()
 ```
@@ -85,7 +85,7 @@ function color(anomaly) {
 
 Within a given [plot](./plots.md), marks share scales. For example, if a plot has two line marks, both share the same *x* and *y* scales for a consistent encoding.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-layered-marks
 ```js
 Plot.plot({
   marks: [
@@ -117,7 +117,7 @@ Let’s look at some examples to make this less abstract.
 
 The domain of a quantitative scale is a continuous extent [*min*, *max*] where *min* and *max* are numbers, such as temperatures. Below, the first domain value (*x* = 0) corresponds to the left side of the plot while the second (*x* = 100) corresponds to the right side.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {domain: [0, 100], grid: true}})
 ```
@@ -125,7 +125,7 @@ Plot.plot({x: {domain: [0, 100], grid: true}})
 
 Flipping the domain reverses the scale so that +*x* points ←left instead of right→.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {domain: [100, 0], grid: true}})
 ```
@@ -133,7 +133,7 @@ Plot.plot({x: {domain: [100, 0], grid: true}})
 
 Alternatively, use the **reverse** option; this is convenient when the domain is implied from data rather than specified explicitly. (We’ll cover implied domains in more detail in the *inference* section below.)
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {domain: [0, 100], reverse: true, grid: true}})
 ```
@@ -143,7 +143,7 @@ If the domain is dates, Plot will default to a UTC scale. This is a linear scale
 
 <!-- Plot doesn’t parse dates; convert your strings to [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) instances with [d3.utcParse](https://github.com/d3/d3-time-format#utcParse) or [d3.autoType](https://github.com/d3/d3-dsv#autoType). -->
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {domain: [new Date("2021-01-01"), new Date("2022-01-01")], grid: true}})
 ```
@@ -155,7 +155,7 @@ We are working on better multi-line ticks for time scales; please upvote [#1285]
 
 To force a UTC scale, say when the data is milliseconds since UNIX epoch rather than Date instances, pass *utc* as the **type** option.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {type: "utc", domain: [1609459200000, 1640995200000], grid: true}})
 ```
@@ -167,7 +167,7 @@ We recommend coercing strings and numbers to more specific types when you load d
 
 If the scale **type** is *time*, the ticks will be in local time rather than UTC.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)], grid: true}})
 ```
@@ -175,7 +175,7 @@ Plot.plot({x: {type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)
 
 When plotting values that vary widely, such as the luminosity of stars in an [HR diagram](https://observablehq.com/@mbostock/hertzsprung-russell-diagram), a *log* scale may improve readability. Log scales default to base-10 ticks with SI-prefix notation.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {type: "log", domain: [1e0, 1e5], grid: true}})
 ```
@@ -183,7 +183,7 @@ Plot.plot({x: {type: "log", domain: [1e0, 1e5], grid: true}})
 
 If you prefer conventional notation, you can specify the **tickFormat** option to change the behavior of the axis. The **tickFormat** option can either be a [d3.format](https://github.com/d3/d3-format) string or a function that takes a tick value and returns the corresponding string. Note, however, that this may result in overlapping text.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {type: "log", domain: [1e0, 1e5], tickFormat: ",", grid: true}})
 ```
@@ -191,7 +191,7 @@ Plot.plot({x: {type: "log", domain: [1e0, 1e5], tickFormat: ",", grid: true}})
 
 Log scales also support a **base** option, say for powers of two. This does not affect the scale’s encoding, but it does change where ticks are shown.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {type: "log", base: 2, domain: [1e0, 1e4], ticks: 20, grid: true}})
 ```
@@ -199,7 +199,7 @@ Plot.plot({x: {type: "log", base: 2, domain: [1e0, 1e4], ticks: 20, grid: true}}
 
 The domain of a log scale cannot include (or cross) zero; for this, consider a [bi-symmetric log](https://github.com/d3/d3-scale#symlog-scales) scale instead.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {type: "symlog", domain: [-10, 10], grid: true}})
 ```
@@ -207,13 +207,13 @@ Plot.plot({x: {type: "symlog", domain: [-10, 10], grid: true}})
 
 Power scales and square-root scales are also supported. The *pow* scale supports the **exponent** option, which defaults to 1 (for a linear scale).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {type: "sqrt", domain: [0, 100], grid: true}})
 ```
 :::
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
 Plot.plot({x: {type: "pow", exponent: 1 / 3, domain: [0, 100], grid: true}})
 ```
@@ -227,7 +227,7 @@ Sadly, not all data is continuous: some data is merely ordinal, such as t-shirt 
 
 A *point* scale divides space into uniformly-spaced discrete values. It is commonly used for scatterplots (a [dot mark](../marks/dot.md)) of ordinal data. It is the default scale type for ordinal data on the *x* and *y* scale.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-discrete-scales
 ```js
 Plot.plot({x: {type: "point", domain: "ABCDEFGHIJ", grid: true}})
 ```
@@ -235,7 +235,7 @@ Plot.plot({x: {type: "point", domain: "ABCDEFGHIJ", grid: true}})
 
 A band scale divides space into uniformly-spaced and -sized discrete intervals. It is commonly used for bar charts (bar marks). To show the bands below, we use a [cell](../marks/cell.md) instead of a [grid](../marks/grid.md).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-discrete-scales
 ```js
 Plot
   .cell("ABCDEFGHIJ", {x: Plot.identity, stroke: "currentColor", strokeOpacity: 0.1})
@@ -258,7 +258,7 @@ While *point* and *band* scales appear visually similar when only the grid is vi
   </label>
 </p>
 
-:::plot hidden
+:::plot hidden https://observablehq.com/@observablehq/plot-discrete-scales
 ```js
 Plot.plot({
   grid: true,
@@ -276,7 +276,7 @@ Plot.plot({
 ```
 :::
 
-:::plot hidden
+:::plot hidden https://observablehq.com/@observablehq/plot-discrete-scales
 ```js
 Plot.plot({
   grid: true,
@@ -437,7 +437,7 @@ Plot.plot({
 
 Below we show observed global surface temperatures, represented as “anomalies” relative to the 1951–1980 average. The reversed *BuRd* color scheme is used since blue and red are semantically associated with cold and hot, respectively.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-colored-scatterplot
 ```js
 Plot.plot({
   grid: true,
@@ -540,7 +540,7 @@ But wait, there’s more! 😅 Plot has *opacity*, *r*, *symbol*, and *length* s
   </label>
 </p>
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-radius-scale-range
 ```js
 Plot.plot({
   r: {range: [0, radius]},
@@ -571,7 +571,7 @@ All position scales (*x*, *y*, *fx*, and *fy*) have implicit automatic ranges ba
 
 The **transform** scale option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-fahrenheit-to-celsius-scale-transform
 ```js
 Plot.plot({
   y: {
@@ -589,7 +589,7 @@ Plot.plot({
 
 The shorthand **percent** scale option multiplies values by 100, and adds a % symbol to the default label.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-percent-scale-transform
 ```js
 Plot.plot({
   y: {
