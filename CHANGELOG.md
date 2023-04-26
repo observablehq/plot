@@ -1,5 +1,21 @@
 # Observable Plot - Changelog
 
+## 0.6.6
+
+[Released April 26, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.6)
+
+*Pssst… Plot has a brand-new documentation website. It is coming soon—stay tuned!*
+
+The [image mark](./README.md#image) can now generate circular images with the **r** channel, and rotate images with the **rotate** channel.
+
+The [axis mark](./README.md#axis) now properly respects the **margin** shorthand option, changing the default for **marginTop**, **marginRight**, **marginBottom**, and **marginLeft**. The axis mark now correctly renders the axis label when the **href** option is used, or any other option that may be interpreted as a channel.
+
+Facet scale domains are now imputed correctly when the **sort** mark option is used with a **limit**, or otherwise causing the facet domain to be truncated. Plot no longer generates a spurious warning when faceting and using non-array data, such as an Arquero table. The **interval** scale option, when expressed as a fractional number such as 0.2, now has better floating point precision.
+
+The [Plot.indexOf](./README.md#plotindexof) channel transform, used internally by some mark shorthand, is now exported.
+
+Plot has a few improvements for server-side rendering. Plot now assumes a high pixel density display when headless. The default class name for plots is now deterministically generated (`plot-d6a7b5`) rather than randomly generated; this makes it easier to apply overrides to Plot’s default styles with an external stylesheet. (The default class name will change if Plot’s default styles change in a future release.) The **className** plot option is now inherited by a plot’s legends, if any. The density mark now respects the Plot’s **document** option, and the **caption** option now uses a duck test instead of testing against the global Node.
+
 ## 0.6.5
 
 [Released April 1, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.5)

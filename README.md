@@ -2798,6 +2798,10 @@ This channel helper returns a source array as-is, avoiding an extra copy when de
 Plot.raster(await readValues(), {width: 300, height: 200, fill: Plot.identity})
 ```
 
+#### Plot.indexOf
+
+This channel helper returns an array of numbers [0, 1, 2, 3, …]. It is used internally by marks with zero-based index defaults for channels.
+
 ## Initializers
 
 Initializers can be used to transform and derive new channels prior to rendering. Unlike transforms which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. Initializers are invoked *after* the initial scales are constructed and can modify the channels or derive new channels; these in turn may (or may not, as desired) be passed to scales.
