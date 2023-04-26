@@ -46,7 +46,7 @@ Plot.lineY(gistemp, {x: "Date", y: "Anomaly"}).plot()
 ```
 :::
 
-In Plot, a [mark’s channels](./marks.md) are bound to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.html#mark-options) if needed.)
+In Plot, the [mark](./marks.md) binds channels to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.html#mark-options) if needed.)
 
 Think of a scale as a function that takes an abstract value and returns the corresponding visual value. For the *y* scale above, that might look like this:
 
@@ -569,7 +569,7 @@ All position scales (*x*, *y*, *fx*, and *fy*) have implicit automatic ranges ba
 The **transform** scale option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
 :::plot defer
-```js
+```js{5}
 Plot.plot({
   y: {
     grid: true,
@@ -587,17 +587,12 @@ Plot.plot({
 The **percent** scale option is shorthand for a **transform** that multiplies values by 100; it also adds a percent symbol (%) to the default label.
 
 :::plot
-```js
+```js{2}
 Plot.plot({
-  y: {
-    percent: true
-  },
-  color: {
-    type: "diverging",
-    scheme: "BuRd"
-  },
+  y: {percent: true}, // convert proportion [0, 1] to percent [0, 100]
+  color: {scheme: "BuRd"},
   marks: [
-    Plot.rectY(gistemp, Plot.binX({y: "proportion", fill: "median"}, {x: "Anomaly", fill: "Anomaly"})),
+    Plot.rectY(gistemp, Plot.binX({y: "proportion", fill: "x"}, {x: "Anomaly", fill: "Anomaly"})),
     Plot.ruleY([0])
   ]
 })
