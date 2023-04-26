@@ -30,8 +30,8 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     // Theme related configurations.
     logo: {
-      light: "/observable.svg",
-      dark: "/observable-light.svg"
+      light: "/observable-light.svg",
+      dark: "/observable-dark.svg"
     },
     nav: [
       {text: "Home", link: "/"},
