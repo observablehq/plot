@@ -1,6 +1,6 @@
 # Observable Plot - Contributing
 
-Observable Plot is open source and released under the [ISC license](./LICENSE). You are welcome to [send us pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) to contribute bug fixes or new features. We also invite you to participate in [issues](https://github.com/observablehq/plot/issues) and [discussions](https://github.com/observablehq/plot/discussions). We use issues to track and diagnose bugs, as well as to debate and design enhancements to Plot. Discussions are intended for you to ask for help using Plot, or to share something cool you’ve built with Plot. (You can also ask for help on the [Observable Forum](https://talk.observablehq.com).)
+Observable Plot is open source and released under the [ISC license](./LICENSE). You are welcome to [send us pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) to contribute bug fixes or new features. We also invite you to participate in [issues](https://github.com/observablehq/plot/issues) and [discussions](https://github.com/observablehq/plot/discussions). We use issues to track and diagnose bugs, as well as to debate and design enhancements to Plot. Discussions are intended for you to ask for help using Plot, or to share something cool you’ve built with Plot. You can also ask for help on the [Observable Forum](https://talk.observablehq.com) and the [Observable community Slack](https://observable-community.slack.com/ssb/redirect).
 
 We request that you abide by our [code of conduct](https://observablehq.com/@observablehq/code-of-conduct) when contributing and participating in discussions.
 
@@ -64,18 +64,18 @@ yarn run mocha --conditions=mocha --parallel --watch test/marks/bar-test.js
 
 ### Snapshot tests
 
-Snapshot tests live in `test/plots` and are registered in [`test/plots/index.js`](./test/plots/index.js); see [`test/plots/aapl-bollinger.js`](./test/plots/aapl-bollinger.js) for example. Unlike unit tests which only test individual methods, snapshot tests actually visualize data—they’re more representative of how we expect people will use Plot. Snapshot tests can also serve as examples of how to use the Plot API, though note that some of the examples intentionally test edge case of the API and may not embody best practices. Each snapshot test defines a plot by exporting a default async function. For example, here’s a line chart using BLS unemployment data:
+Snapshot tests live in `test/plots` and are registered in [`test/plots/index.ts`](./test/plots/index.ts); see [`test/plots/aapl-bollinger.ts`](./test/plots/aapl-bollinger.ts) for example. Unlike unit tests which only test individual methods, snapshot tests actually visualize data—they’re more representative of how we expect people will use Plot. Snapshot tests can also serve as examples of how to use the Plot API, though note that some of the examples intentionally test edge case of the API and may not embody best practices. Each snapshot test defines a plot by exporting a default async function. For example, here’s a line chart using BLS unemployment data:
 
-```js
+```ts
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
-  const bls = await d3.csv("data/bls-metro-unemployment.csv", d3.autoType);
+export async function lineUnemployment() {
+  const bls = await d3.csv<any>("data/bls-metro-unemployment.csv", d3.autoType);
   return Plot.plot({
     marks: [
-      Plot.line(bls, {x: "date", y: "unemployment", z: "division"}),
-      Plot.ruleY([0])
+      Plot.ruleY([0]),
+      Plot.lineY(bls, {x: "date", y: "unemployment", z: "division"})
     ]
   });
 }
@@ -83,10 +83,10 @@ export default async function() {
 
 When a snapshot test is run, its output is compared against the SVG or HTML snapshot saved in the `test/output` folder. This makes it easier to review the effect of code changes and to catch unintended changes. Snapshot tests must have deterministic, reproducible behavior; they should not depend on live data, external servers, the current time, the weather, etc. To use randomness in a test, use a seeded random number generator such as [d3.randomLcg](https://github.com/d3/d3-random/blob/master/README.md#randomLcg).
 
-To add a new snapshot test, create a new JavaScript file in the `test/plots` folder using the pattern shown above. Then export your snapshot test function from [`test/plots/index.js`](./test/plots/index.js). For example:
+To add a new snapshot test, create a new JavaScript file in the `test/plots` folder using the pattern shown above. Then export your snapshot test function from [`test/plots/index.ts`](./test/plots/index.ts). For example:
 
 ```js
-export {default as mobyDick} from "./moby-dick.js";
+export * from "./moby-dick.ts";
 ```
 
 The best thing about snapshot tests is that you can see the live result in your browser as you make changes to Plot’s source code! This lets you immediately assess visually what Plot is doing. To preview snapshot tests during development, Plot uses [Vite](https://vitejs.dev). To start Vite:
@@ -110,7 +110,7 @@ yarn test
 
 ## Documentation
 
-When submitting a pull request, please remember to update Plot’s [README.md](./README.md) to reflect changes to the public API. You are also welcome to edit Plot’s [CHANGELOG.md](./CHANGELOG.md) to assist with writing future release notes. In addition, please reference any related [issues](https://github.com/observablehq/plot/issues) (or discussions) in your pull request description.
+When submitting a pull request, please remember to update Plot’s documentation to reflect changes to the public API. You are also welcome to edit Plot’s [CHANGELOG.md](./CHANGELOG.md) to assist with writing future release notes. In addition, please reference any related [issues](https://github.com/observablehq/plot/issues) (or discussions) in your pull request description.
 
 If you’d like to share a live demonstration or motivating example of your change to Plot, you can regenerate Plot’s release bundle using Yarn:
 
