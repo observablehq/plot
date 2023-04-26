@@ -40,7 +40,6 @@
 
 .vp-doc .plot,
 .vp-doc .plot-ramp {
-  background: none;
   overflow: visible;
   position: relative;
   z-index: 1;

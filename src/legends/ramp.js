@@ -40,7 +40,6 @@ export function legendRamp(color, options) {
       svg.append("style").text(
         `.${className}-ramp {
   display: block;
-  background: white;
   height: auto;
   height: intrinsic;
   max-width: 100%;
