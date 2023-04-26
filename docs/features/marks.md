@@ -62,7 +62,7 @@ Plot provides a variety of mark types. Think of marks as the “visual vocabular
 
 For example, the [dot mark](../marks/dot.md) draws stroked circles (by default).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-temporal-scatterplot
 ```js
 Plot.dot(gistemp, {x: "Date", y: "Anomaly"}).plot()
 ```
@@ -70,7 +70,7 @@ Plot.dot(gistemp, {x: "Date", y: "Anomaly"}).plot()
 
 The [line mark](../marks/line.md) draws connected line segments (also known as a *polyline* or *polygonal chain*).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-temporal-line-chart
 ```js
 Plot.lineY(gistemp, {x: "Date", y: "Anomaly"}).plot()
 ```
@@ -78,7 +78,7 @@ Plot.lineY(gistemp, {x: "Date", y: "Anomaly"}).plot()
 
 And the [bar mark](../marks/bar.md) draws rectangular bars in either a horizontal (barX→) or vertical (barY↑) orientation.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-alphabet-bar-chart
 ```js
 Plot.barX(alphabet, {x: "frequency", y: "letter"}).plot()
 ```
@@ -90,7 +90,7 @@ So instead of looking for a chart type, consider the shape of the primary graphi
 
 The big advantage of mark types over chart types is that you can compose multiple marks of different types into a single [plot](./plots.md). For example, below an [area](../marks/area.md) and [line](../marks/line.md) are used to plot the same sequence of values, while a [rule](../marks/rule.md) emphasizes *y* = 0.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-layered-marks-2
 ```js
 Plot.plot({
   marks: [
@@ -104,7 +104,7 @@ Plot.plot({
 
 Each mark supplies its own data; a quick way to combine multiple datasets into a chart is to declare a separate mark for each. You can even use [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to create multiple marks from nested data.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-layered-marks-2
 ```js
 Plot.plot({
   marks: [
@@ -116,7 +116,7 @@ Plot.plot({
 
 Marks may also be a function which returns an SVG element, if you wish to insert arbitrary content. (Here we use [Hypertext Literal](https://github.com/observablehq/htl) to generate an SVG gradient.)
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-gradient-bars
 ```js
 Plot.plot({
   marks: [
@@ -143,7 +143,7 @@ And marks may be null or undefined, which produce no output; this is useful for 
   </label>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-optional-marks
 ```js
 Plot.plot({
   marks: [
@@ -161,7 +161,7 @@ Marks are (typically) not positioned in literal pixels, or colored in literal co
 
 Data is passed through scales automatically during rendering; the mark controls which scales are used. The **x** and **y** options are typically bound to the *x* and *y* scales, respectively, while the **fill** and **stroke** options are typically bound to the *color* scale. Changing a scale’s definition, say by overriding its **domain** (the extent of abstract input values) or **type**, affects the appearance of all marks that use the scale.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-aapl-log-scale
 ```js {2-6}
 Plot.plot({
   y: {
@@ -180,7 +180,7 @@ Plot.plot({
 
 A single mark can draw multiple shapes. A mark generally produces a shape—such as a rectangle or circle—for each element in the data.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-tidy-data
 ```js
 Plot.dot(aapl, {x: "Date", y: "Close"}).plot()
 ```
@@ -188,7 +188,7 @@ Plot.dot(aapl, {x: "Date", y: "Close"}).plot()
 
 It’s more complicated than that, though, since some marks produce shapes that incorporate *multiple* data points. Pass the same data to a [line](../marks/line.md) and you’ll get a single polyline.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-tidy-data
 ```js
 Plot.lineY(aapl, {x: "Date", y: "Close"}).plot()
 ```
@@ -196,7 +196,7 @@ Plot.lineY(aapl, {x: "Date", y: "Close"}).plot()
 
 And a line mark isn’t even guaranteed to produce a single polyline—there can be multiple polylines, as in a line chart with multiple series (using **z**).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-multiple-series-line-chart
 ```js
 Plot.lineY(bls, {x: "date", y: "unemployment", z: "division"}).plot()
 ```
@@ -221,7 +221,7 @@ linedata = [
 
 Then you can pass the data to the line mark, and extract named columns from the data for the desired options:
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-accessors
 ```js
 Plot.lineY(linedata, {x: "hour", y: "value", stroke: "sensor"}).plot()
 ```
@@ -229,7 +229,7 @@ Plot.lineY(linedata, {x: "hour", y: "value", stroke: "sensor"}).plot()
 
 Another common way to extract a column from tabular data is an accessor function. This function is invoked for each element in the data (each row), and returns the corresponding observed value, as with [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-accessors
 ```js
 Plot.lineY(linedata, {
   x: (d) => d.hour,
@@ -263,7 +263,7 @@ Because nominal values often need some arbitrary order for display purposes—of
 
 Some marks work with any type of data, while other marks have certain requirements or assumptions of data. For example, a line should only be used when both *x* and *y* are quantitative or temporal, and when the data is in a meaningful order (such as chronological). This is because the line mark will interpolate between adjacent points to draw line segments. If *x* or *y* is nominal—say the names of countries—it doesn’t make sense to use a line because there is no half-way point between two nominal values.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-dont-do-this
 ```js
 Plot.lineY(["please", "don’t", "do", "this"]).plot() // 🌶️
 ```
@@ -282,7 +282,7 @@ In particular, beware the simple “bar”! A bar mark is used for a bar chart, 
 
 Plot encourages you to think about data types as you visualize because data types often imply semantics. For example, do you notice anything strange about the bar chart below?
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-the-missing-bar
 ```js
 Plot
   .barY(timeseries, {x: "year", y: "population"}) // 🌶️
@@ -305,7 +305,7 @@ timeseries = [
 
 The data is missing the population for the year 2018! Because the barY mark implies an ordinal *x* scale, the gap is hidden. Switching to the rectY mark (with the **interval** option to indicate that these are annual observations) reveals the missing data.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-the-missing-bar
 ```js
 Plot
   .rectY(timeseries, {x: "year", y: "population", interval: 1})
@@ -315,7 +315,7 @@ Plot
 
 Alternatively, you can keep the barY mark and apply the **interval** option to the *x* scale.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-the-missing-bar
 ```js
 Plot
   .barY(timeseries, {x: "year", y: "population"})
@@ -327,7 +327,7 @@ Plot
 
 When constructing a mark, you can specify options to change the mark’s appearance. These options are passed as a second argument to the mark constructor. (The first argument is the required data.) For example, if you want filled dots instead of stroked ones, pass the desired color to the **fill** option:
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-marks-have-options
 ```js
 Plot.dot(gistemp, {x: "Date", y: "Anomaly", fill: "red"}).plot()
 ```
@@ -335,7 +335,7 @@ Plot.dot(gistemp, {x: "Date", y: "Anomaly", fill: "red"}).plot()
 
 As the name suggests, options are generally optional; Plot tries to provide good defaults for whatever you don’t specify. Plot even has [shorthand](./shorthand.md) for various common forms of data. Below, we extract an array of numbers from the `gistemp` dataset, and use the line mark shorthand to set *x* = index and *y* = identity.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-marks-have-options
 ```js
 Plot.lineY(gistemp.map((d) => d.Anomaly)).plot()
 ```
@@ -365,7 +365,7 @@ To vary the definition of a constant option with data, create multiple marks wit
 
 Some options can be either a channel or a constant depending on the provided value. For example, if you set the **fill** option to *steelblue*, Plot interprets it as a literal color.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-marks-have-channels
 ```js
 Plot
   .barX(timeseries, {x: "population", y: "year", fill: "steelblue"})
@@ -375,7 +375,7 @@ Plot
 
 Whereas if the **fill** option is a string but *not* a valid CSS color, Plot assumes you mean the corresponding column of the data and interprets it as a channel.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-marks-have-channels
 ```js
 Plot
   .barX(timeseries, {x: "population", y: "year", fill: "year"})
@@ -385,7 +385,7 @@ Plot
 
 If the **fill** option is a function, it is interpreted as a channel.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-marks-have-channels
 ```js
 Plot
   .barX(timeseries, {x: "population", y: "year", fill: (d) => d.year})
@@ -395,7 +395,7 @@ Plot
 
 Lastly, note that while channels are normally bound to a [scale](#marks-use-scales), you can bypass the *color* scale here by supplying literal color values to the **fill** channel.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-marks-have-channels
 ```js
 Plot
   .barX(timeseries, {x: "population", y: "year", fill: (d) => d.year & 1 ? "red" : "currentColor"})
@@ -405,7 +405,7 @@ Plot
 
 But rather than supplying literal values, it is more semantic to provide abstract values and use scales. In addition to centralizing the encoding definition (if used by multiple marks), it allows Plot to generate a legend.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-marks-have-channels
 ```js
 Plot
   .barX(timeseries, {x: "population", y: "year", fill: (d) => d.year & 1 ? "odd" : "even"})

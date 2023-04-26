@@ -4,7 +4,9 @@
 
 [Released April 26, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.6)
 
-*Pssst… Plot has a brand-new documentation website. It is coming soon—stay tuned!*
+**Plot has a new documentation website!**
+
+👉 https://observablehq.com/plot 👈
 
 The [image mark](./README.md#image) can now generate circular images with the **r** channel, and rotate images with the **rotate** channel.
 

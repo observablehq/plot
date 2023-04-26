@@ -3,6 +3,11 @@
 layout: home
 titleTemplate: "The JavaScript library for exploratory data visualization"
 
+head:
+  - - link
+    - rel: canonical
+      href: https://observablehq.com/plot
+
 hero:
   name: "Observable Plot"
   text: "The JavaScript library for exploratory data visualization"
