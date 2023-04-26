@@ -62,7 +62,6 @@ export default defineConfig({
           {text: "Formats", link: "/features/formats"},
           {text: "Markers", link: "/features/markers"},
           {text: "Shorthand", link: "/features/shorthand"},
-          {text: "Spatial interpolators", link: "/features/spatial-interpolators"},
           {text: "Accessibility", link: "/features/accessibility"},
         ]
       },

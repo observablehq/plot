@@ -30,7 +30,7 @@ function mandelbrot(x, y) {
 To produce contours instead of a heatmap, see the [contour mark](./contour.md).
 :::
 
-The **raster mark** renders a [raster image](https://en.wikipedia.org/wiki/Raster_graphics)—that is, an image formed by discrete pixels in a grid, not a vector graphic like other marks. And whereas the [image mark](./image.md) shows an *existing* image, the raster mark *creates* one from abstract data, either by [interpolating spatial samples](../features/spatial-interpolators.md) (arbitrary points in **x** and **y**) or by sampling a continuous function *f*(*x*,*y*) along the grid.
+The **raster mark** renders a [raster image](https://en.wikipedia.org/wiki/Raster_graphics)—that is, an image formed by discrete pixels in a grid, not a vector graphic like other marks. And whereas the [image mark](./image.md) shows an *existing* image, the raster mark *creates* one from abstract data, either by [interpolating spatial samples](#spatial-interpolators) (arbitrary points in **x** and **y**) or by sampling a continuous function *f*(*x*,*y*) along the grid.
 
 For example, the heatmap below shows the topography of the [Maungawhau volcano](https://en.wikipedia.org/wiki/Maungawhau), produced from a {{volcano.width}}×{{volcano.height}} grid of elevation samples.
 
@@ -179,7 +179,7 @@ Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolat
 :::
 
 :::tip
-If none of the built-in [spatial interpolators](../features/spatial-interpolators.md) suffice, you can write your own as a custom function!
+If none of the built-in [spatial interpolators](#spatial-interpolators) suffice, you can write your own as a custom function!
 :::
 
 The raster mark can interpolate categorical values, too! Below, this creates an interesting “map” of penguin species in the space of culmen length _vs._ depth.
@@ -257,7 +257,7 @@ Plot.plot({
 
 ## Raster options
 
-If *data* is provided, it represents discrete samples in abstract coordinates **x** and **y**; the **fill** and **fillOpacity** channels specify further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](../features/spatial-interpolators.md) to produce an image.
+If *data* is provided, it represents discrete samples in abstract coordinates **x** and **y**; the **fill** and **fillOpacity** channels specify further abstract values (_e.g._, height in a topographic map) to be [spatially interpolated](#spatial-interpolators) to produce an image.
 
 ```js
 Plot.raster(volcano.values, {width: volcano.width, height: volcano.height})
@@ -286,7 +286,7 @@ If **width** is specified, **x1** defaults to 0 and **x2** defaults to **width**
 
 The following raster-specific constant options are supported:
 
-* **interpolate** - the [spatial interpolation method](../features/spatial-interpolators.md)
+* **interpolate** - the [spatial interpolation method](#spatial-interpolators)
 * **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
 * **blur** - a non-negative pixel radius for smoothing; defaults to 0
 
@@ -299,3 +299,55 @@ Plot.raster(volcano.values, {width: volcano.width, height: volcano.height})
 ```
 
 Returns a new raster mark with the given (optional) *data* and *options*.
+
+## Spatial interpolators
+
+The [raster](#raster-mark) and [contour](./contour.md) marks use **spatial interpolators** to populate a raster grid from a discrete set of (often ungridded) spatial samples. The **interpolate** option controls how these marks compute the raster grid. The following built-in methods are provided:
+
+* *none* (or null) - assign each sample to the containing pixel
+* *nearest* - assign each pixel to the closest sample’s value (Voronoi diagram)
+* *barycentric* - apply barycentric interpolation over the Delaunay triangulation
+* *random-walk* - apply a random walk from each pixel, stopping when near a sample
+
+The **interpolate** option can also be specified as a function with the following arguments:
+
+* *index* - an array of numeric indexes into the channels *x*, *y*, *value*
+* *width* - the width of the raster grid; a positive integer
+* *height* - the height of the raster grid; a positive integer
+* *x* - an array of values representing the *x*-position of samples
+* *y* - an array of values representing the *y*-position of samples
+* *value* - an array of values representing the sample’s observed value
+
+So, *x*[*index*[0]] represents the *x*-position of the first sample, *y*[*index*[0]] its *y*-position, and *value*[*index*[0]] its value (*e.g.*, the observed height for a topographic map).
+
+## interpolateNone(*index*, *width*, *height*, *x*, *y*, *value*)
+
+```js
+Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: Plot.interpolateNone})
+```
+
+Applies a simple forward mapping of samples, binning them into pixels in the raster grid without any blending or interpolation. If multiple samples map to the same pixel, the last one wins; this can introduce bias if the points are not in random order, so use [Plot.shuffle](../transforms/sort.md#shuffle-options) to randomize the input if needed.
+
+## interpolateNearest(*index*, *width*, *height*, *x*, *y*, *value*)
+
+```js
+Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: Plot.interpolateNearest})
+```
+
+Assigns each pixel in the raster grid the value of the closest sample; effectively a Voronoi diagram.
+
+## interpolatorBarycentric(*options*)
+
+```js
+Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: Plot.interpolatorBarycentric()})
+```
+
+Constructs a Delaunay triangulation of the samples, and then for each pixel in the raster grid, determines the triangle that covers the pixel’s centroid and interpolates the values associated with the triangle’s vertices using [barycentric coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system). If the interpolated values are ordinal or categorical (_i.e._, anything other than numbers or dates), then one of the three values will be picked randomly weighted by the barycentric coordinates; the given **random** number generator will be used, which defaults to a [linear congruential generator](https://github.com/d3/d3-random/blob/main/README.md#randomLcg) with a fixed seed (for deterministic results).
+
+## interpolatorRandomWalk(*options*)
+
+```js
+Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: Plot.interpolatorRandomWalk()})
+```
+
+For each pixel in the raster grid, initiates a random walk, stopping when either the walk is within a given distance (**minDistance**) of a sample or the maximum allowable number of steps (**maxSteps**) have been taken, and then assigning the current pixel the closest sample’s value. The random walk uses the “walk on spheres” algorithm in two dimensions described by [Sawhney and Crane](https://www.cs.cmu.edu/~kmcrane/Projects/MonteCarloGeometryProcessing/index.html), SIGGRAPH 2020; the given **random** number generator will be used, which defaults to a [linear congruential generator](https://github.com/d3/d3-random/blob/main/README.md#randomLcg) with a fixed seed (for deterministic results).

@@ -29,7 +29,7 @@ function mandelbrot(x, y) {
 To produce a heatmap instead of contours, see the [raster mark](./raster.md). For contours of estimated point density, see the [density mark](./density.md).
 :::
 
-The **contour mark** draws [isolines](https://en.wikipedia.org/wiki/Contour_line) to delineate regions above and below a particular continuous value. These contours are computed by applying the [marching squares algorithm](https://en.wikipedia.org/wiki/Marching_squares) to a discrete grid. Like the [raster mark](./raster.md), the grid can be constructed either by [interpolating spatial samples](../features/spatial-interpolators.md) (arbitrary points in **x** and **y**) or by sampling a continuous function *f*(*x*,*y*) along the grid.
+The **contour mark** draws [isolines](https://en.wikipedia.org/wiki/Contour_line) to delineate regions above and below a particular continuous value. These contours are computed by applying the [marching squares algorithm](https://en.wikipedia.org/wiki/Marching_squares) to a discrete grid. Like the [raster mark](./raster.md), the grid can be constructed either by [interpolating spatial samples](./raster.md#spatial-interpolators) (arbitrary points in **x** and **y**) or by sampling a continuous function *f*(*x*,*y*) along the grid.
 
 For example, the contours below show the topography of the [Maungawhau volcano](https://en.wikipedia.org/wiki/Maungawhau), produced from a {{volcano.width}}×{{volcano.height}} grid of elevation samples.
 
@@ -167,7 +167,7 @@ Plot.contour(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", blur: 4})
 :::
 
 :::tip
-The contour mark also supports the **interpolate** option for control over [spatial interpolation](../features/spatial-interpolators.md).
+The contour mark also supports the **interpolate** option for control over [spatial interpolation](./raster.md#spatial-interpolators).
 :::
 
 The contour mark supports Plot’s [projection system](../features/projections.md). The chart below shows global atmospheric water vapor measurements from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV).
@@ -230,7 +230,7 @@ When faceting, the sample function *f*(*x*,*y*) is passed a third argument of th
 
 ## Contour options
 
-If *data* is provided, it represents discrete samples in abstract coordinates **x** and **y**; the **value** channel specifies further abstract quantitative values (_e.g._, height in a topographic map) to be [spatially interpolated](../features/spatial-interpolators.md) to produce the underlying raster grid.
+If *data* is provided, it represents discrete samples in abstract coordinates **x** and **y**; the **value** channel specifies further abstract quantitative values (_e.g._, height in a topographic map) to be [spatially interpolated](./raster.md#spatial-interpolators) to produce the underlying raster grid.
 
 ```js
 Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, value: Plot.identity})
