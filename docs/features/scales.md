@@ -132,7 +132,7 @@ Plot.plot({x: {domain: [100, 0], grid: true}})
 ```
 :::
 
-Alternatively, use the **reverse** option; this is convenient when the domain is implied from data rather than specified explicitly. (We’ll cover implied domains in more detail in the *inference* section below.)
+Alternatively, use the **reverse** option; this is convenient when the domain is implied from data rather than specified explicitly.
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
