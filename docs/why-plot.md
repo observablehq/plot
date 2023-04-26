@@ -21,7 +21,7 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 
 And the speed doesn’t stop there: Plot helps you quickly pivot and refine your views of data. Our hope with Plot is that you’ll spend less time reading the docs, searching for code to copy-paste, and debugging—and more time asking questions of data.
 
-Compared to other visualization tools, including low-level tools such as D3 and less expressive high-level tools such as chart templates, we think you’ll be more productive exploring data with Plot. You’ll spend more time [“using vision to think”](https://www.amazon.com/Readings-Information-Visualization-Interactive-Technologies/dp/1558605339) and less time wrangling the machinery of programming.
+Compared to other visualization tools, including low-level tools such as D3 and less expressive high-level tools such as chart templates, we think you’ll be more productive exploring data with Plot. You’ll spend more time “using vision to think” and less time wrangling the machinery of programming.
 
 Or put more simply: **with Plot, you’ll see more charts.**
 
