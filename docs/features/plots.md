@@ -114,10 +114,6 @@ Plot.plot({
 
 Each mark has its own options, and different mark types support different options. See the respective mark type (such as [bar](../marks/bar.md) or [dot](../marks/dot.md)) for details.
 
-:::info
-Each mark may be a nested array of marks, allowing composition. Marks may also be a function which returns an SVG element, if you wish to insert some arbitrary content into your plot. And marks may be null or undefined, which produce no output; this is useful for showing marks conditionally (*e.g.*, when a box is checked). See the [marks guide](./marks.md) for details.
-:::
-
 Marks are drawn in the given order, with the last mark drawn on top. For example, below <span style="border-bottom: solid 2px var(--vp-c-green);">green</span> bars are drawn on top of <span style="border-bottom: solid 2px;">{{dark ? "white" : "black"}}</span> bars.
 
 :::plot https://observablehq.com/@observablehq/plot-marks-z-order
