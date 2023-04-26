@@ -12,7 +12,7 @@ export default {
 };
 
 function enableAnalytics(router) {
-  if (location.origin !== "https://observablehq.com") return;
+  if (typeof location === "undefined" || location.origin !== "https://observablehq.com") return;
 
   let pageLoaded;
   let queue: any[] | null = [];
