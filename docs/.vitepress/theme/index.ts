@@ -22,7 +22,7 @@ function enableAnalytics(router) {
     if (pageLoaded) {
       emit({
         type: "routeChanged",
-        event_version: 1,
+        event_version: 2,
         data: {},
         tags: {}
       });
