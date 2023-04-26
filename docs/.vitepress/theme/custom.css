@@ -80,3 +80,9 @@ a.plot-fork:hover {
   color: var(--vp-c-brand);
   text-decoration: none;
 }
+
+@media (max-width: 820px) {
+  a.plot-fork {
+    display: none;
+  }
+}
