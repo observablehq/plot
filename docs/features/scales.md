@@ -3,9 +3,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {ref, shallowRef, onMounted} from "vue";
-import alphabet from "../data/alphabet.ts";
 import gistemp from "../data/gistemp.ts";
-import sftemp from "../data/sf-temperatures.ts";
 
 const padding = ref(0.1);
 const align = ref(0.5);
@@ -17,17 +15,19 @@ const interpolateq = ref("rgb");
 const anomaly = gistemp.map((d) => d.Anomaly);
 const aapl = shallowRef([]);
 const goog = shallowRef([]);
+const sftemp = shallowRef([]);
 
 onMounted(() => {
   d3.csv("../data/aapl.csv", d3.autoType).then((data) => (aapl.value = data));
   d3.csv("../data/goog.csv", d3.autoType).then((data) => (goog.value = data));
+  d3.csv("../data/sf-temperatures.csv", d3.autoType).then((data) => (sftemp.value = data));
 });
 
 </script>
 
 # Scales
 
-**Scales** convert an abstract value such as time or temperature to a visual value such as *x*→ or *y*↑ position or color. For example, say we have a dataset (`gistemp`) containing monthly observations of [global average surface temperature](https://data.giss.nasa.gov/gistemp/) from 1880 to 2016. The first few rows are:
+**Scales** convert an abstract value such as time or temperature to a visual value such as *x*→ or *y*↑ position or color. For example, say we have a dataset (`gistemp`) containing monthly observations of [global average surface temperature](https://data.giss.nasa.gov/gistemp/) from 1880 to 2016, represented as the “anomaly” (or difference) relative to the 1951–1980 average. The first few rows are:
 
 | Date       | Anomaly |
 |------------|--------:|
@@ -63,12 +63,13 @@ The function `y` depends on a few additional details: the chart’s size and mar
 const marginTop = 20;
 const marginBottom = 30;
 const height = 400;
-const [minAnomaly, maxAnomaly] = d3.extent(gistemp, (d) => d.Anomaly);
+const minAnomaly = d3.min(gistemp, (d) => d.Anomaly);
+const maxAnomaly = d3.max(gistemp, (d) => d.Anomaly);
 ```
 
 Scales aren’t limited to horizontal and vertical position. They can also output to color, radius, length, opacity, and more. For example if we switch to a [rule](../marks/rule.md) and use the **stroke** channel instead of **y**, we get a one-dimensional heatmap:
 
-:::plot
+:::plot defer
 ```js
 Plot.ruleX(gistemp, {x: "Date", stroke: "Anomaly"}).plot()
 ```
@@ -83,7 +84,7 @@ function color(anomaly) {
 }
 ```
 
-Within a given [plot](./plots.md), marks share scales. For example, if a plot has two line marks, both share the same *x* and *y* scales for a consistent encoding.
+Within a given [plot](./plots.md), marks share scales. For example, if a plot has two line marks, such as the lines below visualizing the daily closing price of <span style="border-bottom: solid 2px var(--vp-c-red);">Google</span> and <span style="border-bottom: solid 2px var(--vp-c-blue);">Apple</span> stock, both share the same *x* and *y* scales for a consistent encoding.
 
 :::plot defer
 ```js
@@ -98,7 +99,7 @@ Plot.plot({
 :::
 
 :::tip
-Not that we recommend them, but if you are interested in dual-axis charts, please upvote [#147](https://github.com/observablehq/plot/issues/147).
+When comparing the performance of different stocks, we typically want to normalize the return relative to a purchase price; see the [normalize transform](../transforms/normalize.md) for an example. Also, not that we recommend them, but if you are interested in dual-axis charts, please upvote [#147](https://github.com/observablehq/plot/issues/147).
 :::
 
 Plot has many different scales; we categorize them by their _input_ (**domain**) and _output_ (**range**).
@@ -153,16 +154,12 @@ Plot.plot({x: {domain: [new Date("2021-01-01"), new Date("2022-01-01")], grid: t
 We are working on better multi-line ticks for time scales; please upvote [#1285](https://github.com/observablehq/plot/issues/1285) if you are interested.
 :::
 
-To force a UTC scale, say when the data is milliseconds since UNIX epoch rather than Date instances, pass *utc* as the **type** option.
+To force a UTC scale, say when the data is milliseconds since UNIX epoch rather than Date instances, pass *utc* as the **type** option. Though we recommend coercing strings and numbers to more specific types when you load data, rather than relying on scales to do it.
 
 :::plot
 ```js
 Plot.plot({x: {type: "utc", domain: [1609459200000, 1640995200000], grid: true}})
 ```
-:::
-
-:::tip
-We recommend coercing strings and numbers to more specific types when you load data, rather than relying on scales to do it.
 :::
 
 If the scale **type** is *time*, the ticks will be in local time rather than UTC.
@@ -435,7 +432,7 @@ Plot.plot({
 ```
 :::
 
-Below we show observed global surface temperatures, represented as “anomalies” relative to the 1951–1980 average. The reversed *BuRd* color scheme is used since blue and red are semantically associated with cold and hot, respectively.
+Below we again show observed global surface temperatures. The reversed *BuRd* color scheme is used since <span :style="{borderBottom: `solid 2px ${d3.interpolateRdBu(0.9)}`}">blue</span> and <span :style="{borderBottom: `solid 2px ${d3.interpolateRdBu(0.1)}`}">red</span> are semantically associated with cold and hot, respectively.
 
 :::plot
 ```js
@@ -557,21 +554,21 @@ The default **range** for the associated *r* scale is constructed such that a ze
 
 Plot strives to be concise: rather than you laboriously specifying everything, Plot can guess by inspecting the data so you don’t have to set the **type**, **domain**, and **range** (and for color, **scheme**) of scales explicitly. But for Plot’s guesses to be accurate, your data must match Plot’s expectations. Here they are.
 
-A scale’s **type** is most often inferred from associated marks’ channel values: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. Plot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. We recommend typed CSV (passing `{typed: true}` to Observable’s FileAttachment csv method) or explicitly coercing types when loading data (*e.g.*, d3.autoType).
+A scale’s **type** is most often inferred from associated marks’ channel values: strings and booleans imply an *ordinal* scale; dates imply a *utc* scale; anything else is *linear*. Plot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. We recommend typed CSV (passing `{typed: true}` to Observable’s FileAttachment csv method) or explicitly coercing types when loading data (*e.g.*, d3.autoType).
 
-If a scale’s **domain** is specified explicitly, the scale’s **type** is inferred from the domain values rather than channels as described above. However, if the domain or range has more than two elements, the ordinal type (or point for position scales) is used.
+If a scale’s **domain** is specified explicitly, the scale’s **type** is inferred from the **domain** values rather than channels as described above. However, if the **domain** or **range** has more than two elements, the *ordinal* type (or *point* for position scales) is used.
 
-Finally, some marks declare the scale **type** for associated channels. For example, [barX](../marks/bar.md) requires *y* to be a *band* scale. It is an error if the user-defined scale type does not match the mark. Further, the facet scales *fx* and *fy* are always *band* scales, and the radius scale *r* is implicitly a *sqrt* scale.
+Finally, some marks declare the scale **type** for associated channels. For example, [barX](../marks/bar.md) requires *y* to be a *band* scale. Further, the facet scales *fx* and *fy* are always *band* scales, and the radius scale *r* is implicitly a *sqrt* scale.
 
-If you don’t specify a quantitative scale’s **domain**, it is the extent (minimum and maximum) of associated channel values, except for the *r* (radius) scale where it goes from zero to the maximum. A quantitative domain can be extended to “nice” human-readable values with the **nice** option. For an ordinal scale, the domain defaults to the sorted union (all distinct values in natural order) of associated values.
+If you don’t specify a quantitative scale’s **domain**, it is the extent (minimum and maximum) of associated channel values, except for the *r* (radius) scale where it goes from zero to the maximum. A quantitative domain can be extended to “nice” human-readable values with the **nice** option. For an ordinal scale, the domain defaults to the sorted union (all distinct values in natural order) of associated values; see the [**sort** mark option](#sort-option) to change the order.
 
-All position scales (*x*, *y*, *fx*, and *fy*) have implicit automatic ranges based on the chart dimensions. The *x*-scale ranges from the left to right edge, while the *y*-scale ranges from the bottom to top edge, accounting for margins.
+All position scales (*x*, *y*, *fx*, and *fy*) have implicit automatic ranges based on the chart dimensions. The *x* scale ranges from the left to right edge, while the *y* scale ranges from the bottom to top edge, accounting for margins.
 
 ## Scale transforms
 
 The **transform** scale option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
-:::plot
+:::plot defer
 ```js
 Plot.plot({
   y: {
@@ -587,7 +584,7 @@ Plot.plot({
 ```
 :::
 
-The shorthand **percent** scale option multiplies values by 100, and adds a % symbol to the default label.
+The **percent** scale option is shorthand for a **transform** that multiplies values by 100; it also adds a percent symbol (%) to the default label.
 
 :::plot
 ```js
@@ -654,7 +651,11 @@ UTC is recommended over local time as charts in UTC time are guaranteed to appea
 
 For ordinal data (*e.g.*, strings), use the *ordinal* scale type or the *point* or *band* position scale types. The *categorical* scale type is also supported; it is equivalent to *ordinal* except as a color scale, where it provides a different default color scheme. (Since position is inherently ordinal or even quantitative, categorical data must be assigned an effective order when represented as position, and hence *categorical* and *ordinal* may be considered synonymous in context.)
 
-You can opt-out of a scale using the *identity* scale type. This is useful if you wish to specify literal colors or pixel positions within a mark channel rather than relying on the scale to convert abstract values into visual values. For position scales (*x* and *y*), an *identity* scale is still quantitative and may produce an axis, yet unlike a *linear* scale the domain and range are fixed based on the plot layout. (To opt-out of a scale for a single channel, you can specify the channel values as a `{value, scale}` object; see [mark options](./marks.md#mark-options).)
+You can opt-out of a scale using the *identity* scale type. This is useful if you wish to specify literal colors or pixel positions within a mark channel rather than relying on the scale to convert abstract values into visual values. For position scales (*x* and *y*), an *identity* scale is still quantitative and may produce an axis, yet unlike a *linear* scale the domain and range are fixed based on the plot layout.
+
+:::tip
+To opt-out of a scale for a single channel, you can specify the channel values as a `{value, scale}` object; see [mark options](./marks.md#mark-options).
+:::
 
 Quantitative scales, as well as identity position scales, coerce channel values to numbers; both null and undefined are coerced to NaN. Similarly, time scales coerce channel values to dates; numbers are assumed to be milliseconds since UNIX epoch, while strings are assumed to be in [ISO 8601 format](https://github.com/mbostock/isoformat/blob/main/README.md#parsedate-fallback).
 
@@ -724,77 +725,141 @@ For quantile and quantize color scales, the **scheme** option is used in conjunc
 
 The following sequential scale schemes are supported for both quantitative and ordinal data:
 
-| preview | name |
-|:-------:|------|
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/blues.png" alt="blues"> | *blues* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/greens.png" alt="greens"> | *greens* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/greys.png" alt="greys"> | *greys* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/oranges.png" alt="oranges"> | *oranges* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/purples.png" alt="purples"> | *purples* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/reds.png" alt="reds"> | *reds* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/bugn.png" alt="bugn"> | *bugn* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/bupu.png" alt="bupu"> | *bupu* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/gnbu.png" alt="gnbu"> | *gnbu* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/orrd.png" alt="orrd"> | *orrd* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/pubu.png" alt="pubu"> | *pubu* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/pubugn.png" alt="pubugn"> | *pubugn* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/purd.png" alt="purd"> | *purd* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rdpu.png" alt="rdpu"> | *rdpu* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/ylgn.png" alt="ylgn"> | *ylgn* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/ylgnbu.png" alt="ylgnbu"> | *ylgnbu* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/ylorbr.png" alt="ylorbr"> | *ylorbr* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/ylorrd.png" alt="ylorrd"> | *ylorrd* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/cividis.png" alt="cividis"> | *cividis* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/inferno.png" alt="inferno"> | *inferno* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/magma.png" alt="magma"> | *magma* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/plasma.png" alt="plasma"> | *plasma* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/viridis.png" alt="viridis"> | *viridis* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/cubehelix.png" alt="cubehelix"> | *cubehelix* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/turbo.png" alt="turbo"> | *turbo* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/warm.png" alt="warm"> | *warm* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/cool.png" alt="cool"> | *cool* |
+:::plot defer hidden
+```js
+Plot.plot({
+  width: 322,
+  height: 25 * 27,
+  margin: 0,
+  marginRight: 70,
+  padding: 0,
+  x: {axis: null},
+  y: {axis: "right", tickSize: 0},
+  color: {type: "identity"},
+  marks: [
+    Plot.cell([
+      ["Blues", d3.interpolateBlues],
+      ["Greens", d3.interpolateGreens],
+      ["Greys", d3.interpolateGreys],
+      ["Purples", d3.interpolatePurples],
+      ["Reds", d3.interpolateReds],
+      ["Oranges", d3.interpolateOranges],
+      ["Turbo", d3.interpolateTurbo],
+      ["Viridis", d3.interpolateViridis],
+      ["Magma", d3.interpolateMagma],
+      ["Inferno", d3.interpolateInferno],
+      ["Plasma", d3.interpolatePlasma],
+      ["Cividis", d3.interpolateCividis],
+      ["Cubehelix", d3.interpolateCubehelixDefault],
+      ["Warm", d3.interpolateWarm],
+      ["Cool", d3.interpolateCool],
+      ["BuGn", d3.interpolateBuGn],
+      ["BuPu", d3.interpolateBuPu],
+      ["GnBu", d3.interpolateGnBu],
+      ["OrRd", d3.interpolateOrRd],
+      ["PuBuGn", d3.interpolatePuBuGn],
+      ["PuBu", d3.interpolatePuBu],
+      ["PuRd", d3.interpolatePuRd],
+      ["RdPu", d3.interpolateRdPu],
+      ["YlGnBu", d3.interpolateYlGnBu],
+      ["YlGn", d3.interpolateYlGn],
+      ["YlOrBr", d3.interpolateYlOrBr],
+      ["YlOrRd", d3.interpolateYlOrRd],
+    ].flatMap(([name, i]) => d3.ticks(0, 1, 20).map((t) => [t, name, String(i(t))])), {fill: "2", insetTop: 0.5, insetBottom: 0.5})
+  ]
+})
+```
+:::
 
 The default color scheme, *turbo*, was chosen primarily to ensure high-contrast visibility. Color schemes such as *blues* make low-value marks difficult to see against a white background, for better or for worse. To use a subset of a continuous color scheme (or any single-argument *interpolate* function), set the *scale*.range property to the corresponding subset of [0, 1]; for example, to use the first half of the *rainbow* color scheme, use a range of [0, 0.5]. By default, the full range [0, 1] is used. If you wish to encode a quantitative value without hue, consider using *opacity* rather than *color* (e.g., use Plot.dot’s *strokeOpacity* instead of *stroke*).
 
 The following diverging scale schemes are supported:
 
-| preview | name |
-|:-------:|------|
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/brbg.png" alt="brbg"> | *brbg* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/prgn.png" alt="prgn"> | *prgn* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/piyg.png" alt="piyg"> | *piyg* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/puor.png" alt="puor"> | *puor* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rdbu.png" alt="rdbu"> | *rdbu* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rdgy.png" alt="rdgy"> | *rdgy* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rdylbu.png" alt="rdylbu"> | *rdylbu* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rdylgn.png" alt="rdylgn"> | *rdylgn* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/spectral.png" alt="spectral"> | *spectral* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/burd.png" alt="burd"> | *burd* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/buylrd.png" alt="buylrd"> | *buylrd* |
+:::plot defer hidden
+```js
+Plot.plot({
+  width: 322,
+  height: 25 * 11,
+  margin: 0,
+  marginRight: 70,
+  padding: 0,
+  x: {axis: null},
+  y: {axis: "right", tickSize: 0},
+  color: {type: "identity"},
+  marks: [
+    Plot.cell([
+      ["BrBG", d3.interpolateBrBG],
+      ["PRGn", d3.interpolatePRGn],
+      ["PiYG", d3.interpolatePiYG],
+      ["PuOr", d3.interpolatePuOr],
+      ["RdBu", d3.interpolateRdBu],
+      ["RdGy", d3.interpolateRdGy],
+      ["RdYlBu", d3.interpolateRdYlBu],
+      ["RdYlGn", d3.interpolateRdYlGn],
+      ["Spectral", d3.interpolateSpectral],
+      ["BuRd", (t) => d3.interpolateRdBu(1 - t)],
+      ["BuYlRd", (t) => d3.interpolateRdYlBu(1 - t)],
+    ].flatMap(([name, i]) => d3.ticks(0, 1, 30).map((t) => [t, name, String(i(t))])), {fill: "2", insetTop: 0.5, insetBottom: 0.5})
+  ]
+})
+```
+:::
 
 Picking a diverging color scheme name defaults the scale type to *diverging*; set the scale type to *linear* to treat the color scheme as sequential instead. Diverging color scales support a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
 
 The following cylical color schemes are supported:
 
-| preview | name |
-|:-------:|------|
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/rainbow.png" alt="rainbow"> | *rainbow* |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/sinebow.png" alt="sinebow"> | *sinebow* |
+:::plot defer hidden
+```js
+Plot.plot({
+  width: 322,
+  height: 25 * 2,
+  margin: 0,
+  marginRight: 70,
+  padding: 0,
+  x: {axis: null},
+  y: {axis: "right", tickSize: 0},
+  color: {type: "identity"},
+  marks: [
+    Plot.cell([
+      ["rainbow", d3.interpolateRainbow],
+      ["sinebow", d3.interpolateSinebow],
+    ].flatMap(([name, i]) => d3.ticks(0, 1, 30).map((t) => [t, name, String(i(t))])), {fill: "2", insetTop: 0.5, insetBottom: 0.5})
+  ]
+})
+```
+:::
 
 The following categorical color schemes are supported:
 
-| preview | name |
-|:-------:|------|
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/accent.png" alt="accent"> | *accent* (8 colors) |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/category10.png" alt="category10"> | *category10* (10 colors) |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/dark2.png" alt="dark2"> | *dark2* (8 colors) |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/paired.png" alt="paired"> | *paired* (12 colors) |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/pastel1.png" alt="pastel1"> | *pastel1* (9 colors) |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/pastel2.png" alt="pastel2"> | *pastel2* (8 colors) |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/set1.png" alt="set1"> | *set1* (9 colors) |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/set2.png" alt="set2"> | *set2* (8 colors) |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/set3.png" alt="set3"> | *set3* (12 colors) |
-| <img style="height: 16px;" src="https://raw.githubusercontent.com/observablehq/plot/main/img/tableau10.png" alt="tableau10"> | *tableau10* (10 colors) |
+:::plot defer hidden
+```js
+Plot.plot({
+  width: 322,
+  height: 25 * 10,
+  margin: 0,
+  marginRight: 70,
+  padding: 0,
+  x: {axis: null},
+  y: {axis: "right", tickSize: 0},
+  color: {type: "identity"},
+  marks: [
+    Plot.cell([
+      ["Accent", d3.schemeAccent],
+      ["Category10", d3.schemeCategory10],
+      ["Dark2", d3.schemeDark2],
+      ["Paired", d3.schemePaired],
+      ["Pastel1", d3.schemePastel1],
+      ["Pastel2", d3.schemePastel2],
+      ["Set1", d3.schemeSet1],
+      ["Set2", d3.schemeSet2],
+      ["Set3", d3.schemeSet3],
+      ["Tableau10", d3.schemeTableau10],
+    ].flatMap(([name, scheme]) => scheme.map((s, i) => [i, name, s])), {fill: "2", inset: 0.5})
+  ]
+})
+```
+:::
 
 The following color interpolators are supported:
 
