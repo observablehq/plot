@@ -7,6 +7,7 @@ export default defineConfig({
   title: "Observable Plot",
   description: "The JavaScript library for exploratory data visualization",
   base: "/plot/",
+  cleanUrls: true,
   vite: {
     resolve: {
       alias: {
