@@ -573,7 +573,7 @@ The **transform** scale option allows you to apply a function to all values befo
 Plot.plot({
   y: {
     grid: true,
-    label: `↑ Temperature (°C))`,
+    label: `↑ Temperature (°C)`,
     transform: (f) => (f - 32) * (5 / 9) // convert Fahrenheit to Celsius
   },
   marks: [
