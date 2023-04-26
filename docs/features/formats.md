@@ -12,14 +12,14 @@ These helper functions are provided for convenience as a **tickFormat** option f
 ## formatIsoDate(*date*)
 
 ```js
-Plot.formatIsoDate(new Date("2020-01-01T00:00.000Z")) // "2020-01-01"
+Plot.formatIsoDate(new Date("2020-01-01T00:00:00.000Z")) // "2020-01-01"
 ```
 
 Given a *date*, returns the shortest equivalent ISO 8601 UTC string. If the given *date* is not valid, returns `"Invalid Date"`. See [isoformat](https://github.com/mbostock/isoformat).
 
 ## formatWeekday(*locale*, *format*)
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-format-helpers
 ```js
 Plot.textX(d3.range(7)).plot({x: {tickFormat: Plot.formatWeekday()}})
 ```
@@ -33,7 +33,7 @@ Returns a function that formats a given week day number (from 0 = Sunday to 6 = 
 
 ## formatMonth(*locale*, *format*)
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-format-helpers
 ```js
 Plot.textX(d3.range(12)).plot({x: {tickFormat: Plot.formatMonth(), ticks: 12}})
 ```

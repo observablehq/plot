@@ -94,7 +94,7 @@ numbers = [
 
 These numbers represent the daily opening price of Apple stock starting on January 1, 2018. For a simple line chart, we can pass the data to [Plot.lineY](../marks/line.md) to construct a line mark, and then call *line*.plot.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-line
 ```js
 Plot.lineY(numbers).plot()
 ```
@@ -104,7 +104,7 @@ The *y*-axis above represents price in U.S. dollars. The *x*-axis represents the
 
 If we pass the numbers to [Plot.areaY](../marks/area.md) instead, we’ll get a simple area chart with a baseline implicitly at *y* = 0.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-area
 ```js
 Plot.areaY(numbers).plot()
 ```
@@ -112,7 +112,7 @@ Plot.areaY(numbers).plot()
 
 Similarly if we use [Plot.rectY](../marks/rect.md), we’ll get a series of vertical bars. This implicitly uses the [interval transform](../transforms/interval.md) such that the first rect spans from *x* = 0 to *x* = 1, the second from *x* = 1 to *x* = 2, and so on, with a horizontal inset to separate adjacent rects.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-rect
 ```js
 Plot.rectY(numbers).plot()
 ```
@@ -120,7 +120,7 @@ Plot.rectY(numbers).plot()
 
 [Plot.barY](../marks/bar.md) produces a visually similar result but with different semantics: *x* is now ordinal (a *band* scale) rather than quantitative (*linear*). An ordinal axis labels every tick, which appear at the middle of each bar rather than between rects.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-bar
 ```js
 Plot.barY(numbers).plot()
 ```
@@ -128,7 +128,7 @@ Plot.barY(numbers).plot()
 
 Like Plot.barY, [Plot.cellX](../marks/cell.md) implies that *x* is ordinal. But now instead of a *y* channel the numeric value is encoded as the *fill* color. The default quantitative color scheme is *turbo*; higher values are reddish, and lower values blueish.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-cell
 ```js
 Plot.cellX(numbers).plot()
 ```
@@ -136,7 +136,7 @@ Plot.cellX(numbers).plot()
 
 If we don’t care about the order of our data and we instead just want to look at the one-dimensional distribution of values, we can use [Plot.dotX](../marks/dot.md).
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-dot
 ```js
 Plot.dotX(numbers).plot()
 ```
@@ -144,13 +144,13 @@ Plot.dotX(numbers).plot()
 
 Alternatively, we can use [Plot.ruleX](../marks/rule.md) to draw a vertical rule at each value. In this case, Plot.ruleX behaves identically to [Plot.tickX](../marks/tick.md). (If there *were* a *y* channel, then Plot.tickX would imply that *y* is ordinal whereas Plot.ruleX would imply that *y* is quantitative.) It is common to use the rule shorthand to annotate special *x* or *y* values in plots, such as *y* = 0, in conjunction with other marks.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-rule
 ```js
 Plot.ruleX(numbers).plot()
 ```
 :::
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-tick
 ```js
 Plot.tickX(numbers).plot()
 ```
@@ -158,7 +158,7 @@ Plot.tickX(numbers).plot()
 
 We could even use [Plot.vectorX](../marks/vector.md) here to draw little up-pointing arrows. (Typically the vector mark is used in conjunction with the *rotate* and *length* options to control the direction and magnitude of each vector.)
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-vector
 ```js
 Plot.vectorX(numbers).plot()
 ```
@@ -166,7 +166,7 @@ Plot.vectorX(numbers).plot()
 
 While not particularly readable due to occlusion, we can use [Plot.textX](../marks/text.md) to draw a label at each value, too.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-text
 ```js
 Plot.textX(numbers).plot()
 ```
@@ -174,7 +174,7 @@ Plot.textX(numbers).plot()
 
 For a more formal method of summarizing a one-dimensional distribution, we can use [Plot.boxX](../marks/box.md) to create a horizontal boxplot. The gray band represents the interquartile range; the black whiskers show the extrema (not including outliers); and the thick black stroke represents the median; any outliers (none in this dataset) are drawn as dots.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-box
 ```js
 Plot.boxX(numbers).plot()
 ```
@@ -182,7 +182,7 @@ Plot.boxX(numbers).plot()
 
 Some of Plot’s transforms support shorthand syntax, too. For example, we can use Plot.rectY with [Plot.binX](../transforms/bin.md) to generate a histogram—another common way to visualize a one-dimensional distribution.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-histogram
 ```js
 Plot.rectY(numbers, Plot.binX()).plot()
 ```
@@ -194,7 +194,7 @@ Similarly [Plot.groupX](../transforms/group.md) can be used to group and count o
 gene = "AAAAGAGTGAAGATGCTGGAGACGAGTGAAGCATTCACTTTAGGGAAAGCGAGGCAAGAGCGTTTCAGAAGACGAAACCTGGTAGGTGCACTCACCACAG"
 ```
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-group
 ```js
 Plot.barY(gene, Plot.groupX()).plot()
 ```
@@ -202,7 +202,7 @@ Plot.barY(gene, Plot.groupX()).plot()
 
 And here’s the [dodge transform](../transforms/dodge.md) for a beeswarm plot:
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-dodge
 ```js
 Plot.dotX(numbers, Plot.dodgeY()).plot()
 ```
@@ -259,7 +259,7 @@ timeSeries = [
 
 If we pass this to Plot.line (*not* Plot.lineY as before), we’ll get another line chart, but now the *x*-axis shows the date rather than the zero-based index. Also, the *x*-values are no longer uniformly spaced, as there are gaps on the weekends and holidays when the markets are closed.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-temporal-line
 ```js
 Plot.line(timeSeries).plot()
 ```
@@ -267,7 +267,7 @@ Plot.line(timeSeries).plot()
 
 Similarly Plot.area will produce the equivalent area chart, again with an implicit baseline at *y* = 0.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-temporal-area
 ```js
 Plot.area(timeSeries).plot()
 ```
@@ -277,7 +277,7 @@ There’s currently no two-dimensional shorthand for rect or bar, though you can
 
 Plot.dot will produce a scatterplot…
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-temporal-dot
 ```js
 Plot.dot(timeSeries).plot()
 ```
@@ -285,7 +285,7 @@ Plot.dot(timeSeries).plot()
 
 As will Plot.vector…
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-temporal-vector
 ```js
 Plot.vector(timeSeries).plot()
 ```
@@ -293,7 +293,7 @@ Plot.vector(timeSeries).plot()
 
 Plot.text also produces a scatterplot with labels showing the zero-based index of the data. Perhaps not very useful, but it at least shows the data’s order.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-temporal-text
 ```js
 Plot.text(timeSeries).plot()
 ```
@@ -319,7 +319,7 @@ matrix = [
 ]
 ```
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-shorthand-cell
 ```js
 Plot.cell(matrix).plot()
 ```

@@ -21,7 +21,7 @@ onMounted(() => {
 
 In the spirit of *show don’t tell*, here’s a scatterplot of body measurements of athletes from the [2016 Summer Olympics](https://flother.is/2017/olympic-games-data/).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-olympians-scatterplot
 ```js
 Plot
   .dot(olympians, {x: "weight", y: "height", stroke: "sex"})
@@ -33,7 +33,7 @@ A plot specification assigns columns of data (*weight*, *height*, and *sex*) to 
 
 This scatterplot suffers from overplotting: many dots are drawn in the same spot, so it’s hard to perceive density. We can fix this by applying a [bin transform](./transforms/bin.md) to group athletes of similar height and weight (and sex), and then use opacity to encode the number of athletes in the bin.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-olympians-bins
 ```js
 Plot.rect(olympians, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height", fill: "sex", inset: 0})).plot()
 ```
@@ -41,7 +41,7 @@ Plot.rect(olympians, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height",
 
 Or we could try the [density mark](./marks/density.md).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-olympians-density
 ```js
 Plot.density(olympians, {x: "weight", y: "height", stroke: "sex"}).plot()
 ```
@@ -49,7 +49,7 @@ Plot.density(olympians, {x: "weight", y: "height", stroke: "sex"}).plot()
 
 A simpler take on this data is to focus on one dimension: weight. We can use the bin transform again to make a histogram with weight on the *x*-axis and frequency on the *y*-axis. This plot uses a [rect mark](./marks/rect.md) and an implicit [stack transform](./transforms/stack.md).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-vertical-histogram
 ```js
 Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})).plot()
 ```
@@ -57,7 +57,7 @@ Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})).plot(
 
 Or if we’d prefer to show the two distributions separately as small multiples, we can [facet](./features/facets.md) the data along *y* (keeping the *fill* encoding for consistency, and adding grid lines and a rule at *y* = 0 to improve readability).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-faceted-histogram
 ```js
 Plot.plot({
   grid: true,

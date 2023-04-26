@@ -29,7 +29,7 @@ Or put more simply: **with Plot, you’ll see more charts.**
 
 You can make a meaningful chart in Plot with as little as one line of code.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-concise-colored-scatterplot
 ```js
 Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species"}).plot()
 ```
@@ -39,7 +39,7 @@ What makes Plot concise? In a word: *defaults*. If you specify the semantics—y
 
 The beauty of defaults is that you can override them as needed. This is ideal for exploring: you invest minimally in the initial chart, and as you start to see something interesting, you progressively customize to improve the display. Perhaps the plot above would be easier to read with an aspect ratio proportional to the data, a grid, and a legend?
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-refined-colored-scatterplot
 ```js
 Plot.plot({
   grid: true,
@@ -58,7 +58,7 @@ Plot.plot({
 
 How about [transforms](./features/transforms.md)? Munging data, not assigning visual encodings, is often most of the work of data analysis. Plot’s transforms let you aggregate and derive data within your plot specification, reducing the time spent preparing data. For example, if you have an array of categorical values (penguin species), you can quickly count them with the group transform.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-groupy-transform
 ```js
 Plot.barX(penguins.map((d) => d.species), Plot.groupY()).plot()
 ```
@@ -80,7 +80,7 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 
 You can use this composite mark like any built-in mark:
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-arealiney-custom-mark
 ```js
 arealineY(aapl, {x: "Date", y: "Close", color: "steelblue"}).plot()
 ```
@@ -88,7 +88,7 @@ arealineY(aapl, {x: "Date", y: "Close", color: "steelblue"}).plot()
 
 Plot uses this technique internally: the [axis mark](./marks/axis.md) and [box mark](./marks/box.md) are both composite marks.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-penguins-horizontal-box-plot
 ```js
 Plot.boxX(penguins, {x: "body_mass_g", y: "species"}).plot()
 ```
@@ -96,7 +96,7 @@ Plot.boxX(penguins, {x: "body_mass_g", y: "species"}).plot()
 
 Plot’s transforms are composable, too. For example, to combine the [group transform](./transforms/group.md) with the [stack transform](./transforms/stack.md), simply pass the result of the group transform to the stack transform.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-transforms-are-composable
 ```js
 Plot.plot({
   color: {

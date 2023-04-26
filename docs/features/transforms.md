@@ -94,7 +94,7 @@ This is for demonstration only; you wouldn’t normally bin “by hand” as sh
 
 But Plot’s transforms are often more convenient, especially in conjunction with Plot’s other features such as [faceting](./facets.md) and automatic grouping by **z**. For example, if we want to add a color encoding to our histogram, we simply add the **fill** option and the bin transform partitions each bin accordingly; doing this with d3.bin would be a lot more work!
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-vertical-histogram
 ```js
 Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})).plot({color: {legend: true}})
 ```
@@ -120,7 +120,7 @@ Transforms can derive channels (such as **y** above) as well as changing the def
 
 Transforms are composable: you can pass *options* through more than one transform before passing it to a mark. For example, above it’s a bit difficult to compare the weight distribution by sex because there are fewer <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">female</span> than <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">male</span> athletes in the data. We can remove this effect using the [normalize transform](../transforms/normalize.md) with the *sum* reducer.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-overlapping-relative-histogram
 ```js-vue
 Plot.plot({
   y: {percent: true},
@@ -146,7 +146,7 @@ And, as you may have wondered above, many of Plot’s [marks](./marks.md) provid
 
 For greater control, you can also implement a custom **transform** function, allowing data, indexes, or channels to be derived prior to rendering. Custom transforms are rarely implemented directly; see the built-in transforms above. For example, below we implement the [filter transform](../transforms/filter.md) “by hand” as a custom transform to show the unemployment rates only in Michigan metropolitan divisions.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-custom-transform-example
 ```js{16-23}
 Plot.plot({
   y: {

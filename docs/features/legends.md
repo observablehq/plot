@@ -28,7 +28,7 @@ onMounted(() => {
 
 Plot can generate **legends** for *color*, *opacity*, and *symbol* [scales](./scales.md). For example, the scatterplot below of body measurements of Olympic athletes includes a legend for its *color* scale, allowing the meaning of color to be interpreted by the reader. (The axes similarly document the meaning of the *x* and *y* position scales.)
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-olympians-scatterplot
 ```js
 Plot.plot({
   color: {legend: true},
@@ -41,7 +41,7 @@ Plot.plot({
 
 The legend above is a *swatches* legend because the *color* scale is *ordinal* (with a *categorical* scheme). When the *color* scale is continuous, a *ramp* legend with a smooth gradient is generated instead. The plot below of global average surface temperature ([GISTEMP](https://data.giss.nasa.gov/gistemp/)) uses a *diverging* *color* scale to indicate the deviation from the 1951–1980 average in degrees Celsius.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-colored-scatterplot
 ```js
 Plot.plot({
   color: {
@@ -78,7 +78,7 @@ Plot does not yet generate legends for the *r* (radius) scale or the *length* sc
 
 If the **legend** [scale option](./scales.md#scale-options) is true, the default legend will be produced for the scale; otherwise, the meaning of the **legend** option depends on the scale: for quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for *ordinal* *color* scales and *symbol* scales, only the *swatches* value is supported.
 
-<!-- TODO Describe the color and opacity options, and demo the symbol legend with a redundant color encoding. -->
+<!-- TODO Describe the color and opacity options. -->
 
 Categorical and ordinal color legends are rendered as swatches, unless the **legend** option is set to *ramp*. The swatches can be configured with the following options:
 

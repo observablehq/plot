@@ -198,7 +198,7 @@ Plot.plot({
 
 As an alternative to interpolating discrete samples, you can supply values as a continuous function *f*(*x*,*y*); the raster mark will invoke this function for the midpoint of each pixel in the raster grid, similar to a WebGL fragment shader. For example, below we visualize the [Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set) by counting the number of iterations needed until the point “escapes”.
 
-:::plot defer https://observablehq.com/@observablehq/plot-mandelbrot-raster
+:::plot defer https://observablehq.com/@observablehq/plot-mandelbrot-set
 ```js
 Plot.raster({fill: mandelbrot, x1: -2, x2: 1, y1: -1.164, y2: 1.164}).plot({aspectRatio: 1})
 ```
@@ -227,7 +227,7 @@ When faceting, the sample function *f*(*x*,*y*) is passed a third argument of th
 
 The raster mark supports Plot’s [projection system](../features/projections.md). The chart below shows global atmospheric water vapor measurements from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV).
 
-:::plot defer https://observablehq.com/@observablehq/plot-contours-projection
+:::plot defer https://observablehq.com/@observablehq/plot-raster-projection
 ```js
 Plot.plot({
   projection: "equal-earth",

@@ -25,7 +25,7 @@ Faceting partitions data by ordinal or categorical value and then repeats a plot
 
 For example, below we recreate the Trellis display (“reminiscent of garden trelliswork”) of [Becker *et al.*](https://hci.stanford.edu/courses/cs448b/papers/becker-trellis-jcgs.pdf) using the dot’s **fy** channel to declare vertical↕︎ facets, showing the yields of several varieties of barley across several sites for the years <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">1931</span> and <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">1932</span>.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-trellis
 ```js
 Plot.plot({
   height: 800,
@@ -59,7 +59,7 @@ Use the [frame mark](../marks/frame.md) for stronger visual separation of facets
 
 The chart above reveals a likely data collection error: the years appear to be reversed for the Morris site as it is the only site where the yields in <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">1932</span> were higher than in <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">1931</span>. The anomaly in Morris is more obvious if we use directed arrows to show the year-over-year change. The [group transform](../transforms/group.md) groups the observations by site and variety to compute the change.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-trellis-anomaly
 ```js
 Plot.plot({
   height: 800,
@@ -94,7 +94,7 @@ Here the sort order has changed slightly: the *y* and *fy* domains are sorted by
 
 Faceting requires ordinal or categorical data because there are a discrete number of facets; the associated *fx* and *fy* scales are [band scales](./scales.md#discrete-position). Quantitative or temporal data can be made ordinal by binning, say using [Math.floor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor). Or, use the [**interval** scale option](../transforms/interval.md) on the *fx* or *fy* scale. Below, we produce a [box plot](../marks/box.md) of the weights (in kilograms) of Olympic athletes, faceted by height binned at a 10cm (0.1 meter) interval.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-olympians-box-plot
 ```js
 Plot.plot({
   fy: {
@@ -116,7 +116,7 @@ If you are interested in automatic faceting for quantitative data, please upvote
 
 When both **fx** and **fy** channels are specified, two-dimensional faceting results, as in the faceted scatterplot of penguin culmen measurements below. The horizontal↔︎ facet shows sex (with the rightmost column representing penguins whose *sex* field is null, indicating missing data), while the vertical↕︎ facet shows species.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-two-dimensional-faceting
 ```js
 Plot.plot({
   grid: true,
@@ -137,7 +137,7 @@ Plot.plot({
 
 You can mix-and-match faceted and non-faceted marks within the same plot. The non-faceted marks will be repeated across all facets. This is useful for decoration marks, such as a [frame](../marks/frame.md), and also for context: below, the entire population of penguins is repeated in each facet as small gray dots, making it easier to see how each facet compares to the whole.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-non-faceted-marks
 ```js
 Plot.plot({
   grid: true,
@@ -206,7 +206,7 @@ This example uses an [immediately-invoked function expression (IIFE)](https://de
 
 The above chart also demonstrates faceted annotations, using a [text mark](../marks/text.md) to label the facet in lieu of facet axes. Below, we apply a single text annotation to the *Adelie* facet by setting the **fy** channel to a single-element array parallel to the data.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-annotated-facets
 ```js
 Plot.plot({
   marginLeft: 60,

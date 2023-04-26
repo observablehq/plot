@@ -13,13 +13,11 @@ Observable Plot supports a variety of environments.
 
 The fastest way to get started (and get help) with Observable Plot is on [Observable](https://observablehq.com)! Plot is available by default in notebooks as part of Observable’s standard library. To use Plot, simply return the generated plot from a cell like so:
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-normal-histogram
 ```js
 Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: d3.randomNormal()})).plot()
 ```
 :::
-
-[Edit this on Observable →](https://observablehq.com/d/80126d030307e0ef?intent=fork)
 
 Observable includes a variety of Plot snippets when you click **+** to add a cell, as well as convenient [sample datasets](https://observablehq.com/@observablehq/sample-datasets) to try out Plot features. Or upload a CSV or JSON file to start playing with your data. You can even use [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell), which uses Plot’s [auto mark](./marks/auto.md) under the hood, to create quick charts without writing code! You can then eject to JavaScript by clicking **+** to see the equivalent Plot code.
 

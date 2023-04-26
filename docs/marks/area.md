@@ -247,7 +247,7 @@ Above, smaller industries such as agriculture and mining & extraction are dwarfe
 
 Or, as a [horizon chart](https://observablehq.com/@observablehq/plot-horizon), where the area is repeated at different scales with different colors, showing both small-scale variation in position and large-scale variation in color:
 
-:::plot defer https://observablehq.com/@observablehq/plot-faceted-areas
+:::plot defer https://observablehq.com/@observablehq/plot-unemployment-horizon-chart
 ```js-vue
 Plot.plot((() => {
   const bands = 7;
