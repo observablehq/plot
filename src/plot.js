@@ -220,7 +220,6 @@ export function plot(options = {}) {
       svg.append("style").text(
         `.${className} {
   display: block;
-  background: white;
   height: auto;
   height: intrinsic;
   max-width: 100%;

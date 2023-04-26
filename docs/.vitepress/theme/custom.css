@@ -23,11 +23,6 @@
   color: var(--vp-c-text-2);
 }
 
-.vp-doc .plot,
-.vp-doc .plot-ramp {
-  background: none;
-}
-
 :root.dark marker[stroke="white"] {
   stroke: var(--vp-c-bg);
 }
