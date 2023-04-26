@@ -56,7 +56,12 @@ function enableAnalytics(router) {
     navigator.sendBeacon(
       "https://events.observablehq.com/beacon-events",
       JSON.stringify({
-        events: events.map((event) => ({...event, user_id: user?.id, user_agent: navigator.userAgent})),
+        events: events.map((event) => ({
+          ...event,
+          release: null,
+          user_id: user?.id ?? null,
+          user_agent: navigator.userAgent
+        })),
         send_time: new Date().toISOString()
       })
     );
