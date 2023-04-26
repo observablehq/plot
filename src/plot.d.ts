@@ -77,13 +77,13 @@ export interface PlotOptions extends ScaleDefaults {
   /**
    * Custom styles to override Plot’s defaults. Styles may be specified either
    * as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion
-   * as assigning [*element*.style](1)) or an object of properties (*e.g.*,
+   * as assigning [*element*.style][1] or an object of properties (*e.g.*,
    * `{color: "red"}`, in the same fashion as assigning [*element*.style
-   * properties](2)). Note that unitless numbers ([quirky lengths](3)) such as
+   * properties][2]. Note that unitless numbers ([quirky lengths][3]) such as
    * `{padding: 20}` may not supported by some browsers; you should instead
    * specify a string with units such as `{padding: "20px"}`. By default, the
    * returned plot has a max-width of 100%, and the system-ui font. Plot’s marks
-   * and axes default to [currentColor](4), meaning that they will inherit the
+   * and axes default to [currentColor][4], meaning that they will inherit the
    * surrounding content’s color. For example, a dark theme:
    *
    * ```js
