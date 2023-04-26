@@ -60,7 +60,7 @@ How about [transforms](./features/transforms.md)? Munging data, not assigning vi
 
 :::plot https://observablehq.com/@observablehq/plot-groupy-transform
 ```js
-Plot.barX(penguins.map((d) => d.species), Plot.groupY()).plot()
+Plot.barX(penguins.map((d) => d.species), Plot.groupY()).plot({marginLeft: 60})
 ```
 :::
 
@@ -90,7 +90,7 @@ Plot uses this technique internally: the [axis mark](./marks/axis.md) and [box m
 
 :::plot https://observablehq.com/@observablehq/plot-penguins-horizontal-box-plot
 ```js
-Plot.boxX(penguins, {x: "body_mass_g", y: "species"}).plot()
+Plot.boxX(penguins, {x: "body_mass_g", y: "species"}).plot({marginLeft: 60, y: {label: null}})
 ```
 :::
 
@@ -99,9 +99,9 @@ Plot’s transforms are composable, too. For example, to combine the [group tran
 :::plot https://observablehq.com/@observablehq/plot-transforms-are-composable
 ```js
 Plot.plot({
-  color: {
-    legend: true
-  },
+  marginLeft: 60,
+  y: {label: null},
+  color: {legend: true},
   marks: [
     Plot.barX(penguins, Plot.stackX(Plot.groupY({x: "count"}, {y: "species", fill: "sex"})))
   ]
