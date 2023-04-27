@@ -7,7 +7,7 @@ import {computed, ref, shallowRef, onMounted} from "vue";
 
 const longitude = ref(90);
 const radius = ref(30);
-const circle = computed(() => d3.geoCircle().center([9, 34]).radius(radius.value).precision(2)());
+const circle = computed(() => d3.geoCircle().center([9, 34]).radius(radius.value)());
 const projection = ref("equirectangular");
 const westport = shallowRef({type: null});
 const earthquakes = shallowRef([]);
@@ -161,7 +161,7 @@ Plot.plot({
 ```
 
 ```js
-circle = d3.geoCircle().center([9, 34]).radius(radius).precision(2)()
+circle = d3.geoCircle().center([9, 34]).radius(radius)()
 ```
 
 If none of Plot’s built-in projections meet your needs, you can use any of [D3’s extended projections](https://github.com/d3/d3-geo-projection) by specifying the **projection** option as a function that returns a D3 projection. Below, a map of Antarctica in a polar aspect of the *azimuthal-equidistant* projection.
