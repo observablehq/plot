@@ -9,7 +9,7 @@ import aapl from "../data/aapl.ts";
 # Interval transform
 
 :::tip
-There’s also an **interval** scale option.
+There’s also an [**interval** scale option](../features/scales.md#scale-transforms) for quantizing continuous data.
 :::
 
 The **interval transform** turns a quantitative or temporal *value* into a continuous extent [*start*, *stop*]. For example, if *value* is an instant in time, the interval transform could return a *start* of UTC midnight and a *stop* of the UTC midnight the following day.
