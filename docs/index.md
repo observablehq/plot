@@ -6,7 +6,37 @@ titleTemplate: "The JavaScript library for exploratory data visualization"
 head:
   - - link
     - rel: canonical
-      href: https://observablehq.com/plot
+      href: https://observablehq.com/plot/
+  - - meta
+    - name: title
+      content: Observable Plot
+  - - meta
+    - name: description
+      content: The JavaScript library for exploratory data visualization
+  - - meta
+    - name: twitter:card
+      content: summary_large_image
+  - - meta
+    - name: twitter:site
+      content: "@observablehq"
+  - - meta
+    - property: og:description
+      content: The JavaScript library for exploratory data visualization
+  - - meta
+    - property: og:image
+      content: https://static.observableusercontent.com/thumbnail/64f414fef8a91248865f5759641b0cf537bc87c0aaf57dc368ffe673013eccaa.jpg
+  - - meta
+    - property: og:site_name
+      content: Observable
+  - - meta
+    - property: og:title
+      content: Observable Plot
+  - - meta
+    - property: og:type
+      content: article
+  - - meta
+    - property: og:url
+      content: https://observablehq.com/plot/
 
 hero:
   name: "Observable Plot"
