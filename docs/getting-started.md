@@ -30,39 +30,40 @@ Observable includes a variety of Plot snippets when you click **+** to add a cel
 
 Observable is free for public use. Sign up for a [Pro account](https://observablehq.com/pricing) to connect to private databases, collaborate on private notebooks, and more.
 
-## Loading Plot from a CDN
+## Plot in vanilla HTML
 
-In vanilla HTML, you can load Plot from a CDN such as jsDelivr.
+In vanilla HTML, you can load Plot from a CDN such as jsDelivr or you can download it locally. We recommend using the CDN-hosted ES module bundle as it automatically loads Plot’s dependency on [D3](https://d3js.org). But for those who need it, we also provide a UMD bundle that exports the `Plot` global when loaded as a plain script.
 
 :::code-group
-
-```html [ES module]
+```html [ESM + CDN]
+<!DOCTYPE html>
+<div id="myplot"></div>
 <script type="module">
 
 import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
 
+const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
+const div = document.querySelector("#myplot");
+div.append(plot);
+
 </script>
 ```
 
-```html [UMD]
+```html [UMD + CDN]
+<!DOCTYPE html>
+<div id="myplot"></div>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+<script type="module">
+
+const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
+const div = document.querySelector("#myplot");
+div.append(plot);
+
+</script>
 ```
 
-:::
-
-We recommend using the ES module bundle as it automatically loads Plot’s dependency on D3, and because ES modules are the modern way. But for those who need it, the provided UMD bundle is AMD-compatible and exports the `Plot` global when loaded as a plain script.
-
-## Downloading Plot
-
-If you’d prefer to run Plot locally (or entirely offline), you can download the UMD bundle of Plot along with its dependency, D3, here:
-
-- <a href="./d3.js" download>d3.js</a>
-- <a href="./plot.js" download>plot.js</a>
-
-Then, create an `index.html` file that looks like this:
-
-```html
+```html [UMD + local]
 <!DOCTYPE html>
 <div id="myplot"></div>
 <script src="d3.js"></script>
@@ -75,10 +76,18 @@ div.append(plot);
 
 </script>
 ```
+:::
 
-If you prefer smaller minified files, you can download <a href="./d3.min.js" download>d3.min.js</a> and <a href="./plot.min.js" download>plot.min.js</a>, and then update the `src` attributes above accordingly.
+Plot returns a detached DOM element—either an [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) or [HTML figure](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) element. In vanilla web development, this means you need to insert the generated plot into the page to see it. Typically this is done by selecting a DOM element (such as a DIV with a unique identifier, like `myplot` above), and then calling [*element*.append](https://developer.mozilla.org/en-US/docs/Web/API/Element/append).
 
-## Installing Plot from npm
+If you’d prefer to run Plot locally (or entirely offline), you can download the UMD bundle of Plot along with its dependency, D3, here:
+
+- <a href="./d3.js" download>d3.js</a>
+- <a href="./plot.js" download>plot.js</a>
+
+Then, create an `index.html` file as shown above in the **UMD + local** tab. If you prefer smaller minified files, you can download <a href="./d3.min.js" download>d3.min.js</a> and <a href="./plot.min.js" download>plot.min.js</a>, and then update the `src` attributes above accordingly.
+
+## Installing from npm
 
 If you’re developing a web application using Node, you can install Plot via yarn, npm, pnpm, or your preferred package manager.
 
@@ -116,23 +125,6 @@ Plot includes TypeScript declarations with extensive documentation. We highly re
   <img style="border: solid 1px var(--vp-c-text-3); display: inline;" src="./ts-property.png">
   <figcaption>Modern editors surface documentation and type hints as you write Plot code.</figcaption>
 </figure>
-
-## Plot in vanilla HTML
-
-Plot returns a detached DOM element—either an [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) or [HTML figure](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) element. In vanilla web development, this means you need to insert the generated plot into the page to see it. Typically this is done by selecting a DOM element (such as a DIV with a unique identifier, like *myplot* below), and then calling [*element*.append](https://developer.mozilla.org/en-US/docs/Web/API/Element/append).
-
-```html
-<div id="myplot"></div>
-<script type="module">
-
-import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
-
-const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
-const div = document.querySelector("#myplot");
-div.append(plot);
-
-</script>
-```
 
 ## Plot in React
 
