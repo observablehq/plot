@@ -194,7 +194,7 @@ Plot.geo(westport).plot({projection: {type: "identity", domain: westport}})
 :::
 
 :::tip
-There’s also a *reflect-y* projection in case *y* points up↑.
+There’s also a *reflect-y* projection in case *y* points up↑, which is often the case with [projected reference systems](https://en.wikipedia.org/wiki/Projected_coordinate_system).
 :::
 
 Naturally, Plot’s projection system is compatible with its [faceting system](./facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
