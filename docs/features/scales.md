@@ -162,11 +162,11 @@ Plot.plot({x: {type: "utc", domain: [1609459200000, 1640995200000], grid: true}}
 ```
 :::
 
-If the scale **type** is *time*, the ticks will be in local time rather than UTC.
+If the scale **type** is *time*, the ticks will be in local time—like the [Date constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date)—rather than UTC.
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
-Plot.plot({x: {type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)], grid: true}})
+Plot.plot({x: {type: "time", domain: [new Date(2021, 1, 2, 3), new Date(2021, 1, 2, 21)], grid: true}})
 ```
 :::
 
