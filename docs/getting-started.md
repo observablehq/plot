@@ -53,6 +53,31 @@ import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm"
 
 We recommend using the ES module bundle as it automatically loads Plot’s dependency on D3, and because ES modules are the modern way. But for those who need it, the provided UMD bundle is AMD-compatible and exports the `Plot` global when loaded as a plain script.
 
+## Downloading Plot
+
+If you’d prefer to run Plot locally (or entirely offline), you can download the UMD bundle of Plot along with its dependency, D3, here:
+
+- <a href="./d3.js" download>d3.js</a>
+- <a href="./plot.js" download>plot.js</a>
+
+Then, create an `index.html` file that looks like this:
+
+```html
+<!DOCTYPE html>
+<div id="myplot"></div>
+<script src="d3.js"></script>
+<script src="plot.js"></script>
+<script type="module">
+
+const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
+const div = document.querySelector("#myplot");
+div.append(plot);
+
+</script>
+```
+
+If you prefer smaller minified files, you can download <a href="./d3.min.js" download>d3.min.js</a> and <a href="./plot.min.js" download>plot.min.js</a>, and then update the `src` attributes above accordingly.
+
 ## Installing Plot from npm
 
 If you’re developing a web application using Node, you can install Plot via yarn, npm, pnpm, or your preferred package manager.

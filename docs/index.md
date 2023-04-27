@@ -50,11 +50,11 @@ hero:
       text: What is Plot?
       link: /what-is-plot
     - theme: alt
-      text: Why Plot?
-      link: /why-plot
-    - theme: alt
       text: Examples
       link: https://observablehq.com/@observablehq/plot-gallery
+    - theme: alt
+      text: Getting started
+      link: /getting-started
 
 features:
   - title: Marks
