@@ -152,15 +152,32 @@ export default {
           this._idling = undefined;
         }
       };
-      return withDirectives(h("span"), [
+      const {height = 400} = this.options;
+      return withDirectives(
+        h(
+          "span",
+          method === "plot"
+            ? [
+                h("div", {
+                  style: {
+                    maxWidth: "100%",
+                    width: `688px`,
+                    aspectRatio: `688 / ${height}`
+                  }
+                })
+              ]
+            : []
+        ),
         [
-          {
-            mounted,
-            updated: mounted,
-            unmounted
-          }
+          [
+            {
+              mounted,
+              updated: mounted,
+              unmounted
+            }
+          ]
         ]
-      ]);
+      );
     }
     options.document = new Document();
     return Plot[method](options).toHyperScript();

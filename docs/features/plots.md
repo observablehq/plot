@@ -142,7 +142,7 @@ The default **width** is 640. On Observable, the width can be set to the [standa
 Plot does not adjust margins automatically to make room for long tick labels. If your *y* axis labels are too long, you can increase the **marginLeft** to make more room. Also consider using a different **tickFormat** for short labels (*e.g.*, `s` for SI prefix notation), or a scale **transform** (say to convert units to millions or billions).
 :::
 
-The **aspectRatio** option, if not null, computes a default **height** such that a variation of one unit in the *x* dimension is represented by the corresponding number of pixels as a variation in the *y* dimension of one unit.
+The **aspectRatio** option<a id="aspectratio" class="header-anchor" href="#aspectratio" aria-label="Permalink to &quot;aspectRatio&quot;"></a>, if not null, computes a default **height** such that a variation of one unit in the *x* dimension is represented by the corresponding number of pixels as a variation in the *y* dimension of one unit.
 
 <p>
   <label class="label-input">
