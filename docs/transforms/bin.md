@@ -3,9 +3,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {computed, ref, shallowRef, onMounted} from "vue";
-import {useDark} from "../components/useDark.js";
 
-const dark = useDark();
 const cumulatives = ref("+1");
 const cumulative = computed(() => +cumulatives.value);
 const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
@@ -46,7 +44,7 @@ While the binX transform is often used to generate **y**, it can output any chan
 ```js-vue
 Plot
   .rect(olympians, Plot.binX({fill: "count"}, {x: "weight"}))
-  .plot({color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"}})
+  .plot({color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"}})
 ```
 :::
 
@@ -76,7 +74,7 @@ You can opt-out of the implicit stackY transform by having binX generate **y1** 
 Plot.plot({
   y: {grid: true},
   marks: [
-    Plot.rectY(olympians, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "{{dark ? "screen" : "multiply"}}"})),
+    Plot.rectY(olympians, Plot.binX({y2: "count"}, {x: "weight", fill: "sex", mixBlendMode: "{{$dark ? "screen" : "multiply"}}"})),
     Plot.ruleY([0])
   ]
 })
@@ -113,7 +111,7 @@ You can produce a two-dimensional heatmap with bin transform and a rect mark by 
 ```js-vue
 Plot
   .rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
-  .plot({color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"}})
+  .plot({color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"}})
 ```
 :::
 
@@ -203,7 +201,7 @@ Plot.plot({
   padding: 0,
   x: {grid: true},
   fy: {domain: d3.groupSort(olympians.filter((d) => d.weight), (g) => d3.median(g, (d) => d.weight), (d) => d.sport)},
-  color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"},
+  color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"},
   marks: [Plot.rect(olympians, Plot.binX({fill: "proportion-facet"}, {x: "weight", fy: "sport", inset: 0.5}))]
 })
 ```

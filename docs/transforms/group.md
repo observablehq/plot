@@ -3,10 +3,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {shallowRef, onMounted} from "vue";
-import {useDark} from "../components/useDark.js";
 import penguins from "../data/penguins.ts";
 
-const dark = useDark();
 const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
 
 onMounted(() => {
@@ -83,7 +81,7 @@ The **fill** channel meanwhile will produce a one-dimensional heatmap. Since the
 Plot.plot({
   marginBottom: 80,
   x: {tickRotate: 90},
-  color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"},
+  color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"},
   marks: [
     Plot.cell(olympians, Plot.groupX({fill: "count"}, {x: "sport"}))
   ]
@@ -136,7 +134,7 @@ Plot.plot({
   y: {grid: true},
   color: {legend: true},
   marks: [
-    Plot.barY(olympians, Plot.groupX({y2: "count"}, {x: "sport", fill: "sex", mixBlendMode: "{{dark ? "screen" : "multiply"}}"})),
+    Plot.barY(olympians, Plot.groupX({y2: "count"}, {x: "sport", fill: "sex", mixBlendMode: "{{$dark ? "screen" : "multiply"}}"})),
     Plot.ruleY([0])
   ]
 })
@@ -231,7 +229,7 @@ Plot.plot({
   marginBottom: 80,
   x: {label: null, tickRotate: 90},
   y: {label: null},
-  color: {label: "Median weight (kg)", legend: true, scheme: "{{dark ? "turbo" : "YlGnBu"}}"},
+  color: {label: "Median weight (kg)", legend: true, scheme: "{{$dark ? "turbo" : "YlGnBu"}}"},
   marks: [
     Plot.cell(olympians, Plot.group({fill: "median"}, {fill: "weight", x: "sport", y: "sex"}))
   ]
@@ -247,7 +245,7 @@ Plot.plot({
   marginBottom: 100,
   x: {label: null, tickRotate: 90},
   y: {label: "↑ gold", labelAnchor: "top", reverse: true},
-  color: {type: "sqrt", scheme: "{{dark ? "turbo" : "YlGnBu"}}"},
+  color: {type: "sqrt", scheme: "{{$dark ? "turbo" : "YlGnBu"}}"},
   marks: [
     Plot.cell(olympians, Plot.group({fill: "count"}, {x: "sport", y: "gold"}))
   ]

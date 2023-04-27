@@ -4,11 +4,9 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import {computed, ref, watchEffect, shallowRef, onMounted} from "vue";
-import {useDark} from "../components/useDark.js";
 import cars from "../data/cars.ts";
 
 const binWidth = ref(20);
-const dark = useDark();
 const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
 const walmarts = shallowRef([]);
 const us = shallowRef(null);
@@ -33,7 +31,7 @@ For example, the heatmap below shows the weights and heights of Olympic athletes
 ```js-vue
 Plot
   .dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"}))
-  .plot({color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"}})
+  .plot({color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"}})
 ```
 :::
 
@@ -63,7 +61,7 @@ If desired, you can output both **fill** and **r** for a redundant encoding.
 ```js-vue
 Plot
   .dot(olympians, Plot.hexbin({fill: "count", r: "count"}, {x: "weight", y: "height", stroke: "currentColor"}))
-  .plot({color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"}})
+  .plot({color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"}})
 ```
 :::
 
@@ -149,7 +147,7 @@ Hexbins work best when there is an interesting density of dots in the center of 
 ```js-vue
 Plot
   .dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"}))
-  .plot({inset: 10, color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"}})
+  .plot({inset: 10, color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"}})
 ```
 :::
 
@@ -162,7 +160,7 @@ Alternatively, use the [axis mark](../marks/axis.md) to draw axes on top of the 
 :::plot defer https://observablehq.com/@observablehq/plot-hexbin-and-axes
 ```js-vue
 Plot.plot({
-  color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"},
+  color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"},
   marks: [
     Plot.dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"})),
     Plot.axisX(),

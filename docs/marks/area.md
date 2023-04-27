@@ -2,12 +2,9 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import {useDark} from "../components/useDark.js";
 import aapl from "../data/aapl.ts";
 import industries from "../data/bls-industry-unemployment.ts";
 import sftemp from "../data/sf-temperatures.ts";
-
-const dark = useDark();
 
 </script>
 
@@ -256,7 +253,7 @@ Plot.plot((() => {
     height: 720,
     axis: null,
     y: {domain: [0, step]},
-    color: {scheme: "{{dark ? "viridis" : "YlGnBu"}}"},
+    color: {scheme: "{{$dark ? "viridis" : "YlGnBu"}}"},
     facet: {data: industries, y: "industry"},
     marks: [
       d3.range(bands).map((i) => Plot.areaY(industries, {x: "date", y: (d) => d.unemployed - i * step, fill: i, clip: true})),

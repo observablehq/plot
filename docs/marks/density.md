@@ -4,7 +4,6 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import {computed, ref, shallowRef, onMounted} from "vue";
-import {useDark} from "../components/useDark.js";
 import faithful from "../data/faithful.ts";
 import penguins from "../data/penguins.ts";
 
@@ -12,7 +11,6 @@ const walmarts = shallowRef([]);
 const us = shallowRef(null);
 const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
 const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
-const dark = useDark();
 const skew = ref(0);
 const bandwidth = ref(20);
 const thresholds = ref(20);
@@ -113,7 +111,7 @@ The density mark supports Plot’s [projection system](../features/projections.m
 ```js-vue
 Plot.plot({
   projection: "albers",
-  color: {scheme: "{{dark ? "turbo" : "YlGnBu"}}"},
+  color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"},
   style: "overflow: visible;",
   marks: [
     Plot.density(walmarts, {x: "longitude", y: "latitude", bandwidth: 10, fill: "density"}),

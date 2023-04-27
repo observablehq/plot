@@ -3,10 +3,8 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {computed, ref, shallowRef, onMounted} from "vue";
-import {useDark} from "../components/useDark.js";
 import alphabet from "../data/alphabet.ts";
 
-const dark = useDark();
 const fixed = ref(true);
 const aapl = shallowRef([]);
 const goog = shallowRef([]);
@@ -114,7 +112,7 @@ Plot.plot({
 
 Each mark has its own options, and different mark types support different options. See the respective mark type (such as [bar](../marks/bar.md) or [dot](../marks/dot.md)) for details.
 
-Marks are drawn in the given order, with the last mark drawn on top. For example, below <span style="border-bottom: solid 2px var(--vp-c-green);">green</span> bars are drawn on top of <span style="border-bottom: solid 2px;">{{dark ? "white" : "black"}}</span> bars.
+Marks are drawn in the given order, with the last mark drawn on top. For example, below <span style="border-bottom: solid 2px var(--vp-c-green);">green</span> bars are drawn on top of <span style="border-bottom: solid 2px;">{{$dark ? "white" : "black"}}</span> bars.
 
 :::plot https://observablehq.com/@observablehq/plot-marks-z-order
 ```js

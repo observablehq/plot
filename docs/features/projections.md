@@ -4,13 +4,11 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import {computed, ref, shallowRef, onMounted} from "vue";
-import {useDark} from "../components/useDark.js";
 
 const longitude = ref(90);
 const radius = ref(30);
 const circle = computed(() => d3.geoCircle().center([9, 34]).radius(radius.value).precision(2)());
 const projection = ref("equirectangular");
-const dark = useDark();
 const westport = shallowRef({type: null});
 const earthquakes = shallowRef([]);
 const walmarts = shallowRef([]);
