@@ -245,3 +245,11 @@ Plot.contour(data, {width: w, height: h, fill: Plot.identity})
 ```
 
 This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data.
+
+## indexOf
+
+```js
+Plot.lineY(numbers, {x: Plot.indexOf, y: Plot.identity})
+```
+
+This channel helper returns an array of numbers [0, 1, 2, 3, …]. It is used internally by marks with zero-based index defaults for channels.
