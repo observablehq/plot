@@ -43,6 +43,8 @@ Plot.plot({
 The returned plot element is detached; it must be inserted into the page to be visible. For help, see the [getting started guide](../getting-started.md).
 :::
 
+## Marks option
+
 The **marks** option specifies an array of [marks](./marks.md) to render. Above, there are two marks: a [frame](../marks/frame.md) to draw the outline of the plot frame, and a [text](../marks/text.md) to say hello. 👋
 
 Each mark supplies its own tabular data. For example, the table below shows the first five rows of a daily dataset of Apple stock price (`aapl`).
@@ -131,7 +133,9 @@ Plot.plot({
 ```
 :::
 
-The layout options<a id="layout-options" class="header-anchor" href="#layout-options" aria-label="Permalink to &quot;layout options&quot;"></a> determine the overall size of the plot; all are specified as numbers in pixels:
+## Layout options
+
+The layout options determine the overall size of the plot; all are specified as numbers in pixels:
 
 * **marginTop** - the top margin
 * **marginRight** - the right margin
@@ -242,11 +246,7 @@ Plot.plot({
 When using facets, set the *fx* and *fy* scales’ **round** option to false if you need an exact aspect ratio.
 :::
 
-The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion as assigning [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)) or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion as assigning [*element*.style properties](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)). By default, the returned plot has a white background, a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color.
-
-:::warning CAUTION
-Unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecated-quirky-length)) such as `{padding: 20}` are not supported by some browsers; you should instead specify a string with units such as `{padding: "20px"}`.
-:::
+## Other options
 
 If a **caption** is specified, Plot.plot wraps the generated SVG element in an HTML figure element with a figcaption, returning the figure. To specify an HTML caption, the caption can be specified as an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed.
 
@@ -260,6 +260,12 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion as assigning [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)) or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion as assigning [*element*.style properties](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)). By default, the returned plot has a white background, a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color.
+
+:::warning CAUTION
+Unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecated-quirky-length)) such as `{padding: 20}` are not supported by some browsers; you should instead specify a string with units such as `{padding: "20px"}`.
 :::
 
 The generated SVG element has a class name which applies a default stylesheet. Use the top-level **className** option to specify that class name.
