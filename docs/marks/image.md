@@ -111,7 +111,7 @@ Plot.plot({
 ```
 :::
 
-If—*for reasons*—you want to style the plot with a background image, you can do that using the top-level **style** option rather than an image mark. Below, the penguins dataset is visualized atop of a picture of NOAA’s [South Pole Atmospheric Research Observatory](https://unsplash.com/photos/GnP7PjxGeHs). (These penguins were observed in Antarctica, though on the [peninsula](https://en.wikipedia.org/wiki/Antarctic_Peninsula) rather than near the pole.)
+If—*for reasons*—you want to style the plot with a background image, you can do that using the top-level **style** option rather than an image mark. Below, Kristen Gorman’s penguins dataset is visualized atop her photograph of sea ice near Palmer Station on the Antarctic peninsula, where she collected the measurements.
 
 :::plot defer https://observablehq.com/@observablehq/plot-background-image
 ```js
@@ -122,7 +122,7 @@ Plot.plot({
   style: {
     padding: "10px",
     color: "black",
-    background: `url(https://images.unsplash.com/photo-1561990170-6d82faed96e7?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=noaa-GnP7PjxGeHs-unsplash.jpg&w=1376)`,
+    background: `url(https://i.imgur.com/ru3KGWJ.png)`,
     backgroundSize: "cover"
   },
   marks: [
