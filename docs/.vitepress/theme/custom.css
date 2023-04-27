@@ -86,3 +86,7 @@ a.plot-fork:hover {
     display: none;
   }
 }
+
+.vp-doc p:hover .header-anchor {
+  opacity: 1;
+}
