@@ -52,7 +52,7 @@ Plot.plot({
 ```
 :::
 
-An alternative to the **interval** mark option is the **interval** scale option. This is an alternative for setting an ordinal scale’s domain every interval value within the extent of the data. So below, we can return to using the barY mark, but now the *x* scale shows missing days, too.
+An alternative to the **interval** mark option is the **interval** scale option. This sets an ordinal scale’s domain every interval value within the extent of the data. So below, we can return to using the barY mark, but now the *x* scale shows missing days, too.
 
 :::plot https://observablehq.com/@observablehq/plot-band-scale-interval
 ```js
