@@ -119,7 +119,7 @@ Plot.plot({
 ```
 :::
 
-If some channel values are undefined (or null or NaN), gaps will appear between adjacent points. To demonstrate, below we set the **y** value to NaN for the first three months of each year.
+If some channel values are undefined (or null, NaN, or infinite), gaps will appear between adjacent points. To demonstrate, below we set the **y** value to NaN for the first three months of each year.
 
 :::plot defer https://observablehq.com/@observablehq/plot-area-chart-with-missing-data
 ```js
