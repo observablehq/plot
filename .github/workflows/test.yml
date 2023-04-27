@@ -20,8 +20,9 @@ jobs:
           echo ::add-matcher::.github/eslint.json
           yarn run eslint src test --format=compact
       - run: yarn run prettier --check src test
-      - run: yarn docs:build
       - run: yarn test:mocha
+      - run: yarn prepublishOnly
+      - run: yarn docs:build
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
