@@ -202,7 +202,7 @@ Plot.plot({x: {type: "symlog", domain: [-10, 10], grid: true}})
 ```
 :::
 
-Power scales and square-root scales are also supported. The *pow* scale supports the **exponent** option, which defaults to 1 (for a linear scale).
+Power scales and square-root scales are also supported. The *pow* scale supports the **exponent** option, which defaults to 1 (for a linear scale). The *sqrt* scale is shorthand for a *pow* scale with exponent 0.5.
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
