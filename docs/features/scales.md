@@ -698,7 +698,7 @@ The normal scale types—*linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal*
 * *categorical* - like *ordinal*, but defaults to *tableau10*
 * *sequential* - like *linear*
 * *cyclical* - like *linear*, but defaults to *rainbow*
-* *threshold* - encodes based on discrete thresholds; defaults to *rdylbu*
+* *threshold* - encodes based on discrete thresholds specified as the *domain*; defaults to *rdylbu*
 * *quantile* - encodes based on the computed quantile thresholds; defaults to *rdylbu*
 * *quantize* - transforms a continuous domain into quantized thresholds; defaults to *rdylbu*
 * *diverging* - like *linear*, but with a pivot; defaults to *rdbu*
