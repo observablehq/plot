@@ -5,6 +5,7 @@ import * as d3 from "d3";
 import {ref, shallowRef, onMounted} from "vue";
 import gistemp from "../data/gistemp.ts";
 
+const intervaled = ref(true);
 const padding = ref(0.1);
 const align = ref(0.5);
 const radius = ref(8);
@@ -603,6 +604,42 @@ Plot.plot({
 [Mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning). In this case the mark transforms will see the values prior to the scale transform as input, and the scale transform will apply to the *output* of the mark transform.
 :::
 
+The **interval** scale option sets an ordinal scale’s **domain** to the start of every interval within the extent of the data. In addition, it implicitly sets the **transform** of the scale to *interval*.floor, rounding values down to the start of each interval. For example, below we generate a time-series bar chart; when an **interval** is specified, missing days are visible.
+
+<p>
+  <label class="label-input">
+    Use interval:
+    <input type="checkbox" v-model="intervaled">
+  </label>
+</p>
+
+:::plot https://observablehq.com/@observablehq/plot-band-scale-interval
+```js
+Plot.plot({
+  marginBottom: 80,
+  x: {
+    tickRotate: -90,
+    interval: intervaled ? "day" : null,
+    label: null
+  },
+  y: {
+    transform: (d) => d / 1e6,
+    label: "↑ Daily trade volume (millions)"
+  },
+  marks: [
+    Plot.barY(aapl.slice(-40), {x: "Date", y: "Volume"}),
+    Plot.ruleY([0])
+  ]
+})
+```
+:::
+
+:::tip
+As an added bonus, the **fontVariant** and **type** options are no longer needed because Plot now understands that the *x* scale, despite being *ordinal*, represents daily observations.
+:::
+
+The **interval** option can also be used for quantitative and temporal scales. This enforces uniformity, say rounding timed observations down to the nearest hour, which may be helpful for the [stack transform](./stack.md) among other uses.
+
 ## Scale options
 
 Each scale’s options are specified as a nested options object with the corresponding scale name within the top-level [plot options](./plots.md):
@@ -668,7 +705,7 @@ The default range depends on the scale: for position scales (*x*, *y*, *fx*, and
 
 The behavior of the **unknown** scale option depends on the scale type. For quantitative and temporal scales, the unknown value is used whenever the input value is undefined, null, or NaN. For ordinal or categorical scales, the unknown value is returned for any input value outside the domain. For band or point scales, the unknown option has no effect; it is effectively always equal to undefined. If the unknown option is set to undefined (the default), or null or NaN, then the affected input values will be considered undefined and filtered from the output.
 
-For data at regular intervals, such as integer values or daily samples, the [**interval** scale option](../transforms/interval.md) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. The option can alternatively be specified as a string (*second*, *minute*, *hour*, *day*, *week*, *month*, *quarter*, *half*, *year*, *monday*, *tuesday*, *wednesday*, *thursday*, *friday*, *saturday*, *sunday*) naming the corresponding UTC interval. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
+For data at regular intervals, such as integer values or daily samples, the [**interval** option](#scale-transforms) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. The option can alternatively be specified as a string (*second*, *minute*, *hour*, *day*, *week*, *month*, *quarter*, *half*, *year*, *monday*, *tuesday*, *wednesday*, *thursday*, *friday*, *saturday*, *sunday*) naming the corresponding UTC interval. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
 
 Quantitative scales can be further customized with additional options:
 

@@ -87,7 +87,7 @@ Plot.plot({
 :::
 
 :::info
-The [interval mark option](./interval.md) specifies the periodicity of the data; without it, Plot wouldn’t know how wide to make the rects.
+The [**interval** mark option](./interval.md) specifies the periodicity of the data; without it, Plot wouldn’t know how wide to make the rects.
 :::
 
 And you can stack bars if you’d prefer to treat *x* as ordinal.
@@ -110,7 +110,7 @@ Plot.plot({
 :::
 
 :::info
-The [interval scale option](./interval.md) specifies the periodicity of the data; without it, any gaps in the data would not be visible since barY implies that *x* is ordinal.
+The [**interval** scale option](../features/scales.md#scale-transforms) specifies the periodicity of the data; without it, any gaps in the data would not be visible since barY implies that *x* is ordinal.
 :::
 
 The stackY transform also outputs **y** representing the midpoint of **y1** and **y2**, and likewise stackX outputs **x** representing the midpoint of **x1** and **x2**. This is useful for point-based marks such as [text](../marks/text.md) and [dot](../marks/dot.md). Below, a single stacked horizontal [bar](../marks/bar.md) shows the relative frequency of English letters; this form is a compact alternative to a pie 🥧 or donut 🍩 chart.

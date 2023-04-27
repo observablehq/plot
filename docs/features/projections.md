@@ -220,7 +220,7 @@ Plot.plot({
 :::
 
 :::info
-This uses the [**interval** scale option](../transforms/interval.md) to bin temporal data into facets by decade.
+This uses the [**interval** scale option](./scales.md#scale-transforms) to bin temporal data into facets by decade.
 :::
 
 To learn more about mapping with Plot, see our hands-on tutorials:

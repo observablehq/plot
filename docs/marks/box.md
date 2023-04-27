@@ -81,7 +81,7 @@ Plot.plot({
 ```
 :::
 
-This chart is slightly easier to construct with [faceting](../features/facets.md) using the [**interval** scale option](../transforms/interval.md) on the *fx* scale. (This technique cannot be used with the *x* scale above because the scale interval transform is applied *after* the box mark applies the group transform.)
+This chart is slightly easier to construct with [faceting](../features/facets.md) using the [**interval** scale option](../features/scales.md#scale-transforms) on the *fx* scale. (This technique cannot be used with the *x* scale above because the scale interval transform is applied *after* the box mark applies the group transform.)
 
 :::plot defer https://observablehq.com/@observablehq/plot-binned-box-plot
 ```js
