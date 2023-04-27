@@ -638,7 +638,7 @@ Plot.plot({
 As an added bonus, the **fontVariant** and **type** options are no longer needed because Plot now understands that the *x* scale, despite being *ordinal*, represents daily observations.
 :::
 
-The **interval** option can also be used for quantitative and temporal scales. This enforces uniformity, say rounding timed observations down to the nearest hour, which may be helpful for the [stack transform](./stack.md) among other uses.
+The **interval** option can also be used for quantitative and temporal scales. This enforces uniformity, say rounding timed observations down to the nearest hour, which may be helpful for the [stack transform](../transforms/stack.md) among other uses.
 
 ## Scale options
 
