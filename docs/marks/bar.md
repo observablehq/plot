@@ -68,7 +68,7 @@ Plot.plot({
 The [group transform](../transforms/group.md) with the *count* reducer could be used to produce one bar per species.
 :::
 
-You can specify a [*min*, *max*] extent instead and opt-out of the implicit stack transform by specifying two quantitative values: **x1** and **x2** for barX, or **y1** and **y2** for barY. For example, here is a historical timeline of civilizations, where each has a beginning and an end.
+You can opt-out of the implicit stack transform by specifying the bar’s extent with two quantitative values: **x1** and **x2** for barX, or **y1** and **y2** for barY. For example, here is a historical timeline of civilizations, where each has a beginning and an end.
 
 :::plot https://observablehq.com/@observablehq/plot-civilizations-timeline
 ```js
