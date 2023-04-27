@@ -166,7 +166,7 @@ If the scale **type** is *time*, the ticks will be in local time—as with the d
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
-Plot.plot({x: {type: "time", domain: [new Date(2021, 1, 2, 3), new Date(2021, 1, 2, 21)], grid: true}})
+Plot.plot({x: {type: "time", domain: [new Date(2021, 0, 1), new Date(2022, 0, 1)], grid: true}})
 ```
 :::
 
