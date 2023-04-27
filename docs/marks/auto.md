@@ -234,4 +234,4 @@ Returns an automatically-chosen mark with the given *data* and *options*, suitab
 Plot.autoSpec(olympians, {x: "weight", y: "height", color: "count"})
 ```
 
-Returns an auto options object with nothing left undefined; the mark type, reducers, and other options are all populated.
+Returns an auto mark *options* object with no option undefined; the mark type, reducers, and other options are all populated.
