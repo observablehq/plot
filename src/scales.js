@@ -142,6 +142,14 @@ function inferScaleLabel(channels = [], scale) {
   return {inferred: true, toString: () => label};
 }
 
+export function inferScaleInterval(channels = []) {
+  for (const {value} of channels) {
+    if (value == null) continue;
+    const {interval} = value;
+    if (interval !== undefined) return interval;
+  }
+}
+
 // Returns the dimensions of the outer frame; this is subdivided into facets
 // with the margins of each facet collapsing into the outer margins.
 export function outerDimensions(dimensions) {
@@ -252,7 +260,7 @@ function createScale(key, channels = [], options = {}) {
     options.type === undefined &&
     options.domain === undefined &&
     options.range === undefined &&
-    options.interval == null &&
+    (options.interval === undefined ? (options.interval = inferScaleInterval(channels)) : options.interval) == null && // Mutates input!
     key !== "fx" &&
     key !== "fy" &&
     isOrdinalScale({type})

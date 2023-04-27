@@ -1,5 +1,28 @@
 import {isTemporal, labelof, map, maybeInterval, maybeValue, valueof} from "../options.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
+import {mapX, mapY} from "./map.js";
+
+export function intervalX(interval, options) {
+  if (arguments.length === 1) ({interval, ...options} = interval);
+  return mapX(intervalMap(interval), options);
+}
+
+export function intervalY(interval, options) {
+  if (arguments.length === 1) ({interval, ...options} = interval);
+  return mapY(intervalMap(interval), options);
+}
+
+export function intervalMap(interval, type) {
+  interval = maybeInterval(interval, type);
+  return {
+    mapIndex(I, S, T) {
+      T.interval = interval; // hint for scales
+      for (let i = 0, n = I.length; i < n; ++i) {
+        T[I[i]] = interval.floor(S[I[i]]);
+      }
+    }
+  };
+}
 
 // The interval may be specified either as x: {value, interval} or as {x,
 // interval}. The former can be used to specify separate intervals for x and y,

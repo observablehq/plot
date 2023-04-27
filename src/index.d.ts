@@ -45,6 +45,7 @@ export * from "./transforms/centroid.js";
 export * from "./transforms/dodge.js";
 export * from "./transforms/group.js";
 export * from "./transforms/hexbin.js";
+export * from "./transforms/interval.js";
 export * from "./transforms/map.js";
 export * from "./transforms/normalize.js";
 export * from "./transforms/select.js";

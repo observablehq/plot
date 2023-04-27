@@ -16,7 +16,7 @@ onMounted(() => {
 # Group transform
 
 :::tip
-The group transform is for aggregating ordinal or nominal data. For quantitative or temporal data, use the [bin transform](./bin.md).
+The group transform is for aggregating ordinal or nominal data. For quantitative or temporal data, use the [bin transform](./bin.md), or use the [interval transform](./interval.md) to make continuous data ordinal.
 :::
 
 The **group transform** groups ordinal or nominal data—discrete values such as name, type, or category. You can then compute summary statistics for each group, such as a count, sum, or proportion. The group transform is most often used to make bar charts with the [bar mark](../marks/bar.md).
@@ -42,22 +42,6 @@ Ordinal domains are sorted naturally (alphabetically) by default. Either set the
 :::
 
 The groupX transform groups on **x**. The *outputs* argument (here `{y: "count"}`) declares desired output channels (**y**) and the associated reducer (*count*). Hence the height of each bar above represents the number of penguins of each species.
-
-<!-- For example, to sort **x** by descending **y**: -->
-
-<!-- :::plot
-```js
-Plot.plot({
-  marginBottom: 100,
-  x: {label: null, tickRotate: 90},
-  y: {grid: true},
-  marks: [
-    Plot.barY(olympians, Plot.groupX({y: "count"}, {x: "sport", sort: {x: "y", reverse: true}})),
-    Plot.ruleY([0])
-  ]
-})
-```
-::: -->
 
 While the groupX transform is often used to generate **y**, it can output to any channel. For example, by declaring **r** in *outputs*, we can generate dots of size proportional to the number of athletes in each sport.
 
@@ -324,6 +308,19 @@ Plot.plot({
 
 :::info
 Although barX applies an implicit stackX transform, [textX](../marks/text.md) does not; this example uses an explicit stackX transform in both cases for clarity, and to pass the additional **order** and **reverse** options to place the largest sport on the left. The [filter transform](./filter.md) is applied after the stack transform to hide the labels on the smallest sports where the bars are too thin.
+:::
+
+While you should generally use the [bin transform](./bin.md) for quantitative or temporal data, you can use the [group transform](./group.md) if you also use the [interval transform](./interval.md) to make the data ordinal.
+
+:::plot defer
+```js
+Plot.plot({
+  x: {tickFormat: "%Y"},
+  marks: [
+    Plot.barY(olympians, Plot.groupX({y: "count"}, Plot.intervalX(d3.utcYear.every(5), {x: "date_of_birth"})))
+  ]
+})
+```
 :::
 
 ## Group options

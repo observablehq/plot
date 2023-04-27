@@ -121,6 +121,8 @@ function groupn(
       const GZ = Z && setGZ([]);
       const GF = F && setGF([]);
       const GS = S && setGS([]);
+      if (X && X.interval) GX.interval = X.interval; // propagate interval hint
+      if (Y && Y.interval) GY.interval = Y.interval; // propagate interval hint
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);

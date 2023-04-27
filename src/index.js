@@ -33,6 +33,7 @@ export {centroid, geoCentroid} from "./transforms/centroid.js";
 export {dodgeX, dodgeY} from "./transforms/dodge.js";
 export {group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {hexbin} from "./transforms/hexbin.js";
+export {intervalX, intervalY, intervalMap} from "./transforms/interval.js";
 export {normalize, normalizeX, normalizeY} from "./transforms/normalize.js";
 export {map, mapX, mapY} from "./transforms/map.js";
 export {window, windowX, windowY} from "./transforms/window.js";
