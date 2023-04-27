@@ -50,7 +50,7 @@ Plot.plot({
 :::
 
 :::tip
-This plot uses the [**sort** mark option](./scales.md#sort-option) to order the *y* and *fy* scale domains by descending median yield (the associated *x* values). Without this option, the domains would be sorted alphabetically.
+This plot uses the [**sort** mark option](./scales.md#sort-mark-option) to order the *y* and *fy* scale domains by descending median yield (the associated *x* values). Without this option, the domains would be sorted alphabetically.
 :::
 
 :::tip

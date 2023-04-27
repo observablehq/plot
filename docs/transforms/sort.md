@@ -60,7 +60,7 @@ Plot.plot({
 Dots are sorted by descending **r** by default, so you may not need the **sort** option.
 :::
 
-The sort transform can be applied either via the **sort** [mark option](../features/marks.md#mark-options), as above, or as an explicit [sort transform](#sort-order-options). The latter is generally only needed when composing multiple transforms, or to disambiguate the sort transform from imputed ordinal scale domains, *i.e.*, [scale sorting](../features/marks.md#sort-option).
+The sort transform can be applied either via the **sort** [mark option](../features/marks.md#mark-options), as above, or as an explicit [sort transform](#sort-order-options). The latter is generally only needed when composing multiple transforms, or to disambiguate the sort transform from imputed ordinal scale domains, *i.e.*, [scale sorting](../features/scales.md#sort-mark-option).
 
 As another example, in the line chart of unemployment rates below, lines for metropolitan areas in Michigan (which saw exceptionally high unemployment following the [financial crisis of 2008](https://en.wikipedia.org/wiki/2007–2008_financial_crisis), in part due to the [auto industry collapse](https://en.wikipedia.org/wiki/2008–2010_automotive_industry_crisis)) are highlighted in <span style="border-bottom: solid 2px var(--vp-c-red);">red</span>, and the **sort** option is used to draw them on top of other series.
 

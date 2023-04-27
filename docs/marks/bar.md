@@ -37,7 +37,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
 :::
 
-Ordinal domains are sorted naturally (alphabetically) by default. Either set the [scale **domain**](../features/scales.md) explicitly to change the order, or use the mark [**sort** option](../features/marks.md#sort-option) to derive the scale domain from a channel. For example, to sort **x** by descending **y**:
+Ordinal domains are sorted naturally (alphabetically) by default. Either set the [scale **domain**](../features/scales.md) explicitly to change the order, or use the mark [**sort** option](../features/scales.md#sort-mark-option) to derive the scale domain from a channel. For example, to sort **x** by descending **y**:
 
 :::plot https://observablehq.com/@observablehq/plot-vertical-bars
 ```js
