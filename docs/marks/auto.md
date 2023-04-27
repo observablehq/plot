@@ -227,3 +227,11 @@ Plot.auto(olympians, {x: "weight", y: "height", color: "count"}) // equivalent t
 ```
 
 Returns an automatically-chosen mark with the given *data* and *options*, suitable for a quick view of the data.
+
+## autoSpec(*data*, *options*)
+
+```js
+Plot.autoSpec(olympians, {x: "weight", y: "height", color: "count"})
+```
+
+Returns an auto options object with nothing left undefined; the mark type, reducers, and other options are all populated.
