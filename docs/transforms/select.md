@@ -131,7 +131,6 @@ function selectorSample(I) {
 }
 ```
 
-
 ## selectFirst(*options*)
 
 ```js
