@@ -12,19 +12,6 @@ const gods = [
   "Chaos/Tartarus"
 ];
 
-const energy = `/Total
-/Total/Fossil Fuels
-/Total/Fossil Fuels/Coal
-/Total/Fossil Fuels/Natural Gas
-/Total/Fossil Fuels/Crude Oil
-/Total/Nuclear
-/Total/Renewable
-/Total/Renewable/Biomass
-/Total/Renewable/Geothermal
-/Total/Renewable/Hydroelectric
-/Total/Renewable/Solar
-/Total/Renewable/Wind`;
-
 function indent() {
   return (root) => {
     root.eachBefore((node, i) => {

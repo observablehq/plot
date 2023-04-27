@@ -7,7 +7,7 @@ import {computed, ref, shallowRef, onMounted} from "vue";
 
 const longitude = ref(90);
 const radius = ref(30);
-const circle = computed(() => d3.geoCircle().center([9, 34]).radius(radius.value).precision(2)());
+const circle = computed(() => d3.geoCircle().center([9, 34]).radius(radius.value)());
 const projection = ref("equirectangular");
 const westport = shallowRef({type: null});
 const earthquakes = shallowRef([]);
@@ -57,7 +57,7 @@ Plot.plot({
 
 Above, a [geo mark](../marks/geo.md) draws polygons representing land and a [sphere mark](../marks/geo.md#sphere-options) draws the outline of the globe. A [dot mark](../marks/dot.md) draws earthquakes as circles sized by magnitude.
 
-The geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen—leaning on [d3-geo](https://github.com/d3/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping. The dot mark is not; instead, Plot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels—as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is also projection-aware.)
+The geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen—leaning on [d3-geo](https://github.com/d3/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping. The dot mark is not; instead, Plot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels—as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is projection-aware to draw geodesics.)
 
 :::info
 Marks that require *band* scales (bars, cells, and ticks) cannot be used with projections. Likewise one-dimensional marks such as rules cannot be used, though see [#1164](https://github.com/observablehq/plot/issues/1164).
@@ -161,7 +161,7 @@ Plot.plot({
 ```
 
 ```js
-circle = d3.geoCircle().center([9, 34]).radius(radius).precision(2)()
+circle = d3.geoCircle().center([9, 34]).radius(radius)()
 ```
 
 If none of Plot’s built-in projections meet your needs, you can use any of [D3’s extended projections](https://github.com/d3/d3-geo-projection) by specifying the **projection** option as a function that returns a D3 projection. Below, a map of Antarctica in a polar aspect of the *azimuthal-equidistant* projection.
@@ -194,7 +194,7 @@ Plot.geo(westport).plot({projection: {type: "identity", domain: westport}})
 :::
 
 :::tip
-There’s also a *reflect-y* projection in case *y* points up↑.
+There’s also a *reflect-y* projection in case *y* points up↑, which is often the case with [projected reference systems](https://en.wikipedia.org/wiki/Projected_coordinate_system).
 :::
 
 Naturally, Plot’s projection system is compatible with its [faceting system](./facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
@@ -220,7 +220,7 @@ Plot.plot({
 :::
 
 :::info
-This uses the [**interval** scale option](../transforms/interval.md) to bin temporal data into facets by decade.
+This uses the [**interval** scale option](./scales.md#scale-transforms) to bin temporal data into facets by decade.
 :::
 
 To learn more about mapping with Plot, see our hands-on tutorials:

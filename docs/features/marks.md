@@ -417,7 +417,7 @@ You can then specify the *color* scale’s **domain** and **range** to control t
 
 ## Mark options
 
-Mark constructors take two arguments: **data** and **options**. Together these describe a tabular dataset and how to visualize it. Option values that must be the same for all of a mark’s generated shapes are known as *constants*, whereas option values that may vary across a mark’s generated shapes are known as *channels*. Channels are typically bound to [scales](./scales.md) and encode abstract data values, such as time or temperature, as visual values, such as position or color. (Channels can also be used to order ordinal domains; see the [sort option](./scales.md#sort-option).)
+Mark constructors take two arguments: **data** and **options**. Together these describe a tabular dataset and how to visualize it. Option values that must be the same for all of a mark’s generated shapes are known as *constants*, whereas option values that may vary across a mark’s generated shapes are known as *channels*. Channels are typically bound to [scales](./scales.md) and encode abstract data values, such as time or temperature, as visual values, such as position or color. (Channels can also be used to order ordinal domains; see the [**sort** option](./scales.md#sort-mark-option).)
 
 A mark’s data is most commonly an array of objects representing a tabular dataset, such as the result of loading a CSV file, while a mark’s options bind channels (such as *x* and *y*) to columns in the data (such as *units* and *fruit*).
 
@@ -538,6 +538,16 @@ The rectangular marks ([bar](../marks/bar.md), [cell](../marks/cell.md), [frame]
 Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](../transforms/bin.md) provides default insets, and that the [band scale padding](./scales.md#position-scales) defaults to 0.1, which also provides separation.
 
 For marks that support the **frameAnchor** option, it may be specified as one of the four sides (*top*, *right*, *bottom*, *left*), one of the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the *middle* of the frame.
+
+All marks support the following [transform](./transforms.md) options:
+
+* **filter** - apply the [filter transform](../transforms/filter.md)
+* **sort** - apply the [sort transform](../transforms/sort.md)
+* **reverse** - apply the [reverse transform](../transforms/sort.md#reverseoptions)
+* **transform** - apply a [custom transform](./transforms.md#custom-transforms)
+* **initializer** - apply a [custom initializer](./transforms.md#custom-initializers)
+
+The **sort** option, when not specified as a channel value (such as a field name or an accessor function), can also be used to [impute ordinal scale domains](./scales.md#sort-mark-option).
 
 ## marks(...*marks*)
 

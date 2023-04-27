@@ -5,6 +5,7 @@ import * as d3 from "d3";
 import {ref, shallowRef, onMounted} from "vue";
 import gistemp from "../data/gistemp.ts";
 
+const intervaled = ref(true);
 const padding = ref(0.1);
 const align = ref(0.5);
 const radius = ref(8);
@@ -162,7 +163,7 @@ Plot.plot({x: {type: "utc", domain: [1609459200000, 1640995200000], grid: true}}
 ```
 :::
 
-If the scale **type** is *time*, the ticks will be in local time rather than UTC.
+If the scale **type** is *time*, the ticks will be in local time—as with the dates below—rather than UTC.
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
@@ -202,7 +203,7 @@ Plot.plot({x: {type: "symlog", domain: [-10, 10], grid: true}})
 ```
 :::
 
-Power scales and square-root scales are also supported. The *pow* scale supports the **exponent** option, which defaults to 1 (for a linear scale).
+Power scales and square-root scales are also supported. The *pow* scale supports the **exponent** option, which defaults to 1 (for a linear scale). The *sqrt* scale is shorthand for a *pow* scale with exponent 0.5.
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
@@ -560,7 +561,7 @@ If a scale’s **domain** is specified explicitly, the scale’s **type** is inf
 
 Finally, some marks declare the scale **type** for associated channels. For example, [barX](../marks/bar.md) requires *y* to be a *band* scale. Further, the facet scales *fx* and *fy* are always *band* scales, and the radius scale *r* is implicitly a *sqrt* scale.
 
-If you don’t specify a quantitative scale’s **domain**, it is the extent (minimum and maximum) of associated channel values, except for the *r* (radius) scale where it goes from zero to the maximum. A quantitative domain can be extended to “nice” human-readable values with the **nice** option. For an ordinal scale, the domain defaults to the sorted union (all distinct values in natural order) of associated values; see the [**sort** mark option](#sort-option) to change the order.
+If you don’t specify a quantitative scale’s **domain**, it is the extent (minimum and maximum) of associated channel values, except for the *r* (radius) scale where it goes from zero to the maximum. A quantitative domain can be extended to “nice” human-readable values with the **nice** option. For an ordinal scale, the domain defaults to the sorted union (all distinct values in natural order) of associated values; see the [**sort** mark option](#sort-mark-option) to change the order.
 
 All position scales (*x*, *y*, *fx*, and *fy*) have implicit automatic ranges based on the chart dimensions. The *x* scale ranges from the left to right edge, while the *y* scale ranges from the bottom to top edge, accounting for margins.
 
@@ -602,6 +603,42 @@ Plot.plot({
 :::warning CAUTION
 [Mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning). In this case the mark transforms will see the values prior to the scale transform as input, and the scale transform will apply to the *output* of the mark transform.
 :::
+
+The **interval** scale option sets an ordinal scale’s **domain** to the start of every interval within the extent of the data. In addition, it implicitly sets the **transform** of the scale to *interval*.floor, rounding values down to the start of each interval. For example, below we generate a time-series bar chart; when an **interval** is specified, missing days are visible.
+
+<p>
+  <label class="label-input">
+    Use interval:
+    <input type="checkbox" v-model="intervaled">
+  </label>
+</p>
+
+:::plot https://observablehq.com/@observablehq/plot-band-scale-interval
+```js
+Plot.plot({
+  marginBottom: 80,
+  x: {
+    tickRotate: -90,
+    interval: intervaled ? "day" : null,
+    label: null
+  },
+  y: {
+    transform: (d) => d / 1e6,
+    label: "↑ Daily trade volume (millions)"
+  },
+  marks: [
+    Plot.barY(aapl.slice(-40), {x: "Date", y: "Volume"}),
+    Plot.ruleY([0])
+  ]
+})
+```
+:::
+
+:::tip
+As an added bonus, the **fontVariant** and **type** options are no longer needed because Plot now understands that the *x* scale, despite being *ordinal*, represents daily observations.
+:::
+
+The **interval** option can also be used for quantitative and temporal scales. This enforces uniformity, say rounding timed observations down to the nearest hour, which may be helpful for the [stack transform](../transforms/stack.md) among other uses.
 
 ## Scale options
 
@@ -662,13 +699,13 @@ A scale’s domain (the extent of its inputs, abstract values) and range (the ex
 * **reverse** - reverses the domain (or the range), say to flip the chart along *x* or *y*
 * **interval** - an interval or time interval (for interval data; see below)
 
-For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a [sort option](#sort-option) to an associated mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a [**sort** option](#sort-mark-option) to an associated mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 
 The default range depends on the scale: for position scales (*x*, *y*, *fx*, and *fy*), the default range depends on the [plot’s size and margins](./plots.md). For color scales, there are default color schemes for quantitative, ordinal, and categorical data. For opacity, the default range is [0, 1]. And for radius, the default range is designed to produce dots of “reasonable” size assuming a *sqrt* scale type for accurate area representation: zero maps to zero, the first quartile maps to a radius of three pixels, and other values are extrapolated. This convention for radius ensures that if the scale’s data values are all equal, dots have the default constant radius of three pixels, while if the data varies, dots will tend to be larger.
 
 The behavior of the **unknown** scale option depends on the scale type. For quantitative and temporal scales, the unknown value is used whenever the input value is undefined, null, or NaN. For ordinal or categorical scales, the unknown value is returned for any input value outside the domain. For band or point scales, the unknown option has no effect; it is effectively always equal to undefined. If the unknown option is set to undefined (the default), or null or NaN, then the affected input values will be considered undefined and filtered from the output.
 
-For data at regular intervals, such as integer values or daily samples, the [**interval** scale option](../transforms/interval.md) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. The option can alternatively be specified as a string (*second*, *minute*, *hour*, *day*, *week*, *month*, *quarter*, *half*, *year*, *monday*, *tuesday*, *wednesday*, *thursday*, *friday*, *saturday*, *sunday*) naming the corresponding UTC interval. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
+For data at regular intervals, such as integer values or daily samples, the [**interval** option](#scale-transforms) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. The option can alternatively be specified as a string (*second*, *minute*, *hour*, *day*, *week*, *month*, *quarter*, *half*, *year*, *monday*, *tuesday*, *wednesday*, *thursday*, *friday*, *saturday*, *sunday*) naming the corresponding time interval. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
 
 Quantitative scales can be further customized with additional options:
 
@@ -698,7 +735,7 @@ The normal scale types—*linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal*
 * *categorical* - like *ordinal*, but defaults to *tableau10*
 * *sequential* - like *linear*
 * *cyclical* - like *linear*, but defaults to *rainbow*
-* *threshold* - encodes based on discrete thresholds; defaults to *rdylbu*
+* *threshold* - encodes based on discrete thresholds specified as the **domain**; defaults to *rdylbu*
 * *quantile* - encodes based on the computed quantile thresholds; defaults to *rdylbu*
 * *quantize* - transforms a continuous domain into quantized thresholds; defaults to *rdylbu*
 * *diverging* - like *linear*, but with a pivot; defaults to *rdbu*
@@ -916,7 +953,7 @@ Plot automatically generates [axis](../marks/axis.md) and optionally [grid](../m
 
 Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facets](./facets.md)), **label**, **axis**, **inset**, **round**, **align**, and **padding**. If the **grid** option is true, show a grid using *currentColor*; if specified as a string, show a grid with the specified color; if an approximate number of ticks, an interval, or an array of tick values, show corresponding grid lines.
 
-## Sort option
+## Sort mark option
 
 If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
 

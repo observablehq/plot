@@ -21,7 +21,7 @@ onMounted(() => {
 
 # Select transform
 
-The **select transform** filters a mark’s index to show a subset of the data. It is a specialized [filter transform](./filter.md) that pulls a single value out of each series. For example, below selectLast is used to label the last value in a line chart.
+The **select transform** filters a mark’s index to show a subset of the data. It is a specialized [filter transform](./filter.md) that pulls a single value or a sample subset out of each series. For example, below selectLast is used to label the last value in a line chart.
 
 :::plot https://observablehq.com/@observablehq/plot-value-labeled-line-chart
 ```js
@@ -116,6 +116,18 @@ function selectorMedian(I, V) {
   const median = d3.median(I, (i) => V[i]);
   const i = d3.least(I, (i) => Math.abs(V[i] - median));
   return [i];
+}
+```
+
+The following selects a sample of 10% of the data:
+
+```js
+Plot.select({y: selectorSample}, {x: "Date", y: "Close"})
+```
+
+```js
+function selectorSample(I) {
+  return I.filter((i, j) => j % 10 === 0);
 }
 ```
 

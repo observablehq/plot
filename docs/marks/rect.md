@@ -201,7 +201,7 @@ The following channels are optional:
 
 Typically either **x1** and **x2** are specified, or **y1** and **y2**, or both.
 
-If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each **x** to produce **x1**, and *interval*.offset(*x1*) is invoked for each **x1** to produce **x2**. The same is true for **y**, **y1**, and **y2**, respectively. If the interval is specified as a number *n*, **x1** and **x2** are taken as the two consecutive multiples of *n* that bracket **x**.
+If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each **x** to produce **x1**, and *interval*.offset(*x1*) is invoked for each **x1** to produce **x2**. The same is true for **y**, **y1**, and **y2**, respectively. If the interval is specified as a number *n*, **x1** and **x2** are taken as the two consecutive multiples of *n* that bracket **x**. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales#scale-options).
 
 The rect mark supports the [standard mark options](../features/marks.md#mark-options), including insets and rounded corners. The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 

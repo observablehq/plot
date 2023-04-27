@@ -256,7 +256,7 @@ Plot.textX(alphabet.map((d) => d.frequency))
 
 Equivalent to [text](#text-data-options), except **x** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
-If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
+If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales#scale-options).
 
 ## textY(*data*, *options*)
 
@@ -266,4 +266,4 @@ Plot.textY(alphabet.map((d) => d.frequency))
 
 Equivalent to [text](#text-data-options), except **y** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
-If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
+If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales#scale-options).

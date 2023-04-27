@@ -149,7 +149,7 @@ Plot.plot({
 :::
 
 :::info
-This uses the [**interval** scale option](../transforms/interval.md) to bin temporal data into facets by decade.
+This uses the [**interval** scale option](../features/scales.md#scale-transforms) to bin temporal data into facets by decade.
 :::
 
 Lastly, the geo mark is not limited to spherical geometries! [Plot’s projection system](../features/projections.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.

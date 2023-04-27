@@ -38,7 +38,7 @@ Plot.plot({
 :::
 
 :::tip
-Ordinal domains are sorted naturally (alphabetically) by default. Either set the [scale **domain**](../features/scales.md) explicitly to change the order, or use the mark [**sort** option](../features/marks.md#sort-option) to derive the scale domain from a channel.
+Ordinal domains are sorted naturally (alphabetically) by default. Either set the [scale **domain**](../features/scales.md) explicitly to change the order, or use the mark [**sort** option](../features/scales.md#sort-mark-option) to derive the scale domain from a channel.
 :::
 
 The groupX transform groups on **x**. The *outputs* argument (here `{y: "count"}`) declares desired output channels (**y**) and the associated reducer (*count*). Hence the height of each bar above represents the number of penguins of each species.
