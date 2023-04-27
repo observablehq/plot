@@ -2,9 +2,14 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import * as htl from "htl";
 import {computed, ref, shallowRef, onMounted} from "vue";
 import alphabet from "../data/alphabet.ts";
 
+const marginTop = ref(20);
+const marginRight = ref(20);
+const marginBottom = ref(30);
+const marginLeft = ref(40);
 const fixed = ref(true);
 const aapl = shallowRef([]);
 const goog = shallowRef([]);
@@ -135,6 +140,73 @@ The layout options determine the overall size of the plot; all are specified as 
 * **margin** - shorthand for the four margins
 * **width** - the outer width of the plot (including margins)
 * **height** - the outer height of the plot (including margins)
+
+Experiment with the margins by adjusting the sliders below. Note that because the *x* scale is a *band* scale, the **round** option defaults to true, so the bars may jump when you adjust the horizontal margins to snap to crisp edges.
+
+<p>
+  <label class="label-input" style="display: flex;">
+    <span style="display: inline-block; width: 7em;">marginTop:</span>
+    <input type="range" v-model.number="marginTop" min="0" max="60" step="1">
+    <span style="font-variant-numeric: tabular-nums;">{{marginTop}}</span>
+  </label>
+  <label class="label-input" style="display: flex;">
+    <span style="display: inline-block; width: 7em;">marginRight:</span>
+    <input type="range" v-model.number="marginRight" min="0" max="60" step="1">
+    <span style="font-variant-numeric: tabular-nums;">{{marginRight}}</span>
+  </label>
+  <label class="label-input" style="display: flex;">
+    <span style="display: inline-block; width: 7em;">marginBottom:</span>
+    <input type="range" v-model.number="marginBottom" min="0" max="60" step="1">
+    <span style="font-variant-numeric: tabular-nums;">{{marginBottom}}</span>
+  </label>
+  <label class="label-input" style="display: flex;">
+    <span style="display: inline-block; width: 7em;">marginLeft:</span>
+    <input type="range" v-model.number="marginLeft" min="0" max="60" step="1">
+    <span style="font-variant-numeric: tabular-nums;">{{marginLeft}}</span>
+  </label>
+</p>
+
+:::plot hidden defer
+```js
+Plot.plot({
+  marginTop,
+  marginRight,
+  marginBottom,
+  marginLeft,
+  grid: true,
+  marks: [
+    Plot.frame({
+      stroke: "var(--vp-c-text-2)",
+      strokeOpacity: 0.5,
+      insetTop: -marginTop,
+      insetRight: -marginRight,
+      insetBottom: -marginBottom,
+      insetLeft: -marginLeft,
+    }),
+    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "green"}),
+    Plot.frame()
+  ]
+})
+```
+:::
+
+```js-vue
+Plot.plot({
+  marginTop: {{marginTop}},
+  marginRight: {{marginRight}},
+  marginBottom: {{marginBottom}},
+  marginLeft: {{marginLeft}},
+  grid: true,
+  marks: [
+    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "green"}),
+    Plot.frame()
+  ]
+})
+```
+
+:::info
+To assist the explanation, the plot above is drawn with a light gray border.
+:::
 
 The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/main/README.md#width) to make responsive plots. The default **height** is chosen automatically based on the plot’s associated scales; for example, if *y* is linear and there is no *fy* scale, it might be 396. The default margins depend on the maximum margins of the plot’s constituent [marks](./plots.md#marks). While most marks default to zero margins (because they are drawn inside the chart area), Plot’s [axis mark](../marks/axis.md) has non-zero default margins.
 
