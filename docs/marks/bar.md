@@ -29,7 +29,7 @@ const timeseries = [
 The bar mark is one of several marks in Plot for drawing rectangles; it should be used when one dimension is ordinal and the other is quantitative. See also [rect](./rect.md) and [cell](./cell.md).
 :::
 
-The **bar mark** comes in two orientations: [barY](#bary-data-options) extends vertically↑ as in a vertical bar chart or column chart, while [barX](#barx-data-options) extends horizontally→ as in a (horizontal) bar chart. For example, the bar chart below shows the frequency of letters in the English language.
+The **bar mark** comes in two orientations: [barY](#bary-data-options) extends vertically↑ as in a vertical bar chart or column chart, while [barX](#barx-data-options) extends horizontally→. For example, the bar chart below shows the frequency of letters in the English language.
 
 :::plot https://observablehq.com/@observablehq/plot-vertical-bars
 ```js
