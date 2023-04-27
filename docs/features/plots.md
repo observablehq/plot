@@ -131,7 +131,7 @@ Plot.plot({
 ```
 :::
 
-The layout options determine the overall size of the plot; all are specified as numbers in pixels:
+The layout options<a id="layout-options" class="header-anchor" href="#layout-options" aria-label="Permalink to &quot;layout options&quot;"></a> determine the overall size of the plot; all are specified as numbers in pixels:
 
 * **marginTop** - the top margin
 * **marginRight** - the right margin
