@@ -55,6 +55,7 @@ function enableAnalytics(router) {
   }
 
   function sendEvents(events) {
+    if (!events.length) return;
     navigator.sendBeacon(
       "https://events.observablehq.com/beacon-events",
       JSON.stringify({
