@@ -377,7 +377,7 @@ Note that when an axis mark is declared explicitly (via the [**marks** plot opti
 
 In addition to the [standard mark options](../features/marks.md), the axis mark supports the following options:
 
-* **anchor** - the orientation: *top*, *bottom* (*x* or *fx*); *left*, *right* (*y* or *fy*); *both*; *fx* and *fy* also support *inline* to draw the facet value inside the frame; null to suppress
+* **anchor** - the orientation: *top*, *bottom* (*x* or *fx*); *left*, *right* (*y* or *fy*); *both*; *inline*; null to suppress
 * **tickSize** - the length of the tick vector (in pixels; default 6 for *x* or *y*, or 0 for *fx* or *fy*)
 * **tickPadding** - the separation between the tick vector and its label (in pixels; default 3)
 * **tickFormat** - either a function or specifier string to format tick values; see [Formats](../features/formats.md)
@@ -390,6 +390,8 @@ In addition to the [standard mark options](../features/marks.md), the axis mark 
 * **textStroke** - the color of the stroke around tick labels (defaults to *none*)
 * **textStrokeOpacity** - the opacity of the stroke around tick labels
 * **textStrokeWidth** - the thickness of the stroke around tick labels (in pixels)
+
+The *inline* **anchor** is supported only for the *fx* and *fy* scales. In this case, the facet value is drawn inside each frame with no tick nor axis label. The **frameAnchor** option defaults to *top*; change it to reposition the label as desired, perhaps in conjunction with the **margin**, **dx**, and **dy** options.
 
 As a composite mark, the **stroke** option affects the color of the tick vector, while the **fill** option affects the color the text labels; both default to the **color** option, which defaults to *currentColor*. The **x** and **y** channels, if specified, position the ticks; if not specified, the tick positions depend on the axis **anchor**. The orientation of the tick labels likewise depends on the **anchor**. See the [text mark](./text.md) for details on available options for the tick and axis labels.
 
