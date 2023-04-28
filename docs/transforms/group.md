@@ -16,7 +16,7 @@ onMounted(() => {
 # Group transform
 
 :::tip
-The group transform is for aggregating ordinal or nominal data. For quantitative or temporal data, use the [bin transform](./bin.md), or use the [interval transform](./interval.md) to make continuous data ordinal.
+The group transform is for aggregating ordinal or nominal data. For quantitative or temporal data, use the [bin transform](./bin.md), or use the [quantize transform](./quantize.md) to make continuous data ordinal.
 :::
 
 The **group transform** groups ordinal or nominal data—discrete values such as name, type, or category. You can then compute summary statistics for each group, such as a count, sum, or proportion. The group transform is most often used to make bar charts with the [bar mark](../marks/bar.md).
@@ -310,14 +310,14 @@ Plot.plot({
 Although barX applies an implicit stackX transform, [textX](../marks/text.md) does not; this example uses an explicit stackX transform in both cases for clarity, and to pass the additional **order** and **reverse** options to place the largest sport on the left. The [filter transform](./filter.md) is applied after the stack transform to hide the labels on the smallest sports where the bars are too thin.
 :::
 
-While you should generally use the [bin transform](./bin.md) for quantitative or temporal data, you can use the [group transform](./group.md) if you also use the [interval transform](./interval.md) to make the data ordinal.
+While you should generally use the [bin transform](./bin.md) for quantitative or temporal data, you can use the [group transform](./group.md) if you also use the [quantize transform](./quantize.md) to make the data ordinal.
 
 :::plot defer
 ```js
 Plot.plot({
   x: {tickFormat: "%Y"},
   marks: [
-    Plot.barY(olympians, Plot.groupX({y: "count"}, Plot.intervalX(d3.utcYear.every(5), {x: "date_of_birth"})))
+    Plot.barY(olympians, Plot.groupX({y: "count"}, Plot.quantizeX(d3.utcYear.every(5), {x: "date_of_birth"})))
   ]
 })
 ```

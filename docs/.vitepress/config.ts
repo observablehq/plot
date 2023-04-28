@@ -111,6 +111,7 @@ export default defineConfig({
           {text: "Interval", link: "/transforms/interval"},
           {text: "Map", link: "/transforms/map"},
           {text: "Normalize", link: "/transforms/normalize"},
+          {text: "Quantize", link: "/transforms/quantize"},
           {text: "Select", link: "/transforms/select"},
           {text: "Sort", link: "/transforms/sort"},
           {text: "Stack", link: "/transforms/stack"},

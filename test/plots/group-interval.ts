@@ -5,7 +5,7 @@ export async function groupIntervalYear() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     x: {tickFormat: "%Y"},
-    marks: [Plot.barY(olympians, Plot.groupX({y: "count"}, Plot.intervalX(d3.utcYear.every(5), {x: "date_of_birth"})))]
+    marks: [Plot.barY(olympians, Plot.groupX({y: "count"}, Plot.quantizeX(d3.utcYear.every(5), {x: "date_of_birth"})))]
   });
 }
 
@@ -17,6 +17,6 @@ export async function groupIntervalYearSparse() {
   });
   return Plot.plot({
     x: {tickFormat: "%Y"},
-    marks: [Plot.barY(olympians, Plot.groupX({y: "count"}, Plot.intervalX(d3.utcYear.every(5), {x: "date_of_birth"})))]
+    marks: [Plot.barY(olympians, Plot.groupX({y: "count"}, Plot.quantizeX(d3.utcYear.every(5), {x: "date_of_birth"})))]
   });
 }
