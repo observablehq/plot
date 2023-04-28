@@ -78,7 +78,7 @@ function axisKy(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
   return marks(
-    tickSize && !isNoneish(stroke) && anchor !== "inline"
+    tickSize && !isNoneish(stroke) && !isInline(anchor)
       ? axisTickKy(k, anchor, data, {
           stroke,
           strokeOpacity,
@@ -109,7 +109,7 @@ function axisKy(
           ...options
         })
       : null,
-    !isNoneish(fill) && label !== null && anchor !== "inline"
+    !isNoneish(fill) && label !== null && !isInline(anchor)
       ? text(
           [],
           labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
@@ -181,7 +181,7 @@ function axisKx(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
   return marks(
-    tickSize && !isNoneish(stroke) && anchor !== "inline"
+    tickSize && !isNoneish(stroke) && !isInline(anchor)
       ? axisTickKx(k, anchor, data, {
           stroke,
           strokeOpacity,
@@ -212,7 +212,7 @@ function axisKx(
           ...options
         })
       : null,
-    !isNoneish(fill) && label !== null && anchor !== "inline"
+    !isNoneish(fill) && label !== null && !isInline(anchor)
       ? text(
           [],
           labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
