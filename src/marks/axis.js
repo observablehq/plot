@@ -62,7 +62,7 @@ function axisKy(
     tickPadding,
     tickRotate,
     x,
-    margin = anchor === "inline" ? 0 : undefined,
+    margin = isInline(anchor) ? 0 : undefined,
     marginTop = margin === undefined ? 20 : margin,
     marginRight = margin === undefined ? (anchor === "right" ? 40 : 0) : margin,
     marginBottom = margin === undefined ? 20 : margin,
@@ -165,7 +165,7 @@ function axisKx(
     tickPadding,
     tickRotate,
     y,
-    margin = anchor === "inline" ? 0 : undefined,
+    margin = isInline(anchor) ? 0 : undefined,
     marginTop = margin === undefined ? (anchor === "top" ? 30 : 0) : margin,
     marginRight = margin === undefined ? 20 : margin,
     marginBottom = margin === undefined ? (anchor === "bottom" ? 30 : 0) : margin,
@@ -318,15 +318,15 @@ function axisTextKy(
   anchor,
   data,
   {
-    facetAnchor = anchor === "inline" ? undefined : anchor + (k === "y" ? "-empty" : ""),
-    frameAnchor = anchor === "inline" ? "top" : anchor,
+    facetAnchor = isInline(anchor) ? undefined : anchor + (k === "y" ? "-empty" : ""),
+    frameAnchor = isInline(anchor) ? "top" : anchor,
     tickSize,
     tickRotate = 0,
     tickPadding = Math.max(3, 9 - tickSize) + (Math.abs(tickRotate) > 60 ? 4 * Math.cos(tickRotate * radians) : 0),
     tickFormat,
     text = typeof tickFormat === "function" ? tickFormat : undefined,
-    textAnchor = anchor === "inline" ? undefined : Math.abs(tickRotate) > 60 ? "middle" : anchor === "left" ? "end" : "start", // prettier-ignore
-    lineAnchor = anchor === "inline" ? undefined : tickRotate > 60 ? "top" : tickRotate < -60 ? "bottom" : "middle",
+    textAnchor = isInline(anchor) ? undefined : Math.abs(tickRotate) > 60 ? "middle" : anchor === "left" ? "end" : "start", // prettier-ignore
+    lineAnchor = isInline(anchor) ? undefined : tickRotate > 60 ? "top" : tickRotate < -60 ? "bottom" : "middle",
     fontVariant,
     inset = 0,
     insetLeft = inset,
@@ -351,7 +351,7 @@ function axisTextKy(
       rotate: tickRotate,
       y,
       ...options,
-      dx: anchor === "inline" ? dx : anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight // prettier-ignore
+      dx: isInline(anchor) ? dx : anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight // prettier-ignore
     },
     function (scale, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
@@ -365,15 +365,15 @@ function axisTextKx(
   anchor,
   data,
   {
-    facetAnchor = anchor === "inline" ? undefined : anchor + (k === "x" ? "-empty" : ""),
-    frameAnchor = anchor === "inline" ? "top" : anchor,
+    facetAnchor = isInline(anchor) ? undefined : anchor + (k === "x" ? "-empty" : ""),
+    frameAnchor = isInline(anchor) ? "top" : anchor,
     tickSize,
     tickRotate = 0,
     tickPadding = Math.max(3, 9 - tickSize) + (Math.abs(tickRotate) >= 10 ? 4 * Math.cos(tickRotate * radians) : 0),
     tickFormat,
     text = typeof tickFormat === "function" ? tickFormat : undefined,
-    textAnchor = anchor === "inline" ? undefined : Math.abs(tickRotate) >= 10 ? ((tickRotate < 0) ^ (anchor === "bottom") ? "start" : "end") : "middle", // prettier-ignore
-    lineAnchor = anchor === "inline" ? undefined : Math.abs(tickRotate) >= 10 ? "middle" : anchor === "bottom" ? "top" : "bottom", // prettier-ignore
+    textAnchor = isInline(anchor) ? undefined : Math.abs(tickRotate) >= 10 ? ((tickRotate < 0) ^ (anchor === "bottom") ? "start" : "end") : "middle", // prettier-ignore
+    lineAnchor = isInline(anchor) ? undefined : Math.abs(tickRotate) >= 10 ? "middle" : anchor === "bottom" ? "top" : "bottom", // prettier-ignore
     fontVariant,
     inset = 0,
     insetTop = inset,
@@ -398,7 +398,7 @@ function axisTextKx(
       rotate: tickRotate,
       x,
       ...options,
-      dy: anchor === "inline" ? dy : anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop // prettier-ignore
+      dy: isInline(anchor) ? dy : anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop // prettier-ignore
     },
     function (scale, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
@@ -596,6 +596,10 @@ const shapeTickRight = {
     context.lineTo(l, 0);
   }
 };
+
+function isInline(anchor) {
+  return anchor === "inline";
+}
 
 // TODO Unify this with the other inferFontVariant; here we only have a scale
 // function rather than a scale descriptor.
