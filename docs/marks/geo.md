@@ -137,7 +137,7 @@ Plot.plot({
   margin: 0,
   padding: 0,
   projection: "albers",
-  fy: {interval: d3.utcYear.every(10)},
+  fy: {interval: "10 years"},
   marks: [
     Plot.geo(statemesh, {strokeOpacity: 0.2}),
     Plot.geo(nation),
