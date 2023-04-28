@@ -56,13 +56,55 @@ Plot.plot({
 ```
 :::
 
-How about [transforms](./features/transforms.md)? Munging data, not assigning visual encodings, is often most of the work of data analysis. Plot’s transforms let you aggregate and derive data within your plot specification, reducing the time spent preparing data. For example, if you have an array of categorical values (penguin species), you can quickly count them with the group transform.
+## Plot transforms data
+
+Munging data, not visualizing it, is often most of the work of data analysis. Plot’s [transforms](./features/transforms.md) let you aggregate and derive data *within* your plot specification, reducing the time spent preparing data. For example, if you have a dataset of penguins, you can quickly count their frequency by *species* with the [group transform](./transforms/group.md).
 
 :::plot https://observablehq.com/@observablehq/plot-groupy-transform
 ```js
-Plot.barX(penguins.map((d) => d.species), Plot.groupY()).plot({marginLeft: 60})
+Plot.plot({
+  marginLeft: 80,
+  marginRight: 80,
+  marks: [
+    Plot.barX(penguins, Plot.groupY({x: "count"}, {y: "species"})),
+    Plot.ruleX([0])
+  ]
+})
 ```
 :::
+
+Because transforms are integrated into Plot, they work automatically with other Plot features such as [faceting](./features/facets.md). For example, to breakdown the chart above by *island*, we just add the **fy** (vertical facet) option.
+
+:::plot https://observablehq.com/@observablehq/plot-groupy-transform/2
+```js
+Plot.plot({
+  marginLeft: 80,
+  marginRight: 80,
+  marks: [
+    Plot.barX(penguins, Plot.groupY({x: "count"}, {fy: "island", y: "species"})),
+    Plot.ruleX([0])
+  ]
+})
+```
+:::
+
+And to color by *sex*, too? Add **fill**; the [bar mark](./marks/bar.md) then applies an implicit [stack transform](./transforms/stack.md).
+
+:::plot https://observablehq.com/@observablehq/plot-groupy-transform/3
+```js
+Plot.plot({
+  marginLeft: 80,
+  marginRight: 80,
+  color: {legend: true},
+  marks: [
+    Plot.barX(penguins, Plot.groupY({x: "count"}, {fy: "island", y: "species", fill: "sex"})),
+    Plot.ruleX([0])
+  ]
+})
+```
+:::
+
+Plot’s transforms can do powerful things, including [normalizing series](./transforms/normalize.md), computing [moving averages](./transforms/window.md), laying out [trees](./marks/tree.md), [dodging](./transforms/dodge.md), and [hexagonal binning](./transforms/hexbin.md).
 
 ## Plot is composable
 
@@ -94,22 +136,7 @@ Plot.boxX(penguins, {x: "body_mass_g", y: "species"}).plot({marginLeft: 60, y: {
 ```
 :::
 
-Plot’s transforms are composable, too. For example, to combine the [group transform](./transforms/group.md) with the [stack transform](./transforms/stack.md), simply pass the result of the group transform to the stack transform.
-
-:::plot https://observablehq.com/@observablehq/plot-transforms-are-composable
-```js
-Plot.plot({
-  marginLeft: 60,
-  y: {label: null},
-  color: {legend: true},
-  marks: [
-    Plot.barX(penguins, Plot.stackX(Plot.groupY({x: "count"}, {y: "species", fill: "sex"})))
-  ]
-})
-```
-:::
-
-Mark options are plain JavaScript objects, so you can also share (possibly transformed) options across marks.
+Plot’s [transforms](./features/transforms.md) are composable, too: to apply multiple transforms, you simply pass the *options* from one transform to the next. Some marks even apply implicit transforms, say for [stacking](./transforms/stack.md) or [binning](./transforms/bin.md) as shown [above](#plot-transforms-data). Mark options are plain JavaScript objects, so you can also share options across marks and inspect them to debug.
 
 ## Plot is extensible
 
