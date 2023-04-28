@@ -1,10 +1,11 @@
 // For internal use.
-export type PeriodicTimeIntervalName =
-  | ((`1 ${TimeIntervalName}` | `${number} ${TimeIntervalName}s`) & Record<never, never>) // see https://github.com/microsoft/TypeScript/issues/29729
+export type LiteralTimeInterval =
   | "3 months"
   | "10 years"
-  | "quarter" // alias for 3 months, no plural
-  | "half"; // alias for 6 months, no plural
+  | TimeIntervalName
+  | (`${TimeIntervalName}s` & Record<never, never>)
+  | (`${number} ${TimeIntervalName}` & Record<never, never>)
+  | (`${number} ${TimeIntervalName}s` & Record<never, never>);
 
 /**
  * The built-in time intervals; UTC or local time, depending on context. The
@@ -19,6 +20,8 @@ export type TimeIntervalName =
   | "day"
   | "week"
   | "month"
+  | "quarter" // 3 months
+  | "half" // 6 months
   | "year"
   | "monday"
   | "tuesday"
@@ -90,11 +93,7 @@ export interface NiceIntervalImplementation<T> extends RangeIntervalImplementati
 }
 
 /** A literal that can be automatically promoted to an interval. */
-type LiteralInterval<T> = T extends Date
-  ? TimeIntervalName | PeriodicTimeIntervalName
-  : T extends number
-  ? number
-  : never;
+type LiteralInterval<T> = T extends Date ? LiteralTimeInterval : T extends number ? number : never;
 
 /**
  * How to partition a continuous range into discrete intervals; one of:

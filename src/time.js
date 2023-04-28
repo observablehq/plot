@@ -39,20 +39,24 @@ const utcIntervals = new Map([
 
 function parseInterval(input, intervals) {
   let name = `${input}`.toLowerCase();
-  switch (name) {
-    case "quarter":
-      return intervals.get("month").every(3);
-    case "half":
-      return intervals.get("month").every(6);
-  }
-  let interval, period;
-  if (/s$/.test(name)) name = name.slice(0, -1);
+  if (name.endsWith("s")) name = name.slice(0, -1); // drop plural
+  let period = 1;
   const match = /^(?:(\d+)\s+)/.exec(name);
   if (match) {
     name = name.slice(match[0].length);
     period = +match[1];
   }
-  interval = intervals.get(name);
+  switch (name) {
+    case "quarter":
+      name = "month";
+      period *= 3;
+      break;
+    case "half":
+      name = "month";
+      period *= 6;
+      break;
+  }
+  let interval = intervals.get(name);
   if (!interval) throw new Error(`unknown interval: ${input}`);
   if (!(period > 1)) return interval;
   if (!interval.every) throw new Error(`non-periodic interval: ${name}`);
