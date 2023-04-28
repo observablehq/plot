@@ -543,7 +543,7 @@ All marks support the following [transform](./transforms.md) options:
 
 * **filter** - apply the [filter transform](../transforms/filter.md)
 * **sort** - apply the [sort transform](../transforms/sort.md)
-* **reverse** - apply the [reverse transform](../transforms/sort.md#reverseoptions)
+* **reverse** - apply the [reverse transform](../transforms/sort.md#reverse-options)
 * **transform** - apply a [custom transform](./transforms.md#custom-transforms)
 * **initializer** - apply a [custom initializer](./transforms.md#custom-initializers)
 
