@@ -1,8 +1,11 @@
 // For internal use.
 export type PeriodicTimeIntervalName =
-  | (`${number} ${TimeIntervalName}s` & Record<never, never>) // see https://github.com/microsoft/TypeScript/issues/29729
+  | ((`1 ${TimeIntervalName}` | `${number} ${TimeIntervalName}s`) & Record<never, never>) // see https://github.com/microsoft/TypeScript/issues/29729
   | "3 months"
-  | "10 years";
+  | "10 years"
+  | "quarter" // alias for 3 months, no plural
+  | "half" // alias for 6 months, no plural
+;
 
 /**
  * The built-in time intervals; UTC or local time, depending on context. The
@@ -17,8 +20,6 @@ export type TimeIntervalName =
   | "day"
   | "week"
   | "month"
-  | "quarter" // alias for 3 months
-  | "half" // alias for 6 months
   | "year"
   | "monday"
   | "tuesday"
