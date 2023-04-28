@@ -350,7 +350,7 @@ Plot.plot({
 
 Facet axes also support the *inline* anchor, which draws the facet value inside the frame.
 
-:::plot https://observablehq.com/@observablehq/plot-inline-facet-anchor
+:::plot defer https://observablehq.com/@observablehq/plot-inline-facet-anchor
 ```js
 Plot.plot({
   projection: "albers",
