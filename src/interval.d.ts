@@ -4,8 +4,7 @@ export type PeriodicTimeIntervalName =
   | "3 months"
   | "10 years"
   | "quarter" // alias for 3 months, no plural
-  | "half" // alias for 6 months, no plural
-;
+  | "half"; // alias for 6 months, no plural
 
 /**
  * The built-in time intervals; UTC or local time, depending on context. The
