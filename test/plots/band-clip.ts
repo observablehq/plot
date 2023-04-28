@@ -28,7 +28,7 @@ export async function bandClip2() {
   ];
   return Plot.plot({
     grid: true,
-    x: {interval: d3.utcDay},
+    x: {interval: "day"},
     marks: [
       Plot.ruleY([0]),
       Plot.barY(data, Plot.groupX({y: "sum"}, {x: "Date", y: "Count", rx: 6, insetBottom: -6, clip: "frame"}))

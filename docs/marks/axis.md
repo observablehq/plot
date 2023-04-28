@@ -175,7 +175,7 @@ Alternatively, you can add multiple axes with options for hierarchical time inte
 :::plot https://observablehq.com/@observablehq/plot-multiscale-date-axis
 ```js
 Plot.plot({
-  x: {round: true, nice: d3.utcWeek},
+  x: {round: true, nice: "week"},
   y: {inset: 6},
   marks: [
     Plot.frame({fill: "currentColor", fillOpacity: 0.1}),

@@ -12,19 +12,8 @@ export async function hadcrutWarmingStripes() {
       anomaly: +anomaly
     }));
   return Plot.plot({
-    x: {
-      round: true
-    },
-    color: {
-      scheme: "BuRd",
-      symmetric: false
-    },
-    marks: [
-      Plot.barX(hadcrut, {
-        x1: "year", // start of current year
-        x2: (d) => d3.utcYear.offset(d.year), // start of next year
-        fill: "anomaly"
-      })
-    ]
+    x: {round: true},
+    color: {scheme: "BuRd", symmetric: false},
+    marks: [Plot.barX(hadcrut, {x: "year", interval: "year", inset: 0, fill: "anomaly"})]
   });
 }
