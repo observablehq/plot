@@ -1,3 +1,4 @@
+import {ChannelName} from "channel.js";
 import type {Interval} from "../interval.js";
 import type {Transformed} from "./basic.js";
 import type {Map} from "./map.js";
@@ -34,13 +35,22 @@ export function quantizeX<T>(options?: T & QuantizeOptions): Transformed<T>;
 export function quantizeY<T>(interval?: Interval, options?: T): Transformed<T>;
 export function quantizeY<T>(options?: T & QuantizeOptions): Transformed<T>;
 
+/** Outputs for the quantize transform, and a corresponding *interval*. */
+export type QuantizeOutputs = {[key in ChannelName]?: Interval};
+
 /**
- * Given an *interval*, returns a corresponding map implementation for use with
- * the map transform, allowing the quantization of arbitrary channels instead of
- * only **x** and **y**. For example, to quantize the **stroke** channel:
+ * For each channel in the specified *outputs*, derives a new channel by
+ * quantizing to the corresponding *interval*. For example, to quantize the
+ * **stroke** channel:
  *
  * ```js
- * Plot.map({stroke: Plot.quantizeMap(10)}, {x: "Date", stroke: "Close", stroke: "Symbol"})
+ * Plot.quantize({stroke: 10}, {x: "Date", stroke: "Close", stroke: "Volume"})
  * ```
+ */
+export function quantize<T>(outputs?: QuantizeOutputs, options?: T): Transformed<T>;
+
+/**
+ * Given an *interval*, returns a corresponding map implementation for use with
+ * the map transform. See quantize.
  */
 export function quantizeMap(interval: Interval): Map;
