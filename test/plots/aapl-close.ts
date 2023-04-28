@@ -37,7 +37,7 @@ export async function aaplCloseGridColor() {
 
 export async function aaplCloseGridInterval() {
   const AAPL = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return Plot.lineY(AAPL, {x: "Date", y: "Close"}).plot({x: {grid: d3.utcMonth.every(3)}});
+  return Plot.lineY(AAPL, {x: "Date", y: "Close"}).plot({x: {grid: "3 months"}});
 }
 
 export async function aaplCloseGridIntervalName() {

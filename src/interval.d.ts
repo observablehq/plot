@@ -1,3 +1,12 @@
+// For internal use.
+export type LiteralTimeInterval =
+  | "3 months"
+  | "10 years"
+  | TimeIntervalName
+  | (`${TimeIntervalName}s` & Record<never, never>)
+  | (`${number} ${TimeIntervalName}` & Record<never, never>)
+  | (`${number} ${TimeIntervalName}s` & Record<never, never>);
+
 /**
  * The built-in time intervals; UTC or local time, depending on context. The
  * *week* interval is an alias for *sunday*. The *quarter* interval is every
@@ -11,8 +20,8 @@ export type TimeIntervalName =
   | "day"
   | "week"
   | "month"
-  | "quarter"
-  | "half"
+  | "quarter" // 3 months
+  | "half" // 6 months
   | "year"
   | "monday"
   | "tuesday"
@@ -84,7 +93,7 @@ export interface NiceIntervalImplementation<T> extends RangeIntervalImplementati
 }
 
 /** A literal that can be automatically promoted to an interval. */
-type LiteralInterval<T> = T extends Date ? TimeIntervalName : T extends number ? number : never;
+type LiteralInterval<T> = T extends Date ? LiteralTimeInterval : T extends number ? number : never;
 
 /**
  * How to partition a continuous range into discrete intervals; one of:

@@ -206,7 +206,7 @@ Plot.plot({
   marginRight: 0,
   projection: "albers",
   fx: {
-    interval: d3.utcYear.every(10),
+    interval: "10 years",
     tickFormat: (d) => `${d.getUTCFullYear()}’s`,
     label: null
   },

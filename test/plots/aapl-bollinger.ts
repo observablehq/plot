@@ -41,9 +41,9 @@ export async function aaplBollingerGridSpacing() {
       Plot.gridY({interval: 10, stroke: "#fff", strokeOpacity: 1, strokeWidth: 0.5}),
       Plot.gridY({interval: 20, stroke: "#fff", strokeOpacity: 1}),
       Plot.axisY({interval: 20}),
-      Plot.gridX({interval: d3.utcMonth.every(3), stroke: "#fff", strokeOpacity: 1, strokeWidth: 0.5}),
-      Plot.gridX({interval: d3.utcYear, stroke: "#fff", strokeOpacity: 1}),
-      Plot.axisX({interval: d3.utcYear}),
+      Plot.gridX({interval: "3 months", stroke: "#fff", strokeOpacity: 1, strokeWidth: 0.5}),
+      Plot.gridX({interval: "1 year", stroke: "#fff", strokeOpacity: 1}),
+      Plot.axisX({interval: "1 year"}),
       Plot.areaY(AAPL, bollingerBandY(20, 2, {x: "Date", y: "Close", fillOpacity: 0.2})),
       Plot.line(AAPL, Plot.map({y: bollinger(20, 0)}, {x: "Date", y: "Close", stroke: "blue"})),
       Plot.line(AAPL, {x: "Date", y: "Close", strokeWidth: 1})

@@ -1,4 +1,4 @@
-import {utcSecond, utcMinute, utcHour, utcDay, utcWeek, utcMonth, utcYear} from "d3";
+import {utcSecond, utcMinute, utcHour, unixDay, utcWeek, utcMonth, utcYear} from "d3";
 import {utcMonday, utcTuesday, utcWednesday, utcThursday, utcFriday, utcSaturday, utcSunday} from "d3";
 import {timeSecond, timeMinute, timeHour, timeDay, timeWeek, timeMonth, timeYear} from "d3";
 import {timeMonday, timeTuesday, timeWednesday, timeThursday, timeFriday, timeSaturday, timeSunday} from "d3";
@@ -7,11 +7,9 @@ const timeIntervals = new Map([
   ["second", timeSecond],
   ["minute", timeMinute],
   ["hour", timeHour],
-  ["day", timeDay],
+  ["day", timeDay], // TODO local time equivalent of unixDay?
   ["week", timeWeek],
   ["month", timeMonth],
-  ["quarter", timeMonth.every(3)],
-  ["half", timeMonth.every(6)],
   ["year", timeYear],
   ["monday", timeMonday],
   ["tuesday", timeTuesday],
@@ -26,11 +24,9 @@ const utcIntervals = new Map([
   ["second", utcSecond],
   ["minute", utcMinute],
   ["hour", utcHour],
-  ["day", utcDay],
+  ["day", unixDay],
   ["week", utcWeek],
   ["month", utcMonth],
-  ["quarter", utcMonth.every(3)],
-  ["half", utcMonth.every(6)],
   ["year", utcYear],
   ["monday", utcMonday],
   ["tuesday", utcTuesday],
@@ -41,14 +37,36 @@ const utcIntervals = new Map([
   ["sunday", utcSunday]
 ]);
 
+function parseInterval(input, intervals) {
+  let name = `${input}`.toLowerCase();
+  if (name.endsWith("s")) name = name.slice(0, -1); // drop plural
+  let period = 1;
+  const match = /^(?:(\d+)\s+)/.exec(name);
+  if (match) {
+    name = name.slice(match[0].length);
+    period = +match[1];
+  }
+  switch (name) {
+    case "quarter":
+      name = "month";
+      period *= 3;
+      break;
+    case "half":
+      name = "month";
+      period *= 6;
+      break;
+  }
+  let interval = intervals.get(name);
+  if (!interval) throw new Error(`unknown interval: ${input}`);
+  if (!(period > 1)) return interval;
+  if (!interval.every) throw new Error(`non-periodic interval: ${name}`);
+  return interval.every(period);
+}
+
 export function maybeTimeInterval(interval) {
-  const i = timeIntervals.get(`${interval}`.toLowerCase());
-  if (!i) throw new Error(`unknown interval: ${interval}`);
-  return i;
+  return parseInterval(interval, timeIntervals);
 }
 
 export function maybeUtcInterval(interval) {
-  const i = utcIntervals.get(`${interval}`.toLowerCase());
-  if (!i) throw new Error(`unknown interval: ${interval}`);
-  return i;
+  return parseInterval(interval, utcIntervals);
 }
