@@ -49,7 +49,7 @@ function enableAnalytics(router) {
 
   function emit(event) {
     event.time = new Date().toISOString();
-    event.location = location.href;
+    event.location = `${location.origin}${location.pathname}${location.search}`; // drop hash
     if (queue) queue.push(event);
     else sendEvents([event]);
   }
