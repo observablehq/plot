@@ -263,7 +263,7 @@ import penguins from "./assets/penguins.json";
 ```
 :::
 
-See our [Plot + Vue CodeSandbox](https://codesandbox.io/p/sandbox/plot-vue-jlgg2w?file=/src/App.vue) for details. You can also find more examples on [our GitHub](https://github.com/observablehq/plot/tree/main/docs) as this documentation site is built with VitePress and uses both client- and server-side rendering for plots!
+See our [Plot + Vue CodeSandbox](https://codesandbox.io/p/sandbox/plot-vue-jlgg2w?file=/src/App.vue) for details.
 
 For client-side rendering, use a [render function](https://vuejs.org/guide/extras/render-function.html) with a [mounted](https://vuejs.org/api/options-lifecycle.html#mounted) lifecycle directive. After the component mounts, render the plot and then insert it into the page.
 
@@ -288,4 +288,4 @@ export default {
 };
 ```
 
-As with React, if you need to update your plot for whatever reason, you can throw away the old one and replace it with a new one.
+As with React, to update your plot for whatever reason, simply render a new one and replace the old one. You can find more examples on [our GitHub](https://github.com/observablehq/plot/tree/main/docs) as this documentation site is built with VitePress and uses both client- and server-side rendering for plots!
