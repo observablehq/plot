@@ -137,11 +137,9 @@ The first is to server-side render (SSR) plots. This minimizes distracting reflo
 import * as Plot from "@observablehq/plot";
 import {createElement as h} from "react";
 
-const PlotFigure = ({ options: { document = new Document(), ...options } }) => {
-  return Plot.plot({ document, ...options }).toHyperScript();
-};
-
-export default PlotFigure;
+export default function PlotFigure({options}) {
+  return Plot.plot({...options, document: new Document()}).toHyperScript();
+}
 ```
 :::
 
