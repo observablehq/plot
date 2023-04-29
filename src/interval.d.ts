@@ -35,7 +35,7 @@ export type TimeIntervalName =
 export interface IntervalImplementation<T> {
   /**
    * Returns the value representing the greatest interval boundary less than or
-   * equal to the specified *value*. For example, day.floor(*date*) typically
+   * equal to the specified *value*. For example, *day*.floor(*date*) typically
    * returns 12:00 AM on the given date.
    *
    * This method is idempotent: if the specified value is already floored to the
@@ -53,8 +53,8 @@ export interface IntervalImplementation<T> {
    * same *value* is returned; if *step* is not an integer, it is floored.
    *
    * This method does not round the specified *value* to the interval. For
-   * example, if *date* is today at 5:34 PM, then day.offset(*date*, 1) returns
-   * 5:34 PM tomorrow.
+   * example, if *date* is today at 5:34 PM, then *day*.offset(*date*, 1)
+   * returns 5:34 PM tomorrow.
    */
   offset(value: T, step?: number): T;
 }
@@ -80,7 +80,7 @@ export interface RangeIntervalImplementation<T> extends IntervalImplementation<T
 export interface NiceIntervalImplementation<T> extends RangeIntervalImplementation<T> {
   /**
    * Returns the value representing the least interval boundary value greater
-   * than or equal to the specified *value*. For example, day.ceil(*date*)
+   * than or equal to the specified *value*. For example, *day*.ceil(*date*)
    * typically returns 12:00 AM on the date following the given date.
    *
    * This method is idempotent: if the specified date is already ceilinged to
