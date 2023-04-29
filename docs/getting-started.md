@@ -128,7 +128,34 @@ Plot includes TypeScript declarations with extensive documentation. We highly re
 
 ## Plot in React
 
-In React, you can use [useRef](https://react.dev/reference/react/useRef) to get a reference to a DOM element, and then [useEffect](https://react.dev/reference/react/useEffect) to generate and insert your plot. The example below also demonstrates asynchronously loading CSV data with [useState](https://react.dev/reference/react/useState).
+We recommend two approaches for Plot in React depending on your needs.
+
+The first approach is to server-side render (SSR) plots. This minimizes distracting reflow on page load, making the page feel snappier. For this approach, use the [**document** plot option](./features/plots.md) to tell Plot to render with React’s virtual DOM.
+
+```jsx
+import * as Plot from "@observablehq/plot";
+import PlotFigure from "./PlotFigure";
+import penguins from "./penguins.json";
+
+export default function App() {
+  return (
+    <div>
+      <h1>Penguins</h1>
+      <PlotFigure
+        options={{
+          marks: [
+            Plot.dot(penguins, { x: "culmen_length_mm", y: "culmen_depth_mm" })
+          ]
+        }}
+      />
+    </div>
+  );
+}
+```
+
+See our [Plot + React CodeSandbox](https://codesandbox.io/s/plot-react-f1jetw?file=/src/App.js) for details.
+
+Server-side rendering is only practical for simple plots of small data; complex plots, such as geographic maps or charts with thousands of elements, are better rendered on the client because the serialized SVG is large. For this second approach, use [useRef](https://react.dev/reference/react/useRef) to get a reference to a DOM element, and then [useEffect](https://react.dev/reference/react/useEffect) to generate and insert your plot.
 
 ```jsx
 import * as Plot from "@observablehq/plot";
@@ -163,11 +190,43 @@ function App() {
 export default App;
 ```
 
-If you want to update your plot, say because your data has changed, simply throw away the old plot using [*element*.remove](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove) and then replace it with a new one. That’s done above in the useEffect’s cleanup function.
+This example also demonstrates asynchronously loading CSV data with [useState](https://react.dev/reference/react/useState). If you want to update your plot, say because your data has changed, simply throw away the old plot using [*element*.remove](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove) and then replace it with a new one. That’s done above in the useEffect’s cleanup function.
 
 ## Plot in Vue
 
-In Vue, use a [render function](https://vuejs.org/guide/extras/render-function.html) with a directive that calls Plot after the component mounts.
+As with React, you can use either server- or client-side rendering with Plot and Vue.
+
+For server-side rendering (SSR), use the [**document** plot option](./features/plots.md) to render to Vue’s virtual DOM.
+
+```vue
+<template>
+  <PlotFigure
+    :options="{
+      marks: [
+        Plot.dot(penguins, { x: 'culmen_length_mm', y: 'culmen_depth_mm' }),
+      ],
+    }"
+  />
+</template>
+
+<script>
+import PlotFigure from "./components/PlotFigure.js";
+import penguins from "./assets/penguins.json";
+import * as Plot from "@observablehq/plot";
+
+export default {
+  name: "App",
+  components: { PlotFigure },
+  data() {
+    return { Plot, penguins };
+  },
+};
+</script>
+```
+
+See our [Plot + Vue CodeSandbox](https://codesandbox.io/s/plot-vue-1bk14l?file=/src/App.vue) for details.
+
+For client-side rendering, use a [render function](https://vuejs.org/guide/extras/render-function.html) with a [mounted](https://vuejs.org/api/options-lifecycle.html#mounted) lifecycle directive. After the component mounts, render the plot and then insert it into the page.
 
 ```js
 import * as Plot from "@observablehq/plot";
@@ -190,10 +249,8 @@ export default {
 };
 ```
 
-To use, pass your desired Plot.plot options as a prop:
+As with React, if you need to update your plot for whatever reason, you can throw away the old one and replace it with a new one.
 
-```vue
-<PlotRender :options='{marks: [Plot.dot(olympians, {x: "weight", y: "height"})]}' />
-```
-
-This website is written in Vue using VitePress, and we use server-side rendering of Plot to generate static plots—no client-side JavaScript required! This is done using Vue’s virtual DOM via Plot’s top-level **document** option; see [our GitHub](https://github.com/observablehq/plot) for details.
+:::tip
+This website is written in Vue using VitePress! See [our GitHub](https://github.com/observablehq/plot/tree/main/docs) for how we did it.
+:::
