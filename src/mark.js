@@ -1,8 +1,7 @@
-import {createChannels, channelDomain, valueObject} from "./channel.js";
+import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
-import {arrayify, isDomainSort, isOptions, range} from "./options.js";
-import {keyword, maybeNamed} from "./options.js";
+import {arrayify, isDomainSort, isOptions, keyword, maybeNamed, range, singleton} from "./options.js";
 import {maybeProject} from "./projection.js";
 import {maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
@@ -43,10 +42,15 @@ export class Mark {
     this.channels = Object.fromEntries(
       Object.entries(channels)
         .map(([name, channel]) => {
-          const {value} = channel;
-          if (isOptions(value)) {
-            channel = {...channel, value: value.value};
-            if (value.scale !== undefined) channel.scale = value.scale;
+          if (isOptions(channel.value)) {
+            // apply scale overrides
+            const {value, scale} = channel.value;
+            channel = {...channel, scale: scale === undefined ? channel.scale : scale, value};
+          }
+          if (data === singleton && typeof channel.value === "string") {
+            // convert field names to singleton values for decoration marks (e.g., frame)
+            const {value} = channel;
+            channel = {...channel, value: [value]};
           }
           return [name, channel];
         })

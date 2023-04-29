@@ -38,6 +38,7 @@ function floater(f) {
   return (d, i) => coerceNumber(f(d, i));
 }
 
+export const singleton = [null]; // for data-less decoration marks, e.g. frame
 export const field = (name) => (d) => d[name];
 export const indexOf = {transform: range};
 export const identity = {transform: (d) => d};
