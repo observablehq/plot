@@ -12,3 +12,11 @@ export async function faithfulDensity() {
     ]
   });
 }
+
+export async function faithfulDensityFill() {
+  const faithful = await d3.tsv<any>("data/faithful.tsv", d3.autoType);
+  return Plot.plot({
+    inset: 30,
+    marks: [Plot.frame({fill: 0}), Plot.density(faithful, {x: "waiting", y: "eruptions", fill: "density"})]
+  });
+}
