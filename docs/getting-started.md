@@ -162,7 +162,7 @@ export default function App() {
       <PlotFigure
         options={{
           marks: [
-            Plot.dot(penguins, { x: "culmen_length_mm", y: "culmen_depth_mm" })
+            Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
           ]
         }}
       />
@@ -257,7 +257,7 @@ import penguins from "./assets/penguins.json";
   <PlotFigure
     :options="{
       marks: [
-        Plot.dot(penguins, { x: 'culmen_length_mm', y: 'culmen_depth_mm' }),
+        Plot.dot(penguins, {x: 'culmen_length_mm', y: 'culmen_depth_mm'}),
       ],
     }"
   />
