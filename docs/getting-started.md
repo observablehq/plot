@@ -182,7 +182,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {useEffect, useRef, useState} from "react";
 
-function App() {
+export default function App() {
   const containerRef = useRef();
   const [data, setData] = useState();
 
@@ -206,8 +206,6 @@ function App() {
 
   return <div ref={containerRef} />;
 }
-
-export default App;
 ```
 :::
 
