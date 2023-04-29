@@ -130,11 +130,31 @@ Plot includes TypeScript declarations with extensive documentation. We highly re
 
 We recommend two approaches for Plot in React depending on your needs.
 
-The first approach is to server-side render (SSR) plots. This minimizes distracting reflow on page load, making the page feel snappier. For this approach, use the [**document** plot option](./features/plots.md) to tell Plot to render with React’s virtual DOM.
+The first is to server-side render (SSR) plots. This minimizes distracting reflow on page load, improving the user experience. For this approach, use the [**document** plot option](./features/plots.md) to tell Plot to render with React’s virtual DOM. For example, here is a PlotFigure component:
 
-```jsx
+:::code-group
+```js [PlotFigure.js]
 import * as Plot from "@observablehq/plot";
-import PlotFigure from "./PlotFigure";
+import {createElement as h} from "react";
+
+const PlotFigure = ({ options: { document = new Document(), ...options } }) => {
+  return Plot.plot({ document, ...options }).toHyperScript();
+};
+
+export default PlotFigure;
+```
+:::
+
+:::info
+For brevity, the virtual `Document` implementation is not shown. You’ll find it linked below.
+:::
+
+Then, to use:
+
+:::code-group
+```jsx [App.jsx]
+import * as Plot from "@observablehq/plot";
+import PlotFigure from "./PlotFigure.js";
 import penguins from "./penguins.json";
 
 export default function App() {
@@ -152,12 +172,14 @@ export default function App() {
   );
 }
 ```
+:::
 
 See our [Plot + React CodeSandbox](https://codesandbox.io/s/plot-react-f1jetw?file=/src/App.js) for details.
 
 Server-side rendering is only practical for simple plots of small data; complex plots, such as geographic maps or charts with thousands of elements, are better rendered on the client because the serialized SVG is large. For this second approach, use [useRef](https://react.dev/reference/react/useRef) to get a reference to a DOM element, and then [useEffect](https://react.dev/reference/react/useEffect) to generate and insert your plot.
 
-```jsx
+:::code-group
+```jsx [App.jsx]
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {useEffect, useRef, useState} from "react";
@@ -189,6 +211,7 @@ function App() {
 
 export default App;
 ```
+:::
 
 This example also demonstrates asynchronously loading CSV data with [useState](https://react.dev/reference/react/useState). If you want to update your plot, say because your data has changed, simply throw away the old plot using [*element*.remove](https://developer.mozilla.org/en-US/docs/Web/API/Element/remove) and then replace it with a new one. That’s done above in the useEffect’s cleanup function.
 
@@ -196,10 +219,43 @@ This example also demonstrates asynchronously loading CSV data with [useState](h
 
 As with React, you can use either server- or client-side rendering with Plot and Vue.
 
-For server-side rendering (SSR), use the [**document** plot option](./features/plots.md) to render to Vue’s virtual DOM.
+For server-side rendering (SSR), use the [**document** plot option](./features/plots.md) to render to Vue’s virtual DOM. For example, here is a PlotFigure component:
 
-```vue
+:::code-group
+```js [PlotFigure.js]
+import * as Plot from "@observablehq/plot";
+import {h} from "vue";
+
+export default {
+  props: {
+    options: Object
+  },
+  render() {
+    return Plot.plot({
+      ...this.options,
+      document: new Document()
+    }).toHyperScript();
+  }
+};
+```
+:::
+
+:::info
+For brevity, the virtual `Document` implementation is not shown. You’ll find it linked below.
+:::
+
+Then, to use:
+
+:::code-group
+```vue [App.vue]
+<script setup>
+import * as Plot from "@observablehq/plot";
+import PlotFigure from "./components/PlotFigure.js";
+import penguins from "./assets/penguins.json";
+</script>
+
 <template>
+  <h1>Plot + Vue</h1>
   <PlotFigure
     :options="{
       marks: [
@@ -208,23 +264,10 @@ For server-side rendering (SSR), use the [**document** plot option](./features/p
     }"
   />
 </template>
-
-<script>
-import PlotFigure from "./components/PlotFigure.js";
-import penguins from "./assets/penguins.json";
-import * as Plot from "@observablehq/plot";
-
-export default {
-  name: "App",
-  components: { PlotFigure },
-  data() {
-    return { Plot, penguins };
-  },
-};
-</script>
 ```
+:::
 
-See our [Plot + Vue CodeSandbox](https://codesandbox.io/s/plot-vue-1bk14l?file=/src/App.vue) for details.
+See our [Plot + Vue CodeSandbox](https://codesandbox.io/p/sandbox/plot-vue-jlgg2w?file=/src/App.vue) for details. You can also find more examples on [our GitHub](https://github.com/observablehq/plot/tree/main/docs), as this documentation site is built with Vue and VitePress, and makes extensive use of both client- and server-side rendering for plots!
 
 For client-side rendering, use a [render function](https://vuejs.org/guide/extras/render-function.html) with a [mounted](https://vuejs.org/api/options-lifecycle.html#mounted) lifecycle directive. After the component mounts, render the plot and then insert it into the page.
 
@@ -250,7 +293,3 @@ export default {
 ```
 
 As with React, if you need to update your plot for whatever reason, you can throw away the old one and replace it with a new one.
-
-:::tip
-This website is written in Vue using VitePress! See [our GitHub](https://github.com/observablehq/plot/tree/main/docs) for how we did it.
-:::
