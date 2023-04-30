@@ -23,6 +23,15 @@ export async function frameFillQuantitative() {
   });
 }
 
+export async function frameFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    marginLeft: 80,
+    inset: 10,
+    marks: [Plot.frame({fy: "Gentoo"}), Plot.dot(penguins, {x: "body_mass_g", fy: "species"})]
+  });
+}
+
 export async function frameCorners() {
   return Plot.frame({rx: 16, ry: 10}).plot();
 }

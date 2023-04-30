@@ -32,8 +32,8 @@ export class Mark {
       this.facet = null;
     } else {
       this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude", "super"]);
-      this.fx = fx;
-      this.fy = fy;
+      this.fx = data === singleton && typeof fx === "string" ? [fx] : fx;
+      this.fy = data === singleton && typeof fy === "string" ? [fy] : fy;
     }
     this.facetAnchor = maybeFacetAnchor(facetAnchor);
     channels = maybeNamed(channels);
