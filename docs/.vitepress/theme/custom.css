@@ -23,12 +23,8 @@
   color: var(--vp-c-text-2);
 }
 
-:root.dark marker[stroke="white"] {
-  stroke: var(--vp-c-bg);
-}
-
-:root.dark marker[fill="white"] {
-  fill: var(--vp-c-bg);
+.vp-doc .plot {
+  --plot-background: var(--vp-c-bg);
 }
 
 .vp-doc :not(pre) > code {
