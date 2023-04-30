@@ -15,7 +15,7 @@
   </style>
   <g aria-label="facet" transform="translate(0,0)">
     <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
-      <text y="0.32em" transform="translate(600,85)">1950-01-01</text>
+      <text y="0.32em" transform="translate(600,85)">1950</text>
     </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="600" y1="125.30000000000001" y2="125.30000000000001"></line>
@@ -60,7 +60,7 @@
   </g>
   <g aria-label="facet" transform="translate(0,144)">
     <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
-      <text y="0.32em" transform="translate(600,85)">1960-01-01</text>
+      <text y="0.32em" transform="translate(600,85)">1960</text>
     </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="600" y1="125.30000000000001" y2="125.30000000000001"></line>
@@ -170,7 +170,7 @@
   </g>
   <g aria-label="facet" transform="translate(0,288)">
     <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
-      <text y="0.32em" transform="translate(600,85)">1970-01-01</text>
+      <text y="0.32em" transform="translate(600,85)">1970</text>
     </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="600" y1="125.30000000000001" y2="125.30000000000001"></line>
@@ -593,7 +593,7 @@
   </g>
   <g aria-label="facet" transform="translate(0,432)">
     <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
-      <text y="0.32em" transform="translate(600,85)">1980-01-01</text>
+      <text y="0.32em" transform="translate(600,85)">1980</text>
     </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="600" y1="125.30000000000001" y2="125.30000000000001"></line>
@@ -5311,7 +5311,7 @@
   </g>
   <g aria-label="facet" transform="translate(0,576)">
     <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
-      <text y="0.32em" transform="translate(600,85)">1990-01-01</text>
+      <text y="0.32em" transform="translate(600,85)">1990</text>
     </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="600" y1="125.30000000000001" y2="125.30000000000001"></line>
@@ -11005,7 +11005,7 @@
   </g>
   <g aria-label="facet" transform="translate(0,720)">
     <g aria-label="fy-axis tick label" text-anchor="start" font-variant="tabular-nums" transform="translate(9.5,0.5)">
-      <text y="0.32em" transform="translate(600,85)">2000-01-01</text>
+      <text y="0.32em" transform="translate(600,85)">2000</text>
     </g>
     <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="40" x2="600" y1="125.30000000000001" y2="125.30000000000001"></line>

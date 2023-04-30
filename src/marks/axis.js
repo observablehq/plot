@@ -1,4 +1,4 @@
-import {extent, format, utcFormat} from "d3";
+import {extent, format, timeFormat, utcFormat} from "d3";
 import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
@@ -7,6 +7,7 @@ import {isIterable, isNoneish, isTemporal, orderof} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
 import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
+import {isTimeYear, isUtcYear} from "../time.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
@@ -579,7 +580,11 @@ function inferTickFormat(scale, ticks, tickFormat) {
   return scale.tickFormat
     ? scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)
     : tickFormat === undefined
-    ? formatDefault
+    ? isUtcYear(scale.interval)
+      ? utcFormat("%Y")
+      : isTimeYear(scale.interval)
+      ? timeFormat("%Y")
+      : formatDefault
     : typeof tickFormat === "string"
     ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
     : constant(tickFormat);
