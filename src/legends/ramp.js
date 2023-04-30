@@ -3,7 +3,7 @@ import {inferFontVariant} from "../axes.js";
 import {createContext, create} from "../context.js";
 import {map, maybeNumberChannel} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
-import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
+import {applyInlineStyles, impliedString} from "../style.js";
 
 export function legendRamp(color, options) {
   let {
@@ -20,32 +20,29 @@ export function legendRamp(color, options) {
     tickFormat,
     fontVariant = inferFontVariant(color),
     round = true,
-    opacity,
-    className
+    opacity
   } = options;
   const context = createContext(options);
-  className = maybeClassName(className);
   opacity = maybeNumberChannel(opacity)[1];
   if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg", context)
-    .attr("class", `${className}-ramp`)
+    .attr("class", `plot-ramp`) // TODO shadow dom
     .attr("font-family", "system-ui, sans-serif")
     .attr("font-size", 10)
     .attr("width", width)
     .attr("height", height)
     .attr("viewBox", `0 0 ${width} ${height}`)
     .call((svg) =>
-      // Warning: if you edit this, change defaultClassName.
       svg.append("style").text(
-        `.${className}-ramp {
+        `.plot-ramp {
   display: block;
   height: auto;
   height: intrinsic;
   max-width: 100%;
   overflow: visible;
 }
-.${className}-ramp text {
+.plot-ramp text {
   white-space: pre;
 }`
       )

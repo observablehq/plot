@@ -3,7 +3,7 @@ import {inferFontVariant, maybeAutoTickFormat} from "../axes.js";
 import {createContext, create} from "../context.js";
 import {isNoneish, maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {isOrdinalScale, isThresholdScale} from "../scales.js";
-import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
+import {applyInlineStyles, impliedString} from "../style.js";
 
 function maybeScale(scale, key) {
   if (key == null) return key;
@@ -69,6 +69,7 @@ export function legendSymbols(
   );
 }
 
+// TODO shadow dom
 function legendItems(scale, options = {}, swatch) {
   let {
     columns,
@@ -79,32 +80,30 @@ function legendItems(scale, options = {}, swatch) {
     swatchWidth = swatchSize,
     swatchHeight = swatchSize,
     marginLeft = 0,
-    className,
     style,
     width
   } = options;
   const context = createContext(options);
-  className = maybeClassName(className);
   tickFormat = maybeAutoTickFormat(tickFormat, scale.domain);
 
   const swatches = create("div", context).attr(
     "class",
-    `${className}-swatches ${className}-swatches-${columns != null ? "columns" : "wrap"}`
+    `plot-swatches plot-swatches-${columns != null ? "columns" : "wrap"}`
   );
 
   let extraStyle;
 
   if (columns != null) {
-    extraStyle = `.${className}-swatches-columns .${className}-swatch {
+    extraStyle = `.plot-swatches-columns .plot-swatch {
   display: flex;
   align-items: center;
   break-inside: avoid;
   padding-bottom: 1px;
 }
-.${className}-swatches-columns .${className}-swatch::before {
+.plot-swatches-columns .plot-swatch::before {
   flex-shrink: 0;
 }
-.${className}-swatches-columns .${className}-swatch-label {
+.plot-swatches-columns .plot-swatch-label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -116,19 +115,17 @@ function legendItems(scale, options = {}, swatch) {
       .data(scale.domain)
       .enter()
       .append("div")
-      .attr("class", `${className}-swatch`)
+      .attr("class", `plot-swatch`)
       .call(swatch, scale, swatchWidth, swatchHeight)
-      .call((item) =>
-        item.append("div").attr("class", `${className}-swatch-label`).attr("title", tickFormat).text(tickFormat)
-      );
+      .call((item) => item.append("div").attr("class", `plot-swatch-label`).attr("title", tickFormat).text(tickFormat));
   } else {
-    extraStyle = `.${className}-swatches-wrap {
+    extraStyle = `.plot-swatches-wrap {
   display: flex;
   align-items: center;
   min-height: 33px;
   flex-wrap: wrap;
 }
-.${className}-swatches-wrap .${className}-swatch {
+.plot-swatches-wrap .plot-swatch {
   display: inline-flex;
   align-items: center;
   margin-right: 1em;
@@ -139,7 +136,7 @@ function legendItems(scale, options = {}, swatch) {
       .data(scale.domain)
       .enter()
       .append("span")
-      .attr("class", `${className}-swatch`)
+      .attr("class", `plot-swatch`)
       .call(swatch, scale, swatchWidth, swatchHeight)
       .append(function () {
         return this.ownerDocument.createTextNode(tickFormat.apply(this, arguments));
@@ -149,12 +146,12 @@ function legendItems(scale, options = {}, swatch) {
   return swatches
     .call((div) =>
       div.insert("style", "*").text(
-        `.${className}-swatches {
+        `.plot-swatches {
   font-family: system-ui, sans-serif;
   font-size: 10px;
   margin-bottom: 0.5em;
 }
-.${className}-swatch > svg {
+.plot-swatch > svg {
   margin-right: 0.5em;
   overflow: visible;
 }

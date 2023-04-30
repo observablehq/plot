@@ -1,0 +1,42 @@
+<svg class="plot-ramp" font-family="system-ui, sans-serif" font-size="10" width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot-ramp {
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    .plot-ramp text {
+      white-space: pre;
+    }
+  </style>
+  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAABBklEQVQ4jW2SwXHkMBADGzMb2EV0gTnGHcAPUhK99gPVaFD6sKj//77SiI5ojkQ08Lo36FzOndfVA00eJzvwIrRybDsKjSlCy3s3de0yLVNsXuHoMqWhZCSjGpBBm5fX3k7W8U2d/Owf6b96dn+YDinjDq6QBleWd3CB7+3qF3VzbtcPTgtX7W2z6kkXrj62JtVYTx+JUXgD7w+OWA68dx+0u3ij5YjR6cVEDLW3WtnbZLnTt/vyFM7qn8zNxi6SJl77T66LzHWhaeI6Lxdc6HC5YBZlrW1WlwuN7rP61UEjytobqx9P6NeTM9RknTn7n1DO9hzuj+71jX340fO4PChrJ7O2g9/scjRovHTSrgAAAABJRU5ErkJggg=="></image>
+  <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">Jan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(44.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">Mar</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(87.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">May</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(131.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">Jul</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(175.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">Sep</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(218.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">Nov</text>
+    </g>
+  </g>
+</svg>

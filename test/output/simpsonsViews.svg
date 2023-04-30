@@ -1,0 +1,46 @@
+<svg class="plot-ramp" font-family="system-ui, sans-serif" font-size="10" width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot-ramp {
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    .plot-ramp text {
+      white-space: pre;
+    }
+  </style>
+  <g>
+    <rect x="0" y="18" width="40" height="10" fill="#d73027"></rect>
+    <rect x="40" y="18" width="40" height="10" fill="#fc8d59"></rect>
+    <rect x="80" y="18" width="40" height="10" fill="#fee090"></rect>
+    <rect x="120" y="18" width="40" height="10" fill="#e0f3f8"></rect>
+    <rect x="160" y="18" width="40" height="10" fill="#91bfdb"></rect>
+    <rect x="200" y="18" width="40" height="10" fill="#4575b4"></rect>
+  </g>
+  <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(40.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(80.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(120.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(160.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(200.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line>
+      <text fill="currentColor" y="9" dy="0.71em">25</text>
+    </g>
+  </g>
+  <text x="0" y="12" fill="currentColor" font-weight="bold">season</text>
+</svg>

@@ -11,14 +11,11 @@ import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeIn
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
-import {applyInlineStyles, maybeClassName} from "./style.js";
+import {applyInlineStyles} from "./style.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
   const {facet, style, caption, ariaLabel, ariaDescription} = options;
-
-  // className for inline styles
-  const className = maybeClassName(options.className);
 
   // Flatten any nested marks.
   const marks = options.marks === undefined ? [] : flatMarks(options.marks);
@@ -141,7 +138,7 @@ export function plot(options = {}) {
   const {fx, fy} = scales;
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
-  const context = createContext(options, subdimensions, className);
+  const context = createContext(options, subdimensions);
 
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
@@ -205,7 +202,6 @@ export function plot(options = {}) {
   const {width, height} = dimensions;
 
   const svg = create("svg", context)
-    .attr("class", className)
     .attr("fill", "currentColor")
     .attr("font-family", "system-ui, sans-serif")
     .attr("font-size", 10)
@@ -215,24 +211,27 @@ export function plot(options = {}) {
     .attr("viewBox", `0 0 ${width} ${height}`)
     .attr("aria-label", ariaLabel)
     .attr("aria-description", ariaDescription)
-    .call((svg) =>
-      // Warning: if you edit this, change defaultClassName.
-      svg.append("style").text(
-        `.${className} {
-  --plot-background: white;
-  display: block;
-  height: auto;
-  height: intrinsic;
-  max-width: 100%;
-}
-.${className} text,
-.${className} tspan {
-  white-space: pre;
-}`
-      )
-    )
     .call(applyInlineStyles, style)
     .node();
+
+  // Wrap the plot in a figure.
+  const {document} = context;
+  const figure = document.createElement("plot-figure");
+  const shadow = figure.attachShadow({mode: "open"});
+  const stylesheet = document.createElement("style");
+  stylesheet.textContent = `:host {
+    --plot-background: white;
+  }
+  svg {
+    display: block;
+    height: auto;
+    height: intrinsic;
+    max-width: 100%;
+  }
+  text, tspan {
+    white-space: pre;
+  }`;
+  svg.insertBefore(stylesheet, svg.firstChild);
 
   // Render facets.
   if (facets !== undefined) {
@@ -286,20 +285,18 @@ export function plot(options = {}) {
     if (node != null) svg.appendChild(node);
   }
 
-  // Wrap the plot in a figure with a caption, if desired.
-  let figure = svg;
+  // Render legends.
   const legends = createLegends(scaleDescriptors, context, options);
-  if (caption != null || legends.length > 0) {
-    const {document} = context;
-    figure = document.createElement("figure");
-    figure.style.maxWidth = "initial";
-    for (const legend of legends) figure.appendChild(legend);
-    figure.appendChild(svg);
-    if (caption != null) {
-      const figcaption = document.createElement("figcaption");
-      figcaption.appendChild(caption?.ownerDocument ? caption : document.createTextNode(caption));
-      figure.appendChild(figcaption);
-    }
+  for (const legend of legends) shadow.appendChild(legend);
+
+  // Insert the plot.
+  shadow.appendChild(svg);
+
+  // Render the caption.
+  if (caption != null) {
+    const figcaption = document.createElement("figcaption");
+    figcaption.appendChild(caption?.ownerDocument ? caption : document.createTextNode(caption));
+    shadow.appendChild(figcaption);
   }
 
   figure.scale = exposeScales(scaleDescriptors);

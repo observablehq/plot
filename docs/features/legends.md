@@ -88,7 +88,6 @@ Categorical and ordinal color legends are rendered as swatches, unless the **leg
 * **swatchHeight** - the swatches’ height
 * **columns** - the number of swatches per row
 * **marginLeft** - the legend’s left margin
-* **className** - a class name, that defaults to a randomly generated string scoping the styles
 * **opacity** - the swatch fill opacity
 * **width** - the legend’s width (in pixels)
 

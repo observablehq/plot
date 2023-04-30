@@ -112,8 +112,7 @@ export default {
         marks: this.mark == null ? [] : [this.mark],
         width: 688 // better default for VitePress
       }),
-      ...this.options,
-      className: "plot"
+      ...this.options
     };
     if (this.defer) {
       const mounted = (el) => {

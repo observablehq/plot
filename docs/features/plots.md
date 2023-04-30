@@ -268,8 +268,6 @@ The **style** option allows custom styles to override Plot’s defaults. It may 
 Unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecated-quirky-length)) such as `{padding: 20}` are not supported by some browsers; you should instead specify a string with units such as `{padding: "20px"}`.
 :::
 
-The generated SVG element has a class name which applies a default stylesheet. Use the top-level **className** option to specify that class name.
-
 The **document** option specifies the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create plot elements. It defaults to window.document, but can be changed to another document, say when using a virtual DOM implementation for server-side rendering in Node.
 
 ## plot(*options*)

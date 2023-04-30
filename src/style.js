@@ -414,19 +414,6 @@ export function impliedNumber(value, impliedValue) {
   if ((value = number(value)) !== impliedValue) return value;
 }
 
-// https://www.w3.org/TR/CSS21/grammar.html
-const validClassName =
-  /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/i;
-
-export function maybeClassName(name) {
-  // The default should be changed whenever the default styles are changed, so
-  // as to avoid conflict when multiple versions of Plot are on the page.
-  if (name === undefined) return "plot-d6a7b5";
-  name = `${name}`;
-  if (!validClassName.test(name)) throw new Error(`invalid class name: ${name}`);
-  return name;
-}
-
 export function applyInlineStyles(selection, style) {
   if (typeof style === "string") {
     selection.property("style", style);
