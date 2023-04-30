@@ -56,7 +56,7 @@ Plot.frame({stroke: "red"}).plot({x: {domain: [0, 1], grid: true}})
 ```
 :::
 
-While options are often specified in literal values, such as <span style="border-bottom: solid 2px var(--vp-c-red);">*red*</span> above, the standard [mark channels](../features/marks.md#mark-options) such as **fill** and **stroke** can also be specified as abstract values. For example, in the density heatmap below comparing the delay between eruptions of the Old Faithful geyser (*waiting*) in *x*→ and the duration of the eruption in *y*↑ (*eruptions*), both in minutes, we fill the frame with <span :style="{borderBottom: `solid 2px ${d3.interpolateTurbo(0)}`}">black</span> representing zero density.
+While options are often specified in literal values, such as <span style="border-bottom: solid 2px var(--vp-c-red);">*red*</span> above, the standard [mark channels](../features/marks.md#mark-options) such as **fill** and **stroke** can also be specified as abstract values. For example, in the density heatmap below comparing the delay between eruptions of the Old Faithful geyser (*waiting*) in *x*→ and the duration of the eruption (*eruptions*) in *y*↑, both in minutes, we fill the frame with <span :style="{borderBottom: `solid 2px ${d3.interpolateTurbo(0)}`}">black</span> representing zero density.
 
 :::plot defer
 ```js
