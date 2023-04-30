@@ -119,6 +119,7 @@ export * from "./industry-unemployment-track.js";
 export * from "./industry-unemployment.js";
 export * from "./infinity-log.js";
 export * from "./integer-interval.js";
+export * from "./intern-facet.js";
 export * from "./intraday-histogram.js";
 export * from "./kitten.js";
 export * from "./learning-poverty.js";
