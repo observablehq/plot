@@ -126,7 +126,7 @@ export function plot(options = {}) {
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
     const {facetsIndex, channels: facetChannels} = facetStateByMark.get(mark) ?? {};
-    const {data, facets, channels} = mark.initialize(facetsIndex, facetChannels);
+    const {data, facets, channels} = mark.initialize(facetsIndex, facetChannels, options);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
   }

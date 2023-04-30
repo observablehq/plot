@@ -98,6 +98,7 @@ export * from "./google-trends-ridgeline.js";
 export * from "./graticule.js";
 export * from "./greek-gods.js";
 export * from "./grid-choropleth.js";
+export * from "./group-interval.js";
 export * from "./grouped-rects.js";
 export * from "./hadcrut-warming-stripes.js";
 export * from "./heatmap.js";

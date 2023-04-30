@@ -1,0 +1,85 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,331.2145390070922)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,292.4290780141844)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,253.64361702127664)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,214.85815602836882)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,176.07269503546098)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,137.2872340425532)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,98.50177304964541)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,59.71631205673761)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,20.930851063829774)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,331.2145390070922)">500</text>
+    <text y="0.32em" transform="translate(40,292.4290780141844)">1,000</text>
+    <text y="0.32em" transform="translate(40,253.64361702127664)">1,500</text>
+    <text y="0.32em" transform="translate(40,214.85815602836882)">2,000</text>
+    <text y="0.32em" transform="translate(40,176.07269503546098)">2,500</text>
+    <text y="0.32em" transform="translate(40,137.2872340425532)">3,000</text>
+    <text y="0.32em" transform="translate(40,98.50177304964541)">3,500</text>
+    <text y="0.32em" transform="translate(40,59.71631205673761)">4,000</text>
+    <text y="0.32em" transform="translate(40,20.930851063829774)">4,500</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(24,0)">
+    <path transform="translate(47,370)" d="M0,0L0,6"></path>
+    <path transform="translate(99,370)" d="M0,0L0,6"></path>
+    <path transform="translate(151,370)" d="M0,0L0,6"></path>
+    <path transform="translate(203,370)" d="M0,0L0,6"></path>
+    <path transform="translate(255,370)" d="M0,0L0,6"></path>
+    <path transform="translate(307,370)" d="M0,0L0,6"></path>
+    <path transform="translate(359,370)" d="M0,0L0,6"></path>
+    <path transform="translate(411,370)" d="M0,0L0,6"></path>
+    <path transform="translate(463,370)" d="M0,0L0,6"></path>
+    <path transform="translate(515,370)" d="M0,0L0,6"></path>
+    <path transform="translate(567,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(24,9.5)">
+    <text y="0.71em" transform="translate(47,370)">1950</text>
+    <text y="0.71em" transform="translate(99,370)">1955</text>
+    <text y="0.71em" transform="translate(151,370)">1960</text>
+    <text y="0.71em" transform="translate(203,370)">1965</text>
+    <text y="0.71em" transform="translate(255,370)">1970</text>
+    <text y="0.71em" transform="translate(307,370)">1975</text>
+    <text y="0.71em" transform="translate(359,370)">1980</text>
+    <text y="0.71em" transform="translate(411,370)">1985</text>
+    <text y="0.71em" transform="translate(463,370)">1990</text>
+    <text y="0.71em" transform="translate(515,370)">1995</text>
+    <text y="0.71em" transform="translate(567,370)">2000</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,370)">date_of_birth</text>
+  </g>
+  <g aria-label="bar">
+    <rect x="47" width="47" y="369.84485815602835" height="0.15514184397164854"></rect>
+    <rect x="99" width="47" y="369.4570035460993" height="0.5429964539006846"></rect>
+    <rect x="151" width="47" y="367.67287234042556" height="2.327127659574444"></rect>
+    <rect x="203" width="47" y="366.58687943262413" height="3.41312056737587"></rect>
+    <rect x="255" width="47" y="363.0961879432624" height="6.903812056737593"></rect>
+    <rect x="307" width="47" y="346.41843971631204" height="23.581560283687963"></rect>
+    <rect x="359" width="47" y="264.81382978723406" height="105.18617021276594"></rect>
+    <rect x="411" width="47" y="94.85593971631204" height="275.14406028368796"></rect>
+    <rect x="463" width="47" y="20" height="350"></rect>
+    <rect x="515" width="47" y="246.89494680851064" height="123.10505319148936"></rect>
+    <rect x="567" width="47" y="365.34574468085106" height="4.654255319148945"></rect>
+  </g>
+</svg>

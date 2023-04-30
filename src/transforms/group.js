@@ -1,36 +1,38 @@
 import {
-  group as grouper,
-  sort,
-  sum,
+  InternSet,
   deviation,
-  min,
+  group as grouper,
   max,
+  maxIndex,
   mean,
   median,
-  mode,
-  variance,
-  InternSet,
+  min,
   minIndex,
-  maxIndex,
-  rollup
+  mode,
+  rollup,
+  sort,
+  sum,
+  variance
 } from "d3";
 import {ascendingDefined} from "../defined.js";
 import {
-  valueof,
-  maybeColorChannel,
-  maybeInput,
-  maybeTuple,
-  maybeColumn,
   column,
   first,
   identity,
-  take,
+  isObject,
+  isTemporal,
   labelof,
+  map,
+  maybeColorChannel,
+  maybeColumn,
+  maybeInput,
+  maybeInterval,
+  maybeTuple,
+  percentile,
   range,
   second,
-  percentile,
-  isTemporal,
-  isObject
+  take,
+  valueof
 } from "../options.js";
 import {basic} from "./basic.js";
 
@@ -107,13 +109,13 @@ function groupn(
     ...("z" in inputs && {z: GZ || z}),
     ...("fill" in inputs && {fill: GF || fill}),
     ...("stroke" in inputs && {stroke: GS || stroke}),
-    ...basic(options, (data, facets) => {
-      const X = valueof(data, x);
-      const Y = valueof(data, y);
+    ...basic(options, (data, facets, plotOptions) => {
+      const X = maybeApplyInterval(valueof(data, x), plotOptions?.x);
+      const Y = maybeApplyInterval(valueof(data, y), plotOptions?.y);
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
-      const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S});
+      const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S}); // TODO interval?
       const groupFacets = [];
       const groupData = [];
       const GX = X && setGX([]);
@@ -155,6 +157,11 @@ function groupn(
     ...(!hasOutput(outputs, "y") && (GY ? {y: GY} : {y1, y2})),
     ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
   };
+}
+
+function maybeApplyInterval(V, scale) {
+  const i = maybeInterval(scale?.interval, scale?.type);
+  return i ? map(V, (v) => i.floor(v)) : V;
 }
 
 export function hasOutput(outputs, ...names) {
