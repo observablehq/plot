@@ -39,12 +39,6 @@ export interface LegendOptions {
   /** Custom styles to override Plot’s defaults. */
   style?: string | Partial<CSSStyleDeclaration> | null;
 
-  /**
-   * The generated element’s class name used for Plot’s default stylesheet; by
-   * default, a random string prefixed with “plot-”.
-   */
-  className?: string | null;
-
   /** The constant color the ramp; defaults to black. For *ramp* *opacity* legends only. */
   color?: string;
   /** The desired fill color of symbols; use *color* for a redundant encoding. For *symbol* legends only. */

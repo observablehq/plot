@@ -101,12 +101,6 @@ export interface PlotOptions extends ScaleDefaults {
   style?: string | Partial<CSSStyleDeclaration> | null;
 
   /**
-   * The generated SVG element’s class name used for Plot’s default stylesheet;
-   * by default, a random string prefixed with “plot-”.
-   */
-  className?: string;
-
-  /**
    * The figure caption. If present, Plot wraps the generated SVG element in an
    * HTML figure element with a figcaption, returning the figure. To specify an
    * HTML caption, consider using the [`html` tagged template

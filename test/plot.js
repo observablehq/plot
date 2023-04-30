@@ -7,13 +7,13 @@ import * as plots from "./plots/index.js";
 
 for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
-    const root = await plot();
+    let root = await plot();
+    if (root.shadowRoot) root = root.shadowRoot.querySelector("svg");
     const ext = root.tagName === "svg" ? "svg" : "html";
     for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
       svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
       svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
     }
-    reindexStyle(root);
     reindexMarker(root);
     reindexClip(root);
     let expected;
@@ -62,17 +62,6 @@ for (const [name, plot] of Object.entries(plots)) {
 
     assert(equal, `${name} must match snapshot`);
   });
-}
-
-function reindexStyle(root) {
-  const uid = "plot-d6a7b5"; // see defaultClassName
-  for (const style of root.querySelectorAll("style")) {
-    const parent = style.parentNode;
-    for (const child of [parent, ...parent.querySelectorAll("[class]")]) {
-      child.setAttribute("class", child.getAttribute("class").replace(new RegExp(`\\b${uid}\\b`, "g"), "plot"));
-    }
-    style.textContent = style.textContent.replace(new RegExp(`[.]${uid}\\b`, "g"), `.plot`);
-  }
 }
 
 function reindexMarker(root) {
