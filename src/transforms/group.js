@@ -22,11 +22,10 @@ import {
   isObject,
   isTemporal,
   labelof,
-  map,
+  maybeApplyInterval,
   maybeColorChannel,
   maybeColumn,
   maybeInput,
-  maybeInterval,
   maybeTuple,
   percentile,
   range,
@@ -157,11 +156,6 @@ function groupn(
     ...(!hasOutput(outputs, "y") && (GY ? {y: GY} : {y1, y2})),
     ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
   };
-}
-
-function maybeApplyInterval(V, scale) {
-  const i = maybeInterval(scale?.interval, scale?.type);
-  return i ? map(V, (v) => i.floor(v)) : V;
 }
 
 export function hasOutput(outputs, ...names) {

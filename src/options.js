@@ -1,5 +1,6 @@
+import {color, descending, quantile, range as rangei} from "d3";
 import {parse as isoParse} from "isoformat";
-import {color, descending, range as rangei, quantile} from "d3";
+import {defined} from "./defined.js";
 import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
@@ -267,6 +268,18 @@ export function mid(x1, x2) {
     },
     label: x1.label
   };
+}
+
+// If the scale options declare an interval, applies it to the values V.
+export function maybeApplyInterval(V, scale) {
+  const t = maybeIntervalTransform(scale?.interval, scale?.type);
+  return t ? map(V, t) : V;
+}
+
+// Returns the equivalent scale transform for the specified interval option.
+export function maybeIntervalTransform(interval, type) {
+  const i = maybeInterval(interval, type);
+  return i && ((v) => (defined(v) ? i.floor(v) : v));
 }
 
 // If interval is not nullish, converts interval shorthand such as a number (for

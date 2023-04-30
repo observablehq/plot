@@ -7,7 +7,7 @@ import {createLegends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
-import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeInterval} from "./options.js";
+import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeIntervalTransform} from "./options.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
@@ -363,7 +363,7 @@ function applyScaleTransform(channel, options) {
     type,
     percent,
     interval,
-    transform = percent ? (x) => x * 100 : maybeInterval(interval, type)?.floor
+    transform = percent ? (x) => x * 100 : maybeIntervalTransform(interval, type)
   } = options[scale] ?? {};
   if (transform != null) channel.value = map(channel.value, transform);
 }
