@@ -14,7 +14,7 @@ export function stackX(stackOptions = {}, options = {}) {
 export function stackX1(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
-  const [transform, Y, X] = stack(y, x, "x", "y", stackOptions, options);
+  const [transform, Y, X] = stack(y, x, "y", "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
