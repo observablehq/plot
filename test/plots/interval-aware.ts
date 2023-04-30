@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export async function intervalTransformBin() {
+export async function intervalAwareBin() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     x: {interval: 10},
@@ -9,7 +9,7 @@ export async function intervalTransformBin() {
   });
 }
 
-export async function intervalTransformGroup() {
+export async function intervalAwareGroup() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     x: {tickFormat: "%Y", interval: "5 years"},
@@ -17,7 +17,7 @@ export async function intervalTransformGroup() {
   });
 }
 
-export async function intervalTransformStack() {
+export async function intervalAwareStack() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     x: {tickFormat: "%Y", interval: "5 years"},

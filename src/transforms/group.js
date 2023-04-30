@@ -114,7 +114,7 @@ function groupn(
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
-      const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S}); // TODO interval?
+      const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S});
       const groupFacets = [];
       const groupData = [];
       const GX = X && setGX([]);
