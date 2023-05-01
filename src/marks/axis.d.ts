@@ -1,6 +1,7 @@
+import type {InsetOptions} from "../inset.js";
 import type {CompoundMark, Data, MarkOptions} from "../mark.js";
-import type {ScaleOptions} from "../scales.js";
 import type {RuleX, RuleXOptions, RuleY, RuleYOptions} from "./rule.js";
+import type {ScaleOptions} from "../scales.js";
 import type {TextOptions} from "./text.js";
 import type {TickXOptions, TickYOptions} from "./tick.js";
 
@@ -62,10 +63,29 @@ export interface AxisOptions extends GridOptions, MarkOptions, TextOptions, Axis
 }
 
 /** Options for the axisX and axisFx marks. */
-export interface AxisXOptions extends AxisOptions, TickXOptions {}
+export interface AxisXOptions extends AxisOptions, TickXOptions {
+  /**
+   * Offsets the axis label by the specified number of pixels; for
+   * center-anchored axis labels, a positive value moves the axis label towards
+   * the right→, while a negative value moves it towards the left←. Otherwise, a
+   * positive value moves the axis label inwards, while a negative value moves
+   * it outwards. To offset the axis label’s position vertically, see
+   * **labelOffset**.
+   */
+  inset?: InsetOptions["inset"];
+}
 
 /** Options for the axisY and axisFy marks. */
-export interface AxisYOptions extends AxisOptions, TickYOptions {}
+export interface AxisYOptions extends AxisOptions, TickYOptions {
+  /**
+   * Offsets the axis label by the specified number of pixels; for
+   * center-anchored axis labels, a positive value moves the axis label down↓,
+   * while a negative value moves it up↑. Otherwise, a positive value moves the
+   * axis label inwards, while a negative value moves it outwards. To offset the
+   * axis label’s position horizontally, see **labelOffset**.
+   */
+  inset?: InsetOptions["inset"];
+}
 
 /** Options for the gridX and gridFx marks. */
 export interface GridXOptions extends GridOptions, Omit<RuleXOptions, "interval"> {}
