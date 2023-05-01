@@ -12,7 +12,7 @@ export async function intervalAwareBin() {
 export async function intervalAwareGroup() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
-    x: {tickFormat: "%Y", interval: "5 years"},
+    x: {interval: "5 years"},
     marks: [Plot.barY(olympians, Plot.groupX({y: "count"}, {x: "date_of_birth"}))]
   });
 }
@@ -20,7 +20,7 @@ export async function intervalAwareGroup() {
 export async function intervalAwareStack() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
-    x: {tickFormat: "%Y", interval: "5 years"},
+    x: {interval: "5 years"},
     marks: [Plot.barY(olympians, {x: "date_of_birth", y: 1})]
   });
 }
