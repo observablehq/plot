@@ -1,36 +1,37 @@
 import {
-  group as grouper,
-  sort,
-  sum,
+  InternSet,
   deviation,
-  min,
+  group as grouper,
   max,
+  maxIndex,
   mean,
   median,
-  mode,
-  variance,
-  InternSet,
+  min,
   minIndex,
-  maxIndex,
-  rollup
+  mode,
+  rollup,
+  sort,
+  sum,
+  variance
 } from "d3";
 import {ascendingDefined} from "../defined.js";
 import {
-  valueof,
-  maybeColorChannel,
-  maybeInput,
-  maybeTuple,
-  maybeColumn,
   column,
   first,
   identity,
-  take,
+  isObject,
+  isTemporal,
   labelof,
+  maybeApplyInterval,
+  maybeColorChannel,
+  maybeColumn,
+  maybeInput,
+  maybeTuple,
+  percentile,
   range,
   second,
-  percentile,
-  isTemporal,
-  isObject
+  take,
+  valueof
 } from "../options.js";
 import {basic} from "./basic.js";
 
@@ -107,9 +108,9 @@ function groupn(
     ...("z" in inputs && {z: GZ || z}),
     ...("fill" in inputs && {fill: GF || fill}),
     ...("stroke" in inputs && {stroke: GS || stroke}),
-    ...basic(options, (data, facets) => {
-      const X = valueof(data, x);
-      const Y = valueof(data, y);
+    ...basic(options, (data, facets, plotOptions) => {
+      const X = maybeApplyInterval(valueof(data, x), plotOptions?.x);
+      const Y = maybeApplyInterval(valueof(data, y), plotOptions?.y);
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);

@@ -1,17 +1,22 @@
+import type {PlotOptions} from "../plot.js";
 import type {ChannelName, Channels, ChannelValue} from "../channel.js";
 import type {Context} from "../context.js";
 import type {Dimensions} from "../dimensions.js";
 import type {ScaleFunctions} from "../scales.js";
 
 /**
- * A mark transform function is passed the mark’s *data* and a nested index into
- * the data, *facets*. The transform function returns new mark data and facets;
- * the returned **data** defaults to the passed *data*, and the returned
- * **facets** defaults to the passed *facets*. The mark is the *this* context.
- * Transform functions can also trigger side-effects, say to populate
- * lazily-derived columns; see also Plot.column.
+ * A mark transform function is passed the mark’s *data*, a nested index into
+ * the data, *facets*, and the plot’s *options*. The transform function returns
+ * new mark data and facets; the returned **data** defaults to the passed
+ * *data*, and the returned **facets** defaults to the passed *facets*. The mark
+ * is the *this* context. Transform functions can also trigger side-effects, say
+ * to populate lazily-derived columns; see also Plot.column.
  */
-export type TransformFunction = (data: any[], facets: number[][]) => {data?: any[]; facets?: number[][]};
+export type TransformFunction = (
+  data: any[],
+  facets: number[][],
+  options?: PlotOptions
+) => {data?: any[]; facets?: number[][]};
 
 /**
  * A mark initializer function is passed the mark’s (possibly transformed)

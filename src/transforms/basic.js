@@ -38,9 +38,9 @@ export function initializer({filter: f1, sort: s1, reverse: r1, initializer: i1,
 function composeTransform(t1, t2) {
   if (t1 == null) return t2 === null ? undefined : t2;
   if (t2 == null) return t1 === null ? undefined : t1;
-  return function (data, facets) {
-    ({data, facets} = t1.call(this, data, facets));
-    return t2.call(this, arrayify(data), facets);
+  return function (data, facets, plotOptions) {
+    ({data, facets} = t1.call(this, data, facets, plotOptions));
+    return t2.call(this, arrayify(data), facets, plotOptions);
   };
 }
 

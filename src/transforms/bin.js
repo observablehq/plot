@@ -40,6 +40,7 @@ import {
   reduceIdentity
 } from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
+import {maybeApplyInterval} from "../options.js";
 
 export function binX(outputs = {y: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then optionally on y, then bin x.
@@ -143,8 +144,8 @@ function binn(
     ...("z" in inputs && {z: GZ || z}),
     ...("fill" in inputs && {fill: GF || fill}),
     ...("stroke" in inputs && {stroke: GS || stroke}),
-    ...basic(options, (data, facets) => {
-      const K = valueof(data, k);
+    ...basic(options, (data, facets, plotOptions) => {
+      const K = maybeApplyInterval(valueof(data, k), plotOptions?.[gk]);
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
