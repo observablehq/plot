@@ -146,8 +146,10 @@ function axisKy(
               this.frameAnchor = `${cla}-${anchor}`;
               this.rotate = 0;
             }
-            this.dy = cla === "top" ? 3 - marginTop + inset : cla === "bottom" ? marginBottom - 3 - inset : inset;
-            this.dx = anchor === "right" ? clo : -clo;
+            this.dy =
+              (options.dy ?? 0) +
+              (cla === "top" ? 3 - marginTop + inset : cla === "bottom" ? marginBottom - 3 - inset : inset);
+            this.dx = (options.dx ?? 0) + (anchor === "right" ? clo : -clo);
             this.ariaLabel = `${k}-axis label`;
             return {
               facets: [[0]],
@@ -247,8 +249,10 @@ function axisKx(
               this.textAnchor = cla === "right" ? "end" : "start";
             }
             this.lineAnchor = anchor;
-            this.dy = anchor === "top" ? -clo : clo;
-            this.dx = cla === "right" ? marginRight - 3 - inset : cla === "left" ? 3 - marginLeft + inset : inset;
+            this.dy = (options.dy ?? 0) + (anchor === "top" ? -clo : clo);
+            this.dx =
+              (options.dx ?? 0) +
+              (cla === "right" ? marginRight - 3 - inset : cla === "left" ? 3 - marginLeft + inset : inset);
             this.ariaLabel = `${k}-axis label`;
             return {
               facets: [[0]],
