@@ -1,0 +1,755 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="540" viewBox="0 0 640 540" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="facet" transform="translate(0,1)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,38.5)">1.2</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="104.46043165467626" x2="104.46043165467626" y1="22" y2="22" stroke="#4e79a7"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="104.46043165467626" width="0" y="22" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="104.46043165467626" x2="104.46043165467626" y1="22" y2="37" stroke="#4e79a7"></line>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,42)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,38.5)">1.3</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="40" x2="193.09352517985613" y1="22" y2="22" stroke="#4e79a7"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="70.2158273381295" width="64.46043165467624" y="22" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="108.48920863309354" x2="108.48920863309354" y1="22" y2="37" stroke="#4e79a7"></line>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,83)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,38.5)">1.4</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="48.057553956834525" x2="152.80575539568346" y1="22" y2="22" stroke="#4e79a7"></line>
+      <line x1="140.71942446043164" x2="148.7769784172662" y1="39" y2="39" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="72.23021582733813" width="32.23021582733813" y="22" height="15"></rect>
+      <rect x="142.73381294964028" width="4.028776978417284" y="39" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="96.40287769784172" x2="96.40287769784172" y1="22" y2="37" stroke="#4e79a7"></line>
+      <line x1="144.74820143884892" x2="144.74820143884892" y1="39" y2="54" stroke="#f28e2c"></line>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,124)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,38.5)">1.5</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="72.23021582733813" x2="189.06474820143885" y1="22" y2="22" stroke="#4e79a7"></line>
+      <line x1="112.5179856115108" x2="209.20863309352518" y1="39" y2="39" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="108.48920863309354" width="32.2302158273381" y="22" height="15"></rect>
+      <rect x="140.71942446043164" width="32.23021582733813" y="39" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="124.60431654676259" x2="124.60431654676259" y1="22" y2="37" stroke="#4e79a7"></line>
+      <line x1="152.80575539568346" x2="152.80575539568346" y1="39" y2="54" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,8)">
+      <circle cx="261.58273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="197.12230215827336" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="197.12230215827336" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="217.2661870503597" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="197.12230215827336" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="193.09352517985613" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="217.2661870503597" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="193.09352517985613" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="197.12230215827336" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="205.17985611510792" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="229.3525179856115" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="193.09352517985613" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="209.20863309352518" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="56.115107913669064" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="193.09352517985613" cy="22" r="1" stroke="#4e79a7"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,165)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,38.5)">1.6</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="84.31654676258992" x2="217.2661870503597" y1="22" y2="22" stroke="#4e79a7"></line>
+      <line x1="104.46043165467626" x2="233.3812949640288" y1="39" y2="39" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="128.63309352517985" width="36.25899280575541" y="22" height="15"></rect>
+      <rect x="148.7769784172662" width="40.28776978417264" y="39" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="144.74820143884892" x2="144.74820143884892" y1="22" y2="37" stroke="#4e79a7"></line>
+      <line x1="164.89208633093526" x2="164.89208633093526" y1="39" y2="54" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,8)">
+      <circle cx="257.5539568345324" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="245.4676258992806" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="257.5539568345324" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="265.6115107913669" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="221.29496402877697" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="237.41007194244602" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="309.9280575539568" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="281.726618705036" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="277.6978417266187" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="277.6978417266187" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="309.9280575539568" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="289.7841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="229.3525179856115" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="249.49640287769785" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="289.7841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="293.8129496402878" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="225.32374100719426" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="277.6978417266187" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="289.7841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="257.5539568345324" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="249.49640287769785" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="257.5539568345324" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="225.32374100719426" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="229.3525179856115" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="245.4676258992806" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="317.98561151079133" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="237.41007194244602" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="438.84892086330933" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="406.6187050359713" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="257.5539568345324" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="229.3525179856115" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="261.58273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="221.29496402877697" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="317.98561151079133" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="237.41007194244602" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="229.3525179856115" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="253.52517985611513" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="249.49640287769785" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="257.5539568345324" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="350.2158273381295" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="257.5539568345324" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="221.29496402877697" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="253.52517985611513" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="358.273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="414.67625899280574" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="233.3812949640288" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="305.89928057553954" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="229.3525179856115" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="233.3812949640288" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="229.3525179856115" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="253.52517985611513" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="257.5539568345324" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="346.18705035971226" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="257.5539568345324" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="253.52517985611513" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="269.64028776978415" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="229.3525179856115" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="277.6978417266187" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="273.66906474820144" cy="22" r="1" stroke="#4e79a7"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,206)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,38.5)">1.7</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="104.46043165467626" x2="245.4676258992806" y1="22" y2="22" stroke="#4e79a7"></line>
+      <line x1="116.54676258992806" x2="285.75539568345323" y1="39" y2="39" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="156.83453237410072" width="36.25899280575541" y="22" height="15"></rect>
+      <rect x="176.97841726618705" width="44.31654676258992" y="39" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="172.94964028776977" x2="172.94964028776977" y1="22" y2="37" stroke="#4e79a7"></line>
+      <line x1="197.12230215827336" x2="197.12230215827336" y1="39" y2="54" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,8)">
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="293.8129496402878" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="100.431654676259" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="265.6115107913669" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="297.841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="289.7841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="293.8129496402878" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="277.6978417266187" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="322.01438848920867" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="398.56115107913666" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="305.89928057553954" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="261.58273381294964" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="305.89928057553954" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="297.841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="257.5539568345324" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="390.50359712230215" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="366.3309352517986" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="326.04316546762595" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="273.66906474820144" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="289.7841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="313.9568345323741" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="257.5539568345324" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="289.7841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="293.8129496402878" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="249.49640287769785" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="305.89928057553954" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="289.7841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="297.841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="257.5539568345324" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="289.7841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="293.8129496402878" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="301.8705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="317.98561151079133" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="317.98561151079133" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="269.64028776978415" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="269.64028776978415" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="301.8705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="277.6978417266187" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="334.1007194244604" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="257.5539568345324" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="394.5323741007194" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="277.6978417266187" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="426.7625899280576" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="84.31654676258992" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="317.98561151079133" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="293.8129496402878" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="257.5539568345324" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="350.2158273381295" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="301.8705035971223" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="249.49640287769785" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="378.41726618705036" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="293.8129496402878" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="342.158273381295" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="289.7841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="317.98561151079133" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="358.273381294964" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="285.75539568345323" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="305.89928057553954" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="273.66906474820144" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="342.158273381295" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="309.9280575539568" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="305.89928057553954" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="382.4460431654676" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="358.273381294964" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="257.5539568345324" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="277.6978417266187" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="358.273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="265.6115107913669" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="374.3884892086331" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="463.0215827338129" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="317.98561151079133" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="249.49640287769785" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="277.6978417266187" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="317.98561151079133" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="394.5323741007194" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="293.8129496402878" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="305.89928057553954" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="289.7841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="309.9280575539568" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="317.98561151079133" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="297.841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="96.40287769784172" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="269.64028776978415" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="309.9280575539568" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="277.6978417266187" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="293.8129496402878" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="317.98561151079133" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="491.2230215827338" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="334.1007194244604" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="253.52517985611513" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="273.66906474820144" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="257.5539568345324" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="289.7841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="293.8129496402878" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="293.8129496402878" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="100.431654676259" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="309.9280575539568" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="265.6115107913669" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="334.1007194244604" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="293.8129496402878" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="289.7841726618705" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="277.6978417266187" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="293.8129496402878" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="374.3884892086331" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="398.56115107913666" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="358.273381294964" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="108.48920863309354" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="519.4244604316547" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="22" r="1" stroke="#4e79a7"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,247)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,38.5)">1.8</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="144.74820143884892" x2="277.6978417266187" y1="22" y2="22" stroke="#4e79a7"></line>
+      <line x1="140.71942446043164" x2="334.1007194244604" y1="39" y2="39" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="193.09352517985613" width="36.25899280575538" y="22" height="15"></rect>
+      <rect x="213.23741007194246" width="48.34532374100718" y="39" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="209.20863309352518" x2="209.20863309352518" y1="22" y2="37" stroke="#4e79a7"></line>
+      <line x1="237.41007194244602" x2="237.41007194244602" y1="39" y2="54" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,8)">
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="495.25179856115113" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="313.9568345323741" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="313.9568345323741" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="378.41726618705036" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="358.273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="515.3956834532374" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="346.18705035971226" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="358.273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="358.273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="72.23021582733813" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="479.136690647482" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="378.41726618705036" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="378.41726618705036" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="378.41726618705036" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="350.2158273381295" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="559.7122302158274" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="136.6906474820144" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="358.273381294964" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="426.7625899280576" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="571.7985611510791" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="539.568345323741" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="378.41726618705036" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="471.0791366906475" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="426.7625899280576" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="495.25179856115113" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="116.54676258992806" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="322.01438848920867" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="458.9928057553957" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="499.28057553956836" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="463.0215827338129" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="358.273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="358.273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="132.66187050359713" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="358.273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="358.273381294964" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="386.4748201438849" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="426.7625899280576" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="450.9352517985612" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="350.2158273381295" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="378.41726618705036" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="378.41726618705036" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="378.41726618705036" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="382.4460431654676" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="346.18705035971226" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="317.98561151079133" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="289.7841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="358.273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="342.158273381295" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="366.3309352517986" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="515.3956834532374" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="334.1007194244604" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="366.3309352517986" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="301.8705035971223" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="309.9280575539568" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="334.1007194244604" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="422.73381294964025" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="406.6187050359713" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="358.273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="426.7625899280576" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="342.158273381295" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="362.30215827338134" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="317.98561151079133" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="406.6187050359713" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="527.4820143884892" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="350.2158273381295" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="503.3093525179856" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="446.9064748201439" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="285.75539568345323" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="289.7841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="426.7625899280576" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="430.7913669064748" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="350.2158273381295" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="378.41726618705036" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="330.0719424460432" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="414.67625899280574" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="406.6187050359713" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="136.6906474820144" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="358.273381294964" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="96.40287769784172" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="410.6474820143885" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="136.6906474820144" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="362.30215827338134" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="285.75539568345323" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="317.98561151079133" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="305.89928057553954" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="479.136690647482" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="338.1294964028777" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="136.6906474820144" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="297.841726618705" cy="22" r="1" stroke="#4e79a7"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,288)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,38.5)">1.9</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="168.9208633093525" x2="334.1007194244604" y1="22" y2="22" stroke="#4e79a7"></line>
+      <line x1="168.9208633093525" x2="394.5323741007194" y1="39" y2="39" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="213.23741007194246" width="48.34532374100718" y="22" height="15"></rect>
+      <rect x="253.52517985611513" width="56.40287769784169" y="39" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="235.3956834532374" x2="235.3956834532374" y1="22" y2="37" stroke="#4e79a7"></line>
+      <line x1="277.6978417266187" x2="277.6978417266187" y1="39" y2="54" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,8)">
+      <circle cx="446.9064748201439" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="338.1294964028777" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="471.0791366906475" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="463.0215827338129" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="458.9928057553957" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="600" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="479.136690647482" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="499.28057553956836" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="479.136690647482" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="430.7913669064748" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="471.0791366906475" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="511.36690647482015" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="547.6258992805756" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="463.0215827338129" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="491.2230215827338" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="458.9928057553957" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="555.68345323741" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="527.4820143884892" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="414.67625899280574" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="454.9640287769784" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="414.67625899280574" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="418.705035971223" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="535.5395683453237" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="458.9928057553957" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="22" r="1" stroke="#4e79a7"></circle>
+      <circle cx="430.7913669064748" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="398.56115107913666" cy="39" r="1" stroke="#f28e2c"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,329)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,38.5)">2</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="160.863309352518" x2="309.9280575539568" y1="22" y2="22" stroke="#4e79a7"></line>
+      <line x1="225.32374100719426" x2="430.7913669064748" y1="39" y2="39" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="229.3525179856115" width="64.46043165467628" y="22" height="15"></rect>
+      <rect x="293.8129496402878" width="56.40287769784169" y="39" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="245.4676258992806" x2="245.4676258992806" y1="22" y2="37" stroke="#4e79a7"></line>
+      <line x1="326.04316546762595" x2="326.04316546762595" y1="39" y2="54" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,8)">
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="475.10791366906477" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="600" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="539.568345323741" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="467.05035971223026" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="579.8561151079136" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="495.25179856115113" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="438.84892086330933" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="205.17985611510792" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="547.6258992805756" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="559.7122302158274" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="475.10791366906477" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="479.136690647482" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="487.19424460431657" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="458.9928057553957" cy="39" r="1" stroke="#f28e2c"></circle>
+      <circle cx="446.9064748201439" cy="39" r="1" stroke="#f28e2c"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,370)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,38.5)">2.1</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="269.64028776978415" x2="438.84892086330933" y1="39" y2="39" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="324.0287769784172" width="54.38848920863313" y="39" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="366.3309352517986" x2="366.3309352517986" y1="39" y2="54" stroke="#f28e2c"></line>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,411)">
+    <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
+      <text y="0.32em" transform="translate(600,38.5)">2.2</text>
+    </g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="269.64028776978415" x2="269.64028776978415" y1="39" y2="39" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="269.64028776978415" width="0" y="39" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="269.64028776978415" x2="269.64028776978415" y1="39" y2="54" stroke="#f28e2c"></line>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(0,452)">
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,8)">
+      <path transform="translate(40,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,39)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,8)">
+      <text y="0.32em" transform="translate(40,22)">female</text>
+      <text y="0.32em" transform="translate(40,39)">male</text>
+    </g>
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(76.25899280575538,57)" d="M0,0L0,6"></path>
+      <path transform="translate(156.83453237410072,57)" d="M0,0L0,6"></path>
+      <path transform="translate(237.41007194244602,57)" d="M0,0L0,6"></path>
+      <path transform="translate(317.98561151079133,57)" d="M0,0L0,6"></path>
+      <path transform="translate(398.56115107913666,57)" d="M0,0L0,6"></path>
+      <path transform="translate(479.136690647482,57)" d="M0,0L0,6"></path>
+      <path transform="translate(559.7122302158274,57)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+      <text y="0.71em" transform="translate(76.25899280575538,57)">40</text>
+      <text y="0.71em" transform="translate(156.83453237410072,57)">60</text>
+      <text y="0.71em" transform="translate(237.41007194244602,57)">80</text>
+      <text y="0.71em" transform="translate(317.98561151079133,57)">100</text>
+      <text y="0.71em" transform="translate(398.56115107913666,57)">120</text>
+      <text y="0.71em" transform="translate(479.136690647482,57)">140</text>
+      <text y="0.71em" transform="translate(559.7122302158274,57)">160</text>
+    </g>
+    <g aria-label="rule" transform="translate(0,8)">
+      <line x1="96.40287769784172" x2="253.52517985611513" y1="22" y2="22" stroke="#4e79a7"></line>
+      <line x1="116.54676258992806" x2="297.841726618705" y1="39" y2="39" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="bar" fill="#ccc">
+      <rect x="125.6115107913669" width="97.69784172661875" y="22" height="15"></rect>
+      <rect x="158.84892086330936" width="76.54676258992805" y="39" height="15"></rect>
+    </g>
+    <g aria-label="tick" stroke-width="2" transform="translate(0.5,0)">
+      <line x1="166.9064748201439" x2="166.9064748201439" y1="22" y2="37" stroke="#4e79a7"></line>
+      <line x1="185.0359712230216" x2="185.0359712230216" y1="39" y2="54" stroke="#f28e2c"></line>
+    </g>
+    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,8)">
+      <circle cx="519.4244604316547" cy="22" r="1" stroke="#4e79a7"></circle>
+    </g>
+  </g>
+  <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
+    <text transform="translate(600,265) rotate(-90)">height</text>
+  </g>
+  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+    <text y="0.71em" transform="translate(40,265) rotate(-90)">sex</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
+    <text transform="translate(600,509)">weight →</text>
+  </g>
+</svg>
