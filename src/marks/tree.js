@@ -24,7 +24,7 @@ export function tree(
     markerEnd = marker,
     dot: dotDot = isNoneish(markerStart) && isNoneish(markerEnd),
     text: textText = "node:name",
-    textStroke = "white",
+    textStroke = "var(--plot-background)",
     title = "node:path",
     dx,
     dy,

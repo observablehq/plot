@@ -61,7 +61,7 @@ function markerCircleFill(color, context) {
     .attr("markerWidth", 6.67)
     .attr("markerHeight", 6.67)
     .attr("fill", color)
-    .attr("stroke", "white")
+    .attr("stroke", "var(--plot-background)")
     .attr("stroke-width", 1.5)
     .call((marker) => marker.append("circle").attr("r", 3))
     .node();
@@ -72,7 +72,7 @@ function markerCircleStroke(color, context) {
     .attr("viewBox", "-5 -5 10 10")
     .attr("markerWidth", 6.67)
     .attr("markerHeight", 6.67)
-    .attr("fill", "white")
+    .attr("fill", "var(--plot-background)")
     .attr("stroke", color)
     .attr("stroke-width", 1.5)
     .call((marker) => marker.append("circle").attr("r", 3))
