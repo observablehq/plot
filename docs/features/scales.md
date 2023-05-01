@@ -630,7 +630,7 @@ Plot.plot({
 ```
 :::
 
-While [mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning), they have access to the plot’s options and can decide to apply any of these options themselves. The stack and group transforms, in particular, are interval-aware: they will apply any scale interval before aggregating values. In any event, the scale transform will also apply to the *output* of the mark transform.
+While [mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning), they have access to the plot’s options and can decide to apply any of these options themselves. The [stack](../transforms/stack.md), [bin](../transforms/bin.md), and [group](../transforms/group.md) transforms, in particular, are interval-aware: they will apply the scale interval before aggregating values. In any event, the scale transform will also apply to the *output* of the mark transform.
 
 :::tip
 As an added bonus, the **fontVariant** and **type** options are no longer needed because Plot now understands that the *x* scale, despite being *ordinal*, represents daily observations.
