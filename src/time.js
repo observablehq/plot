@@ -70,3 +70,15 @@ export function maybeTimeInterval(interval) {
 export function maybeUtcInterval(interval) {
   return parseInterval(interval, utcIntervals);
 }
+
+export function isUtcYear(i) {
+  if (!i) return false;
+  const date = i.floor(new Date(Date.UTC(2000, 11, 31)));
+  return utcYear(date) >= date; // coercing equality
+}
+
+export function isTimeYear(i) {
+  if (!i) return false;
+  const date = i.floor(new Date(2000, 11, 31));
+  return timeYear(date) >= date; // coercing equality
+}
