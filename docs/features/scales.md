@@ -600,10 +600,6 @@ Plot.plot({
 ```
 :::
 
-:::warning CAUTION
-[Mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning). In this case the mark transforms will see the values prior to the scale transform as input, and the scale transform will apply to the *output* of the mark transform.
-:::
-
 The **interval** scale option sets an ordinal scale’s **domain** to the start of every interval within the extent of the data. In addition, it implicitly sets the **transform** of the scale to *interval*.floor, rounding values down to the start of each interval. For example, below we generate a time-series bar chart; when an **interval** is specified, missing days are visible.
 
 <p>
@@ -633,6 +629,8 @@ Plot.plot({
 })
 ```
 :::
+
+While [mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning), they have access to the plot’s options and can decide to apply any of these options themselves. The stack and group transforms, in particular, are interval-aware: they will apply any scale interval before aggregating values. In any event, the scale transform will also apply to the *output* of the mark transform.
 
 :::tip
 As an added bonus, the **fontVariant** and **type** options are no longer needed because Plot now understands that the *x* scale, despite being *ordinal*, represents daily observations.
