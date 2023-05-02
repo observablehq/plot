@@ -22,7 +22,16 @@ export async function tooltipDotFacets() {
     },
     marks: [
       Plot.dot(athletes, {x: "weight", y: "height", fx: "sex", fy: "date_of_birth"}),
-      Plot.tooltip(athletes, {x: "weight", y: "height", fx: "sex", fy: "date_of_birth"})
+      Plot.tooltip(athletes, {
+        x: "weight",
+        y: "height",
+        fx: "sex",
+        fy: "date_of_birth",
+        channels: {
+          name: {value: "name"},
+          sport: {value: "sport"}
+        }
+      })
     ]
   });
 }
