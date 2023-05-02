@@ -276,8 +276,8 @@ While Plot aspires to give good defaults and helpful warnings, Plot won’t prev
 In particular, beware the simple “bar”! A bar mark is used for a bar chart, but a rect mark is needed for a histogram. Plot has four different mark types for drawing rectangles:
 
 - use [rect](../marks/rect.md) when both *x* and *y* are quantitative
-- use [barX](../marks/bar.md) when *x* is ordinal and *y* is quantitative
-- use [barY](../marks/bar.md) when *x* is quantitative and *y* is ordinal
+- use [barX](../marks/bar.md) when *x* is quantitative and *y* is ordinal
+- use [barY](../marks/bar.md) when *x* is ordinal and *y* is quantitative
 - use [cell](../marks/cell.md) when both *x* and *y* are ordinal
 
 Plot encourages you to think about data types as you visualize because data types often imply semantics. For example, do you notice anything strange about the bar chart below?
