@@ -948,7 +948,8 @@ Plot automatically generates [axis](../marks/axis.md) and optionally [grid](../m
 * **line** - if true, draw the axis line (only for *x* and *y*)
 * **label** - a string to label the axis
 * **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
-* **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
+* **lineInset** - the label line inset (in pixels; default 3)
+* **textInset** - the label text inset (in pixels; default 3)
 * **fontVariant** - the font-variant attribute for ticks; defaults to *tabular-nums* if quantitative
 * **ariaLabel** - a short label representing the axis in the accessibility tree
 * **ariaDescription** - a textual description for the axis

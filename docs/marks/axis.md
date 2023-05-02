@@ -357,7 +357,8 @@ In addition to the [standard mark options](../features/marks.md), the axis mark 
 * **fontVariant** - the font-variant attribute for ticks; defaults to tabular-nums for quantitative axes
 * **label** - a string to label the axis; defaults to the scale’s label, perhaps with an arrow
 * **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
-* **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
+* **lineInset** - the label line inset (in pixels; default 3)
+* **textInset** - the label text inset (in pixels; default 3)
 * **color** - the color of the ticks and labels (defaults to *currentColor*)
 * **textStroke** - the color of the stroke around tick labels (defaults to *none*)
 * **textStrokeOpacity** - the opacity of the stroke around tick labels

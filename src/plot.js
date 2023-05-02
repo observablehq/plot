@@ -529,7 +529,8 @@ function axisOptions(
     ariaDescription,
     label = defaults.label,
     labelAnchor,
-    labelOffset
+    lineInset,
+    textInset
   }
 ) {
   return {
@@ -546,7 +547,8 @@ function axisOptions(
     ariaDescription,
     label,
     labelAnchor,
-    labelOffset
+    lineInset,
+    textInset
   };
 }
 

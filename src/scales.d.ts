@@ -608,11 +608,11 @@ export interface ScaleOptions extends ScaleDefaults {
    */
   labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
 
-  /**
-   * The axis **label** position offset (in pixels); default depends on margins
-   * and orientation.
-   */
-  labelOffset?: number;
+  /** The axis label line inset (in pixels); defaults to 3. */
+  lineInset?: number;
+
+  /** The axis label text inset (in pixels); defaults to 3. */
+  textInset?: number;
 
   /**
    * If true, draw a line along the axis; if false (default), do not.
