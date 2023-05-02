@@ -13,6 +13,15 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="fy-axis label" transform="translate(67.5,0.5)">
+    <text transform="translate(570,115.5) rotate(-90)">island</text>
+  </g>
+  <g aria-label="y-axis label" transform="translate(-71.5,0.5)">
+    <text y="0.71em" transform="translate(75,115.5) rotate(-90)">species</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
+    <text transform="translate(570,210)">Frequency →</text>
+  </g>
   <g aria-label="facet" transform="translate(0,1)">
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(570,49.5)">Biscoe</text>
@@ -100,14 +109,5 @@
     <g aria-label="text" text-anchor="end" transform="translate(-3.5,4.5)">
       <text y="0.71em" transform="translate(570,20)">Torgersen Island only has Adelie penguins!</text>
     </g>
-  </g>
-  <g aria-label="fy-axis label" transform="translate(67.5,0.5)">
-    <text transform="translate(570,115.5) rotate(-90)">island</text>
-  </g>
-  <g aria-label="y-axis label" transform="translate(-71.5,0.5)">
-    <text y="0.71em" transform="translate(75,115.5) rotate(-90)">species</text>
-  </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
-    <text transform="translate(570,210)">Frequency →</text>
   </g>
 </svg>

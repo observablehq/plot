@@ -13,6 +13,9 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(41,20)">↑ population</text>
+  </g>
   <g aria-label="facet" transform="translate(1,0)">
     <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(84,400)" d="M0,0L0,6"></path>
@@ -256,8 +259,5 @@
     <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
       <line x1="40" x2="128" y1="400" y2="400"></line>
     </g>
-  </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(41,20)">↑ population</text>
   </g>
 </svg>

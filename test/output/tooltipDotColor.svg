@@ -414,8 +414,8 @@
     <circle cx="316.2909090909091" cy="299.1666666666666" r="3" stroke="#4e79a7"></circle>
     <circle cx="415.4181818181818" cy="244.99999999999994" r="3" stroke="#f28e2c"></circle>
   </g>
-  <g display="none" pointer-events="all" fill="none">
-    <circle r="40" fill="none"></circle>
-    <circle r="4.5" stroke="red" stroke-width="1.5"></circle><title></title>
+  <g aria-label="tooltip" display="none">
+    <path fill="white" stroke="black"></path>
+    <text transform="translate(8,20)" text-anchor="start"></text>
   </g>
 </svg>

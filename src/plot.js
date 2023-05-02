@@ -234,6 +234,20 @@ export function plot(options = {}) {
     .call(applyInlineStyles, style)
     .node();
 
+  // Render non-faceted marks.
+  for (const mark of marks) {
+    if (facets !== undefined && mark.facet !== "super") continue;
+    const {channels, values, facets: indexes} = stateByMark.get(mark);
+    let index = null;
+    if (indexes) {
+      index = indexes[0];
+      index = mark.filter(index, channels, values);
+      if (index.length === 0) continue;
+    }
+    const node = mark.render(index, scales, values, superdimensions, context);
+    if (node != null) svg.appendChild(node);
+  }
+
   // Render facets.
   if (facets !== undefined) {
     const facetDomains = {x: fx?.domain(), y: fy?.domain()};
@@ -272,20 +286,6 @@ export function plot(options = {}) {
         }
         if (empty) this.remove();
       });
-  }
-
-  // Render non-faceted marks.
-  for (const mark of marks) {
-    if (facets !== undefined && mark.facet !== "super") continue;
-    const {channels, values, facets: indexes} = stateByMark.get(mark);
-    let index = null;
-    if (indexes) {
-      index = indexes[0];
-      index = mark.filter(index, channels, values);
-      if (index.length === 0) continue;
-    }
-    const node = mark.render(index, scales, values, superdimensions, context);
-    if (node != null) svg.appendChild(node);
   }
 
   // Wrap the plot in a figure with a caption, if desired.

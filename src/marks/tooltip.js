@@ -38,6 +38,9 @@ export class Tooltip extends Mark {
     let indexes = this.indexesBySvg.get(svg);
     if (indexes) return void indexes.push(index);
     this.indexesBySvg.set(svg, (indexes = [index]));
+    const r = 8; // padding
+    const dx = 0; // offsetLeft
+    const dy = 12; // offsetTop
     const dot = select(svg)
       .on("pointermove", (event) => {
         let i, xi, yi, fxi, fyi;
@@ -63,26 +66,46 @@ export class Tooltip extends Mark {
           dot.attr("display", "none");
         } else {
           dot.attr("display", "inline");
-          dot.attr("transform", `translate(${xi},${yi})`);
+          dot.attr("transform", `translate(${Math.round(xi)},${Math.round(yi)})`);
           const text = [];
           for (const key in channels) {
             const channel = channels[key];
             const label = scales[channel.scale]?.label ?? key;
-            text.push(`${label} = ${formatDefault(channel.value[i])}`);
+            text.push([label, formatDefault(channel.value[i])]);
           }
-          if (fxv != null) text.push(`${fx.label ?? "fx"} = ${formatFx(fxi)}`);
-          if (fyv != null) text.push(`${fy.label ?? "fy"} = ${formatFy(fyi)}`);
-          title.text(text.join("\n"));
+          if (fxv != null) text.push([fx.label ?? "fx", formatFx(fxi)]);
+          if (fyv != null) text.push([fy.label ?? "fy", formatFy(fyi)]);
+          content
+            .selectChildren()
+            .data(text)
+            .join("tspan")
+            .attr("x", 0)
+            .attr("y", (d, i) => `${i + 0.9}em`)
+            .selectChildren()
+            .data((d) => d)
+            .join("tspan")
+            .attr("font-weight", (d, i) => (i ? "bold" : null))
+            .text((d, i) => (i ? ` ${d}` : String(d)));
+          const {width, height} = content.node().getBBox();
+          const w = width + r * 2;
+          const h = height + r * 2;
+          path.attr("d", `M${dx},${dy}v${-dy}l${dy},${dy}h${w - dy}v${h}h${-w}z`);
         }
       })
       .on("pointerdown pointerleave", () => dot.attr("display", "none"))
       .append("g")
-      .attr("display", "none")
-      .attr("pointer-events", "all")
-      .attr("fill", "none")
-      .call((g) => g.append("circle").attr("r", maxRadius).attr("fill", "none"))
-      .call((g) => g.append("circle").attr("r", 4.5).attr("stroke", "red").attr("stroke-width", 1.5));
-    const title = dot.append("title");
+      .attr("aria-label", "tooltip")
+      .attr("display", "none");
+    const path = dot
+      .append("path")
+      .attr("fill", "white")
+      .attr("stroke", "black")
+      .on("pointerdown pointermove", (event) => event.stopPropagation());
+    const content = dot
+      .append("text")
+      .attr("transform", `translate(${dx + r},${dy + r})`)
+      .attr("text-anchor", "start")
+      .on("pointerdown pointermove", (event) => event.stopPropagation());
     return null;
   }
 }

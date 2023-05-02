@@ -13,6 +13,12 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="fy-axis label" transform="translate(78.5,0.5)">
+    <text transform="translate(559,299.5) rotate(-90)">species</text>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(299.5,30)">sex</text>
+  </g>
   <g aria-label="facet" transform="translate(0,0)">
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(120.5,30)">FEMALE</text>
@@ -3317,11 +3323,5 @@
       <circle cx="53.416666666666686" cy="104.69454545454548" r="3"></circle>
       <circle cx="89.83333333333333" cy="121.69818181818182" r="3"></circle>
     </g>
-  </g>
-  <g aria-label="fy-axis label" transform="translate(78.5,0.5)">
-    <text transform="translate(559,299.5) rotate(-90)">species</text>
-  </g>
-  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
-    <text y="0.71em" transform="translate(299.5,30)">sex</text>
   </g>
 </svg>
