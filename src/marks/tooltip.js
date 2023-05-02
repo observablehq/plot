@@ -41,6 +41,8 @@ export class Tooltip extends Mark {
     const r = 8; // padding
     const dx = 0; // offsetLeft
     const dy = 12; // offsetTop
+    const foreground = "black";
+    const background = "white";
     const dot = select(svg)
       .on("pointermove", (event) => {
         let i, xi, yi, fxi, fyi;
@@ -84,7 +86,7 @@ export class Tooltip extends Mark {
             .selectChildren()
             .data((d) => d)
             .join("tspan")
-            .attr("font-weight", (d, i) => (i ? "bold" : null))
+            .attr("font-weight", (d, i) => (i ? null : "bold"))
             .text((d, i) => (i ? ` ${d}` : String(d)));
           const {width, height} = content.node().getBBox();
           const w = width + r * 2;
@@ -98,14 +100,15 @@ export class Tooltip extends Mark {
       .attr("display", "none");
     const path = dot
       .append("path")
-      .attr("fill", "white")
-      .attr("stroke", "black")
+      .attr("fill", background)
+      .attr("stroke", foreground)
       .attr("filter", "drop-shadow(0 3px 4px rgba(0,0,0,0.2))")
       .on("pointerdown pointermove", (event) => event.stopPropagation());
     const content = dot
       .append("text")
       .attr("transform", `translate(${dx + r},${dy + r})`)
       .attr("text-anchor", "start")
+      .attr("fill", foreground)
       .on("pointerdown pointermove", (event) => event.stopPropagation());
     return null;
   }
