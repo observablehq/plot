@@ -100,6 +100,7 @@ export class Tooltip extends Mark {
       .append("path")
       .attr("fill", "white")
       .attr("stroke", "black")
+      .attr("filter", "drop-shadow(0 3px 4px rgba(0,0,0,0.2))")
       .on("pointerdown pointermove", (event) => event.stopPropagation());
     const content = dot
       .append("text")

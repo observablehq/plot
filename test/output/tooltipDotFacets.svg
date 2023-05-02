@@ -6,6 +6,7 @@
       height: auto;
       height: intrinsic;
       max-width: 100%;
+      overflow: visible;
     }
 
     .plot text,
@@ -11204,7 +11205,7 @@
     </g>
   </g>
   <g aria-label="tooltip" display="none">
-    <path fill="white" stroke="black"></path>
+    <path fill="white" stroke="black" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
     <text transform="translate(8,20)" text-anchor="start"></text>
   </g>
 </svg>

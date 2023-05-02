@@ -35,3 +35,14 @@ export async function tooltipDotFacets() {
     ]
   });
 }
+
+export async function tooltipLineColor() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    grid: true,
+    marks: [
+      Plot.line(aapl, {x: "Date", y: "Close", stroke: "Volume", z: null}),
+      Plot.tooltip(aapl, {x: "Date", y: "Close", stroke: "Volume"})
+    ]
+  });
+}
