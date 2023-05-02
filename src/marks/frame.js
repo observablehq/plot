@@ -1,7 +1,7 @@
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
-import {maybeKeyword, number} from "../options.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {maybeKeyword, number, singleton} from "../options.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 const defaults = {
   ariaLabel: "frame",
@@ -28,7 +28,7 @@ export class Frame extends Mark {
       rx,
       ry
     } = options;
-    super(undefined, undefined, options, anchor == null ? defaults : lineDefaults);
+    super(singleton, undefined, options, anchor == null ? defaults : lineDefaults);
     this.anchor = maybeKeyword(anchor, "anchor", ["top", "right", "bottom", "left"]);
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
@@ -45,8 +45,10 @@ export class Frame extends Mark {
     const y1 = marginTop + insetTop;
     const y2 = height - marginBottom - insetBottom;
     return create(anchor ? "svg:line" : "svg:rect", context)
+      .datum(0)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyDirectStyles, this)
+      .call(applyChannelStyles, this, channels)
       .call(applyTransform, this, {})
       .call(
         anchor === "left"

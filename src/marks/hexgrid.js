@@ -1,7 +1,7 @@
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
-import {number} from "../options.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {number, singleton} from "../options.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {sqrt4_3} from "../symbol.js";
 import {ox, oy} from "../transforms/hexbin.js";
 
@@ -18,7 +18,7 @@ export function hexgrid(options) {
 
 export class Hexgrid extends Mark {
   constructor({binWidth = 20, clip = true, ...options} = {}) {
-    super(undefined, undefined, {clip, ...options}, defaults);
+    super(singleton, undefined, {clip, ...options}, defaults);
     this.binWidth = number(binWidth);
   }
   render(index, scales, channels, dimensions, context) {
@@ -45,9 +45,10 @@ export class Hexgrid extends Mark {
       }
     }
     return create("svg:g", context)
+      .datum(0)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {}, offset + ox, offset + oy)
-      .call((g) => g.append("path").call(applyDirectStyles, this).attr("d", d))
+      .call((g) => g.append("path").call(applyDirectStyles, this).call(applyChannelStyles, this, channels).attr("d", d))
       .node();
   }
 }
