@@ -398,8 +398,8 @@ function maybeTopFacet(facet, options) {
   if (facet == null) return;
   const {x, y} = facet;
   if (x == null && y == null) return;
-  const data = arrayify(facet.data ?? x ?? y);
-  if (data === undefined) throw new Error(`missing facet data`);
+  const data = arrayify(facet.data);
+  if (data == null) throw new Error("missing facet data");
   const channels = {};
   if (x != null) channels.fx = createChannel(data, {value: x, scale: "fx"});
   if (y != null) channels.fy = createChannel(data, {value: y, scale: "fy"});
