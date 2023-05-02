@@ -70,7 +70,7 @@ const maxAnomaly = d3.max(gistemp, (d) => d.Anomaly);
 
 Scales aren’t limited to horizontal and vertical position. They can also output to color, radius, length, opacity, and more. For example if we switch to a [rule](../marks/rule.md) and use the **stroke** channel instead of **y**, we get a one-dimensional heatmap:
 
-:::plot defer https://observablehq.com/@observablehq/plot-scales-intro
+:::plot https://observablehq.com/@observablehq/plot-scales-intro
 ```js
 Plot.ruleX(gistemp, {x: "Date", stroke: "Anomaly"}).plot()
 ```
