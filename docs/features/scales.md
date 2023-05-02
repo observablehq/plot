@@ -638,6 +638,8 @@ Plot.plot({
 As an added bonus, the **fontVariant** and **type** options are no longer needed because Plot now understands that the *x* scale, despite being *ordinal*, represents daily observations.
 :::
 
+While the example above relies on the **interval** being promoted to the scale’s **transform**, the [stack](../transforms/stack.md), [bin](../transforms/bin.md), and [group](../transforms/group.md) transforms are also interval-aware: they apply the scale’s **interval**, if any, *before* grouping values. (This results in the interval being applied twice, both before and after the mark transform, but the second application has no effect since interval application is idempotent.)
+
 The **interval** option can also be used for quantitative and temporal scales. This enforces uniformity, say rounding timed observations down to the nearest hour, which may be helpful for the [stack transform](../transforms/stack.md) among other uses.
 
 ## Scale options

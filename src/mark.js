@@ -75,11 +75,11 @@ export class Mark {
       }
     }
   }
-  initialize(facets, facetChannels) {
+  initialize(facets, facetChannels, plotOptions) {
     let data = arrayify(this.data);
     if (facets === undefined && data != null) facets = [range(data)];
     const originalFacets = facets;
-    if (this.transform != null) ({facets, data} = this.transform(data, facets)), (data = arrayify(data));
+    if (this.transform != null) ({facets, data} = this.transform(data, facets, plotOptions)), (data = arrayify(data));
     if (facets !== undefined) facets.original = originalFacets; // needed up read facetChannels
     const channels = createChannels(this.channels, data);
     if (this.sort != null) channelDomain(data, facets, channels, facetChannels, this.sort); // mutates facetChannels!
