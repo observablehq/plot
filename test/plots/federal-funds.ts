@@ -13,8 +13,6 @@ export async function federalFunds() {
         tickSize: 0, // don’t draw ticks
         dx: 32, // offset right
         dy: -6, // offset up
-        labelOffset: 29, // compensate label offset,
-        inset: 6,
         lineAnchor: "bottom", // draw labels above grid lines
         tickFormat: (d) => (d === 10 ? `${d}%` : `${d}   `) // right-align numbers, not %
       }),
