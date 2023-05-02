@@ -24,7 +24,7 @@ export * from "./athletes-sex-weight.js";
 export * from "./athletes-sort.js";
 export * from "./athletes-sport-sex.js";
 export * from "./athletes-sport-weight.js";
-export * from "./athletes-tooltip.js";
+export * from "./tooltip.js";
 export * from "./athletes-weight-cumulative.js";
 export * from "./athletes-weight.js";
 export * from "./autoplot.js";

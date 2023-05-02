@@ -576,7 +576,7 @@ function inferTextChannel(scale, ticks, tickFormat) {
 // D3’s ordinal scales simply use toString by default, but if the ordinal scale
 // domain (or ticks) are numbers or dates (say because we’re applying a time
 // interval to the ordinal scale), we want Plot’s default formatter.
-function inferTickFormat(scale, ticks, tickFormat) {
+export function inferTickFormat(scale, ticks, tickFormat) {
   return scale.tickFormat
     ? scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)
     : tickFormat === undefined

@@ -1,7 +1,15 @@
 import {pointer, select} from "d3";
+import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
 import {maybeFrameAnchor, maybeTuple} from "../options.js";
 import {applyFrameAnchor} from "../style.js";
+import {inferTickFormat} from "./axis.js";
+
+const defaults = {
+  ariaLabel: "tooltip",
+  fill: "none",
+  stroke: "none"
+};
 
 export class Tooltip extends Mark {
   constructor(data, options = {}) {
@@ -12,13 +20,17 @@ export class Tooltip extends Mark {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true}
       },
-      options
+      options,
+      defaults
     );
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.indexesBySvg = new WeakMap();
     this.maxRadius = +maxRadius;
   }
-  render(index, {x, y, fx, fy}, {x: X, y: Y, channels}, dimensions, context) {
+  render(index, scales, {x: X, y: Y, channels}, dimensions, context) {
+    const {fx, fy} = scales;
+    const formatFx = fx && inferTickFormat(fx);
+    const formatFy = fy && inferTickFormat(fy);
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const {maxRadius, fx: fxv, fy: fyv} = this;
     const {marginLeft, marginTop} = dimensions;
@@ -53,10 +65,13 @@ export class Tooltip extends Mark {
           dot.attr("display", "inline");
           dot.attr("transform", `translate(${xi},${yi})`);
           const text = [];
-          if (x) text.push(`${x.label ?? "x"} = ${channels.x.value[i]}`);
-          if (y) text.push(`${y.label ?? "y"} = ${channels.y.value[i]}`);
-          if (fxv != null) text.push(`${fx.label ?? "fx"} = ${fxi}`);
-          if (fyv != null) text.push(`${fy.label ?? "fy"} = ${fyi}`);
+          for (const key in channels) {
+            const channel = channels[key];
+            const label = scales[channel.scale]?.label ?? key;
+            text.push(`${label} = ${formatDefault(channel.value[i])}`);
+          }
+          if (fxv != null) text.push(`${fx.label ?? "fx"} = ${formatFx(fxi)}`);
+          if (fyv != null) text.push(`${fy.label ?? "fy"} = ${formatFy(fyi)}`);
           title.text(text.join("\n"));
         }
       })
