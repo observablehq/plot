@@ -43,9 +43,13 @@ export class Tooltip extends Mark {
     const dy = 12; // offsetTop
     const foreground = "black";
     const background = "white";
+    let i; // currently-focused index
+    let sticky = false;
     const dot = select(svg)
       .on("pointermove", (event) => {
-        let i, xi, yi, fxi, fyi;
+        if (sticky) return;
+        i = undefined;
+        let xi, yi, fxi, fyi;
         if (event.buttons === 0) {
           const [xp, yp] = pointer(event);
           let ri = maxRadius * maxRadius;
@@ -96,9 +100,20 @@ export class Tooltip extends Mark {
           path.attr("d", `M${dx},${dy}v${-dy}l${dy},${dy}h${w - dy}v${h}h${-w}z`);
         }
       })
-      .on("pointerdown pointerleave", () => dot.attr("display", "none"))
+      .on("pointerdown", () => {
+        if (sticky) {
+          sticky = false;
+          dot.attr("display", "none");
+          dot.attr("pointer-events", "none");
+        } else if (i !== undefined) {
+          sticky = true;
+          dot.attr("pointer-events", "all");
+        }
+      })
+      .on("pointerleave", () => sticky || dot.attr("display", "none"))
       .append("g")
       .attr("aria-label", "tooltip")
+      .attr("pointer-events", "none") // initially not sticky
       .attr("display", "none");
     const path = dot
       .append("path")

@@ -652,7 +652,7 @@
     <text y="0.32em" transform="translate(354.871162556618,427.18490826230243)">2.1</text>
     <text y="0.32em" transform="translate(484.2689984901862,611.1536738494849)">2.0</text>
   </g>
-  <g aria-label="tooltip" display="none">
+  <g aria-label="tooltip" pointer-events="none" display="none">
     <path fill="white" stroke="black" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
     <text transform="translate(8,20)" text-anchor="start" fill="black"></text>
   </g>

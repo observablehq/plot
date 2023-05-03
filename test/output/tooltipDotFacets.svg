@@ -11204,7 +11204,7 @@
       <circle cx="80.03597122302159" cy="110.51999999999998" r="3"></circle>
     </g>
   </g>
-  <g aria-label="tooltip" display="none">
+  <g aria-label="tooltip" pointer-events="none" display="none">
     <path fill="white" stroke="black" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
     <text transform="translate(8,20)" text-anchor="start" fill="black"></text>
   </g>

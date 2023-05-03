@@ -415,7 +415,7 @@
     <circle cx="316.2909090909091" cy="299.1666666666666" r="3" stroke="#4e79a7"></circle>
     <circle cx="415.4181818181818" cy="244.99999999999994" r="3" stroke="#f28e2c"></circle>
   </g>
-  <g aria-label="tooltip" display="none">
+  <g aria-label="tooltip" pointer-events="none" display="none">
     <path fill="white" stroke="black" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
     <text transform="translate(8,20)" text-anchor="start" fill="black"></text>
   </g>

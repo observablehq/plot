@@ -1345,7 +1345,7 @@
     <path stroke="rgb(74, 64, 178)" d="M619.682,20L620,23.793"></path>
     <path stroke="rgb(72, 58, 164)" d="M620,23.793Z"></path>
   </g>
-  <g aria-label="tooltip" display="none">
+  <g aria-label="tooltip" pointer-events="none" display="none">
     <path fill="white" stroke="black" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
     <text transform="translate(8,20)" text-anchor="start" fill="black"></text>
   </g>
