@@ -44,6 +44,8 @@ export class Tooltip extends Mark {
     const corner = "top-left"; // top-left, top-right, bottom-left, bottom-right
     const foreground = "black";
     const background = "white";
+    const kx = 1,
+      ky = 1; // TODO one-dimensional bias
     let i, xi, yi; // currently-focused index and position
     let sticky = false;
     const dot = select(svg)
@@ -52,7 +54,7 @@ export class Tooltip extends Mark {
         let ii, fxi, fyi;
         if (event.buttons === 0) {
           const [xp, yp] = pointer(event);
-          let ri = maxRadius * maxRadius;
+          let ri = kx * ky * kx * ky * maxRadius * maxRadius;
           for (const index of indexes) {
             const fxj = index.fx;
             const fyj = index.fy;
@@ -61,8 +63,8 @@ export class Tooltip extends Mark {
             for (const j of index) {
               const xj = (X ? X[j] : cx) + oxj;
               const yj = (Y ? Y[j] : cy) + oyj;
-              const dx = xj - xp;
-              const dy = yj - yp;
+              const dx = kx * (xj - xp);
+              const dy = ky * (yj - yp);
               const rj = dx * dx + dy * dy;
               if (rj <= ri) (ii = j), (ri = rj), (xi = xj), (yi = yj), (fxi = fxj), (fyi = fyj);
             }

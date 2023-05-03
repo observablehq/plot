@@ -109,3 +109,14 @@ export async function tooltipLineColor() {
     ]
   });
 }
+
+export async function tooltipMultiLine() {
+  const bls = await d3.csv<any>("data/bls-metro-unemployment.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.lineY(bls, {x: "date", y: "unemployment", z: "division"}),
+      Plot.ruleY([0]),
+      Plot.tooltip(bls, {x: "date", y: "unemployment", channels: {division: {value: "division"}}})
+    ]
+  });
+}
