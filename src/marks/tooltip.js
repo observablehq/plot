@@ -71,7 +71,9 @@ export class Tooltip extends Mark {
           dot.attr("transform", `translate(${Math.round(xi)},${Math.round(yi)})`);
           const text = [];
           for (const key in channels) {
-            const channel = channels[key];
+            let channel = channels[key];
+            while (channel.source) channel = channel.source;
+            if (channel.source === null) continue; // e.g., dodgeY’s y
             const label = scales[channel.scale]?.label ?? key;
             text.push([label, formatDefault(channel.value[i])]);
           }

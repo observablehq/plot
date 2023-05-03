@@ -67,7 +67,8 @@ export async function tooltipDotDodge() {
         Plot.dodgeY({
           padding: 2,
           x: "Date",
-          r: "Assets"
+          r: "Assets",
+          channels: {Name: {value: "Bank Name"}}
         })
       )
     ]
