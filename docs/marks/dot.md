@@ -316,7 +316,7 @@ In addition to the [standard mark options](../features/marks.md#mark-options), t
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
-* **r** - the radius (area); bound to the *radius* scale, which defaults to *sqrt*
+* **r** - the radius (area); bound to the *r* (radius) scale, which defaults to *sqrt*
 * **rotate** - the rotation angle in degrees clockwise
 * **symbol** - the categorical symbol; bound to the *symbol* scale
 
