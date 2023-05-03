@@ -89,7 +89,7 @@ export class Tooltip extends Mark {
             .data((d) => d)
             .join("tspan")
             .attr("font-weight", (d, i) => (i ? null : "bold"))
-            .text((d, i) => (i ? ` ${d}` : String(d)));
+            .text((d, i) => (i ? ` ${d}\u200b` : String(d))); // zws for double-click
           const {width, height} = content.node().getBBox();
           const w = width + r * 2;
           const h = height + r * 2;
