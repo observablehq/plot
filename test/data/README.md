@@ -22,6 +22,10 @@ http://search.r-project.org/R/library/lattice/html/barley.html
 ## beagle.csv
 https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world
 
+## bfd.csv
+FDIC Bank failures in brief
+https://www.fdic.gov/bank/historical/bank/bfb2023.html
+
 ## bls-metro-unemployment.csv
 Bureau of Labor Statistics
 https://www.bls.gov/

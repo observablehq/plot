@@ -12,6 +12,68 @@ export async function tooltipDotColor() {
   });
 }
 
+export async function tooltipDotDodge() {
+  const parseDate = d3.utcParse("%d-%b-%y");
+  const parseAssets = (x) => parseFloat(x.replace(/[^\d.]/g, ""));
+  const fails = d3
+    .csvParseRows(await d3.text("data/bfd.csv"))
+    .slice(1, -2)
+    .map((d) => ({
+      "Bank Name": d[0].split(", ")[0],
+      "City, State": d[0].split(", ").slice(1).join(", "),
+      Date: parseDate(d[2]),
+      Assets: parseAssets(d[3]),
+      Acquirer: d[5]
+    }));
+  return Plot.plot({
+    width: 1152,
+    height: 680,
+    insetLeft: 10,
+    insetRight: 60,
+    r: {range: [0, 80]},
+    marks: [
+      Plot.frame({anchor: "bottom"}),
+      Plot.dot(
+        fails,
+        Plot.dodgeY({
+          padding: 2,
+          x: "Date",
+          r: "Assets",
+          fill: "#ddd",
+          stroke: "#000",
+          strokeWidth: 1
+        })
+      ),
+      Plot.text(
+        fails,
+        Plot.filter(
+          (d) => d.Assets > 2000,
+          Plot.dodgeY({
+            padding: 2,
+            x: "Date",
+            r: "Assets",
+            lineWidth: 5,
+            text: (d) =>
+              d.Assets > 12900
+                ? `${d["Bank Name"]}\n${(d["Assets"] / 1000).toFixed(0)}B`
+                : `${(d["Assets"] / 1000).toFixed(1)}`,
+            fill: "#000",
+            stroke: "#ddd"
+          })
+        )
+      ),
+      Plot.tooltip(
+        fails,
+        Plot.dodgeY({
+          padding: 2,
+          x: "Date",
+          r: "Assets"
+        })
+      )
+    ]
+  });
+}
+
 export async function tooltipDotFacets() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
