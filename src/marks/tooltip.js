@@ -41,15 +41,15 @@ export class Tooltip extends Mark {
     const r = 8; // padding
     const dx = 0; // offsetLeft
     const dy = 12; // offsetTop
+    const corner = "top-left"; // top-left, top-right, bottom-left, bottom-right
     const foreground = "black";
     const background = "white";
-    let i; // currently-focused index
+    let i, xi, yi; // currently-focused index and position
     let sticky = false;
     const dot = select(svg)
       .on("pointermove", (event) => {
         if (sticky) return;
-        i = undefined;
-        let xi, yi, fxi, fyi;
+        let ii, fxi, fyi;
         if (event.buttons === 0) {
           const [xp, yp] = pointer(event);
           let ri = maxRadius * maxRadius;
@@ -64,10 +64,12 @@ export class Tooltip extends Mark {
               const dx = xj - xp;
               const dy = yj - yp;
               const rj = dx * dx + dy * dy;
-              if (rj <= ri) (i = j), (ri = rj), (xi = xj), (yi = yj), (fxi = fxj), (fyi = fyj);
+              if (rj <= ri) (ii = j), (ri = rj), (xi = xj), (yi = yj), (fxi = fxj), (fyi = fyj);
             }
           }
         }
+        if (i === ii) return;
+        i = ii;
         if (i === undefined) {
           dot.attr("display", "none");
         } else {
@@ -83,21 +85,21 @@ export class Tooltip extends Mark {
           }
           if (fxv != null) text.push([fx.label ?? "fx", formatFx(fxi)]);
           if (fyv != null) text.push([fy.label ?? "fy", formatFy(fyi)]);
+          const oy = getLineOffset(corner, text);
           content
             .selectChildren()
             .data(text)
             .join("tspan")
             .attr("x", 0)
-            .attr("y", (d, i) => `${i + 0.9}em`)
+            .attr("y", (d, i) => `${i + oy}em`)
             .selectChildren()
             .data((d) => d)
             .join("tspan")
             .attr("font-weight", (d, i) => (i ? null : "bold"))
-            .text((d, i) => (i ? ` ${d}\u200b` : String(d))); // zws for double-click
+            .text((d, i) => (i ? ` ${d}\u200b` : String(d))); // zwsp for double-click
           const {width, height} = content.node().getBBox();
-          const w = width + r * 2;
-          const h = height + r * 2;
-          path.attr("d", `M${dx},${dy}v${-dy}l${dy},${dy}h${w - dy}v${h}h${-w}z`);
+          path.attr("d", getPath(corner, dx, dy, r, width, height));
+          content.attr("transform", getTextTransform(corner, dx, dy, r, width));
         }
       })
       .on("pointerdown", () => {
@@ -123,7 +125,6 @@ export class Tooltip extends Mark {
       .on("pointerdown pointermove", (event) => event.stopPropagation());
     const content = dot
       .append("text")
-      .attr("transform", `translate(${dx + r},${dy + r})`)
       .attr("text-anchor", "start")
       .attr("fill", foreground)
       .on("pointerdown pointermove", (event) => event.stopPropagation());
@@ -134,4 +135,29 @@ export class Tooltip extends Mark {
 export function tooltip(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Tooltip(data, {...options, x, y});
+}
+
+function getLineOffset(corner, text) {
+  return /^top-/.test(corner) ? 0.9 : 0.8 - text.length;
+}
+
+function getTextTransform(corner, dx, dy, r, width) {
+  const x = /-left$/.test(corner) ? dx + r : -width - dx - r;
+  const y = /^top-/.test(corner) ? dy + r : -dy - r;
+  return `translate(${x},${y})`;
+}
+
+function getPath(corner, dx, dy, r, width, height) {
+  const w = width + r * 2;
+  const h = height + r * 2;
+  switch (corner) {
+    case "top-left":
+      return `M0,0l${dy},${dy}h${w - dy}v${h}h${-w}z`;
+    case "top-right":
+      return `M0,0l${-dy},${dy}h${dy - w}v${h}h${w}z`;
+    case "bottom-left":
+      return `M0,0l${dy},${-dy}h${w - dy}v${-h}h${-w}z`;
+    case "bottom-right":
+      return `M0,0l${-dy},${-dy}h${dy - w}v${-h}h${w}z`;
+  }
 }
