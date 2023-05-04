@@ -76,12 +76,20 @@ export class Tooltip extends Mark {
       ky = 1; // TODO one-dimensional bias
     let i, xi, yi; // currently-focused index and position
     let sticky = false;
-    const dot = select(svg)
+    select(svg.ownerDocument.defaultView)
       .on("pointermove", (event) => {
         if (sticky) return;
+        if (event.buttons === 1) return; // dragging
+        const rect = svg.getBoundingClientRect();
         let ii, fxi, fyi;
-        if (event.buttons === 0) {
-          const [xp, yp] = pointer(event);
+        if (
+          // Check if the pointer is near before scanning.
+          event.clientX + maxRadius > rect.left &&
+          event.clientX - maxRadius < rect.right &&
+          event.clientY + maxRadius > rect.top &&
+          event.clientY - maxRadius < rect.bottom
+        ) {
+          const [xp, yp] = pointer(event, svg);
           let ri = kx * ky * kx * ky * maxRadius * maxRadius;
           for (const index of indexes) {
             const fxj = index.fx;
@@ -98,7 +106,7 @@ export class Tooltip extends Mark {
             }
           }
         }
-        if (i === ii) return;
+        if (i === ii) return; // abort if the tooltip hasn’t moved
         i = ii;
         if (i === undefined) {
           dot.attr("display", "none");
@@ -147,8 +155,8 @@ export class Tooltip extends Mark {
           sticky = true;
           dot.attr("pointer-events", "all");
         }
-      })
-      .on("pointerleave", () => sticky || dot.attr("display", "none"))
+      });
+    const dot = select(svg)
       .append("g")
       .attr("aria-label", "tooltip")
       .attr("pointer-events", "none") // initially not sticky

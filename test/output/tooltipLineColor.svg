@@ -1347,6 +1347,6 @@
   </g>
   <g aria-label="tooltip" pointer-events="none" display="none">
     <path fill="white" stroke="black" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
-    <text text-anchor="start" fill="black"></text>
+    <text fill="black" text-anchor="start"></text>
   </g>
 </svg>
