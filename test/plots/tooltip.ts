@@ -120,3 +120,12 @@ export async function tooltipMultiLine() {
     ]
   });
 }
+
+export async function tooltipRule() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    grid: true,
+    style: "overflow: visible;",
+    marks: [Plot.ruleX(penguins, {x: "body_mass_g"}), Plot.tooltip(penguins, {x: "body_mass_g", corner: "bottom-left"})]
+  });
+}

@@ -1,7 +1,7 @@
 import {pointer, select} from "d3";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
-import {keyword, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
+import {keyword, maybeFrameAnchor, maybeKeyword, maybeTuple, number, string} from "../options.js";
 import {applyFrameAnchor} from "../style.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, cut, defaultWidth, monospaceWidth} from "./text.js";
@@ -68,9 +68,8 @@ export class Tooltip extends Mark {
     const {marginLeft, marginTop} = dimensions;
     const ellipsis = "…";
     const ee = widthof(ellipsis);
-    const r = 8; // padding
-    const dx = 0; // offsetLeft
-    const dy = 12; // offsetTop
+    const r = 8; // “padding”
+    const m = 12; // “margin” (flag size)
     const foreground = "black";
     const background = "white";
     const kx = axis === "y" ? 1 / 100 : 1;
@@ -163,13 +162,16 @@ export class Tooltip extends Mark {
             .text(String);
           const {width: w, height: h} = content.node().getBBox();
           const {width, height} = svg.getBBox();
-          const cx = (/-left$/.test(corner) ? xi + w + dx + r * 2 > width : xi - w - dx - r * 2 > 0) ? "right" : "left";
-          const cy = (/^top-/.test(corner) ? yi + h + dy + r * 2 > height : yi - h - dy - r * 2 > 0) ? "bottom" : "top";
-          const cc = `${cy}-${cx}`;
-          const oy = getLineOffset(cc, text) * lineHeight;
+          let c = corner;
+          if (c === undefined) {
+            const cx = xi + w + r * 2 > width ? "right" : "left";
+            const cy = yi + h + m + r * 2 > height ? "bottom" : "top";
+            c = `${cy}-${cx}`;
+          }
+          const oy = getLineOffset(c, text) * lineHeight;
           tspan.attr("y", (d, i) => `${i * lineHeight + oy}em`);
-          path.attr("d", getPath(cc, dx, dy, r, w, h));
-          content.attr("transform", getTextTransform(cc, dx, dy, r, w, h));
+          path.attr("d", getPath(c, m, r, w, h));
+          content.attr("transform", getTextTransform(c, m, r, w, h));
         }
       })
       .on("pointerdown", () => {
@@ -211,31 +213,31 @@ function maybeAxis(value = "xy") {
   return keyword(value, "axis", ["x", "y", "xy"]);
 }
 
-function maybeCorner(value = "bottom-left") {
-  return keyword(value, "corner", ["top-left", "top-right", "bottom-right", "bottom-left"]);
+function maybeCorner(value) {
+  return maybeKeyword(value, "corner", ["top-left", "top-right", "bottom-right", "bottom-left"]);
 }
 
 function getLineOffset(corner, text) {
   return /^top-/.test(corner) ? 0.94 : 0.71 - text.length;
 }
 
-function getTextTransform(corner, dx, dy, r, width) {
-  const x = /-left$/.test(corner) ? dx + r : -width - dx - r;
-  const y = /^top-/.test(corner) ? dy + r : -dy - r;
+function getTextTransform(corner, m, r, width) {
+  const x = /-left$/.test(corner) ? r : -width - r;
+  const y = /^top-/.test(corner) ? m + r : -m - r;
   return `translate(${x},${y})`;
 }
 
-function getPath(corner, dx, dy, r, width, height) {
+function getPath(corner, m, r, width, height) {
   const w = width + r * 2;
   const h = height + r * 2;
   switch (corner) {
     case "top-left":
-      return `M0,0l${dy},${dy}h${w - dy}v${h}h${-w}z`;
+      return `M0,0l${m},${m}h${w - m}v${h}h${-w}z`;
     case "top-right":
-      return `M0,0l${-dy},${dy}h${dy - w}v${h}h${w}z`;
+      return `M0,0l${-m},${m}h${m - w}v${h}h${w}z`;
     case "bottom-left":
-      return `M0,0l${dy},${-dy}h${w - dy}v${-h}h${-w}z`;
+      return `M0,0l${m},${-m}h${w - m}v${-h}h${-w}z`;
     case "bottom-right":
-      return `M0,0l${-dy},${-dy}h${dy - w}v${-h}h${w}z`;
+      return `M0,0l${-m},${-m}h${m - w}v${-h}h${w}z`;
   }
 }
