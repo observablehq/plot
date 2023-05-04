@@ -4,6 +4,10 @@ import {Mark} from "../mark.js";
 import {keyword, maybeFrameAnchor, maybeTuple} from "../options.js";
 import {applyFrameAnchor} from "../style.js";
 import {inferTickFormat} from "./axis.js";
+import {string} from "../options.js";
+import {number} from "../options.js";
+import {clipper} from "./text.js";
+import {applyIndirectTextStyles} from "./text.js";
 
 const defaults = {
   ariaLabel: "tooltip",
@@ -13,7 +17,21 @@ const defaults = {
 
 export class Tooltip extends Mark {
   constructor(data, options = {}) {
-    const {x, y, maxRadius = 40, corner, frameAnchor} = options;
+    const {
+      x,
+      y,
+      maxRadius = 40,
+      corner,
+      monospace,
+      fontFamily = monospace ? "ui-monospace, monospace" : undefined,
+      fontSize,
+      fontStyle,
+      fontVariant,
+      fontWeight,
+      lineHeight = 1,
+      lineWidth = Infinity,
+      frameAnchor
+    } = options;
     super(
       data,
       {
@@ -26,14 +44,24 @@ export class Tooltip extends Mark {
     this.corner = maybeCorner(corner);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.indexesBySvg = new WeakMap();
+    this.textAnchor = "start"; // TODO option?
+    this.lineHeight = +lineHeight;
+    this.lineWidth = +lineWidth;
+    this.monospace = !!monospace;
+    this.fontFamily = string(fontFamily);
+    this.fontSize = number(fontSize);
+    this.fontStyle = string(fontStyle);
+    this.fontVariant = string(fontVariant);
+    this.fontWeight = string(fontWeight);
     this.maxRadius = +maxRadius;
+    this.clipLine = clipper(this);
   }
   render(index, scales, {x: X, y: Y, channels}, dimensions, context) {
     const {fx, fy} = scales;
     const formatFx = fx && inferTickFormat(fx);
     const formatFy = fy && inferTickFormat(fy);
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const {corner, maxRadius, fx: fxv, fy: fyv} = this;
+    const {corner, lineHeight, maxRadius, fx: fxv, fy: fyv} = this;
     const {marginLeft, marginTop} = dimensions;
     const svg = context.ownerSVGElement;
     let indexes = this.indexesBySvg.get(svg);
@@ -92,7 +120,7 @@ export class Tooltip extends Mark {
             .data(text)
             .join("tspan")
             .attr("x", 0)
-            .attr("y", (d, i) => `${i}em`);
+            .attr("y", (d, i) => `${i * lineHeight}em`);
           tspan
             .selectChildren()
             .data((d) => d)
@@ -104,8 +132,8 @@ export class Tooltip extends Mark {
           const cx = (/-left$/.test(corner) ? xi + w + dx + r * 2 > width : xi - w - dx - r * 2 > 0) ? "right" : "left";
           const cy = (/^top-/.test(corner) ? yi + h + dy + r * 2 > height : yi - h - dy - r * 2 > 0) ? "bottom" : "top";
           const cc = `${cy}-${cx}`;
-          const oy = getLineOffset(cc, text);
-          tspan.attr("y", (d, i) => `${i + oy}em`);
+          const oy = getLineOffset(cc, text) * lineHeight;
+          tspan.attr("y", (d, i) => `${i * lineHeight + oy}em`);
           path.attr("d", getPath(cc, dx, dy, r, w, h));
           content.attr("transform", getTextTransform(cc, dx, dy, r, w, h));
         }
@@ -133,8 +161,8 @@ export class Tooltip extends Mark {
       .on("pointerdown pointermove", (event) => event.stopPropagation());
     const content = dot
       .append("text")
-      .attr("text-anchor", "start")
       .attr("fill", foreground)
+      .call(applyIndirectTextStyles, this)
       .on("pointerdown pointermove", (event) => event.stopPropagation());
     return null;
   }
@@ -150,7 +178,7 @@ function maybeCorner(value = "bottom-left") {
 }
 
 function getLineOffset(corner, text) {
-  return /^top-/.test(corner) ? 0.9 : 0.8 - text.length;
+  return /^top-/.test(corner) ? 0.94 : 0.71 - text.length;
 }
 
 function getTextTransform(corner, dx, dy, r, width) {

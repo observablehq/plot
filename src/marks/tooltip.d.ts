@@ -1,8 +1,12 @@
 import type {ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
+import type {TextOptions} from "./text.js";
+
+/** Options for styling text. TODO Move to TextOptions? */
+type TextStyles = Pick<TextOptions, "lineHeight" | "lineWidth" | "monospace" | "fontFamily" | "fontSize" | "fontStyle" | "fontVariant" | "fontWeight">; // prettier-ignore
 
 /** Options for the tooltip mark. */
-export interface TooltipOptions extends MarkOptions {
+export interface TooltipOptions extends MarkOptions, TextStyles {
   /**
    * The horizontal position channel specifying the tooltip’s anchor, typically
    * bound to the *x* scale.

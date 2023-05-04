@@ -177,7 +177,7 @@ export function textY(data, options = {}) {
   return new Text(data, maybeIntervalMidX({...remainingOptions, y}));
 }
 
-function applyIndirectTextStyles(selection, mark, T) {
+export function applyIndirectTextStyles(selection, mark, T) {
   applyAttr(selection, "text-anchor", mark.textAnchor);
   applyAttr(selection, "font-family", mark.fontFamily);
   applyAttr(selection, "font-size", mark.fontSize);
@@ -187,7 +187,7 @@ function applyIndirectTextStyles(selection, mark, T) {
 }
 
 function inferFontVariant(T) {
-  return isNumeric(T) || isTemporal(T) ? "tabular-nums" : undefined;
+  return T && (isNumeric(T) || isTemporal(T)) ? "tabular-nums" : undefined;
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/font-size
@@ -420,7 +420,7 @@ function splitter({monospace, lineWidth, textOverflow}) {
   return (text) => lineWrap(text, maxWidth, widthof);
 }
 
-function clipper({monospace, lineWidth, textOverflow}) {
+export function clipper({monospace, lineWidth, textOverflow}) {
   if (textOverflow == null || lineWidth == Infinity) return (text) => text;
   const widthof = monospace ? monospaceWidth : defaultWidth;
   const maxWidth = lineWidth * 100;
