@@ -18,6 +18,7 @@ export class Tooltip extends Mark {
       x,
       y,
       maxRadius = 40,
+      axis,
       corner,
       monospace,
       fontFamily = monospace ? "ui-monospace, monospace" : undefined,
@@ -38,6 +39,7 @@ export class Tooltip extends Mark {
       options,
       defaults
     );
+    this.axis = maybeAxis(axis);
     this.corner = maybeCorner(corner);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.indexesBySvg = new WeakMap();
@@ -61,7 +63,7 @@ export class Tooltip extends Mark {
     const formatFx = fx && inferTickFormat(fx);
     const formatFy = fy && inferTickFormat(fy);
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const {corner, monospace, lineHeight, lineWidth, maxRadius, fx: fxv, fy: fyv} = this;
+    const {axis, corner, monospace, lineHeight, lineWidth, maxRadius, fx: fxv, fy: fyv} = this;
     const widthof = monospace ? monospaceWidth : defaultWidth;
     const {marginLeft, marginTop} = dimensions;
     const ellipsis = "…";
@@ -71,8 +73,8 @@ export class Tooltip extends Mark {
     const dy = 12; // offsetTop
     const foreground = "black";
     const background = "white";
-    const kx = 1; // TODO one-dimensional bias
-    const ky = 1; // TODO one-dimensional bias (1 / 100 for lineY)
+    const kx = axis === "y" ? 1 / 100 : 1;
+    const ky = axis === "x" ? 1 / 100 : 1;
     let i, xi, yi; // currently-focused index and position
     let sticky = false;
     select(svg.ownerDocument.defaultView)
@@ -203,6 +205,10 @@ export class Tooltip extends Mark {
 export function tooltip(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Tooltip(data, {...options, x, y});
+}
+
+function maybeAxis(value = "xy") {
+  return keyword(value, "axis", ["x", "y", "xy"]);
 }
 
 function maybeCorner(value = "bottom-left") {

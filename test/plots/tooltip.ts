@@ -104,8 +104,8 @@ export async function tooltipLineColor() {
   return Plot.plot({
     grid: true,
     marks: [
-      Plot.line(aapl, {x: "Date", y: "Close", stroke: "Volume", z: null}),
-      Plot.tooltip(aapl, {x: "Date", y: "Close", stroke: "Volume"})
+      Plot.lineY(aapl, {x: "Date", y: "Close", stroke: "Volume", z: null}),
+      Plot.tooltip(aapl, {x: "Date", y: "Close", stroke: "Volume", axis: "x"})
     ]
   });
 }
@@ -116,7 +116,7 @@ export async function tooltipMultiLine() {
     marks: [
       Plot.lineY(bls, {x: "date", y: "unemployment", z: "division"}),
       Plot.ruleY([0]),
-      Plot.tooltip(bls, {x: "date", y: "unemployment", channels: {division: {value: "division"}}})
+      Plot.tooltip(bls, {x: "date", y: "unemployment", channels: {division: {value: "division"}}, axis: "x"})
     ]
   });
 }

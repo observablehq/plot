@@ -36,6 +36,9 @@ export interface TooltipOptions extends MarkOptions, TextStyles {
   maxRadius?: number;
 
   /** TODO */
+  axis?: "x" | "y" | "xy";
+
+  /** TODO */
   corner?: "top-left" | "top-right" | "bottom-right" | "bottom-left";
 }
 
