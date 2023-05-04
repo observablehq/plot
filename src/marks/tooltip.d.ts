@@ -31,6 +31,12 @@ export interface TooltipOptions extends MarkOptions, TextStyles {
    * ```
    */
   frameAnchor?: FrameAnchor;
+
+  /** TODO */
+  maxRadius?: number;
+
+  /** TODO */
+  corner?: "top-left" | "top-right" | "bottom-right" | "bottom-left";
 }
 
 /**
