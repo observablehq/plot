@@ -224,7 +224,6 @@ export function plot(options = {}) {
   height: auto;
   height: intrinsic;
   max-width: 100%;
-  overflow: visible;
 }
 .${className} text,
 .${className} tspan {
