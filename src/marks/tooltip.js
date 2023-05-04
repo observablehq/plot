@@ -75,6 +75,7 @@ export class Tooltip extends Mark {
     const kx = axis === "y" ? 1 / 100 : 1;
     const ky = axis === "x" ? 1 / 100 : 1;
     let i, xi, yi; // currently-focused index and position
+    let c = corner; // last-used corner (for stability)
     let sticky = false;
     select(svg.ownerDocument.defaultView)
       .on("pointermove", (event) => {
@@ -162,10 +163,9 @@ export class Tooltip extends Mark {
             .text(String);
           const {width: w, height: h} = content.node().getBBox();
           const {width, height} = svg.getBBox();
-          let c = corner;
-          if (c === undefined) {
-            const cx = xi + w + r * 2 > width ? "right" : "left";
-            const cy = yi + h + m + r * 2 > height ? "bottom" : "top";
+          if (corner === undefined) {
+            const cx = (/-left$/.test(c) ? xi + w + r * 2 > width : xi - w - r * 2 > 0) ? "right" : "left";
+            const cy = (/^top-/.test(c) ? yi + h + m + r * 2 > height : yi - h - m - r * 2 > 0) ? "bottom" : "top";
             c = `${cy}-${cx}`;
           }
           const oy = getLineOffset(c, text) * lineHeight;
