@@ -1,6 +1,26 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+export async function tooltipBin() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"})),
+      Plot.tooltip(olympians, Plot.binX({y: "count"}, {x: "weight", axis: "x"}))
+    ]
+  });
+}
+
+export async function tooltipBinStack() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})),
+      Plot.tooltip(olympians, Plot.stackY({}, Plot.binX({y: "count"}, {x: "weight", z: "sex", axis: "x"})))
+    ]
+  });
+}
+
 export async function tooltipDotColor() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
