@@ -420,7 +420,7 @@ function splitter({monospace, lineWidth, textOverflow}) {
   return (text) => lineWrap(text, maxWidth, widthof);
 }
 
-export function clipper({monospace, lineWidth, textOverflow}) {
+function clipper({monospace, lineWidth, textOverflow}) {
   if (textOverflow == null || lineWidth == Infinity) return (text) => text;
   const widthof = monospace ? monospaceWidth : defaultWidth;
   const maxWidth = lineWidth * 100;
@@ -444,7 +444,7 @@ export function clipper({monospace, lineWidth, textOverflow}) {
 // given width, returns [-1, 0]. If the text needs cutting, the given inset
 // specifies how much space (in the same units as width and widthof) to reserve
 // for a possible ellipsis character.
-function cut(text, width, widthof, inset) {
+export function cut(text, width, widthof, inset) {
   const I = []; // indexes of read character boundaries
   let w = 0; // current line width
   for (let i = 0, j = 0, n = text.length; i < n; i = j) {

@@ -1,13 +1,10 @@
 import {pointer, select} from "d3";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
-import {keyword, maybeFrameAnchor, maybeTuple} from "../options.js";
+import {keyword, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
 import {applyFrameAnchor} from "../style.js";
 import {inferTickFormat} from "./axis.js";
-import {string} from "../options.js";
-import {number} from "../options.js";
-import {clipper} from "./text.js";
-import {applyIndirectTextStyles} from "./text.js";
+import {applyIndirectTextStyles, cut, defaultWidth, monospaceWidth} from "./text.js";
 
 const defaults = {
   ariaLabel: "tooltip",
@@ -29,7 +26,7 @@ export class Tooltip extends Mark {
       fontVariant,
       fontWeight,
       lineHeight = 1,
-      lineWidth = Infinity,
+      lineWidth = 20,
       frameAnchor
     } = options;
     super(
@@ -54,26 +51,28 @@ export class Tooltip extends Mark {
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
     this.maxRadius = +maxRadius;
-    this.clipLine = clipper(this);
   }
   render(index, scales, {x: X, y: Y, channels}, dimensions, context) {
-    const {fx, fy} = scales;
-    const formatFx = fx && inferTickFormat(fx);
-    const formatFy = fy && inferTickFormat(fy);
-    const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const {corner, lineHeight, maxRadius, fx: fxv, fy: fyv} = this;
-    const {marginLeft, marginTop} = dimensions;
     const svg = context.ownerSVGElement;
     let indexes = this.indexesBySvg.get(svg);
     if (indexes) return void indexes.push(index);
     this.indexesBySvg.set(svg, (indexes = [index]));
+    const {fx, fy} = scales;
+    const formatFx = fx && inferTickFormat(fx);
+    const formatFy = fy && inferTickFormat(fy);
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const {corner, monospace, lineHeight, lineWidth, maxRadius, fx: fxv, fy: fyv} = this;
+    const widthof = monospace ? monospaceWidth : defaultWidth;
+    const {marginLeft, marginTop} = dimensions;
+    const ellipsis = "…";
+    const ee = widthof(ellipsis);
     const r = 8; // padding
     const dx = 0; // offsetLeft
     const dy = 12; // offsetTop
     const foreground = "black";
     const background = "white";
-    const kx = 1,
-      ky = 1; // TODO one-dimensional bias
+    const kx = 1; // TODO one-dimensional bias
+    const ky = 1; // TODO one-dimensional bias (1 / 100 for lineY)
     let i, xi, yi; // currently-focused index and position
     let sticky = false;
     select(svg.ownerDocument.defaultView)
@@ -90,7 +89,7 @@ export class Tooltip extends Mark {
           event.clientY - maxRadius < rect.bottom
         ) {
           const [xp, yp] = pointer(event, svg);
-          let ri = kx * ky * kx * ky * maxRadius * maxRadius;
+          let ri = maxRadius * maxRadius;
           for (const index of indexes) {
             const fxj = index.fx;
             const fyj = index.fy;
@@ -123,6 +122,26 @@ export class Tooltip extends Mark {
           }
           if (fxv != null) text.push([fx.label ?? "fx", formatFx(fxi)]);
           if (fyv != null) text.push([fy.label ?? "fy", formatFy(fyi)]);
+          for (const line of text) {
+            let w = lineWidth * 100;
+            let [name, value] = line;
+            line[0] = name = String(name).trim();
+            line[1] = value = ` ${String(value).trim()}\u200b`; // zwsp for double-click
+            const [i] = cut(name, w, widthof, ee);
+            if (i >= 0) {
+              // name is truncated
+              line[0] = name.slice(0, i).trimEnd() + ellipsis;
+              line[1] = "";
+              line[2] = value.trim();
+            } else {
+              const [j] = cut(value, w - widthof(name), widthof, ee);
+              if (j >= 0) {
+                // value is truncated
+                line[1] = value.slice(0, j).trimEnd() + ellipsis;
+                line[2] = value.trim();
+              }
+            }
+          }
           const tspan = content
             .selectChildren()
             .data(text)
@@ -131,10 +150,15 @@ export class Tooltip extends Mark {
             .attr("y", (d, i) => `${i * lineHeight}em`);
           tspan
             .selectChildren()
-            .data((d) => d)
+            .data((d) => d.slice(0, 2))
             .join("tspan")
             .attr("font-weight", (d, i) => (i ? null : "bold"))
-            .text((d, i) => (i ? ` ${d}\u200b` : String(d))); // zwsp for double-click
+            .text(String);
+          tspan
+            .selectAll("title")
+            .data((d) => (d.length > 2 ? [d[2]] : []))
+            .join("title")
+            .text(String);
           const {width: w, height: h} = content.node().getBBox();
           const {width, height} = svg.getBBox();
           const cx = (/-left$/.test(corner) ? xi + w + dx + r * 2 > width : xi - w - dx - r * 2 > 0) ? "right" : "left";
