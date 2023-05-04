@@ -1,7 +1,7 @@
 import {pointer, select} from "d3";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
-import {maybeFrameAnchor, maybeTuple} from "../options.js";
+import {keyword, maybeFrameAnchor, maybeTuple} from "../options.js";
 import {applyFrameAnchor} from "../style.js";
 import {inferTickFormat} from "./axis.js";
 
@@ -13,7 +13,7 @@ const defaults = {
 
 export class Tooltip extends Mark {
   constructor(data, options = {}) {
-    const {x, y, maxRadius = 40, frameAnchor} = options;
+    const {x, y, maxRadius = 40, corner, frameAnchor} = options;
     super(
       data,
       {
@@ -23,6 +23,7 @@ export class Tooltip extends Mark {
       options,
       defaults
     );
+    this.corner = maybeCorner(corner);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.indexesBySvg = new WeakMap();
     this.maxRadius = +maxRadius;
@@ -32,7 +33,7 @@ export class Tooltip extends Mark {
     const formatFx = fx && inferTickFormat(fx);
     const formatFy = fy && inferTickFormat(fy);
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const {maxRadius, fx: fxv, fy: fyv} = this;
+    const {corner, maxRadius, fx: fxv, fy: fyv} = this;
     const {marginLeft, marginTop} = dimensions;
     const svg = context.ownerSVGElement;
     let indexes = this.indexesBySvg.get(svg);
@@ -41,7 +42,6 @@ export class Tooltip extends Mark {
     const r = 8; // padding
     const dx = 0; // offsetLeft
     const dy = 12; // offsetTop
-    const corner = "top-left"; // top-left, top-right, bottom-left, bottom-right
     const foreground = "black";
     const background = "white";
     const kx = 1,
@@ -87,21 +87,27 @@ export class Tooltip extends Mark {
           }
           if (fxv != null) text.push([fx.label ?? "fx", formatFx(fxi)]);
           if (fyv != null) text.push([fy.label ?? "fy", formatFy(fyi)]);
-          const oy = getLineOffset(corner, text);
-          content
+          const tspan = content
             .selectChildren()
             .data(text)
             .join("tspan")
             .attr("x", 0)
-            .attr("y", (d, i) => `${i + oy}em`)
+            .attr("y", (d, i) => `${i}em`);
+          tspan
             .selectChildren()
             .data((d) => d)
             .join("tspan")
             .attr("font-weight", (d, i) => (i ? null : "bold"))
             .text((d, i) => (i ? ` ${d}\u200b` : String(d))); // zwsp for double-click
-          const {width, height} = content.node().getBBox();
-          path.attr("d", getPath(corner, dx, dy, r, width, height));
-          content.attr("transform", getTextTransform(corner, dx, dy, r, width));
+          const {width: w, height: h} = content.node().getBBox();
+          const {width, height} = svg.getBBox();
+          const cx = (/-left$/.test(corner) ? xi + w + dx + r * 2 > width : xi - w - dx - r * 2 > 0) ? "right" : "left";
+          const cy = (/^top-/.test(corner) ? yi + h + dy + r * 2 > height : yi - h - dy - r * 2 > 0) ? "bottom" : "top";
+          const cc = `${cy}-${cx}`;
+          const oy = getLineOffset(cc, text);
+          tspan.attr("y", (d, i) => `${i + oy}em`);
+          path.attr("d", getPath(cc, dx, dy, r, w, h));
+          content.attr("transform", getTextTransform(cc, dx, dy, r, w, h));
         }
       })
       .on("pointerdown", () => {
@@ -137,6 +143,10 @@ export class Tooltip extends Mark {
 export function tooltip(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Tooltip(data, {...options, x, y});
+}
+
+function maybeCorner(value = "bottom-left") {
+  return keyword(value, "corner", ["top-left", "top-right", "bottom-right", "bottom-left"]);
 }
 
 function getLineOffset(corner, text) {
