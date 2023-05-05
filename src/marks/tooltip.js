@@ -12,6 +12,8 @@ const defaults = {
   stroke: "none"
 };
 
+const connected = new Set();
+
 export class Tooltip extends Mark {
   constructor(data, options = {}) {
     const {
@@ -77,9 +79,8 @@ export class Tooltip extends Mark {
     let i, xi, yi; // currently-focused index and position
     let c = corner; // last-used corner (for stability)
     let sticky = false;
-    // TODO Cleanup listeners on SVG removal?
-    const window = svg.ownerDocument.defaultView;
-    window.addEventListener("pointermove", (event) => {
+
+    function pointermove(event) {
       if (sticky) return;
       if (event.buttons === 1) return; // dragging
       const rect = svg.getBoundingClientRect();
@@ -174,8 +175,9 @@ export class Tooltip extends Mark {
         path.attr("d", getPath(c, m, r, w, h));
         content.attr("transform", getTextTransform(c, m, r, w, h));
       }
-    });
-    window.addEventListener("pointerdown", () => {
+    }
+
+    function pointerdown() {
       if (sticky) {
         sticky = false;
         dot.attr("display", "none");
@@ -184,23 +186,32 @@ export class Tooltip extends Mark {
         sticky = true;
         dot.attr("pointer-events", "all");
       }
-    });
+    }
+
+    // TODO Cleanup listeners on SVG removal.
+    const window = svg.ownerDocument.defaultView;
+    window.addEventListener("pointermove", pointermove);
+    window.addEventListener("pointerdown", pointerdown);
+
     const dot = select(svg)
       .append("g")
       .attr("aria-label", "tooltip")
       .attr("pointer-events", "none") // initially not sticky
       .attr("display", "none");
+
     const path = dot
       .append("path")
       .attr("fill", background)
       .attr("stroke", foreground)
       .attr("filter", "drop-shadow(0 3px 4px rgba(0,0,0,0.2))")
-      .on("pointerdown pointermove", (event) => event.stopPropagation());
+      .on("pointerdown pointermove", stopPropagation);
+
     const content = dot
       .append("text")
       .attr("fill", foreground)
       .call(applyIndirectTextStyles, this)
-      .on("pointerdown pointermove", (event) => event.stopPropagation());
+      .on("pointerdown pointermove", stopPropagation);
+
     return null;
   }
 }
@@ -241,4 +252,8 @@ function getPath(corner, m, r, width, height) {
     case "bottom-right":
       return `M0,0l${-m},${-m}h${m - w}v${-h}h${w}z`;
   }
+}
+
+function stopPropagation(event) {
+  event.stopPropagation();
 }
