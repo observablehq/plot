@@ -87,7 +87,7 @@ export class Tooltip extends Mark {
     const kx = axis === "y" ? 1 / 100 : 1;
     const ky = axis === "x" ? 1 / 100 : 1;
     let i, xi, yi; // currently-focused index and position
-    let c = anchor; // last-used anchor (for stability)
+    let c = anchor ?? "top-left"; // last-used anchor (for stability)
     let sticky = false;
 
     function pointermove(event) {
@@ -121,11 +121,8 @@ export class Tooltip extends Mark {
       }
       if (i === ii) return; // abort if the tooltip hasn’t moved
       i = ii;
-      if (i === undefined) {
-        dot.attr("display", "none");
-      } else {
-        dot.attr("display", "inline");
-        dot.attr("transform", `translate(${Math.round(xi)},${Math.round(yi)})`);
+      dot.attr("display", "none");
+      if (i !== undefined) {
         const text = [];
         for (const key in channels) {
           const channel = getSource(channels, key);
@@ -186,14 +183,20 @@ export class Tooltip extends Mark {
         const {width: w, height: h} = content.node().getBBox();
         const {width, height} = svg.getBBox();
         if (anchor === undefined) {
-          const cx = (/-left$/.test(c) ? xi + w + r * 2 > width : xi - w - r * 2 > 0) ? "right" : "left";
-          const cy = (/^top-/.test(c) ? yi + h + m + r * 2 + 7 > height : yi - h - m - r * 2 > 0) ? "bottom" : "top";
+          const fitLeft = xi + w + r * 2 < width;
+          const fitRight = xi - w - r * 2 > 0;
+          const fitTop = yi + h + m + r * 2 + 7 < height;
+          const fitBottom = yi - h - m - r * 2 > 0;
+          const cx = (/-left$/.test(c) ? fitLeft || !fitRight : fitLeft && !fitRight) ? "left" : "right";
+          const cy = (/^top-/.test(c) ? fitTop || !fitBottom : fitTop && !fitBottom) ? "top" : "bottom";
           c = `${cy}-${cx}`;
         }
         const oy = getLineOffset(c, text) * lineHeight;
         tspan.attr("y", (d, i) => `${i * lineHeight + oy}em`);
         path.attr("d", getPath(c, m, r, w, h));
         content.attr("transform", getTextTransform(c, m, r, w, h));
+        dot.attr("transform", `translate(${Math.round(xi)},${Math.round(yi)})`);
+        dot.attr("display", "inline"); // make visible only after getBBox
       }
     }
 
