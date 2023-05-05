@@ -12,8 +12,6 @@ const defaults = {
   stroke: "none"
 };
 
-const connected = new Set();
-
 export class Tooltip extends Mark {
   constructor(data, options = {}) {
     const {
@@ -57,10 +55,14 @@ export class Tooltip extends Mark {
     this.maxRadius = +maxRadius;
   }
   render(index, scales, {x: X, y: Y, channels}, dimensions, context) {
+    // When faceting, only render this mark once. TODO We could use
+    // “super-faceting” to render this mark only once, perhaps, but we still
+    // want to compute faceted channels…
     const svg = context.ownerSVGElement;
     let indexes = this.indexesBySvg.get(svg);
     if (indexes) return void indexes.push(index);
     this.indexesBySvg.set(svg, (indexes = [index]));
+
     const {fx, fy} = scales;
     const formatFx = fx && inferTickFormat(fx);
     const formatFy = fy && inferTickFormat(fy);
@@ -72,8 +74,8 @@ export class Tooltip extends Mark {
     const ee = widthof(ellipsis);
     const r = 8; // “padding”
     const m = 12; // “margin” (flag size)
-    const foreground = "black";
-    const background = "white";
+    const foreground = "black"; // TODO fill option?
+    const background = "white"; // TODO stroke option?
     const kx = axis === "y" ? 1 / 100 : 1;
     const ky = axis === "x" ? 1 / 100 : 1;
     let i, xi, yi; // currently-focused index and position
@@ -188,10 +190,20 @@ export class Tooltip extends Mark {
       }
     }
 
-    // TODO Cleanup listeners on SVG removal.
-    const window = svg.ownerDocument.defaultView;
-    window.addEventListener("pointermove", pointermove);
-    window.addEventListener("pointerdown", pointerdown);
+    function pointerleave() {
+      if (!sticky) {
+        dot.attr("display", "none");
+        dot.attr("pointer-events", "none");
+      }
+    }
+
+    // We listen to the svg element; listening to the window instead would let
+    // us receive pointer events from farther away, but would also make it hard
+    // to know when to remove the listeners. (Using a mutation observer to watch
+    // the entire document is likely too expensive.)
+    svg.addEventListener("pointermove", pointermove);
+    svg.addEventListener("pointerdown", pointerdown);
+    svg.addEventListener("pointerleave", pointerleave);
 
     const dot = select(svg)
       .append("g")
