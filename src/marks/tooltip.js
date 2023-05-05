@@ -133,10 +133,16 @@ export class Tooltip extends Mark {
           const channel1 = getSource1(channels, key);
           if (channel1) continue; // already displayed
           const channel2 = getSource2(channels, key);
-          const label = scales[channel.scale]?.label ?? key;
-          const value1 = formatDefault(channel.value[i]);
-          const value2 = channel2 && formatDefault(channel2.value[i]);
-          text.push([label, channel2 ? `${value1}–${value2}` : value1]);
+          const value1 = channel.value[i];
+          const value2 = channel2?.value[i];
+          text.push([
+            scales[channel.scale]?.label ?? key,
+            channel2
+              ? channel2.hint?.length
+                ? `${formatDefault(value2 - value1)}`
+                : `${formatDefault(value1)}–${formatDefault(value2)}`
+              : formatDefault(value1)
+          ]);
         }
         if (fxv != null) text.push([fx.label ?? "fx", formatFx(fxi)]);
         if (fyv != null) text.push([fy.label ?? "fy", formatFy(fyi)]);
