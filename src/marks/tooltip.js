@@ -22,8 +22,8 @@ export class Tooltip extends Mark {
       y1,
       y2,
       maxRadius = 40,
+      anchor,
       axis,
-      corner,
       monospace,
       fontFamily = monospace ? "ui-monospace, monospace" : undefined,
       fontSize,
@@ -47,8 +47,8 @@ export class Tooltip extends Mark {
       options,
       defaults
     );
+    this.anchor = maybeAnchor(anchor);
     this.axis = maybeAxis(axis);
-    this.corner = maybeCorner(corner);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.indexesBySvg = new WeakMap();
     this.textAnchor = "start"; // TODO option?
@@ -75,7 +75,7 @@ export class Tooltip extends Mark {
     const formatFx = fx && inferTickFormat(fx);
     const formatFy = fy && inferTickFormat(fy);
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const {axis, corner, monospace, lineHeight, lineWidth, maxRadius, fx: fxv, fy: fyv} = this;
+    const {axis, anchor, monospace, lineHeight, lineWidth, maxRadius, fx: fxv, fy: fyv} = this;
     const widthof = monospace ? monospaceWidth : defaultWidth;
     const {marginLeft, marginTop} = dimensions;
     const ellipsis = "…";
@@ -87,7 +87,7 @@ export class Tooltip extends Mark {
     const kx = axis === "y" ? 1 / 100 : 1;
     const ky = axis === "x" ? 1 / 100 : 1;
     let i, xi, yi; // currently-focused index and position
-    let c = corner; // last-used corner (for stability)
+    let c = anchor; // last-used anchor (for stability)
     let sticky = false;
 
     function pointermove(event) {
@@ -185,7 +185,7 @@ export class Tooltip extends Mark {
           .text(String);
         const {width: w, height: h} = content.node().getBBox();
         const {width, height} = svg.getBBox();
-        if (corner === undefined) {
+        if (anchor === undefined) {
           const cx = (/-left$/.test(c) ? xi + w + r * 2 > width : xi - w - r * 2 > 0) ? "right" : "left";
           const cy = (/^top-/.test(c) ? yi + h + m + r * 2 + 7 > height : yi - h - m - r * 2 > 0) ? "bottom" : "top";
           c = `${cy}-${cx}`;
@@ -255,8 +255,8 @@ function maybeAxis(value = "xy") {
   return keyword(value, "axis", ["x", "y", "xy"]);
 }
 
-function maybeCorner(value) {
-  return maybeKeyword(value, "corner", ["top-left", "top-right", "bottom-right", "bottom-left"]);
+function maybeAnchor(value) {
+  return maybeKeyword(value, "anchor", ["top-left", "top-right", "bottom-right", "bottom-left"]);
 }
 
 function getSource(channels, key) {
@@ -274,20 +274,20 @@ function getSource2(channels, key) {
   return key === "x1" ? getSource(channels, "x2") : key === "y1" ? getSource(channels, "y2") : null;
 }
 
-function getLineOffset(corner, text) {
-  return /^top-/.test(corner) ? 0.94 : 0.71 - text.length;
+function getLineOffset(anchor, text) {
+  return /^top-/.test(anchor) ? 0.94 : 0.71 - text.length;
 }
 
-function getTextTransform(corner, m, r, width) {
-  const x = /-left$/.test(corner) ? r : -width - r;
-  const y = /^top-/.test(corner) ? m + r : -m - r;
+function getTextTransform(anchor, m, r, width) {
+  const x = /-left$/.test(anchor) ? r : -width - r;
+  const y = /^top-/.test(anchor) ? m + r : -m - r;
   return `translate(${x},${y})`;
 }
 
-function getPath(corner, m, r, width, height) {
+function getPath(anchor, m, r, width, height) {
   const w = width + r * 2;
   const h = height + r * 2;
-  switch (corner) {
+  switch (anchor) {
     case "top-left":
       return `M0,0l${m},${m}h${w - m}v${h}h${-w}z`;
     case "top-right":

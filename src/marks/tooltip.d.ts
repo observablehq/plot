@@ -39,7 +39,7 @@ export interface TooltipOptions extends MarkOptions, TextStyles {
   axis?: "x" | "y" | "xy";
 
   /** TODO */
-  corner?: "top-left" | "top-right" | "bottom-right" | "bottom-left";
+  anchor?: "top-left" | "top-right" | "bottom-right" | "bottom-left";
 }
 
 /**

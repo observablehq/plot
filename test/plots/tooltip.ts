@@ -146,6 +146,6 @@ export async function tooltipRule() {
   return Plot.plot({
     grid: true,
     style: "overflow: visible;",
-    marks: [Plot.ruleX(penguins, {x: "body_mass_g"}), Plot.tooltip(penguins, {x: "body_mass_g", corner: "bottom-left"})]
+    marks: [Plot.ruleX(penguins, {x: "body_mass_g"}), Plot.tooltip(penguins, {x: "body_mass_g", anchor: "bottom-left"})]
   });
 }
