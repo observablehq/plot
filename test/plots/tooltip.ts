@@ -5,8 +5,8 @@ export async function tooltipBin() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     marks: [
-      Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"})),
-      Plot.tooltip(olympians, Plot.binX({y: "count"}, {x: "weight", axis: "x"}))
+      Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", tooltip: true})),
+      // Plot.tooltip(olympians, Plot.binX({y: "count"}, {x: "weight", axis: "x"}))
     ]
   });
 }

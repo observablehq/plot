@@ -8,54 +8,54 @@ export function stackX(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
   const [transform, Y, x1, x2] = stack(y, x, "y", "x", stackOptions, rest);
-  return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
+  return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2), tooltipAxis: "y"};
 }
 
 export function stackX1(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
   const [transform, Y, X] = stack(y, x, "y", "x", stackOptions, options);
-  return {...transform, y1, y: Y, x: X};
+  return {...transform, y1, y: Y, x: X, tooltipAxis: "y"};
 }
 
 export function stackX2(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
   const [transform, Y, , X] = stack(y, x, "y", "x", stackOptions, options);
-  return {...transform, y1, y: Y, x: X};
+  return {...transform, y1, y: Y, x: X, tooltipAxis: "y"};
 }
 
 export function stackY(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
   const [transform, X, y1, y2] = stack(x, y, "x", "y", stackOptions, rest);
-  return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
+  return {...transform, x1, x: X, y1, y2, y: mid(y1, y2), tooltipAxis: "x"};
 }
 
 export function stackY1(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
   const [transform, X, Y] = stack(x, y, "x", "y", stackOptions, options);
-  return {...transform, x1, x: X, y: Y};
+  return {...transform, x1, x: X, y: Y, tooltipAxis: "x"};
 }
 
 export function stackY2(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
   const [transform, X, , Y] = stack(x, y, "x", "y", stackOptions, options);
-  return {...transform, x1, x: X, y: Y};
+  return {...transform, x1, x: X, y: Y, tooltipAxis: "x"};
 }
 
 export function maybeStackX({x, x1, x2, ...options} = {}) {
   if (x1 === undefined && x2 === undefined) return stackX({x, ...options});
   [x1, x2] = maybeZero(x, x1, x2);
-  return {...options, x1, x2};
+  return {...options, x1, x2, tooltipAxis: "x"};
 }
 
 export function maybeStackY({y, y1, y2, ...options} = {}) {
   if (y1 === undefined && y2 === undefined) return stackY({y, ...options});
   [y1, y2] = maybeZero(y, y1, y2);
-  return {...options, y1, y2};
+  return {...options, y1, y2, tooltipAxis: "y"};
 }
 
 // The reverse option is ambiguous: it is both a stack option and a basic

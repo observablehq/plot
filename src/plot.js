@@ -7,6 +7,7 @@ import {createLegends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
+import {tooltip} from "./marks/tooltip.js";
 import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeIntervalTransform} from "./options.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
@@ -21,7 +22,7 @@ export function plot(options = {}) {
   const className = maybeClassName(options.className);
 
   // Flatten any nested marks.
-  const marks = options.marks === undefined ? [] : flatMarks(options.marks);
+  const marks = options.marks === undefined ? [] : inferTooltip(flatMarks(options.marks));
 
   // Compute the top-level facet state. This has roughly the same structure as
   // mark-specific facet state, except there isn’t a facetsIndex, and there’s a
@@ -127,6 +128,7 @@ export function plot(options = {}) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
     const {facetsIndex, channels: facetChannels} = facetStateByMark.get(mark) ?? {};
     const {data, facets, channels} = mark.initialize(facetsIndex, facetChannels, options);
+    resolveChannelAliases(channels, stateByMark);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
   }
@@ -336,6 +338,36 @@ function flatMarks(marks) {
     .flat(Infinity)
     .filter((mark) => mark != null)
     .map(markify);
+}
+
+// Note: Mutates marks!
+function inferTooltip(marks) {
+  for (const mark of marks) {
+    if (mark.tooltip) {
+      marks.push(tooltip(mark.data, tooltipOptions(mark)));
+      break;
+    }
+  }
+  return marks;
+}
+
+function tooltipOptions(mark) {
+  const {tooltipAxis: axis, facet, facetAnchor, fx, fy} = mark;
+  return {axis, x: null, facet, facetAnchor, fx, fy, channels: tooltipChannels(mark)};
+}
+
+function tooltipChannels(mark) {
+  return Object.fromEntries(Object.keys(mark.channels).map((name) => [name, {alias: mark}]));
+}
+
+// Note: mutates channels!
+function resolveChannelAliases(channels, stateByMark) {
+  for (const name in channels) {
+    const channel = channels[name];
+    if (channel.alias) {
+      channels[name] = stateByMark.get(channel.alias).channels[name];
+    }
+  }
 }
 
 function markify(mark) {

@@ -14,6 +14,8 @@ export class Mark {
       fx,
       fy,
       sort,
+      tooltip,
+      tooltipAxis,
       dx = 0,
       dy = 0,
       margin = 0,
@@ -25,6 +27,8 @@ export class Mark {
       channels: extraChannels
     } = options;
     this.data = data;
+    this.tooltip = !!tooltip;
+    this.tooltipAxis = tooltipAxis; // TODO validate
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
@@ -37,7 +41,7 @@ export class Mark {
     }
     this.facetAnchor = maybeFacetAnchor(facetAnchor);
     channels = maybeNamed(channels);
-    if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
+    if (extraChannels !== undefined) channels = {...channels, ...maybeNamed(extraChannels)};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
     this.channels = Object.fromEntries(
       Object.entries(channels)
@@ -54,8 +58,8 @@ export class Mark {
           }
           return [name, channel];
         })
-        .filter(([name, {value, optional}]) => {
-          if (value != null) return true;
+        .filter(([name, {alias, value, optional}]) => {
+          if (value != null || alias) return true;
           if (optional) return false;
           throw new Error(`missing channel value: ${name}`);
         })

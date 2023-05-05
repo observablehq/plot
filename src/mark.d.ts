@@ -438,6 +438,9 @@ export interface MarkOptions {
    * by an **initializer** to declare extra channels.
    */
   channels?: Channels;
+
+  /** TODO */
+  tooltip?: boolean;
 }
 
 /** The abstract base class for Mark implementations. */
