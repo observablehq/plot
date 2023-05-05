@@ -192,7 +192,7 @@ export class Tooltip extends Mark {
           const cy = (/^top-/.test(c) ? fitTop || !fitBottom : fitTop && !fitBottom) ? "top" : "bottom";
           c = `${cy}-${cx}`;
         }
-        const oy = getLineOffset(c, text) * lineHeight;
+        const oy = getLineOffset(c, text, lineHeight);
         tspan.attr("y", (d, i) => `${i * lineHeight + oy}em`);
         path.attr("d", getPath(c, m, r, w, h));
         content.attr("transform", getTextTransform(c, m, r, w, h));
@@ -280,8 +280,8 @@ function getSource2(channels, key) {
   return key === "x1" ? getSource(channels, "x2") : key === "y1" ? getSource(channels, "y2") : null;
 }
 
-function getLineOffset(anchor, text) {
-  return /^top-/.test(anchor) ? 0.94 : 0.71 - text.length;
+function getLineOffset(anchor, text, lineHeight) {
+  return /^top-/.test(anchor) ? 0.94 : -0.29 - (text.length - 1) * lineHeight;
 }
 
 function getTextTransform(anchor, m, r, width) {
