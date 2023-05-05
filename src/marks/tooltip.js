@@ -1,4 +1,5 @@
-import {pointer, select} from "d3";
+import {pointer} from "d3";
+import {create} from "../context.js";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
 import {keyword, maybeFrameAnchor, maybeKeyword, maybeTuple, number, string} from "../options.js";
@@ -218,16 +219,7 @@ export class Tooltip extends Mark {
       }
     }
 
-    // We listen to the svg element; listening to the window instead would let
-    // us receive pointer events from farther away, but would also make it hard
-    // to know when to remove the listeners. (Using a mutation observer to watch
-    // the entire document is likely too expensive.)
-    svg.addEventListener("pointermove", pointermove);
-    svg.addEventListener("pointerdown", pointerdown);
-    svg.addEventListener("pointerleave", pointerleave);
-
-    const dot = select(svg)
-      .append("g")
+    const dot = create("svg:g", context)
       .attr("aria-label", "tooltip")
       .attr("pointer-events", "none") // initially not sticky
       .attr("display", "none");
@@ -244,6 +236,17 @@ export class Tooltip extends Mark {
       .attr("fill", foreground)
       .call(applyIndirectTextStyles, this)
       .on("pointerdown pointermove", stopPropagation);
+
+    // We listen to the svg element; listening to the window instead would let
+    // us receive pointer events from farther away, but would also make it hard
+    // to know when to remove the listeners. (Using a mutation observer to watch
+    // the entire document is likely too expensive.)
+    svg.addEventListener("pointermove", pointermove);
+    svg.addEventListener("pointerdown", pointerdown);
+    svg.addEventListener("pointerleave", pointerleave);
+
+    // The tooltip is added asynchronously to draw on top of all other marks.
+    Promise.resolve().then(() => svg.append(dot.node()));
 
     return null;
   }
