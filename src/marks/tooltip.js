@@ -17,6 +17,10 @@ export class Tooltip extends Mark {
     const {
       x,
       y,
+      x1,
+      x2,
+      y1,
+      y2,
       maxRadius = 40,
       axis,
       corner,
@@ -33,8 +37,12 @@ export class Tooltip extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x", optional: true},
-        y: {value: y, scale: "y", optional: true}
+        x: {value: x1 != null && x2 != null ? null : x, scale: "x", optional: true}, // ignore midpoint
+        y: {value: y1 != null && y2 != null ? null : y, scale: "y", optional: true}, // ignore midpoint
+        x1: {value: x1, scale: "x", optional: x2 == null},
+        y1: {value: y1, scale: "y", optional: y2 == null},
+        x2: {value: x2, scale: "x", optional: x1 == null},
+        y2: {value: y2, scale: "y", optional: y1 == null}
       },
       options,
       defaults
@@ -54,7 +62,7 @@ export class Tooltip extends Mark {
     this.fontWeight = string(fontWeight);
     this.maxRadius = +maxRadius;
   }
-  render(index, scales, {x: X, y: Y, channels}, dimensions, context) {
+  render(index, scales, {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2, channels}, dimensions, context) {
     // When faceting, only render this mark once. TODO We could use
     // “super-faceting” to render this mark only once, perhaps, but we still
     // want to compute faceted channels…
@@ -102,8 +110,8 @@ export class Tooltip extends Mark {
           const oxj = fx ? fx(fxj) - marginLeft : 0;
           const oyj = fy ? fy(fyj) - marginTop : 0;
           for (const j of index) {
-            const xj = (X ? X[j] : cx) + oxj;
-            const yj = (Y ? Y[j] : cy) + oyj;
+            const xj = (X2 ? (X1[j] + X2[j]) / 2 : X ? X[j] : cx) + oxj;
+            const yj = (Y2 ? (Y1[j] + Y2[j]) / 2 : Y ? Y[j] : cy) + oyj;
             const dx = kx * (xj - xp);
             const dy = ky * (yj - yp);
             const rj = dx * dx + dy * dy;
@@ -120,11 +128,15 @@ export class Tooltip extends Mark {
         dot.attr("transform", `translate(${Math.round(xi)},${Math.round(yi)})`);
         const text = [];
         for (const key in channels) {
-          let channel = channels[key];
-          while (channel.source) channel = channel.source;
-          if (channel.source === null) continue; // e.g., dodgeY’s y
+          const channel = getSource(channels, key);
+          if (!channel) continue; // e.g., dodgeY’s y
+          const channel1 = getSource1(channels, key);
+          if (channel1) continue; // already displayed
+          const channel2 = getSource2(channels, key);
           const label = scales[channel.scale]?.label ?? key;
-          text.push([label, formatDefault(channel.value[i])]);
+          const value1 = formatDefault(channel.value[i]);
+          const value2 = channel2 && formatDefault(channel2.value[i]);
+          text.push([label, channel2 ? `${value1}–${value2}` : value1]);
         }
         if (fxv != null) text.push([fx.label ?? "fx", formatFx(fxi)]);
         if (fyv != null) text.push([fy.label ?? "fy", formatFy(fyi)]);
@@ -169,7 +181,7 @@ export class Tooltip extends Mark {
         const {width, height} = svg.getBBox();
         if (corner === undefined) {
           const cx = (/-left$/.test(c) ? xi + w + r * 2 > width : xi - w - r * 2 > 0) ? "right" : "left";
-          const cy = (/^top-/.test(c) ? yi + h + m + r * 2 > height : yi - h - m - r * 2 > 0) ? "bottom" : "top";
+          const cy = (/^top-/.test(c) ? yi + h + m + r * 2 + 7 > height : yi - h - m - r * 2 > 0) ? "bottom" : "top";
           c = `${cy}-${cx}`;
         }
         const oy = getLineOffset(c, text) * lineHeight;
@@ -239,6 +251,21 @@ function maybeAxis(value = "xy") {
 
 function maybeCorner(value) {
   return maybeKeyword(value, "corner", ["top-left", "top-right", "bottom-right", "bottom-left"]);
+}
+
+function getSource(channels, key) {
+  let channel = channels[key];
+  if (!channel) return;
+  while (channel.source) channel = channel.source;
+  return channel.source === null ? null : channel;
+}
+
+function getSource1(channels, key) {
+  return key === "x2" ? getSource(channels, "x1") : key === "y2" ? getSource(channels, "y1") : null;
+}
+
+function getSource2(channels, key) {
+  return key === "x1" ? getSource(channels, "x2") : key === "y1" ? getSource(channels, "y2") : null;
 }
 
 function getLineOffset(corner, text) {

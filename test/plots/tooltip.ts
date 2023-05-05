@@ -16,7 +16,7 @@ export async function tooltipBinStack() {
   return Plot.plot({
     marks: [
       Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"})),
-      Plot.tooltip(olympians, Plot.stackY({}, Plot.binX({y: "count"}, {x: "weight", z: "sex", axis: "x"})))
+      Plot.tooltip(olympians, Plot.stackY({}, Plot.binX({y: "count"}, {x: "weight", fill: "sex", axis: "x"})))
     ]
   });
 }
