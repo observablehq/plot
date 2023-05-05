@@ -77,113 +77,114 @@ export class Tooltip extends Mark {
     let i, xi, yi; // currently-focused index and position
     let c = corner; // last-used corner (for stability)
     let sticky = false;
-    select(svg.ownerDocument.defaultView)
-      .on("pointermove", (event) => {
-        if (sticky) return;
-        if (event.buttons === 1) return; // dragging
-        const rect = svg.getBoundingClientRect();
-        let ii, fxi, fyi;
-        if (
-          // Check if the pointer is near before scanning.
-          event.clientX + maxRadius > rect.left &&
-          event.clientX - maxRadius < rect.right &&
-          event.clientY + maxRadius > rect.top &&
-          event.clientY - maxRadius < rect.bottom
-        ) {
-          const [xp, yp] = pointer(event, svg);
-          let ri = maxRadius * maxRadius;
-          for (const index of indexes) {
-            const fxj = index.fx;
-            const fyj = index.fy;
-            const oxj = fx ? fx(fxj) - marginLeft : 0;
-            const oyj = fy ? fy(fyj) - marginTop : 0;
-            for (const j of index) {
-              const xj = (X ? X[j] : cx) + oxj;
-              const yj = (Y ? Y[j] : cy) + oyj;
-              const dx = kx * (xj - xp);
-              const dy = ky * (yj - yp);
-              const rj = dx * dx + dy * dy;
-              if (rj <= ri) (ii = j), (ri = rj), (xi = xj), (yi = yj), (fxi = fxj), (fyi = fyj);
-            }
+    // TODO Cleanup listeners on SVG removal?
+    const window = svg.ownerDocument.defaultView;
+    window.addEventListener("pointermove", (event) => {
+      if (sticky) return;
+      if (event.buttons === 1) return; // dragging
+      const rect = svg.getBoundingClientRect();
+      let ii, fxi, fyi;
+      if (
+        // Check if the pointer is near before scanning.
+        event.clientX + maxRadius > rect.left &&
+        event.clientX - maxRadius < rect.right &&
+        event.clientY + maxRadius > rect.top &&
+        event.clientY - maxRadius < rect.bottom
+      ) {
+        const [xp, yp] = pointer(event, svg);
+        let ri = maxRadius * maxRadius;
+        for (const index of indexes) {
+          const fxj = index.fx;
+          const fyj = index.fy;
+          const oxj = fx ? fx(fxj) - marginLeft : 0;
+          const oyj = fy ? fy(fyj) - marginTop : 0;
+          for (const j of index) {
+            const xj = (X ? X[j] : cx) + oxj;
+            const yj = (Y ? Y[j] : cy) + oyj;
+            const dx = kx * (xj - xp);
+            const dy = ky * (yj - yp);
+            const rj = dx * dx + dy * dy;
+            if (rj <= ri) (ii = j), (ri = rj), (xi = xj), (yi = yj), (fxi = fxj), (fyi = fyj);
           }
         }
-        if (i === ii) return; // abort if the tooltip hasn’t moved
-        i = ii;
-        if (i === undefined) {
-          dot.attr("display", "none");
-        } else {
-          dot.attr("display", "inline");
-          dot.attr("transform", `translate(${Math.round(xi)},${Math.round(yi)})`);
-          const text = [];
-          for (const key in channels) {
-            let channel = channels[key];
-            while (channel.source) channel = channel.source;
-            if (channel.source === null) continue; // e.g., dodgeY’s y
-            const label = scales[channel.scale]?.label ?? key;
-            text.push([label, formatDefault(channel.value[i])]);
-          }
-          if (fxv != null) text.push([fx.label ?? "fx", formatFx(fxi)]);
-          if (fyv != null) text.push([fy.label ?? "fy", formatFy(fyi)]);
-          for (const line of text) {
-            let w = lineWidth * 100;
-            let [name, value] = line;
-            line[0] = name = String(name).trim();
-            line[1] = value = ` ${String(value).trim()}\u200b`; // zwsp for double-click
-            const [i] = cut(name, w, widthof, ee);
-            if (i >= 0) {
-              // name is truncated
-              line[0] = name.slice(0, i).trimEnd() + ellipsis;
-              line[1] = "";
+      }
+      if (i === ii) return; // abort if the tooltip hasn’t moved
+      i = ii;
+      if (i === undefined) {
+        dot.attr("display", "none");
+      } else {
+        dot.attr("display", "inline");
+        dot.attr("transform", `translate(${Math.round(xi)},${Math.round(yi)})`);
+        const text = [];
+        for (const key in channels) {
+          let channel = channels[key];
+          while (channel.source) channel = channel.source;
+          if (channel.source === null) continue; // e.g., dodgeY’s y
+          const label = scales[channel.scale]?.label ?? key;
+          text.push([label, formatDefault(channel.value[i])]);
+        }
+        if (fxv != null) text.push([fx.label ?? "fx", formatFx(fxi)]);
+        if (fyv != null) text.push([fy.label ?? "fy", formatFy(fyi)]);
+        for (const line of text) {
+          let w = lineWidth * 100;
+          let [name, value] = line;
+          line[0] = name = String(name).trim();
+          line[1] = value = ` ${String(value).trim()}\u200b`; // zwsp for double-click
+          const [i] = cut(name, w, widthof, ee);
+          if (i >= 0) {
+            // name is truncated
+            line[0] = name.slice(0, i).trimEnd() + ellipsis;
+            line[1] = "";
+            line[2] = value.trim();
+          } else {
+            const [j] = cut(value, w - widthof(name), widthof, ee);
+            if (j >= 0) {
+              // value is truncated
+              line[1] = value.slice(0, j).trimEnd() + ellipsis;
               line[2] = value.trim();
-            } else {
-              const [j] = cut(value, w - widthof(name), widthof, ee);
-              if (j >= 0) {
-                // value is truncated
-                line[1] = value.slice(0, j).trimEnd() + ellipsis;
-                line[2] = value.trim();
-              }
             }
           }
-          const tspan = content
-            .selectChildren()
-            .data(text)
-            .join("tspan")
-            .attr("x", 0)
-            .attr("y", (d, i) => `${i * lineHeight}em`);
-          tspan
-            .selectChildren()
-            .data((d) => d.slice(0, 2))
-            .join("tspan")
-            .attr("font-weight", (d, i) => (i ? null : "bold"))
-            .text(String);
-          tspan
-            .selectAll("title")
-            .data((d) => (d.length > 2 ? [d[2]] : []))
-            .join("title")
-            .text(String);
-          const {width: w, height: h} = content.node().getBBox();
-          const {width, height} = svg.getBBox();
-          if (corner === undefined) {
-            const cx = (/-left$/.test(c) ? xi + w + r * 2 > width : xi - w - r * 2 > 0) ? "right" : "left";
-            const cy = (/^top-/.test(c) ? yi + h + m + r * 2 > height : yi - h - m - r * 2 > 0) ? "bottom" : "top";
-            c = `${cy}-${cx}`;
-          }
-          const oy = getLineOffset(c, text) * lineHeight;
-          tspan.attr("y", (d, i) => `${i * lineHeight + oy}em`);
-          path.attr("d", getPath(c, m, r, w, h));
-          content.attr("transform", getTextTransform(c, m, r, w, h));
         }
-      })
-      .on("pointerdown", () => {
-        if (sticky) {
-          sticky = false;
-          dot.attr("display", "none");
-          dot.attr("pointer-events", "none");
-        } else if (i !== undefined) {
-          sticky = true;
-          dot.attr("pointer-events", "all");
+        const tspan = content
+          .selectChildren()
+          .data(text)
+          .join("tspan")
+          .attr("x", 0)
+          .attr("y", (d, i) => `${i * lineHeight}em`);
+        tspan
+          .selectChildren()
+          .data((d) => d.slice(0, 2))
+          .join("tspan")
+          .attr("font-weight", (d, i) => (i ? null : "bold"))
+          .text(String);
+        tspan
+          .selectAll("title")
+          .data((d) => (d.length > 2 ? [d[2]] : []))
+          .join("title")
+          .text(String);
+        const {width: w, height: h} = content.node().getBBox();
+        const {width, height} = svg.getBBox();
+        if (corner === undefined) {
+          const cx = (/-left$/.test(c) ? xi + w + r * 2 > width : xi - w - r * 2 > 0) ? "right" : "left";
+          const cy = (/^top-/.test(c) ? yi + h + m + r * 2 > height : yi - h - m - r * 2 > 0) ? "bottom" : "top";
+          c = `${cy}-${cx}`;
         }
-      });
+        const oy = getLineOffset(c, text) * lineHeight;
+        tspan.attr("y", (d, i) => `${i * lineHeight + oy}em`);
+        path.attr("d", getPath(c, m, r, w, h));
+        content.attr("transform", getTextTransform(c, m, r, w, h));
+      }
+    });
+    window.addEventListener("pointerdown", () => {
+      if (sticky) {
+        sticky = false;
+        dot.attr("display", "none");
+        dot.attr("pointer-events", "none");
+      } else if (i !== undefined) {
+        sticky = true;
+        dot.attr("pointer-events", "all");
+      }
+    });
     const dot = select(svg)
       .append("g")
       .attr("aria-label", "tooltip")
