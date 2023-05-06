@@ -271,6 +271,7 @@ export * from "./stargazers-hourly.js";
 export * from "./stargazers.js";
 export * from "./stocks-index.js";
 export * from "./text-overflow.js";
+export * from "./tip.js";
 export * from "./this-is-just-to-say.js";
 export * from "./traffic-horizon.js";
 export * from "./travelers-covid-drop.js";
