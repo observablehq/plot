@@ -164,23 +164,29 @@ export class Tooltip extends Mark {
             }
           }
         }
-        const tspan = content
+
+        content
           .selectChildren()
           .data(text)
           .join("tspan")
           .attr("x", 0)
-          .attr("y", (d, i) => `${i * lineHeight}em`);
-        tspan
-          .selectChildren()
-          .data((d) => d.slice(0, 2))
-          .join("tspan")
-          .attr("font-weight", (d, i) => (i ? null : "bold"))
-          .text(String);
-        tspan
-          .selectAll("title")
-          .data((d) => (d.length > 2 ? [d[2]] : []))
-          .join("title")
-          .text(String);
+          .attr("dy", `${lineHeight}em`)
+          .call((tspan) =>
+            tspan
+              .selectChildren()
+              .data((d) => d.slice(0, 2))
+              .join("tspan")
+              .attr("font-weight", (d, i) => (i ? null : "bold"))
+              .text(String)
+          )
+          .call((tspan) =>
+            tspan
+              .selectAll("title")
+              .data((d) => (d.length > 2 ? [d[2]] : []))
+              .join("title")
+              .text(String)
+          );
+
         const {width: w, height: h} = content.node().getBBox();
         const {width, height} = svg.getBBox();
         if (anchor === undefined) {
@@ -192,9 +198,8 @@ export class Tooltip extends Mark {
           const cy = (/^top-/.test(c) ? fitTop || !fitBottom : fitTop && !fitBottom) ? "top" : "bottom";
           c = `${cy}-${cx}`;
         }
-        const oy = getLineOffset(c, text, lineHeight);
-        tspan.attr("y", (d, i) => `${i * lineHeight + oy}em`);
         path.attr("d", getPath(c, m, r, w, h));
+        content.attr("y", `${+getLineOffset(c, text, lineHeight).toFixed(6)}em`);
         content.attr("transform", getTextTransform(c, m, r, w, h));
         dot.attr("transform", `translate(${Math.round(xi)},${Math.round(yi)})`);
         dot.attr("display", "inline"); // make visible only after getBBox
@@ -281,7 +286,7 @@ function getSource2(channels, key) {
 }
 
 function getLineOffset(anchor, text, lineHeight) {
-  return /^top-/.test(anchor) ? 0.94 : -0.29 - (text.length - 1) * lineHeight;
+  return /^top-/.test(anchor) ? 0.94 - lineHeight : -0.29 - text.length * lineHeight;
 }
 
 function getTextTransform(anchor, m, r, width) {
