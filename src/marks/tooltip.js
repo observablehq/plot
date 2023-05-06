@@ -217,7 +217,8 @@ export class Tooltip extends Mark {
       }
     }
 
-    function pointerleave() {
+    function pointerleave(event) {
+      if (event.pointerType !== "mouse") return;
       if (!sticky) {
         dot.attr("display", "none");
         dot.attr("pointer-events", "none");
