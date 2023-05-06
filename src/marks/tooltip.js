@@ -92,8 +92,7 @@ export class Tooltip extends Mark {
     let sticky = false;
 
     function pointermove(event) {
-      if (sticky) return;
-      if (event.buttons === 1) return; // dragging
+      if (sticky || (event.pointerType === "mouse" && event.buttons === 1)) return; // dragging
       const rect = svg.getBoundingClientRect();
       let ii, fxi, fyi;
       if (
@@ -206,7 +205,8 @@ export class Tooltip extends Mark {
       }
     }
 
-    function pointerdown() {
+    function pointerdown(event) {
+      if (event.pointerType !== "mouse") return;
       if (sticky) {
         sticky = false;
         dot.attr("display", "none");
@@ -217,7 +217,8 @@ export class Tooltip extends Mark {
       }
     }
 
-    function pointerleave() {
+    function pointerleave(event) {
+      if (event.pointerType !== "mouse") return;
       if (!sticky) {
         dot.attr("display", "none");
         dot.attr("pointer-events", "none");
@@ -246,6 +247,7 @@ export class Tooltip extends Mark {
     // us receive pointer events from farther away, but would also make it hard
     // to know when to remove the listeners. (Using a mutation observer to watch
     // the entire document is likely too expensive.)
+    svg.addEventListener("pointerenter", pointermove);
     svg.addEventListener("pointermove", pointermove);
     svg.addEventListener("pointerdown", pointerdown);
     svg.addEventListener("pointerleave", pointerleave);
