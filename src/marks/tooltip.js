@@ -92,8 +92,12 @@ export class Tooltip extends Mark {
     let sticky = false;
 
     function pointermove(event) {
-      if (sticky) return;
-      if (event.buttons === 1) return; // dragging
+      if (
+        event.pointerType === "mouse" &&
+        (sticky || // clicked
+          event.buttons === 1) // dragging
+      )
+        return;
       const rect = svg.getBoundingClientRect();
       let ii, fxi, fyi;
       if (
@@ -206,7 +210,12 @@ export class Tooltip extends Mark {
       }
     }
 
-    function pointerdown() {
+    function pointerdown(event) {
+      // fake pointermove event for touch
+      if (event.pointerType !== "mouse") {
+        sticky = false;
+        pointermove(event);
+      }
       if (sticky) {
         sticky = false;
         dot.attr("display", "none");
