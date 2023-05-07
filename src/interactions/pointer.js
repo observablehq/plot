@@ -1,14 +1,17 @@
 import {pointer as pointof} from "d3";
 import {applyFrameAnchor} from "../style.js";
 
-function pointerK(kx, ky, {maxRadius = 40, ...options} = {}) {
+function pointerK(kx, ky, {px, py, maxRadius = 40, channels, ...options} = {}) {
   maxRadius = +maxRadius;
+  if (px != null) channels = {...channels, px: {value: px, scale: "x"}};
+  if (py != null) channels = {...channels, py: {value: py, scale: "y"}};
   return {
+    channels,
     ...options,
     render(index, scales, values, dimensions, context) {
       const mark = this;
       const svg = context.ownerSVGElement;
-      const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2} = values;
+      const {x: X0, y: Y0, x1: X1, y1: Y1, x2: X2, y2: Y2, px: X = X0, py: Y = Y0} = values;
       const [cx, cy] = applyFrameAnchor(this, dimensions);
       let sticky = false;
       let i; // currently focused index
