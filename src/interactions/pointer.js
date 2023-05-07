@@ -17,7 +17,11 @@ function pointerK(kx, ky, {maxRadius = 40, ...options} = {}) {
       function render(ii) {
         if (i === ii) return; // the tooltip hasn’t moved
         i = ii;
-        const r = mark._render(i == null ? [] : [i], scales, values, dimensions, context);
+        const I = i == null ? [] : [i];
+        I.fx = index.fx;
+        I.fy = index.fy;
+        I.fi = index.fi;
+        const r = mark._render(I, scales, values, dimensions, context);
         if (g) g.replaceWith(r);
         return (g = r);
       }
