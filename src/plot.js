@@ -1,6 +1,6 @@
 import {select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
-import {createContext, create} from "./context.js";
+import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslate, facetFilter} from "./facet.js";
 import {createLegends, exposeLegends} from "./legends.js";
@@ -142,6 +142,7 @@ export function plot(options = {}) {
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
   const context = createContext(options, subdimensions, className);
+  const svg = context.ownerSVGElement;
 
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
@@ -204,7 +205,7 @@ export function plot(options = {}) {
 
   const {width, height} = dimensions;
 
-  const svg = create("svg", context)
+  select(svg)
     .attr("class", className)
     .attr("fill", "currentColor")
     .attr("font-family", "system-ui, sans-serif")
@@ -231,11 +232,7 @@ export function plot(options = {}) {
 }`
       )
     )
-    .call(applyInlineStyles, style)
-    .node();
-
-  // TODO Cleaner.
-  context.ownerSVGElement = svg;
+    .call(applyInlineStyles, style);
 
   // Render facets.
   if (facets !== undefined) {

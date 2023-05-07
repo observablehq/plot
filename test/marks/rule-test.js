@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import assert from "assert";
+import it from "../jsdom.js";
 
 it("ruleX() has the expected defaults", () => {
   const rule = Plot.ruleX();
