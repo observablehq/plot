@@ -234,6 +234,9 @@ export function plot(options = {}) {
     .call(applyInlineStyles, style)
     .node();
 
+  // TODO Cleaner.
+  context.ownerSVGElement = svg;
+
   // Render facets.
   if (facets !== undefined) {
     const facetDomains = {x: fx?.domain(), y: fy?.domain()};

@@ -129,35 +129,36 @@ export class Tip extends Mark {
           )
       );
 
+    function postrender() {
+      const {width, height} = context.ownerSVGElement.getBBox();
+      g.selectChildren().each(function (i) {
+        const x = X ? X[i] : cx;
+        const y = Y ? Y[i] : cy;
+        const {width: w, height: h} = this.getBBox();
+        let c;
+        if (anchor === undefined) {
+          const fitLeft = x + w + r * 2 < width;
+          const fitRight = x - w - r * 2 > 0;
+          const fitTop = y + h + m + r * 2 + 7 < height;
+          const fitBottom = y - h - m - r * 2 > 0;
+          const cx = (/-left$/.test(c) ? fitLeft || !fitRight : fitLeft && !fitRight) ? "left" : "right";
+          const cy = (/^top-/.test(c) ? fitTop || !fitBottom : fitTop && !fitBottom) ? "top" : "bottom";
+          c = `${cy}-${cx}`;
+        }
+        const path = this.firstChild;
+        const text = this.lastChild;
+        path.setAttribute("d", getPath(c, m, r, w, h));
+        text.setAttribute("y", `${+getLineOffset(c, text.childNodes.length, lineHeight).toFixed(6)}em`);
+        text.setAttribute("transform", getTextTransform(c, m, r, w, h));
+      });
+    }
+
     // Wait until the Plot is inserted into the page, so that we can use getBBox
     // to compute the text dimensions. Perhaps this could be done synchronously;
     // getting the dimensions of the SVG is easy, and although accurate text
     // metrics are hard, we could use approximate heuristics.
-    if (typeof requestAnimationFrame !== "undefined") {
-      requestAnimationFrame(() => {
-        const {width, height} = g.node().ownerSVGElement.getBBox();
-        g.selectChildren().each(function (i) {
-          const x = X ? X[i] : cx;
-          const y = Y ? Y[i] : cy;
-          const {width: w, height: h} = this.getBBox();
-          let c;
-          if (anchor === undefined) {
-            const fitLeft = x + w + r * 2 < width;
-            const fitRight = x - w - r * 2 > 0;
-            const fitTop = y + h + m + r * 2 + 7 < height;
-            const fitBottom = y - h - m - r * 2 > 0;
-            const cx = (/-left$/.test(c) ? fitLeft || !fitRight : fitLeft && !fitRight) ? "left" : "right";
-            const cy = (/^top-/.test(c) ? fitTop || !fitBottom : fitTop && !fitBottom) ? "top" : "bottom";
-            c = `${cy}-${cx}`;
-          }
-          const path = this.firstChild;
-          const text = this.lastChild;
-          path.setAttribute("d", getPath(c, m, r, w, h));
-          text.setAttribute("y", `${+getLineOffset(c, text.childNodes.length, lineHeight).toFixed(6)}em`);
-          text.setAttribute("transform", getTextTransform(c, m, r, w, h));
-        });
-      });
-    }
+    if (context.ownerSVGElement.isConnected) Promise.resolve().then(postrender);
+    else if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(postrender);
 
     return g.node();
   }

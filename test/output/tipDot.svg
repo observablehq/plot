@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" style="overflow: visible;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
       display: block;
@@ -401,18 +401,6 @@
     <g transform="translate(40,270)">
       <path stroke="black" fill="white" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
       <text><tspan x="0" dy="1em"><tspan font-weight="bold">culmen_length_mm</tspan> 32.1​</tspan><tspan x="0" dy="1em"><tspan font-weight="bold">culmen_depth_mm</tspan> 15.5​</tspan></text>
-    </g>
-    <g transform="translate(620,207.5)">
-      <path stroke="black" fill="white" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
-      <text><tspan x="0" dy="1em"><tspan font-weight="bold">culmen_length_mm</tspan> 59.6​</tspan><tspan x="0" dy="1em"><tspan font-weight="bold">culmen_depth_mm</tspan> 17​</tspan></text>
-    </g>
-    <g transform="translate(267.78181818181815,370)">
-      <path stroke="black" fill="white" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
-      <text><tspan x="0" dy="1em"><tspan font-weight="bold">culmen_length_mm</tspan> 42.9​</tspan><tspan x="0" dy="1em"><tspan font-weight="bold">culmen_depth_mm</tspan> 13.1​</tspan></text>
-    </g>
-    <g transform="translate(333.16363636363633,20)">
-      <path stroke="black" fill="white" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
-      <text><tspan x="0" dy="1em"><tspan font-weight="bold">culmen_length_mm</tspan> 46​</tspan><tspan x="0" dy="1em"><tspan font-weight="bold">culmen_depth_mm</tspan> 21.5​</tspan></text>
     </g>
   </g>
 </svg>
