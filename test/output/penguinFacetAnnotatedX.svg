@@ -13,6 +13,15 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(347,30)">island</text>
+  </g>
+  <g aria-label="y-axis label" transform="translate(-71.5,0.5)">
+    <text y="0.71em" transform="translate(76,75) rotate(-90)">species</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(618,120)">Frequency →</text>
+  </g>
   <g aria-label="facet" transform="translate(1,0)">
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(159,30)">Biscoe</text>
@@ -92,14 +101,5 @@
     <g aria-label="text" text-anchor="end" transform="translate(-3.5,4.5)">
       <text transform="translate(243,30)"><tspan x="0" y="0.71em">Torgersen Island</tspan><tspan x="0" y="1.71em">only has Adelie</tspan><tspan x="0" y="2.71em">penguins!</tspan></text>
     </g>
-  </g>
-  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
-    <text y="0.71em" transform="translate(347,30)">island</text>
-  </g>
-  <g aria-label="y-axis label" transform="translate(-71.5,0.5)">
-    <text y="0.71em" transform="translate(76,75) rotate(-90)">species</text>
-  </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
-    <text transform="translate(618,120)">Frequency →</text>
   </g>
 </svg>

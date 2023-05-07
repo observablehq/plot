@@ -635,6 +635,8 @@ function inferScaleOrder(scale) {
 // inferred from an associated channel, adds an orientation-appropriate arrow.
 function inferAxisLabel(key, scale, labelAnchor) {
   const label = scale.label;
+  // Ignore the implicit label for temporal scales if it’s simply “date”.
+  if (label?.inferred && isTemporalScale(scale) && /^(date|time|year)$/i.test(label)) return;
   if (scale.bandwidth || !label?.inferred) return label;
   const order = inferScaleOrder(scale);
   return order

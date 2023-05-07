@@ -13,6 +13,15 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(330,30)">TYPE</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
+    <text y="0.71em" transform="translate(40,30)">VALUE</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,400)">PERIOD</text>
+  </g>
   <g aria-label="facet" transform="translate(0,0)">
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(177.5,30)">a</text>
@@ -44,14 +53,5 @@
       <text y="0.71em" transform="translate(54,400)">1</text>
       <text y="0.71em" transform="translate(184,400)">2</text>
     </g>
-  </g>
-  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
-    <text y="0.71em" transform="translate(330,30)">TYPE</text>
-  </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
-    <text y="0.71em" transform="translate(40,30)">VALUE</text>
-  </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(330,400)">PERIOD</text>
   </g>
 </svg>

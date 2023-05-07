@@ -13,6 +13,18 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="fy-axis label" transform="translate(68.5,0.5)">
+    <text transform="translate(569,255) rotate(-90)">species</text>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(305,30)">sex</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
+    <text y="0.71em" transform="translate(41,30)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
+    <text transform="translate(569,480)">Body mass (g) →</text>
+  </g>
   <g aria-label="facet" transform="translate(1,0)">
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(122,30)">FEMALE</text>
@@ -188,17 +200,5 @@
     <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
       <line x1="40" x2="204" y1="170" y2="170"></line>
     </g>
-  </g>
-  <g aria-label="fy-axis label" transform="translate(68.5,0.5)">
-    <text transform="translate(569,255) rotate(-90)">species</text>
-  </g>
-  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
-    <text y="0.71em" transform="translate(305,30)">sex</text>
-  </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
-    <text y="0.71em" transform="translate(41,30)">↑ Frequency</text>
-  </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
-    <text transform="translate(569,480)">Body mass (g) →</text>
   </g>
 </svg>

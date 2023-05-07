@@ -13,6 +13,9 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,269)">body_mass_g →</text>
+  </g>
   <g aria-label="facet" transform="translate(0,0)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(60,58.5)">Adelie</text>
@@ -420,8 +423,5 @@
       <circle cx="448.88888888888886" cy="70.5" r="2.5"></circle>
       <circle cx="480" cy="46.5" r="2.5"></circle>
     </g>
-  </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
-    <text transform="translate(620,269)">body_mass_g →</text>
   </g>
 </svg>

@@ -13,6 +13,15 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(330,30)">sex</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
+    <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,290)">body_mass_g →</text>
+  </g>
   <g aria-label="facet" transform="translate(0,0)">
     <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
       <text transform="translate(130,30)">FEMALE</text>
@@ -284,14 +293,5 @@
       <circle cx="72.85714285714286" cy="261.53846153846155" r="2.9999999999999996" fill="#4e79a7" stroke="#4e79a7"></circle>
       <circle cx="50" cy="243.0769230769231" r="2.9999999999999996" fill="#4e79a7" stroke="#4e79a7"></circle>
     </g>
-  </g>
-  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
-    <text y="0.71em" transform="translate(330,30)">sex</text>
-  </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
-    <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
-  </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
-    <text transform="translate(620,290)">body_mass_g →</text>
   </g>
 </svg>

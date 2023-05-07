@@ -69,7 +69,7 @@ export class Dot extends Mark {
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
     const {r, rotate, symbol} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const circle = this.symbol === symbolCircle;
+    const circle = symbol === symbolCircle;
     const size = R ? undefined : r * r * Math.PI;
     if (negative(r)) index = [];
     return create("svg:g", context)

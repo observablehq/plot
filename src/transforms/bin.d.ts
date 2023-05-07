@@ -1,4 +1,4 @@
-import type {ChannelReducers, ChannelValueBinSpec} from "../channel.js";
+import type {ChannelReducers, ChannelValue, ChannelValueBinSpec} from "../channel.js";
 import type {RangeInterval} from "../interval.js";
 import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
@@ -102,6 +102,9 @@ export interface BinOptions {
    * ```
    */
   interval?: RangeInterval;
+
+  /** For subdividing bins. */
+  z?: ChannelValue;
 }
 
 /**
