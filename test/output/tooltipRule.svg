@@ -387,7 +387,7 @@
     <line x1="436.66666666666663" x2="436.66666666666663" y1="0" y2="30"></line>
     <line x1="470" x2="470" y1="0" y2="30"></line>
   </g>
-  <g aria-label="tooltip" pointer-events="none" display="none">
+  <g aria-label="tooltip" display="none">
     <path fill="white" stroke="black" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
     <text fill="black" text-anchor="start"></text>
   </g>

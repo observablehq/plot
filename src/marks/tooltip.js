@@ -121,7 +121,7 @@ export class Tooltip extends Mark {
       }
       if (i === ii) return; // abort if the tooltip hasn’t moved
       i = ii;
-      dot.attr("display", "none");
+      tip.attr("display", "none");
       if (i !== undefined) {
         const text = [];
         for (const key in channels) {
@@ -200,48 +200,32 @@ export class Tooltip extends Mark {
         path.attr("d", getPath(c, m, r, w, h));
         content.attr("y", `${+getLineOffset(c, text, lineHeight).toFixed(6)}em`);
         content.attr("transform", getTextTransform(c, m, r, w, h));
-        dot.attr("transform", `translate(${Math.round(xi)},${Math.round(yi)})`);
-        dot.attr("display", "inline"); // make visible only after getBBox
+        tip.attr("transform", `translate(${Math.round(xi)},${Math.round(yi)})`);
+        tip.attr("display", "inline"); // make visible only after getBBox
       }
     }
 
     function pointerdown(event) {
       if (event.pointerType !== "mouse") return;
-      if (sticky) {
-        sticky = false;
-        dot.attr("display", "none");
-        dot.attr("pointer-events", "none");
-      } else if (i !== undefined) {
-        sticky = true;
-        dot.attr("pointer-events", "all");
-      }
+      if (sticky && tip.node().contains(event.target)) return; // stay sticky
+      if (sticky) (sticky = false), tip.attr("display", "none");
+      else if (i !== undefined) sticky = true;
     }
 
     function pointerleave(event) {
       if (event.pointerType !== "mouse") return;
-      if (!sticky) {
-        dot.attr("display", "none");
-        dot.attr("pointer-events", "none");
-      }
+      if (!sticky) tip.attr("display", "none");
     }
 
-    const dot = create("svg:g", context)
-      .attr("aria-label", "tooltip")
-      .attr("pointer-events", "none") // initially not sticky
-      .attr("display", "none");
+    const tip = create("svg:g", context).attr("aria-label", "tooltip").attr("display", "none");
 
-    const path = dot
+    const path = tip
       .append("path")
       .attr("fill", background)
       .attr("stroke", foreground)
-      .attr("filter", "drop-shadow(0 3px 4px rgba(0,0,0,0.2))")
-      .on("pointerdown pointermove", stopPropagation);
+      .attr("filter", "drop-shadow(0 3px 4px rgba(0,0,0,0.2))");
 
-    const content = dot
-      .append("text")
-      .attr("fill", foreground)
-      .call(applyIndirectTextStyles, this)
-      .on("pointerdown pointermove", stopPropagation);
+    const content = tip.append("text").attr("fill", foreground).call(applyIndirectTextStyles, this);
 
     // We listen to the svg element; listening to the window instead would let
     // us receive pointer events from farther away, but would also make it hard
@@ -253,7 +237,7 @@ export class Tooltip extends Mark {
     svg.addEventListener("pointerleave", pointerleave);
 
     // The tooltip is added asynchronously to draw on top of all other marks.
-    Promise.resolve().then(() => svg.append(dot.node()));
+    Promise.resolve().then(() => svg.append(tip.node()));
 
     return null;
   }
@@ -310,8 +294,4 @@ function getPath(anchor, m, r, width, height) {
     case "bottom-right":
       return `M0,0l${-m},${-m}h${m - w}v${-h}h${w}z`;
   }
-}
-
-function stopPropagation(event) {
-  event.stopPropagation();
 }

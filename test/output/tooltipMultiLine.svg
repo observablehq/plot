@@ -106,7 +106,7 @@
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
-  <g aria-label="tooltip" pointer-events="none" display="none">
+  <g aria-label="tooltip" display="none">
     <path fill="white" stroke="black" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
     <text fill="black" text-anchor="start"></text>
   </g>
