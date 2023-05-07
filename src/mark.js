@@ -22,7 +22,8 @@ export class Mark {
       marginBottom = margin,
       marginLeft = margin,
       clip,
-      channels: extraChannels
+      channels: extraChannels,
+      render
     } = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
@@ -77,6 +78,11 @@ export class Mark {
         if (scale !== "x" && scale !== "y") continue;
         throw new Error(`super-faceting cannot use x or y`);
       }
+    }
+    if (render != null) {
+      if (typeof render !== "function") throw new TypeError(`invalid render transform: ${render}`);
+      this._render = this.render;
+      this.render = render;
     }
   }
   initialize(facets, facetChannels, plotOptions) {

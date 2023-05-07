@@ -126,6 +126,9 @@ export interface MarkOptions {
   /** A custom mark initializer. */
   initializer?: InitializerFunction;
 
+  /** A custom render transform. */
+  render?: RenderFunction;
+
   /**
    * The horizontal facet position channel, for mark-level faceting, bound to
    * the *fx* scale.
