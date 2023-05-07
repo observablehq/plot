@@ -13,6 +13,10 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="fy-axis label" transform="translate(-96.5,0.5)">
+    <text y="0.71em" transform="translate(100,305) rotate(-90)">sport</text>
+  </g>
+  <line aria-label="frame" stroke="currentColor" stroke-linecap="square" transform="translate(0.5,0.5)" x1="100" x2="100" y1="26" y2="584"></line>
   <g aria-label="facet" transform="translate(0,6)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(100,29)">boxing</text>
@@ -255,8 +259,4 @@
       <rect x="100" width="520" y="20" height="18"></rect>
     </g>
   </g>
-  <g aria-label="fy-axis label" transform="translate(-96.5,0.5)">
-    <text y="0.71em" transform="translate(100,305) rotate(-90)">sport</text>
-  </g>
-  <line aria-label="frame" stroke="currentColor" stroke-linecap="square" transform="translate(0.5,0.5)" x1="100" x2="100" y1="26" y2="584"></line>
 </svg>

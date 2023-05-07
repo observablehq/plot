@@ -13,6 +13,15 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
+    <text transform="translate(600,234.5) rotate(-90)">sex</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(320,449)">species</text>
+  </g>
   <g aria-label="facet" transform="translate(0,0)">
     <g aria-label="fy-axis tick label" text-anchor="start" transform="translate(9.5,0.5)">
       <text y="0.32em" transform="translate(600,86.5)">FEMALE</text>
@@ -84,14 +93,5 @@
       <rect x="59" width="162" y="142.06849315068493" height="10.93150684931507" fill="#4e79a7"></rect>
       <rect x="419" width="162" y="143.89041095890408" height="9.109589041095916" fill="#f28e2c"></rect>
     </g>
-  </g>
-  <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
-    <text transform="translate(600,234.5) rotate(-90)">sex</text>
-  </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
-  </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(320,449)">species</text>
   </g>
 </svg>

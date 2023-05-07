@@ -66,11 +66,17 @@ function mergeOptions(options) {
   return [{offset, order, reverse}, rest];
 }
 
+// This is a hint to the tooltip mark that the y1 and y2 channels (for stackY,
+// or conversely x1 and x2 for stackX) represent a stacked length, and that the
+// tooltip should therefore show y2-y1 instead of an extent.
+const lengthy = {length: true};
+
 function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
   const z = maybeZ(options);
   const [X, setX] = maybeColumn(x);
   const [Y1, setY1] = column(y);
   const [Y2, setY2] = column(y);
+  Y1.hint = Y2.hint = lengthy;
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
   return [
@@ -87,8 +93,8 @@ function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
         const stacks = X ? Array.from(group(facet, (i) => X[i]).values()) : [facet];
         if (O) applyOrder(stacks, O);
         for (const stack of stacks) {
-          let yn = 0,
-            yp = 0;
+          let yn = 0;
+          let yp = 0;
           if (reverse) stack.reverse();
           for (const i of stack) {
             const y = Y[i];

@@ -13,6 +13,9 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="fy-axis label" transform="translate(-136.5,0.5)">
+    <text y="0.71em" transform="translate(140,165) rotate(-90)">industry</text>
+  </g>
   <g aria-label="facet" transform="translate(0,6)">
     <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
       <text y="0.32em" transform="translate(140,29)">Construction</text>
@@ -1918,8 +1921,5 @@
     <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
       <circle cx="411.551724137931" cy="29" r="3"><title>2</title></circle>
     </g>
-  </g>
-  <g aria-label="fy-axis label" transform="translate(-136.5,0.5)">
-    <text y="0.71em" transform="translate(140,165) rotate(-90)">industry</text>
   </g>
 </svg>

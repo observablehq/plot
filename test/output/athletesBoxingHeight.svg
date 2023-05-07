@@ -13,6 +13,12 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(310.5,320)">continent</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(41,20)">↑ height</text>
+  </g>
   <g aria-label="facet" transform="translate(1,0)">
     <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
       <text y="0.71em" transform="translate(89.5,320)">Africa</text>
@@ -345,11 +351,5 @@
       <circle cx="89.5" cy="232.30769230769235" r="3"><title>AUS</title></circle>
       <circle cx="89.5" cy="218.4615384615385" r="3"><title>PNG</title></circle>
     </g>
-  </g>
-  <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(310.5,320)">continent</text>
-  </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(41,20)">↑ height</text>
   </g>
 </svg>
