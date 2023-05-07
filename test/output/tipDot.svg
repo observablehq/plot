@@ -397,10 +397,6 @@
     <circle cx="316.2909090909091" cy="299.1666666666666" r="3"></circle>
     <circle cx="415.4181818181818" cy="244.99999999999994" r="3"></circle>
   </g>
-  <g aria-label="tip" text-anchor="start" transform="translate(0.5,0.5)">
-    <g transform="translate(40,270)">
-      <path stroke="black" fill="white" filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
-      <text><tspan x="0" dy="1em"><tspan font-weight="bold">culmen_length_mm</tspan> 32.1​</tspan><tspan x="0" dy="1em"><tspan font-weight="bold">culmen_depth_mm</tspan> 15.5​</tspan></text>
-    </g>
-  </g>
+  <g aria-label="dot" fill="none" stroke="red" stroke-width="1.5" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

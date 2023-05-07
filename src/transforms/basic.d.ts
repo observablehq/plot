@@ -1,7 +1,8 @@
-import type {PlotOptions} from "../plot.js";
 import type {ChannelName, Channels, ChannelValue} from "../channel.js";
 import type {Context} from "../context.js";
 import type {Dimensions} from "../dimensions.js";
+import type {RenderFunction} from "../mark.js";
+import type {PlotOptions} from "../plot.js";
 import type {ScaleFunctions} from "../scales.js";
 
 /**
@@ -66,6 +67,9 @@ export type Transformed<T> = T & {transform: TransformFunction};
 
 /** Mark options with a mark initializer. */
 export type Initialized<T> = T & {initializer: InitializerFunction};
+
+/** Mark options with a mark render transform. */
+export type Rendered<T> = T & {render: RenderFunction};
 
 /**
  * Given an *options* object that may specify some basic transforms (**filter**,
