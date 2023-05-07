@@ -10,8 +10,8 @@ import {applyIndirectTextStyles, cut, defaultWidth, monospaceWidth} from "./text
 
 const defaults = {
   ariaLabel: "tip",
-  fill: "currentColor",
-  stroke: "none"
+  fill: "white",
+  stroke: "currentColor"
 };
 
 export class Tip extends Mark {
@@ -61,9 +61,10 @@ export class Tip extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {x: X, y: Y} = channels; // TODO X1, Y1, X2, Y2
+    const {x: X, y: Y, stroke: S} = channels; // TODO X1, Y1, X2, Y2
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const {anchor, monospace, lineHeight, lineWidth} = this;
+    const {ownerSVGElement: svg, document} = context;
+    const {stroke, anchor, monospace, lineHeight, lineWidth} = this;
     const widthof = monospace ? monospaceWidth : defaultWidth;
     const ellipsis = "…";
     const ee = widthof(ellipsis);
@@ -73,8 +74,6 @@ export class Tip extends Mark {
     // const formatFx = fx && inferTickFormat(fx);
     // const formatFy = fy && inferTickFormat(fy);
     // const {fx: fxv, fy: fyv} = this;
-    const foreground = "black"; // TODO fill option?
-    const background = "white"; // TODO stroke option?
     const g = create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this)
@@ -88,16 +87,12 @@ export class Tip extends Mark {
           .attr("transform", template`translate(${X ? (i) => X[i] : cx},${Y ? (i) => Y[i] : cy})`)
           .call(applyDirectStyles, this)
           .call(applyChannelStyles, this, channels)
-          .call((g) =>
-            g
-              .append("path")
-              .attr("stroke", foreground)
-              .attr("fill", background)
-              .attr("filter", "drop-shadow(0 3px 4px rgba(0,0,0,0.2))")
-          )
+          .call((g) => g.append("path").attr("filter", "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"))
           .call((g) =>
             g.append("text").each(function (i) {
               const that = select(this);
+              this.setAttribute("fill", S ? S[i] : stroke);
+              this.setAttribute("stroke", "none");
               // TODO fx, fy
               for (const key in channels.channels) {
                 const channel = getSource(channels.channels, key);
@@ -122,7 +117,7 @@ export class Tip extends Mark {
                 }
                 const line = that.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`);
                 line.append("tspan").attr("font-weight", "bold").text(name);
-                if (value) line.append(() => context.document.createTextNode(value));
+                if (value) line.append(() => document.createTextNode(value));
                 if (title) line.append("title").text(title);
               }
             })
@@ -130,7 +125,7 @@ export class Tip extends Mark {
       );
 
     function postrender() {
-      const {width, height} = context.ownerSVGElement.getBBox();
+      const {width, height} = svg.getBBox();
       g.selectChildren().each(function (i) {
         const x = X ? X[i] : cx;
         const y = Y ? Y[i] : cy;
@@ -157,7 +152,7 @@ export class Tip extends Mark {
     // to compute the text dimensions. Perhaps this could be done synchronously;
     // getting the dimensions of the SVG is easy, and although accurate text
     // metrics are hard, we could use approximate heuristics.
-    if (context.ownerSVGElement.isConnected) Promise.resolve().then(postrender);
+    if (svg.isConnected) Promise.resolve().then(postrender);
     else if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(postrender);
 
     return g.node();
