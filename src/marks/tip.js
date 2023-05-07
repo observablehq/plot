@@ -6,6 +6,7 @@ import {maybeFrameAnchor, maybeKeyword, maybeTuple, number, string} from "../opt
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles} from "../style.js";
 import {applyFrameAnchor, applyTransform} from "../style.js";
 import {template} from "../template.js";
+import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, cut, defaultWidth, monospaceWidth} from "./text.js";
 
 const defaults = {
@@ -60,20 +61,23 @@ export class Tip extends Mark {
     this.fontWeight = string(fontWeight);
   }
   render(index, scales, channels, dimensions, context) {
-    const {x, y} = scales;
+    const mark = this;
+    const {x, y, fx, fy} = scales;
     const {x: X, y: Y, stroke: S} = channels; // TODO X1, Y1, X2, Y2
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const {ownerSVGElement: svg, document} = context;
     const {stroke, anchor, monospace, lineHeight, lineWidth} = this;
+    const {marginTop, marginLeft} = dimensions;
     const widthof = monospace ? monospaceWidth : defaultWidth;
     const ellipsis = "…";
     const ee = widthof(ellipsis);
     const r = 8; // “padding”
     const m = 12; // “margin” (flag size)
-    // const {fx, fy} = scales;
-    // const formatFx = fx && inferTickFormat(fx);
-    // const formatFy = fy && inferTickFormat(fy);
-    // const {fx: fxv, fy: fyv} = this;
+    const labelFx = fx && (fx.label === undefined ? "fx" : fx.label);
+    const labelFy = fy && (fy.label === undefined ? "fy" : fy.label);
+    const formatFx = fx && inferTickFormat(fx);
+    const formatFy = fy && inferTickFormat(fy);
+
     const g = create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this)
@@ -93,58 +97,65 @@ export class Tip extends Mark {
               const that = select(this);
               this.setAttribute("fill", S ? S[i] : stroke);
               this.setAttribute("stroke", "none");
-              // TODO fx, fy
               for (const key in channels.channels) {
                 const channel = getSource(channels.channels, key);
                 if (!channel) continue; // e.g., dodgeY’s y
-                let name = scales[channel.scale]?.label ?? key;
-                let value = ` ${formatDefault(channel.value[i])}\u200b`; // zwsp for double-click
-                let title;
-                let w = lineWidth * 100;
-                const [j] = cut(name, w, widthof, ee);
-                if (j >= 0) {
-                  // name is truncated
-                  name = name.slice(0, j).trimEnd() + ellipsis;
-                  value = "";
-                  title = value.trim();
-                } else {
-                  const [k] = cut(value, w - widthof(name), widthof, ee);
-                  if (k >= 0) {
-                    // value is truncated
-                    value = value.slice(0, k).trimEnd() + ellipsis;
-                    title = value.trim();
-                  }
-                }
-                const line = that.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`);
-                line.append("tspan").attr("font-weight", "bold").text(name);
-                if (value) line.append(() => document.createTextNode(value));
-                if (title) line.append("title").text(title);
+                renderLine(that, scales[channel.scale]?.label ?? key, formatDefault(channel.value[i]));
               }
+              if (fx) renderLine(that, labelFx, formatFx(index.fx));
+              if (fy) renderLine(that, labelFy, formatFy(index.fy));
             })
           )
       );
 
+    function renderLine(that, name, value) {
+      let title;
+      let w = lineWidth * 100;
+      const [j] = cut(name, w, widthof, ee);
+      if (j >= 0) {
+        // name is truncated
+        name = name.slice(0, j).trimEnd() + ellipsis;
+        value = "";
+        title = value.trim();
+      } else {
+        value = ` ${value}\u200b`; // zwsp for double-click
+        const [k] = cut(value, w - widthof(name), widthof, ee);
+        if (k >= 0) {
+          // value is truncated
+          value = value.slice(0, k).trimEnd() + ellipsis;
+          title = value.trim();
+        }
+      }
+      const line = that.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`);
+      line.append("tspan").attr("font-weight", "bold").text(name);
+      if (value) line.append(() => document.createTextNode(value));
+      if (title) line.append("title").text(title);
+    }
+
     function postrender() {
       const {width, height} = svg.getBBox();
+      const ox = fx ? fx(index.fx) - marginLeft : 0;
+      const oy = fy ? fy(index.fy) - marginTop : 0;
       g.selectChildren().each(function (i) {
-        const x = X ? X[i] : cx;
-        const y = Y ? Y[i] : cy;
+        const x = (X ? X[i] : cx) + ox;
+        const y = (Y ? Y[i] : cy) + oy;
         const {width: w, height: h} = this.getBBox();
-        let c;
-        if (anchor === undefined) {
+        let a = anchor;
+        if (a === undefined) {
+          a = mark.previousAnchor;
           const fitLeft = x + w + r * 2 < width;
           const fitRight = x - w - r * 2 > 0;
           const fitTop = y + h + m + r * 2 + 7 < height;
           const fitBottom = y - h - m - r * 2 > 0;
-          const cx = (/-left$/.test(c) ? fitLeft || !fitRight : fitLeft && !fitRight) ? "left" : "right";
-          const cy = (/^top-/.test(c) ? fitTop || !fitBottom : fitTop && !fitBottom) ? "top" : "bottom";
-          c = `${cy}-${cx}`;
+          const ax = (/-left$/.test(a) ? fitLeft || !fitRight : fitLeft && !fitRight) ? "left" : "right";
+          const ay = (/^top-/.test(a) ? fitTop || !fitBottom : fitTop && !fitBottom) ? "top" : "bottom";
+          a = mark.previousAnchor = `${ay}-${ax}`;
         }
         const path = this.firstChild;
         const text = this.lastChild;
-        path.setAttribute("d", getPath(c, m, r, w, h));
-        text.setAttribute("y", `${+getLineOffset(c, text.childNodes.length, lineHeight).toFixed(6)}em`);
-        text.setAttribute("transform", getTextTransform(c, m, r, w, h));
+        path.setAttribute("d", getPath(a, m, r, w, h));
+        text.setAttribute("y", `${+getLineOffset(a, text.childNodes.length, lineHeight).toFixed(6)}em`);
+        text.setAttribute("transform", getTextTransform(a, m, r, w, h));
       });
     }
 

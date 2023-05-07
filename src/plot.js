@@ -275,7 +275,9 @@ export function plot(options = {}) {
             index = indexes[facetStateByMark.has(mark) ? f.i : 0];
             index = mark.filter(index, channels, values);
             if (index.length === 0) continue;
-            index.fi = f.i; // TODO cleaner way of exposing the current facet index?
+            index.fx = f.x;
+            index.fy = f.y;
+            index.fi = f.i;
           }
           const node = mark.render(index, scales, values, subdimensions, context);
           if (node == null) continue;
