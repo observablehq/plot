@@ -24,25 +24,16 @@ function pointerK(kx, ky, {maxRadius = 40, ...options} = {}) {
 
       function pointermove(event) {
         if (sticky || (event.pointerType === "mouse" && event.buttons === 1)) return; // dragging
-        const rect = svg.getBoundingClientRect();
+        const [xp, yp] = pointof(event, g.parentNode);
         let ii = null;
-        if (
-          // Check if the pointer is near before scanning.
-          event.clientX + maxRadius > rect.left &&
-          event.clientX - maxRadius < rect.right &&
-          event.clientY + maxRadius > rect.top &&
-          event.clientY - maxRadius < rect.bottom
-        ) {
-          const [xp, yp] = pointof(event, g.parentNode);
-          let ri = maxRadius * maxRadius;
-          for (const j of index) {
-            const xj = X2 ? (X1[j] + X2[j]) / 2 : X ? X[j] : cx; // + oxj;
-            const yj = Y2 ? (Y1[j] + Y2[j]) / 2 : Y ? Y[j] : cy; // + oyj;
-            const dx = kx * (xj - xp);
-            const dy = ky * (yj - yp);
-            const rj = dx * dx + dy * dy;
-            if (rj <= ri) (ii = j), (ri = rj);
-          }
+        let ri = maxRadius * maxRadius;
+        for (const j of index) {
+          const xj = X2 ? (X1[j] + X2[j]) / 2 : X ? X[j] : cx;
+          const yj = Y2 ? (Y1[j] + Y2[j]) / 2 : Y ? Y[j] : cy;
+          const dx = kx * (xj - xp);
+          const dy = ky * (yj - yp);
+          const rj = dx * dx + dy * dy;
+          if (rj <= ri) (ii = j), (ri = rj);
         }
         render(ii);
       }
