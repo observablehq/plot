@@ -17,7 +17,7 @@ export * from "./marks/bar.js";
 export * from "./marks/box.js";
 export * from "./marks/cell.js";
 export * from "./marks/contour.js";
-export * from "./marks/crosshairs.js";
+export * from "./marks/crosshair.js";
 export * from "./marks/delaunay.js";
 export * from "./marks/density.js";
 export * from "./marks/dot.js";

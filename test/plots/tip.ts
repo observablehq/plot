@@ -1,12 +1,12 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export async function tipCrosshairs() {
+export async function tipCrosshair() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
       Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex"}),
-      Plot.crosshairs(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+      Plot.crosshair(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
     ]
   });
 }
