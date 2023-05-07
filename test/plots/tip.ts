@@ -3,16 +3,10 @@ import * as d3 from "d3";
 
 export async function tipCrosshairs() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  const x = "culmen_length_mm";
-  const y = "culmen_depth_mm";
-  const z = {fill: "currentColor", stroke: "white", strokeWidth: 5};
   return Plot.plot({
     marks: [
-      Plot.dot(penguins, {x, y, stroke: "sex"}),
-      Plot.ruleX(penguins, Plot.pointer({x, py: y, strokeOpacity: 0.2})),
-      Plot.ruleY(penguins, Plot.pointer({px: x, y, strokeOpacity: 0.2})),
-      Plot.text(penguins, Plot.pointer({px: x, y, text: y, dx: -9, frameAnchor: "left", textAnchor: "end", ...z})),
-      Plot.text(penguins, Plot.pointer({x, py: y, text: x, dy: 9, frameAnchor: "bottom", lineAnchor: "top", ...z}))
+      Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex"}),
+      Plot.crosshairs(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
     ]
   });
 }
