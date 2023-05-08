@@ -400,6 +400,14 @@ export interface MarkOptions {
   mixBlendMode?: string;
 
   /**
+   * A CSS [filter][1]; a constant string used to adjust the rendering of
+   * images, such as *blur(5px)*.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/filter
+   */
+  imageFilter?: string;
+
+  /**
    * The [paint-order][1]; a constant string specifying the order in which the
    * **fill**, **stroke**, and any markers are drawn; defaults to *normal*,
    * which draws the fill, then stroke, then markers; defaults to *stroke* for
