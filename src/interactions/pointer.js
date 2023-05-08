@@ -1,12 +1,14 @@
 import {pointer as pointof} from "d3";
 import {applyFrameAnchor} from "../style.js";
 
-function pointerK(kx, ky, {px, py, maxRadius = 40, channels, ...options} = {}) {
+function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} = {}) {
   maxRadius = +maxRadius;
-  if (px != null) channels = {...channels, px: {value: px, scale: "x"}};
-  if (py != null) channels = {...channels, py: {value: py, scale: "y"}};
+  if (px != null) (x ??= null), (channels = {...channels, px: {value: px, scale: "x"}});
+  if (py != null) (y ??= null), (channels = {...channels, py: {value: py, scale: "y"}});
   const stateBySvg = new WeakMap();
   return {
+    x,
+    y,
     channels,
     ...options,
     render(index, scales, values, dimensions, context) {
