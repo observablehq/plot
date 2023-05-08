@@ -84,3 +84,10 @@ export async function tipLine() {
     marks: [Plot.lineY(aapl, {x: "Date", y: "Close"}), Plot.tip(aapl, Plot.pointerX({x: "Date", y: "Close"}))]
   });
 }
+
+export async function tipRule() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    marks: [Plot.ruleX(penguins, {x: "body_mass_g"}), Plot.tip(penguins, Plot.pointerX({x: "body_mass_g"}))]
+  });
+}

@@ -121,7 +121,7 @@ export function ruleY(data, options) {
 
 // For marks specified either as [0, x] or [x1, x2], or nothing.
 function maybeOptionalZero(x, x1, x2) {
-  if (x === undefined) {
+  if (x == null) {
     if (x1 === undefined) {
       if (x2 !== undefined) return [0, x2];
     } else {
