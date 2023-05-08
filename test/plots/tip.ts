@@ -68,6 +68,16 @@ export async function tipDotFacets() {
   });
 }
 
+export async function tipHexbin() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.hexagon(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height"})),
+      Plot.tip(olympians, Plot.pointer(Plot.hexbin({r: "count"}, {x: "weight", y: "height"})))
+    ]
+  });
+}
+
 export async function tipLine() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
