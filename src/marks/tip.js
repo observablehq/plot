@@ -49,6 +49,7 @@ export class Tip extends Mark {
       defaults
     );
     this.anchor = maybeAnchor(anchor);
+    this.previousAnchor = this.anchor ?? "top-left";
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.textAnchor = "start"; // TODO option
     this.lineHeight = +lineHeight;
