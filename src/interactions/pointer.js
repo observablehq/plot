@@ -23,13 +23,23 @@ function pointerK(kx, ky, {px, py, maxRadius = 40, channels, ...options} = {}) {
         const I = i == null ? [] : [i];
         if (index.fi != null) (I.fx = index.fx), (I.fy = index.fy), (I.fi = index.fi);
         const r = mark._render(I, scales, values, dimensions, context);
-        if (g) g.replaceWith(r);
+        if (g) {
+          const p = g.parentNode;
+          if (p !== svg) {
+            // when faceting, preserve swapped mark and facet transforms
+            const ft = g.getAttribute("transform");
+            const mt = r.getAttribute("transform");
+            ft ? r.setAttribute("transform", ft) : r.removeAttribute("transform");
+            mt ? p.setAttribute("transform", mt) : p.removeAttribute("transform");
+          }
+          g.replaceWith(r);
+        }
         return (g = r);
       }
 
       function pointermove(event) {
         if (sticky || (event.pointerType === "mouse" && event.buttons === 1)) return; // dragging
-        const [xp, yp] = pointof(event, g.parentNode);
+        const [xp, yp] = pointof(event, g.parentNode === svg ? g.parentNode : g); // detect faceting
         let ii = null;
         let ri = maxRadius * maxRadius;
         for (const j of index) {

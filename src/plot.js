@@ -2,7 +2,7 @@ import {select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
-import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslate, facetFilter} from "./facet.js";
+import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
 import {createLegends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
@@ -11,7 +11,7 @@ import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeIn
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
-import {applyAria, applyInlineStyles, maybeClassName} from "./style.js";
+import {applyInlineStyles, maybeClassName} from "./style.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
@@ -200,10 +200,11 @@ export function plot(options = {}) {
 
   // Sort and filter the facets to match the fx and fy domains; this is needed
   // because the facets were constructed prior to the fx and fy scales.
-  let facetDomains;
+  let facetDomains, facetTranslate;
   if (facets !== undefined) {
     facetDomains = {x: fx?.domain(), y: fy?.domain()};
     facets = recreateFacets(facets, facetDomains);
+    facetTranslate = facetTranslator(fx, fy, dimensions);
   }
 
   // Compute value objects, applying scales and projection as needed.
@@ -273,12 +274,19 @@ export function plot(options = {}) {
         }
         const node = mark.render(index, scales, values, subdimensions, context);
         if (node == null) continue;
-        (g ??= select(svg).append("g").call(applyAria, mark))
-          .append("g")
-          .datum(f)
-          .append(() => node);
+        // Lazily construct the shared group (to drop empty marks).
+        (g ??= select(svg).append("g")).append(() => node).datum(f);
+        // Promote ARIA attributes and mark transform to avoid repetition on
+        // each facet; this assumes that these attributes are consistent across
+        // facets, but that should be the case!
+        for (const name of ["aria-label", "aria-description", "aria-hidden", "transform"]) {
+          if (node.hasAttribute(name)) {
+            g.attr(name, node.getAttribute(name));
+            node.removeAttribute(name);
+          }
+        }
       }
-      g?.selectChildren().attr("transform", facetTranslate(fx, fy, dimensions));
+      g?.selectChildren().attr("transform", facetTranslate);
     }
   }
 
