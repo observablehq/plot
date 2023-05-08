@@ -7,36 +7,28 @@ export function crosshair(data, options = {}) {
   const {x, y, dx = -9, dy = 9} = options;
   const p = pointer({px: x, py: y});
   return marks(
-    ruleX(data, ruleOptions(p, {x}, options)),
-    ruleY(data, ruleOptions(p, {y}, options)),
-    text(data, textOptions(p, {y, text: y, dx, frameAnchor: "left", textAnchor: "end"}, options)),
-    text(data, textOptions(p, {x, text: x, dy, frameAnchor: "bottom", lineAnchor: "top"}, options))
+    ruleX(data, {...p, x, ...ruleOptions(options)}),
+    ruleY(data, {...p, y, ...ruleOptions(options)}),
+    text(data, {...p, y, text: y, dx, frameAnchor: "left", textAnchor: "end", ...textOptions(options)}),
+    text(data, {...p, x, text: x, dy, frameAnchor: "bottom", lineAnchor: "top", ...textOptions(options)})
   );
 }
 
-function ruleOptions(
-  pointer,
-  options,
-  {
-    color = "currentColor",
-    ruleStroke: stroke = color,
-    ruleStrokeOpacity: strokeOpacity = 0.2,
-    ruleStrokeWidth: strokeWidth
-  }
-) {
-  return {...pointer, ...options, stroke, strokeOpacity, strokeWidth};
+function ruleOptions({
+  color = "currentColor",
+  ruleStroke: stroke = color,
+  ruleStrokeOpacity: strokeOpacity = 0.2,
+  ruleStrokeWidth: strokeWidth
+}) {
+  return {stroke, strokeOpacity, strokeWidth};
 }
 
-function textOptions(
-  pointer,
-  options,
-  {
-    color = "currentColor",
-    textFill: fill = color,
-    textStroke: stroke = "white",
-    textStrokeOpacity: strokeOpacity,
-    textStrokeWidth: strokeWidth = 5
-  }
-) {
-  return {...pointer, ...options, fill, stroke, strokeOpacity, strokeWidth};
+function textOptions({
+  color = "currentColor",
+  textFill: fill = color,
+  textStroke: stroke = "white",
+  textStrokeOpacity: strokeOpacity,
+  textStrokeWidth: strokeWidth = 5
+}) {
+  return {fill, stroke, strokeOpacity, strokeWidth};
 }
