@@ -51,6 +51,10 @@ function pointerK(kx, ky, {px, py, maxRadius = 40, channels, ...options} = {}) {
             const mt = r.getAttribute("transform");
             ft ? r.setAttribute("transform", ft) : r.removeAttribute("transform");
             mt ? p.setAttribute("transform", mt) : p.removeAttribute("transform");
+            // also remove ARIA attributes since these are promoted to the parent
+            r.removeAttribute("aria-label");
+            r.removeAttribute("aria-description");
+            r.removeAttribute("aria-hidden");
           }
           g.replaceWith(r);
         }
