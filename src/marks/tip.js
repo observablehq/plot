@@ -103,6 +103,7 @@ export class Tip extends Mark {
                 if (!channel) continue; // e.g., dodgeY’s y
                 renderLine(that, scales[channel.scale]?.label ?? key, formatDefault(channel.value[i]));
               }
+              if (index.fi == null) return; // not faceted
               if (fx) renderLine(that, labelFx, formatFx(index.fx));
               if (fy) renderLine(that, labelFy, formatFy(index.fy));
             })
