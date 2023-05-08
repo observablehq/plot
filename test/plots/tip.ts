@@ -1,6 +1,26 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+export async function tipBin() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"})),
+      Plot.tip(olympians, Plot.pointerX(Plot.binX({y: "count"}, {x: "weight"})))
+    ]
+  });
+}
+
+export async function tipBinStack() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.rectY(olympians, Plot.stackY({}, Plot.binX({y: "count"}, {x: "weight", fill: "sex"}))),
+      Plot.tip(olympians, Plot.pointerX(Plot.stackY({}, Plot.binX({y: "count"}, {x: "weight", stroke: "sex"}))))
+    ]
+  });
+}
+
 export async function tipCrosshair() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
