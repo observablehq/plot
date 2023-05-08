@@ -255,8 +255,9 @@ export function plot(options = {}) {
         index = mark.filter(index, channels, values);
         if (index.length === 0) continue;
       }
-      const node = mark.render(index, scales, values, superdimensions, context);
-      if (node != null) svg.appendChild(node);
+      const node = render(mark, index, scales, values, superdimensions, context);
+      if (node == null) continue;
+      svg.appendChild(node);
     }
 
     // Render a faceted mark.
@@ -272,7 +273,7 @@ export function plot(options = {}) {
           if (index.length === 0) continue;
           if (faceted) (index.fx = f.x), (index.fy = f.y), (index.fi = f.i);
         }
-        const node = mark.render(index, scales, values, subdimensions, context);
+        const node = render(mark, index, scales, values, subdimensions, context);
         if (node == null) continue;
         // Lazily construct the shared group (to drop empty marks).
         (g ??= select(svg).append("g")).append(() => node).datum(f);
@@ -350,6 +351,10 @@ class Render extends Mark {
     this.render = render;
   }
   render() {}
+}
+
+function render(mark, ...args) {
+  return (mark.renderTransform ?? mark.render).apply(mark, args);
 }
 
 // Note: mutates channel.value to apply the scale transform, if any.
