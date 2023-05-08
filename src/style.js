@@ -44,6 +44,7 @@ export function styles(
     strokeDashoffset,
     opacity,
     mixBlendMode,
+    imageFilter,
     paintOrder,
     pointerEvents,
     shapeRendering
@@ -135,6 +136,7 @@ export function styles(
   mark.ariaHidden = string(ariaHidden);
   mark.opacity = impliedNumber(copacity, 1);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
+  mark.imageFilter = impliedString(imageFilter, "none");
   mark.paintOrder = impliedString(paintOrder, "normal");
   mark.pointerEvents = impliedString(pointerEvents, "auto");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
@@ -368,6 +370,7 @@ export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
   applyAttr(selection, "stroke-dashoffset", mark.strokeDashoffset);
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
+  applyAttr(selection, "filter", mark.imageFilter);
   applyAttr(selection, "paint-order", mark.paintOrder);
   applyAttr(selection, "pointer-events", mark.pointerEvents);
 }

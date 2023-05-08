@@ -476,6 +476,7 @@ All marks support the following style options:
 * **strokeDashoffset** - the [stroke dash offset](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset) (typically in pixels)
 * **opacity** - object opacity (a number between 0 and 1)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
+* **imageFilter** - a CSS [filter](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) (*e.g.*, *blur(5px)*)
 * **shapeRendering** - the [shape-rendering mode](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering) (*e.g.*, *crispEdges*)
 * **paintOrder** - the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order) (*e.g.*, *stroke*)
 * **dx** - horizontal offset (in pixels; defaults to 0)
