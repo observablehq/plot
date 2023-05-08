@@ -79,8 +79,8 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
 
     // Construct the output channels, and populate the radius scale hint.
     const binChannels = {
-      x: {value: BX},
-      y: {value: BY},
+      x: {value: BX, source: null}, // or {value: map(BX, scales.x.invert), scale: "x"}?
+      y: {value: BY, source: null}, // or {value: map(BY, scales.y.invert), scale: "y"}?
       ...(Z && {z: {value: GZ}}),
       ...(F && {fill: {value: GF, scale: "auto"}}),
       ...(S && {stroke: {value: GS, scale: "auto"}}),
@@ -88,7 +88,12 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
       ...Object.fromEntries(
         outputs.map(({name, output}) => [
           name,
-          {scale: "auto", radius: name === "r" ? binWidth / 2 : undefined, value: output.transform()}
+          {
+            scale: "auto",
+            label: output.label,
+            radius: name === "r" ? binWidth / 2 : undefined,
+            value: output.transform()
+          }
         ])
       )
     };
