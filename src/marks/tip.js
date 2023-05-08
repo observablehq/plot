@@ -110,7 +110,7 @@ export class Tip extends Mark {
                 const value2 = channel2?.value[i];
                 renderLine(
                   that,
-                  scales[channel.scale]?.label ?? key,
+                  scales[channel.scale]?.label ?? channel.label ?? key,
                   channel2
                     ? channel2.hint?.length
                       ? `${formatDefault(value2 - value1)}`
