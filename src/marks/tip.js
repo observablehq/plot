@@ -5,7 +5,6 @@ import {Mark} from "../mark.js";
 import {maybeFrameAnchor, maybeKeyword, maybeTuple, number, string} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles} from "../style.js";
 import {applyFrameAnchor, applyTransform} from "../style.js";
-import {template} from "../template.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, cut, defaultWidth, monospaceWidth} from "./text.js";
 
@@ -66,8 +65,8 @@ export class Tip extends Mark {
     const {x, y, fx, fy} = scales;
     const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2, channels: sources} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const tx = X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : cx;
-    const ty = Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : cy;
+    const tx = X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : () => cx;
+    const ty = Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : () => cy;
     const {ownerSVGElement: svg, document} = context;
     const {anchor, monospace, lineHeight, lineWidth} = this;
     const {marginTop, marginLeft} = dimensions;
@@ -91,7 +90,7 @@ export class Tip extends Mark {
           .data(index)
           .enter()
           .append("g")
-          .attr("transform", template`translate(${tx},${ty})`)
+          .attr("transform", (i) => `translate(${tx(i)},${ty(i)})`)
           .call(applyDirectStyles, this)
           .call(applyChannelStyles, this, channels)
           .call((g) => g.append("path").attr("filter", "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"))
