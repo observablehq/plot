@@ -64,10 +64,12 @@ export class Tip extends Mark {
   render(index, scales, channels, dimensions, context) {
     const mark = this;
     const {x, y, fx, fy} = scales;
-    const {x: X, y: Y, stroke: S} = channels; // TODO X1, Y1, X2, Y2
+    const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2, channels: sources} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const tx = X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : cx;
+    const ty = Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : cy;
     const {ownerSVGElement: svg, document} = context;
-    const {stroke, anchor, monospace, lineHeight, lineWidth} = this;
+    const {anchor, monospace, lineHeight, lineWidth} = this;
     const {marginTop, marginLeft} = dimensions;
     const widthof = monospace ? monospaceWidth : defaultWidth;
     const ellipsis = "…";
@@ -89,19 +91,33 @@ export class Tip extends Mark {
           .data(index)
           .enter()
           .append("g")
-          .attr("transform", template`translate(${X ? (i) => X[i] : cx},${Y ? (i) => Y[i] : cy})`)
+          .attr("transform", template`translate(${tx},${ty})`)
           .call(applyDirectStyles, this)
           .call(applyChannelStyles, this, channels)
           .call((g) => g.append("path").attr("filter", "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"))
           .call((g) =>
             g.append("text").each(function (i) {
               const that = select(this);
-              this.setAttribute("fill", S ? S[i] : stroke);
+              this.setAttribute("fill", "currentColor");
+              this.setAttribute("fill-opacity", 1);
               this.setAttribute("stroke", "none");
-              for (const key in channels.channels) {
-                const channel = getSource(channels.channels, key);
+              for (const key in sources) {
+                const channel = getSource(sources, key);
                 if (!channel) continue; // e.g., dodgeY’s y
-                renderLine(that, scales[channel.scale]?.label ?? key, formatDefault(channel.value[i]));
+                const channel1 = getSource1(sources, key);
+                if (channel1) continue; // already displayed
+                const channel2 = getSource2(sources, key);
+                const value1 = channel.value[i];
+                const value2 = channel2?.value[i];
+                renderLine(
+                  that,
+                  scales[channel.scale]?.label ?? key,
+                  channel2
+                    ? channel2.hint?.length
+                      ? `${formatDefault(value2 - value1)}`
+                      : `${formatDefault(value1)}–${formatDefault(value2)}`
+                    : formatDefault(value1)
+                );
               }
               if (index.fi == null) return; // not faceted
               if (fx) renderLine(that, labelFx, formatFx(index.fx));
@@ -139,8 +155,8 @@ export class Tip extends Mark {
       const ox = fx ? fx(index.fx) - marginLeft : 0;
       const oy = fy ? fy(index.fy) - marginTop : 0;
       g.selectChildren().each(function (i) {
-        const x = (X ? X[i] : cx) + ox;
-        const y = (Y ? Y[i] : cy) + oy;
+        const x = tx(i) + ox;
+        const y = ty(i) + oy;
         const {width: w, height: h} = this.getBBox();
         let a = anchor;
         if (a === undefined) {
@@ -186,6 +202,14 @@ function getSource(channels, key) {
   if (!channel) return;
   while (channel.source) channel = channel.source;
   return channel.source === null ? null : channel;
+}
+
+function getSource1(channels, key) {
+  return key === "x2" ? getSource(channels, "x1") : key === "y2" ? getSource(channels, "y1") : null;
+}
+
+function getSource2(channels, key) {
+  return key === "x1" ? getSource(channels, "x2") : key === "y1" ? getSource(channels, "y2") : null;
 }
 
 function getLineOffset(anchor, length, lineHeight) {
