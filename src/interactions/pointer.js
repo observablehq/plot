@@ -77,7 +77,7 @@ function pointerK(kx, ky, {px, py, maxRadius = 40, channels, ...options} = {}) {
         if (event.pointerType !== "mouse") return;
         if (sticky && g.contains(event.target)) return; // stay sticky
         if (sticky) (sticky = false), render(null);
-        else if (i != null) sticky = true;
+        else if (i != null) (sticky = true), facetState?.set(index.fi, -1); // suppress other facets
       }
 
       function pointerleave(event) {
