@@ -81,8 +81,7 @@ export class Mark {
     }
     if (render != null) {
       if (typeof render !== "function") throw new TypeError(`invalid render transform: ${render}`);
-      this._render = this.render;
-      this.render = render;
+      this.renderTransform = render;
     }
   }
   initialize(facets, facetChannels, plotOptions) {

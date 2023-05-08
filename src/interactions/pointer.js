@@ -22,7 +22,7 @@ function pointerK(kx, ky, {px, py, maxRadius = 40, channels, ...options} = {}) {
         i = ii;
         const I = i == null ? [] : [i];
         if (index.fi != null) (I.fx = index.fx), (I.fy = index.fy), (I.fi = index.fi);
-        const r = mark._render(I, scales, values, dimensions, context);
+        const r = mark.render(I, scales, values, dimensions, context);
         if (g) {
           const p = g.parentNode;
           if (p !== svg) {
