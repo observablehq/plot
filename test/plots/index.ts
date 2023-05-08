@@ -195,8 +195,6 @@ export * from "./penguin-quantile-unknown.js";
 export * from "./penguin-sex-mass-culmen-species.js";
 export * from "./penguin-sex.js";
 export * from "./penguin-size-symbols.js";
-export * from "./penguin-species-cheysson.js";
-export * from "./penguin-species-gradient.js";
 export * from "./penguin-species-group.js";
 export * from "./penguin-species-island-relative.js";
 export * from "./penguin-species-island-sex.js";
