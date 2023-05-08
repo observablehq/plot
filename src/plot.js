@@ -265,12 +265,11 @@ export function plot(options = {}) {
         if (!(mark.facetAnchor?.(facets, facetDomains, f) ?? !f.empty)) continue;
         let index = null;
         if (indexes) {
-          index = indexes[facetStateByMark.has(mark) ? f.i : 0];
+          const faceted = facetStateByMark.has(mark);
+          index = indexes[faceted ? f.i : 0];
           index = mark.filter(index, channels, values);
           if (index.length === 0) continue;
-          index.fx = f.x;
-          index.fy = f.y;
-          index.fi = f.i;
+          if (faceted) (index.fx = f.x), (index.fy = f.y), (index.fi = f.i);
         }
         const node = mark.render(index, scales, values, subdimensions, context);
         if (node == null) continue;
