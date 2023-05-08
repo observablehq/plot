@@ -135,7 +135,7 @@ export class Tip extends Mark {
         value = "";
         title = value.trim();
       } else {
-        value = ` ${value}\u200b`; // zwsp for double-click
+        value = `${name ? " " : ""}${value}\u200b`; // zwsp for double-click
         const [k] = cut(value, w - widthof(name), widthof, ee);
         if (k >= 0) {
           // value is truncated
