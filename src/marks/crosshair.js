@@ -5,15 +5,17 @@ import {text} from "./text.js";
 
 export function crosshair(data, options = {}) {
   const {x, y, dx = -9, dy = 9} = options;
+  const p = pointer({px: x, py: y});
   return marks(
-    ruleX(data, ruleOptions({x, py: y}, options)),
-    ruleY(data, ruleOptions({px: x, y}, options)),
-    text(data, textOptions({px: x, y, text: y, dx, frameAnchor: "left", textAnchor: "end"}, options)),
-    text(data, textOptions({x, py: y, text: x, dy, frameAnchor: "bottom", lineAnchor: "top"}, options))
+    ruleX(data, ruleOptions(p, {x}, options)),
+    ruleY(data, ruleOptions(p, {y}, options)),
+    text(data, textOptions(p, {y, text: y, dx, frameAnchor: "left", textAnchor: "end"}, options)),
+    text(data, textOptions(p, {x, text: x, dy, frameAnchor: "bottom", lineAnchor: "top"}, options))
   );
 }
 
 function ruleOptions(
+  pointer,
   options,
   {
     color = "currentColor",
@@ -22,10 +24,11 @@ function ruleOptions(
     ruleStrokeWidth: strokeWidth
   }
 ) {
-  return pointer({...options, stroke, strokeOpacity, strokeWidth});
+  return {...pointer, ...options, stroke, strokeOpacity, strokeWidth};
 }
 
 function textOptions(
+  pointer,
   options,
   {
     color = "currentColor",
@@ -35,5 +38,5 @@ function textOptions(
     textStrokeWidth: strokeWidth = 5
   }
 ) {
-  return pointer({...options, fill, stroke, strokeOpacity, strokeWidth});
+  return {...pointer, ...options, fill, stroke, strokeOpacity, strokeWidth};
 }

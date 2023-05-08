@@ -5,17 +5,24 @@ function pointerK(kx, ky, {px, py, maxRadius = 40, channels, ...options} = {}) {
   maxRadius = +maxRadius;
   if (px != null) channels = {...channels, px: {value: px, scale: "x"}};
   if (py != null) channels = {...channels, py: {value: py, scale: "y"}};
+  const stateBySvg = new WeakMap();
   return {
     channels,
     ...options,
     render(index, scales, values, dimensions, context) {
       const mark = this;
       const svg = context.ownerSVGElement;
+
+      // Isolate state per-pointer, per-plot; if the pointer is reused by
+      // multiple marks, they will share the same state (e.g., sticky modality).
+      let state = stateBySvg.get(svg);
+      if (!state) stateBySvg.set(svg, (state = {sticky: false, roots: [], renders: []}));
+      let renderIndex = state.renders.push(render) - 1;
+
       const faceted = index.fi != null;
-      const facetState = faceted ? getFacetState(mark, svg) : null;
+      const facetState = faceted ? (state.facetState ??= new Map()) : null;
       const {x: X0, y: Y0, x1: X1, y1: Y1, x2: X2, y2: Y2, px: X = X0, py: Y = Y0} = values;
       const [cx, cy] = applyFrameAnchor(this, dimensions);
-      let sticky = false;
       let i; // currently focused index
       let g; // currently rendered mark
 
@@ -58,11 +65,12 @@ function pointerK(kx, ky, {px, py, maxRadius = 40, channels, ...options} = {}) {
           }
           g.replaceWith(r);
         }
+        state.roots[renderIndex] = r;
         return (g = r);
       }
 
       function pointermove(event) {
-        if (sticky || (event.pointerType === "mouse" && event.buttons === 1)) return; // dragging
+        if (state.sticky || (event.pointerType === "mouse" && event.buttons === 1)) return; // dragging
         const [xp, yp] = pointof(event, faceted ? g : g.parentNode);
         let ii = null;
         let ri = maxRadius * maxRadius;
@@ -79,14 +87,16 @@ function pointerK(kx, ky, {px, py, maxRadius = 40, channels, ...options} = {}) {
 
       function pointerdown(event) {
         if (event.pointerType !== "mouse") return;
-        if (sticky && g.contains(event.target)) return; // stay sticky
-        if (sticky) (sticky = false), render(null);
-        else if (i != null) (sticky = true), facetState?.set(index.fi, -1); // suppress other facets
+        if (i == null) return; // not pointing
+        if (state.sticky && state.roots.some((r) => r?.contains(event.target))) return; // stay sticky
+        if (state.sticky) (state.sticky = false), state.renders.forEach((r) => r(null)); // clear all pointers
+        else state.sticky = true;
+        event.stopImmediatePropagation(); // suppress other pointers
       }
 
       function pointerleave(event) {
         if (event.pointerType !== "mouse") return;
-        if (!sticky) render(null);
+        if (!state.sticky) render(null);
       }
 
       // We listen to the svg element; listening to the window instead would let
@@ -113,17 +123,4 @@ export function pointerX(options) {
 
 export function pointerY(options) {
   return pointerK(0.01, 1, options);
-}
-
-const facetStateByMark = new WeakMap();
-
-// This isolates facet state per-mark, per-plot. Most of the time a separate
-// pointer will be instantiated per mark, but it’s possible to reuse the same
-// pointer instance with multiple marks so we protect against it.
-function getFacetState(mark, svg) {
-  let stateBySvg = facetStateByMark.get(mark);
-  if (!stateBySvg) facetStateByMark.set(mark, (stateBySvg = new WeakMap()));
-  let state = stateBySvg.get(svg);
-  if (!state) stateBySvg.set(svg, (state = new Map()));
-  return state;
 }
