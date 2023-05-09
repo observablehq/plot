@@ -4,32 +4,26 @@ import {ruleX, ruleY} from "./rule.js";
 import {text} from "./text.js";
 
 export function crosshair(data, options = {}) {
-  const {x, y, dx = -9, dy = 9} = options;
+  const {x, y} = options;
   const p = pointer({px: x, py: y});
   return marks(
-    ruleX(data, ruleOptions(p, options, x, null)),
-    ruleY(data, ruleOptions(p, options, null, y)),
-    text(data, textOptions({...p, text: x, dy, frameAnchor: "bottom", lineAnchor: "top"}, options, x, null)),
-    text(data, textOptions({...p, text: y, dx, frameAnchor: "left", textAnchor: "end"}, options, null, y))
+    ruleX(data, ruleXOptions(p, options, x)),
+    ruleY(data, ruleYOptions(p, options, y)),
+    text(data, textXOptions(p, options, x)),
+    text(data, textYOptions(p, options, y))
   );
 }
 
 export function crosshairX(data, options = {}) {
-  const {x, dy = 9} = options;
+  const {x} = options;
   const p = pointerX({px: x});
-  return marks(
-    ruleX(data, ruleOptions(p, options, x, null)),
-    text(data, textOptions({...p, text: x, dy, frameAnchor: "bottom", lineAnchor: "top"}, options, x, null))
-  );
+  return marks(ruleX(data, ruleXOptions(p, options, x)), text(data, textXOptions(p, options, x)));
 }
 
 export function crosshairY(data, options = {}) {
-  const {y, dx = -9} = options;
+  const {y} = options;
   const p = pointerY({py: y});
-  return marks(
-    ruleY(data, ruleOptions(p, options, null, y)),
-    text(data, textOptions({...p, text: y, dx, frameAnchor: "left", textAnchor: "end"}, options, null, y))
-  );
+  return marks(ruleY(data, ruleYOptions(p, options, y)), text(data, textYOptions(p, options, y)));
 }
 
 // TODO pass all options?
@@ -63,6 +57,14 @@ function pxpy(i, ox, oy) {
   };
 }
 
+function ruleXOptions(pointerOptions, options, x) {
+  return ruleOptions(pointerOptions, options, x, null);
+}
+
+function ruleYOptions(pointerOptions, options, y) {
+  return ruleOptions(pointerOptions, options, null, y);
+}
+
 function ruleOptions(pointerOptions, options, x, y) {
   const {
     color = "currentColor",
@@ -71,6 +73,14 @@ function ruleOptions(pointerOptions, options, x, y) {
     ruleStrokeWidth: strokeWidth
   } = options;
   return {...markOptions(pointerOptions, options, x, y), stroke, strokeOpacity, strokeWidth};
+}
+
+function textXOptions(pointerOptions, options, x) {
+  return textOptions({...pointerOptions, text: x, dy: 9, frameAnchor: "bottom", lineAnchor: "top"}, options, x, null);
+}
+
+function textYOptions(pointerOptions, options, y) {
+  return textOptions({...pointerOptions, text: y, dx: -9, frameAnchor: "left", textAnchor: "end"}, options, null, y);
 }
 
 function textOptions(pointerOptions, options, x, y) {
