@@ -34,6 +34,19 @@ export async function tipCell() {
   });
 }
 
+export async function tipCellFacet() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    height: 400,
+    marginLeft: 100,
+    color: {scheme: "blues"},
+    marks: [
+      Plot.cell(olympians, Plot.groupY({fill: "count"}, {fx: "sex", y: "sport"})),
+      Plot.tip(olympians, Plot.pointerY(Plot.groupY({stroke: "count"}, {fx: "sex", y: "sport"})))
+    ]
+  });
+}
+
 export async function tipDodge() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
