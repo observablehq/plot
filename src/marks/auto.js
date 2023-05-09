@@ -11,6 +11,8 @@ import {frame} from "./frame.js";
 import {line, lineX, lineY} from "./line.js";
 import {rectX, rectY} from "./rect.js";
 import {ruleX, ruleY} from "./rule.js";
+import {tip} from "./tip.js";
+import {pointer, pointerX, pointerY} from "../interactions/pointer.js";
 
 export function autoSpec(data, options) {
   const {x, y, fx, fy, color, size, mark} = autoImpl(data, options);
@@ -228,8 +230,28 @@ export function auto(data, options) {
   // (particularly dots and lines) they should come before the mark.
   const frames = fx != null || fy != null ? frame({strokeOpacity: 0.1}) : null;
   const rules = [xZero ? ruleX([0]) : null, yZero ? ruleY([0]) : null];
-  const mark = markImpl(data, transformImpl ? transformImpl(transformOptions, markOptions) : markOptions);
-  return colorMode === "stroke" ? marks(frames, rules, mark) : marks(frames, mark, rules);
+  const maybeTransformedOptions = transformImpl ? transformImpl(transformOptions, markOptions) : markOptions;
+  const mark = markImpl(data, maybeTransformedOptions);
+
+  let point;
+  switch (markImpl) {
+    case barY:
+    case rectY:
+    case lineY:
+      point = pointerX;
+      break;
+    case barX:
+    case rectX:
+    case lineX:
+      point = pointerY;
+      break;
+    default:
+      point = pointer;
+      break;
+  }
+  const tooltip = tip(data, point(maybeTransformedOptions));
+
+  return colorMode === "stroke" ? marks(frames, rules, mark, tooltip) : marks(frames, mark, rules, tooltip);
 }
 
 // TODO What about sorted within series?
