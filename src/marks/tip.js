@@ -4,7 +4,8 @@ import {create} from "../context.js";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
 import {maybeFrameAnchor, maybeKeyword, maybeTuple, number, string} from "../options.js";
-import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles} from "../style.js";
+import {applyFrameAnchor, applyTransform} from "../style.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, cut, defaultWidth, monospaceWidth} from "./text.js";
 
