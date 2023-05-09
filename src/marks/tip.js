@@ -84,7 +84,7 @@ export class Tip extends Mark {
     const g = create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this)
-      .call(applyTransform, this, {x: X && x, y: Y && y})
+      .call(applyTransform, this, {x: (X || X2) && x, y: (Y || Y2) && y})
       .call((g) =>
         g
           .selectAll()
