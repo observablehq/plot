@@ -3,9 +3,13 @@ import {applyFrameAnchor} from "../style.js";
 
 function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} = {}) {
   maxRadius = +maxRadius;
+  // When px or py is used, register an extra channel that the pointer
+  // interaction can use to control which point is focused; this allows pointing
+  // to function independently of where the downstream mark (e.g., a tip) is
+  // displayed. Also default x or y to null to disable maybeTuple etc.
   if (px != null) (x ??= null), (channels = {...channels, px: {value: px, scale: "x"}});
   if (py != null) (y ??= null), (channels = {...channels, py: {value: py, scale: "y"}});
-  const stateBySvg = new WeakMap();
+  const states = new WeakMap();
   return {
     x,
     y,
@@ -17,18 +21,35 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
 
       // Isolate state per-pointer, per-plot; if the pointer is reused by
       // multiple marks, they will share the same state (e.g., sticky modality).
-      let state = stateBySvg.get(svg);
-      if (!state) stateBySvg.set(svg, (state = {sticky: false, roots: [], renders: []}));
+      let state = states.get(svg);
+      if (!state) states.set(svg, (state = {sticky: false, roots: [], renders: []}));
+
+      // This serves as a unique identifier of the rendered mark per-plot; it is
+      // used to record the currently-rendered elements (state.roots) so that we
+      // can tell when a rendered element is clicked on.
       let renderIndex = state.renders.push(render) - 1;
 
-      const faceted = index.fi != null;
-      const facetState = faceted ? (state.facetState ??= new Map()) : null;
+      // For faceting, we want to compute the local coordinates of each point,
+      // which means subtracting out the facet translation, if any. (It’s
+      // tempting to do this using the local coordinates in SVG, but that’s
+      // complicated by mark-specific transforms such as dx and dy.)
       const tx = scales.fx ? scales.fx(index.fx) - dimensions.marginLeft : 0;
       const ty = scales.fy ? scales.fy(index.fy) - dimensions.marginTop : 0;
+
+      // For faceting, we also need to record the closest point per facet, since
+      // each facet has its own pointer event listeners; we only want the
+      // closest point across facets to be visible.
+      const faceted = index.fi != null;
+      const facetState = faceted ? (state.facetState ??= new Map()) : null;
+
+      // The order of precedence when determining the point position is: px &
+      // py; the middle of x1 & y1 and x2 & y2; or lastly x & y. If any
+      // dimension is unspecified, we fallback to the frame anchor.
       const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2, px: PX, py: PY} = values;
       const [cx, cy] = applyFrameAnchor(this, dimensions);
       const px = PX ? (i) => PX[i] : X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : () => cx;
       const py = PY ? (i) => PY[i] : Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : () => cy;
+
       let i; // currently focused index
       let g; // currently rendered mark
 
@@ -57,14 +78,16 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
         if (faceted) (I.fx = index.fx), (I.fy = index.fy), (I.fi = index.fi);
         const r = mark.render(I, scales, values, dimensions, context);
         if (g) {
+          // When faceting, preserve swapped mark and facet transforms; also
+          // remove ARIA attributes since these are promoted to the parent. This
+          // is perhaps brittle in that it depends on how Plot renders facets,
+          // but it produces a cleaner and more accessible SVG structure.
           if (faceted) {
-            // when faceting, preserve swapped mark and facet transforms
             const p = g.parentNode;
             const ft = g.getAttribute("transform");
             const mt = r.getAttribute("transform");
             ft ? r.setAttribute("transform", ft) : r.removeAttribute("transform");
             mt ? p.setAttribute("transform", mt) : p.removeAttribute("transform");
-            // also remove ARIA attributes since these are promoted to the parent
             r.removeAttribute("aria-label");
             r.removeAttribute("aria-description");
             r.removeAttribute("aria-hidden");
