@@ -26,7 +26,6 @@ export function crosshairY(data, options = {}) {
   return marks(ruleY(data, ruleYOptions(p, options, y)), text(data, textYOptions(p, options, y)));
 }
 
-// TODO pass all options?
 function markOptions(
   {channels: pointerChannels, ...pointerOptions},
   {facet, facetAnchor, fx, fy, channels, transform, initializer},
