@@ -21,6 +21,19 @@ export async function tipBinStack() {
   });
 }
 
+export async function tipCell() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    height: 400,
+    marginLeft: 100,
+    color: {scheme: "blues"},
+    marks: [
+      Plot.cell(olympians, Plot.group({fill: "count"}, {x: "sex", y: "sport"})),
+      Plot.tip(olympians, Plot.pointerY(Plot.group({stroke: "count"}, {x: "sex", y: "sport"})))
+    ]
+  });
+}
+
 export async function tipDodge() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({

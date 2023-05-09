@@ -32,9 +32,14 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
       // For faceting, we want to compute the local coordinates of each point,
       // which means subtracting out the facet translation, if any. (It’s
       // tempting to do this using the local coordinates in SVG, but that’s
-      // complicated by mark-specific transforms such as dx and dy.)
-      const tx = scales.fx ? scales.fx(index.fx) - dimensions.marginLeft : 0;
-      const ty = scales.fy ? scales.fy(index.fy) - dimensions.marginTop : 0;
+      // complicated by mark-specific transforms such as dx and dy.) Also, since
+      // band scales return the upper bound of the band, we have to offset by
+      // half the bandwidth.
+      const {x, y, fx, fy} = scales;
+      let tx = fx ? fx(index.fx) - dimensions.marginLeft : 0;
+      let ty = fy ? fy(index.fy) - dimensions.marginTop : 0;
+      if (x?.bandwidth) tx += x.bandwidth() / 2;
+      if (y?.bandwidth) ty += y.bandwidth() / 2;
 
       // For faceting, we also need to record the closest point per facet, since
       // each facet has its own pointer event listeners; we only want the
