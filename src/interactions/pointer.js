@@ -25,8 +25,10 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
       const facetState = faceted ? (state.facetState ??= new Map()) : null;
       const tx = scales.fx ? scales.fx(index.fx) - dimensions.marginLeft : 0;
       const ty = scales.fy ? scales.fy(index.fy) - dimensions.marginTop : 0;
-      const {x: X0, y: Y0, x1: X1, y1: Y1, x2: X2, y2: Y2, px: X = X0, py: Y = Y0} = values;
+      const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2, px: PX, py: PY} = values;
       const [cx, cy] = applyFrameAnchor(this, dimensions);
+      const px = PX ? (i) => PX[i] : X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : () => cx;
+      const py = PY ? (i) => PY[i] : Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : () => cy;
       let i; // currently focused index
       let g; // currently rendered mark
 
@@ -80,10 +82,8 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
         let ii = null;
         let ri = maxRadius * maxRadius;
         for (const j of index) {
-          const xj = X2 ? (X1[j] + X2[j]) / 2 : X ? X[j] : cx;
-          const yj = Y2 ? (Y1[j] + Y2[j]) / 2 : Y ? Y[j] : cy;
-          const dx = kx * (xj - xp);
-          const dy = ky * (yj - yp);
+          const dx = kx * (px(j) - xp);
+          const dy = ky * (py(j) - yp);
           const rj = dx * dx + dy * dy;
           if (rj <= ri) (ii = j), (ri = rj);
         }
