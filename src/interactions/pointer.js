@@ -23,6 +23,8 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
 
       const faceted = index.fi != null;
       const facetState = faceted ? (state.facetState ??= new Map()) : null;
+      const tx = scales.fx ? scales.fx(index.fx) - dimensions.marginLeft : 0;
+      const ty = scales.fy ? scales.fy(index.fy) - dimensions.marginTop : 0;
       const {x: X0, y: Y0, x1: X1, y1: Y1, x2: X2, y2: Y2, px: X = X0, py: Y = Y0} = values;
       const [cx, cy] = applyFrameAnchor(this, dimensions);
       let i; // currently focused index
@@ -74,12 +76,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
       function pointermove(event) {
         if (state.sticky || (event.pointerType === "mouse" && event.buttons === 1)) return; // dragging
         let [xp, yp] = pointof(event);
-        // TODO use facetTranslate instead?
-        if (faceted) {
-          const matrix = g.transform.baseVal[0].matrix;
-          xp -= matrix.e;
-          yp -= matrix.f;
-        }
+        if (faceted) (xp -= tx), (yp -= ty);
         let ii = null;
         let ri = maxRadius * maxRadius;
         for (const j of index) {
