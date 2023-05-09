@@ -1,10 +1,10 @@
 import {select} from "d3";
+import {getSource} from "../channel.js";
 import {create} from "../context.js";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
 import {maybeFrameAnchor, maybeKeyword, maybeTuple, number, string} from "../options.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles} from "../style.js";
-import {applyFrameAnchor, applyTransform} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, cut, defaultWidth, monospaceWidth} from "./text.js";
 
@@ -194,13 +194,6 @@ export function tip(data, {x, y, ...options} = {}) {
 
 function maybeAnchor(value) {
   return maybeKeyword(value, "anchor", ["top-left", "top-right", "bottom-right", "bottom-left"]);
-}
-
-function getSource(channels, key) {
-  let channel = channels[key];
-  if (!channel) return;
-  while (channel.source) channel = channel.source;
-  return channel.source === null ? null : channel;
 }
 
 function getSource1(channels, key) {

@@ -160,3 +160,10 @@ function ascendingGroup([ak, av], [bk, bv]) {
 function descendingGroup([ak, av], [bk, bv]) {
   return descendingDefined(av, bv) || ascendingDefined(ak, bk);
 }
+
+export function getSource(channels, key) {
+  let channel = channels[key];
+  if (!channel) return;
+  while (channel.source) channel = channel.source;
+  return channel.source === null ? null : channel;
+}
