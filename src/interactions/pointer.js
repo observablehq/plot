@@ -41,11 +41,17 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
       if (x?.bandwidth) tx += x.bandwidth() / 2;
       if (y?.bandwidth) ty += y.bandwidth() / 2;
 
-      // For faceting, we also need to record the closest point per facet, since
-      // each facet has its own pointer event listeners; we only want the
-      // closest point across facets to be visible.
+      // For faceting, we also need to record the closest point per facet per
+      // mark (!), since each facet has its own pointer event listeners; we only
+      // want the closest point across facets to be visible.
       const faceted = index.fi != null;
-      const facetState = faceted ? (state.facetState ??= new Map()) : null;
+      let facetState;
+      if (faceted) {
+        let facetStates = state.facetStates;
+        if (!facetStates) state.facetStates = facetStates = new Map();
+        facetState = facetStates.get(mark);
+        if (!facetState) facetStates.set(mark, (facetState = new Map()));
+      }
 
       // The order of precedence when determining the point position is: px &
       // py; the middle of x1 & y1 and x2 & y2; or lastly x & y. If any
@@ -57,26 +63,35 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
 
       let i; // currently focused index
       let g; // currently rendered mark
+      let f; // current animation frame
 
-      function render(ii, ri) {
-        // When faceting, if more than one pointer would be visible, only show
-        // this one if it is the closest. This is a simple linear scan because
-        // we don’t expect many facets with simultaneously-visible pointers.
+      // When faceting, if more than one pointer would be visible, only show
+      // this one if it is the closest. We defer rendering using an animation
+      // frame to allow all pointer events to be received before deciding which
+      // mark to render; although when hiding, we render immediately.
+      function update(ii, ri) {
         if (faceted) {
-          if (ii == null) {
-            facetState.delete(index.fi);
-          } else {
+          if (f) f = cancelAnimationFrame(f);
+          if (ii == null) facetState.delete(index.fi);
+          else {
             facetState.set(index.fi, ri);
-            if (facetState.size > 1) {
-              for (const [fi, r] of facetState) {
-                if (fi !== index.fi && r < ri) {
+            f = requestAnimationFrame(() => {
+              f = null;
+              for (const r of facetState.values()) {
+                if (r < ri) {
                   ii = null;
                   break;
                 }
               }
-            }
+              render(ii);
+            });
+            return;
           }
         }
+        render(ii);
+      }
+
+      function render(ii) {
         if (i === ii) return; // the tooltip hasn’t moved
         i = ii;
         const I = i == null ? [] : [i];
@@ -106,7 +121,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
       function pointermove(event) {
         if (state.sticky || (event.pointerType === "mouse" && event.buttons === 1)) return; // dragging
         let [xp, yp] = pointof(event);
-        if (faceted) (xp -= tx), (yp -= ty);
+        (xp -= tx), (yp -= ty); // correct for facets and band scales
         let ii = null;
         let ri = maxRadius * maxRadius;
         for (const j of index) {
@@ -115,7 +130,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
           const rj = dx * dx + dy * dy;
           if (rj <= ri) (ii = j), (ri = rj);
         }
-        render(ii, ri);
+        update(ii, ri);
       }
 
       function pointerdown(event) {
@@ -129,7 +144,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
 
       function pointerleave(event) {
         if (event.pointerType !== "mouse") return;
-        if (!state.sticky) render(null);
+        if (!state.sticky) update(null);
       }
 
       // We listen to the svg element; listening to the window instead would let
