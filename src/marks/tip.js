@@ -5,9 +5,9 @@ import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
 import {maybeFrameAnchor, maybeKeyword, maybeTuple, number, string} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles} from "../style.js";
-import {applyFrameAnchor, applyTransform} from "../style.js";
+import {applyFrameAnchor, applyTransform, impliedString} from "../style.js";
 import {inferTickFormat} from "./axis.js";
-import {applyIndirectTextStyles, cut, defaultWidth, monospaceWidth} from "./text.js";
+import {applyIndirectTextStyles, cut, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
 
 const defaults = {
   ariaLabel: "tip",
@@ -52,7 +52,9 @@ export class Tip extends Mark {
     this.anchor = maybeAnchor(anchor);
     this.previousAnchor = this.anchor ?? "top-left";
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
-    this.textAnchor = string(textAnchor);
+    this.textAnchor = impliedString(textAnchor, "middle");
+    this.textPadding = 8; // TODO option
+    this.pointerSize = 12; // TODO option
     this.lineHeight = +lineHeight;
     this.lineWidth = +lineWidth;
     this.monospace = !!monospace;
@@ -61,24 +63,32 @@ export class Tip extends Mark {
     this.fontStyle = string(fontStyle);
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
+    this.imageFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"; // TODO option
   }
   render(index, scales, channels, dimensions, context) {
     const mark = this;
     const {x, y, fx, fy} = scales;
+    const {ownerSVGElement: svg, document} = context;
+    const {anchor, monospace, lineHeight, lineWidth, textPadding: r, pointerSize: m} = this;
+    const {marginTop, marginLeft} = dimensions;
+
+    // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
+    // or x & y; the former is considered more specific because it’s how we
+    // disable the implicit stack and interval transforms. If any dimension is
+    // unspecified, we fallback to the frame anchor.
     const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2, channels: sources} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const px = X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : () => cx;
     const py = Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : () => cy;
-    const {ownerSVGElement: svg, document} = context;
-    const {anchor, monospace, lineHeight, lineWidth} = this;
-    const {marginTop, marginLeft} = dimensions;
+
+    // Resolve the text metric implementation. We may need an ellipsis for text
+    // truncation, so we optimistically compute the ellipsis width.
     const widthof = monospace ? monospaceWidth : defaultWidth;
-    const ellipsis = "…";
     const ee = widthof(ellipsis);
-    const r = 8; // “padding”
-    const m = 12; // “margin” (flag size)
-    const labelFx = fx && (fx.label === undefined ? "fx" : fx.label);
-    const labelFy = fy && (fy.label === undefined ? "fy" : fy.label);
+
+    // We borrow the scale’s tick format for facet channels; this is safe for
+    // ordinal scales (but not continuous scales where the display value may
+    // need higher precision), and generally better than the default format.
     const formatFx = fx && inferTickFormat(fx);
     const formatFy = fy && inferTickFormat(fy);
 
@@ -95,7 +105,7 @@ export class Tip extends Mark {
           .attr("transform", (i) => `translate(${px(i)},${py(i)})`)
           .call(applyDirectStyles, this)
           .call(applyChannelStyles, this, channels)
-          .call((g) => g.append("path").attr("filter", "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"))
+          .call((g) => g.append("path"))
           .call((g) =>
             g.append("text").each(function (i) {
               const that = select(this);
@@ -121,8 +131,8 @@ export class Tip extends Mark {
                 );
               }
               if (index.fi == null) return; // not faceted
-              if (fx) renderLine(that, labelFx, formatFx(index.fx));
-              if (fy) renderLine(that, labelFy, formatFy(index.fy));
+              if (fx) renderLine(that, fx.label ?? "fx", formatFx(index.fx));
+              if (fy) renderLine(that, fy.label ?? "fy", formatFy(index.fy));
             })
           )
       );

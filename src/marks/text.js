@@ -430,13 +430,15 @@ function clipper({monospace, lineWidth, textOverflow}) {
     case "clip-end":
       return (text) => clipEnd(text, maxWidth, widthof, "");
     case "ellipsis-start":
-      return (text) => clipStart(text, maxWidth, widthof, "…");
+      return (text) => clipStart(text, maxWidth, widthof, ellipsis);
     case "ellipsis-middle":
-      return (text) => clipMiddle(text, maxWidth, widthof, "…");
+      return (text) => clipMiddle(text, maxWidth, widthof, ellipsis);
     case "ellipsis-end":
-      return (text) => clipEnd(text, maxWidth, widthof, "…");
+      return (text) => clipEnd(text, maxWidth, widthof, ellipsis);
   }
 }
+
+export const ellipsis = "…";
 
 // Cuts the given text to the given width, using the specified widthof function;
 // the returned [index, error] guarantees text.slice(0, index) fits within the
