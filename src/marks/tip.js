@@ -33,7 +33,8 @@ export class Tip extends Mark {
       fontWeight,
       lineHeight = 1,
       lineWidth = 20,
-      frameAnchor
+      frameAnchor,
+      textAnchor = "start"
     } = options;
     super(
       data,
@@ -51,7 +52,7 @@ export class Tip extends Mark {
     this.anchor = maybeAnchor(anchor);
     this.previousAnchor = this.anchor ?? "top-left";
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
-    this.textAnchor = "start"; // TODO option
+    this.textAnchor = string(textAnchor);
     this.lineHeight = +lineHeight;
     this.lineWidth = +lineWidth;
     this.monospace = !!monospace;
@@ -66,8 +67,8 @@ export class Tip extends Mark {
     const {x, y, fx, fy} = scales;
     const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2, channels: sources} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const tx = X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : () => cx;
-    const ty = Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : () => cy;
+    const px = X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : () => cx;
+    const py = Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : () => cy;
     const {ownerSVGElement: svg, document} = context;
     const {anchor, monospace, lineHeight, lineWidth} = this;
     const {marginTop, marginLeft} = dimensions;
@@ -91,7 +92,7 @@ export class Tip extends Mark {
           .data(index)
           .enter()
           .append("g")
-          .attr("transform", (i) => `translate(${tx(i)},${ty(i)})`)
+          .attr("transform", (i) => `translate(${px(i)},${py(i)})`)
           .call(applyDirectStyles, this)
           .call(applyChannelStyles, this, channels)
           .call((g) => g.append("path").attr("filter", "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"))
@@ -155,9 +156,9 @@ export class Tip extends Mark {
       const ox = fx ? fx(index.fx) - marginLeft : 0;
       const oy = fy ? fy(index.fy) - marginTop : 0;
       g.selectChildren().each(function (i) {
-        const x = tx(i) + ox;
-        const y = ty(i) + oy;
-        const {width: w, height: h} = this.getBBox();
+        const x = px(i) + ox;
+        const y = py(i) + oy;
+        const {x: tx, width: w, height: h} = this.getBBox();
         let a = anchor;
         if (a === undefined) {
           a = mark.previousAnchor;
@@ -172,15 +173,16 @@ export class Tip extends Mark {
         const path = this.firstChild;
         const text = this.lastChild;
         path.setAttribute("d", getPath(a, m, r, w, h));
+        if (tx) for (const t of text.childNodes) t.setAttribute("x", -tx);
         text.setAttribute("y", `${+getLineOffset(a, text.childNodes.length, lineHeight).toFixed(6)}em`);
         text.setAttribute("transform", getTextTransform(a, m, r, w, h));
       });
     }
 
-    // Wait until the Plot is inserted into the page, so that we can use getBBox
-    // to compute the text dimensions. Perhaps this could be done synchronously;
-    // getting the dimensions of the SVG is easy, and although accurate text
-    // metrics are hard, we could use approximate heuristics.
+    // Wait until the Plot is inserted into the page so that we can use getBBox
+    // to compute the exact text dimensions. Perhaps this could be done
+    // synchronously; getting the dimensions of the SVG is easy, and although
+    // accurate text metrics are hard, we could use approximate heuristics.
     if (svg.isConnected) Promise.resolve().then(postrender);
     else if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(postrender);
 
