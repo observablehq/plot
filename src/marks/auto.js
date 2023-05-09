@@ -239,12 +239,14 @@ export function auto(data, options) {
     case rectY:
     case lineY:
     case areaY:
+    case ruleX:
       point = pointerX;
       break;
     case barX:
     case rectX:
     case lineX:
     case areaX:
+    case ruleY:
       point = pointerY;
       break;
     default:
