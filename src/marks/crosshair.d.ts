@@ -18,3 +18,9 @@ export interface CrosshairOptions extends MarkOptions {
 
 /** TODO */
 export function crosshair(data?: Data, options?: CrosshairOptions): CompoundMark;
+
+/** TODO */
+export function crosshairX(data?: Data, options?: Omit<CrosshairOptions, "y">): CompoundMark;
+
+/** TODO */
+export function crosshairY(data?: Data, options?: Omit<CrosshairOptions, "x">): CompoundMark;
