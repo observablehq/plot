@@ -21,16 +21,6 @@ export async function tipBinStack() {
   });
 }
 
-export async function tipCrosshair() {
-  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex"}),
-      Plot.crosshair(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
-    ]
-  });
-}
-
 export async function tipDot() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({

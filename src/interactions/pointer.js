@@ -73,7 +73,13 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
 
       function pointermove(event) {
         if (state.sticky || (event.pointerType === "mouse" && event.buttons === 1)) return; // dragging
-        const [xp, yp] = pointof(event, faceted ? g : g.parentNode);
+        let [xp, yp] = pointof(event);
+        // TODO use facetTranslate instead?
+        if (faceted) {
+          const matrix = g.transform.baseVal[0].matrix;
+          xp -= matrix.e;
+          yp -= matrix.f;
+        }
         let ii = null;
         let ri = maxRadius * maxRadius;
         for (const j of index) {
