@@ -21,6 +21,17 @@ export async function tipBinStack() {
   });
 }
 
+export async function tipDodge() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    height: 160,
+    marks: [
+      Plot.dot(penguins, Plot.dodgeY({x: "culmen_length_mm", r: "body_mass_g"})),
+      Plot.tip(penguins, Plot.pointer(Plot.dodgeY({x: "culmen_length_mm", r: "body_mass_g"})))
+    ]
+  });
+}
+
 export async function tipDot() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.plot({
