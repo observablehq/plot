@@ -1,5 +1,7 @@
+import {getSource} from "../channel.js";
 import {pointer, pointerX, pointerY} from "../interactions/pointer.js";
 import {marks} from "../mark.js";
+import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text} from "./text.js";
 
@@ -51,8 +53,15 @@ function markOptions(
 function pxpy(i, ox, oy) {
   if (i == null) return i;
   return function (data, facets, {x: x1, y: y1, px, py, ...c1}, ...args) {
-    const {channels: {x, y, ...c} = {}, ...r} = i.call(this, data, facets, {...c1, x: px, y: py}, ...args);
-    return {channels: {...c, px: x, py: y, ...(ox !== null && {x}), ...(oy !== null && {y})}, ...r};
+    const {channels: {x, y, ...c} = {}, ...rest} = i.call(this, data, facets, {...c1, x: px, y: py}, ...args);
+    return {
+      channels: {
+        ...c,
+        ...(x && {px: x, ...(ox !== null && {x})}),
+        ...(y && {py: y, ...(oy !== null && {y})})
+      },
+      ...rest
+    };
   };
 }
 
@@ -75,11 +84,13 @@ function ruleOptions(pointerOptions, options, x, y) {
 }
 
 function textXOptions(pointerOptions, options, x) {
-  return textOptions({...pointerOptions, text: x, dy: 9, frameAnchor: "bottom", lineAnchor: "top"}, options, x, null);
+  options = textChannel("x", options);
+  return textOptions({...pointerOptions, dy: 9, frameAnchor: "bottom", lineAnchor: "top"}, options, x, null);
 }
 
 function textYOptions(pointerOptions, options, y) {
-  return textOptions({...pointerOptions, text: y, dx: -9, frameAnchor: "left", textAnchor: "end"}, options, null, y);
+  options = textChannel("y", options);
+  return textOptions({...pointerOptions, dx: -9, frameAnchor: "left", textAnchor: "end"}, options, null, y);
 }
 
 function textOptions(pointerOptions, options, x, y) {
@@ -91,4 +102,13 @@ function textOptions(pointerOptions, options, x, y) {
     textStrokeWidth: strokeWidth = 5
   } = options;
   return {...markOptions(pointerOptions, options, x, y), fill, stroke, strokeOpacity, strokeWidth};
+}
+
+// Rather than aliasing text to have the same definition as x and y, we use an
+// initializer to alias the channel values, such that the text channel can be
+// derived by an initializer such as hexbin.
+function textChannel(source, options) {
+  return initializer(options, (data, facets, channels) => {
+    return {channels: {text: {value: getSource(channels, source)?.value}}};
+  });
 }
