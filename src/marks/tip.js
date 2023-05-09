@@ -34,7 +34,10 @@ export class Tip extends Mark {
       lineHeight = 1,
       lineWidth = 20,
       frameAnchor,
-      textAnchor = "start"
+      textAnchor = "start",
+      textPadding = 8,
+      pointerSize = 12,
+      pathFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"
     } = options;
     super(
       data,
@@ -53,8 +56,9 @@ export class Tip extends Mark {
     this.previousAnchor = this.anchor ?? "top-left";
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.textAnchor = impliedString(textAnchor, "middle");
-    this.textPadding = 8; // TODO option
-    this.pointerSize = 12; // TODO option
+    this.textPadding = +textPadding;
+    this.pointerSize = +pointerSize;
+    this.pathFilter = string(pathFilter);
     this.lineHeight = +lineHeight;
     this.lineWidth = +lineWidth;
     this.monospace = !!monospace;
@@ -63,21 +67,25 @@ export class Tip extends Mark {
     this.fontStyle = string(fontStyle);
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
-    this.imageFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"; // TODO option
   }
   render(index, scales, channels, dimensions, context) {
     const mark = this;
     const {x, y, fx, fy} = scales;
     const {ownerSVGElement: svg, document} = context;
-    const {anchor, monospace, lineHeight, lineWidth, textPadding: r, pointerSize: m} = this;
+    const {anchor, monospace, lineHeight, lineWidth} = this;
+    const {textPadding: r, pointerSize: m, pathFilter} = this;
     const {marginTop, marginLeft} = dimensions;
 
     // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
     // or x & y; the former is considered more specific because it’s how we
     // disable the implicit stack and interval transforms. If any dimension is
-    // unspecified, we fallback to the frame anchor.
+    // unspecified, we fallback to the frame anchor. We also need to know the
+    // facet offsets to detect when the tip would draw outside the plot, and
+    // thus we need to change the orientation.
     const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2, channels: sources} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const ox = fx ? fx(index.fx) - marginLeft : 0;
+    const oy = fy ? fy(index.fy) - marginTop : 0;
     const px = X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : () => cx;
     const py = Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : () => cy;
 
@@ -105,13 +113,15 @@ export class Tip extends Mark {
           .attr("transform", (i) => `translate(${px(i)},${py(i)})`)
           .call(applyDirectStyles, this)
           .call(applyChannelStyles, this, channels)
-          .call((g) => g.append("path"))
+          .call((g) => g.append("path").attr("filter", pathFilter))
           .call((g) =>
             g.append("text").each(function (i) {
               const that = select(this);
+              // prevent style inheritance (from path)
               this.setAttribute("fill", "currentColor");
               this.setAttribute("fill-opacity", 1);
               this.setAttribute("stroke", "none");
+              // iteratively render each channel value
               for (const key in sources) {
                 const channel = getSource(sources, key);
                 if (!channel) continue; // e.g., dodgeY’s y
@@ -123,8 +133,8 @@ export class Tip extends Mark {
                 renderLine(
                   that,
                   scales[channel.scale]?.label ?? channel.label ?? key,
-                  channel2
-                    ? channel2.hint?.length
+                  channel2 // e.g., binX’s x1 and x2
+                    ? channel2.hint?.length // e.g., stackY’s y1 and y2
                       ? `${formatDefault(value2 - value1)}`
                       : `${formatDefault(value1)}–${formatDefault(value2)}`
                     : formatDefault(value1)
@@ -137,7 +147,12 @@ export class Tip extends Mark {
           )
       );
 
-    function renderLine(that, name, value) {
+    // Renders a single line (a name-value pair) to the tip, truncating the text
+    // as needed, and adding a title if the text is truncated. Note that this is
+    // just the initial layout of the text; in postrender we will compute the
+    // exact text metrics and translate the text as needed once we know the
+    // tip’s orientation (anchor).
+    function renderLine(selection, name, value) {
       let title;
       let w = lineWidth * 100;
       const [j] = cut(name, w, widthof, ee);
@@ -155,23 +170,23 @@ export class Tip extends Mark {
           title = value.trim();
         }
       }
-      const line = that.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`);
+      const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`);
       line.append("tspan").attr("font-weight", "bold").text(name);
       if (value) line.append(() => document.createTextNode(value));
       if (title) line.append("title").text(title);
     }
 
+    // Only after the plot is attached to the page can we compute the exact text
+    // metrics needed to determine the tip size and orientation (anchor).
     function postrender() {
       const {width, height} = svg.getBBox();
-      const ox = fx ? fx(index.fx) - marginLeft : 0;
-      const oy = fy ? fy(index.fy) - marginTop : 0;
       g.selectChildren().each(function (i) {
-        const x = px(i) + ox;
-        const y = py(i) + oy;
         const {x: tx, width: w, height: h} = this.getBBox();
-        let a = anchor;
+        let a = anchor; // use the specified anchor, if any
         if (a === undefined) {
-          a = mark.previousAnchor;
+          a = mark.previousAnchor; // favor the previous anchor, if it fits
+          const x = px(i) + ox;
+          const y = py(i) + oy;
           const fitLeft = x + w + r * 2 < width;
           const fitRight = x - w - r * 2 > 0;
           const fitTop = y + h + m + r * 2 + 7 < height;
@@ -180,8 +195,8 @@ export class Tip extends Mark {
           const ay = (/^top-/.test(a) ? fitTop || !fitBottom : fitTop && !fitBottom) ? "top" : "bottom";
           a = mark.previousAnchor = `${ay}-${ax}`;
         }
-        const path = this.firstChild;
-        const text = this.lastChild;
+        const path = this.firstChild; // note: assumes exactly two children!
+        const text = this.lastChild; // note: assumes exactly two children!
         path.setAttribute("d", getPath(a, m, r, w, h));
         if (tx) for (const t of text.childNodes) t.setAttribute("x", -tx);
         text.setAttribute("y", `${+getLineOffset(a, text.childNodes.length, lineHeight).toFixed(6)}em`);
@@ -189,10 +204,13 @@ export class Tip extends Mark {
       });
     }
 
-    // Wait until the Plot is inserted into the page so that we can use getBBox
-    // to compute the exact text dimensions. Perhaps this could be done
-    // synchronously; getting the dimensions of the SVG is easy, and although
-    // accurate text metrics are hard, we could use approximate heuristics.
+    // Wait until the plot is inserted into the page so that we can use getBBox
+    // to compute the exact text dimensions. If the SVG is already connected, as
+    // when the pointer interaction triggers the re-render, use a faster
+    // microtask instead of an animation frame; if this SSR (e.g., JSDOM), skip
+    // this step. Perhaps this could be done synchronously; getting the
+    // dimensions of the SVG is easy, and although accurate text metrics are
+    // hard, we could use approximate heuristics.
     if (svg.isConnected) Promise.resolve().then(postrender);
     else if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(postrender);
 
