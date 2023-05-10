@@ -35,7 +35,7 @@ export interface TipOptions extends MarkOptions, TextStyles {
   frameAnchor?: FrameAnchor;
 
   /** TODO */
-  anchor?: "top-left" | "top-right" | "bottom-right" | "bottom-left";
+  anchor?: FrameAnchor;
 }
 
 /**
