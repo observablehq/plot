@@ -4,8 +4,7 @@ import {create} from "../context.js";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles} from "../style.js";
-import {applyFrameAnchor, applyTransform, impliedString} from "../style.js";
+import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, cut, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
 
@@ -67,6 +66,7 @@ export class Tip extends Mark {
     this.fontStyle = string(fontStyle);
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
+    for (const key in defaults) if (key in this.channels) this[key] = defaults[key]; // apply default even if channel
   }
   render(index, scales, channels, dimensions, context) {
     const mark = this;
@@ -100,6 +100,8 @@ export class Tip extends Mark {
     const formatFx = fx && inferTickFormat(fx);
     const formatFy = fy && inferTickFormat(fy);
 
+    // We don’t call applyChannelStyles because we only use the channels to
+    // derive the content of the tip, not its aesthetics.
     const g = create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this)
@@ -112,7 +114,6 @@ export class Tip extends Mark {
           .append("g")
           .attr("transform", (i) => `translate(${px(i)},${py(i)})`)
           .call(applyDirectStyles, this)
-          .call(applyChannelStyles, this, channels)
           .call((g) => g.append("path").attr("filter", pathFilter))
           .call((g) =>
             g.append("text").each(function (i) {
@@ -137,7 +138,8 @@ export class Tip extends Mark {
                     ? channel2.hint?.length // e.g., stackY’s y1 and y2
                       ? `${formatDefault(value2 - value1)}`
                       : `${formatDefault(value1)}–${formatDefault(value2)}`
-                    : formatDefault(value1)
+                    : formatDefault(value1),
+                  channel.scale === "color" ? scales.color(value1) : undefined
                 );
               }
               if (index.fi == null) return; // not faceted
@@ -152,7 +154,8 @@ export class Tip extends Mark {
     // just the initial layout of the text; in postrender we will compute the
     // exact text metrics and translate the text as needed once we know the
     // tip’s orientation (anchor).
-    function renderLine(selection, name, value) {
+    function renderLine(selection, name, value, color) {
+      name = "\u200b" + name; // zwsp for double-click
       let title;
       let w = lineWidth * 100;
       const [j] = cut(name, w, widthof, ee);
@@ -162,7 +165,7 @@ export class Tip extends Mark {
         value = "";
         title = value.trim();
       } else {
-        value = `${name ? " " : ""}${value}\u200b`; // zwsp for double-click
+        if (name) value = " " + value;
         const [k] = cut(value, w - widthof(name), widthof, ee);
         if (k >= 0) {
           // value is truncated
@@ -173,6 +176,7 @@ export class Tip extends Mark {
       const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`);
       line.append("tspan").attr("font-weight", "bold").text(name);
       if (value) line.append(() => document.createTextNode(value));
+      if (color) line.append("tspan").text(" ■").attr("fill", color).style("user-select", "none");
       if (title) line.append("title").text(title);
     }
 
