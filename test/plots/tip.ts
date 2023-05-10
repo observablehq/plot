@@ -142,7 +142,7 @@ export async function tipRaster() {
     projection: {type: "reflect-y", inset: 3, domain},
     color: {type: "diverging"},
     marks: [
-      tipped(Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "random-walk"}))
+      tipped(Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "nearest"}))
     ]
   });
 }
