@@ -170,8 +170,7 @@ export function hasOutput(outputs, ...names) {
 export function maybeOutputs(outputs, inputs, asOutput = maybeOutput) {
   const entries = Object.entries(outputs);
   // Propagate standard mark channels by default.
-  if (inputs.ariaLabel != null && outputs.ariaLabel === undefined) entries.push(["ariaLabel", reduceTop]);
-  if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTop]);
+  if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
   if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
   return entries
     .filter(([, reduce]) => reduce !== undefined)
@@ -347,7 +346,7 @@ export const reduceFirst = {
   }
 };
 
-const reduceTop = {
+const reduceTitle = {
   reduceIndex(I, X) {
     const n = 5;
     const groups = sort(
