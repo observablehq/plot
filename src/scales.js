@@ -176,7 +176,8 @@ export function innerDimensions({fx, fy}, dimensions) {
     marginBottom,
     marginLeft,
     width: fx ? fx.scale.bandwidth() + marginLeft + marginRight : width,
-    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height
+    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height,
+    facet: {width, height}
   };
 }
 
