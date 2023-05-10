@@ -513,7 +513,8 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
   let channels;
   const m = mark(
     data,
-    initializer(options, function (data, facets, _channels, scales) {
+    initializer(options, function (data, facets, _channels, scales, dimensions, context) {
+      const initializeFacets = data == null && (k === "fx" || k === "fy");
       const {[k]: scale} = scales;
       if (!scale) throw new Error(`missing scale: ${k}`);
       let {ticks, tickSpacing, interval} = options;
@@ -546,17 +547,16 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
           facets = [range(data)];
         } else {
           channels[k] = {scale: k, value: identity};
-          facets = undefined; // computed automatically by plot
         }
       }
       initialize?.call(this, scale, ticks, channels);
-      return {
-        data,
-        facets,
-        channels: Object.fromEntries(
-          Object.entries(channels).map(([name, channel]) => [name, {...channel, value: valueof(data, channel.value)}])
-        )
-      };
+      const initializedChannels = Object.fromEntries(
+        Object.entries(channels).map(([name, channel]) => {
+          return [name, {...channel, value: valueof(data, channel.value)}];
+        })
+      );
+      if (initializeFacets) facets = context.filterFacets(data, initializedChannels);
+      return {data, facets, channels: initializedChannels};
     })
   );
   if (data == null) {

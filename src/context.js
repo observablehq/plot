@@ -1,11 +1,8 @@
 import {creator, select} from "d3";
-import {createProjection} from "./projection.js";
 
-export function createContext(options = {}, dimensions, className) {
+export function createContext(options = {}) {
   const {document = typeof window !== "undefined" ? window.document : undefined} = options;
-  const ownerSVGElement = creator("svg").call(document.documentElement);
-  const projection = createProjection(options, dimensions);
-  return {document, ownerSVGElement, className, projection};
+  return {document};
 }
 
 export function create(name, {document}) {
