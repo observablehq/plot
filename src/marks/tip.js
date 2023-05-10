@@ -14,6 +14,9 @@ const defaults = {
   stroke: "currentColor"
 };
 
+// These channels are not displayed in the tip; TODO allow customization.
+const ignoreChannels = new Set(["geometry", "title", "href", "src", "ariaLabel"]);
+
 export class Tip extends Mark {
   constructor(data, options = {}) {
     const {
@@ -75,6 +78,7 @@ export class Tip extends Mark {
     const {anchor, monospace, lineHeight, lineWidth} = this;
     const {textPadding: r, pointerSize: m, pathFilter} = this;
     const {marginTop, marginLeft} = dimensions;
+    const sources = getSources(channels);
 
     // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
     // or x & y; the former is considered more specific because it’s how we
@@ -82,7 +86,7 @@ export class Tip extends Mark {
     // unspecified, we fallback to the frame anchor. We also need to know the
     // facet offsets to detect when the tip would draw outside the plot, and
     // thus we need to change the orientation.
-    const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2, channels: sources} = channels;
+    const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const ox = fx ? fx(index.fx) - marginLeft : 0;
     const oy = fy ? fy(index.fy) - marginTop : 0;
@@ -99,6 +103,24 @@ export class Tip extends Mark {
     // need higher precision), and generally better than the default format.
     const formatFx = fx && inferTickFormat(fx);
     const formatFy = fy && inferTickFormat(fy);
+
+    function* format(sources, i) {
+      for (const key in sources) {
+        if (key === "x1" && "x2" in sources) continue;
+        if (key === "y1" && "y2" in sources) continue;
+        const channel = sources[key];
+        const color = channel.scale === "color" ? channels[key][i] : undefined;
+        if (key === "x2" && "x1" in sources) {
+          yield [formatLabel(scales, channel) ?? "x", formatPair(sources.x1, channel, i)];
+        } else if (key === "y2" && "y1" in sources) {
+          yield [formatLabel(scales, channel) ?? "y", formatPair(sources.y1, channel, i)];
+        } else {
+          yield [formatLabel(scales, channel) ?? key, formatDefault(channel.value[i]), color];
+        }
+      }
+      if (index.fi != null && fx) yield [fx.label ?? "fx", formatFx(index.fx)];
+      if (index.fi != null && fy) yield [fy.label ?? "fy", formatFy(index.fy)];
+    }
 
     // We don’t call applyChannelStyles because we only use the channels to
     // derive the content of the tip, not its aesthetics.
@@ -123,30 +145,9 @@ export class Tip extends Mark {
               this.setAttribute("fill-opacity", 1);
               this.setAttribute("stroke", "none");
               // iteratively render each channel value
-              for (const key in sources) {
-                if (key === "ariaLabel") continue; // see below
-                const channel = getSource(sources, key);
-                if (!channel) continue; // e.g., dodgeY’s y
-                const channel1 = getSource1(sources, key);
-                if (channel1) continue; // already displayed
-                const channel2 = getSource2(sources, key);
-                const value1 = channel.value[i];
-                const value2 = channel2?.value[i];
-                renderLine(
-                  that,
-                  scales[channel.scale]?.label ?? channel.label ?? key,
-                  channel2 // e.g., binX’s x1 and x2
-                    ? channel2.hint?.length // e.g., stackY’s y1 and y2
-                      ? `${formatDefault(value2 - value1)}`
-                      : `${formatDefault(value1)}–${formatDefault(value2)}`
-                    : formatDefault(value1),
-                  channel.scale === "color" ? scales.color(value1) : undefined
-                );
+              for (const [name, value, color] of format(sources, i)) {
+                renderLine(that, name, value, color);
               }
-              if (index.fi != null && fx) renderLine(that, fx.label ?? "fx", formatFx(index.fx));
-              if (index.fi != null && fy) renderLine(that, fy.label ?? "fy", formatFy(index.fy));
-              const ariaLabel = String(getSource(sources, "ariaLabel")?.value[i] ?? "");
-              if (ariaLabel) for (const value of ariaLabel.split(/\r\n?|\n/g)) renderLine(that, "", value);
             })
           )
       );
@@ -229,14 +230,6 @@ export function tip(data, {x, y, ...options} = {}) {
   return new Tip(data, {...options, x, y});
 }
 
-function getSource1(channels, key) {
-  return key === "x2" ? getSource(channels, "x1") : key === "y2" ? getSource(channels, "y1") : null;
-}
-
-function getSource2(channels, key) {
-  return key === "x1" ? getSource(channels, "x2") : key === "y1" ? getSource(channels, "y2") : null;
-}
-
 function getLineOffset(anchor, length, lineHeight) {
   return /^top(?:-|$)/.test(anchor)
     ? 0.94 - lineHeight
@@ -291,4 +284,24 @@ function getPath(anchor, m, r, width, height) {
     case "left":
       return `M0,0l${m / 2},${-m / 2}v${m / 2 - h / 2}h${w}v${h}h${-w}v${m / 2 - h / 2}z`;
   }
+}
+
+function getSources({channels}) {
+  const sources = {};
+  for (const key in channels) {
+    if (ignoreChannels.has(key)) continue;
+    const source = getSource(channels, key);
+    if (source) sources[key] = source;
+  }
+  return sources;
+}
+
+function formatPair(c1, c2, i) {
+  return c2.hint?.length // e.g., stackY’s y1 and y2
+    ? `${formatDefault(c2.value[i] - c1.value[i])}`
+    : `${formatDefault(c1.value[i])}–${formatDefault(c2.value[i])}`;
+}
+
+function formatLabel(scales, c) {
+  return scales[c.scale]?.label ?? c?.label;
 }
