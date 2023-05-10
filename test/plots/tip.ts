@@ -1,14 +1,24 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+function tipped(mark, options = {}) {
+  return Plot.marks(mark, Plot.tip(mark.data, Plot.pointer(anchor(mark, options))));
+}
+
+function anchor(mark, options = {}) {
+  return Plot.initializer({...options, x: null, y: null}, (data, facets, channels, scales, dimensions, context) => {
+    const xy = {};
+    const state = (context as any).getMarkState(mark);
+    for (const k of ["fx", "fy", "x", "x1", "x2", "y", "y1", "y2"]) if (state.channels[k]) xy[k] = state.channels[k];
+    return {data: state.data, facets: state.facets, channels: xy};
+  });
+}
+
 export async function tipBar() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
     marginLeft: 100,
-    marks: [
-      Plot.barX(olympians, Plot.groupY({x: "count"}, {y: "sport", sort: {y: "x"}})),
-      Plot.tip(olympians, Plot.pointerY(Plot.groupY({x: "count"}, {y: "sport", anchor: "left"})))
-    ]
+    marks: [tipped(Plot.barX(olympians, Plot.groupY({x: "count"}, {y: "sport", sort: {y: "x"}})))]
   });
 }
 
@@ -120,6 +130,20 @@ export async function tipLine() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     marks: [Plot.lineY(aapl, {x: "Date", y: "Close"}), Plot.tip(aapl, Plot.pointerX({x: "Date", y: "Close"}))]
+  });
+}
+
+export async function tipRaster() {
+  const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
+  const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
+  return Plot.plot({
+    width: 640,
+    height: 484,
+    projection: {type: "reflect-y", inset: 3, domain},
+    color: {type: "diverging"},
+    marks: [
+      tipped(Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "random-walk"}))
+    ]
   });
 }
 

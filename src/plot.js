@@ -1,4 +1,4 @@
-import {select} from "d3";
+import {creator, select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
@@ -8,6 +8,7 @@ import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
 import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeIntervalTransform} from "./options.js";
+import {createProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
@@ -141,8 +142,26 @@ export function plot(options = {}) {
   const {fx, fy} = scales;
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
-  const context = createContext(options, subdimensions, className);
-  const {ownerSVGElement: svg, document} = context;
+
+  // Initialize the context.
+  const context = createContext(options);
+  const document = context.document;
+  const svg = creator("svg").call(document.documentElement);
+  context.ownerSVGElement = svg;
+  context.className = className;
+  context.projection = createProjection(options, subdimensions);
+
+  // Allows e.g. the axis mark to determine faceting lazily.
+  context.filterFacets = (data, channels) => {
+    return facetFilter(facets, {channels, groups: facetGroups(data, channels)});
+  };
+
+  // Allows e.g. the tip mark to reference channels and data on other marks.
+  context.getMarkState = (mark) => {
+    const state = stateByMark.get(mark);
+    const facetState = facetStateByMark.get(mark);
+    return {...state, channels: {...state.channels, ...facetState?.channels}};
+  };
 
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
@@ -172,15 +191,11 @@ export function plot(options = {}) {
           }
         }
         // If the initializer returns new mark-level facet channels, we must
-        // also recompute the facet state.
+        // record that the mark is now faceted. Note: we aren’t actually
+        // populating the facet state, but subsequently we won’t need it.
         const {fx, fy} = update.channels;
-        if (fx != null || fy != null) {
-          const facetState = facetStateByMark.get(mark) ?? {channels: {}};
-          if (fx != null) facetState.channels.fx = fx;
-          if (fy != null) facetState.channels.fy = fy;
-          facetState.groups = facetGroups(state.data, facetState.channels);
-          facetState.facetsIndex = state.facets = facetFilter(facets, facetState);
-          facetStateByMark.set(mark, facetState);
+        if ((fx != null || fy != null) && !facetStateByMark.has(mark)) {
+          facetStateByMark.set(mark, true);
         }
       }
     }
