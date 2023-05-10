@@ -1,6 +1,17 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+export async function tipBar() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    marginLeft: 100,
+    marks: [
+      Plot.barX(olympians, Plot.groupY({x: "count"}, {y: "sport", sort: {y: "x"}})),
+      Plot.tip(olympians, Plot.pointerY(Plot.groupY({x: "count"}, {y: "sport"})))
+    ]
+  });
+}
+
 export async function tipBin() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({

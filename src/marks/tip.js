@@ -179,7 +179,7 @@ export class Tip extends Mark {
     // Only after the plot is attached to the page can we compute the exact text
     // metrics needed to determine the tip size and orientation (anchor).
     function postrender() {
-      const {width, height} = svg.getBBox();
+      const {width, height} = dimensions.facet ?? dimensions;
       g.selectChildren().each(function (i) {
         const {x: tx, width: w, height: h} = this.getBBox();
         let a = anchor; // use the specified anchor, if any
