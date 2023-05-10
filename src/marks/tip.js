@@ -124,6 +124,7 @@ export class Tip extends Mark {
               this.setAttribute("stroke", "none");
               // iteratively render each channel value
               for (const key in sources) {
+                if (key === "ariaLabel") continue; // see below
                 const channel = getSource(sources, key);
                 if (!channel) continue; // e.g., dodgeY’s y
                 const channel1 = getSource1(sources, key);
@@ -142,9 +143,10 @@ export class Tip extends Mark {
                   channel.scale === "color" ? scales.color(value1) : undefined
                 );
               }
-              if (index.fi == null) return; // not faceted
-              if (fx) renderLine(that, fx.label ?? "fx", formatFx(index.fx));
-              if (fy) renderLine(that, fy.label ?? "fy", formatFy(index.fy));
+              if (index.fi != null && fx) renderLine(that, fx.label ?? "fx", formatFx(index.fx));
+              if (index.fi != null && fy) renderLine(that, fy.label ?? "fy", formatFy(index.fy));
+              const ariaLabel = String(getSource(sources, "ariaLabel")?.value[i] ?? "");
+              if (ariaLabel) for (const value of ariaLabel.split(/\r\n?|\n/g)) renderLine(that, "", value);
             })
           )
       );
@@ -155,7 +157,7 @@ export class Tip extends Mark {
     // exact text metrics and translate the text as needed once we know the
     // tip’s orientation (anchor).
     function renderLine(selection, name, value, color) {
-      name = "\u200b" + name; // zwsp for double-click
+      if (name) name = "\u200b" + name; // zwsp for double-click
       let title;
       let w = lineWidth * 100;
       const [j] = cut(name, w, widthof, ee);
