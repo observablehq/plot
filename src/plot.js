@@ -176,9 +176,10 @@ export function plot(options = {}) {
         state.facets = update.facets;
       }
       if (update.channels !== undefined) {
-        inferChannelScales(update.channels);
-        Object.assign(state.channels, update.channels);
-        for (const channel of Object.values(update.channels)) {
+        const {fx, fy, ...channels} = update.channels; // separate facet channels
+        inferChannelScales(channels);
+        Object.assign(state.channels, channels);
+        for (const channel of Object.values(channels)) {
           const {scale} = channel;
           // Initializers aren’t allowed to redefine position scales as this
           // would introduce a circular dependency; so simply scale these
@@ -193,10 +194,7 @@ export function plot(options = {}) {
         // If the initializer returns new mark-level facet channels, we must
         // record that the mark is now faceted. Note: we aren’t actually
         // populating the facet state, but subsequently we won’t need it.
-        const {fx, fy} = update.channels;
-        if ((fx != null || fy != null) && !facetStateByMark.has(mark)) {
-          facetStateByMark.set(mark, true);
-        }
+        if (fx != null || fy != null) facetStateByMark.set(mark, true);
       }
     }
   }

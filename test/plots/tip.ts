@@ -1,45 +1,37 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-function tipped(mark, options = {}) {
-  return Plot.marks(mark, Plot.tip(mark.data, Plot.pointer(anchor(mark, options))));
+function tipped(mark, options = {}, pointer = Plot.pointer) {
+  return Plot.marks(mark, Plot.tip(mark.data, pointer(derive(mark, options))));
 }
 
-function anchor(mark, options = {}) {
+function tippedX(mark, options = {}) {
+  return tipped(mark, options, Plot.pointerX);
+}
+
+function tippedY(mark, options = {}) {
+  return tipped(mark, options, Plot.pointerY);
+}
+
+function derive(mark, options = {}) {
   return Plot.initializer({...options, x: null, y: null}, (data, facets, channels, scales, dimensions, context) => {
-    const xy = {};
-    const state = (context as any).getMarkState(mark);
-    for (const k of ["fx", "fy", "x", "x1", "x2", "y", "y1", "y2"]) if (state.channels[k]) xy[k] = state.channels[k];
-    return {data: state.data, facets: state.facets, channels: xy};
+    return (context as any).getMarkState(mark);
   });
 }
 
 export async function tipBar() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.plot({
-    marginLeft: 100,
-    marks: [tipped(Plot.barX(olympians, Plot.groupY({x: "count"}, {y: "sport", sort: {y: "x"}})))]
-  });
+  return tippedY(Plot.barX(olympians, Plot.groupY({x: "count"}, {y: "sport", sort: {y: "x"}}))).plot({marginLeft: 100});
 }
 
 export async function tipBin() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"})),
-      Plot.tip(olympians, Plot.pointerX(Plot.binX({y: "count"}, {x: "weight"})))
-    ]
-  });
+  return tippedX(Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))).plot();
 }
 
 export async function tipBinStack() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.rectY(olympians, Plot.stackY({}, Plot.binX({y: "count"}, {x: "weight", fill: "sex"}))),
-      Plot.tip(olympians, Plot.pointerX(Plot.stackY({}, Plot.binX({y: "count"}, {x: "weight", stroke: "sex"}))))
-    ]
-  });
+  return tippedX(Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"}))).plot();
 }
 
 export async function tipCell() {
@@ -48,10 +40,7 @@ export async function tipCell() {
     height: 400,
     marginLeft: 100,
     color: {scheme: "blues"},
-    marks: [
-      Plot.cell(olympians, Plot.group({fill: "count"}, {x: "sex", y: "sport"})),
-      Plot.tip(olympians, Plot.pointerY(Plot.group({stroke: "count"}, {x: "sex", y: "sport"})))
-    ]
+    marks: [tippedY(Plot.cell(olympians, Plot.group({fill: "count"}, {x: "sex", y: "sport"})))]
   });
 }
 
@@ -61,32 +50,18 @@ export async function tipCellFacet() {
     height: 400,
     marginLeft: 100,
     color: {scheme: "blues"},
-    marks: [
-      Plot.cell(olympians, Plot.groupY({fill: "count"}, {fx: "sex", y: "sport"})),
-      Plot.tip(olympians, Plot.pointerY(Plot.groupY({stroke: "count"}, {fx: "sex", y: "sport"})))
-    ]
+    marks: [tippedY(Plot.cell(olympians, Plot.groupY({fill: "count"}, {fx: "sex", y: "sport"})))]
   });
 }
 
 export async function tipDodge() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.plot({
-    height: 160,
-    marks: [
-      Plot.dot(penguins, Plot.dodgeY({x: "culmen_length_mm", r: "body_mass_g"})),
-      Plot.tip(penguins, Plot.pointer(Plot.dodgeY({x: "culmen_length_mm", r: "body_mass_g"})))
-    ]
-  });
+  return tipped(Plot.dot(penguins, Plot.dodgeY({x: "culmen_length_mm", r: "body_mass_g"}))).plot({height: 160});
 }
 
 export async function tipDot() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex"}),
-      Plot.tip(penguins, Plot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm"}))
-    ]
-  });
+  return tipped(Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex"})).plot();
 }
 
 export async function tipDotFacets() {
@@ -98,10 +73,8 @@ export async function tipDotFacets() {
       interval: "10 years"
     },
     marks: [
-      Plot.dot(athletes, {x: "weight", y: "height", fx: "sex", fy: "date_of_birth"}),
-      Plot.tip(
-        athletes,
-        Plot.pointer({
+      tipped(
+        Plot.dot(athletes, {
           x: "weight",
           y: "height",
           fx: "sex",
@@ -118,19 +91,12 @@ export async function tipDotFacets() {
 
 export async function tipHexbin() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.hexagon(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height"})),
-      Plot.tip(olympians, Plot.pointer(Plot.hexbin({r: "count"}, {x: "weight", y: "height"})))
-    ]
-  });
+  return tipped(Plot.hexagon(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height"}))).plot();
 }
 
 export async function tipLine() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return Plot.plot({
-    marks: [Plot.lineY(aapl, {x: "Date", y: "Close"}), Plot.tip(aapl, Plot.pointerX({x: "Date", y: "Close"}))]
-  });
+  return tippedX(Plot.lineY(aapl, {x: "Date", y: "Close"})).plot();
 }
 
 export async function tipRaster() {
@@ -141,15 +107,11 @@ export async function tipRaster() {
     height: 484,
     projection: {type: "reflect-y", inset: 3, domain},
     color: {type: "diverging"},
-    marks: [
-      tipped(Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "nearest"}))
-    ]
+    marks: [tipped(Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "nearest"}))]
   });
 }
 
 export async function tipRule() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.plot({
-    marks: [Plot.ruleX(penguins, {x: "body_mass_g"}), Plot.tip(penguins, Plot.pointerX({x: "body_mass_g"}))]
-  });
+  return tippedX(Plot.ruleX(penguins, {x: "body_mass_g"})).plot();
 }
