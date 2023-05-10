@@ -3,7 +3,7 @@ import {getSource} from "../channel.js";
 import {create} from "../context.js";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
-import {maybeFrameAnchor, maybeKeyword, maybeTuple, number, string} from "../options.js";
+import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles} from "../style.js";
 import {applyFrameAnchor, applyTransform, impliedString} from "../style.js";
 import {inferTickFormat} from "./axis.js";
@@ -52,7 +52,7 @@ export class Tip extends Mark {
       options,
       defaults
     );
-    this.anchor = maybeAnchor(anchor);
+    this.anchor = maybeAnchor(anchor, "anchor");
     this.previousAnchor = this.anchor ?? "top-left";
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.textAnchor = impliedString(textAnchor, "middle");
@@ -200,7 +200,7 @@ export class Tip extends Mark {
         path.setAttribute("d", getPath(a, m, r, w, h));
         if (tx) for (const t of text.childNodes) t.setAttribute("x", -tx);
         text.setAttribute("y", `${+getLineOffset(a, text.childNodes.length, lineHeight).toFixed(6)}em`);
-        text.setAttribute("transform", getTextTransform(a, m, r, w, h));
+        text.setAttribute("transform", `translate(${getTextTranslate(a, m, r, w, h)})`);
       });
     }
 
@@ -223,10 +223,6 @@ export function tip(data, {x, y, ...options} = {}) {
   return new Tip(data, {...options, x, y});
 }
 
-function maybeAnchor(value) {
-  return maybeKeyword(value, "anchor", ["top-left", "top-right", "bottom-right", "bottom-left"]);
-}
-
 function getSource1(channels, key) {
   return key === "x2" ? getSource(channels, "x1") : key === "y2" ? getSource(channels, "y1") : null;
 }
@@ -236,26 +232,57 @@ function getSource2(channels, key) {
 }
 
 function getLineOffset(anchor, length, lineHeight) {
-  return /^top-/.test(anchor) ? 0.94 - lineHeight : -0.29 - length * lineHeight;
+  return /^top(?:-|$)/.test(anchor)
+    ? 0.94 - lineHeight
+    : /^bottom(?:-|$)/
+    ? -0.29 - length * lineHeight
+    : (length / 2) * lineHeight;
 }
 
-function getTextTransform(anchor, m, r, width) {
-  const x = /-left$/.test(anchor) ? r : -width - r;
-  const y = /^top-/.test(anchor) ? m + r : -m - r;
-  return `translate(${x},${y})`;
+function getTextTranslate(anchor, m, r, width, height) {
+  switch (anchor) {
+    case "middle":
+      return [-width / 2, height / 2];
+    case "top-left":
+      return [r, m + r];
+    case "top":
+      return [-width / 2, m / 2 + r];
+    case "top-right":
+      return [-width - r, m + r];
+    case "right":
+      return [-m / 2 - width - r, height / 2];
+    case "bottom-left":
+      return [r, -m - r];
+    case "bottom":
+      return [-width / 2, -m / 2 - r];
+    case "bottom-right":
+      return [-width - r, -m - r];
+    case "left":
+      return [r + m / 2, height / 2];
+  }
 }
 
 function getPath(anchor, m, r, width, height) {
   const w = width + r * 2;
   const h = height + r * 2;
   switch (anchor) {
+    case "middle":
+      return `M${-w / 2},${-h / 2}h${w}v${h}h${-w}z`;
     case "top-left":
       return `M0,0l${m},${m}h${w - m}v${h}h${-w}z`;
+    case "top":
+      return `M0,0l${m / 2},${m / 2}h${(w - m) / 2}v${h}h${-w}v${-h}h${(w - m) / 2}z`;
     case "top-right":
       return `M0,0l${-m},${m}h${m - w}v${h}h${w}z`;
+    case "right":
+      return `M0,0l${-m / 2},${-m / 2}v${m / 2 - h / 2}h${-w}v${h}h${w}v${m / 2 - h / 2}z`;
     case "bottom-left":
       return `M0,0l${m},${-m}h${w - m}v${-h}h${-w}z`;
+    case "bottom":
+      return `M0,0l${m / 2},${-m / 2}h${(w - m) / 2}v${-h}h${-w}v${h}h${(w - m) / 2}z`;
     case "bottom-right":
       return `M0,0l${-m},${-m}h${m - w}v${-h}h${w}z`;
+    case "left":
+      return `M0,0l${m / 2},${-m / 2}v${m / 2 - h / 2}h${w}v${h}h${-w}v${m / 2 - h / 2}z`;
   }
 }

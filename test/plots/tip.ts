@@ -7,7 +7,7 @@ export async function tipBar() {
     marginLeft: 100,
     marks: [
       Plot.barX(olympians, Plot.groupY({x: "count"}, {y: "sport", sort: {y: "x"}})),
-      Plot.tip(olympians, Plot.pointerY(Plot.groupY({x: "count"}, {y: "sport"})))
+      Plot.tip(olympians, Plot.pointerY(Plot.groupY({x: "count"}, {y: "sport", anchor: "left"})))
     ]
   });
 }

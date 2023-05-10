@@ -450,8 +450,8 @@ export function isRound(value) {
   return /^\s*round\s*$/i.test(value);
 }
 
-export function maybeFrameAnchor(value = "middle") {
-  return keyword(value, "frameAnchor", [
+export function maybeAnchor(value, name) {
+  return maybeKeyword(value, name, [
     "middle",
     "top-left",
     "top",
@@ -462,6 +462,10 @@ export function maybeFrameAnchor(value = "middle") {
     "bottom-left",
     "left"
   ]);
+}
+
+export function maybeFrameAnchor(value = "middle") {
+  return maybeAnchor(value, "frameAnchor");
 }
 
 // Like a sort comparator, returns a positive value if the given array of values
