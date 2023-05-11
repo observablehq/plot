@@ -66,7 +66,6 @@ function dodge(y, x, anchor, padding, r, options) {
     if (channels?.r === undefined) options = {...options, channels: {...channels, r: {value: r, scale: "r"}}};
     if (sort === undefined && reverse === undefined) options.sort = {channel: "r", order: "descending"};
   }
-  if (options.tip === true) options = {...options, tip: x};
   return initializer(options, function (data, facets, channels, scales, dimensions, context) {
     let {[x]: X, r: R} = channels;
     if (!channels[x]) throw new Error(`missing channel: ${x}`);
