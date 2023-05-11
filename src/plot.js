@@ -3,6 +3,7 @@ import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
+import {pointer, pointerX, pointerY} from "./interactions/pointer.js";
 import {createLegends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
@@ -15,7 +16,6 @@ import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
-import {pointer, pointerX, pointerY} from "./interactions/pointer.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
