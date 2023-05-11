@@ -61,7 +61,7 @@ export type ChannelName =
  * An object literal of channel definitions. This is also used to represent
  * materialized channel states after mark initialization.
  */
-export type Channels = Record<string, Channel>;
+export type Channels = {[key in ChannelName]?: Channel};
 
 /**
  * A channel definition. This is also used to represent the materialized channel

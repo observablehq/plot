@@ -80,10 +80,7 @@ export async function tipDotFacets() {
           y: "height",
           fx: "sex",
           fy: "date_of_birth",
-          channels: {
-            name: {value: "name"},
-            sport: {value: "sport"}
-          }
+          channels: {name: "name", sport: "sport"}
         })
       )
     ]
@@ -107,7 +104,7 @@ export async function tipGeoCentroid() {
     marks: [
       Plot.geo(countymesh),
       Plot.geo(counties, {...pointer, stroke: "red", strokeWidth: 2}),
-      Plot.tip(counties.features, {...pointer, channels: {name: {value: (d) => d.properties.name}}})
+      Plot.tip(counties.features, {...pointer, channels: {name: (d) => d.properties.name}})
     ]
   });
 }
