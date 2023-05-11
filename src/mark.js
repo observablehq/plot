@@ -1,7 +1,7 @@
 import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
-import {maybeValues} from "./options.js";
+import {maybeValue} from "./options.js";
 import {arrayify, isDomainSort, isOptions, keyword, maybeNamed, range, singleton} from "./options.js";
 import {project} from "./projection.js";
 import {maybeClip, styles} from "./style.js";
@@ -39,7 +39,7 @@ export class Mark {
     }
     this.facetAnchor = maybeFacetAnchor(facetAnchor);
     channels = maybeNamed(channels);
-    if (extraChannels !== undefined) channels = {...maybeValues(maybeNamed(extraChannels)), ...channels};
+    if (extraChannels !== undefined) channels = {...maybeChannels(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
     this.channels = Object.fromEntries(
       Object.entries(channels)
@@ -132,4 +132,14 @@ export class Mark {
 export function marks(...marks) {
   marks.plot = Mark.prototype.plot; // Note: depends on side-effect in plot!
   return marks;
+}
+
+function maybeChannels(channels) {
+  return Object.fromEntries(
+    Object.entries(maybeNamed(channels)).map(([name, channel]) => {
+      channel = maybeValue(channel);
+      if (channel.filter === undefined && channel.scale == null) channel = {...channel, filter: null};
+      return [name, channel];
+    })
+  );
 }
