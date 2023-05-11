@@ -11,7 +11,7 @@ export function centroid({geometry = identity, ...options} = {}) {
     const Y = new Float64Array(n);
     const path = geoPath(projection);
     for (let i = 0; i < n; ++i) [X[i], Y[i]] = path.centroid(G[i]);
-    return {data, facets, channels: {x: {value: X}, y: {value: Y}}};
+    return {data, facets, channels: {x: {value: X, source: null}, y: {value: Y, source: null}}};
   });
 }
 
