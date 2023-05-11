@@ -1,6 +1,7 @@
 import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
+import {maybeValues} from "./options.js";
 import {arrayify, isDomainSort, isOptions, keyword, maybeNamed, range, singleton} from "./options.js";
 import {project} from "./projection.js";
 import {maybeClip, styles} from "./style.js";
@@ -38,7 +39,7 @@ export class Mark {
     }
     this.facetAnchor = maybeFacetAnchor(facetAnchor);
     channels = maybeNamed(channels);
-    if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
+    if (extraChannels !== undefined) channels = {...maybeValues(maybeNamed(extraChannels)), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
     this.channels = Object.fromEntries(
       Object.entries(channels)
