@@ -1,6 +1,8 @@
 import {pointer as pointof} from "d3";
 import {applyFrameAnchor} from "../style.js";
 
+const states = new WeakMap();
+
 function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} = {}) {
   maxRadius = +maxRadius;
   // When px or py is used, register an extra channel that the pointer
@@ -9,7 +11,6 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
   // displayed. Also default x or y to null to disable maybeTuple etc.
   if (px != null) (x ??= null), (channels = {...channels, px: {value: px, scale: "x"}});
   if (py != null) (y ??= null), (channels = {...channels, py: {value: py, scale: "y"}});
-  const states = new WeakMap();
   return {
     x,
     y,

@@ -87,6 +87,14 @@ export async function tipDotFacets() {
   });
 }
 
+export async function tipDotFilter() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const xy = {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex"};
+  const [dot1, tip1] = tipped(Plot.dot(penguins, {...xy, filter: (d) => d.sex === "MALE"}), {anchor: "left"});
+  const [dot2, tip2] = tipped(Plot.dot(penguins, {...xy, filter: (d) => d.sex === "FEMALE"}), {anchor: "right"});
+  return Plot.marks(dot1, dot2, tip1, tip2).plot();
+}
+
 export async function tipGeoCentroid() {
   const [[counties, countymesh]] = await Promise.all([
     d3

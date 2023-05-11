@@ -453,6 +453,9 @@ export interface MarkOptions {
 
 /** The abstract base class for Mark implementations. */
 export class Mark {
+  /** The mark’s data. */
+  data?: Data;
+
   /**
    * Renders a new plot, prepending this mark as the first element of **marks**
    * of the specified *options*, and returns the corresponding SVG element, or
