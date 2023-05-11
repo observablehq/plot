@@ -2,7 +2,7 @@ import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
 import {arrayify, isDomainSort, isOptions, keyword, maybeNamed, range, singleton} from "./options.js";
-import {maybeProject} from "./projection.js";
+import {project} from "./projection.js";
 import {maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 
@@ -104,18 +104,22 @@ export class Mark {
     }
     return index;
   }
-  // If there is a projection, and there are both x and y channels (or x1 and
-  // y1, or x2 and y2 channels), and those channels are associated with the x
-  // and y scale respectively (and not already in screen coordinates as with an
-  // initializer), then apply the projection, replacing the x and y values. Note
-  // that the x and y scales themselves don’t exist if there is a projection,
-  // but whether the channels are associated with scales still determines
-  // whether the projection should apply; think of the projection as a
-  // combination xy-scale.
+  // If there is a projection, and there are paired x and y channels associated
+  // with the x and y scale respectively (and not already in screen coordinates
+  // as with an initializer), then apply the projection, replacing the x and y
+  // values. Note that the x and y scales themselves don’t exist if there is a
+  // projection, but whether the channels are associated with scales still
+  // determines whether the projection should apply; think of the projection as
+  // a combination xy-scale.
   project(channels, values, context) {
-    maybeProject("x", "y", channels, values, context);
-    maybeProject("x1", "y1", channels, values, context);
-    maybeProject("x2", "y2", channels, values, context);
+    for (const cx in channels) {
+      if (channels[cx].scale === "x" && /^x|x$/.test(cx)) {
+        const cy = cx.replace(/^x|x$/, "y");
+        if (cy in channels && channels[cy].scale === "y") {
+          project(cx, cy, values, context.projection);
+        }
+      }
+    }
   }
   scale(channels, scales, context) {
     const values = valueObject(channels, scales);

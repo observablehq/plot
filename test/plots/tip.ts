@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {feature, mesh} from "topojson-client";
 
 function tipped(mark, options = {}, pointer = Plot.pointer) {
   return Plot.marks(mark, Plot.tip(mark.data, pointer(derive(mark, options))));
@@ -85,6 +86,26 @@ export async function tipDotFacets() {
           }
         })
       )
+    ]
+  });
+}
+
+export async function tipGeoCentroid() {
+  const [[counties, countymesh]] = await Promise.all([
+    d3
+      .json<any>("data/us-counties-10m.json")
+      .then((us) => [feature(us, us.objects.counties), mesh(us, us.objects.counties)])
+  ]);
+  const {x, y} = Plot.geoCentroid();
+  const pointer = Plot.pointer({px: x, py: y, x, y});
+  return Plot.plot({
+    width: 960,
+    height: 600,
+    projection: "albers-usa",
+    marks: [
+      Plot.geo(countymesh),
+      Plot.geo(counties, {...pointer, stroke: "red", strokeWidth: 2}),
+      Plot.tip(counties.features, {...pointer, channels: {name: {value: (d) => d.properties.name}}})
     ]
   });
 }
