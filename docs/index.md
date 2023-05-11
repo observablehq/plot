@@ -69,6 +69,9 @@ features:
   - title: Facets
     details: "Small multiples facilitate comparison by repeating a plot across partitions of data."
     link: /features/facets
+  - title: Interactions
+    details: "Point to a region of the chart to select data and see more details."
+    link: /features/interactions
   - title: Projections
     details: "Plot supports GeoJSON and D3’s spherical projection system for geographic maps."
     link: /features/projections

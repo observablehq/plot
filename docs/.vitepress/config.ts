@@ -58,6 +58,7 @@ export default defineConfig({
           {text: "Projections", link: "/features/projections"},
           {text: "Transforms", link: "/features/transforms"},
           {text: "Facets", link: "/features/facets"},
+          {text: "Interactions", link: "/features/interactions"},
           {text: "Legends", link: "/features/legends"},
           {text: "Curves", link: "/features/curves"},
           {text: "Formats", link: "/features/formats"},
@@ -78,6 +79,7 @@ export default defineConfig({
           {text: "Box", link: "/marks/box"},
           {text: "Cell", link: "/marks/cell"},
           {text: "Contour", link: "/marks/contour"},
+          {text: "Crosshair", link: "/marks/crosshair"},
           {text: "Delaunay", link: "/marks/delaunay"},
           {text: "Density", link: "/marks/density"},
           {text: "Dot", link: "/marks/dot"},
@@ -94,6 +96,7 @@ export default defineConfig({
           {text: "Rule", link: "/marks/rule"},
           {text: "Text", link: "/marks/text"},
           {text: "Tick", link: "/marks/tick"},
+          {text: "tip", link: "/marks/tip"},
           {text: "Tree", link: "/marks/tree"},
           {text: "Vector", link: "/marks/vector"}
         ]

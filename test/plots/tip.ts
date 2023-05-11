@@ -135,3 +135,14 @@ export async function tipRule() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return tippedX(Plot.ruleX(penguins, {x: "body_mass_g"})).plot();
 }
+
+export async function tipRuleAnchored() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    x: {insetLeft: 110},
+    marks: [
+      Plot.ruleX(penguins, {x: "body_mass_g"}),
+      Plot.tip(penguins, Plot.pointer({px: "body_mass_g", frameAnchor: "left", anchor: "middle", dx: 42}))
+    ]
+  });
+}

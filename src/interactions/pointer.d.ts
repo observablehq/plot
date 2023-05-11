@@ -1,9 +1,14 @@
+import {ChannelValue} from "../channel.js";
 import type {Rendered} from "../transforms/basic.js";
 
 /** TODO */
 export interface PointerOptions {
   /** TODO */
   maxRadius?: number;
+  /** TODO */
+  px?: ChannelValue;
+  /** TODO */
+  py?: ChannelValue;
 }
 
 /** TODO */
