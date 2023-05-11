@@ -6,33 +6,24 @@ import {ruleX, ruleY} from "./rule.js";
 import {text} from "./text.js";
 
 export function crosshair(data, options = {}) {
-  const {x, y} = options;
-  const p = pointer({px: x, py: y});
-  return marks(
-    ruleX(data, ruleXOptions(p, options, x)),
-    ruleY(data, ruleYOptions(p, options, y)),
-    text(data, textXOptions(p, options, x)),
-    text(data, textYOptions(p, options, y))
-  );
+  const p = pointer({px: options.x, py: options.y});
+  return marks(pruleX(data, p, options), pruleY(data, p, options), ptextX(data, p, options), ptextY(data, p, options));
 }
 
 export function crosshairX(data, options = {}) {
-  const {x} = options;
-  const p = pointerX({px: x});
-  return marks(ruleX(data, ruleXOptions(p, options, x)), text(data, textXOptions(p, options, x)));
+  const p = pointerX({px: options.x});
+  return marks(pruleX(data, p, options), ptextX(data, p, options));
 }
 
 export function crosshairY(data, options = {}) {
-  const {y} = options;
-  const p = pointerY({py: y});
-  return marks(ruleY(data, ruleYOptions(p, options, y)), text(data, textYOptions(p, options, y)));
+  const p = pointerY({py: options.y});
+  return marks(pruleY(data, p, options), ptextY(data, p, options));
 }
 
 function markOptions(
+  k,
   {channels: pointerChannels, ...pointerOptions},
-  {facet, facetAnchor, fx, fy, channels, transform, initializer},
-  x,
-  y
+  {facet, facetAnchor, fx, fy, [k]: p, channels, transform, initializer}
 ) {
   return {
     ...pointerOptions,
@@ -40,60 +31,57 @@ function markOptions(
     facetAnchor,
     fx,
     fy,
-    x,
-    y,
+    [k]: p,
     channels: {...pointerChannels, ...channels},
     transform,
-    initializer: pxpy(initializer, x, y)
+    initializer: pxpy(k, initializer)
   };
 }
 
 // Wrap the initializer, if any, mapping px and py to x and y temporarily (e.g.,
 // for hexbin) then mapping back to px and py for rendering.
-function pxpy(i, ox, oy) {
+function pxpy(k, i) {
   if (i == null) return i;
   return function (data, facets, {x: x1, y: y1, px, py, ...c1}, ...args) {
     const {channels: {x, y, ...c} = {}, ...rest} = i.call(this, data, facets, {...c1, x: px, y: py}, ...args);
     return {
       channels: {
         ...c,
-        ...(x && {px: x, ...(ox !== null && {x})}),
-        ...(y && {py: y, ...(oy !== null && {y})})
+        ...(x && {px: x, ...(k === "x" && {x})}),
+        ...(y && {py: y, ...(k === "y" && {y})})
       },
       ...rest
     };
   };
 }
 
-function ruleXOptions(pointerOptions, options, x) {
-  return ruleOptions(pointerOptions, options, x, null);
+function pruleX(data, pointerOptions, options) {
+  return ruleX(data, ruleOptions("x", pointerOptions, options));
 }
 
-function ruleYOptions(pointerOptions, options, y) {
-  return ruleOptions(pointerOptions, options, null, y);
+function pruleY(data, pointerOptions, options) {
+  return ruleY(data, ruleOptions("y", pointerOptions, options));
 }
 
-function ruleOptions(pointerOptions, options, x, y) {
+function ruleOptions(k, pointerOptions, options) {
   const {
     color = "currentColor",
     ruleStroke: stroke = color,
     ruleStrokeOpacity: strokeOpacity = 0.2,
     ruleStrokeWidth: strokeWidth
   } = options;
-  return {...markOptions(pointerOptions, options, x, y), stroke, strokeOpacity, strokeWidth};
+  return {...markOptions(k, pointerOptions, options), stroke, strokeOpacity, strokeWidth};
 }
 
-function textXOptions(pointerOptions, options, x) {
-  options = textChannel("x", options);
-  return textOptions({...pointerOptions, dy: 9, frameAnchor: "bottom", lineAnchor: "top"}, options, x, null);
+function ptextX(data, pointerOptions, options) {
+  return text(data, textOptions("x", {...pointerOptions, dy: 9, frameAnchor: "bottom", lineAnchor: "top"}, options));
 }
 
-function textYOptions(pointerOptions, options, y) {
-  options = textChannel("y", options);
-  return textOptions({...pointerOptions, dx: -9, frameAnchor: "left", textAnchor: "end"}, options, null, y);
+function ptextY(data, pointerOptions, options) {
+  return text(data, textOptions("y", {...pointerOptions, dx: -9, frameAnchor: "left", textAnchor: "end"}, options));
 }
 
-function textOptions(pointerOptions, options, x, y) {
+function textOptions(k, pointerOptions, options) {
   const {
     color = "currentColor",
     textFill: fill = color,
@@ -101,7 +89,7 @@ function textOptions(pointerOptions, options, x, y) {
     textStrokeOpacity: strokeOpacity,
     textStrokeWidth: strokeWidth = 5
   } = options;
-  return {...markOptions(pointerOptions, options, x, y), fill, stroke, strokeOpacity, strokeWidth};
+  return {...markOptions(k, pointerOptions, textChannel(k, options)), fill, stroke, strokeOpacity, strokeWidth};
 }
 
 // Rather than aliasing text to have the same definition as x and y, we use an
