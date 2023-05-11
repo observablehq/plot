@@ -2,37 +2,22 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
-function tipped(mark, options = {}, pointer = Plot.pointer) {
-  return Plot.marks(mark, Plot.tip(mark.data, pointer(derive(mark, options))));
-}
-
-function tippedX(mark, options = {}) {
-  return tipped(mark, options, Plot.pointerX);
-}
-
-function tippedY(mark, options = {}) {
-  return tipped(mark, options, Plot.pointerY);
-}
-
-function derive(mark, options = {}) {
-  return Plot.initializer({...options, x: null, y: null}, (data, facets, channels, scales, dimensions, context) => {
-    return (context as any).getMarkState(mark);
-  });
-}
-
 export async function tipBar() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return tippedY(Plot.barX(olympians, Plot.groupY({x: "count"}, {y: "sport", sort: {y: "x"}}))).plot({marginLeft: 100});
+  return Plot.plot({
+    marginLeft: 100,
+    marks: [Plot.barX(olympians, Plot.groupY({x: "count"}, {y: "sport", sort: {y: "x"}, tip: true}))]
+  });
 }
 
 export async function tipBin() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return tippedX(Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))).plot();
+  return Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", tip: true})).plot();
 }
 
 export async function tipBinStack() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return tippedX(Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex"}))).plot();
+  return Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", tip: true})).plot();
 }
 
 export async function tipCell() {
@@ -41,7 +26,7 @@ export async function tipCell() {
     height: 400,
     marginLeft: 100,
     color: {scheme: "blues"},
-    marks: [tippedY(Plot.cell(olympians, Plot.group({fill: "count"}, {x: "sex", y: "sport"})))]
+    marks: [Plot.cell(olympians, Plot.group({fill: "count"}, {x: "sex", y: "sport", tip: "y"}))]
   });
 }
 
@@ -51,18 +36,18 @@ export async function tipCellFacet() {
     height: 400,
     marginLeft: 100,
     color: {scheme: "blues"},
-    marks: [tippedY(Plot.cell(olympians, Plot.groupY({fill: "count"}, {fx: "sex", y: "sport"})))]
+    marks: [Plot.cell(olympians, Plot.groupY({fill: "count"}, {fx: "sex", y: "sport", tip: "y"}))]
   });
 }
 
 export async function tipDodge() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return tipped(Plot.dot(penguins, Plot.dodgeY({x: "culmen_length_mm", r: "body_mass_g"}))).plot({height: 160});
+  return Plot.dot(penguins, Plot.dodgeY({x: "culmen_length_mm", r: "body_mass_g", tip: true})).plot({height: 160});
 }
 
 export async function tipDot() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return tipped(Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex"})).plot();
+  return Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex", tip: true}).plot();
 }
 
 export async function tipDotFacets() {
@@ -74,15 +59,14 @@ export async function tipDotFacets() {
       interval: "10 years"
     },
     marks: [
-      tipped(
-        Plot.dot(athletes, {
-          x: "weight",
-          y: "height",
-          fx: "sex",
-          fy: "date_of_birth",
-          channels: {name: "name", sport: "sport"}
-        })
-      )
+      Plot.dot(athletes, {
+        x: "weight",
+        y: "height",
+        fx: "sex",
+        fy: "date_of_birth",
+        channels: {name: "name", sport: "sport"},
+        tip: true
+      })
     ]
   });
 }
@@ -90,9 +74,12 @@ export async function tipDotFacets() {
 export async function tipDotFilter() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   const xy = {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex"};
-  const [dot1, tip1] = tipped(Plot.dot(penguins, {...xy, filter: (d) => d.sex === "MALE"}), {anchor: "left"});
-  const [dot2, tip2] = tipped(Plot.dot(penguins, {...xy, filter: (d) => d.sex === "FEMALE"}), {anchor: "right"});
-  return Plot.marks(dot1, dot2, tip1, tip2).plot();
+  return Plot.plot({
+    marks: [
+      Plot.dot(penguins, {...xy, filter: (d) => d.sex === "MALE", tip: true}),
+      Plot.dot(penguins, {...xy, filter: (d) => d.sex === "FEMALE", tip: true})
+    ]
+  });
 }
 
 export async function tipGeoCentroid() {
@@ -119,12 +106,12 @@ export async function tipGeoCentroid() {
 
 export async function tipHexbin() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return tipped(Plot.hexagon(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height"}))).plot();
+  return Plot.hexagon(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height", tip: true})).plot();
 }
 
 export async function tipLine() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return tippedX(Plot.lineY(aapl, {x: "Date", y: "Close"})).plot();
+  return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
 }
 
 export async function tipRaster() {
@@ -135,11 +122,11 @@ export async function tipRaster() {
     height: 484,
     projection: {type: "reflect-y", inset: 3, domain},
     color: {type: "diverging"},
-    marks: [tipped(Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "nearest"}))]
+    marks: [Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "nearest", tip: true})]
   });
 }
 
 export async function tipRule() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return tippedX(Plot.ruleX(penguins, {x: "body_mass_g"})).plot();
+  return Plot.ruleX(penguins, {x: "body_mass_g", tip: true}).plot();
 }

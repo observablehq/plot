@@ -69,12 +69,12 @@ function maybeDenseInterval(bin, k, options = {}) {
     : bin({[k]: options?.reduce === undefined ? reduceFirst : options.reduce, filter: null}, options);
 }
 
-export function maybeDenseIntervalX(options) {
-  return maybeDenseInterval(binX, "y", options);
+export function maybeDenseIntervalX(options = {}) {
+  return maybeDenseInterval(binX, "y", options.tip === true ? {...options, tip: "x"} : options);
 }
 
-export function maybeDenseIntervalY(options) {
-  return maybeDenseInterval(binY, "x", options);
+export function maybeDenseIntervalY(options = {}) {
+  return maybeDenseInterval(binY, "x", options.tip === true ? {...options, tip: "y"} : options);
 }
 
 function binn(

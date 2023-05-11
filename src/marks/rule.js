@@ -21,7 +21,7 @@ export class RuleX extends Mark {
         y1: {value: y1, scale: "y", optional: true},
         y2: {value: y2, scale: "y", optional: true}
       },
-      options,
+      options.tip === true ? {...options, tip: "x"} : options,
       defaults
     );
     this.insetTop = number(insetTop);
@@ -69,7 +69,7 @@ export class RuleY extends Mark {
         x1: {value: x1, scale: "x", optional: true},
         x2: {value: x2, scale: "x", optional: true}
       },
-      options,
+      options.tip === true ? {...options, tip: "y"} : options,
       defaults
     );
     this.insetRight = number(insetRight);

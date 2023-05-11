@@ -46,16 +46,18 @@ export function stackY2(stackOptions = {}, options = {}) {
   return {...transform, x1, x: X, y: Y};
 }
 
-export function maybeStackX({x, x1, x2, ...options} = {}) {
-  if (x1 === undefined && x2 === undefined) return stackX({x, ...options});
+export function maybeStackX({x, x1, x2, tip, ...options} = {}) {
+  if (tip === true) tip = "y";
+  if (x1 === undefined && x2 === undefined) return stackX({x, tip, ...options});
   [x1, x2] = maybeZero(x, x1, x2);
-  return {...options, x1, x2};
+  return {...options, tip, x1, x2};
 }
 
-export function maybeStackY({y, y1, y2, ...options} = {}) {
-  if (y1 === undefined && y2 === undefined) return stackY({y, ...options});
+export function maybeStackY({y, y1, y2, tip, ...options} = {}) {
+  if (tip === true) tip = "x";
+  if (y1 === undefined && y2 === undefined) return stackY({y, tip, ...options});
   [y1, y2] = maybeZero(y, y1, y2);
-  return {...options, y1, y2};
+  return {...options, tip, y1, y2};
 }
 
 // The reverse option is ambiguous: it is both a stack option and a basic
