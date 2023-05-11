@@ -350,14 +350,10 @@ function applyClip(selection, mark, dimensions, context) {
   // Here we’re careful to apply the ARIA attributes to the outer G element when
   // clipping is applied, and to apply the ARIA attributes before any other
   // attributes (for readability).
-  applyAria(selection, mark);
-  applyAttr(selection, "clip-path", clipUrl);
-}
-
-export function applyAria(selection, mark) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
+  applyAttr(selection, "clip-path", clipUrl);
 }
 
 // Note: may mutate selection.node!

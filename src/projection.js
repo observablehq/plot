@@ -204,20 +204,6 @@ const reflectY = constant(
 
 // Applies a point-wise projection to the given paired x and y channels.
 // Note: mutates values!
-// export function maybeProject(cx, cy, channels, values, context) {
-//   const x = channels[cx] && channels[cx].scale === "x";
-//   const y = channels[cy] && channels[cy].scale === "y";
-//   if (x && y) {
-//     project(cx, cy, values, context.projection);
-//   } else if (x) {
-//     throw new Error(`projection requires paired x and y channels; ${cx} is missing ${cy}`);
-//   } else if (y) {
-//     throw new Error(`projection requires paired x and y channels; ${cy} is missing ${cx}`);
-//   }
-// }
-
-// Applies a point-wise projection to the given paired x and y channels.
-// Note: mutates values!
 export function project(cx, cy, values, projection) {
   const x = values[cx];
   const y = values[cy];
