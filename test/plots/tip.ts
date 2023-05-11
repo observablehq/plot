@@ -96,10 +96,10 @@ export async function tipGeoCentroid() {
       .json<any>("data/us-counties-10m.json")
       .then((us) => [feature(us, us.objects.counties), mesh(us, us.objects.counties)])
   ]);
-  // Alternatively, using geoCentroid:
-  // const {x, y} = Plot.geoCentroid();
-  // const pointer = Plot.pointer({px: x, py: y, x, y});
-  const pointer = Plot.pointer(Plot.centroid());
+  // Alternatively, using centroid (slower):
+  // const pointer = Plot.pointer(Plot.centroid());
+  const {x, y} = Plot.geoCentroid();
+  const pointer = Plot.pointer({px: x, py: y, x, y});
   return Plot.plot({
     width: 960,
     height: 600,
