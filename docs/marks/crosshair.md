@@ -18,3 +18,8 @@ Plot.crosshair(flare, {path: "name", delimiter: "."})
 
 Returns a new crosshair mark with the given *data* and *options*.
 
+
+## crosshairX(*data*, *options*)
+
+## crosshairY(*data*, *options*)
+

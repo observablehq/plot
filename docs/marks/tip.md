@@ -2,6 +2,11 @@
 
 The **tip mark** …
 
+* tip option
+* interaction
+* fixed tip example
+* orientations
+* geo + centroid example
 
 ## Tip options
 
