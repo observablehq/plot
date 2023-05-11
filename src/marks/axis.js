@@ -513,7 +513,8 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
   let channels;
   const m = mark(
     data,
-    initializer(options, function (data, facets, _channels, scales) {
+    initializer(options, function (data, facets, _channels, scales, dimensions, context) {
+      const initializeFacets = data == null && (k === "fx" || k === "fy");
       const {[k]: scale} = scales;
       if (!scale) throw new Error(`missing scale: ${k}`);
       let {ticks, tickSpacing, interval} = options;
@@ -546,17 +547,16 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
           facets = [range(data)];
         } else {
           channels[k] = {scale: k, value: identity};
-          facets = undefined; // computed automatically by plot
         }
       }
       initialize?.call(this, scale, ticks, channels);
-      return {
-        data,
-        facets,
-        channels: Object.fromEntries(
-          Object.entries(channels).map(([name, channel]) => [name, {...channel, value: valueof(data, channel.value)}])
-        )
-      };
+      const initializedChannels = Object.fromEntries(
+        Object.entries(channels).map(([name, channel]) => {
+          return [name, {...channel, value: valueof(data, channel.value)}];
+        })
+      );
+      if (initializeFacets) facets = context.filterFacets(data, initializedChannels);
+      return {data, facets, channels: initializedChannels};
     })
   );
   if (data == null) {
@@ -576,7 +576,7 @@ function inferTextChannel(scale, ticks, tickFormat) {
 // D3’s ordinal scales simply use toString by default, but if the ordinal scale
 // domain (or ticks) are numbers or dates (say because we’re applying a time
 // interval to the ordinal scale), we want Plot’s default formatter.
-function inferTickFormat(scale, ticks, tickFormat) {
+export function inferTickFormat(scale, ticks, tickFormat) {
   return scale.tickFormat
     ? scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)
     : tickFormat === undefined
@@ -635,6 +635,8 @@ function inferScaleOrder(scale) {
 // inferred from an associated channel, adds an orientation-appropriate arrow.
 function inferAxisLabel(key, scale, labelAnchor) {
   const label = scale.label;
+  // Ignore the implicit label for temporal scales if it’s simply “date”.
+  if (label?.inferred && isTemporalScale(scale) && /^(date|time|year)$/i.test(label)) return;
   if (scale.bandwidth || !label?.inferred) return label;
   const order = inferScaleOrder(scale);
   return order

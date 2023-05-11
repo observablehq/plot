@@ -328,6 +328,15 @@ export function maybeValue(value) {
   return value === undefined || isOptions(value) ? value : {value};
 }
 
+// Like maybeValue, but for an object for values.
+export function maybeValues(channels) {
+  return Object.fromEntries(
+    Object.entries(channels).map(([name, channel]) => {
+      return [name, maybeValue(channel)];
+    })
+  );
+}
+
 // Coerces the given channel values (if any) to numbers. This is useful when
 // values will be interpolated into other code, such as an SVG transform, and
 // where we don’t wish to allow unexpected behavior for weird input.
@@ -450,8 +459,8 @@ export function isRound(value) {
   return /^\s*round\s*$/i.test(value);
 }
 
-export function maybeFrameAnchor(value = "middle") {
-  return keyword(value, "frameAnchor", [
+export function maybeAnchor(value, name) {
+  return maybeKeyword(value, name, [
     "middle",
     "top-left",
     "top",
@@ -462,6 +471,10 @@ export function maybeFrameAnchor(value = "middle") {
     "bottom-left",
     "left"
   ]);
+}
+
+export function maybeFrameAnchor(value = "middle") {
+  return maybeAnchor(value, "frameAnchor");
 }
 
 // Like a sort comparator, returns a positive value if the given array of values

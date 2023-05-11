@@ -13,803 +13,689 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="facet" transform="translate(3,0)">
-    <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="fy-axis tick" transform="translate(0,0.5)">
+    <g fill="none" stroke="currentColor" transform="translate(3,0)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g fill="none" stroke="currentColor" transform="translate(3,50)">
+      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(3,100)">
+      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(3,150)">
+      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(3,200)">
+      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(3,250)">
+      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(3,300)">
+      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(3,350)">
+      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
+    </g>
+  </g>
+  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(3,0)">
       <text y="0.32em" transform="translate(40,55)">2</text>
     </g>
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
-      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
-      <text transform="translate(64,30)">2</text>
-    </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">4</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(3,50)">
-    <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(3,50)">
       <text y="0.32em" transform="translate(40,55)">3</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">6</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(3,100)">
-    <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(3,100)">
       <text y="0.32em" transform="translate(40,55)">4</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">8</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(3,150)">
-    <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(3,150)">
       <text y="0.32em" transform="translate(40,55)">5</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">10</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(3,200)">
-    <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(3,200)">
       <text y="0.32em" transform="translate(40,55)">6</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">12</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(3,250)">
-    <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(3,250)">
       <text y="0.32em" transform="translate(40,55)">7</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">14</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(3,300)">
-    <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(3,300)">
       <text y="0.32em" transform="translate(40,55)">8</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">16</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(3,350)">
-    <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(40,55)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(3,350)">
       <text y="0.32em" transform="translate(40,55)">9</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">18</text>
-    </g>
   </g>
-  <g aria-label="facet" transform="translate(51,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+  <g aria-label="fx-axis tick" transform="translate(0.5,1)">
+    <g fill="none" stroke="currentColor" transform="translate(3,0)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+    <g fill="none" stroke="currentColor" transform="translate(51,0)">
+      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(99,0)">
+      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(147,0)">
+      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(195,0)">
+      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(243,0)">
+      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(291,0)">
+      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(339,0)">
+      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
+    </g>
+  </g>
+  <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+    <g transform="translate(3,0)">
+      <text transform="translate(64,30)">2</text>
+    </g>
+    <g transform="translate(51,0)">
       <text transform="translate(64,30)">3</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">6</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(51,50)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">9</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(51,100)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">12</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(51,150)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">15</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(51,200)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">18</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(51,250)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">21</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(51,300)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">24</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(51,350)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">27</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(99,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
-      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+    <g transform="translate(99,0)">
       <text transform="translate(64,30)">4</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">8</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(99,50)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">12</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(99,100)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">16</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(99,150)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">20</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(99,200)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">24</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(99,250)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">28</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(99,300)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">32</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(99,350)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">36</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(147,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
-      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+    <g transform="translate(147,0)">
       <text transform="translate(64,30)">5</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">10</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(147,50)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">15</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(147,100)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">20</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(147,150)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">25</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(147,200)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">30</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(147,250)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">35</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(147,300)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">40</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(147,350)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">45</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(195,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
-      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+    <g transform="translate(195,0)">
       <text transform="translate(64,30)">6</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">12</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(195,50)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">18</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(195,100)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">24</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(195,150)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">30</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(195,200)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">36</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(195,250)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">42</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(195,300)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">48</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(195,350)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">54</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(243,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
-      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+    <g transform="translate(243,0)">
       <text transform="translate(64,30)">7</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">14</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(243,50)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">21</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(243,100)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">28</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(243,150)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">35</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(243,200)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">42</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(243,250)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">49</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(243,300)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">56</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(243,350)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">63</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(291,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
-      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+    <g transform="translate(291,0)">
       <text transform="translate(64,30)">8</text>
     </g>
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">16</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(291,50)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">24</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(291,100)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">32</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(291,150)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">40</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(291,200)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">48</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(291,250)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">56</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(291,300)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">64</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(291,350)">
-    <g aria-label="rect">
-      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
-    </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">72</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(339,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
-      <path transform="translate(64,30)" d="M0,0L0,-6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+    <g transform="translate(339,0)">
       <text transform="translate(64,30)">9</text>
     </g>
-    <g aria-label="rect">
+  </g>
+  <g aria-label="rect">
+    <g transform="translate(3,0)">
       <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
     </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">18</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(339,50)">
-    <g aria-label="rect">
+    <g transform="translate(3,50)">
       <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
     </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">27</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(339,100)">
-    <g aria-label="rect">
+    <g transform="translate(3,100)">
       <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
     </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">36</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(339,150)">
-    <g aria-label="rect">
+    <g transform="translate(3,150)">
       <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
     </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">45</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(339,200)">
-    <g aria-label="rect">
+    <g transform="translate(3,200)">
       <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
     </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">54</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(339,250)">
-    <g aria-label="rect">
+    <g transform="translate(3,250)">
       <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
     </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">63</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(339,300)">
-    <g aria-label="rect">
+    <g transform="translate(3,300)">
       <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
     </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
-    </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-      <text y="0.32em" transform="translate(64,55)">72</text>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(339,350)">
-    <g aria-label="rect">
+    <g transform="translate(3,350)">
       <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
     </g>
-    <g aria-label="dot" stroke="white" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g transform="translate(51,0)">
+      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
+    </g>
+    <g transform="translate(51,50)">
+      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
+    </g>
+    <g transform="translate(51,100)">
+      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
+    </g>
+    <g transform="translate(51,150)">
+      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
+    </g>
+    <g transform="translate(51,200)">
+      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
+    </g>
+    <g transform="translate(51,250)">
+      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
+    </g>
+    <g transform="translate(51,300)">
+      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
+    </g>
+    <g transform="translate(51,350)">
+      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
+    </g>
+    <g transform="translate(99,0)">
+      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
+    </g>
+    <g transform="translate(99,50)">
+      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
+    </g>
+    <g transform="translate(99,100)">
+      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
+    </g>
+    <g transform="translate(99,150)">
+      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
+    </g>
+    <g transform="translate(99,200)">
+      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
+    </g>
+    <g transform="translate(99,250)">
+      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
+    </g>
+    <g transform="translate(99,300)">
+      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
+    </g>
+    <g transform="translate(99,350)">
+      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
+    </g>
+    <g transform="translate(147,0)">
+      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
+    </g>
+    <g transform="translate(147,50)">
+      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
+    </g>
+    <g transform="translate(147,100)">
+      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
+    </g>
+    <g transform="translate(147,150)">
+      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
+    </g>
+    <g transform="translate(147,200)">
+      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
+    </g>
+    <g transform="translate(147,250)">
+      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
+    </g>
+    <g transform="translate(147,300)">
+      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
+    </g>
+    <g transform="translate(147,350)">
+      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
+    </g>
+    <g transform="translate(195,0)">
+      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
+    </g>
+    <g transform="translate(195,50)">
+      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
+    </g>
+    <g transform="translate(195,100)">
+      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
+    </g>
+    <g transform="translate(195,150)">
+      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
+    </g>
+    <g transform="translate(195,200)">
+      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
+    </g>
+    <g transform="translate(195,250)">
+      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
+    </g>
+    <g transform="translate(195,300)">
+      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
+    </g>
+    <g transform="translate(195,350)">
+      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
+    </g>
+    <g transform="translate(243,0)">
+      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
+    </g>
+    <g transform="translate(243,50)">
+      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
+    </g>
+    <g transform="translate(243,100)">
+      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
+    </g>
+    <g transform="translate(243,150)">
+      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
+    </g>
+    <g transform="translate(243,200)">
+      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
+    </g>
+    <g transform="translate(243,250)">
+      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
+    </g>
+    <g transform="translate(243,300)">
+      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
+    </g>
+    <g transform="translate(243,350)">
+      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
+    </g>
+    <g transform="translate(291,0)">
+      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
+    </g>
+    <g transform="translate(291,50)">
+      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
+    </g>
+    <g transform="translate(291,100)">
+      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
+    </g>
+    <g transform="translate(291,150)">
+      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
+    </g>
+    <g transform="translate(291,200)">
+      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
+    </g>
+    <g transform="translate(291,250)">
+      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
+    </g>
+    <g transform="translate(291,300)">
+      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
+    </g>
+    <g transform="translate(291,350)">
+      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
+    </g>
+    <g transform="translate(339,0)">
+      <rect x="41" y="31" width="46" height="48" fill="#4e79a7"></rect>
+    </g>
+    <g transform="translate(339,50)">
+      <rect x="41" y="31" width="46" height="48" fill="#f28e2c"></rect>
+    </g>
+    <g transform="translate(339,100)">
+      <rect x="41" y="31" width="46" height="48" fill="#e15759"></rect>
+    </g>
+    <g transform="translate(339,150)">
+      <rect x="41" y="31" width="46" height="48" fill="#76b7b2"></rect>
+    </g>
+    <g transform="translate(339,200)">
+      <rect x="41" y="31" width="46" height="48" fill="#59a14f"></rect>
+    </g>
+    <g transform="translate(339,250)">
+      <rect x="41" y="31" width="46" height="48" fill="#edc949"></rect>
+    </g>
+    <g transform="translate(339,300)">
+      <rect x="41" y="31" width="46" height="48" fill="#af7aa1"></rect>
+    </g>
+    <g transform="translate(339,350)">
+      <rect x="41" y="31" width="46" height="48" fill="#ff9da7"></rect>
+    </g>
+  </g>
+  <g aria-label="dot" transform="translate(0.5,0.5)">
+    <g stroke="white" stroke-width="1.5" transform="translate(3,0)">
+      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(3,50)">
+      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(3,100)">
+      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(3,150)">
+      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(3,200)">
+      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(3,250)">
+      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(3,300)">
+      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(3,350)">
+      <circle cx="64" cy="55" r="19" fill="#4e79a7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(51,0)">
+      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(51,50)">
+      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(51,100)">
+      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(51,150)">
+      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(51,200)">
+      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(51,250)">
+      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(51,300)">
+      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(51,350)">
+      <circle cx="64" cy="55" r="19" fill="#f28e2c"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(99,0)">
+      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(99,50)">
+      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(99,100)">
+      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(99,150)">
+      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(99,200)">
+      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(99,250)">
+      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(99,300)">
+      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(99,350)">
+      <circle cx="64" cy="55" r="19" fill="#e15759"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(147,0)">
+      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(147,50)">
+      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(147,100)">
+      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(147,150)">
+      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(147,200)">
+      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(147,250)">
+      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(147,300)">
+      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(147,350)">
+      <circle cx="64" cy="55" r="19" fill="#76b7b2"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(195,0)">
+      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(195,50)">
+      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(195,100)">
+      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(195,150)">
+      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(195,200)">
+      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(195,250)">
+      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(195,300)">
+      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(195,350)">
+      <circle cx="64" cy="55" r="19" fill="#59a14f"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(243,0)">
+      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(243,50)">
+      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(243,100)">
+      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(243,150)">
+      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(243,200)">
+      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(243,250)">
+      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(243,300)">
+      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(243,350)">
+      <circle cx="64" cy="55" r="19" fill="#edc949"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(291,0)">
+      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(291,50)">
+      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(291,100)">
+      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(291,150)">
+      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(291,200)">
+      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(291,250)">
+      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(291,300)">
+      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(291,350)">
+      <circle cx="64" cy="55" r="19" fill="#af7aa1"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(339,0)">
       <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
     </g>
-    <g aria-label="text" fill="white" font-variant="tabular-nums" transform="translate(0.5,0.5)">
+    <g stroke="white" stroke-width="1.5" transform="translate(339,50)">
+      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(339,100)">
+      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(339,150)">
+      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(339,200)">
+      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(339,250)">
+      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(339,300)">
+      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
+    </g>
+    <g stroke="white" stroke-width="1.5" transform="translate(339,350)">
+      <circle cx="64" cy="55" r="19" fill="#ff9da7"></circle>
+    </g>
+  </g>
+  <g aria-label="text" transform="translate(0.5,0.5)">
+    <g fill="white" font-variant="tabular-nums" transform="translate(3,0)">
+      <text y="0.32em" transform="translate(64,55)">4</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(3,50)">
+      <text y="0.32em" transform="translate(64,55)">6</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(3,100)">
+      <text y="0.32em" transform="translate(64,55)">8</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(3,150)">
+      <text y="0.32em" transform="translate(64,55)">10</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(3,200)">
+      <text y="0.32em" transform="translate(64,55)">12</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(3,250)">
+      <text y="0.32em" transform="translate(64,55)">14</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(3,300)">
+      <text y="0.32em" transform="translate(64,55)">16</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(3,350)">
+      <text y="0.32em" transform="translate(64,55)">18</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(51,0)">
+      <text y="0.32em" transform="translate(64,55)">6</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(51,50)">
+      <text y="0.32em" transform="translate(64,55)">9</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(51,100)">
+      <text y="0.32em" transform="translate(64,55)">12</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(51,150)">
+      <text y="0.32em" transform="translate(64,55)">15</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(51,200)">
+      <text y="0.32em" transform="translate(64,55)">18</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(51,250)">
+      <text y="0.32em" transform="translate(64,55)">21</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(51,300)">
+      <text y="0.32em" transform="translate(64,55)">24</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(51,350)">
+      <text y="0.32em" transform="translate(64,55)">27</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(99,0)">
+      <text y="0.32em" transform="translate(64,55)">8</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(99,50)">
+      <text y="0.32em" transform="translate(64,55)">12</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(99,100)">
+      <text y="0.32em" transform="translate(64,55)">16</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(99,150)">
+      <text y="0.32em" transform="translate(64,55)">20</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(99,200)">
+      <text y="0.32em" transform="translate(64,55)">24</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(99,250)">
+      <text y="0.32em" transform="translate(64,55)">28</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(99,300)">
+      <text y="0.32em" transform="translate(64,55)">32</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(99,350)">
+      <text y="0.32em" transform="translate(64,55)">36</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(147,0)">
+      <text y="0.32em" transform="translate(64,55)">10</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(147,50)">
+      <text y="0.32em" transform="translate(64,55)">15</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(147,100)">
+      <text y="0.32em" transform="translate(64,55)">20</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(147,150)">
+      <text y="0.32em" transform="translate(64,55)">25</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(147,200)">
+      <text y="0.32em" transform="translate(64,55)">30</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(147,250)">
+      <text y="0.32em" transform="translate(64,55)">35</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(147,300)">
+      <text y="0.32em" transform="translate(64,55)">40</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(147,350)">
+      <text y="0.32em" transform="translate(64,55)">45</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(195,0)">
+      <text y="0.32em" transform="translate(64,55)">12</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(195,50)">
+      <text y="0.32em" transform="translate(64,55)">18</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(195,100)">
+      <text y="0.32em" transform="translate(64,55)">24</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(195,150)">
+      <text y="0.32em" transform="translate(64,55)">30</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(195,200)">
+      <text y="0.32em" transform="translate(64,55)">36</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(195,250)">
+      <text y="0.32em" transform="translate(64,55)">42</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(195,300)">
+      <text y="0.32em" transform="translate(64,55)">48</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(195,350)">
+      <text y="0.32em" transform="translate(64,55)">54</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(243,0)">
+      <text y="0.32em" transform="translate(64,55)">14</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(243,50)">
+      <text y="0.32em" transform="translate(64,55)">21</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(243,100)">
+      <text y="0.32em" transform="translate(64,55)">28</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(243,150)">
+      <text y="0.32em" transform="translate(64,55)">35</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(243,200)">
+      <text y="0.32em" transform="translate(64,55)">42</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(243,250)">
+      <text y="0.32em" transform="translate(64,55)">49</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(243,300)">
+      <text y="0.32em" transform="translate(64,55)">56</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(243,350)">
+      <text y="0.32em" transform="translate(64,55)">63</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(291,0)">
+      <text y="0.32em" transform="translate(64,55)">16</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(291,50)">
+      <text y="0.32em" transform="translate(64,55)">24</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(291,100)">
+      <text y="0.32em" transform="translate(64,55)">32</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(291,150)">
+      <text y="0.32em" transform="translate(64,55)">40</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(291,200)">
+      <text y="0.32em" transform="translate(64,55)">48</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(291,250)">
+      <text y="0.32em" transform="translate(64,55)">56</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(291,300)">
+      <text y="0.32em" transform="translate(64,55)">64</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(291,350)">
+      <text y="0.32em" transform="translate(64,55)">72</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(339,0)">
+      <text y="0.32em" transform="translate(64,55)">18</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(339,50)">
+      <text y="0.32em" transform="translate(64,55)">27</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(339,100)">
+      <text y="0.32em" transform="translate(64,55)">36</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(339,150)">
+      <text y="0.32em" transform="translate(64,55)">45</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(339,200)">
+      <text y="0.32em" transform="translate(64,55)">54</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(339,250)">
+      <text y="0.32em" transform="translate(64,55)">63</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(339,300)">
+      <text y="0.32em" transform="translate(64,55)">72</text>
+    </g>
+    <g fill="white" font-variant="tabular-nums" transform="translate(339,350)">
       <text y="0.32em" transform="translate(64,55)">81</text>
     </g>
   </g>

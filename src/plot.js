@@ -1,13 +1,14 @@
-import {select} from "d3";
+import {creator, select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
-import {createContext, create} from "./context.js";
+import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
-import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslate, facetFilter} from "./facet.js";
+import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
 import {createLegends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
 import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeIntervalTransform} from "./options.js";
+import {createProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
@@ -141,7 +142,26 @@ export function plot(options = {}) {
   const {fx, fy} = scales;
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
-  const context = createContext(options, subdimensions, className);
+
+  // Initialize the context.
+  const context = createContext(options);
+  const document = context.document;
+  const svg = creator("svg").call(document.documentElement);
+  context.ownerSVGElement = svg;
+  context.className = className;
+  context.projection = createProjection(options, subdimensions);
+
+  // Allows e.g. the axis mark to determine faceting lazily.
+  context.filterFacets = (data, channels) => {
+    return facetFilter(facets, {channels, groups: facetGroups(data, channels)});
+  };
+
+  // Allows e.g. the tip mark to reference channels and data on other marks.
+  context.getMarkState = (mark) => {
+    const state = stateByMark.get(mark);
+    const facetState = facetStateByMark.get(mark);
+    return {...state, channels: {...state.channels, ...facetState?.channels}};
+  };
 
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
@@ -156,9 +176,10 @@ export function plot(options = {}) {
         state.facets = update.facets;
       }
       if (update.channels !== undefined) {
-        inferChannelScales(update.channels);
-        Object.assign(state.channels, update.channels);
-        for (const channel of Object.values(update.channels)) {
+        const {fx, fy, ...channels} = update.channels; // separate facet channels
+        inferChannelScales(channels);
+        Object.assign(state.channels, channels);
+        for (const channel of Object.values(channels)) {
           const {scale} = channel;
           // Initializers aren’t allowed to redefine position scales as this
           // would introduce a circular dependency; so simply scale these
@@ -171,16 +192,9 @@ export function plot(options = {}) {
           }
         }
         // If the initializer returns new mark-level facet channels, we must
-        // also recompute the facet state.
-        const {fx, fy} = update.channels;
-        if (fx != null || fy != null) {
-          const facetState = facetStateByMark.get(mark) ?? {channels: {}};
-          if (fx != null) facetState.channels.fx = fx;
-          if (fy != null) facetState.channels.fy = fy;
-          facetState.groups = facetGroups(state.data, facetState.channels);
-          facetState.facetsIndex = state.facets = facetFilter(facets, facetState);
-          facetStateByMark.set(mark, facetState);
-        }
+        // record that the mark is now faceted. Note: we aren’t actually
+        // populating the facet state, but subsequently we won’t need it.
+        if (fx != null || fy != null) facetStateByMark.set(mark, true);
       }
     }
   }
@@ -197,6 +211,15 @@ export function plot(options = {}) {
     Object.assign(scales, newScales);
   }
 
+  // Sort and filter the facets to match the fx and fy domains; this is needed
+  // because the facets were constructed prior to the fx and fy scales.
+  let facetDomains, facetTranslate;
+  if (facets !== undefined) {
+    facetDomains = {x: fx?.domain(), y: fy?.domain()};
+    facets = recreateFacets(facets, facetDomains);
+    facetTranslate = facetTranslator(fx, fy, dimensions);
+  }
+
   // Compute value objects, applying scales and projection as needed.
   for (const [mark, state] of stateByMark) {
     state.values = mark.scale(state.channels, scales, context);
@@ -204,7 +227,7 @@ export function plot(options = {}) {
 
   const {width, height} = dimensions;
 
-  const svg = create("svg", context)
+  select(svg)
     .attr("class", className)
     .attr("fill", "currentColor")
     .attr("font-family", "system-ui, sans-serif")
@@ -231,66 +254,60 @@ export function plot(options = {}) {
 }`
       )
     )
-    .call(applyInlineStyles, style)
-    .node();
+    .call(applyInlineStyles, style);
 
-  // Render facets.
-  if (facets !== undefined) {
-    const facetDomains = {x: fx?.domain(), y: fy?.domain()};
-
-    // Sort and filter the facets to match the fx and fy domains; this is needed
-    // because the facets were constructed prior to the fx and fy scales.
-    facets = recreateFacets(facets, facetDomains);
-
-    // Render the facets.
-    select(svg)
-      .selectAll()
-      .data(facets)
-      .enter()
-      .append("g")
-      .attr("aria-label", "facet")
-      .attr("transform", facetTranslate(fx, fy, dimensions))
-      .each(function (f) {
-        let empty = true;
-        for (const mark of marks) {
-          if (mark.facet === "super") continue; // rendered below
-          const {channels, values, facets: indexes} = stateByMark.get(mark);
-          if (!(mark.facetAnchor?.(facets, facetDomains, f) ?? !f.empty)) continue;
-          let index = null;
-          if (indexes) {
-            index = indexes[facetStateByMark.has(mark) ? f.i : 0];
-            index = mark.filter(index, channels, values);
-            if (index.length === 0) continue;
-            index.fi = f.i; // TODO cleaner way of exposing the current facet index?
-          }
-          const node = mark.render(index, scales, values, subdimensions, context);
-          if (node == null) continue;
-          empty = false;
-          this.appendChild(node);
-        }
-        if (empty) this.remove();
-      });
-  }
-
-  // Render non-faceted marks.
+  // Render marks.
   for (const mark of marks) {
-    if (facets !== undefined && mark.facet !== "super") continue;
     const {channels, values, facets: indexes} = stateByMark.get(mark);
-    let index = null;
-    if (indexes) {
-      index = indexes[0];
-      index = mark.filter(index, channels, values);
-      if (index.length === 0) continue;
+
+    // Render a non-faceted mark.
+    if (facets === undefined || mark.facet === "super") {
+      let index = null;
+      if (indexes) {
+        index = indexes[0];
+        index = mark.filter(index, channels, values);
+        if (index.length === 0) continue;
+      }
+      const node = render(mark, index, scales, values, superdimensions, context);
+      if (node == null) continue;
+      svg.appendChild(node);
     }
-    const node = mark.render(index, scales, values, superdimensions, context);
-    if (node != null) svg.appendChild(node);
+
+    // Render a faceted mark.
+    else {
+      let g;
+      for (const f of facets) {
+        if (!(mark.facetAnchor?.(facets, facetDomains, f) ?? !f.empty)) continue;
+        let index = null;
+        if (indexes) {
+          const faceted = facetStateByMark.has(mark);
+          index = indexes[faceted ? f.i : 0];
+          index = mark.filter(index, channels, values);
+          if (index.length === 0) continue;
+          if (faceted) (index.fx = f.x), (index.fy = f.y), (index.fi = f.i);
+        }
+        const node = render(mark, index, scales, values, subdimensions, context);
+        if (node == null) continue;
+        // Lazily construct the shared group (to drop empty marks).
+        (g ??= select(svg).append("g")).append(() => node).datum(f);
+        // Promote ARIA attributes and mark transform to avoid repetition on
+        // each facet; this assumes that these attributes are consistent across
+        // facets, but that should be the case!
+        for (const name of ["aria-label", "aria-description", "aria-hidden", "transform"]) {
+          if (node.hasAttribute(name)) {
+            g.attr(name, node.getAttribute(name));
+            node.removeAttribute(name);
+          }
+        }
+      }
+      g?.selectChildren().attr("transform", facetTranslate);
+    }
   }
 
   // Wrap the plot in a figure with a caption, if desired.
   let figure = svg;
   const legends = createLegends(scaleDescriptors, context, options);
   if (caption != null || legends.length > 0) {
-    const {document} = context;
     figure = document.createElement("figure");
     figure.style.maxWidth = "initial";
     for (const legend of legends) figure.appendChild(legend);
@@ -347,6 +364,10 @@ class Render extends Mark {
     this.render = render;
   }
   render() {}
+}
+
+function render(mark, ...args) {
+  return (mark.renderTransform ?? mark.render).apply(mark, args);
 }
 
 // Note: mutates channel.value to apply the scale transform, if any.

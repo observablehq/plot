@@ -1,4 +1,4 @@
-import type {ChannelDomainSort, Channels, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
+import type {Channel, ChannelDomainSort, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Dimensions} from "./dimensions.js";
 import type {plot} from "./plot.js";
@@ -125,6 +125,9 @@ export interface MarkOptions {
 
   /** A custom mark initializer. */
   initializer?: InitializerFunction;
+
+  /** A custom render transform. */
+  render?: RenderFunction;
 
   /**
    * The horizontal facet position channel, for mark-level faceting, bound to
@@ -445,7 +448,7 @@ export interface MarkOptions {
    * An object defining additional custom channels. This meta option may be used
    * by an **initializer** to declare extra channels.
    */
-  channels?: Channels;
+  channels?: Record<string, Channel | ChannelValue>;
 }
 
 /** The abstract base class for Mark implementations. */

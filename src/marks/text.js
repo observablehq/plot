@@ -177,7 +177,7 @@ export function textY(data, options = {}) {
   return new Text(data, maybeIntervalMidX({...remainingOptions, y}));
 }
 
-function applyIndirectTextStyles(selection, mark, T) {
+export function applyIndirectTextStyles(selection, mark, T) {
   applyAttr(selection, "text-anchor", mark.textAnchor);
   applyAttr(selection, "font-family", mark.fontFamily);
   applyAttr(selection, "font-size", mark.fontSize);
@@ -187,7 +187,7 @@ function applyIndirectTextStyles(selection, mark, T) {
 }
 
 function inferFontVariant(T) {
-  return isNumeric(T) || isTemporal(T) ? "tabular-nums" : undefined;
+  return T && (isNumeric(T) || isTemporal(T)) ? "tabular-nums" : undefined;
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/font-size
@@ -430,13 +430,15 @@ function clipper({monospace, lineWidth, textOverflow}) {
     case "clip-end":
       return (text) => clipEnd(text, maxWidth, widthof, "");
     case "ellipsis-start":
-      return (text) => clipStart(text, maxWidth, widthof, "…");
+      return (text) => clipStart(text, maxWidth, widthof, ellipsis);
     case "ellipsis-middle":
-      return (text) => clipMiddle(text, maxWidth, widthof, "…");
+      return (text) => clipMiddle(text, maxWidth, widthof, ellipsis);
     case "ellipsis-end":
-      return (text) => clipEnd(text, maxWidth, widthof, "…");
+      return (text) => clipEnd(text, maxWidth, widthof, ellipsis);
   }
 }
+
+export const ellipsis = "…";
 
 // Cuts the given text to the given width, using the specified widthof function;
 // the returned [index, error] guarantees text.slice(0, index) fits within the
@@ -444,7 +446,7 @@ function clipper({monospace, lineWidth, textOverflow}) {
 // given width, returns [-1, 0]. If the text needs cutting, the given inset
 // specifies how much space (in the same units as width and widthof) to reserve
 // for a possible ellipsis character.
-function cut(text, width, widthof, inset) {
+export function cut(text, width, widthof, inset) {
   const I = []; // indexes of read character boundaries
   let w = 0; // current line width
   for (let i = 0, j = 0, n = text.length; i < n; i = j) {

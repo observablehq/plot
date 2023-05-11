@@ -1,0 +1,160 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+    <g transform="translate(1,0)">
+      <text y="0.71em" transform="translate(223,370)">female</text>
+    </g>
+    <g transform="translate(274,0)">
+      <text y="0.71em" transform="translate(223,370)">male</text>
+    </g>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(360.5,370)">sex</text>
+  </g>
+  <g aria-label="y-axis tick" transform="translate(0,6)">
+    <g fill="none" stroke="currentColor" transform="translate(1,0)">
+      <path transform="translate(100,28)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,40)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,52)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,64)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,76)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,88)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,100)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,112)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,124)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,136)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,148)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,160)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,172)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,184)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,196)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,208)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,220)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,232)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,244)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,256)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,268)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,280)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,292)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,304)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,316)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,328)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,340)" d="M0,0L-6,0"></path>
+      <path transform="translate(100,352)" d="M0,0L-6,0"></path>
+    </g>
+  </g>
+  <g aria-label="y-axis tick label" transform="translate(-8.5,6)">
+    <g text-anchor="end" transform="translate(1,0)">
+      <text y="0.32em" transform="translate(100,28)">aquatics</text>
+      <text y="0.32em" transform="translate(100,40)">archery</text>
+      <text y="0.32em" transform="translate(100,52)">athletics</text>
+      <text y="0.32em" transform="translate(100,64)">badminton</text>
+      <text y="0.32em" transform="translate(100,76)">basketball</text>
+      <text y="0.32em" transform="translate(100,88)">boxing</text>
+      <text y="0.32em" transform="translate(100,100)">canoe</text>
+      <text y="0.32em" transform="translate(100,112)">cycling</text>
+      <text y="0.32em" transform="translate(100,124)">equestrian</text>
+      <text y="0.32em" transform="translate(100,136)">fencing</text>
+      <text y="0.32em" transform="translate(100,148)">football</text>
+      <text y="0.32em" transform="translate(100,160)">golf</text>
+      <text y="0.32em" transform="translate(100,172)">gymnastics</text>
+      <text y="0.32em" transform="translate(100,184)">handball</text>
+      <text y="0.32em" transform="translate(100,196)">hockey</text>
+      <text y="0.32em" transform="translate(100,208)">judo</text>
+      <text y="0.32em" transform="translate(100,220)">modern pentathlon</text>
+      <text y="0.32em" transform="translate(100,232)">rowing</text>
+      <text y="0.32em" transform="translate(100,244)">rugby sevens</text>
+      <text y="0.32em" transform="translate(100,256)">sailing</text>
+      <text y="0.32em" transform="translate(100,268)">shooting</text>
+      <text y="0.32em" transform="translate(100,280)">table tennis</text>
+      <text y="0.32em" transform="translate(100,292)">taekwondo</text>
+      <text y="0.32em" transform="translate(100,304)">tennis</text>
+      <text y="0.32em" transform="translate(100,316)">triathlon</text>
+      <text y="0.32em" transform="translate(100,328)">volleyball</text>
+      <text y="0.32em" transform="translate(100,340)">weightlifting</text>
+      <text y="0.32em" transform="translate(100,352)">wrestling</text>
+    </g>
+  </g>
+  <g aria-label="y-axis label" transform="translate(-96.5,0.5)">
+    <text y="0.71em" transform="translate(101,195) rotate(-90)">sport</text>
+  </g>
+  <g aria-label="cell">
+    <g transform="translate(1,0)">
+      <rect x="100" width="246" y="28" height="11" fill="rgb(84, 158, 205)"></rect>
+      <rect x="100" width="246" y="40" height="11" fill="rgb(242, 248, 253)"></rect>
+      <rect x="100" width="246" y="52" height="11" fill="rgb(9, 68, 135)"></rect>
+      <rect x="100" width="246" y="64" height="11" fill="rgb(239, 246, 252)"></rect>
+      <rect x="100" width="246" y="76" height="11" fill="rgb(229, 239, 249)"></rect>
+      <rect x="100" width="246" y="88" height="11" fill="rgb(247, 251, 255)"></rect>
+      <rect x="100" width="246" y="100" height="11" fill="rgb(234, 243, 251)"></rect>
+      <rect x="100" width="246" y="112" height="11" fill="rgb(220, 233, 246)"></rect>
+      <rect x="100" width="246" y="124" height="11" fill="rgb(239, 246, 252)"></rect>
+      <rect x="100" width="246" y="136" height="11" fill="rgb(232, 242, 250)"></rect>
+      <rect x="100" width="246" y="148" height="11" fill="rgb(209, 226, 243)"></rect>
+      <rect x="100" width="246" y="160" height="11" fill="rgb(243, 249, 254)"></rect>
+      <rect x="100" width="246" y="172" height="11" fill="rgb(218, 232, 246)"></rect>
+      <rect x="100" width="246" y="184" height="11" fill="rgb(223, 236, 247)"></rect>
+      <rect x="100" width="246" y="196" height="11" fill="rgb(217, 232, 245)"></rect>
+      <rect x="100" width="246" y="208" height="11" fill="rgb(227, 238, 249)"></rect>
+      <rect x="100" width="246" y="220" height="11" fill="rgb(247, 251, 255)"></rect>
+      <rect x="100" width="246" y="232" height="11" fill="rgb(217, 232, 245)"></rect>
+      <rect x="100" width="246" y="244" height="11" fill="rgb(228, 239, 249)"></rect>
+      <rect x="100" width="246" y="256" height="11" fill="rgb(226, 237, 248)"></rect>
+      <rect x="100" width="246" y="268" height="11" fill="rgb(228, 239, 249)"></rect>
+      <rect x="100" width="246" y="280" height="11" fill="rgb(239, 246, 252)"></rect>
+      <rect x="100" width="246" y="292" height="11" fill="rgb(242, 248, 253)"></rect>
+      <rect x="100" width="246" y="304" height="11" fill="rgb(238, 245, 252)"></rect>
+      <rect x="100" width="246" y="316" height="11" fill="rgb(244, 249, 254)"></rect>
+      <rect x="100" width="246" y="328" height="11" fill="rgb(221, 234, 247)"></rect>
+      <rect x="100" width="246" y="340" height="11" fill="rgb(236, 244, 251)"></rect>
+      <rect x="100" width="246" y="352" height="11" fill="rgb(234, 243, 251)"></rect>
+    </g>
+    <g transform="translate(274,0)">
+      <rect x="100" width="246" y="28" height="11" fill="rgb(80, 155, 203)"></rect>
+      <rect x="100" width="246" y="40" height="11" fill="rgb(242, 248, 253)"></rect>
+      <rect x="100" width="246" y="52" height="11" fill="rgb(8, 48, 107)"></rect>
+      <rect x="100" width="246" y="64" height="11" fill="rgb(239, 246, 252)"></rect>
+      <rect x="100" width="246" y="76" height="11" fill="rgb(229, 239, 249)"></rect>
+      <rect x="100" width="246" y="88" height="11" fill="rgb(211, 228, 243)"></rect>
+      <rect x="100" width="246" y="100" height="11" fill="rgb(216, 231, 245)"></rect>
+      <rect x="100" width="246" y="112" height="11" fill="rgb(197, 220, 239)"></rect>
+      <rect x="100" width="246" y="124" height="11" fill="rgb(230, 240, 250)"></rect>
+      <rect x="100" width="246" y="136" height="11" fill="rgb(233, 242, 250)"></rect>
+      <rect x="100" width="246" y="148" height="11" fill="rgb(192, 217, 237)"></rect>
+      <rect x="100" width="246" y="160" height="11" fill="rgb(243, 248, 254)"></rect>
+      <rect x="100" width="246" y="172" height="11" fill="rgb(234, 243, 251)"></rect>
+      <rect x="100" width="246" y="184" height="11" fill="rgb(222, 235, 247)"></rect>
+      <rect x="100" width="246" y="196" height="11" fill="rgb(217, 232, 245)"></rect>
+      <rect x="100" width="246" y="208" height="11" fill="rgb(213, 229, 244)"></rect>
+      <rect x="100" width="246" y="220" height="11" fill="rgb(247, 251, 255)"></rect>
+      <rect x="100" width="246" y="232" height="11" fill="rgb(196, 219, 238)"></rect>
+      <rect x="100" width="246" y="244" height="11" fill="rgb(228, 239, 249)"></rect>
+      <rect x="100" width="246" y="256" height="11" fill="rgb(217, 232, 245)"></rect>
+      <rect x="100" width="246" y="268" height="11" fill="rgb(213, 229, 244)"></rect>
+      <rect x="100" width="246" y="280" height="11" fill="rgb(239, 246, 252)"></rect>
+      <rect x="100" width="246" y="292" height="11" fill="rgb(242, 248, 253)"></rect>
+      <rect x="100" width="246" y="304" height="11" fill="rgb(235, 244, 251)"></rect>
+      <rect x="100" width="246" y="316" height="11" fill="rgb(244, 249, 254)"></rect>
+      <rect x="100" width="246" y="328" height="11" fill="rgb(221, 234, 247)"></rect>
+      <rect x="100" width="246" y="340" height="11" fill="rgb(227, 238, 249)"></rect>
+      <rect x="100" width="246" y="352" height="11" fill="rgb(213, 229, 244)"></rect>
+    </g>
+  </g>
+  <g aria-label="tip" transform="translate(0.5,6)">
+    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(1,0)"></g>
+    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(274,0)"></g>
+  </g>
+</svg>

@@ -8,6 +8,9 @@ export interface Context {
    */
   document: Document;
 
+  /** The current owner SVG element. */
+  ownerSVGElement: SVGSVGElement;
+
   /** The Plot’s (typically generated) class name, for custom styles. */
   className: string;
 

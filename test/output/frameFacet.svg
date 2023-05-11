@@ -13,11 +13,50 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="facet" transform="translate(0,0)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(0,0)">
       <text y="0.32em" transform="translate(80,31)">Adelie</text>
     </g>
-    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g text-anchor="end" transform="translate(0,24)">
+      <text y="0.32em" transform="translate(80,31)">Chinstrap</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,48)">
+      <text y="0.32em" transform="translate(80,31)">Gentoo</text>
+    </g>
+  </g>
+  <g aria-label="fy-axis label" transform="translate(-76.5,0.5)">
+    <text y="0.71em" transform="translate(80,55) rotate(-90)">species</text>
+  </g>
+  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+    <g fill="none" stroke="currentColor" transform="translate(0,48)">
+      <path transform="translate(133.33333333333331,42)" d="M0,0L0,6"></path>
+      <path transform="translate(205.55555555555554,42)" d="M0,0L0,6"></path>
+      <path transform="translate(277.77777777777777,42)" d="M0,0L0,6"></path>
+      <path transform="translate(350,42)" d="M0,0L0,6"></path>
+      <path transform="translate(422.2222222222222,42)" d="M0,0L0,6"></path>
+      <path transform="translate(494.44444444444446,42)" d="M0,0L0,6"></path>
+      <path transform="translate(566.6666666666666,42)" d="M0,0L0,6"></path>
+    </g>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+    <g font-variant="tabular-nums" transform="translate(0,48)">
+      <text y="0.71em" transform="translate(133.33333333333331,42)">3,000</text>
+      <text y="0.71em" transform="translate(205.55555555555554,42)">3,500</text>
+      <text y="0.71em" transform="translate(277.77777777777777,42)">4,000</text>
+      <text y="0.71em" transform="translate(350,42)">4,500</text>
+      <text y="0.71em" transform="translate(422.2222222222222,42)">5,000</text>
+      <text y="0.71em" transform="translate(494.44444444444446,42)">5,500</text>
+      <text y="0.71em" transform="translate(566.6666666666666,42)">6,000</text>
+    </g>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,90)">body_mass_g →</text>
+  </g>
+  <g aria-label="frame" transform="translate(0.5,0.5)">
+    <rect fill="none" stroke="currentColor" x="80" y="20" width="540" height="22" transform="translate(0,48)"></rect>
+  </g>
+  <g aria-label="dot" transform="translate(0.5,0.5)">
+    <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0,0)">
       <circle cx="241.66666666666669" cy="31" r="3"></circle>
       <circle cx="248.8888888888889" cy="31" r="3"></circle>
       <circle cx="169.44444444444446" cy="31" r="3"></circle>
@@ -170,12 +209,7 @@
       <circle cx="234.44444444444446" cy="31" r="3"></circle>
       <circle cx="277.77777777777777" cy="31" r="3"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,24)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(80,31)">Chinstrap</text>
-    </g>
-    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0,24)">
       <circle cx="205.55555555555554" cy="31" r="3"></circle>
       <circle cx="263.3333333333333" cy="31" r="3"></circle>
       <circle cx="227.22222222222223" cy="31" r="3"></circle>
@@ -245,31 +279,7 @@
       <circle cx="292.22222222222223" cy="31" r="3"></circle>
       <circle cx="245.27777777777777" cy="31" r="3"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,48)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(80,31)">Gentoo</text>
-    </g>
-    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(133.33333333333331,42)" d="M0,0L0,6"></path>
-      <path transform="translate(205.55555555555554,42)" d="M0,0L0,6"></path>
-      <path transform="translate(277.77777777777777,42)" d="M0,0L0,6"></path>
-      <path transform="translate(350,42)" d="M0,0L0,6"></path>
-      <path transform="translate(422.2222222222222,42)" d="M0,0L0,6"></path>
-      <path transform="translate(494.44444444444446,42)" d="M0,0L0,6"></path>
-      <path transform="translate(566.6666666666666,42)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(133.33333333333331,42)">3,000</text>
-      <text y="0.71em" transform="translate(205.55555555555554,42)">3,500</text>
-      <text y="0.71em" transform="translate(277.77777777777777,42)">4,000</text>
-      <text y="0.71em" transform="translate(350,42)">4,500</text>
-      <text y="0.71em" transform="translate(422.2222222222222,42)">5,000</text>
-      <text y="0.71em" transform="translate(494.44444444444446,42)">5,500</text>
-      <text y="0.71em" transform="translate(566.6666666666666,42)">6,000</text>
-    </g>
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="80" y="20" width="540" height="22"></rect>
-    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0,48)">
       <circle cx="350" cy="31" r="3"></circle>
       <circle cx="523.3333333333334" cy="31" r="3"></circle>
       <circle cx="342.77777777777777" cy="31" r="3"></circle>
@@ -394,11 +404,5 @@
       <circle cx="451.1111111111111" cy="31" r="3"></circle>
       <circle cx="480" cy="31" r="3"></circle>
     </g>
-  </g>
-  <g aria-label="fy-axis label" transform="translate(-76.5,0.5)">
-    <text y="0.71em" transform="translate(80,55) rotate(-90)">species</text>
-  </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
-    <text transform="translate(620,90)">body_mass_g →</text>
   </g>
 </svg>

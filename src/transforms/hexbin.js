@@ -1,8 +1,8 @@
+import {isNoneish, map, number, valueof} from "../options.js";
+import {applyPosition} from "../projection.js";
 import {sqrt3} from "../symbol.js";
-import {isNoneish, number, valueof} from "../options.js";
 import {initializer} from "./basic.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
-import {applyPosition} from "../projection.js";
 
 // We don’t want the hexagons to align with the edges of the plot frame, as that
 // would cause extreme x-values (the upper bound of the default x-scale domain)
@@ -78,9 +78,11 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
     }
 
     // Construct the output channels, and populate the radius scale hint.
+    const sx = channels.x.scale;
+    const sy = channels.y.scale;
     const binChannels = {
-      x: {value: BX},
-      y: {value: BY},
+      x: {value: BX, source: scales[sx] ? {value: map(BX, scales[sx].invert), scale: sx} : null},
+      y: {value: BY, source: scales[sy] ? {value: map(BY, scales[sy].invert), scale: sy} : null},
       ...(Z && {z: {value: GZ}}),
       ...(F && {fill: {value: GF, scale: "auto"}}),
       ...(S && {stroke: {value: GS, scale: "auto"}}),
@@ -88,7 +90,12 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
       ...Object.fromEntries(
         outputs.map(({name, output}) => [
           name,
-          {scale: "auto", radius: name === "r" ? binWidth / 2 : undefined, value: output.transform()}
+          {
+            scale: "auto",
+            label: output.label,
+            radius: name === "r" ? binWidth / 2 : undefined,
+            value: output.transform()
+          }
         ])
       )
     };

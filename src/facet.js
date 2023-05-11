@@ -62,7 +62,7 @@ export function facetGroups(data, {fx, fy}) {
       );
 }
 
-export function facetTranslate(fx, fy, {marginTop, marginLeft}) {
+export function facetTranslator(fx, fy, {marginTop, marginLeft}) {
   return fx && fy
     ? ({x, y}) => `translate(${fx(x) - marginLeft},${fy(y) - marginTop})`
     : fx
