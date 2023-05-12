@@ -1,6 +1,7 @@
 import {select} from "d3";
 import {getSource} from "../channel.js";
 import {create} from "../context.js";
+import {defined} from "../defined.js";
 import {formatDefault} from "../format.js";
 import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
@@ -109,13 +110,15 @@ export class Tip extends Mark {
         if (key === "x1" && "x2" in sources) continue;
         if (key === "y1" && "y2" in sources) continue;
         const channel = sources[key];
+        const value = channel.value[i];
+        if (!defined(value) && channel.scale == null) continue;
         const color = channel.scale === "color" ? channels[key][i] : undefined;
         if (key === "x2" && "x1" in sources) {
           yield [formatLabel(scales, channel) ?? "x", formatPair(sources.x1, channel, i)];
         } else if (key === "y2" && "y1" in sources) {
           yield [formatLabel(scales, channel) ?? "y", formatPair(sources.y1, channel, i)];
         } else {
-          yield [formatLabel(scales, channel) ?? key, formatDefault(channel.value[i]), color];
+          yield [formatLabel(scales, channel) ?? key, formatDefault(value), color];
         }
       }
       if (index.fi != null && fx) yield [fx.label ?? "fx", formatFx(index.fx)];

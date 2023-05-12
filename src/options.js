@@ -328,15 +328,6 @@ export function maybeValue(value) {
   return value === undefined || isOptions(value) ? value : {value};
 }
 
-// Like maybeValue, but for an object for values.
-export function maybeValues(channels) {
-  return Object.fromEntries(
-    Object.entries(channels).map(([name, channel]) => {
-      return [name, maybeValue(channel)];
-    })
-  );
-}
-
 // Coerces the given channel values (if any) to numbers. This is useful when
 // values will be interpolated into other code, such as an SVG transform, and
 // where we don’t wish to allow unexpected behavior for weird input.
