@@ -66,10 +66,9 @@ export class Density extends Mark {
   }
 }
 
-export function density(data, options = {}) {
-  let {x, y, ...remainingOptions} = options;
+export function density(data, {x, y, ...options} = {}) {
   [x, y] = maybeTuple(x, y);
-  return new Density(data, {...remainingOptions, x, y});
+  return new Density(data, {...options, x, y});
 }
 
 const dropChannels = new Set(["x", "y", "z", "weight"]);

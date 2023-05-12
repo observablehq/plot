@@ -3,29 +3,28 @@ import {ascendingDefined} from "../defined.js";
 import {column, identity, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
-export function treeNode(options = {}) {
-  let {
-    path = identity, // the delimited path
-    delimiter, // how the path is separated
-    frameAnchor,
-    treeLayout = tree,
-    treeSort,
-    treeSeparation,
-    treeAnchor,
-    ...remainingOptions
-  } = options;
+export function treeNode({
+  path = identity, // the delimited path
+  delimiter, // how the path is separated
+  frameAnchor,
+  treeLayout = tree,
+  treeSort,
+  treeSeparation,
+  treeAnchor,
+  ...options
+} = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
   treeSort = maybeTreeSort(treeSort);
   if (frameAnchor === undefined) frameAnchor = treeAnchor.frameAnchor;
   const normalize = normalizer(delimiter);
-  const outputs = treeOutputs(remainingOptions, maybeNodeValue);
+  const outputs = treeOutputs(options, maybeNodeValue);
   const [X, setX] = column();
   const [Y, setY] = column();
   return {
     x: X,
     y: Y,
     frameAnchor,
-    ...basic(remainingOptions, (data, facets) => {
+    ...basic(options, (data, facets) => {
       const P = normalize(valueof(data, path));
       const X = setX([]);
       const Y = setY([]);
@@ -56,25 +55,24 @@ export function treeNode(options = {}) {
   };
 }
 
-export function treeLink(options = {}) {
-  let {
-    path = identity, // the delimited path
-    delimiter, // how the path is separated
-    curve = "bump-x",
-    stroke = "#555",
-    strokeWidth = 1.5,
-    strokeOpacity = 0.5,
-    treeLayout = tree,
-    treeSort,
-    treeSeparation,
-    treeAnchor,
-    ...remainingOptions
-  } = options;
+export function treeLink({
+  path = identity, // the delimited path
+  delimiter, // how the path is separated
+  curve = "bump-x",
+  stroke = "#555",
+  strokeWidth = 1.5,
+  strokeOpacity = 0.5,
+  treeLayout = tree,
+  treeSort,
+  treeSeparation,
+  treeAnchor,
+  ...options
+} = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
   treeSort = maybeTreeSort(treeSort);
-  remainingOptions = {curve, stroke, strokeWidth, strokeOpacity, ...remainingOptions};
+  options = {curve, stroke, strokeWidth, strokeOpacity, ...options};
   const normalize = normalizer(delimiter);
-  const outputs = treeOutputs(remainingOptions, maybeLinkValue);
+  const outputs = treeOutputs(options, maybeLinkValue);
   const [X1, setX1] = column();
   const [X2, setX2] = column();
   const [Y1, setY1] = column();
@@ -84,7 +82,7 @@ export function treeLink(options = {}) {
     x2: X2,
     y1: Y1,
     y2: Y2,
-    ...basic(remainingOptions, (data, facets) => {
+    ...basic(options, (data, facets) => {
       const P = normalize(valueof(data, path));
       const X1 = setX1([]);
       const X2 = setX2([]);
