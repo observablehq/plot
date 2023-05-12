@@ -7,7 +7,8 @@ import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
 import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {inferTickFormat} from "./axis.js";
-import {applyIndirectTextStyles, cut, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
+import {applyIndirectTextStyles, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
+import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
 
 const defaults = {
   ariaLabel: "tip",
@@ -16,7 +17,7 @@ const defaults = {
 };
 
 // These channels are not displayed in the tip; TODO allow customization.
-const ignoreChannels = new Set(["geometry", "title", "href", "src", "ariaLabel"]);
+const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel"]);
 
 export class Tip extends Mark {
   constructor(data, options = {}) {
@@ -38,6 +39,7 @@ export class Tip extends Mark {
       lineWidth = 20,
       frameAnchor,
       textAnchor = "start",
+      textOverflow,
       textPadding = 8,
       pointerSize = 12,
       pathFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"
@@ -64,6 +66,7 @@ export class Tip extends Mark {
     this.pathFilter = string(pathFilter);
     this.lineHeight = +lineHeight;
     this.lineWidth = +lineWidth;
+    this.textOverflow = maybeTextOverflow(textOverflow);
     this.monospace = !!monospace;
     this.fontFamily = string(fontFamily);
     this.fontSize = number(fontSize);
@@ -71,6 +74,8 @@ export class Tip extends Mark {
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
     for (const key in defaults) if (key in this.channels) this[key] = defaults[key]; // apply default even if channel
+    this.splitLines = splitter(this);
+    this.clipLine = clipper(this);
   }
   render(index, scales, channels, dimensions, context) {
     const mark = this;
@@ -106,6 +111,13 @@ export class Tip extends Mark {
     const formatFy = fy && inferTickFormat(fy);
 
     function* format(sources, i) {
+      if ("title" in sources) {
+        const text = sources.title.value[i];
+        for (const line of mark.splitLines(formatDefault(text))) {
+          yield ["", mark.clipLine(line)];
+        }
+        return;
+      }
       for (const key in sources) {
         if (key === "x1" && "x2" in sources) continue;
         if (key === "y1" && "y2" in sources) continue;

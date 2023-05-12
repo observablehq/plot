@@ -64,7 +64,16 @@ export async function tipDotFacets() {
         y: "height",
         fx: "sex",
         fy: "date_of_birth",
-        channels: {name: "name", sport: "sport"},
+        stroke: "#aaa",
+        filter: (d) => !d.info
+      }),
+      Plot.dot(athletes, {
+        x: "weight",
+        y: "height",
+        fx: "sex",
+        fy: "date_of_birth",
+        filter: (d) => d.info,
+        title: (d) => [d.name, d.info].join("\n"),
         tip: true
       })
     ]
