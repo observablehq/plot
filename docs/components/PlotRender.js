@@ -40,13 +40,25 @@ class Element {
     this.attributes[name] = String(value);
   }
   setAttributeNS(namespace, name, value) {
-    this.attributes[name] = String(value);
+    this.setAttribute(name, value);
+  }
+  getAttribute(name) {
+    return this.attributes[name];
+  }
+  getAttributeNS(name) {
+    return this.getAttribute(name);
+  }
+  hasAttribute(name) {
+    return name in this.attributes;
+  }
+  hasAttributeNS(name) {
+    return this.hasAttribute(name);
   }
   removeAttribute(name) {
     delete this.attributes[name];
   }
   removeAttributeNS(namespace, name) {
-    delete this.attributes[name];
+    this.removeAttribute(name);
   }
   appendChild(child) {
     this.children.push(child);
