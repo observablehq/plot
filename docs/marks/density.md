@@ -37,8 +37,8 @@ The **density mark** shows the [estimated density](https://en.wikipedia.org/wiki
 Plot.plot({
   inset: 10,
   marks: [
-    Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "steelblue", strokeWidth: 0.25}),
-    Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "steelblue", thresholds: 4}),
+    Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "blue", strokeWidth: 0.25}),
+    Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "blue", thresholds: 4}),
     Plot.dot(faithful, {x: "waiting", y: "eruptions", fill: "currentColor", r: 1.5})
   ]
 })
@@ -97,8 +97,8 @@ Plot.plot({
   height: 100,
   inset: 10,
   marks: [
-    Plot.density(faithful, {x: "waiting", stroke: "steelblue", strokeWidth: 0.25, bandwidth: 10}),
-    Plot.density(faithful, {x: "waiting", stroke: "steelblue", thresholds: 4, bandwidth: 10}),
+    Plot.density(faithful, {x: "waiting", stroke: "blue", strokeWidth: 0.25, bandwidth: 10}),
+    Plot.density(faithful, {x: "waiting", stroke: "blue", thresholds: 4, bandwidth: 10}),
     Plot.dot(faithful, {x: "waiting", fill: "currentColor", r: 1.5})
   ]
 })

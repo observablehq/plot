@@ -124,7 +124,7 @@ You can use this composite mark like any built-in mark:
 
 :::plot https://observablehq.com/@observablehq/plot-arealiney-custom-mark
 ```js
-arealineY(aapl, {x: "Date", y: "Close", color: "steelblue"}).plot()
+arealineY(aapl, {x: "Date", y: "Close", color: "blue"}).plot()
 ```
 :::
 

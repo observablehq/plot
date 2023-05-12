@@ -363,12 +363,12 @@ Not all mark options can be expressed as channels. For example, **stroke** can b
 To vary the definition of a constant option with data, create multiple marks with your different constant options, and then filter the data for each mark to achieve the desired result.
 :::
 
-Some options can be either a channel or a constant depending on the provided value. For example, if you set the **fill** option to *steelblue*, Plot interprets it as a literal color.
+Some options can be either a channel or a constant depending on the provided value. For example, if you set the **fill** option to *purple*, Plot interprets it as a literal color.
 
 :::plot https://observablehq.com/@observablehq/plot-marks-have-channels
 ```js
 Plot
-  .barX(timeseries, {x: "population", y: "year", fill: "steelblue"})
+  .barX(timeseries, {x: "population", y: "year", fill: "purple"})
   .plot({y: {label: null, tickFormat: ""}})
 ```
 :::
