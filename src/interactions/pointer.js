@@ -23,7 +23,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
       // Isolate state per-pointer, per-plot; if the pointer is reused by
       // multiple marks, they will share the same state (e.g., sticky modality).
       let state = states.get(svg);
-      if (!state) states.set(svg, (state = {sticky: false, roots: [], renders: []}));
+      if (!state) states.set(svg, (state = {sticky: false, roots: [], renders: [], moves: []}));
 
       // This serves as a unique identifier of the rendered mark per-plot; it is
       // used to record the currently-rendered elements (state.roots) so that we
@@ -116,12 +116,16 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
           g.replaceWith(r);
         }
         state.roots[renderIndex] = r;
+        state.moves[renderIndex] = move;
         return (g = r);
       }
 
       function pointermove(event) {
         if (state.sticky || (event.pointerType === "mouse" && event.buttons === 1)) return; // dragging
-        let [xp, yp] = pointof(event);
+        move(pointof(event));
+      }
+
+      function move([xp, yp]) {
         (xp -= tx), (yp -= ty); // correct for facets and band scales
         let ii = null;
         let ri = maxRadius * maxRadius;
@@ -136,6 +140,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
 
       function pointerdown(event) {
         if (event.pointerType !== "mouse") return;
+        if (i == null) ((p) => state.moves.forEach((m) => m(p)))(pointof(event));
         if (i == null) return; // not pointing
         if (state.sticky && state.roots.some((r) => r?.contains(event.target))) return; // stay sticky
         if (state.sticky) (state.sticky = false), state.renders.forEach((r) => r(null)); // clear all pointers
