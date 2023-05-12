@@ -1,8 +1,8 @@
 import {create} from "../context.js";
-import {Mark} from "../mark.js";
+import {Mark, withTip} from "../mark.js";
 import {identity, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 
 const defaults = {
@@ -21,7 +21,7 @@ export class RuleX extends Mark {
         y1: {value: y1, scale: "y", optional: true},
         y2: {value: y2, scale: "y", optional: true}
       },
-      options,
+      withTip(options, "x"),
       defaults
     );
     this.insetTop = number(insetTop);
@@ -69,7 +69,7 @@ export class RuleY extends Mark {
         x1: {value: x1, scale: "x", optional: true},
         x2: {value: x2, scale: "x", optional: true}
       },
-      options,
+      withTip(options, "y"),
       defaults
     );
     this.insetRight = number(insetRight);

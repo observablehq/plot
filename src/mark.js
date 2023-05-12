@@ -1,8 +1,8 @@
 import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
-import {maybeValue} from "./options.js";
-import {arrayify, isDomainSort, isOptions, keyword, maybeNamed, range, singleton} from "./options.js";
+import {maybeKeyword, maybeNamed, maybeValue} from "./options.js";
+import {arrayify, isDomainSort, isOptions, keyword, range, singleton} from "./options.js";
 import {project} from "./projection.js";
 import {maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
@@ -24,6 +24,7 @@ export class Mark {
       marginLeft = margin,
       clip,
       channels: extraChannels,
+      tip,
       render
     } = options;
     this.data = data;
@@ -69,6 +70,7 @@ export class Mark {
     this.marginBottom = +marginBottom;
     this.marginLeft = +marginLeft;
     this.clip = maybeClip(clip);
+    this.tip = maybeTip(tip);
     // Super-faceting currently disallow position channels; in the future, we
     // could allow position to be specified in fx and fy in addition to (or
     // instead of) x and y.
@@ -142,4 +144,12 @@ function maybeChannels(channels) {
       return [name, channel];
     })
   );
+}
+
+function maybeTip(tip) {
+  return tip === true ? "xy" : maybeKeyword(tip, "tip", ["x", "y", "xy"]);
+}
+
+export function withTip(options, tip) {
+  return options?.tip === true ? {...options, tip} : options;
 }

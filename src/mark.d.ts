@@ -271,6 +271,9 @@ export interface MarkOptions {
    */
   title?: ChannelValue;
 
+  /** Whether to generate a tooltip for this mark. */
+  tip?: boolean | "x" | "y" | "xy";
+
   /**
    * How to clip the mark; one of:
    *

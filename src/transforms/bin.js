@@ -4,25 +4,27 @@ import {
   thresholdFreedmanDiaconis,
   thresholdScott,
   thresholdSturges,
-  ticks,
   tickIncrement,
+  ticks,
   utcTickInterval
 } from "d3";
+import {withTip} from "../mark.js";
 import {
-  valueof,
-  identity,
   coerceDate,
   coerceNumbers,
+  identity,
+  isIterable,
+  isTemporal,
+  labelof,
+  map,
+  maybeApplyInterval,
+  maybeColorChannel,
   maybeColumn,
   maybeRangeInterval,
   maybeTuple,
-  maybeColorChannel,
   maybeValue,
   mid,
-  labelof,
-  isTemporal,
-  isIterable,
-  map
+  valueof
 } from "../options.js";
 import {maybeUtcInterval} from "../time.js";
 import {basic} from "./basic.js";
@@ -40,7 +42,6 @@ import {
   reduceIdentity
 } from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
-import {maybeApplyInterval} from "../options.js";
 
 export function binX(outputs = {y: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then optionally on y, then bin x.
@@ -69,12 +70,12 @@ function maybeDenseInterval(bin, k, options = {}) {
     : bin({[k]: options?.reduce === undefined ? reduceFirst : options.reduce, filter: null}, options);
 }
 
-export function maybeDenseIntervalX(options) {
-  return maybeDenseInterval(binX, "y", options);
+export function maybeDenseIntervalX(options = {}) {
+  return maybeDenseInterval(binX, "y", withTip(options, "x"));
 }
 
-export function maybeDenseIntervalY(options) {
-  return maybeDenseInterval(binY, "x", options);
+export function maybeDenseIntervalY(options = {}) {
+  return maybeDenseInterval(binY, "x", withTip(options, "y"));
 }
 
 function binn(

@@ -3,16 +3,19 @@ import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
+import {pointer, pointerX, pointerY} from "./interactions/pointer.js";
 import {createLegends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
+import {tip} from "./marks/tip.js";
 import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeIntervalTransform} from "./options.js";
 import {createProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
+import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
@@ -23,6 +26,9 @@ export function plot(options = {}) {
 
   // Flatten any nested marks.
   const marks = options.marks === undefined ? [] : flatMarks(options.marks);
+
+  // Add implicit tips.
+  marks.push(...inferTips(marks));
 
   // Compute the top-level facet state. This has roughly the same structure as
   // mark-specific facet state, except there isn’t a facetsIndex, and there’s a
@@ -466,6 +472,24 @@ function maybeMarkFacet(mark, topFacetState, options) {
       `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
     );
   }
+}
+
+function derive(mark, options = {}) {
+  return initializer({...options, x: null, y: null}, (data, facets, channels, scales, dimensions, context) => {
+    return context.getMarkState(mark);
+  });
+}
+
+function inferTips(marks) {
+  const tips = [];
+  for (const mark of marks) {
+    const t = mark.tip;
+    if (t) {
+      const p = t === "x" ? pointerX : t === "y" ? pointerY : pointer;
+      tips.push(tip(mark.data, p(derive(mark)))); // TODO tip options?
+    }
+  }
+  return tips;
 }
 
 function inferAxes(marks, channelsByScale, options) {

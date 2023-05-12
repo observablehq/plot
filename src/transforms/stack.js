@@ -1,8 +1,9 @@
-import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
+import {InternMap, cumsum, greatest, group, groupSort, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
+import {withTip} from "../mark.js";
+import {maybeApplyInterval, maybeColumn, maybeZ, maybeZero} from "../options.js";
+import {column, field, mid, one, range, valueof} from "../options.js";
 import {basic} from "./basic.js";
-import {maybeApplyInterval} from "../options.js";
 
 export function stackX(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
@@ -47,12 +48,14 @@ export function stackY2(stackOptions = {}, options = {}) {
 }
 
 export function maybeStackX({x, x1, x2, ...options} = {}) {
+  options = withTip(options, "y");
   if (x1 === undefined && x2 === undefined) return stackX({x, ...options});
   [x1, x2] = maybeZero(x, x1, x2);
   return {...options, x1, x2};
 }
 
 export function maybeStackY({y, y1, y2, ...options} = {}) {
+  options = withTip(options, "x");
   if (y1 === undefined && y2 === undefined) return stackY({y, ...options});
   [y1, y2] = maybeZero(y, y1, y2);
   return {...options, y1, y2};
