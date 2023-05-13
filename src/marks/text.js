@@ -119,7 +119,7 @@ export class Text extends Mark {
   }
 }
 
-function maybeTextOverflow(textOverflow) {
+export function maybeTextOverflow(textOverflow) {
   return textOverflow == null
     ? null
     : keyword(textOverflow, "textOverflow", [
@@ -410,14 +410,14 @@ export function monospaceWidth(text, start = 0, end = text.length) {
   return sum;
 }
 
-function splitter({monospace, lineWidth, textOverflow}) {
+export function splitter({monospace, lineWidth, textOverflow}) {
   if (textOverflow != null || lineWidth == Infinity) return (text) => text.split(/\r\n?|\n/g);
   const widthof = monospace ? monospaceWidth : defaultWidth;
   const maxWidth = lineWidth * 100;
   return (text) => lineWrap(text, maxWidth, widthof);
 }
 
-function clipper({monospace, lineWidth, textOverflow}) {
+export function clipper({monospace, lineWidth, textOverflow}) {
   if (textOverflow == null || lineWidth == Infinity) return (text) => text;
   const widthof = monospace ? monospaceWidth : defaultWidth;
   const maxWidth = lineWidth * 100;

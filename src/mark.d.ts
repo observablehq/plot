@@ -264,8 +264,10 @@ export interface MarkOptions {
   pointerEvents?: string;
 
   /**
-   * The [title][1]; a channel specifying accessible, short textual descriptions
-   * as strings (possibly with newlines).
+   * The title; a channel specifying accessible, short textual descriptions as
+   * strings (possibly with newlines). If the tip option is specified, the title
+   * will be displayed with an interactive tooltip instead of using the SVG
+   * [title element][1].
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title
    */
