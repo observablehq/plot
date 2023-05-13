@@ -47,11 +47,11 @@ hero:
     alt: Observable Plot
   actions:
     - theme: brand
+      text: Get started
+      link: /getting-started
+    - theme: alt
       text: What is Plot?
       link: /what-is-plot
-    - theme: alt
-      text: Why Plot?
-      link: /why-plot
     - theme: alt
       text: Examples
       link: https://observablehq.com/@observablehq/plot-gallery

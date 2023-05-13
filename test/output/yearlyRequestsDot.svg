@@ -36,29 +36,29 @@
     <text y="0.32em" transform="translate(40,40.58823529411765)">16</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="80" x2="80" y1="20" y2="370"></line>
-    <line x1="246.51459854014598" x2="246.51459854014598" y1="20" y2="370"></line>
-    <line x1="413.02919708029196" x2="413.02919708029196" y1="20" y2="370"></line>
-    <line x1="580" x2="580" y1="20" y2="370"></line>
+    <line x1="113" x2="113" y1="20" y2="370"></line>
+    <line x1="258" x2="258" y1="20" y2="370"></line>
+    <line x1="403" x2="403" y1="20" y2="370"></line>
+    <line x1="548" x2="548" y1="20" y2="370"></line>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(80,370)" d="M0,0L0,6"></path>
-    <path transform="translate(246.51459854014598,370)" d="M0,0L0,6"></path>
-    <path transform="translate(413.02919708029196,370)" d="M0,0L0,6"></path>
-    <path transform="translate(580,370)" d="M0,0L0,6"></path>
+    <path transform="translate(113,370)" d="M0,0L0,6"></path>
+    <path transform="translate(258,370)" d="M0,0L0,6"></path>
+    <path transform="translate(403,370)" d="M0,0L0,6"></path>
+    <path transform="translate(548,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(80,370)">2002</text>
-    <text y="0.71em" transform="translate(246.51459854014598,370)">2003</text>
-    <text y="0.71em" transform="translate(413.02919708029196,370)">2004</text>
-    <text y="0.71em" transform="translate(580,370)">2005</text>
+    <text y="0.71em" transform="translate(113,370)">2002</text>
+    <text y="0.71em" transform="translate(258,370)">2003</text>
+    <text y="0.71em" transform="translate(403,370)">2004</text>
+    <text y="0.71em" transform="translate(548,370)">2005</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="80" cy="184.7058823529412" r="3"></circle>
-    <circle cx="246.51459854014598" cy="20" r="3"></circle>
-    <circle cx="580" cy="267.0588235294117" r="3"></circle>
+    <circle cx="113" cy="184.7058823529412" r="3"></circle>
+    <circle cx="258" cy="20" r="3"></circle>
+    <circle cx="548" cy="267.0588235294117" r="3"></circle>
   </g>
 </svg>

@@ -40,13 +40,25 @@ class Element {
     this.attributes[name] = String(value);
   }
   setAttributeNS(namespace, name, value) {
-    this.attributes[name] = String(value);
+    this.setAttribute(name, value);
+  }
+  getAttribute(name) {
+    return this.attributes[name];
+  }
+  getAttributeNS(name) {
+    return this.getAttribute(name);
+  }
+  hasAttribute(name) {
+    return name in this.attributes;
+  }
+  hasAttributeNS(name) {
+    return this.hasAttribute(name);
   }
   removeAttribute(name) {
     delete this.attributes[name];
   }
   removeAttributeNS(namespace, name) {
-    delete this.attributes[name];
+    this.removeAttribute(name);
   }
   appendChild(child) {
     this.children.push(child);
@@ -152,15 +164,32 @@ export default {
           this._idling = undefined;
         }
       };
-      return withDirectives(h("span"), [
+      const {height = 400} = this.options;
+      return withDirectives(
+        h(
+          "span",
+          method === "plot"
+            ? [
+                h("div", {
+                  style: {
+                    maxWidth: "100%",
+                    width: `688px`,
+                    aspectRatio: `688 / ${height}`
+                  }
+                })
+              ]
+            : []
+        ),
         [
-          {
-            mounted,
-            updated: mounted,
-            unmounted
-          }
+          [
+            {
+              mounted,
+              updated: mounted,
+              unmounted
+            }
+          ]
         ]
-      ]);
+      );
     }
     options.document = new Document();
     return Plot[method](options).toHyperScript();

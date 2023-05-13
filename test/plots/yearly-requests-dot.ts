@@ -7,16 +7,8 @@ export async function yearlyRequestsDot() {
     [new Date("2005-01-01"), 5]
   ];
   return Plot.plot({
-    label: null,
-    x: {
-      type: "utc",
-      interval: "year",
-      inset: 40,
-      grid: true
-    },
-    y: {
-      zero: true
-    },
+    x: {type: "point", interval: "year", grid: true},
+    y: {zero: true},
     marks: [Plot.ruleY([0]), Plot.dot(requests)]
   });
 }

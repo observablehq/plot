@@ -86,11 +86,10 @@ function sphereLink(projection, X1, Y1, X2, Y2) {
     });
 }
 
-export function link(data, options = {}) {
-  let {x, x1, x2, y, y1, y2, ...remainingOptions} = options;
+export function link(data, {x, x1, x2, y, y1, y2, ...options} = {}) {
   [x1, x2] = maybeSameValue(x, x1, x2);
   [y1, y2] = maybeSameValue(y, y1, y2);
-  return new Link(data, {...remainingOptions, x1, x2, y1, y2});
+  return new Link(data, {...options, x1, x2, y1, y2});
 }
 
 // If x1 and x2 are specified, return them as {x1, x2}.

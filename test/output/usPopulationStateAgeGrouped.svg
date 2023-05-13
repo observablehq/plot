@@ -13,14 +13,48 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="facet" transform="translate(1,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="fx-axis tick" transform="translate(0.5,0)">
+    <g fill="none" stroke="currentColor" transform="translate(1,0)">
       <path transform="translate(84,400)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+    <g fill="none" stroke="currentColor" transform="translate(99,0)">
+      <path transform="translate(84,400)" d="M0,0L0,6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(197,0)">
+      <path transform="translate(84,400)" d="M0,0L0,6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(295,0)">
+      <path transform="translate(84,400)" d="M0,0L0,6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(393,0)">
+      <path transform="translate(84,400)" d="M0,0L0,6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(491,0)">
+      <path transform="translate(84,400)" d="M0,0L0,6"></path>
+    </g>
+  </g>
+  <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+    <g transform="translate(1,0)">
       <text y="0.71em" transform="translate(84,400)">CA</text>
     </g>
-    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g transform="translate(99,0)">
+      <text y="0.71em" transform="translate(84,400)">TX</text>
+    </g>
+    <g transform="translate(197,0)">
+      <text y="0.71em" transform="translate(84,400)">NY</text>
+    </g>
+    <g transform="translate(295,0)">
+      <text y="0.71em" transform="translate(84,400)">FL</text>
+    </g>
+    <g transform="translate(393,0)">
+      <text y="0.71em" transform="translate(84,400)">PA</text>
+    </g>
+    <g transform="translate(491,0)">
+      <text y="0.71em" transform="translate(84,400)">IL</text>
+    </g>
+  </g>
+  <g aria-label="y-grid" transform="translate(0,0.5)">
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(1,0)">
       <line x1="40" x2="128" y1="400" y2="400"></line>
       <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
       <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
@@ -34,7 +68,79 @@
       <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
       <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
     </g>
-    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(99,0)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
+      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
+      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
+      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
+      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
+      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
+      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
+      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
+      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
+      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
+      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(197,0)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
+      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
+      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
+      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
+      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
+      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
+      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
+      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
+      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
+      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
+      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(295,0)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
+      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
+      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
+      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
+      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
+      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
+      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
+      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
+      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
+      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
+      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(393,0)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
+      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
+      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
+      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
+      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
+      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
+      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
+      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
+      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
+      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
+      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(491,0)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
+      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
+      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
+      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
+      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
+      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
+      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
+      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
+      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
+      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
+      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
+    </g>
+  </g>
+  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+    <g fill="none" stroke="currentColor" transform="translate(1,0)">
       <path transform="translate(40,400)" d="M0,0L-6,0"></path>
       <path transform="translate(40,367.2946945969975)" d="M0,0L-6,0"></path>
       <path transform="translate(40,334.589389193995)" d="M0,0L-6,0"></path>
@@ -48,7 +154,9 @@
       <path transform="translate(40,72.94694596997482)" d="M0,0L-6,0"></path>
       <path transform="translate(40,40.241640566972286)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  </g>
+  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" font-variant="tabular-nums" transform="translate(1,0)">
       <text y="0.32em" transform="translate(40,400)">0.0M</text>
       <text y="0.32em" transform="translate(40,367.2946945969975)">0.5M</text>
       <text y="0.32em" transform="translate(40,334.589389193995)">1.0M</text>
@@ -62,7 +170,12 @@
       <text y="0.32em" transform="translate(40,72.94694596997482)">5.0M</text>
       <text y="0.32em" transform="translate(40,40.241640566972286)">5.5M</text>
     </g>
-    <g aria-label="bar">
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(41,20)">↑ population</text>
+  </g>
+  <g aria-label="bar">
+    <g transform="translate(1,0)">
       <rect x="44" width="8" y="70.43301996486764" height="329.56698003513236" fill="#d53e4f"><title>&lt;10</title></rect>
       <rect x="53" width="8" y="61.8048371146691" height="338.1951628853309" fill="#f46d43"><title>10-19</title></rect>
       <rect x="62" width="8" y="20" height="380" fill="#fdae61"><title>20-29</title></rect>
@@ -73,32 +186,7 @@
       <rect x="107" width="8" y="268.4149132749974" height="131.5850867250026" fill="#66c2a5"><title>70-79</title></rect>
       <rect x="116" width="8" y="314.22222566488597" height="85.77777433511403" fill="#3288bd"><title>≥80</title></rect>
     </g>
-    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="40" x2="128" y1="400" y2="400"></line>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(99,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(84,400)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(84,400)">TX</text>
-    </g>
-    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="40" x2="128" y1="400" y2="400"></line>
-      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
-      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
-      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
-      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
-      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
-      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
-      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
-      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
-      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
-      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
-      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(99,0)">
       <rect x="44" width="8" y="139.46358479409858" height="260.53641520590145" fill="#d53e4f"><title>&lt;10</title></rect>
       <rect x="53" width="8" y="144.2099749460147" height="255.7900250539853" fill="#f46d43"><title>10-19</title></rect>
       <rect x="62" width="8" y="141.8604912164738" height="258.1395087835262" fill="#fdae61"><title>20-29</title></rect>
@@ -109,32 +197,7 @@
       <rect x="107" width="8" y="315.52311189259575" height="84.47688810740425" fill="#66c2a5"><title>70-79</title></rect>
       <rect x="116" width="8" y="352.10772439067006" height="47.89227560932994" fill="#3288bd"><title>≥80</title></rect>
     </g>
-    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="40" x2="128" y1="400" y2="400"></line>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(197,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(84,400)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(84,400)">NY</text>
-    </g>
-    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="40" x2="128" y1="400" y2="400"></line>
-      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
-      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
-      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
-      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
-      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
-      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
-      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
-      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
-      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
-      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
-      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(197,0)">
       <rect x="44" width="8" y="248.25098051366265" height="151.74901948633735" fill="#d53e4f"><title>&lt;10</title></rect>
       <rect x="53" width="8" y="240.03239890833137" height="159.96760109166863" fill="#f46d43"><title>10-19</title></rect>
       <rect x="62" width="8" y="210.68429310494702" height="189.31570689505298" fill="#fdae61"><title>20-29</title></rect>
@@ -145,32 +208,7 @@
       <rect x="107" width="8" y="324.1200938814398" height="75.8799061185602" fill="#66c2a5"><title>70-79</title></rect>
       <rect x="116" width="8" y="347.4039165463886" height="52.59608345361141" fill="#3288bd"><title>≥80</title></rect>
     </g>
-    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="40" x2="128" y1="400" y2="400"></line>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(295,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(84,400)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(84,400)">FL</text>
-    </g>
-    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="40" x2="128" y1="400" y2="400"></line>
-      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
-      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
-      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
-      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
-      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
-      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
-      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
-      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
-      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
-      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
-      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(295,0)">
       <rect x="44" width="8" y="255.3763545805932" height="144.6236454194068" fill="#d53e4f"><title>&lt;10</title></rect>
       <rect x="53" width="8" y="247.52119432890004" height="152.47880567109996" fill="#f46d43"><title>10-19</title></rect>
       <rect x="62" width="8" y="230.07435292983592" height="169.92564707016408" fill="#fdae61"><title>20-29</title></rect>
@@ -181,32 +219,7 @@
       <rect x="107" width="8" y="294.326083944191" height="105.673916055809" fill="#66c2a5"><title>70-79</title></rect>
       <rect x="116" width="8" y="333.30956518296466" height="66.69043481703534" fill="#3288bd"><title>≥80</title></rect>
     </g>
-    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="40" x2="128" y1="400" y2="400"></line>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(393,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(84,400)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(84,400)">PA</text>
-    </g>
-    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="40" x2="128" y1="400" y2="400"></line>
-      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
-      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
-      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
-      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
-      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
-      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
-      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
-      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
-      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
-      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
-      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(393,0)">
       <rect x="44" width="8" y="304.5704321661843" height="95.42956783381572" fill="#d53e4f"><title>&lt;10</title></rect>
       <rect x="53" width="8" y="294.81856043294937" height="105.18143956705063" fill="#f46d43"><title>10-19</title></rect>
       <rect x="62" width="8" y="287.98773034647826" height="112.01226965352174" fill="#fdae61"><title>20-29</title></rect>
@@ -217,32 +230,7 @@
       <rect x="107" width="8" y="344.34230749700276" height="55.657692502997236" fill="#66c2a5"><title>70-79</title></rect>
       <rect x="116" width="8" y="359.7679610221613" height="40.23203897783873" fill="#3288bd"><title>≥80</title></rect>
     </g>
-    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="40" x2="128" y1="400" y2="400"></line>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(491,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(84,400)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(84,400)">IL</text>
-    </g>
-    <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="40" x2="128" y1="400" y2="400"></line>
-      <line x1="40" x2="128" y1="367.2946945969975" y2="367.2946945969975"></line>
-      <line x1="40" x2="128" y1="334.589389193995" y2="334.589389193995"></line>
-      <line x1="40" x2="128" y1="301.88408379099246" y2="301.88408379099246"></line>
-      <line x1="40" x2="128" y1="269.1787783879899" y2="269.1787783879899"></line>
-      <line x1="40" x2="128" y1="236.47347298498738" y2="236.47347298498738"></line>
-      <line x1="40" x2="128" y1="203.76816758198487" y2="203.76816758198487"></line>
-      <line x1="40" x2="128" y1="171.06286217898233" y2="171.06286217898233"></line>
-      <line x1="40" x2="128" y1="138.35755677597982" y2="138.35755677597982"></line>
-      <line x1="40" x2="128" y1="105.65225137297733" y2="105.65225137297733"></line>
-      <line x1="40" x2="128" y1="72.94694596997482" y2="72.94694596997482"></line>
-      <line x1="40" x2="128" y1="40.241640566972286" y2="40.241640566972286"></line>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(491,0)">
       <rect x="44" width="8" y="294.0556110685081" height="105.94438893149191" fill="#d53e4f"><title>&lt;10</title></rect>
       <rect x="53" width="8" y="287.75643842666824" height="112.24356157333176" fill="#f46d43"><title>10-19</title></rect>
       <rect x="62" width="8" y="282.93207882667133" height="117.06792117332867" fill="#fdae61"><title>20-29</title></rect>
@@ -253,11 +241,25 @@
       <rect x="107" width="8" y="352.3273732217566" height="47.6726267782434" fill="#66c2a5"><title>70-79</title></rect>
       <rect x="116" width="8" y="368.67171877568546" height="31.328281224314537" fill="#3288bd"><title>≥80</title></rect>
     </g>
-    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  </g>
+  <g aria-label="rule" transform="translate(0,0.5)">
+    <g stroke="currentColor" transform="translate(1,0)">
       <line x1="40" x2="128" y1="400" y2="400"></line>
     </g>
-  </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(41,20)">↑ population</text>
+    <g stroke="currentColor" transform="translate(99,0)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+    </g>
+    <g stroke="currentColor" transform="translate(197,0)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+    </g>
+    <g stroke="currentColor" transform="translate(295,0)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+    </g>
+    <g stroke="currentColor" transform="translate(393,0)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+    </g>
+    <g stroke="currentColor" transform="translate(491,0)">
+      <line x1="40" x2="128" y1="400" y2="400"></line>
+    </g>
   </g>
 </svg>

@@ -4,25 +4,27 @@ import {
   thresholdFreedmanDiaconis,
   thresholdScott,
   thresholdSturges,
-  ticks,
   tickIncrement,
+  ticks,
   utcTickInterval
 } from "d3";
+import {withTip} from "../mark.js";
 import {
-  valueof,
-  identity,
   coerceDate,
   coerceNumbers,
+  identity,
+  isIterable,
+  isTemporal,
+  labelof,
+  map,
+  maybeApplyInterval,
+  maybeColorChannel,
   maybeColumn,
   maybeRangeInterval,
   maybeTuple,
-  maybeColorChannel,
   maybeValue,
   mid,
-  labelof,
-  isTemporal,
-  isIterable,
-  map
+  valueof
 } from "../options.js";
 import {maybeUtcInterval} from "../time.js";
 import {basic} from "./basic.js";
@@ -41,22 +43,22 @@ import {
 } from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
+// Group on {z, fill, stroke}, then optionally on y, then bin x.
 export function binX(outputs = {y: "count"}, options = {}) {
-  // Group on {z, fill, stroke}, then optionally on y, then bin x.
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = options;
   return binn(maybeBinValue(x, options, identity), null, null, y, outputs, maybeInsetX(options));
 }
 
+// Group on {z, fill, stroke}, then optionally on x, then bin y.
 export function binY(outputs = {x: "count"}, options = {}) {
-  // Group on {z, fill, stroke}, then optionally on x, then bin y.
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = options;
   return binn(null, maybeBinValue(y, options, identity), x, null, outputs, maybeInsetY(options));
 }
 
+// Group on {z, fill, stroke}, then bin on x and y.
 export function bin(outputs = {fill: "count"}, options = {}) {
-  // Group on {z, fill, stroke}, then bin on x and y.
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = maybeBinValueTuple(options);
   return binn(x, y, null, null, outputs, maybeInsetX(maybeInsetY(options)));
@@ -68,12 +70,12 @@ function maybeDenseInterval(bin, k, options = {}) {
     : bin({[k]: options?.reduce === undefined ? reduceFirst : options.reduce, filter: null}, options);
 }
 
-export function maybeDenseIntervalX(options) {
-  return maybeDenseInterval(binX, "y", options);
+export function maybeDenseIntervalX(options = {}) {
+  return maybeDenseInterval(binX, "y", withTip(options, "x"));
 }
 
-export function maybeDenseIntervalY(options) {
-  return maybeDenseInterval(binY, "x", options);
+export function maybeDenseIntervalY(options = {}) {
+  return maybeDenseInterval(binY, "x", withTip(options, "y"));
 }
 
 function binn(
@@ -143,8 +145,8 @@ function binn(
     ...("z" in inputs && {z: GZ || z}),
     ...("fill" in inputs && {fill: GF || fill}),
     ...("stroke" in inputs && {stroke: GS || stroke}),
-    ...basic(options, (data, facets) => {
-      const K = valueof(data, k);
+    ...basic(options, (data, facets, plotOptions) => {
+      const K = maybeApplyInterval(valueof(data, k), plotOptions?.[gk]);
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);

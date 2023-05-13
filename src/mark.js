@@ -1,9 +1,9 @@
-import {createChannels, channelDomain, valueObject} from "./channel.js";
+import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
-import {arrayify, isDomainSort, isOptions, range} from "./options.js";
-import {keyword, maybeNamed} from "./options.js";
-import {maybeProject} from "./projection.js";
+import {maybeKeyword, maybeNamed, maybeValue} from "./options.js";
+import {arrayify, isDomainSort, isOptions, keyword, range, singleton} from "./options.js";
+import {project} from "./projection.js";
 import {maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 
@@ -23,7 +23,9 @@ export class Mark {
       marginBottom = margin,
       marginLeft = margin,
       clip,
-      channels: extraChannels
+      channels: extraChannels,
+      tip,
+      render
     } = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
@@ -33,20 +35,25 @@ export class Mark {
       this.facet = null;
     } else {
       this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude", "super"]);
-      this.fx = fx;
-      this.fy = fy;
+      this.fx = data === singleton && typeof fx === "string" ? [fx] : fx;
+      this.fy = data === singleton && typeof fy === "string" ? [fy] : fy;
     }
     this.facetAnchor = maybeFacetAnchor(facetAnchor);
     channels = maybeNamed(channels);
-    if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
+    if (extraChannels !== undefined) channels = {...maybeChannels(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
     this.channels = Object.fromEntries(
       Object.entries(channels)
         .map(([name, channel]) => {
-          const {value} = channel;
-          if (isOptions(value)) {
-            channel = {...channel, value: value.value};
-            if (value.scale !== undefined) channel.scale = value.scale;
+          if (isOptions(channel.value)) {
+            // apply scale overrides
+            const {value, scale = channel.scale} = channel.value;
+            channel = {...channel, scale, value};
+          }
+          if (data === singleton && typeof channel.value === "string") {
+            // convert field names to singleton values for decoration marks (e.g., frame)
+            const {value} = channel;
+            channel = {...channel, value: [value]};
           }
           return [name, channel];
         })
@@ -63,6 +70,7 @@ export class Mark {
     this.marginBottom = +marginBottom;
     this.marginLeft = +marginLeft;
     this.clip = maybeClip(clip);
+    this.tip = maybeTip(tip);
     // Super-faceting currently disallow position channels; in the future, we
     // could allow position to be specified in fx and fy in addition to (or
     // instead of) x and y.
@@ -74,13 +82,17 @@ export class Mark {
         throw new Error(`super-faceting cannot use x or y`);
       }
     }
+    if (render != null) {
+      if (typeof render !== "function") throw new TypeError(`invalid render transform: ${render}`);
+      this.renderTransform = render;
+    }
   }
-  initialize(facets, facetChannels) {
+  initialize(facets, facetChannels, plotOptions) {
     let data = arrayify(this.data);
     if (facets === undefined && data != null) facets = [range(data)];
     const originalFacets = facets;
-    if (this.transform != null) ({facets, data} = this.transform(data, facets)), (data = arrayify(data));
-    if (facets !== undefined) facets.original = originalFacets; // needed up read facetChannels
+    if (this.transform != null) ({facets, data} = this.transform(data, facets, plotOptions)), (data = arrayify(data));
+    if (facets !== undefined) facets.original = originalFacets; // needed to read facetChannels
     const channels = createChannels(this.channels, data);
     if (this.sort != null) channelDomain(data, facets, channels, facetChannels, this.sort); // mutates facetChannels!
     return {data, facets, channels};
@@ -95,18 +107,22 @@ export class Mark {
     }
     return index;
   }
-  // If there is a projection, and there are both x and y channels (or x1 and
-  // y1, or x2 and y2 channels), and those channels are associated with the x
-  // and y scale respectively (and not already in screen coordinates as with an
-  // initializer), then apply the projection, replacing the x and y values. Note
-  // that the x and y scales themselves don’t exist if there is a projection,
-  // but whether the channels are associated with scales still determines
-  // whether the projection should apply; think of the projection as a
-  // combination xy-scale.
+  // If there is a projection, and there are paired x and y channels associated
+  // with the x and y scale respectively (and not already in screen coordinates
+  // as with an initializer), then apply the projection, replacing the x and y
+  // values. Note that the x and y scales themselves don’t exist if there is a
+  // projection, but whether the channels are associated with scales still
+  // determines whether the projection should apply; think of the projection as
+  // a combination xy-scale.
   project(channels, values, context) {
-    maybeProject("x", "y", channels, values, context);
-    maybeProject("x1", "y1", channels, values, context);
-    maybeProject("x2", "y2", channels, values, context);
+    for (const cx in channels) {
+      if (channels[cx].scale === "x" && /^x|x$/.test(cx)) {
+        const cy = cx.replace(/^x|x$/, "y");
+        if (cy in channels && channels[cy].scale === "y") {
+          project(cx, cy, values, context.projection);
+        }
+      }
+    }
   }
   scale(channels, scales, context) {
     const values = valueObject(channels, scales);
@@ -118,4 +134,22 @@ export class Mark {
 export function marks(...marks) {
   marks.plot = Mark.prototype.plot; // Note: depends on side-effect in plot!
   return marks;
+}
+
+function maybeChannels(channels) {
+  return Object.fromEntries(
+    Object.entries(maybeNamed(channels)).map(([name, channel]) => {
+      channel = maybeValue(channel);
+      if (channel.filter === undefined && channel.scale == null) channel = {...channel, filter: null};
+      return [name, channel];
+    })
+  );
+}
+
+function maybeTip(tip) {
+  return tip === true ? "xy" : maybeKeyword(tip, "tip", ["x", "y", "xy"]);
+}
+
+export function withTip(options, tip) {
+  return options?.tip === true ? {...options, tip} : options;
 }

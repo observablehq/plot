@@ -69,7 +69,7 @@ export class Dot extends Mark {
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
     const {r, rotate, symbol} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const circle = this.symbol === symbolCircle;
+    const circle = symbol === symbolCircle;
     const size = R ? undefined : r * r * Math.PI;
     if (negative(r)) index = [];
     return create("svg:g", context)
@@ -132,20 +132,17 @@ export class Dot extends Mark {
   }
 }
 
-export function dot(data, options = {}) {
-  let {x, y, ...remainingOptions} = options;
+export function dot(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
-  return new Dot(data, {...remainingOptions, x, y});
+  return new Dot(data, {...options, x, y});
 }
 
-export function dotX(data, options = {}) {
-  const {x = identity, ...remainingOptions} = options;
-  return new Dot(data, maybeIntervalMidY({...remainingOptions, x}));
+export function dotX(data, {x = identity, ...options} = {}) {
+  return new Dot(data, maybeIntervalMidY({...options, x}));
 }
 
-export function dotY(data, options = {}) {
-  const {y = identity, ...remainingOptions} = options;
-  return new Dot(data, maybeIntervalMidX({...remainingOptions, y}));
+export function dotY(data, {y = identity, ...options} = {}) {
+  return new Dot(data, maybeIntervalMidX({...options, y}));
 }
 
 export function circle(data, options) {

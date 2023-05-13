@@ -176,9 +176,8 @@ function circleCircleIntersect([ax, ay, ar], [bx, by, br], sign) {
   return [ax + (dx * x + dy * y) / d, ay + (dy * x - dx * y) / d];
 }
 
-export function arrow(data, options = {}) {
-  let {x, x1, x2, y, y1, y2, ...remainingOptions} = options;
+export function arrow(data, {x, x1, x2, y, y1, y2, ...options} = {}) {
   [x1, x2] = maybeSameValue(x, x1, x2);
   [y1, y2] = maybeSameValue(y, y1, y2);
-  return new Arrow(data, {...remainingOptions, x1, x2, y1, y2});
+  return new Arrow(data, {...options, x1, x2, y1, y2});
 }

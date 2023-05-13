@@ -175,7 +175,7 @@ Plot.plot({
 ```
 :::
 
-The **transform** function is passed two arguments, *data* and *facets*, representing the mark’s data and facet indexes; it must then return a {*data*, *facets*} object with the transformed data and facet indexes. The *facets* are represented as a nested array of arrays such as [[0, 1, 3, …], [2, 5, 10, …], …]; each element in *facets* specifies the zero-based indexes of elements in *data* that are in a given facet (*i.e.*, have a distinct value in the associated *fx* or *fy* dimension).
+The **transform** function is passed three arguments, *data*, *facets*, and *options* representing the mark’s data and facet indexes, and the plot’s options; it must then return a {*data*, *facets*} object with the transformed data and facet indexes. The *facets* are represented as a nested array of arrays such as [[0, 1, 3, …], [2, 5, 10, …], …]; each element in *facets* specifies the zero-based indexes of elements in *data* that are in a given facet (*i.e.*, have a distinct value in the associated *fx* or *fy* dimension).
 
 If the **transform** option is specified, it supersedes any basic transforms (*i.e.*, the **filter**, **sort** and **reverse** options are ignored). However, the **transform** option is rarely used directly; instead one of Plot’s built-in transforms are used, and these transforms automatically compose with the basic **filter**, **sort** and **reverse** transforms.
 

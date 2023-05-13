@@ -1,6 +1,37 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+export async function frameFillCategorical() {
+  return Plot.plot({
+    color: {legend: true},
+    marks: [
+      Plot.frame({fill: "foo"}), // abstract color
+      Plot.frame({fill: "bar", inset: 5}), // abstract color
+      Plot.frame({fill: "baz", inset: 10}), // abstract color
+      Plot.frame({fill: "white", inset: 15}) // literal color
+    ]
+  });
+}
+
+export async function frameFillQuantitative() {
+  return Plot.plot({
+    color: {type: "linear", legend: true},
+    marks: [
+      d3.range(11).map((t, i) => Plot.frame({fill: t, inset: i})), // abstract color
+      Plot.frame({fill: "white", inset: 11}) // literal color
+    ]
+  });
+}
+
+export async function frameFacet() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    marginLeft: 80,
+    inset: 10,
+    marks: [Plot.frame({fy: "Gentoo"}), Plot.dot(penguins, {x: "body_mass_g", fy: "species"})]
+  });
+}
+
 export async function frameCorners() {
   return Plot.frame({rx: 16, ry: 10}).plot();
 }

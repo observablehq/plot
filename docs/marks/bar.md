@@ -29,7 +29,7 @@ const timeseries = [
 The bar mark is one of several marks in Plot for drawing rectangles; it should be used when one dimension is ordinal and the other is quantitative. See also [rect](./rect.md) and [cell](./cell.md).
 :::
 
-The **bar mark** comes in two orientations: [barY](#bary-data-options) extends vertically↑ as in a vertical bar chart or column chart, while [barX](#barx-data-options) extends horizontally→ as in a (horizontal) bar chart. For example, the bar chart below shows the frequency of letters in the English language.
+The **bar mark** comes in two orientations: [barY](#bary-data-options) extends vertically↑ as in a vertical bar chart or column chart, while [barX](#barx-data-options) extends horizontally→. For example, the bar chart below shows the frequency of letters in the English language.
 
 :::plot https://observablehq.com/@observablehq/plot-vertical-bars
 ```js
@@ -37,7 +37,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
 :::
 
-Ordinal domains are sorted naturally (alphabetically) by default. Either set the [scale **domain**](../features/scales.md) explicitly to change the order, or use the mark [**sort** option](../features/marks.md#sort-option) to derive the scale domain from a channel. For example, to sort **x** by descending **y**:
+Ordinal domains are sorted naturally (alphabetically) by default. Either set the [scale **domain**](../features/scales.md) explicitly to change the order, or use the mark [**sort** option](../features/scales.md#sort-mark-option) to derive the scale domain from a channel. For example, to sort **x** by descending **y**:
 
 :::plot https://observablehq.com/@observablehq/plot-vertical-bars
 ```js
@@ -68,7 +68,7 @@ Plot.plot({
 The [group transform](../transforms/group.md) with the *count* reducer could be used to produce one bar per species.
 :::
 
-You can specify a [*min*, *max*] extent instead and opt-out of the implicit stack transform by specifying two quantitative values: **x1** and **x2** for barX, or **y1** and **y2** for barY. For example, here is a historical timeline of civilizations, where each has a beginning and an end.
+You can opt-out of the implicit stack transform by specifying the bar’s extent with two quantitative values: **x1** and **x2** for barX, or **y1** and **y2** for barY. For example, here is a historical timeline of civilizations, where each has a beginning and an end.
 
 :::plot https://observablehq.com/@observablehq/plot-civilizations-timeline
 ```js
@@ -232,7 +232,7 @@ The following optional channels are supported:
 
 If neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](../transforms/stack.md); this is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **x** option is not specified, it defaults to [identity](../features/transforms.md#identity). If *options* is undefined, then it defaults to **x2** as identity and **y** as the zero-based index [0, 1, 2, …]; this allows an array of numbers to be passed to barX to make a quick sequential bar chart. If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
 
-If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*.
+If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales#scale-options).
 
 ## barY(*data*, *options*)
 
@@ -251,4 +251,4 @@ The following optional channels are supported:
 
 If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](../transforms/stack.md); this is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **y** option is not specified, it defaults to [identity](../features/transforms.md#identity). If *options* is undefined, then it defaults to **y2** as identity and **x** as the zero-based index [0, 1, 2, …]; this allows an array of numbers to be passed to barY to make a quick sequential bar chart. If the **x** channel is not specified, the bar will span the full horizontal extent of the plot (or facet).
 
-If an **interval** is specified, such as d3.utcDay, **y1** and **y2** can be derived from **y**: *interval*.floor(*y*) is invoked for each *y* to produce *y1*, and *interval*.offset(*y1*) is invoked for each *y1* to produce *y2*. If the interval is specified as a number *n*, *y1* and *y2* are taken as the two consecutive multiples of *n* that bracket *y*.
+If an **interval** is specified, such as d3.utcDay, **y1** and **y2** can be derived from **y**: *interval*.floor(*y*) is invoked for each *y* to produce *y1*, and *interval*.offset(*y1*) is invoked for each *y1* to produce *y2*. If the interval is specified as a number *n*, *y1* and *y2* are taken as the two consecutive multiples of *n* that bracket *y*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales#scale-options).

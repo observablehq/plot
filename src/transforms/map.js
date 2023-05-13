@@ -2,16 +2,16 @@ import {count, group, rank} from "d3";
 import {column, isObject, maybeInput, maybeZ, take, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
-export function mapX(map, options = {}) {
-  return mapAlias(
-    Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, map])),
+export function mapX(mapper, options = {}) {
+  return map(
+    Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, mapper])),
     options
   );
 }
 
-export function mapY(map, options = {}) {
-  return mapAlias(
-    Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, map])),
+export function mapY(mapper, options = {}) {
+  return map(
+    Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, mapper])),
     options
   );
 }
@@ -39,9 +39,6 @@ export function map(outputs = {}, options = {}) {
     ...Object.fromEntries(channels.map(({key, output}) => [key, output]))
   };
 }
-
-// This is used internally so we can use `map` as an argument name.
-const mapAlias = map;
 
 function maybeMap(map) {
   if (map == null) throw new Error("missing map");

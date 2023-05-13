@@ -2,9 +2,14 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import * as htl from "htl";
 import {computed, ref, shallowRef, onMounted} from "vue";
 import alphabet from "../data/alphabet.ts";
 
+const marginTop = ref(20);
+const marginRight = ref(20);
+const marginBottom = ref(30);
+const marginLeft = ref(40);
 const fixed = ref(true);
 const aapl = shallowRef([]);
 const goog = shallowRef([]);
@@ -37,6 +42,8 @@ Plot.plot({
 :::tip
 The returned plot element is detached; it must be inserted into the page to be visible. For help, see the [getting started guide](../getting-started.md).
 :::
+
+## Marks option
 
 The **marks** option specifies an array of [marks](./marks.md) to render. Above, there are two marks: a [frame](../marks/frame.md) to draw the outline of the plot frame, and a [text](../marks/text.md) to say hello. 👋
 
@@ -126,6 +133,8 @@ Plot.plot({
 ```
 :::
 
+## Layout options
+
 The layout options determine the overall size of the plot; all are specified as numbers in pixels:
 
 * **marginTop** - the top margin
@@ -136,13 +145,80 @@ The layout options determine the overall size of the plot; all are specified as 
 * **width** - the outer width of the plot (including margins)
 * **height** - the outer height of the plot (including margins)
 
+Experiment with the margins by adjusting the sliders below. Note that because the *x* scale is a *band* scale, the **round** option defaults to true, so the bars may jump when you adjust the horizontal margins to snap to crisp edges.
+
+<p>
+  <label class="label-input" style="display: flex;">
+    <span style="display: inline-block; width: 7em;">marginTop:</span>
+    <input type="range" v-model.number="marginTop" min="0" max="60" step="1">
+    <span style="font-variant-numeric: tabular-nums;">{{marginTop}}</span>
+  </label>
+  <label class="label-input" style="display: flex;">
+    <span style="display: inline-block; width: 7em;">marginRight:</span>
+    <input type="range" v-model.number="marginRight" min="0" max="60" step="1">
+    <span style="font-variant-numeric: tabular-nums;">{{marginRight}}</span>
+  </label>
+  <label class="label-input" style="display: flex;">
+    <span style="display: inline-block; width: 7em;">marginBottom:</span>
+    <input type="range" v-model.number="marginBottom" min="0" max="60" step="1">
+    <span style="font-variant-numeric: tabular-nums;">{{marginBottom}}</span>
+  </label>
+  <label class="label-input" style="display: flex;">
+    <span style="display: inline-block; width: 7em;">marginLeft:</span>
+    <input type="range" v-model.number="marginLeft" min="0" max="60" step="1">
+    <span style="font-variant-numeric: tabular-nums;">{{marginLeft}}</span>
+  </label>
+</p>
+
+:::plot hidden defer
+```js
+Plot.plot({
+  marginTop,
+  marginRight,
+  marginBottom,
+  marginLeft,
+  grid: true,
+  marks: [
+    Plot.frame({
+      stroke: "var(--vp-c-text-2)",
+      strokeOpacity: 0.5,
+      insetTop: -marginTop,
+      insetRight: -marginRight,
+      insetBottom: -marginBottom,
+      insetLeft: -marginLeft,
+    }),
+    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "green"}),
+    Plot.frame()
+  ]
+})
+```
+:::
+
+```js-vue
+Plot.plot({
+  marginTop: {{marginTop}},
+  marginRight: {{marginRight}},
+  marginBottom: {{marginBottom}},
+  marginLeft: {{marginLeft}},
+  grid: true,
+  marks: [
+    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "green"}),
+    Plot.frame()
+  ]
+})
+```
+
+:::info
+To assist the explanation, the plot above is drawn with a light gray border.
+:::
+
 The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/main/README.md#width) to make responsive plots. The default **height** is chosen automatically based on the plot’s associated scales; for example, if *y* is linear and there is no *fy* scale, it might be 396. The default margins depend on the maximum margins of the plot’s constituent [marks](./plots.md#marks). While most marks default to zero margins (because they are drawn inside the chart area), Plot’s [axis mark](../marks/axis.md) has non-zero default margins.
 
 :::tip
 Plot does not adjust margins automatically to make room for long tick labels. If your *y* axis labels are too long, you can increase the **marginLeft** to make more room. Also consider using a different **tickFormat** for short labels (*e.g.*, `s` for SI prefix notation), or a scale **transform** (say to convert units to millions or billions).
 :::
 
-The **aspectRatio** option, if not null, computes a default **height** such that a variation of one unit in the *x* dimension is represented by the corresponding number of pixels as a variation in the *y* dimension of one unit.
+The **aspectRatio** option<a id="aspectratio" class="header-anchor" href="#aspectratio" aria-label="Permalink to &quot;aspectRatio&quot;"></a>, if not null, computes a default **height** such that a variation of one unit in the *x* dimension is represented by the corresponding number of pixels as a variation in the *y* dimension of one unit.
 
 <p>
   <label class="label-input">
@@ -170,11 +246,7 @@ Plot.plot({
 When using facets, set the *fx* and *fy* scales’ **round** option to false if you need an exact aspect ratio.
 :::
 
-The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion as assigning [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)) or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion as assigning [*element*.style properties](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)). By default, the returned plot has a white background, a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color.
-
-:::warning CAUTION
-Unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecated-quirky-length)) such as `{padding: 20}` are not supported by some browsers; you should instead specify a string with units such as `{padding: "20px"}`.
-:::
+## Other options
 
 If a **caption** is specified, Plot.plot wraps the generated SVG element in an HTML figure element with a figcaption, returning the figure. To specify an HTML caption, the caption can be specified as an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed.
 
@@ -188,6 +260,12 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion as assigning [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)) or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion as assigning [*element*.style properties](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)). By default, the returned plot has a white background, a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color.
+
+:::warning CAUTION
+Unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecated-quirky-length)) such as `{padding: 20}` are not supported by some browsers; you should instead specify a string with units such as `{padding: "20px"}`.
 :::
 
 The generated SVG element has a class name which applies a default stylesheet. Use the top-level **className** option to specify that class name.

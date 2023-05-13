@@ -1,57 +1,61 @@
-import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
+import {InternMap, cumsum, greatest, group, groupSort, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
+import {withTip} from "../mark.js";
+import {maybeApplyInterval, maybeColumn, maybeZ, maybeZero} from "../options.js";
+import {column, field, mid, one, range, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
-export function stackX(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackX(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
-  const [transform, Y, x1, x2] = stackAlias(y, x, "x", stack, rest);
+  const [transform, Y, x1, x2] = stack(y, x, "y", "x", stackOptions, rest);
   return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
-export function stackX1(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackX1(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
-  const [transform, Y, X] = stackAlias(y, x, "x", stack, options);
+  const [transform, Y, X] = stack(y, x, "y", "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
-export function stackX2(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackX2(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
-  const [transform, Y, , X] = stackAlias(y, x, "x", stack, options);
+  const [transform, Y, , X] = stack(y, x, "y", "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
-export function stackY(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackY(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
-  const [transform, X, y1, y2] = stackAlias(x, y, "y", stack, rest);
+  const [transform, X, y1, y2] = stack(x, y, "x", "y", stackOptions, rest);
   return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
-export function stackY1(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackY1(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
-  const [transform, X, Y] = stackAlias(x, y, "y", stack, options);
+  const [transform, X, Y] = stack(x, y, "x", "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
-export function stackY2(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackY2(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
-  const [transform, X, , Y] = stackAlias(x, y, "y", stack, options);
+  const [transform, X, , Y] = stack(x, y, "x", "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
 export function maybeStackX({x, x1, x2, ...options} = {}) {
+  options = withTip(options, "y");
   if (x1 === undefined && x2 === undefined) return stackX({x, ...options});
   [x1, x2] = maybeZero(x, x1, x2);
   return {...options, x1, x2};
 }
 
 export function maybeStackY({y, y1, y2, ...options} = {}) {
+  options = withTip(options, "x");
   if (y1 === undefined && y2 === undefined) return stackY({y, ...options});
   [y1, y2] = maybeZero(y, y1, y2);
   return {...options, y1, y2};
@@ -65,16 +69,22 @@ function mergeOptions(options) {
   return [{offset, order, reverse}, rest];
 }
 
-function stack(x, y = one, ky, {offset, order, reverse}, options) {
+// This is a hint to the tooltip mark that the y1 and y2 channels (for stackY,
+// or conversely x1 and x2 for stackX) represent a stacked length, and that the
+// tooltip should therefore show y2-y1 instead of an extent.
+const lengthy = {length: true};
+
+function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
   const z = maybeZ(options);
   const [X, setX] = maybeColumn(x);
   const [Y1, setY1] = column(y);
   const [Y2, setY2] = column(y);
+  Y1.hint = Y2.hint = lengthy;
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
   return [
-    basic(options, (data, facets) => {
-      const X = x == null ? undefined : setX(valueof(data, x));
+    basic(options, (data, facets, plotOptions) => {
+      const X = x == null ? undefined : setX(maybeApplyInterval(valueof(data, x), plotOptions?.[kx]));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);
       const O = order && order(data, X, Y, Z);
@@ -86,8 +96,8 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
         const stacks = X ? Array.from(group(facet, (i) => X[i]).values()) : [facet];
         if (O) applyOrder(stacks, O);
         for (const stack of stacks) {
-          let yn = 0,
-            yp = 0;
+          let yn = 0;
+          let yp = 0;
           if (reverse) stack.reverse();
           for (const i of stack) {
             const y = Y[i];
@@ -106,9 +116,6 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
     Y2
   ];
 }
-
-// This is used internally so we can use `stack` as an argument name.
-const stackAlias = stack;
 
 function maybeOffset(offset) {
   if (offset == null) return;

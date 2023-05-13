@@ -44,6 +44,7 @@ export function styles(
     strokeDashoffset,
     opacity,
     mixBlendMode,
+    imageFilter,
     paintOrder,
     pointerEvents,
     shapeRendering
@@ -135,6 +136,7 @@ export function styles(
   mark.ariaHidden = string(ariaHidden);
   mark.opacity = impliedNumber(copacity, 1);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
+  mark.imageFilter = impliedString(imageFilter, "none");
   mark.paintOrder = impliedString(paintOrder, "normal");
   mark.pointerEvents = impliedString(pointerEvents, "auto");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
@@ -180,7 +182,7 @@ export function applyTextGroup(selection, T) {
 
 export function applyChannelStyles(
   selection,
-  {target},
+  {target, tip},
   {
     ariaLabel: AL,
     title: T,
@@ -201,12 +203,12 @@ export function applyChannelStyles(
   if (SW) applyAttr(selection, "stroke-width", (i) => SW[i]);
   if (O) applyAttr(selection, "opacity", (i) => O[i]);
   if (H) applyHref(selection, (i) => H[i], target);
-  applyTitle(selection, T);
+  if (!tip) applyTitle(selection, T);
 }
 
 export function applyGroupedChannelStyles(
   selection,
-  {target},
+  {target, tip},
   {
     ariaLabel: AL,
     title: T,
@@ -227,21 +229,24 @@ export function applyGroupedChannelStyles(
   if (SW) applyAttr(selection, "stroke-width", ([i]) => SW[i]);
   if (O) applyAttr(selection, "opacity", ([i]) => O[i]);
   if (H) applyHref(selection, ([i]) => H[i], target);
-  applyTitleGroup(selection, T);
+  if (!tip) applyTitleGroup(selection, T);
 }
 
-function groupAesthetics({
-  ariaLabel: AL,
-  title: T,
-  fill: F,
-  fillOpacity: FO,
-  stroke: S,
-  strokeOpacity: SO,
-  strokeWidth: SW,
-  opacity: O,
-  href: H
-}) {
-  return [AL, T, F, FO, S, SO, SW, O, H].filter((c) => c !== undefined);
+function groupAesthetics(
+  {
+    ariaLabel: AL,
+    title: T,
+    fill: F,
+    fillOpacity: FO,
+    stroke: S,
+    strokeOpacity: SO,
+    strokeWidth: SW,
+    opacity: O,
+    href: H
+  },
+  {tip}
+) {
+  return [AL, tip ? undefined : T, F, FO, S, SO, SW, O, H].filter((c) => c !== undefined);
 }
 
 export function groupZ(I, Z, z) {
@@ -254,9 +259,10 @@ export function groupZ(I, Z, z) {
   return G.values();
 }
 
-export function* groupIndex(I, position, {z}, channels) {
+export function* groupIndex(I, position, mark, channels) {
+  const {z} = mark;
   const {z: Z} = channels; // group channel
-  const A = groupAesthetics(channels); // aesthetic channels
+  const A = groupAesthetics(channels, mark); // aesthetic channels
   const C = [...position, ...A]; // all channels
 
   // Group the current index by Z (if any).
@@ -368,6 +374,7 @@ export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
   applyAttr(selection, "stroke-dashoffset", mark.strokeDashoffset);
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
+  applyAttr(selection, "filter", mark.imageFilter);
   applyAttr(selection, "paint-order", mark.paintOrder);
   applyAttr(selection, "pointer-events", mark.pointerEvents);
 }

@@ -136,8 +136,6 @@ function inferScaleLabel(channels = [], scale) {
     else if (label !== l) return;
   }
   if (label === undefined) return;
-  // Ignore the implicit label for temporal scales if it’s simply “date”.
-  if (isTemporalScale(scale) && /^(date|time|year)$/i.test(label)) return;
   if (!isOrdinalScale(scale) && scale.percent) label = `${label} (%)`;
   return {inferred: true, toString: () => label};
 }
@@ -178,7 +176,8 @@ export function innerDimensions({fx, fy}, dimensions) {
     marginBottom,
     marginLeft,
     width: fx ? fx.scale.bandwidth() + marginLeft + marginRight : width,
-    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height
+    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height,
+    facet: {width, height}
   };
 }
 

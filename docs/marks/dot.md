@@ -316,7 +316,7 @@ In addition to the [standard mark options](../features/marks.md#mark-options), t
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
-* **r** - the radius (area); bound to the *radius* scale, which defaults to *sqrt*
+* **r** - the radius (area); bound to the *r* (radius) scale, which defaults to *sqrt*
 * **rotate** - the rotation angle in degrees clockwise
 * **symbol** - the categorical symbol; bound to the *symbol* scale
 
@@ -349,7 +349,7 @@ Plot.dotX(cars.map((d) => d["economy (mpg)"]))
 
 Equivalent to [dot](#dot-data-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
-If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
+If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales#scale-options).
 
 ## dotY(*data*, *options*)
 
@@ -359,7 +359,7 @@ Plot.dotY(cars.map((d) => d["economy (mpg)"]))
 
 Equivalent to [dot](#dot-data-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
-If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
+If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales#scale-options).
 
 ## circle(*data*, *options*)
 

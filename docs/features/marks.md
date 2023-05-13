@@ -276,8 +276,8 @@ While Plot aspires to give good defaults and helpful warnings, Plot won’t prev
 In particular, beware the simple “bar”! A bar mark is used for a bar chart, but a rect mark is needed for a histogram. Plot has four different mark types for drawing rectangles:
 
 - use [rect](../marks/rect.md) when both *x* and *y* are quantitative
-- use [barX](../marks/bar.md) when *x* is ordinal and *y* is quantitative
-- use [barY](../marks/bar.md) when *x* is quantitative and *y* is ordinal
+- use [barX](../marks/bar.md) when *x* is quantitative and *y* is ordinal
+- use [barY](../marks/bar.md) when *x* is ordinal and *y* is quantitative
 - use [cell](../marks/cell.md) when both *x* and *y* are ordinal
 
 Plot encourages you to think about data types as you visualize because data types often imply semantics. For example, do you notice anything strange about the bar chart below?
@@ -363,12 +363,12 @@ Not all mark options can be expressed as channels. For example, **stroke** can b
 To vary the definition of a constant option with data, create multiple marks with your different constant options, and then filter the data for each mark to achieve the desired result.
 :::
 
-Some options can be either a channel or a constant depending on the provided value. For example, if you set the **fill** option to *steelblue*, Plot interprets it as a literal color.
+Some options can be either a channel or a constant depending on the provided value. For example, if you set the **fill** option to *purple*, Plot interprets it as a literal color.
 
 :::plot https://observablehq.com/@observablehq/plot-marks-have-channels
 ```js
 Plot
-  .barX(timeseries, {x: "population", y: "year", fill: "steelblue"})
+  .barX(timeseries, {x: "population", y: "year", fill: "purple"})
   .plot({y: {label: null, tickFormat: ""}})
 ```
 :::
@@ -417,7 +417,7 @@ You can then specify the *color* scale’s **domain** and **range** to control t
 
 ## Mark options
 
-Mark constructors take two arguments: **data** and **options**. Together these describe a tabular dataset and how to visualize it. Option values that must be the same for all of a mark’s generated shapes are known as *constants*, whereas option values that may vary across a mark’s generated shapes are known as *channels*. Channels are typically bound to [scales](./scales.md) and encode abstract data values, such as time or temperature, as visual values, such as position or color. (Channels can also be used to order ordinal domains; see the [sort option](./scales.md#sort-option).)
+Mark constructors take two arguments: **data** and **options**. Together these describe a tabular dataset and how to visualize it. Option values that must be the same for all of a mark’s generated shapes are known as *constants*, whereas option values that may vary across a mark’s generated shapes are known as *channels*. Channels are typically bound to [scales](./scales.md) and encode abstract data values, such as time or temperature, as visual values, such as position or color. (Channels can also be used to order ordinal domains; see the [**sort** option](./scales.md#sort-mark-option).)
 
 A mark’s data is most commonly an array of objects representing a tabular dataset, such as the result of loading a CSV file, while a mark’s options bind channels (such as *x* and *y*) to columns in the data (such as *units* and *fruit*).
 
@@ -476,6 +476,7 @@ All marks support the following style options:
 * **strokeDashoffset** - the [stroke dash offset](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset) (typically in pixels)
 * **opacity** - object opacity (a number between 0 and 1)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
+* **imageFilter** - a CSS [filter](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) (*e.g.*, *blur(5px)*)
 * **shapeRendering** - the [shape-rendering mode](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering) (*e.g.*, *crispEdges*)
 * **paintOrder** - the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order) (*e.g.*, *stroke*)
 * **dx** - horizontal offset (in pixels; defaults to 0)
@@ -538,6 +539,16 @@ The rectangular marks ([bar](../marks/bar.md), [cell](../marks/cell.md), [frame]
 Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](../transforms/bin.md) provides default insets, and that the [band scale padding](./scales.md#position-scales) defaults to 0.1, which also provides separation.
 
 For marks that support the **frameAnchor** option, it may be specified as one of the four sides (*top*, *right*, *bottom*, *left*), one of the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the *middle* of the frame.
+
+All marks support the following [transform](./transforms.md) options:
+
+* **filter** - apply the [filter transform](../transforms/filter.md)
+* **sort** - apply the [sort transform](../transforms/sort.md)
+* **reverse** - apply the [reverse transform](../transforms/sort.md#reverse-options)
+* **transform** - apply a [custom transform](./transforms.md#custom-transforms)
+* **initializer** - apply a [custom initializer](./transforms.md#custom-initializers)
+
+The **sort** option, when not specified as a channel value (such as a field name or an accessor function), can also be used to [impute ordinal scale domains](./scales.md#sort-mark-option).
 
 ## marks(...*marks*)
 

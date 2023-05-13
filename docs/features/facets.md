@@ -50,7 +50,7 @@ Plot.plot({
 :::
 
 :::tip
-This plot uses the [**sort** mark option](./scales.md#sort-option) to order the *y* and *fy* scale domains by descending median yield (the associated *x* values). Without this option, the domains would be sorted alphabetically.
+This plot uses the [**sort** mark option](./scales.md#sort-mark-option) to order the *y* and *fy* scale domains by descending median yield (the associated *x* values). Without this option, the domains would be sorted alphabetically.
 :::
 
 :::tip
@@ -92,7 +92,7 @@ Plot.plot({
 Here the sort order has changed slightly: the *y* and *fy* domains are sorted by the median **x1** values, which are the yields for 1931.
 :::
 
-Faceting requires ordinal or categorical data because there are a discrete number of facets; the associated *fx* and *fy* scales are [band scales](./scales.md#discrete-position). Quantitative or temporal data can be made ordinal by binning, say using [Math.floor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor). Or, use the [**interval** scale option](../transforms/interval.md) on the *fx* or *fy* scale. Below, we produce a [box plot](../marks/box.md) of the weights (in kilograms) of Olympic athletes, faceted by height binned at a 10cm (0.1 meter) interval.
+Faceting requires ordinal or categorical data because there are a discrete number of facets; the associated *fx* and *fy* scales are [band scales](./scales.md#discrete-position). Quantitative or temporal data can be made ordinal by binning, say using [Math.floor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor). Or, use the [**interval** scale option](./scales.md#scale-transforms) on the *fx* or *fy* scale. Below, we produce a [box plot](../marks/box.md) of the weights (in kilograms) of Olympic athletes, faceted by height binned at a 10cm (0.1 meter) interval.
 
 :::plot defer https://observablehq.com/@observablehq/plot-olympians-box-plot
 ```js

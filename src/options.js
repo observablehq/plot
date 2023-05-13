@@ -1,5 +1,6 @@
+import {color, descending, quantile, range as rangei} from "d3";
 import {parse as isoParse} from "isoformat";
-import {color, descending, range as rangei, quantile} from "d3";
+import {defined} from "./defined.js";
 import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
@@ -37,6 +38,7 @@ function floater(f) {
   return (d, i) => coerceNumber(f(d, i));
 }
 
+export const singleton = [null]; // for data-less decoration marks, e.g. frame
 export const field = (name) => (d) => d[name];
 export const indexOf = {transform: range};
 export const identity = {transform: (d) => d};
@@ -269,6 +271,18 @@ export function mid(x1, x2) {
   };
 }
 
+// If the scale options declare an interval, applies it to the values V.
+export function maybeApplyInterval(V, scale) {
+  const t = maybeIntervalTransform(scale?.interval, scale?.type);
+  return t ? map(V, t) : V;
+}
+
+// Returns the equivalent scale transform for the specified interval option.
+export function maybeIntervalTransform(interval, type) {
+  const i = maybeInterval(interval, type);
+  return i && ((v) => (defined(v) ? i.floor(v) : v));
+}
+
 // If interval is not nullish, converts interval shorthand such as a number (for
 // multiples) or a time interval name (such as “day”) to a {floor, offset,
 // range} object similar to a D3 time interval.
@@ -436,8 +450,8 @@ export function isRound(value) {
   return /^\s*round\s*$/i.test(value);
 }
 
-export function maybeFrameAnchor(value = "middle") {
-  return keyword(value, "frameAnchor", [
+export function maybeAnchor(value, name) {
+  return maybeKeyword(value, name, [
     "middle",
     "top-left",
     "top",
@@ -448,6 +462,10 @@ export function maybeFrameAnchor(value = "middle") {
     "bottom-left",
     "left"
   ]);
+}
+
+export function maybeFrameAnchor(value = "middle") {
+  return maybeAnchor(value, "frameAnchor");
 }
 
 // Like a sort comparator, returns a positive value if the given array of values

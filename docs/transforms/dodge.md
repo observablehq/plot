@@ -233,7 +233,7 @@ To avoid repeating a channel definition, you can also specify the **sort** optio
 :::
 
 :::info
-Unlike a [force-directed beeswarm](https://observablehq.com/@harrystevens/force-directed-beeswarm), the dodge transform exactly preserves the input position dimension, resulting in a more accurate visualization. Also, the dodge transform tends to be faster than the iterative constraint relaxation used in the force-directed approach. We use Mikola Lysenko’s [interval-tree-1d library](https://github.com/mikolalysenko/interval-tree-1d) for fast intersection testing. For previous work on accurate beeswarms, see Yuri Vishnevsky’s [“Building a Better Beeswarm”](https://observablehq.com/@yurivish/building-a-better-beeswarm), James Trimble’s [accurate-beeswarm-plot](https://github.com/jtrim-ons/accurate-beeswarm-plot), and Franck Lebeau’s [d3-beeswarm](https://github.com/Kcnarf/d3-beeswarm).
+Unlike a [force-directed beeswarm](https://observablehq.com/@harrystevens/force-directed-beeswarm), the dodge transform exactly preserves the input position dimension, resulting in a more accurate visualization. Also, the dodge transform tends to be faster than the iterative constraint relaxation used in the force-directed approach. We use Mikola Lysenko’s [interval-tree-1d library](https://github.com/mikolalysenko/interval-tree-1d) for fast intersection testing.
 :::
 
 ## Dodge options

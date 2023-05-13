@@ -1,28 +1,19 @@
-# https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
+name: Test
 
 on:
   push:
     branches: [main]
-    paths-ignore: ['docs/**']
   pull_request:
     branches: [main]
-    paths-ignore: ['docs/**']
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
           cache: 'yarn'
       - run: yarn --frozen-lockfile
       - run: |
@@ -30,6 +21,8 @@ jobs:
           yarn run eslint src test --format=compact
       - run: yarn run prettier --check src test
       - run: yarn test:mocha
+      - run: yarn prepublishOnly
+      - run: yarn docs:build
       - uses: actions/upload-artifact@v3
         if: failure()
         with:

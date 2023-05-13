@@ -28,3 +28,51 @@ export async function penguinSpeciesCheysson() {
     ]
   });
 }
+
+export async function penguinSpeciesGradient() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      () => svg`<defs>
+        <linearGradient id="gradient" gradientTransform="rotate(90)">
+          <stop offset="5%" stop-color="purple" />
+          <stop offset="75%" stop-color="red" />
+          <stop offset="100%" stop-color="gold" />
+        </linearGradient>
+      </defs>`,
+      Plot.barY(penguins, Plot.groupX({y: "count"}, {x: "species", fill: "url(#gradient)"})),
+      Plot.ruleY([0])
+    ]
+  });
+}
+
+export async function penguinSpeciesGroup() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.barX(penguins, Plot.stackX(Plot.groupZ({x: "proportion"}, {fill: "species"}))),
+      Plot.text(penguins, Plot.stackX(Plot.groupZ({x: "proportion", text: "first"}, {z: "species", text: "species"}))),
+      Plot.ruleX([0, 1])
+    ]
+  });
+}
+
+export async function penguinSpeciesImageFilter() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.barY(
+        penguins,
+        Plot.groupX(
+          {y: "count"},
+          {
+            x: "species",
+            fill: "species",
+            imageFilter: "drop-shadow(3px 3px red) sepia(40%) drop-shadow(-3px -3px currentColor)"
+          }
+        )
+      ),
+      Plot.ruleY([0])
+    ]
+  });
+}

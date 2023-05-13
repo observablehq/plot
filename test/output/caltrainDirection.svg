@@ -13,11 +13,41 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="facet" transform="translate(0,0)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(0,0)">
       <text y="0.32em" transform="translate(40,31)">B</text>
     </g>
-    <g aria-label="vector" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <g text-anchor="end" transform="translate(0,24)">
+      <text y="0.32em" transform="translate(40,31)">L</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,48)">
+      <text y="0.32em" transform="translate(40,31)">N</text>
+    </g>
+  </g>
+  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+    <g fill="none" stroke="currentColor" transform="translate(0,48)">
+      <path transform="translate(68.61204013377926,42)" d="M0,0L0,6"></path>
+      <path transform="translate(155.90301003344482,42)" d="M0,0L0,6"></path>
+      <path transform="translate(243.19397993311034,42)" d="M0,0L0,6"></path>
+      <path transform="translate(330.48494983277595,42)" d="M0,0L0,6"></path>
+      <path transform="translate(417.7759197324415,42)" d="M0,0L0,6"></path>
+      <path transform="translate(505.066889632107,42)" d="M0,0L0,6"></path>
+      <path transform="translate(592.3578595317726,42)" d="M0,0L0,6"></path>
+    </g>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+    <g font-variant="tabular-nums" transform="translate(0,48)">
+      <text y="0.71em" transform="translate(68.61204013377926,42)">06 AM</text>
+      <text y="0.71em" transform="translate(155.90301003344482,42)">09 AM</text>
+      <text y="0.71em" transform="translate(243.19397993311034,42)">12 PM</text>
+      <text y="0.71em" transform="translate(330.48494983277595,42)">03 PM</text>
+      <text y="0.71em" transform="translate(417.7759197324415,42)">06 PM</text>
+      <text y="0.71em" transform="translate(505.066889632107,42)">09 PM</text>
+      <text y="0.71em" transform="translate(592.3578595317726,42)">12 AM</text>
+    </g>
+  </g>
+  <g aria-label="vector" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0,0)">
       <path transform="translate(71.03678929765886,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
       <path transform="translate(100.13377926421404,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
       <path transform="translate(129.23076923076923,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
@@ -35,12 +65,7 @@
       <path transform="translate(122.44147157190635,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
       <path transform="translate(151.53846153846155,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="brown"></path>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,24)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,31)">L</text>
-    </g>
-    <g aria-label="vector" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0,24)">
       <path transform="translate(127.29096989966555,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
       <path transform="translate(156.38795986622074,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
       <path transform="translate(389.1638795986622,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
@@ -76,30 +101,7 @@
       <path transform="translate(443.96321070234114,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
       <path transform="translate(96.2541806020067,31) rotate(180) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="peru"></path>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,48)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(40,31)">N</text>
-    </g>
-    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(68.61204013377926,42)" d="M0,0L0,6"></path>
-      <path transform="translate(155.90301003344482,42)" d="M0,0L0,6"></path>
-      <path transform="translate(243.19397993311034,42)" d="M0,0L0,6"></path>
-      <path transform="translate(330.48494983277595,42)" d="M0,0L0,6"></path>
-      <path transform="translate(417.7759197324415,42)" d="M0,0L0,6"></path>
-      <path transform="translate(505.066889632107,42)" d="M0,0L0,6"></path>
-      <path transform="translate(592.3578595317726,42)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(68.61204013377926,42)">06 AM</text>
-      <text y="0.71em" transform="translate(155.90301003344482,42)">09 AM</text>
-      <text y="0.71em" transform="translate(243.19397993311034,42)">12 PM</text>
-      <text y="0.71em" transform="translate(330.48494983277595,42)">03 PM</text>
-      <text y="0.71em" transform="translate(417.7759197324415,42)">06 PM</text>
-      <text y="0.71em" transform="translate(505.066889632107,42)">09 PM</text>
-      <text y="0.71em" transform="translate(592.3578595317726,42)">12 AM</text>
-    </g>
-    <g aria-label="vector" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0,48)">
       <path transform="translate(40,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
       <path transform="translate(476.4548494983278,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>
       <path transform="translate(505.55183946488296,31) rotate(0) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6" stroke="currentColor"></path>

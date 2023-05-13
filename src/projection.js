@@ -204,19 +204,7 @@ const reflectY = constant(
 
 // Applies a point-wise projection to the given paired x and y channels.
 // Note: mutates values!
-export function maybeProject(cx, cy, channels, values, context) {
-  const x = channels[cx] && channels[cx].scale === "x";
-  const y = channels[cy] && channels[cy].scale === "y";
-  if (x && y) {
-    project(cx, cy, values, context.projection);
-  } else if (x) {
-    throw new Error(`projection requires paired x and y channels; ${cx} is missing ${cy}`);
-  } else if (y) {
-    throw new Error(`projection requires paired x and y channels; ${cy} is missing ${cx}`);
-  }
-}
-
-function project(cx, cy, values, projection) {
+export function project(cx, cy, values, projection) {
   const x = values[cx];
   const y = values[cy];
   const n = x.length;
@@ -254,13 +242,13 @@ export function projectionAspectRatio(projection, marks) {
 
 // Extract the (possibly) scaled values for the x and y channels, and apply the
 // projection if any.
-export function applyPosition(channels, scales, context) {
+export function applyPosition(channels, scales, {projection}) {
   const {x, y} = channels;
   let position = {};
   if (x) position.x = x;
   if (y) position.y = y;
   position = valueObject(position, scales);
-  if (context.projection) maybeProject("x", "y", channels, position, context);
+  if (projection && x?.scale === "x" && y?.scale === "y") project("x", "y", position, projection);
   if (x) position.x = coerceNumbers(position.x);
   if (y) position.y = coerceNumbers(position.y);
   return position;
