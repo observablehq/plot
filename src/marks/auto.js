@@ -86,39 +86,39 @@ export function autoSpec(data, options) {
   let markImpl;
   switch (mark) {
     case "dot":
-      markImpl = "dot";
+      markImpl = dot;
       colorMode = "stroke";
       break;
     case "line":
-      markImpl = X && Y ? "line" : X ? "lineX" : "lineY"; // 1d line by index
+      markImpl = X && Y ? line : X ? lineX : lineY; // 1d line by index
       colorMode = "stroke";
       if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
       break;
     case "area":
-      markImpl = yZero ? "areaY" : xZero || (Y && isMonotonic(Y)) ? "areaX" : "areaY"; // favor areaY if unsure
+      markImpl = yZero ? areaY : xZero || (Y && isMonotonic(Y)) ? areaX : areaY; // favor areaY if unsure
       colorMode = "fill";
       if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
       break;
     case "rule":
-      markImpl = X ? "ruleX" : "ruleY";
+      markImpl = X ? ruleX : ruleY;
       colorMode = "stroke";
       break;
     case "bar":
       markImpl = yZero
         ? isOrdinalReduced(xReduce, X)
-          ? "barY"
-          : "rectY"
+          ? barY
+          : rectY
         : xZero
         ? isOrdinalReduced(yReduce, Y)
-          ? "barX"
-          : "rectX"
+          ? barX
+          : rectX
         : isOrdinalReduced(xReduce, X) && isOrdinalReduced(yReduce, Y)
-        ? "cell"
+        ? cell
         : isOrdinalReduced(xReduce, X)
-        ? "barY"
+        ? barY
         : isOrdinalReduced(yReduce, Y)
-        ? "barX"
-        : "rectY";
+        ? barX
+        : rectY;
       colorMode = "fill";
       break;
     default:
@@ -141,36 +141,36 @@ export function autoSpec(data, options) {
     throw new Error(`cannot reduce both x and y`); // for now at least
   } else if (yReduce != null) {
     transformOptions.y = yReduce;
-    transformImpl = isOrdinal(X) ? "groupX" : "binX";
+    transformImpl = isOrdinal(X) ? groupX : binX;
   } else if (xReduce != null) {
     transformOptions.x = xReduce;
-    transformImpl = isOrdinal(Y) ? "groupY" : "binY";
+    transformImpl = isOrdinal(Y) ? groupY : binY;
   } else if (colorReduce != null || sizeReduce != null) {
     if (X && Y) {
-      transformImpl = isOrdinal(X) && isOrdinal(Y) ? "group" : isOrdinal(X) ? "binY" : isOrdinal(Y) ? "binX" : "bin";
+      transformImpl = isOrdinal(X) && isOrdinal(Y) ? group : isOrdinal(X) ? binY : isOrdinal(Y) ? binX : bin;
     } else if (X) {
-      transformImpl = isOrdinal(X) ? "groupX" : "binX";
+      transformImpl = isOrdinal(X) ? groupX : binX;
     } else if (Y) {
-      transformImpl = isOrdinal(Y) ? "groupY" : "binY";
+      transformImpl = isOrdinal(Y) ? groupY : binY;
     }
   }
 
   // When using the bin transform, pass through additional options (e.g., thresholds).
-  if (transformImpl === "bin" || transformImpl === "binX") markOptions.x = {value: X, ...xOptions};
-  if (transformImpl === "bin" || transformImpl === "binY") markOptions.y = {value: Y, ...yOptions};
+  if (transformImpl === bin || transformImpl === binX) markOptions.x = {value: X, ...xOptions};
+  if (transformImpl === bin || transformImpl === binY) markOptions.y = {value: Y, ...yOptions};
 
   // If zero-ness is not specified, default based on whether the resolved mark
   // type will include a zero baseline.
   if (xZero === undefined)
     xZero =
       X &&
-      !(transformImpl === "bin" || transformImpl === "binX") &&
-      (markImpl === "barX" || markImpl === "areaX" || markImpl === "rectX" || markImpl === "ruleY");
+      !(transformImpl === bin || transformImpl === binX) &&
+      (markImpl === barX || markImpl === areaX || markImpl === rectX || markImpl === ruleY);
   if (yZero === undefined)
     yZero =
       Y &&
-      !(transformImpl === "bin" || transformImpl === "binY") &&
-      (markImpl === "barY" || markImpl === "areaY" || markImpl === "rectY" || markImpl === "ruleX");
+      !(transformImpl === bin || transformImpl === binY) &&
+      (markImpl === barY || markImpl === areaY || markImpl === rectY || markImpl === ruleX);
 
   return {
     fx: fx ?? null,
@@ -197,96 +197,27 @@ export function autoSpec(data, options) {
       reduce: sizeReduce ?? null
     },
     mark,
-    markImpl,
+    markImpl: implNames[markImpl],
     markOptions,
-    transformImpl,
+    transformImpl: implNames[transformImpl],
     transformOptions,
     colorMode
   };
 }
 
 export function auto(data, options) {
-  let {
+  const spec = autoSpec(data, options);
+  const {
     fx,
     fy,
     x: {zero: xZero},
     y: {zero: yZero},
-    markImpl,
     markOptions,
-    transformImpl,
     transformOptions,
     colorMode
-  } = autoSpec(data, options);
-
-  switch (markImpl) {
-    case "dot":
-      markImpl = dot;
-      break;
-    case "line":
-      markImpl = line;
-      break;
-    case "lineX":
-      markImpl = lineX;
-      break;
-    case "lineY":
-      markImpl = lineY;
-      break;
-    case "areaX":
-      markImpl = areaX;
-      break;
-    case "areaY":
-      markImpl = areaY;
-      break;
-    case "ruleX":
-      markImpl = ruleX;
-      break;
-    case "ruleY":
-      markImpl = ruleY;
-      break;
-    case "barX":
-      markImpl = barX;
-      break;
-    case "barY":
-      markImpl = barY;
-      break;
-    case "rectX":
-      markImpl = rectX;
-      break;
-    case "rectY":
-      markImpl = rectY;
-      break;
-    case "cell":
-      markImpl = cell;
-      break;
-    default:
-      throw new Error(`invalid mark implementation: ${markImpl}`);
-  }
-
-  switch (transformImpl) {
-    case "bin":
-      transformImpl = bin;
-      break;
-    case "binX":
-      transformImpl = binX;
-      break;
-    case "binY":
-      transformImpl = binY;
-      break;
-    case "group":
-      transformImpl = group;
-      break;
-    case "groupX":
-      transformImpl = groupX;
-      break;
-    case "groupY":
-      transformImpl = groupY;
-      break;
-    case undefined:
-      break;
-    default:
-      throw new Error(`invalid transform implementation: ${transformImpl}`);
-  }
-
+  } = spec;
+  const markImpl = impls[spec.markImpl];
+  const transformImpl = impls[spec.transformImpl];
   // In the case of filled marks (particularly bars and areas) the frame and
   // rules should come after the mark; in the case of stroked marks
   // (particularly dots and lines) they should come before the mark.
@@ -397,3 +328,33 @@ function isReducer(reduce) {
 function isHighCardinality(value) {
   return value ? new InternSet(value).size > value.length >> 1 : false;
 }
+
+const impls = {
+  dot,
+  line,
+  lineX,
+  lineY,
+  areaX,
+  areaY,
+  ruleX,
+  ruleY,
+  barX,
+  barY,
+  rectX,
+  rectY,
+  cell,
+  bin,
+  binX,
+  binY,
+  group,
+  groupX,
+  groupY
+};
+
+// Instead of returning the mark or transform implementation directly, we return
+// the implementation name to facilitate code compilation (“eject to explicit
+// marks”). An implementation-to-name mapping needs to live somewhere for
+// compilation, and by having it in Plot we can more easily introduce a new mark
+// or transform implementation in Plot.auto without having to synchronize a
+// downstream change in the compiler.
+const implNames = Object.fromEntries(Object.entries(impls).map(([name, impl]) => [impl, name]));
