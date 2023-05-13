@@ -3,9 +3,10 @@ import {getSource} from "../channel.js";
 import {create} from "../context.js";
 import {defined} from "../defined.js";
 import {formatDefault} from "../format.js";
+import {pointerPosition} from "../interactions/pointer.js";
 import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
-import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
 import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
@@ -92,12 +93,10 @@ export class Tip extends Mark {
     // unspecified, we fallback to the frame anchor. We also need to know the
     // facet offsets to detect when the tip would draw outside the plot, and
     // thus we need to change the orientation.
-    const {x: X, y: Y, x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
-    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const {x1: X1, y1: Y1, x2: X2, y2: Y2, x: X = X1 ?? X2, y: Y = Y1 ?? Y2} = channels;
     const ox = fx ? fx(index.fx) - marginLeft : 0;
     const oy = fy ? fy(index.fy) - marginTop : 0;
-    const px = X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : () => cx;
-    const py = Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : () => cy;
+    const [px, py] = pointerPosition(mark, channels, dimensions);
 
     // Resolve the text metric implementation. We may need an ellipsis for text
     // truncation, so we optimistically compute the ellipsis width.
@@ -142,7 +141,7 @@ export class Tip extends Mark {
     const g = create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this)
-      .call(applyTransform, this, {x: (X || X2) && x, y: (Y || Y2) && y})
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
         g
           .selectAll()
