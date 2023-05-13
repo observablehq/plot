@@ -374,4 +374,5 @@
     <line x1="305.81818181818187" x2="305.81818181818187" y1="0" y2="30"></line>
     <line x1="408.3636363636363" x2="408.3636363636363" y1="0" y2="30"></line>
   </g>
+  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

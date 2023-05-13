@@ -450,4 +450,9 @@
       <circle cx="80" cy="252" r="3" stroke="#f28e2c"></circle>
     </g>
   </g>
+  <g aria-label="tip" transform="translate(0.5,0.5)">
+    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,0)"></g>
+    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(200,0)"></g>
+    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(400,0)"></g>
+  </g>
 </svg>

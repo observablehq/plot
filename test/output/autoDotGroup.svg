@@ -46,4 +46,5 @@
     <circle cx="523" cy="32" r="3.0000000000000004"></circle>
     <circle cx="137" cy="32" r="2.7595986330234"></circle>
   </g>
+  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

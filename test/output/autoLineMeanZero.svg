@@ -62,4 +62,5 @@
   <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path d="M40,251.8L78.54,135.605L117.291,42.163L156.254,212.681L194.794,240.653L233.122,108.645L271.873,33.02L310.836,217.812L349.376,228.624L387.704,109.52L426.455,20L465.418,190.727L503.958,200.617L542.286,88.365L581.037,28.695L620,206.835"></path>
   </g>
+  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>
