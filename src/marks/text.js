@@ -161,20 +161,17 @@ function applyMultilineText(selection, mark, T, TL) {
   });
 }
 
-export function text(data, options = {}) {
-  let {x, y, ...remainingOptions} = options;
+export function text(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
-  return new Text(data, {...remainingOptions, x, y});
+  return new Text(data, {...options, x, y});
 }
 
-export function textX(data, options = {}) {
-  const {x = identity, ...remainingOptions} = options;
-  return new Text(data, maybeIntervalMidY({...remainingOptions, x}));
+export function textX(data, {x = identity, ...options} = {}) {
+  return new Text(data, maybeIntervalMidY({...options, x}));
 }
 
-export function textY(data, options = {}) {
-  const {y = identity, ...remainingOptions} = options;
-  return new Text(data, maybeIntervalMidX({...remainingOptions, y}));
+export function textY(data, {y = identity, ...options} = {}) {
+  return new Text(data, maybeIntervalMidX({...options, y}));
 }
 
 export function applyIndirectTextStyles(selection, mark, T) {

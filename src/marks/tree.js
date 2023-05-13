@@ -6,8 +6,9 @@ import {dot} from "./dot.js";
 import {link} from "./link.js";
 import {text} from "./text.js";
 
-export function tree(data, options = {}) {
-  let {
+export function tree(
+  data,
+  {
     fill,
     stroke,
     strokeWidth,
@@ -26,9 +27,10 @@ export function tree(data, options = {}) {
     title = "node:path",
     dx,
     dy,
-    ...remainingOptions
-  } = options;
-  if (dx === undefined) dx = maybeTreeAnchor(remainingOptions.treeAnchor).dx;
+    ...options
+  } = {}
+) {
+  if (dx === undefined) dx = maybeTreeAnchor(options.treeAnchor).dx;
   return marks(
     link(
       data,
@@ -43,12 +45,10 @@ export function tree(data, options = {}) {
         strokeMiterlimit,
         strokeDasharray,
         strokeDashoffset,
-        ...remainingOptions
+        ...options
       })
     ),
-    dotDot
-      ? dot(data, treeNode({fill: fill === undefined ? "node:internal" : fill, title, ...remainingOptions}))
-      : null,
+    dotDot ? dot(data, treeNode({fill: fill === undefined ? "node:internal" : fill, title, ...options})) : null,
     textText != null
       ? text(
           data,
@@ -59,7 +59,7 @@ export function tree(data, options = {}) {
             dx,
             dy,
             title,
-            ...remainingOptions
+            ...options
           })
         )
       : null

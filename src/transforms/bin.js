@@ -43,22 +43,22 @@ import {
 } from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
+// Group on {z, fill, stroke}, then optionally on y, then bin x.
 export function binX(outputs = {y: "count"}, options = {}) {
-  // Group on {z, fill, stroke}, then optionally on y, then bin x.
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = options;
   return binn(maybeBinValue(x, options, identity), null, null, y, outputs, maybeInsetX(options));
 }
 
+// Group on {z, fill, stroke}, then optionally on x, then bin y.
 export function binY(outputs = {x: "count"}, options = {}) {
-  // Group on {z, fill, stroke}, then optionally on x, then bin y.
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = options;
   return binn(null, maybeBinValue(y, options, identity), x, null, outputs, maybeInsetY(options));
 }
 
+// Group on {z, fill, stroke}, then bin on x and y.
 export function bin(outputs = {fill: "count"}, options = {}) {
-  // Group on {z, fill, stroke}, then bin on x and y.
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = maybeBinValueTuple(options);
   return binn(x, y, null, null, outputs, maybeInsetX(maybeInsetY(options)));
