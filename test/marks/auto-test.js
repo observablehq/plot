@@ -10,7 +10,20 @@ it("Plot.autoSpec makes a histogram from a quantitative dimension", () => {
     y: {value: null, reduce: "count", zero: true},
     color: {value: null, reduce: null},
     size: {value: null, reduce: null},
-    mark: "bar"
+    mark: "bar",
+    markImpl: "rectY",
+    markOptions: {
+      fx: undefined,
+      fy: undefined,
+      x: {value: Object.assign([1, 1, 38], {label: "value"})},
+      y: undefined,
+      fill: undefined,
+      z: undefined,
+      r: undefined
+    },
+    transformImpl: "binX",
+    transformOptions: {fill: undefined, r: undefined, y: "count"},
+    colorMode: "fill"
   });
 });
 
@@ -23,7 +36,20 @@ it("Plot.autoSpec makes a bar chart from an ordinal dimension", () => {
     y: {value: null, reduce: "count", zero: true},
     color: {value: null, reduce: null, color: "blue"},
     size: {value: null, reduce: null},
-    mark: "bar"
+    mark: "bar",
+    markImpl: "barY",
+    markOptions: {
+      fx: undefined,
+      fy: undefined,
+      x: Object.assign(["duck", "duck", "goose"], {label: "value"}),
+      y: undefined,
+      fill: "blue",
+      z: undefined,
+      r: undefined
+    },
+    transformImpl: "groupX",
+    transformOptions: {fill: undefined, r: undefined, y: "count"},
+    colorMode: "fill"
   });
 });
 
@@ -40,7 +66,20 @@ it("Plot.autoSpec makes a line from a monotonic dimension", () => {
     y: {value: "value", reduce: null, zero: false},
     color: {value: null, reduce: null},
     size: {value: null, reduce: null},
-    mark: "line"
+    mark: "line",
+    markImpl: "line",
+    markOptions: {
+      fx: undefined,
+      fy: undefined,
+      x: Object.assign([1, 2, 3], {label: "date"}),
+      y: Object.assign([1, 1, 38], {label: "value"}),
+      stroke: undefined,
+      z: undefined,
+      r: undefined
+    },
+    transformImpl: undefined,
+    transformOptions: {stroke: undefined, r: undefined},
+    colorMode: "stroke"
   });
 });
 
@@ -57,7 +96,20 @@ it("Plot.autoSpec makes a dot plot from two quantitative dimensions", () => {
     y: {value: "y", reduce: null, zero: false},
     color: {value: null, reduce: null},
     size: {value: null, reduce: null},
-    mark: "dot"
+    mark: "dot",
+    markImpl: "dot",
+    markOptions: {
+      fx: undefined,
+      fy: undefined,
+      x: Object.assign([0, 2, 1], {label: "x"}),
+      y: Object.assign([0, 3, 2], {label: "y"}),
+      stroke: undefined,
+      z: undefined,
+      r: undefined
+    },
+    transformImpl: undefined,
+    transformOptions: {stroke: undefined, r: undefined},
+    colorMode: "stroke"
   });
 });
 
@@ -77,6 +129,19 @@ it("Plot.autoSpec makes a faceted heatmap", () => {
     y: {value: "y", reduce: null, zero: false},
     color: {value: null, reduce: "count"},
     size: {value: null, reduce: null},
-    mark: "bar"
+    mark: "bar",
+    markImpl: "rectY",
+    markOptions: {
+      fx: undefined,
+      fy: "f",
+      x: {value: Object.assign([0, 2, 1, 4, 2, 4], {label: "x"})},
+      y: {value: Object.assign([0, 3, 2, 1, 6, 2], {label: "y"})},
+      fill: undefined,
+      z: undefined,
+      r: undefined
+    },
+    transformImpl: "bin",
+    transformOptions: {fill: "count", r: undefined},
+    colorMode: "fill"
   });
 });

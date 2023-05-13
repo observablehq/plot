@@ -13,11 +13,6 @@ import {rectX, rectY} from "./rect.js";
 import {ruleX, ruleY} from "./rule.js";
 
 export function autoSpec(data, options) {
-  const {x, y, fx, fy, color, size, mark} = autoImpl(data, options);
-  return {x, y, fx, fy, color, size, mark};
-}
-
-function autoImpl(data, options) {
   options = normalizeOptions(options);
 
   // Greedily materialize columns for type inference; we’ll need them anyway to
@@ -202,27 +197,27 @@ function autoImpl(data, options) {
       reduce: sizeReduce ?? null
     },
     mark,
-    markImpl,
+    markImpl: implNames[markImpl],
     markOptions,
-    transformImpl,
+    transformImpl: implNames[transformImpl],
     transformOptions,
     colorMode
   };
 }
 
 export function auto(data, options) {
+  const spec = autoSpec(data, options);
   const {
     fx,
     fy,
     x: {zero: xZero},
     y: {zero: yZero},
-    markImpl,
     markOptions,
-    transformImpl,
     transformOptions,
     colorMode
-  } = autoImpl(data, options);
-
+  } = spec;
+  const markImpl = impls[spec.markImpl];
+  const transformImpl = impls[spec.transformImpl];
   // In the case of filled marks (particularly bars and areas) the frame and
   // rules should come after the mark; in the case of stroked marks
   // (particularly dots and lines) they should come before the mark.
@@ -333,3 +328,33 @@ function isReducer(reduce) {
 function isHighCardinality(value) {
   return value ? new InternSet(value).size > value.length >> 1 : false;
 }
+
+const impls = {
+  dot,
+  line,
+  lineX,
+  lineY,
+  areaX,
+  areaY,
+  ruleX,
+  ruleY,
+  barX,
+  barY,
+  rectX,
+  rectY,
+  cell,
+  bin,
+  binX,
+  binY,
+  group,
+  groupX,
+  groupY
+};
+
+// Instead of returning the mark or transform implementation directly, we return
+// the implementation name to facilitate code compilation (“eject to explicit
+// marks”). An implementation-to-name mapping needs to live somewhere for
+// compilation, and by having it in Plot we can more easily introduce a new mark
+// or transform implementation in Plot.auto without having to synchronize a
+// downstream change in the compiler.
+const implNames = Object.fromEntries(Object.entries(impls).map(([name, impl]) => [impl, name]));
