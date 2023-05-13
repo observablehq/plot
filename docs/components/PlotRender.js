@@ -127,7 +127,7 @@ export default {
       ...this.options,
       className: "plot"
     };
-    if (this.defer) {
+    if (this.defer || typeof document !== "undefined") {
       const mounted = (el) => {
         disconnect(); // remove old listeners
         function observed() {
