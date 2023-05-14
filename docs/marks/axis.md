@@ -358,6 +358,7 @@ In addition to the [standard mark options](../features/marks.md), the axis mark 
 * **label** - a string to label the axis; defaults to the scale’s label, perhaps with an arrow
 * **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
+* **inset** - the label position inset in pixel; defaults to 0
 * **color** - the color of the ticks and labels (defaults to *currentColor*)
 * **textStroke** - the color of the stroke around tick labels (defaults to *none*)
 * **textStrokeOpacity** - the opacity of the stroke around tick labels
@@ -375,6 +376,8 @@ The axis mark’s default margins depend on its orientation (**anchor**) as foll
 * *left* - 20, 0, 20, 40
 
 For simplicity’s sake and for consistent layout across plots, axis margins are not automatically sized to make room for tick labels; instead, shorten your tick labels (for example using the *k* SI-prefix tick format, or setting a *scale*.transform to show thousands or millions, or setting the **textOverflow** option to *ellipsis* and the **lineWidth** option to clip long labels) or increase the margins as needed.
+
+While **labelOffset** offsets the axis label relative to the axis, **inset** moves it along the axis. A positive inset moves the label inwards if the **labelAnchor** is *top*, *right*, *bottom*, or *left*; if the label anchor is *center*, towards the right→ for horizontal axes, and towards the bottom↓ for vertical axes; a negative inset goes in the opposite direction.
 
 ## axisX(*data*, *options*)
 

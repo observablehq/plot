@@ -1,4 +1,5 @@
 import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
 
 export async function axisLabelX() {
   return Plot.plot({
@@ -63,5 +64,28 @@ export async function axisLabelHref() {
   return Plot.plot({
     x: {domain: "ABCDEF"},
     marks: [Plot.axisX({label: "Letter", href: (d) => `https://en.wikipedia.org/wiki/${d}`})]
+  });
+}
+
+export async function axisInset() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    marginTop: 75,
+    marks: [
+      Plot.text(["Penguins scatterplot\nby island"], {
+        frameAnchor: "top",
+        dy: -20,
+        fontSize: 30,
+        fontWeight: "bold",
+        lineAnchor: "bottom",
+        text: (d) => d
+      }),
+      Plot.axisY({inset: 55, labelAnchor: "top", label: "↑ flipper_length_mm"}),
+      Plot.dot(penguins, {
+        x: "culmen_length_mm",
+        y: "flipper_length_mm",
+        fill: "island"
+      })
+    ]
   });
 }
