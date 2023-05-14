@@ -132,7 +132,7 @@ Groups on the first channel of **z**, **fill**, or **stroke**, if any, and then 
 Plot.mapX("cumsum", {x: d3.randomNormal()})
 ```
 
-Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but ignores any of **x**, **x1**, and **x2** not present in *options*.
+Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but ignores any of **x**, **x1**, and **x2** not present in *options*. In addition, if none of **x**, **x1**, or **x2** are specified, then **x** defaults to [identity](../features/transforms.md#identity).
 
 ## mapY(*map*, *options*)
 
@@ -140,4 +140,4 @@ Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but ignores
 Plot.mapY("cumsum", {y: d3.randomNormal()})
 ```
 
-Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*.
+Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*. In addition, if none of **y**, **y1**, or **y2** are specified, then **y** defaults to [identity](../features/transforms.md#identity).

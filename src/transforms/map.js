@@ -1,19 +1,25 @@
 import {count, group, rank} from "d3";
-import {column, isObject, maybeInput, maybeZ, take, valueof} from "../options.js";
+import {column, identity, isObject, maybeInput, maybeZ, take, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
 export function mapX(mapper, options = {}) {
-  return map(
-    Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, mapper])),
-    options
-  );
+  let {x, x1, x2} = options;
+  if (x === undefined && x1 === undefined && x2 === undefined) options = {...options, x: (x = identity)};
+  const outputs = {};
+  if (x != null) outputs.x = mapper;
+  if (x1 != null) outputs.x1 = mapper;
+  if (x2 != null) outputs.x2 = mapper;
+  return map(outputs, options);
 }
 
 export function mapY(mapper, options = {}) {
-  return map(
-    Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, mapper])),
-    options
-  );
+  let {y, y1, y2} = options;
+  if (y === undefined && y1 === undefined && y2 === undefined) options = {...options, y: (y = identity)};
+  const outputs = {};
+  if (y != null) outputs.y = mapper;
+  if (y1 != null) outputs.y1 = mapper;
+  if (y2 != null) outputs.y2 = mapper;
+  return map(outputs, options);
 }
 
 export function map(outputs = {}, options = {}) {
