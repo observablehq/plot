@@ -125,15 +125,15 @@ export class Tip extends Mark {
         if (!defined(value) && channel.scale == null) continue;
         const color = channel.scale === "color" ? channels[key][i] : undefined;
         if (key === "x2" && "x1" in sources) {
-          yield [formatLabel(scales, channel) ?? "x", formatPair(sources.x1, channel, i)];
+          yield [formatLabel(scales, channel, "x"), formatPair(sources.x1, channel, i)];
         } else if (key === "y2" && "y1" in sources) {
-          yield [formatLabel(scales, channel) ?? "y", formatPair(sources.y1, channel, i)];
+          yield [formatLabel(scales, channel, "y"), formatPair(sources.y1, channel, i)];
         } else {
-          yield [formatLabel(scales, channel) ?? key, formatDefault(value), color];
+          yield [formatLabel(scales, channel, key), formatDefault(value), color];
         }
       }
-      if (index.fi != null && fx) yield [fx.label ?? "fx", formatFx(index.fx)];
-      if (index.fi != null && fy) yield [fy.label ?? "fy", formatFy(index.fy)];
+      if (index.fi != null && fx) yield [String(fx.label ?? "fx"), formatFx(index.fx)];
+      if (index.fi != null && fy) yield [String(fy.label ?? "fy"), formatFy(index.fy)];
     }
 
     // We don’t call applyChannelStyles because we only use the channels to
@@ -159,7 +159,10 @@ export class Tip extends Mark {
               this.setAttribute("fill-opacity", 1);
               this.setAttribute("stroke", "none");
               // iteratively render each channel value
+              const names = new Set();
               for (const [name, value, color] of format(sources, i)) {
+                if (name && names.has(name)) continue;
+                else names.add(name);
                 renderLine(that, name, value, color);
               }
             })
@@ -316,6 +319,6 @@ function formatPair(c1, c2, i) {
     : `${formatDefault(c1.value[i])}–${formatDefault(c2.value[i])}`;
 }
 
-function formatLabel(scales, c) {
-  return scales[c.scale]?.label ?? c?.label;
+function formatLabel(scales, c, defaultLabel) {
+  return String(scales[c.scale]?.label ?? c?.label ?? defaultLabel);
 }
