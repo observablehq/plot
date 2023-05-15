@@ -90,7 +90,18 @@ export function autoSpec(data, options) {
       colorMode = "stroke";
       break;
     case "line":
-      markImpl = X && Y ? line : X ? lineX : lineY; // 1d line by index
+      markImpl =
+        X && Y // same logic as area (see below), but default to line
+          ? yZero
+            ? lineY
+            : xZero || isMonotonic(Y)
+            ? lineX
+            : isMonotonic(X)
+            ? lineY
+            : line
+          : X // 1d line by index
+          ? lineX
+          : lineY;
       colorMode = "stroke";
       if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
       break;
