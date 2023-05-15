@@ -28,6 +28,10 @@
   background: none;
 }
 
+:root.dark [aria-label=tip] {
+  fill: var(--vp-c-bg-alt);
+}
+
 :root.dark marker[stroke="white"] {
   stroke: var(--vp-c-bg);
 }
