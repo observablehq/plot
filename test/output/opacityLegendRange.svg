@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAQElEQVQ4jWNkYGCoZ4AARihmwMNHFydWnlRzSRUnlibVH+TaQ6p7SA0vaoUHreKFVHdRyx+0jpfB4j5y0xMGDQAAngEBTE2LzQAAAABJRU5ErkJggg=="></image>
+  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAOElEQVQ4jWNkYGCoZ4AARihmwMNHFyeVJtZcUsVJtZ9Sf1CLJuQOdHlcfELmjMYLee4ZaHfQ3N0AAL4BATXN4EIAAAAASUVORK5CYII="></image>
   <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0.5,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line>

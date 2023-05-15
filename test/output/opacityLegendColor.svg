@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAABc0lEQVQ4jWWRQY7TUBBE3+s4njBiFrNAQlyDs3BJTsYGsUAaMon9i8X/ThyNV213dXW9ttwf+fGzAL6//qnzt1fff/8S4Mv0tQBeDue6fD55fXtyef7ry7/Z5dPR5Xx0Pb35/D65Ph0FmLnWejm4zpPr5expngS4shTAxFzterEdy3k5CNCmcmGt41ICLLQ6Tr1ui2ZaPDBVq8U0BSimSi22Vk6laasAK1VTrbZWpjZtq4z3Q1tv31uqDmkCRE1UUvE+B9CoytAVVbHXYgGEVEWjbr1EN20FN93m7fAslWCMCZaaNBm6LdN+H8aGY2eTaMRKjEhUlbSeKVhmZLBMNubh2/2JhpTyuHt4dC0jA2bLNeYAVIM1hm9sZHCLgXL4MXjFwvR/MBgGjV0bg/YIPUe63e22Dyx9rCQCdm3s34dH7ixsXKHn7w4j/7jDYHGwsGfptR2RsSejZpfhQw8Gy+6+3tmym9v79N6j74ce+xvstf8BdDvQfQSOmBsAAAAASUVORK5CYII="></image>
+  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAABbElEQVQ4jXWQS24UQRBE38vpHg8WXniBhLgGZ+GSnIwNYoFkxjPdFSyqej429Co7MzIyXsn1k2/fC+Dr8686fnn29ecPAT5NnwvgaXes08eD55cHl8ffPv3Zu3yYXY6z6+HFx9fJ9WEWYM+51tPOdT+5no4e9pMAZ5YCmNhXO59sc7lfdrapBFhYa162utU8lW3RTIutyrmVrRbTFKCYKrXYWjmVpq0CrFRNtdpamdq0rTL+d2299FuqdmlGTXpPUvG6B9CoStroVcU2tBZASFXsPmOW6Kat4KbbvB2epRKMMcFSkyZDl6ikbu9hbDhuNolGrMSIvGHpvhkZLDNqrU3HaISU0t9DdWTJYBBGBsyWa+wBfQVrBL+wXTKJgTIM3+a2hDFx7Omg6TNi0B6h50i3u7ztHUtfK4mAXRt7f3jkysLGFXr+7vBPFgcLdyxsvgrjTkbNTYZ3M7iwvNU6uP8/u/d9N+P2DW61fwF639N9+dGgcwAAAABJRU5ErkJggg=="></image>
   <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0.5,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line>
