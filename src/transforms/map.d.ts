@@ -2,9 +2,11 @@ import type {ChannelName, ChannelValue} from "../channel.js";
 import type {Transformed} from "./basic.js";
 
 /**
- * A shorthand functional map implementation: given an array of input channel
- * *values*, returns the corresponding array of mapped output channel values.
- * The returned array must have the same length as the given input.
+ * A shorthand functional map implementation: given an *index* and the
+ * corresponding input channel array —or if the function only takes one
+ * argument, an array of input channel *values*— returns the corresponding array
+ * of mapped output channel values. The returned array must have the same length
+ * as the given input index.
  */
 export type MapFunction<S = any, T = S> = ((index: number[], values: S[]) => T[]) | ((values: S[]) => T[]);
 
