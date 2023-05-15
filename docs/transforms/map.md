@@ -114,6 +114,7 @@ The following map methods are supported:
 * *rank* - the rank of each value in the sorted array
 * *quantile* - the rank, normalized between 0 and 1
 * a function to be passed an array of values, returning new values
+* a function to be passed an index and array of channel values, returning new values
 * an object that implements the *mapIndex* method
 
 If a function is used, it must return an array of the same length as the given input. If a *mapIndex* method is used, it is repeatedly passed the index for each series (an array of integers), the corresponding input channel’s array of values, and the output channel’s array of values; it must populate the slots specified by the index in the output array.
