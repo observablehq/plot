@@ -52,8 +52,10 @@ export type ReducerName =
   | ReducerPercentile;
 
 /**
- * A shorthand functional reducer implementation: given an array of input
- * channel *values*, returns the corresponding reduced output value.
+ * A shorthand functional reducer implementation: given an *index* and the
+ * corresponding input channel *values* array, returns the corresponding reduced
+ * output value. If the function only takes a single argument, it is instead
+ * passed a subset of values from the input channel.
  */
 export type ReducerFunction<S = any, T = S> = ((index: number[], values: S[]) => T) | ((values: S[]) => T);
 
