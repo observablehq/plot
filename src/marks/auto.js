@@ -91,10 +91,10 @@ export function autoSpec(data, options) {
       break;
     case "line":
       markImpl =
-        X && Y // same logic as area (see below), but default to line
-          ? yZero || isMonotonic(X)
+        (X && Y) || xReduce || yReduce // same logic as area (see below), but default to line
+          ? yZero || yReduce || (X && isMonotonic(X))
             ? lineY
-            : xZero || isMonotonic(Y)
+            : xZero || xReduce || (Y && isMonotonic(Y))
             ? lineX
             : line
           : X // 1d line by index
@@ -104,7 +104,7 @@ export function autoSpec(data, options) {
       if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
       break;
     case "area":
-      markImpl = yZero ? areaY : xZero || (Y && isMonotonic(Y)) ? areaX : areaY; // favor areaY if unsure
+      markImpl = !(yZero || yReduce) && (xZero || xReduce || (Y && isMonotonic(Y))) ? areaX : areaY; // favor areaY if unsure
       colorMode = "fill";
       if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
       break;
