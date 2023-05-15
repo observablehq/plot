@@ -139,6 +139,21 @@ export function slice(values, type = Array) {
   return values instanceof type ? values.slice() : type.from(values);
 }
 
+// Returns true if any of x, x1, or x2 is not (strictly) undefined.
+export function hasX({x, x1, x2}) {
+  return x !== undefined || x1 !== undefined || x2 !== undefined;
+}
+
+// Returns true if any of y, y1, or y2 is not (strictly) undefined.
+export function hasY({y, y1, y2}) {
+  return y !== undefined || y1 !== undefined || y2 !== undefined;
+}
+
+// Returns true if has x or y, or if interval is not (strictly) undefined.
+export function hasXY(options) {
+  return hasX(options) || hasY(options) || options.interval !== undefined;
+}
+
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
 export function isObject(option) {
   return option?.toString === objectToString;
