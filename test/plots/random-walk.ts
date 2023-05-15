@@ -16,3 +16,15 @@ export async function randomWalkCustomMap2() {
   const cumsum = (V) => ((sum) => Float64Array.from(V, (v) => (sum += v)))(0);
   return Plot.lineY({length: 500}, Plot.mapY(cumsum, {y: random()})).plot();
 }
+
+export async function randomWalkCustomMap3() {
+  const cumsum = {
+    mapIndex(I, S, T) {
+      let sum = 0;
+      for (const i of I) {
+        T[i] = sum += S[i];
+      }
+    }
+  };
+  return Plot.lineY({length: 500}, Plot.mapY(cumsum, {y: random()})).plot();
+}
