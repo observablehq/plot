@@ -49,3 +49,19 @@ export async function aaplCloseGridIterable() {
   const AAPL = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(AAPL, {x: "Date", y: "Close"}).plot({y: {grid: [100, 120, 140]}});
 }
+
+export async function aaplCloseNormalize() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  const x = new Date("2014-01-01");
+  const X = Plot.valueof(aapl, "Date");
+  return Plot.plot({
+    y: {type: "log", grid: true, tickFormat: ".1f"},
+    marks: [
+      Plot.ruleY([1]),
+      Plot.lineY(
+        aapl,
+        Plot.normalizeY((I, Y) => Y[I.find((i) => X[i] >= x)], {x: X, y: "Close"})
+      )
+    ]
+  });
+}

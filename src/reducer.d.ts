@@ -55,7 +55,7 @@ export type ReducerName =
  * A shorthand functional reducer implementation: given an array of input
  * channel *values*, returns the corresponding reduced output value.
  */
-export type ReducerFunction<S = any, T = S> = (values: S[]) => T;
+export type ReducerFunction<S = any, T = S> = ((index: number[], values: S[]) => T) | ((values: S[]) => T);
 
 /** A reducer implementation. */
 export interface ReducerImplementation<S = any, T = S> {

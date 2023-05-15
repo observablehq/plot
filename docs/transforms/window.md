@@ -181,7 +181,7 @@ The following named reducers are supported:
 * *first* - the first value
 * *last* - the last value
 
-A reducer may also be specified as a function to be passed an array of **k** values.
+A reducer may also be specified as a function to be passed an index of size **k** and the corresponding input channel array; or if the function only takes one argument, an array of **k** values.
 
 ## window(*k*)
 

@@ -1,6 +1,6 @@
 import {extent, deviation, max, mean, median, min, sum} from "d3";
 import {defined} from "../defined.js";
-import {percentile, take} from "../options.js";
+import {percentile, taker} from "../options.js";
 import {mapX, mapY} from "./map.js";
 
 export function normalizeX(basis, options) {
@@ -15,7 +15,7 @@ export function normalizeY(basis, options) {
 
 export function normalize(basis) {
   if (basis === undefined) return normalizeFirst;
-  if (typeof basis === "function") return normalizeBasis((I, S) => basis(take(S, I)));
+  if (typeof basis === "function") return normalizeBasis(taker(basis));
   if (/^p\d{2}$/i.test(basis)) return normalizeAccessor(percentile(basis));
   switch (`${basis}`.toLowerCase()) {
     case "deviation":

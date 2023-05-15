@@ -1,4 +1,4 @@
-import type {ReducerPercentile} from "../reducer.js";
+import type {ReducerFunction, ReducerPercentile} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 import type {Map} from "./map.js";
 
@@ -32,7 +32,7 @@ export type NormalizeBasisName =
  * A functional basis implementation: given an array of input channel *values*
  * for the current series, returns the corresponding basis number (divisor).
  */
-export type NormalizeBasisFunction<T = any> = (values: T[]) => number;
+export type NormalizeBasisFunction<T = any> = ReducerFunction<T, number>;
 
 /**
  * How to normalize series values; one of:
