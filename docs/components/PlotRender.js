@@ -61,10 +61,10 @@ class Element {
     this.removeAttribute(name);
   }
   addEventListener() {
-    // ignored; client-side hydration uses real DOM
+    // ignored; interaction needs real DOM
   }
   removeEventListener() {
-    // ignored; client-side hydration uses real DOM
+    // ignored; interaction needs real DOM
   }
   appendChild(child) {
     this.children.push(child);
