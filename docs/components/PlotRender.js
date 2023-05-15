@@ -116,6 +116,16 @@ class TextNode {
   }
 }
 
+// Converts the real DOM to virtual DOM (for client-side hydration).
+function toHyperScript(node) {
+  if (node.nodeType === 3) return node.nodeValue; // TextNode
+  const props = {};
+  for (const name of node.getAttributeNames()) props[name] = node.getAttribute(name);
+  const children = [];
+  for (let child = node.firstChild; child; child = child.nextSibling) children.push(toHyperScript(child));
+  return h(node.tagName, props, children);
+}
+
 export default {
   props: {
     options: Object,
@@ -197,6 +207,11 @@ export default {
         ]
       );
     }
-    return Plot[method]({...options, document: new Document()}).toHyperScript();
+    if (typeof document !== "undefined") {
+      const plot = Plot[method](options);
+      const replace = (el) => el.firstChild.replaceWith(plot);
+      return withDirectives(h("span", [toHyperScript(plot)]), [[{mounted: replace, updated: replace}]]);
+    }
+    return h("span", [Plot[method]({...options, document: new Document()}).toHyperScript()]);
   }
 };

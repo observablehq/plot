@@ -19,7 +19,7 @@ onMounted(() => {
 
 The magic ✨ **auto mark** automatically selects a mark type that best represents the given dimensions of the data according to some simple heuristics. The auto mark—which powers [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell)—is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. For example, two quantitative dimensions make a scatterplot:
 
-:::plot defer https://observablehq.com/@observablehq/plot-auto-mark-scatterplot
+:::plot https://observablehq.com/@observablehq/plot-auto-mark-scatterplot
 ```js
 Plot.auto(penguins, {x: "body_mass_g", y: "flipper_length_mm"}).plot()
 ```
@@ -36,7 +36,7 @@ Because its heuristics are likely to evolve, they are not explicitly documented;
 
 A monotonically increasing dimension (here *Date*, as the data is ordered chronologically), paired with a numeric column (*Close*), makes a line chart:
 
-:::plot defer https://observablehq.com/@observablehq/plot-auto-mark-line-chart
+:::plot https://observablehq.com/@observablehq/plot-auto-mark-line-chart
 ```js
 Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
 ```
@@ -50,7 +50,7 @@ Plot.auto(olympians, {x: "weight"}).plot()
 ```
 :::
 
-:::plot defer https://observablehq.com/@observablehq/plot-auto-mark-ordinal-histogram
+:::plot https://observablehq.com/@observablehq/plot-auto-mark-ordinal-histogram
 ```js
 Plot.auto(penguins, {x: "island"}).plot()
 ```
@@ -60,7 +60,7 @@ This is easier than deciding whether to use bin and rect, or group and bar: the 
 
 If you’d like to explicitly avoid grouping the data, you can opt out of the reducer, and get a one-dimensional plot:
 
-:::plot defer https://observablehq.com/@observablehq/plot-auto-mark-barcode
+:::plot https://observablehq.com/@observablehq/plot-auto-mark-barcode
 ```js
 Plot.auto(penguins, {x: "body_mass_g", y: {reduce: null}}).plot()
 ```
@@ -92,7 +92,7 @@ Plot.auto(olympians, {x: "weight", y: "sex", color: "count"}).plot()
 
 Similarly, with explicit marks and transforms, changing a vertical histogram to a horizontal histogram involves switching [rectY](./rect.md#recty-data-options) to [rectX](./rect.md#rectx-data-options), [binX](../transforms/bin.md#binx-outputs-options) to [binY](../transforms/bin.md#biny-outputs-options), **x** to **y**, and **y** to **x**. With the auto mark, just specify **y** instead of **x**:
 
-:::plot defer https://observablehq.com/@observablehq/plot-auto-mark-horizontal-histogram
+:::plot https://observablehq.com/@observablehq/plot-auto-mark-horizontal-histogram
 ```js
 Plot.auto(penguins, {y: "island"}).plot()
 ```
@@ -100,13 +100,13 @@ Plot.auto(penguins, {y: "island"}).plot()
 
 For the sake of seamless switching, the auto mark has just one color channel, which it assigns to either **fill** or **stroke** depending on the mark. We can see that clearly by overriding a line chart with the **mark** option to make an area chart:
 
-:::plot defer https://observablehq.com/@observablehq/plot-auto-mark-color-channel
+:::plot https://observablehq.com/@observablehq/plot-auto-mark-color-channel
 ```js
 Plot.auto(industries, {x: "date", y: "unemployed", color: "industry"}).plot()
 ```
 :::
 
-:::plot defer
+:::plot
 ```js
 Plot.auto(industries, {x: "date", y: "unemployed", color: "industry", mark: "area"}).plot()
 ```
@@ -126,7 +126,7 @@ Plot
 
 You can similarly pass a **zero** option to indicate that zero is meaningful for either **x** or **y**. This adds a corresponding rule to the returned mark.
 
-:::plot defer https://observablehq.com/@observablehq/plot-auto-mark-zero-option
+:::plot https://observablehq.com/@observablehq/plot-auto-mark-zero-option
 ```js
 Plot.auto(industries, {x: "date", y: {value: "unemployed", zero: true}, color: "industry"}).plot()
 ```
@@ -134,7 +134,7 @@ Plot.auto(industries, {x: "date", y: {value: "unemployed", zero: true}, color: "
 
 The auto mark has a **size** channel, which (currently) always results in a dot. For now, it’s an alias for the dot’s **r** channel; in the future it will also represent a vector’s **length** channel.
 
-:::plot defer https://observablehq.com/@observablehq/plot-auto-mark-size-channel
+:::plot https://observablehq.com/@observablehq/plot-auto-mark-size-channel
 ```js
 Plot.auto(aapl, {x: "Date", y: "Close", size: "Volume"}).plot()
 ```
