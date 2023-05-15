@@ -49,3 +49,31 @@ export async function aaplCloseGridIterable() {
   const AAPL = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(AAPL, {x: "Date", y: "Close"}).plot({y: {grid: [100, 120, 140]}});
 }
+
+export async function aaplCloseNormalize() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    y: {type: "log", grid: true, tickFormat: ".1f"},
+    marks: [
+      Plot.ruleY([1]),
+      Plot.lineY(
+        aapl,
+        ((X) => Plot.normalizeY(find(X, new Date("2014-01-01")), {x: X, y: "Close"}))(Plot.valueof(aapl, "Date"))
+      )
+    ]
+  });
+}
+
+// Given an array of values X, and a search value x, returns a normalize basis
+// method that finds the index of the search value x, and returns the
+// corresponding value in Y.
+function find(X, x) {
+  return (I, Y) => {
+    for (const i of I) {
+      if (X[i] >= x) {
+        return Y[i];
+      }
+    }
+    return Y[I[I.length - 1]];
+  };
+}

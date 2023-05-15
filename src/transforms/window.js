@@ -1,6 +1,6 @@
 import {deviation, max, min, median, mode, variance} from "d3";
 import {defined} from "../defined.js";
-import {percentile, take} from "../options.js";
+import {percentile, taker} from "../options.js";
 import {warn} from "../warnings.js";
 import {mapX, mapY} from "./map.js";
 
@@ -51,24 +51,24 @@ function maybeShift(shift) {
 
 function maybeReduce(reduce = "mean") {
   if (typeof reduce === "string") {
-    if (/^p\d{2}$/i.test(reduce)) return reduceNumbers(percentile(reduce));
+    if (/^p\d{2}$/i.test(reduce)) return reduceAccessor(percentile(reduce));
     switch (reduce.toLowerCase()) {
       case "deviation":
-        return reduceNumbers(deviation);
+        return reduceAccessor(deviation);
       case "max":
-        return reduceArray(max);
+        return reduceArray((I, V) => max(I, (i) => V[i]));
       case "mean":
         return reduceMean;
       case "median":
-        return reduceNumbers(median);
+        return reduceAccessor(median);
       case "min":
-        return reduceArray(min);
+        return reduceArray((I, V) => min(I, (i) => V[i]));
       case "mode":
-        return reduceArray(mode);
+        return reduceArray((I, V) => mode(I, (i) => V[i]));
       case "sum":
         return reduceSum;
       case "variance":
-        return reduceNumbers(variance);
+        return reduceAccessor(variance);
       case "difference":
         return reduceDifference;
       case "ratio":
@@ -80,7 +80,7 @@ function maybeReduce(reduce = "mean") {
     }
   }
   if (typeof reduce !== "function") throw new Error(`invalid reduce: ${reduce}`);
-  return reduceArray(reduce);
+  return reduceArray(taker(reduce));
 }
 
 function slice(I, i, j) {
@@ -91,29 +91,29 @@ function slice(I, i, j) {
 // function f to handle that itself (e.g., by filtering as needed). The D3
 // reducers (e.g., min, max, mean, median) do, and it’s faster to avoid
 // redundant filtering.
-function reduceNumbers(f) {
+function reduceAccessor(f) {
   return (k, s, strict) =>
     strict
       ? {
           mapIndex(I, S, T) {
-            const C = Float64Array.from(I, (i) => (S[i] === null ? NaN : S[i]));
+            const s = (i) => (S[i] == null ? NaN : +S[i]);
             let nans = 0;
-            for (let i = 0; i < k - 1; ++i) if (isNaN(C[i])) ++nans;
+            for (let i = 0; i < k - 1; ++i) if (isNaN(s(i))) ++nans;
             for (let i = 0, n = I.length - k + 1; i < n; ++i) {
-              if (isNaN(C[i + k - 1])) ++nans;
-              T[I[i + s]] = nans === 0 ? f(C.subarray(i, i + k)) : NaN;
-              if (isNaN(C[i])) --nans;
+              if (isNaN(s(i + k - 1))) ++nans;
+              T[I[i + s]] = nans === 0 ? f(slice(I, i, i + k), s) : NaN;
+              if (isNaN(s(i))) --nans;
             }
           }
         }
       : {
           mapIndex(I, S, T) {
-            const C = Float64Array.from(I, (i) => (S[i] === null ? NaN : S[i]));
+            const s = (i) => (S[i] == null ? NaN : +S[i]);
             for (let i = -s; i < 0; ++i) {
-              T[I[i + s]] = f(C.subarray(0, i + k));
+              T[I[i + s]] = f(slice(I, 0, i + k), s);
             }
             for (let i = 0, n = I.length - s; i < n; ++i) {
-              T[I[i + s]] = f(C.subarray(i, i + k));
+              T[I[i + s]] = f(slice(I, i, i + k), s);
             }
           }
         };
@@ -128,7 +128,7 @@ function reduceArray(f) {
             for (let i = 0; i < k - 1; ++i) count += defined(S[I[i]]);
             for (let i = 0, n = I.length - k + 1; i < n; ++i) {
               count += defined(S[I[i + k - 1]]);
-              if (count === k) T[I[i + s]] = f(take(S, slice(I, i, i + k)));
+              if (count === k) T[I[i + s]] = f(slice(I, i, i + k), S);
               count -= defined(S[I[i]]);
             }
           }
@@ -136,10 +136,10 @@ function reduceArray(f) {
       : {
           mapIndex(I, S, T) {
             for (let i = -s; i < 0; ++i) {
-              T[I[i + s]] = f(take(S, slice(I, 0, i + k)));
+              T[I[i + s]] = f(slice(I, 0, i + k), S);
             }
             for (let i = 0, n = I.length - s; i < n; ++i) {
-              T[I[i + s]] = f(take(S, slice(I, i, i + k)));
+              T[I[i + s]] = f(slice(I, i, i + k), S);
             }
           }
         };

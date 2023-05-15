@@ -211,6 +211,11 @@ export function take(values, index) {
   return map(index, (i) => values[i]);
 }
 
+// If f does not take exactly one argument, wraps it in a function that uses take.
+export function taker(f) {
+  return f.length === 1 ? (index, values) => f(take(values, index)) : f;
+}
+
 // Based on InternMap (d3.group).
 export function keyof(value) {
   return value !== null && typeof value === "object" ? value.valueOf() : value;

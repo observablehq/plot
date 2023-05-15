@@ -120,6 +120,7 @@ The **basis** option specifies how to normalize the series values; it is one of:
 * *extent* - the minimum is mapped to zero, and the maximum to one
 * *deviation* - subtract the mean, then divide by the standard deviation
 * a function to be passed an array of values, returning the desired basis
+* a function to be passed an index and channel value array, returning the desired basis
 
 ## normalize(*basis*)
 
