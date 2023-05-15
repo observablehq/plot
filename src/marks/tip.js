@@ -14,6 +14,7 @@ import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
 const defaults = {
   ariaLabel: "tip",
   fill: "white",
+  textFill: "#333",
   stroke: "currentColor"
 };
 
@@ -155,7 +156,7 @@ export class Tip extends Mark {
             g.append("text").each(function (i) {
               const that = select(this);
               // prevent style inheritance (from path)
-              this.setAttribute("fill", "currentColor");
+              this.setAttribute("fill", defaults.textFill);
               this.setAttribute("fill-opacity", 1);
               this.setAttribute("stroke", "none");
               // iteratively render each channel value
