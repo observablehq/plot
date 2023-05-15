@@ -60,6 +60,12 @@ class Element {
   removeAttributeNS(namespace, name) {
     this.removeAttribute(name);
   }
+  addEventListener() {
+    // ignored; client-side hydration uses real DOM
+  }
+  removeEventListener() {
+    // ignored; client-side hydration uses real DOM
+  }
   appendChild(child) {
     this.children.push(child);
     child.parentNode = this;
@@ -127,7 +133,10 @@ export default {
       ...this.options,
       className: "plot"
     };
-    if (this.defer) { // || typeof document !== "undefined") {
+    // During client-side hydration, we use the real DOM if available; this
+    // causes hydration errors (because I can’t figure out how to silence Vue),
+    // but we need the real DOM in order to manipulate it during interaction.
+    if (this.defer || typeof document !== "undefined") {
       const mounted = (el) => {
         disconnect(); // remove old listeners
         function observed() {
@@ -191,7 +200,6 @@ export default {
         ]
       );
     }
-    options.document = new Document();
-    return Plot[method](options).toHyperScript();
+    return h("span", [Plot[method]({...options, document: new Document()}).toHyperScript()]);
   }
 };
