@@ -8,7 +8,9 @@ import type {Transformed} from "./basic.js";
  * as the given input index. If the function only takes a single argument, it is
  * instead passed a subset of values from the input channel.
  */
-export type MapFunction<S = any, T = S> = ((index: number[], values: S[]) => T[]) | ((values: S[]) => T[]);
+export type MapFunction<S = any, T = S> =
+  | ((index: number[], values: S[]) => ArrayLike<T>)
+  | ((values: S[]) => ArrayLike<T>);
 
 /**
  * The built-in map implementations; one of:
