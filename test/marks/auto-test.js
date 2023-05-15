@@ -53,9 +53,39 @@ it("Plot.autoSpec makes a bar chart from an ordinal dimension", () => {
   });
 });
 
-it("Plot.autoSpec makes a line from a monotonic dimension", () => {
+it("Plot.autoSpec makes a lineY from monotonic x", () => {
   const data = [
     {date: 1, value: 1},
+    {date: 2, value: 0},
+    {date: 3, value: 38}
+  ];
+  assert.deepStrictEqual(Plot.autoSpec(data, {x: "date", y: "value"}), {
+    fx: null,
+    fy: null,
+    x: {value: "date", reduce: null, zero: false},
+    y: {value: "value", reduce: null, zero: false},
+    color: {value: null, reduce: null},
+    size: {value: null, reduce: null},
+    mark: "line",
+    markImpl: "lineY",
+    markOptions: {
+      fx: undefined,
+      fy: undefined,
+      x: Object.assign([1, 2, 3], {label: "date"}),
+      y: Object.assign([1, 0, 38], {label: "value"}),
+      stroke: undefined,
+      z: undefined,
+      r: undefined
+    },
+    transformImpl: undefined,
+    transformOptions: {stroke: undefined, r: undefined},
+    colorMode: "stroke"
+  });
+});
+
+it("Plot.autoSpec makes a lineY from monotonic x and monotonic y", () => {
+  const data = [
+    {date: 1, value: 0},
     {date: 2, value: 1},
     {date: 3, value: 38}
   ];
@@ -67,12 +97,72 @@ it("Plot.autoSpec makes a line from a monotonic dimension", () => {
     color: {value: null, reduce: null},
     size: {value: null, reduce: null},
     mark: "line",
-    markImpl: "line",
+    markImpl: "lineY",
     markOptions: {
       fx: undefined,
       fy: undefined,
       x: Object.assign([1, 2, 3], {label: "date"}),
-      y: Object.assign([1, 1, 38], {label: "value"}),
+      y: Object.assign([0, 1, 38], {label: "value"}),
+      stroke: undefined,
+      z: undefined,
+      r: undefined
+    },
+    transformImpl: undefined,
+    transformOptions: {stroke: undefined, r: undefined},
+    colorMode: "stroke"
+  });
+});
+
+it("Plot.autoSpec makes a lineX from monotonic y", () => {
+  const data = [
+    {date: 1, value: 1},
+    {date: 2, value: 0},
+    {date: 3, value: 38}
+  ];
+  assert.deepStrictEqual(Plot.autoSpec(data, {x: "value", y: "date"}), {
+    fx: null,
+    fy: null,
+    x: {value: "value", reduce: null, zero: false},
+    y: {value: "date", reduce: null, zero: false},
+    color: {value: null, reduce: null},
+    size: {value: null, reduce: null},
+    mark: "line",
+    markImpl: "lineX",
+    markOptions: {
+      fx: undefined,
+      fy: undefined,
+      x: Object.assign([1, 0, 38], {label: "value"}),
+      y: Object.assign([1, 2, 3], {label: "date"}),
+      stroke: undefined,
+      z: undefined,
+      r: undefined
+    },
+    transformImpl: undefined,
+    transformOptions: {stroke: undefined, r: undefined},
+    colorMode: "stroke"
+  });
+});
+
+it("Plot.autoSpec makes a line from non-monotonic x and non-monotonic y", () => {
+  const data = [
+    {date: 2, value: 1},
+    {date: 1, value: 0},
+    {date: 3, value: 38}
+  ];
+  assert.deepStrictEqual(Plot.autoSpec(data, {x: "date", y: "value", mark: "line"}), {
+    fx: null,
+    fy: null,
+    x: {value: "date", reduce: null, zero: false},
+    y: {value: "value", reduce: null, zero: false},
+    color: {value: null, reduce: null},
+    size: {value: null, reduce: null},
+    mark: "line",
+    markImpl: "line",
+    markOptions: {
+      fx: undefined,
+      fy: undefined,
+      x: Object.assign([2, 1, 3], {label: "date"}),
+      y: Object.assign([1, 0, 38], {label: "value"}),
       stroke: undefined,
       z: undefined,
       r: undefined

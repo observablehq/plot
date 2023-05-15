@@ -92,12 +92,10 @@ export function autoSpec(data, options) {
     case "line":
       markImpl =
         X && Y // same logic as area (see below), but default to line
-          ? yZero
+          ? yZero || isMonotonic(X)
             ? lineY
             : xZero || isMonotonic(Y)
             ? lineX
-            : isMonotonic(X)
-            ? lineY
             : line
           : X // 1d line by index
           ? lineX
