@@ -6,7 +6,7 @@ import type {Transformed} from "./basic.js";
  * *values*, returns the corresponding array of mapped output channel values.
  * The returned array must have the same length as the given input.
  */
-export type MapFunction<S = any, T = S> = (values: S[]) => T[];
+export type MapFunction<S = any, T = S> = ((index: number[], values: S[]) => T[]) | ((values: S[]) => T[]);
 
 /**
  * The built-in map implementations; one of:
