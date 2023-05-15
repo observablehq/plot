@@ -74,8 +74,7 @@
   },
   "dependencies": {
     "d3": "^7.8.0",
-    "interval-tree-1d": "^1.0.0",
-    "isoformat": "^0.2.0"
+    "interval-tree-1d": "^1.0.0"
   },
   "engines": {
     "node": ">=12"

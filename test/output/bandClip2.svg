@@ -72,7 +72,7 @@
     <path transform="translate(525,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(43.5,9.5)">
-    <text y="0.71em" transform="translate(50,370)">2022-12-01</text>
+    <text y="0.71em" transform="translate(50,370)">2022-12</text>
     <text y="0.71em" transform="translate(145,370)">2022-12-02</text>
     <text y="0.71em" transform="translate(240,370)">2022-12-03</text>
     <text y="0.71em" transform="translate(335,370)">2022-12-04</text>

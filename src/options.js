@@ -1,6 +1,6 @@
 import {color, descending, quantile, range as rangei} from "d3";
-import {parse as isoParse} from "isoformat";
 import {defined} from "./defined.js";
+import {parseIsoDate} from "./format.js";
 import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
@@ -86,7 +86,7 @@ export function coerceDate(x) {
   return x instanceof Date && !isNaN(x)
     ? x
     : typeof x === "string"
-    ? isoParse(x)
+    ? parseIsoDate(x)
     : x == null || isNaN((x = +x))
     ? undefined
     : new Date(x);
@@ -401,7 +401,7 @@ export function isTemporal(values) {
 export function isTemporalString(values) {
   for (const value of values) {
     if (value == null) continue;
-    return typeof value === "string" && isNaN(value) && isoParse(value);
+    return typeof value === "string" && isNaN(value) && parseIsoDate(value);
   }
 }
 
