@@ -3,10 +3,10 @@ import type {Transformed} from "./basic.js";
 
 /**
  * A shorthand functional map implementation: given an *index* and the
- * corresponding input channel array —or if the function only takes one
- * argument, an array of input channel *values*— returns the corresponding array
+ * corresponding input channel *values* array, returns the corresponding array
  * of mapped output channel values. The returned array must have the same length
- * as the given input index.
+ * as the given input index. If the function only takes a single argument, it is
+ * instead passed a subset of values from the input channel.
  */
 export type MapFunction<S = any, T = S> = ((index: number[], values: S[]) => T[]) | ((values: S[]) => T[]);
 
