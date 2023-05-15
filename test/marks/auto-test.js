@@ -77,7 +77,8 @@ it("Plot.autoSpec makes a lineY from monotonic x", () => {
       y: Object.assign([1, 0, 38], {label: "value"}),
       stroke: undefined,
       z: undefined,
-      r: undefined
+      r: undefined,
+      tip: true
     },
     transformImpl: undefined,
     transformOptions: {stroke: undefined, r: undefined},
@@ -107,7 +108,8 @@ it("Plot.autoSpec makes a lineY from monotonic x and monotonic y", () => {
       y: Object.assign([0, 1, 38], {label: "value"}),
       stroke: undefined,
       z: undefined,
-      r: undefined
+      r: undefined,
+      tip: true
     },
     transformImpl: undefined,
     transformOptions: {stroke: undefined, r: undefined},
@@ -137,7 +139,8 @@ it("Plot.autoSpec makes a lineX from monotonic y", () => {
       y: Object.assign([1, 2, 3], {label: "date"}),
       stroke: undefined,
       z: undefined,
-      r: undefined
+      r: undefined,
+      tip: true
     },
     transformImpl: undefined,
     transformOptions: {stroke: undefined, r: undefined},
