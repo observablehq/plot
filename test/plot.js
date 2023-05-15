@@ -41,8 +41,7 @@ for (const [name, plot] of Object.entries(plots)) {
     // until we have a way to normalize the output, we need to ignore the
     // generated image data during comparison. But you can still review the
     // generated output visually and hopefully it’ll be correct.
-    const equal =
-      process.env.CI === "true" ? stripLargeImageData(actual) === stripLargeImageData(expected) : actual === expected;
+    const equal = process.env.CI === "true" ? stripImageData(actual) === stripImageData(expected) : actual === expected;
 
     if (equal) {
       if (process.env.CI !== "true") {
@@ -109,9 +108,9 @@ function reindexClip(root) {
   }
 }
 
-function stripLargeImageData(string) {
+function stripImageData(string) {
   return string.replace(
-    /data:image\/png;base64,[^"]{10000,}/g,
+    /data:image\/png;base64,[^"]+/g,
     "data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 20 20' style='background-color: white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h10v10H0zm10 10h10v10H10z' fill='%23f4f4f4' fill-rule='evenodd'/%3E%3C/svg%3E"
   );
 }
