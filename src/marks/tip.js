@@ -148,7 +148,7 @@ export class Tip extends Mark {
           .data(index)
           .enter()
           .append("g")
-          .attr("transform", (i) => `translate(${px(i)},${py(i)})`)
+          .attr("transform", (i) => `translate(${Math.round(px(i))},${Math.round(py(i))})`) // crisp edges
           .call(applyDirectStyles, this)
           .call((g) => g.append("path").attr("filter", pathFilter))
           .call((g) =>
@@ -205,7 +205,8 @@ export class Tip extends Mark {
     function postrender() {
       const {width, height} = dimensions.facet ?? dimensions;
       g.selectChildren().each(function (i) {
-        const {x: tx, width: w, height: h} = this.getBBox();
+        let {x: tx, width: w, height: h} = this.getBBox();
+        (w = Math.round(w)), (h = Math.round(h)); // crisp edges
         let a = anchor; // use the specified anchor, if any
         if (a === undefined) {
           a = mark.previousAnchor; // favor the previous anchor, if it fits
