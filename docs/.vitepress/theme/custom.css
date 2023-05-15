@@ -26,9 +26,11 @@
 .vp-doc .plot,
 .vp-doc .plot-ramp {
   background: none;
+  overflow: visible;
 }
 
-:root.dark [aria-label=tip] {
+:root [aria-label="tip"][fill="white"],
+:root [aria-label="tip"] [fill="white"] {
   fill: var(--vp-c-bg-alt);
 }
 

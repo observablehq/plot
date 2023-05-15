@@ -150,8 +150,8 @@ Plot.auto(penguins, {
   fx: "island",
   fy: "species"
 }).plot({
-  x: {label: "Body mass →", ticks: 5},
-  y: {label: "↑ Culmen length"},
+  grid: true,
+  x: {ticks: 5},
   marginRight: 70
 })
 ```
