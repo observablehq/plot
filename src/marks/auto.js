@@ -90,12 +90,21 @@ export function autoSpec(data, options) {
       colorMode = "stroke";
       break;
     case "line":
-      markImpl = X && Y ? line : X ? lineX : lineY; // 1d line by index
+      markImpl =
+        (X && Y) || xReduce || yReduce // same logic as area (see below), but default to line
+          ? yZero || yReduce || (X && isMonotonic(X))
+            ? lineY
+            : xZero || xReduce || (Y && isMonotonic(Y))
+            ? lineX
+            : line
+          : X // 1d line by index
+          ? lineX
+          : lineY;
       colorMode = "stroke";
       if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
       break;
     case "area":
-      markImpl = yZero ? areaY : xZero || (Y && isMonotonic(Y)) ? areaX : areaY; // favor areaY if unsure
+      markImpl = !(yZero || yReduce) && (xZero || xReduce || (Y && isMonotonic(Y))) ? areaX : areaY; // favor areaY if unsure
       colorMode = "fill";
       if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
       break;
