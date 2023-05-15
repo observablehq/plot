@@ -133,10 +133,7 @@ export default {
       ...this.options,
       className: "plot"
     };
-    // During client-side hydration, we use the real DOM if available; this
-    // causes hydration errors (because I can’t figure out how to silence Vue),
-    // but we need the real DOM in order to manipulate it during interaction.
-    if (this.defer || typeof document !== "undefined") {
+    if (this.defer) {
       const mounted = (el) => {
         disconnect(); // remove old listeners
         function observed() {
@@ -200,6 +197,6 @@ export default {
         ]
       );
     }
-    return h("span", [Plot[method]({...options, document: new Document()}).toHyperScript()]);
+    return Plot[method]({...options, document: new Document()}).toHyperScript();
   }
 };
