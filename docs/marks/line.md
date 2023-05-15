@@ -146,7 +146,6 @@ If a **stroke** (or **fill**) channel is specified, the **z** option defaults to
 :::plot defer https://observablehq.com/@observablehq/plot-index-chart
 ```js
 Plot.plot({
-  style: "overflow: visible;",
   y: {
     type: "log",
     grid: true,

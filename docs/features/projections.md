@@ -45,7 +45,6 @@ A **projection** maps abstract coordinates in *x* and *y* to pixel positions on 
 Plot.plot({
   projection: {type: "orthographic", rotate: [-longitude, -30]},
   r: {transform: (d) => Math.pow(10, d)}, // convert Richter to amplitude
-  style: "overflow: visible;", // allow dots to escape
   marks: [
     Plot.geo(land, {fill: "currentColor", fillOpacity: 0.2}),
     Plot.sphere(),

@@ -112,7 +112,6 @@ The density mark supports Plot’s [projection system](../features/projections.m
 Plot.plot({
   projection: "albers",
   color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"},
-  style: "overflow: visible;",
   marks: [
     Plot.density(walmarts, {x: "longitude", y: "latitude", bandwidth: 10, fill: "density"}),
     Plot.geo(statemesh, {strokeOpacity: 0.3}),

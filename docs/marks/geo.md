@@ -63,7 +63,6 @@ The size of Point and MultiPoint geometries is controlled by the **r** option. F
 ```js
 Plot.plot({
   projection: "equirectangular",
-  style: "overflow: visible;",
   r: {transform: (r) => Math.pow(10, r)}, // Richter to amplitude
   marks: [
     Plot.geo(land, {fill: "currentColor", fillOpacity: 0.2}),

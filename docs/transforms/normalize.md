@@ -32,7 +32,6 @@ The **normalize transform** is a specialized [map transform](./map.md) that norm
 :::plot defer https://observablehq.com/@observablehq/plot-index-chart
 ```js
 Plot.plot({
-  style: "overflow: visible;",
   y: {
     type: "log",
     grid: true,

@@ -59,7 +59,6 @@ The select transform groups data into series using the **z**, **fill**, or **str
 :::plot defer https://observablehq.com/@observablehq/plot-labeled-multi-line-chart
 ```js
 Plot.plot({
-  style: "overflow: visible;",
   y: {grid: true},
   marks: [
     Plot.ruleY([0]),
