@@ -60,6 +60,12 @@ class Element {
   removeAttributeNS(namespace, name) {
     this.removeAttribute(name);
   }
+  addEventListener() {
+    // ignored; interaction needs real DOM
+  }
+  removeEventListener() {
+    // ignored; interaction needs real DOM
+  }
   appendChild(child) {
     this.children.push(child);
     child.parentNode = this;
@@ -127,7 +133,7 @@ export default {
       ...this.options,
       className: "plot"
     };
-    if (this.defer) { // || typeof document !== "undefined") {
+    if (this.defer) {
       const mounted = (el) => {
         disconnect(); // remove old listeners
         function observed() {
@@ -191,7 +197,6 @@ export default {
         ]
       );
     }
-    options.document = new Document();
-    return Plot[method](options).toHyperScript();
+    return Plot[method]({...options, document: new Document()}).toHyperScript();
   }
 };

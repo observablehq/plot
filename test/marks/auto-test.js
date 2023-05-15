@@ -19,7 +19,8 @@ it("Plot.autoSpec makes a histogram from a quantitative dimension", () => {
       y: undefined,
       fill: undefined,
       z: undefined,
-      r: undefined
+      r: undefined,
+      tip: true
     },
     transformImpl: "binX",
     transformOptions: {fill: undefined, r: undefined, y: "count"},
@@ -45,7 +46,8 @@ it("Plot.autoSpec makes a bar chart from an ordinal dimension", () => {
       y: undefined,
       fill: "blue",
       z: undefined,
-      r: undefined
+      r: undefined,
+      tip: true
     },
     transformImpl: "groupX",
     transformOptions: {fill: undefined, r: undefined, y: "count"},
@@ -75,7 +77,8 @@ it("Plot.autoSpec makes a lineY from monotonic x", () => {
       y: Object.assign([1, 0, 38], {label: "value"}),
       stroke: undefined,
       z: undefined,
-      r: undefined
+      r: undefined,
+      tip: true
     },
     transformImpl: undefined,
     transformOptions: {stroke: undefined, r: undefined},
@@ -105,7 +108,8 @@ it("Plot.autoSpec makes a lineY from monotonic x and monotonic y", () => {
       y: Object.assign([0, 1, 38], {label: "value"}),
       stroke: undefined,
       z: undefined,
-      r: undefined
+      r: undefined,
+      tip: true
     },
     transformImpl: undefined,
     transformOptions: {stroke: undefined, r: undefined},
@@ -135,7 +139,8 @@ it("Plot.autoSpec makes a lineX from monotonic y", () => {
       y: Object.assign([1, 2, 3], {label: "date"}),
       stroke: undefined,
       z: undefined,
-      r: undefined
+      r: undefined,
+      tip: true
     },
     transformImpl: undefined,
     transformOptions: {stroke: undefined, r: undefined},
@@ -165,7 +170,8 @@ it("Plot.autoSpec makes a line from non-monotonic x and non-monotonic y", () => 
       y: Object.assign([1, 0, 38], {label: "value"}),
       stroke: undefined,
       z: undefined,
-      r: undefined
+      r: undefined,
+      tip: true
     },
     transformImpl: undefined,
     transformOptions: {stroke: undefined, r: undefined},
@@ -195,7 +201,8 @@ it("Plot.autoSpec makes a dot plot from two quantitative dimensions", () => {
       y: Object.assign([0, 3, 2], {label: "y"}),
       stroke: undefined,
       z: undefined,
-      r: undefined
+      r: undefined,
+      tip: true
     },
     transformImpl: undefined,
     transformOptions: {stroke: undefined, r: undefined},
@@ -228,7 +235,8 @@ it("Plot.autoSpec makes a faceted heatmap", () => {
       y: {value: Object.assign([0, 3, 2, 1, 6, 2], {label: "y"})},
       fill: undefined,
       z: undefined,
-      r: undefined
+      r: undefined,
+      tip: true
     },
     transformImpl: "bin",
     transformOptions: {fill: "count", r: undefined},

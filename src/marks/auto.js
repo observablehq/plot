@@ -142,7 +142,8 @@ export function autoSpec(data, options) {
     y: Y ?? undefined, // treat null y as undefined for implicit stack
     [colorMode]: C ?? colorColor,
     z: Z,
-    r: S ?? undefined // treat null size as undefined for default constant radius
+    r: S ?? undefined, // treat null size as undefined for default constant radius
+    tip: true
   };
   let transformImpl;
   let transformOptions = {[colorMode]: colorReduce ?? undefined, r: sizeReduce ?? undefined};

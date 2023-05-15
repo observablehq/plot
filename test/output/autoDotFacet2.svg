@@ -490,4 +490,11 @@
       <circle cx="78.66666666666666" cy="114" r="3" stroke="#f28e2c"></circle>
     </g>
   </g>
+  <g aria-label="tip" transform="translate(0.5,0.5)">
+    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,0)"></g>
+    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,310)"></g>
+    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(193,0)"></g>
+    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(193,155)"></g>
+    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(386,0)"></g>
+  </g>
 </svg>
