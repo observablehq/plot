@@ -128,23 +128,6 @@ export async function tipLine() {
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
 }
 
-export async function tipRaster() {
-  const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
-  const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
-  return Plot.plot({
-    width: 640,
-    height: 484,
-    projection: {type: "reflect-y", inset: 3, domain},
-    color: {type: "diverging"},
-    marks: [Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "nearest", tip: true})]
-  });
-}
-
-export async function tipRule() {
-  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.ruleX(penguins, {x: "body_mass_g", tip: true}).plot();
-}
-
 export async function tipNewLines() {
   return Plot.plot({
     height: 40,
@@ -167,6 +150,34 @@ export async function tipNewLines() {
         x: "x",
         channels: {a: ["first"], b: ["second"], "": [""]}
       })
+    ]
+  });
+}
+
+export async function tipRaster() {
+  const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
+  const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;
+  return Plot.plot({
+    width: 640,
+    height: 484,
+    projection: {type: "reflect-y", inset: 3, domain},
+    color: {type: "diverging"},
+    marks: [Plot.raster(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", interpolate: "nearest", tip: true})]
+  });
+}
+
+export async function tipRule() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.ruleX(penguins, {x: "body_mass_g", tip: true}).plot();
+}
+
+export async function tipRuleAnchored() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    x: {insetLeft: 110},
+    marks: [
+      Plot.ruleX(penguins, {x: "body_mass_g"}),
+      Plot.tip(penguins, Plot.pointer({px: "body_mass_g", frameAnchor: "left", anchor: "middle", dx: 42}))
     ]
   });
 }

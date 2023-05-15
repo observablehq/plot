@@ -36,7 +36,8 @@
   fill: var(--vp-c-bg-alt);
 }
 
-:root.dark marker[stroke="white"] {
+:root.dark marker[stroke="white"],
+:root.dark [aria-label^="crosshair"][stroke="white"] {
   stroke: var(--vp-c-bg);
 }
 
