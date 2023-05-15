@@ -27,6 +27,8 @@
 .vp-doc .plot-ramp {
   background: none;
   overflow: visible;
+  position: relative;
+  z-index: 1;
 }
 
 :root [aria-label="tip"][fill="white"],
