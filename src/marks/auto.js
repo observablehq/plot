@@ -9,7 +9,7 @@ import {cell} from "./cell.js";
 import {dot} from "./dot.js";
 import {frame} from "./frame.js";
 import {line, lineX, lineY} from "./line.js";
-import {rectX, rectY} from "./rect.js";
+import {rect, rectX, rectY} from "./rect.js";
 import {ruleX, ruleY} from "./rule.js";
 
 export function autoSpec(data, options) {
@@ -127,7 +127,11 @@ export function autoSpec(data, options) {
         ? barY
         : isOrdinalReduced(yReduce, Y)
         ? barX
-        : rectY;
+        : xReduce && !yReduce
+        ? rectX
+        : yReduce && !xReduce
+        ? rectY
+        : rect;
       colorMode = "fill";
       break;
     default:
@@ -350,6 +354,7 @@ const impls = {
   ruleY,
   barX,
   barY,
+  rect,
   rectX,
   rectY,
   cell,
