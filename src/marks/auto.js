@@ -91,10 +91,10 @@ export function autoSpec(data, options) {
       break;
     case "line":
       markImpl =
-        (X && Y) || xReduce || yReduce // same logic as area (see below), but default to line
-          ? yZero || yReduce || (X && isMonotonic(X))
+        (X && Y) || xReduce != null || yReduce != null // same logic as area (see below), but default to line
+          ? yZero || yReduce != null || (X && isMonotonic(X))
             ? lineY
-            : xZero || xReduce || (Y && isMonotonic(Y))
+            : xZero || xReduce != null || (Y && isMonotonic(Y))
             ? lineX
             : line
           : X // 1d line by index
@@ -104,7 +104,7 @@ export function autoSpec(data, options) {
       if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
       break;
     case "area":
-      markImpl = !(yZero || yReduce) && (xZero || xReduce || (Y && isMonotonic(Y))) ? areaX : areaY; // favor areaY if unsure
+      markImpl = !(yZero || yReduce != null) && (xZero || xReduce != null || (Y && isMonotonic(Y))) ? areaX : areaY; // favor areaY if unsure
       colorMode = "fill";
       if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
       break;
@@ -127,9 +127,9 @@ export function autoSpec(data, options) {
         ? barY
         : isOrdinalReduced(yReduce, Y)
         ? barX
-        : xReduce && !yReduce
+        : xReduce != null
         ? rectX
-        : yReduce && !xReduce
+        : yReduce != null
         ? rectY
         : rect;
       colorMode = "fill";
