@@ -227,7 +227,7 @@ it("Plot.autoSpec makes a faceted heatmap", () => {
     color: {value: null, reduce: "count"},
     size: {value: null, reduce: null},
     mark: "bar",
-    markImpl: "rectY",
+    markImpl: "rect",
     markOptions: {
       fx: undefined,
       fy: "f",
