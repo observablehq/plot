@@ -3,10 +3,10 @@ import {getSource} from "../channel.js";
 import {create} from "../context.js";
 import {defined} from "../defined.js";
 import {formatDefault} from "../format.js";
-import {pointerPosition} from "../interactions/pointer.js";
+import {anchorX, anchorY} from "../interactions/pointer.js";
 import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
+import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
 import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
@@ -78,14 +78,14 @@ export class Tip extends Mark {
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
   }
-  render(index, scales, channels, dimensions, context) {
+  render(index, scales, values, dimensions, context) {
     const mark = this;
     const {x, y, fx, fy} = scales;
     const {ownerSVGElement: svg, document} = context;
     const {anchor, monospace, lineHeight, lineWidth} = this;
     const {textPadding: r, pointerSize: m, pathFilter} = this;
     const {marginTop, marginLeft} = dimensions;
-    const sources = getSources(channels);
+    const sources = getSources(values);
 
     // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
     // or x & y; the former is considered more specific because it’s how we
@@ -93,10 +93,16 @@ export class Tip extends Mark {
     // unspecified, we fallback to the frame anchor. We also need to know the
     // facet offsets to detect when the tip would draw outside the plot, and
     // thus we need to change the orientation.
-    const {x1: X1, y1: Y1, x2: X2, y2: Y2, x: X = X1 ?? X2, y: Y = Y1 ?? Y2} = channels;
+    const {x1: X1, y1: Y1, x2: X2, y2: Y2, x: X = X1 ?? X2, y: Y = Y1 ?? Y2} = values;
     const ox = fx ? fx(index.fx) - marginLeft : 0;
     const oy = fy ? fy(index.fy) - marginTop : 0;
-    const [px, py] = pointerPosition(mark, channels, dimensions);
+
+    // The order of precedence for the anchor position is: the middle of x1 & y1
+    // and x2 & y2; or x1 & y1 (e.g., area); or lastly x & y. If a dimension is
+    // unspecified, the frame anchor is used.
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const px = anchorX(values, cx);
+    const py = anchorY(values, cy);
 
     // Resolve the text metric implementation. We may need an ellipsis for text
     // truncation, so we optimistically compute the ellipsis width.
@@ -123,7 +129,7 @@ export class Tip extends Mark {
         const channel = sources[key];
         const value = channel.value[i];
         if (!defined(value) && channel.scale == null) continue;
-        const color = channel.scale === "color" ? channels[key][i] : undefined;
+        const color = channel.scale === "color" ? values[key][i] : undefined;
         if (key === "x2" && "x1" in sources) {
           yield [formatLabel(scales, channel, "x"), formatPair(sources.x1, channel, i)];
         } else if (key === "y2" && "y1" in sources) {

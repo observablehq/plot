@@ -54,7 +54,13 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
         if (!facetState) facetStates.set(mark, (facetState = new Map()));
       }
 
-      const [px, py] = pointerPosition(this, values, dimensions);
+      // The order of precedence for the pointer position is: px & py; the
+      // middle of x1 & y1 and x2 & y2; or x1 & y1 (e.g., area); or lastly x &
+      // y. If a dimension is unspecified, the frame anchor is used.
+      const [cx, cy] = applyFrameAnchor(this, dimensions);
+      const {px: PX, py: PY} = values;
+      const px = PX ? (i) => PX[i] : anchorX(values, cx);
+      const py = PY ? (i) => PY[i] : anchorY(values, cy);
 
       let i; // currently focused index
       let g; // currently rendered mark
@@ -168,14 +174,10 @@ export function pointerY(options) {
   return pointerK(0.01, 1, options);
 }
 
-// The order of precedence when determining the pointer position is: px & py;
-// the middle of x1 & y1 and x2 & y2; or x1 & y1 (e.g., area); or lastly x & y.
-// If any dimension is unspecified, we fallback to the frame anchor.
-export function pointerPosition(mark, values, dimensions) {
-  const {px: PX, py: PY, x1: X1, y1: Y1, x2: X2, y2: Y2, x: X = X1, y: Y = Y1} = values;
-  const [cx, cy] = applyFrameAnchor(mark, dimensions);
-  return [
-    PX ? (i) => PX[i] : X1 && X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : () => cx,
-    PY ? (i) => PY[i] : Y1 && Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : () => cy
-  ];
+export function anchorX({x1: X1, x2: X2, x: X = X1}, cx) {
+  return X1 && X2 ? (i) => (X1[i] + X2[i]) / 2 : X ? (i) => X[i] : () => cx;
+}
+
+export function anchorY({y1: Y1, y2: Y2, y: Y = Y1}, cy) {
+  return Y1 && Y2 ? (i) => (Y1[i] + Y2[i]) / 2 : Y ? (i) => Y[i] : () => cy;
 }
