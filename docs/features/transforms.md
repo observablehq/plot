@@ -28,7 +28,7 @@ For example, given a [dataset of highway traffic](https://gist.github.com/chrtze
 ```js
 Plot.plot({
   marginLeft: 120,
-  x: {label: "Vehicles per hour (thousands) →", transform: (x) => x / 1000},
+  x: {label: "Vehicles per hour (thousands)", transform: (x) => x / 1000},
   y: {label: null},
   marks: [
     Plot.ruleX([0]),
@@ -149,7 +149,7 @@ For greater control, you can also implement a custom **transform** function, all
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Unemployment (%)"
+    label: "Unemployment (%)"
   },
   color: {
     domain: [false, true],

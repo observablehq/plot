@@ -9,7 +9,7 @@ export async function covidIhmeProjectedDeaths() {
     height: 600,
     y: {
       type: "log",
-      label: "↑ Deaths per day to COVID-19 (projected)",
+      label: "Deaths per day to COVID-19 (projected)",
       tickFormat: ",~f",
       grid: true
     },

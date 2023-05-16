@@ -69,7 +69,7 @@ As another example, in the line chart of unemployment rates below, lines for met
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Unemployment (%)"
+    label: "Unemployment (%)"
   },
   color: {
     domain: [false, true],

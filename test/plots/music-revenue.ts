@@ -13,7 +13,7 @@ export async function musicRevenue() {
   return Plot.plot({
     y: {
       grid: true,
-      label: "↑ Annual revenue (billions, adj.)",
+      label: "Annual revenue (billions, adj.)",
       transform: (d) => d / 1000
     },
     marks: [

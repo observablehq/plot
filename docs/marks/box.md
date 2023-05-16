@@ -65,11 +65,11 @@ Plot.plot({
   marginLeft: 60,
   y: {
     grid: true,
-    label: "↑ Price"
+    label: "Price"
   },
   x: {
     interval: 0.5,
-    label: "Carats →",
+    label: "Carats",
     labelAnchor: "right",
     tickFormat: (x) => x.toFixed(1)
   },
@@ -89,11 +89,11 @@ Plot.plot({
   marginLeft: 60,
   y: {
     grid: true,
-    label: "↑ Price"
+    label: "Price"
   },
   fx: {
     interval: 0.5,
-    label: "Carats →",
+    label: "Carats",
     labelAnchor: "right",
     tickFormat: (x) => x.toFixed(1)
   },

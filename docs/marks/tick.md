@@ -32,13 +32,13 @@ Ticks are often used to show one-dimensional distributions, as in the “barcode
 Plot.plot({
   x: {
     grid: true,
-    label: "Population (%) →",
+    label: "Population (%)",
     percent: true
   },
   y: {
     domain: stateage.ages, // in age order
     reverse: true,
-    label: "↑ Age (years)",
+    label: "Age (years)",
     labelAnchor: "top"
   },
   marks: [

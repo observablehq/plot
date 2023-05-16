@@ -29,7 +29,7 @@ function bars(groups, title) {
       grid: true,
       axis: "top",
       domain: [0, 100],
-      label: "Frequency (%) →",
+      label: "Frequency (%)",
       transform: (x) => x * 100
     },
     y: {

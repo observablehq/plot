@@ -53,7 +53,7 @@ Above, since **y** was specified instead of **y1** and **y2**, the bar spans fro
 ```js
 Plot.plot({
   marginLeft: 60,
-  x: {label: "Frequency →"},
+  x: {label: "Frequency"},
   y: {label: null},
   color: {legend: true},
   marks: [
@@ -201,7 +201,7 @@ Plot.plot({
   marginLeft: 60,
   marginRight: 60,
   label: null,
-  x: {label: "Frequency →"},
+  x: {label: "Frequency"},
   y: {padding: 0},
   marks: [
     Plot.barX(penguins, {fy: "island", y: "sex", x: 1, inset: 0.5}),

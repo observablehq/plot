@@ -25,7 +25,7 @@ Plot.plot({
   label: null,
   y: {
     grid: true,
-    label: "↑ Frequency (%)",
+    label: "Frequency (%)",
     percent: true
   },
   marks: [
@@ -48,8 +48,8 @@ If there are too many data points, labels may overlap, making them hard to read.
 Plot.plot({
   inset: 10,
   grid: true,
-  x: {label: "Miles driven (per person-year) →"},
-  y: {label: "↑ Cost of gasoline ($ per gallon)"},
+  x: {label: "Miles driven (per person-year)"},
+  y: {label: "Cost of gasoline ($ per gallon)"},
   marks: [
     Plot.line(driving, {x: "miles", y: "gas", curve: "catmull-rom", marker: true}),
     Plot.text(driving, {filter: (d) => d.year % 5 === 0, x: "miles", y: "gas", text: (d) => `${d.year}`, dy: -6, lineAnchor: "bottom"})
@@ -69,7 +69,7 @@ For line charts with multiple series, you may wish to label only the start or en
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Travelers per day (millions)",
+    label: "Travelers per day (millions)",
     transform: (d) => d / 1e6 // convert to millions
   },
   marks: [

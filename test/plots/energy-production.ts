@@ -36,7 +36,7 @@ export async function energyProduction() {
       label: null
     },
     y: {
-      label: "↑ Annual production (quads)"
+      label: "Annual production (quads)"
     },
     color: {
       tickFormat: (t) => types.get(t),

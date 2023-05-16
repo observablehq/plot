@@ -574,7 +574,7 @@ The **transform** scale option allows you to apply a function to all values befo
 Plot.plot({
   y: {
     grid: true,
-    label: `↑ Temperature (°C)`,
+    label: "Temperature (°C)",
     transform: (f) => (f - 32) * (5 / 9) // convert Fahrenheit to Celsius
   },
   marks: [
@@ -624,7 +624,7 @@ Plot.plot({
   },
   y: {
     transform: (d) => d / 1e6,
-    label: "↑ Daily trade volume (millions)"
+    label: "Daily trade volume (millions)"
   },
   marks: [
     Plot.barY(aapl.slice(-40), {x: "Date", y: "Volume"}),
@@ -723,7 +723,7 @@ The **transform** option allows you to apply a function to all values before the
 ```js
 Plot.plot({
   y: {
-    label: "↑ Temperature (°F)",
+    label: "Temperature (°F)",
     transform: (f) => f * 9 / 5 + 32 // convert Celsius to Fahrenheit
   },
   marks: …

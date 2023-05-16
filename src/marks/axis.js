@@ -85,8 +85,9 @@ function axisKy(
     marginBottom = margin === undefined ? 20 : margin,
     marginLeft = margin === undefined ? (anchor === "left" ? 40 : 0) : margin,
     label,
-    labelOffset,
     labelAnchor,
+    labelArrow,
+    labelOffset,
     ...options
   }
 ) {
@@ -94,6 +95,7 @@ function axisKy(
   tickPadding = number(tickPadding);
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
+  labelArrow = maybeLabelArrow(labelArrow);
   return marks(
     tickSize && !isNoneish(stroke)
       ? axisTickKy(k, anchor, data, {
@@ -150,11 +152,7 @@ function axisKy(
             this.ariaLabel = `${k}-axis label`;
             return {
               facets: [[0]],
-              channels: {
-                text: {
-                  value: [label === undefined ? inferAxisLabel(k, scale, cla) : label]
-                }
-              }
+              channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
             };
           })
         )
@@ -189,6 +187,7 @@ function axisKx(
     marginLeft = margin === undefined ? 20 : margin,
     label,
     labelAnchor,
+    labelArrow,
     labelOffset,
     ...options
   }
@@ -197,6 +196,7 @@ function axisKx(
   tickPadding = number(tickPadding);
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
+  labelArrow = maybeLabelArrow(labelArrow);
   return marks(
     tickSize && !isNoneish(stroke)
       ? axisTickKx(k, anchor, data, {
@@ -250,11 +250,7 @@ function axisKx(
             this.ariaLabel = `${k}-axis label`;
             return {
               facets: [[0]],
-              channels: {
-                text: {
-                  value: [label === undefined ? inferAxisLabel(k, scale, cla) : label]
-                }
-              }
+              channels: {text: {value: [formatAxisLabel(k, scale, {anchor, label, labelAnchor: cla, labelArrow})]}}
             };
           })
         )
@@ -621,7 +617,7 @@ const shapeTickRight = {
 // TODO Unify this with the other inferFontVariant; here we only have a scale
 // function rather than a scale descriptor.
 function inferFontVariant(scale) {
-  return scale.bandwidth && scale.interval === undefined ? undefined : "tabular-nums";
+  return scale.bandwidth && !scale.interval ? undefined : "tabular-nums";
 }
 
 // Determines whether the scale points in the “positive” (right or down) or
@@ -633,17 +629,44 @@ function inferScaleOrder(scale) {
 
 // Takes the scale label, and if this is not an ordinal scale and the label was
 // inferred from an associated channel, adds an orientation-appropriate arrow.
-function inferAxisLabel(key, scale, labelAnchor) {
-  const label = scale.label;
-  // Ignore the implicit label for temporal scales if it’s simply “date”.
-  if (label?.inferred && isTemporalScale(scale) && /^(date|time|year)$/i.test(label)) return;
-  if (scale.bandwidth || !label?.inferred) return label;
-  const order = inferScaleOrder(scale);
-  return order
-    ? key === "x" || labelAnchor === "center"
-      ? (key === "x") === order < 0
-        ? `← ${label}`
-        : `${label} →`
-      : `${order < 0 ? "↑ " : "↓ "}${label}`
-    : label;
+function formatAxisLabel(k, scale, {anchor, label = scale.label, labelAnchor, labelArrow} = {}) {
+  if (label == null || (label.inferred && isTemporalish(scale) && /^(date|time|year)$/i.test(label))) return;
+  label = String(label); // coerce to a string after checking if inferred
+  if (labelArrow === "auto") labelArrow = (!scale.bandwidth || scale.interval) && !/[↑↓→←]/.test(label);
+  if (!labelArrow) return label;
+  if (labelArrow === true) {
+    const order = inferScaleOrder(scale);
+    if (order)
+      labelArrow =
+        /x$/.test(k) || labelAnchor === "center"
+          ? /x$/.test(k) === order < 0
+            ? "left"
+            : "right"
+          : order < 0
+          ? "up"
+          : "down";
+  }
+  switch (labelArrow) {
+    case "left":
+      return `← ${label}`;
+    case "right":
+      return `${label} →`;
+    case "up":
+      return anchor === "right" ? `${label} ↑` : `↑ ${label}`;
+    case "down":
+      return anchor === "right" ? `${label} ↓` : `↓ ${label}`;
+  }
+  return label;
+}
+
+function maybeLabelArrow(labelArrow = "auto") {
+  return isNoneish(labelArrow)
+    ? false
+    : typeof labelArrow === "boolean"
+    ? labelArrow
+    : keyword(labelArrow, "labelArrow", ["auto", "up", "right", "down", "left"]);
+}
+
+function isTemporalish(scale) {
+  return isTemporalScale(scale) || scale.interval != null;
 }

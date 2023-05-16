@@ -72,8 +72,8 @@ We can visualize this small grid directly with a [text mark](./text.md) using th
 ```js
 Plot.plot({
   grid: true,
-  x: {domain: [0, grid.width], label: "column →"},
-  y: {domain: [0, grid.height], label: "↑ row"},
+  x: {domain: [0, grid.width], label: "column"},
+  y: {domain: [0, grid.height], label: "row"},
   marks: [
     Plot.text(grid.values, {
       text: Plot.identity,

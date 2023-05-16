@@ -8,7 +8,8 @@ export async function travelersCovidDrop() {
     y: {
       grid: true,
       zero: true,
-      label: "↓ Drop in passenger throughput (2020 vs. 2019)",
+      label: "Drop in passenger throughput (2020 vs. 2019)",
+      labelArrow: "down",
       tickFormat: "%"
     },
     marks: [
