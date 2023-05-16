@@ -295,8 +295,10 @@ export interface ScaleDefaults extends InsetOptions {
 
   /**
    * The side of the frame on which to place the implicit axis: *top* or
-   * *bottom* for *x* or *fx*, or *left* or *right* for *y* or *fy*. The default
-   * depends on the scale:
+   * *bottom* for *x* or *fx*, or *left* or *right* for *y* or *fy*; the facet
+   * scales *fx* and *fy* also support the *inline* axis to draw the facet value
+   * at the top of the frame with no tick nor axis label. The default *axis*
+   * orientation depends on the scale:
    *
    * - *x* - *bottom*
    * - *y* - *left*

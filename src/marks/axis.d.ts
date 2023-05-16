@@ -16,14 +16,18 @@ export interface GridOptions extends GridScaleOptions {
    * The side of the frame on which to place the axis: *top* or *bottom* for
    * horizontal axes (axisX and axisFx) and their associated vertical grids
    * (gridX and gridFx), or *left* or *right* for vertical axes (axisY and
-   * axisFY) and their associated horizontal grids (gridY and gridFy).
-   *
-   * The default **anchor** depends on the associated scale:
+   * axisFY) and their associated horizontal grids (gridY and gridFy). The
+   * default **anchor** depends on the associated scale:
    *
    * - *x* - *bottom*
    * - *y* - *left*
    * - *fx* - *top* if there is a *bottom* *x* axis, and otherwise *bottom*
    * - *fy* - *right* if there is a *left* *y* axis, and otherwise *right*
+   *
+   * The facet axes (axisFx and axisFy) also support the *inline* anchor to draw
+   * the facet value within the frame, with no tick nor axis label; in this
+   * case, the **frameAnchor** defaults to *top*, and the **margin** that
+   * defaults to 0.
    *
    * For grids, the **anchor** also affects the extent of grid lines when the
    * opposite dimension is specified (**x** for gridY and **y** for gridX). For
@@ -34,7 +38,7 @@ export interface GridOptions extends GridScaleOptions {
    * Plot.gridY({x: (y) => aapl.find((d) => d.Close >= y)?.Date, anchor: "right"})
    * ```
    */
-  anchor?: "top" | "right" | "bottom" | "left";
+  anchor?: "top" | "right" | "bottom" | "left" | "inline";
 
   /**
    * A shorthand for setting both **fill** and **stroke**; affects the stroke of

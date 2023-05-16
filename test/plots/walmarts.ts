@@ -36,3 +36,26 @@ export async function walmarts() {
     ]
   });
 }
+
+export async function walmartsInlineFacetLabels() {
+  const [walmarts, [statemesh, nation]] = await Promise.all([
+    d3.tsv<any>("data/walmarts.tsv", d3.autoType),
+    d3.json<any>("data/us-counties-10m.json").then((us) => [
+      mesh(us, {
+        type: "GeometryCollection",
+        geometries: us.objects.states.geometries.filter((d) => d.id !== "02" && d.id !== "15")
+      }),
+      mesh(us, us.objects.nation)
+    ])
+  ]);
+  return Plot.plot({
+    projection: "albers",
+    fx: {axis: "inline", interval: d3.utcYear.every(10)},
+    insetTop: 5,
+    marks: [
+      Plot.geo(statemesh, {strokeOpacity: 0.2}),
+      Plot.geo(nation),
+      Plot.dot(walmarts, {fx: "date", x: "longitude", y: "latitude", r: 1.5, fill: "steelblue"})
+    ]
+  });
+}

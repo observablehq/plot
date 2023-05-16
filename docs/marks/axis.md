@@ -2,7 +2,8 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import {ref} from "vue";
+import * as topojson from "topojson-client";
+import {computed, ref, shallowRef, onMounted} from "vue";
 import aapl from "../data/aapl.ts";
 import alphabet from "../data/alphabet.ts";
 import penguins from "../data/penguins.ts";
@@ -18,6 +19,16 @@ const responses = [
   {name: "Discovered how to “like” things mentally", value: 0.27},
   {name: "Not enough politics", value: 0.12}
 ];
+
+const walmarts = shallowRef([]);
+const us = shallowRef(null);
+const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
+const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
+
+onMounted(() => {
+  d3.tsv("../data/walmarts.tsv", d3.autoType).then((data) => (walmarts.value = data));
+  d3.json("../data/us-counties-10m.json").then((data) => (us.value = data));
+});
 
 </script>
 
@@ -337,6 +348,23 @@ Plot.plot({
 ```
 :::
 
+Facet axes also support the *inline* anchor, which draws the facet value inside the frame.
+
+:::plot defer https://observablehq.com/@observablehq/plot-inline-facet-anchor
+```js
+Plot.plot({
+  projection: "albers",
+  fx: {axis: "inline", interval: d3.utcYear.every(10)},
+  insetTop: 4,
+  marks: [
+    Plot.geo(statemesh, {strokeOpacity: 0.2}),
+    Plot.geo(nation),
+    Plot.dot(walmarts, {fx: "date", x: "longitude", y: "latitude", r: 1.5, fill: "blue"})
+  ]
+})
+```
+:::
+
 ## Axis options
 
 By default, the *data* for an axis mark are tick values sampled from the associated scale’s domain. If desired, you can specify the *data* explicitly (_e.g._ as an array of numbers), or use one of the following options:
@@ -349,7 +377,7 @@ Note that when an axis mark is declared explicitly (via the [**marks** plot opti
 
 In addition to the [standard mark options](../features/marks.md), the axis mark supports the following options:
 
-* **anchor** - the orientation: *top*, *bottom* (*x* or *fx*); *left*, *right* (*y* or *fy*); *both*; null to suppress
+* **anchor** - the orientation: *top*, *bottom* (*x* or *fx*); *left*, *right* (*y* or *fy*); *both*; *inline*; null to suppress
 * **tickSize** - the length of the tick vector (in pixels; default 6 for *x* or *y*, or 0 for *fx* or *fy*)
 * **tickPadding** - the separation between the tick vector and its label (in pixels; default 3)
 * **tickFormat** - either a function or specifier string to format tick values; see [Formats](../features/formats.md)
@@ -362,6 +390,8 @@ In addition to the [standard mark options](../features/marks.md), the axis mark 
 * **textStroke** - the color of the stroke around tick labels (defaults to *none*)
 * **textStrokeOpacity** - the opacity of the stroke around tick labels
 * **textStrokeWidth** - the thickness of the stroke around tick labels (in pixels)
+
+The *inline* **anchor** is supported only for the *fx* and *fy* scales. In this case, the facet value is drawn inside each frame with no tick nor axis label. The **frameAnchor** option defaults to *top*; change it to reposition the label as desired, perhaps in conjunction with the **margin**, **dx**, and **dy** options.
 
 As a composite mark, the **stroke** option affects the color of the tick vector, while the **fill** option affects the color the text labels; both default to the **color** option, which defaults to *currentColor*. The **x** and **y** channels, if specified, position the ticks; if not specified, the tick positions depend on the axis **anchor**. The orientation of the tick labels likewise depends on the **anchor**. See the [text mark](./text.md) for details on available options for the tick and axis labels.
 

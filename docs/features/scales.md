@@ -937,7 +937,7 @@ Align defaults to 0.5 (centered). Band scale padding defaults to 0.1 (10% of ava
 
 Plot automatically generates [axis](../marks/axis.md) and optionally [grid](../marks/grid.md) marks for position scales. (For more control, declare these marks explicitly.) You can configure the implicit axes with the following scale options:
 
-* **axis** - *top* or *bottom* (or *both*) for *x* and *fx*; *left* or *right* (or *both*) for *y* and *fy*; null to suppress
+* **axis** - *top* or *bottom* for *x* and *fx*; *left* or *right* for *y* and *fy*; *both*; *inline*; null to suppress
 * **ticks** - the approximate number of ticks to generate, or interval, or array of values
 * **tickSize** - the length of each tick (in pixels; default 6 for *x* and *y*, or 0 for *fx* and *fy*)
 * **tickSpacing** - the approximate number of pixels between ticks (if **ticks** is not specified)
@@ -952,6 +952,8 @@ Plot automatically generates [axis](../marks/axis.md) and optionally [grid](../m
 * **fontVariant** - the font-variant attribute for ticks; defaults to *tabular-nums* if quantitative
 * **ariaLabel** - a short label representing the axis in the accessibility tree
 * **ariaDescription** - a textual description for the axis
+
+The *inline* **axis** orientation is supported only for the *fx* and *fy* scales; in this case, the facet value is drawn at the top of each frame with no tick nor axis label. Use the axisFx or axisFy mark and the **frameAnchor** option to position the inline label elsewhere.
 
 Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facets](./facets.md)), **label**, **axis**, **inset**, **round**, **align**, and **padding**. If the **grid** option is true, show a grid using *currentColor*; if specified as a string, show a grid with the specified color; if an approximate number of ticks, an interval, or an array of tick values, show corresponding grid lines.
 

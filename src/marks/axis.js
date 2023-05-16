@@ -23,40 +23,24 @@ function maybeAnchor({anchor} = {}, anchors) {
   return anchor === undefined ? anchors[0] : keyword(anchor, "anchor", anchors);
 }
 
-function anchorY(options) {
-  return maybeAnchor(options, ["left", "right"]);
-}
-
-function anchorFy(options) {
-  return maybeAnchor(options, ["right", "left"]);
-}
-
-function anchorX(options) {
-  return maybeAnchor(options, ["bottom", "top"]);
-}
-
-function anchorFx(options) {
-  return maybeAnchor(options, ["top", "bottom"]);
-}
-
 export function axisY() {
   const [data, options] = maybeData(...arguments);
-  return axisKy("y", anchorY(options), data, options);
+  return axisKy("y", maybeAnchor(options, ["left", "right"]), data, options);
 }
 
 export function axisFy() {
   const [data, options] = maybeData(...arguments);
-  return axisKy("fy", anchorFy(options), data, options);
+  return axisKy("fy", maybeAnchor(options, ["right", "left", "inline"]), data, options);
 }
 
 export function axisX() {
   const [data, options] = maybeData(...arguments);
-  return axisKx("x", anchorX(options), data, options);
+  return axisKx("x", maybeAnchor(options, ["bottom", "top"]), data, options);
 }
 
 export function axisFx() {
   const [data, options] = maybeData(...arguments);
-  return axisKx("fx", anchorFx(options), data, options);
+  return axisKx("fx", maybeAnchor(options, ["top", "bottom", "inline"]), data, options);
 }
 
 function axisKy(
@@ -79,7 +63,7 @@ function axisKy(
     tickPadding,
     tickRotate,
     x,
-    margin,
+    margin = isInline(anchor) ? 0 : undefined,
     marginTop = margin === undefined ? 20 : margin,
     marginRight = margin === undefined ? (anchor === "right" ? 40 : 0) : margin,
     marginBottom = margin === undefined ? 20 : margin,
@@ -95,7 +79,7 @@ function axisKy(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
   return marks(
-    tickSize && !isNoneish(stroke)
+    tickSize && !isNoneish(stroke) && !isInline(anchor)
       ? axisTickKy(k, anchor, data, {
           stroke,
           strokeOpacity,
@@ -126,7 +110,7 @@ function axisKy(
           ...options
         })
       : null,
-    !isNoneish(fill) && label !== null
+    !isNoneish(fill) && label !== null && !isInline(anchor)
       ? text(
           [],
           labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
@@ -182,7 +166,7 @@ function axisKx(
     tickPadding,
     tickRotate,
     y,
-    margin,
+    margin = isInline(anchor) ? 0 : undefined,
     marginTop = margin === undefined ? (anchor === "top" ? 30 : 0) : margin,
     marginRight = margin === undefined ? 20 : margin,
     marginBottom = margin === undefined ? (anchor === "bottom" ? 30 : 0) : margin,
@@ -198,7 +182,7 @@ function axisKx(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
   return marks(
-    tickSize && !isNoneish(stroke)
+    tickSize && !isNoneish(stroke) && !isInline(anchor)
       ? axisTickKx(k, anchor, data, {
           stroke,
           strokeOpacity,
@@ -229,7 +213,7 @@ function axisKx(
           ...options
         })
       : null,
-    !isNoneish(fill) && label !== null
+    !isNoneish(fill) && label !== null && !isInline(anchor)
       ? text(
           [],
           labelOptions({fill, fillOpacity, ...options}, function (data, facets, channels, scales, dimensions) {
@@ -335,15 +319,15 @@ function axisTextKy(
   anchor,
   data,
   {
-    facetAnchor = anchor + (k === "y" ? "-empty" : ""),
-    frameAnchor = anchor,
+    facetAnchor = isInline(anchor) ? undefined : anchor + (k === "y" ? "-empty" : ""),
+    frameAnchor = isInline(anchor) ? "top" : anchor,
     tickSize,
     tickRotate = 0,
     tickPadding = Math.max(3, 9 - tickSize) + (Math.abs(tickRotate) > 60 ? 4 * Math.cos(tickRotate * radians) : 0),
     tickFormat,
     text = typeof tickFormat === "function" ? tickFormat : undefined,
-    textAnchor = Math.abs(tickRotate) > 60 ? "middle" : anchor === "left" ? "end" : "start",
-    lineAnchor = tickRotate > 60 ? "top" : tickRotate < -60 ? "bottom" : "middle",
+    textAnchor = isInline(anchor) ? undefined : Math.abs(tickRotate) > 60 ? "middle" : anchor === "left" ? "end" : "start", // prettier-ignore
+    lineAnchor = isInline(anchor) ? undefined : tickRotate > 60 ? "top" : tickRotate < -60 ? "bottom" : "middle",
     fontVariant,
     inset = 0,
     insetLeft = inset,
@@ -368,7 +352,7 @@ function axisTextKy(
       rotate: tickRotate,
       y,
       ...options,
-      dx: anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight
+      dx: isInline(anchor) ? dx : anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight // prettier-ignore
     },
     function (scale, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
@@ -382,15 +366,15 @@ function axisTextKx(
   anchor,
   data,
   {
-    facetAnchor = anchor + (k === "x" ? "-empty" : ""),
-    frameAnchor = anchor,
+    facetAnchor = isInline(anchor) ? undefined : anchor + (k === "x" ? "-empty" : ""),
+    frameAnchor = isInline(anchor) ? "top" : anchor,
     tickSize,
     tickRotate = 0,
     tickPadding = Math.max(3, 9 - tickSize) + (Math.abs(tickRotate) >= 10 ? 4 * Math.cos(tickRotate * radians) : 0),
     tickFormat,
     text = typeof tickFormat === "function" ? tickFormat : undefined,
-    textAnchor = Math.abs(tickRotate) >= 10 ? ((tickRotate < 0) ^ (anchor === "bottom") ? "start" : "end") : "middle",
-    lineAnchor = Math.abs(tickRotate) >= 10 ? "middle" : anchor === "bottom" ? "top" : "bottom",
+    textAnchor = isInline(anchor) ? undefined : Math.abs(tickRotate) >= 10 ? ((tickRotate < 0) ^ (anchor === "bottom") ? "start" : "end") : "middle", // prettier-ignore
+    lineAnchor = isInline(anchor) ? undefined : Math.abs(tickRotate) >= 10 ? "middle" : anchor === "bottom" ? "top" : "bottom", // prettier-ignore
     fontVariant,
     inset = 0,
     insetTop = inset,
@@ -415,7 +399,7 @@ function axisTextKx(
       rotate: tickRotate,
       x,
       ...options,
-      dy: anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop
+      dy: isInline(anchor) ? dy : anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop // prettier-ignore
     },
     function (scale, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
@@ -426,22 +410,22 @@ function axisTextKx(
 
 export function gridY() {
   const [data, options] = maybeData(...arguments);
-  return gridKy("y", anchorY(options), data, options);
+  return gridKy("y", maybeAnchor(options, ["left", "right"]), data, options);
 }
 
 export function gridFy() {
   const [data, options] = maybeData(...arguments);
-  return gridKy("fy", anchorFy(options), data, options);
+  return gridKy("fy", maybeAnchor(options, ["right", "left"]), data, options);
 }
 
 export function gridX() {
   const [data, options] = maybeData(...arguments);
-  return gridKx("x", anchorX(options), data, options);
+  return gridKx("x", maybeAnchor(options, ["bottom", "top"]), data, options);
 }
 
 export function gridFx() {
   const [data, options] = maybeData(...arguments);
-  return gridKx("fx", anchorFx(options), data, options);
+  return gridKx("fx", maybeAnchor(options, ["top", "bottom"]), data, options);
 }
 
 function gridKy(
@@ -617,6 +601,10 @@ const shapeTickRight = {
     context.lineTo(l, 0);
   }
 };
+
+function isInline(anchor) {
+  return anchor === "inline";
+}
 
 // TODO Unify this with the other inferFontVariant; here we only have a scale
 // function rather than a scale descriptor.
