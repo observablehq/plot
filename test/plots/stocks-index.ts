@@ -19,7 +19,7 @@ export async function stocksIndex() {
     y: {
       type: "log",
       grid: true,
-      label: "↑ Change in price (%)",
+      label: "Change in price (%)",
       tickFormat: formatChange
     },
     marks: [

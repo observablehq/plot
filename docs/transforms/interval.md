@@ -28,7 +28,7 @@ Plot.plot({
   },
   y: {
     transform: (d) => d / 1e6,
-    label: "↑ Daily trade volume (millions)"
+    label: "Daily trade volume (millions)"
   },
   marks: [
     Plot.barY(aapl.slice(-40), {x: "Date", y: "Volume"}),
@@ -46,7 +46,7 @@ Plot.plot({
   y: {
     grid: true,
     transform: (d) => d / 1e6,
-    label: "↑ Daily trade volume (millions)"
+    label: "Daily trade volume (millions)"
   },
   marks: [
     Plot.rectY(aapl.slice(-40), {x: "Date", interval: "day", y: "Volume"}),
@@ -75,7 +75,7 @@ Plot.plot({
   y: {
     grid: true,
     transform: (d) => d / 1e6,
-    label: "↑ Daily trade volume (millions)"
+    label: "Daily trade volume (millions)"
   },
   marks: [
     Plot.barY(aapl.slice(-40), {x: "Date", y: "Volume", interval: 5e6}),

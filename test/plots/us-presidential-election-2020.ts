@@ -15,7 +15,7 @@ export async function usPresidentialElection2020() {
     },
     y: {
       type: "log",
-      label: "↑ Total number of votes"
+      label: "Total number of votes"
     },
     color: {
       scheme: "BuRd",

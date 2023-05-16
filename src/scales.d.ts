@@ -329,6 +329,15 @@ export interface ScaleDefaults extends InsetOptions {
    * For axes and legends only.
    */
   label?: string | null;
+
+  /**
+   * Whether to apply a directional arrow such as → or ↑ to the scale label. If
+   * *auto* (the default), the presence of the arrow depends on whether the
+   * scale is ordinal.
+   *
+   * For axes only.
+   */
+  labelArrow?: "auto" | "up" | "right" | "down" | "left" | "none" | true | false | null;
 }
 
 /** Options for scales. */

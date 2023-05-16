@@ -79,9 +79,6 @@
     <text y="0.71em" transform="translate(430,370)">2022-12-05</text>
     <text y="0.71em" transform="translate(525,370)">2022-12-06</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(330,370)">Date</text>
-  </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>

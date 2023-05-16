@@ -6,7 +6,7 @@ export async function aaplVolume() {
   return Plot.plot({
     x: {
       round: true,
-      label: "Trade volume (log₁₀) →"
+      label: "Trade volume (log₁₀)"
     },
     y: {
       grid: true,

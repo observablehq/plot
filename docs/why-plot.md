@@ -45,8 +45,8 @@ Plot.plot({
   grid: true,
   aspectRatio: 1,
   inset: 10,
-  x: {tickSpacing: 80, label: "Culmen length (mm) →"},
-  y: {tickSpacing: 80, label: "↑ Culmen depth (mm)"},
+  x: {tickSpacing: 80, label: "Culmen length (mm)"},
+  y: {tickSpacing: 80, label: "Culmen depth (mm)"},
   color: {legend: true},
   marks: [
     Plot.frame(),

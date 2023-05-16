@@ -5,7 +5,7 @@ export async function stargazersHourlyGroup() {
   const stargazers = await d3.csv<any>("data/stargazers.csv", d3.autoType);
   return Plot.plot({
     x: {
-      label: "New stargazers per hour →",
+      label: "New stargazers per hour",
       tickFormat: (d) => (d > 10 ? "" : d === 10 ? "10+" : d)
     },
     y: {

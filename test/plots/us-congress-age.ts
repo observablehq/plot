@@ -7,12 +7,12 @@ export async function usCongressAge() {
     height: 300,
     x: {
       nice: true,
-      label: "Age →",
+      label: "Age",
       labelAnchor: "right"
     },
     y: {
       grid: true,
-      label: "↑ Frequency"
+      label: "Frequency"
     },
     marks: [
       Plot.dot(data, Plot.stackY2({x: (d) => 2021 - d.birth, fill: "currentColor", title: "full_name"})),

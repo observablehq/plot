@@ -76,7 +76,7 @@ Plot.plot({
   y: {percent: true},
   marks: [
     Plot.axisX({label: null, lineWidth: 8, marginBottom: 40}),
-    Plot.axisY({label: "↑ Responses (%)"}),
+    Plot.axisY({label: "Responses (%)"}),
     Plot.barY(responses, {x: "name", y: "value"}),
     Plot.ruleY([0])
   ]
@@ -91,7 +91,7 @@ Or, you can use the **textAnchor** option to extend the *y*-axis tick labels to 
 Plot.plot({
   marginTop: 0,
   marginLeft: 4,
-  x: {ticks: 4, label: "Yield (kg) →"},
+  x: {ticks: 4, label: "Yield (kg)"},
   marks: [
     Plot.barX([42, 17, 32], {y: ["🍌 banana", "🍎 apple", "🍐 pear"]}),
     Plot.axisY({textAnchor: "start", fill: "var(--vp-c-bg)", dx: 14})

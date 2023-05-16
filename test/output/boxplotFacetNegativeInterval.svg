@@ -84,7 +84,7 @@
     </g>
   </g>
   <g aria-label="fy-axis label" transform="translate(-36.5,0.5)">
-    <text y="0.71em" transform="translate(40,135.5) rotate(-90)">height</text>
+    <text y="0.71em" transform="translate(40,135.5) rotate(-90)">height →</text>
   </g>
   <g aria-label="x-axis tick" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,211)">

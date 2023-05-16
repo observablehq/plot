@@ -21,8 +21,8 @@ The **image mark** draws images centered at the given position in **x** and **y*
 ```js
 Plot.plot({
   inset: 20,
-  x: {label: "First inauguration date →"},
-  y: {grid: true, label: "↑ Net favorability (%)", tickFormat: "+f"},
+  x: {label: "First inauguration date"},
+  y: {grid: true, label: "Net favorability (%)", tickFormat: "+f"},
   marks: [
     Plot.ruleY([0]),
     Plot.image(presidents, {
@@ -44,8 +44,8 @@ With the **r** option, images will be clipped to circles of the given radius. Us
 :::plot defer https://observablehq.com/@observablehq/plot-image-medals
 ```js
 Plot.plot({
-  x: {inset: 20, label: "First inauguration date →"},
-  y: {insetTop: 4, grid: true, label: "↑ Any opinion (%)", tickFormat: "+f"},
+  x: {inset: 20, label: "First inauguration date"},
+  y: {insetTop: 4, grid: true, label: "Any opinion (%)", tickFormat: "+f"},
   marks: [
     Plot.ruleY([0]),
     Plot.image(presidents, {
@@ -95,8 +95,8 @@ The default size of an image is only 16×16 pixels. This may be acceptable if th
 Plot.plot({
   aspectRatio: 1,
   grid: true,
-  x: {label: "Favorable opinion (%) →"},
-  y: {label: "↑ Unfavorable opinion (%)"},
+  x: {label: "Favorable opinion (%)"},
+  y: {label: "Unfavorable opinion (%)"},
   marks: [
     Plot.ruleY([0]),
     Plot.ruleX([0]),

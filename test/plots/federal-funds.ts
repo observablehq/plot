@@ -6,7 +6,7 @@ export async function federalFunds() {
   return Plot.plot({
     marginLeft: 0, // don’t need left-margin since labels are inset
     x: {label: null, insetLeft: 28}, // reserve space for inset labels
-    y: {label: "↑ Federal funds rate (% per year)"},
+    y: {label: "Federal funds rate (% per year)"},
     marks: [
       Plot.axisY({
         interval: 2, // every 2%

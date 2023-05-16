@@ -37,7 +37,7 @@ For example, the band chart below shows the daily high and low temperature in Sa
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Temperature (°F)"
+    label: "Temperature (°F)"
   },
   marks: [
     Plot.areaY(sftemp, {x: "date", y1: "low", y2: "high", fillOpacity: 0.3}),
@@ -72,7 +72,7 @@ The **anchor** specifies how to align the rolling window with the data. If *midd
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Temperature (°F)"
+    label: "Temperature (°F)"
   },
   marks: [
     Plot.lineY(sftemp, {x: "date", y: "high", strokeOpacity: 0.3}),
@@ -98,7 +98,7 @@ If **strict** is false (the default), the window size is effectively reduced at 
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Temperature (°F)"
+    label: "Temperature (°F)"
   },
   marks: [
     Plot.lineY(sftemp, {x: "date", y: "low", strokeOpacity: 0.3}),
@@ -117,9 +117,9 @@ The **reduce** option specifies how to compute the output value for the current 
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Temperature (°F)"
+    label: "Temperature (°F)"
   },
-  marks: [
+marks: [
     Plot.lineY(sftemp, {x: "date", y: "low", strokeOpacity: 0.3}),
     Plot.lineY(sftemp, Plot.windowY({k: 28, reduce: "min"}, {x: "date", y: "low", stroke: "blue"})),
     Plot.lineY(sftemp, Plot.windowY({k: 28, reduce: "max"}, {x: "date", y: "low", stroke: "red"})),

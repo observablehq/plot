@@ -32,7 +32,7 @@ export async function polylinear() {
       domain: times,
       ticks: "day",
       tickFormat: "%d",
-      label: "date →"
+      label: "date"
     },
     color: {
       type: "linear",

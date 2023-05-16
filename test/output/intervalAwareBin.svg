@@ -77,7 +77,7 @@
     <text y="0.71em" transform="translate(579,370)">170</text>
   </g>
   <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(330,370)">weight</text>
+    <text transform="translate(330,370)">weight →</text>
   </g>
   <g aria-label="bar">
     <rect x="47" width="34" y="321.96078431372547" height="6.862745098039227" fill="rgb(35, 23, 27)"></rect>

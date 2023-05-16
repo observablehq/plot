@@ -140,9 +140,6 @@
     <text y="0.32em" transform="translate(890,370) rotate(-90)">Feb 14</text>
     <text y="0.32em" transform="translate(909,370) rotate(-90)">Feb 15</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,52.5)">
-    <text transform="translate(490,370)">date</text>
-  </g>
   <g aria-label="bar" fill="#ccc">
     <rect x="54" width="17" y="290.45454545454544" height="79.54545454545456"></rect>
     <rect x="73" width="17" y="20" height="350"></rect>
