@@ -14,7 +14,7 @@ async function rasterWalmart(options) {
   ]);
   return Plot.plot({
     projection: "albers",
-    color: {scheme: "spectral"},
+    color: {type: "linear", scheme: "spectral"},
     marks: [
       Plot.raster(walmarts, {x: "longitude", y: "latitude", ...options}),
       Plot.geo({type: "Polygon", coordinates: [d3.reverse(outline) as number[][]]}, {fill: "white"}),

@@ -28,7 +28,7 @@ import {
   createScaleDivergingLog,
   createScaleDivergingSymlog
 } from "./scales/diverging.js";
-import {isDivergingScheme} from "./scales/schemes.js";
+import {isCategoricalScheme, isDivergingScheme} from "./scales/schemes.js";
 import {createScaleTime, createScaleUtc} from "./scales/temporal.js";
 import {createScaleOrdinal, createScalePoint, createScaleBand, ordinalImplicit} from "./scales/ordinal.js";
 import {maybeSymbol} from "./symbol.js";
@@ -413,6 +413,12 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   // type explicitly.
   if ((domain || range || []).length > 2) return asOrdinalType(kind);
 
+  // For color scales, take a hint from the color scheme and pivot option.
+  if (kind === color) {
+    if (pivot != null || isDivergingScheme(scheme)) return "diverging";
+    if (isCategoricalScheme(scheme)) return "categorical";
+  }
+
   // Otherwise, infer the scale type from the data! Prefer the domain, if
   // present, over channels. (The domain and channels should be consistently
   // typed, and the domain is more explicit and typically much smaller.) We only
@@ -421,7 +427,6 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   if (domain !== undefined) {
     if (isOrdinal(domain)) return asOrdinalType(kind);
     if (isTemporal(domain)) return "utc";
-    if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
     return "linear";
   }
 
@@ -429,7 +434,6 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   const values = channels.map(({value}) => value).filter((value) => value !== undefined);
   if (values.some(isOrdinal)) return asOrdinalType(kind);
   if (values.some(isTemporal)) return "utc";
-  if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
   return "linear";
 }
 
