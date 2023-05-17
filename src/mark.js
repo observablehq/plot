@@ -84,7 +84,7 @@ export class Mark {
     }
     if (render != null) {
       if (typeof render !== "function") throw new TypeError(`invalid render transform: ${render}`);
-      this.renderTransform = render;
+      this.render = composeRender(render, this.render);
     }
   }
   initialize(facets, facetChannels, plotOptions) {
@@ -134,6 +134,12 @@ export class Mark {
 export function marks(...marks) {
   marks.plot = Mark.prototype.plot; // Note: depends on side-effect in plot!
   return marks;
+}
+
+function composeRender(r1, r2) {
+  return function () {
+    return r1.call(this, ...arguments, r2.bind(this));
+  };
 }
 
 function maybeChannels(channels) {

@@ -47,7 +47,9 @@ export type RenderFunction = (
   /** The plot’s dimensions. */
   dimensions: Dimensions,
   /** The plot’s context. */
-  context: Context
+  context: Context,
+  /** The next render function; for render transforms only. */
+  next?: RenderFunction
 ) => SVGElement | null;
 
 /**
