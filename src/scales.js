@@ -28,7 +28,7 @@ import {
   createScaleDivergingLog,
   createScaleDivergingSymlog
 } from "./scales/diverging.js";
-import {isDivergingScheme} from "./scales/schemes.js";
+import {isCategoricalScheme, isDivergingScheme} from "./scales/schemes.js";
 import {createScaleTime, createScaleUtc} from "./scales/temporal.js";
 import {createScaleOrdinal, createScalePoint, createScaleBand, ordinalImplicit} from "./scales/ordinal.js";
 import {maybeSymbol} from "./symbol.js";
@@ -421,15 +421,18 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   if (domain !== undefined) {
     if (isOrdinal(domain)) return asOrdinalType(kind);
     if (isTemporal(domain)) return "utc";
-    if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
-    return "linear";
+  } else {
+    const values = channels.map(({value}) => value).filter((value) => value !== undefined);
+    if (values.some(isOrdinal)) return asOrdinalType(kind);
+    if (values.some(isTemporal)) return "utc";
   }
 
-  // If any channel is ordinal or temporal, it takes priority.
-  const values = channels.map(({value}) => value).filter((value) => value !== undefined);
-  if (values.some(isOrdinal)) return asOrdinalType(kind);
-  if (values.some(isTemporal)) return "utc";
-  if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
+  // For color scales, take a hint from the color scheme and pivot option.
+  if (kind === color) {
+    if (pivot != null || isDivergingScheme(scheme)) return "diverging";
+    if (isCategoricalScheme(scheme)) return "categorical";
+  }
+
   return "linear";
 }
 
