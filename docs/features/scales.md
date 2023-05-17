@@ -949,7 +949,7 @@ Plot automatically generates [axis](../marks/axis.md) and optionally [grid](../m
 * **label** - a string to label the axis
 * **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
-* **labelArrow** - the label arrow: *left*, *right*, *top* or *bottom*; *none*, or null, or false to suppress; true to indicate the scale’s ascending order; defaults to true for quantitative and temporal scales, false for ordinal scales
+* **labelArrow** - the label arrow: *up*, *right*, *down* or *left*; *none*, or null, or false to suppress; true to indicate the scale’s ascending order; defaults to true for quantitative and temporal scales, false for ordinal scales
 * **fontVariant** - the font-variant attribute for ticks; defaults to *tabular-nums* if quantitative
 * **ariaLabel** - a short label representing the axis in the accessibility tree
 * **ariaDescription** - a textual description for the axis
