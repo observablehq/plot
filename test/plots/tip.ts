@@ -128,6 +128,22 @@ export async function tipLine() {
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
 }
 
+export async function tipLineFixed() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    height: 130,
+    y: {axis: "right", grid: true, nice: true},
+    marks: [
+      Plot.lineY(aapl, {x: "Date", y: "Close"}),
+      Plot.dot(aapl, Plot.pointerX({x: "Date", y: "Close", r: 3, stroke: "red"})),
+      Plot.tip(
+        aapl,
+        Plot.pointerX({px: "Date", py: "Close", frameAnchor: "top-left", anchor: "middle", minWidth: 90, dx: 90 / 2})
+      )
+    ]
+  });
+}
+
 export async function tipRaster() {
   const ca55 = await d3.csv<any>("data/ca55-south.csv", d3.autoType);
   const domain = {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])} as const;

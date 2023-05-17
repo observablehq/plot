@@ -38,6 +38,7 @@ export class Tip extends Mark {
       fontWeight,
       lineHeight = 1,
       lineWidth = 20,
+      minWidth,
       frameAnchor,
       textAnchor = "start",
       textOverflow,
@@ -67,6 +68,7 @@ export class Tip extends Mark {
     this.pathFilter = string(pathFilter);
     this.lineHeight = +lineHeight;
     this.lineWidth = +lineWidth;
+    this.minWidth = number(minWidth);
     this.textOverflow = maybeTextOverflow(textOverflow);
     this.monospace = !!monospace;
     this.fontFamily = string(fontFamily);
@@ -210,9 +212,11 @@ export class Tip extends Mark {
     // metrics needed to determine the tip size and orientation (anchor).
     function postrender() {
       const {width, height} = dimensions.facet ?? dimensions;
+      const {minWidth} = mark;
       g.selectChildren().each(function (i) {
         let {x: tx, width: w, height: h} = this.getBBox();
         (w = Math.round(w)), (h = Math.round(h)); // crisp edges
+        if (minWidth != null) w = Math.max(minWidth, w);
         let a = anchor; // use the specified anchor, if any
         if (a === undefined) {
           a = mark.previousAnchor; // favor the previous anchor, if it fits
