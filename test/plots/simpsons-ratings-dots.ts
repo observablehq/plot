@@ -6,11 +6,12 @@ export async function simpsonsRatingsDots() {
   return Plot.plot({
     x: {
       type: "point",
-      label: "Season →",
-      labelAnchor: "right"
+      label: "Season",
+      labelAnchor: "right",
+      labelArrow: true
     },
     y: {
-      label: "↑ IMDb rating"
+      label: "IMDb rating"
     },
     marks: [
       Plot.ruleX(simpsons, Plot.groupX({y1: "min", y2: "max"}, {x: "season", y: "imdb_rating"})),

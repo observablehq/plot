@@ -146,8 +146,8 @@ Below we recreate an uncommon [chart by Max Roser](https://ourworldindata.org/po
 :::plot defer https://observablehq.com/@observablehq/plot-cumulative-distribution-of-poverty
 ```js
 Plot.plot({
-  x: {label: "Population (millions) →"},
-  y: {percent: true, label: "↑ Proportion living on less than $30 per day (%)"},
+  x: {label: "Population (millions)"},
+  y: {percent: true, label: "Proportion living on less than $30 per day (%)"},
   marks: [
     Plot.rectY(povcalnet, Plot.stackX({
       filter: (d) => ["N", "A"].includes(d.CoverageType),

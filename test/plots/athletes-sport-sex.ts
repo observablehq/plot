@@ -6,7 +6,7 @@ export async function athletesSportSex() {
   return Plot.plot({
     marginLeft: 100,
     x: {
-      label: "Women (%) →",
+      label: "Women (%)",
       domain: [0, 100],
       ticks: 10,
       percent: true,

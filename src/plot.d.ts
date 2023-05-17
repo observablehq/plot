@@ -341,12 +341,12 @@ export interface PlotFacetOptions {
   marginLeft?: number;
 
   /**
-   * default axis grid for fx and fy scales; typically set to true to enable
+   * Default axis grid for fx and fy scales; typically set to true to enable.
    */
   grid?: ScaleOptions["grid"];
 
   /**
-   * default axis label for fx and fy scales; typically set to null to disable
+   * Default axis label for fx and fy scales; typically set to null to disable.
    */
   label?: ScaleOptions["label"];
 }

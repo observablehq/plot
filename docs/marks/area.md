@@ -67,7 +67,7 @@ When the baseline is not *y* = 0 but instead represents another dimension of dat
 ```js
 Plot.plot({
   y: {
-    label: "↑ Temperature (°F)",
+    label: "Temperature (°F)",
     grid: true
   },
   marks: [
@@ -160,7 +160,7 @@ If a **fill** channel is specified, it is assumed to be ordinal or nominal; data
 Plot.plot({
   y: {
     transform: (d) => d / 1000,
-    label: "↑ Unemployed (thousands)"
+    label: "Unemployed (thousands)"
   },
   marks: [
     Plot.areaY(industries, {x: "date", y: "unemployed", fill: "industry"}),
@@ -181,7 +181,7 @@ Or, as a streamgraph with the **offset** stack transform option:
 Plot.plot({
   y: {
     transform: (d) => d / 1000,
-    label: "↑ Unemployed (thousands)"
+    label: "Unemployed (thousands)"
   },
   marks: [
     Plot.areaY(industries, {x: "date", y: "unemployed", fill: "industry", offset: "wiggle"}),

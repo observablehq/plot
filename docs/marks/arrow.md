@@ -23,10 +23,10 @@ Plot.plot({
   inset: 10,
   x: {
     type: "log",
-    label: "Population →"
+    label: "Population"
   },
   y: {
-    label: "↑ Inequality",
+    label: "Inequality",
     ticks: 4
   },
   color: {

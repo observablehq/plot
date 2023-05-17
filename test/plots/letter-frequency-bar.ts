@@ -7,7 +7,7 @@ export async function letterFrequencyBar() {
     ariaLabel: "letter-frequency chart",
     ariaDescription: "A horizontal bar chart showing the relative frequency of letters in the English language.",
     x: {
-      label: "Frequency (%) →",
+      label: "Frequency (%)",
       transform: (x) => x * 100,
       grid: true
     },

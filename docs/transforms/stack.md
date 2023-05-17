@@ -149,7 +149,7 @@ The **order** option controls the order in which the layers are stacked. It defa
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Annual revenue (billions, adj.)",
+    label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000 // convert millions to billions
   },
   color: {legend: true},
@@ -179,7 +179,7 @@ The **reverse** option reverses the order of layers. In conjunction with the *ap
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Annual revenue (billions, adj.)",
+    label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000 // convert millions to billions
   },
   color: {legend: true},
@@ -202,7 +202,7 @@ The *value* **order** is worth special mention: it sorts each stack by value ind
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Annual revenue (billions, adj.)",
+    label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000 // convert millions to billions
   },
   marks: [
@@ -231,7 +231,7 @@ The **offset** option controls the baseline of stacked layers. It defaults to nu
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Annual revenue (billions, adj.)",
+    label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000
   },
   marks: [
@@ -251,7 +251,7 @@ The *normalize* **offset** is again worth special mention: it scales stacks to f
 ```js
 Plot.plot({
   y: {
-    label: "↑ Annual revenue (%)",
+    label: "Annual revenue (%)",
     percent: true
   },
   marks: [
@@ -268,7 +268,7 @@ When the provided length (typically **y**) is negative, in conjunction with the 
 ```js
 Plot.plot({
   aspectRatio: 1,
-  x: {label: "Age (years) →"},
+  x: {label: "Age (years)"},
   y: {
     grid: true,
     label: "← Women · Men →",

@@ -574,7 +574,7 @@ The **transform** scale option allows you to apply a function to all values befo
 Plot.plot({
   y: {
     grid: true,
-    label: `↑ Temperature (°C)`,
+    label: "Temperature (°C)",
     transform: (f) => (f - 32) * (5 / 9) // convert Fahrenheit to Celsius
   },
   marks: [
@@ -624,7 +624,7 @@ Plot.plot({
   },
   y: {
     transform: (d) => d / 1e6,
-    label: "↑ Daily trade volume (millions)"
+    label: "Daily trade volume (millions)"
   },
   marks: [
     Plot.barY(aapl.slice(-40), {x: "Date", y: "Volume"}),
@@ -723,7 +723,7 @@ The **transform** option allows you to apply a function to all values before the
 ```js
 Plot.plot({
   y: {
-    label: "↑ Temperature (°F)",
+    label: "Temperature (°F)",
     transform: (f) => f * 9 / 5 + 32 // convert Celsius to Fahrenheit
   },
   marks: …
@@ -935,23 +935,27 @@ For a *band* scale, you can further fine-tune padding:
 
 Align defaults to 0.5 (centered). Band scale padding defaults to 0.1 (10% of available space reserved for separating bands), while point scale padding defaults to 0.5 (the gap between the first point and the edge is half the distance of the gap between points, and likewise for the gap between the last point and the opposite edge). Note that rounding and mark insets (e.g., for bars and rects) also affect separation between adjacent marks.
 
-Plot automatically generates [axis](../marks/axis.md) and optionally [grid](../marks/grid.md) marks for position scales. (For more control, declare these marks explicitly.) You can configure the implicit axes with the following scale options:
+Plot implicitly generates an [axis mark](../marks/axis.md) for position scales if one is not explicitly declared. (For more control, declare the axis mark explicitly.) The following [axis mark options](../marks/axis.md#axis-options) are also available as scale options, applying to the implicit axis:
 
-* **axis** - *top* or *bottom* (or *both*) for *x* and *fx*; *left* or *right* (or *both*) for *y* and *fy*; null to suppress
+* **axis** - the axis **anchor**: *top*, *bottom* (*x* or *fx*); *left*, *right* (*y* or *fy*); *both*; null to suppress
 * **ticks** - the approximate number of ticks to generate, or interval, or array of values
-* **tickSize** - the length of each tick (in pixels; default 6 for *x* and *y*, or 0 for *fx* and *fy*)
 * **tickSpacing** - the approximate number of pixels between ticks (if **ticks** is not specified)
+* **tickSize** - the length of each tick (in pixels; default 6 for *x* and *y*, or 0 for *fx* and *fy*)
 * **tickPadding** - the separation between the tick and its label (in pixels; default 3)
 * **tickFormat** - either a function or specifier string to format tick values; see [Formats](./formats.md)
 * **tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
-* **grid** - whether to draw grid lines across the plot for each tick
-* **line** - if true, draw the axis line (only for *x* and *y*)
+* **fontVariant** - the font-variant attribute for ticks; defaults to *tabular-nums* if quantitative
 * **label** - a string to label the axis
 * **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
+* **labelArrow** - the label arrow: *auto* (default), *up*, *right*, *down*, *left*, *none*, or true
 * **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
-* **fontVariant** - the font-variant attribute for ticks; defaults to *tabular-nums* if quantitative
 * **ariaLabel** - a short label representing the axis in the accessibility tree
 * **ariaDescription** - a textual description for the axis
+
+For an implicit [grid mark](../marks/grid.md), use the **grid** option. For an implicit [frame mark](../marks/frame.md) along one edge of the frame, use the **line** option.
+
+* **grid** - whether to draw grid lines across the plot for each tick
+* **line** - if true, draw the axis line (only for *x* and *y*)
 
 Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facets](./facets.md)), **label**, **axis**, **inset**, **round**, **align**, and **padding**. If the **grid** option is true, show a grid using *currentColor*; if specified as a string, show a grid with the specified color; if an approximate number of ticks, an interval, or an array of tick values, show corresponding grid lines.
 

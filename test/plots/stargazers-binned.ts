@@ -7,7 +7,7 @@ export async function stargazersBinned() {
   return Plot.plot({
     y: {
       grid: true,
-      label: "↑ Stargazers added per week"
+      label: "Stargazers added per week"
     },
     marks: [
       Plot.rectY(

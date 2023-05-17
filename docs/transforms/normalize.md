@@ -35,7 +35,7 @@ Plot.plot({
   y: {
     type: "log",
     grid: true,
-    label: "↑ Change in price (%)",
+    label: "Change in price (%)",
     tickFormat: ((f) => (x) => f((x - 1) * 100))(d3.format("+d"))
   },
   marks: [
@@ -78,7 +78,7 @@ Plot.plot({
   grid: true,
   x: {
     axis: "top",
-    label: "Population (%) →",
+    label: "Population (%)",
     percent: true
   },
   color: {

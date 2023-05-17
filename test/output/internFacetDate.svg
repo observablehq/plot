@@ -34,7 +34,7 @@
     </g>
   </g>
   <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
-    <text transform="translate(600,445) rotate(-90)">date_of_birth</text>
+    <text transform="translate(600,445) rotate(-90)">← date_of_birth</text>
   </g>
   <g aria-label="y-grid" transform="translate(0,0.5)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">

@@ -6,7 +6,7 @@ export async function seattleTemperatureBand() {
   return Plot.plot({
     y: {
       grid: true,
-      label: "↑ Temperature (°F)",
+      label: "Temperature (°F)",
       transform: (f) => (f * 9) / 5 + 32 // convert from Celsius
     },
     color: {

@@ -34,7 +34,7 @@
     </g>
   </g>
   <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
-    <text transform="translate(600,464.5) rotate(-90)">decade of birth</text>
+    <text transform="translate(600,464.5) rotate(-90)">← decade of birth</text>
   </g>
   <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
     <g transform="translate(1,1)">

@@ -62,8 +62,8 @@ When an ordinal *color* scale is used redundantly with a *symbol* scale, the *sy
 ```js
 Plot.plot({
   grid: true,
-  x: {label: "Body mass (g) →"},
-  y: {label: "↑ Flipper length (mm)"},
+  x: {label: "Body mass (g)"},
+  y: {label: "Flipper length (mm)"},
   symbol: {legend: true},
   marks: [
     Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})

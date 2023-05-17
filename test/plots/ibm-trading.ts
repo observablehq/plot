@@ -12,7 +12,7 @@ export async function ibmTrading() {
     },
     y: {
       transform: (d) => d / 1e6,
-      label: "↑ Volume (USD, millions)",
+      label: "Volume (USD, millions)",
       grid: true
     },
     marks: [Plot.barY(ibm, {x: "Date", y: "Volume"})]

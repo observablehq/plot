@@ -67,7 +67,7 @@
     <text y="0.71em" transform="translate(567,370)">2000</text>
   </g>
   <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(330,370)">date_of_birth</text>
+    <text transform="translate(330,370)">date_of_birth →</text>
   </g>
   <g aria-label="bar">
     <rect x="47" width="47" y="369.84485815602835" height="0.15514184397164854"></rect>

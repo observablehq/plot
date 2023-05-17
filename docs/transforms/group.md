@@ -170,7 +170,7 @@ Alternatively, below we use directional arrows (a [link mark](../marks/link.md) 
 Plot.plot({
   marginBottom: 100,
   x: {label: null, tickRotate: 90},
-  y: {grid: true, label: "↑ Frequency"},
+  y: {grid: true, label: "Frequency"},
   color: {type: "categorical", domain: [-1, 1], unknown: "#aaa", transform: Math.sign},
   marks: [
     Plot.ruleY([0]),
@@ -244,7 +244,7 @@ Or, we could group athletes by sport and the number of gold medals 🥇 won. ([M
 Plot.plot({
   marginBottom: 100,
   x: {label: null, tickRotate: 90},
-  y: {label: "↑ gold", labelAnchor: "top", reverse: true},
+  y: {label: "gold", labelAnchor: "top", labelArrow: true, reverse: true},
   color: {type: "sqrt", scheme: "{{$dark ? "turbo" : "YlGnBu"}}"},
   marks: [
     Plot.cell(olympians, Plot.group({fill: "count"}, {x: "sport", y: "gold"}))
@@ -260,7 +260,7 @@ We could instead output **r** and use a [dot mark](../marks/dot.md) whose size a
 Plot.plot({
   marginBottom: 100,
   x: {label: null, tickRotate: 90},
-  y: {type: "point", label: "↑ gold", labelAnchor: "top", reverse: true},
+  y: {type: "point", label: "gold", labelAnchor: "top", labelArrow: true, reverse: true},
   r: {range: [0, 12]},
   marks: [
     Plot.dot(olympians, Plot.group({r: "count"}, {x: "sport", y: "gold"}))
@@ -276,7 +276,7 @@ We can add the **stroke** channel to show overlapping distributions by sex.
 Plot.plot({
   marginBottom: 100,
   x: {label: null, tickRotate: 90},
-  y: {type: "point", label: "↑ gold", labelAnchor: "top", reverse: true},
+  y: {type: "point", label: "gold", labelAnchor: "top", labelArrow: true, reverse: true},
   r: {range: [0, 12]},
   marks: [
     Plot.dot(olympians, Plot.group({r: "count"}, {x: "sport", y: "gold", stroke: "sex"}))

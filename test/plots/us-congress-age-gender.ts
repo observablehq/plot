@@ -7,7 +7,7 @@ export async function usCongressAgeGender() {
     height: 300,
     x: {
       nice: true,
-      label: "Age →",
+      label: "Age",
       labelAnchor: "right"
     },
     y: {

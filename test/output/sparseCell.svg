@@ -104,7 +104,7 @@
     <text y="0.32em" transform="translate(40,599)">28</text>
   </g>
   <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
-    <text y="0.71em" transform="translate(40,325) rotate(-90)">Season</text>
+    <text y="0.71em" transform="translate(40,325) rotate(-90)">← Season</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(13,0)">
     <line x1="45" x2="45" y1="30" y2="620"></line>
@@ -179,7 +179,7 @@
     <text transform="translate(591,30)">22</text>
   </g>
   <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
-    <text y="0.71em" transform="translate(330,30)">Episode</text>
+    <text y="0.71em" transform="translate(330,30)">Episode →</text>
   </g>
   <g aria-label="cell">
     <rect x="45" width="25" y="32" height="20" fill="rgb(155, 206, 100)"></rect>

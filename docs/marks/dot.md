@@ -58,8 +58,8 @@ Using a function for **x**, we can instead plot the roughly-linear relationship 
 Plot.plot({
   grid: true,
   inset: 10,
-  x: {label: "Fuel consumption (gallons per 100 miles) →"},
-  y: {label: "↑ Horsepower"},
+  x: {label: "Fuel consumption (gallons per 100 miles)"},
+  y: {label: "Horsepower"},
   marks: [
     Plot.dot(cars, {x: (d) => 100 / d["economy (mpg)"], y: "power (hp)"})
   ]
@@ -75,7 +75,7 @@ Plot.plot({
   y: {
     grid: true,
     tickFormat: "+f",
-    label: "↑ Surface temperature anomaly (°F)"
+    label: "Surface temperature anomaly (°F)"
   },
   color: {
     scheme: "BuRd"
@@ -95,13 +95,13 @@ Dots also support an **r** channel allowing dot size to represent quantitative v
 Plot.plot({
   grid: true,
   x: {
-    label: "Daily change (%) →",
+    label: "Daily change (%)",
     tickFormat: "+f",
     percent: true
   },
   y: {
     type: "log",
-    label: "↑ Daily trading volume"
+    label: "Daily trading volume"
   },
   marks: [
     Plot.ruleX([0]),
@@ -119,8 +119,8 @@ Plot.plot({
   height: 640,
   marginLeft: 60,
   grid: true,
-  x: {label: "Carats →"},
-  y: {label: "↑ Price ($)"},
+  x: {label: "Carats"},
+  y: {label: "Price ($)"},
   r: {range: [0, 20]},
   marks: [
     Plot.dot(diamonds, Plot.bin({r: "count"}, {x: "carat", y: "price", thresholds: 100}))
@@ -166,7 +166,7 @@ Plot.plot({
   grid: true,
   x: {
     axis: "top",
-    label: "Population (%) →",
+    label: "Population (%)",
     percent: true
   },
   color: {
@@ -198,8 +198,8 @@ To improve accessibility, particularly for readers with color vision deficiency,
 ```js
 Plot.plot({
   grid: true,
-  x: {label: "Body mass (g) →"},
-  y: {label: "↑ Flipper length (mm)"},
+  x: {label: "Body mass (g)"},
+  y: {label: "Flipper length (mm)"},
   symbol: {legend: true},
   marks: [
     Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})
@@ -250,7 +250,7 @@ The dot mark can be combined with the [stack transform](../transforms/stack.md).
 ```js
 Plot.plot({
   aspectRatio: 1,
-  x: {label: "Age (years) →"},
+  x: {label: "Age (years)"},
   y: {
     grid: true,
     label: "← Women · Men →",

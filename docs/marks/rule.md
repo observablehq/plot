@@ -46,7 +46,7 @@ Plot.plot({
   y: {
     type: "log",
     grid: true,
-    label: "↑ Change in price (%)",
+    label: "Change in price (%)",
     tickFormat: ((f) => (d) => f((d - 1) * 100))(d3.format("+d"))
   },
   marks: [
@@ -79,7 +79,7 @@ Rules can also serve as an alternative to an [area mark](./area.md) as in a band
 :::plot defer
 ```js
 Plot.plot({
-  y: {grid: true, label: "↑ Temperature (°C)"},
+  y: {grid: true, label: "Temperature (°C)"},
   color: {scheme: "BuRd"},
   marks: [
     Plot.ruleY([0]),
@@ -96,7 +96,7 @@ In the dense [candlestick chart](https://observablehq.com/@observablehq/observab
 Plot.plot({
   inset: 6,
   label: null,
-  y: {grid: true, label: "↑ Stock price ($)"},
+  y: {grid: true, label: "Stock price ($)"},
   color: {type: "threshold", range: ["#e41a1c", "#4daf4a"]},
   marks: [
     Plot.ruleX(aapl, {x: "Date", y1: "Low", y2: "High"}),

@@ -91,8 +91,8 @@ We can visualize this small grid directly with a [text mark](./text.md) using th
 ```js
 Plot.plot({
   grid: true,
-  x: {domain: [0, grid.width], label: "column →"},
-  y: {domain: [0, grid.height], label: "↑ row"},
+  x: {domain: [0, grid.width], label: "column"},
+  y: {domain: [0, grid.height], label: "row"},
   marks: [
     Plot.text(grid.values, {
       text: Plot.identity,
@@ -208,8 +208,8 @@ As an alternative to interpolating discrete samples, you can supply values as a 
 ```js
 Plot.plot({
   aspectRatio: 1,
-  x: {tickSpacing: 80, label: "x →"},
-  y: {tickSpacing: 80, label: "↑ y"},
+  x: {tickSpacing: 80, label: "x"},
+  y: {tickSpacing: 80, label: "y"},
   color: {type: "diverging", legend: true, label: "sin(x) cos(y)"},
   marks: [
     Plot.contour({

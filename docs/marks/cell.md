@@ -95,8 +95,9 @@ Plot.plot({
   x: {
     ticks: simpsons.filter((d) => d.number_in_season === 1).map((d) => d.id),
     tickFormat: (x) => simpsons.find((d) => d.id === x).season,
-    label: "Season →",
-    labelAnchor: "right"
+    label: "Season",
+    labelAnchor: "right",
+    labelArrow: true
   },
   color: {
     type: "linear",

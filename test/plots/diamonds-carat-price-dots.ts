@@ -8,10 +8,10 @@ export async function diamondsCaratPriceDots() {
     grid: true,
     marginLeft: 44,
     x: {
-      label: "Carats →"
+      label: "Carats"
     },
     y: {
-      label: "↑ Price ($)"
+      label: "Price ($)"
     },
     r: {
       domain: [0, 100],

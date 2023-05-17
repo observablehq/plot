@@ -8,7 +8,7 @@ export async function aaplCandlestick() {
     inset: 6,
     grid: true,
     y: {
-      label: "↑ Apple stock price ($)",
+      label: "Apple stock price ($)",
       fontVariant: null
     },
     color: {

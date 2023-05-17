@@ -87,10 +87,10 @@ While the *x* scale of a line chart often represents time, this is not required.
 ```js
 Plot.plot({
   x: {
-    label: "Distance from stage start (km) →"
+    label: "Distance from stage start (km)"
   },
   y: {
-    label: "↑ Elevation (m)",
+    label: "Elevation (m)",
     grid: true
   },
   marks: [
@@ -108,8 +108,8 @@ There is no requirement that **y** be dependent on **x**; lines can be used in c
 Plot.plot({
   inset: 10,
   grid: true,
-  x: {label: "Miles driven (per person-year) →"},
-  y: {label: "↑ Cost of gasoline ($ per gallon)"},
+  x: {label: "Miles driven (per person-year)"},
+  y: {label: "Cost of gasoline ($ per gallon)"},
   marks: [
     Plot.line(driving, {x: "miles", y: "gas", curve: "catmull-rom", marker: true}),
     Plot.text(driving, {filter: (d) => d.year % 5 === 0, x: "miles", y: "gas", text: (d) => `${d.year}`, dy: -8})
@@ -125,7 +125,7 @@ To draw multiple lines, use the **z** channel to group [tidy data](https://r4ds.
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Unemployment (%)"
+    label: "Unemployment (%)"
   },
   marks: [
     Plot.ruleY([0]),
@@ -149,7 +149,7 @@ Plot.plot({
   y: {
     type: "log",
     grid: true,
-    label: "↑ Change in price (%)",
+    label: "Change in price (%)",
     tickFormat: ((f) => (x) => f((x - 1) * 100))(d3.format("+d"))
   },
   marks: [
@@ -186,7 +186,7 @@ Plot.plot({
   },
   y: {
     grid: true,
-    label: "↑ Unemployment (%)"
+    label: "Unemployment (%)"
   },
   marks: [
     Plot.ruleY([0]),
@@ -208,7 +208,7 @@ Color encodings can also be used to highlight specific series, such as here to e
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Unemployment (%)"
+    label: "Unemployment (%)"
   },
   color: {
     domain: [false, true],
@@ -237,7 +237,7 @@ As an alternative to **z**, you can render multiple lines using multiple marks. 
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Temperature (°F)"
+    label: "Temperature (°F)"
   },
   marks: [
     Plot.line(sftemp, Plot.windowY(14, {x: "date", y: "low", stroke: "#4e79a7"})),
@@ -286,11 +286,12 @@ While uncommon, you can draw a line with ordinal position values. For example be
 Plot.plot({
   x: {
     domain: stateage.ages, // in age order
-    label: "Age range (years) →",
-    labelAnchor: "right"
+    label: "Age range (years)",
+    labelAnchor: "right",
+    labelArrow: true
   },
   y: {
-    label: "↑ Population (%)",
+    label: "Population (%)",
     percent: true,
     grid: true
   },

@@ -6,7 +6,7 @@ export async function gistempAnomalyTransform() {
   const transform = (c) => (c * 9) / 5; // convert (relative) Celsius to Fahrenheit
   return Plot.plot({
     y: {
-      label: "↑ Temperature anomaly (°F)",
+      label: "Temperature anomaly (°F)",
       tickFormat: "+f",
       transform,
       grid: true

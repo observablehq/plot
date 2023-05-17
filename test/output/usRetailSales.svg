@@ -56,7 +56,7 @@
     <text y="0.32em" transform="translate(40,44.490175521661214)">550</text>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(40,20)">U.S. retail monthly sales (in billions, seasonally-adjusted)</text>
+    <text y="0.71em" transform="translate(40,20)">↑ U.S. retail monthly sales (in billions, seasonally-adjusted)</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(100.18557091459951,370)" d="M0,0L0,6"></path>

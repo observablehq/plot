@@ -7,7 +7,7 @@ export async function aaplVolumeRect() {
     y: {
       grid: true,
       transform: (d) => d / 1e6,
-      label: "↑ Daily trade volume (millions)"
+      label: "Daily trade volume (millions)"
     },
     marks: [
       Plot.rectY(AAPL, {x: "Date", interval: "day", y: "Volume", fill: "#ccc"}),

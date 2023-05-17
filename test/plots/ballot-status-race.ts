@@ -55,7 +55,7 @@ export async function ballotStatusRace() {
   return Plot.plot({
     x: {
       grid: true,
-      label: "Frequency (%) →"
+      label: "Frequency (%)"
     },
     y: {
       domain: ["ACCEPTED", "REJECTED", "PENDING"],
