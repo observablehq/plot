@@ -358,6 +358,7 @@ In addition to the [standard mark options](../features/marks.md), the axis mark 
 * **label** - a string to label the axis; defaults to the scale’s label, perhaps with an arrow
 * **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
+* **labelArrow** - the label arrow: *left*, *right*, *top* or *bottom*; *none*, or null, or false to suppress; true to indicate the scale’s ascending order; defaults to true for quantitative and temporal scales, false for ordinal scales
 * **color** - the color of the ticks and labels (defaults to *currentColor*)
 * **textStroke** - the color of the stroke around tick labels (defaults to *none*)
 * **textStrokeOpacity** - the opacity of the stroke around tick labels
