@@ -411,13 +411,7 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   // If the domain or range has more than two values, assume it’s ordinal. You
   // can still use a “piecewise” (or “polylinear”) scale, but you must set the
   // type explicitly.
-  if ((domain || range || []).length > 2) return asOrdinalType(kind);
-
-  // For color scales, take a hint from the color scheme and pivot option.
-  if (kind === color) {
-    if (pivot != null || isDivergingScheme(scheme)) return "diverging";
-    if (isCategoricalScheme(scheme)) return "categorical";
-  }
+  if ((domain || range || []).length > 2) return asOrdinalType(kind, scheme);
 
   // Otherwise, infer the scale type from the data! Prefer the domain, if
   // present, over channels. (The domain and channels should be consistently
@@ -425,25 +419,29 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   // check the first defined value for expedience and simplicity; we expect
   // that the types are consistent.
   if (domain !== undefined) {
-    if (isOrdinal(domain)) return asOrdinalType(kind);
+    if (isOrdinal(domain)) return asOrdinalType(kind, scheme);
     if (isTemporal(domain)) return "utc";
-    return "linear";
+  } else {
+    // If any channel is ordinal or temporal, it takes priority.
+    const values = channels.map(({value}) => value).filter((value) => value !== undefined);
+    if (values.some(isOrdinal)) return asOrdinalType(kind, scheme);
+    if (values.some(isTemporal)) return "utc";
   }
-
-  // If any channel is ordinal or temporal, it takes priority.
-  const values = channels.map(({value}) => value).filter((value) => value !== undefined);
-  if (values.some(isOrdinal)) return asOrdinalType(kind);
-  if (values.some(isTemporal)) return "utc";
+  // For color scales, take a hint from the color scheme and pivot option.
+  if (kind === color) {
+    if (pivot != null || isDivergingScheme(scheme)) return "diverging";
+    if (isCategoricalScheme(scheme)) return "categorical";
+  }
   return "linear";
 }
 
 // Positional scales default to a point scale instead of an ordinal scale.
-function asOrdinalType(kind) {
+function asOrdinalType(kind, scheme) {
   switch (kind) {
     case position:
       return "point";
     case color:
-      return ordinalImplicit;
+      return isCategoricalScheme(scheme) ? "categorical" : ordinalImplicit;
     default:
       return "ordinal";
   }
