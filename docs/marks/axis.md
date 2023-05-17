@@ -349,20 +349,22 @@ Note that when an axis mark is declared explicitly (via the [**marks** plot opti
 
 In addition to the [standard mark options](../features/marks.md), the axis mark supports the following options:
 
-* **anchor** - the orientation: *top*, *bottom* (*x* or *fx*); *left*, *right* (*y* or *fy*); *both*; null to suppress
+* **anchor** - the axis orientation: *top* or *bottom* for *x* or *fx*; *left* or *right* for *y* or *fy*
 * **tickSize** - the length of the tick vector (in pixels; default 6 for *x* or *y*, or 0 for *fx* or *fy*)
 * **tickPadding** - the separation between the tick vector and its label (in pixels; default 3)
 * **tickFormat** - either a function or specifier string to format tick values; see [Formats](../features/formats.md)
 * **tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
-* **fontVariant** - the font-variant attribute for ticks; defaults to tabular-nums for quantitative axes
+* **fontVariant** - the ticks’ font-variant; defaults to *tabular-nums* for quantitative axes
 * **label** - a string to label the axis; defaults to the scale’s label, perhaps with an arrow
 * **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
+* **labelArrow** - the label arrow: *auto* (default), *up*, *right*, *down*, *left*, *none*, or true
 * **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
-* **labelArrow** - the label arrow: *up*, *right*, *down* or *left*; *none*, or null, or false to suppress; true to indicate the scale’s ascending order; defaults to true for quantitative and temporal scales, false for ordinal scales
 * **color** - the color of the ticks and labels (defaults to *currentColor*)
 * **textStroke** - the color of the stroke around tick labels (defaults to *none*)
 * **textStrokeOpacity** - the opacity of the stroke around tick labels
 * **textStrokeWidth** - the thickness of the stroke around tick labels (in pixels)
+
+The **labelArrow** option controls the arrow (↑, →, ↓, or ←) added to the axis label indicating the direction of ascending value; for example, horizontal position *x* typically increases in value going right→, while vertical position *y* typically increases in value going up↑. If *auto* (the default), the arrow will be added only if the scale is quantitative or temporal; if true, the arrow will also apply to ordinal scales, provided the domain is consistently ordered.
 
 As a composite mark, the **stroke** option affects the color of the tick vector, while the **fill** option affects the color the text labels; both default to the **color** option, which defaults to *currentColor*. The **x** and **y** channels, if specified, position the ticks; if not specified, the tick positions depend on the axis **anchor**. The orientation of the tick labels likewise depends on the **anchor**. See the [text mark](./text.md) for details on available options for the tick and axis labels.
 
