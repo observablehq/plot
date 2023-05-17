@@ -51,6 +51,7 @@ export function inferChannelScale(name, channel) {
         break;
       case "fillOpacity":
       case "strokeOpacity":
+      case "opacity":
         channel.scale = scale !== true && isEvery(value, isOpacity) ? null : "opacity";
         break;
       case "symbol":
