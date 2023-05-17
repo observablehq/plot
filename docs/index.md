@@ -93,6 +93,10 @@ features:
   --vp-home-hero-name-background: linear-gradient(-30deg, hsl(200deg 100% 65%), var(--vp-c-brand-dark));
 }
 
+:root.dark .VPHero .VPImage {
+  filter: drop-shadow(0 4px 8px black);
+}
+
 </style>
 
 <script setup>
