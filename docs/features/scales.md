@@ -935,7 +935,7 @@ For a *band* scale, you can further fine-tune padding:
 
 Align defaults to 0.5 (centered). Band scale padding defaults to 0.1 (10% of available space reserved for separating bands), while point scale padding defaults to 0.5 (the gap between the first point and the edge is half the distance of the gap between points, and likewise for the gap between the last point and the opposite edge). Note that rounding and mark insets (e.g., for bars and rects) also affect separation between adjacent marks.
 
-Plot implicitly generates an [axis mark](../marks/axis.md) for position scales if one is not explicitly declared. (For more control, declare these marks explicitly.) The following [axis mark options](../marks/axis.md#axis-options) are also available as scale options, applying to the implicit axis:
+Plot implicitly generates an [axis mark](../marks/axis.md) for position scales if one is not explicitly declared. (For more control, declare the axis mark explicitly.) The following [axis mark options](../marks/axis.md#axis-options) are also available as scale options, applying to the implicit axis:
 
 * **axis** - the axis **anchor**: *top*, *bottom* (*x* or *fx*); *left*, *right* (*y* or *fy*); *both*; null to suppress
 * **ticks** - the approximate number of ticks to generate, or interval, or array of values
