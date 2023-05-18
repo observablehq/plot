@@ -60,7 +60,7 @@ export type InitializerFunction = (
  * considered less than *b*, a positive number if *a* is considered greater than
  * *b*, or zero if *a* and *b* are considered equal.
  */
-export type CompareFunction = (a: any, b: any) => number;
+export type CompareFunction<T = unknown> = (a: T, b: T) => number;
 
 /** Mark options with a mark transform. */
 export type Transformed<T> = T & {transform: TransformFunction};
@@ -145,11 +145,11 @@ export function shuffle<T>(options?: T & {seed?: number}): Transformed<T>;
  * - a {value, order} object for sorting given values
  * - a {channel, order} object for sorting the named channel’s values
  */
-export type SortOrder =
-  | CompareFunction
+export type SortOrder<T = unknown> =
+  | CompareFunction<T>
   | ChannelValue
-  | {value?: ChannelValue; order?: CompareFunction | "ascending" | "descending"}
-  | {channel?: ChannelName; order?: CompareFunction | "ascending" | "descending"};
+  | {value?: ChannelValue; order?: CompareFunction<T> | "ascending" | "descending"}
+  | {channel?: ChannelName; order?: CompareFunction<T> | "ascending" | "descending"};
 
 /**
  * Applies a transform to *options* to sort the mark’s index by the specified

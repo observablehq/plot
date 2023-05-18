@@ -63,7 +63,7 @@ export type RenderFunction = (
 export type Markish = RenderableMark | RenderFunction | Markish[] | null | undefined;
 
 /** Shared options for all marks. */
-export interface MarkOptions {
+export interface MarkOptions<T = unknown> {
   /**
    * Applies a transform to filter the mark’s index according to the given
    * channel values; only truthy values are retained. For example, to show only
@@ -120,7 +120,7 @@ export interface MarkOptions {
    *
    * See also the Plot.sort transform.
    */
-  sort?: SortOrder | ChannelDomainSort;
+  sort?: SortOrder<T> | ChannelDomainSort;
 
   /** A custom mark transform. */
   transform?: TransformFunction;
