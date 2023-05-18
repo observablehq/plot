@@ -454,16 +454,12 @@
     <text y="0.32em" transform="translate(460.80851063829783,25)">35</text>
     <text y="0.32em" transform="translate(529.4255319148936,25)">40</text>
     <text y="0.32em" transform="translate(598.0425531914893,25)">45</text>
-  </g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,0.5)">
     <text y="0.32em" transform="translate(104,50)">3</text>
     <text y="0.32em" transform="translate(207.2,50)">4</text>
     <text y="0.32em" transform="translate(310.4,50)">5</text>
     <text y="0.32em" transform="translate(413.6,50)">6</text>
     <text y="0.32em" transform="translate(516.8,50)">7</text>
     <text y="0.32em" transform="translate(620,50)">8</text>
-  </g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,0.5)">
     <text y="0.32em" transform="translate(146.66666666666669,75)">100</text>
     <text y="0.32em" transform="translate(213.33333333333331,75)">150</text>
     <text y="0.32em" transform="translate(280,75)">200</text>
@@ -472,8 +468,6 @@
     <text y="0.32em" transform="translate(480,75)">350</text>
     <text y="0.32em" transform="translate(546.6666666666667,75)">400</text>
     <text y="0.32em" transform="translate(613.3333333333334,75)">450</text>
-  </g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,0.5)">
     <text y="0.32em" transform="translate(143.26086956521738,100)">60</text>
     <text y="0.32em" transform="translate(199.34782608695653,100)">80</text>
     <text y="0.32em" transform="translate(255.43478260869566,100)">100</text>
@@ -483,8 +477,6 @@
     <text y="0.32em" transform="translate(479.7826086956522,100)">180</text>
     <text y="0.32em" transform="translate(535.8695652173913,100)">200</text>
     <text y="0.32em" transform="translate(591.9565217391305,100)">220</text>
-  </g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,0.5)">
     <text y="0.32em" transform="translate(160.61808902750215,125)">2,000</text>
     <text y="0.32em" transform="translate(233.7680748511483,125)">2,500</text>
     <text y="0.32em" transform="translate(306.91806067479445,125)">3,000</text>
@@ -492,8 +484,6 @@
     <text y="0.32em" transform="translate(453.2180323220868,125)">4,000</text>
     <text y="0.32em" transform="translate(526.3680181457329,125)">4,500</text>
     <text y="0.32em" transform="translate(599.5180039693792,125)">5,000</text>
-  </g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,0.5)">
     <text y="0.32em" transform="translate(104,150)">8</text>
     <text y="0.32em" transform="translate(165.42857142857144,150)">10</text>
     <text y="0.32em" transform="translate(226.85714285714286,150)">12</text>
@@ -503,8 +493,6 @@
     <text y="0.32em" transform="translate(472.5714285714286,150)">20</text>
     <text y="0.32em" transform="translate(534,150)">22</text>
     <text y="0.32em" transform="translate(595.4285714285714,150)">24</text>
-  </g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,0.5)">
     <text y="0.32em" transform="translate(104,175)">70</text>
     <text y="0.32em" transform="translate(190,175)">72</text>
     <text y="0.32em" transform="translate(276,175)">74</text>
