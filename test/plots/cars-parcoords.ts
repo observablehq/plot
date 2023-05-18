@@ -6,21 +6,11 @@ export async function carsParcoords() {
   const dimensions = cars.columns.slice(1);
 
   // Reshape wide data to make it tidy.
-  const data = dimensions.flatMap((dimension: string) => {
+  const points = dimensions.flatMap((dimension: string) => {
     return cars.map(({name, year, [dimension]: value}) => {
-      return {name: `${name}-${year}`, dimension, value};
+      return {id: `${name}-${year}`, dimension, value};
     });
   });
-
-  // Compute ticks for each dimension.
-  const ticks = dimensions.flatMap((dimension) => {
-    return d3.ticks(...(d3.extent(cars, (d) => d[dimension]) as [number, number]), 7).map((value) => {
-      return {dimension, value};
-    });
-  });
-
-  // Normalize the x-position based on the extent for each dimension.
-  const xy = Plot.normalizeX("extent", {x: "value", y: "dimension", z: "dimension"});
 
   return Plot.plot({
     marginLeft: 104,
@@ -36,8 +26,32 @@ export async function carsParcoords() {
     },
     marks: [
       Plot.ruleY(dimensions),
-      Plot.line(data, {...xy, z: "name", stroke: "#444", strokeWidth: 0.5, strokeOpacity: 0.5}),
-      Plot.text(ticks, {...xy, text: "value", fill: "black", stroke: "white"})
+      Plot.line(points, {
+        // Normalize the x-position based on the extent for each dimension.
+        ...Plot.normalizeX("extent", {x: "value", y: "dimension", z: "dimension"}),
+        // Create a line for each car
+        z: "id",
+        stroke: "#444",
+        strokeWidth: 0.5,
+        strokeOpacity: 0.5
+      }),
+      dimensions.map((dimension) => {
+        const [min, max] = d3.extent(cars, (d) => d[dimension]);
+        const ticks = d3.ticks(min, max, 7);
+        return Plot.text(
+          // Normalize the x-position based on the true extent (including min and max).
+          [...ticks, min, max],
+          Plot.normalizeX({
+            basis: "extent",
+            x: Plot.identity,
+            text: ticks, // Ignores min and max.
+            y: () => dimension, // Constant y.
+            fill: "black",
+            stroke: "white",
+            strokeWidth: 3
+          })
+        );
+      })
     ]
   });
 }
