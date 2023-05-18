@@ -181,8 +181,6 @@ export class Tip extends Mark {
     // exact text metrics and translate the text as needed once we know the
     // tip’s orientation (anchor).
     function renderLine(selection, name, value, color) {
-      if (name) name = "\u200b" + name; // zwsp for double-click
-      else if (!value) value = " ";
       let title;
       let w = lineWidth * 100;
       const [j] = cut(name, w, widthof, ee);
@@ -192,7 +190,7 @@ export class Tip extends Mark {
         title = value.trim();
         value = "";
       } else {
-        if (name) value = " " + value;
+        if (name || (!value && !color)) value = " " + value;
         const [k] = cut(value, w - widthof(name), widthof, ee);
         if (k >= 0) {
           // value is truncated
@@ -200,7 +198,7 @@ export class Tip extends Mark {
           title = value.trim();
         }
       }
-      const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`);
+      const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
       if (name) line.append("tspan").attr("font-weight", "bold").text(name);
       if (value) line.append(() => document.createTextNode(value));
       if (color) line.append("tspan").text(" ■").attr("fill", color).style("user-select", "none");

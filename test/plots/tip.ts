@@ -147,10 +147,11 @@ export async function tipRule() {
 
 export async function tipNewLines() {
   return Plot.plot({
-    height: 100,
-    x: {axis: "top"},
+    height: 40,
+    style: "overflow: visible;",
+    x: {axis: "top", label: null},
     marks: [
-      Plot.dotX(
+      Plot.tip(
         [
           {x: "after", label: `Hello\n\n`},
           {x: "before", label: `\n\nWorld`},
@@ -158,14 +159,13 @@ export async function tipNewLines() {
         ],
         {
           x: "x",
-          title: "label",
-          tip: true
+          anchor: "top",
+          title: "label"
         }
       ),
-      Plot.dotX([{x: "no name"}], {
+      Plot.tip([{x: "no name"}], {
         x: "x",
-        channels: {a: ["first"], "": [""]},
-        tip: true
+        channels: {a: ["first"], b: ["second"], "": [""]}
       })
     ]
   });
