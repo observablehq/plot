@@ -19,13 +19,13 @@ export async function carsParcoords() {
     })
   );
 
-  // Given a dimension, returns suitable ticks.
-  function ticks(dimension) {
+  // Compute ticks for each dimension.
+  const ticks = dimensions.flatMap((dimension) => {
     return scales
       .get(dimension)
       .ticks(7)
       .map((value) => ({dimension, value}));
-  }
+  });
 
   return Plot.plot({
     marginLeft: 104,
@@ -49,7 +49,7 @@ export async function carsParcoords() {
         strokeWidth: 0.5,
         strokeOpacity: 0.5
       }),
-      Plot.text(dimensions.flatMap(ticks), {
+      Plot.text(ticks, {
         x: (d) => scales.get(d.dimension)(d.value),
         y: "dimension",
         text: "value",
