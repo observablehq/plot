@@ -182,6 +182,7 @@ export class Tip extends Mark {
     // tip’s orientation (anchor).
     function renderLine(selection, name, value, color) {
       if (name) name = "\u200b" + name; // zwsp for double-click
+      else if (!value) value = " ";
       let title;
       let w = lineWidth * 100;
       const [j] = cut(name, w, widthof, ee);
@@ -202,7 +203,6 @@ export class Tip extends Mark {
       const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`);
       if (name) line.append("tspan").attr("font-weight", "bold").text(name);
       if (value) line.append(() => document.createTextNode(value));
-      if (!name && !value) line.append(() => document.createTextNode(" "));
       if (color) line.append("tspan").text(" ■").attr("fill", color).style("user-select", "none");
       if (title) line.append("title").text(title);
     }
