@@ -80,50 +80,50 @@
     <path transform="translate(95,1041)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,11)">
-    <text transform="translate(95,29)"><tspan x="0" y="-0.18em">George</tspan><tspan x="0" y="0.8200000000000001em">Washington</tspan></text>
+    <text transform="translate(95,29)"><tspan x="0" y="-0.18em">George</tspan><tspan x="0" dy="1em">Washington</tspan></text>
     <text y="0.32em" transform="translate(95,52)">John Adams</text>
-    <text transform="translate(95,75)"><tspan x="0" y="-0.18em">Thomas</tspan><tspan x="0" y="0.8200000000000001em">Jefferson</tspan></text>
-    <text transform="translate(95,98)"><tspan x="0" y="-0.18em">James</tspan><tspan x="0" y="0.8200000000000001em">Madison</tspan></text>
-    <text transform="translate(95,121)"><tspan x="0" y="-0.18em">James</tspan><tspan x="0" y="0.8200000000000001em">Monroe</tspan></text>
-    <text transform="translate(95,144)"><tspan x="0" y="-0.18em">John Quincy</tspan><tspan x="0" y="0.8200000000000001em">Adams</tspan></text>
-    <text transform="translate(95,167)"><tspan x="0" y="-0.18em">Andrew</tspan><tspan x="0" y="0.8200000000000001em">Jackson</tspan></text>
-    <text transform="translate(95,190)"><tspan x="0" y="-0.18em">Martin Van</tspan><tspan x="0" y="0.8200000000000001em">Buren</tspan></text>
-    <text transform="translate(95,213)"><tspan x="0" y="-0.68em">William</tspan><tspan x="0" y="0.31999999999999995em">Henry</tspan><tspan x="0" y="1.3199999999999998em">Harrison</tspan></text>
+    <text transform="translate(95,75)"><tspan x="0" y="-0.18em">Thomas</tspan><tspan x="0" dy="1em">Jefferson</tspan></text>
+    <text transform="translate(95,98)"><tspan x="0" y="-0.18em">James</tspan><tspan x="0" dy="1em">Madison</tspan></text>
+    <text transform="translate(95,121)"><tspan x="0" y="-0.18em">James</tspan><tspan x="0" dy="1em">Monroe</tspan></text>
+    <text transform="translate(95,144)"><tspan x="0" y="-0.18em">John Quincy</tspan><tspan x="0" dy="1em">Adams</tspan></text>
+    <text transform="translate(95,167)"><tspan x="0" y="-0.18em">Andrew</tspan><tspan x="0" dy="1em">Jackson</tspan></text>
+    <text transform="translate(95,190)"><tspan x="0" y="-0.18em">Martin Van</tspan><tspan x="0" dy="1em">Buren</tspan></text>
+    <text transform="translate(95,213)"><tspan x="0" y="-0.68em">William</tspan><tspan x="0" dy="1em">Henry</tspan><tspan x="0" dy="1em">Harrison</tspan></text>
     <text y="0.32em" transform="translate(95,236)">John Tyler</text>
-    <text transform="translate(95,259)"><tspan x="0" y="-0.18em">James K.</tspan><tspan x="0" y="0.8200000000000001em">Polk</tspan></text>
-    <text transform="translate(95,282)"><tspan x="0" y="-0.18em">Zachary</tspan><tspan x="0" y="0.8200000000000001em">Taylor</tspan></text>
-    <text transform="translate(95,305)"><tspan x="0" y="-0.18em">Millard</tspan><tspan x="0" y="0.8200000000000001em">Fillmore</tspan></text>
-    <text transform="translate(95,328)"><tspan x="0" y="-0.18em">Franklin</tspan><tspan x="0" y="0.8200000000000001em">Pierce</tspan></text>
-    <text transform="translate(95,351)"><tspan x="0" y="-0.18em">James</tspan><tspan x="0" y="0.8200000000000001em">Buchanan</tspan></text>
-    <text transform="translate(95,374)"><tspan x="0" y="-0.18em">Abraham</tspan><tspan x="0" y="0.8200000000000001em">Lincoln</tspan></text>
-    <text transform="translate(95,397)"><tspan x="0" y="-0.18em">Andrew</tspan><tspan x="0" y="0.8200000000000001em">Johnson</tspan></text>
-    <text transform="translate(95,420)"><tspan x="0" y="-0.18em">Ulysses S.</tspan><tspan x="0" y="0.8200000000000001em">Grant</tspan></text>
-    <text transform="translate(95,443)"><tspan x="0" y="-0.18em">Rutherford</tspan><tspan x="0" y="0.8200000000000001em">B. Hayes</tspan></text>
-    <text transform="translate(95,466)"><tspan x="0" y="-0.18em">James A.</tspan><tspan x="0" y="0.8200000000000001em">Garfield</tspan></text>
-    <text transform="translate(95,489)"><tspan x="0" y="-0.18em">Chester A.</tspan><tspan x="0" y="0.8200000000000001em">Arthur</tspan></text>
-    <text transform="translate(95,512)"><tspan x="0" y="-0.18em">Grover</tspan><tspan x="0" y="0.8200000000000001em">Cleveland</tspan></text>
-    <text transform="translate(95,535)"><tspan x="0" y="-0.18em">Benjamin</tspan><tspan x="0" y="0.8200000000000001em">Harrison</tspan></text>
-    <text transform="translate(95,558)"><tspan x="0" y="-0.18em">William</tspan><tspan x="0" y="0.8200000000000001em">McKinley</tspan></text>
-    <text transform="translate(95,581)"><tspan x="0" y="-0.18em">Theodore</tspan><tspan x="0" y="0.8200000000000001em">Roosevelt</tspan></text>
-    <text transform="translate(95,604)"><tspan x="0" y="-0.18em">William</tspan><tspan x="0" y="0.8200000000000001em">Howard Taft</tspan></text>
-    <text transform="translate(95,627)"><tspan x="0" y="-0.18em">Woodrow</tspan><tspan x="0" y="0.8200000000000001em">Wilson</tspan></text>
-    <text transform="translate(95,650)"><tspan x="0" y="-0.18em">Warren G.</tspan><tspan x="0" y="0.8200000000000001em">Harding</tspan></text>
-    <text transform="translate(95,673)"><tspan x="0" y="-0.18em">Calvin</tspan><tspan x="0" y="0.8200000000000001em">Coolidge</tspan></text>
-    <text transform="translate(95,696)"><tspan x="0" y="-0.18em">Herbert</tspan><tspan x="0" y="0.8200000000000001em">Hoover</tspan></text>
-    <text transform="translate(95,719)"><tspan x="0" y="-0.18em">Franklin D.</tspan><tspan x="0" y="0.8200000000000001em">Roosevelt</tspan></text>
-    <text transform="translate(95,742)"><tspan x="0" y="-0.18em">Harry S.</tspan><tspan x="0" y="0.8200000000000001em">Truman</tspan></text>
-    <text transform="translate(95,765)"><tspan x="0" y="-0.18em">Dwight D.</tspan><tspan x="0" y="0.8200000000000001em">Eisenhower</tspan></text>
-    <text transform="translate(95,788)"><tspan x="0" y="-0.18em">John F.</tspan><tspan x="0" y="0.8200000000000001em">Kennedy</tspan></text>
-    <text transform="translate(95,811)"><tspan x="0" y="-0.18em">Lyndon B.</tspan><tspan x="0" y="0.8200000000000001em">Johnson</tspan></text>
-    <text transform="translate(95,834)"><tspan x="0" y="-0.18em">Richard</tspan><tspan x="0" y="0.8200000000000001em">Nixon</tspan></text>
+    <text transform="translate(95,259)"><tspan x="0" y="-0.18em">James K.</tspan><tspan x="0" dy="1em">Polk</tspan></text>
+    <text transform="translate(95,282)"><tspan x="0" y="-0.18em">Zachary</tspan><tspan x="0" dy="1em">Taylor</tspan></text>
+    <text transform="translate(95,305)"><tspan x="0" y="-0.18em">Millard</tspan><tspan x="0" dy="1em">Fillmore</tspan></text>
+    <text transform="translate(95,328)"><tspan x="0" y="-0.18em">Franklin</tspan><tspan x="0" dy="1em">Pierce</tspan></text>
+    <text transform="translate(95,351)"><tspan x="0" y="-0.18em">James</tspan><tspan x="0" dy="1em">Buchanan</tspan></text>
+    <text transform="translate(95,374)"><tspan x="0" y="-0.18em">Abraham</tspan><tspan x="0" dy="1em">Lincoln</tspan></text>
+    <text transform="translate(95,397)"><tspan x="0" y="-0.18em">Andrew</tspan><tspan x="0" dy="1em">Johnson</tspan></text>
+    <text transform="translate(95,420)"><tspan x="0" y="-0.18em">Ulysses S.</tspan><tspan x="0" dy="1em">Grant</tspan></text>
+    <text transform="translate(95,443)"><tspan x="0" y="-0.18em">Rutherford</tspan><tspan x="0" dy="1em">B. Hayes</tspan></text>
+    <text transform="translate(95,466)"><tspan x="0" y="-0.18em">James A.</tspan><tspan x="0" dy="1em">Garfield</tspan></text>
+    <text transform="translate(95,489)"><tspan x="0" y="-0.18em">Chester A.</tspan><tspan x="0" dy="1em">Arthur</tspan></text>
+    <text transform="translate(95,512)"><tspan x="0" y="-0.18em">Grover</tspan><tspan x="0" dy="1em">Cleveland</tspan></text>
+    <text transform="translate(95,535)"><tspan x="0" y="-0.18em">Benjamin</tspan><tspan x="0" dy="1em">Harrison</tspan></text>
+    <text transform="translate(95,558)"><tspan x="0" y="-0.18em">William</tspan><tspan x="0" dy="1em">McKinley</tspan></text>
+    <text transform="translate(95,581)"><tspan x="0" y="-0.18em">Theodore</tspan><tspan x="0" dy="1em">Roosevelt</tspan></text>
+    <text transform="translate(95,604)"><tspan x="0" y="-0.18em">William</tspan><tspan x="0" dy="1em">Howard Taft</tspan></text>
+    <text transform="translate(95,627)"><tspan x="0" y="-0.18em">Woodrow</tspan><tspan x="0" dy="1em">Wilson</tspan></text>
+    <text transform="translate(95,650)"><tspan x="0" y="-0.18em">Warren G.</tspan><tspan x="0" dy="1em">Harding</tspan></text>
+    <text transform="translate(95,673)"><tspan x="0" y="-0.18em">Calvin</tspan><tspan x="0" dy="1em">Coolidge</tspan></text>
+    <text transform="translate(95,696)"><tspan x="0" y="-0.18em">Herbert</tspan><tspan x="0" dy="1em">Hoover</tspan></text>
+    <text transform="translate(95,719)"><tspan x="0" y="-0.18em">Franklin D.</tspan><tspan x="0" dy="1em">Roosevelt</tspan></text>
+    <text transform="translate(95,742)"><tspan x="0" y="-0.18em">Harry S.</tspan><tspan x="0" dy="1em">Truman</tspan></text>
+    <text transform="translate(95,765)"><tspan x="0" y="-0.18em">Dwight D.</tspan><tspan x="0" dy="1em">Eisenhower</tspan></text>
+    <text transform="translate(95,788)"><tspan x="0" y="-0.18em">John F.</tspan><tspan x="0" dy="1em">Kennedy</tspan></text>
+    <text transform="translate(95,811)"><tspan x="0" y="-0.18em">Lyndon B.</tspan><tspan x="0" dy="1em">Johnson</tspan></text>
+    <text transform="translate(95,834)"><tspan x="0" y="-0.18em">Richard</tspan><tspan x="0" dy="1em">Nixon</tspan></text>
     <text y="0.32em" transform="translate(95,857)">Gerald Ford</text>
-    <text transform="translate(95,880)"><tspan x="0" y="-0.18em">Jimmy</tspan><tspan x="0" y="0.8200000000000001em">Carter</tspan></text>
-    <text transform="translate(95,903)"><tspan x="0" y="-0.18em">Ronald</tspan><tspan x="0" y="0.8200000000000001em">Reagan</tspan></text>
-    <text transform="translate(95,926)"><tspan x="0" y="-0.18em">George H.</tspan><tspan x="0" y="0.8200000000000001em">W. Bush</tspan></text>
+    <text transform="translate(95,880)"><tspan x="0" y="-0.18em">Jimmy</tspan><tspan x="0" dy="1em">Carter</tspan></text>
+    <text transform="translate(95,903)"><tspan x="0" y="-0.18em">Ronald</tspan><tspan x="0" dy="1em">Reagan</tspan></text>
+    <text transform="translate(95,926)"><tspan x="0" y="-0.18em">George H.</tspan><tspan x="0" dy="1em">W. Bush</tspan></text>
     <text y="0.32em" transform="translate(95,949)">Bill Clinton</text>
-    <text transform="translate(95,972)"><tspan x="0" y="-0.18em">George W.</tspan><tspan x="0" y="0.8200000000000001em">Bush</tspan></text>
-    <text transform="translate(95,995)"><tspan x="0" y="-0.18em">Barack</tspan><tspan x="0" y="0.8200000000000001em">Obama</tspan></text>
-    <text transform="translate(95,1018)"><tspan x="0" y="-0.18em">Donald</tspan><tspan x="0" y="0.8200000000000001em">Trump</tspan></text>
+    <text transform="translate(95,972)"><tspan x="0" y="-0.18em">George W.</tspan><tspan x="0" dy="1em">Bush</tspan></text>
+    <text transform="translate(95,995)"><tspan x="0" y="-0.18em">Barack</tspan><tspan x="0" dy="1em">Obama</tspan></text>
+    <text transform="translate(95,1018)"><tspan x="0" y="-0.18em">Donald</tspan><tspan x="0" dy="1em">Trump</tspan></text>
     <text y="0.32em" transform="translate(95,1041)">Joe Biden</text>
   </g>
   <g aria-label="y-axis label" transform="translate(-91.5,0.5)">

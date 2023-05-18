@@ -88,7 +88,7 @@
       <text y="0.32em" transform="translate(180,231)">The Black Hole</text>
       <text y="0.32em" transform="translate(180,252)">The Big Parade</text>
       <text y="0.32em" transform="translate(180,273)">Boyz n the Hood</text>
-      <text transform="translate(180,294)"><tspan x="0" y="-0.18em">The Book of Mormon Movie,</tspan><tspan x="0" y="0.8200000000000001em">Volume 1: The Journey</tspan></text>
+      <text transform="translate(180,294)"><tspan x="0" y="-0.18em">The Book of Mormon Movie,</tspan><tspan x="0" dy="1em">Volume 1: The Journey</tspan></text>
       <text y="0.32em" transform="translate(180,315)">Return to the Blue Lagoon</text>
       <text y="0.32em" transform="translate(180,336)">Bright Lights, Big City</text>
       <text y="0.32em" transform="translate(180,357)">The Blue Bird</text>
@@ -129,7 +129,7 @@
       <text y="0.32em" transform="translate(180,231)">The Black Hole</text>
       <text y="0.32em" transform="translate(180,252)">The Big Parade</text>
       <text y="0.32em" transform="translate(180,273)">Boyz n the Hood</text>
-      <text transform="translate(180,294)"><tspan x="0" y="-0.18em">Mormon Movie,</tspan><tspan x="0" y="0.8200000000000001em">e 1: The Journey</tspan><title>The Book of Mormon Movie,
+      <text transform="translate(180,294)"><tspan x="0" y="-0.18em">Mormon Movie,</tspan><tspan x="0" dy="1em">e 1: The Journey</tspan><title>The Book of Mormon Movie,
           Volume 1: The Journey</title></text>
       <text y="0.32em" transform="translate(180,315)">the Blue Lagoon<title>Return to the Blue Lagoon</title></text>
       <text y="0.32em" transform="translate(180,336)">Lights, Big City<title>Bright Lights, Big City</title></text>
@@ -171,7 +171,7 @@
       <text y="0.32em" transform="translate(271,231)">The Black Hole</text>
       <text y="0.32em" transform="translate(271,252)">The Big Parade</text>
       <text y="0.32em" transform="translate(271,273)">Boyz n the Hood</text>
-      <text transform="translate(271,294)"><tspan x="0" y="-0.18em">The Book of Mor</tspan><tspan x="0" y="0.8200000000000001em">Volume 1: The J</tspan><title>The Book of Mormon Movie,
+      <text transform="translate(271,294)"><tspan x="0" y="-0.18em">The Book of Mor</tspan><tspan x="0" dy="1em">Volume 1: The J</tspan><title>The Book of Mormon Movie,
           Volume 1: The Journey</title></text>
       <text y="0.32em" transform="translate(271,315)">Return to the Bl<title>Return to the Blue Lagoon</title></text>
       <text y="0.32em" transform="translate(271,336)">Bright Lights, Bi<title>Bright Lights, Big City</title></text>
@@ -213,7 +213,7 @@
       <text y="0.32em" transform="translate(180,231)">The Black Hole</text>
       <text y="0.32em" transform="translate(180,252)">The Big Parade</text>
       <text y="0.32em" transform="translate(180,273)">Boyz n the Hood</text>
-      <text transform="translate(180,294)"><tspan x="0" y="-0.18em">…ormon Movie,</tspan><tspan x="0" y="0.8200000000000001em">…1: The Journey</tspan><title>The Book of Mormon Movie,
+      <text transform="translate(180,294)"><tspan x="0" y="-0.18em">…ormon Movie,</tspan><tspan x="0" dy="1em">…1: The Journey</tspan><title>The Book of Mormon Movie,
           Volume 1: The Journey</title></text>
       <text y="0.32em" transform="translate(180,315)">…e Blue Lagoon<title>Return to the Blue Lagoon</title></text>
       <text y="0.32em" transform="translate(180,336)">…ights, Big City<title>Bright Lights, Big City</title></text>
@@ -255,7 +255,7 @@
       <text y="0.32em" transform="translate(225.5,231)">The Black Hole</text>
       <text y="0.32em" transform="translate(225.5,252)">The Big Parade</text>
       <text y="0.32em" transform="translate(225.5,273)">Boyz n the Hood</text>
-      <text transform="translate(225.5,294)"><tspan x="0" y="-0.18em">The Bo…Movie,</tspan><tspan x="0" y="0.8200000000000001em">Volum…Journey</tspan><title>The Book of Mormon Movie,
+      <text transform="translate(225.5,294)"><tspan x="0" y="-0.18em">The Bo…Movie,</tspan><tspan x="0" dy="1em">Volum…Journey</tspan><title>The Book of Mormon Movie,
           Volume 1: The Journey</title></text>
       <text y="0.32em" transform="translate(225.5,315)">Return…Lagoon<title>Return to the Blue Lagoon</title></text>
       <text y="0.32em" transform="translate(225.5,336)">Bright…Big City<title>Bright Lights, Big City</title></text>
@@ -297,7 +297,7 @@
       <text y="0.32em" transform="translate(271,231)">The Black Hole</text>
       <text y="0.32em" transform="translate(271,252)">The Big Parade</text>
       <text y="0.32em" transform="translate(271,273)">Boyz n the Hood</text>
-      <text transform="translate(271,294)"><tspan x="0" y="-0.18em">The Book of M…</tspan><tspan x="0" y="0.8200000000000001em">Volume 1: The…</tspan><title>The Book of Mormon Movie,
+      <text transform="translate(271,294)"><tspan x="0" y="-0.18em">The Book of M…</tspan><tspan x="0" dy="1em">Volume 1: The…</tspan><title>The Book of Mormon Movie,
           Volume 1: The Journey</title></text>
       <text y="0.32em" transform="translate(271,315)">Return to the…<title>Return to the Blue Lagoon</title></text>
       <text y="0.32em" transform="translate(271,336)">Bright Lights,…<title>Bright Lights, Big City</title></text>
@@ -339,7 +339,7 @@
       <text y="0.32em" transform="translate(271,231)">The Black Ho…<title>The Black Hole</title></text>
       <text y="0.32em" transform="translate(271,252)">The Big Para…<title>The Big Parade</title></text>
       <text y="0.32em" transform="translate(271,273)">Boyz n the H…<title>Boyz n the Hood</title></text>
-      <text transform="translate(271,294)"><tspan x="0" y="-0.18em">The Book of…</tspan><tspan x="0" y="0.8200000000000001em">Volume 1: Th…</tspan><title>The Book of Mormon Movie,
+      <text transform="translate(271,294)"><tspan x="0" y="-0.18em">The Book of…</tspan><tspan x="0" dy="1em">Volume 1: Th…</tspan><title>The Book of Mormon Movie,
           Volume 1: The Journey</title></text>
       <text y="0.32em" transform="translate(271,315)">Return to th…<title>Return to the Blue Lagoon</title></text>
       <text y="0.32em" transform="translate(271,336)">Bright Light…<title>Bright Lights, Big City</title></text>

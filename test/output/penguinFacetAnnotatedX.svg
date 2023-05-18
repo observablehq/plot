@@ -109,7 +109,7 @@
   </g>
   <g aria-label="text" transform="translate(-3.5,4.5)">
     <g text-anchor="end" transform="translate(375,0)">
-      <text transform="translate(243,30)"><tspan x="0" y="0.71em">Torgersen Island</tspan><tspan x="0" y="1.71em">only has Adelie</tspan><tspan x="0" y="2.71em">penguins!</tspan></text>
+      <text transform="translate(243,30)"><tspan x="0" y="0.71em">Torgersen Island</tspan><tspan x="0" dy="1em">only has Adelie</tspan><tspan x="0" dy="1em">penguins!</tspan></text>
     </g>
   </g>
 </svg>
