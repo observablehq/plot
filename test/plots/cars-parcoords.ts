@@ -6,11 +6,26 @@ export async function carsParcoords() {
   const dimensions = cars.columns.slice(1);
 
   // Reshape wide data to make it tidy.
-  const points = dimensions.flatMap((dimension: string) => {
+  const points = dimensions.flatMap((dimension) => {
     return cars.map(({name, year, [dimension]: value}) => {
-      return {id: `${name}-${year}`, dimension, value};
+      return {name, year, dimension, value};
     });
   });
+
+  // Compute normalization scales for each dimension.
+  const scales = new Map(
+    dimensions.map((dimension) => {
+      return [dimension, d3.scaleLinear().domain(d3.extent(cars, (d) => d[dimension]))];
+    })
+  );
+
+  // Given a dimension, returns suitable ticks.
+  function ticks(dimension) {
+    return scales
+      .get(dimension)
+      .ticks(7)
+      .map((value) => ({dimension, value}));
+  }
 
   return Plot.plot({
     marginLeft: 104,
@@ -26,31 +41,21 @@ export async function carsParcoords() {
     },
     marks: [
       Plot.ruleY(dimensions),
-      Plot.line(points, {
-        // Normalize the x-position based on the extent for each dimension.
-        ...Plot.normalizeX("extent", {x: "value", y: "dimension", z: "dimension"}),
-        // Create a line for each car
-        z: "id",
+      Plot.lineX(points, {
+        x: (d) => scales.get(d.dimension)(d.value),
+        y: "dimension",
+        z: (d) => `${d.name}-${d.year}`,
         stroke: "#444",
         strokeWidth: 0.5,
         strokeOpacity: 0.5
       }),
-      dimensions.map((dimension) => {
-        const [min, max] = d3.extent(cars, (d) => d[dimension]);
-        const ticks = d3.ticks(min, max, 7);
-        return Plot.text(
-          // Normalize the x-position based on the true extent (including min and max).
-          [...ticks, min, max],
-          Plot.normalizeX({
-            basis: "extent",
-            x: Plot.identity,
-            text: ticks, // Ignores min and max.
-            y: () => dimension, // Constant y.
-            fill: "black",
-            stroke: "white",
-            strokeWidth: 3
-          })
-        );
+      Plot.text(dimensions.flatMap(ticks), {
+        x: (d) => scales.get(d.dimension)(d.value),
+        y: "dimension",
+        text: "value",
+        fill: "black",
+        stroke: "white",
+        strokeWidth: 3
       })
     ]
   });
