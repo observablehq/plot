@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="100" viewBox="0 0 640 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="40" viewBox="0 0 640 40" style="overflow: visible;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
       display: block;
@@ -25,17 +25,24 @@
     <text transform="translate(395,30)">between</text>
     <text transform="translate(545,30)">no name</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
-    <text y="0.71em" transform="translate(320,30)">x</text>
+  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
+    <g transform="translate(95,35)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​Hello</tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​ </tspan></text>
+    </g>
+    <g transform="translate(245,35)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​World</tspan></text>
+    </g>
+    <g transform="translate(395,35)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​{</tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​}</tspan></text>
+    </g>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="95" cy="64.5" r="3"></circle>
-    <circle cx="245" cy="64.5" r="3"></circle>
-    <circle cx="395" cy="64.5" r="3"></circle>
+  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
+    <g transform="translate(545,35)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​<tspan font-weight="bold">a</tspan> first</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">b</tspan> second</tspan><tspan x="0" dy="1em">​ </tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">x</tspan> no name</tspan></text>
+    </g>
   </g>
-  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="545" cy="64.5" r="3"></circle>
-  </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>
