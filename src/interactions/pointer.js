@@ -16,8 +16,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
     y,
     channels,
     ...options,
-    render(index, scales, values, dimensions, context) {
-      const mark = this;
+    render(index, scales, values, dimensions, context, next) {
       const svg = context.ownerSVGElement;
 
       // Isolate state per-pointer, per-plot; if the pointer is reused by
@@ -50,8 +49,8 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
       if (faceted) {
         let facetStates = state.facetStates;
         if (!facetStates) state.facetStates = facetStates = new Map();
-        facetState = facetStates.get(mark);
-        if (!facetState) facetStates.set(mark, (facetState = new Map()));
+        facetState = facetStates.get(this);
+        if (!facetState) facetStates.set(this, (facetState = new Map()));
       }
 
       // The order of precedence for the pointer position is: px & py; the
@@ -97,7 +96,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
         i = ii;
         const I = i == null ? [] : [i];
         if (faceted) (I.fx = index.fx), (I.fy = index.fy), (I.fi = index.fi);
-        const r = mark.render(I, scales, values, dimensions, context);
+        const r = next(I, scales, values, dimensions, context);
         if (g) {
           // When faceting, preserve swapped mark and facet transforms; also
           // remove ARIA attributes since these are promoted to the parent. This
