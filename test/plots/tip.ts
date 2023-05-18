@@ -144,3 +144,29 @@ export async function tipRule() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return Plot.ruleX(penguins, {x: "body_mass_g", tip: true}).plot();
 }
+
+export async function tipNewLines() {
+  return Plot.plot({
+    height: 100,
+    x: {axis: "top"},
+    marks: [
+      Plot.dotX(
+        [
+          {x: "after", label: `Hello\n\n`},
+          {x: "before", label: `\n\nWorld`},
+          {x: "between", label: `{\n\n}`}
+        ],
+        {
+          x: "x",
+          title: "label",
+          tip: true
+        }
+      ),
+      Plot.dotX([{x: "no name"}], {
+        x: "x",
+        channels: {a: ["first"], "": [""]},
+        tip: true
+      })
+    ]
+  });
+}

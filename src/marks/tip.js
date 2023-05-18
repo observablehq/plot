@@ -188,8 +188,8 @@ export class Tip extends Mark {
       if (j >= 0) {
         // name is truncated
         name = name.slice(0, j).trimEnd() + ellipsis;
-        value = "";
         title = value.trim();
+        value = "";
       } else {
         if (name) value = " " + value;
         const [k] = cut(value, w - widthof(name), widthof, ee);
@@ -200,8 +200,9 @@ export class Tip extends Mark {
         }
       }
       const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`);
-      line.append("tspan").attr("font-weight", "bold").text(name);
+      if (name) line.append("tspan").attr("font-weight", "bold").text(name);
       if (value) line.append(() => document.createTextNode(value));
+      if (!name && !value) line.append(() => document.createTextNode(" "));
       if (color) line.append("tspan").text(" ■").attr("fill", color).style("user-select", "none");
       if (title) line.append("title").text(title);
     }
