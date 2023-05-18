@@ -147,7 +147,7 @@ function applyMultilineText(selection, mark, T, TL) {
         if (!lines[i]) continue;
         const tspan = this.ownerDocument.createElementNS(namespaces.svg, "tspan");
         tspan.setAttribute("x", 0);
-        if (i === m - 1) tspan.setAttribute("y", `${y * lineHeight}em`);
+        if (i === m - 1) tspan.setAttribute("y", `${(y + i) * lineHeight}em`);
         else tspan.setAttribute("dy", `${m * lineHeight}em`);
         tspan.textContent = lines[i];
         this.appendChild(tspan);
