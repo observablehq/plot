@@ -7,6 +7,7 @@ import {anchorX, anchorY} from "../interactions/pointer.js";
 import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
 import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
+import {identity, isIterable, isTextual} from "../options.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
 import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
@@ -55,7 +56,7 @@ export class Tip extends Mark {
         x2: {value: x2, scale: "x", optional: x1 == null},
         y2: {value: y2, scale: "y", optional: y1 == null}
       },
-      options,
+      options.title === undefined && isIterable(data) && isTextual(data) ? {...options, title: identity} : options,
       defaults
     );
     this.anchor = maybeAnchor(anchor, "anchor");
