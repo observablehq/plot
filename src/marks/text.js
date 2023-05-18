@@ -141,13 +141,17 @@ function applyMultilineText(selection, mark, T, TL) {
     const n = lines.length;
     const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {
+      let m = 0;
       for (let i = 0; i < n; ++i) {
+        ++m;
         if (!lines[i]) continue;
         const tspan = this.ownerDocument.createElementNS(namespaces.svg, "tspan");
         tspan.setAttribute("x", 0);
-        tspan.setAttribute("y", `${(y + i) * lineHeight}em`);
+        if (i === m - 1) tspan.setAttribute("y", `${(y + i) * lineHeight}em`);
+        else tspan.setAttribute("dy", `${m * lineHeight}em`);
         tspan.textContent = lines[i];
         this.appendChild(tspan);
+        m = 0;
       }
     } else {
       if (y) this.setAttribute("y", `${y * lineHeight}em`);
