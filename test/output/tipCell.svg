@@ -145,5 +145,10 @@
     <rect x="125" width="222" y="352" height="11" fill="rgb(234, 243, 251)"></rect>
     <rect x="372" width="222" y="352" height="11" fill="rgb(213, 229, 244)"></rect>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(111.5,6)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(111.5,6)">
+    <g transform="translate(125,64)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​<tspan font-weight="bold">Frequency</tspan> 86<tspan fill="rgb(239, 246, 252)" style="user-select: none;"> ■</tspan></tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">sex</tspan> female</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">sport</tspan> badminton</tspan></text>
+    </g>
+  </g>
 </svg>

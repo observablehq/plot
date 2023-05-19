@@ -374,5 +374,10 @@
     <circle cx="113.81818181818176" cy="75.56175776287768" r="2.6880015090539024"></circle>
     <circle cx="342.9090909090909" cy="83.76209316762615" r="2.6163085488021505"></circle>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
+    <g transform="translate(144,69)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​<tspan font-weight="bold">body_mass_g</tspan> 3,300</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">culmen_length_mm</tspan> 37.8</tspan></text>
+    </g>
+  </g>
 </svg>

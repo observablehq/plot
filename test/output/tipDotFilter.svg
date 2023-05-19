@@ -390,6 +390,11 @@
     <circle cx="350.03636363636355" cy="319.99999999999994" r="3" stroke="#4e79a7"></circle>
     <circle cx="316.2909090909091" cy="299.1666666666666" r="3" stroke="#4e79a7"></circle>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)">
+    <g transform="translate(150,62)">
+      <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
+      <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​<tspan font-weight="bold">sex</tspan> MALE<tspan fill="#f28e2c" style="user-select: none;"> ■</tspan></tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">culmen_length_mm</tspan> 37.3</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">culmen_depth_mm</tspan> 20.5</tspan></text>
+    </g>
+  </g>
   <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>
