@@ -120,7 +120,7 @@ export class Tip extends Mark {
       if ("title" in sources) {
         const text = sources.title.value[i];
         for (const line of mark.splitLines(formatDefault(text))) {
-          yield ["", mark.clipLine(line)];
+          yield {name: "", value: mark.clipLine(line)};
         }
         return;
       }
@@ -130,17 +130,19 @@ export class Tip extends Mark {
         const channel = sources[key];
         const value = channel.value[i];
         if (!defined(value) && channel.scale == null) continue;
-        const color = channel.scale === "color" ? values[key][i] : undefined;
         if (key === "x2" && "x1" in sources) {
-          yield [formatLabel(scales, channel, "x"), formatPair(sources.x1, channel, i)];
+          yield {name: formatLabel(scales, channel, "x"), value: formatPair(sources.x1, channel, i)};
         } else if (key === "y2" && "y1" in sources) {
-          yield [formatLabel(scales, channel, "y"), formatPair(sources.y1, channel, i)];
+          yield {name: formatLabel(scales, channel, "y"), value: formatPair(sources.y1, channel, i)};
         } else {
-          yield [formatLabel(scales, channel, key), formatDefault(value), color];
+          const scale = channel.scale;
+          const line = {name: formatLabel(scales, channel, key), value: formatDefault(value)};
+          if (scale === "color" || scale === "opacity") line[scale] = values[key][i];
+          yield line;
         }
       }
-      if (index.fi != null && fx) yield [String(fx.label ?? "fx"), formatFx(index.fx)];
-      if (index.fi != null && fy) yield [String(fy.label ?? "fy"), formatFy(index.fy)];
+      if (index.fi != null && fx) yield {name: String(fx.label ?? "fx"), value: formatFx(index.fx)};
+      if (index.fi != null && fy) yield {name: String(fy.label ?? "fy"), value: formatFy(index.fy)};
     }
 
     // We don’t call applyChannelStyles because we only use the channels to
@@ -167,10 +169,11 @@ export class Tip extends Mark {
               this.setAttribute("stroke", "none");
               // iteratively render each channel value
               const names = new Set();
-              for (const [name, value, color] of format(sources, i)) {
+              for (const line of format(sources, i)) {
+                const name = line.name;
                 if (name && names.has(name)) continue;
                 else names.add(name);
-                renderLine(that, name, value, color);
+                renderLine(that, line);
               }
             })
           )
@@ -181,7 +184,8 @@ export class Tip extends Mark {
     // just the initial layout of the text; in postrender we will compute the
     // exact text metrics and translate the text as needed once we know the
     // tip’s orientation (anchor).
-    function renderLine(selection, name, value, color) {
+    function renderLine(selection, {name, value, color, opacity}) {
+      const swatch = color != null || opacity != null;
       let title;
       let w = lineWidth * 100;
       const [j] = cut(name, w, widthof, ee);
@@ -191,7 +195,7 @@ export class Tip extends Mark {
         title = value.trim();
         value = "";
       } else {
-        if (name || (!value && !color)) value = " " + value;
+        if (name || (!value && !swatch)) value = " " + value;
         const [k] = cut(value, w - widthof(name), widthof, ee);
         if (k >= 0) {
           // value is truncated
@@ -202,7 +206,7 @@ export class Tip extends Mark {
       const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
       if (name) line.append("tspan").attr("font-weight", "bold").text(name);
       if (value) line.append(() => document.createTextNode(value));
-      if (color) line.append("tspan").text(" ■").attr("fill", color).style("user-select", "none");
+      if (swatch) line.append("tspan").text(" ■").attr("fill", color).attr("fill-opacity", opacity).style("user-select", "none"); // prettier-ignore
       if (title) line.append("title").text(title);
     }
 
