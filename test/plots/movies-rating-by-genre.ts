@@ -35,9 +35,8 @@ export async function moviesRatingByGenre() {
             stroke: "Major Genre",
             r: 2.5,
             sort: {
-              fy: "x",
-              reduce: "median",
-              order: "descending"
+              fy: "-x",
+              reduce: "median"
             }
           }
         )

@@ -23,9 +23,7 @@ const defaults = {
 };
 
 export function withDefaultSort(options) {
-  return options.sort === undefined && options.reverse === undefined
-    ? sort({channel: "r", order: "descending"}, options)
-    : options;
+  return options.sort === undefined && options.reverse === undefined ? sort({channel: "-r"}, options) : options;
 }
 
 export class Dot extends Mark {

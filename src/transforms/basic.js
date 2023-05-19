@@ -121,6 +121,10 @@ function sortValue(value) {
         throw new Error(`invalid order: ${order}`);
     }
   }
+  if (channel?.startsWith("-")) {
+    channel = channel.slice(1);
+    order = reverseOrder(order);
+  }
   return (data, facets, channels) => {
     let V;
     if (channel === undefined) {
@@ -134,4 +138,12 @@ function sortValue(value) {
     const compareValue = (i, j) => order(V[i], V[j]);
     return {data, facets: facets.map((I) => I.slice().sort(compareValue))};
   };
+}
+
+function reverseOrder(order) {
+  return order === ascendingDefined
+    ? descendingDefined
+    : order === descendingDefined
+    ? ascendingDefined
+    : (i, j) => order(j, i);
 }

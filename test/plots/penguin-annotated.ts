@@ -8,10 +8,7 @@ export async function penguinAnnotated() {
     x: {insetRight: 10},
     marks: [
       Plot.frame(),
-      Plot.barX(
-        penguins,
-        Plot.groupY({x: "count"}, {y: "species", fill: "sex", title: "sex", sort: {y: "x", reverse: true}})
-      ),
+      Plot.barX(penguins, Plot.groupY({x: "count"}, {y: "species", fill: "sex", title: "sex", sort: {y: "-x"}})),
       Plot.text(["Count of penguins\ngrouped by species\n and colored by sex"], {
         frameAnchor: "bottom-right",
         dx: -3,

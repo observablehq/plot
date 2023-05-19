@@ -977,10 +977,10 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reduce: "max"}}
 
 Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. See the [group transform](../transforms/group.md) for the list of supported reducers.
 
-For descending rather than ascending order, use the *reverse* option:
+For descending rather than ascending order, use the *reverse* option, or *-name* when referring to a channel:
 
 ```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "-y"}})
 ```
 
 An additional *limit* option truncates the domain to the first *n* values after sorting. If *limit* is negative, the last *n* values are used instead. Hence, a positive *limit* with *reverse* = true will return the top *n* values in descending order. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](../transforms/filter.md), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)

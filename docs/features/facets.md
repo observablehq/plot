@@ -42,7 +42,7 @@ Plot.plot({
       y: "variety",
       fy: "site",
       stroke: "year",
-      sort: {y: "x", fy: "x", reduce: "median", reverse: true}
+      sort: {y: "-x", fy: "-x", reduce: "median"}
     })
   ]
 })
@@ -81,7 +81,7 @@ Plot.plot({
       fy: "site",
       stroke: "yield",
       strokeWidth: 2,
-      sort: {y: "x1", fy: "x1", reduce: "median", reverse: true}
+      sort: {y: "-x1", fy: "-x1", reduce: "median"}
     }))
   ]
 })

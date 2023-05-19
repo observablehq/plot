@@ -30,7 +30,7 @@ export async function learningPoverty() {
         x: (d) => (d.type === "ok" ? -1 : 1) * d.share, // diverging bars
         y: "Country Name",
         fill: "type",
-        sort: {y: "x", order: "descending"}
+        sort: {y: "-x"}
       }),
       Plot.ruleX([0])
     ]

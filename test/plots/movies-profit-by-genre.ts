@@ -40,7 +40,7 @@ export async function moviesProfitByGenre() {
             x: Profit,
             stroke: "red",
             strokeWidth: 2,
-            sort: {y: "x", reverse: true}
+            sort: {y: "-x"}
           }
         )
       )
