@@ -81,8 +81,7 @@ export async function ballotStatusRace() {
         title: (d) => `${d.percent.toFixed(1)}%`,
         sort: {
           fy: "data",
-          reduce: (data) => data.find((d) => d.status === "ACCEPTED").percent,
-          reverse: true
+          reduce: (data) => -data.find((d) => d.status === "ACCEPTED").percent
         }
       }),
       Plot.ruleX([0])

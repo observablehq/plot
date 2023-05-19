@@ -49,7 +49,7 @@ Plot.plot({
       fill: "currentColor",
       stroke: "var(--vp-c-bg)",
       strokeWidth: 1,
-      sort: sorted ? {channel: "r", order: "descending"} : null
+      sort: sorted ? {channel: "-r"} : null
     }))
   ]
 })
@@ -134,7 +134,7 @@ Sorts the data by the specified *order*, which is one of:
 - a field name
 - a {*channel*, *order*} object
 
-In the object case, the **channel** option specifies the name of the channel, while the **order** option specifies *ascending* (the default) or *descending* order. For example, `sort: {channel: "r", order: "descending"}` will sort by descending radius (**r**).
+In the object case, the **channel** option specifies the name of the channel, while the **order** option specifies *ascending* (the default) or *descending* order. You can also use the shorthand *-name* to sort by descending order of the channel with the given *name*. For example, `sort: {channel: "-r"}` will sort by descending radius (**r**).
 
 In the function case, if the sort function does not take exactly one argument, it is interpreted as a comparator function; otherwise it is interpreted as an accessor function.
 

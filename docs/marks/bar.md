@@ -41,7 +41,7 @@ Ordinal domains are sorted naturally (alphabetically) by default. Either set the
 
 :::plot https://observablehq.com/@observablehq/plot-vertical-bars
 ```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}}).plot()
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "-y"}}).plot()
 ```
 :::
 
