@@ -183,7 +183,7 @@ export function plot(options = {}) {
       }
       if (update.channels !== undefined) {
         const {fx, fy, ...channels} = update.channels; // separate facet channels
-        inferChannelScales(channels);
+        inferChannelScales(channels, options);
         Object.assign(state.channels, channels);
         for (const channel of Object.values(channels)) {
           const {scale} = channel;
@@ -394,9 +394,9 @@ function applyScaleTransform(channel, options) {
 // An initializer may generate channels without knowing how the downstream mark
 // will use them. Marks are typically responsible associated scales with
 // channels, but here we assume common behavior across marks.
-function inferChannelScales(channels) {
+function inferChannelScales(channels, options) {
   for (const name in channels) {
-    inferChannelScale(name, channels[name]);
+    inferChannelScale(name, channels[name], options);
   }
 }
 

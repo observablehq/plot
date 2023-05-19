@@ -93,7 +93,7 @@ export class Mark {
     const originalFacets = facets;
     if (this.transform != null) ({facets, data} = this.transform(data, facets, plotOptions)), (data = arrayify(data));
     if (facets !== undefined) facets.original = originalFacets; // needed to read facetChannels
-    const channels = createChannels(this.channels, data);
+    const channels = createChannels(this.channels, data, plotOptions);
     if (this.sort != null) channelDomain(data, facets, channels, facetChannels, this.sort); // mutates facetChannels!
     return {data, facets, channels};
   }

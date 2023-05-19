@@ -1,25 +1,20 @@
 import {InternSet, rollup, sort} from "d3";
 import {ascendingDefined, descendingDefined} from "./defined.js";
-import {first, isColor, isEvery, isIterable, isOpacity, labelof, map, maybeValue, range, valueof} from "./options.js";
+import {isColor, isEvery, isIterable, isOpacity} from "./options.js";
+import {arrayify, first, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {isSymbol, maybeSymbol} from "./symbol.js";
 import {maybeReduce} from "./transforms/group.js";
 
-export function createChannel(data, {scale, type, value, filter, hint}, name) {
+export function createChannel(data, {scale, type, value, filter, hint}, name, options) {
   if (hint === undefined && typeof value?.transform === "function") hint = value.hint;
-  return inferChannelScale(name, {
-    scale,
-    type,
-    value: valueof(data, value),
-    label: labelof(value),
-    filter,
-    hint
-  });
+  const channel = {scale, type, value: valueof(data, value), label: labelof(value), filter, hint};
+  return inferChannelScale(name, channel, options);
 }
 
-export function createChannels(channels, data) {
+export function createChannels(channels, data, options) {
   return Object.fromEntries(
-    Object.entries(channels).map(([name, channel]) => [name, createChannel(data, channel, name)])
+    Object.entries(channels).map(([name, channel]) => [name, createChannel(data, channel, name, options)])
   );
 }
 
@@ -40,14 +35,14 @@ export function valueObject(channels, scales) {
 // no scale is applied if the values are literal; however for symbols, we must
 // promote symbol names (e.g., "plus") to symbol implementations (symbolPlus).
 // Note: mutates channel!
-export function inferChannelScale(name, channel) {
+export function inferChannelScale(name, channel, options) {
   const {scale, value} = channel;
   if (scale === true || scale === "auto") {
     switch (name) {
       case "fill":
       case "stroke":
       case "color":
-        channel.scale = scale !== true && isEvery(value, isColor) ? null : "color";
+        channel.scale = scale !== true && isEvery(value, isExcludedColor(options?.color)) ? null : "color";
         break;
       case "fillOpacity":
       case "strokeOpacity":
@@ -72,6 +67,16 @@ export function inferChannelScale(name, channel) {
     throw new Error(`unknown scale: ${scale}`);
   }
   return channel;
+}
+
+// Returns a function that tests whether the given value is a valid CSS color
+// AND is not present in the given scale’s explicit domain (if any). This avoids
+// ambiguity when the color domain includes CSS colors, say "snow".
+function isExcludedColor(scale) {
+  let domain = arrayify(scale?.domain);
+  if (!domain?.every((d) => d == null || typeof d === "string")) return isColor;
+  domain = new Set(domain);
+  return (d) => !domain.has(d) && isColor(d);
 }
 
 // Note: mutates channel.domain! This is set to a function so that it is lazily
