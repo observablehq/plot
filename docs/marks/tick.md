@@ -86,7 +86,7 @@ Ticks are also used by the [box mark](./box.md) to denote the median value for e
 
 ## Tick options
 
-For the required channels, see [tickX](#tickx-data-options) and [tickY](#ticky-data-options). The tick mark supports the [standard mark options](../features/marks.md#mark-options), including insets. The **stroke** defaults to *currentColor*.
+For the required channels, see [tickX](#tickx-data-options) and [tickY](#ticky-data-options). The tick mark supports the [standard mark options](../features/marks.md#mark-options), including insets, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) to the start or end of the rule. The **stroke** defaults to *currentColor*.
 
 ## tickX(*data*, *options*)
 
