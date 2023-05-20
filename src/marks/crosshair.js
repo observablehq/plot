@@ -18,8 +18,8 @@ export function crosshairY(data, options = {}) {
 }
 
 function crosshairK(pointer, data, options = {}) {
-  const {x, y} = options;
-  const p = pointer({px: x, py: y});
+  const {x, y, maxRadius} = options;
+  const p = pointer({px: x, py: y, maxRadius});
   return marks(
     x == null ? null : ruleX(data, ruleOptions("x", p, options)),
     y == null ? null : ruleY(data, ruleOptions("y", p, options)),
