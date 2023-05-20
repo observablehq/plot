@@ -43,8 +43,14 @@
     <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto-start-reverse" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
       <path d="M-1.5,-3l3,3l-3,3"></path>
     </marker>
-    <line x1="43" x2="636" y1="380" y2="380" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-1)"></line>
-    <line x1="43" x2="636" y1="200" y2="200" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-1)"></line>
-    <line x1="43" x2="636" y1="20" y2="20" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-1)"></line>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto-start-reverse" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-2">
+      <path d="M-1.5,-3l3,3l-3,3"></path>
+    </marker>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto-start-reverse" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-3">
+      <path d="M-1.5,-3l3,3l-3,3"></path>
+    </marker>
+    <line x1="43" x2="636" y1="380" y2="380" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="43" x2="636" y1="200" y2="200" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="43" x2="636" y1="20" y2="20" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
   </g>
 </svg>

@@ -23,7 +23,7 @@
     <path d="M124.302,68.704L322.976,46.506"></path>
   </g>
   <g aria-label="link" fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(0.5,0.5)">
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto-start-reverse" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
       <path d="M-1.5,-3l3,3l-3,3"></path>
     </marker>
     <path d="M124.302,68.704L135.046,60.111L146.509,52.1L158.683,44.76L171.553,38.187L185.101,32.486L199.295,27.768L206.614,25.813L214.06,24.145L221.607,22.777L229.219,21.719L236.847,20.981L244.429,20.568L251.898,20.484L259.182,20.731L266.218,21.305L272.955,22.203L279.358,23.415L285.412,24.933L291.118,26.744L296.486,28.836L301.54,31.195L306.303,33.808L310.802,36.659L315.065,39.734L322.976,46.506" marker-end="url(#plot-marker-1)"></path>
