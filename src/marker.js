@@ -31,7 +31,7 @@ function markerArrow(color, context) {
     .attr("viewBox", "-5 -5 10 10")
     .attr("markerWidth", 6.67)
     .attr("markerHeight", 6.67)
-    .attr("orient", "auto")
+    .attr("orient", "auto-start-reverse")
     .attr("fill", "none")
     .attr("stroke", color)
     .attr("stroke-width", 1.5)
