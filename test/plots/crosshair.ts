@@ -41,3 +41,12 @@ export async function crosshairHexbin() {
     ]
   });
 }
+
+export async function crosshairLine() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    marginLeft: 60,
+    marginRight: 40,
+    marks: [Plot.lineY(aapl, {x: "Date", y: "Close"}), Plot.crosshairX(aapl, {x: "Date", y: "Close"})]
+  });
+}
