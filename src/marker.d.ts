@@ -2,13 +2,12 @@
  * The built-in marker implementations; one of:
  *
  * - *arrow* - an arrowhead with *auto* orientation
- * - *arrow-reverse* - an arrowhead with *auto-start-reverse* orientation
  * - *dot* - a filled *circle* with no stroke and 2.5px radius
  * - *circle-fill* - a filled circle with a white stroke and 3px radius
  * - *circle-stroke* - a stroked circle with a white fill and 3px radius
  * - *circle* - alias for *circle-fill*
  */
-export type MarkerName = "arrow" | "arrow-reverse" | "dot" | "circle" | "circle-fill" | "circle-stroke";
+export type MarkerName = "arrow" | "dot" | "circle" | "circle-fill" | "circle-stroke";
 
 /** A custom marker implementation. */
 export type MarkerFunction = (color: string, context: {document: Document}) => SVGMarkerElement;

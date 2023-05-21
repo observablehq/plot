@@ -27,7 +27,7 @@ export class RuleX extends Mark {
     );
     this.insetTop = number(insetTop);
     this.insetBottom = number(insetBottom);
-    markers(this, options);
+    markers(this, options, "auto-start-reverse");
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
@@ -77,7 +77,7 @@ export class RuleY extends Mark {
     );
     this.insetRight = number(insetRight);
     this.insetLeft = number(insetLeft);
-    markers(this, options);
+    markers(this, options, "auto-start-reverse");
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;

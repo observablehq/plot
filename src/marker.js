@@ -1,12 +1,16 @@
 import {create} from "./context.js";
 
-export function markers(mark, {marker, markerStart = marker, markerMid = marker, markerEnd = marker} = {}) {
-  mark.markerStart = maybeMarker(markerStart);
-  mark.markerMid = maybeMarker(markerMid);
-  mark.markerEnd = maybeMarker(markerEnd);
+export function markers(
+  mark,
+  {marker, markerStart = marker, markerMid = marker, markerEnd = marker} = {},
+  orient = "auto"
+) {
+  mark.markerStart = maybeMarker(markerStart, orient);
+  mark.markerMid = maybeMarker(markerMid, "auto");
+  mark.markerEnd = maybeMarker(markerEnd, "auto");
 }
 
-function maybeMarker(marker) {
+function maybeMarker(marker, orient) {
   if (marker == null || marker === false) return null;
   if (marker === true) return markerCircleFill;
   if (typeof marker === "function") return marker;
@@ -14,9 +18,7 @@ function maybeMarker(marker) {
     case "none":
       return null;
     case "arrow":
-      return markerArrow("auto");
-    case "arrow-reverse":
-      return markerArrow("auto-start-reverse");
+      return markerArrow(orient);
     case "dot":
       return markerDot;
     case "circle":

@@ -13,7 +13,7 @@ const defaults = {
 class AbstractTick extends Mark {
   constructor(data, channels, options) {
     super(data, channels, options, defaults);
-    markers(this, options);
+    markers(this, options, "auto-start-reverse");
   }
   render(index, scales, channels, dimensions, context) {
     return create("svg:g", context)
