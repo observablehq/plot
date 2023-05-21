@@ -153,7 +153,7 @@ function maybeChannels(channels) {
 }
 
 function maybeTip(tip) {
-  return tip === true ? "xy" : maybeKeyword(tip, "tip", ["x", "y", "xy"]);
+  return tip === true ? "xy" : tip === false ? null : maybeKeyword(tip, "tip", ["x", "y", "xy"]);
 }
 
 export function withTip(options, tip) {

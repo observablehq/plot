@@ -23,6 +23,8 @@ const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel"]);
 
 export class Tip extends Mark {
   constructor(data, options = {}) {
+    if (options.tip) options = {...options, tip: false};
+    if (options.title === undefined && isIterable(data) && isTextual(data)) options = {...options, title: identity};
     const {
       x,
       y,
@@ -56,7 +58,7 @@ export class Tip extends Mark {
         x2: {value: x2, scale: "x", optional: x1 == null},
         y2: {value: y2, scale: "y", optional: y1 == null}
       },
-      options.title === undefined && isIterable(data) && isTextual(data) ? {...options, title: identity} : options,
+      options,
       defaults
     );
     this.anchor = maybeAnchor(anchor, "anchor");
