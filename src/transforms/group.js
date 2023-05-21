@@ -78,6 +78,10 @@ function groupn(
   // Compute the outputs.
   outputs = maybeOutputs(outputs, inputs);
   reduceData = maybeReduce(reduceData, identity);
+  if (typeof sort === "string" && sort.startsWith("-")) {
+    sort = sort.slice(1);
+    reverse = !reverse;
+  }
   sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
   filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
 

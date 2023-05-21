@@ -25,8 +25,7 @@ export async function penguinSexMassCulmenSpecies() {
         Plot.bin(
           {
             r: "count",
-            sort: "count",
-            reverse: true
+            sort: "-count"
           },
           {
             x: "body_mass_g",

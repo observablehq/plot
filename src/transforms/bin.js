@@ -98,6 +98,10 @@ function binn(
   // Compute the outputs.
   outputs = maybeBinOutputs(outputs, inputs);
   reduceData = maybeBinReduce(reduceData, identity);
+  if (typeof sort === "string" && sort.startsWith("-")) {
+    sort = sort.slice(1);
+    reverse = !reverse;
+  }
   sort = sort == null ? undefined : maybeBinOutput("sort", sort, inputs);
   filter = filter == null ? undefined : maybeBinEvaluator("filter", filter, inputs);
 

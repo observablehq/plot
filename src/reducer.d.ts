@@ -80,3 +80,12 @@ export interface ReducerImplementation<S = any, T = S> {
  * - an object that implements the *reduceIndex* method
  */
 export type Reducer = ReducerName | ReducerFunction | ReducerImplementation;
+
+/**
+ * How to reduce aggregated (binned or grouped) values for sorting; one of:
+ *
+ * - a named reducer implementation such as *count* or *sum*
+ * - a function that takes an array of values and returns the reduced value
+ * - an object that implements the *reduceIndex* method
+ */
+export type ReducerSort = `-${ReducerName}` | Reducer;

@@ -1,5 +1,5 @@
 import type {ChannelReducers, ChannelValue} from "../channel.js";
-import type {Reducer} from "../reducer.js";
+import type {ReducerSort, Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 
 /** Options for outputs of the group (and bin) transform. */
@@ -29,7 +29,7 @@ export interface GroupOutputOptions<T = Reducer> {
    * Plot.groupX({y: "count", sort: "count"}, {fill: "sex", x: "sport"})
    * ```
    */
-  sort?: T | null;
+  sort?: ReducerSort | null;
 
   /** If true, reverse the order of generated groups; defaults to false. */
   reverse?: boolean;

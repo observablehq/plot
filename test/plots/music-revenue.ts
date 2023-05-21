@@ -7,8 +7,7 @@ export async function musicRevenue() {
     x: "year",
     y: "revenue",
     z: "format",
-    order: "appearance",
-    reverse: true
+    order: "-appearance"
   };
   return Plot.plot({
     y: {

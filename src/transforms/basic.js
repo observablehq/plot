@@ -125,6 +125,10 @@ function sortValue(value) {
     channel = channel.slice(1);
     order = reverseOrder(order);
   }
+  if (typeof value === "string" && value?.startsWith("-")) {
+    value = value.slice(1);
+    order = reverseOrder(order);
+  }
   return (data, facets, channels) => {
     let V;
     if (channel === undefined) {
