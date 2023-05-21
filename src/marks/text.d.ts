@@ -3,7 +3,7 @@ import type {Interval} from "../interval.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 
 /** Options for the text mark. */
-export interface TextOptions extends MarkOptions {
+export interface TextOptions<TData = unknown> extends MarkOptions<TData> {
   /**
    * The horizontal position channel specifying the text’s anchor point,
    * typically bound to the *x* scale.
@@ -151,7 +151,7 @@ export interface TextOptions extends MarkOptions {
 }
 
 /** Options for the textX mark. */
-export interface TextXOptions extends Omit<TextOptions, "y"> {
+export interface TextXOptions<TData = unknown> extends Omit<TextOptions<TData>, "y"> {
   /**
    * The vertical position of the text’s anchor point, typically bound to the
    * *y* scale.
@@ -166,7 +166,7 @@ export interface TextXOptions extends Omit<TextOptions, "y"> {
 }
 
 /** Options for the textY mark. */
-export interface TextYOptions extends Omit<TextOptions, "x"> {
+export interface TextYOptions<TData = unknown> extends Omit<TextOptions<TData>, "x"> {
   /**
    * The horizontal position of the text’s anchor point, typically bound to the
    * *x* scale.
@@ -205,7 +205,7 @@ export interface TextYOptions extends Omit<TextOptions, "x"> {
  * [3]: https://github.com/d3/d3-format
  * [4]: https://github.com/d3/d3-time-format
  */
-export function text(data?: Data, options?: TextOptions): Text;
+export function text<TData extends Data>(data?: TData, options?: TextOptions<TData>): Text;
 
 /**
  * Like text, but **x** defaults to the identity function, assuming that *data*
@@ -219,7 +219,7 @@ export function text(data?: Data, options?: TextOptions): Text;
  * If an **interval** is specified, such as *day*, **y** is transformed to the
  * middle of the interval.
  */
-export function textX(data?: Data, options?: TextXOptions): Text;
+export function textX<TData>(data?: TData, options?: TextXOptions<TData>): Text;
 
 /**
  * Like text, but **y** defaults to the identity function, assuming that *data*
@@ -233,7 +233,7 @@ export function textX(data?: Data, options?: TextXOptions): Text;
  * If an **interval** is specified, such as *day*, **x** is transformed to the
  * middle of the interval.
  */
-export function textY(data?: Data, options?: TextYOptions): Text;
+export function textY<TData>(data?: TData, options?: TextYOptions<TData>): Text;
 
 /** The text mark. */
 export class Text extends RenderableMark {}

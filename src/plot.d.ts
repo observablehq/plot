@@ -377,4 +377,5 @@ export interface Plot {
  * corresponding SVG element, or an HTML figure element if a caption or legend
  * is requested.
  */
+
 export function plot(options?: PlotOptions): (SVGSVGElement | HTMLElement) & Plot;
