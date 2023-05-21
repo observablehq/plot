@@ -5,19 +5,27 @@ import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text} from "./text.js";
 
-export function crosshair(data, options = {}) {
-  const p = pointer({px: options.x, py: options.y});
-  return marks(pruleX(data, p, options), pruleY(data, p, options), ptextX(data, p, options), ptextY(data, p, options));
+export function crosshair(data, options) {
+  return crosshairK(pointer, data, options);
 }
 
 export function crosshairX(data, options = {}) {
-  const p = pointerX({px: options.x});
-  return marks(pruleX(data, p, options), ptextX(data, p, options));
+  return crosshairK(pointerX, data, options);
 }
 
 export function crosshairY(data, options = {}) {
-  const p = pointerY({py: options.y});
-  return marks(pruleY(data, p, options), ptextY(data, p, options));
+  return crosshairK(pointerY, data, options);
+}
+
+function crosshairK(pointer, data, options = {}) {
+  const {x, y, maxRadius} = options;
+  const p = pointer({px: x, py: y, maxRadius});
+  return marks(
+    x == null ? null : ruleX(data, ruleOptions("x", p, options)),
+    y == null ? null : ruleY(data, ruleOptions("y", p, options)),
+    x == null ? null : text(data, textOptions("x", {...p, dy: 9, frameAnchor: "bottom", lineAnchor: "top"}, options)),
+    y == null ? null : text(data, textOptions("y", {...p, dx: -9, frameAnchor: "left", textAnchor: "end"}, options))
+  );
 }
 
 function markOptions(
@@ -55,14 +63,6 @@ function pxpy(k, i) {
   };
 }
 
-function pruleX(data, pointerOptions, options) {
-  return ruleX(data, ruleOptions("x", pointerOptions, options));
-}
-
-function pruleY(data, pointerOptions, options) {
-  return ruleY(data, ruleOptions("y", pointerOptions, options));
-}
-
 function ruleOptions(k, pointerOptions, options) {
   const {
     color = "currentColor",
@@ -71,14 +71,6 @@ function ruleOptions(k, pointerOptions, options) {
     ruleStrokeWidth: strokeWidth
   } = options;
   return {...markOptions(k, pointerOptions, options), stroke, strokeOpacity, strokeWidth};
-}
-
-function ptextX(data, pointerOptions, options) {
-  return text(data, textOptions("x", {...pointerOptions, dy: 9, frameAnchor: "bottom", lineAnchor: "top"}, options));
-}
-
-function ptextY(data, pointerOptions, options) {
-  return text(data, textOptions("y", {...pointerOptions, dx: -9, frameAnchor: "left", textAnchor: "end"}, options));
 }
 
 function textOptions(k, pointerOptions, options) {
