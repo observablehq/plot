@@ -19,6 +19,7 @@ A **marker** defines a graphic drawn on vertices of a [line](../marks/line.md) o
     <select v-model="marker">
       <option>none</option>
       <option>arrow</option>
+      <option>arrow-reverse</option>
       <option>dot</option>
       <option>circle</option>
       <option>circle-stroke</option>
@@ -47,7 +48,8 @@ The supported marker options are:
 The following named markers are supported:
 
 * *none* (default) - no marker
-* *arrow* - an arrowhead
+* *arrow* - an arrowhead with *auto* orientation
+* *arrow-reverse* - an arrowhead with *auto-start-reverse* orientation
 * *dot* - a filled *circle* without a stroke and 2.5px radius
 * *circle*, equivalent to *circle-fill* - a filled circle with a white stroke and 3px radius
 * *circle-stroke* - a hollow circle with a colored stroke and a white fill and 3px radius

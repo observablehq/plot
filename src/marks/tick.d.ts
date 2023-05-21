@@ -1,9 +1,10 @@
 import type {ChannelValueSpec} from "../channel.js";
 import type {InsetOptions} from "../inset.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {MarkerOptions} from "../marker.js";
 
 /** Options for the tickX mark. */
-export interface TickXOptions extends MarkOptions, Omit<InsetOptions, "insetLeft" | "insetRight"> {
+export interface TickXOptions extends MarkOptions, MarkerOptions, Omit<InsetOptions, "insetLeft" | "insetRight"> {
   /**
    * The required horizontal position of the tick; a channel typically bound to
    * the *x* scale.
@@ -22,7 +23,7 @@ export interface TickXOptions extends MarkOptions, Omit<InsetOptions, "insetLeft
 }
 
 /** Options for the tickY mark. */
-export interface TickYOptions extends MarkOptions, Omit<InsetOptions, "insetTop" | "insetBottom"> {
+export interface TickYOptions extends MarkOptions, MarkerOptions, Omit<InsetOptions, "insetTop" | "insetBottom"> {
   /**
    * The required vertical position of the tick; a channel typically bound to
    * the *y* scale.

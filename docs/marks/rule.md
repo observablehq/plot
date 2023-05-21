@@ -139,7 +139,7 @@ Rules are also used by the [grid mark](./grid) to draw grid lines.
 
 ## Rule options
 
-For the required channels, see [ruleX](#rulex-data-options) and [ruleY](#ruley-data-options). The rule mark supports the [standard mark options](../features/marks.md#mark-options), including insets along its secondary dimension. The **stroke** defaults to *currentColor*.
+For the required channels, see [ruleX](#rulex-data-options) and [ruleY](#ruley-data-options). The rule mark supports the [standard mark options](../features/marks.md#mark-options), including insets along its secondary dimension, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) to the start or end of the rule. The **stroke** defaults to *currentColor*.
 
 ## ruleX(*data*, *options*)
 

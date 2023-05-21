@@ -2,9 +2,10 @@ import type {ChannelValueIntervalSpec, ChannelValueSpec} from "../channel.js";
 import type {InsetOptions} from "../inset.js";
 import type {Interval} from "../interval.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
+import type {MarkerOptions} from "../marker.js";
 
 /** Options for the ruleX and ruleY marks. */
-interface RuleOptions extends MarkOptions {
+interface RuleOptions extends MarkOptions, MarkerOptions {
   /**
    * How to convert a continuous value (**y** for ruleX, or **x** for ruleY)
    * into an interval (**y1** and **y2** for ruleX, or **x1** and **x2** for

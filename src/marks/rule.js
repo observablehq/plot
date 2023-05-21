@@ -1,5 +1,6 @@
 import {create} from "../context.js";
 import {Mark, withTip} from "../mark.js";
+import {applyMarkers, markers} from "../marker.js";
 import {identity, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
@@ -26,6 +27,7 @@ export class RuleX extends Mark {
     );
     this.insetTop = number(insetTop);
     this.insetBottom = number(insetBottom);
+    markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
@@ -54,6 +56,7 @@ export class RuleX extends Mark {
               : height - marginBottom - insetBottom
           )
           .call(applyChannelStyles, this, channels)
+          .call(applyMarkers, this, channels, context)
       )
       .node();
   }
@@ -74,6 +77,7 @@ export class RuleY extends Mark {
     );
     this.insetRight = number(insetRight);
     this.insetLeft = number(insetLeft);
+    markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
@@ -102,6 +106,7 @@ export class RuleY extends Mark {
           .attr("y1", Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
           .attr("y2", Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
           .call(applyChannelStyles, this, channels)
+          .call(applyMarkers, this, channels, context)
       )
       .node();
   }
