@@ -78,15 +78,10 @@ export function inferChannelScale(name, channel) {
 // computed; i.e., if the scale’s domain is set explicitly, that takes priority
 // over the sort option, and we don’t need to do additional work.
 export function channelDomain(data, facets, channels, facetChannels, options) {
+  const {order: defaultOrder, reverse: defaultReverse, reduce: defaultReduce = true, limit: defaultLimit} = options;
   for (const x in options) {
     if (!registry.has(x)) continue; // ignore unknown scale keys (including generic options)
-    let {
-      value: y,
-      order = options.order,
-      reverse = options.reverse,
-      reduce = options.reduce === undefined ? true : options.reduce,
-      limit = options.limit
-    } = maybeValue(options[x]);
+    let {value: y, order = defaultOrder, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]); // prettier-ignore
     order = order === undefined ? y === "width" || y === "height" ? descendingGroup : ascendingGroup : maybeOrder(order); // prettier-ignore
     if (reduce == null || reduce === false) continue; // disabled reducer
     const X = x === "fx" || x === "fy" ? reindexFacetChannel(facets, facetChannels[x]) : findScaleChannel(channels, x);
@@ -161,7 +156,7 @@ function values(channels, name, alias) {
 }
 
 function maybeOrder(order) {
-  if (typeof order === "function") return order;
+  if (order == null || typeof order === "function") return order;
   switch (`${order}`.toLowerCase()) {
     case "ascending":
       return ascendingGroup;
