@@ -11,10 +11,12 @@ export function treeNode({
   treeSort,
   treeSeparation,
   treeAnchor,
+  treeFilter,
   ...options
 } = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
   treeSort = maybeTreeSort(treeSort);
+  if (treeFilter != null) treeFilter = maybeNodeValue(treeFilter);
   if (frameAnchor === undefined) frameAnchor = treeAnchor.frameAnchor;
   const normalize = normalizer(delimiter);
   const outputs = treeOutputs(options, maybeNodeValue);
@@ -42,15 +44,9 @@ export function treeNode({
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.descendants()) {
+          if (treeFilter != null && !treeFilter(node)) continue;
           treeFacet.push(++treeIndex);
-          treeData[treeIndex] = {
-            data: node.data,
-            name: nodeName(node),
-            path: nodePath(node),
-            internal: nodeInternal(node),
-            depth: node.depth, // nodeDepth(node)
-            height: node.height // nodeHeight(node)
-          };
+          treeData[treeIndex] = node.data;
           treeAnchor.position(node, treeIndex, X, Y);
           for (const o of outputs) o[output_values][treeIndex] = o[output_evaluate](node);
         }
@@ -73,10 +69,12 @@ export function treeLink({
   treeSort,
   treeSeparation,
   treeAnchor,
+  treeFilter,
   ...options
 } = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
   treeSort = maybeTreeSort(treeSort);
+  if (treeFilter != null) treeFilter = maybeLinkValue(treeFilter);
   options = {curve, stroke, strokeWidth, strokeOpacity, ...options};
   const normalize = normalizer(delimiter);
   const outputs = treeOutputs(options, maybeLinkValue);
@@ -109,6 +107,7 @@ export function treeLink({
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const {source, target} of root.links()) {
+          if (treeFilter != null && !treeFilter(target, source)) continue;
           treeFacet.push(++treeIndex);
           treeData[treeIndex] = target.data;
           treeAnchor.position(source, treeIndex, X1, Y1);
@@ -201,6 +200,8 @@ function maybeNodeValue(value) {
       return nodePath;
     case "node:internal":
       return nodeInternal;
+    case "node:external":
+      return nodeExternal;
     case "node:depth":
       return nodeDepth;
     case "node:height":
@@ -229,6 +230,8 @@ function maybeLinkValue(value) {
       return nodePath;
     case "node:internal":
       return nodeInternal;
+    case "node:external":
+      return nodeExternal;
     case "node:depth":
       return nodeDepth;
     case "node:height":
@@ -255,6 +258,10 @@ function nodeHeight(node) {
 
 function nodeInternal(node) {
   return !!node.children;
+}
+
+function nodeExternal(node) {
+  return !node.children;
 }
 
 function parentValue(evaluate) {

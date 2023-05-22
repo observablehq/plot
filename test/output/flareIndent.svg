@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="200" height="3600" viewBox="0 0 200 3600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="300" height="3600" viewBox="0 0 300 3600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
       display: block;
@@ -14,766 +14,764 @@
     }
   </style>
   <g aria-label="link" fill="none" stroke-opacity="0.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
-    <path d="M30,10L30,24L42,24" stroke="#636363"></path>
-    <path d="M30,10L30,224L42,224" stroke="#636363"></path>
-    <path d="M30,10L30,538L42,538" stroke="#636363"></path>
-    <path d="M30,10L30,723L42,723" stroke="#636363"></path>
-    <path d="M30,10L30,794L42,794" stroke="#636363"></path>
-    <path d="M30,10L30,823L42,823" stroke="#636363"></path>
-    <path d="M30,10L30,951L42,951" stroke="#636363"></path>
-    <path d="M30,10L30,1835L42,1835" stroke="#636363"></path>
-    <path d="M30,10L30,1992L42,1992" stroke="#636363"></path>
-    <path d="M30,10L30,2406L42,2406" stroke="#636363"></path>
-    <path d="M42,24L42,39L55,39" stroke="#636363"></path>
-    <path d="M42,24L42,110L55,110" stroke="#636363"></path>
-    <path d="M42,24L42,195L55,195" stroke="#636363"></path>
-    <path d="M42,224L42,238L55,238" stroke="#bdbdbd"></path>
-    <path d="M42,224L42,252L55,252" stroke="#bdbdbd"></path>
-    <path d="M42,224L42,267L55,267" stroke="#636363"></path>
-    <path d="M42,224L42,409L55,409" stroke="#bdbdbd"></path>
-    <path d="M42,224L42,424L55,424" stroke="#bdbdbd"></path>
-    <path d="M42,224L42,438L55,438" stroke="#bdbdbd"></path>
-    <path d="M42,224L42,452L55,452" stroke="#bdbdbd"></path>
-    <path d="M42,224L42,466L55,466" stroke="#bdbdbd"></path>
-    <path d="M42,224L42,481L55,481" stroke="#bdbdbd"></path>
-    <path d="M42,224L42,495L55,495" stroke="#bdbdbd"></path>
-    <path d="M42,224L42,509L55,509" stroke="#bdbdbd"></path>
-    <path d="M42,224L42,523L55,523" stroke="#bdbdbd"></path>
-    <path d="M42,538L42,552L55,552" stroke="#636363"></path>
-    <path d="M42,538L42,637L55,637" stroke="#bdbdbd"></path>
-    <path d="M42,538L42,652L55,652" stroke="#bdbdbd"></path>
-    <path d="M42,538L42,666L55,666" stroke="#bdbdbd"></path>
-    <path d="M42,538L42,680L55,680" stroke="#bdbdbd"></path>
-    <path d="M42,538L42,694L55,694" stroke="#bdbdbd"></path>
-    <path d="M42,538L42,709L55,709" stroke="#bdbdbd"></path>
-    <path d="M42,723L42,737L55,737" stroke="#bdbdbd"></path>
-    <path d="M42,723L42,751L55,751" stroke="#bdbdbd"></path>
-    <path d="M42,723L42,766L55,766" stroke="#bdbdbd"></path>
-    <path d="M42,723L42,780L55,780" stroke="#bdbdbd"></path>
-    <path d="M42,794L42,809L55,809" stroke="#bdbdbd"></path>
-    <path d="M42,823L42,837L55,837" stroke="#bdbdbd"></path>
-    <path d="M42,823L42,851L55,851" stroke="#bdbdbd"></path>
-    <path d="M42,823L42,866L55,866" stroke="#bdbdbd"></path>
-    <path d="M42,823L42,880L55,880" stroke="#bdbdbd"></path>
-    <path d="M42,823L42,894L55,894" stroke="#bdbdbd"></path>
-    <path d="M42,823L42,908L55,908" stroke="#bdbdbd"></path>
-    <path d="M42,823L42,923L55,923" stroke="#bdbdbd"></path>
-    <path d="M42,823L42,937L55,937" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,965L55,965" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,980L55,980" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,994L55,994" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1008L55,1008" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1022L55,1022" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1037L55,1037" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1051L55,1051" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1065L55,1065" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1079L55,1079" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1094L55,1094" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1108L55,1108" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1122L55,1122" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1136L55,1136" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1151L55,1151" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1165L55,1165" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1179L55,1179" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1193L55,1193" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1208L55,1208" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1222L55,1222" stroke="#636363"></path>
-    <path d="M42,951L42,1693L55,1693" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1707L55,1707" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1721L55,1721" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1735L55,1735" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1750L55,1750" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1764L55,1764" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1778L55,1778" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1792L55,1792" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1807L55,1807" stroke="#bdbdbd"></path>
-    <path d="M42,951L42,1821L55,1821" stroke="#bdbdbd"></path>
-    <path d="M42,1835L42,1849L55,1849" stroke="#bdbdbd"></path>
-    <path d="M42,1835L42,1864L55,1864" stroke="#bdbdbd"></path>
-    <path d="M42,1835L42,1878L55,1878" stroke="#bdbdbd"></path>
-    <path d="M42,1835L42,1892L55,1892" stroke="#bdbdbd"></path>
-    <path d="M42,1835L42,1906L55,1906" stroke="#bdbdbd"></path>
-    <path d="M42,1835L42,1921L55,1921" stroke="#bdbdbd"></path>
-    <path d="M42,1835L42,1935L55,1935" stroke="#bdbdbd"></path>
-    <path d="M42,1835L42,1949L55,1949" stroke="#bdbdbd"></path>
-    <path d="M42,1835L42,1963L55,1963" stroke="#bdbdbd"></path>
-    <path d="M42,1835L42,1978L55,1978" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2006L55,2006" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2021L55,2021" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2035L55,2035" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2049L55,2049" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2063L55,2063" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2078L55,2078" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2092L55,2092" stroke="#636363"></path>
-    <path d="M42,1992L42,2135L55,2135" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2149L55,2149" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2163L55,2163" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2177L55,2177" stroke="#636363"></path>
-    <path d="M42,1992L42,2234L55,2234" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2249L55,2249" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2263L55,2263" stroke="#636363"></path>
-    <path d="M42,1992L42,2334L55,2334" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2348L55,2348" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2363L55,2363" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2377L55,2377" stroke="#bdbdbd"></path>
-    <path d="M42,1992L42,2391L55,2391" stroke="#bdbdbd"></path>
-    <path d="M42,2406L42,2420L55,2420" stroke="#636363"></path>
-    <path d="M42,2406L42,2505L55,2505" stroke="#636363"></path>
-    <path d="M42,2406L42,2676L55,2676" stroke="#636363"></path>
-    <path d="M42,2406L42,2876L55,2876" stroke="#636363"></path>
-    <path d="M42,2406L42,2947L55,2947" stroke="#636363"></path>
-    <path d="M42,2406L42,3004L55,3004" stroke="#636363"></path>
-    <path d="M42,2406L42,3589L55,3589" stroke="#bdbdbd"></path>
-    <path d="M55,39L55,53L67,53" stroke="#bdbdbd"></path>
-    <path d="M55,39L55,67L67,67" stroke="#bdbdbd"></path>
-    <path d="M55,39L55,81L67,81" stroke="#bdbdbd"></path>
-    <path d="M55,39L55,96L67,96" stroke="#bdbdbd"></path>
-    <path d="M55,110L55,124L67,124" stroke="#bdbdbd"></path>
-    <path d="M55,110L55,138L67,138" stroke="#bdbdbd"></path>
-    <path d="M55,110L55,153L67,153" stroke="#bdbdbd"></path>
-    <path d="M55,110L55,167L67,167" stroke="#bdbdbd"></path>
-    <path d="M55,110L55,181L67,181" stroke="#bdbdbd"></path>
-    <path d="M55,195L55,210L67,210" stroke="#bdbdbd"></path>
-    <path d="M55,267L55,281L67,281" stroke="#bdbdbd"></path>
-    <path d="M55,267L55,295L67,295" stroke="#bdbdbd"></path>
-    <path d="M55,267L55,309L67,309" stroke="#bdbdbd"></path>
-    <path d="M55,267L55,324L67,324" stroke="#bdbdbd"></path>
-    <path d="M55,267L55,338L67,338" stroke="#bdbdbd"></path>
-    <path d="M55,267L55,352L67,352" stroke="#bdbdbd"></path>
-    <path d="M55,267L55,366L67,366" stroke="#bdbdbd"></path>
-    <path d="M55,267L55,381L67,381" stroke="#bdbdbd"></path>
-    <path d="M55,267L55,395L67,395" stroke="#bdbdbd"></path>
-    <path d="M55,552L55,566L67,566" stroke="#bdbdbd"></path>
-    <path d="M55,552L55,580L67,580" stroke="#bdbdbd"></path>
-    <path d="M55,552L55,595L67,595" stroke="#bdbdbd"></path>
-    <path d="M55,552L55,609L67,609" stroke="#bdbdbd"></path>
-    <path d="M55,552L55,623L67,623" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1236L67,1236" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1251L67,1251" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1265L67,1265" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1279L67,1279" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1293L67,1293" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1308L67,1308" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1322L67,1322" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1336L67,1336" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1350L67,1350" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1365L67,1365" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1379L67,1379" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1393L67,1393" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1407L67,1407" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1422L67,1422" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1436L67,1436" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1450L67,1450" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1464L67,1464" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1479L67,1479" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1493L67,1493" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1507L67,1507" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1521L67,1521" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1536L67,1536" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1550L67,1550" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1564L67,1564" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1578L67,1578" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1593L67,1593" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1607L67,1607" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1621L67,1621" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1636L67,1636" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1650L67,1650" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1664L67,1664" stroke="#bdbdbd"></path>
-    <path d="M55,1222L55,1678L67,1678" stroke="#bdbdbd"></path>
-    <path d="M55,2092L55,2106L67,2106" stroke="#bdbdbd"></path>
-    <path d="M55,2092L55,2120L67,2120" stroke="#bdbdbd"></path>
-    <path d="M55,2177L55,2192L67,2192" stroke="#bdbdbd"></path>
-    <path d="M55,2177L55,2206L67,2206" stroke="#bdbdbd"></path>
-    <path d="M55,2177L55,2220L67,2220" stroke="#bdbdbd"></path>
-    <path d="M55,2263L55,2277L67,2277" stroke="#bdbdbd"></path>
-    <path d="M55,2263L55,2291L67,2291" stroke="#bdbdbd"></path>
-    <path d="M55,2263L55,2306L67,2306" stroke="#bdbdbd"></path>
-    <path d="M55,2263L55,2320L67,2320" stroke="#bdbdbd"></path>
-    <path d="M55,2420L55,2434L67,2434" stroke="#bdbdbd"></path>
-    <path d="M55,2420L55,2448L67,2448" stroke="#bdbdbd"></path>
-    <path d="M55,2420L55,2463L67,2463" stroke="#bdbdbd"></path>
-    <path d="M55,2420L55,2477L67,2477" stroke="#bdbdbd"></path>
-    <path d="M55,2420L55,2491L67,2491" stroke="#bdbdbd"></path>
-    <path d="M55,2505L55,2520L67,2520" stroke="#bdbdbd"></path>
-    <path d="M55,2505L55,2534L67,2534" stroke="#bdbdbd"></path>
-    <path d="M55,2505L55,2548L67,2548" stroke="#bdbdbd"></path>
-    <path d="M55,2505L55,2562L67,2562" stroke="#bdbdbd"></path>
-    <path d="M55,2505L55,2577L67,2577" stroke="#bdbdbd"></path>
-    <path d="M55,2505L55,2591L67,2591" stroke="#bdbdbd"></path>
-    <path d="M55,2505L55,2605L67,2605" stroke="#bdbdbd"></path>
-    <path d="M55,2505L55,2619L67,2619" stroke="#bdbdbd"></path>
-    <path d="M55,2505L55,2634L67,2634" stroke="#bdbdbd"></path>
-    <path d="M55,2505L55,2648L67,2648" stroke="#bdbdbd"></path>
-    <path d="M55,2505L55,2662L67,2662" stroke="#bdbdbd"></path>
-    <path d="M55,2676L55,2691L67,2691" stroke="#bdbdbd"></path>
-    <path d="M55,2676L55,2705L67,2705" stroke="#bdbdbd"></path>
-    <path d="M55,2676L55,2719L67,2719" stroke="#bdbdbd"></path>
-    <path d="M55,2676L55,2733L67,2733" stroke="#bdbdbd"></path>
-    <path d="M55,2676L55,2748L67,2748" stroke="#bdbdbd"></path>
-    <path d="M55,2676L55,2762L67,2762" stroke="#636363"></path>
-    <path d="M55,2676L55,2833L67,2833" stroke="#bdbdbd"></path>
-    <path d="M55,2676L55,2848L67,2848" stroke="#bdbdbd"></path>
-    <path d="M55,2676L55,2862L67,2862" stroke="#bdbdbd"></path>
-    <path d="M55,2876L55,2890L67,2890" stroke="#bdbdbd"></path>
-    <path d="M55,2876L55,2905L67,2905" stroke="#bdbdbd"></path>
-    <path d="M55,2876L55,2919L67,2919" stroke="#bdbdbd"></path>
-    <path d="M55,2876L55,2933L67,2933" stroke="#bdbdbd"></path>
-    <path d="M55,2947L55,2962L67,2962" stroke="#bdbdbd"></path>
-    <path d="M55,2947L55,2976L67,2976" stroke="#bdbdbd"></path>
-    <path d="M55,2947L55,2990L67,2990" stroke="#bdbdbd"></path>
-    <path d="M55,3004L55,3019L67,3019" stroke="#636363"></path>
-    <path d="M55,3004L55,3076L67,3076" stroke="#636363"></path>
-    <path d="M55,3004L55,3161L67,3161" stroke="#636363"></path>
-    <path d="M55,3004L55,3218L67,3218" stroke="#bdbdbd"></path>
-    <path d="M55,3004L55,3233L67,3233" stroke="#636363"></path>
-    <path d="M55,3004L55,3290L67,3290" stroke="#636363"></path>
-    <path d="M55,3004L55,3518L67,3518" stroke="#bdbdbd"></path>
-    <path d="M55,3004L55,3532L67,3532" stroke="#bdbdbd"></path>
-    <path d="M55,3004L55,3546L67,3546" stroke="#bdbdbd"></path>
-    <path d="M55,3004L55,3560L67,3560" stroke="#bdbdbd"></path>
-    <path d="M55,3004L55,3575L67,3575" stroke="#bdbdbd"></path>
-    <path d="M67,2762L67,2776L79,2776" stroke="#bdbdbd"></path>
-    <path d="M67,2762L67,2790L79,2790" stroke="#bdbdbd"></path>
-    <path d="M67,2762L67,2805L79,2805" stroke="#bdbdbd"></path>
-    <path d="M67,2762L67,2819L79,2819" stroke="#bdbdbd"></path>
-    <path d="M67,3019L67,3033L79,3033" stroke="#bdbdbd"></path>
-    <path d="M67,3019L67,3047L79,3047" stroke="#bdbdbd"></path>
-    <path d="M67,3019L67,3061L79,3061" stroke="#bdbdbd"></path>
-    <path d="M67,3076L67,3090L79,3090" stroke="#bdbdbd"></path>
-    <path d="M67,3076L67,3104L79,3104" stroke="#bdbdbd"></path>
-    <path d="M67,3076L67,3118L79,3118" stroke="#bdbdbd"></path>
-    <path d="M67,3076L67,3133L79,3133" stroke="#bdbdbd"></path>
-    <path d="M67,3076L67,3147L79,3147" stroke="#bdbdbd"></path>
-    <path d="M67,3161L67,3175L79,3175" stroke="#bdbdbd"></path>
-    <path d="M67,3161L67,3190L79,3190" stroke="#bdbdbd"></path>
-    <path d="M67,3161L67,3204L79,3204" stroke="#bdbdbd"></path>
-    <path d="M67,3233L67,3247L79,3247" stroke="#bdbdbd"></path>
-    <path d="M67,3233L67,3261L79,3261" stroke="#bdbdbd"></path>
-    <path d="M67,3233L67,3275L79,3275" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3304L79,3304" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3318L79,3318" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3332L79,3332" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3347L79,3347" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3361L79,3361" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3375L79,3375" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3389L79,3389" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3404L79,3404" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3418L79,3418" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3432L79,3432" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3446L79,3446" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3461L79,3461" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3475L79,3475" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3489L79,3489" stroke="#bdbdbd"></path>
-    <path d="M67,3290L67,3503L79,3503" stroke="#bdbdbd"></path>
+    <path d="M70,10L70,24L97,24" stroke="#636363"></path>
+    <path d="M70,10L70,224L97,224" stroke="#636363"></path>
+    <path d="M70,10L70,538L97,538" stroke="#636363"></path>
+    <path d="M70,10L70,723L97,723" stroke="#636363"></path>
+    <path d="M70,10L70,794L97,794" stroke="#636363"></path>
+    <path d="M70,10L70,823L97,823" stroke="#636363"></path>
+    <path d="M70,10L70,951L97,951" stroke="#636363"></path>
+    <path d="M70,10L70,1835L97,1835" stroke="#636363"></path>
+    <path d="M70,10L70,1992L97,1992" stroke="#636363"></path>
+    <path d="M70,10L70,2406L97,2406" stroke="#636363"></path>
+    <path d="M97,24L97,39L125,39" stroke="#636363"></path>
+    <path d="M97,24L97,110L125,110" stroke="#636363"></path>
+    <path d="M97,24L97,195L125,195" stroke="#636363"></path>
+    <path d="M97,224L97,238L125,238" stroke="#bdbdbd"></path>
+    <path d="M97,224L97,252L125,252" stroke="#bdbdbd"></path>
+    <path d="M97,224L97,267L125,267" stroke="#636363"></path>
+    <path d="M97,224L97,409L125,409" stroke="#bdbdbd"></path>
+    <path d="M97,224L97,424L125,424" stroke="#bdbdbd"></path>
+    <path d="M97,224L97,438L125,438" stroke="#bdbdbd"></path>
+    <path d="M97,224L97,452L125,452" stroke="#bdbdbd"></path>
+    <path d="M97,224L97,466L125,466" stroke="#bdbdbd"></path>
+    <path d="M97,224L97,481L125,481" stroke="#bdbdbd"></path>
+    <path d="M97,224L97,495L125,495" stroke="#bdbdbd"></path>
+    <path d="M97,224L97,509L125,509" stroke="#bdbdbd"></path>
+    <path d="M97,224L97,523L125,523" stroke="#bdbdbd"></path>
+    <path d="M97,538L97,552L125,552" stroke="#636363"></path>
+    <path d="M97,538L97,637L125,637" stroke="#bdbdbd"></path>
+    <path d="M97,538L97,652L125,652" stroke="#bdbdbd"></path>
+    <path d="M97,538L97,666L125,666" stroke="#bdbdbd"></path>
+    <path d="M97,538L97,680L125,680" stroke="#bdbdbd"></path>
+    <path d="M97,538L97,694L125,694" stroke="#bdbdbd"></path>
+    <path d="M97,538L97,709L125,709" stroke="#bdbdbd"></path>
+    <path d="M97,723L97,737L125,737" stroke="#bdbdbd"></path>
+    <path d="M97,723L97,751L125,751" stroke="#bdbdbd"></path>
+    <path d="M97,723L97,766L125,766" stroke="#bdbdbd"></path>
+    <path d="M97,723L97,780L125,780" stroke="#bdbdbd"></path>
+    <path d="M97,794L97,809L125,809" stroke="#bdbdbd"></path>
+    <path d="M97,823L97,837L125,837" stroke="#bdbdbd"></path>
+    <path d="M97,823L97,851L125,851" stroke="#bdbdbd"></path>
+    <path d="M97,823L97,866L125,866" stroke="#bdbdbd"></path>
+    <path d="M97,823L97,880L125,880" stroke="#bdbdbd"></path>
+    <path d="M97,823L97,894L125,894" stroke="#bdbdbd"></path>
+    <path d="M97,823L97,908L125,908" stroke="#bdbdbd"></path>
+    <path d="M97,823L97,923L125,923" stroke="#bdbdbd"></path>
+    <path d="M97,823L97,937L125,937" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,965L125,965" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,980L125,980" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,994L125,994" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1008L125,1008" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1022L125,1022" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1037L125,1037" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1051L125,1051" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1065L125,1065" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1079L125,1079" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1094L125,1094" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1108L125,1108" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1122L125,1122" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1136L125,1136" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1151L125,1151" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1165L125,1165" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1179L125,1179" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1193L125,1193" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1208L125,1208" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1222L125,1222" stroke="#636363"></path>
+    <path d="M97,951L97,1693L125,1693" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1707L125,1707" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1721L125,1721" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1735L125,1735" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1750L125,1750" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1764L125,1764" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1778L125,1778" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1792L125,1792" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1807L125,1807" stroke="#bdbdbd"></path>
+    <path d="M97,951L97,1821L125,1821" stroke="#bdbdbd"></path>
+    <path d="M97,1835L97,1849L125,1849" stroke="#bdbdbd"></path>
+    <path d="M97,1835L97,1864L125,1864" stroke="#bdbdbd"></path>
+    <path d="M97,1835L97,1878L125,1878" stroke="#bdbdbd"></path>
+    <path d="M97,1835L97,1892L125,1892" stroke="#bdbdbd"></path>
+    <path d="M97,1835L97,1906L125,1906" stroke="#bdbdbd"></path>
+    <path d="M97,1835L97,1921L125,1921" stroke="#bdbdbd"></path>
+    <path d="M97,1835L97,1935L125,1935" stroke="#bdbdbd"></path>
+    <path d="M97,1835L97,1949L125,1949" stroke="#bdbdbd"></path>
+    <path d="M97,1835L97,1963L125,1963" stroke="#bdbdbd"></path>
+    <path d="M97,1835L97,1978L125,1978" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2006L125,2006" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2021L125,2021" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2035L125,2035" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2049L125,2049" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2063L125,2063" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2078L125,2078" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2092L125,2092" stroke="#636363"></path>
+    <path d="M97,1992L97,2135L125,2135" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2149L125,2149" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2163L125,2163" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2177L125,2177" stroke="#636363"></path>
+    <path d="M97,1992L97,2234L125,2234" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2249L125,2249" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2263L125,2263" stroke="#636363"></path>
+    <path d="M97,1992L97,2334L125,2334" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2348L125,2348" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2363L125,2363" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2377L125,2377" stroke="#bdbdbd"></path>
+    <path d="M97,1992L97,2391L125,2391" stroke="#bdbdbd"></path>
+    <path d="M97,2406L97,2420L125,2420" stroke="#636363"></path>
+    <path d="M97,2406L97,2505L125,2505" stroke="#636363"></path>
+    <path d="M97,2406L97,2676L125,2676" stroke="#636363"></path>
+    <path d="M97,2406L97,2876L125,2876" stroke="#636363"></path>
+    <path d="M97,2406L97,2947L125,2947" stroke="#636363"></path>
+    <path d="M97,2406L97,3004L125,3004" stroke="#636363"></path>
+    <path d="M97,2406L97,3589L125,3589" stroke="#bdbdbd"></path>
+    <path d="M125,39L125,53L152,53" stroke="#bdbdbd"></path>
+    <path d="M125,39L125,67L152,67" stroke="#bdbdbd"></path>
+    <path d="M125,39L125,81L152,81" stroke="#bdbdbd"></path>
+    <path d="M125,39L125,96L152,96" stroke="#bdbdbd"></path>
+    <path d="M125,110L125,124L152,124" stroke="#bdbdbd"></path>
+    <path d="M125,110L125,138L152,138" stroke="#bdbdbd"></path>
+    <path d="M125,110L125,153L152,153" stroke="#bdbdbd"></path>
+    <path d="M125,110L125,167L152,167" stroke="#bdbdbd"></path>
+    <path d="M125,110L125,181L152,181" stroke="#bdbdbd"></path>
+    <path d="M125,195L125,210L152,210" stroke="#bdbdbd"></path>
+    <path d="M125,267L125,281L152,281" stroke="#bdbdbd"></path>
+    <path d="M125,267L125,295L152,295" stroke="#bdbdbd"></path>
+    <path d="M125,267L125,309L152,309" stroke="#bdbdbd"></path>
+    <path d="M125,267L125,324L152,324" stroke="#bdbdbd"></path>
+    <path d="M125,267L125,338L152,338" stroke="#bdbdbd"></path>
+    <path d="M125,267L125,352L152,352" stroke="#bdbdbd"></path>
+    <path d="M125,267L125,366L152,366" stroke="#bdbdbd"></path>
+    <path d="M125,267L125,381L152,381" stroke="#bdbdbd"></path>
+    <path d="M125,267L125,395L152,395" stroke="#bdbdbd"></path>
+    <path d="M125,552L125,566L152,566" stroke="#bdbdbd"></path>
+    <path d="M125,552L125,580L152,580" stroke="#bdbdbd"></path>
+    <path d="M125,552L125,595L152,595" stroke="#bdbdbd"></path>
+    <path d="M125,552L125,609L152,609" stroke="#bdbdbd"></path>
+    <path d="M125,552L125,623L152,623" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1236L152,1236" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1251L152,1251" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1265L152,1265" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1279L152,1279" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1293L152,1293" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1308L152,1308" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1322L152,1322" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1336L152,1336" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1350L152,1350" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1365L152,1365" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1379L152,1379" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1393L152,1393" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1407L152,1407" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1422L152,1422" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1436L152,1436" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1450L152,1450" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1464L152,1464" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1479L152,1479" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1493L152,1493" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1507L152,1507" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1521L152,1521" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1536L152,1536" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1550L152,1550" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1564L152,1564" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1578L152,1578" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1593L152,1593" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1607L152,1607" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1621L152,1621" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1636L152,1636" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1650L152,1650" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1664L152,1664" stroke="#bdbdbd"></path>
+    <path d="M125,1222L125,1678L152,1678" stroke="#bdbdbd"></path>
+    <path d="M125,2092L125,2106L152,2106" stroke="#bdbdbd"></path>
+    <path d="M125,2092L125,2120L152,2120" stroke="#bdbdbd"></path>
+    <path d="M125,2177L125,2192L152,2192" stroke="#bdbdbd"></path>
+    <path d="M125,2177L125,2206L152,2206" stroke="#bdbdbd"></path>
+    <path d="M125,2177L125,2220L152,2220" stroke="#bdbdbd"></path>
+    <path d="M125,2263L125,2277L152,2277" stroke="#bdbdbd"></path>
+    <path d="M125,2263L125,2291L152,2291" stroke="#bdbdbd"></path>
+    <path d="M125,2263L125,2306L152,2306" stroke="#bdbdbd"></path>
+    <path d="M125,2263L125,2320L152,2320" stroke="#bdbdbd"></path>
+    <path d="M125,2420L125,2434L152,2434" stroke="#bdbdbd"></path>
+    <path d="M125,2420L125,2448L152,2448" stroke="#bdbdbd"></path>
+    <path d="M125,2420L125,2463L152,2463" stroke="#bdbdbd"></path>
+    <path d="M125,2420L125,2477L152,2477" stroke="#bdbdbd"></path>
+    <path d="M125,2420L125,2491L152,2491" stroke="#bdbdbd"></path>
+    <path d="M125,2505L125,2520L152,2520" stroke="#bdbdbd"></path>
+    <path d="M125,2505L125,2534L152,2534" stroke="#bdbdbd"></path>
+    <path d="M125,2505L125,2548L152,2548" stroke="#bdbdbd"></path>
+    <path d="M125,2505L125,2562L152,2562" stroke="#bdbdbd"></path>
+    <path d="M125,2505L125,2577L152,2577" stroke="#bdbdbd"></path>
+    <path d="M125,2505L125,2591L152,2591" stroke="#bdbdbd"></path>
+    <path d="M125,2505L125,2605L152,2605" stroke="#bdbdbd"></path>
+    <path d="M125,2505L125,2619L152,2619" stroke="#bdbdbd"></path>
+    <path d="M125,2505L125,2634L152,2634" stroke="#bdbdbd"></path>
+    <path d="M125,2505L125,2648L152,2648" stroke="#bdbdbd"></path>
+    <path d="M125,2505L125,2662L152,2662" stroke="#bdbdbd"></path>
+    <path d="M125,2676L125,2691L152,2691" stroke="#bdbdbd"></path>
+    <path d="M125,2676L125,2705L152,2705" stroke="#bdbdbd"></path>
+    <path d="M125,2676L125,2719L152,2719" stroke="#bdbdbd"></path>
+    <path d="M125,2676L125,2733L152,2733" stroke="#bdbdbd"></path>
+    <path d="M125,2676L125,2748L152,2748" stroke="#bdbdbd"></path>
+    <path d="M125,2676L125,2762L152,2762" stroke="#636363"></path>
+    <path d="M125,2676L125,2833L152,2833" stroke="#bdbdbd"></path>
+    <path d="M125,2676L125,2848L152,2848" stroke="#bdbdbd"></path>
+    <path d="M125,2676L125,2862L152,2862" stroke="#bdbdbd"></path>
+    <path d="M125,2876L125,2890L152,2890" stroke="#bdbdbd"></path>
+    <path d="M125,2876L125,2905L152,2905" stroke="#bdbdbd"></path>
+    <path d="M125,2876L125,2919L152,2919" stroke="#bdbdbd"></path>
+    <path d="M125,2876L125,2933L152,2933" stroke="#bdbdbd"></path>
+    <path d="M125,2947L125,2962L152,2962" stroke="#bdbdbd"></path>
+    <path d="M125,2947L125,2976L152,2976" stroke="#bdbdbd"></path>
+    <path d="M125,2947L125,2990L152,2990" stroke="#bdbdbd"></path>
+    <path d="M125,3004L125,3019L152,3019" stroke="#636363"></path>
+    <path d="M125,3004L125,3076L152,3076" stroke="#636363"></path>
+    <path d="M125,3004L125,3161L152,3161" stroke="#636363"></path>
+    <path d="M125,3004L125,3218L152,3218" stroke="#bdbdbd"></path>
+    <path d="M125,3004L125,3233L152,3233" stroke="#636363"></path>
+    <path d="M125,3004L125,3290L152,3290" stroke="#636363"></path>
+    <path d="M125,3004L125,3518L152,3518" stroke="#bdbdbd"></path>
+    <path d="M125,3004L125,3532L152,3532" stroke="#bdbdbd"></path>
+    <path d="M125,3004L125,3546L152,3546" stroke="#bdbdbd"></path>
+    <path d="M125,3004L125,3560L152,3560" stroke="#bdbdbd"></path>
+    <path d="M125,3004L125,3575L152,3575" stroke="#bdbdbd"></path>
+    <path d="M152,2762L152,2776L179,2776" stroke="#bdbdbd"></path>
+    <path d="M152,2762L152,2790L179,2790" stroke="#bdbdbd"></path>
+    <path d="M152,2762L152,2805L179,2805" stroke="#bdbdbd"></path>
+    <path d="M152,2762L152,2819L179,2819" stroke="#bdbdbd"></path>
+    <path d="M152,3019L152,3033L179,3033" stroke="#bdbdbd"></path>
+    <path d="M152,3019L152,3047L179,3047" stroke="#bdbdbd"></path>
+    <path d="M152,3019L152,3061L179,3061" stroke="#bdbdbd"></path>
+    <path d="M152,3076L152,3090L179,3090" stroke="#bdbdbd"></path>
+    <path d="M152,3076L152,3104L179,3104" stroke="#bdbdbd"></path>
+    <path d="M152,3076L152,3118L179,3118" stroke="#bdbdbd"></path>
+    <path d="M152,3076L152,3133L179,3133" stroke="#bdbdbd"></path>
+    <path d="M152,3076L152,3147L179,3147" stroke="#bdbdbd"></path>
+    <path d="M152,3161L152,3175L179,3175" stroke="#bdbdbd"></path>
+    <path d="M152,3161L152,3190L179,3190" stroke="#bdbdbd"></path>
+    <path d="M152,3161L152,3204L179,3204" stroke="#bdbdbd"></path>
+    <path d="M152,3233L152,3247L179,3247" stroke="#bdbdbd"></path>
+    <path d="M152,3233L152,3261L179,3261" stroke="#bdbdbd"></path>
+    <path d="M152,3233L152,3275L179,3275" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3304L179,3304" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3318L179,3318" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3332L179,3332" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3347L179,3347" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3361L179,3361" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3375L179,3375" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3389L179,3389" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3404L179,3404" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3418L179,3418" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3432L179,3432" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3446L179,3446" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3461L179,3461" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3475L179,3475" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3489L179,3489" stroke="#bdbdbd"></path>
+    <path d="M152,3290L152,3503L179,3503" stroke="#bdbdbd"></path>
   </g>
   <g aria-label="dot" transform="translate(0.5,0.5)">
-    <circle cx="30" cy="10" r="2.5" fill="#636363"><title>/flare</title></circle>
-    <circle cx="42" cy="24" r="2.5" fill="#636363"><title>/flare/analytics</title></circle>
-    <circle cx="42" cy="224" r="2.5" fill="#636363"><title>/flare/animate</title></circle>
-    <circle cx="42" cy="538" r="2.5" fill="#636363"><title>/flare/data</title></circle>
-    <circle cx="42" cy="723" r="2.5" fill="#636363"><title>/flare/display</title></circle>
-    <circle cx="42" cy="794" r="2.5" fill="#636363"><title>/flare/flex</title></circle>
-    <circle cx="42" cy="823" r="2.5" fill="#636363"><title>/flare/physics</title></circle>
-    <circle cx="42" cy="951" r="2.5" fill="#636363"><title>/flare/query</title></circle>
-    <circle cx="42" cy="1835" r="2.5" fill="#636363"><title>/flare/scale</title></circle>
-    <circle cx="42" cy="1992" r="2.5" fill="#636363"><title>/flare/util</title></circle>
-    <circle cx="42" cy="2406" r="2.5" fill="#636363"><title>/flare/vis</title></circle>
-    <circle cx="55" cy="39" r="2.5" fill="#636363"><title>/flare/analytics/cluster</title></circle>
-    <circle cx="55" cy="110" r="2.5" fill="#636363"><title>/flare/analytics/graph</title></circle>
-    <circle cx="55" cy="195" r="2.5" fill="#636363"><title>/flare/analytics/optimization</title></circle>
-    <circle cx="55" cy="238" r="2.5" fill="#bdbdbd"><title>/flare/animate/Easing</title></circle>
-    <circle cx="55" cy="252" r="2.5" fill="#bdbdbd"><title>/flare/animate/FunctionSequence</title></circle>
-    <circle cx="55" cy="267" r="2.5" fill="#636363"><title>/flare/animate/interpolate</title></circle>
-    <circle cx="55" cy="409" r="2.5" fill="#bdbdbd"><title>/flare/animate/ISchedulable</title></circle>
-    <circle cx="55" cy="424" r="2.5" fill="#bdbdbd"><title>/flare/animate/Parallel</title></circle>
-    <circle cx="55" cy="438" r="2.5" fill="#bdbdbd"><title>/flare/animate/Pause</title></circle>
-    <circle cx="55" cy="452" r="2.5" fill="#bdbdbd"><title>/flare/animate/Scheduler</title></circle>
-    <circle cx="55" cy="466" r="2.5" fill="#bdbdbd"><title>/flare/animate/Sequence</title></circle>
-    <circle cx="55" cy="481" r="2.5" fill="#bdbdbd"><title>/flare/animate/Transition</title></circle>
-    <circle cx="55" cy="495" r="2.5" fill="#bdbdbd"><title>/flare/animate/Transitioner</title></circle>
-    <circle cx="55" cy="509" r="2.5" fill="#bdbdbd"><title>/flare/animate/TransitionEvent</title></circle>
-    <circle cx="55" cy="523" r="2.5" fill="#bdbdbd"><title>/flare/animate/Tween</title></circle>
-    <circle cx="55" cy="552" r="2.5" fill="#636363"><title>/flare/data/converters</title></circle>
-    <circle cx="55" cy="637" r="2.5" fill="#bdbdbd"><title>/flare/data/DataField</title></circle>
-    <circle cx="55" cy="652" r="2.5" fill="#bdbdbd"><title>/flare/data/DataSchema</title></circle>
-    <circle cx="55" cy="666" r="2.5" fill="#bdbdbd"><title>/flare/data/DataSet</title></circle>
-    <circle cx="55" cy="680" r="2.5" fill="#bdbdbd"><title>/flare/data/DataSource</title></circle>
-    <circle cx="55" cy="694" r="2.5" fill="#bdbdbd"><title>/flare/data/DataTable</title></circle>
-    <circle cx="55" cy="709" r="2.5" fill="#bdbdbd"><title>/flare/data/DataUtil</title></circle>
-    <circle cx="55" cy="737" r="2.5" fill="#bdbdbd"><title>/flare/display/DirtySprite</title></circle>
-    <circle cx="55" cy="751" r="2.5" fill="#bdbdbd"><title>/flare/display/LineSprite</title></circle>
-    <circle cx="55" cy="766" r="2.5" fill="#bdbdbd"><title>/flare/display/RectSprite</title></circle>
-    <circle cx="55" cy="780" r="2.5" fill="#bdbdbd"><title>/flare/display/TextSprite</title></circle>
-    <circle cx="55" cy="809" r="2.5" fill="#bdbdbd"><title>/flare/flex/FlareVis</title></circle>
-    <circle cx="55" cy="837" r="2.5" fill="#bdbdbd"><title>/flare/physics/DragForce</title></circle>
-    <circle cx="55" cy="851" r="2.5" fill="#bdbdbd"><title>/flare/physics/GravityForce</title></circle>
-    <circle cx="55" cy="866" r="2.5" fill="#bdbdbd"><title>/flare/physics/IForce</title></circle>
-    <circle cx="55" cy="880" r="2.5" fill="#bdbdbd"><title>/flare/physics/NBodyForce</title></circle>
-    <circle cx="55" cy="894" r="2.5" fill="#bdbdbd"><title>/flare/physics/Particle</title></circle>
-    <circle cx="55" cy="908" r="2.5" fill="#bdbdbd"><title>/flare/physics/Simulation</title></circle>
-    <circle cx="55" cy="923" r="2.5" fill="#bdbdbd"><title>/flare/physics/Spring</title></circle>
-    <circle cx="55" cy="937" r="2.5" fill="#bdbdbd"><title>/flare/physics/SpringForce</title></circle>
-    <circle cx="55" cy="965" r="2.5" fill="#bdbdbd"><title>/flare/query/AggregateExpression</title></circle>
-    <circle cx="55" cy="980" r="2.5" fill="#bdbdbd"><title>/flare/query/And</title></circle>
-    <circle cx="55" cy="994" r="2.5" fill="#bdbdbd"><title>/flare/query/Arithmetic</title></circle>
-    <circle cx="55" cy="1008" r="2.5" fill="#bdbdbd"><title>/flare/query/Average</title></circle>
-    <circle cx="55" cy="1022" r="2.5" fill="#bdbdbd"><title>/flare/query/BinaryExpression</title></circle>
-    <circle cx="55" cy="1037" r="2.5" fill="#bdbdbd"><title>/flare/query/Comparison</title></circle>
-    <circle cx="55" cy="1051" r="2.5" fill="#bdbdbd"><title>/flare/query/CompositeExpression</title></circle>
-    <circle cx="55" cy="1065" r="2.5" fill="#bdbdbd"><title>/flare/query/Count</title></circle>
-    <circle cx="55" cy="1079" r="2.5" fill="#bdbdbd"><title>/flare/query/DateUtil</title></circle>
-    <circle cx="55" cy="1094" r="2.5" fill="#bdbdbd"><title>/flare/query/Distinct</title></circle>
-    <circle cx="55" cy="1108" r="2.5" fill="#bdbdbd"><title>/flare/query/Expression</title></circle>
-    <circle cx="55" cy="1122" r="2.5" fill="#bdbdbd"><title>/flare/query/ExpressionIterator</title></circle>
-    <circle cx="55" cy="1136" r="2.5" fill="#bdbdbd"><title>/flare/query/Fn</title></circle>
-    <circle cx="55" cy="1151" r="2.5" fill="#bdbdbd"><title>/flare/query/If</title></circle>
-    <circle cx="55" cy="1165" r="2.5" fill="#bdbdbd"><title>/flare/query/IsA</title></circle>
-    <circle cx="55" cy="1179" r="2.5" fill="#bdbdbd"><title>/flare/query/Literal</title></circle>
-    <circle cx="55" cy="1193" r="2.5" fill="#bdbdbd"><title>/flare/query/Match</title></circle>
-    <circle cx="55" cy="1208" r="2.5" fill="#bdbdbd"><title>/flare/query/Maximum</title></circle>
-    <circle cx="55" cy="1222" r="2.5" fill="#636363"><title>/flare/query/methods</title></circle>
-    <circle cx="55" cy="1693" r="2.5" fill="#bdbdbd"><title>/flare/query/Minimum</title></circle>
-    <circle cx="55" cy="1707" r="2.5" fill="#bdbdbd"><title>/flare/query/Not</title></circle>
-    <circle cx="55" cy="1721" r="2.5" fill="#bdbdbd"><title>/flare/query/Or</title></circle>
-    <circle cx="55" cy="1735" r="2.5" fill="#bdbdbd"><title>/flare/query/Query</title></circle>
-    <circle cx="55" cy="1750" r="2.5" fill="#bdbdbd"><title>/flare/query/Range</title></circle>
-    <circle cx="55" cy="1764" r="2.5" fill="#bdbdbd"><title>/flare/query/StringUtil</title></circle>
-    <circle cx="55" cy="1778" r="2.5" fill="#bdbdbd"><title>/flare/query/Sum</title></circle>
-    <circle cx="55" cy="1792" r="2.5" fill="#bdbdbd"><title>/flare/query/Variable</title></circle>
-    <circle cx="55" cy="1807" r="2.5" fill="#bdbdbd"><title>/flare/query/Variance</title></circle>
-    <circle cx="55" cy="1821" r="2.5" fill="#bdbdbd"><title>/flare/query/Xor</title></circle>
-    <circle cx="55" cy="1849" r="2.5" fill="#bdbdbd"><title>/flare/scale/IScaleMap</title></circle>
-    <circle cx="55" cy="1864" r="2.5" fill="#bdbdbd"><title>/flare/scale/LinearScale</title></circle>
-    <circle cx="55" cy="1878" r="2.5" fill="#bdbdbd"><title>/flare/scale/LogScale</title></circle>
-    <circle cx="55" cy="1892" r="2.5" fill="#bdbdbd"><title>/flare/scale/OrdinalScale</title></circle>
-    <circle cx="55" cy="1906" r="2.5" fill="#bdbdbd"><title>/flare/scale/QuantileScale</title></circle>
-    <circle cx="55" cy="1921" r="2.5" fill="#bdbdbd"><title>/flare/scale/QuantitativeScale</title></circle>
-    <circle cx="55" cy="1935" r="2.5" fill="#bdbdbd"><title>/flare/scale/RootScale</title></circle>
-    <circle cx="55" cy="1949" r="2.5" fill="#bdbdbd"><title>/flare/scale/Scale</title></circle>
-    <circle cx="55" cy="1963" r="2.5" fill="#bdbdbd"><title>/flare/scale/ScaleType</title></circle>
-    <circle cx="55" cy="1978" r="2.5" fill="#bdbdbd"><title>/flare/scale/TimeScale</title></circle>
-    <circle cx="55" cy="2006" r="2.5" fill="#bdbdbd"><title>/flare/util/Arrays</title></circle>
-    <circle cx="55" cy="2021" r="2.5" fill="#bdbdbd"><title>/flare/util/Colors</title></circle>
-    <circle cx="55" cy="2035" r="2.5" fill="#bdbdbd"><title>/flare/util/Dates</title></circle>
-    <circle cx="55" cy="2049" r="2.5" fill="#bdbdbd"><title>/flare/util/Displays</title></circle>
-    <circle cx="55" cy="2063" r="2.5" fill="#bdbdbd"><title>/flare/util/Filter</title></circle>
-    <circle cx="55" cy="2078" r="2.5" fill="#bdbdbd"><title>/flare/util/Geometry</title></circle>
-    <circle cx="55" cy="2092" r="2.5" fill="#636363"><title>/flare/util/heap</title></circle>
-    <circle cx="55" cy="2135" r="2.5" fill="#bdbdbd"><title>/flare/util/IEvaluable</title></circle>
-    <circle cx="55" cy="2149" r="2.5" fill="#bdbdbd"><title>/flare/util/IPredicate</title></circle>
-    <circle cx="55" cy="2163" r="2.5" fill="#bdbdbd"><title>/flare/util/IValueProxy</title></circle>
-    <circle cx="55" cy="2177" r="2.5" fill="#636363"><title>/flare/util/math</title></circle>
-    <circle cx="55" cy="2234" r="2.5" fill="#bdbdbd"><title>/flare/util/Maths</title></circle>
-    <circle cx="55" cy="2249" r="2.5" fill="#bdbdbd"><title>/flare/util/Orientation</title></circle>
-    <circle cx="55" cy="2263" r="2.5" fill="#636363"><title>/flare/util/palette</title></circle>
-    <circle cx="55" cy="2334" r="2.5" fill="#bdbdbd"><title>/flare/util/Property</title></circle>
-    <circle cx="55" cy="2348" r="2.5" fill="#bdbdbd"><title>/flare/util/Shapes</title></circle>
-    <circle cx="55" cy="2363" r="2.5" fill="#bdbdbd"><title>/flare/util/Sort</title></circle>
-    <circle cx="55" cy="2377" r="2.5" fill="#bdbdbd"><title>/flare/util/Stats</title></circle>
-    <circle cx="55" cy="2391" r="2.5" fill="#bdbdbd"><title>/flare/util/Strings</title></circle>
-    <circle cx="55" cy="2420" r="2.5" fill="#636363"><title>/flare/vis/axis</title></circle>
-    <circle cx="55" cy="2505" r="2.5" fill="#636363"><title>/flare/vis/controls</title></circle>
-    <circle cx="55" cy="2676" r="2.5" fill="#636363"><title>/flare/vis/data</title></circle>
-    <circle cx="55" cy="2876" r="2.5" fill="#636363"><title>/flare/vis/events</title></circle>
-    <circle cx="55" cy="2947" r="2.5" fill="#636363"><title>/flare/vis/legend</title></circle>
-    <circle cx="55" cy="3004" r="2.5" fill="#636363"><title>/flare/vis/operator</title></circle>
-    <circle cx="55" cy="3589" r="2.5" fill="#bdbdbd"><title>/flare/vis/Visualization</title></circle>
-    <circle cx="67" cy="53" r="2.5" fill="#bdbdbd"><title>/flare/analytics/cluster/AgglomerativeCluster</title></circle>
-    <circle cx="67" cy="67" r="2.5" fill="#bdbdbd"><title>/flare/analytics/cluster/CommunityStructure</title></circle>
-    <circle cx="67" cy="81" r="2.5" fill="#bdbdbd"><title>/flare/analytics/cluster/HierarchicalCluster</title></circle>
-    <circle cx="67" cy="96" r="2.5" fill="#bdbdbd"><title>/flare/analytics/cluster/MergeEdge</title></circle>
-    <circle cx="67" cy="124" r="2.5" fill="#bdbdbd"><title>/flare/analytics/graph/BetweennessCentrality</title></circle>
-    <circle cx="67" cy="138" r="2.5" fill="#bdbdbd"><title>/flare/analytics/graph/LinkDistance</title></circle>
-    <circle cx="67" cy="153" r="2.5" fill="#bdbdbd"><title>/flare/analytics/graph/MaxFlowMinCut</title></circle>
-    <circle cx="67" cy="167" r="2.5" fill="#bdbdbd"><title>/flare/analytics/graph/ShortestPaths</title></circle>
-    <circle cx="67" cy="181" r="2.5" fill="#bdbdbd"><title>/flare/analytics/graph/SpanningTree</title></circle>
-    <circle cx="67" cy="210" r="2.5" fill="#bdbdbd"><title>/flare/analytics/optimization/AspectRatioBanker</title></circle>
-    <circle cx="67" cy="281" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/ArrayInterpolator</title></circle>
-    <circle cx="67" cy="295" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/ColorInterpolator</title></circle>
-    <circle cx="67" cy="309" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/DateInterpolator</title></circle>
-    <circle cx="67" cy="324" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/Interpolator</title></circle>
-    <circle cx="67" cy="338" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/MatrixInterpolator</title></circle>
-    <circle cx="67" cy="352" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/NumberInterpolator</title></circle>
-    <circle cx="67" cy="366" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/ObjectInterpolator</title></circle>
-    <circle cx="67" cy="381" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/PointInterpolator</title></circle>
-    <circle cx="67" cy="395" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/RectangleInterpolator</title></circle>
-    <circle cx="67" cy="566" r="2.5" fill="#bdbdbd"><title>/flare/data/converters/Converters</title></circle>
-    <circle cx="67" cy="580" r="2.5" fill="#bdbdbd"><title>/flare/data/converters/DelimitedTextConverter</title></circle>
-    <circle cx="67" cy="595" r="2.5" fill="#bdbdbd"><title>/flare/data/converters/GraphMLConverter</title></circle>
-    <circle cx="67" cy="609" r="2.5" fill="#bdbdbd"><title>/flare/data/converters/IDataConverter</title></circle>
-    <circle cx="67" cy="623" r="2.5" fill="#bdbdbd"><title>/flare/data/converters/JSONConverter</title></circle>
-    <circle cx="67" cy="1236" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/add</title></circle>
-    <circle cx="67" cy="1251" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/and</title></circle>
-    <circle cx="67" cy="1265" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/average</title></circle>
-    <circle cx="67" cy="1279" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/count</title></circle>
-    <circle cx="67" cy="1293" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/distinct</title></circle>
-    <circle cx="67" cy="1308" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/div</title></circle>
-    <circle cx="67" cy="1322" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/eq</title></circle>
-    <circle cx="67" cy="1336" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/fn</title></circle>
-    <circle cx="67" cy="1350" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/gt</title></circle>
-    <circle cx="67" cy="1365" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/gte</title></circle>
-    <circle cx="67" cy="1379" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/iff</title></circle>
-    <circle cx="67" cy="1393" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/isa</title></circle>
-    <circle cx="67" cy="1407" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/lt</title></circle>
-    <circle cx="67" cy="1422" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/lte</title></circle>
-    <circle cx="67" cy="1436" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/max</title></circle>
-    <circle cx="67" cy="1450" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/min</title></circle>
-    <circle cx="67" cy="1464" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/mod</title></circle>
-    <circle cx="67" cy="1479" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/mul</title></circle>
-    <circle cx="67" cy="1493" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/neq</title></circle>
-    <circle cx="67" cy="1507" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/not</title></circle>
-    <circle cx="67" cy="1521" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/or</title></circle>
-    <circle cx="67" cy="1536" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/orderby</title></circle>
-    <circle cx="67" cy="1550" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/range</title></circle>
-    <circle cx="67" cy="1564" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/select</title></circle>
-    <circle cx="67" cy="1578" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/stddev</title></circle>
-    <circle cx="67" cy="1593" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/sub</title></circle>
-    <circle cx="67" cy="1607" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/sum</title></circle>
-    <circle cx="67" cy="1621" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/update</title></circle>
-    <circle cx="67" cy="1636" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/variance</title></circle>
-    <circle cx="67" cy="1650" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/where</title></circle>
-    <circle cx="67" cy="1664" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/xor</title></circle>
-    <circle cx="67" cy="1678" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/_</title></circle>
-    <circle cx="67" cy="2106" r="2.5" fill="#bdbdbd"><title>/flare/util/heap/FibonacciHeap</title></circle>
-    <circle cx="67" cy="2120" r="2.5" fill="#bdbdbd"><title>/flare/util/heap/HeapNode</title></circle>
-    <circle cx="67" cy="2192" r="2.5" fill="#bdbdbd"><title>/flare/util/math/DenseMatrix</title></circle>
-    <circle cx="67" cy="2206" r="2.5" fill="#bdbdbd"><title>/flare/util/math/IMatrix</title></circle>
-    <circle cx="67" cy="2220" r="2.5" fill="#bdbdbd"><title>/flare/util/math/SparseMatrix</title></circle>
-    <circle cx="67" cy="2277" r="2.5" fill="#bdbdbd"><title>/flare/util/palette/ColorPalette</title></circle>
-    <circle cx="67" cy="2291" r="2.5" fill="#bdbdbd"><title>/flare/util/palette/Palette</title></circle>
-    <circle cx="67" cy="2306" r="2.5" fill="#bdbdbd"><title>/flare/util/palette/ShapePalette</title></circle>
-    <circle cx="67" cy="2320" r="2.5" fill="#bdbdbd"><title>/flare/util/palette/SizePalette</title></circle>
-    <circle cx="67" cy="2434" r="2.5" fill="#bdbdbd"><title>/flare/vis/axis/Axes</title></circle>
-    <circle cx="67" cy="2448" r="2.5" fill="#bdbdbd"><title>/flare/vis/axis/Axis</title></circle>
-    <circle cx="67" cy="2463" r="2.5" fill="#bdbdbd"><title>/flare/vis/axis/AxisGridLine</title></circle>
-    <circle cx="67" cy="2477" r="2.5" fill="#bdbdbd"><title>/flare/vis/axis/AxisLabel</title></circle>
-    <circle cx="67" cy="2491" r="2.5" fill="#bdbdbd"><title>/flare/vis/axis/CartesianAxes</title></circle>
-    <circle cx="67" cy="2520" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/AnchorControl</title></circle>
-    <circle cx="67" cy="2534" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/ClickControl</title></circle>
-    <circle cx="67" cy="2548" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/Control</title></circle>
-    <circle cx="67" cy="2562" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/ControlList</title></circle>
-    <circle cx="67" cy="2577" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/DragControl</title></circle>
-    <circle cx="67" cy="2591" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/ExpandControl</title></circle>
-    <circle cx="67" cy="2605" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/HoverControl</title></circle>
-    <circle cx="67" cy="2619" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/IControl</title></circle>
-    <circle cx="67" cy="2634" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/PanZoomControl</title></circle>
-    <circle cx="67" cy="2648" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/SelectionControl</title></circle>
-    <circle cx="67" cy="2662" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/TooltipControl</title></circle>
-    <circle cx="67" cy="2691" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/Data</title></circle>
-    <circle cx="67" cy="2705" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/DataList</title></circle>
-    <circle cx="67" cy="2719" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/DataSprite</title></circle>
-    <circle cx="67" cy="2733" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/EdgeSprite</title></circle>
-    <circle cx="67" cy="2748" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/NodeSprite</title></circle>
-    <circle cx="67" cy="2762" r="2.5" fill="#636363"><title>/flare/vis/data/render</title></circle>
-    <circle cx="67" cy="2833" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/ScaleBinding</title></circle>
-    <circle cx="67" cy="2848" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/Tree</title></circle>
-    <circle cx="67" cy="2862" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/TreeBuilder</title></circle>
-    <circle cx="67" cy="2890" r="2.5" fill="#bdbdbd"><title>/flare/vis/events/DataEvent</title></circle>
-    <circle cx="67" cy="2905" r="2.5" fill="#bdbdbd"><title>/flare/vis/events/SelectionEvent</title></circle>
-    <circle cx="67" cy="2919" r="2.5" fill="#bdbdbd"><title>/flare/vis/events/TooltipEvent</title></circle>
-    <circle cx="67" cy="2933" r="2.5" fill="#bdbdbd"><title>/flare/vis/events/VisualizationEvent</title></circle>
-    <circle cx="67" cy="2962" r="2.5" fill="#bdbdbd"><title>/flare/vis/legend/Legend</title></circle>
-    <circle cx="67" cy="2976" r="2.5" fill="#bdbdbd"><title>/flare/vis/legend/LegendItem</title></circle>
-    <circle cx="67" cy="2990" r="2.5" fill="#bdbdbd"><title>/flare/vis/legend/LegendRange</title></circle>
-    <circle cx="67" cy="3019" r="2.5" fill="#636363"><title>/flare/vis/operator/distortion</title></circle>
-    <circle cx="67" cy="3076" r="2.5" fill="#636363"><title>/flare/vis/operator/encoder</title></circle>
-    <circle cx="67" cy="3161" r="2.5" fill="#636363"><title>/flare/vis/operator/filter</title></circle>
-    <circle cx="67" cy="3218" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/IOperator</title></circle>
-    <circle cx="67" cy="3233" r="2.5" fill="#636363"><title>/flare/vis/operator/label</title></circle>
-    <circle cx="67" cy="3290" r="2.5" fill="#636363"><title>/flare/vis/operator/layout</title></circle>
-    <circle cx="67" cy="3518" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/Operator</title></circle>
-    <circle cx="67" cy="3532" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/OperatorList</title></circle>
-    <circle cx="67" cy="3546" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/OperatorSequence</title></circle>
-    <circle cx="67" cy="3560" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/OperatorSwitch</title></circle>
-    <circle cx="67" cy="3575" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/SortOperator</title></circle>
-    <circle cx="79" cy="2776" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/render/ArrowType</title></circle>
-    <circle cx="79" cy="2790" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/render/EdgeRenderer</title></circle>
-    <circle cx="79" cy="2805" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/render/IRenderer</title></circle>
-    <circle cx="79" cy="2819" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/render/ShapeRenderer</title></circle>
-    <circle cx="79" cy="3033" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/distortion/BifocalDistortion</title></circle>
-    <circle cx="79" cy="3047" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/distortion/Distortion</title></circle>
-    <circle cx="79" cy="3061" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/distortion/FisheyeDistortion</title></circle>
-    <circle cx="79" cy="3090" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/encoder/ColorEncoder</title></circle>
-    <circle cx="79" cy="3104" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/encoder/Encoder</title></circle>
-    <circle cx="79" cy="3118" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/encoder/PropertyEncoder</title></circle>
-    <circle cx="79" cy="3133" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/encoder/ShapeEncoder</title></circle>
-    <circle cx="79" cy="3147" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/encoder/SizeEncoder</title></circle>
-    <circle cx="79" cy="3175" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/filter/FisheyeTreeFilter</title></circle>
-    <circle cx="79" cy="3190" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/filter/GraphDistanceFilter</title></circle>
-    <circle cx="79" cy="3204" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/filter/VisibilityFilter</title></circle>
-    <circle cx="79" cy="3247" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/label/Labeler</title></circle>
-    <circle cx="79" cy="3261" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/label/RadialLabeler</title></circle>
-    <circle cx="79" cy="3275" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/label/StackedAreaLabeler</title></circle>
-    <circle cx="79" cy="3304" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/AxisLayout</title></circle>
-    <circle cx="79" cy="3318" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/BundledEdgeRouter</title></circle>
-    <circle cx="79" cy="3332" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/CircleLayout</title></circle>
-    <circle cx="79" cy="3347" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/CirclePackingLayout</title></circle>
-    <circle cx="79" cy="3361" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/DendrogramLayout</title></circle>
-    <circle cx="79" cy="3375" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/ForceDirectedLayout</title></circle>
-    <circle cx="79" cy="3389" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/IcicleTreeLayout</title></circle>
-    <circle cx="79" cy="3404" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/IndentedTreeLayout</title></circle>
-    <circle cx="79" cy="3418" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/Layout</title></circle>
-    <circle cx="79" cy="3432" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/NodeLinkTreeLayout</title></circle>
-    <circle cx="79" cy="3446" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/PieLayout</title></circle>
-    <circle cx="79" cy="3461" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/RadialTreeLayout</title></circle>
-    <circle cx="79" cy="3475" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/RandomLayout</title></circle>
-    <circle cx="79" cy="3489" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/StackedAreaLayout</title></circle>
-    <circle cx="79" cy="3503" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/TreeMapLayout</title></circle>
+    <circle cx="70" cy="10" r="2.5" fill="#636363"><title>/flare</title></circle>
+    <circle cx="97" cy="24" r="2.5" fill="#636363"><title>/flare/analytics</title></circle>
+    <circle cx="97" cy="224" r="2.5" fill="#636363"><title>/flare/animate</title></circle>
+    <circle cx="97" cy="538" r="2.5" fill="#636363"><title>/flare/data</title></circle>
+    <circle cx="97" cy="723" r="2.5" fill="#636363"><title>/flare/display</title></circle>
+    <circle cx="97" cy="794" r="2.5" fill="#636363"><title>/flare/flex</title></circle>
+    <circle cx="97" cy="823" r="2.5" fill="#636363"><title>/flare/physics</title></circle>
+    <circle cx="97" cy="951" r="2.5" fill="#636363"><title>/flare/query</title></circle>
+    <circle cx="97" cy="1835" r="2.5" fill="#636363"><title>/flare/scale</title></circle>
+    <circle cx="97" cy="1992" r="2.5" fill="#636363"><title>/flare/util</title></circle>
+    <circle cx="97" cy="2406" r="2.5" fill="#636363"><title>/flare/vis</title></circle>
+    <circle cx="125" cy="39" r="2.5" fill="#636363"><title>/flare/analytics/cluster</title></circle>
+    <circle cx="125" cy="110" r="2.5" fill="#636363"><title>/flare/analytics/graph</title></circle>
+    <circle cx="125" cy="195" r="2.5" fill="#636363"><title>/flare/analytics/optimization</title></circle>
+    <circle cx="125" cy="238" r="2.5" fill="#bdbdbd"><title>/flare/animate/Easing</title></circle>
+    <circle cx="125" cy="252" r="2.5" fill="#bdbdbd"><title>/flare/animate/FunctionSequence</title></circle>
+    <circle cx="125" cy="267" r="2.5" fill="#636363"><title>/flare/animate/interpolate</title></circle>
+    <circle cx="125" cy="409" r="2.5" fill="#bdbdbd"><title>/flare/animate/ISchedulable</title></circle>
+    <circle cx="125" cy="424" r="2.5" fill="#bdbdbd"><title>/flare/animate/Parallel</title></circle>
+    <circle cx="125" cy="438" r="2.5" fill="#bdbdbd"><title>/flare/animate/Pause</title></circle>
+    <circle cx="125" cy="452" r="2.5" fill="#bdbdbd"><title>/flare/animate/Scheduler</title></circle>
+    <circle cx="125" cy="466" r="2.5" fill="#bdbdbd"><title>/flare/animate/Sequence</title></circle>
+    <circle cx="125" cy="481" r="2.5" fill="#bdbdbd"><title>/flare/animate/Transition</title></circle>
+    <circle cx="125" cy="495" r="2.5" fill="#bdbdbd"><title>/flare/animate/Transitioner</title></circle>
+    <circle cx="125" cy="509" r="2.5" fill="#bdbdbd"><title>/flare/animate/TransitionEvent</title></circle>
+    <circle cx="125" cy="523" r="2.5" fill="#bdbdbd"><title>/flare/animate/Tween</title></circle>
+    <circle cx="125" cy="552" r="2.5" fill="#636363"><title>/flare/data/converters</title></circle>
+    <circle cx="125" cy="637" r="2.5" fill="#bdbdbd"><title>/flare/data/DataField</title></circle>
+    <circle cx="125" cy="652" r="2.5" fill="#bdbdbd"><title>/flare/data/DataSchema</title></circle>
+    <circle cx="125" cy="666" r="2.5" fill="#bdbdbd"><title>/flare/data/DataSet</title></circle>
+    <circle cx="125" cy="680" r="2.5" fill="#bdbdbd"><title>/flare/data/DataSource</title></circle>
+    <circle cx="125" cy="694" r="2.5" fill="#bdbdbd"><title>/flare/data/DataTable</title></circle>
+    <circle cx="125" cy="709" r="2.5" fill="#bdbdbd"><title>/flare/data/DataUtil</title></circle>
+    <circle cx="125" cy="737" r="2.5" fill="#bdbdbd"><title>/flare/display/DirtySprite</title></circle>
+    <circle cx="125" cy="751" r="2.5" fill="#bdbdbd"><title>/flare/display/LineSprite</title></circle>
+    <circle cx="125" cy="766" r="2.5" fill="#bdbdbd"><title>/flare/display/RectSprite</title></circle>
+    <circle cx="125" cy="780" r="2.5" fill="#bdbdbd"><title>/flare/display/TextSprite</title></circle>
+    <circle cx="125" cy="809" r="2.5" fill="#bdbdbd"><title>/flare/flex/FlareVis</title></circle>
+    <circle cx="125" cy="837" r="2.5" fill="#bdbdbd"><title>/flare/physics/DragForce</title></circle>
+    <circle cx="125" cy="851" r="2.5" fill="#bdbdbd"><title>/flare/physics/GravityForce</title></circle>
+    <circle cx="125" cy="866" r="2.5" fill="#bdbdbd"><title>/flare/physics/IForce</title></circle>
+    <circle cx="125" cy="880" r="2.5" fill="#bdbdbd"><title>/flare/physics/NBodyForce</title></circle>
+    <circle cx="125" cy="894" r="2.5" fill="#bdbdbd"><title>/flare/physics/Particle</title></circle>
+    <circle cx="125" cy="908" r="2.5" fill="#bdbdbd"><title>/flare/physics/Simulation</title></circle>
+    <circle cx="125" cy="923" r="2.5" fill="#bdbdbd"><title>/flare/physics/Spring</title></circle>
+    <circle cx="125" cy="937" r="2.5" fill="#bdbdbd"><title>/flare/physics/SpringForce</title></circle>
+    <circle cx="125" cy="965" r="2.5" fill="#bdbdbd"><title>/flare/query/AggregateExpression</title></circle>
+    <circle cx="125" cy="980" r="2.5" fill="#bdbdbd"><title>/flare/query/And</title></circle>
+    <circle cx="125" cy="994" r="2.5" fill="#bdbdbd"><title>/flare/query/Arithmetic</title></circle>
+    <circle cx="125" cy="1008" r="2.5" fill="#bdbdbd"><title>/flare/query/Average</title></circle>
+    <circle cx="125" cy="1022" r="2.5" fill="#bdbdbd"><title>/flare/query/BinaryExpression</title></circle>
+    <circle cx="125" cy="1037" r="2.5" fill="#bdbdbd"><title>/flare/query/Comparison</title></circle>
+    <circle cx="125" cy="1051" r="2.5" fill="#bdbdbd"><title>/flare/query/CompositeExpression</title></circle>
+    <circle cx="125" cy="1065" r="2.5" fill="#bdbdbd"><title>/flare/query/Count</title></circle>
+    <circle cx="125" cy="1079" r="2.5" fill="#bdbdbd"><title>/flare/query/DateUtil</title></circle>
+    <circle cx="125" cy="1094" r="2.5" fill="#bdbdbd"><title>/flare/query/Distinct</title></circle>
+    <circle cx="125" cy="1108" r="2.5" fill="#bdbdbd"><title>/flare/query/Expression</title></circle>
+    <circle cx="125" cy="1122" r="2.5" fill="#bdbdbd"><title>/flare/query/ExpressionIterator</title></circle>
+    <circle cx="125" cy="1136" r="2.5" fill="#bdbdbd"><title>/flare/query/Fn</title></circle>
+    <circle cx="125" cy="1151" r="2.5" fill="#bdbdbd"><title>/flare/query/If</title></circle>
+    <circle cx="125" cy="1165" r="2.5" fill="#bdbdbd"><title>/flare/query/IsA</title></circle>
+    <circle cx="125" cy="1179" r="2.5" fill="#bdbdbd"><title>/flare/query/Literal</title></circle>
+    <circle cx="125" cy="1193" r="2.5" fill="#bdbdbd"><title>/flare/query/Match</title></circle>
+    <circle cx="125" cy="1208" r="2.5" fill="#bdbdbd"><title>/flare/query/Maximum</title></circle>
+    <circle cx="125" cy="1222" r="2.5" fill="#636363"><title>/flare/query/methods</title></circle>
+    <circle cx="125" cy="1693" r="2.5" fill="#bdbdbd"><title>/flare/query/Minimum</title></circle>
+    <circle cx="125" cy="1707" r="2.5" fill="#bdbdbd"><title>/flare/query/Not</title></circle>
+    <circle cx="125" cy="1721" r="2.5" fill="#bdbdbd"><title>/flare/query/Or</title></circle>
+    <circle cx="125" cy="1735" r="2.5" fill="#bdbdbd"><title>/flare/query/Query</title></circle>
+    <circle cx="125" cy="1750" r="2.5" fill="#bdbdbd"><title>/flare/query/Range</title></circle>
+    <circle cx="125" cy="1764" r="2.5" fill="#bdbdbd"><title>/flare/query/StringUtil</title></circle>
+    <circle cx="125" cy="1778" r="2.5" fill="#bdbdbd"><title>/flare/query/Sum</title></circle>
+    <circle cx="125" cy="1792" r="2.5" fill="#bdbdbd"><title>/flare/query/Variable</title></circle>
+    <circle cx="125" cy="1807" r="2.5" fill="#bdbdbd"><title>/flare/query/Variance</title></circle>
+    <circle cx="125" cy="1821" r="2.5" fill="#bdbdbd"><title>/flare/query/Xor</title></circle>
+    <circle cx="125" cy="1849" r="2.5" fill="#bdbdbd"><title>/flare/scale/IScaleMap</title></circle>
+    <circle cx="125" cy="1864" r="2.5" fill="#bdbdbd"><title>/flare/scale/LinearScale</title></circle>
+    <circle cx="125" cy="1878" r="2.5" fill="#bdbdbd"><title>/flare/scale/LogScale</title></circle>
+    <circle cx="125" cy="1892" r="2.5" fill="#bdbdbd"><title>/flare/scale/OrdinalScale</title></circle>
+    <circle cx="125" cy="1906" r="2.5" fill="#bdbdbd"><title>/flare/scale/QuantileScale</title></circle>
+    <circle cx="125" cy="1921" r="2.5" fill="#bdbdbd"><title>/flare/scale/QuantitativeScale</title></circle>
+    <circle cx="125" cy="1935" r="2.5" fill="#bdbdbd"><title>/flare/scale/RootScale</title></circle>
+    <circle cx="125" cy="1949" r="2.5" fill="#bdbdbd"><title>/flare/scale/Scale</title></circle>
+    <circle cx="125" cy="1963" r="2.5" fill="#bdbdbd"><title>/flare/scale/ScaleType</title></circle>
+    <circle cx="125" cy="1978" r="2.5" fill="#bdbdbd"><title>/flare/scale/TimeScale</title></circle>
+    <circle cx="125" cy="2006" r="2.5" fill="#bdbdbd"><title>/flare/util/Arrays</title></circle>
+    <circle cx="125" cy="2021" r="2.5" fill="#bdbdbd"><title>/flare/util/Colors</title></circle>
+    <circle cx="125" cy="2035" r="2.5" fill="#bdbdbd"><title>/flare/util/Dates</title></circle>
+    <circle cx="125" cy="2049" r="2.5" fill="#bdbdbd"><title>/flare/util/Displays</title></circle>
+    <circle cx="125" cy="2063" r="2.5" fill="#bdbdbd"><title>/flare/util/Filter</title></circle>
+    <circle cx="125" cy="2078" r="2.5" fill="#bdbdbd"><title>/flare/util/Geometry</title></circle>
+    <circle cx="125" cy="2092" r="2.5" fill="#636363"><title>/flare/util/heap</title></circle>
+    <circle cx="125" cy="2135" r="2.5" fill="#bdbdbd"><title>/flare/util/IEvaluable</title></circle>
+    <circle cx="125" cy="2149" r="2.5" fill="#bdbdbd"><title>/flare/util/IPredicate</title></circle>
+    <circle cx="125" cy="2163" r="2.5" fill="#bdbdbd"><title>/flare/util/IValueProxy</title></circle>
+    <circle cx="125" cy="2177" r="2.5" fill="#636363"><title>/flare/util/math</title></circle>
+    <circle cx="125" cy="2234" r="2.5" fill="#bdbdbd"><title>/flare/util/Maths</title></circle>
+    <circle cx="125" cy="2249" r="2.5" fill="#bdbdbd"><title>/flare/util/Orientation</title></circle>
+    <circle cx="125" cy="2263" r="2.5" fill="#636363"><title>/flare/util/palette</title></circle>
+    <circle cx="125" cy="2334" r="2.5" fill="#bdbdbd"><title>/flare/util/Property</title></circle>
+    <circle cx="125" cy="2348" r="2.5" fill="#bdbdbd"><title>/flare/util/Shapes</title></circle>
+    <circle cx="125" cy="2363" r="2.5" fill="#bdbdbd"><title>/flare/util/Sort</title></circle>
+    <circle cx="125" cy="2377" r="2.5" fill="#bdbdbd"><title>/flare/util/Stats</title></circle>
+    <circle cx="125" cy="2391" r="2.5" fill="#bdbdbd"><title>/flare/util/Strings</title></circle>
+    <circle cx="125" cy="2420" r="2.5" fill="#636363"><title>/flare/vis/axis</title></circle>
+    <circle cx="125" cy="2505" r="2.5" fill="#636363"><title>/flare/vis/controls</title></circle>
+    <circle cx="125" cy="2676" r="2.5" fill="#636363"><title>/flare/vis/data</title></circle>
+    <circle cx="125" cy="2876" r="2.5" fill="#636363"><title>/flare/vis/events</title></circle>
+    <circle cx="125" cy="2947" r="2.5" fill="#636363"><title>/flare/vis/legend</title></circle>
+    <circle cx="125" cy="3004" r="2.5" fill="#636363"><title>/flare/vis/operator</title></circle>
+    <circle cx="125" cy="3589" r="2.5" fill="#bdbdbd"><title>/flare/vis/Visualization</title></circle>
+    <circle cx="152" cy="53" r="2.5" fill="#bdbdbd"><title>/flare/analytics/cluster/AgglomerativeCluster</title></circle>
+    <circle cx="152" cy="67" r="2.5" fill="#bdbdbd"><title>/flare/analytics/cluster/CommunityStructure</title></circle>
+    <circle cx="152" cy="81" r="2.5" fill="#bdbdbd"><title>/flare/analytics/cluster/HierarchicalCluster</title></circle>
+    <circle cx="152" cy="96" r="2.5" fill="#bdbdbd"><title>/flare/analytics/cluster/MergeEdge</title></circle>
+    <circle cx="152" cy="124" r="2.5" fill="#bdbdbd"><title>/flare/analytics/graph/BetweennessCentrality</title></circle>
+    <circle cx="152" cy="138" r="2.5" fill="#bdbdbd"><title>/flare/analytics/graph/LinkDistance</title></circle>
+    <circle cx="152" cy="153" r="2.5" fill="#bdbdbd"><title>/flare/analytics/graph/MaxFlowMinCut</title></circle>
+    <circle cx="152" cy="167" r="2.5" fill="#bdbdbd"><title>/flare/analytics/graph/ShortestPaths</title></circle>
+    <circle cx="152" cy="181" r="2.5" fill="#bdbdbd"><title>/flare/analytics/graph/SpanningTree</title></circle>
+    <circle cx="152" cy="210" r="2.5" fill="#bdbdbd"><title>/flare/analytics/optimization/AspectRatioBanker</title></circle>
+    <circle cx="152" cy="281" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/ArrayInterpolator</title></circle>
+    <circle cx="152" cy="295" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/ColorInterpolator</title></circle>
+    <circle cx="152" cy="309" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/DateInterpolator</title></circle>
+    <circle cx="152" cy="324" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/Interpolator</title></circle>
+    <circle cx="152" cy="338" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/MatrixInterpolator</title></circle>
+    <circle cx="152" cy="352" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/NumberInterpolator</title></circle>
+    <circle cx="152" cy="366" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/ObjectInterpolator</title></circle>
+    <circle cx="152" cy="381" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/PointInterpolator</title></circle>
+    <circle cx="152" cy="395" r="2.5" fill="#bdbdbd"><title>/flare/animate/interpolate/RectangleInterpolator</title></circle>
+    <circle cx="152" cy="566" r="2.5" fill="#bdbdbd"><title>/flare/data/converters/Converters</title></circle>
+    <circle cx="152" cy="580" r="2.5" fill="#bdbdbd"><title>/flare/data/converters/DelimitedTextConverter</title></circle>
+    <circle cx="152" cy="595" r="2.5" fill="#bdbdbd"><title>/flare/data/converters/GraphMLConverter</title></circle>
+    <circle cx="152" cy="609" r="2.5" fill="#bdbdbd"><title>/flare/data/converters/IDataConverter</title></circle>
+    <circle cx="152" cy="623" r="2.5" fill="#bdbdbd"><title>/flare/data/converters/JSONConverter</title></circle>
+    <circle cx="152" cy="1236" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/add</title></circle>
+    <circle cx="152" cy="1251" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/and</title></circle>
+    <circle cx="152" cy="1265" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/average</title></circle>
+    <circle cx="152" cy="1279" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/count</title></circle>
+    <circle cx="152" cy="1293" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/distinct</title></circle>
+    <circle cx="152" cy="1308" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/div</title></circle>
+    <circle cx="152" cy="1322" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/eq</title></circle>
+    <circle cx="152" cy="1336" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/fn</title></circle>
+    <circle cx="152" cy="1350" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/gt</title></circle>
+    <circle cx="152" cy="1365" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/gte</title></circle>
+    <circle cx="152" cy="1379" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/iff</title></circle>
+    <circle cx="152" cy="1393" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/isa</title></circle>
+    <circle cx="152" cy="1407" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/lt</title></circle>
+    <circle cx="152" cy="1422" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/lte</title></circle>
+    <circle cx="152" cy="1436" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/max</title></circle>
+    <circle cx="152" cy="1450" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/min</title></circle>
+    <circle cx="152" cy="1464" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/mod</title></circle>
+    <circle cx="152" cy="1479" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/mul</title></circle>
+    <circle cx="152" cy="1493" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/neq</title></circle>
+    <circle cx="152" cy="1507" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/not</title></circle>
+    <circle cx="152" cy="1521" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/or</title></circle>
+    <circle cx="152" cy="1536" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/orderby</title></circle>
+    <circle cx="152" cy="1550" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/range</title></circle>
+    <circle cx="152" cy="1564" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/select</title></circle>
+    <circle cx="152" cy="1578" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/stddev</title></circle>
+    <circle cx="152" cy="1593" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/sub</title></circle>
+    <circle cx="152" cy="1607" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/sum</title></circle>
+    <circle cx="152" cy="1621" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/update</title></circle>
+    <circle cx="152" cy="1636" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/variance</title></circle>
+    <circle cx="152" cy="1650" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/where</title></circle>
+    <circle cx="152" cy="1664" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/xor</title></circle>
+    <circle cx="152" cy="1678" r="2.5" fill="#bdbdbd"><title>/flare/query/methods/_</title></circle>
+    <circle cx="152" cy="2106" r="2.5" fill="#bdbdbd"><title>/flare/util/heap/FibonacciHeap</title></circle>
+    <circle cx="152" cy="2120" r="2.5" fill="#bdbdbd"><title>/flare/util/heap/HeapNode</title></circle>
+    <circle cx="152" cy="2192" r="2.5" fill="#bdbdbd"><title>/flare/util/math/DenseMatrix</title></circle>
+    <circle cx="152" cy="2206" r="2.5" fill="#bdbdbd"><title>/flare/util/math/IMatrix</title></circle>
+    <circle cx="152" cy="2220" r="2.5" fill="#bdbdbd"><title>/flare/util/math/SparseMatrix</title></circle>
+    <circle cx="152" cy="2277" r="2.5" fill="#bdbdbd"><title>/flare/util/palette/ColorPalette</title></circle>
+    <circle cx="152" cy="2291" r="2.5" fill="#bdbdbd"><title>/flare/util/palette/Palette</title></circle>
+    <circle cx="152" cy="2306" r="2.5" fill="#bdbdbd"><title>/flare/util/palette/ShapePalette</title></circle>
+    <circle cx="152" cy="2320" r="2.5" fill="#bdbdbd"><title>/flare/util/palette/SizePalette</title></circle>
+    <circle cx="152" cy="2434" r="2.5" fill="#bdbdbd"><title>/flare/vis/axis/Axes</title></circle>
+    <circle cx="152" cy="2448" r="2.5" fill="#bdbdbd"><title>/flare/vis/axis/Axis</title></circle>
+    <circle cx="152" cy="2463" r="2.5" fill="#bdbdbd"><title>/flare/vis/axis/AxisGridLine</title></circle>
+    <circle cx="152" cy="2477" r="2.5" fill="#bdbdbd"><title>/flare/vis/axis/AxisLabel</title></circle>
+    <circle cx="152" cy="2491" r="2.5" fill="#bdbdbd"><title>/flare/vis/axis/CartesianAxes</title></circle>
+    <circle cx="152" cy="2520" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/AnchorControl</title></circle>
+    <circle cx="152" cy="2534" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/ClickControl</title></circle>
+    <circle cx="152" cy="2548" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/Control</title></circle>
+    <circle cx="152" cy="2562" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/ControlList</title></circle>
+    <circle cx="152" cy="2577" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/DragControl</title></circle>
+    <circle cx="152" cy="2591" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/ExpandControl</title></circle>
+    <circle cx="152" cy="2605" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/HoverControl</title></circle>
+    <circle cx="152" cy="2619" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/IControl</title></circle>
+    <circle cx="152" cy="2634" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/PanZoomControl</title></circle>
+    <circle cx="152" cy="2648" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/SelectionControl</title></circle>
+    <circle cx="152" cy="2662" r="2.5" fill="#bdbdbd"><title>/flare/vis/controls/TooltipControl</title></circle>
+    <circle cx="152" cy="2691" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/Data</title></circle>
+    <circle cx="152" cy="2705" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/DataList</title></circle>
+    <circle cx="152" cy="2719" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/DataSprite</title></circle>
+    <circle cx="152" cy="2733" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/EdgeSprite</title></circle>
+    <circle cx="152" cy="2748" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/NodeSprite</title></circle>
+    <circle cx="152" cy="2762" r="2.5" fill="#636363"><title>/flare/vis/data/render</title></circle>
+    <circle cx="152" cy="2833" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/ScaleBinding</title></circle>
+    <circle cx="152" cy="2848" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/Tree</title></circle>
+    <circle cx="152" cy="2862" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/TreeBuilder</title></circle>
+    <circle cx="152" cy="2890" r="2.5" fill="#bdbdbd"><title>/flare/vis/events/DataEvent</title></circle>
+    <circle cx="152" cy="2905" r="2.5" fill="#bdbdbd"><title>/flare/vis/events/SelectionEvent</title></circle>
+    <circle cx="152" cy="2919" r="2.5" fill="#bdbdbd"><title>/flare/vis/events/TooltipEvent</title></circle>
+    <circle cx="152" cy="2933" r="2.5" fill="#bdbdbd"><title>/flare/vis/events/VisualizationEvent</title></circle>
+    <circle cx="152" cy="2962" r="2.5" fill="#bdbdbd"><title>/flare/vis/legend/Legend</title></circle>
+    <circle cx="152" cy="2976" r="2.5" fill="#bdbdbd"><title>/flare/vis/legend/LegendItem</title></circle>
+    <circle cx="152" cy="2990" r="2.5" fill="#bdbdbd"><title>/flare/vis/legend/LegendRange</title></circle>
+    <circle cx="152" cy="3019" r="2.5" fill="#636363"><title>/flare/vis/operator/distortion</title></circle>
+    <circle cx="152" cy="3076" r="2.5" fill="#636363"><title>/flare/vis/operator/encoder</title></circle>
+    <circle cx="152" cy="3161" r="2.5" fill="#636363"><title>/flare/vis/operator/filter</title></circle>
+    <circle cx="152" cy="3218" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/IOperator</title></circle>
+    <circle cx="152" cy="3233" r="2.5" fill="#636363"><title>/flare/vis/operator/label</title></circle>
+    <circle cx="152" cy="3290" r="2.5" fill="#636363"><title>/flare/vis/operator/layout</title></circle>
+    <circle cx="152" cy="3518" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/Operator</title></circle>
+    <circle cx="152" cy="3532" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/OperatorList</title></circle>
+    <circle cx="152" cy="3546" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/OperatorSequence</title></circle>
+    <circle cx="152" cy="3560" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/OperatorSwitch</title></circle>
+    <circle cx="152" cy="3575" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/SortOperator</title></circle>
+    <circle cx="179" cy="2776" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/render/ArrowType</title></circle>
+    <circle cx="179" cy="2790" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/render/EdgeRenderer</title></circle>
+    <circle cx="179" cy="2805" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/render/IRenderer</title></circle>
+    <circle cx="179" cy="2819" r="2.5" fill="#bdbdbd"><title>/flare/vis/data/render/ShapeRenderer</title></circle>
+    <circle cx="179" cy="3033" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/distortion/BifocalDistortion</title></circle>
+    <circle cx="179" cy="3047" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/distortion/Distortion</title></circle>
+    <circle cx="179" cy="3061" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/distortion/FisheyeDistortion</title></circle>
+    <circle cx="179" cy="3090" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/encoder/ColorEncoder</title></circle>
+    <circle cx="179" cy="3104" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/encoder/Encoder</title></circle>
+    <circle cx="179" cy="3118" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/encoder/PropertyEncoder</title></circle>
+    <circle cx="179" cy="3133" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/encoder/ShapeEncoder</title></circle>
+    <circle cx="179" cy="3147" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/encoder/SizeEncoder</title></circle>
+    <circle cx="179" cy="3175" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/filter/FisheyeTreeFilter</title></circle>
+    <circle cx="179" cy="3190" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/filter/GraphDistanceFilter</title></circle>
+    <circle cx="179" cy="3204" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/filter/VisibilityFilter</title></circle>
+    <circle cx="179" cy="3247" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/label/Labeler</title></circle>
+    <circle cx="179" cy="3261" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/label/RadialLabeler</title></circle>
+    <circle cx="179" cy="3275" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/label/StackedAreaLabeler</title></circle>
+    <circle cx="179" cy="3304" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/AxisLayout</title></circle>
+    <circle cx="179" cy="3318" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/BundledEdgeRouter</title></circle>
+    <circle cx="179" cy="3332" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/CircleLayout</title></circle>
+    <circle cx="179" cy="3347" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/CirclePackingLayout</title></circle>
+    <circle cx="179" cy="3361" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/DendrogramLayout</title></circle>
+    <circle cx="179" cy="3375" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/ForceDirectedLayout</title></circle>
+    <circle cx="179" cy="3389" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/IcicleTreeLayout</title></circle>
+    <circle cx="179" cy="3404" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/IndentedTreeLayout</title></circle>
+    <circle cx="179" cy="3418" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/Layout</title></circle>
+    <circle cx="179" cy="3432" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/NodeLinkTreeLayout</title></circle>
+    <circle cx="179" cy="3446" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/PieLayout</title></circle>
+    <circle cx="179" cy="3461" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/RadialTreeLayout</title></circle>
+    <circle cx="179" cy="3475" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/RandomLayout</title></circle>
+    <circle cx="179" cy="3489" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/StackedAreaLayout</title></circle>
+    <circle cx="179" cy="3503" r="2.5" fill="#bdbdbd"><title>/flare/vis/operator/layout/TreeMapLayout</title></circle>
   </g>
   <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="start" transform="translate(6.5,0.5)">
-    <text y="0.32em" transform="translate(55,238)">Easing<title>/flare/animate/Easing</title></text>
-    <text y="0.32em" transform="translate(55,252)">FunctionSequence<title>/flare/animate/FunctionSequence</title></text>
-    <text y="0.32em" transform="translate(55,409)">ISchedulable<title>/flare/animate/ISchedulable</title></text>
-    <text y="0.32em" transform="translate(55,424)">Parallel<title>/flare/animate/Parallel</title></text>
-    <text y="0.32em" transform="translate(55,438)">Pause<title>/flare/animate/Pause</title></text>
-    <text y="0.32em" transform="translate(55,452)">Scheduler<title>/flare/animate/Scheduler</title></text>
-    <text y="0.32em" transform="translate(55,466)">Sequence<title>/flare/animate/Sequence</title></text>
-    <text y="0.32em" transform="translate(55,481)">Transition<title>/flare/animate/Transition</title></text>
-    <text y="0.32em" transform="translate(55,495)">Transitioner<title>/flare/animate/Transitioner</title></text>
-    <text y="0.32em" transform="translate(55,509)">TransitionEvent<title>/flare/animate/TransitionEvent</title></text>
-    <text y="0.32em" transform="translate(55,523)">Tween<title>/flare/animate/Tween</title></text>
-    <text y="0.32em" transform="translate(55,637)">DataField<title>/flare/data/DataField</title></text>
-    <text y="0.32em" transform="translate(55,652)">DataSchema<title>/flare/data/DataSchema</title></text>
-    <text y="0.32em" transform="translate(55,666)">DataSet<title>/flare/data/DataSet</title></text>
-    <text y="0.32em" transform="translate(55,680)">DataSource<title>/flare/data/DataSource</title></text>
-    <text y="0.32em" transform="translate(55,694)">DataTable<title>/flare/data/DataTable</title></text>
-    <text y="0.32em" transform="translate(55,709)">DataUtil<title>/flare/data/DataUtil</title></text>
-    <text y="0.32em" transform="translate(55,737)">DirtySprite<title>/flare/display/DirtySprite</title></text>
-    <text y="0.32em" transform="translate(55,751)">LineSprite<title>/flare/display/LineSprite</title></text>
-    <text y="0.32em" transform="translate(55,766)">RectSprite<title>/flare/display/RectSprite</title></text>
-    <text y="0.32em" transform="translate(55,780)">TextSprite<title>/flare/display/TextSprite</title></text>
-    <text y="0.32em" transform="translate(55,809)">FlareVis<title>/flare/flex/FlareVis</title></text>
-    <text y="0.32em" transform="translate(55,837)">DragForce<title>/flare/physics/DragForce</title></text>
-    <text y="0.32em" transform="translate(55,851)">GravityForce<title>/flare/physics/GravityForce</title></text>
-    <text y="0.32em" transform="translate(55,866)">IForce<title>/flare/physics/IForce</title></text>
-    <text y="0.32em" transform="translate(55,880)">NBodyForce<title>/flare/physics/NBodyForce</title></text>
-    <text y="0.32em" transform="translate(55,894)">Particle<title>/flare/physics/Particle</title></text>
-    <text y="0.32em" transform="translate(55,908)">Simulation<title>/flare/physics/Simulation</title></text>
-    <text y="0.32em" transform="translate(55,923)">Spring<title>/flare/physics/Spring</title></text>
-    <text y="0.32em" transform="translate(55,937)">SpringForce<title>/flare/physics/SpringForce</title></text>
-    <text y="0.32em" transform="translate(55,965)">AggregateExpression<title>/flare/query/AggregateExpression</title></text>
-    <text y="0.32em" transform="translate(55,980)">And<title>/flare/query/And</title></text>
-    <text y="0.32em" transform="translate(55,994)">Arithmetic<title>/flare/query/Arithmetic</title></text>
-    <text y="0.32em" transform="translate(55,1008)">Average<title>/flare/query/Average</title></text>
-    <text y="0.32em" transform="translate(55,1022)">BinaryExpression<title>/flare/query/BinaryExpression</title></text>
-    <text y="0.32em" transform="translate(55,1037)">Comparison<title>/flare/query/Comparison</title></text>
-    <text y="0.32em" transform="translate(55,1051)">CompositeExpression<title>/flare/query/CompositeExpression</title></text>
-    <text y="0.32em" transform="translate(55,1065)">Count<title>/flare/query/Count</title></text>
-    <text y="0.32em" transform="translate(55,1079)">DateUtil<title>/flare/query/DateUtil</title></text>
-    <text y="0.32em" transform="translate(55,1094)">Distinct<title>/flare/query/Distinct</title></text>
-    <text y="0.32em" transform="translate(55,1108)">Expression<title>/flare/query/Expression</title></text>
-    <text y="0.32em" transform="translate(55,1122)">ExpressionIterator<title>/flare/query/ExpressionIterator</title></text>
-    <text y="0.32em" transform="translate(55,1136)">Fn<title>/flare/query/Fn</title></text>
-    <text y="0.32em" transform="translate(55,1151)">If<title>/flare/query/If</title></text>
-    <text y="0.32em" transform="translate(55,1165)">IsA<title>/flare/query/IsA</title></text>
-    <text y="0.32em" transform="translate(55,1179)">Literal<title>/flare/query/Literal</title></text>
-    <text y="0.32em" transform="translate(55,1193)">Match<title>/flare/query/Match</title></text>
-    <text y="0.32em" transform="translate(55,1208)">Maximum<title>/flare/query/Maximum</title></text>
-    <text y="0.32em" transform="translate(55,1693)">Minimum<title>/flare/query/Minimum</title></text>
-    <text y="0.32em" transform="translate(55,1707)">Not<title>/flare/query/Not</title></text>
-    <text y="0.32em" transform="translate(55,1721)">Or<title>/flare/query/Or</title></text>
-    <text y="0.32em" transform="translate(55,1735)">Query<title>/flare/query/Query</title></text>
-    <text y="0.32em" transform="translate(55,1750)">Range<title>/flare/query/Range</title></text>
-    <text y="0.32em" transform="translate(55,1764)">StringUtil<title>/flare/query/StringUtil</title></text>
-    <text y="0.32em" transform="translate(55,1778)">Sum<title>/flare/query/Sum</title></text>
-    <text y="0.32em" transform="translate(55,1792)">Variable<title>/flare/query/Variable</title></text>
-    <text y="0.32em" transform="translate(55,1807)">Variance<title>/flare/query/Variance</title></text>
-    <text y="0.32em" transform="translate(55,1821)">Xor<title>/flare/query/Xor</title></text>
-    <text y="0.32em" transform="translate(55,1849)">IScaleMap<title>/flare/scale/IScaleMap</title></text>
-    <text y="0.32em" transform="translate(55,1864)">LinearScale<title>/flare/scale/LinearScale</title></text>
-    <text y="0.32em" transform="translate(55,1878)">LogScale<title>/flare/scale/LogScale</title></text>
-    <text y="0.32em" transform="translate(55,1892)">OrdinalScale<title>/flare/scale/OrdinalScale</title></text>
-    <text y="0.32em" transform="translate(55,1906)">QuantileScale<title>/flare/scale/QuantileScale</title></text>
-    <text y="0.32em" transform="translate(55,1921)">QuantitativeScale<title>/flare/scale/QuantitativeScale</title></text>
-    <text y="0.32em" transform="translate(55,1935)">RootScale<title>/flare/scale/RootScale</title></text>
-    <text y="0.32em" transform="translate(55,1949)">Scale<title>/flare/scale/Scale</title></text>
-    <text y="0.32em" transform="translate(55,1963)">ScaleType<title>/flare/scale/ScaleType</title></text>
-    <text y="0.32em" transform="translate(55,1978)">TimeScale<title>/flare/scale/TimeScale</title></text>
-    <text y="0.32em" transform="translate(55,2006)">Arrays<title>/flare/util/Arrays</title></text>
-    <text y="0.32em" transform="translate(55,2021)">Colors<title>/flare/util/Colors</title></text>
-    <text y="0.32em" transform="translate(55,2035)">Dates<title>/flare/util/Dates</title></text>
-    <text y="0.32em" transform="translate(55,2049)">Displays<title>/flare/util/Displays</title></text>
-    <text y="0.32em" transform="translate(55,2063)">Filter<title>/flare/util/Filter</title></text>
-    <text y="0.32em" transform="translate(55,2078)">Geometry<title>/flare/util/Geometry</title></text>
-    <text y="0.32em" transform="translate(55,2135)">IEvaluable<title>/flare/util/IEvaluable</title></text>
-    <text y="0.32em" transform="translate(55,2149)">IPredicate<title>/flare/util/IPredicate</title></text>
-    <text y="0.32em" transform="translate(55,2163)">IValueProxy<title>/flare/util/IValueProxy</title></text>
-    <text y="0.32em" transform="translate(55,2234)">Maths<title>/flare/util/Maths</title></text>
-    <text y="0.32em" transform="translate(55,2249)">Orientation<title>/flare/util/Orientation</title></text>
-    <text y="0.32em" transform="translate(55,2334)">Property<title>/flare/util/Property</title></text>
-    <text y="0.32em" transform="translate(55,2348)">Shapes<title>/flare/util/Shapes</title></text>
-    <text y="0.32em" transform="translate(55,2363)">Sort<title>/flare/util/Sort</title></text>
-    <text y="0.32em" transform="translate(55,2377)">Stats<title>/flare/util/Stats</title></text>
-    <text y="0.32em" transform="translate(55,2391)">Strings<title>/flare/util/Strings</title></text>
-    <text y="0.32em" transform="translate(55,3589)">Visualization<title>/flare/vis/Visualization</title></text>
-    <text y="0.32em" transform="translate(67,53)">AgglomerativeCluster<title>/flare/analytics/cluster/AgglomerativeCluster</title></text>
-    <text y="0.32em" transform="translate(67,67)">CommunityStructure<title>/flare/analytics/cluster/CommunityStructure</title></text>
-    <text y="0.32em" transform="translate(67,81)">HierarchicalCluster<title>/flare/analytics/cluster/HierarchicalCluster</title></text>
-    <text y="0.32em" transform="translate(67,96)">MergeEdge<title>/flare/analytics/cluster/MergeEdge</title></text>
-    <text y="0.32em" transform="translate(67,124)">BetweennessCentrality<title>/flare/analytics/graph/BetweennessCentrality</title></text>
-    <text y="0.32em" transform="translate(67,138)">LinkDistance<title>/flare/analytics/graph/LinkDistance</title></text>
-    <text y="0.32em" transform="translate(67,153)">MaxFlowMinCut<title>/flare/analytics/graph/MaxFlowMinCut</title></text>
-    <text y="0.32em" transform="translate(67,167)">ShortestPaths<title>/flare/analytics/graph/ShortestPaths</title></text>
-    <text y="0.32em" transform="translate(67,181)">SpanningTree<title>/flare/analytics/graph/SpanningTree</title></text>
-    <text y="0.32em" transform="translate(67,210)">AspectRatioBanker<title>/flare/analytics/optimization/AspectRatioBanker</title></text>
-    <text y="0.32em" transform="translate(67,281)">ArrayInterpolator<title>/flare/animate/interpolate/ArrayInterpolator</title></text>
-    <text y="0.32em" transform="translate(67,295)">ColorInterpolator<title>/flare/animate/interpolate/ColorInterpolator</title></text>
-    <text y="0.32em" transform="translate(67,309)">DateInterpolator<title>/flare/animate/interpolate/DateInterpolator</title></text>
-    <text y="0.32em" transform="translate(67,324)">Interpolator<title>/flare/animate/interpolate/Interpolator</title></text>
-    <text y="0.32em" transform="translate(67,338)">MatrixInterpolator<title>/flare/animate/interpolate/MatrixInterpolator</title></text>
-    <text y="0.32em" transform="translate(67,352)">NumberInterpolator<title>/flare/animate/interpolate/NumberInterpolator</title></text>
-    <text y="0.32em" transform="translate(67,366)">ObjectInterpolator<title>/flare/animate/interpolate/ObjectInterpolator</title></text>
-    <text y="0.32em" transform="translate(67,381)">PointInterpolator<title>/flare/animate/interpolate/PointInterpolator</title></text>
-    <text y="0.32em" transform="translate(67,395)">RectangleInterpolator<title>/flare/animate/interpolate/RectangleInterpolator</title></text>
-    <text y="0.32em" transform="translate(67,566)">Converters<title>/flare/data/converters/Converters</title></text>
-    <text y="0.32em" transform="translate(67,580)">DelimitedTextConverter<title>/flare/data/converters/DelimitedTextConverter</title></text>
-    <text y="0.32em" transform="translate(67,595)">GraphMLConverter<title>/flare/data/converters/GraphMLConverter</title></text>
-    <text y="0.32em" transform="translate(67,609)">IDataConverter<title>/flare/data/converters/IDataConverter</title></text>
-    <text y="0.32em" transform="translate(67,623)">JSONConverter<title>/flare/data/converters/JSONConverter</title></text>
-    <text y="0.32em" transform="translate(67,1236)">add<title>/flare/query/methods/add</title></text>
-    <text y="0.32em" transform="translate(67,1251)">and<title>/flare/query/methods/and</title></text>
-    <text y="0.32em" transform="translate(67,1265)">average<title>/flare/query/methods/average</title></text>
-    <text y="0.32em" transform="translate(67,1279)">count<title>/flare/query/methods/count</title></text>
-    <text y="0.32em" transform="translate(67,1293)">distinct<title>/flare/query/methods/distinct</title></text>
-    <text y="0.32em" transform="translate(67,1308)">div<title>/flare/query/methods/div</title></text>
-    <text y="0.32em" transform="translate(67,1322)">eq<title>/flare/query/methods/eq</title></text>
-    <text y="0.32em" transform="translate(67,1336)">fn<title>/flare/query/methods/fn</title></text>
-    <text y="0.32em" transform="translate(67,1350)">gt<title>/flare/query/methods/gt</title></text>
-    <text y="0.32em" transform="translate(67,1365)">gte<title>/flare/query/methods/gte</title></text>
-    <text y="0.32em" transform="translate(67,1379)">iff<title>/flare/query/methods/iff</title></text>
-    <text y="0.32em" transform="translate(67,1393)">isa<title>/flare/query/methods/isa</title></text>
-    <text y="0.32em" transform="translate(67,1407)">lt<title>/flare/query/methods/lt</title></text>
-    <text y="0.32em" transform="translate(67,1422)">lte<title>/flare/query/methods/lte</title></text>
-    <text y="0.32em" transform="translate(67,1436)">max<title>/flare/query/methods/max</title></text>
-    <text y="0.32em" transform="translate(67,1450)">min<title>/flare/query/methods/min</title></text>
-    <text y="0.32em" transform="translate(67,1464)">mod<title>/flare/query/methods/mod</title></text>
-    <text y="0.32em" transform="translate(67,1479)">mul<title>/flare/query/methods/mul</title></text>
-    <text y="0.32em" transform="translate(67,1493)">neq<title>/flare/query/methods/neq</title></text>
-    <text y="0.32em" transform="translate(67,1507)">not<title>/flare/query/methods/not</title></text>
-    <text y="0.32em" transform="translate(67,1521)">or<title>/flare/query/methods/or</title></text>
-    <text y="0.32em" transform="translate(67,1536)">orderby<title>/flare/query/methods/orderby</title></text>
-    <text y="0.32em" transform="translate(67,1550)">range<title>/flare/query/methods/range</title></text>
-    <text y="0.32em" transform="translate(67,1564)">select<title>/flare/query/methods/select</title></text>
-    <text y="0.32em" transform="translate(67,1578)">stddev<title>/flare/query/methods/stddev</title></text>
-    <text y="0.32em" transform="translate(67,1593)">sub<title>/flare/query/methods/sub</title></text>
-    <text y="0.32em" transform="translate(67,1607)">sum<title>/flare/query/methods/sum</title></text>
-    <text y="0.32em" transform="translate(67,1621)">update<title>/flare/query/methods/update</title></text>
-    <text y="0.32em" transform="translate(67,1636)">variance<title>/flare/query/methods/variance</title></text>
-    <text y="0.32em" transform="translate(67,1650)">where<title>/flare/query/methods/where</title></text>
-    <text y="0.32em" transform="translate(67,1664)">xor<title>/flare/query/methods/xor</title></text>
-    <text y="0.32em" transform="translate(67,1678)">_<title>/flare/query/methods/_</title></text>
-    <text y="0.32em" transform="translate(67,2106)">FibonacciHeap<title>/flare/util/heap/FibonacciHeap</title></text>
-    <text y="0.32em" transform="translate(67,2120)">HeapNode<title>/flare/util/heap/HeapNode</title></text>
-    <text y="0.32em" transform="translate(67,2192)">DenseMatrix<title>/flare/util/math/DenseMatrix</title></text>
-    <text y="0.32em" transform="translate(67,2206)">IMatrix<title>/flare/util/math/IMatrix</title></text>
-    <text y="0.32em" transform="translate(67,2220)">SparseMatrix<title>/flare/util/math/SparseMatrix</title></text>
-    <text y="0.32em" transform="translate(67,2277)">ColorPalette<title>/flare/util/palette/ColorPalette</title></text>
-    <text y="0.32em" transform="translate(67,2291)">Palette<title>/flare/util/palette/Palette</title></text>
-    <text y="0.32em" transform="translate(67,2306)">ShapePalette<title>/flare/util/palette/ShapePalette</title></text>
-    <text y="0.32em" transform="translate(67,2320)">SizePalette<title>/flare/util/palette/SizePalette</title></text>
-    <text y="0.32em" transform="translate(67,2434)">Axes<title>/flare/vis/axis/Axes</title></text>
-    <text y="0.32em" transform="translate(67,2448)">Axis<title>/flare/vis/axis/Axis</title></text>
-    <text y="0.32em" transform="translate(67,2463)">AxisGridLine<title>/flare/vis/axis/AxisGridLine</title></text>
-    <text y="0.32em" transform="translate(67,2477)">AxisLabel<title>/flare/vis/axis/AxisLabel</title></text>
-    <text y="0.32em" transform="translate(67,2491)">CartesianAxes<title>/flare/vis/axis/CartesianAxes</title></text>
-    <text y="0.32em" transform="translate(67,2520)">AnchorControl<title>/flare/vis/controls/AnchorControl</title></text>
-    <text y="0.32em" transform="translate(67,2534)">ClickControl<title>/flare/vis/controls/ClickControl</title></text>
-    <text y="0.32em" transform="translate(67,2548)">Control<title>/flare/vis/controls/Control</title></text>
-    <text y="0.32em" transform="translate(67,2562)">ControlList<title>/flare/vis/controls/ControlList</title></text>
-    <text y="0.32em" transform="translate(67,2577)">DragControl<title>/flare/vis/controls/DragControl</title></text>
-    <text y="0.32em" transform="translate(67,2591)">ExpandControl<title>/flare/vis/controls/ExpandControl</title></text>
-    <text y="0.32em" transform="translate(67,2605)">HoverControl<title>/flare/vis/controls/HoverControl</title></text>
-    <text y="0.32em" transform="translate(67,2619)">IControl<title>/flare/vis/controls/IControl</title></text>
-    <text y="0.32em" transform="translate(67,2634)">PanZoomControl<title>/flare/vis/controls/PanZoomControl</title></text>
-    <text y="0.32em" transform="translate(67,2648)">SelectionControl<title>/flare/vis/controls/SelectionControl</title></text>
-    <text y="0.32em" transform="translate(67,2662)">TooltipControl<title>/flare/vis/controls/TooltipControl</title></text>
-    <text y="0.32em" transform="translate(67,2691)">Data<title>/flare/vis/data/Data</title></text>
-    <text y="0.32em" transform="translate(67,2705)">DataList<title>/flare/vis/data/DataList</title></text>
-    <text y="0.32em" transform="translate(67,2719)">DataSprite<title>/flare/vis/data/DataSprite</title></text>
-    <text y="0.32em" transform="translate(67,2733)">EdgeSprite<title>/flare/vis/data/EdgeSprite</title></text>
-    <text y="0.32em" transform="translate(67,2748)">NodeSprite<title>/flare/vis/data/NodeSprite</title></text>
-    <text y="0.32em" transform="translate(67,2833)">ScaleBinding<title>/flare/vis/data/ScaleBinding</title></text>
-    <text y="0.32em" transform="translate(67,2848)">Tree<title>/flare/vis/data/Tree</title></text>
-    <text y="0.32em" transform="translate(67,2862)">TreeBuilder<title>/flare/vis/data/TreeBuilder</title></text>
-    <text y="0.32em" transform="translate(67,2890)">DataEvent<title>/flare/vis/events/DataEvent</title></text>
-    <text y="0.32em" transform="translate(67,2905)">SelectionEvent<title>/flare/vis/events/SelectionEvent</title></text>
-    <text y="0.32em" transform="translate(67,2919)">TooltipEvent<title>/flare/vis/events/TooltipEvent</title></text>
-    <text y="0.32em" transform="translate(67,2933)">VisualizationEvent<title>/flare/vis/events/VisualizationEvent</title></text>
-    <text y="0.32em" transform="translate(67,2962)">Legend<title>/flare/vis/legend/Legend</title></text>
-    <text y="0.32em" transform="translate(67,2976)">LegendItem<title>/flare/vis/legend/LegendItem</title></text>
-    <text y="0.32em" transform="translate(67,2990)">LegendRange<title>/flare/vis/legend/LegendRange</title></text>
-    <text y="0.32em" transform="translate(67,3218)">IOperator<title>/flare/vis/operator/IOperator</title></text>
-    <text y="0.32em" transform="translate(67,3518)">Operator<title>/flare/vis/operator/Operator</title></text>
-    <text y="0.32em" transform="translate(67,3532)">OperatorList<title>/flare/vis/operator/OperatorList</title></text>
-    <text y="0.32em" transform="translate(67,3546)">OperatorSequence<title>/flare/vis/operator/OperatorSequence</title></text>
-    <text y="0.32em" transform="translate(67,3560)">OperatorSwitch<title>/flare/vis/operator/OperatorSwitch</title></text>
-    <text y="0.32em" transform="translate(67,3575)">SortOperator<title>/flare/vis/operator/SortOperator</title></text>
-    <text y="0.32em" transform="translate(79,2776)">ArrowType<title>/flare/vis/data/render/ArrowType</title></text>
-    <text y="0.32em" transform="translate(79,2790)">EdgeRenderer<title>/flare/vis/data/render/EdgeRenderer</title></text>
-    <text y="0.32em" transform="translate(79,2805)">IRenderer<title>/flare/vis/data/render/IRenderer</title></text>
-    <text y="0.32em" transform="translate(79,2819)">ShapeRenderer<title>/flare/vis/data/render/ShapeRenderer</title></text>
-    <text y="0.32em" transform="translate(79,3033)">BifocalDistortion<title>/flare/vis/operator/distortion/BifocalDistortion</title></text>
-    <text y="0.32em" transform="translate(79,3047)">Distortion<title>/flare/vis/operator/distortion/Distortion</title></text>
-    <text y="0.32em" transform="translate(79,3061)">FisheyeDistortion<title>/flare/vis/operator/distortion/FisheyeDistortion</title></text>
-    <text y="0.32em" transform="translate(79,3090)">ColorEncoder<title>/flare/vis/operator/encoder/ColorEncoder</title></text>
-    <text y="0.32em" transform="translate(79,3104)">Encoder<title>/flare/vis/operator/encoder/Encoder</title></text>
-    <text y="0.32em" transform="translate(79,3118)">PropertyEncoder<title>/flare/vis/operator/encoder/PropertyEncoder</title></text>
-    <text y="0.32em" transform="translate(79,3133)">ShapeEncoder<title>/flare/vis/operator/encoder/ShapeEncoder</title></text>
-    <text y="0.32em" transform="translate(79,3147)">SizeEncoder<title>/flare/vis/operator/encoder/SizeEncoder</title></text>
-    <text y="0.32em" transform="translate(79,3175)">FisheyeTreeFilter<title>/flare/vis/operator/filter/FisheyeTreeFilter</title></text>
-    <text y="0.32em" transform="translate(79,3190)">GraphDistanceFilter<title>/flare/vis/operator/filter/GraphDistanceFilter</title></text>
-    <text y="0.32em" transform="translate(79,3204)">VisibilityFilter<title>/flare/vis/operator/filter/VisibilityFilter</title></text>
-    <text y="0.32em" transform="translate(79,3247)">Labeler<title>/flare/vis/operator/label/Labeler</title></text>
-    <text y="0.32em" transform="translate(79,3261)">RadialLabeler<title>/flare/vis/operator/label/RadialLabeler</title></text>
-    <text y="0.32em" transform="translate(79,3275)">StackedAreaLabeler<title>/flare/vis/operator/label/StackedAreaLabeler</title></text>
-    <text y="0.32em" transform="translate(79,3304)">AxisLayout<title>/flare/vis/operator/layout/AxisLayout</title></text>
-    <text y="0.32em" transform="translate(79,3318)">BundledEdgeRouter<title>/flare/vis/operator/layout/BundledEdgeRouter</title></text>
-    <text y="0.32em" transform="translate(79,3332)">CircleLayout<title>/flare/vis/operator/layout/CircleLayout</title></text>
-    <text y="0.32em" transform="translate(79,3347)">CirclePackingLayout<title>/flare/vis/operator/layout/CirclePackingLayout</title></text>
-    <text y="0.32em" transform="translate(79,3361)">DendrogramLayout<title>/flare/vis/operator/layout/DendrogramLayout</title></text>
-    <text y="0.32em" transform="translate(79,3375)">ForceDirectedLayout<title>/flare/vis/operator/layout/ForceDirectedLayout</title></text>
-    <text y="0.32em" transform="translate(79,3389)">IcicleTreeLayout<title>/flare/vis/operator/layout/IcicleTreeLayout</title></text>
-    <text y="0.32em" transform="translate(79,3404)">IndentedTreeLayout<title>/flare/vis/operator/layout/IndentedTreeLayout</title></text>
-    <text y="0.32em" transform="translate(79,3418)">Layout<title>/flare/vis/operator/layout/Layout</title></text>
-    <text y="0.32em" transform="translate(79,3432)">NodeLinkTreeLayout<title>/flare/vis/operator/layout/NodeLinkTreeLayout</title></text>
-    <text y="0.32em" transform="translate(79,3446)">PieLayout<title>/flare/vis/operator/layout/PieLayout</title></text>
-    <text y="0.32em" transform="translate(79,3461)">RadialTreeLayout<title>/flare/vis/operator/layout/RadialTreeLayout</title></text>
-    <text y="0.32em" transform="translate(79,3475)">RandomLayout<title>/flare/vis/operator/layout/RandomLayout</title></text>
-    <text y="0.32em" transform="translate(79,3489)">StackedAreaLayout<title>/flare/vis/operator/layout/StackedAreaLayout</title></text>
-    <text y="0.32em" transform="translate(79,3503)">TreeMapLayout<title>/flare/vis/operator/layout/TreeMapLayout</title></text>
-  </g>
-  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="end" transform="translate(-5.5,0.5)">
-    <text y="0.32em" transform="translate(30,10)">flare<title>/flare</title></text>
-    <text y="0.32em" transform="translate(42,24)">analytics<title>/flare/analytics</title></text>
-    <text y="0.32em" transform="translate(42,224)">animate<title>/flare/animate</title></text>
-    <text y="0.32em" transform="translate(42,538)">data<title>/flare/data</title></text>
-    <text y="0.32em" transform="translate(42,723)">display<title>/flare/display</title></text>
-    <text y="0.32em" transform="translate(42,794)">flex<title>/flare/flex</title></text>
-    <text y="0.32em" transform="translate(42,823)">physics<title>/flare/physics</title></text>
-    <text y="0.32em" transform="translate(42,951)">query<title>/flare/query</title></text>
-    <text y="0.32em" transform="translate(42,1835)">scale<title>/flare/scale</title></text>
-    <text y="0.32em" transform="translate(42,1992)">util<title>/flare/util</title></text>
-    <text y="0.32em" transform="translate(42,2406)">vis<title>/flare/vis</title></text>
-    <text y="0.32em" transform="translate(55,39)">cluster<title>/flare/analytics/cluster</title></text>
-    <text y="0.32em" transform="translate(55,110)">graph<title>/flare/analytics/graph</title></text>
-    <text y="0.32em" transform="translate(55,195)">optimization<title>/flare/analytics/optimization</title></text>
-    <text y="0.32em" transform="translate(55,267)">interpolate<title>/flare/animate/interpolate</title></text>
-    <text y="0.32em" transform="translate(55,552)">converters<title>/flare/data/converters</title></text>
-    <text y="0.32em" transform="translate(55,1222)">methods<title>/flare/query/methods</title></text>
-    <text y="0.32em" transform="translate(55,2092)">heap<title>/flare/util/heap</title></text>
-    <text y="0.32em" transform="translate(55,2177)">math<title>/flare/util/math</title></text>
-    <text y="0.32em" transform="translate(55,2263)">palette<title>/flare/util/palette</title></text>
-    <text y="0.32em" transform="translate(55,2420)">axis<title>/flare/vis/axis</title></text>
-    <text y="0.32em" transform="translate(55,2505)">controls<title>/flare/vis/controls</title></text>
-    <text y="0.32em" transform="translate(55,2676)">data<title>/flare/vis/data</title></text>
-    <text y="0.32em" transform="translate(55,2876)">events<title>/flare/vis/events</title></text>
-    <text y="0.32em" transform="translate(55,2947)">legend<title>/flare/vis/legend</title></text>
-    <text y="0.32em" transform="translate(55,3004)">operator<title>/flare/vis/operator</title></text>
-    <text y="0.32em" transform="translate(67,2762)">render<title>/flare/vis/data/render</title></text>
-    <text y="0.32em" transform="translate(67,3019)">distortion<title>/flare/vis/operator/distortion</title></text>
-    <text y="0.32em" transform="translate(67,3076)">encoder<title>/flare/vis/operator/encoder</title></text>
-    <text y="0.32em" transform="translate(67,3161)">filter<title>/flare/vis/operator/filter</title></text>
-    <text y="0.32em" transform="translate(67,3233)">label<title>/flare/vis/operator/label</title></text>
-    <text y="0.32em" transform="translate(67,3290)">layout<title>/flare/vis/operator/layout</title></text>
+    <text y="0.32em" transform="translate(70,10)">flare<title>/flare</title></text>
+    <text y="0.32em" transform="translate(97,24)">analytics<title>/flare/analytics</title></text>
+    <text y="0.32em" transform="translate(97,224)">animate<title>/flare/animate</title></text>
+    <text y="0.32em" transform="translate(97,538)">data<title>/flare/data</title></text>
+    <text y="0.32em" transform="translate(97,723)">display<title>/flare/display</title></text>
+    <text y="0.32em" transform="translate(97,794)">flex<title>/flare/flex</title></text>
+    <text y="0.32em" transform="translate(97,823)">physics<title>/flare/physics</title></text>
+    <text y="0.32em" transform="translate(97,951)">query<title>/flare/query</title></text>
+    <text y="0.32em" transform="translate(97,1835)">scale<title>/flare/scale</title></text>
+    <text y="0.32em" transform="translate(97,1992)">util<title>/flare/util</title></text>
+    <text y="0.32em" transform="translate(97,2406)">vis<title>/flare/vis</title></text>
+    <text y="0.32em" transform="translate(125,39)">cluster<title>/flare/analytics/cluster</title></text>
+    <text y="0.32em" transform="translate(125,110)">graph<title>/flare/analytics/graph</title></text>
+    <text y="0.32em" transform="translate(125,195)">optimization<title>/flare/analytics/optimization</title></text>
+    <text y="0.32em" transform="translate(125,238)">Easing<title>/flare/animate/Easing</title></text>
+    <text y="0.32em" transform="translate(125,252)">FunctionSequence<title>/flare/animate/FunctionSequence</title></text>
+    <text y="0.32em" transform="translate(125,267)">interpolate<title>/flare/animate/interpolate</title></text>
+    <text y="0.32em" transform="translate(125,409)">ISchedulable<title>/flare/animate/ISchedulable</title></text>
+    <text y="0.32em" transform="translate(125,424)">Parallel<title>/flare/animate/Parallel</title></text>
+    <text y="0.32em" transform="translate(125,438)">Pause<title>/flare/animate/Pause</title></text>
+    <text y="0.32em" transform="translate(125,452)">Scheduler<title>/flare/animate/Scheduler</title></text>
+    <text y="0.32em" transform="translate(125,466)">Sequence<title>/flare/animate/Sequence</title></text>
+    <text y="0.32em" transform="translate(125,481)">Transition<title>/flare/animate/Transition</title></text>
+    <text y="0.32em" transform="translate(125,495)">Transitioner<title>/flare/animate/Transitioner</title></text>
+    <text y="0.32em" transform="translate(125,509)">TransitionEvent<title>/flare/animate/TransitionEvent</title></text>
+    <text y="0.32em" transform="translate(125,523)">Tween<title>/flare/animate/Tween</title></text>
+    <text y="0.32em" transform="translate(125,552)">converters<title>/flare/data/converters</title></text>
+    <text y="0.32em" transform="translate(125,637)">DataField<title>/flare/data/DataField</title></text>
+    <text y="0.32em" transform="translate(125,652)">DataSchema<title>/flare/data/DataSchema</title></text>
+    <text y="0.32em" transform="translate(125,666)">DataSet<title>/flare/data/DataSet</title></text>
+    <text y="0.32em" transform="translate(125,680)">DataSource<title>/flare/data/DataSource</title></text>
+    <text y="0.32em" transform="translate(125,694)">DataTable<title>/flare/data/DataTable</title></text>
+    <text y="0.32em" transform="translate(125,709)">DataUtil<title>/flare/data/DataUtil</title></text>
+    <text y="0.32em" transform="translate(125,737)">DirtySprite<title>/flare/display/DirtySprite</title></text>
+    <text y="0.32em" transform="translate(125,751)">LineSprite<title>/flare/display/LineSprite</title></text>
+    <text y="0.32em" transform="translate(125,766)">RectSprite<title>/flare/display/RectSprite</title></text>
+    <text y="0.32em" transform="translate(125,780)">TextSprite<title>/flare/display/TextSprite</title></text>
+    <text y="0.32em" transform="translate(125,809)">FlareVis<title>/flare/flex/FlareVis</title></text>
+    <text y="0.32em" transform="translate(125,837)">DragForce<title>/flare/physics/DragForce</title></text>
+    <text y="0.32em" transform="translate(125,851)">GravityForce<title>/flare/physics/GravityForce</title></text>
+    <text y="0.32em" transform="translate(125,866)">IForce<title>/flare/physics/IForce</title></text>
+    <text y="0.32em" transform="translate(125,880)">NBodyForce<title>/flare/physics/NBodyForce</title></text>
+    <text y="0.32em" transform="translate(125,894)">Particle<title>/flare/physics/Particle</title></text>
+    <text y="0.32em" transform="translate(125,908)">Simulation<title>/flare/physics/Simulation</title></text>
+    <text y="0.32em" transform="translate(125,923)">Spring<title>/flare/physics/Spring</title></text>
+    <text y="0.32em" transform="translate(125,937)">SpringForce<title>/flare/physics/SpringForce</title></text>
+    <text y="0.32em" transform="translate(125,965)">AggregateExpression<title>/flare/query/AggregateExpression</title></text>
+    <text y="0.32em" transform="translate(125,980)">And<title>/flare/query/And</title></text>
+    <text y="0.32em" transform="translate(125,994)">Arithmetic<title>/flare/query/Arithmetic</title></text>
+    <text y="0.32em" transform="translate(125,1008)">Average<title>/flare/query/Average</title></text>
+    <text y="0.32em" transform="translate(125,1022)">BinaryExpression<title>/flare/query/BinaryExpression</title></text>
+    <text y="0.32em" transform="translate(125,1037)">Comparison<title>/flare/query/Comparison</title></text>
+    <text y="0.32em" transform="translate(125,1051)">CompositeExpression<title>/flare/query/CompositeExpression</title></text>
+    <text y="0.32em" transform="translate(125,1065)">Count<title>/flare/query/Count</title></text>
+    <text y="0.32em" transform="translate(125,1079)">DateUtil<title>/flare/query/DateUtil</title></text>
+    <text y="0.32em" transform="translate(125,1094)">Distinct<title>/flare/query/Distinct</title></text>
+    <text y="0.32em" transform="translate(125,1108)">Expression<title>/flare/query/Expression</title></text>
+    <text y="0.32em" transform="translate(125,1122)">ExpressionIterator<title>/flare/query/ExpressionIterator</title></text>
+    <text y="0.32em" transform="translate(125,1136)">Fn<title>/flare/query/Fn</title></text>
+    <text y="0.32em" transform="translate(125,1151)">If<title>/flare/query/If</title></text>
+    <text y="0.32em" transform="translate(125,1165)">IsA<title>/flare/query/IsA</title></text>
+    <text y="0.32em" transform="translate(125,1179)">Literal<title>/flare/query/Literal</title></text>
+    <text y="0.32em" transform="translate(125,1193)">Match<title>/flare/query/Match</title></text>
+    <text y="0.32em" transform="translate(125,1208)">Maximum<title>/flare/query/Maximum</title></text>
+    <text y="0.32em" transform="translate(125,1222)">methods<title>/flare/query/methods</title></text>
+    <text y="0.32em" transform="translate(125,1693)">Minimum<title>/flare/query/Minimum</title></text>
+    <text y="0.32em" transform="translate(125,1707)">Not<title>/flare/query/Not</title></text>
+    <text y="0.32em" transform="translate(125,1721)">Or<title>/flare/query/Or</title></text>
+    <text y="0.32em" transform="translate(125,1735)">Query<title>/flare/query/Query</title></text>
+    <text y="0.32em" transform="translate(125,1750)">Range<title>/flare/query/Range</title></text>
+    <text y="0.32em" transform="translate(125,1764)">StringUtil<title>/flare/query/StringUtil</title></text>
+    <text y="0.32em" transform="translate(125,1778)">Sum<title>/flare/query/Sum</title></text>
+    <text y="0.32em" transform="translate(125,1792)">Variable<title>/flare/query/Variable</title></text>
+    <text y="0.32em" transform="translate(125,1807)">Variance<title>/flare/query/Variance</title></text>
+    <text y="0.32em" transform="translate(125,1821)">Xor<title>/flare/query/Xor</title></text>
+    <text y="0.32em" transform="translate(125,1849)">IScaleMap<title>/flare/scale/IScaleMap</title></text>
+    <text y="0.32em" transform="translate(125,1864)">LinearScale<title>/flare/scale/LinearScale</title></text>
+    <text y="0.32em" transform="translate(125,1878)">LogScale<title>/flare/scale/LogScale</title></text>
+    <text y="0.32em" transform="translate(125,1892)">OrdinalScale<title>/flare/scale/OrdinalScale</title></text>
+    <text y="0.32em" transform="translate(125,1906)">QuantileScale<title>/flare/scale/QuantileScale</title></text>
+    <text y="0.32em" transform="translate(125,1921)">QuantitativeScale<title>/flare/scale/QuantitativeScale</title></text>
+    <text y="0.32em" transform="translate(125,1935)">RootScale<title>/flare/scale/RootScale</title></text>
+    <text y="0.32em" transform="translate(125,1949)">Scale<title>/flare/scale/Scale</title></text>
+    <text y="0.32em" transform="translate(125,1963)">ScaleType<title>/flare/scale/ScaleType</title></text>
+    <text y="0.32em" transform="translate(125,1978)">TimeScale<title>/flare/scale/TimeScale</title></text>
+    <text y="0.32em" transform="translate(125,2006)">Arrays<title>/flare/util/Arrays</title></text>
+    <text y="0.32em" transform="translate(125,2021)">Colors<title>/flare/util/Colors</title></text>
+    <text y="0.32em" transform="translate(125,2035)">Dates<title>/flare/util/Dates</title></text>
+    <text y="0.32em" transform="translate(125,2049)">Displays<title>/flare/util/Displays</title></text>
+    <text y="0.32em" transform="translate(125,2063)">Filter<title>/flare/util/Filter</title></text>
+    <text y="0.32em" transform="translate(125,2078)">Geometry<title>/flare/util/Geometry</title></text>
+    <text y="0.32em" transform="translate(125,2092)">heap<title>/flare/util/heap</title></text>
+    <text y="0.32em" transform="translate(125,2135)">IEvaluable<title>/flare/util/IEvaluable</title></text>
+    <text y="0.32em" transform="translate(125,2149)">IPredicate<title>/flare/util/IPredicate</title></text>
+    <text y="0.32em" transform="translate(125,2163)">IValueProxy<title>/flare/util/IValueProxy</title></text>
+    <text y="0.32em" transform="translate(125,2177)">math<title>/flare/util/math</title></text>
+    <text y="0.32em" transform="translate(125,2234)">Maths<title>/flare/util/Maths</title></text>
+    <text y="0.32em" transform="translate(125,2249)">Orientation<title>/flare/util/Orientation</title></text>
+    <text y="0.32em" transform="translate(125,2263)">palette<title>/flare/util/palette</title></text>
+    <text y="0.32em" transform="translate(125,2334)">Property<title>/flare/util/Property</title></text>
+    <text y="0.32em" transform="translate(125,2348)">Shapes<title>/flare/util/Shapes</title></text>
+    <text y="0.32em" transform="translate(125,2363)">Sort<title>/flare/util/Sort</title></text>
+    <text y="0.32em" transform="translate(125,2377)">Stats<title>/flare/util/Stats</title></text>
+    <text y="0.32em" transform="translate(125,2391)">Strings<title>/flare/util/Strings</title></text>
+    <text y="0.32em" transform="translate(125,2420)">axis<title>/flare/vis/axis</title></text>
+    <text y="0.32em" transform="translate(125,2505)">controls<title>/flare/vis/controls</title></text>
+    <text y="0.32em" transform="translate(125,2676)">data<title>/flare/vis/data</title></text>
+    <text y="0.32em" transform="translate(125,2876)">events<title>/flare/vis/events</title></text>
+    <text y="0.32em" transform="translate(125,2947)">legend<title>/flare/vis/legend</title></text>
+    <text y="0.32em" transform="translate(125,3004)">operator<title>/flare/vis/operator</title></text>
+    <text y="0.32em" transform="translate(125,3589)">Visualization<title>/flare/vis/Visualization</title></text>
+    <text y="0.32em" transform="translate(152,53)">AgglomerativeCluster<title>/flare/analytics/cluster/AgglomerativeCluster</title></text>
+    <text y="0.32em" transform="translate(152,67)">CommunityStructure<title>/flare/analytics/cluster/CommunityStructure</title></text>
+    <text y="0.32em" transform="translate(152,81)">HierarchicalCluster<title>/flare/analytics/cluster/HierarchicalCluster</title></text>
+    <text y="0.32em" transform="translate(152,96)">MergeEdge<title>/flare/analytics/cluster/MergeEdge</title></text>
+    <text y="0.32em" transform="translate(152,124)">BetweennessCentrality<title>/flare/analytics/graph/BetweennessCentrality</title></text>
+    <text y="0.32em" transform="translate(152,138)">LinkDistance<title>/flare/analytics/graph/LinkDistance</title></text>
+    <text y="0.32em" transform="translate(152,153)">MaxFlowMinCut<title>/flare/analytics/graph/MaxFlowMinCut</title></text>
+    <text y="0.32em" transform="translate(152,167)">ShortestPaths<title>/flare/analytics/graph/ShortestPaths</title></text>
+    <text y="0.32em" transform="translate(152,181)">SpanningTree<title>/flare/analytics/graph/SpanningTree</title></text>
+    <text y="0.32em" transform="translate(152,210)">AspectRatioBanker<title>/flare/analytics/optimization/AspectRatioBanker</title></text>
+    <text y="0.32em" transform="translate(152,281)">ArrayInterpolator<title>/flare/animate/interpolate/ArrayInterpolator</title></text>
+    <text y="0.32em" transform="translate(152,295)">ColorInterpolator<title>/flare/animate/interpolate/ColorInterpolator</title></text>
+    <text y="0.32em" transform="translate(152,309)">DateInterpolator<title>/flare/animate/interpolate/DateInterpolator</title></text>
+    <text y="0.32em" transform="translate(152,324)">Interpolator<title>/flare/animate/interpolate/Interpolator</title></text>
+    <text y="0.32em" transform="translate(152,338)">MatrixInterpolator<title>/flare/animate/interpolate/MatrixInterpolator</title></text>
+    <text y="0.32em" transform="translate(152,352)">NumberInterpolator<title>/flare/animate/interpolate/NumberInterpolator</title></text>
+    <text y="0.32em" transform="translate(152,366)">ObjectInterpolator<title>/flare/animate/interpolate/ObjectInterpolator</title></text>
+    <text y="0.32em" transform="translate(152,381)">PointInterpolator<title>/flare/animate/interpolate/PointInterpolator</title></text>
+    <text y="0.32em" transform="translate(152,395)">RectangleInterpolator<title>/flare/animate/interpolate/RectangleInterpolator</title></text>
+    <text y="0.32em" transform="translate(152,566)">Converters<title>/flare/data/converters/Converters</title></text>
+    <text y="0.32em" transform="translate(152,580)">DelimitedTextConverter<title>/flare/data/converters/DelimitedTextConverter</title></text>
+    <text y="0.32em" transform="translate(152,595)">GraphMLConverter<title>/flare/data/converters/GraphMLConverter</title></text>
+    <text y="0.32em" transform="translate(152,609)">IDataConverter<title>/flare/data/converters/IDataConverter</title></text>
+    <text y="0.32em" transform="translate(152,623)">JSONConverter<title>/flare/data/converters/JSONConverter</title></text>
+    <text y="0.32em" transform="translate(152,1236)">add<title>/flare/query/methods/add</title></text>
+    <text y="0.32em" transform="translate(152,1251)">and<title>/flare/query/methods/and</title></text>
+    <text y="0.32em" transform="translate(152,1265)">average<title>/flare/query/methods/average</title></text>
+    <text y="0.32em" transform="translate(152,1279)">count<title>/flare/query/methods/count</title></text>
+    <text y="0.32em" transform="translate(152,1293)">distinct<title>/flare/query/methods/distinct</title></text>
+    <text y="0.32em" transform="translate(152,1308)">div<title>/flare/query/methods/div</title></text>
+    <text y="0.32em" transform="translate(152,1322)">eq<title>/flare/query/methods/eq</title></text>
+    <text y="0.32em" transform="translate(152,1336)">fn<title>/flare/query/methods/fn</title></text>
+    <text y="0.32em" transform="translate(152,1350)">gt<title>/flare/query/methods/gt</title></text>
+    <text y="0.32em" transform="translate(152,1365)">gte<title>/flare/query/methods/gte</title></text>
+    <text y="0.32em" transform="translate(152,1379)">iff<title>/flare/query/methods/iff</title></text>
+    <text y="0.32em" transform="translate(152,1393)">isa<title>/flare/query/methods/isa</title></text>
+    <text y="0.32em" transform="translate(152,1407)">lt<title>/flare/query/methods/lt</title></text>
+    <text y="0.32em" transform="translate(152,1422)">lte<title>/flare/query/methods/lte</title></text>
+    <text y="0.32em" transform="translate(152,1436)">max<title>/flare/query/methods/max</title></text>
+    <text y="0.32em" transform="translate(152,1450)">min<title>/flare/query/methods/min</title></text>
+    <text y="0.32em" transform="translate(152,1464)">mod<title>/flare/query/methods/mod</title></text>
+    <text y="0.32em" transform="translate(152,1479)">mul<title>/flare/query/methods/mul</title></text>
+    <text y="0.32em" transform="translate(152,1493)">neq<title>/flare/query/methods/neq</title></text>
+    <text y="0.32em" transform="translate(152,1507)">not<title>/flare/query/methods/not</title></text>
+    <text y="0.32em" transform="translate(152,1521)">or<title>/flare/query/methods/or</title></text>
+    <text y="0.32em" transform="translate(152,1536)">orderby<title>/flare/query/methods/orderby</title></text>
+    <text y="0.32em" transform="translate(152,1550)">range<title>/flare/query/methods/range</title></text>
+    <text y="0.32em" transform="translate(152,1564)">select<title>/flare/query/methods/select</title></text>
+    <text y="0.32em" transform="translate(152,1578)">stddev<title>/flare/query/methods/stddev</title></text>
+    <text y="0.32em" transform="translate(152,1593)">sub<title>/flare/query/methods/sub</title></text>
+    <text y="0.32em" transform="translate(152,1607)">sum<title>/flare/query/methods/sum</title></text>
+    <text y="0.32em" transform="translate(152,1621)">update<title>/flare/query/methods/update</title></text>
+    <text y="0.32em" transform="translate(152,1636)">variance<title>/flare/query/methods/variance</title></text>
+    <text y="0.32em" transform="translate(152,1650)">where<title>/flare/query/methods/where</title></text>
+    <text y="0.32em" transform="translate(152,1664)">xor<title>/flare/query/methods/xor</title></text>
+    <text y="0.32em" transform="translate(152,1678)">_<title>/flare/query/methods/_</title></text>
+    <text y="0.32em" transform="translate(152,2106)">FibonacciHeap<title>/flare/util/heap/FibonacciHeap</title></text>
+    <text y="0.32em" transform="translate(152,2120)">HeapNode<title>/flare/util/heap/HeapNode</title></text>
+    <text y="0.32em" transform="translate(152,2192)">DenseMatrix<title>/flare/util/math/DenseMatrix</title></text>
+    <text y="0.32em" transform="translate(152,2206)">IMatrix<title>/flare/util/math/IMatrix</title></text>
+    <text y="0.32em" transform="translate(152,2220)">SparseMatrix<title>/flare/util/math/SparseMatrix</title></text>
+    <text y="0.32em" transform="translate(152,2277)">ColorPalette<title>/flare/util/palette/ColorPalette</title></text>
+    <text y="0.32em" transform="translate(152,2291)">Palette<title>/flare/util/palette/Palette</title></text>
+    <text y="0.32em" transform="translate(152,2306)">ShapePalette<title>/flare/util/palette/ShapePalette</title></text>
+    <text y="0.32em" transform="translate(152,2320)">SizePalette<title>/flare/util/palette/SizePalette</title></text>
+    <text y="0.32em" transform="translate(152,2434)">Axes<title>/flare/vis/axis/Axes</title></text>
+    <text y="0.32em" transform="translate(152,2448)">Axis<title>/flare/vis/axis/Axis</title></text>
+    <text y="0.32em" transform="translate(152,2463)">AxisGridLine<title>/flare/vis/axis/AxisGridLine</title></text>
+    <text y="0.32em" transform="translate(152,2477)">AxisLabel<title>/flare/vis/axis/AxisLabel</title></text>
+    <text y="0.32em" transform="translate(152,2491)">CartesianAxes<title>/flare/vis/axis/CartesianAxes</title></text>
+    <text y="0.32em" transform="translate(152,2520)">AnchorControl<title>/flare/vis/controls/AnchorControl</title></text>
+    <text y="0.32em" transform="translate(152,2534)">ClickControl<title>/flare/vis/controls/ClickControl</title></text>
+    <text y="0.32em" transform="translate(152,2548)">Control<title>/flare/vis/controls/Control</title></text>
+    <text y="0.32em" transform="translate(152,2562)">ControlList<title>/flare/vis/controls/ControlList</title></text>
+    <text y="0.32em" transform="translate(152,2577)">DragControl<title>/flare/vis/controls/DragControl</title></text>
+    <text y="0.32em" transform="translate(152,2591)">ExpandControl<title>/flare/vis/controls/ExpandControl</title></text>
+    <text y="0.32em" transform="translate(152,2605)">HoverControl<title>/flare/vis/controls/HoverControl</title></text>
+    <text y="0.32em" transform="translate(152,2619)">IControl<title>/flare/vis/controls/IControl</title></text>
+    <text y="0.32em" transform="translate(152,2634)">PanZoomControl<title>/flare/vis/controls/PanZoomControl</title></text>
+    <text y="0.32em" transform="translate(152,2648)">SelectionControl<title>/flare/vis/controls/SelectionControl</title></text>
+    <text y="0.32em" transform="translate(152,2662)">TooltipControl<title>/flare/vis/controls/TooltipControl</title></text>
+    <text y="0.32em" transform="translate(152,2691)">Data<title>/flare/vis/data/Data</title></text>
+    <text y="0.32em" transform="translate(152,2705)">DataList<title>/flare/vis/data/DataList</title></text>
+    <text y="0.32em" transform="translate(152,2719)">DataSprite<title>/flare/vis/data/DataSprite</title></text>
+    <text y="0.32em" transform="translate(152,2733)">EdgeSprite<title>/flare/vis/data/EdgeSprite</title></text>
+    <text y="0.32em" transform="translate(152,2748)">NodeSprite<title>/flare/vis/data/NodeSprite</title></text>
+    <text y="0.32em" transform="translate(152,2762)">render<title>/flare/vis/data/render</title></text>
+    <text y="0.32em" transform="translate(152,2833)">ScaleBinding<title>/flare/vis/data/ScaleBinding</title></text>
+    <text y="0.32em" transform="translate(152,2848)">Tree<title>/flare/vis/data/Tree</title></text>
+    <text y="0.32em" transform="translate(152,2862)">TreeBuilder<title>/flare/vis/data/TreeBuilder</title></text>
+    <text y="0.32em" transform="translate(152,2890)">DataEvent<title>/flare/vis/events/DataEvent</title></text>
+    <text y="0.32em" transform="translate(152,2905)">SelectionEvent<title>/flare/vis/events/SelectionEvent</title></text>
+    <text y="0.32em" transform="translate(152,2919)">TooltipEvent<title>/flare/vis/events/TooltipEvent</title></text>
+    <text y="0.32em" transform="translate(152,2933)">VisualizationEvent<title>/flare/vis/events/VisualizationEvent</title></text>
+    <text y="0.32em" transform="translate(152,2962)">Legend<title>/flare/vis/legend/Legend</title></text>
+    <text y="0.32em" transform="translate(152,2976)">LegendItem<title>/flare/vis/legend/LegendItem</title></text>
+    <text y="0.32em" transform="translate(152,2990)">LegendRange<title>/flare/vis/legend/LegendRange</title></text>
+    <text y="0.32em" transform="translate(152,3019)">distortion<title>/flare/vis/operator/distortion</title></text>
+    <text y="0.32em" transform="translate(152,3076)">encoder<title>/flare/vis/operator/encoder</title></text>
+    <text y="0.32em" transform="translate(152,3161)">filter<title>/flare/vis/operator/filter</title></text>
+    <text y="0.32em" transform="translate(152,3218)">IOperator<title>/flare/vis/operator/IOperator</title></text>
+    <text y="0.32em" transform="translate(152,3233)">label<title>/flare/vis/operator/label</title></text>
+    <text y="0.32em" transform="translate(152,3290)">layout<title>/flare/vis/operator/layout</title></text>
+    <text y="0.32em" transform="translate(152,3518)">Operator<title>/flare/vis/operator/Operator</title></text>
+    <text y="0.32em" transform="translate(152,3532)">OperatorList<title>/flare/vis/operator/OperatorList</title></text>
+    <text y="0.32em" transform="translate(152,3546)">OperatorSequence<title>/flare/vis/operator/OperatorSequence</title></text>
+    <text y="0.32em" transform="translate(152,3560)">OperatorSwitch<title>/flare/vis/operator/OperatorSwitch</title></text>
+    <text y="0.32em" transform="translate(152,3575)">SortOperator<title>/flare/vis/operator/SortOperator</title></text>
+    <text y="0.32em" transform="translate(179,2776)">ArrowType<title>/flare/vis/data/render/ArrowType</title></text>
+    <text y="0.32em" transform="translate(179,2790)">EdgeRenderer<title>/flare/vis/data/render/EdgeRenderer</title></text>
+    <text y="0.32em" transform="translate(179,2805)">IRenderer<title>/flare/vis/data/render/IRenderer</title></text>
+    <text y="0.32em" transform="translate(179,2819)">ShapeRenderer<title>/flare/vis/data/render/ShapeRenderer</title></text>
+    <text y="0.32em" transform="translate(179,3033)">BifocalDistortion<title>/flare/vis/operator/distortion/BifocalDistortion</title></text>
+    <text y="0.32em" transform="translate(179,3047)">Distortion<title>/flare/vis/operator/distortion/Distortion</title></text>
+    <text y="0.32em" transform="translate(179,3061)">FisheyeDistortion<title>/flare/vis/operator/distortion/FisheyeDistortion</title></text>
+    <text y="0.32em" transform="translate(179,3090)">ColorEncoder<title>/flare/vis/operator/encoder/ColorEncoder</title></text>
+    <text y="0.32em" transform="translate(179,3104)">Encoder<title>/flare/vis/operator/encoder/Encoder</title></text>
+    <text y="0.32em" transform="translate(179,3118)">PropertyEncoder<title>/flare/vis/operator/encoder/PropertyEncoder</title></text>
+    <text y="0.32em" transform="translate(179,3133)">ShapeEncoder<title>/flare/vis/operator/encoder/ShapeEncoder</title></text>
+    <text y="0.32em" transform="translate(179,3147)">SizeEncoder<title>/flare/vis/operator/encoder/SizeEncoder</title></text>
+    <text y="0.32em" transform="translate(179,3175)">FisheyeTreeFilter<title>/flare/vis/operator/filter/FisheyeTreeFilter</title></text>
+    <text y="0.32em" transform="translate(179,3190)">GraphDistanceFilter<title>/flare/vis/operator/filter/GraphDistanceFilter</title></text>
+    <text y="0.32em" transform="translate(179,3204)">VisibilityFilter<title>/flare/vis/operator/filter/VisibilityFilter</title></text>
+    <text y="0.32em" transform="translate(179,3247)">Labeler<title>/flare/vis/operator/label/Labeler</title></text>
+    <text y="0.32em" transform="translate(179,3261)">RadialLabeler<title>/flare/vis/operator/label/RadialLabeler</title></text>
+    <text y="0.32em" transform="translate(179,3275)">StackedAreaLabeler<title>/flare/vis/operator/label/StackedAreaLabeler</title></text>
+    <text y="0.32em" transform="translate(179,3304)">AxisLayout<title>/flare/vis/operator/layout/AxisLayout</title></text>
+    <text y="0.32em" transform="translate(179,3318)">BundledEdgeRouter<title>/flare/vis/operator/layout/BundledEdgeRouter</title></text>
+    <text y="0.32em" transform="translate(179,3332)">CircleLayout<title>/flare/vis/operator/layout/CircleLayout</title></text>
+    <text y="0.32em" transform="translate(179,3347)">CirclePackingLayout<title>/flare/vis/operator/layout/CirclePackingLayout</title></text>
+    <text y="0.32em" transform="translate(179,3361)">DendrogramLayout<title>/flare/vis/operator/layout/DendrogramLayout</title></text>
+    <text y="0.32em" transform="translate(179,3375)">ForceDirectedLayout<title>/flare/vis/operator/layout/ForceDirectedLayout</title></text>
+    <text y="0.32em" transform="translate(179,3389)">IcicleTreeLayout<title>/flare/vis/operator/layout/IcicleTreeLayout</title></text>
+    <text y="0.32em" transform="translate(179,3404)">IndentedTreeLayout<title>/flare/vis/operator/layout/IndentedTreeLayout</title></text>
+    <text y="0.32em" transform="translate(179,3418)">Layout<title>/flare/vis/operator/layout/Layout</title></text>
+    <text y="0.32em" transform="translate(179,3432)">NodeLinkTreeLayout<title>/flare/vis/operator/layout/NodeLinkTreeLayout</title></text>
+    <text y="0.32em" transform="translate(179,3446)">PieLayout<title>/flare/vis/operator/layout/PieLayout</title></text>
+    <text y="0.32em" transform="translate(179,3461)">RadialTreeLayout<title>/flare/vis/operator/layout/RadialTreeLayout</title></text>
+    <text y="0.32em" transform="translate(179,3475)">RandomLayout<title>/flare/vis/operator/layout/RandomLayout</title></text>
+    <text y="0.32em" transform="translate(179,3489)">StackedAreaLayout<title>/flare/vis/operator/layout/StackedAreaLayout</title></text>
+    <text y="0.32em" transform="translate(179,3503)">TreeMapLayout<title>/flare/vis/operator/layout/TreeMapLayout</title></text>
   </g>
 </svg>
