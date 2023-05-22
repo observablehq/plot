@@ -1,8 +1,7 @@
-import {cluster as Cluster} from "d3";
-import {isNoneish} from "../options.js";
+import {tree as Tree, cluster as Cluster} from "d3";
 import {marks} from "../mark.js";
+import {isNoneish} from "../options.js";
 import {maybeTreeAnchor, treeLink, treeNode} from "../transforms/tree.js";
-import {filter} from "../transforms/basic.js";
 import {dot} from "./dot.js";
 import {link} from "./link.js";
 import {text} from "./text.js";
@@ -32,8 +31,26 @@ export function tree(
     ...options
   } = {}
 ) {
+  const {treeLayout = Tree} = options;
   if (dx === undefined) dx = maybeTreeAnchor(options.treeAnchor).dx;
   if (textAnchor !== undefined) throw new Error("textAnchor is not a configurable tree option");
+
+  function treeText(textOptions) {
+    return text(
+      data,
+      treeNode({
+        text: textText,
+        fill: fill === undefined ? "currentColor" : fill,
+        stroke: textStroke,
+        dx,
+        dy,
+        title,
+        ...textOptions,
+        ...options
+      })
+    );
+  }
+
   return marks(
     link(
       data,
@@ -53,40 +70,12 @@ export function tree(
     ),
     dotDot ? dot(data, treeNode({fill: fill === undefined ? "node:internal" : fill, title, ...options})) : null,
     textText != null
-      ? [
-          text(
-            data,
-            filter(
-              (d) => !d.internal,
-              treeNode({
-                text: textText,
-                fill: fill === undefined ? "currentColor" : fill,
-                stroke: textStroke,
-                dx,
-                dy,
-                title,
-                textAnchor: "start",
-                ...options
-              })
-            )
-          ),
-          text(
-            data,
-            filter(
-              "internal",
-              treeNode({
-                text: textText,
-                fill: fill === undefined ? "currentColor" : fill,
-                stroke: textStroke,
-                dx: -dx,
-                dy,
-                title,
-                textAnchor: "end",
-                ...options
-              })
-            )
-          )
-        ]
+      ? treeLayout === Tree || treeLayout === Cluster
+        ? [
+            treeText({textAnchor: "start", treeFilter: "node:external"}),
+            treeText({textAnchor: "end", treeFilter: "node:internal", dx: -dx})
+          ]
+        : treeText()
       : null
   );
 }

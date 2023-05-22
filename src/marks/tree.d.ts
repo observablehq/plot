@@ -4,7 +4,7 @@ import type {DotOptions} from "./dot.js";
 import type {LinkOptions} from "./link.js";
 import type {TextOptions} from "./text.js";
 
-// TODO tree channels, e.g., "node:name" | "node:path" | "node:internal"?
+// TODO tree channels, e.g., "node:name" | "node:path" | "node:internal" | "node:external"?
 
 /** Options for the compound tree mark. */
 export interface TreeOptions extends DotOptions, LinkOptions, TextOptions, TreeTransformOptions {
