@@ -84,8 +84,7 @@ export function channelDomain(data, facets, channels, facetChannels, options) {
     let {value: y, order = defaultOrder, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]); // prettier-ignore
     const negate = y?.startsWith("-");
     if (negate) y = y.slice(1);
-    order = order === undefined ? y === "width" || y === "height" ? descendingGroup : ascendingGroup : maybeOrder(order); // prettier-ignore
-    if (negate) order = reverseOrder(order); // TODO flip reverse if order is null?
+    order = order === undefined ? negate !== (y === "width" || y === "height") ? descendingGroup : ascendingGroup : maybeOrder(order); // prettier-ignore
     if (reduce == null || reduce === false) continue; // disabled reducer
     const X = x === "fx" || x === "fy" ? reindexFacetChannel(facets, facetChannels[x]) : findScaleChannel(channels, x);
     if (!X) throw new Error(`missing channel for scale: ${x}`);
@@ -175,14 +174,6 @@ function ascendingGroup([ak, av], [bk, bv]) {
 
 function descendingGroup([ak, av], [bk, bv]) {
   return descendingDefined(av, bv) || ascendingDefined(ak, bk);
-}
-
-function reverseOrder(order) {
-  return order === ascendingGroup
-    ? descendingGroup
-    : order === descendingGroup
-    ? ascendingGroup
-    : (i, j) => order(j, i);
 }
 
 export function getSource(channels, key) {

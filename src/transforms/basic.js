@@ -108,7 +108,10 @@ function sortData(compare) {
 
 function sortValue(value) {
   let channel, order;
-  ({channel, value, order = ascendingDefined} = {...maybeValue(value)});
+  ({channel, value, order} = {...maybeValue(value)});
+  const negate = channel?.startsWith("-");
+  if (negate) channel = channel.slice(1);
+  if (order === undefined) order = negate ? descendingDefined : ascendingDefined;
   if (typeof order !== "function") {
     switch (`${order}`.toLowerCase()) {
       case "ascending":
@@ -120,10 +123,6 @@ function sortValue(value) {
       default:
         throw new Error(`invalid order: ${order}`);
     }
-  }
-  if (channel?.startsWith("-")) {
-    channel = channel.slice(1);
-    order = reverseOrder(order);
   }
   return (data, facets, channels) => {
     let V;
@@ -138,12 +137,4 @@ function sortValue(value) {
     const compareValue = (i, j) => order(V[i], V[j]);
     return {data, facets: facets.map((I) => I.slice().sort(compareValue))};
   };
-}
-
-function reverseOrder(order) {
-  return order === ascendingDefined
-    ? descendingDefined
-    : order === descendingDefined
-    ? ascendingDefined
-    : (i, j) => order(j, i);
 }
