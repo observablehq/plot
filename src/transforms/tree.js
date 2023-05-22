@@ -43,7 +43,14 @@ export function treeNode({
         layout(root);
         for (const node of root.descendants()) {
           treeFacet.push(++treeIndex);
-          treeData[treeIndex] = node.data;
+          treeData[treeIndex] = {
+            data: node.data,
+            name: nodeName(node),
+            path: nodePath(node),
+            internal: nodeInternal(node),
+            depth: node.depth, // nodeDepth(node)
+            height: node.height // nodeHeight(node)
+          };
           treeAnchor.position(node, treeIndex, X, Y);
           for (const o of outputs) o[output_values][treeIndex] = o[output_evaluate](node);
         }
