@@ -989,7 +989,7 @@ Alternatively, the *-channel* shorthand option, which changes the default **orde
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "-y"}})
 ```
 
-Setting **order** to null will disable sorting, preserving the order of the data. (When an aggregating transform is used, such as [group](../transforms/group.md) or [bin](../transforms/bin.md), note that the data may already have been sorted and thus may the order may differ from the input data.)
+Setting **order** to null will disable sorting, preserving the order of the data. (When an aggregating transform is used, such as [group](../transforms/group.md) or [bin](../transforms/bin.md), note that the data may already have been sorted and thus the order may differ from the input data.)
 
 Alternatively, set the **reverse** option to true. This produces a different result than descending order for null or unorderable values: descending order puts nulls last, whereas reversed ascending order puts nulls first.
 
