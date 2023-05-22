@@ -6,8 +6,8 @@ export interface PointerOptions {
   /**
    * The maximum radius in pixels to determine whether to render the closest
    * point; if no point is within this radius to the pointer, nothing will be
-   * rendered. Defaults to 40 pixels. (For pointerX and pointerY, this refers to
-   * scaled distance; the actual distance may be 10× this amount.)
+   * rendered. Defaults to 40 pixels. On pointerX and pointerY, only the *x* and
+   * *y* distance is considered, respectively.
    */
   maxRadius?: number;
 

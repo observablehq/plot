@@ -24,7 +24,7 @@ onMounted(() => {
 
 # Tip mark
 
-The **tip mark** displays text, or several name-value pairs, in a floating box anchored for a given position in **x** and **y**. The tip mark is often paired with the [pointer transform](../interactions/pointer.md) to reveal details on demand when hovering over a chart, as in this line chart of Apple stock price:
+The **tip mark** displays text, or several name-value pairs, in a floating box anchored to a given position in **x** and **y**. The tip mark is often paired with the [pointer transform](../interactions/pointer.md) to reveal details on demand when hovering over a chart, as in this line chart of Apple stock price:
 
 :::plot defer
 ```js
@@ -103,7 +103,7 @@ Plot.rectY(olympians, Plot.binX({y: "sum"}, {x: "weight", y: (d) => d.sex === "m
 ```
 :::
 
-The tip mark does not provide options for formatting channel names or values. When a channel is bound to a scale, the scale’s label is shown instead of the channel name. If you are interested in this feature, please upvote [#1612](https://github.com/observablehq/plot/issues/1612).
+The tip mark does not provide options for formatting channel names or values. When a channel is bound to a scale, the scale’s label is shown instead of the channel name. If you desire greater customization, please upvote [#1612](https://github.com/observablehq/plot/issues/1612).
 
 The tip mark supports nine different orientations specified by the **anchor** option: the four sides (*top*, *right*, *bottom*, *left*), the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), and *middle*. Note that when *middle* is used, the tip will obscure its anchor point.
 

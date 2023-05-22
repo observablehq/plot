@@ -166,11 +166,11 @@ export function pointer(options) {
 }
 
 export function pointerX(options) {
-  return pointerK(10, 0.1, options);
+  return pointerK(1, 0.01, options);
 }
 
 export function pointerY(options) {
-  return pointerK(0.1, 10, options);
+  return pointerK(0.01, 1, options);
 }
 
 export function anchorX({x1: X1, x2: X2, x: X = X1}, cx) {

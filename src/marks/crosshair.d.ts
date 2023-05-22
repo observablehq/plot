@@ -18,9 +18,8 @@ export interface CrosshairOptions extends MarkOptions {
   /**
    * The maximum radius in pixels to determine whether to render the crosshair
    * for closest point; if no point is within this radius to the pointer, the
-   * crosshair will be hidden. Defaults to 40 pixels. (For crosshairX and
-   * crosshairY, this refers to scaled distance; the actual distance may be 10×
-   * this amount.)
+   * crosshair will be hidden. Defaults to 40 pixels. On crosshairX and
+   * crosshairY, only the *x* and *y* distance is considered, respectively.
    */
   maxRadius?: number;
 

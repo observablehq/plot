@@ -1,12 +1,31 @@
 # Observable Plot - Changelog
 
-Year: **2023** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
+Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
 ## 0.6.7
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [tip mark](https://observablehq.com/plot/marks/tip) renders annotations in a floating box anchored to a given position in **x** and **y**. Like the text mark, it supports soft-wrapping and multi-line text, and can be used to draw attention to points of interest and add commentary.
+The new [tip mark](https://observablehq.com/plot/marks/tip) displays text, or a name-value pair for each channel, in a floating box anchored to a given position in **x** and **y**. The tip mark is often paired with the new [pointer interaction](https://observablehq.com/plot/interactions/pointer) such that only the point closest to the pointer is rendered, allowing the tip mark to reveal details interactively by hovering the chart.
+
+<img src="./img/tip-line.webp" width="640" alt="A line chart of Apple stock price from 2013 to 2018, with an annotation on May 12, 2016, showing the two-year low closing price of $90.34.">
+
+```js
+Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot()
+```
+
+The new **tip** mark option adds an implicit tip mark with pointer interaction derived from the current mark. The line chart above can be written more explicitly as:
+
+```js
+Plot.plot({
+  marks: [
+    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.tip(aapl, Plot.pointerX({x: "Date", y: "Close"}))
+  ]
+})
+```
+
+The tip mark can be also used to draw attention to points of interest and add commentary. When used with the **title** channel, the tip mark supports text wrapping and multi-line text.
 
 <img src="./img/tip-title.png" width="640" alt="A line chart of Apple stock price from 2013 to 2018, with an annotation describing the decline from 2015 through mid-2016, followed by a recovery.">
 
@@ -16,6 +35,10 @@ Plot.plot({
   marks: [
     Plot.lineY(aapl, {x: "Date", y: "Close"}),
     Plot.tip(
+      [`Apple stock reaches a new high of $133 on Feb. 23, 2015. The release of the first Apple Watch, slated for April, is hotly anticipated.`],
+      {x: new Date("2015-02-23"), y: 133, dy: -3, anchor: "bottom"}
+    ),
+    Plot.tip(
       [`Apple stock drops 8% after the company misses Q2 revenue targets and reports declining iPhone sales. It reaches a two-year low of $90.34 on May 12.`],
       {x: new Date("2016-05-12"), y: 90.34, dy: 3, anchor: "top"}
     )
@@ -23,39 +46,26 @@ Plot.plot({
 })
 ```
 
-If the **title** channel is omitted, the tip mark automatically shows the name and value of all channels.
+The pointer interaction can be paired with any mark, not just a tip: a red dot, say, to emphasize the focused point, or a rule to highlight its *x* or *y* position. You can independently control the target position from the display using the **px** and **py** channels, say to show the currently-focused point’s value in the top-left corner of the chart with a text mark.
 
-<img src="./img/tip.png" width="640" alt="A line chart of Apple stock price from 2013 to 2018, with an annotation on May 12, 2016, showing the two-year low closing price of $90.34.">
+<img src="./img/pointer-text.webp" width="640" alt="A line chart of Apple stock price from 2013 to 2018; as the pointer moves over the chart, the date and close are shown in the top-left corner, while a red rule and dot highlights the focused point.">
 
 ```js
 Plot.plot({
-  y: {grid: true},
+  height: 160,
+  y: {axis: "right", grid: true, nice: true},
   marks: [
     Plot.lineY(aapl, {x: "Date", y: "Close"}),
-    Plot.tip({length: 1}, {x: new Date("2016-05-12"), y: 90.34, dy: 3, anchor: "top"})
+    Plot.ruleX(aapl, Plot.pointerX({x: "Date", py: "Close", stroke: "red"})),
+    Plot.dot(aapl, Plot.pointerX({x: "Date", y: "Close", stroke: "red"})),
+    Plot.text(aapl, Plot.pointerX({px: "Date", py: "Close", dy: -17, frameAnchor: "top-left", fontVariant: "tabular-nums", text: (d) => [`Date ${Plot.formatIsoDate(d.Date)}`, `Close ${d.Close.toFixed(2)}`].join("   ")}))
   ]
 })
 ```
 
-The tip mark is often paired with the new [pointer interaction](https://observablehq.com/plot/interactions/pointer), which dynamically filters a mark such that only the instance closest to the pointer is rendered. This allows the tip mark to reveal more information about the datum closest to the pointer, say when hovering a scatterplot or line chart.
-
-The pointer interaction can also be paired with any mark: a red dot, say, to emphasize the focused point, or a rule to highlight its *x* or *y* position. You can also independently control the target position from the display, say to show the currently-focused point’s value in the top-left corner of the chart with a text mark.
-
-[TODO Example of a text mark driven by the pointer interaction.]
-
 The pointer interaction supports “click-to-stick”: if you click on the chart, the currently-focused point will remain focused until you click again. By temporarily locking the focused point, you can select text from the tip for copy and paste.
 
-The new **tip** mark option adds an implicit tip mark with pointer interaction derived from the current mark.
-
-[TODO Animated tip + pointer example]
-
-```js
-Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot({y: {grid: true}})
-```
-
-When the **tip** option is truthy, the **title** channel is no longer applied using an SVG title element; it is instead rendered via the tip mark. The auto mark sets the **tip** option to true by default.
-
-The pointer interaction also powers the new crosshair mark, which provides an alternative strategy for showing the *x* (horizontal↔︎ position) and *y* (vertical↕︎ position) of the closest point to the pointer.
+The pointer interaction also powers the new [crosshair mark](https://observablehq.com/plot/interactions/crosshair) which shows the *x* (horizontal↔︎ position) and *y* (vertical↕︎ position) value of the point closest to the pointer on the bottom and left sides of the frame, respectively.
 
 <img src="./img/crosshair.png" width="640" alt="A line chart of Apple stock price from 2013 to 2018, with a crosshair centered over May 12, 2016, showing a closing price of $90.34.">
 
@@ -64,52 +74,70 @@ Plot.plot({
   marginLeft: 50,
   marks: [
     Plot.lineY(aapl, {x: "Date", y: "Close"}),
-    Plot.crosshair(aapl, {x: "Date", y: "Close"}) // TODO crosshairX
+    Plot.crosshairX(aapl, {x: "Date", y: "Close"})
   ]
 })
 ```
 
-The new **labelArrow** axis mark option and implicit arrow behavior for axis labels.
+In addition to these exciting new interaction features, Plot 0.6.7 includes a variety of improvements and bug fixes.
 
-Ordinal scales are now smarter about choosing a default time format when the **interval** option is a yearly interval: the four-digit year is (YYYY) shown instead of year, month, and day (YYYY-01-01).
+The **sort** mark option now supports *-channel* descending shorthand for [imputed scales domains](https://observablehq.com/plot/features/scales#sort-mark-option) and the [sort transform](https://observablehq.com/plot/transforms/sort). For example, sorting *x* by *-y* orders a bar chart by descending value:
 
-Color scales now default to a *categorical* scale when a categorical color scheme is specified. (This avoids an “unknown quantitative scheme” error.)
+<img src="./img/bar-sort.png" width="640" alt="A bar chart showing English letters by descending frequency, starting with E (12.7%), T (9.1%), down to Z (0.7%).">
 
-Time intervals can now be specified as integer multiples of a base time interval, such as *3 months* or *10 years*.
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "-y"}}).plot()
+```
 
-The new **imageFilter** mark option.
+This is equivalent to:
 
-The new **render** transform mark option.
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", order: "descending"}}).plot()
+```
 
-Mark transforms are now passed the plot’s *options* as a third argument. This allows the group, bin, and stack transforms (and other transforms) to check if the scale has a declared **interval** option, and if so, apply that interval before grouping.
+The **sort** option for imputed channel domains now also takes an **order** option which can be *ascending*, *descending*, a custom comparator, or null. (This more closely matches the **order** option for the sort transform.) The **reverse** option now reverses the order rather than using descending natural order, placing nulls first instead of last.
 
-The autoSpec method now returns the name of the explicit mark and transform implementations as **markImpl** and **transformImpl** respectively, along with the **markOptions** and **transformOptions** needed to instantiate them.
+Previously setting the scale **label** option would disable Plot’s automatic directional arrow in axis labels (↑, →, ↓, or ←); now Plot implicitly adds an arrow to the label you provide, unless the label already has a arrow or you set the **labelArrow** option to null or false. You can also force an arrow by setting this option to true, or *up*, *right*, *down*, or *bottom*. In Plot’s code base, we were able to remove 161 Unicode arrows thanks to this change!
 
-The normalize and window transforms now accept two-argument “index-aware” reducers. The map transform now accepts a two-argument index-aware map method, too.
+Color scales now default to a *categorical* scale when a categorical color scheme is specified. For example, this no longer throws a “unknown quantitative scheme” error:
+
+<img src="./img/cell-categorical.png" width="640" alt="A row of 10 rectangular swatches showing the Tableau10 color scheme.">
+
+```js
+Plot.cellX(d3.range(10)).plot({color: {scheme: "Tableau10"}})
+```
+
+Ordinal scales are now smarter about choosing a default time format when the **interval** option is a yearly interval: the four-digit year is (YYYY) shown instead of year, month, and day (YYYY-01-01). Time intervals can now be specified as integer multiples of a base time interval, such as *3 months* or *10 years*.
+
+Mark transforms are now passed the plot’s *options* as a third argument; this allows the group, bin, and stack transforms (and other transforms) to check if the scale has a declared **interval** option, and if so, apply that interval before grouping. For example, to count athletes by age at 5-year intervals:
+
+<img src="./img/group-interval.png" width="640" alt="A bar chart showing the frequency of athletes by age, grouped at 5-year intervals; the chart peaks at 1990 with more than 4,500 athletes, following a skewed bell curve.">
+
+```js
+Plot.barY(olympians, Plot.groupX({y: "count"}, {x: "date_of_birth"})).plot({x: {interval: "5 years"}})
+```
+
+The new **imageFilter** mark option applies a [CSS filter effect](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) to the mark, such as a drop shadow or blur. The [rule](https://observablehq.com/plot/marks/rule) and [tick](https://observablehq.com/plot/marks/tick) marks now support **marker** options.
+
+The normalize and window transforms now accept two-argument “index-aware” reducers; the map transform now also accepts a two-argument index-aware map method. The mapX transform now defaults **x** to identity if none of **x**, **x1**, and **x2** are specified; the mapY transform does the same for **y**.
+
+When faceting, the plot dimensions now includes **facet**.**width** and **facet**.**height** for the plot’s outer dimensions. The plot context now includes the ownerSVGElement.
 
 Fix a bug where the *opacity* channel didn’t automatically opt-out of the *opacity* scale when all values are in the interval [0,1].
 
-Fix a bug where the frame mark would crash if a channel-eligible option such as **fill** were specified as an invalid CSS color string, such as *bluez*. The frame mark now supports channel-eligible options to be specified as abstract values, in which case the abstract values will be encoded using a scale; for example, setting **fill** to *Biscoe* would apply an *ordinal* *color* scale.
-
-Fix a bug when filtering facets and computing facet anchors with non-primitive facet domains, such as dates.
+Fix a bug where the frame mark would crash if a channel-eligible option such as **fill** were specified as an invalid CSS color string, such as *bleu*. The frame mark now supports channel-eligible options to be specified as abstract values, in which case the abstract values will be encoded using a scale; for example, setting **fill** to *Biscoe* would apply an *ordinal* *color* scale.
 
 Fix a bug where the position defaults for the rectX, rectY, barX, and barY marks were only applied if the *options* object was strictly undefined; now the position defaults apply if the relevant position options are undefined.
 
-Fix *z*-order across facets. Fix *z*-order of facet axes, which should be drawn below rather than above other marks, as with other axes.
+Fix a bug when filtering facets and computing facet anchors with non-primitive facet domains, such as dates. Fix *z*-order across facets: each mark now draws atop all earlier marks across facets. Fix *z*-order of facet axes, which should be drawn below rather than above other marks, as other axes do.
 
-Fix the auto mark to chose the rect mark instead of rectX or rectY when appropriate, and likewise choose correctly between line, lineX, and lineY, and areaX and areaY.
+Fix the auto mark to chose the rect mark instead of rectX or rectY when appropriate, and likewise choose correctly between line, lineX, and lineY, and areaX and areaY. Also, the autoSpec method now returns the name of the explicit mark and transform implementations as **markImpl** and **transformImpl** respectively, along with the **markOptions** and **transformOptions** needed to instantiate them.
 
-The mapX transform now defaults **x** to identity if none of **x**, **x1**, and **x2** are specified; the mapY transform does the same for **y**.
+<!-- The text mark now positions multi-line text using the *dy* attribute instead of the *y* attribute. -->
 
-TODO Change to maybeOptionalZero when **x** is strictly null?
+<!-- The new **render** transform mark option. -->
 
-The plot context now exposes the ownerSVGElement.
-
-The text mark now positions multi-line text using the *dy* attribute instead of the *y* attribute.
-
-When faceting, the plot dimensions now includes **facet**.**width** and **facet**.**height** for the plot’s outer dimensions.
-
-Derived channels can now declare **source** and **hint** options which are used by the tip mark.
+<!-- Derived channels can now declare **source** and **hint** options which are used by the tip mark. -->
 
 ## 0.6.6
 
