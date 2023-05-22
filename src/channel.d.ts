@@ -1,6 +1,7 @@
 import type {Interval} from "./interval.js";
 import type {Reducer} from "./reducer.js";
 import type {ScaleName, ScaleType} from "./scales.js";
+import type {CompareFunction} from "./transforms/basic.js";
 import type {BinOptions} from "./transforms/bin.js";
 
 /** Lazily-constructed channel values derived from data. */
@@ -192,7 +193,10 @@ export interface ChannelDomainOptions {
    */
   reduce?: Reducer | boolean | null;
 
-  /** If true, use descending instead of ascending order. */
+  /** How to order reduced values. */
+  order?: CompareFunction | "ascending" | "descending" | null;
+
+  /** If true, reverse the order after sorting. */
   reverse?: boolean;
 
   /**

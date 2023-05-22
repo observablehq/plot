@@ -1,4 +1,4 @@
-import {InternSet, rollup, sort} from "d3";
+import {InternSet, rollups} from "d3";
 import {ascendingDefined, descendingDefined} from "./defined.js";
 import {first, isColor, isEvery, isIterable, isOpacity, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
@@ -78,11 +78,11 @@ export function inferChannelScale(name, channel) {
 // computed; i.e., if the scale’s domain is set explicitly, that takes priority
 // over the sort option, and we don’t need to do additional work.
 export function channelDomain(data, facets, channels, facetChannels, options) {
-  const {reverse: defaultReverse, reduce: defaultReduce = true, limit: defaultLimit} = options;
+  const {order: defaultOrder, reverse: defaultReverse, reduce: defaultReduce = true, limit: defaultLimit} = options;
   for (const x in options) {
     if (!registry.has(x)) continue; // ignore unknown scale keys (including generic options)
-    let {value: y, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]);
-    if (reverse === undefined) reverse = y === "width" || y === "height"; // default to descending for lengths
+    let {value: y, order = defaultOrder, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]); // prettier-ignore
+    order = order === undefined ? y === "width" || y === "height" ? descendingGroup : ascendingGroup : maybeOrder(order); // prettier-ignore
     if (reduce == null || reduce === false) continue; // disabled reducer
     const X = x === "fx" || x === "fy" ? reindexFacetChannel(facets, facetChannels[x]) : findScaleChannel(channels, x);
     if (!X) throw new Error(`missing channel for scale: ${x}`);
@@ -106,12 +106,13 @@ export function channelDomain(data, facets, channels, facetChannels, options) {
           : values(channels, y, y === "y" ? "y2" : y === "x" ? "x2" : undefined);
       const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
       X.domain = () => {
-        let domain = rollup(
+        let domain = rollups(
           range(XV),
           (I) => reducer.reduceIndex(I, YV),
           (i) => XV[i]
         );
-        domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
+        if (order) domain.sort(order);
+        if (reverse) domain.reverse();
         if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
         return domain.map(first);
       };
@@ -152,6 +153,17 @@ function values(channels, name, alias) {
   if (!channel && alias !== undefined) channel = channels[alias];
   if (channel) return channel.value;
   throw new Error(`missing channel: ${name}`);
+}
+
+function maybeOrder(order) {
+  if (order == null || typeof order === "function") return order;
+  switch (`${order}`.toLowerCase()) {
+    case "ascending":
+      return ascendingGroup;
+    case "descending":
+      return descendingGroup;
+  }
+  throw new Error(`invalid order: ${order}`);
 }
 
 function ascendingGroup([ak, av], [bk, bv]) {

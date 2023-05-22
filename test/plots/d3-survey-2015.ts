@@ -43,7 +43,7 @@ function bars(groups, title) {
         y: ([key]) => key,
         fill: "steelblue",
         insetTop: 1,
-        sort: {y: "x", reverse: true}
+        sort: {y: "x", order: "descending"}
       }),
       Plot.ruleX([0])
     ]
