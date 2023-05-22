@@ -64,7 +64,7 @@ function dodge(y, x, anchor, padding, r, options) {
     let {channels, sort, reverse} = options;
     channels = maybeNamed(channels);
     if (channels?.r === undefined) options = {...options, channels: {...channels, r: {value: r, scale: "r"}}};
-    if (sort === undefined && reverse === undefined) options.sort = {channel: "r", order: "descending"};
+    if (sort === undefined && reverse === undefined) options.sort = {channel: "-r"};
   }
   return initializer(options, function (data, facets, channels, scales, dimensions, context) {
     let {[x]: X, r: R} = channels;

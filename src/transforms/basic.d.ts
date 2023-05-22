@@ -149,7 +149,7 @@ export type SortOrder =
   | CompareFunction
   | ChannelValue
   | {value?: ChannelValue; order?: CompareFunction | "ascending" | "descending"}
-  | {channel?: ChannelName; order?: CompareFunction | "ascending" | "descending"};
+  | {channel?: ChannelName | `-${ChannelName}`; order?: CompareFunction | "ascending" | "descending"};
 
 /**
  * Applies a transform to *options* to sort the mark’s index by the specified

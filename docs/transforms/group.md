@@ -52,7 +52,7 @@ Plot.plot({
   x: {label: null, tickRotate: 90},
   y: {grid: true},
   marks: [
-    Plot.barY(olympians, Plot.groupX({y: "count"}, {x: "sport", sort: {x: "y", reverse: true}})),
+    Plot.barY(olympians, Plot.groupX({y: "count"}, {x: "sport", sort: {x: "-y"}})),
     Plot.ruleY([0])
   ]
 })

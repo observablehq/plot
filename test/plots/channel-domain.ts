@@ -30,6 +30,14 @@ export async function channelDomainDescendingReverse() {
   return countNationality({y: "x", order: "descending", reverse: true, limit: 20});
 }
 
+export async function channelDomainMinus() {
+  return countNationality({y: "-x", limit: 20});
+}
+
+export async function channelDomainMinusReverse() {
+  return countNationality({y: "-x", reverse: true, limit: 20});
+}
+
 export async function channelDomainComparator() {
   return countNationality({y: "x", order: ([, a], [, b]) => d3.descending(a, b), limit: 20});
 }

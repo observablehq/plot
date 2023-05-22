@@ -81,7 +81,7 @@ function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
   const [Y2, setY2] = column(y);
   Y1.hint = Y2.hint = lengthy;
   offset = maybeOffset(offset);
-  order = maybeOrder(order, offset, ky);
+  order = maybeOrder(order, offset, ky); // TODO shorthand -order with reverse?
   return [
     basic(options, (data, facets, plotOptions) => {
       const X = x == null ? undefined : setX(maybeApplyInterval(valueof(data, x), plotOptions?.[kx]));

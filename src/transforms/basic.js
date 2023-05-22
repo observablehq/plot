@@ -108,7 +108,10 @@ function sortData(compare) {
 
 function sortValue(value) {
   let channel, order;
-  ({channel, value, order = ascendingDefined} = {...maybeValue(value)});
+  ({channel, value, order} = {...maybeValue(value)});
+  const negate = channel?.startsWith("-");
+  if (negate) channel = channel.slice(1);
+  if (order === undefined) order = negate ? descendingDefined : ascendingDefined;
   if (typeof order !== "function") {
     switch (`${order}`.toLowerCase()) {
       case "ascending":

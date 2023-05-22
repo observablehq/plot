@@ -49,7 +49,7 @@ export async function usPopulationStateAgeGrouped() {
         y: "population",
         fill: "age",
         title: "age",
-        sort: {fx: "y", reverse: true, limit: 6}
+        sort: {fx: "-y", limit: 6}
       }),
       Plot.ruleY([0])
     ]

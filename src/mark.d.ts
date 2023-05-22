@@ -102,7 +102,7 @@ export interface MarkOptions {
    * with a *value* object and per-scale options:
    *
    * ```js
-   * sort: {y: {value: "x", reverse: true}}
+   * sort: {y: {value: "-x"}}
    * ```
    *
    * When sorting the mark’s index, the **sort** option is instead one of:

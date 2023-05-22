@@ -21,7 +21,7 @@ export async function metroUnemploymentRidgeline() {
     },
     marks: [
       Plot.areaY(data, {x: "date", y: "unemployment", fill: "#eee"}),
-      Plot.line(data, {x: "date", y: "unemployment", sort: {fy: "y", order: "descending"}}),
+      Plot.line(data, {x: "date", y: "unemployment", sort: {fy: "-y"}}),
       Plot.ruleY([0])
     ]
   });

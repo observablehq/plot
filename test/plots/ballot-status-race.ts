@@ -82,7 +82,7 @@ export async function ballotStatusRace() {
         sort: {
           fy: "data",
           reduce: (data) => data.find((d) => d.status === "ACCEPTED").percent,
-          reverse: true
+          order: "descending"
         }
       }),
       Plot.ruleX([0])

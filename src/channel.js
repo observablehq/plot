@@ -82,7 +82,9 @@ export function channelDomain(data, facets, channels, facetChannels, options) {
   for (const x in options) {
     if (!registry.has(x)) continue; // ignore unknown scale keys (including generic options)
     let {value: y, order = defaultOrder, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]); // prettier-ignore
-    order = order === undefined ? y === "width" || y === "height" ? descendingGroup : ascendingGroup : maybeOrder(order); // prettier-ignore
+    const negate = y?.startsWith("-");
+    if (negate) y = y.slice(1);
+    order = order === undefined ? negate !== (y === "width" || y === "height") ? descendingGroup : ascendingGroup : maybeOrder(order); // prettier-ignore
     if (reduce == null || reduce === false) continue; // disabled reducer
     const X = x === "fx" || x === "fy" ? reindexFacetChannel(facets, facetChannels[x]) : findScaleChannel(channels, x);
     if (!X) throw new Error(`missing channel for scale: ${x}`);

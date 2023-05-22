@@ -156,7 +156,7 @@ Plot.tickX(numbers).plot()
 ```
 :::
 
-We could even use [Plot.vectorX](../marks/vector.md) here to draw little up-pointing arrows. (Typically the vector mark is used in conjunction with the *rotate* and *length* options to control the direction and magnitude of each vector.)
+We could even use [Plot.vectorX](../marks/vector.md) here to draw little up-pointing arrows. (Typically the vector mark is used in conjunction with the **rotate** and **length** options to control the direction and magnitude of each vector.)
 
 :::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-vector
 ```js

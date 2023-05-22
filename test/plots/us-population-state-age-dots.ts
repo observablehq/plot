@@ -32,7 +32,7 @@ export async function usPopulationStateAgeDots() {
           textAnchor: "end",
           dx: -6,
           text: "state",
-          sort: {y: "x", reduce: "min", reverse: true}
+          sort: {y: "-x", reduce: "min"}
         })
       )
     ]
