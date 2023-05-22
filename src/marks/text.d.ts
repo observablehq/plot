@@ -2,35 +2,8 @@ import type {ChannelValue, ChannelValueIntervalSpec, ChannelValueSpec} from "../
 import type {Interval} from "../interval.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 
-/** Options for the text mark. */
-export interface TextOptions extends MarkOptions {
-  /**
-   * The horizontal position channel specifying the text’s anchor point,
-   * typically bound to the *x* scale.
-   */
-  x?: ChannelValueSpec;
-
-  /**
-   * The vertical position channel specifying the text’s anchor point, typically
-   * bound to the *y* scale.
-   */
-  y?: ChannelValueSpec;
-
-  /**
-   * The text contents channel, possibly with line breaks (\n, \r\n, or \r). If
-   * not specified, defaults to the zero-based index [0, 1, 2, …].
-   */
-  text?: ChannelValue;
-
-  /**
-   * The frame anchor specifies defaults for **x** and **y**, along with
-   * **textAnchor** and **lineAnchor**, based on the plot’s frame; it may be one
-   * of the four sides (*top*, *right*, *bottom*, *left*), one of the four
-   * corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the
-   * *middle* of the frame.
-   */
-  frameAnchor?: FrameAnchor;
-
+/** Options for styling text (independent of anchor position). */
+export interface TextStyles {
   /**
    * The [text anchor][1] controls how text is aligned (typically horizontally)
    * relative to its anchor point; it is one of *start*, *end*, or *middle*. If
@@ -41,15 +14,6 @@ export interface TextOptions extends MarkOptions {
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor
    */
   textAnchor?: "start" | "middle" | "end";
-
-  /**
-   * The line anchor controls how text is aligned (typically vertically)
-   * relative to its anchor point; it is one of *top*, *bottom*, or *middle*. If
-   * the frame anchor is *top*, *top-left*, or *top-right*, the default line
-   * anchor is *top*; if the frame anchor is *bottom*, *bottom-right*, or
-   * *bottom-left*, the default is *bottom*; otherwise it is *middle*.
-   */
-  lineAnchor?: "top" | "middle" | "bottom";
 
   /**
    * The line height in ems; defaults to 1. The line height affects the
@@ -141,6 +105,45 @@ export interface TextOptions extends MarkOptions {
    * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight
    */
   fontWeight?: string | number;
+}
+
+/** Options for the text mark. */
+export interface TextOptions extends MarkOptions, TextStyles {
+  /**
+   * The horizontal position channel specifying the text’s anchor point,
+   * typically bound to the *x* scale.
+   */
+  x?: ChannelValueSpec;
+
+  /**
+   * The vertical position channel specifying the text’s anchor point, typically
+   * bound to the *y* scale.
+   */
+  y?: ChannelValueSpec;
+
+  /**
+   * The text contents channel, possibly with line breaks (\n, \r\n, or \r). If
+   * not specified, defaults to the zero-based index [0, 1, 2, …].
+   */
+  text?: ChannelValue;
+
+  /**
+   * The frame anchor specifies defaults for **x** and **y**, along with
+   * **textAnchor** and **lineAnchor**, based on the plot’s frame; it may be one
+   * of the four sides (*top*, *right*, *bottom*, *left*), one of the four
+   * corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the
+   * *middle* of the frame.
+   */
+  frameAnchor?: FrameAnchor;
+
+  /**
+   * The line anchor controls how text is aligned (typically vertically)
+   * relative to its anchor point; it is one of *top*, *bottom*, or *middle*. If
+   * the frame anchor is *top*, *top-left*, or *top-right*, the default line
+   * anchor is *top*; if the frame anchor is *bottom*, *bottom-right*, or
+   * *bottom-left*, the default is *bottom*; otherwise it is *middle*.
+   */
+  lineAnchor?: "top" | "middle" | "bottom";
 
   /**
    * The rotation angle in degrees clockwise; a constant or a channel; defaults

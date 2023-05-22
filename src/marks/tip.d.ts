@@ -1,9 +1,6 @@
 import type {ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
-import type {TextOptions} from "./text.js";
-
-/** Options for styling text. TODO Move to TextOptions? */
-type TextStyles = Pick<TextOptions, "lineHeight" | "lineWidth" | "monospace" | "fontFamily" | "fontSize" | "fontStyle" | "fontVariant" | "fontWeight">; // prettier-ignore
+import type {TextStyles} from "./text.js";
 
 /** Options for the tip mark. */
 export interface TipOptions extends MarkOptions, TextStyles {
@@ -14,12 +11,34 @@ export interface TipOptions extends MarkOptions, TextStyles {
   x?: ChannelValueSpec;
 
   /**
+   * The starting horizontal position channel specifying the tip’s anchor,
+   * typically bound to the *x* scale.
+   */
+  x1?: ChannelValueSpec;
+
+  /**
+   * The ending horizontal position channel specifying the tip’s anchor,
+   * typically bound to the *x* scale.
+   */
+  x2?: ChannelValueSpec;
+
+  /**
    * The vertical position channel specifying the tip’s anchor, typically
    * bound to the *y* scale.
    */
   y?: ChannelValueSpec;
 
-  // TODO x1, y1, x2, y2
+  /**
+   * The starting vertical position channel specifying the tip’s anchor,
+   * typically bound to the *y* scale.
+   */
+  y1?: ChannelValueSpec;
+
+  /**
+   * The ending vertical position channel specifying the tip’s anchor, typically
+   * bound to the *y* scale.
+   */
+  y2?: ChannelValueSpec;
 
   /**
    * The frame anchor specifies defaults for **x** and **y** based on the plot’s
@@ -34,7 +53,13 @@ export interface TipOptions extends MarkOptions, TextStyles {
    */
   frameAnchor?: FrameAnchor;
 
-  /** TODO */
+  /**
+   * The tip anchor specifies how to orient the tip box relative to its anchor
+   * position; it refers to the part of the tip box that is attached to the
+   * anchor point. For example, the *top-left* anchor places the top-left corner
+   * of tip box near the anchor position, hence placing the tip box below and to
+   * the right of the anchor position.
+   */
   anchor?: FrameAnchor;
 }
 
