@@ -193,7 +193,7 @@ export interface ChannelDomainOptions {
    */
   reduce?: Reducer | boolean | null;
 
-  /** How to order reduces values. */
+  /** How to order reduced values. */
   order?: CompareFunction | "ascending" | "descending" | null;
 
   /** If true, reverse the order after sorting. */
