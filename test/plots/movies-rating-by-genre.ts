@@ -37,7 +37,7 @@ export async function moviesRatingByGenre() {
             sort: {
               fy: "x",
               reduce: "median",
-              reverse: true
+              order: "descending"
             }
           }
         )

@@ -11,7 +11,7 @@ export async function athletesNationality() {
       label: null
     },
     marks: [
-      Plot.barX(athletes, Plot.groupY({x: "count"}, {y: "nationality", sort: {y: "x", reverse: true, limit: 20}}))
+      Plot.barX(athletes, Plot.groupY({x: "count"}, {y: "nationality", sort: {y: "x", order: "descending", limit: 20}}))
     ]
   });
 }
