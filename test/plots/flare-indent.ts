@@ -6,10 +6,9 @@ export async function flareIndent() {
   return Plot.plot({
     axis: null,
     inset: 10,
-    insetLeft: 70,
     insetRight: 120,
     round: true,
-    width: 300,
+    width: 200,
     height: 3600,
     marks: Plot.tree(flare, {
       strokeWidth: 1,
