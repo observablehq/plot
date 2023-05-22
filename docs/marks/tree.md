@@ -41,7 +41,8 @@ For example, here is a little family tree of Greek gods.
 Plot.plot({
   axis: null,
   height: 100,
-  margin: 20,
+  margin: 10,
+  marginLeft: 35,
   marginRight: 120,
   marks: [
     Plot.tree(gods, {textStroke: "var(--vp-c-bg)"})
@@ -63,6 +64,7 @@ As a more complete example, here is a visualization of a software package hierar
 Plot.plot({
   axis: null,
   margin: 10,
+  marginLeft: 30,
   marginRight: 160,
   width: 688,
   height: 1800,
@@ -80,6 +82,7 @@ The **treeLayout** option specifies the layout algorithm. The tree mark uses the
 Plot.plot({
   axis: null,
   margin: 10,
+  marginLeft: 30,
   marginRight: 160,
   width: 688,
   height: 2400,

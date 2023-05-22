@@ -2,6 +2,7 @@ import {cluster as Cluster} from "d3";
 import {isNoneish} from "../options.js";
 import {marks} from "../mark.js";
 import {maybeTreeAnchor, treeLink, treeNode} from "../transforms/tree.js";
+import {filter} from "../transforms/basic.js";
 import {dot} from "./dot.js";
 import {link} from "./link.js";
 import {text} from "./text.js";
@@ -27,10 +28,12 @@ export function tree(
     title = "node:path",
     dx,
     dy,
+    textAnchor,
     ...options
   } = {}
 ) {
   if (dx === undefined) dx = maybeTreeAnchor(options.treeAnchor).dx;
+  if (textAnchor !== undefined) throw new Error("textAnchor is not a configurable tree option");
   return marks(
     link(
       data,
@@ -50,18 +53,40 @@ export function tree(
     ),
     dotDot ? dot(data, treeNode({fill: fill === undefined ? "node:internal" : fill, title, ...options})) : null,
     textText != null
-      ? text(
-          data,
-          treeNode({
-            text: textText,
-            fill: fill === undefined ? "currentColor" : fill,
-            stroke: textStroke,
-            dx,
-            dy,
-            title,
-            ...options
-          })
-        )
+      ? [
+          text(
+            data,
+            filter(
+              (d) => !d.internal,
+              treeNode({
+                text: textText,
+                fill: fill === undefined ? "currentColor" : fill,
+                stroke: textStroke,
+                dx,
+                dy,
+                title,
+                textAnchor: "start",
+                ...options
+              })
+            )
+          ),
+          text(
+            data,
+            filter(
+              "internal",
+              treeNode({
+                text: textText,
+                fill: fill === undefined ? "currentColor" : fill,
+                stroke: textStroke,
+                dx: -dx,
+                dy,
+                title,
+                textAnchor: "end",
+                ...options
+              })
+            )
+          )
+        ]
       : null
   );
 }
