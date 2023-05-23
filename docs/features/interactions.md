@@ -17,7 +17,7 @@ onMounted(() => {
 
 # Interactions
 
-Interaction can allow readers to read values out of a plot (details on demand), or to fluidly change a view of data without having to edit code (zoom and filter). There are a variety of ways to achieve interaction with Plot, including built-in interaction features and development techniques with frameworks such as Observable and React.
+Interaction allows reading values out of a plot (details on demand), or fluidly changing a view of data without editing code (zoom and filter). There are a variety of ways to achieve interaction with Plot, including built-in interaction features and development techniques with frameworks such as Observable and React.
 
 ## Pointing
 
