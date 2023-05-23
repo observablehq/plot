@@ -2,20 +2,166 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import aapl from "../data/aapl.ts";
-import penguins from "../data/penguins.ts";
+import {ref, shallowRef, onMounted} from "vue";
+
+const pointered = ref(true);
+const aapl = shallowRef([]);
+const industries = shallowRef([]);
+const olympians = shallowRef([]);
+const penguins = shallowRef([]);
+const linetip = ref("x");
+
+onMounted(() => {
+  d3.csv("../data/aapl.csv", d3.autoType).then((data) => (aapl.value = data));
+  d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
+  d3.csv("../data/bls-industry-unemployment.csv", d3.autoType).then((data) => (industries.value = data));
+  d3.csv("../data/penguins.csv", d3.autoType).then((data) => (penguins.value = data));
+});
 
 </script>
 
 # Pointer transform
 
-The **pointer transform** filters a mark such that only the point closest to the pointer (if any) is rendered. It is typically used to show details on hover, often with a [tip](../marks/tip.md) or [crosshair](./crosshair.md) mark.
+The **pointer transform** filters a mark interactively such that only the point closest to the pointer is rendered. It is typically used to show details on hover, often with a [tip](../marks/tip.md) or [crosshair](./crosshair.md) mark, but it can be paired with any mark.
+
+To demonstrate, below the pointer transform filters a filled <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> dot behind a stroked <span style="border-bottom: solid 2px currentColor;">{{ $dark ? "white" : "black"}}</span> dot. As you hover the chart, only the closest red dot to the pointer will be rendered. If you remove the pointer transform by toggling the checkbox, all the red dots will be visible.
+
+<p>
+  <label class="label-input">
+    Use pointer:
+    <input type="checkbox" v-model="pointered">
+  </label>
+</p>
+
+:::plot defer hidden
+```js
+Plot.plot({
+  marks: [
+    Plot.dot(penguins, (pointered ? Plot.pointer : (o) => o)({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "red", r: 8})),
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+  ]
+})
+```
+:::
+
+<div v-if="pointered">
+
+```js-vue
+Plot.plot({
+  marks: [
+    Plot.dot(penguins, Plot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "red", r: 8})),
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+  ]
+})
+```
+
+</div>
+<div v-else>
+
+```js-vue
+Plot.plot({
+  marks: [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "red", r: 8}),
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+  ]
+})
+```
+
+</div>
+
+The pointer transform is similar to the [filter](../transforms/filter.md) and [select](../transforms/select.md) transforms: it filters the mark’s index to show a subset of the data. The difference is that the pointer transform is *interactive*: it listens to [pointer events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events) and re-renders the mark as the closest point changes. Since the mark is lazily rendered during interaction, it is fast: only the visible elements are rendered as needed. In addition, like the filter and select transforms, the mark’s channels are computed once during the initial render and hence may be incorporated into the default scale domains.
+
+The pointer transform supports both one- and two-dimensional pointing modes. The two-dimensional mode, [pointer](#pointer-options-1), is used above, and is suitable for scatterplots and the general case: it finds the point closest to the pointer by measuring distance in *x* and *y*. The one-dimensional modes, [pointerX](#pointerx-options) and [pointerY](#pointery-options), in contrast only consider distance in one dimension. These modes are useful when a chart has a “dominant” dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
+
+- Supports both two- and one-dimensional pointing modes
+- One-dimensional recommended when there is a primary dimension (_e.g._, time, histogram)
+
+Try the different modes on the line chart below to get a feel for how they behave.
+
+<p>
+  <span class="label-input">
+    Pointing mode:
+    <label style="margin-left: 0.5em;"><input type="radio" name="linetip" value="xy" v-model="linetip" /> pointer</label>
+    <label style="margin-left: 0.5em;"><input type="radio" name="linetip" value="x" v-model="linetip" /> pointerX</label>
+    <label style="margin-left: 0.5em;"><input type="radio" name="linetip" value="y" v-model="linetip" /> pointerY</label>
+  </span>
+</p>
+
+:::plot defer
+```js-vue
+Plot.lineY(aapl, {x: "Date", y: "Close", tip: "{{linetip}}"}).plot()
+```
+:::
+
+One-dimensional is in fact weighted two-dimensional: _e.g._, stacked layers, multi-series line. Below, even though the pointerX transform is used and hence the closest point in *x* is chosen, *y* is used to “break ties” between series, such that you can focus different series by moving the mouse vertically.
+
+- It’s effectively a stretched Voronoi diagram (but really it’s a linear scan)
 
 :::plot defer
 ```js
 Plot.plot({
   marks: [
-    Plot.dot(penguins, Plot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "red", r: 8})),
+    Plot.ruleY([0]),
+    Plot.lineY(industries, {x: "date", y: "unemployed", stroke: "industry", tip: "x"})
+  ]
+})
+```
+:::
+
+As another example, you can easily hover even the small bins in the histogram below: you don’t have to put the mouse directly over the tiny rectangle to trigger the tip.
+
+:::plot defer
+```js
+Plot.plot({
+  x: {label: "Daily volume (log₁₀)"},
+  marks: [Plot.rectY(aapl, Plot.binX({y: "count"}, {x: (d) => Math.log10(d.Volume), thresholds: 40, tip: true}))]
+})
+```
+:::
+
+An important caveat
+
+- Doesn’t understand mark shapes; dead spots within large bars or dots
+- Maybe signed distance in the future?
+
+Another caveat
+
+- Does not currently handle coincident points (some points are not focusable)
+- Maybe in the future we could do click to cycle, or multi-select?
+
+Limiting the pointing radius. You probably don’t need to adjust this option.
+
+- Supports configurable **maxRadius**, defaults to 40px
+- With one-dimensional pointing, **maxRadius** (mostly) considers only one dimension
+
+Regarding position:
+
+- Supports **x1**, **x2**, **x**, and **px** channels, **frameAnchor**
+- The **px** channels allows pointing independent on display
+
+Example using **px** and **py** to place the hover details in the top-left corner of the frame.
+
+:::plot defer
+```js
+Plot.plot({
+  height: 160,
+  y: {axis: "right", grid: true, nice: true},
+  marks: [
+    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.ruleX(aapl, Plot.pointerX({x: "Date", py: "Close", stroke: "red"})),
+    Plot.dot(aapl, Plot.pointerX({x: "Date", y: "Close", stroke: "red"})),
+    Plot.text(aapl, Plot.pointerX({px: "Date", py: "Close", dy: -17, frameAnchor: "top-left", fontVariant: "tabular-nums", text: (d) => [`Date ${Plot.formatIsoDate(d.Date)}`, `Close ${d.Close.toFixed(2)}`].join("   ")}))
+  ]
+})
+```
+:::
+
+Another example to create crosshairs (but see the crosshair mark).
+
+:::plot defer
+```js
+Plot.plot({
+  marks: [
     Plot.ruleX(penguins, Plot.pointer({x: "culmen_length_mm", py: "culmen_depth_mm", stroke: "red", inset: -6})),
     Plot.ruleY(penguins, Plot.pointer({px: "culmen_length_mm", y: "culmen_depth_mm", stroke: "red", inset: -6})),
     Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
@@ -24,26 +170,10 @@ Plot.plot({
 ```
 :::
 
+With faceting, only the closest point across facets is rendered
+
 Notes:
 
-- Can be paired with any mark
-- Conceptually similar to [filter](../transforms/filter.md)/[select](../transforms/select.md) transform; filters the mark’s index
-- Channels are computed greedily; unfiltered values affect default scale domains
-- Mark is lazily rendered during interaction; it’s fast
-- Supports both two- and one-dimensional pointing modes
-- One-dimensional recommended when there is a primary dimension (_e.g._, time, histogram)
-- One-dimensional is in fact weighted two-dimensional: _e.g._, stacked layers, multi-series line
-- It’s effectively a Voronoi diagram (but really it’s a linear scan)
-- Doesn’t understand mark shapes; dead spots within large bars or dots
-- Maybe signed distance in the future?
-- Supports configurable **maxRadius**
-- With one-dimensional pointing, **maxRadius** (mostly) considers only one dimension
-- Supports **x1**, **x2**, **x**, and **px** channels, **frameAnchor**
-- The **px** channels allows pointing independent on display
-- Currently ignores **dx** and **dy** when pointing; bug?
-- With faceting, only the closest point across facets is rendered
-- Does not currently handle coincident points (some points are not focusable)
-- Maybe in the future we could do click to cycle, or multi-select?
 - Pointers support “click-to-stick”
 - Have to click on the SVG to unstick (otherwise, listener leak)
 - In the future, keyboard navigation?

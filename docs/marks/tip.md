@@ -67,6 +67,32 @@ Plot.plot({
 
 When using the **title** channel, the tip mark wraps text to 20 ems by default, and preserves newlines in the provided text. Use the **lineWidth** option to adjust the width, along with other text options such as **lineHeight**, **textOverflow**, **fontFamily**, and **fontSize**; see the [text mark](../marks/text.md) for more details.
 
+The **title** channel can be used with interactive tips, too. If you have a few moments, hover the chart below to read about various athletes who competed at Rio 2016.
+
+:::plot defer
+```js
+Plot.plot({
+  grid: true,
+  marks: [
+    Plot.dot(olympians, {
+      x: "weight",
+      y: "height",
+      fy: "sex",
+      sort: (d) => !!d.info,
+      stroke: (d) => d.info ? "currentColor" : "#aaa"
+    }),
+    Plot.tip(olympians, Plot.pointer({
+      x: "weight",
+      y: "height",
+      fy: "sex",
+      filter: (d) => d.info,
+      title: (d) => [d.name, d.info].join("\n\n")
+    }))
+  ]
+})
+```
+:::
+
 If no **title** channel is supplied, the tip mark displays all channel values. You can supply additional name-value pairs by registering extra channels using the **channels** mark option. In the scatterplot of Olympic athletes below, you can hover to see the *name* and *sport* of each athlete. This is helpful for noticing patterns—tall basketball players, giant weightlifters and judoka, diminutive gymnasts—and for seeing individuals.
 
 :::plot defer
