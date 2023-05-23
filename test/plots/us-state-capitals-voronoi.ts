@@ -16,7 +16,18 @@ export async function usStateCapitalsVoronoi() {
     marks: [
       Plot.geo(nation, {fill: "currentColor", fillOpacity: 0.2}),
       Plot.dot(capitals, {x: "longitude", y: "latitude", r: 2.5, fill: "currentColor"}),
-      Plot.voronoi(capitals, {x: "longitude", y: "latitude", clip: "sphere", title: "state", pointerEvents: "all"}),
+      Plot.voronoi(
+        capitals,
+        Plot.pointer({
+          x: "longitude",
+          y: "latitude",
+          clip: "sphere",
+          title: "state",
+          fill: "red",
+          fillOpacity: 0.4,
+          pointerEvents: "all"
+        })
+      ),
       Plot.sphere({strokeWidth: 2})
     ]
   });

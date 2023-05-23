@@ -212,7 +212,7 @@ class Hull extends AbstractDelaunayMark {
 }
 
 class Voronoi extends Mark {
-  constructor(data, options = {}) {
+  constructor(data, {initializer, ...options} = {}) {
     const {x, y, z} = options;
     super(
       data,
@@ -221,20 +221,36 @@ class Voronoi extends Mark {
         y: {value: y, scale: "y", optional: true},
         z: {value: z, optional: true}
       },
-      options,
+      {
+        ...options,
+        // TODO compose with existing initializer
+        initializer: function (data, facets) {
+          const D = new Array(data.length);
+          for (const f of facets) {
+            for (const i of f) D[i] = f;
+          }
+          return {data, facets, channels: {diagrams: {value: D}}};
+        }
+      },
       voronoiDefaults
     );
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {x: X, y: Y, z: Z} = channels;
+    const {x: X, y: Y, z: Z, diagrams: D} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? (i) => X[i] : constant(cx);
     const yi = Y ? (i) => Y[i] : constant(cy);
     const mark = this;
 
-    function cells(index) {
-      const delaunay = Delaunay.from(index, xi, yi);
+    const i0 = index[0];
+    if (i0 === undefined) return create("svg:g", context).node();
+    const diagram = D[index[0]];
+    function cells(subset) {
+      subset = subset.filter((i) => isFinite(xi(i)) && isFinite(yi(i)));
+      const rank = new Array(subset.length);
+      for (let c = 0; c < subset.length; ++c) rank[subset[c]] = c;
+      const delaunay = Delaunay.from(subset, xi, yi); // TODO memoize?
       const voronoi = voronoiof(delaunay, dimensions);
       select(this)
         .selectAll()
@@ -242,23 +258,23 @@ class Voronoi extends Mark {
         .enter()
         .append("path")
         .call(applyDirectStyles, mark)
-        .attr("d", (_, i) => voronoi.renderCell(i))
+        .attr("d", (i) => voronoi.renderCell(rank[i]))
         .call(applyChannelStyles, mark, channels);
     }
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context) // TODO avoid creating a new clip-path each time
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
           ? (g) =>
               g
                 .selectAll()
-                .data(group(index, (i) => Z[i]).values())
+                .data(group(diagram, (i) => Z[i]).values())
                 .enter()
                 .append("g")
                 .each(cells)
-          : (g) => g.datum(index).each(cells)
+          : (g) => g.datum(diagram).each(cells)
       )
       .node();
   }
