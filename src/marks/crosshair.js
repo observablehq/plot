@@ -72,7 +72,12 @@ function ruleOptions(k, pointerOptions, options) {
     ruleStrokeOpacity: strokeOpacity = opacity,
     ruleStrokeWidth: strokeWidth
   } = options;
-  return {...markOptions(k, pointerOptions, options), stroke, strokeOpacity, strokeWidth};
+  return {
+    ...markOptions(k, pointerOptions, options),
+    stroke,
+    strokeOpacity,
+    strokeWidth
+  };
 }
 
 function textOptions(k, pointerOptions, options) {
@@ -84,7 +89,14 @@ function textOptions(k, pointerOptions, options) {
     textStrokeOpacity: strokeOpacity,
     textStrokeWidth: strokeWidth = 5
   } = options;
-  return {...markOptions(k, pointerOptions, textChannel(k, options)), fill, fillOpacity, stroke, strokeOpacity, strokeWidth};
+  return {
+    ...markOptions(k, pointerOptions, textChannel(k, options)),
+    fill,
+    fillOpacity,
+    stroke,
+    strokeOpacity,
+    strokeWidth
+  };
 }
 
 // Rather than aliasing text to have the same definition as x and y, we use an
