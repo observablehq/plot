@@ -6,7 +6,7 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [tip mark](https://observablehq.com/plot/marks/tip) displays text, or a name-value pair for each channel, in a floating box anchored to a given position in **x** and **y**. The tip mark is often paired with the new [pointer interaction](https://observablehq.com/plot/interactions/pointer) such that only the point closest to the pointer is rendered, allowing the tip mark to reveal details interactively by hovering the chart.
+The new [tip mark](https://observablehq.com/plot/marks/tip) displays text, or name-value pairs derived from channels, in a floating box anchored to a given position in **x** and **y**. The tip mark is often paired with the new [pointer interaction](https://observablehq.com/plot/interactions/pointer) such that only the point closest to the pointer is rendered, allowing the tip mark to reveal details interactively by hovering the chart.
 
 <img src="./img/tip-line.webp" width="640" alt="A line chart of Apple stock price from 2013 to 2018, with an annotation on May 12, 2016, showing the two-year low closing price of $90.34.">
 
@@ -46,7 +46,7 @@ Plot.plot({
 })
 ```
 
-The pointer interaction can be paired with any mark, not just a tip: a red dot, say, to emphasize the focused point, or a rule to highlight its *x* or *y* position. You can independently control the target position from the display using the **px** and **py** channels, say to show the currently-focused point’s value in the top-left corner of the chart with a text mark.
+The pointer interaction can be paired with any mark, not just a tip: a red dot, say, to emphasize the focused point, or a rule to highlight its *x* or *y* position, or text to show a value. You can independently control the target position from the display using the **px** and **py** channels, say to show the currently-focused point’s value in the top-left corner.
 
 <img src="./img/pointer-text.webp" width="640" alt="A line chart of Apple stock price from 2013 to 2018; as the pointer moves over the chart, the date and close are shown in the top-left corner, while a red rule and dot highlights the focused point.">
 
@@ -63,21 +63,22 @@ Plot.plot({
 })
 ```
 
-The pointer interaction supports “click-to-stick”: if you click on the chart, the currently-focused point will remain focused until you click again. By temporarily locking the focused point, you can select text from the tip for copy and paste.
+The pointer interaction supports both two-dimensional (pointer) and one-dimensional (pointerX and pointerY) pointing modes. Above, one-dimensional pointing is used for a time-series chart to find the closest *x*-value; below, two-dimensional pointing is used for a scatterplot to find the closest point in *x* and *y*.
 
 The pointer interaction also powers the new [crosshair mark](https://observablehq.com/plot/interactions/crosshair) which shows the *x* (horizontal↔︎ position) and *y* (vertical↕︎ position) value of the point closest to the pointer on the bottom and left sides of the frame, respectively.
 
-<img src="./img/crosshair.png" width="640" alt="A line chart of Apple stock price from 2013 to 2018, with a crosshair centered over May 12, 2016, showing a closing price of $90.34.">
+<img src="./img/crosshair-dot.webp" width="640" alt="A scatterplot of penguins, comparing culmen depth (y) and culmen length (x); a pointer moves around the chart highlighting the x and y values of the closest point.">
 
 ```js
 Plot.plot({
-  marginLeft: 50,
   marks: [
-    Plot.lineY(aapl, {x: "Date", y: "Close"}),
-    Plot.crosshairX(aapl, {x: "Date", y: "Close"})
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex"}),
+    Plot.crosshair(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
   ]
 })
 ```
+
+The pointer interaction (and by extension the crosshair mark and **tip** mark option) supports “click-to-stick”: if you click on the chart, the currently-focused point will remain locked until you click again. By temporarily locking the pointer, you can select text from the tip for copy and paste.
 
 In addition to these exciting new interaction features, Plot 0.6.7 includes a variety of improvements and bug fixes.
 
@@ -97,7 +98,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", order: "descend
 
 The **sort** option for imputed channel domains now also takes an **order** option which can be *ascending*, *descending*, a custom comparator, or null. (This more closely matches the **order** option for the sort transform.) The **reverse** option now reverses the order rather than using descending natural order, placing nulls first instead of last.
 
-Previously setting the scale **label** option would disable Plot’s automatic directional arrow in axis labels (↑, →, ↓, or ←); now Plot implicitly adds an arrow to the label you provide, unless the label already has a arrow or you set the **labelArrow** option to null or false. You can also force an arrow by setting this option to true, or *up*, *right*, *down*, or *bottom*. In Plot’s code base, we were able to remove 161 Unicode arrows thanks to this change!
+Previously setting the scale **label** option would disable Plot’s automatic directional arrow in axis labels (↑, →, ↓, or ←); now Plot implicitly adds an arrow to the label you provide, unless the label already has an arrow or you set the **labelArrow** option to null or false. You can also force an arrow by setting this option to true, or *up*, *right*, *down*, or *bottom*. In Plot’s code base, we were able to remove 161 Unicode arrows thanks to this change! 😌
 
 Color scales now default to a *categorical* scale when a categorical color scheme is specified. For example, this no longer throws a “unknown quantitative scheme” error:
 
@@ -107,7 +108,7 @@ Color scales now default to a *categorical* scale when a categorical color schem
 Plot.cellX(d3.range(10)).plot({color: {scheme: "Tableau10"}})
 ```
 
-Ordinal scales are now smarter about choosing a default time format when the **interval** option is a yearly interval: the four-digit year is (YYYY) shown instead of year, month, and day (YYYY-01-01). Time intervals can now be specified as integer multiples of a base time interval, such as *3 months* or *10 years*.
+Time intervals can now be specified as integer multiples of a base time interval, such as *3 months* or *10 years*. Ordinal scales are now smarter about choosing a default time format when the **interval** option is a yearly interval: the four-digit year is (YYYY) shown instead of year, month, and day (YYYY-01-01).
 
 Mark transforms are now passed the plot’s *options* as a third argument; this allows the group, bin, and stack transforms (and other transforms) to check if the scale has a declared **interval** option, and if so, apply that interval before grouping. For example, to count athletes by age at 5-year intervals:
 
@@ -119,7 +120,7 @@ Plot.barY(olympians, Plot.groupX({y: "count"}, {x: "date_of_birth"})).plot({x: {
 
 The new **imageFilter** mark option applies a [CSS filter effect](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) to the mark, such as a drop shadow or blur. The [rule](https://observablehq.com/plot/marks/rule) and [tick](https://observablehq.com/plot/marks/tick) marks now support **marker** options.
 
-The normalize and window transforms now accept two-argument “index-aware” reducers; the map transform now also accepts a two-argument index-aware map method. The mapX transform now defaults **x** to identity if none of **x**, **x1**, and **x2** are specified; the mapY transform does the same for **y**.
+The [normalize](https://observablehq.com/plot/transforms/normalize) and [window](https://observablehq.com/plot/transforms/window) transforms now accept two-argument “index-aware” reducers; the [map](https://observablehq.com/plot/transforms/map) transform now also accepts a two-argument index-aware map method. The mapX transform now defaults **x** to identity if none of **x**, **x1**, and **x2** are specified; the mapY transform does the same for **y**.
 
 When faceting, the plot dimensions now includes **facet**.**width** and **facet**.**height** for the plot’s outer dimensions. The plot context now includes the ownerSVGElement.
 
