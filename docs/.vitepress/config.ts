@@ -3,6 +3,7 @@ import {defineConfig} from "vitepress";
 import plot from "./markdown-it-plot.js";
 
 // https://vitepress.dev/reference/site-config
+// prettier-ignore
 export default defineConfig({
   title: "Observable Plot",
   description: "The JavaScript library for exploratory data visualization",
@@ -57,18 +58,19 @@ export default defineConfig({
           {text: "Scales", link: "/features/scales"},
           {text: "Projections", link: "/features/projections"},
           {text: "Transforms", link: "/features/transforms"},
+          {text: "Interactions", link: "/features/interactions"},
           {text: "Facets", link: "/features/facets"},
           {text: "Legends", link: "/features/legends"},
           {text: "Curves", link: "/features/curves"},
           {text: "Formats", link: "/features/formats"},
           {text: "Markers", link: "/features/markers"},
           {text: "Shorthand", link: "/features/shorthand"},
-          {text: "Accessibility", link: "/features/accessibility"},
+          {text: "Accessibility", link: "/features/accessibility"}
         ]
       },
       {
         text: "Marks",
-        collapsed: false,
+        collapsed: true,
         items: [
           {text: "Area", link: "/marks/area"},
           {text: "Arrow", link: "/marks/arrow"},
@@ -78,6 +80,7 @@ export default defineConfig({
           {text: "Box", link: "/marks/box"},
           {text: "Cell", link: "/marks/cell"},
           {text: "Contour", link: "/marks/contour"},
+          {text: "Crosshair", link: "/marks/crosshair"},
           {text: "Delaunay", link: "/marks/delaunay"},
           {text: "Density", link: "/marks/density"},
           {text: "Dot", link: "/marks/dot"},
@@ -94,13 +97,14 @@ export default defineConfig({
           {text: "Rule", link: "/marks/rule"},
           {text: "Text", link: "/marks/text"},
           {text: "Tick", link: "/marks/tick"},
+          {text: "Tip", link: "/marks/tip"},
           {text: "Tree", link: "/marks/tree"},
           {text: "Vector", link: "/marks/vector"}
         ]
       },
       {
         text: "Transforms",
-        collapsed: false,
+        collapsed: true,
         items: [
           {text: "Bin", link: "/transforms/bin"},
           {text: "Centroid", link: "/transforms/centroid"},
@@ -117,6 +121,13 @@ export default defineConfig({
           {text: "Tree", link: "/transforms/tree"},
           {text: "Window", link: "/transforms/window"}
         ]
+      },
+      {
+        text: "Interactions",
+        collapsed: true,
+        items: [
+          {text: "Pointer", link: "/interactions/pointer"}
+        ]
       }
     ],
     search: {
@@ -131,8 +142,7 @@ export default defineConfig({
       {icon: "youtube", link: "https://www.youtube.com/c/Observablehq"}
     ],
     footer: {
-      message:
-        "Library released under <a style='text-decoration:underline;' href='https://github.com/observablehq/plot/blob/main/LICENSE'>ISC License</a>.",
+      message: "Library released under <a style='text-decoration:underline;' href='https://github.com/observablehq/plot/blob/main/LICENSE'>ISC License</a>.",
       copyright: `Copyright 2020–${new Date().getUTCFullYear()} Observable, Inc.`
     }
   }

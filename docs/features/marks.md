@@ -486,8 +486,11 @@ All marks support the following style options:
 * **ariaHidden** - if true, hide this content from the accessibility tree
 * **pointerEvents** - the [pointer events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) (*e.g.*, *none*)
 * **clip** - whether and how to clip the mark
+* **tip** - whether to generate an implicit [pointer](../interactions/pointer.md) [tip](../marks/tip.md)
 
 If the **clip** option is *frame* (or equivalently true), the mark is clipped to the frame’s dimensions; if the **clip** option is null (or equivalently false), the mark is not clipped. If the **clip** option is *sphere*, then a [geographic projection](./projections.md) is required and the mark will be clipped to the projected sphere (_e.g._, the front hemisphere when using the orthographic projection).
+
+If the **tip** option is true, a [tip mark](../marks/tip.md) with the [pointer transform](../interactions/pointer.md) will be derived from this mark and placed atop all other marks, offering details on demand. If the **tip** option is set to *x*, *y*, or *xy*, [pointerX](../interactions/pointer.md#pointerx-options), [pointerY](../interactions/pointer.md#pointery-options), or [pointer](../interactions/pointer.md#pointer-options) will be used, respectively; otherwise the pointing mode will be chosen automatically. (If the **tip** mark option is truthy, the **title** channel is no longer applied using an SVG title element as this would conflict with the tip mark.)
 
 For all marks except [text](../marks/text.md), the **dx** and **dy** options are rendered as a transform property, possibly including a 0.5px offset on low-density screens.
 

@@ -302,8 +302,8 @@
     <path transform="translate(540.5,173.20508075688775)" d="M0,0.555L0.481,0.277L0.481,-0.277L0,-0.555L-0.481,-0.277L-0.481,0.277Z"></path>
     <path transform="translate(460.5,69.2820323027551)" d="M0,0.555L0.481,0.277L0.481,-0.277L0,-0.555L-0.481,-0.277L-0.481,0.277Z"></path>
   </g>
-  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0.5,0)"></g>
-  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)"></g>
-  <g aria-label="text" stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,9.5)"></g>
-  <g aria-label="text" stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"></g>
+  <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0.5,0)"></g>
+  <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)"></g>
+  <g aria-label="crosshair text" stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,9.5)"></g>
+  <g aria-label="crosshair text" stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"></g>
 </svg>
