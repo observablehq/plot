@@ -98,7 +98,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", order: "descend
 
 The **sort** option for imputed channel domains now also takes an **order** option which can be *ascending*, *descending*, a custom comparator, or null. (This more closely matches the **order** option for the sort transform.) The **reverse** option now reverses the order rather than using descending natural order, placing nulls first instead of last.
 
-Previously setting the scale **label** option would disable Plot’s automatic directional arrow in axis labels (↑, →, ↓, or ←); now Plot implicitly adds an arrow to the label you provide, unless the label already has an arrow or you set the **labelArrow** option to null or false. You can also force an arrow by setting this option to true, or *up*, *right*, *down*, or *bottom*. In Plot’s code base, we were able to remove 161 Unicode arrows thanks to this change! 😌
+Previously setting the scale **label** option would disable Plot’s automatic directional arrow in axis labels (↑, →, ↓, or ←); now Plot implicitly adds an arrow to the label you provide, unless the label already has an arrow or you set the **labelArrow** option to *none* or false. You can also force an arrow by setting this option to true, or *up*, *right*, *down*, or *left*. In Plot’s code base, we were able to remove 161 Unicode arrows thanks to this change! 😌
 
 Color scales now default to a *categorical* scale when a categorical color scheme is specified. For example, this no longer throws a “unknown quantitative scheme” error:
 
