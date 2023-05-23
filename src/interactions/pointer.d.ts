@@ -11,51 +11,45 @@ export interface PointerOptions {
    */
   maxRadius?: number;
 
-  /**
-   * The horizontal position channel specifying the pointer anchor, typically
-   * bound to the *x* scale.
-   */
+  /** The horizontal target position channel, typically bound to the *x* scale. */
   px?: ChannelValue;
 
-  /**
-   * The vertical position channel specifying the pointer anchor, typically
-   * bound to the *y* scale.
-   */
+  /** The vertical target position channel, typically bound to the *y* scale. */
   py?: ChannelValue;
 
   /**
-   * The horizontal position channel specifying the fallback anchor, typically
-   * bound to the *x* scale; used if **px** is not specified.
+   * The fallback horizontal target position channel, typically bound to the *x*
+   * scale; used if **px** is not specified.
    */
   x?: ChannelValueSpec;
 
   /**
-   * The vertical position channel specifying the fallback anchor, typically
-   * bound to the *y* scale; used if **py** is not specified.
+   * The fallback vertical target position channel, typically bound to the *y*
+   * scale; used if **py** is not specified.
    */
   y?: ChannelValueSpec;
 
   /**
-   * The starting horizontal position channel specifying the fallback anchor,
-   * typically bound to the *x* scale; used if **px** is not specified.
+   * The starting horizontal target position channel, typically bound to the *x*
+   * scale; used if **px** is not specified.
    */
   x1?: ChannelValueSpec;
 
   /**
-   * The ending horizontal position channel specifying the fallback anchor,
-   * typically bound to the *x* scale; used if **px** is not specified.
+   * The ending horizontal target position channel, typically bound to the *x*
+   * scale; used if **px** is not specified.
    */
   x2?: ChannelValueSpec;
 
   /**
-   * The starting vertical position channel specifying the fallback anchor,
-   * typically bound to the *y* scale; used if **py** is not specified.
+   * The starting vertical target position channel, typically bound to the *y*
+   * scale; used if **py** is not specified.
    */
   y1?: ChannelValueSpec;
 
   /**
-   * The ending vertical position channel specifying the fallback anchor,
-   * typically bound to the *y* scale; used if **py** is not specified.
+   * The ending vertical target position channel, typically bound to the *y*
+   * scale; used if **py** is not specified.
    */
   y2?: ChannelValueSpec;
 }
@@ -68,17 +62,19 @@ export interface PointerOptions {
 export function pointer<T>(options: T & PointerOptions): Rendered<T>;
 
 /**
- * Like the pointer transform, except the determination of the closest point is
- * heavily weighted by the *x* (horizontal↔︎) position; this should be used for
- * plots where *x* represents the independent variable, such as time in a
- * time-series chart, or the aggregated dimension when grouping or binning.
+ * Like the pointer transform, except the determination of the closest point
+ * considers mostly the *x* (horizontal↔︎) position; this should be used for
+ * plots where *x* is the dominant dimension, such as time in a time-series
+ * chart, the binned quantitative dimension in a histogram, or the categorical
+ * dimension of a bar chart.
  */
 export function pointerX<T>(options: T & PointerOptions): Rendered<T>;
 
 /**
- * Like the pointer transform, except the determination of the closest point is
- * heavily weighted by the *y* (vertical↕︎) position; this should be used for
- * plots where *y* represents the independent variable, such as time in a
- * time-series chart, or the aggregated dimension when grouping or binning.
+ * Like the pointer transform, except the determination of the closest point
+ * considers mostly the *y* (vertical↕︎) position; this should be used for plots
+ * where *y* is the dominant dimension, such as time in a time-series chart, the
+ * binned quantitative dimension in a histogram, or the categorical dimension of
+ * a bar chart.
  */
 export function pointerY<T>(options: T & PointerOptions): Rendered<T>;
