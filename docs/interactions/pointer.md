@@ -9,7 +9,49 @@ import penguins from "../data/penguins.ts";
 
 # Pointer transform
 
-The **pointer interaction** is a primitive that, combined with a mark, allows to create meaningful [interactions](../features/interactions.md) on a chart.
+The **pointer transform** filters a mark such that only the point closest to the pointer (if any) is rendered. It is typically used to show details on hover, often with a [tip](../marks/tip.md) or [crosshair](./crosshair.md) mark.
+
+:::plot defer
+```js
+Plot.plot({
+  marks: [
+    Plot.dot(penguins, Plot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "red", r: 8})),
+    Plot.ruleX(penguins, Plot.pointer({x: "culmen_length_mm", py: "culmen_depth_mm", stroke: "red", inset: -6})),
+    Plot.ruleY(penguins, Plot.pointer({px: "culmen_length_mm", y: "culmen_depth_mm", stroke: "red", inset: -6})),
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+  ]
+})
+```
+:::
+
+Notes:
+
+- Can be paired with any mark
+- Conceptually similar to [filter](../transforms/filter.md)/[select](../transforms/select.md) transform; filters the mark’s index
+- Channels are computed greedily; unfiltered values affect default scale domains
+- Mark is lazily rendered during interaction; it’s fast
+- Supports both two- and one-dimensional pointing modes
+- One-dimensional recommended when there is a primary dimension (_e.g._, time, histogram)
+- One-dimensional is in fact weighted two-dimensional: _e.g._, stacked layers, multi-series line
+- It’s effectively a Voronoi diagram (but really it’s a linear scan)
+- Doesn’t understand mark shapes; dead spots within large bars or dots
+- Maybe signed distance in the future?
+- Supports configurable **maxRadius**
+- With one-dimensional pointing, **maxRadius** (mostly) considers only one dimension
+- Supports **x1**, **x2**, **x**, and **px** channels, **frameAnchor**
+- The **px** channels allows pointing independent on display
+- Currently ignores **dx** and **dy** when pointing; bug?
+- With faceting, only the closest point across facets is rendered
+- Does not currently handle coincident points (some points are not focusable)
+- Maybe in the future we could do click to cycle, or multi-select?
+- Pointers support “click-to-stick”
+- Have to click on the SVG to unstick (otherwise, listener leak)
+- In the future, keyboard navigation?
+- In the future, point by **z**, say to highlight series?
+- Can have multiple pointers on the same plot
+- Typically the pointers have the same set of targets, but this is not required
+
+When a chart gives an overview of a dataset, we sometimes want to focus on a certain region of interest, for instance to obtain details about specific data points—such as outliers in a scatterplot.
 
 The pointer interaction is often invoked implicitly by the standard marks that support the **tip** option to generate an interative [tip](../marks/tip.md) that displays, on demand, the channel values. It also powers the [crosshair](./crosshair.md) interactive mark.
 
