@@ -10,6 +10,7 @@ const industries = shallowRef([]);
 const olympians = shallowRef([]);
 const penguins = shallowRef([]);
 const linetip = ref("x");
+const recttip = ref("x");
 
 onMounted(() => {
   d3.csv("../data/aapl.csv", d3.autoType).then((data) => (aapl.value = data));
@@ -24,7 +25,7 @@ onMounted(() => {
 
 The **pointer transform** filters a mark interactively such that only the point closest to the pointer is rendered. It is typically used to show details on hover, often with a [tip](../marks/tip.md) or [crosshair](./crosshair.md) mark, but it can be paired with any mark.
 
-To demonstrate, below the pointer transform filters a filled <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> dot behind a stroked <span style="border-bottom: solid 2px currentColor;">{{ $dark ? "white" : "black"}}</span> dot. As you hover the chart, only the closest red dot to the pointer will be rendered. If you remove the pointer transform by toggling the checkbox, all the red dots will be visible.
+To demonstrate, below the pointer transform filters a filled <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> dot behind a stroked <span style="border-bottom: solid 2px currentColor;">{{ $dark ? "white" : "black"}}</span> dot. As you hover the chart, only the closest red dot to the pointer is rendered. If you remove the pointer transform by toggling the checkbox, all the red dots will be visible.
 
 <p>
   <label class="label-input">
@@ -69,12 +70,9 @@ Plot.plot({
 
 </div>
 
-The pointer transform is similar to the [filter](../transforms/filter.md) and [select](../transforms/select.md) transforms: it filters the mark’s index to show a subset of the data. The difference is that the pointer transform is *interactive*: it listens to [pointer events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events) and re-renders the mark as the closest point changes. Since the mark is lazily rendered during interaction, it is fast: only the visible elements are rendered as needed. In addition, like the filter and select transforms, the mark’s channels are computed once during the initial render and hence may be incorporated into the default scale domains.
+The pointer transform is similar to the [filter](../transforms/filter.md) and [select](../transforms/select.md) transforms: it filters the mark’s index to show a subset of the data. The difference is that the pointer transform is *interactive*: it listens to [pointer events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events) and re-renders the mark as the closest point changes. Since the mark is lazily rendered during interaction, it is fast: only the visible elements are rendered as needed. And, like the filter and select transforms, the mark’s channels are computed once during the initial render and hence can be incorporated into the default scale domains.
 
-The pointer transform supports both one- and two-dimensional pointing modes. The two-dimensional mode, [pointer](#pointer-options-1), is used above, and is suitable for scatterplots and the general case: it finds the point closest to the pointer by measuring distance in *x* and *y*. The one-dimensional modes, [pointerX](#pointerx-options) and [pointerY](#pointery-options), in contrast only consider distance in one dimension. These modes are useful when a chart has a “dominant” dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
-
-- Supports both two- and one-dimensional pointing modes
-- One-dimensional recommended when there is a primary dimension (_e.g._, time, histogram)
+The pointer transform supports both one- and two-dimensional pointing modes. The two-dimensional mode, [pointer](#pointer-options-1), is used above, and is suitable for scatterplots and the general case: it finds the point closest to the pointer by measuring distance in *x* and *y*. The one-dimensional modes, [pointerX](#pointerx-options) and [pointerY](#pointery-options), in contrast only consider distance in one dimension. This is useful when a chart has a “dominant” dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
 
 Try the different modes on the line chart below to get a feel for how they behave.
 
@@ -93,9 +91,7 @@ Plot.lineY(aapl, {x: "Date", y: "Close", tip: "{{linetip}}"}).plot()
 ```
 :::
 
-One-dimensional is in fact weighted two-dimensional: _e.g._, stacked layers, multi-series line. Below, even though the pointerX transform is used and hence the closest point in *x* is chosen, *y* is used to “break ties” between series, such that you can focus different series by moving the mouse vertically.
-
-- It’s effectively a stretched Voronoi diagram (but really it’s a linear scan)
+“One-dimensional pointing” is a slight misnomer: the pointerX and pointerY transforms consider distance in both dimensions, but the distance is weighted by a factor of 100 to the dominant dimension. Below, the pointerX transform is applied to a multi-series line chart; the closest point in *x* is chosen, while *y* is used to “break ties” such that you can focus different series by moving the mouse vertically.
 
 :::plot defer
 ```js
@@ -108,31 +104,31 @@ Plot.plot({
 ```
 :::
 
-As another example, you can easily hover even the small bins in the histogram below: you don’t have to put the mouse directly over the tiny rectangle to trigger the tip.
+One-dimensional pointing makes even small bars or rects easily hoverable. If you switch the histogram below to two-dimensional pointing, note that you have to hover near a rect’s centroid (shown in <span style="border-bottom: solid 2px var(--vp-c-red);">red</span>) to trigger a tip, whereas one-dimensional pointing triggers the tip anywhere in the chart.
+
+<p>
+  <span class="label-input">
+    Pointing mode:
+    <label style="margin-left: 0.5em;"><input type="radio" name="recttip" value="xy" v-model="recttip" /> pointer</label>
+    <label style="margin-left: 0.5em;"><input type="radio" name="recttip" value="x" v-model="recttip" /> pointerX</label>
+  </span>
+</p>
 
 :::plot defer
-```js
+```js-vue
 Plot.plot({
   x: {label: "Daily volume (log₁₀)"},
-  marks: [Plot.rectY(aapl, Plot.binX({y: "count"}, {x: (d) => Math.log10(d.Volume), thresholds: 40, tip: true}))]
+  marks: [
+    Plot.rectY(aapl, Plot.binX({y: "count"}, {x: (d) => Math.log10(d.Volume), thresholds: 40, tip: "{{recttip}}"})),
+    Plot.dot(aapl, Plot.stackY(Plot.binX({y: "count"}, {x: (d) => Math.log10(d.Volume), thresholds: 40, stroke: "red"})))
+  ]
 })
 ```
 :::
 
-An important caveat
+This reveals an important caveat: the pointer transform understands only points and not the arbitrary geometry of marks. By default, the pointer transform only focuses the closest point if it is within 40 pixels of the pointer (in either one or two dimensions, depending on the pointing mode). With large marks, there may be “dead spots” that do not trigger pointing even when the pointer is within the displayed mark. You can mitigate dead spots either by switching to one-dimensional pointing, if appropriate, or by setting the **maxRadius** option to increase the pointing distance cutoff.
 
-- Doesn’t understand mark shapes; dead spots within large bars or dots
-- Maybe signed distance in the future?
-
-Another caveat
-
-- Does not currently handle coincident points (some points are not focusable)
-- Maybe in the future we could do click to cycle, or multi-select?
-
-Limiting the pointing radius. You probably don’t need to adjust this option.
-
-- Supports configurable **maxRadius**, defaults to 40px
-- With one-dimensional pointing, **maxRadius** (mostly) considers only one dimension
+Another caveat is that since the pointer transform only focuses one point at a time, if points are coincident (or nearly so), some points may not be focusable. In the future, the pointer transform might allow focusing multiple points simultaneously, or some method of cycling through nearby points. If you are interested in this feature, please upvote [#1621](https://github.com/observablehq/plot/issues/1621).
 
 Regarding position:
 
@@ -169,8 +165,6 @@ Plot.plot({
 })
 ```
 :::
-
-With faceting, only the closest point across facets is rendered
 
 Notes:
 
