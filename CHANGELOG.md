@@ -132,7 +132,7 @@ Fix a bug where the position defaults for the rectX, rectY, barX, and barY marks
 
 Fix a bug when filtering facets and computing facet anchors with non-primitive facet domains, such as dates. Fix *z*-order across facets: each mark now draws atop all earlier marks across facets. Fix *z*-order of facet axes, which should be drawn below rather than above other marks, as other axes do.
 
-Fix the auto mark to chose the rect mark instead of rectX or rectY when appropriate, and likewise choose correctly between line, lineX, and lineY, and areaX and areaY. Also, the autoSpec method now returns the name of the explicit mark and transform implementations as **markImpl** and **transformImpl** respectively, along with the **markOptions** and **transformOptions** needed to instantiate them.
+Fix the auto mark to choose the rect mark instead of rectX or rectY when appropriate, and likewise choose correctly between line, lineX, and lineY, and areaX and areaY. Also, the autoSpec method now returns the name of the explicit mark and transform implementations as **markImpl** and **transformImpl** respectively, along with the **markOptions** and **transformOptions** needed to instantiate them.
 
 <!-- The text mark now positions multi-line text using the *dy* attribute instead of the *y* attribute. -->
 
