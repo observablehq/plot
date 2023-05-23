@@ -66,16 +66,20 @@ Plot.plot({
 
 The following options are supported:
 
+* **x** - horizontal position of the crosshair’s center
+* **y** - vertical position of the crosshair’s center
 * **maxRadius** - reach of the crosshair pointer; defaults to 40 pixels
 * **ruleStroke** - the rule color
 * **textFill** - the text fill color
-* **textStroke** - the text stroke color; defaults to *white* to improve legibility
 * **color** - shorthand for setting both **ruleStroke** and **textFill**
+* **textStroke** - the text stroke color; defaults to *white* to improve legibility
 * **ruleStrokeOpacity** - the rule stroke opacity; defaults to 0.2
 * **ruleStrokeWidth** - the rule stroke width; defaults to 1
 * **ruleStrokeOpacity** - the rule stroke opacity; defaults to 0.2
 * **textStrokeOpacity** - the text stroke opacity; defaults to 1
 * **textStrokeOpacity** - the text stroke width; defaults to 5
+
+All other options are ignored.
 
 ## crosshair(*data*, *options*)
 
