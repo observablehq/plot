@@ -21,8 +21,8 @@ function crosshairK(pointer, data, options = {}) {
   const {x, y, maxRadius} = options;
   const p = pointer({px: x, py: y, maxRadius});
   const M = [];
-  if (x != null) M.push(ruleX(data, ruleOptions("x", p, options)));
-  if (y != null) M.push(ruleY(data, ruleOptions("y", p, options)));
+  if (x != null) M.push(ruleX(data, ruleOptions("x", {...p, inset: -6}, options)));
+  if (y != null) M.push(ruleY(data, ruleOptions("y", {...p, inset: -6}, options)));
   if (x != null) M.push(text(data, textOptions("x", {...p, dy: 9, frameAnchor: "bottom", lineAnchor: "top"}, options)));
   if (y != null) M.push(text(data, textOptions("y", {...p, dx: -9, frameAnchor: "left", textAnchor: "end"}, options)));
   for (const m of M) m.ariaLabel = `crosshair ${m.ariaLabel}`;
@@ -67,8 +67,9 @@ function pxpy(k, i) {
 function ruleOptions(k, pointerOptions, options) {
   const {
     color = "currentColor",
+    opacity = 0.2,
     ruleStroke: stroke = color,
-    ruleStrokeOpacity: strokeOpacity = 0.2,
+    ruleStrokeOpacity: strokeOpacity = opacity,
     ruleStrokeWidth: strokeWidth
   } = options;
   return {...markOptions(k, pointerOptions, options), stroke, strokeOpacity, strokeWidth};
@@ -78,11 +79,12 @@ function textOptions(k, pointerOptions, options) {
   const {
     color = "currentColor",
     textFill: fill = color,
+    textFillOpacity: fillOpacity,
     textStroke: stroke = "white",
     textStrokeOpacity: strokeOpacity,
     textStrokeWidth: strokeWidth = 5
   } = options;
-  return {...markOptions(k, pointerOptions, textChannel(k, options)), fill, stroke, strokeOpacity, strokeWidth};
+  return {...markOptions(k, pointerOptions, textChannel(k, options)), fill, fillOpacity, stroke, strokeOpacity, strokeWidth};
 }
 
 // Rather than aliasing text to have the same definition as x and y, we use an

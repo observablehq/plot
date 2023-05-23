@@ -29,6 +29,9 @@ export interface CrosshairOptions extends MarkOptions {
    */
   color?: MarkOptions["stroke"];
 
+  /** A shorthand for setting **ruleStrokeOpacity**; defaults to 0.2. */
+  opacity?: MarkOptions["opacity"];
+
   /** The rule **stroke**; defaults to **color**. */
   ruleStroke?: MarkOptions["stroke"];
 
