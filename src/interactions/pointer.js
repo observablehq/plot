@@ -3,7 +3,7 @@ import {applyFrameAnchor} from "../style.js";
 
 const states = new WeakMap();
 
-function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} = {}) {
+function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render: next, ...options} = {}) {
   maxRadius = +maxRadius;
   // When px or py is used, register an extra channel that the pointer
   // interaction can use to control which point is focused; this allows pointing
@@ -11,7 +11,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
   // displayed. Also default x or y to null to disable maybeTuple etc.
   if (px != null) (x ??= null), (channels = {...channels, px: {value: px, scale: "x"}});
   if (py != null) (y ??= null), (channels = {...channels, py: {value: py, scale: "y"}});
-  return {
+  options = {
     x,
     y,
     channels,
@@ -158,6 +158,21 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
 
       return render(null);
     }
+  };
+  if (next != null) {
+    if (typeof next !== "function") throw new TypeError(`invalid render transform: ${next}`);
+    options = {...options, render: composeRenderTransform(options.render, next)};
+  }
+  return options;
+}
+
+function composeRenderTransform(r1, r2) {
+  return function () {
+    const args = [...arguments];
+    const next = args.pop();
+    return r1.call(this, ...args, function () {
+      return r2.call(this, ...arguments, next);
+    });
   };
 }
 
