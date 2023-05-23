@@ -28,13 +28,14 @@ export function tree(
     dx,
     dy,
     textAnchor,
+    textBalanced,
     ...options
   } = {}
 ) {
   const {treeLayout = Tree} = options;
   if (dx === undefined) dx = maybeTreeAnchor(options.treeAnchor).dx;
   if (textAnchor !== undefined) throw new Error("textAnchor is not a configurable tree option");
-
+  if (textBalanced === undefined) textBalanced = treeLayout === Tree || treeLayout === Cluster;
   function treeText(textOptions) {
     return text(
       data,
@@ -70,7 +71,7 @@ export function tree(
     ),
     dotDot ? dot(data, treeNode({fill: fill === undefined ? "node:internal" : fill, title, ...options})) : null,
     textText != null
-      ? treeLayout === Tree || treeLayout === Cluster
+      ? textBalanced
         ? [
             treeText({textAnchor: "start", treeFilter: "node:external"}),
             treeText({textAnchor: "end", treeFilter: "node:internal", dx: -dx})

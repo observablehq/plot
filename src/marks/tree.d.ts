@@ -19,6 +19,12 @@ export interface TreeOptions extends DotOptions, LinkOptions, TextOptions, TreeT
    * atop other marks by creating a halo effect; defaults to *white*.
    */
   textStroke?: MarkOptions["stroke"];
+
+  /**
+   * Whether labels for non-leaf nodes are drawn to the left of the node;
+   * defaults to true unless a **treeLayout** is specified.
+   */
+  textBalanced?: boolean;
 }
 
 /**
