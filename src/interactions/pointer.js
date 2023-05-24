@@ -120,7 +120,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
           g.replaceWith(r);
         }
         state.roots[renderIndex] = g = r;
-        context.dispatchValue(i == null ? null : data[i]); // TODO defer to a microtask? debounce?
+        context.dispatchValue(i == null ? null : data[i]);
         return r;
       }
 

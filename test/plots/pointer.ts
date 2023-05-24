@@ -27,8 +27,10 @@ export async function pointerRenderCompose() {
 
 export async function pointerViewof() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
   const plot = Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", tip: true}).plot();
-  plot.oninput = () => textarea.value = JSON.stringify(plot.value, null, 2);
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => (textarea.value = JSON.stringify(plot.value, null, 2));
+  oninput(); // initialize the textarea to the initial value
+  plot.oninput = oninput; // update during interaction
   return html`<figure>${plot}${textarea}</figure>`;
 }

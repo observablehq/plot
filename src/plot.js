@@ -172,6 +172,7 @@ export function plot(options = {}) {
 
   // Allows e.g. the pointer transform to support viewof.
   context.dispatchValue = (value) => {
+    if (figure.value === value) return;
     figure.value = value;
     figure.dispatchEvent(new Event("input", {bubbles: true}));
   };
