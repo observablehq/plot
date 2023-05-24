@@ -10,7 +10,7 @@ import penguins from "../data/penguins.ts";
 
 # Crosshair mark
 
-The **crosshair mark** shows the *x* (horizontal↔︎ position) and *y* (vertical↕︎ position) value of the point closest to the [pointer](../interactions/pointer.md) on the bottom and left sides of the frame, respectively.
+The **crosshair mark** shows the *x* (horizontal↔︎ position) and *y* (vertical↕︎ position) value of the point closest to the [pointer](./pointer.md) on the bottom and left sides of the frame, respectively.
 
 :::plot defer
 ```js
@@ -23,7 +23,7 @@ Plot.plot({
 ```
 :::
 
-For charts which have a “dominant” dimension, such as time in a time-series chart, use the crosshairX or crosshairY mark for the [pointerX](../interactions/pointer.md#pointerx-options) or [pointerY](../interactions/pointer.md#pointery-options) transform as appropriate.
+For charts which have a “dominant” dimension, such as time in a time-series chart, use the crosshairX or crosshairY mark for the [pointerX](./pointer.md#pointerx-options) or [pointerY](./pointer.md#pointery-options) transform as appropriate.
 
 :::plot defer
 ```js
@@ -62,7 +62,7 @@ Plot.plot({
 ```
 :::
 
-The crosshair mark does not currently support any format options; values are displayed with the default format. If you are interested in this feature, please upvote [#1596](https://github.com/observablehq/plot/issues/1596). In the meantime, you can implement a custom crosshair using the [pointer transform](../interactions/pointer.md) and a [text mark](./text.md).
+The crosshair mark does not currently support any format options; values are displayed with the default format. If you are interested in this feature, please upvote [#1596](https://github.com/observablehq/plot/issues/1596). In the meantime, you can implement a custom crosshair using the [pointer transform](./pointer.md) and a [text mark](../marks/text.md).
 
 ## Crosshair options
 

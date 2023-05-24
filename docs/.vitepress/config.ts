@@ -80,7 +80,6 @@ export default defineConfig({
           {text: "Box", link: "/marks/box"},
           {text: "Cell", link: "/marks/cell"},
           {text: "Contour", link: "/marks/contour"},
-          {text: "Crosshair", link: "/marks/crosshair"},
           {text: "Delaunay", link: "/marks/delaunay"},
           {text: "Density", link: "/marks/density"},
           {text: "Dot", link: "/marks/dot"},
@@ -126,6 +125,7 @@ export default defineConfig({
         text: "Interactions",
         collapsed: true,
         items: [
+          {text: "Crosshair", link: "/interactions/crosshair"},
           {text: "Pointer", link: "/interactions/pointer"}
         ]
       }
