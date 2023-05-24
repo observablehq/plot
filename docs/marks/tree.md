@@ -75,7 +75,7 @@ Plot.plot({
 ```
 :::
 
-The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://github.com/d3/d3-hierarchy/blob/main/README.md#tree), by default. The [cluster](#cluster-data-options) convenience method sets **treeLayout** to [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster), aligning the leaf nodes. Both default the **textBalanced** option to true, drawing non-leaf node labels to the left of the node.
+The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://github.com/d3/d3-hierarchy/blob/main/README.md#tree), by default. The [cluster](#cluster-data-options) convenience method sets **treeLayout** to [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster), aligning the leaf nodes.
 
 :::plot https://observablehq.com/@observablehq/plot-cluster-flare
 ```js
@@ -151,13 +151,16 @@ The following options are supported:
 * **title** - the text and dot title; defaults to *node:path*
 * **text** - the text label; defaults to *node:name*
 * **textStroke** - the text stroke; defaults to *white*
-* **textBalanced** - the orientation of non-leaf labels
-* **dx** - the text horizontal offset; defaults to 6 if left-anchored, or -6 if right-anchored
+* **textLayout** - the text anchoring layout
+* **dx** - the text horizontal offset; defaults to 6
 * **dy** - the text vertical offset; defaults to 0
 
 Any additional *options* are passed through to the constituent link, dot, and text marks and their corresponding treeLink or treeNode transform.
 
-Text labels for leaf nodes are drawn to the right of the node; the **textBalanced** option controls whether labels for non-leaf nodes are drawn to the left of the node. It defaults to true, unless a **treeLayout** is specified (*e.g.*, the custom indent layout above).
+The **textLayout** option controls how text labels are anchored to the node. Two layouts are supported:
+
+* *mirrored* - leaf-node labels are left-anchored, and non-leaf nodes right-anchored (with a -dx offset); default unless a **treeLayout** is specified
+* *normal* - all labels are left-anchored; default if a **treeLayout** is specified
 
 ## tree(*data*, *options*)
 
@@ -173,4 +176,4 @@ Returns a new tree mark with the given *data* and *options*.
 Plot.cluster(flare, {path: "name", delimiter: "."})
 ```
 
-Like [tree](#tree-data-options), except sets the **treeLayout** option to [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster), aligning leaf nodes.
+Like [tree](#tree-data-options), except sets the **treeLayout** option to [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster), aligning leaf nodes, and defaults the **textLayout** option to *mirrored*.

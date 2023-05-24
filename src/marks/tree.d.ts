@@ -21,10 +21,12 @@ export interface TreeOptions extends DotOptions, LinkOptions, TextOptions, TreeT
   textStroke?: MarkOptions["stroke"];
 
   /**
-   * Whether labels for non-leaf nodes are drawn to the left of the node;
-   * defaults to true unless a **treeLayout** is specified.
+   * Layout for node labels: if *mirrored*, leaf-node labels are left-anchored,
+   * and non-leaf nodes right-anchored (with a -dx offset). If *normal*, all
+   * labels are left-anchored. Defaults to *mirrored* unless a **treeLayout**
+   * has been specified.
    */
-  textBalanced?: boolean;
+  textLayout?: "mirrored" | "normal";
 }
 
 /**
@@ -46,7 +48,7 @@ export function tree(data?: Data, options?: TreeOptions): CompoundMark;
  * option, placing leaf nodes of the tree at the same depth. Equivalent to:
  *
  * ```js
- * Plot.tree(data, {...options, treeLayout: d3.cluster})
+ * Plot.tree(data, {...options, treeLayout: d3.cluster, textLayout: "mirrored"})
  * ```
  *
  * [1]: https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster

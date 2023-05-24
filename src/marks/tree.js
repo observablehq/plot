@@ -1,10 +1,11 @@
-import {tree as Tree, cluster as Cluster} from "d3";
+import {cluster as Cluster} from "d3";
 import {marks} from "../mark.js";
 import {isNoneish} from "../options.js";
 import {maybeTreeAnchor, treeLink, treeNode} from "../transforms/tree.js";
 import {dot} from "./dot.js";
 import {link} from "./link.js";
 import {text} from "./text.js";
+import {keyword} from "../options.js";
 
 export function tree(
   data,
@@ -28,14 +29,17 @@ export function tree(
     dx,
     dy,
     textAnchor,
-    textBalanced,
+    textLayout,
     ...options
   } = {}
 ) {
-  const {treeLayout = Tree} = options;
   if (dx === undefined) dx = maybeTreeAnchor(options.treeAnchor).dx;
   if (textAnchor !== undefined) throw new Error("textAnchor is not a configurable tree option");
-  if (textBalanced === undefined) textBalanced = treeLayout === Tree || treeLayout === Cluster;
+  textLayout = keyword(
+    textLayout === undefined ? (options.treeLayout === undefined ? "mirrored" : "normal") : textLayout,
+    "textLayout",
+    ["mirrored", "normal"]
+  );
   function treeText(textOptions) {
     return text(
       data,
@@ -71,7 +75,7 @@ export function tree(
     ),
     dotDot ? dot(data, treeNode({fill: fill === undefined ? "node:internal" : fill, title, ...options})) : null,
     textText != null
-      ? textBalanced
+      ? textLayout === "mirrored"
         ? [
             treeText({textAnchor: "start", treeFilter: "node:external"}),
             treeText({textAnchor: "end", treeFilter: "node:internal", dx: -dx})
@@ -82,5 +86,5 @@ export function tree(
 }
 
 export function cluster(data, options) {
-  return tree(data, {...options, treeLayout: Cluster});
+  return tree(data, {textLayout: "mirrored", ...options, treeLayout: Cluster});
 }
