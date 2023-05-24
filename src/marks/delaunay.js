@@ -230,14 +230,15 @@ class Voronoi extends Mark {
         const [cx, cy] = applyFrameAnchor(this, dimensions);
         const xi = X ? (i) => X[i] : constant(cx);
         const yi = Y ? (i) => Y[i] : constant(cy);
-        for (let facet of facets) {
+        for (let [fi, facet] of facets.entries()) {
           if (X) facet = facet.filter((i) => defined(X[i]));
           if (Y) facet = facet.filter((i) => defined(Y[i]));
           for (const [, index] of maybeGroup(facet, Z)) {
             const delaunay = Delaunay.from(index, xi, yi);
             const voronoi = voronoiof(delaunay, dimensions);
             for (let i = 0, n = index.length; i < n; ++i) {
-              C[index[i]] = voronoi.renderCell(i);
+              const c = voronoi.renderCell(i);
+              if (c) (C[index[i]] ||= [])[fi] = c;
             }
           }
         }
@@ -249,6 +250,7 @@ class Voronoi extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {x: X, y: Y, cells: C} = channels;
+    const fi = index.fi ?? 0;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
@@ -258,7 +260,7 @@ class Voronoi extends Mark {
           .enter()
           .append("path")
           .call(applyDirectStyles, this)
-          .attr("d", (i) => C[i])
+          .attr("d", (i) => C[i][fi])
           .call(applyChannelStyles, this, channels);
       })
       .node();
