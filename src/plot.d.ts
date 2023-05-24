@@ -370,6 +370,9 @@ export interface Plot {
    * scales.
    */
   legend(name: ScaleName, options?: LegendOptions): SVGSVGElement | HTMLElement | undefined;
+
+  /** For interactive plots, the current value. */
+  value?: any;
 }
 
 /**

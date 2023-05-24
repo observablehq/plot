@@ -153,6 +153,7 @@ export function plot(options = {}) {
   const context = createContext(options);
   const document = context.document;
   const svg = creator("svg").call(document.documentElement);
+  let figure = svg; // replaced with the figure element, if any
   context.ownerSVGElement = svg;
   context.className = className;
   context.projection = createProjection(options, subdimensions);
@@ -167,6 +168,13 @@ export function plot(options = {}) {
     const state = stateByMark.get(mark);
     const facetState = facetStateByMark.get(mark);
     return {...state, channels: {...state.channels, ...facetState?.channels}};
+  };
+
+  // Allows e.g. the pointer transform to support viewof.
+  context.dispatchValue = (value) => {
+    if (figure.value === value) return;
+    figure.value = value;
+    figure.dispatchEvent(new Event("input", {bubbles: true}));
   };
 
   // Reinitialize; for deriving channels dependent on other channels.
@@ -311,7 +319,6 @@ export function plot(options = {}) {
   }
 
   // Wrap the plot in a figure with a caption, if desired.
-  let figure = svg;
   const legends = createLegends(scaleDescriptors, context, options);
   if (caption != null || legends.length > 0) {
     figure = document.createElement("figure");

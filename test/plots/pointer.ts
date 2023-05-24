@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {html} from "htl";
 
 export async function pointerRenderCompose() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
@@ -22,4 +23,14 @@ export async function pointerRenderCompose() {
       Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
     ]
   });
+}
+
+export async function pointerViewof() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", tip: true}).plot();
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => (textarea.value = JSON.stringify(plot.value, null, 2));
+  oninput(); // initialize the textarea to the initial value
+  plot.oninput = oninput; // update during interaction
+  return html`<figure>${plot}${textarea}</figure>`;
 }

@@ -22,6 +22,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
     // response to pointer events.
     render: composeRender(function (index, scales, values, dimensions, context, next) {
       const svg = context.ownerSVGElement;
+      const {data} = context.getMarkState(this);
 
       // Isolate state per-pointer, per-plot; if the pointer is reused by
       // multiple marks, they will share the same state (e.g., sticky modality).
@@ -118,8 +119,9 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
           }
           g.replaceWith(r);
         }
-        state.roots[renderIndex] = r;
-        return (g = r);
+        state.roots[renderIndex] = g = r;
+        context.dispatchValue(i == null ? null : data[i]);
+        return r;
       }
 
       function pointermove(event) {
