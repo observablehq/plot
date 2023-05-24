@@ -226,41 +226,40 @@ class Voronoi extends Mark {
         let {x: X, y: Y, z: Z} = channels;
         ({x: X, y: Y} = applyPosition(channels, scales, context));
         Z = Z?.value;
-        const C = new Array(data.length);
+        const C = new Array(facets.length);
         const [cx, cy] = applyFrameAnchor(this, dimensions);
         const xi = X ? (i) => X[i] : constant(cx);
         const yi = Y ? (i) => Y[i] : constant(cy);
         for (let [fi, facet] of facets.entries()) {
           if (X) facet = facet.filter((i) => defined(X[i]));
           if (Y) facet = facet.filter((i) => defined(Y[i]));
+          const Cf = C[fi] = [];
           for (const [, index] of maybeGroup(facet, Z)) {
             const delaunay = Delaunay.from(index, xi, yi);
             const voronoi = voronoiof(delaunay, dimensions);
             for (let i = 0, n = index.length; i < n; ++i) {
-              const c = voronoi.renderCell(i);
-              if (c) (C[index[i]] ||= [])[fi] = c;
+              Cf[index[i]] = voronoi.renderCell(i);
             }
           }
         }
-        return {data, facets, channels: {cells: {value: C}}};
+        return {data, facets, channels: {cells: {value: C, filter: null}}};
       }),
       voronoiDefaults
     );
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {x: X, y: Y, cells: C} = channels;
-    const fi = index.fi ?? 0;
+    const {x: X, y: Y, cells: {[index.fi ?? 0]: C}} = channels;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) => {
         g.selectAll()
-          .data(index)
+          .data(index.filter((i) => C[i] != null))
           .enter()
           .append("path")
           .call(applyDirectStyles, this)
-          .attr("d", (i) => C[i][fi])
+          .attr("d", (i) => C[i])
           .call(applyChannelStyles, this, channels);
       })
       .node();
