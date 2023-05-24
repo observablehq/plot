@@ -1,9 +1,10 @@
 import {pointer as pointof} from "d3";
+import {composeRender} from "../mark.js";
 import {applyFrameAnchor} from "../style.js";
 
 const states = new WeakMap();
 
-function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} = {}) {
+function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...options} = {}) {
   maxRadius = +maxRadius;
   // When px or py is used, register an extra channel that the pointer
   // interaction can use to control which point is focused; this allows pointing
@@ -16,7 +17,10 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
     y,
     channels,
     ...options,
-    render(index, scales, values, dimensions, context, next) {
+    // Unlike other composed transforms, the render transform must be the
+    // outermost render function because it will re-render dynamically in
+    // response to pointer events.
+    render: composeRender(function (index, scales, values, dimensions, context, next) {
       const svg = context.ownerSVGElement;
 
       // Isolate state per-pointer, per-plot; if the pointer is reused by
@@ -157,7 +161,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, ...options} =
       svg.addEventListener("pointerleave", pointerleave);
 
       return render(null);
-    }
+    }, render)
   };
 }
 
