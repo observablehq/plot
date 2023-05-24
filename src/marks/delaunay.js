@@ -4,13 +4,11 @@ import {maybeCurve} from "../curve.js";
 import {Mark} from "../mark.js";
 import {markers, applyMarkers} from "../marker.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
-import {
-  applyChannelStyles,
-  applyDirectStyles,
-  applyFrameAnchor,
-  applyIndirectStyles,
-  applyTransform
-} from "../style.js";
+import {applyPosition} from "../projection.js";
+import {applyFrameAnchor, applyTransform} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles} from "../style.js";
+import {initializer} from "../transforms/basic.js";
+import {maybeGroup} from "../transforms/group.js";
 
 const delaunayLinkDefaults = {
   ariaLabel: "delaunay link",
@@ -94,14 +92,15 @@ class DelaunayLink extends Mark {
         for (const k in channels) newChannels[k].push(channels[k][tj]);
       }
 
+      // TODO move to initializer?
       const {halfedges, hull, triangles} = Delaunay.from(index, xi, yi);
+      // inner edges
       for (let i = 0; i < halfedges.length; ++i) {
-        // inner edges
         const j = halfedges[i];
         if (j > i) link(triangles[i], triangles[j]);
       }
+      // convex hull
       for (let i = 0; i < hull.length; ++i) {
-        // convex hull
         link(hull[i], hull[(i + 1) % hull.length]);
       }
 
@@ -164,6 +163,7 @@ class AbstractDelaunayMark extends Mark {
     const yi = Y ? (i) => Y[i] : constant(cy);
     const mark = this;
 
+    // TODO move to initializer?
     function mesh(index) {
       const delaunay = Delaunay.from(index, xi, yi);
       select(this)
@@ -212,7 +212,7 @@ class Hull extends AbstractDelaunayMark {
 }
 
 class Voronoi extends Mark {
-  constructor(data, {initializer, ...options} = {}) {
+  constructor(data, options = {}) {
     const {x, y, z} = options;
     super(
       data,
@@ -221,61 +221,45 @@ class Voronoi extends Mark {
         y: {value: y, scale: "y", optional: true},
         z: {value: z, optional: true}
       },
-      {
-        ...options,
-        // TODO compose with existing initializer
-        initializer: function (data, facets) {
-          const D = new Array(data.length);
-          for (const f of facets) {
-            for (const i of f) D[i] = f;
+      initializer(options, function (data, facets, channels, scales, dimensions, context) {
+        let {x: X, y: Y, z: Z} = channels;
+        ({x: X, y: Y} = applyPosition(channels, scales, context));
+        Z = Z?.value;
+        const C = new Array(data.length);
+        const [cx, cy] = applyFrameAnchor(this, dimensions);
+        const xi = X ? (i) => X[i] : constant(cx);
+        const yi = Y ? (i) => Y[i] : constant(cy);
+        for (let facet of facets) {
+          if (X) facet = facet.filter((i) => isFinite(X[i]));
+          if (Y) facet = facet.filter((i) => isFinite(Y[i]));
+          for (const [, index] of maybeGroup(facet, Z)) {
+            const delaunay = Delaunay.from(index, xi, yi);
+            const voronoi = voronoiof(delaunay, dimensions);
+            for (let i = 0, n = index.length; i < n; ++i) {
+              C[index[i]] = voronoi.renderCell(i);
+            }
           }
-          return {data, facets, channels: {diagrams: {value: D}}};
         }
-      },
+        return {data, facets, channels: {cells: {value: C}}};
+      }),
       voronoiDefaults
     );
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {x: X, y: Y, z: Z, diagrams: D} = channels;
-    const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const xi = X ? (i) => X[i] : constant(cx);
-    const yi = Y ? (i) => Y[i] : constant(cy);
-    const mark = this;
-
-    const i0 = index[0];
-    if (i0 === undefined) return create("svg:g", context).node();
-    const diagram = D[index[0]];
-    function cells(subset) {
-      subset = subset.filter((i) => isFinite(xi(i)) && isFinite(yi(i)));
-      const rank = new Array(subset.length);
-      for (let c = 0; c < subset.length; ++c) rank[subset[c]] = c;
-      const delaunay = Delaunay.from(subset, xi, yi); // TODO memoize?
-      const voronoi = voronoiof(delaunay, dimensions);
-      select(this)
-        .selectAll()
-        .data(index)
-        .enter()
-        .append("path")
-        .call(applyDirectStyles, mark)
-        .attr("d", (i) => voronoi.renderCell(rank[i]))
-        .call(applyChannelStyles, mark, channels);
-    }
-
+    const {x: X, y: Y, cells: C} = channels;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions, context) // TODO avoid creating a new clip-path each time
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
-      .call(
-        Z
-          ? (g) =>
-              g
-                .selectAll()
-                .data(group(diagram, (i) => Z[i]).values())
-                .enter()
-                .append("g")
-                .each(cells)
-          : (g) => g.datum(diagram).each(cells)
-      )
+      .call((g) => {
+        g.selectAll()
+          .data(index)
+          .enter()
+          .append("path")
+          .call(applyDirectStyles, this)
+          .attr("d", (i) => C[i])
+          .call(applyChannelStyles, this, channels);
+      })
       .node();
   }
 }
