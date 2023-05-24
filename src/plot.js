@@ -153,6 +153,7 @@ export function plot(options = {}) {
   const context = createContext(options);
   const document = context.document;
   const svg = creator("svg").call(document.documentElement);
+  let figure = svg; // replaced with the figure element, if any
   context.ownerSVGElement = svg;
   context.className = className;
   context.projection = createProjection(options, subdimensions);
@@ -167,6 +168,12 @@ export function plot(options = {}) {
     const state = stateByMark.get(mark);
     const facetState = facetStateByMark.get(mark);
     return {...state, channels: {...state.channels, ...facetState?.channels}};
+  };
+
+  // Allows e.g. the pointer transform to support viewof.
+  context.dispatchValue = (value) => {
+    figure.value = value;
+    figure.dispatchEvent(new Event("input", {bubbles: true}));
   };
 
   // Reinitialize; for deriving channels dependent on other channels.
@@ -261,13 +268,6 @@ export function plot(options = {}) {
       )
     )
     .call(applyInlineStyles, style);
-
-  // A listener that will dispatch an input event on the figure element
-  let figure = svg;
-  context.dispatchValue = function (value) {
-    figure.value = value;
-    figure.dispatchEvent(new CustomEvent("input"));
-  };
 
   // Render marks.
   for (const mark of marks) {

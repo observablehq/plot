@@ -23,3 +23,10 @@ export async function pointerRenderCompose() {
     ]
   });
 }
+
+export async function pointerViewof() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", tip: true}).plot();
+  plot.oninput = () => console.log(plot.value);
+  return plot;
+}

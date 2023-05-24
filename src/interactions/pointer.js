@@ -119,8 +119,9 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
           }
           g.replaceWith(r);
         }
-        state.roots[renderIndex] = r;
-        return (g = r);
+        state.roots[renderIndex] = g = r;
+        context.dispatchValue(i == null ? null : data[i]); // TODO defer to a microtask? debounce?
+        return r;
       }
 
       function pointermove(event) {
@@ -145,7 +146,6 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         if (state.sticky) (state.sticky = false), state.renders.forEach((r) => r(null)); // clear all pointers
         else state.sticky = true;
         event.stopImmediatePropagation(); // suppress other pointers
-        if (state.sticky) context.dispatchValue(data[i]);
       }
 
       function pointerleave(event) {
