@@ -1,6 +1,7 @@
 import {group, pathRound as path, select, Delaunay} from "d3";
 import {create} from "../context.js";
 import {maybeCurve} from "../curve.js";
+import {defined} from "../defined.js";
 import {Mark} from "../mark.js";
 import {markers, applyMarkers} from "../marker.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
@@ -230,8 +231,8 @@ class Voronoi extends Mark {
         const xi = X ? (i) => X[i] : constant(cx);
         const yi = Y ? (i) => Y[i] : constant(cy);
         for (let facet of facets) {
-          if (X) facet = facet.filter((i) => isFinite(X[i]));
-          if (Y) facet = facet.filter((i) => isFinite(Y[i]));
+          if (X) facet = facet.filter((i) => defined(X[i]));
+          if (Y) facet = facet.filter((i) => defined(Y[i]));
           for (const [, index] of maybeGroup(facet, Z)) {
             const delaunay = Delaunay.from(index, xi, yi);
             const voronoi = voronoiof(delaunay, dimensions);
