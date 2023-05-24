@@ -22,6 +22,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
     // response to pointer events.
     render: composeRender(function (index, scales, values, dimensions, context, next) {
       const svg = context.ownerSVGElement;
+      const {data} = context.getMarkState(this);
 
       // Isolate state per-pointer, per-plot; if the pointer is reused by
       // multiple marks, they will share the same state (e.g., sticky modality).
@@ -144,6 +145,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         if (state.sticky) (state.sticky = false), state.renders.forEach((r) => r(null)); // clear all pointers
         else state.sticky = true;
         event.stopImmediatePropagation(); // suppress other pointers
+        if (state.sticky) context.dispatchValue(data[i]);
       }
 
       function pointerleave(event) {

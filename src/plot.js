@@ -262,6 +262,13 @@ export function plot(options = {}) {
     )
     .call(applyInlineStyles, style);
 
+  // A listener that will dispatch an input event on the figure element
+  let figure = svg;
+  context.dispatchValue = function (value) {
+    figure.value = value;
+    figure.dispatchEvent(new CustomEvent("input"));
+  };
+
   // Render marks.
   for (const mark of marks) {
     const {channels, values, facets: indexes} = stateByMark.get(mark);
@@ -311,7 +318,6 @@ export function plot(options = {}) {
   }
 
   // Wrap the plot in a figure with a caption, if desired.
-  let figure = svg;
   const legends = createLegends(scaleDescriptors, context, options);
   if (caption != null || legends.length > 0) {
     figure = document.createElement("figure");
