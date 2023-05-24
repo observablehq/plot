@@ -1,9 +1,10 @@
 import {pointer as pointof} from "d3";
+import {composeRender} from "../mark.js";
 import {applyFrameAnchor} from "../style.js";
 
 const states = new WeakMap();
 
-function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render: next, ...options} = {}) {
+function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...options} = {}) {
   maxRadius = +maxRadius;
   // When px or py is used, register an extra channel that the pointer
   // interaction can use to control which point is focused; this allows pointing
@@ -11,12 +12,15 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render: next,
   // displayed. Also default x or y to null to disable maybeTuple etc.
   if (px != null) (x ??= null), (channels = {...channels, px: {value: px, scale: "x"}});
   if (py != null) (y ??= null), (channels = {...channels, py: {value: py, scale: "y"}});
-  options = {
+  return {
     x,
     y,
     channels,
     ...options,
-    render(index, scales, values, dimensions, context, next) {
+    // Unlike other composed transforms, the render transform must be the
+    // outermost render function because it will re-render dynamically in
+    // response to pointer events.
+    render: composeRender(function (index, scales, values, dimensions, context, next) {
       const svg = context.ownerSVGElement;
 
       // Isolate state per-pointer, per-plot; if the pointer is reused by
@@ -157,22 +161,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render: next,
       svg.addEventListener("pointerleave", pointerleave);
 
       return render(null);
-    }
-  };
-  if (next != null) {
-    if (typeof next !== "function") throw new TypeError(`invalid render transform: ${next}`);
-    options = {...options, render: composeRenderTransform(options.render, next)};
-  }
-  return options;
-}
-
-function composeRenderTransform(r1, r2) {
-  return function () {
-    const args = [...arguments];
-    const next = args.pop();
-    return r1.call(this, ...args, function () {
-      return r2.call(this, ...arguments, next);
-    });
+    }, render)
   };
 }
 

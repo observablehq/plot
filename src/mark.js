@@ -83,7 +83,6 @@ export class Mark {
       }
     }
     if (render != null) {
-      if (typeof render !== "function") throw new TypeError(`invalid render transform: ${render}`);
       this.render = composeRender(render, this.render);
     }
   }
@@ -136,9 +135,15 @@ export function marks(...marks) {
   return marks;
 }
 
-function composeRender(r1, r2) {
-  return function () {
-    return r1.call(this, ...arguments, r2.bind(this));
+export function composeRender(r1, r2) {
+  if (r1 == null) return r2 === null ? undefined : r2;
+  if (r2 == null) return r1 === null ? undefined : r1;
+  if (typeof r1 !== "function") throw new TypeError(`invalid render transform: ${r1}`);
+  if (typeof r2 !== "function") throw new TypeError(`invalid render transform: ${r2}`);
+  return function (i, s, v, d, c, next) {
+    return r1.call(this, i, s, v, d, c, (i, s, v, d, c) => {
+      return r2.call(this, i, s, v, d, c, next); // preserve this
+    });
   };
 }
 
