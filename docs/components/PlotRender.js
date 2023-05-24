@@ -66,6 +66,9 @@ class Element {
   removeEventListener() {
     // ignored; interaction needs real DOM
   }
+  dispatchEvent() {
+    // ignored; interaction needs real DOM
+  }
   appendChild(child) {
     this.children.push(child);
     child.parentNode = this;
