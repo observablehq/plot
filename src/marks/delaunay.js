@@ -233,7 +233,7 @@ class Voronoi extends Mark {
         for (let [fi, facet] of facets.entries()) {
           if (X) facet = facet.filter((i) => defined(X[i]));
           if (Y) facet = facet.filter((i) => defined(Y[i]));
-          const Cf = C[fi] = [];
+          const Cf = (C[fi] = []);
           for (const [, index] of maybeGroup(facet, Z)) {
             const delaunay = Delaunay.from(index, xi, yi);
             const voronoi = voronoiof(delaunay, dimensions);
@@ -249,7 +249,11 @@ class Voronoi extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {x: X, y: Y, cells: {[index.fi ?? 0]: C}} = channels;
+    const {
+      x: X,
+      y: Y,
+      cells: {[index.fi ?? 0]: C}
+    } = channels;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
