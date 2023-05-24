@@ -122,7 +122,7 @@ Plot.plot({
   style: {
     padding: "10px",
     color: "black",
-    background: `url(/plot/sea-ice.jpg)`,
+    background: "url(../sea-ice.jpg)",
     backgroundSize: "cover"
   },
   marks: [
