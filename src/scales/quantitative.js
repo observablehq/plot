@@ -82,6 +82,15 @@ export function createScaleQ(
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   reverse = !!reverse;
 
+  // If an explicit range is specified, ensure that the domain and range have
+  // the same length; truncate to whichever one is shorter.
+  if (range !== undefined) {
+    const n = (domain = arrayify(domain)).length;
+    const m = (range = arrayify(range)).length;
+    if (n > m) domain = domain.slice(0, m);
+    else if (m > n) range = range.slice(0, n);
+  }
+
   // Sometimes interpolate is a named interpolator, such as "lab" for Lab color
   // space. Other times interpolate is a function that takes two arguments and
   // is used in conjunction with the range. And other times the interpolate
@@ -113,8 +122,7 @@ export function createScaleQ(
     const [min, max] = extent(domain);
     if (min > 0 || max < 0) {
       domain = slice(domain);
-      if (orderof(domain) !== Math.sign(min)) domain[domain.length - 1] = 0;
-      // [2, 1] or [-2, -1]
+      if (orderof(domain) !== Math.sign(min)) domain[domain.length - 1] = 0; // [2, 1] or [-2, -1]
       else domain[0] = 0; // [1, 2] or [-1, -2]
     }
   }
