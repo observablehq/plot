@@ -96,32 +96,6 @@ export async function tipDotFilter() {
   });
 }
 
-export async function tipDotRender() {
-  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.dot(penguins, {
-        x: "culmen_length_mm",
-        y: "culmen_depth_mm",
-        fill: "sex"
-      }),
-      Plot.dot(
-        penguins,
-        Plot.pointer({
-          x: "culmen_length_mm",
-          y: "culmen_depth_mm",
-          stroke: "sex",
-          render: function (index, scales, values, dimensions, context, next) {
-            const g = next.call(this, index, scales, values, dimensions, context);
-            d3.select(g).selectAll("circle").attr("r", 7);
-            return g;
-          }
-        })
-      )
-    ]
-  });
-}
-
 export async function tipGeoCentroid() {
   const [[counties, countymesh]] = await Promise.all([
     d3
