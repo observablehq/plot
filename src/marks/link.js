@@ -19,8 +19,8 @@ export class Link extends Mark {
     super(
       data,
       {
-        x1: {value: x1, scale: "x"},
-        y1: {value: y1, scale: "y"},
+        x1: {value: x1, scale: "x", optional: true},
+        y1: {value: y1, scale: "y", optional: true},
         x2: {value: x2, scale: "x", optional: true},
         y2: {value: y2, scale: "y", optional: true}
       },
@@ -38,6 +38,11 @@ export class Link extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
+    const {width, height, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
+    const a1 = X1 ? (i) => X1[i] : () => (marginLeft + width - marginRight) / 2;
+    const a2 = X2 ? (i) => X2[i] : () => (marginLeft + width - marginRight) / 2;
+    const b1 = Y1 ? (i) => Y1[i] : () => (marginTop + height - marginBottom) / 2;
+    const b2 = Y2 ? (i) => Y2[i] : () => (marginTop + height - marginBottom) / 2;
     const {curve} = this;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
@@ -57,8 +62,8 @@ export class Link extends Mark {
                   const p = path();
                   const c = curve(p);
                   c.lineStart();
-                  c.point(X1[i], Y1[i]);
-                  c.point(X2[i], Y2[i]);
+                  c.point(a1(i), b1(i));
+                  c.point(a2(i), b2(i));
                   c.lineEnd();
                   return p;
                 }

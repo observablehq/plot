@@ -33,8 +33,8 @@ export class Arrow extends Mark {
     super(
       data,
       {
-        x1: {value: x1, scale: "x"},
-        y1: {value: y1, scale: "y"},
+        x1: {value: x1, scale: "x", optional: true},
+        y1: {value: y1, scale: "y", optional: true},
         x2: {value: x2, scale: "x", optional: true},
         y2: {value: y2, scale: "y", optional: true}
       },
@@ -50,6 +50,11 @@ export class Arrow extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
+    const {width, height, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
+    const a1 = X1 ? (i) => X1[i] : () => (marginLeft + width - marginRight) / 2;
+    const a2 = X2 ? (i) => X2[i] : () => (marginLeft + width - marginRight) / 2;
+    const b1 = Y1 ? (i) => Y1[i] : () => (marginTop + height - marginBottom) / 2;
+    const b2 = Y2 ? (i) => Y2[i] : () => (marginTop + height - marginBottom) / 2;
     const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this;
     const sw = SW ? (i) => SW[i] : constant(strokeWidth === undefined ? 1 : strokeWidth);
 
@@ -74,10 +79,10 @@ export class Arrow extends Mark {
           .attr("d", (i) => {
             // The start ⟨x1,y1⟩ and end ⟨x2,y2⟩ points may be inset, and the
             // ending line angle may be altered for inset swoopy arrows.
-            let x1 = X1[i],
-              y1 = Y1[i],
-              x2 = X2[i],
-              y2 = Y2[i];
+            let x1 = a1(i),
+              y1 = b1(i),
+              x2 = a2(i),
+              y2 = b2(i);
             const lineLength = Math.hypot(x2 - x1, y2 - y1);
             if (lineLength <= insetStart + insetEnd) return null;
             let lineAngle = Math.atan2(y2 - y1, x2 - x1);

@@ -94,6 +94,10 @@ https://www.federalreserve.gov/releases/h15/
 Flare visualization toolkit package hierarchy
 https://observablehq.com/@d3/treemap
 
+## gender-income.csv
+World Bank | Gender Data Portal
+https://genderdata.worldbank.org/topics/assets/
+
 ## gistemp.csv
 NASA Goddard Institute for Space Studies
 https://data.giss.nasa.gov/gistemp/

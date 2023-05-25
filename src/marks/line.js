@@ -29,8 +29,8 @@ export class Line extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x"},
-        y: {value: y, scale: "y"},
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true},
         z: {value: maybeZ(options), optional: true}
       },
       options,
@@ -51,6 +51,7 @@ export class Line extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
+    const {width, height, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
     const {curve} = this;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
@@ -71,8 +72,8 @@ export class Line extends Mark {
               : shapeLine()
                   .curve(curve)
                   .defined((i) => i >= 0)
-                  .x((i) => X[i])
-                  .y((i) => Y[i])
+                  .x(X ? (i) => X[i] : (marginLeft + width - marginRight) / 2)
+                  .y(Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
           )
       )
       .node();
