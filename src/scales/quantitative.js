@@ -7,25 +7,26 @@ import {
   interpolateNumber,
   interpolateRgb,
   interpolateRound,
-  min,
   max,
   median,
+  min,
   quantile,
   quantize,
   reverse as reverseof,
+  scaleIdentity,
   scaleLinear,
   scaleLog,
   scalePow,
   scaleQuantile,
   scaleSymlog,
   scaleThreshold,
-  scaleIdentity,
   ticks
 } from "d3";
-import {positive, negative, finite} from "../defined.js";
-import {arrayify, constant, orderof, slice, maybeNiceInterval, maybeRangeInterval} from "../options.js";
+import {finite, negative, positive} from "../defined.js";
+import {arrayify, constant, maybeNiceInterval, maybeRangeInterval, orderof, slice} from "../options.js";
+import {warn} from "../warnings.js";
+import {color, length, opacity, radius, registry} from "./index.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
-import {registry, radius, opacity, color, length} from "./index.js";
 
 export const flip = (i) => (t) => i(1 - t);
 const unit = [0, 1];
@@ -87,8 +88,13 @@ export function createScaleQ(
   if (range !== undefined) {
     const n = (domain = arrayify(domain)).length;
     const m = (range = arrayify(range)).length;
-    if (n > m) domain = domain.slice(0, m);
-    else if (m > n) range = range.slice(0, n);
+    if (n > m) {
+      domain = domain.slice(0, m);
+      warn(`Warning: the ${key} scale domain contains extra elements.`);
+    } else if (m > n) {
+      range = range.slice(0, n);
+      warn(`Warning: the ${key} scale range contains extra elements.`);
+    }
   }
 
   // Sometimes interpolate is a named interpolator, such as "lab" for Lab color
