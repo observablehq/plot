@@ -17,7 +17,10 @@ export async function oneDimensionalArrow() {
       y: "year",
       x: "group"
     },
-    marks: [Plot.frame(), Plot.arrow(income, Plot.groupZ({x1: "min", x2: "max"}, {x1: "value", x2: "value"}))]
+    marks: [
+      Plot.frame(),
+      Plot.arrow(income, Plot.groupZ({x1: "first", x2: "last"}, {x1: "value", x2: "value", sort: "gender"}))
+    ]
   });
 }
 
@@ -37,7 +40,7 @@ export async function oneDimensionalLine() {
       y: "year",
       x: "group"
     },
-    marks: [Plot.frame(), Plot.line(income, {x: "value"}), Plot.dotX(income, {x: "value", fill: "gender", r: 5})]
+    marks: [Plot.frame(), Plot.line(income, {x: "value", sort: "gender", markerEnd: "arrow"})]
   });
 }
 
@@ -59,8 +62,10 @@ export async function oneDimensionalLink() {
     },
     marks: [
       Plot.frame(),
-      Plot.link(income, Plot.groupZ({x1: "min", x2: "max"}, {x1: "value", x2: "value"})),
-      Plot.dotX(income, {x: "value", fill: "gender", r: 5})
+      Plot.link(
+        income,
+        Plot.groupZ({x1: "first", x2: "last"}, {x1: "value", x2: "value", sort: "gender", markerEnd: "arrow"})
+      )
     ]
   });
 }

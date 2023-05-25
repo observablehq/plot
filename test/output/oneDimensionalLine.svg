@@ -123,90 +123,76 @@
   </g>
   <g aria-label="line" transform="translate(0.5,0.5)">
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(1,0)">
-      <path d="M62.167,44L72.567,44"></path>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-1)" d="M62.167,44L72.567,44"></path>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(1,31)">
-      <path d="M80.8,44L95.317,44"></path>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-2">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-2)" d="M80.8,44L95.317,44"></path>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(1,62)">
-      <path d="M103.117,44L125,44"></path>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-3">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-3)" d="M103.117,44L125,44"></path>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(218,0)">
-      <path d="M89.033,44L112.65,44"></path>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-4">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-4)" d="M89.033,44L112.65,44"></path>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(218,31)">
-      <path d="M115.467,44L142.333,44"></path>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-5">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-5)" d="M115.467,44L142.333,44"></path>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(218,62)">
-      <path d="M153.167,44L174.183,44"></path>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-6">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-6)" d="M153.167,44L174.183,44"></path>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(435,0)">
-      <path d="M151.867,44L172.233,44"></path>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-7">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-7)" d="M151.867,44L172.233,44"></path>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(435,31)">
-      <path d="M187.183,44L199.75,44"></path>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-8">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-8)" d="M187.183,44L199.75,44"></path>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(435,62)">
-      <path d="M188.483,44L205.167,44"></path>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-9">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-9)" d="M188.483,44L205.167,44"></path>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(652,0)">
-      <path d="M225.1,44L234.417,44"></path>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-10">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-10)" d="M225.1,44L234.417,44"></path>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(652,31)">
-      <path d="M238.533,44L240.267,44"></path>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-11">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-11)" d="M238.533,44L240.267,44"></path>
     </g>
     <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(652,62)">
-      <path d="M239.617,44L243.083,44"></path>
-    </g>
-  </g>
-  <g aria-label="dot" transform="translate(0.5,0.5)">
-    <g transform="translate(1,0)">
-      <circle cx="62.16666666666667" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="72.56666666666666" cy="44" r="5" fill="#f28e2c"></circle>
-    </g>
-    <g transform="translate(1,31)">
-      <circle cx="80.80000000000001" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="95.31666666666666" cy="44" r="5" fill="#f28e2c"></circle>
-    </g>
-    <g transform="translate(1,62)">
-      <circle cx="103.11666666666666" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="125" cy="44" r="5" fill="#f28e2c"></circle>
-    </g>
-    <g transform="translate(218,0)">
-      <circle cx="89.03333333333333" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="112.64999999999999" cy="44" r="5" fill="#f28e2c"></circle>
-    </g>
-    <g transform="translate(218,31)">
-      <circle cx="115.46666666666667" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="142.33333333333334" cy="44" r="5" fill="#f28e2c"></circle>
-    </g>
-    <g transform="translate(218,62)">
-      <circle cx="153.16666666666669" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="174.18333333333337" cy="44" r="5" fill="#f28e2c"></circle>
-    </g>
-    <g transform="translate(435,0)">
-      <circle cx="151.86666666666667" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="172.23333333333332" cy="44" r="5" fill="#f28e2c"></circle>
-    </g>
-    <g transform="translate(435,31)">
-      <circle cx="187.18333333333334" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="199.75" cy="44" r="5" fill="#f28e2c"></circle>
-    </g>
-    <g transform="translate(435,62)">
-      <circle cx="188.48333333333332" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="205.16666666666669" cy="44" r="5" fill="#f28e2c"></circle>
-    </g>
-    <g transform="translate(652,0)">
-      <circle cx="225.1" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="234.41666666666669" cy="44" r="5" fill="#f28e2c"></circle>
-    </g>
-    <g transform="translate(652,31)">
-      <circle cx="238.53333333333333" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="240.26666666666668" cy="44" r="5" fill="#f28e2c"></circle>
-    </g>
-    <g transform="translate(652,62)">
-      <circle cx="239.61666666666667" cy="44" r="5" fill="#4e79a7"></circle>
-      <circle cx="243.08333333333331" cy="44" r="5" fill="#f28e2c"></circle>
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-12">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path marker-end="url(#plot-marker-12)" d="M239.617,44L243.083,44"></path>
     </g>
   </g>
 </svg>
