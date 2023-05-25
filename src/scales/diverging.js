@@ -8,10 +8,12 @@ import {
   scaleDivergingPow,
   scaleDivergingSymlog
 } from "d3";
-import {positive, negative} from "../defined.js";
+import {negative, positive} from "../defined.js";
+import {arrayify} from "../options.js";
+import {warn} from "../warnings.js";
+import {color, registry} from "./index.js";
+import {flip, inferDomain, interpolatePiecewise, maybeInterpolator} from "./quantitative.js";
 import {quantitativeScheme} from "./schemes.js";
-import {registry, color} from "./index.js";
-import {inferDomain, maybeInterpolator, flip, interpolatePiecewise} from "./quantitative.js";
 
 function createScaleD(
   key,
@@ -37,7 +39,10 @@ function createScaleD(
   }
 ) {
   pivot = +pivot;
+  domain = arrayify(domain);
   let [min, max] = domain;
+  if (domain.length > 2) warn(`Warning: the diverging ${key} scale domain contains extra elements.`);
+
   if (descending(min, max) < 0) ([min, max] = [max, min]), (reverse = !reverse);
   min = Math.min(min, pivot);
   max = Math.max(max, pivot);
