@@ -7,8 +7,7 @@ export async function musicRevenue() {
     x: "year",
     y: "revenue",
     z: "format",
-    order: "appearance",
-    reverse: true
+    order: "-appearance"
   };
   return Plot.plot({
     y: {
@@ -30,8 +29,7 @@ export async function musicRevenueCustomOrder() {
     x: "year",
     y: "revenue",
     z: "format",
-    order: (a, b) => d3.descending(a.group, b.group) || d3.ascending(a.revenue, b.revenue),
-    reverse: true
+    order: (a, b) => d3.ascending(a.group, b.group) || d3.descending(a.revenue, b.revenue)
   };
   return Plot.plot({
     y: {

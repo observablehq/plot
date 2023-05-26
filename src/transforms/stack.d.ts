@@ -66,7 +66,12 @@ export type StackOrderName = "value" | "x" | "y" | "z" | "sum" | "appearance" | 
  * - a comparator function for ordering data
  * - an array of explicit **z** values in the desired order
  */
-export type StackOrder = StackOrderName | (string & Record<never, never>) | ((a: any, b: any) => any) | any[];
+export type StackOrder =
+  | StackOrderName
+  | `-${StackOrderName}`
+  | (string & Record<never, never>)
+  | ((a: any, b: any) => any)
+  | any[];
 
 /** Options for the stack transform. */
 export interface StackOptions {
