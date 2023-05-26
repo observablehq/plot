@@ -3,14 +3,16 @@ import assert from "assert";
 function warns(run, expected = /warning/i) {
   const actual = [];
   const warn = console.warn;
+  let result;
   try {
     console.warn = (warning) => void actual.push(warning);
-    run();
+    result = run();
     assert.strictEqual(actual.length, 1, "expected 1 warning");
     assert.match(actual[0], expected);
   } finally {
     console.warn = warn;
   }
+  return result;
 }
 
 async function warnsAsync(run, expected = /warning/i) {
@@ -31,13 +33,15 @@ async function warnsAsync(run, expected = /warning/i) {
 function doesNotWarn(run) {
   const actual = [];
   const warn = console.warn;
+  let result;
   try {
     console.warn = (warning) => void actual.push(warning);
-    run();
+    result = run();
     assert.strictEqual(actual.length, 0, "expected 0 warnings");
   } finally {
     console.warn = warn;
   }
+  return result;
 }
 
 async function doesNotWarnAsync(run) {

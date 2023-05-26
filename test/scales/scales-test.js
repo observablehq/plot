@@ -411,8 +411,10 @@ it("plot(…).scale(name) handles a reversed diverging scale with a descending d
 });
 
 it("plot(…).scale(name) ignores extra domain elements with a diverging scale", async () => {
-  let plot;
-  assert.warns(() => (plot = Plot.plot({color: {type: "diverging", domain: [-5, 5, 10]}})), /domain contains extra/);
+  const plot = assert.warns(
+    () => Plot.plot({color: {type: "diverging", domain: [-5, 5, 10]}}),
+    /domain contains extra/
+  );
   const {interpolate, ...color} = plot.scale("color");
   scaleEqual(color, {
     type: "diverging",
@@ -723,12 +725,13 @@ it("plot(…).scale('color') can return a “polylinear” piecewise linear scal
 });
 
 it("plot(…).scale('color') ignores extra domain elements with an explicit range", () => {
-  let plot;
-  assert.warns(() => {
-    plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
-      color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"]}
-    });
-  }, /domain contains extra/);
+  const plot = assert.warns(
+    () =>
+      Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+        color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"]}
+      }),
+    /domain contains extra/
+  );
   scaleEqual(plot.scale("color"), {
     type: "linear",
     domain: [0, 100],
@@ -739,12 +742,13 @@ it("plot(…).scale('color') ignores extra domain elements with an explicit rang
 });
 
 it("plot(…).scale('color') ignores extra range elements with an explicit range", () => {
-  let plot;
-  assert.warns(() => {
-    plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
-      color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"]}
-    });
-  }, /range contains extra/);
+  const plot = assert.warns(
+    () =>
+      Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+        color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"]}
+      }),
+    /range contains extra/
+  );
   scaleEqual(plot.scale("color"), {
     type: "linear",
     domain: [0, 100],
@@ -755,12 +759,13 @@ it("plot(…).scale('color') ignores extra range elements with an explicit range
 });
 
 it("plot(…).scale('color') ignores extra domain elements with an explicit range when reversed", () => {
-  let plot;
-  assert.warns(() => {
-    plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
-      color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"], reverse: true}
-    });
-  }, /domain contains extra/);
+  const plot = assert.warns(
+    () =>
+      Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+        color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"], reverse: true}
+      }),
+    /domain contains extra/
+  );
   scaleEqual(plot.scale("color"), {
     type: "linear",
     domain: [100, 0],
@@ -771,12 +776,13 @@ it("plot(…).scale('color') ignores extra domain elements with an explicit rang
 });
 
 it("plot(…).scale('color') ignores extra range elements with an explicit range when reversed", () => {
-  let plot;
-  assert.warns(() => {
-    plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
-      color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"], reverse: true}
-    });
-  }, /range contains extra/);
+  const plot = assert.warns(
+    () =>
+      Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+        color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"], reverse: true}
+      }),
+    /range contains extra/
+  );
   scaleEqual(plot.scale("color"), {
     type: "linear",
     domain: [100, 0],
