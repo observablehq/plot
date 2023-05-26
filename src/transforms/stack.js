@@ -94,7 +94,7 @@ function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
       const facetstacks = [];
       for (const facet of facets) {
         const stacks = X ? Array.from(group(facet, (i) => X[i]).values()) : [facet];
-        if (compare) applyOrder(stacks, compare);
+        if (compare) for (const stack of stacks) stack.sort(compare);
         for (const stack of stacks) {
           let yn = 0;
           let yp = 0;
@@ -228,23 +228,23 @@ function offsetCenterFacets(facetstacks, Y1, Y2) {
 }
 
 function maybeOrder(order, offset, ky) {
-  if (order === undefined && offset === offsetWiggle) return orderInsideOut(orderAscending);
+  if (order === undefined && offset === offsetWiggle) return orderInsideOut(ascendingDefined);
   if (order == null) return;
   if (typeof order === "string") {
     const negate = order.startsWith("-");
-    const direction = negate ? orderDescending : orderAscending;
+    const compare = negate ? descendingDefined : ascendingDefined;
     switch ((negate ? order.slice(1) : order).toLowerCase()) {
       case "value":
       case ky:
-        return orderY(direction);
+        return orderY(compare);
       case "z":
-        return orderZ(direction);
+        return orderZ(compare);
       case "sum":
-        return orderSum(direction);
+        return orderSum(compare);
       case "appearance":
-        return orderAppearance(direction);
+        return orderAppearance(compare);
       case "inside-out":
-        return orderInsideOut(direction);
+        return orderInsideOut(compare);
     }
     return orderAccessor(field(order));
   }
@@ -254,18 +254,18 @@ function maybeOrder(order, offset, ky) {
 }
 
 // by value
-function orderY(order) {
-  return (data, X, Y) => order(Y);
+function orderY(compare) {
+  return (data, X, Y) => (i, j) => compare(Y[i], Y[j]);
 }
 
 // by location
-function orderZ(order) {
-  return (data, X, Y, Z) => order(Z);
+function orderZ(compare) {
+  return (data, X, Y, Z) => (i, j) => compare(Z[i], Z[j]);
 }
 
 // by sum of value (a.k.a. “ascending”)
-function orderSum(order) {
-  return orderZDomain(order, (data, X, Y, Z) =>
+function orderSum(compare) {
+  return orderZDomain(compare, (data, X, Y, Z) =>
     groupSort(
       range(data),
       (I) => sum(I, (i) => Y[i]),
@@ -275,8 +275,8 @@ function orderSum(order) {
 }
 
 // by x = argmax of value
-function orderAppearance(order) {
-  return orderZDomain(order, (data, X, Y, Z) =>
+function orderAppearance(compare) {
+  return orderZDomain(compare, (data, X, Y, Z) =>
     groupSort(
       range(data),
       (I) => X[greatest(I, (i) => Y[i])],
@@ -287,8 +287,8 @@ function orderAppearance(order) {
 
 // by x = argmax of value, but rearranged inside-out by alternating series
 // according to the sign of a running divergence of sums
-function orderInsideOut(order) {
-  return orderZDomain(order, (data, X, Y, Z) => {
+function orderInsideOut(compare) {
+  return orderZDomain(compare, (data, X, Y, Z) => {
     const I = range(data);
     const K = groupSort(
       I,
@@ -316,16 +316,11 @@ function orderInsideOut(order) {
   });
 }
 
-function orderAscending(O) {
-  return (i, j) => ascendingDefined(O[i], O[j]);
-}
-
-function orderDescending(O) {
-  return (i, j) => descendingDefined(O[i], O[j]);
-}
-
 function orderAccessor(f) {
-  return (data) => orderAscending(valueof(data, f));
+  return (data) => {
+    const O = valueof(data, f);
+    return (i, j) => ascendingDefined(O[i], O[j]);
+  };
 }
 
 function orderComparator(f) {
@@ -333,22 +328,16 @@ function orderComparator(f) {
 }
 
 function orderGiven(domain) {
-  return orderZDomain(orderAscending, () => domain);
+  return orderZDomain(ascendingDefined, () => domain);
 }
 
-// Given an explicit ordering of distinct values in z, returns a parallel column
-// O that can be used with applyOrder to sort stacks. Note that this is a series
-// order: it will be consistent across stacks.
-function orderZDomain(order, domain) {
+// Given an ordering (domain) of distinct values in z that can be derived from
+// the data, returns a comparator that can be used to sort stacks. Note that
+// this is a series order: it will be consistent across stacks.
+function orderZDomain(compare, domain) {
   return (data, X, Y, Z) => {
     if (!Z) throw new Error("missing channel: z");
     const map = new InternMap(domain(data, X, Y, Z).map((d, i) => [d, i]));
-    return order(Z.map((z) => map.get(z)));
+    return (i, j) => compare(map.get(Z[i]), map.get(Z[j]));
   };
-}
-
-function applyOrder(stacks, compare) {
-  for (const stack of stacks) {
-    stack.sort(compare);
-  }
 }
