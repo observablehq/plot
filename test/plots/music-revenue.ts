@@ -23,3 +23,28 @@ export async function musicRevenue() {
     ]
   });
 }
+
+export async function musicRevenueCustomOrder() {
+  const data = await d3.csv<any>("data/riaa-us-revenue.csv", d3.autoType);
+  const stack: Plot.AreaYOptions = {
+    x: "year",
+    y: "revenue",
+    z: "format",
+    order: (a, b) => d3.descending(a.group, b.group) || d3.ascending(a.revenue, b.revenue),
+    reverse: true
+  };
+  return Plot.plot({
+    y: {
+      grid: true,
+      label: "Annual revenue (billions, adj.)",
+      transform: (d) => d / 1000
+    },
+    marks: [
+      Plot.areaY(
+        data,
+        Plot.stackY({...stack, fill: "group", stroke: "white", title: (d) => `${d.format}\n${d.group}`})
+      ),
+      Plot.ruleY([0])
+    ]
+  });
+}

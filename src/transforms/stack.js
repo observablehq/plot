@@ -87,14 +87,14 @@ function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
       const X = x == null ? undefined : setX(maybeApplyInterval(valueof(data, x), plotOptions?.[kx]));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);
-      const O = order && order(data, X, Y, Z);
+      const compare = order && order(data, X, Y, Z);
       const n = data.length;
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
       const facetstacks = [];
       for (const facet of facets) {
         const stacks = X ? Array.from(group(facet, (i) => X[i]).values()) : [facet];
-        if (O) applyOrder(stacks, O);
+        if (compare) applyOrder(stacks, compare);
         for (const stack of stacks) {
           let yn = 0;
           let yp = 0;
@@ -244,21 +244,21 @@ function maybeOrder(order, offset, ky) {
       case "inside-out":
         return orderInsideOut;
     }
-    return orderFunction(field(order));
+    return orderAccessor(field(order));
   }
-  if (typeof order === "function") return orderFunction(order);
+  if (typeof order === "function") return (order.length === 1 ? orderAccessor : orderComparator)(order);
   if (Array.isArray(order)) return orderGiven(order);
   throw new Error(`invalid order: ${order}`);
 }
 
 // by value
 function orderY(data, X, Y) {
-  return Y;
+  return orderNatural(Y);
 }
 
 // by location
 function orderZ(order, X, Y, Z) {
-  return Z;
+  return orderNatural(Z);
 }
 
 // by sum of value (a.k.a. “ascending”)
@@ -314,8 +314,16 @@ function orderInsideOut(data, X, Y, Z) {
   return orderZDomain(Z, Kn.reverse().concat(Kp));
 }
 
-function orderFunction(f) {
-  return (data) => valueof(data, f);
+function orderNatural(O) {
+  return (i, j) => ascendingDefined(O[i], O[j]);
+}
+
+function orderAccessor(f) {
+  return (data) => orderNatural(valueof(data, f));
+}
+
+function orderComparator(f) {
+  return (data) => (i, j) => f(data[i], data[j]);
 }
 
 function orderGiven(domain) {
@@ -328,11 +336,11 @@ function orderGiven(domain) {
 function orderZDomain(Z, domain) {
   if (!Z) throw new Error("missing channel: z");
   domain = new InternMap(domain.map((d, i) => [d, i]));
-  return Z.map((z) => domain.get(z));
+  return orderNatural(Z.map((z) => domain.get(z)));
 }
 
-function applyOrder(stacks, O) {
+function applyOrder(stacks, compare) {
   for (const stack of stacks) {
-    stack.sort((i, j) => ascendingDefined(O[i], O[j]));
+    stack.sort(compare);
   }
 }
