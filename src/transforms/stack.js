@@ -265,36 +265,30 @@ function orderZ(order) {
 
 // by sum of value (a.k.a. “ascending”)
 function orderSum(order) {
-  return (data, X, Y, Z) =>
-    orderZDomain(
-      order,
-      Z,
-      groupSort(
-        range(data),
-        (I) => sum(I, (i) => Y[i]),
-        (i) => Z[i]
-      )
-    );
+  return orderZDomain(order, (data, X, Y, Z) =>
+    groupSort(
+      range(data),
+      (I) => sum(I, (i) => Y[i]),
+      (i) => Z[i]
+    )
+  );
 }
 
 // by x = argmax of value
 function orderAppearance(order) {
-  return (data, X, Y, Z) =>
-    orderZDomain(
-      order,
-      Z,
-      groupSort(
-        range(data),
-        (I) => X[greatest(I, (i) => Y[i])],
-        (i) => Z[i]
-      )
-    );
+  return orderZDomain(order, (data, X, Y, Z) =>
+    groupSort(
+      range(data),
+      (I) => X[greatest(I, (i) => Y[i])],
+      (i) => Z[i]
+    )
+  );
 }
 
 // by x = argmax of value, but rearranged inside-out by alternating series
 // according to the sign of a running divergence of sums
 function orderInsideOut(order) {
-  return (data, X, Y, Z) => {
+  return orderZDomain(order, (data, X, Y, Z) => {
     const I = range(data);
     const K = groupSort(
       I,
@@ -318,8 +312,8 @@ function orderInsideOut(order) {
         Kn.push(k);
       }
     }
-    return orderZDomain(order, Z, Kn.reverse().concat(Kp));
-  };
+    return Kn.reverse().concat(Kp);
+  });
 }
 
 function orderAscending(O) {
@@ -339,16 +333,18 @@ function orderComparator(f) {
 }
 
 function orderGiven(domain) {
-  return (data, X, Y, Z) => orderZDomain(orderAscending, Z, domain);
+  return orderZDomain(orderAscending, () => domain);
 }
 
 // Given an explicit ordering of distinct values in z, returns a parallel column
 // O that can be used with applyOrder to sort stacks. Note that this is a series
 // order: it will be consistent across stacks.
-function orderZDomain(order, Z, domain) {
-  if (!Z) throw new Error("missing channel: z");
-  domain = new InternMap(domain.map((d, i) => [d, i]));
-  return order(Z.map((z) => domain.get(z)));
+function orderZDomain(order, domain) {
+  return (data, X, Y, Z) => {
+    if (!Z) throw new Error("missing channel: z");
+    const map = new InternMap(domain(data, X, Y, Z).map((d, i) => [d, i]));
+    return order(Z.map((z) => map.get(z)));
+  };
 }
 
 function applyOrder(stacks, compare) {
