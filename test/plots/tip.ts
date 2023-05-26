@@ -123,6 +123,19 @@ export async function tipHexbin() {
   return Plot.hexagon(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height", tip: true})).plot();
 }
 
+// Normally you would slap a tip: true on the hexagon, as above, but here we
+// want to test that the hexbin transform isn’t applying an erroneous stroke:
+// none to the tip options (which would change the tip appearance).
+export async function tipHexbinExplicit() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.hexagon(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"})),
+      Plot.tip(olympians, Plot.pointer(Plot.hexbin({fill: "count"}, {x: "weight", y: "height"})))
+    ]
+  });
+}
+
 export async function tipLine() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
