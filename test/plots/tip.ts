@@ -55,6 +55,10 @@ export async function tipDot() {
   return Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex", tip: true}).plot();
 }
 
+export async function tipDotX() {
+  return Plot.dotX(d3.range(10), {tip: true}).plot();
+}
+
 export async function tipDotFacets() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
