@@ -1,5 +1,5 @@
 import type {ChannelValue} from "../channel.js";
-import type {Transformed} from "./basic.js";
+import type {CompareFunction, Transformed} from "./basic.js";
 
 /**
  * A built-in stack offset method; one of:
@@ -62,7 +62,7 @@ export type StackOrderName = "value" | "x" | "y" | "z" | "sum" | "appearance" | 
  *
  * - a named stack order method such as *inside-out* or *sum*
  * - a field name, for natural order of the corresponding values
- * - a function of data, for natural order of the corresponding values
+ * - an accessor function, for natural order of the corresponding values
  * - a comparator function for ordering data
  * - an array of explicit **z** values in the desired order
  */
@@ -70,7 +70,8 @@ export type StackOrder =
   | StackOrderName
   | `-${StackOrderName}`
   | (string & Record<never, never>)
-  | ((a: any, b: any) => any)
+  | ((d: any) => any) // accessor
+  | CompareFunction
   | any[];
 
 /** Options for the stack transform. */
