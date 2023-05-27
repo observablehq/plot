@@ -388,14 +388,17 @@ function applyScaleTransforms(channels, options) {
 // Note: mutates channel.value to apply the scale transform, if any.
 function applyScaleTransform(channel, options) {
   const {scale} = channel;
-  if (scale == null) return;
+  if (scale == null || channel.transformed) return;
   const {
     type,
     percent,
     interval,
     transform = percent ? (x) => x * 100 : maybeIntervalTransform(interval, type)
   } = options[scale] ?? {};
-  if (transform != null) channel.value = map(channel.value, transform);
+  if (transform != null) {
+    channel.value = map(channel.value, transform);
+    channel.transformed = true;
+  }
 }
 
 // An initializer may generate channels without knowing how the downstream mark

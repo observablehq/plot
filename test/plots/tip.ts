@@ -194,3 +194,11 @@ export async function tipRuleAnchored() {
     ]
   });
 }
+
+export async function tipTransform() {
+  return Plot.plot({
+    width: 245,
+    color: {percent: true, legend: true},
+    marks: [Plot.dotX([0, 0.1, 0.3, 1], {fill: Plot.identity, r: 10, frameAnchor: "middle", tip: true})]
+  });
+}
