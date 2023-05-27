@@ -109,6 +109,9 @@ export interface Channel {
    */
   filter?: ((value: any) => boolean) | null;
 
+  /** Whether to apply the scale’s transform, if any; defaults to true. */
+  transform?: boolean;
+
   /**
    * An internal hint to affect the default construction of scales. For example,
    * the dot mark uses a channel hint to affect the default range of the

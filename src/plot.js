@@ -385,17 +385,20 @@ function applyScaleTransforms(channels, options) {
   return channels;
 }
 
-// Note: mutates channel.value to apply the scale transform, if any.
+// Note: mutates channel.value to apply the scale transform, if any. Also sets
+// channel.transform to false to prevent duplicate transform application.
 function applyScaleTransform(channel, options) {
-  const {scale} = channel;
-  if (scale == null) return;
+  const {scale, transform: t = true} = channel;
+  if (scale == null || !t) return;
   const {
     type,
     percent,
     interval,
     transform = percent ? (x) => x * 100 : maybeIntervalTransform(interval, type)
   } = options[scale] ?? {};
-  if (transform != null) channel.value = map(channel.value, transform);
+  if (transform == null) return;
+  channel.value = map(channel.value, transform);
+  channel.transform = false;
 }
 
 // An initializer may generate channels without knowing how the downstream mark
