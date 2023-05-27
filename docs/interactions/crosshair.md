@@ -12,7 +12,7 @@ import penguins from "../data/penguins.ts";
 
 The **crosshair mark** shows the *x* (horizontal↔︎ position) and *y* (vertical↕︎ position) value of the point closest to the [pointer](./pointer.md) on the bottom and left sides of the frame, respectively.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-crosshair
 ```js
 Plot.plot({
   marks: [
@@ -25,7 +25,7 @@ Plot.plot({
 
 For charts which have a “dominant” dimension, such as time in a time-series chart, use the crosshairX or crosshairY mark for the [pointerX](./pointer.md#pointerx-options) or [pointerY](./pointer.md#pointery-options) transform as appropriate.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-crosshairx
 ```js
 Plot.plot({
   marks: [
@@ -38,7 +38,7 @@ Plot.plot({
 
 If either **x** or **y** is not specified, the crosshair is one-dimensional.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-one-dimensional-crosshair
 ```js
 Plot.plot({
   marks: [
@@ -51,7 +51,7 @@ Plot.plot({
 
 The **color** option sets the fill color of the text and the stroke color of the rule. This option can be specified as a channel to reinforce a color encoding.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-colored-crosshair
 ```js
 Plot.plot({
   marks: [
@@ -91,3 +91,19 @@ Plot.crosshair(cars, {x: "economy (mpg)", y: "cylinders"})
 ```
 
 Returns a new crosshair for the given *data* and *options*, drawing horizontal and vertical rules. The corresponding **x** and **y** values are also drawn just outside the bottom and left sides of the frame, respectively, typically on top of the axes. If either **x** or **y** is not specified, the crosshair will be one-dimensional.
+
+## crosshairX(*data*, *options*)
+
+```js
+Plot.crosshairX(aapl, {x: "Date", y: "Close"})
+```
+
+Like crosshair, but using [pointerX](./pointer.md#pointerx-options) when *x* is the dominant dimension, like time in a time-series chart.
+
+## crosshairY(*data*, *options*)
+
+```js
+Plot.crosshairY(aapl, {x: "Date", y: "Close"})
+```
+
+Like crosshair, but using [pointerY](./pointer.md#pointery-options) when *y* is the dominant dimension.
