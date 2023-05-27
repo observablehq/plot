@@ -1,0 +1,53 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(20,30)" d="M0,0L0,6"></path>
+    <path transform="translate(86.66666666666666,30)" d="M0,0L0,6"></path>
+    <path transform="translate(153.33333333333331,30)" d="M0,0L0,6"></path>
+    <path transform="translate(220,30)" d="M0,0L0,6"></path>
+    <path transform="translate(286.66666666666663,30)" d="M0,0L0,6"></path>
+    <path transform="translate(353.33333333333337,30)" d="M0,0L0,6"></path>
+    <path transform="translate(420,30)" d="M0,0L0,6"></path>
+    <path transform="translate(486.6666666666667,30)" d="M0,0L0,6"></path>
+    <path transform="translate(553.3333333333333,30)" d="M0,0L0,6"></path>
+    <path transform="translate(620,30)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(20,30)">0</text>
+    <text y="0.71em" transform="translate(86.66666666666666,30)">1</text>
+    <text y="0.71em" transform="translate(153.33333333333331,30)">2</text>
+    <text y="0.71em" transform="translate(220,30)">3</text>
+    <text y="0.71em" transform="translate(286.66666666666663,30)">4</text>
+    <text y="0.71em" transform="translate(353.33333333333337,30)">5</text>
+    <text y="0.71em" transform="translate(420,30)">6</text>
+    <text y="0.71em" transform="translate(486.6666666666667,30)">7</text>
+    <text y="0.71em" transform="translate(553.3333333333333,30)">8</text>
+    <text y="0.71em" transform="translate(620,30)">9</text>
+  </g>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <circle cx="20" cy="15" r="3"></circle>
+    <circle cx="86.66666666666666" cy="15" r="3"></circle>
+    <circle cx="153.33333333333331" cy="15" r="3"></circle>
+    <circle cx="220" cy="15" r="3"></circle>
+    <circle cx="286.66666666666663" cy="15" r="3"></circle>
+    <circle cx="353.33333333333337" cy="15" r="3"></circle>
+    <circle cx="420" cy="15" r="3"></circle>
+    <circle cx="486.6666666666667" cy="15" r="3"></circle>
+    <circle cx="553.3333333333333" cy="15" r="3"></circle>
+    <circle cx="620" cy="15" r="3"></circle>
+  </g>
+  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+</svg>
