@@ -1,0 +1,39 @@
+import {slice} from "../options.js";
+
+// TODO How to reindex channels supplied as arrays? I don’t want to inspect
+// arbitrary values on the options; maybe we could use this.channels?
+export function exclusiveFacets(data, facets) {
+  if (facets.length === 1) return {data, facets}; // only one facet; trivially exclusive
+
+  const n = data.length;
+  const O = new Uint8Array(n);
+  let overlaps = 0;
+
+  // Count the number of overlapping indexes across facets.
+  for (const facet of facets) {
+    for (const i of facet) {
+      if (O[i]) ++overlaps;
+      O[i] = 1;
+    }
+  }
+
+  // Do nothing if the facets are already exclusive.
+  if (overlaps === 0) return {data, facets}; // facets are exclusive
+
+  // For each overlapping index (duplicate), assign a new unique index at the
+  // end of the existing array. For example, [[0, 1, 2], [2, 1, 3]] would become
+  // [[0, 1, 2], [4, 5, 3]]. Attach a plan to the facets array, to be able to
+  // read the values associated with the old index in unaffected channels.
+  facets = facets.map((facet) => slice(facet, Uint32Array));
+  let j = n;
+  O.fill(0);
+  for (const facet of facets) {
+    for (let k = 0, m = facet.length; k < m; ++k) {
+      const i = facet[k];
+      if (O[i]) facet[k] = j++;
+      O[i] = 1;
+    }
+  }
+
+  return {data, facets};
+}
