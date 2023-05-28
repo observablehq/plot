@@ -21,16 +21,16 @@ export function exclusiveFacets(data, facets) {
   if (overlaps === 0) return {data, facets}; // facets are exclusive
 
   // For each overlapping index (duplicate), assign a new unique index at the
-  // end of the existing array. For example, [[0, 1, 2], [2, 1, 3]] would become
-  // [[0, 1, 2], [4, 5, 3]]. Attach a plan to the facets array, to be able to
-  // read the values associated with the old index in unaffected channels.
+  // end of the existing array, duplicating the datum. For example, [[0, 1, 2],
+  // [2, 1, 3]] would become [[0, 1, 2], [4, 5, 3]].
+  data = slice(data);
   facets = facets.map((facet) => slice(facet, Uint32Array));
   let j = n;
   O.fill(0);
   for (const facet of facets) {
     for (let k = 0, m = facet.length; k < m; ++k) {
       const i = facet[k];
-      if (O[i]) facet[k] = j++;
+      if (O[i]) (facet[k] = j), (data[j] = data[i]), ++j;
       O[i] = 1;
     }
   }
