@@ -93,15 +93,14 @@ class DelaunayLink extends Mark {
         for (const k in channels) newChannels[k].push(channels[k][tj]);
       }
 
-      // TODO move to initializer?
       const {halfedges, hull, triangles} = Delaunay.from(index, xi, yi);
-      // inner edges
       for (let i = 0; i < halfedges.length; ++i) {
+        // inner edges
         const j = halfedges[i];
         if (j > i) link(triangles[i], triangles[j]);
       }
-      // convex hull
       for (let i = 0; i < hull.length; ++i) {
+        // convex hull
         link(hull[i], hull[(i + 1) % hull.length]);
       }
 
@@ -164,7 +163,6 @@ class AbstractDelaunayMark extends Mark {
     const yi = Y ? (i) => Y[i] : constant(cy);
     const mark = this;
 
-    // TODO move to initializer?
     function mesh(index) {
       const delaunay = Delaunay.from(index, xi, yi);
       select(this)
