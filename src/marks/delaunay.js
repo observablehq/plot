@@ -224,40 +224,35 @@ class Voronoi extends Mark {
         let {x: X, y: Y, z: Z} = channels;
         ({x: X, y: Y} = applyPosition(channels, scales, context));
         Z = Z?.value;
-        const C = new Array(facets.length);
+        const C = new Array((X ?? Y).length).fill(null);
         const [cx, cy] = applyFrameAnchor(this, dimensions);
         const xi = X ? (i) => X[i] : constant(cx);
         const yi = Y ? (i) => Y[i] : constant(cy);
-        for (let [fi, facet] of facets.entries()) {
-          if (X) facet = facet.filter((i) => defined(X[i]));
-          if (Y) facet = facet.filter((i) => defined(Y[i]));
-          const Cf = (C[fi] = []);
-          for (const [, index] of maybeGroup(facet, Z)) {
-            const delaunay = Delaunay.from(index, xi, yi);
+        for (let I of facets) {
+          if (X) I = I.filter((i) => defined(xi(i)));
+          if (Y) I = I.filter((i) => defined(yi(i)));
+          for (const [, J] of maybeGroup(I, Z)) {
+            const delaunay = Delaunay.from(J, xi, yi);
             const voronoi = voronoiof(delaunay, dimensions);
-            for (let i = 0, n = index.length; i < n; ++i) {
-              Cf[index[i]] = voronoi.renderCell(i);
+            for (let i = 0, n = J.length; i < n; ++i) {
+              C[J[i]] = voronoi.renderCell(i);
             }
           }
         }
-        return {data, facets, channels: {cells: {value: C, filter: null}}};
+        return {data, facets, channels: {cells: {value: C}}};
       }),
       voronoiDefaults
     );
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {
-      x: X,
-      y: Y,
-      cells: {[index.fi ?? 0]: C}
-    } = channels;
+    const {x: X, y: Y, cells: C} = channels;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) => {
         g.selectAll()
-          .data(index.filter((i) => C[i] != null))
+          .data(index)
           .enter()
           .append("path")
           .call(applyDirectStyles, this)
