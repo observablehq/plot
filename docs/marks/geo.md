@@ -128,6 +128,8 @@ Plot.plot({
 ```
 :::
 
+The geo mark doesn’t have **x** and **y** channels; to derive those, for example to add [interactive tips](https://observablehq.com/@observablehq/plot-maps-tips), you can apply a [centroid transform](../transforms/centroid.md) on the geometries.
+
 The geo mark supports [faceting](../features/facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
 
 :::plot defer https://observablehq.com/@observablehq/plot-map-large-multiples
