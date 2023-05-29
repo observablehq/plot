@@ -69,3 +69,32 @@ export async function oneDimensionalLink() {
     ]
   });
 }
+
+export async function oneDimensionalVertical() {
+  const income = await d3.csv<any>("data/gender-income.csv", d3.autoType);
+  return Plot.plot({
+    width: 200,
+    x: {type: "band", tickFormat: "d"},
+    y: {tickSpacing: 40},
+    marks: [
+      Plot.gridY(),
+      Plot.ruleY([0, 100]),
+      Plot.link(
+        income,
+        Plot.groupX(
+          {y1: "first", y2: "last"},
+          {
+            y1: "value",
+            y2: "value",
+            x: "year",
+            stroke: "group",
+            sort: "gender",
+            markerStart: "arrow",
+            markerEnd: "circle-fill",
+            strokeWidth: 2
+          }
+        )
+      )
+    ]
+  });
+}
