@@ -349,6 +349,8 @@ The following channels are required:
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
 
+For horizontal lines (connecting two points), the **y** option can be ignored; similarly, for vertical lines the **x** option can be ignored. See also the [link](./link.md) mark.
+
 In addition to the [standard mark options](../features/marks.md#mark-options), the following optional channels are supported:
 
 * **z** - a categorical value to group data into series
