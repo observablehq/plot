@@ -28,7 +28,8 @@ function brushTransform(mode, options) {
       const Ym = Y1 && Y2 ? Y1.map((d, i) => Math.max(d, Y2[i])) : Y;
       const {width, height, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
 
-      const g = create("svg:g", context).attr("class", "brushable");
+      const g = create("svg:g", context);
+      g.append(() => viz);
 
       const brush = (mode === "xy" ? brusher : mode === "x" ? brusherX : brusherY)()
         .extent([
@@ -57,7 +58,7 @@ function brushTransform(mode, options) {
             if (b.brush === brush) {
               b.index = S;
             } else if (type === "start") {
-              b.selection.call(b.brush.move, null);
+              b.target.call(b.brush.move, null);
             }
           }
 
@@ -68,23 +69,9 @@ function brushTransform(mode, options) {
           }
         });
 
-      brushes.push({
-        brush,
-        selection: g.append("g").call(brush)
-      });
+      brushes.push({brush, target: g.append("g").call(brush)});
 
-      // Use a RAF so we have access to the (facet) transform of the original
-      // the element when we replace it with the brushable wrapper.
-      if (typeof requestAnimationFrame === "function") {
-        requestAnimationFrame(() => {
-          g.attr("transform", viz.getAttribute("transform"));
-          viz.replaceWith(g.node());
-          viz.removeAttribute("transform");
-          g.append(() => viz);
-        });
-      }
-
-      return viz;
+      return g.node();
     }, options.render)
   };
 }
