@@ -74,8 +74,7 @@ export async function oneDimensionalVertical() {
   const income = await d3.csv<any>("data/gender-income.csv", d3.autoType);
   return Plot.plot({
     width: 200,
-    x: {type: "band", tickFormat: "d"},
-    y: {tickSpacing: 40},
+    x: {type: "band", tickFormat: "d", label: null},
     marks: [
       Plot.gridY(),
       Plot.ruleY([0, 100]),

@@ -52,9 +52,6 @@
     <text y="0.71em" transform="translate(90,370)">2014</text>
     <text y="0.71em" transform="translate(135,370)">2017</text>
   </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(110,370)">year</text>
-  </g>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="180" y1="370" y2="370"></line>
     <line x1="40" x2="180" y1="335" y2="335"></line>
