@@ -13,6 +13,15 @@ onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
 });
 
+const penguins = shallowRef([
+  {culmen_length_mm: 32.1, culmen_depth_mm: 13.1},
+  {culmen_length_mm: 59.6, culmen_depth_mm: 21.5}
+]);
+
+onMounted(() => {
+  d3.csv("../data/penguins.csv", d3.autoType).then((data) => (penguins.value = data));
+});
+
 </script>
 
 # Interactions
@@ -54,7 +63,18 @@ These values are displayed atop the axes on the edge of the frame; unlike the ti
 
 ## Selecting
 
-Support for selecting points within a plot through direct manipulation is under development. If you are interested in this feature, please upvote [#5](https://github.com/observablehq/plot/issues/5). See [#721](https://github.com/observablehq/plot/pull/721) for some early work on brushing.
+The [brush transform](../interactions/brush.md) allows the interactive selection of discrete elements, such as dots in a scatterplot, by direct manipulation of the chart. A brush listens to mouse and touch events on the chart, allowing the user to define a rectangular region. All the data points that fall within the region are included in the selection.
+
+:::plot defer https://observablehq.com/@observablehq/plot-brush-interaction-dev
+```js
+Plot.plot({
+  marks: [
+    Plot.dot(penguins, { x: "culmen_length_mm", y: "culmen_depth_mm" }),
+    Plot.dot(penguins, Plot.brush({ x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", stroke: "currentColor" }))
+  ]
+})
+```
+:::
 
 ## Zooming
 

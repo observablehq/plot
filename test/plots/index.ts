@@ -42,6 +42,7 @@ export * from "./bin-strings.js";
 export * from "./bin-timestamps.js";
 export * from "./bounding-boxes.js";
 export * from "./boxplot.js";
+export * from "./brush.js";
 export * from "./caltrain-direction.js";
 export * from "./caltrain.js";
 export * from "./cars-dodge.js";
