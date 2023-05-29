@@ -30,7 +30,7 @@ export class Line extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x", optional: true},
+        x: {value: x, scale: "x", optional: y != null},
         y: {value: y, scale: "y", optional: true},
         z: {value: maybeZ(options), optional: true}
       },

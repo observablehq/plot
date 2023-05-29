@@ -25,7 +25,7 @@ export class Link extends Mark {
     super(
       data,
       {
-        x1: {value: x1, scale: "x", optional: true},
+        x1: {value: x1, scale: "x", optional: y1 != null},
         y1: {value: y1, scale: "y", optional: true},
         x2: {value: x2, scale: "x", optional: true},
         y2: {value: y2, scale: "y", optional: true}
