@@ -47,7 +47,8 @@ export function styles(
     imageFilter,
     paintOrder,
     pointerEvents,
-    shapeRendering
+    shapeRendering,
+    channels
   },
   {
     ariaLabel: cariaLabel,
@@ -81,9 +82,9 @@ export function styles(
   // default fill becomes none. Similarly for marks that stroke by stroke, the
   // default stroke only applies if the fill is (constant) none.
   if (isNoneish(defaultFill)) {
-    if (!isNoneish(defaultStroke) && !isNoneish(fill)) defaultStroke = "none";
+    if (!isNoneish(defaultStroke) && (!isNoneish(fill) || channels?.fill)) defaultStroke = "none";
   } else {
-    if (isNoneish(defaultStroke) && !isNoneish(stroke)) defaultFill = "none";
+    if (isNoneish(defaultStroke) && (!isNoneish(stroke) || channels?.stroke)) defaultFill = "none";
   }
 
   const [vfill, cfill] = maybeColorChannel(fill, defaultFill);

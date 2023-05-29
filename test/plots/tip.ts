@@ -55,6 +55,10 @@ export async function tipDot() {
   return Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex", tip: true}).plot();
 }
 
+export async function tipDotX() {
+  return Plot.dotX(d3.range(10), {tip: true}).plot();
+}
+
 export async function tipDotFacets() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.plot({
@@ -123,6 +127,19 @@ export async function tipHexbin() {
   return Plot.hexagon(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height", tip: true})).plot();
 }
 
+// Normally you would slap a tip: true on the hexagon, as above, but here we
+// want to test that the hexbin transform isn’t applying an erroneous stroke:
+// none to the tip options (which would change the tip appearance).
+export async function tipHexbinExplicit() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.hexagon(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"})),
+      Plot.tip(olympians, Plot.pointer(Plot.hexbin({fill: "count"}, {x: "weight", y: "height"})))
+    ]
+  });
+}
+
 export async function tipLine() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
@@ -179,5 +196,13 @@ export async function tipRuleAnchored() {
       Plot.ruleX(penguins, {x: "body_mass_g"}),
       Plot.tip(penguins, Plot.pointer({px: "body_mass_g", frameAnchor: "left", anchor: "middle", dx: 42}))
     ]
+  });
+}
+
+export async function tipTransform() {
+  return Plot.plot({
+    width: 245,
+    color: {percent: true, legend: true},
+    marks: [Plot.dotX([0, 0.1, 0.3, 1], {fill: Plot.identity, r: 10, frameAnchor: "middle", tip: true})]
   });
 }

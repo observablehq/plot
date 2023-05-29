@@ -1,4 +1,4 @@
-import {isNoneish, map, number, valueof} from "../options.js";
+import {map, number, valueof} from "../options.js";
 import {applyPosition} from "../projection.js";
 import {sqrt3} from "../symbol.js";
 import {initializer} from "./basic.js";
@@ -13,17 +13,19 @@ export const ox = 0.5,
   oy = 0;
 
 export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
+  const {z} = options;
+
   // TODO filter e.g. to show empty hexbins?
   // TODO disallow x, x1, x2, y, y1, y2 reducers?
   binWidth = binWidth === undefined ? 20 : number(binWidth);
   outputs = maybeOutputs(outputs, options);
 
-  // A fill output means a fill channel, and hence the stroke should default to
-  // none (assuming a mark that defaults to fill and no stroke, such as dot).
-  // Note that it’s safe to mutate options here because we just created it with
-  // the rest operator above.
-  const {z, fill, stroke} = options;
-  if (stroke === undefined && isNoneish(fill) && hasOutput(outputs, "fill")) options.stroke = "none";
+  // A fill output means a fill channel; declaring the channel here instead of
+  // waiting for the initializer allows the mark constructor to determine that
+  // the stroke should default to none (assuming a mark that defaults to fill
+  // and no stroke, such as dot). Note that it’s safe to mutate options here
+  // because we just created it with the rest operator above.
+  if (hasOutput(outputs, "fill")) options.channels = {...options.channels, fill: {value: []}};
 
   // Populate default values for the r and symbol options, as appropriate.
   if (options.symbol === undefined) options.symbol = "hexagon";

@@ -1,13 +1,13 @@
-import assert from "assert";
 import {promises as fs} from "fs";
 import * as path from "path";
 import beautify from "js-beautify";
+import assert from "./assert.js";
 import it from "./jsdom.js";
 import * as plots from "./plots/index.js";
 
 for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
-    const root = await plot();
+    const root = await (name.startsWith("warn") ? assert.warnsAsync : assert.doesNotWarnAsync)(plot);
     const ext = root.tagName === "svg" ? "svg" : "html";
     for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
       svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
@@ -59,7 +59,7 @@ for (const [name, plot] of Object.entries(plots)) {
       await fs.writeFile(diffile, actual, "utf8");
     }
 
-    assert(equal, `${name} must match snapshot`);
+    assert.ok(equal, `${name} must match snapshot`);
   });
 }
 
