@@ -34,7 +34,7 @@ To demonstrate, below the pointer transform filters a filled <span style="border
   </label>
 </p>
 
-:::plot defer hidden
+:::plot defer hidden https://observablehq.com/@observablehq/plot-pointer-transform
 ```js
 Plot.plot({
   marks: [
@@ -74,7 +74,7 @@ The pointer transform is similar to the [filter](../transforms/filter.md) and [s
 
 The pointer transform supports both one- and two-dimensional pointing modes. The two-dimensional mode, [pointer](#pointer-options-1), is used above and is suitable for scatterplots and the general case: it finds the point closest to the pointer by measuring distance in *x* and *y*. The one-dimensional modes, [pointerX](#pointerx-options) and [pointerY](#pointery-options), in contrast only consider distance in one dimension; this is desirable when a chart has a “dominant” dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
 
-Try the different modes on the line chart below to get a feel for how their behavior.
+Try the different modes on the line chart below to get a feel for their behavior.
 
 <p>
   <span class="label-input">
@@ -85,7 +85,7 @@ Try the different modes on the line chart below to get a feel for how their beha
   </span>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-pointer-modes-x-y-and-xy
 ```js-vue
 Plot.lineY(aapl, {x: "Date", y: "Close", tip: "{{linetip}}"}).plot()
 ```
@@ -93,7 +93,7 @@ Plot.lineY(aapl, {x: "Date", y: "Close", tip: "{{linetip}}"}).plot()
 
 “One-dimensional” is a slight misnomer: the pointerX and pointerY transforms consider distance in both dimensions, but the distance along the non-dominant dimension is divided by 100. Below, the pointerX transform is applied to a multi-series line chart; the closest point in *x* is chosen, while *y* is used to “break ties” such that you can focus different series by moving the mouse vertically.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-multi-series-line-chart-interactive-tips
 ```js
 Plot.plot({
   marks: [
@@ -114,7 +114,7 @@ One-dimensional pointing makes even small bars or rects easily hoverable. If you
   </span>
 </p>
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-one-dimensional-pointing
 ```js-vue
 Plot.plot({
   x: {label: "Daily volume (log₁₀)"},
@@ -134,7 +134,7 @@ The pointer transform will prefer the midpoint of the **x1** and **x2** channels
 
 The **px** and **py** channels may be used to specify pointing target positions independent of the displayed mark. Below, text in the top-left corner shows the focused date and closing price. The focused point is also highlighted with a red dot and rule.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-pointer-target-position
 ```js
 Plot.plot({
   height: 160,
