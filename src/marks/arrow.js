@@ -3,7 +3,13 @@ import {create} from "../context.js";
 import {Mark} from "../mark.js";
 import {radians} from "../math.js";
 import {constant, keyword} from "../options.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {
+  applyChannelStyles,
+  applyDirectStyles,
+  applyFrameAnchor,
+  applyIndirectStyles,
+  applyTransform
+} from "../style.js";
 import {maybeSameValue} from "./link.js";
 
 const defaults = {
@@ -50,11 +56,11 @@ export class Arrow extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
-    const {width, height, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
-    const a1 = X1 ? (i) => X1[i] : () => (marginLeft + width - marginRight) / 2;
-    const a2 = X2 ? (i) => X2[i] : () => (marginLeft + width - marginRight) / 2;
-    const b1 = Y1 ? (i) => Y1[i] : () => (marginTop + height - marginBottom) / 2;
-    const b2 = Y2 ? (i) => Y2[i] : () => (marginTop + height - marginBottom) / 2;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const a1 = X1 ? (i) => X1[i] : constant(cx);
+    const a2 = X2 ? (i) => X2[i] : constant(cx);
+    const b1 = Y1 ? (i) => Y1[i] : constant(cy);
+    const b2 = Y2 ? (i) => Y2[i] : constant(cy);
     const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this;
     const sw = SW ? (i) => SW[i] : constant(strokeWidth === undefined ? 1 : strokeWidth);
 
