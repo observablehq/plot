@@ -61,7 +61,7 @@ function brushTransform(mode, options) {
             for (const b of brushes) {
               if (b.brush === brush) {
                 b.index = S;
-              } else if (type === "start" && !event?.sourceEvent?.metaKey) {
+              } else if (type === "start") {
                 b.selection.call(b.brush.move, null);
               }
             }
