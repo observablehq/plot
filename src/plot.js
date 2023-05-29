@@ -173,7 +173,7 @@ export function plot(options = {}) {
 
   // Allows e.g. the pointer transform to support viewof.
   context.dispatchValue = (value) => {
-    if (figure.value === value || selectionEquals(figure.value, value)) return;
+    if (figure.value === value) return;
     figure.value = value;
     figure.dispatchEvent(new Event("input", {bubbles: true}));
   };
@@ -741,10 +741,4 @@ function outerRange(scale) {
   let x2 = scale(domain[domain.length - 1]);
   if (x2 < x1) [x1, x2] = [x2, x1];
   return [x1, x2 + scale.bandwidth()];
-}
-
-function selectionEquals(A, B) {
-  if (!Array.isArray(A) || !Array.isArray(B) || A.length != B.length) return false;
-  for (let i = 0; i < A.length; ++i) if (A[i] !== B[i]) return false;
-  return true;
 }
