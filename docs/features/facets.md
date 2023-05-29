@@ -274,7 +274,7 @@ The **facet** margin options behave largely the same as the margin [plot options
 
 The **facet** plot option is also an alternative to the **fx** and **fy** mark options. It is useful when multiple marks share the same data; the **x** and **y** facet channels are then shared by all marks that use the facet data. (Other marks will be repeated across facets.) For example, we can visualize the famous [Anscombe’s quartet](https://en.wikipedia.org/wiki/Anscombe's_quartet) as a scatterplot with horizontal facets.
 
-:::plot
+:::plot https://observablehq.com/@observablehq/plot-anscombes-quartet
 ```js
 Plot.plot({
   grid: true,

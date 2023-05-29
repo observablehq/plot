@@ -26,7 +26,7 @@ onMounted(() => {
 
 The **tip mark** displays text, or several name-value pairs, in a floating box anchored to a given position in **x** and **y**. The tip mark is often paired with the [pointer transform](../interactions/pointer.md) to reveal details on demand when hovering over a chart, as in this line chart of Apple stock price:
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-line-chart-interactive-tip
 ```js
 Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot({y: {grid: true}})
 ```
@@ -46,7 +46,7 @@ Plot.plot({
 
 The tip mark can also be used for static annotations, say to draw attention to elements of interest or to add context. The tip text is supplied via the **title** channel. If the tip mark‘s data is an array of strings, the **title** channel defaults to [identity](../features/transforms.md#identity).
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-static-annotations
 ```js
 Plot.plot({
   y: {grid: true},
@@ -69,7 +69,7 @@ When using the **title** channel, the tip mark wraps text to 20 ems by default, 
 
 The **title** channel can be used with interactive tips, too. If you have a few moments, hover the chart below to read about various athletes who competed at Rio 2016.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-tips-longer-text
 ```js
 Plot.plot({
   grid: true,
@@ -95,7 +95,7 @@ Plot.plot({
 
 If no **title** channel is supplied, the tip mark displays all channel values. You can supply additional name-value pairs by registering extra channels using the **channels** mark option. In the scatterplot of Olympic athletes below, you can hover to see the *name* and *sport* of each athlete. This is helpful for noticing patterns—tall basketball players, giant weightlifters and judoka, diminutive gymnasts—and for seeing individuals.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-tips-additional-channels
 ```js
 Plot.dot(olympians, {
   x: "weight",
@@ -115,7 +115,7 @@ If a channel is bound to the *color* or *opacity* scale, the tip mark displays a
 
 The tip mark recognizes that **x1** & **x2** and **y1** & **y2** are paired channels. Below, observe that the *weight* shown in the tip is a range such as 64–66 kg; however, the *frequency* is shown as the difference between the **y1** and **y2** channels. The latter is achieved by the stack transform setting a channel hint to indicate that **y1** and **y2** represent a length.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-tips-paired-channels
 ```js
 Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", tip: true})).plot()
 ```
@@ -123,7 +123,7 @@ Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", tip: tr
 
 This even works when stacking negative values, say to mirror the histogram instead of stacking it. (The tip displays negative frequency, but this is consistent with the *y* axis.)
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-tips-paired-channels
 ```js
 Plot.rectY(olympians, Plot.binX({y: "sum"}, {x: "weight", y: (d) => d.sex === "male" ? 1 : -1, fill: "sex", tip: true})).plot({y: {label: "Frequency"}})
 ```
@@ -156,7 +156,7 @@ If you don’t specify an **anchor**, the tip mark will choose one automatically
 
 The tip mark is compatible with transforms that derive **x** and **y** dynamically from data, such as the [centroid transform](../transforms/centroid.md) which computes polygon centroids. Below, a map of the United States shows state names. We reduce the size of the tips by setting the **textPadding** option to 3 pixels instead of the default 8.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-maps-tips
 ```js
 Plot.plot({
   projection: "albers-usa",
