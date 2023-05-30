@@ -122,6 +122,14 @@ export async function tipGeoCentroid() {
   });
 }
 
+export async function tipGroupPrimitives() {
+  return Plot.plot({
+    height: 80,
+    x: {type: "band"},
+    marks: [Plot.barY("de156a2fc8", Plot.groupX({y: "count"}, {x: (d) => d, tip: true}))]
+  });
+}
+
 export async function tipHexbin() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.hexagon(olympians, Plot.hexbin({r: "count"}, {x: "weight", y: "height", tip: true})).plot();
