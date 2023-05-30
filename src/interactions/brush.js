@@ -15,12 +15,11 @@ function brushTransform(mode, options) {
       const svg = context.ownerSVGElement;
       const {data} = context.getMarkState(this);
 
-      // Isolate state per-brush, per-plot; if the brush is reused by multiple
-      // marks, they will share the same state.
+      // Isolate state per-plot.
       let state = states.get(svg);
-      if (state && !index.fi) throw new Error("only one brush is allowed per chart");
+      if (state && !index.fi) throw new Error("The brush interaction currently supports only one brush per plot.");
       if (!state) {
-        // Intersection bounds are computed once per mark (for all facets).
+        // Derive intersection bounds.
         const {x, y} = scales;
         const bx = x?.bandwidth?.() ?? 0;
         const by = y?.bandwidth?.() ?? 0;
@@ -30,54 +29,57 @@ function brushTransform(mode, options) {
         const Yl = Y1 && Y2 ? Y1.map((d, i) => Math.min(d, Y2[i])) : Y;
         const Ym = Y1 && Y2 ? Y1.map((d, i) => Math.max(d, Y2[i]) + by) : by ? Y.map((d) => d + by) : Y;
 
-        // Accumulate brushes across facets so they can communicate.
-        const brushes = [];
-        states.set(svg, (state = {brushes, Xl, Xm, Yl, Ym, selection: null}));
-      }
-      const {brushes, Xl, Xm, Yl, Ym} = state;
-
-      const {width, height, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
-      const brush = (mode === "xy" ? brusher : mode === "x" ? brusherX : brusherY)()
-        .extent([
+        // This brush is shared by all the facets.
+        const {width, height, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
+        const extent = [
           [marginLeft, marginTop],
           [width - marginRight, height - marginBottom]
-        ])
-        .on("brush start end", (event) => {
-          const {type, selection} = event;
-          let S = null;
-          if (selection) {
-            S = index;
-            if (mode === "x" || mode === "xy") {
-              const [x0, x1] = mode === "xy" ? [selection[0][0], selection[1][0]] : selection;
-              S = S.filter((i) => x0 <= Xm[i] && Xl[i] <= x1);
+        ];
+        const brush = (mode === "xy" ? brusher : mode === "x" ? brusherX : brusherY)()
+          .extent(extent)
+          .on("brush start end", function (event) {
+            const f = select(this).datum();
+            const {type, selection} = event;
+            let S = null;
+            if (selection) {
+              S = f.index;
+              if (mode === "x" || mode === "xy") {
+                const [x0, x1] = mode === "xy" ? [selection[0][0], selection[1][0]] : selection;
+                S = S.filter((i) => x0 <= Xm[i] && Xl[i] <= x1);
+              }
+              if (mode === "y" || mode === "xy") {
+                const [y0, y1] = mode === "xy" ? [selection[0][1], selection[1][1]] : selection;
+                S = S.filter((i) => y0 <= Ym[i] && Yl[i] <= y1);
+              }
             }
-            if (mode === "y" || mode === "xy") {
-              const [y0, y1] = mode === "xy" ? [selection[0][1], selection[1][1]] : selection;
-              S = S.filter((i) => y0 <= Ym[i] && Yl[i] <= y1);
+            // Only one facet can be active at a time; clear the others.
+            if (type === "start") for (let i = 0; i < cancels.length; ++i) if (i !== (f.index.fi ?? 0)) cancels[i]();
+
+            f.display.replaceWith((f.display = next.call(this, S ?? [], scales, values, dimensions, context)));
+
+            // Update the plot’s value if the selection has changed.
+            if (!selectionEquals(S, state.selection)) {
+              state.selection = S;
+              context.dispatchValue(S === null ? data : take(data, S));
             }
-          }
-          // Only one facet can be active at a time; clear the others.
-          if (type === "start") for (const b of brushes) if (b.brush !== brush) b.target.call(b.brush.move, null);
+          });
 
-          viz.replaceWith((viz = next.call(this, S ?? [], scales, values, dimensions, context)));
+        states.set(svg, (state = {brush, cancels: [], selection: null}));
+      }
+      const {brush, cancels} = state;
+      const display = next.call(this, [], scales, values, dimensions, context);
 
-          // Update the plot’s value if the selection has changed.
-          if (!selectionEquals(S, state.selection)) {
-            state.selection = S;
-            context.dispatchValue(S === null ? data : take(data, S));
-          }
-        });
+      // Create a wrapper for the elements to display, and a target that will
+      // carry the brush. Save references to the display and index of the current
+      // facet.
+      const wrapper = create("svg:g", context).attr("aria-label", display.getAttribute("aria-label"));
+      const target = create("svg:g", context).attr("aria-label", "brush").datum({display, index}).call(brush);
+      display.removeAttribute("aria-label");
+      wrapper.append(() => display);
+      cancels[index.fi ?? 0] = () => target.call(brush.move, null);
 
-      let viz = next.call(this, [], scales, values, dimensions, context);
-
-      // Create a wrapper for the elements to display, and a target element that
-      // will carry the brush and be appended at the top of the plot.
-      const wrapper = create("svg:g", context).attr("aria-label", viz.getAttribute("aria-label"));
-      const target = create("svg:g", context).attr("aria-label", "brush").call(brush);
-      viz.removeAttribute("aria-label");
-      wrapper.append(() => viz);
-      brushes.push({brush, target});
-
+      // When the plot is complete, append the target element to the top
+      // (z-index) and translate it to match the facet’s frame.
       if (typeof requestAnimationFrame === "function") {
         requestAnimationFrame(() =>
           select(svg)

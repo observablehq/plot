@@ -80,13 +80,7 @@
     <rect x="40" y="39.421052631578966" width="43.5" height="17.421052631578924"></rect>
     <rect x="40" y="21" width="14.5" height="17.421052631578966"></rect>
   </g>
-  <g>
-    <g aria-label="rect"></g>
-    <g fill="none" pointer-events="all">
-      <rect class="overlay" pointer-events="all" cursor="crosshair" x="40" y="20" width="580" height="350"></rect>
-      <rect class="selection" cursor="move" fill="#777" fill-opacity="0.3" stroke="#fff" shape-rendering="crispEdges" style="display: none;"></rect>
-      <rect class="handle handle--n" cursor="ns-resize" style="display: none;"></rect>
-      <rect class="handle handle--s" cursor="ns-resize" style="display: none;"></rect>
-    </g>
+  <g aria-label="rect">
+    <g></g>
   </g>
 </svg>

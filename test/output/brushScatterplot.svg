@@ -397,19 +397,7 @@
     <circle cx="316.2909090909091" cy="299.1666666666666" r="3"></circle>
     <circle cx="415.4181818181818" cy="244.99999999999994" r="3"></circle>
   </g>
-  <g>
-    <g aria-label="dot" stroke="black" stroke-width="1.5" transform="translate(0.5,0.5)"></g>
-    <g fill="none" pointer-events="all">
-      <rect class="overlay" pointer-events="all" cursor="crosshair" x="40" y="20" width="580" height="350"></rect>
-      <rect class="selection" cursor="move" fill="#777" fill-opacity="0.3" stroke="#fff" shape-rendering="crispEdges" style="display: none;"></rect>
-      <rect class="handle handle--n" cursor="ns-resize" style="display: none;"></rect>
-      <rect class="handle handle--w" cursor="ew-resize" style="display: none;"></rect>
-      <rect class="handle handle--e" cursor="ew-resize" style="display: none;"></rect>
-      <rect class="handle handle--s" cursor="ns-resize" style="display: none;"></rect>
-      <rect class="handle handle--nw" cursor="nwse-resize" style="display: none;"></rect>
-      <rect class="handle handle--ne" cursor="nesw-resize" style="display: none;"></rect>
-      <rect class="handle handle--sw" cursor="nesw-resize" style="display: none;"></rect>
-      <rect class="handle handle--se" cursor="nwse-resize" style="display: none;"></rect>
-    </g>
+  <g aria-label="dot">
+    <g stroke="black" stroke-width="1.5" transform="translate(0.5,0.5)"></g>
   </g>
 </svg>
