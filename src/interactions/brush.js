@@ -107,7 +107,7 @@ function brushTransform(mode, {selectionMode = "data", ...options}) {
           select(svg)
             .append(() => target.node())
             .attr("transform", wrapper.attr("transform"));
-          context.dispatchValue(null);
+          context.dispatchValue(selectionMode === "data" ? data : null);
         });
       }
 
