@@ -58,9 +58,9 @@ function brushTransform(mode, {selectionMode = "data", ...options}) {
               S = S.filter((i) => y0 <= Ym[i] && Yl[i] <= y1);
             }
             // Only one facet can be active at a time; clear the others.
-            if (type === "start") for (let i = 0; i < cancels.length; ++i) if (i !== (d.index.fi ?? 0)) cancels[i]();
+            if (type === "start") for (const target of targets) if (target !== this) target._cancelBrush();
 
-            d.display.replaceWith((d.display = next.call(this, S ?? [], scales, values, dimensions, context)));
+            d.display?.replaceWith((d.display = next.call(this, S ?? [], scales, values, dimensions, context)));
 
             // Update the plot’s value if the selection has changed.
             if (selectionMode === "data") {
@@ -84,19 +84,25 @@ function brushTransform(mode, {selectionMode = "data", ...options}) {
             }
           });
 
-        states.set(svg, (state = {brush, cancels: [], selection: null}));
+        states.set(svg, (state = {brush, targets: [], selection: null}));
       }
-      const {brush, cancels} = state;
+      const {brush, targets} = state;
       const display = next.call(this, [], scales, values, dimensions, context);
 
       // Create a wrapper for the elements to display, and a target that will
       // carry the brush. Save references to the display and index of the current
       // facet.
-      const wrapper = create("svg:g", context).attr("aria-label", display.getAttribute("aria-label"));
+      const wrapper = create("svg:g", context);
       const target = create("svg:g", context).attr("aria-label", "brush").datum({display, index}).call(brush);
-      display.removeAttribute("aria-label");
-      wrapper.append(() => display);
-      cancels[index.fi ?? 0] = () => target.call(brush.move, null);
+      const node = target.node();
+      node._cancelBrush = () => target.call(brush.move, null);
+      targets.push(node);
+
+      if (display) {
+        const al = display.getAttribute("aria-label");
+        al && (wrapper.attr("aria-label", al), display.removeAttribute("aria-label"));
+        wrapper.append(() => display);
+      }
 
       // When the plot is complete, append the target element to the top
       // (z-index), translate it to match the facet’s frame position, and
