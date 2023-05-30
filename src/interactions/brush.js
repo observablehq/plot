@@ -1,4 +1,5 @@
 import {create} from "../context.js";
+import {select} from "d3";
 import {brush as brusher, brushX as brusherX, brushY as brusherY} from "d3";
 import {composeRender} from "../mark.js";
 import {take} from "../options.js";
@@ -17,11 +18,8 @@ function brushTransform(mode, options) {
       // Isolate state per-brush, per-plot; if the brush is reused by multiple
       // marks, they will share the same state.
       let state = states.get(svg);
-      if (!state) states.set(svg, (state = {brushes: [], bounds: new WeakMap(), selection: null}));
-      const {brushes, bounds} = state;
-
-      // Intersection bounds are computed once per mark (for all facets)
-      if (!bounds.has(this)) {
+      if (!state) {
+        // Intersection bounds are computed once per mark (for all facets).
         const {x, y} = scales;
         const bx = x?.bandwidth?.() ?? 0;
         const by = y?.bandwidth?.() ?? 0;
@@ -30,16 +28,14 @@ function brushTransform(mode, options) {
         const Xm = X1 && X2 ? X1.map((d, i) => Math.max(d, X2[i]) + bx) : bx ? X.map((d) => d + bx) : X;
         const Yl = Y1 && Y2 ? Y1.map((d, i) => Math.min(d, Y2[i])) : Y;
         const Ym = Y1 && Y2 ? Y1.map((d, i) => Math.max(d, Y2[i]) + by) : by ? Y.map((d) => d + by) : Y;
-        bounds.set(this, {Xl, Xm, Yl, Ym});
+
+        // Accumulate brushes across facets so they can communicate.
+        const brushes = [];
+        states.set(svg, (state = {brushes, Xl, Xm, Yl, Ym, selection: null}));
       }
-      const {Xl, Xm, Yl, Ym} = bounds.get(this);
+      const {brushes, Xl, Xm, Yl, Ym} = state;
 
-      let viz = next.call(this, [], scales, values, dimensions, context);
       const {width, height, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
-
-      const g = create("svg:g", context);
-      g.append(() => viz);
-
       const brush = (mode === "xy" ? brusher : mode === "x" ? brusherX : brusherY)()
         .extent([
           [marginLeft, marginTop],
@@ -59,25 +55,37 @@ function brushTransform(mode, options) {
               S = S.filter((i) => y0 <= Ym[i] && Yl[i] <= y1);
             }
           }
+          // Only one facet can be active at a time; clear the others.
+          if (type === "start") for (const b of brushes) if (b.brush !== brush) b.target.call(b.brush.move, null);
+
           viz.replaceWith((viz = next.call(this, S ?? [], scales, values, dimensions, context)));
 
-          for (const b of brushes) {
-            if (b.brush === brush) {
-              b.index = S;
-            } else if (type === "start") {
-              b.target.call(b.brush.move, null);
-            }
-          }
-
+          // Update the plot’s value if the selection has changed.
           if (!selectionEquals(S, state.selection)) {
             state.selection = S;
             context.dispatchValue(S === null ? data : take(data, S));
           }
         });
 
-      brushes.push({brush, target: g.append("g").call(brush)});
+      let viz = next.call(this, [], scales, values, dimensions, context);
 
-      return g.node();
+      // Create a wrapper for the elements to display, and a target element that
+      // will carry the brush and be appended at the top of the plot.
+      const wrapper = create("svg:g", context).attr("aria-label", viz.getAttribute("aria-label"));
+      const target = create("svg:g", context).attr("aria-label", "brush").call(brush);
+      viz.removeAttribute("aria-label");
+      wrapper.append(() => viz);
+      brushes.push({brush, target});
+
+      if (typeof requestAnimationFrame === "function") {
+        requestAnimationFrame(() =>
+          select(svg)
+            .append(() => target.node())
+            .attr("transform", wrapper.attr("transform"))
+        );
+      }
+
+      return wrapper.node();
     }, options.render)
   };
 }

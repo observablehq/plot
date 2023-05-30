@@ -67,3 +67,21 @@ export async function brushViewof() {
   plot.oninput = oninput; // update during interaction
   return html`<figure>${plot}${textarea}</figure>`;
 }
+
+export async function brushFacetsViewof() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const plot = Plot.plot({
+    facet: {data: penguins, x: "species"},
+    marks: [
+      Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"}),
+      Plot.dot(penguins, Plot.brush({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", stroke: "black"})),
+      Plot.gridX({strokeOpacity: 1}),
+      Plot.gridY({strokeOpacity: 1})
+    ]
+  });
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => (textarea.value = JSON.stringify(plot.value, null, 2));
+  oninput(); // initialize the textarea to the initial value
+  plot.oninput = oninput; // update during interaction
+  return html`<figure>${plot}${textarea}</figure>`;
+}
