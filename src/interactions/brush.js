@@ -38,18 +38,17 @@ function brushTransform(mode, {selectionMode = "data", ...options}) {
         ];
         const brush = (mode === "xy" ? brusher : mode === "x" ? brusherX : brusherY)()
           .extent(extent)
-          .on("brush start end", function (event) {
-            const f = select(this).datum();
+          .on("brush start end", function (event, d) {
             const {type, selection} = event;
             let S = null;
-            const [X, Y] = selection
-              ? mode === "xy"
-                ? transpose(selection)
-                : mode === "x"
-                ? [selection]
-                : [, selection]
-              : [];
-            if (X || Y) S = f.index;
+            const [X, Y] = !selection
+              ? []
+              : mode === "xy"
+              ? transpose(selection)
+              : mode === "x"
+              ? [selection]
+              : [, selection];
+            if (X || Y) S = d.index;
             if (X) {
               const [x0, x1] = X;
               S = S.filter((i) => x0 <= Xm[i] && Xl[i] <= x1);
@@ -59,9 +58,9 @@ function brushTransform(mode, {selectionMode = "data", ...options}) {
               S = S.filter((i) => y0 <= Ym[i] && Yl[i] <= y1);
             }
             // Only one facet can be active at a time; clear the others.
-            if (type === "start") for (let i = 0; i < cancels.length; ++i) if (i !== (f.index.fi ?? 0)) cancels[i]();
+            if (type === "start") for (let i = 0; i < cancels.length; ++i) if (i !== (d.index.fi ?? 0)) cancels[i]();
 
-            f.display.replaceWith((f.display = next.call(this, S ?? [], scales, values, dimensions, context)));
+            d.display.replaceWith((d.display = next.call(this, S ?? [], scales, values, dimensions, context)));
 
             // Update the plot’s value if the selection has changed.
             if (selectionMode === "data") {
@@ -102,6 +101,7 @@ function brushTransform(mode, {selectionMode = "data", ...options}) {
       // When the plot is complete, append the target element to the top
       // (z-index), translate it to match the facet’s frame position, and
       // initialize the plot’s value.
+      // TODO: cleaner.
       if (typeof requestAnimationFrame === "function") {
         requestAnimationFrame(() => {
           select(svg)
