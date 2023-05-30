@@ -8,9 +8,9 @@ type BrushOptions = {
    * * **data** - default; the selected data
    * * **extent** - the selection extent, in data space
    *
-   * The extent is an object with properties *x*: [x1, x2], *y*: [y1, y2] for
-   * brushY, and both *x* and *y* for brush. Additionally, the *fx* and *fy*
-   * properties are also set when faceting.
+   * The extent is an object with properties *x*: [x1, x2] for brushX, *y*: [y1,
+   * y2] for brushY, and both *x* and *y* for brush. Additionally, when
+   * faceting, it contains the facet’s *fx* and *fy* properties.
    */
   selectionMode?: "data" | "extent";
 };
