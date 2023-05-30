@@ -492,7 +492,9 @@ function inferTips(marks) {
     const t = mark.tip;
     if (t) {
       const p = t === "x" ? pointerX : t === "y" ? pointerY : pointer;
-      tips.push(tip(mark.data, p(derive(mark)))); // TODO tip options?
+      const options = p(derive(mark)); // TODO tip options?
+      options.title = null; // prevent implicit title for primitive data
+      tips.push(tip(mark.data, options));
     }
   }
   return tips;

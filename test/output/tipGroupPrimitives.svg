@@ -1,0 +1,64 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="80" viewBox="0 0 640 80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,50)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,20)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,50)">0</text>
+    <text y="0.32em" transform="translate(40,20)">1</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(26,0)">
+    <path transform="translate(48,50)" d="M0,0L0,6"></path>
+    <path transform="translate(105,50)" d="M0,0L0,6"></path>
+    <path transform="translate(162,50)" d="M0,0L0,6"></path>
+    <path transform="translate(219,50)" d="M0,0L0,6"></path>
+    <path transform="translate(276,50)" d="M0,0L0,6"></path>
+    <path transform="translate(333,50)" d="M0,0L0,6"></path>
+    <path transform="translate(390,50)" d="M0,0L0,6"></path>
+    <path transform="translate(447,50)" d="M0,0L0,6"></path>
+    <path transform="translate(504,50)" d="M0,0L0,6"></path>
+    <path transform="translate(561,50)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(26,9.5)">
+    <text y="0.71em" transform="translate(48,50)">1</text>
+    <text y="0.71em" transform="translate(105,50)">2</text>
+    <text y="0.71em" transform="translate(162,50)">5</text>
+    <text y="0.71em" transform="translate(219,50)">6</text>
+    <text y="0.71em" transform="translate(276,50)">8</text>
+    <text y="0.71em" transform="translate(333,50)">a</text>
+    <text y="0.71em" transform="translate(390,50)">c</text>
+    <text y="0.71em" transform="translate(447,50)">d</text>
+    <text y="0.71em" transform="translate(504,50)">e</text>
+    <text y="0.71em" transform="translate(561,50)">f</text>
+  </g>
+  <g aria-label="bar">
+    <rect x="48" width="51" y="20" height="30"></rect>
+    <rect x="105" width="51" y="20" height="30"></rect>
+    <rect x="162" width="51" y="20" height="30"></rect>
+    <rect x="219" width="51" y="20" height="30"></rect>
+    <rect x="276" width="51" y="20" height="30"></rect>
+    <rect x="333" width="51" y="20" height="30"></rect>
+    <rect x="390" width="51" y="20" height="30"></rect>
+    <rect x="447" width="51" y="20" height="30"></rect>
+    <rect x="504" width="51" y="20" height="30"></rect>
+    <rect x="561" width="51" y="20" height="30"></rect>
+  </g>
+  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(26,0.5)"></g>
+</svg>
