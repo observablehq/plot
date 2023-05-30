@@ -1,15 +1,15 @@
 import {create} from "../context.js";
 import {brush as brusher, brushX as brusherX, brushY as brusherY} from "d3";
 import {composeRender} from "../mark.js";
+import {take} from "../options.js";
 
 const states = new WeakMap();
 
 function brushTransform(mode, options) {
   return {
     ...options,
-    // Unlike other composed transforms, interactive transforms must be the
-    // outermost render function because they will re-render dynamically in
-    // response to pointer events.
+    // Interactive transforms must be the outermost render function because they
+    // will re-render dynamically in response to pointer events.
     render: composeRender(function (index, scales, values, dimensions, context, next) {
       const svg = context.ownerSVGElement;
       const {data} = context.getMarkState(this);
@@ -17,15 +17,24 @@ function brushTransform(mode, options) {
       // Isolate state per-brush, per-plot; if the brush is reused by multiple
       // marks, they will share the same state.
       let state = states.get(svg);
-      if (!state) states.set(svg, (state = {brushes: [], selection: null}));
-      const {brushes} = state;
+      if (!state) states.set(svg, (state = {brushes: [], bounds: new WeakMap(), selection: null}));
+      const {brushes, bounds} = state;
+
+      // Intersection bounds are computed once per mark (for all facets)
+      if (!bounds.has(this)) {
+        const {x, y} = scales;
+        const bx = x?.bandwidth?.() ?? 0;
+        const by = y?.bandwidth?.() ?? 0;
+        const {x: X, x1: X1, x2: X2, y: Y, y1: Y1, y2: Y2} = values;
+        const Xl = X1 && X2 ? X1.map((d, i) => Math.min(d, X2[i])) : X;
+        const Xm = X1 && X2 ? X1.map((d, i) => Math.max(d, X2[i]) + bx) : bx ? X.map((d) => d + bx) : X;
+        const Yl = Y1 && Y2 ? Y1.map((d, i) => Math.min(d, Y2[i])) : Y;
+        const Ym = Y1 && Y2 ? Y1.map((d, i) => Math.max(d, Y2[i]) + by) : by ? Y.map((d) => d + by) : Y;
+        bounds.set(this, {Xl, Xm, Yl, Ym});
+      }
+      const {Xl, Xm, Yl, Ym} = bounds.get(this);
+
       let viz = next.call(this, [], scales, values, dimensions, context);
-      const {x, y} = scales;
-      const {x: X, x1: X1, x2: X2, y: Y, y1: Y1, y2: Y2} = values;
-      const Xl = X1 && X2 ? X1.map((d, i) => Math.min(d, X2[i])) : X;
-      const Xm = X1 && X2 ? X1.map((d, i) => Math.max(d, X2[i])) : X;
-      const Yl = Y1 && Y2 ? Y1.map((d, i) => Math.min(d, Y2[i])) : Y;
-      const Ym = Y1 && Y2 ? Y1.map((d, i) => Math.max(d, Y2[i])) : Y;
       const {width, height, marginLeft, marginTop, marginRight, marginBottom} = dimensions;
 
       const g = create("svg:g", context);
@@ -41,14 +50,12 @@ function brushTransform(mode, options) {
           let S = null;
           if (selection) {
             S = index;
-            if (mode.includes("x")) {
-              let [x0, x1] = mode === "xy" ? [selection[0][0], selection[1][0]] : selection;
-              if (x?.bandwidth) x0 -= x.bandwidth();
+            if (mode === "x" || mode === "xy") {
+              const [x0, x1] = mode === "xy" ? [selection[0][0], selection[1][0]] : selection;
               S = S.filter((i) => x0 <= Xm[i] && Xl[i] <= x1);
             }
-            if (mode.includes("y")) {
-              let [y0, y1] = mode === "xy" ? [selection[0][1], selection[1][1]] : selection;
-              if (y?.bandwidth) y0 -= y.bandwidth();
+            if (mode === "y" || mode === "xy") {
+              const [y0, y1] = mode === "xy" ? [selection[0][1], selection[1][1]] : selection;
               S = S.filter((i) => y0 <= Ym[i] && Yl[i] <= y1);
             }
           }
@@ -64,8 +71,7 @@ function brushTransform(mode, options) {
 
           if (!selectionEquals(S, state.selection)) {
             state.selection = S;
-            // 🌶 todo typed array if data is numeric?
-            context.dispatchValue(S === null ? data : Array.from(S, (i) => data[i]));
+            context.dispatchValue(S === null ? data : take(data, S));
           }
         });
 
