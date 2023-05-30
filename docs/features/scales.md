@@ -435,7 +435,7 @@ Plot.plot({
 
 Below we again show observed global surface temperatures. The reversed *BuRd* color scheme is used since <span :style="{borderBottom: `solid 2px ${d3.interpolateRdBu(0.9)}`}">blue</span> and <span :style="{borderBottom: `solid 2px ${d3.interpolateRdBu(0.1)}`}">red</span> are semantically associated with cold and hot, respectively.
 
-:::plot https://observablehq.com/@observablehq/plot-colored-scatterplot
+:::plot https://observablehq.com/@observablehq/plot-diverging-color-scatterplot
 ```js
 Plot.plot({
   grid: true,

@@ -51,7 +51,7 @@ Plot.plot({
 
 The **color** option sets the fill color of the text and the stroke color of the rule. This option can be specified as a channel to reinforce a color encoding.
 
-:::plot defer https://observablehq.com/@observablehq/plot-colored-crosshair
+:::plot defer https://observablehq.com/@observablehq/plot-color-crosshair
 ```js
 Plot.plot({
   marks: [

@@ -49,7 +49,7 @@ There is typically one ordinal value associated with each bar, such as a name (o
 
 Above, since **y** was specified instead of **y1** and **y2**, the bar spans from zero to the given *y* value: if you only specify a single quantitative value, barY applies an implicit [stackY transform](../transforms/stack.md) and likewise barX implicitly applies stackX. The stacked horizontal bar chart below draws one bar (of unit width in **x**) per penguin, colored and sorted by the penguin’s body mass, and grouped by species along **y**.
 
-:::plot defer https://observablehq.com/@observablehq/plot-colored-stacked-bar-chart
+:::plot defer https://observablehq.com/@observablehq/plot-stacked-unit-chart
 ```js
 Plot.plot({
   marginLeft: 60,

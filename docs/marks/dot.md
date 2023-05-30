@@ -69,7 +69,7 @@ Plot.plot({
 
 Dots support **stroke** and **fill** channels in addition to position along **x** and **y**. Below, color is used as a redundant encoding to emphasize the rising trend in average global surface temperatures. A *diverging* color scale encodes values below zero blue and above zero red.
 
-:::plot defer https://observablehq.com/@observablehq/plot-colored-scatterplot
+:::plot defer https://observablehq.com/@observablehq/plot-diverging-color-scatterplot
 ```js
 Plot.plot({
   y: {

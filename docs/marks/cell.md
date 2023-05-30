@@ -116,7 +116,7 @@ Here the *x*-scale domain contains the *id* of every episode. An ordinal scale b
 
 One-dimensional cells can be a compact alternative to a bar chart, where the *fill* color of the cell replaces the length of the bar. However, position is a more salient encoding and should be preferred to color if space is available.
 
-:::plot https://observablehq.com/@observablehq/plot-colored-cells
+:::plot https://observablehq.com/@observablehq/plot-color-cells
 ```js
 Plot.cell(alphabet, {x: "letter", fill: "frequency"}).plot()
 ```

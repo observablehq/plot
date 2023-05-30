@@ -207,19 +207,19 @@ Plot.plot({
 
 The color of an axis can be controlled with the **color**, **stroke**, and **fill** options, which affect the axis’ component marks differently. The **stroke** option affects the tick vector; the **fill** option affects the label texts. The **color** option is shorthand for setting both **fill** and **stroke**. While these options are typically set to constant colors (such as _red_ or the default _currentColor_), they can be specified as channels to assign colors dynamically based on the associated tick value.
 
-:::plot https://observablehq.com/@observablehq/plot-colored-axes
+:::plot https://observablehq.com/@observablehq/plot-axes-with-color
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {color: "red"}).plot() // text fill and tick stroke
 ```
 :::
 
-:::plot https://observablehq.com/@observablehq/plot-colored-axes
+:::plot https://observablehq.com/@observablehq/plot-axes-with-color
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {stroke: Plot.identity, strokeWidth: 3, tickSize: 10}).plot() // tick stroke
 ```
 :::
 
-:::plot https://observablehq.com/@observablehq/plot-colored-axes
+:::plot https://observablehq.com/@observablehq/plot-axes-with-color
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {fill: "red"}).plot() // text fill
 ```
@@ -227,7 +227,7 @@ Plot.axisX(d3.ticks(0, 1, 10), {fill: "red"}).plot() // text fill
 
 To draw an outline around the tick labels, say to improve legibility when drawing an axes atop other marks, use the **textStroke** (default _none_), **textStrokeWidth** (default 3), and **textStrokeOpacity**  (default 1) options.
 
-:::plot https://observablehq.com/@observablehq/plot-colored-axes
+:::plot https://observablehq.com/@observablehq/plot-axes-with-color
 ```js
 Plot.plot({
   height: 40,
