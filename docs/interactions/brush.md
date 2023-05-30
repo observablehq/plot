@@ -49,7 +49,7 @@ Plot.plot({
 ```
 :::
 
-The brush transform is similar to the [pointer](../interaction/pointer.md) transform: it interactively filters the mark’s index to show a subset of the data, and re-renders the mark as the selection changes. Since the mark is lazily rendered during interaction, it is fast: only the visible elements are rendered as needed. And, like the filter and select transforms, unfiltered channel values are incorporated into default scale domains.
+The brush transform is similar to the [pointer](./pointer.md) transform: it interactively filters the mark’s index to show a subset of the data, and re-renders the mark as the selection changes. Since the mark is lazily rendered during interaction, it is fast: only the visible elements are rendered as needed. And, like the filter and select transforms, unfiltered channel values are incorporated into default scale domains.
 
 The brush transform supports both one- and two-dimensional brushing modes. The two-dimensional mode, [brush](#brush-options-1), is used above and is suitable for scatterplots and the general case: it allows the user to define a rectangular region by clicking on a corner (_e.g._ the top-left corner) and dragging the pointer to the bottom-right corner. The one-dimensional modes, [brushX](#brushx-options) and [brushY](#brushy-options), in contrast only consider one dimension; this is desirable when a chart has a “dominant” dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
 
