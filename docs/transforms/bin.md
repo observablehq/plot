@@ -40,7 +40,7 @@ The binX transform takes **x** as input and outputs **x1** and **x2** representi
 
 While the binX transform is often used to generate **y**, it can output any channel. Below, the **fill** channel represents count per bin, resulting in a one-dimensional heatmap.
 
-:::plot defer https://observablehq.com/@observablehq/plot-colored-bins
+:::plot defer https://observablehq.com/@observablehq/plot-color-bins
 ```js-vue
 Plot
   .rect(olympians, Plot.binX({fill: "count"}, {x: "weight"}))

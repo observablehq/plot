@@ -41,7 +41,7 @@ Plot.plot({
 
 The legend above is a *swatches* legend because the *color* scale is *ordinal* (with a *categorical* scheme). When the *color* scale is continuous, a *ramp* legend with a smooth gradient is generated instead. The plot below of global average surface temperature ([GISTEMP](https://data.giss.nasa.gov/gistemp/)) uses a *diverging* *color* scale to indicate the deviation from the 1951–1980 average in degrees Celsius.
 
-:::plot defer https://observablehq.com/@observablehq/plot-colored-scatterplot
+:::plot defer https://observablehq.com/@observablehq/plot-diverging-color-scatterplot
 ```js
 Plot.plot({
   color: {

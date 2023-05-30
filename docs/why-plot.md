@@ -29,7 +29,7 @@ Or put more simply: **with Plot, you’ll see more charts.**
 
 You can make a meaningful chart in Plot with as little as one line of code.
 
-:::plot https://observablehq.com/@observablehq/plot-concise-colored-scatterplot
+:::plot https://observablehq.com/@observablehq/color-scatterplot
 ```js
 Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species"}).plot()
 ```
@@ -39,7 +39,7 @@ What makes Plot concise? In a word: *defaults*. If you specify the semantics—y
 
 The beauty of defaults is that you can override them as needed. This is ideal for exploring: you invest minimally in the initial chart, and as you start to see something interesting, you progressively customize to improve the display. Perhaps the plot above would be easier to read with an aspect ratio proportional to the data, a grid, and a legend?
 
-:::plot https://observablehq.com/@observablehq/plot-refined-colored-scatterplot
+:::plot https://observablehq.com/@observablehq/plot-refined-color-scatterplot
 ```js
 Plot.plot({
   grid: true,
