@@ -6,9 +6,11 @@ type BrushOptions = {
    * The brush’s selection mode determines the contents of the plot’s value
    * property when the user manipulates the brush:
    * * **data** - default; the selected data
-   * * **extent** - the selection extent, in data space; [x1, x2] for brushX,
-   *   [y1, y2] for brushY, [[x1, y1], [x2, y2]] for brush. When faceting, the
-   *   *fx* and *fy* properties of the extent are set to the relevant values.
+   * * **extent** - the selection extent, in data space
+   *
+   * The extent is an object with properties *x*: [x1, x2], *y*: [y1, y2] for
+   * brushY, and both *x* and *y* for brush. Additionally, the *fx* and *fy*
+   * properties are also set when faceting.
    */
   selectionMode?: "data" | "extent";
 };

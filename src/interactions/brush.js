@@ -1,5 +1,5 @@
 import {create} from "../context.js";
-import {select, transpose} from "d3";
+import {ascending, select, transpose} from "d3";
 import {brush as brusher, brushX as brusherX, brushY as brusherY} from "d3";
 import {composeRender} from "../mark.js";
 import {keyword, take} from "../options.js";
@@ -75,9 +75,9 @@ function brushTransform(mode, {selectionMode = "data", ...options}) {
               if (selection === null) {
                 context.dispatchValue(null);
               } else {
-                if (X && x.invert) X.forEach((d, i) => (X[i] = x.invert(d)));
-                if (Y && y.invert) Y.forEach((d, i) => (Y[i] = y.invert(d)));
-                const value = X && Y ? transpose([X, Y]) : X ?? Y;
+                const value = {};
+                if (X) value.x = x.invert ? X.map(x.invert).sort(ascending) : X;
+                if (Y) value.y = y.invert ? Y.map(y.invert).sort(ascending) : Y;
                 if ("fx" in scales) value.fx = index.fx;
                 if ("fy" in scales) value.fy = index.fy;
                 context.dispatchValue(value);
@@ -100,13 +100,15 @@ function brushTransform(mode, {selectionMode = "data", ...options}) {
       cancels[index.fi ?? 0] = () => target.call(brush.move, null);
 
       // When the plot is complete, append the target element to the top
-      // (z-index) and translate it to match the facet’s frame.
+      // (z-index), translate it to match the facet’s frame position, and
+      // initialize the plot’s value.
       if (typeof requestAnimationFrame === "function") {
-        requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
           select(svg)
             .append(() => target.node())
-            .attr("transform", wrapper.attr("transform"))
-        );
+            .attr("transform", wrapper.attr("transform"));
+          context.dispatchValue(null);
+        });
       }
 
       return wrapper.node();
