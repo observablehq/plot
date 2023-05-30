@@ -74,7 +74,16 @@ export async function brushFacetsViewof() {
     facet: {data: penguins, x: "species"},
     marks: [
       Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"}),
-      Plot.dot(penguins, Plot.brush({x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", stroke: "black"})),
+      Plot.dot(
+        penguins,
+        Plot.brush({
+          x: "culmen_length_mm",
+          y: "culmen_depth_mm",
+          fill: "species",
+          stroke: "black",
+          selectionMode: "extent"
+        })
+      ),
       Plot.gridX({strokeOpacity: 1}),
       Plot.gridY({strokeOpacity: 1})
     ]

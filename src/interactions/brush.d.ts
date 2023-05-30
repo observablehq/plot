@@ -3,11 +3,14 @@ import type {Rendered} from "../transforms/basic.js";
 /** Options for the brush transform. */
 type BrushOptions = {
   /**
-   * The brush’s intersection strategy; currently only “rect” is implemented,
-   * checking whether a rectangle defined by <x1, y1> and <x2, y2> intersects
-   * the brush area.
+   * The brush’s selection mode determines the contents of the plot’s value
+   * property when the user manipulates the brush:
+   * * **data** - default; the selected data
+   * * **extent** - the selection extent, in data space; [x1, x2] for brushX,
+   *   [y1, y2] for brushY, [[x1, y1], [x2, y2]] for brush. When faceting, the
+   *   *fx* and *fy* properties of the extent are set to the relevant values.
    */
-  intersection?: "rect";
+  selectionMode?: "data" | "extent";
 };
 
 /**

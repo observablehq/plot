@@ -1,12 +1,13 @@
 import {create} from "../context.js";
-import {select} from "d3";
+import {select, transpose} from "d3";
 import {brush as brusher, brushX as brusherX, brushY as brusherY} from "d3";
 import {composeRender} from "../mark.js";
-import {take} from "../options.js";
+import {keyword, take} from "../options.js";
 
 const states = new WeakMap();
 
-function brushTransform(mode, options) {
+function brushTransform(mode, {selectionMode = "data", ...options}) {
+  selectionMode = keyword(selectionMode, "selectionMode", ["data", "extent"]);
   return {
     ...options,
     // Interactive transforms must be the outermost render function because they
@@ -41,16 +42,21 @@ function brushTransform(mode, options) {
             const f = select(this).datum();
             const {type, selection} = event;
             let S = null;
-            if (selection) {
-              S = f.index;
-              if (mode === "x" || mode === "xy") {
-                const [x0, x1] = mode === "xy" ? [selection[0][0], selection[1][0]] : selection;
-                S = S.filter((i) => x0 <= Xm[i] && Xl[i] <= x1);
-              }
-              if (mode === "y" || mode === "xy") {
-                const [y0, y1] = mode === "xy" ? [selection[0][1], selection[1][1]] : selection;
-                S = S.filter((i) => y0 <= Ym[i] && Yl[i] <= y1);
-              }
+            const [X, Y] = selection
+              ? mode === "xy"
+                ? transpose(selection)
+                : mode === "x"
+                ? [selection]
+                : [, selection]
+              : [];
+            if (X || Y) S = f.index;
+            if (X) {
+              const [x0, x1] = X;
+              S = S.filter((i) => x0 <= Xm[i] && Xl[i] <= x1);
+            }
+            if (Y) {
+              const [y0, y1] = Y;
+              S = S.filter((i) => y0 <= Ym[i] && Yl[i] <= y1);
             }
             // Only one facet can be active at a time; clear the others.
             if (type === "start") for (let i = 0; i < cancels.length; ++i) if (i !== (f.index.fi ?? 0)) cancels[i]();
@@ -58,9 +64,24 @@ function brushTransform(mode, options) {
             f.display.replaceWith((f.display = next.call(this, S ?? [], scales, values, dimensions, context)));
 
             // Update the plot’s value if the selection has changed.
-            if (!selectionEquals(S, state.selection)) {
-              state.selection = S;
-              context.dispatchValue(S === null ? data : take(data, S));
+            if (selectionMode === "data") {
+              if (!selectionEquals(S, state.selection)) {
+                state.selection = S;
+                context.dispatchValue(S === null ? data : take(data, S));
+              }
+            }
+            // "extent"
+            else {
+              if (selection === null) {
+                context.dispatchValue(null);
+              } else {
+                if (X && x.invert) X.forEach((d, i) => (X[i] = x.invert(d)));
+                if (Y && y.invert) Y.forEach((d, i) => (Y[i] = y.invert(d)));
+                const value = X && Y ? transpose([X, Y]) : X ?? Y;
+                if ("fx" in scales) value.fx = index.fx;
+                if ("fy" in scales) value.fy = index.fy;
+                context.dispatchValue(value);
+              }
             }
           });
 
