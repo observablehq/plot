@@ -18,6 +18,7 @@ function brushTransform(mode, options) {
       // Isolate state per-brush, per-plot; if the brush is reused by multiple
       // marks, they will share the same state.
       let state = states.get(svg);
+      if (state && !index.fi) throw new Error("only one brush is allowed per chart");
       if (!state) {
         // Intersection bounds are computed once per mark (for all facets).
         const {x, y} = scales;
