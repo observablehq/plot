@@ -10,6 +10,7 @@ const countymesh = computed(() => us.value ? topojson.mesh(us.value, us.value.ob
 const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states) : {type: null});
 const states = computed(() => us.value ? topojson.feature(us.value, us.value.objects.states).features : []);
 const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
+const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : []);
 
 onMounted(() => {
   d3.json("../data/us-counties-10m.json").then((data) => (us.value = data));
@@ -65,6 +66,22 @@ The geoCentroid transform is slightly faster than the centroid initializer—whi
 :::plot defer https://observablehq.com/@observablehq/plot-centroid-hexbin
 ```js
 Plot.dot(counties, Plot.hexbin({r:"count"}, Plot.geoCentroid())).plot({projection: "albers"})
+```
+:::
+
+Combined with the [pointer transform](../interactions/pointer.md), the centroid transform can add [interactive tips](./tip.md) on a map:
+
+:::plot defer https://observablehq.com/@observablehq/plot-state-centroids
+```js
+Plot.plot({
+  projection: "albers-usa",
+  marks: [
+    Plot.geo(statemesh, {strokeOpacity: 0.2}),
+    Plot.geo(nation),
+    Plot.dot(states, Plot.centroid({fill: "red", stroke: "var(--vp-c-bg-alt)"})),
+    Plot.tip(states, Plot.pointer(Plot.centroid({title: (d) => d.properties.name})))
+  ]
+})
 ```
 :::
 
