@@ -21,7 +21,7 @@ onMounted(() => {
 
 Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid-options) and [geoCentroid](#geocentroid-options). These transforms can be used by any mark that accepts **x** and **y** channels. For instance, to label U.S. states we can use a [text mark](../marks/text.md).
 
-:::plot defer https://observablehq.com/@observablehq/plot-v-counties
+:::plot defer https://observablehq.com/@observablehq/plot-state-labels
 ```js
 Plot.plot({
   projection: "albers-usa",
