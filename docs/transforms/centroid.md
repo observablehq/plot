@@ -68,7 +68,7 @@ Plot.dot(counties, Plot.hexbin({r:"count"}, Plot.geoCentroid())).plot({projectio
 ```
 :::
 
-Combined with the [pointer transform](../interactions/pointer.md), the centroid transform can add [interactive tips](./tip.md) on a map:
+Combined with the [pointer transform](../interactions/pointer.md), the centroid transform can add [interactive tips](../marks/tip.md) on a map:
 
 :::plot defer https://observablehq.com/@observablehq/plot-state-centroids
 ```js
