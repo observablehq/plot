@@ -8,6 +8,7 @@ import {computed, shallowRef, onMounted} from "vue";
 const us = shallowRef(null);
 const countymesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.counties) : {type: null});
 const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states) : {type: null});
+const states = computed(() => us.value ? topojson.feature(us.value, us.value.objects.states).features : []);
 const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
 
 onMounted(() => {
@@ -18,40 +19,21 @@ onMounted(() => {
 
 # Centroid transform
 
-Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid-options) and [geoCentroid](#geocentroid-options). These transforms can be used by any mark that accepts **x** and **y** channels. For instance, to label the U.S. counties with names starting with V—this is more interesting than it seems—we can use a [dot mark](../marks/dot.md) and a [text mark](../marks/text.md).
+Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid-options) and [geoCentroid](#geocentroid-options). These transforms can be used by any mark that accepts **x** and **y** channels. For instance, to label U.S. states we can use a [text mark](../marks/text.md).
 
-:::plot defer https://observablehq.com/@observablehq/plot-v-counties
+:::plot defer https://observablehq.com/@observablehq/plot-state-labels
 ```js
 Plot.plot({
   projection: "albers-usa",
   marks: [
-    Plot.geo(countymesh, {strokeWidth: 0.1}),
-    Plot.geo(statemesh, {strokeWidth: 0.5}),
-    Plot.dot(
-      counties,
-      Plot.centroid({
-        filter: (d) => d.properties.name.match(/^V/),
-        fill: "currentColor",
-        stroke: "var(--vp-c-bg)"
-      })
-    ),
-    Plot.text(
-      counties,
-      Plot.centroid({
-        filter: (d) => d.properties.name.match(/^V/),
-        text: (d) => d.properties.name,
-        fill: "currentColor",
-        stroke: "var(--vp-c-bg)",
-        frameAnchor: "left",
-        dx: 6
-      })
-    )
+    Plot.geo(statemesh),
+    Plot.text(states, Plot.centroid({text: (d) => d.properties.name, fill: "currentColor", stroke: "var(--vp-c-bg)"}))
   ]
 })
 ```
 :::
 
-Also fun, we can pass the centroid to the [voronoi mark](../marks/delaunay.md).
+For fun, we can pass county centroids to the [voronoi mark](../marks/delaunay.md).
 
 :::plot defer https://observablehq.com/@observablehq/plot-centroid-voronoi
 ```js
