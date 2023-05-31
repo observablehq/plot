@@ -6,7 +6,6 @@ import * as topojson from "topojson-client";
 import {computed, shallowRef, onMounted} from "vue";
 
 const us = shallowRef(null);
-const countymesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.counties) : {type: null});
 const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states) : {type: null});
 const states = computed(() => us.value ? topojson.feature(us.value, us.value.objects.states).features : []);
 const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
@@ -20,7 +19,7 @@ onMounted(() => {
 
 # Centroid transform
 
-Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid-options) and [geoCentroid](#geocentroid-options). These transforms can be used by any mark that accepts **x** and **y** channels. For instance, to label U.S. states we can use a [text mark](../marks/text.md).
+Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid-options) and [geoCentroid](#geocentroid-options). These transforms can be used by any mark that accepts **x** and **y** channels. For instance, a [text mark](../marks/text.md) to label the U.S. States.
 
 :::plot defer https://observablehq.com/@observablehq/plot-state-labels
 ```js
