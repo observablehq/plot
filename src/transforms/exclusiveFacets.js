@@ -24,13 +24,16 @@ export function exclusiveFacets(data, facets) {
   // end of the existing array, duplicating the datum. For example, [[0, 1, 2],
   // [2, 1, 3]] would become [[0, 1, 2], [4, 5, 3]].
   data = slice(data);
+  // Attach a reindex map to the data, to interpret channels specified as arrays.
+  data.reindex = new Uint32Array(n + overlaps);
   facets = facets.map((facet) => slice(facet, Uint32Array));
   let j = n;
   O.fill(0);
   for (const facet of facets) {
     for (let k = 0, m = facet.length; k < m; ++k) {
       const i = facet[k];
-      if (O[i]) (facet[k] = j), (data[j] = data[i]), ++j;
+      if (O[i]) (facet[k] = j), (data[j] = data[i]), (data.reindex[j] = i), ++j;
+      else data.reindex[i] = i;
       O[i] = 1;
     }
   }

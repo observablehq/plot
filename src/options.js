@@ -17,6 +17,8 @@ export function valueof(data, value, type) {
     ? map(data, constant(value), type)
     : typeof value?.transform === "function"
     ? maybeTypedArrayify(value.transform(data), type)
+    : value && data?.reindex
+    ? maybeTypedMap(data.reindex, (i) => value[i], type)
     : maybeTypedArrayify(value, type);
 }
 
