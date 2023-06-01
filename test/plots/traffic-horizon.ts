@@ -10,9 +10,7 @@ export async function trafficHorizon() {
   return Plot.plot({
     width: 960,
     height: 1100,
-    x: {
-      axis: "top"
-    },
+    marginLeft: 0,
     y: {
       axis: null,
       domain: [0, step]
@@ -30,13 +28,10 @@ export async function trafficHorizon() {
       axis: null,
       domain: data.map((d) => d.location) // respect input order
     },
-    facet: {
-      data,
-      y: "location"
-    },
     marks: [
-      ticks.map((t) => Plot.areaY(data, {x: "date", y: (d) => d.vehicles - t, fill: t, clip: true})),
-      Plot.text(data, Plot.selectFirst({text: "location", frameAnchor: "left"}))
+      ticks.map((t) => Plot.areaY(data, {x: "date", y: (d) => d.vehicles - t, fy: "location", fill: t, clip: true})),
+      Plot.axisX({anchor: "top", filter: (d, i) => i > 0}), // don’t show the first tick
+      Plot.axisFy({frameAnchor: "left", fill: "currentColor", textStroke: "white", label: null})
     ]
   });
 }
