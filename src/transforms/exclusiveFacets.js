@@ -1,7 +1,5 @@
 import {slice} from "../options.js";
 
-// TODO How to reindex channels supplied as arrays? I don’t want to inspect
-// arbitrary values on the options; maybe we could use this.channels?
 export function exclusiveFacets(data, facets) {
   if (facets.length === 1) return {data, facets}; // only one facet; trivially exclusive
 
