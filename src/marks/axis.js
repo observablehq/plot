@@ -8,7 +8,7 @@ import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../opti
 import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
 import {formatTimeTicks, isTimeYear, isUtcYear} from "../time.js";
-import {initializer} from "../transforms/basic.js";
+import {initializer, filter} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
@@ -505,56 +505,61 @@ function labelOptions(
   };
 }
 
-function axisMark(mark, k, ariaLabel, data, options, initialize) {
+function axisMark(mark, k, ariaLabel, data, {filter: f, sort: s, reverse: r, ...options}, initialize) {
   let channels;
-  const m = mark(
-    data,
-    initializer(options, function (data, facets, _channels, scales, dimensions, context) {
-      const initializeFacets = data == null && (k === "fx" || k === "fy");
-      const {[k]: scale} = scales;
-      if (!scale) throw new Error(`missing scale: ${k}`);
-      let {ticks, tickSpacing, interval} = options;
-      if (isTemporalScale(scale) && typeof ticks === "string") (interval = ticks), (ticks = undefined);
-      if (data == null) {
-        if (isIterable(ticks)) {
-          data = arrayify(ticks);
-        } else if (scale.ticks) {
-          if (ticks !== undefined) {
-            data = scale.ticks(ticks);
+
+  let i = initializer(options, function (data, facets, _channels, scales, dimensions, context) {
+    const initializeFacets = data == null && (k === "fx" || k === "fy");
+    const {[k]: scale} = scales;
+    if (!scale) throw new Error(`missing scale: ${k}`);
+    let {ticks, tickSpacing, interval} = options;
+    if (isTemporalScale(scale) && typeof ticks === "string") (interval = ticks), (ticks = undefined);
+    if (data == null) {
+      if (isIterable(ticks)) {
+        data = arrayify(ticks);
+      } else if (scale.ticks) {
+        if (ticks !== undefined) {
+          data = scale.ticks(ticks);
+        } else {
+          interval = maybeRangeInterval(interval === undefined ? scale.interval : interval, scale.type);
+          if (interval !== undefined) {
+            // For time scales, we could pass the interval directly to
+            // scale.ticks because it’s supported by d3.utcTicks; but
+            // quantitative scales and d3.ticks do not support numeric
+            // intervals for scale.ticks, so we compute them here.
+            const [min, max] = extent(scale.domain());
+            data = interval.range(min, interval.offset(interval.floor(max))); // inclusive max
           } else {
-            interval = maybeRangeInterval(interval === undefined ? scale.interval : interval, scale.type);
-            if (interval !== undefined) {
-              // For time scales, we could pass the interval directly to
-              // scale.ticks because it’s supported by d3.utcTicks; but
-              // quantitative scales and d3.ticks do not support numeric
-              // intervals for scale.ticks, so we compute them here.
-              const [min, max] = extent(scale.domain());
-              data = interval.range(min, interval.offset(interval.floor(max))); // inclusive max
-            } else {
-              const [min, max] = extent(scale.range());
-              ticks = (max - min) / (tickSpacing === undefined ? (k === "x" ? 80 : 35) : tickSpacing);
-              data = scale.ticks(ticks);
-            }
+            const [min, max] = extent(scale.range());
+            ticks = (max - min) / (tickSpacing === undefined ? (k === "x" ? 80 : 35) : tickSpacing);
+            data = scale.ticks(ticks);
           }
-        } else {
-          data = scale.domain();
         }
-        if (k === "y" || k === "x") {
-          facets = [range(data)];
-        } else {
-          channels[k] = {scale: k, value: identity};
-        }
+      } else {
+        data = scale.domain();
       }
-      initialize?.call(this, scale, ticks, channels);
-      const initializedChannels = Object.fromEntries(
-        Object.entries(channels).map(([name, channel]) => {
-          return [name, {...channel, value: valueof(data, channel.value)}];
-        })
-      );
-      if (initializeFacets) facets = context.filterFacets(data, initializedChannels);
-      return {data, facets, channels: initializedChannels};
-    })
-  );
+      if (k === "y" || k === "x") {
+        facets = [range(data)];
+      } else {
+        channels[k] = {scale: k, value: identity};
+      }
+    }
+    initialize?.call(this, scale, ticks, channels);
+    const initializedChannels = Object.fromEntries(
+      Object.entries(channels).map(([name, channel]) => {
+        return [name, {...channel, value: valueof(data, channel.value)}];
+      })
+    );
+    if (initializeFacets) facets = context.filterFacets(data, initializedChannels);
+    return {data, facets, channels: initializedChannels};
+  });
+
+  // Apply the filter option after the initializer has determined the mark’s data.
+  if (f != null) i = filter(f, i);
+  if (s != null) throw new Error("Unsupported axis option: sort");
+  if (r != null) throw new Error("Unsupported axis option: reverse");
+
+  const m = mark(data, i);
   if (data == null) {
     channels = m.channels;
     m.channels = {};
