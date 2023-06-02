@@ -9,18 +9,8 @@ import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
-import {
-  arrayify,
-  isColor,
-  isIterable,
-  isNone,
-  isObject,
-  isScaleOptions,
-  map,
-  yes,
-  maybeIntervalTransform
-} from "./options.js";
-import {createProjection, getGeometryChannels} from "./projection.js";
+import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeIntervalTransform} from "./options.js";
+import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
@@ -420,23 +410,15 @@ function inferChannelScales(channels) {
   }
 }
 
-function hasProjection({projection} = {}) {
-  if (projection == null) return false;
-  if (typeof projection.stream === "function") return true;
-  if (isObject(projection)) projection = projection.type;
-  return projection != null;
-}
-
 function addScaleChannels(channelsByScale, stateByMark, options, filter = yes) {
   for (const {channels} of stateByMark.values()) {
     for (const name in channels) {
       const channel = channels[name];
       const {scale} = channel;
       if (scale != null && filter(scale)) {
-        // Geo marks participate in the default x and y domains if the
-        // projection is nullish. Skip this (as an optimization) when the
-        // projection is _guaranteed_ to be non-null, or when the domains for x
-        // and y have been specified.
+        // Geo marks affect the default x and y domains if there is no
+        // projection. Skip this (as an optimization) when a projection is
+        // specified, or when the domains for x and y are specified.
         if (scale === "projection") {
           if (!hasProjection(options)) {
             const [x, y] = getGeometryChannels(channel);
