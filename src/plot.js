@@ -421,9 +421,13 @@ function addScaleChannels(channelsByScale, stateByMark, options, filter = yes) {
         // specified, or when the domains for x and y are specified.
         if (scale === "projection") {
           if (!hasProjection(options)) {
-            const [x, y] = getGeometryChannels(channel);
-            if (options.x?.domain === undefined) addScaleChannel(channelsByScale, "x", x);
-            if (options.y?.domain === undefined) addScaleChannel(channelsByScale, "y", y);
+            const dx = options.x?.domain;
+            const dy = options.y?.domain;
+            if (dx === undefined || dy === undefined) {
+              const [x, y] = getGeometryChannels(channel);
+              if (dx === undefined) addScaleChannel(channelsByScale, "x", x);
+              if (dy === undefined) addScaleChannel(channelsByScale, "y", y);
+            }
           }
         } else {
           addScaleChannel(channelsByScale, scale, channel);
