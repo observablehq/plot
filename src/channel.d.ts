@@ -137,7 +137,7 @@ export type ChannelValue =
   | number // constant
   | boolean // constant
   | null // constant
-  | ((d: any, i: number) => any) // function of data
+  | ((d: any, i: number, values: any[]) => any) // function of data
   | ChannelTransform; // function of data
 
 /**

@@ -122,6 +122,15 @@ it("valueof returns the given array value", () => {
   assert.strictEqual(valueof([], a), a);
 });
 
+it("valueof passes the data as a third argument to function accessors", () => {
+  const a = (d, i, e) => e.length;
+  assert.deepStrictEqual(valueof([1, 2], a, Float64Array), Float64Array.of(2, 2));
+  assert.deepStrictEqual(valueof(Float64Array.of(2, 2), a), [2, 2]);
+  assert.deepStrictEqual(valueof(Float64Array.of(2, 2), a, Uint8Array), Uint8Array.of(2, 2));
+  assert.deepStrictEqual(valueof([1, 2], a, Uint8Array), Uint8Array.of(2, 2));
+  assert.deepStrictEqual(valueof([1, 2], a, Array), [2, 2]);
+});
+
 it("valueof accepts complicated data with the proper accessor", () => {
   const m = [(d) => d, new Promise(() => {})];
   assert.deepStrictEqual(valueof(m, String), ["(d) => d", "[object Promise]"]);

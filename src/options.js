@@ -35,7 +35,7 @@ function maybeTypedArrayify(data, type) {
 }
 
 function floater(f) {
-  return (d, i) => coerceNumber(f(d, i));
+  return (d, i, v) => coerceNumber(f(d, i, v));
 }
 
 export const singleton = [null]; // for data-less decoration marks, e.g. frame
@@ -127,10 +127,18 @@ export function arrayify(data) {
   return data == null || data instanceof Array || data instanceof TypedArray ? data : Array.from(data);
 }
 
-// An optimization of type.from(values, f): if the given values are already an
-// instanceof the desired array type, the faster values.map method is used.
+// A generalization of values.map(f) with type conversion: if the given values
+// are already an instanceof the desired array type, the faster values.map
+// method is used, otherwise type.from is used. If f accepts a third argument,
+// it receives the values.
 export function map(values, f, type = Array) {
-  return values == null ? values : values instanceof type ? values.map(f) : type.from(values, f);
+  return values == null
+    ? values
+    : values instanceof type
+    ? values.map(f)
+    : f.length === 3
+    ? type.from(values, (d, i) => f(d, i, values))
+    : type.from(values, f);
 }
 
 // An optimization of type.from(values): if the given values are already an

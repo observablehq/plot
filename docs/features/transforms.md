@@ -216,7 +216,7 @@ Plot.valueof(aapl, "Close")
 Given an iterable *data* and some *value* accessor, returns an array (a column) of the specified *type* with the corresponding value of each element of the data. The *value* accessor may be one of the following types:
 
 * a string - corresponding to the field accessor (`(d) => d[value]`)
-* an accessor function - called as *type*.from(*data*, *value*)
+* an accessor function - called on each element as *value*(*element, *index*, *data*)
 * a number, Date, or boolean — resulting in an array uniformly filled with the *value*
 * an object with a **transform** method — called as *value*.transform(*data*)
 * an array of values - returning the same
