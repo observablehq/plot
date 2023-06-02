@@ -10,7 +10,7 @@ import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./mark
 import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
 import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeIntervalTransform} from "./options.js";
-import {createProjection, getGeometryChannels} from "./projection.js";
+import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
@@ -48,8 +48,8 @@ export function plot(options = {}) {
 
   // Compute a Map from scale name to an array of associated channels.
   const channelsByScale = new Map();
-  if (topFacetState) addScaleChannels(channelsByScale, [topFacetState]);
-  addScaleChannels(channelsByScale, facetStateByMark);
+  if (topFacetState) addScaleChannels(channelsByScale, [topFacetState], options);
+  addScaleChannels(channelsByScale, facetStateByMark, options);
 
   // Add implicit axis marks. Because this happens after faceting (because it
   // depends on whether faceting is present), we must initialize the facet state
@@ -139,7 +139,7 @@ export function plot(options = {}) {
   }
 
   // Initalize the scales and dimensions.
-  const scaleDescriptors = createScales(addScaleChannels(channelsByScale, stateByMark), options);
+  const scaleDescriptors = createScales(addScaleChannels(channelsByScale, stateByMark, options), options);
   const scales = createScaleFunctions(scaleDescriptors);
   const dimensions = createDimensions(scaleDescriptors, marks, options);
 
@@ -217,8 +217,8 @@ export function plot(options = {}) {
   // reinitialization. Preserve existing scale labels, if any.
   if (newByScale.size) {
     const newChannelsByScale = new Map();
-    addScaleChannels(newChannelsByScale, stateByMark, (key) => newByScale.has(key));
-    addScaleChannels(channelsByScale, stateByMark, (key) => newByScale.has(key));
+    addScaleChannels(newChannelsByScale, stateByMark, options, (key) => newByScale.has(key));
+    addScaleChannels(channelsByScale, stateByMark, options, (key) => newByScale.has(key));
     const newScaleDescriptors = inheritScaleLabels(createScales(newChannelsByScale, options), scaleDescriptors);
     const newScales = createScaleFunctions(newScaleDescriptors);
     Object.assign(scaleDescriptors, newScaleDescriptors);
@@ -410,17 +410,21 @@ function inferChannelScales(channels) {
   }
 }
 
-function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
+function addScaleChannels(channelsByScale, stateByMark, options, filter = yes) {
   for (const {channels} of stateByMark.values()) {
     for (const name in channels) {
       const channel = channels[name];
       const {scale} = channel;
       if (scale != null && filter(scale)) {
+        // Geo marks affect the default x and y domains if there is no
+        // projection. Skip this (as an optimization) when a projection is
+        // specified, or when the domains for x and y are specified.
         if (scale === "projection") {
-          // TODO only do this if there’s no projection
-          const [x, y] = getGeometryChannels(channel);
-          addScaleChannel(channelsByScale, "x", x);
-          addScaleChannel(channelsByScale, "y", y);
+          if (!hasProjection(options)) {
+            const [x, y] = getGeometryChannels(channel);
+            if (options.x?.domain === undefined) addScaleChannel(channelsByScale, "x", x);
+            if (options.y?.domain === undefined) addScaleChannel(channelsByScale, "y", y);
+          }
         } else {
           addScaleChannel(channelsByScale, scale, channel);
         }

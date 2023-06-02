@@ -225,6 +225,7 @@ export * from "./projection-height-equal-earth.js";
 export * from "./projection-height-geometry.js";
 export * from "./projection-height-mercator.js";
 export * from "./projection-height-orthographic.js";
+export * from "./projection-null.js";
 export * from "./random-bins-xy.js";
 export * from "./random-bins.js";
 export * from "./random-quantile.js";

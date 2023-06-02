@@ -223,13 +223,24 @@ export function project(cx, cy, values, projection) {
   }
 }
 
+// Returns true if a projection was specified. This should match the logic of
+// createProjection above, and is called before we construct the projection.
+// (Though note that we ignore the edge case where the projection initializer
+// may return null.)
+export function hasProjection({projection} = {}) {
+  if (projection == null) return false;
+  if (typeof projection.stream === "function") return true;
+  if (isObject(projection)) projection = projection.type;
+  return projection != null;
+}
+
 // When a named projection is specified, we can use its natural aspect ratio to
 // determine a good value for the projection’s height based on the desired
 // width. When we don’t have a way to know, the golden ratio is our best guess.
 // Due to a circular dependency (we need to know the height before we can
 // construct the projection), we have to test the raw projection option rather
 // than the materialized projection; therefore we must be extremely careful that
-// the logic of this function exactly matches Projection above!
+// the logic of this function exactly matches createProjection above!
 export function projectionAspectRatio(projection) {
   if (typeof projection?.stream === "function") return defaultAspectRatio;
   if (isObject(projection)) projection = projection.type;
