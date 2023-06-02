@@ -1,5 +1,5 @@
 import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
-import {inferFontVariant} from "../axes.js";
+import {inferFontVariant, tickFormatWrap} from "../axes.js";
 import {createContext, create} from "../context.js";
 import {map, maybeNumberChannel} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
@@ -133,7 +133,7 @@ export function legendRamp(color, options) {
       .attr("fill", (d) => d);
 
     ticks = map(thresholds, (_, i) => i);
-    tickFormat = (i) => thresholdFormat(thresholds[i], i);
+    tickFormat = (i) => thresholdFormat(thresholds[i], i, thresholds);
   }
 
   // Ordinal (hopefully!)
@@ -162,7 +162,7 @@ export function legendRamp(color, options) {
     .call(
       axisBottom(x)
         .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "string" ? tickFormat : undefined)
-        .tickFormat(typeof tickFormat === "function" ? tickFormat : undefined)
+        .tickFormat(typeof tickFormat === "function" ? tickFormatWrap(tickFormat) : undefined)
         .tickSize(tickSize)
         .tickValues(Array.isArray(ticks) ? ticks : null)
     )

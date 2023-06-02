@@ -17,6 +17,17 @@ export function maybeAutoTickFormat(tickFormat, domain) {
       ? formatIsoDate
       : string
     : typeof tickFormat === "function"
-    ? tickFormat
+    ? tickFormatWrap(tickFormat)
     : (typeof tickFormat === "string" ? (isTemporal(domain) ? utcFormat : format) : constant)(tickFormat);
+}
+
+// D3 axes typically call the tickFormat function with the tick value, index,
+// and array of nodes; for Plot, the third argument is the array of tick values.
+export function tickFormatWrap(tickFormat) {
+  return (t, i, nodes) =>
+    tickFormat(
+      t,
+      i,
+      nodes.map((d) => d.__data__)
+    );
 }

@@ -580,10 +580,12 @@ export interface ScaleOptions extends ScaleDefaults {
    * How to format inputs (abstract values) for axis tick labels; one of:
    *
    * - a [d3-format](https://github.com/d3/d3-format) string for numeric scales
-   * - a [d3-time-format](https://github.com/d3/d3-time-format) string for temporal scales
-   * - a function passed a tick *value* and *index*, returning a string
+   * - a [d3-time-format](https://github.com/d3/d3-time-format) string for
+   *   temporal scales
+   * - a function passed a tick *value*, the *index* and the *ticks*, returning
+   *   a string
    */
-  tickFormat?: string | ((t: any, i: number) => any) | null;
+  tickFormat?: string | ((t: any, i: number, ticks: any[]) => any) | null;
 
   /**
    * The rotation angle of axis tick labels in degrees clocksize; defaults to 0.
