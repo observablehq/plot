@@ -22,7 +22,7 @@ export class Geo extends Mark {
     super(
       data,
       {
-        geometry: {value: options.geometry},
+        geometry: {value: options.geometry, scale: "projection"},
         r: {value: vr, scale: "r", filter: positive, optional: true}
       },
       withDefaultSort(options),
