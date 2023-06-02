@@ -252,7 +252,7 @@ function groupAesthetics(
 
 export function groupZ(I, Z, z) {
   const G = group(I, (i) => Z[i]);
-  if (z === undefined && G.size > I.length >> 1) {
+  if (z === undefined && G.size > (1 + I.length) >> 1) {
     warn(
       `Warning: the implicit z channel has high cardinality. This may occur when the fill or stroke channel is associated with quantitative data rather than ordinal or categorical data. You can suppress this warning by setting the z option explicitly; if this data represents a single series, set z to null.`
     );

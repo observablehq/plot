@@ -168,6 +168,7 @@ export * from "./music-revenue.js";
 export * from "./npm-versions.js";
 export * from "./opacity.js";
 export * from "./ordinal-bar.js";
+export * from "./pairs.js";
 export * from "./penguin-annotated.js";
 export * from "./penguin-culmen-array.js";
 export * from "./penguin-culmen-delaunay-mesh.js";
