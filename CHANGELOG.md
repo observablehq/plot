@@ -2,6 +2,52 @@
 
 Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
+## 0.6.8
+
+[Released June 2, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.8)
+
+The *x* and *y* scale default domains now incorporate geometry. This allows arbitrary polygonal geometry to be defined in abstract coordinates using the [geo mark](https://observablehq.com/plot/marks/geo) and then displayed using scales.
+
+<img src="./test/output/geoLine.svg" width="640" alt="A line chart of Apple stock price from 2013 to 2018.">
+
+```js
+Plot.geo({type: "LineString", coordinates: aapl.map((d) => [d.Date, d.Close])}).plot()
+```
+
+The stack transform’s **order** option now supports *-order* descending shorthand or a two-argument comparator. For example, you can use *-appearance* to sort by descending appearance. Below, a custom comparator is used to sort by ascending *group* and then descending *revenue*.
+
+<img src="./test/output/musicRevenueCustomOrder.svg" width="640" alt="A line chart of Apple stock price from 2013 to 2018.">
+
+```js
+Plot.plot({
+  y: {
+    grid: true,
+    label: "Annual revenue (billions, adj.)",
+    transform: (d) => d / 1000
+  },
+  marks: [
+    Plot.areaY(
+      riaa,
+      Plot.stackY({
+        x: "year",
+        y: "revenue",
+        z: "format",
+        order: (a, b) => d3.ascending(a.group, b.group) || d3.descending(a.revenue, b.revenue),
+        fill: "group",
+        stroke: "white"
+      })
+    ),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+Fix the default **stroke** with the hexbin transform when used with the tip mark. Fix spurious high-cardinality warning with an odd number of elements when using varying aesthetics with the area or line mark.
+
+Fix *color* legends when the **domain** and **range** have different lengths: extra elements in the range are now ignored by the color legend, and a warning is issued.
+
+Fix duplicate application of scale transforms with the **tip** mark option. Fix erroneous implicit **title** channel with the **tip** mark option.
+
 ## 0.6.7
 
 [Released May 24, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.7)
