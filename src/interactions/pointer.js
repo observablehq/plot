@@ -1,13 +1,12 @@
 import {group, pointer as pointof} from "d3";
 import {composeRender} from "../mark.js";
 import {applyFrameAnchor} from "../style.js";
-import {maybeZ, valueof} from "../options.js";
+import {valueof} from "../options.js";
 
 const states = new WeakMap();
 
 function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...options} = {}) {
   maxRadius = +maxRadius;
-  const z = maybeZ(options);
 
   // When px or py is used, register an extra channel that the pointer
   // interaction can use to control which point is focused; this allows pointing
@@ -28,8 +27,8 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       const svg = context.ownerSVGElement;
       const {data} = context.getMarkState(this);
 
-      const Z = values.channels.z?.value ?? valueof(data, z); // TODO: initializer?
-      const G = Z ? group(index, (i) => Z[i]) : new Map([[undefined, index]]);
+      const Z = values.channels.z?.value ?? valueof(data, options.z); // TODO: initializer?
+      const G = Z && group(index, (i) => Z[i]);
 
       // Isolate state per-pointer, per-plot; if the pointer is reused by
       // multiple marks, they will share the same state (e.g., sticky modality).
