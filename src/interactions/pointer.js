@@ -1,11 +1,14 @@
-import {pointer as pointof} from "d3";
+import {group, pointer as pointof} from "d3";
 import {composeRender} from "../mark.js";
 import {applyFrameAnchor} from "../style.js";
+import {maybeZ, valueof} from "../options.js";
 
 const states = new WeakMap();
 
 function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...options} = {}) {
   maxRadius = +maxRadius;
+  const z = maybeZ(options);
+
   // When px or py is used, register an extra channel that the pointer
   // interaction can use to control which point is focused; this allows pointing
   // to function independently of where the downstream mark (e.g., a tip) is
@@ -24,6 +27,9 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       context = {...context, pointerSticky: false};
       const svg = context.ownerSVGElement;
       const {data} = context.getMarkState(this);
+
+      const Z = values.channels.z?.value ?? valueof(data, z); // TODO: initializer?
+      const G = Z ? group(index, (i) => Z[i]) : new Map([[undefined, index]]);
 
       // Isolate state per-pointer, per-plot; if the pointer is reused by
       // multiple marks, they will share the same state (e.g., sticky modality).
@@ -102,7 +108,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         if (i === ii && s === state.sticky) return; // the tooltip hasn’t moved
         i = ii;
         s = context.pointerSticky = state.sticky;
-        const I = i == null ? [] : [i];
+        const I = i == null ? [] : Z ? G.get(Z[i]) : [i];
         if (faceted) (I.fx = index.fx), (I.fy = index.fy), (I.fi = index.fi);
         const r = next(I, scales, values, dimensions, context);
         if (g) {
