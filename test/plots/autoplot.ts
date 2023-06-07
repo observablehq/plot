@@ -262,5 +262,5 @@ export async function autoChannels() {
 
 export async function autoBarNoReducer() {
   const simpsons = await d3.csv<any>("data/simpsons.csv", d3.autoType);
-  return Plot.auto(simpsons, {x: "season", y: "number_in_season", color: "imdb_rating", mark: "bar"}).plot()
+  return Plot.auto(simpsons, {x: "season", y: "number_in_season", color: "imdb_rating", mark: "bar"}).plot();
 }
