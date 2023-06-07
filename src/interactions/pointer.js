@@ -1,7 +1,7 @@
 import {group, pointer as pointof} from "d3";
 import {composeRender} from "../mark.js";
 import {applyFrameAnchor} from "../style.js";
-import {valueof} from "../options.js";
+import {valueof, take} from "../options.js";
 
 const states = new WeakMap();
 
@@ -128,7 +128,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
           g.replaceWith(r);
         }
         state.roots[renderIndex] = g = r;
-        context.dispatchValue(i == null ? null : data[i]);
+        context.dispatchValue(i == null ? null : Z ? take(data, I) : data[i]);
         return r;
       }
 
