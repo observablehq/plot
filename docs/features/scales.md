@@ -47,7 +47,7 @@ Plot.lineY(gistemp, {x: "Date", y: "Anomaly"}).plot()
 ```
 :::
 
-In Plot, the [mark](./marks.md) binds channels to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.html#mark-options) if needed.)
+In Plot, the [mark](./marks.md) binds channels to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.md#mark-options) if needed.)
 
 Think of a scale as a function that takes an abstract value and returns the corresponding visual value. For the *y* scale above, that might look like this:
 

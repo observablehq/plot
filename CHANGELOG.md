@@ -228,7 +228,7 @@ TypeScript also helps for reading code; hover any symbol and immediately see the
 
 Lastly, if you’re using Plot in a TypeScript project, you can now benefit from additional static type checking to find errors.
 
-<img src="./img/ts-error.png" width="840" alt="A screenshot of VS Code, showing an red squiggly underline under a typo in the code, which accidentally calls mark.plots. A panel suggests calling mark.plot instead.">
+<img src="./img/ts-error.png" width="840" alt="A screenshot of VS Code, showing a red squiggly underline under a typo in the code, which accidentally calls mark.plots. A panel suggests calling mark.plot instead.">
 
 If you have suggestions or clarifications on how to improve the documentation, please open an issue or discussion, or send us a pull request.
 
