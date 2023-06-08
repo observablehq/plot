@@ -47,7 +47,7 @@ Plot.plot({
 ```
 :::
 
-The [mapY transform](#map-ymap-options) above is shorthand for applying the given map method to all *y* channels. There’s also a less-common [mapX transform](#mapx-map-options) for *x* channels.
+The [mapY transform](#mapy-map-options) above is shorthand for applying the given map method to all *y* channels. There’s also a less-common [mapX transform](#mapx-map-options) for *x* channels.
 
 The more explicit [map](#map-outputs-options) transform lets you specify which channels to map, and what map method to use for each channel. Like the [group](./group.md) and [bin](./bin.md) transforms, it takes two arguments: an *outputs* object that describes the output channels to compute, and an *options* object that describes the input channels and additional options. So this:
 

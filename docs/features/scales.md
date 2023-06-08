@@ -1011,7 +1011,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", order: 
 
 If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
 
-Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Plot.sort](../transforms/sort.md#plotsortcompare-options).
+Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Plot.sort](../transforms/sort.md#sort-order-options).
 
 ## scale(*options*)
 

@@ -345,7 +345,7 @@ By default, the *data* for an axis mark are tick values sampled from the associa
 * **tickSpacing** - the approximate number of pixels between ticks (if **ticks** is not specified)
 * **interval** - an interval or time interval
 
-Note that when an axis mark is declared explicitly (via the [**marks** plot option](../features/plots.md#marks), as opposed to an implicit axis), the corresponding scale’s *scale*.ticks and *scale*.tickSpacing options are not automatically inherited by the axis mark; however, the *scale*.interval option *is* inherited, as is the *scale*.label option. You can declare multiple axis marks for the same scale with different ticks, and styles, as desired.
+Note that when an axis mark is declared explicitly (via the [**marks** plot option](../features/plots.md#marks-option), as opposed to an implicit axis), the corresponding scale’s *scale*.ticks and *scale*.tickSpacing options are not automatically inherited by the axis mark; however, the *scale*.interval option *is* inherited, as is the *scale*.label option. You can declare multiple axis marks for the same scale with different ticks, and styles, as desired.
 
 In addition to the [standard mark options](../features/marks.md), the axis mark supports the following options:
 
