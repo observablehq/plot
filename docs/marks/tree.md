@@ -126,7 +126,7 @@ Plot.plot({
 ```
 :::
 
-The tree mark currently does not inform the default layout; you may find it necessary to set the **height** and **margin** [layout options](../features/plots.md#layout) for readability.
+The tree mark currently does not inform the default layout; you may find it necessary to set the **height** and **margin** [layout options](../features/plots.md#layout-options) for readability.
 
 ## Tree options
 

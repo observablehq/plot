@@ -43,7 +43,7 @@ Plot.voronoi(counties, Plot.centroid()).plot({projection: "albers"})
 
 While the centroid transform computes the centroid of a geometry _after_ projection, the geoCentroid transform computes it _before_ projection, then projects the resulting coordinates. This difference has a few implications, as follows.
 
-As an [initializer](../features/transforms.md#initializers), the centroid transform operates _after_ the geometries have been projected to screen coordinates. The resulting **x** and **y** channels reference the pixel coordinates of the planar centroid of the _projected_ shapes. No assumption is made about the geometries: they can be in any coordinate system, and the returned value is in the frame—as long as the projected geometry returns at least one visible point.
+As an [initializer](../features/transforms.md#custom-initializers), the centroid transform operates _after_ the geometries have been projected to screen coordinates. The resulting **x** and **y** channels reference the pixel coordinates of the planar centroid of the _projected_ shapes. No assumption is made about the geometries: they can be in any coordinate system, and the returned value is in the frame—as long as the projected geometry returns at least one visible point.
 
 :::plot defer https://observablehq.com/@observablehq/plot-centroid-dot
 ```js

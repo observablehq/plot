@@ -212,7 +212,7 @@ Plot.plot({
 To assist the explanation, the plot above is drawn with a light gray border.
 :::
 
-The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/main/README.md#width) to make responsive plots. The default **height** is chosen automatically based on the plot’s associated scales; for example, if *y* is linear and there is no *fy* scale, it might be 396. The default margins depend on the maximum margins of the plot’s constituent [marks](./plots.md#marks). While most marks default to zero margins (because they are drawn inside the chart area), Plot’s [axis mark](../marks/axis.md) has non-zero default margins.
+The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/main/README.md#width) to make responsive plots. The default **height** is chosen automatically based on the plot’s associated scales; for example, if *y* is linear and there is no *fy* scale, it might be 396. The default margins depend on the maximum margins of the plot’s constituent [marks](#marks-option). While most marks default to zero margins (because they are drawn inside the chart area), Plot’s [axis mark](../marks/axis.md) has non-zero default margins.
 
 :::tip
 Plot does not adjust margins automatically to make room for long tick labels. If your *y* axis labels are too long, you can increase the **marginLeft** to make more room. Also consider using a different **tickFormat** for short labels (*e.g.*, `s` for SI prefix notation), or a scale **transform** (say to convert units to millions or billions).
@@ -301,7 +301,7 @@ const color = plot.scale("color"); // get the color scale
 console.log(color.range); // inspect the scale’s range
 ```
 
-Returns the [scale object](./scales.md#scale-objects) for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot-options). If the associated *plot* has no scale with the given *name*, returns undefined.
+Returns the [scale object](./scales.md#scale-options) for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot-options). If the associated *plot* has no scale with the given *name*, returns undefined.
 
 ## *plot*.legend(*name*, *options*)
 

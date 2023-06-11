@@ -47,7 +47,7 @@ Plot.lineY(gistemp, {x: "Date", y: "Anomaly"}).plot()
 ```
 :::
 
-In Plot, the [mark](./marks.md) binds channels to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.html#mark-options) if needed.)
+In Plot, the [mark](./marks.md) binds channels to scales; for example, the line’s **x** channel is bound to the *x* scale. The channel name and the scale name are often the same, but not always; for example, an area’s **y1** and **y2** channels are both bound to the *y* scale. (You can opt-out of a scale for a particular channel using [scale overrides](./marks.md#mark-options) if needed.)
 
 Think of a scale as a function that takes an abstract value and returns the corresponding visual value. For the *y* scale above, that might look like this:
 
@@ -1011,7 +1011,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", order: 
 
 If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
 
-Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Plot.sort](../transforms/sort.md#plotsortcompare-options).
+Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Plot.sort](../transforms/sort.md#sort-order-options).
 
 ## scale(*options*)
 
