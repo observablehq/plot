@@ -191,7 +191,7 @@ The following aggregation methods are supported:
 * *max-index* - the zero-based index of the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
-* *deviation* - the [standard deviation](https://github.com/d3/d3-array/blob/master/README.md#deviation)
+* *deviation* - the [standard deviation](https://d3js.org/d3-array/summarize#deviation)
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *mode* - the value with the most occurrences
 * *identity* - the array of values

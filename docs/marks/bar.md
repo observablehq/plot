@@ -134,7 +134,7 @@ Plot.plot({
 The **percent** scale option is useful for showing percentages; it applies a [scale transform](../features/scales.md#scale-transforms) that multiplies associated channel values by 100.
 :::
 
-When ordinal data is regular, such as the yearly observations of the time-series bar chart of world population below, use the **interval** option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://github.com/d3/d3-time/blob/main/README.md#api-reference), or a custom implementation.
+When ordinal data is regular, such as the yearly observations of the time-series bar chart of world population below, use the **interval** option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://d3js.org/d3-time#_interval), or a custom implementation.
 
 <p>
   <label class="label-input">

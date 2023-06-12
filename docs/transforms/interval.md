@@ -85,4 +85,4 @@ Plot.plot({
 ```
 :::
 
-While the **interval** option is most commonly specified as a named time interval or a number, it can also be specified as a [D3 time interval](https://github.com/d3/d3-time/blob/main/README.md#api-reference) or any object that implements *interval*.floor and *interval*.offset.
+While the **interval** option is most commonly specified as a named time interval or a number, it can also be specified as a [D3 time interval](https://d3js.org/d3-time#_interval) or any object that implements *interval*.floor and *interval*.offset.

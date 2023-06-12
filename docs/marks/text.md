@@ -38,7 +38,7 @@ Plot.plot({
 :::
 
 :::tip
-For formatting numbers and dates, consider [*number*.toLocaleString](https://observablehq.com/@mbostock/number-formatting), [*date*.toLocaleString](https://observablehq.com/@mbostock/date-formatting), [d3-format](https://github.com/d3/d3-format), or [d3-time-format](https://github.com/d3/d3-time-format).
+For formatting numbers and dates, consider [*number*.toLocaleString](https://observablehq.com/@mbostock/number-formatting), [*date*.toLocaleString](https://observablehq.com/@mbostock/date-formatting), [d3-format](https://d3js.org/d3-format), or [d3-time-format](https://d3js.org/d3-time-format).
 :::
 
 If there are too many data points, labels may overlap, making them hard to read. Use the [filter transform](../transforms/filter.md) to choose which points to label. In the connected scatterplot below, recreating Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009, every fifth year is labeled.

@@ -11,7 +11,7 @@ const numbers = d3.range(20).map(d3.randomLcg(42));
 
 # Curves
 
-A **curve** defines how to turn a discrete representation of a line as a sequence of points [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] into a continuous path; *i.e.*, how to interpolate between points. Curves are used by the [line](../marks/line.md), [area](../marks/area.md), and [link](../marks/link.md) marks, and are implemented by [d3-shape](https://github.com/d3/d3-shape/blob/main/README.md#curves).
+A **curve** defines how to turn a discrete representation of a line as a sequence of points [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] into a continuous path; *i.e.*, how to interpolate between points. Curves are used by the [line](../marks/line.md), [area](../marks/area.md), and [link](../marks/link.md) marks, and are implemented by [d3-shape](https://d3js.org/d3-shape/curve).
 
 <p>
   <label class="label-input">
@@ -81,6 +81,6 @@ The following named curve methods are supported:
 * *step-before* - a piecewise constant function where *x* changes after *y*
 * *auto* - like *linear*, but use the (possibly spherical) [projection](./projections.md), if any
 
-If **curve** is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://github.com/d3/d3-shape/blob/main/README.md#custom-curves). The *auto* curve is only available for the [line mark](../marks/line.md) and [link mark](../marks/link.md) and is typically used in conjunction with a spherical [projection](./projections.md) to interpolate along [geodesics](https://en.wikipedia.org/wiki/Geodesic).
+If **curve** is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://d3js.org/d3-shape/curve#custom-curves). The *auto* curve is only available for the [line mark](../marks/line.md) and [link mark](../marks/link.md) and is typically used in conjunction with a spherical [projection](./projections.md) to interpolate along [geodesics](https://en.wikipedia.org/wiki/Geodesic).
 
-The tension option only has an effect on bundle, cardinal and Catmull–Rom splines (*bundle*, *cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For bundle splines, it corresponds to [beta](https://github.com/d3/d3-shape/blob/main/README.md#curveBundle_beta); for cardinal splines, [tension](https://github.com/d3/d3-shape/blob/main/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/main/README.md#curveCatmullRom_alpha).
+The tension option only has an effect on bundle, cardinal and Catmull–Rom splines (*bundle*, *cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For bundle splines, it corresponds to [beta](https://d3js.org/d3-shape/curve#curveBundle_beta); for cardinal splines, [tension](https://d3js.org/d3-shape/curve#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://d3js.org/d3-shape/curve#curveCatmullRom_alpha).

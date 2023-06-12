@@ -241,7 +241,7 @@ Plot.dotX([
 :::
 
 :::info
-The stroked symbols are based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746). There is also a *hexagon* symbol; it is primarily intended for the [hexbin transform](../transforms/hexbin.md). You can even specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types) method.
+The stroked symbols are based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746). There is also a *hexagon* symbol; it is primarily intended for the [hexbin transform](../transforms/hexbin.md). You can even specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://d3js.org/d3-shape/symbol#symbolType_draw) method.
 :::
 
 The dot mark can be combined with the [stack transform](../transforms/stack.md). The diverging stacked dot plot below shows the age and gender distribution of the U.S. Congress in 2023.

@@ -7,7 +7,7 @@ import * as d3 from "d3";
 
 # Formats
 
-These helper functions are provided for convenience as a **tickFormat** option for the [axis mark](../marks/axis.md), as the **text** option for a [text mark](../marks/text.md), or other use. See also [d3-format](https://github.com/d3/d3-format), [d3-time-format](https://github.com/d3/d3-time-format), and JavaScript’s built-in [date formatting](https://observablehq.com/@mbostock/date-formatting) and [number formatting](https://observablehq.com/@mbostock/number-formatting).
+These helper functions are provided for convenience as a **tickFormat** option for the [axis mark](../marks/axis.md), as the **text** option for a [text mark](../marks/text.md), or other use. See also [d3-format](https://d3js.org/d3-format), [d3-time-format](https://d3js.org/d3-time-format), and JavaScript’s built-in [date formatting](https://observablehq.com/@mbostock/date-formatting) and [number formatting](https://observablehq.com/@mbostock/number-formatting).
 
 ## formatIsoDate(*date*)
 
