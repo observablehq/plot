@@ -66,7 +66,7 @@ function getSource(f) {
 function getMDFiles(root, subpath = "/") {
   const files = [];
   for (const fname of readdirSync(root + subpath)) {
-    if (fname.startsWith(".")) continue;
+    if (fname.startsWith(".") || fname.endsWith(".js")) continue;
     if (fname.endsWith(".md")) files.push(subpath + fname);
     else if (statSync(root + subpath + fname).isDirectory()) files.push(...getMDFiles(root, subpath + fname + "/"));
   }
