@@ -1013,7 +1013,7 @@ If the input channel is *data*, then the reducer is passed groups of the mark’
 
 Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Plot.sort](../transforms/sort.md#sort-order-options).
 
-## scale(*options*)
+## scale(*options*) {#scale-options-1}
 
 You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 

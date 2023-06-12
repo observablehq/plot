@@ -180,7 +180,7 @@ To resolve the horizontal target position, the pointer transform applies the fol
 
 The same precedence applies to the **py**, **y**, **y1**, and **y2** channels.
 
-## pointer(*options*)
+## pointer(*options*) {#pointer-options-1}
 
 ```js
 Plot.tip(penguins, Plot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm"}))

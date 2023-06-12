@@ -115,7 +115,7 @@ The frame mark supports the [standard mark options](../features/marks.md#mark-op
 
 If the **anchor** option is specified as one of *left*, *right*, *top*, or *bottom*, that side is rendered as a single line (and the **fill**, **fillOpacity**, **rx**, and **ry** options are ignored).
 
-## frame(*options*)
+## frame(*options*) {#frame-options-1}
 
 ```js
 Plot.frame({stroke: "red"})
