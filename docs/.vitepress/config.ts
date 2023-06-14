@@ -1,4 +1,5 @@
-import path from "path";
+import {fileURLToPath, URL} from "node:url";
+import path from "node:path";
 import {defineConfig} from "vitepress";
 import plot from "./markdown-it-plot.js";
 
@@ -11,9 +12,10 @@ export default defineConfig({
   cleanUrls: true,
   vite: {
     resolve: {
-      alias: {
-        "@observablehq/plot": path.resolve("./src/index.js")
-      }
+      alias: [
+        {find: "@observablehq/plot", replacement: path.resolve("./src/index.js")},
+        {find: /^.*\/VPFooter\.vue$/, replacement: fileURLToPath(new URL("./theme/CustomFooter.vue", import.meta.url))}
+      ]
     }
   },
   markdown: {
