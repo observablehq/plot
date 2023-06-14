@@ -96,24 +96,24 @@ function reduceAccessor(f) {
     strict
       ? {
           mapIndex(I, S, T) {
-            const s = (i) => (S[i] == null ? NaN : +S[i]);
+            const v = (i) => (S[i] == null ? NaN : +S[i]);
             let nans = 0;
-            for (let i = 0; i < k - 1; ++i) if (isNaN(s(i))) ++nans;
+            for (let i = 0; i < k - 1; ++i) if (isNaN(v(i))) ++nans;
             for (let i = 0, n = I.length - k + 1; i < n; ++i) {
-              if (isNaN(s(i + k - 1))) ++nans;
-              T[I[i + s]] = nans === 0 ? f(slice(I, i, i + k), s) : NaN;
-              if (isNaN(s(i))) --nans;
+              if (isNaN(v(i + k - 1))) ++nans;
+              T[I[i + s]] = nans === 0 ? f(slice(I, i, i + k), v) : NaN;
+              if (isNaN(v(i))) --nans;
             }
           }
         }
       : {
           mapIndex(I, S, T) {
-            const s = (i) => (S[i] == null ? NaN : +S[i]);
+            const v = (i) => (S[i] == null ? NaN : +S[i]);
             for (let i = -s; i < 0; ++i) {
-              T[I[i + s]] = f(slice(I, 0, i + k), s);
+              T[I[i + s]] = f(slice(I, 0, i + k), v);
             }
             for (let i = 0, n = I.length - s; i < n; ++i) {
-              T[I[i + s]] = f(slice(I, i, i + k), s);
+              T[I[i + s]] = f(slice(I, i, i + k), v);
             }
           }
         };
