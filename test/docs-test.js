@@ -67,7 +67,7 @@ async function readMarkdownSource(f) {
 // Recursively find all md files in the directory.
 async function* readMarkdownFiles(root, subpath = "/") {
   for (const fname of await readdir(root + subpath)) {
-    if (fname.startsWith(".")) continue; // ignore .vitepress etc.
+    if (fname.startsWith(".") || fname.endsWith(".js")) continue; // ignore .vitepress etc.
     if ((await stat(root + subpath + fname)).isDirectory()) yield* readMarkdownFiles(root, subpath + fname + "/");
     else if (fname.endsWith(".md")) yield subpath + fname;
   }
