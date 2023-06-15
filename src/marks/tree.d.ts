@@ -4,7 +4,7 @@ import type {DotOptions} from "./dot.js";
 import type {LinkOptions} from "./link.js";
 import type {TextOptions} from "./text.js";
 
-// TODO tree channels, e.g., "node:name" | "node:path" | "node:internal"?
+// TODO tree channels, e.g., "node:name" | "node:path" | "node:internal" | "node:external"?
 
 /** Options for the compound tree mark. */
 export interface TreeOptions extends DotOptions, LinkOptions, TextOptions, TreeTransformOptions {
@@ -19,6 +19,14 @@ export interface TreeOptions extends DotOptions, LinkOptions, TextOptions, TreeT
    * atop other marks by creating a halo effect; defaults to *white*.
    */
   textStroke?: MarkOptions["stroke"];
+
+  /**
+   * Layout for node labels: if *mirrored*, leaf-node labels are left-anchored,
+   * and non-leaf nodes right-anchored (with a -dx offset). If *normal*, all
+   * labels are left-anchored. Defaults to *mirrored* unless a **treeLayout**
+   * has been specified.
+   */
+  textLayout?: "mirrored" | "normal";
 }
 
 /**
@@ -40,7 +48,7 @@ export function tree(data?: Data, options?: TreeOptions): CompoundMark;
  * option, placing leaf nodes of the tree at the same depth. Equivalent to:
  *
  * ```js
- * Plot.tree(data, {...options, treeLayout: d3.cluster})
+ * Plot.tree(data, {...options, treeLayout: d3.cluster, textLayout: "mirrored"})
  * ```
  *
  * [1]: https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster

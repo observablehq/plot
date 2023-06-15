@@ -75,6 +75,7 @@ export interface TreeTransformOptions {
  * * *node:name* - the node’s name (the last part of its path)
  * * *node:path* - the node’s full, normalized, slash-separated path
  * * *node:internal* - true if the node is internal, or false for leaves
+ * * *node:external* - true if the node is a leaf, or false for internal nodes
  * * *node:depth* - the distance from the node to the root
  * * *node:height* - the distance from the node to its deepest descendant
  *
@@ -97,6 +98,7 @@ export function treeNode<T>(options?: T & TreeTransformOptions): Transformed<T>;
  * * *node:name* - the child node’s name (the last part of its path)
  * * *node:path* - the child node’s full, normalized, slash-separated path
  * * *node:internal* - true if the child node is internal, or false for leaves
+ * * *node:external* - true if the child node is a leaf, or false for external nodes
  * * *node:depth* - the distance from the child node to the root
  * * *node:height* - the distance from the child node to its deepest descendant
  * * *parent:name* - the parent node’s name (the last part of its path)
