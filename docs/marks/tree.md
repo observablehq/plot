@@ -159,8 +159,10 @@ Any additional *options* are passed through to the constituent link, dot, and te
 
 The **textLayout** option controls how text labels are anchored to the node. Two layouts are supported:
 
-* *mirrored* - leaf-node labels are left-anchored, and non-leaf nodes right-anchored (with a -dx offset); default unless a **treeLayout** is specified
-* *normal* - all labels are left-anchored; default if a **treeLayout** is specified
+* *mirrored* - leaf-node labels are left-anchored, and non-leaf nodes right-anchored
+* *normal* - all labels are left-anchored
+
+If the **treeLayout** is d3.tree or d3.cluster, the **textLayout** defaults to *mirrored*; otherwise it defaults to *normal*.
 
 ## tree(*data*, *options*)
 
