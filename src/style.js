@@ -377,7 +377,8 @@ export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "filter", mark.imageFilter);
   applyAttr(selection, "paint-order", mark.paintOrder);
-  applyAttr(selection, "pointer-events", mark.pointerEvents);
+  const {pointerEvents = context.pointerSticky === false ? "none" : undefined} = mark;
+  applyAttr(selection, "pointer-events", pointerEvents);
 }
 
 export function applyDirectStyles(selection, mark) {
