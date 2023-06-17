@@ -56,7 +56,7 @@ Plot.plot({
 
 Above, a [geo mark](../marks/geo.md) draws polygons representing land and a [sphere mark](../marks/geo.md#sphere-options) draws the outline of the globe. A [dot mark](../marks/dot.md) draws earthquakes as circles sized by magnitude.
 
-The geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen—leaning on [d3-geo](https://github.com/d3/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping. The dot mark is not; instead, Plot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels—as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is projection-aware to draw geodesics.)
+The geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen—leaning on [d3-geo](https://d3js.org/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping. The dot mark is not; instead, Plot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels—as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is projection-aware to draw geodesics.)
 
 :::info
 Marks that require *band* scales (bars, cells, and ticks) cannot be used with projections. Likewise one-dimensional marks such as rules cannot be used, though see [#1164](https://github.com/observablehq/plot/issues/1164).
@@ -131,7 +131,7 @@ Plot.plot({
 Use the *albers-usa* projection for U.S.-centric choropleth maps.
 :::
 
-For maps that focus on a specific region, use the **domain** option to zoom in. This object should be a GeoJSON object. For example, you can use [d3.geoCircle](https://github.com/d3/d3-geo/blob/main/README.md#geoCircle) to generate a circle of a given radius centered at a given longitude and latitude. You can also use the **inset** options for a bit of padding around the **domain**.
+For maps that focus on a specific region, use the **domain** option to zoom in. This object should be a GeoJSON object. For example, you can use [d3.geoCircle](https://d3js.org/d3-geo/shape#geoCircle) to generate a circle of a given radius centered at a given longitude and latitude. You can also use the **inset** options for a bit of padding around the **domain**.
 
 <p>
   <label class="label-input">
@@ -251,13 +251,13 @@ The following built-in named projections are supported:
 * *reflect-y* - like the identity projection, but *y* points up
 * null (default) - the null projection for pre-projected geometry in screen coordinates
 
-In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({*width*, *height*, ...*options*}) and returns such a projection. In the last case, the width and height represent the frame dimensions minus any insets.
+In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://d3js.org/d3-geo/projection), or any custom projection that implements [*projection*.stream](https://d3js.org/d3-geo/stream), or a function that receives a configuration object ({*width*, *height*, ...*options*}) and returns such a projection. In the last case, the width and height represent the frame dimensions minus any insets.
 
 If the **projection** option is specified as an object, the following additional projection options are supported:
 
 * **type** - one of the projection names above
-* **parallels** - the [standard parallels](https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels) (for conic projections only)
-* **precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
+* **parallels** - the [standard parallels](https://d3js.org/d3-geo/conic#conic_parallels) (for conic projections only)
+* **precision** - the [sampling threshold](https://d3js.org/d3-geo/projection#projection_precision)
 * **rotate** - a two- or three- element array of Euler angles to rotate the sphere
 * **domain** - a GeoJSON object to fit in the center of the (inset) frame
 * **inset** - inset by the given amount in pixels when fitting to the frame (default zero)

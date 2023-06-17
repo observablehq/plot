@@ -49,7 +49,7 @@ Plot.plot({
 ```
 :::
 
-More commonly, the rect mark is used to produce histograms or heatmaps of quantitative data. For example, given some binned observations computed by [d3.bin](https://github.com/d3/d3-array/blob/main/README.md#bins), we can produce a basic histogram with [rectY](#recty-data-options) as follows:
+More commonly, the rect mark is used to produce histograms or heatmaps of quantitative data. For example, given some binned observations computed by [d3.bin](https://d3js.org/d3-array/bin), we can produce a basic histogram with [rectY](#recty-data-options) as follows:
 
 :::plot https://observablehq.com/@observablehq/plot-rects-and-bins
 ```js

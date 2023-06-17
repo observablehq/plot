@@ -144,7 +144,7 @@ In the function case, if the sort function does not take exactly one argument, i
 Plot.shuffle({x: "culmen_length_mm", y: "culmen_depth_mm"})
 ```
 
-Shuffles the data randomly. If a **seed** option is specified, a [linear congruential generator](https://github.com/d3/d3-random/blob/main/README.md#randomLcg) with the given seed is used to generate random numbers; otherwise, Math.random is used.
+Shuffles the data randomly. If a **seed** option is specified, a [linear congruential generator](https://d3js.org/d3-random#randomLcg) with the given seed is used to generate random numbers; otherwise, Math.random is used.
 
 ## reverse(*options*)
 

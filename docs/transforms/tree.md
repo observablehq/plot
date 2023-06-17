@@ -66,18 +66,18 @@ The **path** column is typically slash-separated, as with UNIX-based file system
 
 The following options control how the node-link diagram is laid out:
 
-* **treeLayout** - a tree layout algorithm; defaults to [d3.tree](https://github.com/d3/d3-hierarchy/blob/main/README.md#tree)
+* **treeLayout** - a tree layout algorithm; defaults to [d3.tree](https://d3js.org/d3-hierarchy/tree)
 * **treeAnchor** - a tree layout orientation, either *left* or *right*; defaults to *left*
 * **treeSort** - a node comparator, or null to preserve input order
 * **treeSeparation** - a node separation function, or null for uniform separation
 
-The default **treeLayout** implements the Reingold–Tilford “tidy” algorithm based on Buchheim _et al._’s linear time approach. Use [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster) instead to align leaf nodes; see also the [cluster mark](../marks/tree.md#cluster-data-options).
+The default **treeLayout** implements the Reingold–Tilford “tidy” algorithm based on Buchheim _et al._’s linear time approach. Use [d3.cluster](https://d3js.org/d3-hierarchy/cluster) instead to align leaf nodes; see also the [cluster mark](../marks/tree.md#cluster-data-options).
 
 If **treeAnchor** is *left*, the root of the tree will be aligned with the left side of the frame; if **treeAnchor** is *right*, the root of the tree will be aligned with the right side of the frame; use the **insetLeft** and **insetRight** [scale options](../features/scales.md) if horizontal padding is desired, say to make room for labels.
 
-If the **treeSort** option is not null, it is typically a function that is passed two nodes in the hierarchy and compares them, similar to [_array_.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort); see [d3-hierarchy’s _node_.sort](https://github.com/d3/d3-hierarchy/blob/main/README.md#node_sort) for more. The **treeSort** option can also be specified as a string, in which case it refers either to a named column in data, or if it starts with “node:”, a node value.
+If the **treeSort** option is not null, it is typically a function that is passed two nodes in the hierarchy and compares them, similar to [_array_.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort); see [d3-hierarchy’s _node_.sort](https://d3js.org/d3-hierarchy/hierarchy#node_sort) for more. The **treeSort** option can also be specified as a string, in which case it refers either to a named column in data, or if it starts with “node:”, a node value.
 
-If the **treeSeparation** is not null, it is a function that is passed two nodes in the hierarchy and returns the desired (relative) amount of separation; see [d3-hierarchy’s _tree_.separation](https://github.com/d3/d3-hierarchy/blob/main/README.md#tree_separation) for more. By default, non-siblings are at least twice as far apart as siblings.
+If the **treeSeparation** is not null, it is a function that is passed two nodes in the hierarchy and returns the desired (relative) amount of separation; see [d3-hierarchy’s _tree_.separation](https://d3js.org/d3-hierarchy/tree#tree_separation) for more. By default, non-siblings are at least twice as far apart as siblings.
 
 ## treeNode(*options*)
 

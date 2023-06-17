@@ -76,7 +76,7 @@ Plot.ruleX(gistemp, {x: "Date", stroke: "Anomaly"}).plot()
 ```
 :::
 
-While the resulting chart looks different, the *color* scale here behaves similarly to the `y` function above—the only difference is that it interpolates colors (using [d3.interpolateTurbo](https://github.com/d3/d3-scale-chromatic/blob/main/README.md#interpolateTurbo)) instead of numbers (the top and bottom sides of the plot frame):
+While the resulting chart looks different, the *color* scale here behaves similarly to the `y` function above—the only difference is that it interpolates colors (using [d3.interpolateTurbo](https://d3js.org/d3-scale-chromatic/sequential#interpolateTurbo)) instead of numbers (the top and bottom sides of the plot frame):
 
 ```js
 function color(anomaly) {
@@ -143,7 +143,7 @@ Plot.plot({x: {domain: [0, 100], reverse: true, grid: true}})
 
 If the domain is dates, Plot will default to a UTC scale. This is a linear scale with ticks based on the Gregorian calendar.
 
-<!-- Plot doesn’t parse dates; convert your strings to [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) instances with [d3.utcParse](https://github.com/d3/d3-time-format#utcParse) or [d3.autoType](https://github.com/d3/d3-dsv#autoType). -->
+<!-- Plot doesn’t parse dates; convert your strings to [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) instances with [d3.utcParse](https://d3js.org/d3-time-format#utcParse) or [d3.autoType](https://d3js.org/d3-dsv#autoType). -->
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
@@ -179,7 +179,7 @@ Plot.plot({x: {type: "log", domain: [1e0, 1e5], grid: true}})
 ```
 :::
 
-If you prefer conventional notation, you can specify the **tickFormat** option to change the behavior of the axis. The **tickFormat** option can either be a [d3.format](https://github.com/d3/d3-format) string or a function that takes a tick value and returns the corresponding string. Note, however, that this may result in overlapping text.
+If you prefer conventional notation, you can specify the **tickFormat** option to change the behavior of the axis. The **tickFormat** option can either be a [d3.format](https://d3js.org/d3-format) string or a function that takes a tick value and returns the corresponding string. Note, however, that this may result in overlapping text.
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
@@ -195,7 +195,7 @@ Plot.plot({x: {type: "log", base: 2, domain: [1e0, 1e4], ticks: 20, grid: true}}
 ```
 :::
 
-The domain of a log scale cannot include (or cross) zero; for this, consider a [bi-symmetric log](https://github.com/d3/d3-scale#symlog-scales) scale instead.
+The domain of a log scale cannot include (or cross) zero; for this, consider a [bi-symmetric log](https://d3js.org/d3-scale/symlog) scale instead.
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
@@ -961,7 +961,7 @@ Top-level options are also supported as shorthand: **grid** (for *x* and *y* onl
 
 ## Sort mark option
 
-If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
+If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://d3js.org/d3-array/group#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})

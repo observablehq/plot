@@ -75,7 +75,7 @@ Plot.plot({
 ```
 :::
 
-The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://github.com/d3/d3-hierarchy/blob/main/README.md#tree), by default. The [cluster](#cluster-data-options) convenience method sets **treeLayout** to [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster), aligning the leaf nodes.
+The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://d3js.org/d3-hierarchy/tree), by default. The [cluster](#cluster-data-options) convenience method sets **treeLayout** to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning the leaf nodes.
 
 :::plot https://observablehq.com/@observablehq/plot-cluster-flare
 ```js
@@ -178,4 +178,4 @@ Returns a new tree mark with the given *data* and *options*.
 Plot.cluster(flare, {path: "name", delimiter: "."})
 ```
 
-Like [tree](#tree-data-options), except sets the **treeLayout** option to [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster), aligning leaf nodes, and defaults the **textLayout** option to *mirrored*.
+Like [tree](#tree-data-options), except sets the **treeLayout** option to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning leaf nodes, and defaults the **textLayout** option to *mirrored*.

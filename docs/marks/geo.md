@@ -181,4 +181,4 @@ Returns a new geo mark with a *Sphere* geometry object and the given *options*.
 Plot.graticule()
 ```
 
-Returns a new geo mark with a [10° global graticule](https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule10) geometry object and the given *options*.
+Returns a new geo mark with a [10° global graticule](https://d3js.org/d3-geo/shape#geoGraticule10) geometry object and the given *options*.
