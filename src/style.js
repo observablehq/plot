@@ -144,7 +144,7 @@ export function styles(
 
   return {
     title: {value: title, optional: true},
-    href: {value: href, optional: true},
+    href: {value: href, optional: true, filter: null},
     ariaLabel: {value: variaLabel, optional: true},
     fill: {value: vfill, scale: "auto", optional: true},
     fillOpacity: {value: vfillOpacity, scale: "auto", optional: true},
