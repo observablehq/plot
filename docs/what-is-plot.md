@@ -2,7 +2,9 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import {shallowRef, onMounted} from "vue";
+import {computed, onMounted, shallowRef} from "vue";
+import {useData} from "vitepress";
+import PlotRender from "./components/PlotRender.js";
 
 const olympians = shallowRef([
   {weight: 31, height: 1.21, sex: "female"},
@@ -11,6 +13,22 @@ const olympians = shallowRef([
 
 onMounted(() => {
   d3.csv("./data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
+});
+
+
+const {site: {value: {themeConfig: {sidebar}}}} = useData();
+
+const paths = computed(() => {
+  const paths = [];
+  (function visit(node, path) {
+    paths.push({path, link: node.link && `.${node.link}`});
+    if (node.items) {
+      for (const item of node.items) {
+        visit(item, (path === "/" ? path : path + "/") + item.text);
+      }
+    }
+  })({items: sidebar}, "/Plot");
+  return paths;
 });
 
 </script>
@@ -68,3 +86,21 @@ Plot.plot({
 })
 ```
 :::
+
+
+## Documentation overview
+
+Plot’s API strives to be concise—yet expressive enough to allow you to quickly explore your data. The following [tree](./marks/tree.md) chart shows the structure of this documentation. 
+
+<PlotRender :options='{
+  axis: null,
+  height: 1000,
+  marginTop: 4,
+  marginBottom: 4,
+  marginRight: 120,
+  marks: [
+    Plot.tree(paths, {path: "path", textStroke: "var(--vp-c-bg)",channels: {href: {value: "link", filter: null}}, treeSort: null})
+  ]
+}' />
+
+You can also peruse our [gallery of examples](https://observablehq.com/@observablehq/plot-gallery) for inspiration.
