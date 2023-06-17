@@ -138,5 +138,5 @@
     <rect x="588.3239436619718" y="369.45226917057903" width="7.169014084507012" height="0.5477308294209706"></rect>
     <rect x="612.830985915493" y="368.90453834115806" width="7.169014084507012" height="1.0954616588419412"></rect>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

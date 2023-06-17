@@ -44,5 +44,5 @@
     <rect x="246" width="168" y="45" height="20"></rect>
     <rect x="433" width="168" y="23" height="20"></rect>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(84.5,10.5)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(84.5,10.5)"></g>
 </svg>

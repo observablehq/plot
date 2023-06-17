@@ -260,19 +260,19 @@
     </g>
   </g>
   <g aria-label="tip" transform="translate(0.5,0.5)">
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,0)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,87)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,174)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,261)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,348)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,435)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,522)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,609)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,696)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,783)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,870)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,957)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,1044)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(0,1131)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,0)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,87)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,174)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,261)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,348)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,435)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,522)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,609)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,696)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,783)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,870)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,957)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,1044)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,1131)"></g>
   </g>
 </svg>

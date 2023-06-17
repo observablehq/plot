@@ -49,5 +49,5 @@
     <circle cx="553.3333333333333" cy="15" r="3"></circle>
     <circle cx="620" cy="15" r="3"></circle>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

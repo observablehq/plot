@@ -397,8 +397,8 @@
     <circle cx="316.2909090909091" cy="299.1666666666666" r="3" stroke="#4e79a7"></circle>
     <circle cx="415.4181818181818" cy="244.99999999999994" r="3" stroke="#f28e2c"></circle>
   </g>
-  <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0.5,0)"></g>
-  <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)"></g>
-  <g aria-label="crosshair text" stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,9.5)"></g>
-  <g aria-label="crosshair text" stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"></g>
+  <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0.5,0)"></g>
+  <g aria-label="crosshair rule" stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,0.5)"></g>
+  <g aria-label="crosshair text" stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" font-variant="tabular-nums" transform="translate(0.5,9.5)"></g>
+  <g aria-label="crosshair text" stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"></g>
 </svg>

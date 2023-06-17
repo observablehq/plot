@@ -53,7 +53,7 @@
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,370)">culmen_length_mm →</text>
   </g>
-  <g aria-label="dot" fill="blue" transform="translate(0.5,0.5)"></g>
+  <g aria-label="dot" fill="blue" pointer-events="none" transform="translate(0.5,0.5)"></g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="187.63636363636363" cy="136.66666666666669" r="3"></circle>
     <circle cx="196.07272727272726" cy="190.8333333333334" r="3"></circle>
