@@ -11,7 +11,7 @@ Chaos Tartarus`
     .map((d) => d.replace(/\s+/g, "/"));
   return Plot.plot({
     axis: null,
-    insetLeft: 10,
+    insetLeft: 35,
     insetTop: 20,
     insetBottom: 20,
     insetRight: 120,

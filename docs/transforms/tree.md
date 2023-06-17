@@ -88,6 +88,7 @@ The treeNode transform will derive output columns for any *options* that have on
 * *node:name* - the node’s name (the last part of its path)
 * *node:path* - the node’s full, normalized, slash-separated path
 * *node:internal* - true if the node is internal, or false for leaves
+* *node:external* - true if the node is a leaf, or false for internal nodes
 * *node:depth* - the distance from the node to the root
 * *node:height* - the distance from the node to its deepest descendant
 
@@ -102,6 +103,7 @@ The treeLink transform will likewise derive output columns for any *options* tha
 * *node:name* - the child node’s name (the last part of its path)
 * *node:path* - the child node’s full, normalized, slash-separated path
 * *node:internal* - true if the child node is internal, or false for leaves
+* *node:external* - true if the child node is a leaf, or false for internal nodes
 * *node:depth* - the distance from the child node to the root
 * *node:height* - the distance from the child node to its deepest descendant
 * *parent:name* - the parent node’s name (the last part of its path)
