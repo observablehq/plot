@@ -1,4 +1,4 @@
-import {blurImage, Delaunay, least, minIndex, randomLcg, rgb} from "d3";
+import {blurImage, Delaunay, least, randomLcg, rgb} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {map, first, second, third, isTuples, isNumeric, isTemporal, identity} from "../options.js";
@@ -337,18 +337,14 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
     const closest = (x, y) =>
       least(
         projections.map(({a, b, project}) => ({a, b, p: project(x, y)})),
-        ({p: {distance2}}) => distance2
+        (d) => d.p.dist2
       );
     for (let i = 0; i < I.length; ++i) {
       if (!I[i]) {
         const x = i % width;
         const y = Math.floor(i / width);
-        const {
-          a,
-          b,
-          p: {value}
-        } = closest(x + 0.5, y + 0.5);
-        W[i] = mix(V[a], 1 - value, V[b], value, V[a], 0, x, y);
+        const {a, b, p} = closest(x + 0.5, y + 0.5);
+        W[i] = mix(V[a], 1 - p.t, V[b], p.t, V[a], 0, x, y);
       }
     }
 
@@ -362,17 +358,14 @@ function segmentProject(x1, y1, x2, y2) {
   const dx = x2 - xm;
   const dy = y2 - ym;
   return dx === 0 && dy === 0
-    ? (x, y) => ({value: 0, distance2: (x - xm) ** 2 + (y - ym) ** 2})
+    ? (x, y) => ({t: 0, dist2: (x - xm) ** 2 + (y - ym) ** 2})
     : (x, y) => {
         const tx = x - xm;
         const ty = y - ym;
-        const D = [(tx - 2 * dx) ** 2 + (ty - 2 * dy) ** 2, tx ** 2 + ty ** 2, (tx + 2 * dx) ** 2 + (ty + 2 * dy) ** 2];
-        const c = minIndex(D);
-        const value = c === 0 ? 0 : c === 2 ? 1 : (D[0] - D[1]) / (D[0] + D[2] - 2 * D[1]);
-        return {
-          value,
-          distance2: (tx + (2 * value - 1) * dx) ** 2 + (ty + (2 * value - 1) * dy) ** 2
-        };
+        const a = dx * (dx - tx) + dy * (dy - ty);
+        const b = dx * (dx + tx) + dy * (dy + ty);
+        const t = a > 0 && b > 0 ? a / (a + b) : +(a > b);
+        return {t, dist2: (tx + (2 * t - 1) * dx) ** 2 + (ty + (2 * t - 1) * dy) ** 2};
       };
 }
 
