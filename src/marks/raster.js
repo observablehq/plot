@@ -353,20 +353,19 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
 }
 
 function segmentProject(x1, y1, x2, y2) {
-  const xm = (x1 + x2) / 2;
-  const ym = (y1 + y2) / 2;
-  const dx = x2 - xm;
-  const dy = y2 - ym;
-  return dx === 0 && dy === 0
-    ? (x, y) => ({t: 0, dist2: (x - xm) ** 2 + (y - ym) ** 2})
-    : (x, y) => {
-        const tx = x - xm;
-        const ty = y - ym;
-        const a = dx * (dx - tx) + dy * (dy - ty);
-        const b = dx * (dx + tx) + dy * (dy + ty);
-        const t = a > 0 && b > 0 ? a / (a + b) : +(a > b);
-        return {t, dist2: (tx + (2 * t - 1) * dx) ** 2 + (ty + (2 * t - 1) * dy) ** 2};
-      };
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  if (dx === 0 && dy === 0) {
+    const xm = x1 + dx / 2;
+    const ym = y1 + dy / 2;
+    return (x, y) => ({t: 0, dist2: (x - xm) ** 2 + (y - ym) ** 2});
+  }
+  return (x, y) => {
+    const a = dx * (x2 - x) + dy * (y2 - y);
+    const b = dx * (x - x1) + dy * (y - y1);
+    const t = a > 0 && b > 0 ? a / (a + b) : +(a > b);
+    return {t, dist2: (x - x2 + t * dx) ** 2 + (y - y2 + t * dy) ** 2};
+  };
 }
 
 export function interpolateNearest(index, width, height, X, Y, V) {
