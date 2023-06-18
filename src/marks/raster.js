@@ -1,4 +1,4 @@
-import {blurImage, Delaunay, least, randomLcg, rgb} from "d3";
+import {blurImage, Delaunay, randomLcg, rgb} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
 import {map, first, second, third, isTuples, isNumeric, isTemporal, identity} from "../options.js";
@@ -329,22 +329,20 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
     }
 
     // Extrapolate by projection on the hull
-    const projections = Array.from(hull, (a, i) => {
-      const b = index[hull.at(i - 1)];
-      a = index[a];
-      return {a, b, project: segmentProject(X[b], Y[b], X[a], Y[a])};
-    });
-    const closest = (x, y) =>
-      least(
-        projections.map(({a, b, project}) => ({a, b, p: project(x, y)})),
-        (d) => d.p.dist2
-      );
     for (let i = 0; i < I.length; ++i) {
       if (!I[i]) {
-        const x = i % width;
-        const y = Math.floor(i / width);
-        const {a, b, p} = closest(x + 0.5, y + 0.5);
-        W[i] = mix(V[a], 1 - p.t, V[b], p.t, V[a], 0, x, y);
+        const x0 = i % width;
+        const y0 = Math.floor(i / width);
+        const x = x0 + 0.5;
+        const y = y0 + 0.5;
+        let r = {dist2: Infinity};
+        for (let j = 0; j < hull.length; ++j) {
+          const a = index[hull[j]];
+          const b = index[hull.at(j - 1)];
+          const {dist2, t} = segmentProject(X[b], Y[b], X[a], Y[a], x, y);
+          if (dist2 < r.dist2) r = {dist2, a, b, t};
+        }
+        W[i] = mix(V[r.a], 1 - r.t, V[r.b], r.t, V[r.a], 0, x0, y0);
       }
     }
 
@@ -352,20 +350,13 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
   };
 }
 
-function segmentProject(x1, y1, x2, y2) {
+function segmentProject(x1, y1, x2, y2, x, y) {
   const dx = x2 - x1;
   const dy = y2 - y1;
-  if (dx === 0 && dy === 0) {
-    const xm = x1 + dx / 2;
-    const ym = y1 + dy / 2;
-    return (x, y) => ({t: 0, dist2: (x - xm) ** 2 + (y - ym) ** 2});
-  }
-  return (x, y) => {
-    const a = dx * (x2 - x) + dy * (y2 - y);
-    const b = dx * (x - x1) + dy * (y - y1);
-    const t = a > 0 && b > 0 ? a / (a + b) : +(a > b);
-    return {t, dist2: (x - x2 + t * dx) ** 2 + (y - y2 + t * dy) ** 2};
-  };
+  const a = dx * (x2 - x) + dy * (y2 - y);
+  const b = dx * (x - x1) + dy * (y - y1);
+  const t = a > 0 && b > 0 ? a / (a + b) : +(a > b);
+  return {t, dist2: (x - x2 + t * dx) ** 2 + (y - y2 + t * dy) ** 2};
 }
 
 export function interpolateNearest(index, width, height, X, Y, V) {
