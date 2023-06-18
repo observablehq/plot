@@ -1,7 +1,7 @@
-import {blurImage, Delaunay, randomLcg, rgb} from "d3";
+import {blurImage, Delaunay, least, minIndex, randomLcg, rgb} from "d3";
 import {valueObject} from "../channel.js";
 import {create} from "../context.js";
-import {map, first, second, third, isTuples, isNumeric, isTemporal, take, identity} from "../options.js";
+import {map, first, second, third, isTuples, isNumeric, isTemporal, identity} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {Mark} from "../mark.js";
 import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
@@ -282,30 +282,14 @@ export function interpolateNone(index, width, height, X, Y, V) {
 
 export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
   return (index, width, height, X, Y, V) => {
-    // Flatten the input coordinates to prepare to insert extrapolated points
-    // along the perimeter of the grid (so there’s no blank output).
-    const n = index.length;
-    const nw = width >> 2;
-    const nh = (height >> 2) - 1;
-    const m = n + nw * 2 + nh * 2;
-    const XY = new Float64Array(m * 2);
-    for (let i = 0; i < n; ++i) (XY[i * 2] = X[index[i]]), (XY[i * 2 + 1] = Y[index[i]]);
-
-    // Add points along each edge, making sure to include the four corners for
-    // complete coverage (with no chamfered edges).
-    let i = n;
-    const addPoint = (x, y) => ((XY[i * 2] = x), (XY[i * 2 + 1] = y), i++);
-    for (let j = 0; j <= nw; ++j) addPoint((j / nw) * width, 0), addPoint((j / nw) * width, height);
-    for (let j = 0; j < nh; ++j) addPoint(width, (j / nh) * height), addPoint(0, (j / nh) * height);
-
-    // To each edge point, assign the closest (non-extrapolated) value.
-    V = take(V, index);
-    const delaunay = new Delaunay(XY.subarray(0, n * 2));
-    for (let j = n, ij; j < m; ++j) V[j] = V[(ij = delaunay.find(XY[j * 2], XY[j * 2 + 1], ij))];
-
     // Interpolate the interior of all triangles with barycentric coordinates
-    const {points, triangles} = new Delaunay(XY);
+    const {points, triangles, hull} = Delaunay.from(
+      index,
+      (i) => X[i],
+      (i) => Y[i]
+    );
     const W = new V.constructor(width * height);
+    const I = new Uint8Array(width * height);
     const mix = mixer(V, random);
     for (let i = 0; i < triangles.length; i += 3) {
       const ta = triangles[i];
@@ -323,9 +307,9 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
       const y2 = Math.max(Ay, By, Cy);
       const z = (By - Cy) * (Ax - Cx) + (Ay - Cy) * (Cx - Bx);
       if (!z) continue;
-      const va = V[ta];
-      const vb = V[tb];
-      const vc = V[tc];
+      const va = V[index[ta]];
+      const vb = V[index[tb]];
+      const vc = V[index[tc]];
       for (let x = Math.floor(x1); x < x2; ++x) {
         for (let y = Math.floor(y1); y < y2; ++y) {
           if (x < 0 || x >= width || y < 0 || y >= height) continue;
@@ -337,12 +321,59 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
           if (gb < 0) continue;
           const gc = 1 - ga - gb;
           if (gc < 0) continue;
-          W[x + width * y] = mix(va, ga, vb, gb, vc, gc, x, y);
+          const i = x + width * y;
+          W[i] = mix(va, ga, vb, gb, vc, gc, x, y);
+          I[i] = 1;
         }
       }
     }
+
+    // Extrapolate by projection on the hull
+    const projections = Array.from(hull, (a, i) => {
+      const b = index[hull.at(i - 1)];
+      a = index[a];
+      return {a, b, project: segmentProject(X[b], Y[b], X[a], Y[a])};
+    });
+    const closest = (x, y) =>
+      least(
+        projections.map(({a, b, project}) => ({a, b, p: project(x, y)})),
+        ({p: {distance2}}) => distance2
+      );
+    for (let i = 0; i < I.length; ++i) {
+      if (!I[i]) {
+        const x = i % width;
+        const y = Math.floor(i / width);
+        const {
+          a,
+          b,
+          p: {value}
+        } = closest(x + 0.5, y + 0.5);
+        W[i] = mix(V[a], 1 - value, V[b], value, V[a], 0, x, y);
+      }
+    }
+
     return W;
   };
+}
+
+function segmentProject(x1, y1, x2, y2) {
+  const xm = (x1 + x2) / 2;
+  const ym = (y1 + y2) / 2;
+  const dx = x2 - xm;
+  const dy = y2 - ym;
+  return dx === 0 && dy === 0
+    ? (x, y) => ({value: 0, distance2: (x - xm) ** 2 + (y - ym) ** 2})
+    : (x, y) => {
+        const tx = x - xm;
+        const ty = y - ym;
+        const D = [(tx - 2 * dx) ** 2 + (ty - 2 * dy) ** 2, tx ** 2 + ty ** 2, (tx + 2 * dx) ** 2 + (ty + 2 * dy) ** 2];
+        const c = minIndex(D);
+        const value = c === 0 ? 0 : c === 2 ? 1 : (D[0] - D[1]) / (D[0] + D[2] - 2 * D[1]);
+        return {
+          value,
+          distance2: (tx + (2 * value - 1) * dx) ** 2 + (ty + (2 * value - 1) * dy) ** 2
+        };
+      };
 }
 
 export function interpolateNearest(index, width, height, X, Y, V) {
