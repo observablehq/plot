@@ -35,7 +35,7 @@ export class RuleX extends Mark {
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetTop, insetBottom} = this;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x}, offset, 0)
       .call((g) =>
         g

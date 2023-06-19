@@ -461,5 +461,5 @@
     <circle cx="289.0217391304348" cy="218.46895378508648" r="3" stroke="rgb(46, 229, 174)"></circle>
     <circle cx="134.56521739130434" cy="216.48426424723561" r="3" stroke="rgb(255, 171, 36)"></circle>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

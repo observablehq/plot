@@ -442,23 +442,23 @@
     </g>
   </g>
   <g aria-label="crosshair rule" transform="translate(0.5,0)">
-    <g stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0)"></g>
-    <g stroke="currentColor" stroke-opacity="0.2" transform="translate(0,148)"></g>
-    <g stroke="currentColor" stroke-opacity="0.2" transform="translate(0,296)"></g>
+    <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,0)"></g>
+    <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,148)"></g>
+    <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,296)"></g>
   </g>
   <g aria-label="crosshair rule" transform="translate(0,0.5)">
-    <g stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0)"></g>
-    <g stroke="currentColor" stroke-opacity="0.2" transform="translate(0,148)"></g>
-    <g stroke="currentColor" stroke-opacity="0.2" transform="translate(0,296)"></g>
+    <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,0)"></g>
+    <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,148)"></g>
+    <g stroke="currentColor" stroke-opacity="0.2" pointer-events="none" transform="translate(0,296)"></g>
   </g>
   <g aria-label="crosshair text" transform="translate(0.5,9.5)">
-    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0,0)"></g>
-    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0,148)"></g>
-    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0,296)"></g>
+    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" font-variant="tabular-nums" transform="translate(0,0)"></g>
+    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" font-variant="tabular-nums" transform="translate(0,148)"></g>
+    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" font-variant="tabular-nums" transform="translate(0,296)"></g>
   </g>
   <g aria-label="crosshair text" transform="translate(-8.5,0.5)">
-    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(0,0)"></g>
-    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(0,148)"></g>
-    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(0,296)"></g>
+    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" text-anchor="end" font-variant="tabular-nums" transform="translate(0,0)"></g>
+    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" text-anchor="end" font-variant="tabular-nums" transform="translate(0,148)"></g>
+    <g stroke="white" stroke-width="5" stroke-linejoin="round" paint-order="stroke" pointer-events="none" text-anchor="end" font-variant="tabular-nums" transform="translate(0,296)"></g>
   </g>
 </svg>
