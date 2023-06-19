@@ -15,7 +15,6 @@ onMounted(() => {
   d3.csv("./data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
 });
 
-
 const {site: {value: {themeConfig: {sidebar}}}} = useData();
 
 const paths = computed(() => {
@@ -30,6 +29,13 @@ const paths = computed(() => {
   })({items: sidebar}, "/Plot");
   return paths;
 });
+
+// https://github.com/observablehq/plot/issues/1703
+function computeTreeWidth(paths) {
+  const root = d3.tree().nodeSize([1, 1])(d3.stratify().path((d) => d.path)(paths));
+  const [x1, x2] = d3.extent(root, (d) => d.x);
+  return x2 - x1;
+}
 
 </script>
 
@@ -87,20 +93,18 @@ Plot.plot({
 ```
 :::
 
+## What can Plot do?
 
-## Documentation overview
-
-Plot’s API strives to be concise—yet expressive enough to allow you to quickly explore your data. The following [tree](./marks/tree.md) chart shows the structure of this documentation. 
+Because marks are composable, and because you can extend Plot with custom marks, you can make almost anything with it — much more than the charts above! The following [tree diagram](./marks/tree.md) of the documentation gives a sense of what’s ”in the box” with Plot. Peruse our [gallery of examples](https://observablehq.com/@observablehq/plot-gallery) for more inspiration.
 
 <PlotRender :options='{
   axis: null,
-  height: 1000,
+  height: computeTreeWidth(paths) * 12,
   marginTop: 4,
-  marginBottom: 4,
   marginRight: 120,
+  marginBottom: 4,
+  marginLeft: 24,
   marks: [
-    Plot.tree(paths, {path: "path", textStroke: "var(--vp-c-bg)",channels: {href: {value: "link", filter: null}}, treeSort: null})
+    Plot.tree(paths, {path: "path", textStroke: "var(--vp-c-bg)", channels: {href: {value: "link", filter: null}}, treeSort: null})
   ]
 }' />
-
-You can also peruse our [gallery of examples](https://observablehq.com/@observablehq/plot-gallery) for inspiration.
