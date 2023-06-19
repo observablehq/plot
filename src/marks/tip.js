@@ -45,6 +45,7 @@ export class Tip extends Mark {
       textAnchor = "start",
       textOverflow,
       textPadding = 8,
+      title,
       pointerSize = 12,
       pathFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"
     } = options;
@@ -56,7 +57,8 @@ export class Tip extends Mark {
         x1: {value: x1, scale: "x", optional: x2 == null},
         y1: {value: y1, scale: "y", optional: y2 == null},
         x2: {value: x2, scale: "x", optional: x1 == null},
-        y2: {value: y2, scale: "y", optional: y1 == null}
+        y2: {value: y2, scale: "y", optional: y1 == null},
+        title: {value: title, optional: true} // filter: defined
       },
       options,
       defaults
