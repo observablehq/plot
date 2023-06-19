@@ -328,35 +328,59 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
       }
     }
 
-    // Extrapolate by projection on the hull
-    for (let i = 0; i < I.length; ++i) {
-      if (!I[i]) {
-        const x0 = i % width;
-        const y0 = Math.floor(i / width);
-        const x = x0 + 0.5;
-        const y = y0 + 0.5;
-        let r = {dist2: Infinity};
-        for (let j = 0; j < hull.length; ++j) {
-          const a = index[hull[j]];
-          const b = index[hull.at(j - 1)];
-          const {dist2, t} = segmentProject(X[b], Y[b], X[a], Y[a], x, y);
-          if (dist2 < r.dist2) r = {dist2, a, b, t};
-        }
-        W[i] = mix(V[r.a], 1 - r.t, V[r.b], r.t, V[r.a], 0, x0, y0);
-      }
-    }
+    extrapolateBarycentric(W, I, X, Y, V, width, height, hull, index, mix);
 
     return W;
   };
 }
 
+// Extrapolate by finding the closest point on the hull. Optimized with a
+// Delaunay search on the interpolated hull.
+function extrapolateBarycentric(W, I, X, Y, V, width, height, hull, index, mix) {
+  X = Float64Array.from(hull, (i) => X[index[i]]);
+  Y = Float64Array.from(hull, (i) => Y[index[i]]);
+  V = Array.from(hull, (i) => V[index[i]]);
+
+  const points = [];
+  const refs = [];
+  for (let j = 0; j < hull.length; ++j) {
+    const xa = X.at(j - 1);
+    const ya = Y.at(j - 1);
+    const dx = X.at(j) - xa;
+    const dy = Y.at(j) - ya;
+    const s = 1 / (1 + (Math.hypot(dx, dy) << 1));
+    for (let d = 0; d < 1; d += s) {
+      points.push(xa + d * dx, ya + d * dy);
+      refs.push(j);
+    }
+  }
+  const delaunay = new Delaunay(points);
+  let iy, ix;
+  for (let y = 0; y < height; ++y) {
+    const yp = y + 0.5;
+    ix = iy;
+    for (let x = 0; x < width; ++x) {
+      const i = x + width * y;
+      const xp = x + 0.5;
+      if (!I[i]) {
+        ix = delaunay.find(xp, yp, ix);
+        if (x === 0) iy = ix;
+        const j = refs[ix];
+        const t = segmentProject(X.at(j - 1), Y.at(j - 1), X[j], Y[j], xp, yp);
+        W[i] = mix(V.at(j - 1), t, V[j], 1 - t, V[j], 0, x, y);
+      }
+    }
+  }
+}
+
+// Projects a point p = [x, y] onto the line segment [p1, p2], returning the
+// projected coordinates p’ as t in [0, 1] with p’ = t p1 + (1 - t) p2.
 function segmentProject(x1, y1, x2, y2, x, y) {
   const dx = x2 - x1;
   const dy = y2 - y1;
   const a = dx * (x2 - x) + dy * (y2 - y);
   const b = dx * (x - x1) + dy * (y - y1);
-  const t = a > 0 && b > 0 ? a / (a + b) : +(a > b);
-  return {t, dist2: (x - x2 + t * dx) ** 2 + (y - y2 + t * dy) ** 2};
+  return a > 0 && b > 0 ? a / (a + b) : +(a > b);
 }
 
 export function interpolateNearest(index, width, height, X, Y, V) {
