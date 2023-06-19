@@ -20,7 +20,7 @@ onMounted(() => {
 The bin transform is for aggregating quantitative or temporal data. For ordinal or nominal data, use the [group transform](./group.md). See also the [hexbin transform](./hexbin.md).
 :::
 
-The **bin transform** groups quantitative or temporal data—continuous measurements such as heights, weights, or temperatures—into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is most often used to make histograms or heatmaps with the [rect mark](../marks/rect.md).
+The **bin transform** groups quantitative or temporal data — continuous measurements such as heights, weights, or temperatures — into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is most often used to make histograms or heatmaps with the [rect mark](../marks/rect.md).
 
 For example, here is a histogram showing the distribution of weights of Olympic athletes.
 

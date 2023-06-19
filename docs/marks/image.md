@@ -111,7 +111,7 @@ Plot.plot({
 ```
 :::
 
-If—*for reasons*—you want to style the plot with a background image, you can do that using the top-level **style** option rather than an image mark. Below, Kristen Gorman’s penguins dataset is visualized atop her photograph of sea ice near Palmer Station on the Antarctic peninsula, where she collected the measurements.
+If — *for reasons* — you want to style the plot with a background image, you can do that using the top-level **style** option rather than an image mark. Below, Kristen Gorman’s penguins dataset is visualized atop her photograph of sea ice near Palmer Station on the Antarctic peninsula, where she collected the measurements.
 
 :::plot defer https://observablehq.com/@observablehq/plot-background-image
 ```js

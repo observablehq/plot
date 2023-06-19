@@ -20,7 +20,7 @@ function bollinger(N, K) {
 
 # Map transform
 
-The **map transform** groups data into series and then transforms each series’ values, say to normalize them relative to some basis or to apply a moving average. For example, below the map transform computes a cumulative sum (*cumsum*) of a series of random numbers sampled from a normal distribution—in other words, a random walk.
+The **map transform** groups data into series and then transforms each series’ values, say to normalize them relative to some basis or to apply a moving average. For example, below the map transform computes a cumulative sum (*cumsum*) of a series of random numbers sampled from a normal distribution — in other words, a random walk.
 
 :::plot https://observablehq.com/@observablehq/plot-random-walk-cumsum-map
 ```js

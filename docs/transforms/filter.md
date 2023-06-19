@@ -50,7 +50,7 @@ As an alternative to the filter transform here, you could set the **text** chann
 
 The filter transform can be applied either via the **filter** [mark option](../features/marks.md#mark-options), as above, or as an explicit [filter transform](#filter-test-options). The latter is generally only needed when composing multiple transforms.
 
-To highlight the vowels in a bar chart of English letter frequency, you can use a filtered bar with a <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> stroke. A filtered mark allows you to set options on a subset of the data, even if those options—such as mark insets—are not expressible as a channels.
+To highlight the vowels in a bar chart of English letter frequency, you can use a filtered bar with a <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> stroke. A filtered mark allows you to set options on a subset of the data, even if those options — such as mark insets — are not expressible as a channels.
 
 :::plot https://observablehq.com/@observablehq/plot-filtered-bars
 ```js{8}

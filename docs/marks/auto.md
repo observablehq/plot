@@ -17,7 +17,7 @@ onMounted(() => {
 
 # Auto mark
 
-The magic ✨ **auto mark** automatically selects a mark type that best represents the given dimensions of the data according to some simple heuristics. The auto mark—which powers [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell)—is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. For example, two quantitative dimensions make a scatterplot:
+The magic ✨ **auto mark** automatically selects a mark type that best represents the given dimensions of the data according to some simple heuristics. The auto mark — which powers [Observable’s chart cell](https://observablehq.com/@observablehq/chart-cell) — is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. For example, two quantitative dimensions make a scatterplot:
 
 :::plot https://observablehq.com/@observablehq/plot-auto-mark-scatterplot
 ```js

@@ -93,7 +93,7 @@ Plot.plot({
 ```
 :::
 
-If no **title** channel is supplied, the tip mark displays all channel values. You can supply additional name-value pairs by registering extra channels using the **channels** mark option. In the scatterplot of Olympic athletes below, you can hover to see the *name* and *sport* of each athlete. This is helpful for noticing patterns—tall basketball players, giant weightlifters and judoka, diminutive gymnasts—and for seeing individuals.
+If no **title** channel is supplied, the tip mark displays all channel values. You can supply additional name-value pairs by registering extra channels using the **channels** mark option. In the scatterplot of Olympic athletes below, you can hover to see the *name* and *sport* of each athlete. This is helpful for noticing patterns — tall basketball players, giant weightlifters and judoka, diminutive gymnasts — and for seeing individuals.
 
 :::plot defer https://observablehq.com/@observablehq/plot-tips-additional-channels
 ```js

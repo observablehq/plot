@@ -20,7 +20,7 @@ onMounted(() => {
 
 # Link mark
 
-The **link mark** draws straight lines between two points [**x1**, **y1**] and [**x2**, **y2**] in quantitative dimensions. It is similar to the [arrow mark](./arrow.md), except it draws a straight line—or geodesic when used with a [spherical projection](../features/projections.md).
+The **link mark** draws straight lines between two points [**x1**, **y1**] and [**x2**, **y2**] in quantitative dimensions. It is similar to the [arrow mark](./arrow.md), except it draws a straight line — or geodesic when used with a [spherical projection](../features/projections.md).
 
 For example, the chart below shows the rising inequality (and population) in various U.S. cities from 1980 to 2015. Each link represents two observations of a city: the city’s population (**x**) and inequality (**y**) in 1980, and the same in 2015. The link’s **stroke** redundantly encodes the change in inequality: red indicates rising inequality, while blue (there are only four) indicates declining inequality.
 
