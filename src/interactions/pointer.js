@@ -21,6 +21,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
     // outermost render function because it will re-render dynamically in
     // response to pointer events.
     render: composeRender(function (index, scales, values, dimensions, context, next) {
+      context = {...context, pointerSticky: false};
       const svg = context.ownerSVGElement;
       const {data} = context.getMarkState(this);
 
@@ -100,10 +101,10 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       function render(ii) {
         if (i === ii && s === state.sticky) return; // the tooltip hasn’t moved
         i = ii;
-        s = state.sticky;
+        s = context.pointerSticky = state.sticky;
         const I = i == null ? [] : [i];
         if (faceted) (I.fx = index.fx), (I.fy = index.fy), (I.fi = index.fi);
-        const r = next(I, scales, values, dimensions, {...context, pointerSticky: s});
+        const r = next(I, scales, values, dimensions, context);
         if (g) {
           // When faceting, preserve swapped mark and facet transforms; also
           // remove ARIA attributes since these are promoted to the parent. This
