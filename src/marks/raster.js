@@ -340,34 +340,24 @@ function extrapolateBarycentric(W, I, X, Y, V, width, height, hull, index, mix) 
   X = Float64Array.from(hull, (i) => X[index[i]]);
   Y = Float64Array.from(hull, (i) => Y[index[i]]);
   V = Array.from(hull, (i) => V[index[i]]);
-
-  const points = [];
-  const refs = [];
-  for (let j = 0; j < hull.length; ++j) {
-    const xa = X.at(j - 1);
-    const ya = Y.at(j - 1);
-    const dx = X.at(j) - xa;
-    const dy = Y.at(j) - ya;
-    const s = 1 / (1 + (Math.hypot(dx, dy) << 1));
-    for (let d = 0; d < 1; d += s) {
-      points.push(xa + d * dx, ya + d * dy);
-      refs.push(j);
-    }
-  }
-  const delaunay = new Delaunay(points);
-  let iy, ix;
+  const n = X.length;
+  const rays = Array.from({length: n}, (_, j) => ray(j, X, Y));
+  let k = 0;
   for (let y = 0; y < height; ++y) {
     const yp = y + 0.5;
-    ix = iy;
     for (let x = 0; x < width; ++x) {
       const i = x + width * y;
-      const xp = x + 0.5;
       if (!I[i]) {
-        ix = delaunay.find(xp, yp, ix);
-        if (x === 0) iy = ix;
-        const j = refs[ix];
-        const t = segmentProject(X.at(j - 1), Y.at(j - 1), X[j], Y[j], xp, yp);
-        W[i] = mix(V.at(j - 1), t, V[j], 1 - t, V[j], 0, x, y);
+        const xp = x + 0.5;
+        for (let l = 0; l < n; ++l) {
+          const j = (n + k + (l % 2 ? (l + 1) / 2 : -l / 2)) % n;
+          if (rays[j](xp, yp)) {
+            const t = segmentProject(X.at(j - 1), Y.at(j - 1), X[j], Y[j], xp, yp);
+            W[i] = mix(V.at(j - 1), t, V[j], 1 - t, V[j], 0, x, y);
+            k = j;
+            break;
+          }
+        }
       }
     }
   }
@@ -381,6 +371,42 @@ function segmentProject(x1, y1, x2, y2, x, y) {
   const a = dx * (x2 - x) + dy * (y2 - y);
   const b = dx * (x - x1) + dy * (y - y1);
   return a > 0 && b > 0 ? a / (a + b) : +(a > b);
+}
+
+function cross(xa, ya, xb, yb) {
+  return xa * yb - xb * ya;
+}
+
+function ray(j, X, Y) {
+  const n = X.length;
+  const xc = X.at(j - 2),
+    yc = Y.at(j - 2),
+    xa = X.at(j - 1),
+    ya = Y.at(j - 1),
+    xb = X[j],
+    yb = Y[j],
+    xd = X.at(j + 1 - n),
+    yd = Y.at(j + 1 - n);
+  const dxab = xa - xb;
+  const dyab = ya - yb;
+  const dxca = xc - xa;
+  const dyca = yc - ya;
+  const dxbd = xb - xd;
+  const dybd = yb - yd;
+  const hab = Math.hypot(dxab, dyab);
+  const hca = Math.hypot(dxca, dyca);
+  const hbd = Math.hypot(dxbd, dybd);
+  return (x, y) => {
+    const dxa = x - xa;
+    const dya = y - ya;
+    const dxb = x - xb;
+    const dyb = y - yb;
+    return (
+      cross(dxa, dya, dxb, dyb) >= 0 &&
+      cross(dxa, dya, dxab, dyab) * hca >= cross(dxa, dya, dxca, dyca) * hab &&
+      cross(dxb, dyb, dxab, dyab) * hbd >= cross(dxb, dyb, dxbd, dybd) * hab
+    );
+  };
 }
 
 export function interpolateNearest(index, width, height, X, Y, V) {
