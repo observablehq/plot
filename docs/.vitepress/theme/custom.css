@@ -31,6 +31,10 @@
   z-index: 1;
 }
 
+.vp-doc .plot a:hover {
+  text-decoration: initial;
+}
+
 :root [aria-label="tip"][fill="white"],
 :root [aria-label="tip"] [fill="white"] {
   fill: var(--vp-c-bg-alt);
