@@ -379,14 +379,14 @@ function cross(xa, ya, xb, yb) {
 
 function ray(j, X, Y) {
   const n = X.length;
-  const xc = X.at(j - 2),
-    yc = Y.at(j - 2),
-    xa = X.at(j - 1),
-    ya = Y.at(j - 1),
-    xb = X[j],
-    yb = Y[j],
-    xd = X.at(j + 1 - n),
-    yd = Y.at(j + 1 - n);
+  const xc = X.at(j - 2);
+  const yc = Y.at(j - 2);
+  const xa = X.at(j - 1);
+  const ya = Y.at(j - 1);
+  const xb = X[j];
+  const yb = Y[j];
+  const xd = X.at(j + 1 - n);
+  const yd = Y.at(j + 1 - n);
   const dxab = xa - xb;
   const dyab = ya - yb;
   const dxca = xc - xa;
