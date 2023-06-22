@@ -14,21 +14,21 @@
     }
   </style>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,195)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,195)">0</text>
+    <text y="0.32em" transform="translate(60,195)">0</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(237.5,0)">
-    <path transform="translate(93,370)" d="M0,0L0,6"></path>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(229.5,0)">
+    <path transform="translate(111,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(237.5,9.5)">
-    <text y="0.71em" transform="translate(93,370)">foo</text>
+  <g aria-label="x-axis tick label" transform="translate(229.5,9.5)">
+    <text y="0.71em" transform="translate(111,370)">foo</text>
   </g>
   <g aria-label="bar">
-    <rect x="93" width="474" y="20" height="350"></rect>
+    <rect x="111" width="458" y="20" height="350"></rect>
   </g>
-  <g aria-label="rule" stroke="red" transform="translate(237.5,0)">
-    <line x1="93" x2="93" y1="20" y2="370"></line>
+  <g aria-label="rule" stroke="red" transform="translate(229.5,0)">
+    <line x1="111" x2="111" y1="20" y2="370"></line>
   </g>
 </svg>

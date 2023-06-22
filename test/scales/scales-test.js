@@ -71,7 +71,7 @@ it("plot(…).scale('x') can return a linear scale", () => {
   scaleEqual(plot.scale("x"), {
     type: "linear",
     domain: [1, 2],
-    range: [40, 620],
+    range: [60, 620],
     interpolate: d3.interpolateNumber,
     clamp: false
   });
@@ -114,7 +114,7 @@ it("plot(…).scale('x') can return a utc scale", async () => {
   scaleEqual(plot.scale("x"), {
     type: "utc",
     domain: [new Date("2013-05-13"), new Date("2018-05-11")],
-    range: [40, 620],
+    range: [60, 620],
     interpolate: d3.interpolateNumber,
     clamp: false
   });
@@ -126,7 +126,7 @@ it("plot(…).scale('x') can return an explicit time scale", async () => {
   scaleEqual(plot.scale("x"), {
     type: "time",
     domain: [new Date("2013-05-13"), new Date("2018-05-11")],
-    range: [40, 620],
+    range: [60, 620],
     interpolate: d3.interpolateNumber,
     clamp: false
   });
@@ -298,12 +298,12 @@ it("plot(…).scale('fx') can return a band scale", () => {
   scaleEqual(plot.scale("fx"), {
     type: "band",
     domain: [1, 2],
-    range: [40, 620],
+    range: [60, 620],
     align: 0.5,
     paddingInner: 0.1,
     paddingOuter: 0,
-    bandwidth: 275,
-    step: 305,
+    bandwidth: 265,
+    step: 294,
     round: true
   });
 });
@@ -1940,14 +1940,14 @@ it("plot(…).scale(name).interval changes the domain and sets the transform opt
   const plot = Plot.barY(requests, {x: "0", y: "1"}).plot({x: {interval: 1}});
   scaleEqual(plot.scale("x"), {
     align: 0.5,
-    bandwidth: 29,
+    bandwidth: 27,
     domain: d3.range(2002, 2020),
     interval: ["floor", "offset", "range"],
     paddingInner: 0.1,
     paddingOuter: 0.1,
-    range: [40, 620],
+    range: [60, 620],
     round: true,
-    step: 32,
+    step: 30,
     type: "band"
   });
 });

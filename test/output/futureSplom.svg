@@ -14,219 +14,219 @@
     }
   </style>
   <g aria-label="x-grid" transform="translate(0.5,0)">
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,117)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(1,117)">
+      <line x1="60" x2="60" y1="30" y2="135"></line>
+      <line x1="76.5" x2="76.5" y1="30" y2="135"></line>
+      <line x1="93" x2="93" y1="30" y2="135"></line>
+      <line x1="109.5" x2="109.5" y1="30" y2="135"></line>
+      <line x1="126" x2="126" y1="30" y2="135"></line>
+      <line x1="142.5" x2="142.5" y1="30" y2="135"></line>
+      <line x1="159" x2="159" y1="30" y2="135"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,234)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(1,234)">
+      <line x1="60" x2="60" y1="30" y2="135"></line>
+      <line x1="76.5" x2="76.5" y1="30" y2="135"></line>
+      <line x1="93" x2="93" y1="30" y2="135"></line>
+      <line x1="109.5" x2="109.5" y1="30" y2="135"></line>
+      <line x1="126" x2="126" y1="30" y2="135"></line>
+      <line x1="142.5" x2="142.5" y1="30" y2="135"></line>
+      <line x1="159" x2="159" y1="30" y2="135"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(117,0)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(111,0)">
+      <line x1="60" x2="60" y1="30" y2="135"></line>
+      <line x1="76.5" x2="76.5" y1="30" y2="135"></line>
+      <line x1="93" x2="93" y1="30" y2="135"></line>
+      <line x1="109.5" x2="109.5" y1="30" y2="135"></line>
+      <line x1="126" x2="126" y1="30" y2="135"></line>
+      <line x1="142.5" x2="142.5" y1="30" y2="135"></line>
+      <line x1="159" x2="159" y1="30" y2="135"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(117,234)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(111,234)">
+      <line x1="60" x2="60" y1="30" y2="135"></line>
+      <line x1="76.5" x2="76.5" y1="30" y2="135"></line>
+      <line x1="93" x2="93" y1="30" y2="135"></line>
+      <line x1="109.5" x2="109.5" y1="30" y2="135"></line>
+      <line x1="126" x2="126" y1="30" y2="135"></line>
+      <line x1="142.5" x2="142.5" y1="30" y2="135"></line>
+      <line x1="159" x2="159" y1="30" y2="135"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(234,0)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(221,0)">
+      <line x1="60" x2="60" y1="30" y2="135"></line>
+      <line x1="76.5" x2="76.5" y1="30" y2="135"></line>
+      <line x1="93" x2="93" y1="30" y2="135"></line>
+      <line x1="109.5" x2="109.5" y1="30" y2="135"></line>
+      <line x1="126" x2="126" y1="30" y2="135"></line>
+      <line x1="142.5" x2="142.5" y1="30" y2="135"></line>
+      <line x1="159" x2="159" y1="30" y2="135"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(234,117)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(221,117)">
+      <line x1="60" x2="60" y1="30" y2="135"></line>
+      <line x1="76.5" x2="76.5" y1="30" y2="135"></line>
+      <line x1="93" x2="93" y1="30" y2="135"></line>
+      <line x1="109.5" x2="109.5" y1="30" y2="135"></line>
+      <line x1="126" x2="126" y1="30" y2="135"></line>
+      <line x1="142.5" x2="142.5" y1="30" y2="135"></line>
+      <line x1="159" x2="159" y1="30" y2="135"></line>
     </g>
   </g>
   <g aria-label="y-grid" transform="translate(0,0.5)">
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,117)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(1,117)">
+      <line x1="60" x2="159" y1="135" y2="135"></line>
+      <line x1="60" x2="159" y1="117.5" y2="117.5"></line>
+      <line x1="60" x2="159" y1="100.00000000000001" y2="100.00000000000001"></line>
+      <line x1="60" x2="159" y1="82.5" y2="82.5"></line>
+      <line x1="60" x2="159" y1="65" y2="65"></line>
+      <line x1="60" x2="159" y1="47.5" y2="47.5"></line>
+      <line x1="60" x2="159" y1="30" y2="30"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,234)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(1,234)">
+      <line x1="60" x2="159" y1="135" y2="135"></line>
+      <line x1="60" x2="159" y1="117.5" y2="117.5"></line>
+      <line x1="60" x2="159" y1="100.00000000000001" y2="100.00000000000001"></line>
+      <line x1="60" x2="159" y1="82.5" y2="82.5"></line>
+      <line x1="60" x2="159" y1="65" y2="65"></line>
+      <line x1="60" x2="159" y1="47.5" y2="47.5"></line>
+      <line x1="60" x2="159" y1="30" y2="30"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(117,0)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(111,0)">
+      <line x1="60" x2="159" y1="135" y2="135"></line>
+      <line x1="60" x2="159" y1="117.5" y2="117.5"></line>
+      <line x1="60" x2="159" y1="100.00000000000001" y2="100.00000000000001"></line>
+      <line x1="60" x2="159" y1="82.5" y2="82.5"></line>
+      <line x1="60" x2="159" y1="65" y2="65"></line>
+      <line x1="60" x2="159" y1="47.5" y2="47.5"></line>
+      <line x1="60" x2="159" y1="30" y2="30"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(117,234)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(111,234)">
+      <line x1="60" x2="159" y1="135" y2="135"></line>
+      <line x1="60" x2="159" y1="117.5" y2="117.5"></line>
+      <line x1="60" x2="159" y1="100.00000000000001" y2="100.00000000000001"></line>
+      <line x1="60" x2="159" y1="82.5" y2="82.5"></line>
+      <line x1="60" x2="159" y1="65" y2="65"></line>
+      <line x1="60" x2="159" y1="47.5" y2="47.5"></line>
+      <line x1="60" x2="159" y1="30" y2="30"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(234,0)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(221,0)">
+      <line x1="60" x2="159" y1="135" y2="135"></line>
+      <line x1="60" x2="159" y1="117.5" y2="117.5"></line>
+      <line x1="60" x2="159" y1="100.00000000000001" y2="100.00000000000001"></line>
+      <line x1="60" x2="159" y1="82.5" y2="82.5"></line>
+      <line x1="60" x2="159" y1="65" y2="65"></line>
+      <line x1="60" x2="159" y1="47.5" y2="47.5"></line>
+      <line x1="60" x2="159" y1="30" y2="30"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(234,117)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(221,117)">
+      <line x1="60" x2="159" y1="135" y2="135"></line>
+      <line x1="60" x2="159" y1="117.5" y2="117.5"></line>
+      <line x1="60" x2="159" y1="100.00000000000001" y2="100.00000000000001"></line>
+      <line x1="60" x2="159" y1="82.5" y2="82.5"></line>
+      <line x1="60" x2="159" y1="65" y2="65"></line>
+      <line x1="60" x2="159" y1="47.5" y2="47.5"></line>
+      <line x1="60" x2="159" y1="30" y2="30"></line>
     </g>
   </g>
   <g aria-label="x-axis tick" transform="translate(0.5,0)">
-    <g fill="none" stroke="currentColor" transform="translate(0,234)">
-      <path transform="translate(57.5,135)" d="M0,0L0,6"></path>
-      <path transform="translate(92.5,135)" d="M0,0L0,6"></path>
-      <path transform="translate(127.50000000000001,135)" d="M0,0L0,6"></path>
+    <g fill="none" stroke="currentColor" transform="translate(1,234)">
+      <path transform="translate(76.5,135)" d="M0,0L0,6"></path>
+      <path transform="translate(109.5,135)" d="M0,0L0,6"></path>
+      <path transform="translate(142.5,135)" d="M0,0L0,6"></path>
     </g>
-    <g fill="none" stroke="currentColor" transform="translate(117,234)">
-      <path transform="translate(57.5,135)" d="M0,0L0,6"></path>
-      <path transform="translate(92.5,135)" d="M0,0L0,6"></path>
-      <path transform="translate(127.50000000000001,135)" d="M0,0L0,6"></path>
+    <g fill="none" stroke="currentColor" transform="translate(111,234)">
+      <path transform="translate(76.5,135)" d="M0,0L0,6"></path>
+      <path transform="translate(109.5,135)" d="M0,0L0,6"></path>
+      <path transform="translate(142.5,135)" d="M0,0L0,6"></path>
     </g>
-    <g fill="none" stroke="currentColor" transform="translate(234,234)">
-      <path transform="translate(57.5,135)" d="M0,0L0,6"></path>
-      <path transform="translate(92.5,135)" d="M0,0L0,6"></path>
-      <path transform="translate(127.50000000000001,135)" d="M0,0L0,6"></path>
+    <g fill="none" stroke="currentColor" transform="translate(221,234)">
+      <path transform="translate(76.5,135)" d="M0,0L0,6"></path>
+      <path transform="translate(109.5,135)" d="M0,0L0,6"></path>
+      <path transform="translate(142.5,135)" d="M0,0L0,6"></path>
     </g>
   </g>
   <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
-    <g font-variant="tabular-nums" transform="translate(0,234)">
-      <text y="0.71em" transform="translate(57.5,135)">−1</text>
-      <text y="0.71em" transform="translate(92.5,135)">0</text>
-      <text y="0.71em" transform="translate(127.50000000000001,135)">1</text>
+    <g font-variant="tabular-nums" transform="translate(1,234)">
+      <text y="0.71em" transform="translate(76.5,135)">−1</text>
+      <text y="0.71em" transform="translate(109.5,135)">0</text>
+      <text y="0.71em" transform="translate(142.5,135)">1</text>
     </g>
-    <g font-variant="tabular-nums" transform="translate(117,234)">
-      <text y="0.71em" transform="translate(57.5,135)">−1</text>
-      <text y="0.71em" transform="translate(92.5,135)">0</text>
-      <text y="0.71em" transform="translate(127.50000000000001,135)">1</text>
+    <g font-variant="tabular-nums" transform="translate(111,234)">
+      <text y="0.71em" transform="translate(76.5,135)">−1</text>
+      <text y="0.71em" transform="translate(109.5,135)">0</text>
+      <text y="0.71em" transform="translate(142.5,135)">1</text>
     </g>
-    <g font-variant="tabular-nums" transform="translate(234,234)">
-      <text y="0.71em" transform="translate(57.5,135)">−1</text>
-      <text y="0.71em" transform="translate(92.5,135)">0</text>
-      <text y="0.71em" transform="translate(127.50000000000001,135)">1</text>
+    <g font-variant="tabular-nums" transform="translate(221,234)">
+      <text y="0.71em" transform="translate(76.5,135)">−1</text>
+      <text y="0.71em" transform="translate(109.5,135)">0</text>
+      <text y="0.71em" transform="translate(142.5,135)">1</text>
     </g>
   </g>
   <g aria-label="y-axis tick" transform="translate(0,0.5)">
-    <g fill="none" stroke="currentColor" transform="translate(0,0)">
-      <path transform="translate(40,117.5)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,82.5)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,47.5)" d="M0,0L-6,0"></path>
+    <g fill="none" stroke="currentColor" transform="translate(1,0)">
+      <path transform="translate(60,117.5)" d="M0,0L-6,0"></path>
+      <path transform="translate(60,82.5)" d="M0,0L-6,0"></path>
+      <path transform="translate(60,47.5)" d="M0,0L-6,0"></path>
     </g>
-    <g fill="none" stroke="currentColor" transform="translate(0,117)">
-      <path transform="translate(40,117.5)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,82.5)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,47.5)" d="M0,0L-6,0"></path>
+    <g fill="none" stroke="currentColor" transform="translate(1,117)">
+      <path transform="translate(60,117.5)" d="M0,0L-6,0"></path>
+      <path transform="translate(60,82.5)" d="M0,0L-6,0"></path>
+      <path transform="translate(60,47.5)" d="M0,0L-6,0"></path>
     </g>
-    <g fill="none" stroke="currentColor" transform="translate(0,234)">
-      <path transform="translate(40,117.5)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,82.5)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,47.5)" d="M0,0L-6,0"></path>
+    <g fill="none" stroke="currentColor" transform="translate(1,234)">
+      <path transform="translate(60,117.5)" d="M0,0L-6,0"></path>
+      <path transform="translate(60,82.5)" d="M0,0L-6,0"></path>
+      <path transform="translate(60,47.5)" d="M0,0L-6,0"></path>
     </g>
   </g>
   <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
-    <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,0)">
-      <text y="0.32em" transform="translate(40,117.5)">−1</text>
-      <text y="0.32em" transform="translate(40,82.5)">0</text>
-      <text y="0.32em" transform="translate(40,47.5)">1</text>
+    <g text-anchor="end" font-variant="tabular-nums" transform="translate(1,0)">
+      <text y="0.32em" transform="translate(60,117.5)">−1</text>
+      <text y="0.32em" transform="translate(60,82.5)">0</text>
+      <text y="0.32em" transform="translate(60,47.5)">1</text>
     </g>
-    <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,117)">
-      <text y="0.32em" transform="translate(40,117.5)">−1</text>
-      <text y="0.32em" transform="translate(40,82.5)">0</text>
-      <text y="0.32em" transform="translate(40,47.5)">1</text>
+    <g text-anchor="end" font-variant="tabular-nums" transform="translate(1,117)">
+      <text y="0.32em" transform="translate(60,117.5)">−1</text>
+      <text y="0.32em" transform="translate(60,82.5)">0</text>
+      <text y="0.32em" transform="translate(60,47.5)">1</text>
     </g>
-    <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,234)">
-      <text y="0.32em" transform="translate(40,117.5)">−1</text>
-      <text y="0.32em" transform="translate(40,82.5)">0</text>
-      <text y="0.32em" transform="translate(40,47.5)">1</text>
+    <g text-anchor="end" font-variant="tabular-nums" transform="translate(1,234)">
+      <text y="0.32em" transform="translate(60,117.5)">−1</text>
+      <text y="0.32em" transform="translate(60,82.5)">0</text>
+      <text y="0.32em" transform="translate(60,47.5)">1</text>
     </g>
   </g>
   <g aria-label="text" transform="translate(0.5,0.5)">
-    <g transform="translate(0,117)">
-      <text y="0.32em" transform="translate(92.5,82.5)">*</text>
+    <g transform="translate(1,117)">
+      <text y="0.32em" transform="translate(109.5,82.5)">*</text>
     </g>
-    <g transform="translate(0,234)">
-      <text y="0.32em" transform="translate(92.5,82.5)">*</text>
+    <g transform="translate(1,234)">
+      <text y="0.32em" transform="translate(109.5,82.5)">*</text>
     </g>
-    <g transform="translate(117,0)">
-      <text y="0.32em" transform="translate(92.5,82.5)">*</text>
+    <g transform="translate(111,0)">
+      <text y="0.32em" transform="translate(109.5,82.5)">*</text>
     </g>
-    <g transform="translate(117,234)">
-      <text y="0.32em" transform="translate(92.5,82.5)">*</text>
+    <g transform="translate(111,234)">
+      <text y="0.32em" transform="translate(109.5,82.5)">*</text>
     </g>
-    <g transform="translate(234,0)">
-      <text y="0.32em" transform="translate(92.5,82.5)">*</text>
+    <g transform="translate(221,0)">
+      <text y="0.32em" transform="translate(109.5,82.5)">*</text>
     </g>
-    <g transform="translate(234,117)">
-      <text y="0.32em" transform="translate(92.5,82.5)">*</text>
+    <g transform="translate(221,117)">
+      <text y="0.32em" transform="translate(109.5,82.5)">*</text>
     </g>
   </g>
   <g aria-label="fx-axis tick label" transform="translate(0.5,1.5)">
-    <g transform="translate(0,0)">
-      <text transform="translate(92.5,82.5)">A</text>
+    <g transform="translate(1,0)">
+      <text transform="translate(109.5,82.5)">A</text>
     </g>
-    <g transform="translate(117,117)">
-      <text transform="translate(92.5,82.5)">B</text>
+    <g transform="translate(111,117)">
+      <text transform="translate(109.5,82.5)">B</text>
     </g>
-    <g transform="translate(234,234)">
-      <text transform="translate(92.5,82.5)">C</text>
+    <g transform="translate(221,234)">
+      <text transform="translate(109.5,82.5)">C</text>
     </g>
   </g>
   <g aria-label="frame" transform="translate(0.5,0.5)">
-    <rect fill="none" stroke="currentColor" x="40" y="30" width="105" height="105" transform="translate(0,0)"></rect>
-    <rect fill="none" stroke="currentColor" x="40" y="30" width="105" height="105" transform="translate(117,117)"></rect>
-    <rect fill="none" stroke="currentColor" x="40" y="30" width="105" height="105" transform="translate(234,234)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="99" height="105" transform="translate(1,0)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="99" height="105" transform="translate(111,117)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="99" height="105" transform="translate(221,234)"></rect>
   </g>
 </svg>

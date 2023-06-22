@@ -14,41 +14,41 @@
     }
   </style>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,335)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,300)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,265)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,230)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,160)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,125.00000000000001)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,89.99999999999999)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,54.99999999999999)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,20)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,335)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,300)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,265)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,230)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,160)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,125.00000000000001)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,89.99999999999999)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,54.99999999999999)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,20)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,370)">0.0</text>
-    <text y="0.32em" transform="translate(40,335)">0.1</text>
-    <text y="0.32em" transform="translate(40,300)">0.2</text>
-    <text y="0.32em" transform="translate(40,265)">0.3</text>
-    <text y="0.32em" transform="translate(40,230)">0.4</text>
-    <text y="0.32em" transform="translate(40,195)">0.5</text>
-    <text y="0.32em" transform="translate(40,160)">0.6</text>
-    <text y="0.32em" transform="translate(40,125.00000000000001)">0.7</text>
-    <text y="0.32em" transform="translate(40,89.99999999999999)">0.8</text>
-    <text y="0.32em" transform="translate(40,54.99999999999999)">0.9</text>
-    <text y="0.32em" transform="translate(40,20)">1.0</text>
+    <text y="0.32em" transform="translate(60,370)">0.0</text>
+    <text y="0.32em" transform="translate(60,335)">0.1</text>
+    <text y="0.32em" transform="translate(60,300)">0.2</text>
+    <text y="0.32em" transform="translate(60,265)">0.3</text>
+    <text y="0.32em" transform="translate(60,230)">0.4</text>
+    <text y="0.32em" transform="translate(60,195)">0.5</text>
+    <text y="0.32em" transform="translate(60,160)">0.6</text>
+    <text y="0.32em" transform="translate(60,125.00000000000001)">0.7</text>
+    <text y="0.32em" transform="translate(60,89.99999999999999)">0.8</text>
+    <text y="0.32em" transform="translate(60,54.99999999999999)">0.9</text>
+    <text y="0.32em" transform="translate(60,20)">1.0</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-56.5,-16.5)">
+    <text y="0.71em" transform="translate(60,20)">↑ Frequency</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(330,370)" d="M0,0L0,6"></path>
+    <path transform="translate(340,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(330,370)">3</text>
+    <text y="0.71em" transform="translate(340,370)">3</text>
   </g>
   <g aria-label="rect">
-    <rect x="41" y="20" width="579" height="350"></rect>
+    <rect x="61" y="20" width="559" height="350"></rect>
   </g>
 </svg>

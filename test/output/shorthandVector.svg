@@ -14,93 +14,93 @@
     }
   </style>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,353.3129822001173)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,324.7881166877269)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,296.26325117533656)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,267.73838566294626)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,239.21352015055587)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,210.68865463816553)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,182.16378912577517)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,153.63892361338483)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,125.11405810099448)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,96.58919258860415)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,68.06432707621377)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,39.53946156382344)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,353.3129822001173)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,324.7881166877269)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,296.26325117533656)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,267.73838566294626)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,239.21352015055587)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,210.68865463816553)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,182.16378912577517)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,153.63892361338483)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,125.11405810099448)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,96.58919258860415)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,68.06432707621377)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,39.53946156382344)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,353.3129822001173)">156</text>
-    <text y="0.32em" transform="translate(40,324.7881166877269)">158</text>
-    <text y="0.32em" transform="translate(40,296.26325117533656)">160</text>
-    <text y="0.32em" transform="translate(40,267.73838566294626)">162</text>
-    <text y="0.32em" transform="translate(40,239.21352015055587)">164</text>
-    <text y="0.32em" transform="translate(40,210.68865463816553)">166</text>
-    <text y="0.32em" transform="translate(40,182.16378912577517)">168</text>
-    <text y="0.32em" transform="translate(40,153.63892361338483)">170</text>
-    <text y="0.32em" transform="translate(40,125.11405810099448)">172</text>
-    <text y="0.32em" transform="translate(40,96.58919258860415)">174</text>
-    <text y="0.32em" transform="translate(40,68.06432707621377)">176</text>
-    <text y="0.32em" transform="translate(40,39.53946156382344)">178</text>
+    <text y="0.32em" transform="translate(60,353.3129822001173)">156</text>
+    <text y="0.32em" transform="translate(60,324.7881166877269)">158</text>
+    <text y="0.32em" transform="translate(60,296.26325117533656)">160</text>
+    <text y="0.32em" transform="translate(60,267.73838566294626)">162</text>
+    <text y="0.32em" transform="translate(60,239.21352015055587)">164</text>
+    <text y="0.32em" transform="translate(60,210.68865463816553)">166</text>
+    <text y="0.32em" transform="translate(60,182.16378912577517)">168</text>
+    <text y="0.32em" transform="translate(60,153.63892361338483)">170</text>
+    <text y="0.32em" transform="translate(60,125.11405810099448)">172</text>
+    <text y="0.32em" transform="translate(60,96.58919258860415)">174</text>
+    <text y="0.32em" transform="translate(60,68.06432707621377)">176</text>
+    <text y="0.32em" transform="translate(60,39.53946156382344)">178</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(90.87719298245614,370)" d="M0,0L0,6"></path>
-    <path transform="translate(162.10526315789474,370)" d="M0,0L0,6"></path>
-    <path transform="translate(233.33333333333331,370)" d="M0,0L0,6"></path>
-    <path transform="translate(304.5614035087719,370)" d="M0,0L0,6"></path>
-    <path transform="translate(375.7894736842106,370)" d="M0,0L0,6"></path>
-    <path transform="translate(447.0175438596491,370)" d="M0,0L0,6"></path>
-    <path transform="translate(518.2456140350877,370)" d="M0,0L0,6"></path>
-    <path transform="translate(589.4736842105262,370)" d="M0,0L0,6"></path>
+    <path transform="translate(109.12280701754386,370)" d="M0,0L0,6"></path>
+    <path transform="translate(177.89473684210526,370)" d="M0,0L0,6"></path>
+    <path transform="translate(246.66666666666666,370)" d="M0,0L0,6"></path>
+    <path transform="translate(315.43859649122805,370)" d="M0,0L0,6"></path>
+    <path transform="translate(384.2105263157895,370)" d="M0,0L0,6"></path>
+    <path transform="translate(452.98245614035085,370)" d="M0,0L0,6"></path>
+    <path transform="translate(521.7543859649122,370)" d="M0,0L0,6"></path>
+    <path transform="translate(590.5263157894736,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(90.87719298245614,370)">Jan 07</text>
-    <text y="0.71em" transform="translate(162.10526315789474,370)">Jan 14</text>
-    <text y="0.71em" transform="translate(233.33333333333331,370)">Jan 21</text>
-    <text y="0.71em" transform="translate(304.5614035087719,370)">Jan 28</text>
-    <text y="0.71em" transform="translate(375.7894736842106,370)">Feb 04</text>
-    <text y="0.71em" transform="translate(447.0175438596491,370)">Feb 11</text>
-    <text y="0.71em" transform="translate(518.2456140350877,370)">Feb 18</text>
-    <text y="0.71em" transform="translate(589.4736842105262,370)">Feb 25</text>
+    <text y="0.71em" transform="translate(109.12280701754386,370)">Jan 07</text>
+    <text y="0.71em" transform="translate(177.89473684210526,370)">Jan 14</text>
+    <text y="0.71em" transform="translate(246.66666666666666,370)">Jan 21</text>
+    <text y="0.71em" transform="translate(315.43859649122805,370)">Jan 28</text>
+    <text y="0.71em" transform="translate(384.2105263157895,370)">Feb 04</text>
+    <text y="0.71em" transform="translate(452.98245614035085,370)">Feb 11</text>
+    <text y="0.71em" transform="translate(521.7543859649122,370)">Feb 18</text>
+    <text y="0.71em" transform="translate(590.5263157894736,370)">Feb 25</text>
   </g>
   <g aria-label="vector" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-    <path transform="translate(40,151.35687732266277) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(50.17543859649122,117.55498300264374) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(60.35087719298246,117.41244424967823) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(70.52631578947368,104.57612640720804) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(101.05263157894737,91.59725554933921) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(111.22807017543859,88.74481178539847) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(121.40350877192982,108.56957905407724) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(131.57894736842104,88.17441431217982) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(141.75438596491227,65.49718901712802) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(182.45614035087718,40.96579041403959) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(192.63157894736844,65.92504773738116) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(202.80701754385964,20) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(212.98245614035088,30.839363320111474) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(243.50877192982455,49.523121705861755) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(253.68421052631578,49.523121705861755) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(263.859649122807,50.23628613096983) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(274.03508771929825,89.31542319510834) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(284.2105263157894,125.11405810099448) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(314.7368421052631,151.35687732266277) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(324.91228070175436,217.39201229600997) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(335.08771929824564,198.2804094524397) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(345.2631578947369,194.0016368382828) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(355.4385964912281,210.68865463816553) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(385.96491228070175,309.0993550813156) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(396.140350877193,370) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(406.3157894736842,252.19239100842432) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(416.49122807017545,292.1272455130691) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(426.66666666666663,338.0520793139591) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(457.1929824561403,317.6569003096293) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(467.36842105263156,268.4515500880543) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(477.5438596491228,252.90555543353238) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(487.71929824561397,156.634134329215) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(497.89473684210526,119.97956804633131) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(538.5964912280702,124.40089367588641) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(548.7719298245614,113.27621038848687) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(558.9473684210526,127.96650186493521) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(569.1228070175438,101.29582392301417) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(599.6491228070175,63.07239003694883) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
-    <path transform="translate(609.8245614035087,23.8506999574121) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(60,151.35687732266277) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(69.82456140350877,117.55498300264374) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(79.64912280701753,117.41244424967823) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(89.47368421052632,104.57612640720804) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(118.94736842105263,91.59725554933921) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(128.7719298245614,88.74481178539847) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(138.5964912280702,108.56957905407724) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(148.42105263157896,88.17441431217982) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(158.24561403508773,65.49718901712802) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(197.5438596491228,40.96579041403959) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(207.3684210526316,65.92504773738116) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(217.19298245614036,20) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(227.01754385964912,30.839363320111474) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(256.49122807017545,49.523121705861755) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(266.31578947368416,49.523121705861755) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(276.140350877193,50.23628613096983) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(285.96491228070175,89.31542319510834) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(295.7894736842105,125.11405810099448) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(325.2631578947368,151.35687732266277) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(335.0877192982456,217.39201229600997) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(344.9122807017544,198.2804094524397) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(354.7368421052632,194.0016368382828) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(364.56140350877195,210.68865463816553) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(394.03508771929825,309.0993550813156) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(403.859649122807,370) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(413.6842105263158,252.19239100842432) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(423.50877192982455,292.1272455130691) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(433.3333333333333,338.0520793139591) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(462.8070175438597,317.6569003096293) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(472.6315789473684,268.4515500880543) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(482.4561403508772,252.90555543353238) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(492.2807017543859,156.634134329215) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(502.10526315789474,119.97956804633131) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(541.4035087719299,124.40089367588641) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(551.2280701754386,113.27621038848687) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(561.0526315789473,127.96650186493521) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(570.8771929824561,101.29582392301417) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(600.3508771929824,63.07239003694883) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
+    <path transform="translate(610.1754385964912,23.8506999574121) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
     <path transform="translate(620,21.568867603181275) translate(0,6)" d="M0,0L0,-12M-2.4,-9.6L0,-12L2.4,-9.6"></path>
   </g>
 </svg>

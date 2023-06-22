@@ -14,247 +14,247 @@
     }
   </style>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,10.5)">
-    <line x1="40" x2="620" y1="32" y2="32"></line>
-    <line x1="40" x2="620" y1="53" y2="53"></line>
-    <line x1="40" x2="620" y1="74" y2="74"></line>
-    <line x1="40" x2="620" y1="95" y2="95"></line>
-    <line x1="40" x2="620" y1="116" y2="116"></line>
-    <line x1="40" x2="620" y1="137" y2="137"></line>
-    <line x1="40" x2="620" y1="158" y2="158"></line>
-    <line x1="40" x2="620" y1="179" y2="179"></line>
-    <line x1="40" x2="620" y1="200" y2="200"></line>
-    <line x1="40" x2="620" y1="221" y2="221"></line>
-    <line x1="40" x2="620" y1="242" y2="242"></line>
-    <line x1="40" x2="620" y1="263" y2="263"></line>
-    <line x1="40" x2="620" y1="284" y2="284"></line>
-    <line x1="40" x2="620" y1="305" y2="305"></line>
-    <line x1="40" x2="620" y1="326" y2="326"></line>
-    <line x1="40" x2="620" y1="347" y2="347"></line>
-    <line x1="40" x2="620" y1="368" y2="368"></line>
-    <line x1="40" x2="620" y1="389" y2="389"></line>
-    <line x1="40" x2="620" y1="410" y2="410"></line>
-    <line x1="40" x2="620" y1="431" y2="431"></line>
-    <line x1="40" x2="620" y1="452" y2="452"></line>
-    <line x1="40" x2="620" y1="473" y2="473"></line>
-    <line x1="40" x2="620" y1="494" y2="494"></line>
-    <line x1="40" x2="620" y1="515" y2="515"></line>
-    <line x1="40" x2="620" y1="536" y2="536"></line>
-    <line x1="40" x2="620" y1="557" y2="557"></line>
-    <line x1="40" x2="620" y1="578" y2="578"></line>
-    <line x1="40" x2="620" y1="599" y2="599"></line>
+    <line x1="60" x2="620" y1="32" y2="32"></line>
+    <line x1="60" x2="620" y1="53" y2="53"></line>
+    <line x1="60" x2="620" y1="74" y2="74"></line>
+    <line x1="60" x2="620" y1="95" y2="95"></line>
+    <line x1="60" x2="620" y1="116" y2="116"></line>
+    <line x1="60" x2="620" y1="137" y2="137"></line>
+    <line x1="60" x2="620" y1="158" y2="158"></line>
+    <line x1="60" x2="620" y1="179" y2="179"></line>
+    <line x1="60" x2="620" y1="200" y2="200"></line>
+    <line x1="60" x2="620" y1="221" y2="221"></line>
+    <line x1="60" x2="620" y1="242" y2="242"></line>
+    <line x1="60" x2="620" y1="263" y2="263"></line>
+    <line x1="60" x2="620" y1="284" y2="284"></line>
+    <line x1="60" x2="620" y1="305" y2="305"></line>
+    <line x1="60" x2="620" y1="326" y2="326"></line>
+    <line x1="60" x2="620" y1="347" y2="347"></line>
+    <line x1="60" x2="620" y1="368" y2="368"></line>
+    <line x1="60" x2="620" y1="389" y2="389"></line>
+    <line x1="60" x2="620" y1="410" y2="410"></line>
+    <line x1="60" x2="620" y1="431" y2="431"></line>
+    <line x1="60" x2="620" y1="452" y2="452"></line>
+    <line x1="60" x2="620" y1="473" y2="473"></line>
+    <line x1="60" x2="620" y1="494" y2="494"></line>
+    <line x1="60" x2="620" y1="515" y2="515"></line>
+    <line x1="60" x2="620" y1="536" y2="536"></line>
+    <line x1="60" x2="620" y1="557" y2="557"></line>
+    <line x1="60" x2="620" y1="578" y2="578"></line>
+    <line x1="60" x2="620" y1="599" y2="599"></line>
   </g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10.5)">
-    <path transform="translate(40,32)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,53)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,74)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,95)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,116)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,137)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,158)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,179)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,200)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,221)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,242)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,263)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,284)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,305)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,326)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,347)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,368)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,389)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,410)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,431)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,452)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,473)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,494)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,515)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,536)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,557)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,578)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,599)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,32)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,53)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,74)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,95)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,116)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,137)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,158)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,179)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,200)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,221)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,242)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,263)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,284)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,305)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,326)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,347)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,368)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,389)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,410)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,431)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,452)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,473)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,494)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,515)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,536)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,557)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,578)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,599)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,10.5)">
-    <text y="0.32em" transform="translate(40,32)">1</text>
-    <text y="0.32em" transform="translate(40,53)">2</text>
-    <text y="0.32em" transform="translate(40,74)">3</text>
-    <text y="0.32em" transform="translate(40,95)">4</text>
-    <text y="0.32em" transform="translate(40,116)">5</text>
-    <text y="0.32em" transform="translate(40,137)">6</text>
-    <text y="0.32em" transform="translate(40,158)">7</text>
-    <text y="0.32em" transform="translate(40,179)">8</text>
-    <text y="0.32em" transform="translate(40,200)">9</text>
-    <text y="0.32em" transform="translate(40,221)">10</text>
-    <text y="0.32em" transform="translate(40,242)">11</text>
-    <text y="0.32em" transform="translate(40,263)">12</text>
-    <text y="0.32em" transform="translate(40,284)">13</text>
-    <text y="0.32em" transform="translate(40,305)">14</text>
-    <text y="0.32em" transform="translate(40,326)">15</text>
-    <text y="0.32em" transform="translate(40,347)">16</text>
-    <text y="0.32em" transform="translate(40,368)">17</text>
-    <text y="0.32em" transform="translate(40,389)">18</text>
-    <text y="0.32em" transform="translate(40,410)">19</text>
-    <text y="0.32em" transform="translate(40,431)">20</text>
-    <text y="0.32em" transform="translate(40,452)">21</text>
-    <text y="0.32em" transform="translate(40,473)">22</text>
-    <text y="0.32em" transform="translate(40,494)">23</text>
-    <text y="0.32em" transform="translate(40,515)">24</text>
-    <text y="0.32em" transform="translate(40,536)">25</text>
-    <text y="0.32em" transform="translate(40,557)">26</text>
-    <text y="0.32em" transform="translate(40,578)">27</text>
-    <text y="0.32em" transform="translate(40,599)">28</text>
+    <text y="0.32em" transform="translate(60,32)">1</text>
+    <text y="0.32em" transform="translate(60,53)">2</text>
+    <text y="0.32em" transform="translate(60,74)">3</text>
+    <text y="0.32em" transform="translate(60,95)">4</text>
+    <text y="0.32em" transform="translate(60,116)">5</text>
+    <text y="0.32em" transform="translate(60,137)">6</text>
+    <text y="0.32em" transform="translate(60,158)">7</text>
+    <text y="0.32em" transform="translate(60,179)">8</text>
+    <text y="0.32em" transform="translate(60,200)">9</text>
+    <text y="0.32em" transform="translate(60,221)">10</text>
+    <text y="0.32em" transform="translate(60,242)">11</text>
+    <text y="0.32em" transform="translate(60,263)">12</text>
+    <text y="0.32em" transform="translate(60,284)">13</text>
+    <text y="0.32em" transform="translate(60,305)">14</text>
+    <text y="0.32em" transform="translate(60,326)">15</text>
+    <text y="0.32em" transform="translate(60,347)">16</text>
+    <text y="0.32em" transform="translate(60,368)">17</text>
+    <text y="0.32em" transform="translate(60,389)">18</text>
+    <text y="0.32em" transform="translate(60,410)">19</text>
+    <text y="0.32em" transform="translate(60,431)">20</text>
+    <text y="0.32em" transform="translate(60,452)">21</text>
+    <text y="0.32em" transform="translate(60,473)">22</text>
+    <text y="0.32em" transform="translate(60,494)">23</text>
+    <text y="0.32em" transform="translate(60,515)">24</text>
+    <text y="0.32em" transform="translate(60,536)">25</text>
+    <text y="0.32em" transform="translate(60,557)">26</text>
+    <text y="0.32em" transform="translate(60,578)">27</text>
+    <text y="0.32em" transform="translate(60,599)">28</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
-    <text y="0.71em" transform="translate(40,325) rotate(-90)">← Season</text>
+  <g aria-label="y-axis label" transform="translate(-56.5,0.5)">
+    <text y="0.71em" transform="translate(60,325) rotate(-90)">← Season</text>
   </g>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(13,0)">
-    <line x1="45" x2="45" y1="30" y2="620"></line>
-    <line x1="71" x2="71" y1="30" y2="620"></line>
-    <line x1="97" x2="97" y1="30" y2="620"></line>
-    <line x1="123" x2="123" y1="30" y2="620"></line>
-    <line x1="149" x2="149" y1="30" y2="620"></line>
-    <line x1="175" x2="175" y1="30" y2="620"></line>
-    <line x1="201" x2="201" y1="30" y2="620"></line>
-    <line x1="227" x2="227" y1="30" y2="620"></line>
-    <line x1="253" x2="253" y1="30" y2="620"></line>
-    <line x1="279" x2="279" y1="30" y2="620"></line>
-    <line x1="305" x2="305" y1="30" y2="620"></line>
-    <line x1="331" x2="331" y1="30" y2="620"></line>
-    <line x1="357" x2="357" y1="30" y2="620"></line>
-    <line x1="383" x2="383" y1="30" y2="620"></line>
-    <line x1="409" x2="409" y1="30" y2="620"></line>
-    <line x1="435" x2="435" y1="30" y2="620"></line>
-    <line x1="461" x2="461" y1="30" y2="620"></line>
-    <line x1="487" x2="487" y1="30" y2="620"></line>
-    <line x1="513" x2="513" y1="30" y2="620"></line>
-    <line x1="539" x2="539" y1="30" y2="620"></line>
-    <line x1="565" x2="565" y1="30" y2="620"></line>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(12.5,0)">
+    <line x1="66" x2="66" y1="30" y2="620"></line>
+    <line x1="91" x2="91" y1="30" y2="620"></line>
+    <line x1="116" x2="116" y1="30" y2="620"></line>
+    <line x1="141" x2="141" y1="30" y2="620"></line>
+    <line x1="166" x2="166" y1="30" y2="620"></line>
+    <line x1="191" x2="191" y1="30" y2="620"></line>
+    <line x1="216" x2="216" y1="30" y2="620"></line>
+    <line x1="241" x2="241" y1="30" y2="620"></line>
+    <line x1="266" x2="266" y1="30" y2="620"></line>
+    <line x1="291" x2="291" y1="30" y2="620"></line>
+    <line x1="316" x2="316" y1="30" y2="620"></line>
+    <line x1="341" x2="341" y1="30" y2="620"></line>
+    <line x1="366" x2="366" y1="30" y2="620"></line>
+    <line x1="391" x2="391" y1="30" y2="620"></line>
+    <line x1="416" x2="416" y1="30" y2="620"></line>
+    <line x1="441" x2="441" y1="30" y2="620"></line>
+    <line x1="466" x2="466" y1="30" y2="620"></line>
+    <line x1="491" x2="491" y1="30" y2="620"></line>
+    <line x1="516" x2="516" y1="30" y2="620"></line>
+    <line x1="541" x2="541" y1="30" y2="620"></line>
+    <line x1="566" x2="566" y1="30" y2="620"></line>
     <line x1="591" x2="591" y1="30" y2="620"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(13,1)">
-    <path transform="translate(45,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(71,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(97,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(123,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(149,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(175,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(201,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(227,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(253,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(279,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(305,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(331,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(357,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(383,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(409,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(435,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(461,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(487,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(513,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(539,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(565,30)" d="M0,0L0,-6"></path>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(12.5,1)">
+    <path transform="translate(66,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(91,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(116,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(141,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(166,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(191,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(216,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(241,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(266,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(291,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(316,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(341,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(366,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(391,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(416,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(441,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(466,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(491,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(516,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(541,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(566,30)" d="M0,0L0,-6"></path>
     <path transform="translate(591,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(13,-8.5)">
-    <text transform="translate(45,30)">1</text>
-    <text transform="translate(71,30)">2</text>
-    <text transform="translate(97,30)">3</text>
-    <text transform="translate(123,30)">4</text>
-    <text transform="translate(149,30)">5</text>
-    <text transform="translate(175,30)">6</text>
-    <text transform="translate(201,30)">7</text>
-    <text transform="translate(227,30)">8</text>
-    <text transform="translate(253,30)">9</text>
-    <text transform="translate(279,30)">10</text>
-    <text transform="translate(305,30)">11</text>
-    <text transform="translate(331,30)">12</text>
-    <text transform="translate(357,30)">13</text>
-    <text transform="translate(383,30)">14</text>
-    <text transform="translate(409,30)">15</text>
-    <text transform="translate(435,30)">16</text>
-    <text transform="translate(461,30)">17</text>
-    <text transform="translate(487,30)">18</text>
-    <text transform="translate(513,30)">19</text>
-    <text transform="translate(539,30)">20</text>
-    <text transform="translate(565,30)">21</text>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(12.5,-8.5)">
+    <text transform="translate(66,30)">1</text>
+    <text transform="translate(91,30)">2</text>
+    <text transform="translate(116,30)">3</text>
+    <text transform="translate(141,30)">4</text>
+    <text transform="translate(166,30)">5</text>
+    <text transform="translate(191,30)">6</text>
+    <text transform="translate(216,30)">7</text>
+    <text transform="translate(241,30)">8</text>
+    <text transform="translate(266,30)">9</text>
+    <text transform="translate(291,30)">10</text>
+    <text transform="translate(316,30)">11</text>
+    <text transform="translate(341,30)">12</text>
+    <text transform="translate(366,30)">13</text>
+    <text transform="translate(391,30)">14</text>
+    <text transform="translate(416,30)">15</text>
+    <text transform="translate(441,30)">16</text>
+    <text transform="translate(466,30)">17</text>
+    <text transform="translate(491,30)">18</text>
+    <text transform="translate(516,30)">19</text>
+    <text transform="translate(541,30)">20</text>
+    <text transform="translate(566,30)">21</text>
     <text transform="translate(591,30)">22</text>
   </g>
   <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
-    <text y="0.71em" transform="translate(330,30)">Episode →</text>
+    <text y="0.71em" transform="translate(340,30)">Episode →</text>
   </g>
   <g aria-label="cell">
-    <rect x="45" width="25" y="32" height="20" fill="rgb(155, 206, 100)"></rect>
-    <rect x="71" width="25" y="32" height="20" fill="rgb(230, 244, 211)"></rect>
-    <rect x="97" width="25" y="32" height="20" fill="rgb(249, 236, 242)"></rect>
-    <rect x="123" width="25" y="32" height="20" fill="rgb(230, 244, 211)"></rect>
-    <rect x="149" width="25" y="32" height="20" fill="rgb(178, 220, 129)"></rect>
-    <rect x="175" width="25" y="32" height="20" fill="rgb(245, 243, 239)"></rect>
-    <rect x="201" width="25" y="32" height="20" fill="rgb(216, 239, 187)"></rect>
-    <rect x="227" width="25" y="32" height="20" fill="rgb(239, 245, 229)"></rect>
-    <rect x="253" width="25" y="32" height="20" fill="rgb(249, 236, 242)"></rect>
-    <rect x="279" width="25" y="32" height="20" fill="rgb(250, 226, 239)"></rect>
-    <rect x="305" width="25" y="32" height="20" fill="rgb(230, 244, 211)"></rect>
-    <rect x="331" width="25" y="32" height="20" fill="rgb(133, 190, 76)"></rect>
-    <rect x="357" width="25" y="32" height="20" fill="rgb(216, 239, 187)"></rect>
-    <rect x="45" width="25" y="53" height="20" fill="rgb(155, 206, 100)"></rect>
-    <rect x="71" width="25" y="53" height="20" fill="rgb(133, 190, 76)"></rect>
-    <rect x="97" width="25" y="53" height="20" fill="rgb(155, 206, 100)"></rect>
-    <rect x="123" width="25" y="53" height="20" fill="rgb(178, 220, 129)"></rect>
-    <rect x="149" width="25" y="53" height="20" fill="rgb(249, 236, 242)"></rect>
-    <rect x="175" width="25" y="53" height="20" fill="rgb(199, 231, 159)"></rect>
-    <rect x="201" width="25" y="53" height="20" fill="rgb(239, 245, 229)"></rect>
-    <rect x="227" width="25" y="53" height="20" fill="rgb(111, 174, 56)"></rect>
-    <rect x="253" width="25" y="53" height="20" fill="rgb(178, 220, 129)"></rect>
-    <rect x="279" width="25" y="53" height="20" fill="rgb(230, 244, 211)"></rect>
-    <rect x="305" width="25" y="53" height="20" fill="rgb(39, 100, 25)"></rect>
-    <rect x="331" width="25" y="53" height="20" fill="rgb(155, 206, 100)"></rect>
-    <rect x="357" width="25" y="53" height="20" fill="rgb(199, 231, 159)"></rect>
-    <rect x="461" width="25" y="578" height="20" fill="rgb(165, 13, 100)"></rect>
-    <rect x="487" width="25" y="578" height="20" fill="rgb(142, 1, 82)"></rect>
-    <rect x="513" width="25" y="578" height="20" fill="rgb(239, 174, 211)"></rect>
-    <rect x="539" width="25" y="578" height="20" fill="rgb(201, 55, 138)"></rect>
-    <rect x="565" width="25" y="578" height="20" fill="rgb(142, 1, 82)"></rect>
-    <rect x="591" width="25" y="578" height="20" fill="rgb(223, 121, 177)"></rect>
-    <rect x="45" width="25" y="599" height="20" fill="rgb(185, 29, 118)"></rect>
-    <rect x="71" width="25" y="599" height="20" fill="#ddd"></rect>
-    <rect x="97" width="25" y="599" height="20" fill="#ddd"></rect>
-    <rect x="123" width="25" y="599" height="20" fill="#ddd"></rect>
+    <rect x="66" width="24" y="32" height="20" fill="rgb(155, 206, 100)"></rect>
+    <rect x="91" width="24" y="32" height="20" fill="rgb(230, 244, 211)"></rect>
+    <rect x="116" width="24" y="32" height="20" fill="rgb(249, 236, 242)"></rect>
+    <rect x="141" width="24" y="32" height="20" fill="rgb(230, 244, 211)"></rect>
+    <rect x="166" width="24" y="32" height="20" fill="rgb(178, 220, 129)"></rect>
+    <rect x="191" width="24" y="32" height="20" fill="rgb(245, 243, 239)"></rect>
+    <rect x="216" width="24" y="32" height="20" fill="rgb(216, 239, 187)"></rect>
+    <rect x="241" width="24" y="32" height="20" fill="rgb(239, 245, 229)"></rect>
+    <rect x="266" width="24" y="32" height="20" fill="rgb(249, 236, 242)"></rect>
+    <rect x="291" width="24" y="32" height="20" fill="rgb(250, 226, 239)"></rect>
+    <rect x="316" width="24" y="32" height="20" fill="rgb(230, 244, 211)"></rect>
+    <rect x="341" width="24" y="32" height="20" fill="rgb(133, 190, 76)"></rect>
+    <rect x="366" width="24" y="32" height="20" fill="rgb(216, 239, 187)"></rect>
+    <rect x="66" width="24" y="53" height="20" fill="rgb(155, 206, 100)"></rect>
+    <rect x="91" width="24" y="53" height="20" fill="rgb(133, 190, 76)"></rect>
+    <rect x="116" width="24" y="53" height="20" fill="rgb(155, 206, 100)"></rect>
+    <rect x="141" width="24" y="53" height="20" fill="rgb(178, 220, 129)"></rect>
+    <rect x="166" width="24" y="53" height="20" fill="rgb(249, 236, 242)"></rect>
+    <rect x="191" width="24" y="53" height="20" fill="rgb(199, 231, 159)"></rect>
+    <rect x="216" width="24" y="53" height="20" fill="rgb(239, 245, 229)"></rect>
+    <rect x="241" width="24" y="53" height="20" fill="rgb(111, 174, 56)"></rect>
+    <rect x="266" width="24" y="53" height="20" fill="rgb(178, 220, 129)"></rect>
+    <rect x="291" width="24" y="53" height="20" fill="rgb(230, 244, 211)"></rect>
+    <rect x="316" width="24" y="53" height="20" fill="rgb(39, 100, 25)"></rect>
+    <rect x="341" width="24" y="53" height="20" fill="rgb(155, 206, 100)"></rect>
+    <rect x="366" width="24" y="53" height="20" fill="rgb(199, 231, 159)"></rect>
+    <rect x="466" width="24" y="578" height="20" fill="rgb(165, 13, 100)"></rect>
+    <rect x="491" width="24" y="578" height="20" fill="rgb(142, 1, 82)"></rect>
+    <rect x="516" width="24" y="578" height="20" fill="rgb(239, 174, 211)"></rect>
+    <rect x="541" width="24" y="578" height="20" fill="rgb(201, 55, 138)"></rect>
+    <rect x="566" width="24" y="578" height="20" fill="rgb(142, 1, 82)"></rect>
+    <rect x="591" width="24" y="578" height="20" fill="rgb(223, 121, 177)"></rect>
+    <rect x="66" width="24" y="599" height="20" fill="rgb(185, 29, 118)"></rect>
+    <rect x="91" width="24" y="599" height="20" fill="#ddd"></rect>
+    <rect x="116" width="24" y="599" height="20" fill="#ddd"></rect>
+    <rect x="141" width="24" y="599" height="20" fill="#ddd"></rect>
   </g>
-  <g aria-label="text" transform="translate(13,10.5)">
-    <text y="0.32em" transform="translate(45,32)">8.2<title>Simpsons Roasting on an Open Fire</title></text>
-    <text y="0.32em" transform="translate(71,32)">7.8<title>Bart the Genius</title></text>
-    <text y="0.32em" transform="translate(97,32)">7.5<title>Homer's Odyssey</title></text>
-    <text y="0.32em" transform="translate(123,32)">7.8<title>There's No Disgrace Like Home</title></text>
-    <text y="0.32em" transform="translate(149,32)">8.1<title>Bart the General</title></text>
-    <text y="0.32em" transform="translate(175,32)">7.6<title>Moaning Lisa</title></text>
-    <text y="0.32em" transform="translate(201,32)">7.9<title>The Call of the Simpsons</title></text>
-    <text y="0.32em" transform="translate(227,32)">7.7<title>The Telltale Head</title></text>
-    <text y="0.32em" transform="translate(253,32)">7.5<title>Life on the Fast Lane</title></text>
-    <text y="0.32em" transform="translate(279,32)">7.4<title>Homer's Night Out</title></text>
-    <text y="0.32em" transform="translate(305,32)">7.8<title>The Crepes of Wrath</title></text>
-    <text y="0.32em" transform="translate(331,32)">8.3<title>Krusty Gets Busted</title></text>
-    <text y="0.32em" transform="translate(357,32)">7.9<title>Some Enchanted Evening</title></text>
-    <text y="0.32em" transform="translate(45,53)">8.2<title>Bart Gets an "F"</title></text>
-    <text y="0.32em" transform="translate(71,53)">8.3<title>Simpson and Delilah</title></text>
-    <text y="0.32em" transform="translate(97,53)">8.2<title>Treehouse of Horror</title></text>
-    <text y="0.32em" transform="translate(123,53)">8.1<title>Two Cars in Every Garage and Three Eyes on Every Fish</title></text>
-    <text y="0.32em" transform="translate(149,53)">7.5<title>Dancin' Homer</title></text>
-    <text y="0.32em" transform="translate(175,53)">8.0<title>Dead Putting Society</title></text>
-    <text y="0.32em" transform="translate(201,53)">7.7<title>Bart vs. Thanksgiving</title></text>
-    <text y="0.32em" transform="translate(227,53)">8.4<title>Bart the Daredevil</title></text>
-    <text y="0.32em" transform="translate(253,53)">8.1<title>Itchy &amp; Scratchy &amp; Marge</title></text>
-    <text y="0.32em" transform="translate(279,53)">7.8<title>Bart Gets Hit by a Car</title></text>
-    <text y="0.32em" transform="translate(305,53)">8.8<title>One Fish, Two Fish, Blowfish, Blue Fish</title></text>
-    <text y="0.32em" transform="translate(331,53)">8.2<title>The Way We Was</title></text>
-    <text y="0.32em" transform="translate(357,53)">8.0<title>Homer vs. Lisa and the 8th Commandment</title></text>
-    <text y="0.32em" transform="translate(461,578)">6.5<title>The Burns Cage</title></text>
-    <text y="0.32em" transform="translate(487,578)">6.4<title>How Lisa Got Her Marge Back</title></text>
-    <text y="0.32em" transform="translate(513,578)">7.1<title>Fland Canyon</title></text>
-    <text y="0.32em" transform="translate(539,578)">6.7<title>To Courier with Love</title></text>
-    <text y="0.32em" transform="translate(565,578)">6.4<title>Simprovised</title></text>
+  <g aria-label="text" transform="translate(12.5,10.5)">
+    <text y="0.32em" transform="translate(66,32)">8.2<title>Simpsons Roasting on an Open Fire</title></text>
+    <text y="0.32em" transform="translate(91,32)">7.8<title>Bart the Genius</title></text>
+    <text y="0.32em" transform="translate(116,32)">7.5<title>Homer's Odyssey</title></text>
+    <text y="0.32em" transform="translate(141,32)">7.8<title>There's No Disgrace Like Home</title></text>
+    <text y="0.32em" transform="translate(166,32)">8.1<title>Bart the General</title></text>
+    <text y="0.32em" transform="translate(191,32)">7.6<title>Moaning Lisa</title></text>
+    <text y="0.32em" transform="translate(216,32)">7.9<title>The Call of the Simpsons</title></text>
+    <text y="0.32em" transform="translate(241,32)">7.7<title>The Telltale Head</title></text>
+    <text y="0.32em" transform="translate(266,32)">7.5<title>Life on the Fast Lane</title></text>
+    <text y="0.32em" transform="translate(291,32)">7.4<title>Homer's Night Out</title></text>
+    <text y="0.32em" transform="translate(316,32)">7.8<title>The Crepes of Wrath</title></text>
+    <text y="0.32em" transform="translate(341,32)">8.3<title>Krusty Gets Busted</title></text>
+    <text y="0.32em" transform="translate(366,32)">7.9<title>Some Enchanted Evening</title></text>
+    <text y="0.32em" transform="translate(66,53)">8.2<title>Bart Gets an "F"</title></text>
+    <text y="0.32em" transform="translate(91,53)">8.3<title>Simpson and Delilah</title></text>
+    <text y="0.32em" transform="translate(116,53)">8.2<title>Treehouse of Horror</title></text>
+    <text y="0.32em" transform="translate(141,53)">8.1<title>Two Cars in Every Garage and Three Eyes on Every Fish</title></text>
+    <text y="0.32em" transform="translate(166,53)">7.5<title>Dancin' Homer</title></text>
+    <text y="0.32em" transform="translate(191,53)">8.0<title>Dead Putting Society</title></text>
+    <text y="0.32em" transform="translate(216,53)">7.7<title>Bart vs. Thanksgiving</title></text>
+    <text y="0.32em" transform="translate(241,53)">8.4<title>Bart the Daredevil</title></text>
+    <text y="0.32em" transform="translate(266,53)">8.1<title>Itchy &amp; Scratchy &amp; Marge</title></text>
+    <text y="0.32em" transform="translate(291,53)">7.8<title>Bart Gets Hit by a Car</title></text>
+    <text y="0.32em" transform="translate(316,53)">8.8<title>One Fish, Two Fish, Blowfish, Blue Fish</title></text>
+    <text y="0.32em" transform="translate(341,53)">8.2<title>The Way We Was</title></text>
+    <text y="0.32em" transform="translate(366,53)">8.0<title>Homer vs. Lisa and the 8th Commandment</title></text>
+    <text y="0.32em" transform="translate(466,578)">6.5<title>The Burns Cage</title></text>
+    <text y="0.32em" transform="translate(491,578)">6.4<title>How Lisa Got Her Marge Back</title></text>
+    <text y="0.32em" transform="translate(516,578)">7.1<title>Fland Canyon</title></text>
+    <text y="0.32em" transform="translate(541,578)">6.7<title>To Courier with Love</title></text>
+    <text y="0.32em" transform="translate(566,578)">6.4<title>Simprovised</title></text>
     <text y="0.32em" transform="translate(591,578)">6.9<title>Orange Is the New Yellow</title></text>
-    <text y="0.32em" transform="translate(45,599)">6.6<title>Monty Burns' Fleeing Circus</title></text>
-    <text y="0.32em" transform="translate(71,599)">-<title>Friends and Family"[203]</title></text>
-    <text y="0.32em" transform="translate(97,599)">-<title>The Town"[205]</title></text>
-    <text y="0.32em" transform="translate(123,599)">-<title>Treehouse of Horror XXVII"[207]</title></text>
+    <text y="0.32em" transform="translate(66,599)">6.6<title>Monty Burns' Fleeing Circus</title></text>
+    <text y="0.32em" transform="translate(91,599)">-<title>Friends and Family"[203]</title></text>
+    <text y="0.32em" transform="translate(116,599)">-<title>The Town"[205]</title></text>
+    <text y="0.32em" transform="translate(141,599)">-<title>Treehouse of Horror XXVII"[207]</title></text>
   </g>
 </svg>

@@ -14,137 +14,137 @@
     }
   </style>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,344.646867077146)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,319.29373415429194)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,293.9406012314379)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,268.5874683085839)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,243.2343353857298)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,217.88120246287573)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,192.52806954002173)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,167.17493661716767)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,141.82180369431364)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,116.46867077145961)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,91.1155378486056)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,65.76240492575154)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,40.40927200289748)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,344.646867077146)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,319.29373415429194)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,293.9406012314379)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,268.5874683085839)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,243.2343353857298)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,217.88120246287573)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,192.52806954002173)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,167.17493661716767)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,141.82180369431364)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,116.46867077145961)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,91.1155378486056)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,65.76240492575154)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,40.40927200289748)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,370)">0</text>
-    <text y="0.32em" transform="translate(40,344.646867077146)">200</text>
-    <text y="0.32em" transform="translate(40,319.29373415429194)">400</text>
-    <text y="0.32em" transform="translate(40,293.9406012314379)">600</text>
-    <text y="0.32em" transform="translate(40,268.5874683085839)">800</text>
-    <text y="0.32em" transform="translate(40,243.2343353857298)">1,000</text>
-    <text y="0.32em" transform="translate(40,217.88120246287573)">1,200</text>
-    <text y="0.32em" transform="translate(40,192.52806954002173)">1,400</text>
-    <text y="0.32em" transform="translate(40,167.17493661716767)">1,600</text>
-    <text y="0.32em" transform="translate(40,141.82180369431364)">1,800</text>
-    <text y="0.32em" transform="translate(40,116.46867077145961)">2,000</text>
-    <text y="0.32em" transform="translate(40,91.1155378486056)">2,200</text>
-    <text y="0.32em" transform="translate(40,65.76240492575154)">2,400</text>
-    <text y="0.32em" transform="translate(40,40.40927200289748)">2,600</text>
+    <text y="0.32em" transform="translate(60,370)">0</text>
+    <text y="0.32em" transform="translate(60,344.646867077146)">200</text>
+    <text y="0.32em" transform="translate(60,319.29373415429194)">400</text>
+    <text y="0.32em" transform="translate(60,293.9406012314379)">600</text>
+    <text y="0.32em" transform="translate(60,268.5874683085839)">800</text>
+    <text y="0.32em" transform="translate(60,243.2343353857298)">1,000</text>
+    <text y="0.32em" transform="translate(60,217.88120246287573)">1,200</text>
+    <text y="0.32em" transform="translate(60,192.52806954002173)">1,400</text>
+    <text y="0.32em" transform="translate(60,167.17493661716767)">1,600</text>
+    <text y="0.32em" transform="translate(60,141.82180369431364)">1,800</text>
+    <text y="0.32em" transform="translate(60,116.46867077145961)">2,000</text>
+    <text y="0.32em" transform="translate(60,91.1155378486056)">2,200</text>
+    <text y="0.32em" transform="translate(60,65.76240492575154)">2,400</text>
+    <text y="0.32em" transform="translate(60,40.40927200289748)">2,600</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(40,20)">↑ deaths</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-56.5,-16.5)">
+    <text y="0.71em" transform="translate(60,20)">↑ deaths</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(40,370)" d="M0,0L0,6"></path>
-    <path transform="translate(112.20246238030096,370)" d="M0,0L0,6"></path>
-    <path transform="translate(185.19835841313272,370)" d="M0,0L0,6"></path>
-    <path transform="translate(258.1942544459644,370)" d="M0,0L0,6"></path>
-    <path transform="translate(329.60328317373455,370)" d="M0,0L0,6"></path>
-    <path transform="translate(401.8057455540356,370)" d="M0,0L0,6"></path>
-    <path transform="translate(474.80164158686733,370)" d="M0,0L0,6"></path>
-    <path transform="translate(547.797537619699,370)" d="M0,0L0,6"></path>
+    <path transform="translate(60,370)" d="M0,0L0,6"></path>
+    <path transform="translate(129.71272229822162,370)" d="M0,0L0,6"></path>
+    <path transform="translate(200.19151846785226,370)" d="M0,0L0,6"></path>
+    <path transform="translate(270.67031463748293,370)" d="M0,0L0,6"></path>
+    <path transform="translate(339.6169630642955,370)" d="M0,0L0,6"></path>
+    <path transform="translate(409.32968536251707,370)" d="M0,0L0,6"></path>
+    <path transform="translate(479.80848153214777,370)" d="M0,0L0,6"></path>
+    <path transform="translate(550.2872777017784,370)" d="M0,0L0,6"></path>
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(40,370)">Apr</text>
-    <text y="0.71em" transform="translate(112.20246238030096,370)">Jul</text>
-    <text y="0.71em" transform="translate(185.19835841313272,370)">Oct</text>
-    <text y="0.71em" transform="translate(258.1942544459644,370)">Jan</text>
-    <text y="0.71em" transform="translate(329.60328317373455,370)">Apr</text>
-    <text y="0.71em" transform="translate(401.8057455540356,370)">Jul</text>
-    <text y="0.71em" transform="translate(474.80164158686733,370)">Oct</text>
-    <text y="0.71em" transform="translate(547.797537619699,370)">Jan</text>
+    <text y="0.71em" transform="translate(60,370)">Apr</text>
+    <text y="0.71em" transform="translate(129.71272229822162,370)">Jul</text>
+    <text y="0.71em" transform="translate(200.19151846785226,370)">Oct</text>
+    <text y="0.71em" transform="translate(270.67031463748293,370)">Jan</text>
+    <text y="0.71em" transform="translate(339.6169630642955,370)">Apr</text>
+    <text y="0.71em" transform="translate(409.32968536251707,370)">Jul</text>
+    <text y="0.71em" transform="translate(479.80848153214777,370)">Oct</text>
+    <text y="0.71em" transform="translate(550.2872777017784,370)">Jan</text>
     <text y="0.71em" transform="translate(620,370)">Apr</text>
   </g>
   <g aria-label="rect">
-    <rect style="mix-blend-mode: multiply;" x="41" y="369.87323433538575" width="22.80300957592339" height="0.1267656646142541" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="64.8030095759234" y="368.4788120246287" width="23.596443228454184" height="1.5211879753712765" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="89.39945280437757" y="368.60557768924303" width="22.803009575923383" height="1.3944223107569655" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="113.20246238030096" y="324.491126403477" width="23.596443228454163" height="45.50887359652302" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="137.79890560875512" y="265.03802969938425" width="23.596443228454177" height="104.96197030061575" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="162.3953488372093" y="270.1086562839551" width="22.803009575923426" height="99.8913437160449" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="186.19835841313272" y="306.23687069902206" width="23.59644322845415" height="63.76312930097794" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="210.79480164158687" y="263.00977906555596" width="22.803009575923397" height="106.99022093444404" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="234.59781121751027" y="151.32922854038392" width="23.59644322845415" height="218.67077145961608" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="259.1942544459644" y="20" width="23.596443228454177" height="350" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="283.7906976744186" y="101.2567910177472" width="21.216142270861894" height="268.7432089822528" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="306.0068399452805" y="217.2473741398044" width="23.596443228454064" height="152.7526258601956" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="330.60328317373455" y="309.53277797899307" width="22.803009575923454" height="60.46722202100693" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="354.406292749658" y="305.6030423759507" width="23.59644322845412" height="64.39695762404932" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="379.0027359781121" y="268.3339369793553" width="22.803009575923454" height="101.66606302064469" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="402.8057455540356" y="321.5755161173488" width="23.59644322845412" height="48.4244838826512" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="427.4021887824897" y="308.7721839913075" width="23.596443228454234" height="61.227816008692514" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="451.99863201094394" y="346.0412893879029" width="22.803009575923397" height="23.958710612097093" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="475.80164158686733" y="353.77399492937343" width="23.596443228454177" height="16.22600507062657" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="500.3980848153215" y="347.43571169865993" width="22.80300957592334" height="22.56428830134007" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="524.2010943912449" y="358.4643245201014" width="23.596443228454177" height="11.5356754798986" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="548.797537619699" y="364.67584208620065" width="23.596443228454177" height="5.324157913799354" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="573.3939808481532" y="366.95762404925756" width="22.00957592339273" height="3.0423759507424393" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="596.4035567715459" y="368.09851503078596" width="23.596443228454064" height="1.9014849692140388" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="41" y="370" width="22.80300957592339" height="0" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="64.8030095759234" y="370" width="23.596443228454184" height="0" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="89.39945280437757" y="370" width="22.803009575923383" height="0" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="113.20246238030096" y="370" width="23.596443228454163" height="0" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="137.79890560875512" y="369.87323433538575" width="23.596443228454177" height="0.1267656646142541" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="162.3953488372093" y="359.7319811662441" width="22.803009575923426" height="10.268018833755889" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="186.19835841313272" y="353.26693227091636" width="23.59644322845415" height="16.733067729083643" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="210.79480164158687" y="333.61825425570447" width="22.803009575923397" height="36.38174574429553" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="234.59781121751027" y="355.5487142339732" width="23.59644322845415" height="14.451285766026785" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="259.1942544459644" y="359.4784498370156" width="23.596443228454177" height="10.521550162984397" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="283.7906976744186" y="364.67584208620065" width="21.216142270861894" height="5.324157913799354" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="306.0068399452805" y="365.94349873234336" width="23.596443228454064" height="4.0565012676566425" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="330.60328317373455" y="363.91524809851506" width="22.803009575923454" height="6.084751901484935" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="354.406292749658" y="363.78848243390075" width="23.59644322845412" height="6.211517566099246" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="379.0027359781121" y="343.5059760956175" width="22.803009575923454" height="26.494023904382516" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="402.8057455540356" y="353.0134009416878" width="23.59644322845412" height="16.98659905831221" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="427.4021887824897" y="349.2104310032597" width="23.596443228454234" height="20.789568996740286" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="451.99863201094394" y="335.01267656646144" width="22.803009575923397" height="34.98732343353856" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="475.80164158686733" y="363.2814197754437" width="23.596443228454177" height="6.7185802245563195" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="500.3980848153215" y="365.8167330677291" width="22.80300957592334" height="4.183266932270897" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="524.2010943912449" y="367.71821803694314" width="23.596443228454177" height="2.281781963056858" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="548.797537619699" y="369.74646867077143" width="23.596443228454177" height="0.253531329228565" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="573.3939808481532" y="370" width="22.00957592339273" height="0" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="596.4035567715459" y="370" width="23.596443228454064" height="0" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="41" y="369.3661716769287" width="22.80300957592339" height="0.6338283230713273" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="64.8030095759234" y="368.8591090184716" width="23.596443228454184" height="1.1408909815284005" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="89.39945280437757" y="369.23940601231436" width="22.803009575923383" height="0.7605939876856382" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="113.20246238030096" y="367.08438971387176" width="23.596443228454163" height="2.915610286128242" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="137.79890560875512" y="366.1970300615719" width="23.596443228454177" height="3.8029699384280775" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="162.3953488372093" y="361.1264034770011" width="22.803009575923426" height="8.873596522998923" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="186.19835841313272" y="353.77399492937343" width="23.59644322845415" height="16.22600507062657" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="210.79480164158687" y="356.56283955088736" width="22.803009575923397" height="13.437160449112639" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="234.59781121751027" y="353.39369793553067" width="23.59644322845415" height="16.606302064469332" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="259.1942544459644" y="328.92792466497644" width="23.596443228454177" height="41.072075335023555" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="283.7906976744186" y="324.2375950742485" width="21.216142270861894" height="45.762404925751525" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="306.0068399452805" y="348.1963056863455" width="23.596443228454064" height="21.80369431365449" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="330.60328317373455" y="362.7743571169866" width="22.803009575923454" height="7.225642883013393" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="354.406292749658" y="365.30967040927203" width="23.59644322845412" height="4.69032959072797" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="379.0027359781121" y="366.0702643969576" width="22.803009575923454" height="3.9297356030423884" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="402.8057455540356" y="365.8167330677291" width="23.59644322845412" height="4.183266932270897" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="427.4021887824897" y="366.83085838464325" width="23.596443228454234" height="3.16914161535675" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="451.99863201094394" y="367.46468670771463" width="22.803009575923397" height="2.535313292285366" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="475.80164158686733" y="367.71821803694314" width="23.596443228454177" height="2.281781963056858" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="500.3980848153215" y="365.94349873234336" width="22.80300957592334" height="4.0565012676566425" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="524.2010943912449" y="366.45056139080043" width="23.596443228454177" height="3.5494386091995693" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="548.797537619699" y="363.91524809851506" width="23.596443228454177" height="6.084751901484935" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="573.3939808481532" y="367.5914523723289" width="22.00957592339273" height="2.408547627671112" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="596.4035567715459" y="365.5632017385006" width="23.596443228454064" height="4.436798261499405" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="61" y="369.87323433538575" width="21.982216142270858" height="0.1267656646142541" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="83.98221614227086" y="368.4788120246287" width="22.748290013679892" height="1.5211879753712765" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="107.73050615595075" y="368.60557768924303" width="21.98221614227087" height="1.3944223107569655" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="130.71272229822162" y="324.491126403477" width="22.748290013679878" height="45.50887359652302" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="154.4610123119015" y="265.03802969938425" width="22.748290013679906" height="104.96197030061575" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="178.2093023255814" y="270.1086562839551" width="21.982216142270858" height="99.8913437160449" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="201.19151846785226" y="306.23687069902206" width="22.748290013679878" height="63.76312930097794" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="224.93980848153214" y="263.00977906555596" width="21.982216142270858" height="106.99022093444404" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="247.922024623803" y="151.32922854038392" width="22.748290013679934" height="218.67077145961608" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="271.67031463748293" y="20" width="22.748290013679878" height="350" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="295.4186046511628" y="101.2567910177472" width="20.45006839945279" height="268.7432089822528" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="316.8686730506156" y="217.2473741398044" width="22.748290013679878" height="152.7526258601956" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="340.6169630642955" y="309.53277797899307" width="21.98221614227083" height="60.46722202100693" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="363.5991792065663" y="305.6030423759507" width="22.748290013679934" height="64.39695762404932" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="387.34746922024624" y="268.3339369793553" width="21.98221614227083" height="101.66606302064469" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="410.32968536251707" y="321.5755161173488" width="22.748290013679878" height="48.4244838826512" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="434.07797537619695" y="308.7721839913075" width="22.748290013679934" height="61.227816008692514" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="457.8262653898769" y="346.0412893879029" width="21.982216142270886" height="23.958710612097093" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="480.80848153214777" y="353.77399492937343" width="22.748290013679878" height="16.22600507062657" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="504.55677154582764" y="347.43571169865993" width="21.98221614227083" height="22.56428830134007" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="527.5389876880985" y="358.4643245201014" width="22.748290013679934" height="11.5356754798986" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="551.2872777017784" y="364.67584208620065" width="22.74829001367982" height="5.324157913799354" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="575.0355677154582" y="366.95762404925756" width="21.21614227086195" height="3.0423759507424393" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="597.2517099863202" y="368.09851503078596" width="22.74829001367982" height="1.9014849692140388" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="61" y="370" width="21.982216142270858" height="0" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="83.98221614227086" y="370" width="22.748290013679892" height="0" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="107.73050615595075" y="370" width="21.98221614227087" height="0" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="130.71272229822162" y="370" width="22.748290013679878" height="0" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="154.4610123119015" y="369.87323433538575" width="22.748290013679906" height="0.1267656646142541" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="178.2093023255814" y="359.7319811662441" width="21.982216142270858" height="10.268018833755889" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="201.19151846785226" y="353.26693227091636" width="22.748290013679878" height="16.733067729083643" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="224.93980848153214" y="333.61825425570447" width="21.982216142270858" height="36.38174574429553" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="247.922024623803" y="355.5487142339732" width="22.748290013679934" height="14.451285766026785" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="271.67031463748293" y="359.4784498370156" width="22.748290013679878" height="10.521550162984397" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="295.4186046511628" y="364.67584208620065" width="20.45006839945279" height="5.324157913799354" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="316.8686730506156" y="365.94349873234336" width="22.748290013679878" height="4.0565012676566425" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="340.6169630642955" y="363.91524809851506" width="21.98221614227083" height="6.084751901484935" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="363.5991792065663" y="363.78848243390075" width="22.748290013679934" height="6.211517566099246" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="387.34746922024624" y="343.5059760956175" width="21.98221614227083" height="26.494023904382516" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="410.32968536251707" y="353.0134009416878" width="22.748290013679878" height="16.98659905831221" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="434.07797537619695" y="349.2104310032597" width="22.748290013679934" height="20.789568996740286" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="457.8262653898769" y="335.01267656646144" width="21.982216142270886" height="34.98732343353856" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="480.80848153214777" y="363.2814197754437" width="22.748290013679878" height="6.7185802245563195" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="504.55677154582764" y="365.8167330677291" width="21.98221614227083" height="4.183266932270897" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="527.5389876880985" y="367.71821803694314" width="22.748290013679934" height="2.281781963056858" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="551.2872777017784" y="369.74646867077143" width="22.74829001367982" height="0.253531329228565" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="575.0355677154582" y="370" width="21.21614227086195" height="0" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="597.2517099863202" y="370" width="22.74829001367982" height="0" fill="#e15759"></rect>
+    <rect style="mix-blend-mode: multiply;" x="61" y="369.3661716769287" width="21.982216142270858" height="0.6338283230713273" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="83.98221614227086" y="368.8591090184716" width="22.748290013679892" height="1.1408909815284005" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="107.73050615595075" y="369.23940601231436" width="21.98221614227087" height="0.7605939876856382" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="130.71272229822162" y="367.08438971387176" width="22.748290013679878" height="2.915610286128242" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="154.4610123119015" y="366.1970300615719" width="22.748290013679906" height="3.8029699384280775" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="178.2093023255814" y="361.1264034770011" width="21.982216142270858" height="8.873596522998923" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="201.19151846785226" y="353.77399492937343" width="22.748290013679878" height="16.22600507062657" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="224.93980848153214" y="356.56283955088736" width="21.982216142270858" height="13.437160449112639" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="247.922024623803" y="353.39369793553067" width="22.748290013679934" height="16.606302064469332" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="271.67031463748293" y="328.92792466497644" width="22.748290013679878" height="41.072075335023555" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="295.4186046511628" y="324.2375950742485" width="20.45006839945279" height="45.762404925751525" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="316.8686730506156" y="348.1963056863455" width="22.748290013679878" height="21.80369431365449" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="340.6169630642955" y="362.7743571169866" width="21.98221614227083" height="7.225642883013393" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="363.5991792065663" y="365.30967040927203" width="22.748290013679934" height="4.69032959072797" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="387.34746922024624" y="366.0702643969576" width="21.98221614227083" height="3.9297356030423884" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="410.32968536251707" y="365.8167330677291" width="22.748290013679878" height="4.183266932270897" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="434.07797537619695" y="366.83085838464325" width="22.748290013679934" height="3.16914161535675" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="457.8262653898769" y="367.46468670771463" width="21.982216142270886" height="2.535313292285366" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="480.80848153214777" y="367.71821803694314" width="22.748290013679878" height="2.281781963056858" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="504.55677154582764" y="365.94349873234336" width="21.98221614227083" height="4.0565012676566425" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="527.5389876880985" y="366.45056139080043" width="22.748290013679934" height="3.5494386091995693" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="551.2872777017784" y="363.91524809851506" width="22.74829001367982" height="6.084751901484935" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="575.0355677154582" y="367.5914523723289" width="21.21614227086195" height="2.408547627671112" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="597.2517099863202" y="365.5632017385006" width="22.74829001367982" height="4.436798261499405" fill="#f28e2c"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="60" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

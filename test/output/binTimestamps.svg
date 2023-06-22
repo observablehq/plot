@@ -14,61 +14,61 @@
     }
   </style>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,335)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,300)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,265)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,230)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,160)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,125.00000000000001)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,89.99999999999999)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,54.99999999999999)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,20)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,335)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,300)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,265)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,230)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,160)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,125.00000000000001)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,89.99999999999999)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,54.99999999999999)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,20)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,370)">0.0</text>
-    <text y="0.32em" transform="translate(40,335)">0.1</text>
-    <text y="0.32em" transform="translate(40,300)">0.2</text>
-    <text y="0.32em" transform="translate(40,265)">0.3</text>
-    <text y="0.32em" transform="translate(40,230)">0.4</text>
-    <text y="0.32em" transform="translate(40,195)">0.5</text>
-    <text y="0.32em" transform="translate(40,160)">0.6</text>
-    <text y="0.32em" transform="translate(40,125.00000000000001)">0.7</text>
-    <text y="0.32em" transform="translate(40,89.99999999999999)">0.8</text>
-    <text y="0.32em" transform="translate(40,54.99999999999999)">0.9</text>
-    <text y="0.32em" transform="translate(40,20)">1.0</text>
+    <text y="0.32em" transform="translate(60,370)">0.0</text>
+    <text y="0.32em" transform="translate(60,335)">0.1</text>
+    <text y="0.32em" transform="translate(60,300)">0.2</text>
+    <text y="0.32em" transform="translate(60,265)">0.3</text>
+    <text y="0.32em" transform="translate(60,230)">0.4</text>
+    <text y="0.32em" transform="translate(60,195)">0.5</text>
+    <text y="0.32em" transform="translate(60,160)">0.6</text>
+    <text y="0.32em" transform="translate(60,125.00000000000001)">0.7</text>
+    <text y="0.32em" transform="translate(60,89.99999999999999)">0.8</text>
+    <text y="0.32em" transform="translate(60,54.99999999999999)">0.9</text>
+    <text y="0.32em" transform="translate(60,20)">1.0</text>
   </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-56.5,-16.5)">
+    <text y="0.71em" transform="translate(60,20)">↑ Frequency</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(40,370)" d="M0,0L0,6"></path>
-    <path transform="translate(122.85714285714286,370)" d="M0,0L0,6"></path>
-    <path transform="translate(205.71428571428572,370)" d="M0,0L0,6"></path>
-    <path transform="translate(288.57142857142856,370)" d="M0,0L0,6"></path>
-    <path transform="translate(371.42857142857144,370)" d="M0,0L0,6"></path>
-    <path transform="translate(454.28571428571433,370)" d="M0,0L0,6"></path>
-    <path transform="translate(537.1428571428571,370)" d="M0,0L0,6"></path>
+    <path transform="translate(60,370)" d="M0,0L0,6"></path>
+    <path transform="translate(140,370)" d="M0,0L0,6"></path>
+    <path transform="translate(220,370)" d="M0,0L0,6"></path>
+    <path transform="translate(300,370)" d="M0,0L0,6"></path>
+    <path transform="translate(380,370)" d="M0,0L0,6"></path>
+    <path transform="translate(460.00000000000006,370)" d="M0,0L0,6"></path>
+    <path transform="translate(540,370)" d="M0,0L0,6"></path>
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(40,370)">2021</text>
-    <text y="0.71em" transform="translate(122.85714285714286,370)">Sat 02</text>
-    <text y="0.71em" transform="translate(205.71428571428572,370)">Jan 03</text>
-    <text y="0.71em" transform="translate(288.57142857142856,370)">Mon 04</text>
-    <text y="0.71em" transform="translate(371.42857142857144,370)">Tue 05</text>
-    <text y="0.71em" transform="translate(454.28571428571433,370)">Wed 06</text>
-    <text y="0.71em" transform="translate(537.1428571428571,370)">Thu 07</text>
+    <text y="0.71em" transform="translate(60,370)">2021</text>
+    <text y="0.71em" transform="translate(140,370)">Sat 02</text>
+    <text y="0.71em" transform="translate(220,370)">Jan 03</text>
+    <text y="0.71em" transform="translate(300,370)">Mon 04</text>
+    <text y="0.71em" transform="translate(380,370)">Tue 05</text>
+    <text y="0.71em" transform="translate(460.00000000000006,370)">Wed 06</text>
+    <text y="0.71em" transform="translate(540,370)">Thu 07</text>
     <text y="0.71em" transform="translate(620,370)">Fri 08</text>
   </g>
   <g aria-label="rect">
-    <rect x="41" y="20" width="81.85714285714286" height="350"></rect>
-    <rect x="123.85714285714286" y="20" width="81.85714285714286" height="350"></rect>
-    <rect x="206.71428571428572" y="20" width="81.85714285714283" height="350"></rect>
-    <rect x="289.57142857142856" y="20" width="81.85714285714289" height="350"></rect>
-    <rect x="372.42857142857144" y="20" width="81.85714285714289" height="350"></rect>
-    <rect x="455.28571428571433" y="20" width="81.85714285714278" height="350"></rect>
-    <rect x="538.1428571428571" y="20" width="81.85714285714289" height="350"></rect>
+    <rect x="61" y="20" width="79" height="350"></rect>
+    <rect x="141" y="20" width="79" height="350"></rect>
+    <rect x="221" y="20" width="79" height="350"></rect>
+    <rect x="301" y="20" width="79" height="350"></rect>
+    <rect x="381" y="20" width="79.00000000000006" height="350"></rect>
+    <rect x="461.00000000000006" y="20" width="78.99999999999994" height="350"></rect>
+    <rect x="541" y="20" width="79" height="350"></rect>
   </g>
 </svg>
