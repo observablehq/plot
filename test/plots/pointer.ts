@@ -34,3 +34,14 @@ export async function pointerViewof() {
   plot.oninput = oninput; // update during interaction
   return html`<figure>${plot}${textarea}</figure>`;
 }
+
+export async function pointerNonFaceted() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.lineY(aapl, {x: "Date", y: "Close", fy: (d) => d.Close % 2 === 0}),
+      Plot.ruleX(aapl, {x: "Date", strokeOpacity: 0.1}),
+      Plot.ruleX(aapl, Plot.pointerX({x: "Date", stroke: "red"}))
+    ]
+  });
+}

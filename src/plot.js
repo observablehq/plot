@@ -9,7 +9,8 @@ import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
-import {arrayify, isColor, isIterable, isNone, isScaleOptions, map, yes, maybeIntervalTransform} from "./options.js";
+import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
+import {arrayify, map, yes, maybeIntervalTransform, subarray} from "./options.js";
 import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
@@ -298,7 +299,8 @@ export function plot(options = {}) {
           index = indexes[faceted ? f.i : 0];
           index = mark.filter(index, channels, values);
           if (index.length === 0) continue;
-          if (faceted) (index.fx = f.x), (index.fy = f.y), (index.fi = f.i);
+          if (!faceted && index === indexes[0]) index = subarray(index); // copy before assigning fx, fy, fi
+          (index.fx = f.x), (index.fy = f.y), (index.fi = f.i);
         }
         const node = mark.render(index, scales, values, subdimensions, context);
         if (node == null) continue;
