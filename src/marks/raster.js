@@ -288,9 +288,10 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
       (i) => X[i],
       (i) => Y[i]
     );
-    const W = new V.constructor(width * height);
-    const I = new Uint8Array(width * height);
+    const W = new V.constructor(width * height).fill(NaN);
+    const S = new Uint8Array(width * height); // 1 if pixel has been seen.
     const mix = mixer(V, random);
+
     for (let i = 0; i < triangles.length; i += 3) {
       const ta = triangles[i];
       const tb = triangles[i + 1];
@@ -323,19 +324,16 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
           if (gc < 0) continue;
           const i = x + width * y;
           W[i] = mix(va, ga, vb, gb, vc, gc, x, y);
-          I[i] = 1;
+          S[i] = 1;
         }
       }
     }
-
-    extrapolateBarycentric(W, I, X, Y, V, width, height, hull, index, mix);
-
+    extrapolateBarycentric(W, S, X, Y, V, width, height, hull, index, mix);
     return W;
   };
 }
 
-// Extrapolate by finding the closest point on the hull. Optimized with a
-// Delaunay search on the interpolated hull.
+// Extrapolate by finding the closest point on the hull.
 function extrapolateBarycentric(W, I, X, Y, V, width, height, hull, index, mix) {
   X = Float64Array.from(hull, (i) => X[index[i]]);
   Y = Float64Array.from(hull, (i) => Y[index[i]]);
@@ -402,9 +400,9 @@ function ray(j, X, Y) {
     const dxb = x - xb;
     const dyb = y - yb;
     return (
-      cross(dxa, dya, dxb, dyb) >= 0 &&
-      cross(dxa, dya, dxab, dyab) * hca >= cross(dxa, dya, dxca, dyca) * hab &&
-      cross(dxb, dyb, dxab, dyab) * hbd >= cross(dxb, dyb, dxbd, dybd) * hab
+      cross(dxa, dya, dxb, dyb) > -1e-6 &&
+      cross(dxa, dya, dxab, dyab) * hca - cross(dxa, dya, dxca, dyca) * hab > -1e-6 &&
+      cross(dxb, dyb, dxbd, dybd) * hab - cross(dxb, dyb, dxab, dyab) * hbd <= 0
     );
   };
 }
