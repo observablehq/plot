@@ -73,5 +73,5 @@
     <rect x="496.71428571428567" width="40.428571428571445" y="67" height="20" fill="rgb(71, 55, 155)"></rect>
     <rect x="579.5714285714287" width="40.42857142857133" y="67" height="20" fill="rgb(35, 23, 27)"></rect>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,10.5)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,10.5)"></g>
 </svg>

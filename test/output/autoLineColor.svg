@@ -1265,5 +1265,5 @@
     <path stroke="rgb(146, 12, 0)" d="M619.364,27.011L619.682,20"></path>
     <path stroke="rgb(144, 12, 0)" d="M619.682,20L620,23.793"></path>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

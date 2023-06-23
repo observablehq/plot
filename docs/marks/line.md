@@ -81,7 +81,7 @@ Plot.lineY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close", sort: "Date"}).plot
 ```
 :::
 
-While the *x* scale of a line chart often represents time, this is not required. For example, we can plot the elevation profile of a Tour de France stage—and imagine how tiring it must be to start a climb after riding 160km! ⛰🚴💦
+While the *x* scale of a line chart often represents time, this is not required. For example, we can plot the elevation profile of a Tour de France stage — and imagine how tiring it must be to start a climb after riding 160km! ⛰🚴💦
 
 :::plot defer https://observablehq.com/@observablehq/plot-tour-de-france-elevation-profile
 ```js

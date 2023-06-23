@@ -43,7 +43,7 @@ Plot.voronoi(counties, Plot.centroid()).plot({projection: "albers"})
 
 While the centroid transform computes the centroid of a geometry _after_ projection, the geoCentroid transform computes it _before_ projection, then projects the resulting coordinates. This difference has a few implications, as follows.
 
-As an [initializer](../features/transforms.md#custom-initializers), the centroid transform operates _after_ the geometries have been projected to screen coordinates. The resulting **x** and **y** channels reference the pixel coordinates of the planar centroid of the _projected_ shapes. No assumption is made about the geometries: they can be in any coordinate system, and the returned value is in the frame—as long as the projected geometry returns at least one visible point.
+As an [initializer](../features/transforms.md#custom-initializers), the centroid transform operates _after_ the geometries have been projected to screen coordinates. The resulting **x** and **y** channels reference the pixel coordinates of the planar centroid of the _projected_ shapes. No assumption is made about the geometries: they can be in any coordinate system, and the returned value is in the frame — as long as the projected geometry returns at least one visible point.
 
 :::plot defer https://observablehq.com/@observablehq/plot-centroid-dot
 ```js
@@ -52,7 +52,7 @@ Plot.dot(counties, Plot.centroid()).plot({projection: "albers-usa"})
 :::
 
 
-The geoCentroid transform is more specialized as the **x** and **y** channels it derives represent the longitudes and latitudes of the centroids of the given GeoJSON geometries, before projection. It expects the geometries to be specified in _spherical_ coordinates. It is more correct, in a geospatial sense—for example, the spherical centroid always represents the center of mass of the original shape, and it will be rotated exactly in line with the projection’s rotate argument. However, this also means that it might land outside the frame if only a part of the land mass is visible, and might be clipped by the projection. In practice, the difference is generally imperceptible.
+The geoCentroid transform is more specialized as the **x** and **y** channels it derives represent the longitudes and latitudes of the centroids of the given GeoJSON geometries, before projection. It expects the geometries to be specified in _spherical_ coordinates. It is more correct, in a geospatial sense — for example, the spherical centroid always represents the center of mass of the original shape, and it will be rotated exactly in line with the projection’s rotate argument. However, this also means that it might land outside the frame if only a part of the land mass is visible, and might be clipped by the projection. In practice, the difference is generally imperceptible.
 
 :::plot defer https://observablehq.com/@observablehq/plot-centroid-dot
 ```js
@@ -60,7 +60,7 @@ Plot.dot(counties, Plot.geoCentroid()).plot({projection: "albers-usa"})
 ```
 :::
 
-The geoCentroid transform is slightly faster than the centroid initializer—which might be useful if you have tens of thousands of features and want to show their density on a [hexbin map](../transforms/hexbin.md):
+The geoCentroid transform is slightly faster than the centroid initializer — which might be useful if you have tens of thousands of features and want to show their density on a [hexbin map](../transforms/hexbin.md):
 
 :::plot defer https://observablehq.com/@observablehq/plot-centroid-hexbin
 ```js

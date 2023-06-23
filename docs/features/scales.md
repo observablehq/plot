@@ -76,7 +76,7 @@ Plot.ruleX(gistemp, {x: "Date", stroke: "Anomaly"}).plot()
 ```
 :::
 
-While the resulting chart looks different, the *color* scale here behaves similarly to the `y` function above—the only difference is that it interpolates colors (using [d3.interpolateTurbo](https://d3js.org/d3-scale-chromatic/sequential#interpolateTurbo)) instead of numbers (the top and bottom sides of the plot frame):
+While the resulting chart looks different, the *color* scale here behaves similarly to the `y` function above — the only difference is that it interpolates colors (using [d3.interpolateTurbo](https://d3js.org/d3-scale-chromatic/sequential#interpolateTurbo)) instead of numbers (the top and bottom sides of the plot frame):
 
 ```js
 function color(anomaly) {
@@ -163,7 +163,7 @@ Plot.plot({x: {type: "utc", domain: [1609459200000, 1640995200000], grid: true}}
 ```
 :::
 
-If the scale **type** is *time*, the ticks will be in local time—as with the dates below—rather than UTC.
+If the scale **type** is *time*, the ticks will be in local time — as with the dates below — rather than UTC.
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
 ```js
@@ -241,7 +241,7 @@ Plot
 ```
 :::
 
-While *point* and *band* scales appear visually similar when only the grid is visible, the two are not identical—they differ respective to padding. Play with the options below to get a sense of their effect on the scale’s behavior.
+While *point* and *band* scales appear visually similar when only the grid is visible, the two are not identical — they differ respective to padding. Play with the options below to get a sense of their effect on the scale’s behavior.
 
 <p>
   <label class="label-input">
@@ -707,7 +707,7 @@ The default range depends on the scale: for position scales (*x*, *y*, *fx*, and
 
 The behavior of the **unknown** scale option depends on the scale type. For quantitative and temporal scales, the unknown value is used whenever the input value is undefined, null, or NaN. For ordinal or categorical scales, the unknown value is returned for any input value outside the domain. For band or point scales, the unknown option has no effect; it is effectively always equal to undefined. If the unknown option is set to undefined (the default), or null or NaN, then the affected input values will be considered undefined and filtered from the output.
 
-For data at regular intervals, such as integer values or daily samples, the [**interval** option](#scale-transforms) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. The option can alternatively be specified as a string (*second*, *minute*, *hour*, *day*, *week*, *month*, *quarter*, *half*, *year*, *monday*, *tuesday*, *wednesday*, *thursday*, *friday*, *saturday*, *sunday*) naming the corresponding time interval, or a skip interval consisting of a number followed by the interval name (possibly pluralized), such as *3 months* or *10 years*. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
+For data at regular intervals, such as integer values or daily samples, the [**interval** option](#scale-transforms) can be used to enforce uniformity. The specified *interval* — such as d3.utcMonth — must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. The option can alternatively be specified as a string (*second*, *minute*, *hour*, *day*, *week*, *month*, *quarter*, *half*, *year*, *monday*, *tuesday*, *wednesday*, *thursday*, *friday*, *saturday*, *sunday*) naming the corresponding time interval, or a skip interval consisting of a number followed by the interval name (possibly pluralized), such as *3 months* or *10 years*. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
 
 Quantitative scales can be further customized with additional options:
 
@@ -732,7 +732,7 @@ Plot.plot({
 
 ### Color scale options
 
-The normal scale types—*linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal*—can be used to encode color. In addition, Plot supports special scale types for color:
+The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color. In addition, Plot supports special scale types for color:
 
 * *categorical* - like *ordinal*, but defaults to *tableau10*
 * *sequential* - like *linear*
@@ -921,7 +921,7 @@ Similarly, the *y* and *fy* scales support asymmetric insets with:
 
 The inset scale options can provide “breathing room” to separate marks from axes or the plot’s edge. For example, in a scatterplot with a Plot.dot with the default 3-pixel radius and 1.5-pixel stroke width, an inset of 5 pixels prevents dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
 
-In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension—such as a dot, rule, or tick—then use a *point* scale; otherwise, say for a bar, use a *band* scale.
+In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension — such as a dot, rule, or tick — then use a *point* scale; otherwise, say for a bar, use a *band* scale.
 
 Ordinal position scales support additional options, all specified as proportions in [0, 1]:
 

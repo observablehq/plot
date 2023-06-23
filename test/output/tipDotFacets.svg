@@ -11214,12 +11214,12 @@
     </g>
   </g>
   <g aria-label="tip" transform="translate(0.5,0.5)">
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(1,295)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(1,442)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(1,589)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(295,148)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(295,295)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(295,442)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(295,589)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(1,295)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(1,442)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(1,589)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(295,148)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(295,295)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(295,442)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(295,589)"></g>
   </g>
 </svg>

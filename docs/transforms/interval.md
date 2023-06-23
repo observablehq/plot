@@ -38,7 +38,7 @@ Plot.plot({
 ```
 :::
 
-In contrast, a [rectY mark](../marks/rect.md) with the **interval** option and the *day* interval produces a temporal (*utc*) *x* scale. This allows Plot to compute ticks at meaningful intervals: here weekly boundaries, UTC midnight on Sundays. Furthermore, we can see that this isn’t truly daily data—it’s missing weekends and holidays when the stock market was closed.
+In contrast, a [rectY mark](../marks/rect.md) with the **interval** option and the *day* interval produces a temporal (*utc*) *x* scale. This allows Plot to compute ticks at meaningful intervals: here weekly boundaries, UTC midnight on Sundays. Furthermore, we can see that this isn’t truly daily data — it’s missing weekends and holidays when the stock market was closed.
 
 :::plot https://observablehq.com/@observablehq/plot-temporal-interval-option
 ```js

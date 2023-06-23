@@ -302,5 +302,5 @@
     <path transform="translate(540.5,173.20508075688775)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z" fill="rgb(35, 23, 27)"></path>
     <path transform="translate(460.5,69.2820323027551)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z" fill="rgb(35, 23, 27)"></path>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

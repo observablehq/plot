@@ -19,7 +19,7 @@ function arealineY(data, {color, fillOpacity = 0.1, ...options} = {}) {
 
 **Observable Plot** is for exploratory data visualization. It’s for finding insights quickly. Its API, while expressive and configurable, optimizes for conciseness and memorability. We want the time to first chart to be as fast as possible.
 
-And the speed doesn’t stop there: Plot helps you quickly pivot and refine your views of data. Our hope with Plot is that you’ll spend less time reading the docs, searching for code to copy-paste, and debugging—and more time asking questions of data.
+And the speed doesn’t stop there: Plot helps you quickly pivot and refine your views of data. Our hope with Plot is that you’ll spend less time reading the docs, searching for code to copy-paste, and debugging — and more time asking questions of data.
 
 Compared to other visualization tools, including low-level tools such as D3 and less expressive high-level tools such as chart templates, we think you’ll be more productive exploring data with Plot. You’ll spend more time “using vision to think” and less time wrangling the machinery of programming.
 
@@ -35,7 +35,7 @@ Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "specie
 ```
 :::
 
-What makes Plot concise? In a word: *defaults*. If you specify the semantics—your data and the desired encodings—Plot will figure out the rest.
+What makes Plot concise? In a word: *defaults*. If you specify the semantics — your data and the desired encodings — Plot will figure out the rest.
 
 The beauty of defaults is that you can override them as needed. This is ideal for exploring: you invest minimally in the initial chart, and as you start to see something interesting, you progressively customize to improve the display. Perhaps the plot above would be easier to read with an aspect ratio proportional to the data, a grid, and a legend?
 
@@ -163,7 +163,7 @@ We’ve long said that *D3 makes things possible, not necessarily easy.* And tha
 **Plot’s goal is to make the easy things easy, and fast, and then some.**
 
 :::tip
-Whether or not Plot succeeds at this goal is up to you—so we’d love [your feedback](https://talk.observablehq.com/c/site-feedback/3) on what you find easy or hard to do with Plot. And we encourage you to [ask for help](https://talk.observablehq.com/c/help/6) when you get stuck. We learn a lot from helping!
+Whether or not Plot succeeds at this goal is up to you — so we’d love [your feedback](https://talk.observablehq.com/c/site-feedback/3) on what you find easy or hard to do with Plot. And we encourage you to [ask for help](https://talk.observablehq.com/c/help/6) when you get stuck. We learn a lot from helping!
 :::
 
 Since Plot and D3 have different goals, they make different trade-offs. Plot is more efficient: you can make charts quickly. But it is also necessarily less expressive: bespoke visualizations with extensive animation and interaction, advanced techniques like force-directed graph layout, or even developing your own charting library, are better done with D3’s low-level API.

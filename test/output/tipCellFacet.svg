@@ -154,7 +154,7 @@
     </g>
   </g>
   <g aria-label="tip" transform="translate(0.5,6)">
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(1,0)"></g>
-    <g fill="white" stroke="currentColor" text-anchor="start" transform="translate(274,0)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(1,0)"></g>
+    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(274,0)"></g>
   </g>
 </svg>

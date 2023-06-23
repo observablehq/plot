@@ -27,7 +27,7 @@ onMounted(() => {
 
 # Normalize transform
 
-The **normalize transform** is a specialized [map transform](./map.md) that normalizes series values relative to some basis, say to convert absolute values into relative values. For example, here is an index chart—a type of multi-series line chart—showing the return of several stocks relative to their closing price on a particular date.
+The **normalize transform** is a specialized [map transform](./map.md) that normalizes series values relative to some basis, say to convert absolute values into relative values. For example, here is an index chart — a type of multi-series line chart — showing the return of several stocks relative to their closing price on a particular date.
 
 :::plot defer https://observablehq.com/@observablehq/plot-index-chart
 ```js

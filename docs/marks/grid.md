@@ -61,7 +61,7 @@ See the [axis mark](./axis.md) for more details and examples.
 
 ## Grid options
 
-The optional *data* is an array of tick values—it defaults to the scale’s ticks. The grid mark draws a line for each tick value, across the whole frame.
+The optional *data* is an array of tick values — it defaults to the scale’s ticks. The grid mark draws a line for each tick value, across the whole frame.
 
 The following options are supported:
 

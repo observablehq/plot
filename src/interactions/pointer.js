@@ -21,6 +21,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
     // outermost render function because it will re-render dynamically in
     // response to pointer events.
     render: composeRender(function (index, scales, values, dimensions, context, next) {
+      context = {...context, pointerSticky: false};
       const svg = context.ownerSVGElement;
       const {data} = context.getMarkState(this);
 
@@ -68,6 +69,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
 
       let i; // currently focused index
       let g; // currently rendered mark
+      let s; // currently rendered stickiness
       let f; // current animation frame
 
       // When faceting, if more than one pointer would be visible, only show
@@ -97,8 +99,9 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       }
 
       function render(ii) {
-        if (i === ii) return; // the tooltip hasn’t moved
+        if (i === ii && s === state.sticky) return; // the tooltip hasn’t moved
         i = ii;
+        s = context.pointerSticky = state.sticky;
         const I = i == null ? [] : [i];
         if (faceted) (I.fx = index.fx), (I.fy = index.fy), (I.fi = index.fi);
         const r = next(I, scales, values, dimensions, context);
@@ -144,7 +147,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         if (i == null) return; // not pointing
         if (state.sticky && state.roots.some((r) => r?.contains(event.target))) return; // stay sticky
         if (state.sticky) (state.sticky = false), state.renders.forEach((r) => r(null)); // clear all pointers
-        else state.sticky = true;
+        else (state.sticky = true), render(i);
         event.stopImmediatePropagation(); // suppress other pointers
       }
 

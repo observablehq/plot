@@ -26,7 +26,7 @@ The cell mark is one of several marks in Plot for drawing rectangles; it should 
 
 The **cell mark** draws rectangles positioned in two ordinal dimensions. Hence, the plot’s *x* and *y* scales are [band scales](../features/scales.md). Cells typically also have a **fill** color encoding.
 
-For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high IMDb ratings are dark green, while low ratings are dark pink. (The worst episode ever—cue Comic Book Guy—is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga).)
+For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high IMDb ratings are dark green, while low ratings are dark pink. (The worst episode ever — cue Comic Book Guy — is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga).)
 
 :::plot defer https://observablehq.com/@observablehq/plot-simpsons-ratings
 ```js

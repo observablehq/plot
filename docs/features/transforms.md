@@ -72,7 +72,7 @@ Plot.plot({
 
 Plot includes many useful transforms! For example, you can compute a [rolling average](../transforms/window.md) to smooth a noisy signal, [stack layers](../transforms/stack.md) for a streamgraph, or [dodge dots](../transforms/dodge.md) for a beeswarm. Plot’s various built-in transforms include: [bin](../transforms/bin.md), [centroid](../transforms/centroid.md), [dodge](../transforms/dodge.md), [filter](../transforms/filter.md), [group](../transforms/group.md), [hexbin](../transforms/hexbin.md), [interval](../transforms/interval.md), [map](../transforms/map.md), [normalize](../transforms/normalize.md), [reverse](../transforms/sort.md#reverse-options), [select](../transforms/select.md), [shuffle](../transforms/sort.md#shuffle-options), [sort](../transforms/sort.md), [stack](../transforms/stack.md), [tree](../transforms/tree.md), and [window](../transforms/window.md). If these don’t meet your needs, you can even implement a [custom transform](#custom-transforms).
 
-Transforms are never required—you can always aggregate and derive data yourself outside of Plot, and then pass in the binned values. For example, we could use [d3.bin](https://d3js.org/d3-array/bin) to compute a histogram of athletes’ weights as an array of {*x0*, *x1*, *length*} objects.
+Transforms are never required — you can always aggregate and derive data yourself outside of Plot, and then pass in the binned values. For example, we could use [d3.bin](https://d3js.org/d3-array/bin) to compute a histogram of athletes’ weights as an array of {*x0*, *x1*, *length*} objects.
 
 ```js
 bins = d3.bin().thresholds(80).value((d) => d.weight)(olympians)

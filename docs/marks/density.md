@@ -165,7 +165,7 @@ Plot.plot({
 ```
 :::
 
-<!-- With the default settings, the density is the local average number of dots on an area of ${tex`100\text{px}^2`}—a square of 10px by 10px. This can be multiplied by the dots’ weights. -->
+<!-- With the default settings, the density is the local average number of dots on an area of ${tex`100\text{px}^2`} — a square of 10px by 10px. This can be multiplied by the dots’ weights. -->
 
 The **weight** channel specifies the contribution of each data point to the estimated density; it defaults to 1, weighing each point equally. This can be used to give some points more influence than others. Try adjusting the skew slider below to transition between female- and male-weighted density.
 

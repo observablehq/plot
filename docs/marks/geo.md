@@ -32,7 +32,7 @@ onMounted(() => {
 
 # Geo mark
 
-The **geo mark** draws geographic features—polygons, lines, points, and other geometry—often as thematic maps. It works with Plot’s [projection system](../features/projections.md). For example, the [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) below shows unemployment by county in the United States.
+The **geo mark** draws geographic features — polygons, lines, points, and other geometry — often as thematic maps. It works with Plot’s [projection system](../features/projections.md). For example, the [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) below shows unemployment by county in the United States.
 
 :::plot defer https://observablehq.com/@observablehq/plot-us-choropleth
 ```js
@@ -151,7 +151,7 @@ Plot.plot({
 This uses the [**interval** scale option](../features/scales.md#scale-transforms) to bin temporal data into facets by decade.
 :::
 
-Lastly, the geo mark is not limited to spherical geometries! [Plot’s projection system](../features/projections.md) includes planar projections, which allow you to work with shapes—such as contours—generated on an arbitrary flat surface.
+Lastly, the geo mark is not limited to spherical geometries! [Plot’s projection system](../features/projections.md) includes planar projections, which allow you to work with shapes — such as contours — generated on an arbitrary flat surface.
 
 ## Geo options
 

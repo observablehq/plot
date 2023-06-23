@@ -58,7 +58,7 @@ Plot doesn’t have chart types; instead, you construct charts by layering **mar
 
 ## Marks are geometric shapes
 
-Plot provides a variety of mark types. Think of marks as the “visual vocabulary”—the painter’s palette 🎨, but of shapes instead of colors—that you pull from when composing a chart. Each mark type produces a certain type of geometric shape.
+Plot provides a variety of mark types. Think of marks as the “visual vocabulary” — the painter’s palette 🎨, but of shapes instead of colors — that you pull from when composing a chart. Each mark type produces a certain type of geometric shape.
 
 For example, the [dot mark](../marks/dot.md) draws stroked circles (by default).
 
@@ -157,7 +157,7 @@ Plot.plot({
 
 ## Marks use scales
 
-Marks are (typically) not positioned in literal pixels, or colored in literal colors, as in a conventional graphics system. Instead you provide abstract values such as time and temperature—marks are drawn “in data space”—and [scales](./scales.md) encode these into visual values such as position and color. And best of all, Plot automatically creates [axes](../marks/axis.md) and [legends](./legends.md) to document the scales’ encodings.
+Marks are (typically) not positioned in literal pixels, or colored in literal colors, as in a conventional graphics system. Instead you provide abstract values such as time and temperature — marks are drawn “in data space” — and [scales](./scales.md) encode these into visual values such as position and color. And best of all, Plot automatically creates [axes](../marks/axis.md) and [legends](./legends.md) to document the scales’ encodings.
 
 Data is passed through scales automatically during rendering; the mark controls which scales are used. The **x** and **y** options are typically bound to the *x* and *y* scales, respectively, while the **fill** and **stroke** options are typically bound to the *color* scale. Changing a scale’s definition, say by overriding its **domain** (the extent of abstract input values) or **type**, affects the appearance of all marks that use the scale.
 
@@ -178,7 +178,7 @@ Plot.plot({
 
 ## Marks have tidy data
 
-A single mark can draw multiple shapes. A mark generally produces a shape—such as a rectangle or circle—for each element in the data.
+A single mark can draw multiple shapes. A mark generally produces a shape — such as a rectangle or circle — for each element in the data.
 
 :::plot defer https://observablehq.com/@observablehq/plot-tidy-data
 ```js
@@ -194,7 +194,7 @@ Plot.lineY(aapl, {x: "Date", y: "Close"}).plot()
 ```
 :::
 
-And a line mark isn’t even guaranteed to produce a single polyline—there can be multiple polylines, as in a line chart with multiple series (using **z**).
+And a line mark isn’t even guaranteed to produce a single polyline — there can be multiple polylines, as in a line chart with multiple series (using **z**).
 
 :::plot defer https://observablehq.com/@observablehq/plot-multiple-series-line-chart
 ```js
@@ -258,10 +258,10 @@ Note that when accessor functions or parallel arrays are used instead of field n
 Data comes in different types: quantitative (or temporal) values can be subtracted, ordinal values can be ordered, and nominal (or categorical) values can only be the same or different.
 
 :::info
-Because nominal values often need some arbitrary order for display purposes—often alphabetical—Plot uses the term *ordinal* to refer to both ordinal and nominal data.
+Because nominal values often need some arbitrary order for display purposes — often alphabetical — Plot uses the term *ordinal* to refer to both ordinal and nominal data.
 :::
 
-Some marks work with any type of data, while other marks have certain requirements or assumptions of data. For example, a line should only be used when both *x* and *y* are quantitative or temporal, and when the data is in a meaningful order (such as chronological). This is because the line mark will interpolate between adjacent points to draw line segments. If *x* or *y* is nominal—say the names of countries—it doesn’t make sense to use a line because there is no half-way point between two nominal values.
+Some marks work with any type of data, while other marks have certain requirements or assumptions of data. For example, a line should only be used when both *x* and *y* are quantitative or temporal, and when the data is in a meaningful order (such as chronological). This is because the line mark will interpolate between adjacent points to draw line segments. If *x* or *y* is nominal — say the names of countries — it doesn’t make sense to use a line because there is no half-way point between two nominal values.
 
 :::plot https://observablehq.com/@observablehq/plot-dont-do-this
 ```js
@@ -357,7 +357,7 @@ Channels are mark options that can be used to encode data. These options allow t
 * an accessor function, or
 * an array of values of the same length and order as the data.
 
-Not all mark options can be expressed as channels. For example, **stroke** can be a channel but **strokeDasharray** cannot. This is mostly a pragmatic limitation—it would be harder to implement Plot if every option were expressible as a channel—but it also serves to guide you towards options that are intended for encoding data.
+Not all mark options can be expressed as channels. For example, **stroke** can be a channel but **strokeDasharray** cannot. This is mostly a pragmatic limitation — it would be harder to implement Plot if every option were expressible as a channel — but it also serves to guide you towards options that are intended for encoding data.
 
 :::tip
 To vary the definition of a constant option with data, create multiple marks with your different constant options, and then filter the data for each mark to achieve the desired result.
