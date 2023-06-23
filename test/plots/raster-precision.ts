@@ -21,3 +21,20 @@ export async function rasterPrecision() {
     ]
   });
 }
+
+export async function rasterFacet() {
+  const points = d3.range(0, 2 * Math.PI, Math.PI / 10).map((d) => [Math.cos(d), Math.sin(d)]);
+  return Plot.plot({
+    aspectRatio: 1,
+    inset: 100,
+    color: {scheme: "Sinebow"},
+    marks: [
+      Plot.raster(points, {
+        fill: "0",
+        fx: (d, i) => i % 2,
+        interpolate: "barycentric"
+      }),
+      Plot.dot(points, {fx: (d, i) => i % 2, fill: "0", stroke: "white"})
+    ]
+  });
+}
