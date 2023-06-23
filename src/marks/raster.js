@@ -334,7 +334,7 @@ export function interpolatorBarycentric({random = randomLcg(42)} = {}) {
 }
 
 // Extrapolate by finding the closest point on the hull.
-function extrapolateBarycentric(W, I, X, Y, V, width, height, hull, index, mix) {
+function extrapolateBarycentric(W, S, X, Y, V, width, height, hull, index, mix) {
   X = Float64Array.from(hull, (i) => X[index[i]]);
   Y = Float64Array.from(hull, (i) => Y[index[i]]);
   V = Array.from(hull, (i) => V[index[i]]);
@@ -345,7 +345,7 @@ function extrapolateBarycentric(W, I, X, Y, V, width, height, hull, index, mix) 
     const yp = y + 0.5;
     for (let x = 0; x < width; ++x) {
       const i = x + width * y;
-      if (!I[i]) {
+      if (!S[i]) {
         const xp = x + 0.5;
         for (let l = 0; l < n; ++l) {
           const j = (n + k + (l % 2 ? (l + 1) / 2 : -l / 2)) % n;
