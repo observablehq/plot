@@ -7,7 +7,7 @@ import {isIterable, isNoneish, isTemporal, orderof} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
 import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
-import {isTimeYear, isUtcYear} from "../time.js";
+import {formatTimeTicks, isTimeYear, isUtcYear} from "../time.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
@@ -368,7 +368,7 @@ function axisTextKy(
     },
     function (scale, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
-      if (text === undefined) channels.text = inferTextChannel(scale, ticks, tickFormat);
+      if (text === undefined) channels.text = inferTextChannel(scale, ticks, tickFormat, anchor);
     }
   );
 }
@@ -415,7 +415,7 @@ function axisTextKx(
     },
     function (scale, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
-      if (text === undefined) channels.text = inferTextChannel(scale, ticks, tickFormat);
+      if (text === undefined) channels.text = inferTextChannel(scale, ticks, tickFormat, anchor);
     }
   );
 }
@@ -565,15 +565,17 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
   return m;
 }
 
-function inferTextChannel(scale, ticks, tickFormat) {
-  return {value: inferTickFormat(scale, ticks, tickFormat)};
+function inferTextChannel(scale, ticks, tickFormat, anchor) {
+  return {value: inferTickFormat(scale, ticks, tickFormat, anchor)};
 }
 
 // D3’s ordinal scales simply use toString by default, but if the ordinal scale
 // domain (or ticks) are numbers or dates (say because we’re applying a time
 // interval to the ordinal scale), we want Plot’s default formatter.
-export function inferTickFormat(scale, ticks, tickFormat) {
-  return scale.tickFormat
+export function inferTickFormat(scale, ticks, tickFormat, anchor) {
+  return tickFormat === undefined && isTemporalScale(scale)
+    ? formatTimeTicks(scale, ticks, anchor)
+    : scale.tickFormat
     ? scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)
     : tickFormat === undefined
     ? isUtcYear(scale.interval)
