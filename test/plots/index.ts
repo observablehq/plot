@@ -232,6 +232,7 @@ export * from "./random-quantile.js";
 export * from "./random-walk.js";
 export * from "./raster-ca55.js";
 export * from "./raster-penguins.js";
+export * from "./raster-precision.js";
 export * from "./raster-vapor.js";
 export * from "./raster-walmart.js";
 export * from "./rect-band.js";
