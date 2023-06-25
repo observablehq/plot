@@ -225,18 +225,18 @@
   </g>
   <g aria-label="x-axis tick label" transform="translate(0.5,-8.5)">
     <g font-variant="tabular-nums" transform="translate(0,30)">
-      <text transform="translate(166.42857142857144,30)">2020</text>
-      <text transform="translate(232.85714285714286,30)">February</text>
-      <text transform="translate(295,30)">March</text>
-      <text transform="translate(361.42857142857144,30)">April</text>
+      <text transform="translate(166.42857142857144,30)"><tspan x="0" y="-1em">2020</tspan><tspan x="0" dy="1em">Jan</tspan></text>
+      <text transform="translate(232.85714285714286,30)">Feb</text>
+      <text transform="translate(295,30)">Mar</text>
+      <text transform="translate(361.42857142857144,30)">Apr</text>
       <text transform="translate(425.71428571428567,30)">May</text>
-      <text transform="translate(492.1428571428571,30)">June</text>
-      <text transform="translate(556.4285714285714,30)">July</text>
-      <text transform="translate(622.8571428571429,30)">August</text>
-      <text transform="translate(689.2857142857143,30)">September</text>
-      <text transform="translate(753.5714285714286,30)">October</text>
-      <text transform="translate(820,30)">November</text>
-      <text transform="translate(884.2857142857143,30)">December</text>
+      <text transform="translate(492.1428571428571,30)">Jun</text>
+      <text transform="translate(556.4285714285714,30)">Jul</text>
+      <text transform="translate(622.8571428571429,30)">Aug</text>
+      <text transform="translate(689.2857142857143,30)">Sep</text>
+      <text transform="translate(753.5714285714286,30)">Oct</text>
+      <text transform="translate(820,30)">Nov</text>
+      <text transform="translate(884.2857142857143,30)">Dec</text>
     </g>
   </g>
   <g aria-label="area">

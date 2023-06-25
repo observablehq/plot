@@ -25,15 +25,15 @@
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(20,370)">2006</text>
-    <text y="0.71em" transform="translate(93.97260273972603,370)">April</text>
-    <text y="0.71em" transform="translate(168.76712328767124,370)">July</text>
-    <text y="0.71em" transform="translate(244.3835616438356,370)">October</text>
-    <text y="0.71em" transform="translate(320,370)">2007</text>
-    <text y="0.71em" transform="translate(393.9726027397261,370)">April</text>
-    <text y="0.71em" transform="translate(468.7671232876712,370)">July</text>
-    <text y="0.71em" transform="translate(544.3835616438356,370)">October</text>
-    <text y="0.71em" transform="translate(620,370)">2008</text>
+    <text transform="translate(20,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2006</tspan></text>
+    <text y="0.71em" transform="translate(93.97260273972603,370)">Apr</text>
+    <text y="0.71em" transform="translate(168.76712328767124,370)">Jul</text>
+    <text y="0.71em" transform="translate(244.3835616438356,370)">Oct</text>
+    <text transform="translate(320,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2007</tspan></text>
+    <text y="0.71em" transform="translate(393.9726027397261,370)">Apr</text>
+    <text y="0.71em" transform="translate(468.7671232876712,370)">Jul</text>
+    <text y="0.71em" transform="translate(544.3835616438356,370)">Oct</text>
+    <text transform="translate(620,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2008</tspan></text>
   </g>
   <g aria-label="dot" transform="translate(0.5,0.5)">
     <circle cx="-1781.6438356164385" cy="333" r="3" fill="#76b7b2"></circle>
