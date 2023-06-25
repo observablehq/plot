@@ -30,7 +30,7 @@ const domains = [
 ];
 
 export async function timeAxisBottom() {
-  return svg`<svg width=640 height=${(domains.length + 1) * 60}>${domains.map(
+  return svg`<svg width=640 height=${domains.length * 60}>${domains.map(
     (domain, i) =>
       svg`<g transform="translate(0,${i * 60})">${Plot.plot({
         marginBottom: 40,
@@ -41,7 +41,7 @@ export async function timeAxisBottom() {
 }
 
 export async function timeAxisTop() {
-  return svg`<svg width=640 height=${(domains.length + 1) * 60}>${domains.map(
+  return svg`<svg width=640 height=${domains.length * 60}>${domains.map(
     (domain, i) =>
       svg`<g transform="translate(0,${i * 60})">${Plot.plot({
         marginTop: 40,
@@ -53,7 +53,7 @@ export async function timeAxisTop() {
 
 export async function timeAxisLeft() {
   const somedomains = domains.filter((d, i) => i % 3 === 0);
-  return svg`<svg height=400 width=${(somedomains.length + 1) * 80}>${somedomains.map(
+  return svg`<svg height=400 width=${somedomains.length * 80}>${somedomains.map(
     (domain, i) =>
       svg`<g transform="translate(${i * 80},0)">${Plot.plot({
         marginLeft: 60,
@@ -65,7 +65,7 @@ export async function timeAxisLeft() {
 
 export async function timeAxisRight() {
   const somedomains = domains.filter((d, i) => i % 3 === 0);
-  return svg`<svg height=400 width=${(somedomains.length + 1) * 80}>${somedomains.map(
+  return svg`<svg height=400 width=${somedomains.length * 80}>${somedomains.map(
     (domain, i) =>
       svg`<g transform="translate(${i * 80},0)">${Plot.plot({
         marginRight: 60,
