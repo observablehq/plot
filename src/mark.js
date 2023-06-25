@@ -67,9 +67,9 @@ export class Mark {
     this.dx = +dx;
     this.dy = +dy;
     this.marginTop = +marginTop;
-    this.marginRight = +marginRight;
+    this.marginRight = marginRight === "auto" ? "auto" : +marginRight;
     this.marginBottom = +marginBottom;
-    this.marginLeft = +marginLeft;
+    this.marginLeft = marginLeft === "auto" ? "auto" : +marginLeft;
     this.clip = maybeClip(clip);
     this.tip = maybeTip(tip);
     this.className = className ? maybeClassName(className) : null;

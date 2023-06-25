@@ -1,7 +1,21 @@
-import {extent} from "d3";
+import {max, extent} from "d3";
 import {projectionAspectRatio} from "./projection.js";
 import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
+
+// A heuristic to determine the default margin. Ordinal scales usually reclaim
+// more space. We can also gauge the “type of contents” (domain, ticks?) and
+// decide whether it’s small, medium or large. We don’t want it to match the
+// contents exactly because it shouldn’t wobble when the scale changes a little.
+function autoMarginH({type, domain, ticks} = {}) {
+  if (type === "point" || type === "band") return sizeHeuristicH(ticks ?? domain);
+  return sizeHeuristicH((ticks ?? domain ?? []).map(String));
+}
+
+function sizeHeuristicH(values = []) {
+  const l = max(values, (d) => d.length); // TODO text metrics approximation?
+  return l >= 10 ? 120 : l >= 4 ? 80 : 40;
+}
 
 export function createDimensions(scales, marks, options = {}) {
   // Compute the default margins: the maximum of the marks’ margins. While not
@@ -11,7 +25,9 @@ export function createDimensions(scales, marks, options = {}) {
     marginBottomDefault = 0.5 + offset,
     marginLeftDefault = 0.5 - offset;
 
-  for (const {marginTop, marginRight, marginBottom, marginLeft} of marks) {
+  for (let {marginTop, marginRight, marginBottom, marginLeft} of marks) {
+    if (marginLeft === "auto") marginLeft = autoMarginH(scales.y);
+    if (marginRight === "auto") marginRight = autoMarginH(scales.y);
     if (marginTop > marginTopDefault) marginTopDefault = marginTop;
     if (marginRight > marginRightDefault) marginRightDefault = marginRight;
     if (marginBottom > marginBottomDefault) marginBottomDefault = marginBottom;
