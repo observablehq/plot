@@ -13,6 +13,7 @@ const durationWeek = durationDay * 7;
 const durationMonth = durationDay * 30;
 const durationYear = durationDay * 365;
 
+// See https://github.com/d3/d3-time/blob/9e8dc940f38f78d7588aad68a54a25b1f0c2d97b/src/ticks.js#L14-L33
 const formats = [
   ["millisecond", 0.5 * durationSecond],
   ["second", durationSecond],
@@ -138,6 +139,7 @@ export function formatTimeTicks(scale, ticks, anchor) {
   throw new Error("unable to format time ticks");
 }
 
+// See https://github.com/d3/d3-time/blob/9e8dc940f38f78d7588aad68a54a25b1f0c2d97b/src/ticks.js#L43-L50
 function getTimeTicksInterval(scale, ticks) {
   const [start, stop] = extent(scale.domain());
   const count = typeof ticks === "number" ? ticks : 10; // TODO detect ticks as time interval?
