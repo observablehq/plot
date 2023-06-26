@@ -2,6 +2,34 @@
 
 Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
+## 0.6.9
+
+[Released June 26, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.9)
+
+Time [axes](https://observablehq.com/plot/marks/axis) now have a multi-line tick format by default, greatly improving readability.
+
+[TK Example of time axis.]
+
+It is now easier to construct a piecewise quantitative scale, as for a custom color scheme interpolating through a fixed set of colors.
+
+[TK Example of piecewise color scheme.]
+
+The [tree mark](https://observablehq.com/plot/marks/tree) now supports a **textLayout** option, which defaults to *mirrored*, alternating the orientation of labels for internal (non-leaf) *vs.* external (leaf) nodes.
+
+[TK Example of mirrored labels in a tree diagram.]
+
+The treeNode and treeLink marks now support a new **treeFilter** option, allowing these marks to be filtered (without affecting the tree layout).
+
+The [tip mark](https://observablehq.com/plot/marks/tip) now automatically sets the pointer-events attribute to *none* when associated with the [pointer transform](https://observablehq.com/plot/interactions/pointer) when the the pointer is not sticky (as when hovering a chart without clicking to lock the pointer). This prevents the tip mark from interfering with interaction on other marks, such as clickable links.
+
+Fix [barycentric interpolation](https://observablehq.com/plot/marks/raster#interpolatorbarycentric-options) outside the convex hull of samples.
+
+[TK Before and after comparison of barycentric interpolation.]
+
+Fix the **clip** option when the [rule mark](https://observablehq.com/plot/marks/rule) is used with a custom **document**. Fix the **tip** option with the [tree mark](https://observablehq.com/plot/marks/tree) to not produce duplicate tips.
+
+The **title**, **ariaLabel**, and **href** channels no longer filter by default. These channels may now be sparsely defined and the associated mark instance will still render.
+
 ## 0.6.8
 
 [Released June 2, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.8)
