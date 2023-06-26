@@ -151,10 +151,6 @@ Plot.plot({x: {domain: [new Date("2021-01-01"), new Date("2022-01-01")], grid: t
 ```
 :::
 
-:::tip
-We are working on better multi-line ticks for time scales; please upvote [#1285](https://github.com/observablehq/plot/issues/1285) if you are interested.
-:::
-
 To force a UTC scale, say when the data is milliseconds since UNIX epoch rather than Date instances, pass *utc* as the **type** option. Though we recommend coercing strings and numbers to more specific types when you load data, rather than relying on scales to do it.
 
 :::plot https://observablehq.com/@observablehq/plot-continuous-scales
