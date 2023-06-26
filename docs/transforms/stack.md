@@ -268,7 +268,7 @@ When the provided length (typically **y**) is negative, in conjunction with the 
 ```js
 Plot.plot({
   aspectRatio: 1,
-  x: {label: "Age (years) →"},
+  x: {label: "Age (years)"},
   y: {
     grid: true,
     label: "← Women · Men →",
