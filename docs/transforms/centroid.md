@@ -19,7 +19,7 @@ onMounted(() => {
 
 # Centroid transform
 
-Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid-options) and [geoCentroid](#geocentroid-options). These transforms can be used by any mark that accepts **x** and **y** channels. For instance, a [text mark](../marks/text.md) to label the U.S. States.
+Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid-options) and [geoCentroid](#geocentroid-options). These transforms can be used by any mark that accepts **x** and **y** channels. Below, a [text mark](../marks/text.md) labels the U.S. states.
 
 :::plot defer https://observablehq.com/@observablehq/plot-state-labels
 ```js
