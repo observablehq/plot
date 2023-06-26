@@ -11,6 +11,7 @@ const walmarts = shallowRef({type: "FeatureCollection", features: []});
 const world = shallowRef(null);
 const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
 const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
+const states = computed(() => us.value ? topojson.feature(us.value, us.value.objects.states).features : []);
 const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
 const land = computed(() => world.value ? topojson.feature(world.value, world.value.objects.land) : {type: null});
 
@@ -123,6 +124,22 @@ Plot.plot({
       strokeWidth: 2
     }),
     Plot.sphere()
+  ]
+})
+```
+:::
+
+The geo mark doesn’t have **x** and **y** channels; to derive those, for example to add [interactive tips](./tip.md), you can apply a [centroid transform](../transforms/centroid.md) on the geometries.
+
+:::plot defer https://observablehq.com/@observablehq/plot-state-centroids
+```js
+Plot.plot({
+  projection: "albers-usa",
+  marks: [
+    Plot.geo(statemesh, {strokeOpacity: 0.2}),
+    Plot.geo(nation),
+    Plot.dot(states, Plot.centroid({fill: "red", stroke: "var(--vp-c-bg-alt)"})),
+    Plot.tip(states, Plot.pointer(Plot.centroid({title: (d) => d.properties.name})))
   ]
 })
 ```
