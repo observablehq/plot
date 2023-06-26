@@ -724,72 +724,72 @@ it("plot(…).scale('color') can return a “polylinear” piecewise linear scal
   });
 });
 
-it("plot(…).scale('color') ignores extra domain elements with an explicit range", () => {
-  const plot = assert.warns(
-    () =>
-      Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
-        color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"]}
-      }),
-    /domain contains extra/
-  );
-  scaleEqual(plot.scale("color"), {
+it("plot(…).scale('color') distributes an explicit range equally across more domain elements", () => {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"]}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
     type: "linear",
-    domain: [0, 100],
-    range: ["red", "blue"],
-    interpolate: d3.interpolateRgb,
+    domain: [0, 100, 200],
+    range: [0, 0.5, 1],
+    interpolate: color.interpolate,
     clamp: false
   });
+  assert.strictEqual(color.interpolate(0), "rgb(255, 0, 0)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(128, 0, 128)");
+  assert.strictEqual(color.interpolate(1), "rgb(0, 0, 255)");
 });
 
-it("plot(…).scale('color') ignores extra range elements with an explicit range", () => {
-  const plot = assert.warns(
-    () =>
-      Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
-        color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"]}
-      }),
-    /range contains extra/
-  );
-  scaleEqual(plot.scale("color"), {
+it("plot(…).scale('color') distributes an explicit range equally across fewer domain elements", () => {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"]}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
     type: "linear",
     domain: [0, 100],
-    range: ["red", "blue"],
-    interpolate: d3.interpolateRgb,
+    range: [0, 1],
+    interpolate: color.interpolate,
     clamp: false
   });
+  assert.strictEqual(color.interpolate(0), "rgb(255, 0, 0)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(0, 0, 255)");
+  assert.strictEqual(color.interpolate(1), "rgb(0, 128, 0)");
 });
 
 it("plot(…).scale('color') ignores extra domain elements with an explicit range when reversed", () => {
-  const plot = assert.warns(
-    () =>
-      Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
-        color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"], reverse: true}
-      }),
-    /domain contains extra/
-  );
-  scaleEqual(plot.scale("color"), {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"], reverse: true}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
     type: "linear",
-    domain: [100, 0],
-    range: ["red", "blue"],
-    interpolate: d3.interpolateRgb,
+    domain: [0, 100, 200],
+    range: [0, 0.5, 1],
+    interpolate: color.interpolate,
     clamp: false
   });
+  assert.strictEqual(color.interpolate(0), "rgb(0, 0, 255)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(128, 0, 128)");
+  assert.strictEqual(color.interpolate(1), "rgb(255, 0, 0)");
 });
 
 it("plot(…).scale('color') ignores extra range elements with an explicit range when reversed", () => {
-  const plot = assert.warns(
-    () =>
-      Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
-        color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"], reverse: true}
-      }),
-    /range contains extra/
-  );
-  scaleEqual(plot.scale("color"), {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"], reverse: true}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
     type: "linear",
-    domain: [100, 0],
-    range: ["red", "blue"],
-    interpolate: d3.interpolateRgb,
+    domain: [0, 100],
+    range: [0, 1],
+    interpolate: color.interpolate,
     clamp: false
   });
+  assert.strictEqual(color.interpolate(0), "rgb(0, 128, 0)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(0, 0, 255)");
+  assert.strictEqual(color.interpolate(1), "rgb(255, 0, 0)");
 });
 
 it("plot(…).scale('color') can return a polylinear piecewise linear scale with an explicit scheme", () => {

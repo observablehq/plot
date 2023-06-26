@@ -145,5 +145,5 @@
     <rect x="125" width="222" y="352" height="11" fill="rgb(234, 243, 251)"></rect>
     <rect x="372" width="222" y="352" height="11" fill="rgb(213, 229, 244)"></rect>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(111.5,6)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(111.5,6)"></g>
 </svg>

@@ -51,9 +51,9 @@ const likert = Likert([
 
 # Stack transform
 
-The **stack transform** comes in two orientations: [stackY](#stackystack-options) replaces **y** with **y1** and **y2** to form vertical↑ stacks grouped on **x**, while [stackX](#stackx-stack-options) replaces **x** with **x1** and **x2** for horizontal→ stacks grouped on **y**.  In effect, stacking transforms a *length* into *lower* and *upper* positions: the upper position of each element equals the lower position of the next element in the stack. Stacking makes it easier to perceive a total while still showing its parts.
+The **stack transform** comes in two orientations: [stackY](#stacky-stack-options) replaces **y** with **y1** and **y2** to form vertical↑ stacks grouped on **x**, while [stackX](#stackx-stack-options) replaces **x** with **x1** and **x2** for horizontal→ stacks grouped on **y**.  In effect, stacking transforms a *length* into *lower* and *upper* positions: the upper position of each element equals the lower position of the next element in the stack. Stacking makes it easier to perceive a total while still showing its parts.
 
-For example, below is a stacked area chart of [deaths in the Crimean War](https://en.wikipedia.org/wiki/Florence_Nightingale#Crimean_War)—predominantly from <span :style="{borderBottom: `solid ${d3.schemeTableau10[0]} 3px`}">disease</span>—using Florence Nightingale’s data.
+For example, below is a stacked area chart of [deaths in the Crimean War](https://en.wikipedia.org/wiki/Florence_Nightingale#Crimean_War) — predominantly from <span :style="{borderBottom: `solid ${d3.schemeTableau10[0]} 3px`}">disease</span> — using Florence Nightingale’s data.
 
 :::plot https://observablehq.com/@observablehq/plot-crimean-war-casualties
 ```js
@@ -278,7 +278,7 @@ Plot.plot({
   marks: [
     Plot.dot(
       congress,
-      Plot.stackY({
+      Plot.stackY2({
         x: (d) => 2023 - d.birthday.getUTCFullYear(),
         y: (d) => d.gender === "M" ? 1 : -1,
         fill: "gender",
@@ -371,7 +371,7 @@ The following **order** methods are supported:
 - a named field or function of data - order data by priority
 - an array of *z* values
 
-The **reverse** option reverses the effective order. For the *value* order, stackY uses the *y* value while stackX uses the *x* value. For the *appearance* order, stackY uses the *x* position of the maximum *y* value while stackX uses the *y* position of the maximum *x* value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort). Note that the input order (null) and *value* order can produce crossing paths: they do not guarantee a consistent series order across stacks.
+The **reverse** option reverses the effective order. For the *value* order, stackY uses the *y* value while stackX uses the *x* value. For the *appearance* order, stackY uses the *x* position of the maximum *y* value while stackX uses the *y* position of the maximum *x* value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://d3js.org/d3-array/group#groupSort). Note that the input order (null) and *value* order can produce crossing paths: they do not guarantee a consistent series order across stacks.
 
 The stack transform supports diverging stacks: negative values are stacked below zero while positive values are stacked above zero. For stackY, the **y1** channel contains the value of lesser magnitude (closer to zero) while the **y2** channel contains the value of greater magnitude (farther from zero); the difference between the two corresponds to the input **y** channel value. For stackX, the same is true, except for **x1**, **x2**, and **x** respectively.
 

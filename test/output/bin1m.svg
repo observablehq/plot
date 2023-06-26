@@ -60,19 +60,19 @@
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(40,370)">2020</text>
-    <text y="0.71em" transform="translate(89.12568306010928,370)">February</text>
-    <text y="0.71em" transform="translate(135.08196721311475,370)">March</text>
-    <text y="0.71em" transform="translate(184.20765027322406,370)">April</text>
+    <text transform="translate(40,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2020</tspan></text>
+    <text y="0.71em" transform="translate(89.12568306010928,370)">Feb</text>
+    <text y="0.71em" transform="translate(135.08196721311475,370)">Mar</text>
+    <text y="0.71em" transform="translate(184.20765027322406,370)">Apr</text>
     <text y="0.71em" transform="translate(231.7486338797814,370)">May</text>
-    <text y="0.71em" transform="translate(280.8743169398907,370)">June</text>
-    <text y="0.71em" transform="translate(328.4153005464481,370)">July</text>
-    <text y="0.71em" transform="translate(377.54098360655735,370)">August</text>
-    <text y="0.71em" transform="translate(426.66666666666663,370)">September</text>
-    <text y="0.71em" transform="translate(474.20765027322403,370)">October</text>
-    <text y="0.71em" transform="translate(523.3333333333334,370)">November</text>
-    <text y="0.71em" transform="translate(570.8743169398907,370)">December</text>
-    <text y="0.71em" transform="translate(620,370)">2021</text>
+    <text y="0.71em" transform="translate(280.8743169398907,370)">Jun</text>
+    <text y="0.71em" transform="translate(328.4153005464481,370)">Jul</text>
+    <text y="0.71em" transform="translate(377.54098360655735,370)">Aug</text>
+    <text y="0.71em" transform="translate(426.66666666666663,370)">Sep</text>
+    <text y="0.71em" transform="translate(474.20765027322403,370)">Oct</text>
+    <text y="0.71em" transform="translate(523.3333333333334,370)">Nov</text>
+    <text y="0.71em" transform="translate(570.8743169398907,370)">Dec</text>
+    <text transform="translate(620,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2021</tspan></text>
   </g>
   <g aria-label="rect">
     <rect x="41" y="34.098504837291095" width="2.169398907103826" height="335.9014951627089"></rect>

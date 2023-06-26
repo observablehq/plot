@@ -92,7 +92,7 @@ Plot.plot({
 Here the sort order has changed slightly: the *y* and *fy* domains are sorted by the median **x1** values, which are the yields for 1931.
 :::
 
-Faceting requires ordinal or categorical data because there are a discrete number of facets; the associated *fx* and *fy* scales are [band scales](./scales.md#discrete-position). Quantitative or temporal data can be made ordinal by binning, say using [Math.floor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor). Or, use the [**interval** scale option](./scales.md#scale-transforms) on the *fx* or *fy* scale. Below, we produce a [box plot](../marks/box.md) of the weights (in kilograms) of Olympic athletes, faceted by height binned at a 10cm (0.1 meter) interval.
+Faceting requires ordinal or categorical data because there are a discrete number of facets; the associated *fx* and *fy* scales are [band scales](./scales.md#discrete-scales). Quantitative or temporal data can be made ordinal by binning, say using [Math.floor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor). Or, use the [**interval** scale option](./scales.md#scale-transforms) on the *fx* or *fy* scale. Below, we produce a [box plot](../marks/box.md) of the weights (in kilograms) of Olympic athletes, faceted by height binned at a 10cm (0.1 meter) interval.
 
 :::plot defer https://observablehq.com/@observablehq/plot-olympians-box-plot
 ```js
@@ -299,7 +299,7 @@ With top-level faceting, any mark that uses the specified facet data will be fac
 
 ## Facet scales
 
-When faceting, two additional [band scales](./scales.md#discrete-position) may be configured:
+When faceting, two additional [band scales](./scales.md#discrete-scales) may be configured:
 
 * *fx* - the horizontal↔︎ position, a *band* scale
 * *fy* - the vertical↕︎ position, a *band* scale

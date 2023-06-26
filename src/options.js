@@ -231,6 +231,11 @@ export function taker(f) {
   return f.length === 1 ? (index, values) => f(take(values, index)) : f;
 }
 
+// Uses subarray if available, and otherwise slice.
+export function subarray(I, i, j) {
+  return I.subarray ? I.subarray(i, j) : I.slice(i, j);
+}
+
 // Based on InternMap (d3.group).
 export function keyof(value) {
   return value !== null && typeof value === "object" ? value.valueOf() : value;

@@ -1,4 +1,5 @@
-import path from "path";
+import {fileURLToPath, URL} from "node:url";
+import path from "node:path";
 import {defineConfig} from "vitepress";
 import plot from "./markdown-it-plot.js";
 
@@ -11,9 +12,10 @@ export default defineConfig({
   cleanUrls: true,
   vite: {
     resolve: {
-      alias: {
-        "@observablehq/plot": path.resolve("./src/index.js")
-      }
+      alias: [
+        {find: "@observablehq/plot", replacement: path.resolve("./src/index.js")},
+        {find: /^.*\/VPFooter\.vue$/, replacement: fileURLToPath(new URL("./theme/CustomFooter.vue", import.meta.url))}
+      ]
     }
   },
   markdown: {
@@ -137,7 +139,7 @@ export default defineConfig({
       {icon: "github", link: "https://github.com/observablehq/plot"},
       {icon: "twitter", link: "https://twitter.com/observablehq"},
       {icon: "mastodon", link: "https://vis.social/@observablehq"},
-      {icon: "slack", link: "https://observable-community.slack.com/ssb/redirect"},
+      {icon: "slack", link: "https://join.slack.com/t/observable-community/shared_invite/zt-1x7gs4fck-UHhEFxUXKHVE8Qt3XmJCig"},
       {icon: "linkedin", link: "https://www.linkedin.com/company/observable"},
       {icon: "youtube", link: "https://www.youtube.com/c/Observablehq"}
     ],

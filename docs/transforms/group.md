@@ -3,7 +3,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {shallowRef, onMounted} from "vue";
-import penguins from "../data/penguins.ts";
 
 const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
 
@@ -19,7 +18,7 @@ onMounted(() => {
 The group transform is for aggregating ordinal or nominal data. For quantitative or temporal data, use the [bin transform](./bin.md).
 :::
 
-The **group transform** groups ordinal or nominal data—discrete values such as name, type, or category. You can then compute summary statistics for each group, such as a count, sum, or proportion. The group transform is most often used to make bar charts with the [bar mark](../marks/bar.md).
+The **group transform** groups ordinal or nominal data — discrete values such as name, type, or category. You can then compute summary statistics for each group, such as a count, sum, or proportion. The group transform is most often used to make bar charts with the [bar mark](../marks/bar.md).
 
 For example, the bar chart below shows a distribution of Olympic athletes by sport.
 
@@ -41,7 +40,7 @@ Plot.plot({
 Ordinal domains are sorted naturally (alphabetically) by default. Either set the [scale **domain**](../features/scales.md) explicitly to change the order, or use the mark [**sort** option](../features/scales.md#sort-mark-option) to derive the scale domain from a channel.
 :::
 
-The groupX transform groups on **x**. The *outputs* argument (here `{y: "count"}`) declares desired output channels (**y**) and the associated reducer (*count*). Hence the height of each bar above represents the number of penguins of each species.
+The groupX transform groups on **x**. The *outputs* argument (here `{y: "count"}`) declares desired output channels (**y**) and the associated reducer (*count*). Hence the height of each bar above represents the number of Olympic athletes by sport.
 
 <!-- For example, to sort **x** by descending **y**: -->
 

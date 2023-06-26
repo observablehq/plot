@@ -49,7 +49,7 @@ Plot.plot({
 ```
 :::
 
-More commonly, the rect mark is used to produce histograms or heatmaps of quantitative data. For example, given some binned observations computed by [d3.bin](https://github.com/d3/d3-array/blob/main/README.md#bins), we can produce a basic histogram with [rectY](#recty-data-options) as follows:
+More commonly, the rect mark is used to produce histograms or heatmaps of quantitative data. For example, given some binned observations computed by [d3.bin](https://d3js.org/d3-array/bin), we can produce a basic histogram with [rectY](#recty-data-options) as follows:
 
 :::plot https://observablehq.com/@observablehq/plot-rects-and-bins
 ```js
@@ -201,7 +201,7 @@ The following channels are optional:
 
 Typically either **x1** and **x2** are specified, or **y1** and **y2**, or both.
 
-If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each **x** to produce **x1**, and *interval*.offset(*x1*) is invoked for each **x1** to produce **x2**. The same is true for **y**, **y1**, and **y2**, respectively. If the interval is specified as a number *n*, **x1** and **x2** are taken as the two consecutive multiples of *n* that bracket **x**. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales#scale-options).
+If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each **x** to produce **x1**, and *interval*.offset(*x1*) is invoked for each **x1** to produce **x2**. The same is true for **y**, **y1**, and **y2**, respectively. If the interval is specified as a number *n*, **x1** and **x2** are taken as the two consecutive multiples of *n* that bracket **x**. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
 The rect mark supports the [standard mark options](../features/marks.md#mark-options), including insets and rounded corners. The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 

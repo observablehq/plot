@@ -131,7 +131,9 @@ export function autoSpec(data, options) {
         ? rectX
         : yReduce != null
         ? rectY
-        : rect;
+        : colorReduce != null
+        ? rect
+        : cell;
       colorMode = "fill";
       break;
     default:

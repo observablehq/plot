@@ -26,7 +26,7 @@ The cell mark is one of several marks in Plot for drawing rectangles; it should 
 
 The **cell mark** draws rectangles positioned in two ordinal dimensions. Hence, the plot’s *x* and *y* scales are [band scales](../features/scales.md). Cells typically also have a **fill** color encoding.
 
-For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high IMDb ratings are dark green, while low ratings are dark pink. (The worst episode ever—cue Comic Book Guy—is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga).)
+For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high IMDb ratings are dark green, while low ratings are dark pink. (The worst episode ever — cue Comic Book Guy — is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga).)
 
 :::plot defer https://observablehq.com/@observablehq/plot-simpsons-ratings
 ```js
@@ -122,7 +122,7 @@ Plot.cell(alphabet, {x: "letter", fill: "frequency"}).plot()
 ```
 :::
 
-When ordinal data is regular, such as the yearly observations of the warming stripes below, use the **interval** scale option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://github.com/d3/d3-time/blob/main/README.md#api-reference), or a custom implementation.
+When ordinal data is regular, such as the yearly observations of the warming stripes below, use the **interval** scale option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://d3js.org/d3-time#_interval), or a custom implementation.
 
 :::plot https://observablehq.com/@observablehq/plot-ordinal-scale-interval-2
 ```js{5}

@@ -49,12 +49,12 @@
     <path transform="translate(574.152380952381,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(70.38095238095238,370)">April</text>
-    <text y="0.71em" transform="translate(170.91428571428568,370)">July</text>
-    <text y="0.71em" transform="translate(272.55238095238093,370)">October</text>
-    <text y="0.71em" transform="translate(374.19047619047615,370)">2021</text>
-    <text y="0.71em" transform="translate(473.6190476190476,370)">April</text>
-    <text y="0.71em" transform="translate(574.152380952381,370)">July</text>
+    <text transform="translate(70.38095238095238,370)"><tspan x="0" y="0.71em">Apr</tspan><tspan x="0" dy="1em">2020</tspan></text>
+    <text y="0.71em" transform="translate(170.91428571428568,370)">Jul</text>
+    <text y="0.71em" transform="translate(272.55238095238093,370)">Oct</text>
+    <text transform="translate(374.19047619047615,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2021</tspan></text>
+    <text y="0.71em" transform="translate(473.6190476190476,370)">Apr</text>
+    <text y="0.71em" transform="translate(574.152380952381,370)">Jul</text>
   </g>
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,370)">specimen_collection_date →</text>

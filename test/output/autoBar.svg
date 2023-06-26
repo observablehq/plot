@@ -124,5 +124,5 @@
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="20" y2="550"></line>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" text-anchor="start" transform="translate(0.5,9.5)"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,9.5)"></g>
 </svg>

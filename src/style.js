@@ -143,9 +143,9 @@ export function styles(
   mark.shapeRendering = impliedString(shapeRendering, "auto");
 
   return {
-    title: {value: title, optional: true},
-    href: {value: href, optional: true},
-    ariaLabel: {value: variaLabel, optional: true},
+    title: {value: title, optional: true, filter: null},
+    href: {value: href, optional: true, filter: null},
+    ariaLabel: {value: variaLabel, optional: true, filter: null},
     fill: {value: vfill, scale: "auto", optional: true},
     fillOpacity: {value: vfillOpacity, scale: "auto", optional: true},
     stroke: {value: vstroke, scale: "auto", optional: true},
@@ -252,7 +252,7 @@ function groupAesthetics(
 
 export function groupZ(I, Z, z) {
   const G = group(I, (i) => Z[i]);
-  if (z === undefined && G.size > I.length >> 1) {
+  if (z === undefined && G.size > (1 + I.length) >> 1) {
     warn(
       `Warning: the implicit z channel has high cardinality. This may occur when the fill or stroke channel is associated with quantitative data rather than ordinal or categorical data. You can suppress this warning by setting the z option explicitly; if this data represents a single series, set z to null.`
     );
@@ -377,7 +377,8 @@ export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "filter", mark.imageFilter);
   applyAttr(selection, "paint-order", mark.paintOrder);
-  applyAttr(selection, "pointer-events", mark.pointerEvents);
+  const {pointerEvents = context.pointerSticky === false ? "none" : undefined} = mark;
+  applyAttr(selection, "pointer-events", pointerEvents);
 }
 
 export function applyDirectStyles(selection, mark) {

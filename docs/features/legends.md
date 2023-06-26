@@ -118,7 +118,7 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * **marginLeft** - the legend’s left margin
 * **opacity** - the ramp’s fill opacity
 
-The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [plot options](./plots.md).
+The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [plot options](./plots.md). The **className** option is suffixed with *-ramp* or *-swatches*, reflecting the **legend** type.
 
 ## legend(*options*)
 

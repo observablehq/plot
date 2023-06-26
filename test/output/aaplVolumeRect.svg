@@ -75,14 +75,14 @@
     <path transform="translate(558.9473684210526,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(60.35087719298246,370)">Mar 18</text>
-    <text y="0.71em" transform="translate(131.57894736842104,370)">Mar 25</text>
-    <text y="0.71em" transform="translate(202.80701754385964,370)">April</text>
-    <text y="0.71em" transform="translate(274.03508771929825,370)">Apr 08</text>
-    <text y="0.71em" transform="translate(345.2631578947369,370)">Apr 15</text>
-    <text y="0.71em" transform="translate(416.49122807017545,370)">Apr 22</text>
-    <text y="0.71em" transform="translate(487.71929824561397,370)">Apr 29</text>
-    <text y="0.71em" transform="translate(558.9473684210526,370)">May 06</text>
+    <text transform="translate(60.35087719298246,370)"><tspan x="0" y="0.71em">18</tspan><tspan x="0" dy="1em">Mar</tspan></text>
+    <text y="0.71em" transform="translate(131.57894736842104,370)">25</text>
+    <text transform="translate(202.80701754385964,370)"><tspan x="0" y="0.71em">1</tspan><tspan x="0" dy="1em">Apr</tspan></text>
+    <text y="0.71em" transform="translate(274.03508771929825,370)">8</text>
+    <text y="0.71em" transform="translate(345.2631578947369,370)">15</text>
+    <text y="0.71em" transform="translate(416.49122807017545,370)">22</text>
+    <text y="0.71em" transform="translate(487.71929824561397,370)">29</text>
+    <text transform="translate(558.9473684210526,370)"><tspan x="0" y="0.71em">6</tspan><tspan x="0" dy="1em">May</tspan></text>
   </g>
   <g aria-label="rect" fill="#ccc">
     <rect x="41" y="162.72964589401167" width="9.175438596491219" height="207.27035410598833"></rect>

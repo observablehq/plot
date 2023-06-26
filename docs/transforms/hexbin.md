@@ -23,7 +23,7 @@ onMounted(() => {
 
 # Hexbin transform
 
-The **hexbin transform** groups two-dimensional quantitative or temporal data—continuous measurements such as heights, weights, or temperatures—into discrete hexagonal bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The hexbin transform is most often used to make heatmaps with the [dot mark](../marks/dot.md).
+The **hexbin transform** groups two-dimensional quantitative or temporal data — continuous measurements such as heights, weights, or temperatures — into discrete hexagonal bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The hexbin transform is most often used to make heatmaps with the [dot mark](../marks/dot.md).
 
 For example, the heatmap below shows the weights and heights of Olympic athletes. The color of each hexagon represents the number (*count*) of athletes with similar weight and height.
 
@@ -191,7 +191,7 @@ The following aggregation methods are supported:
 * *max-index* - the zero-based index of the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
-* *deviation* - the [standard deviation](https://github.com/d3/d3-array/blob/master/README.md#deviation)
+* *deviation* - the [standard deviation](https://d3js.org/d3-array/summarize#deviation)
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *mode* - the value with the most occurrences
 * *identity* - the array of values

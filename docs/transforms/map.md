@@ -20,7 +20,7 @@ function bollinger(N, K) {
 
 # Map transform
 
-The **map transform** groups data into series and then transforms each series’ values, say to normalize them relative to some basis or to apply a moving average. For example, below the map transform computes a cumulative sum (*cumsum*) of a series of random numbers sampled from a normal distribution—in other words, a random walk.
+The **map transform** groups data into series and then transforms each series’ values, say to normalize them relative to some basis or to apply a moving average. For example, below the map transform computes a cumulative sum (*cumsum*) of a series of random numbers sampled from a normal distribution — in other words, a random walk.
 
 :::plot https://observablehq.com/@observablehq/plot-random-walk-cumsum-map
 ```js
@@ -47,7 +47,7 @@ Plot.plot({
 ```
 :::
 
-The [mapY transform](#map-ymap-options) above is shorthand for applying the given map method to all *y* channels. There’s also a less-common [mapX transform](#mapx-map-options) for *x* channels.
+The [mapY transform](#mapy-map-options) above is shorthand for applying the given map method to all *y* channels. There’s also a less-common [mapX transform](#mapx-map-options) for *x* channels.
 
 The more explicit [map](#map-outputs-options) transform lets you specify which channels to map, and what map method to use for each channel. Like the [group](./group.md) and [bin](./bin.md) transforms, it takes two arguments: an *outputs* object that describes the output channels to compute, and an *options* object that describes the input channels and additional options. So this:
 

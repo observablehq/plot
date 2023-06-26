@@ -241,7 +241,7 @@ Plot.dotX([
 :::
 
 :::info
-The stroked symbols are based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746). There is also a *hexagon* symbol; it is primarily intended for the [hexbin transform](../transforms/hexbin.md). You can even specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types) method.
+The stroked symbols are based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746). There is also a *hexagon* symbol; it is primarily intended for the [hexbin transform](../transforms/hexbin.md). You can even specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://d3js.org/d3-shape/symbol#symbolType_draw) method.
 :::
 
 The dot mark can be combined with the [stack transform](../transforms/stack.md). The diverging stacked dot plot below shows the age and gender distribution of the U.S. Congress in 2023.
@@ -349,7 +349,7 @@ Plot.dotX(cars.map((d) => d["economy (mpg)"]))
 
 Equivalent to [dot](#dot-data-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
-If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales#scale-options).
+If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
 ## dotY(*data*, *options*)
 
@@ -359,7 +359,7 @@ Plot.dotY(cars.map((d) => d["economy (mpg)"]))
 
 Equivalent to [dot](#dot-data-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
-If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales#scale-options).
+If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
 ## circle(*data*, *options*)
 

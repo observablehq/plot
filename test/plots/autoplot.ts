@@ -259,3 +259,8 @@ export async function autoChannels() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.auto(athletes, {x: Plot.valueof(athletes, "height"), y: Plot.valueof(athletes, "sport")}).plot();
 }
+
+export async function autoBarNoReducer() {
+  const simpsons = await d3.csv<any>("data/simpsons.csv", d3.autoType);
+  return Plot.auto(simpsons, {x: "season", y: "number_in_season", color: "imdb_rating", mark: "bar"}).plot();
+}

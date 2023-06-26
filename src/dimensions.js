@@ -38,7 +38,7 @@ export function createDimensions(scales, marks, options = {}) {
   // specified explicitly, adjust the automatic height accordingly.
   let {
     width = 640,
-    height = autoHeight(scales, marks, options, {
+    height = autoHeight(scales, options, {
       width,
       marginTopDefault,
       marginRightDefault,
@@ -89,14 +89,13 @@ export function createDimensions(scales, marks, options = {}) {
 
 function autoHeight(
   {x, y, fy, fx},
-  marks,
   {projection, aspectRatio},
   {width, marginTopDefault, marginRightDefault, marginBottomDefault, marginLeftDefault}
 ) {
   const nfy = fy ? fy.scale.domain().length : 1;
 
   // If a projection is specified, use its natural aspect ratio (if known).
-  const ar = projectionAspectRatio(projection, marks);
+  const ar = projectionAspectRatio(projection);
   if (ar) {
     const nfx = fx ? fx.scale.domain().length : 1;
     const far = ((1.1 * nfy - 0.1) / (1.1 * nfx - 0.1)) * ar; // 0.1 is default facet padding

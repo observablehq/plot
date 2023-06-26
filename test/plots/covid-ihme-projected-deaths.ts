@@ -15,12 +15,6 @@ export async function covidIhmeProjectedDeaths() {
     },
     marks: [
       Plot.gridX(),
-      Plot.axisX({
-        tickFormat: (
-          (fm, fd) => (x, i) =>
-            i === 0 || d3.utcDay.count(d3.utcMonth(x), x) < 7 ? `${fd(x)}\n${fm(x)}` : fd(x)
-        )(d3.utcFormat("%B"), d3.utcFormat("%d"))
-      }),
       Plot.areaY(data, {
         x: "date",
         y1: (d) => Math.max(1, d.lower), // avoid zero
