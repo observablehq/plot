@@ -278,7 +278,7 @@ Plot.plot({
   marks: [
     Plot.dot(
       congress,
-      Plot.stackY({
+      Plot.stackY2({
         x: (d) => 2023 - d.birthday.getUTCFullYear(),
         y: (d) => d.gender === "M" ? 1 : -1,
         fill: "gender",
