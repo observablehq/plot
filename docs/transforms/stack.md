@@ -268,7 +268,7 @@ When the provided length (typically **y**) is negative, in conjunction with the 
 ```js
 Plot.plot({
   aspectRatio: 1,
-  x: {label: "Age (years)"},
+  x: {label: "Age (years) →"},
   y: {
     grid: true,
     label: "← Women · Men →",
@@ -278,7 +278,7 @@ Plot.plot({
   marks: [
     Plot.dot(
       congress,
-      Plot.stackY({
+      Plot.stackY2({
         x: (d) => 2023 - d.birthday.getUTCFullYear(),
         y: (d) => d.gender === "M" ? 1 : -1,
         fill: "gender",
