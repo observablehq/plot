@@ -8,10 +8,10 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 Time [axes](https://observablehq.com/plot/marks/axis) now default to a multi-line tick format, greatly improving readability. The previous “multi-scale” format varied based on the date, such as “Jan 29” (for Sunday, January 29) and “Tue 31” (for Tuesday, January 31). In contrast, the new multi-line format is always consistent because it is based on the tick interval. And when a tick has the same second field value as the previous tick (*e.g.*, “19 Jan” after “17 Jan”), only the first field (“19”) is shown for brevity. The new multi-line tick format is similar to [Datawrapper](https://blog.datawrapper.de/new-axis-ticks/).
 
-Before:
+Before:<br>
 <img src="./img/time-axis-before.png" width="640" alt="A horizontal time axis showing dates “Wed 25”, “Fri 27”, “Jan 29”, “Tue 31”, and so on.">
 
-After:
+After:<br>
 <img src="./img/time-axis-after.png" width="640" alt="A horizontal time axis showing dates “17 Jan”, “19”, “21”, through “2 Feb”, “4”, and so on. When the month name is shown, it is on a second line below the date.">
 
 It is now easier to construct a “piecewise” [continuous scale](https://observablehq.com/plot/features/scales#continuous-scales) with more than two elements in the **domain** or **range**. This is most often used for a custom color scheme interpolating through a fixed set of colors, as in this pleasing rainbow of four colors (sometimes used by artist [Dave Whyte](https://beesandbombs.com/), *a.k.a.* beesandbombs).
