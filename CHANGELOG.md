@@ -6,25 +6,45 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 [Released June 26, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.9)
 
-Time [axes](https://observablehq.com/plot/marks/axis) now have a multi-line tick format by default, greatly improving readability.
+Time [axes](https://observablehq.com/plot/marks/axis) now default to a multi-line tick format, greatly improving readability. The previous “multi-scale” format varied based on the date, such as “Jan 29” (for Sunday, January 29) and “Tue 31” (for Tuesday, January 31). In contrast, the new multi-line format is always consistent because it is based on the tick interval. And when a tick has the same second field value as the previous tick (*e.g.*, “19 Jan” after “17 Jan”), only the first field (“19”) is shown for brevity. The new multi-line tick format is similar to [Datawrapper](https://blog.datawrapper.de/new-axis-ticks/).
 
-[TK Example of time axis.]
+Before:
+<img src="./img/time-axis-before.png" width="640" alt="A horizontal time axis showing dates “Wed 25”, “Fri 27”, “Jan 29”, “Tue 31”, and so on.">
 
-It is now easier to construct a piecewise quantitative scale, as for a custom color scheme interpolating through a fixed set of colors.
+After:
+<img src="./img/time-axis-after.png" width="640" alt="A horizontal time axis showing dates “17 Jan”, “19”, “21”, through “2 Feb”, “4”, and so on. When the month name is shown, it is on a second line below the date.">
 
-[TK Example of piecewise color scheme.]
+It is now easier to construct a “piecewise” [continuous scale](https://observablehq.com/plot/features/scales#continuous-scales) with more than two elements in the **domain** or **range**. This is most often used for a custom color scheme interpolating through a fixed set of colors, as in this pleasing rainbow of four colors (sometimes used by artist [Dave Whyte](https://beesandbombs.com/), *a.k.a.* beesandbombs).
 
-The [tree mark](https://observablehq.com/plot/marks/tree) now supports a **textLayout** option, which defaults to *mirrored*, alternating the orientation of labels for internal (non-leaf) *vs.* external (leaf) nodes.
+<img src="./img/piecewise-rainbow.png" width="640" alt="A one-dimensional cell plot of the numbers 0 through 39, laid out horizontally, with color varying smoothly through red, yellow, green-blue, and purple.">
+
+```js
+Plot.plot({
+  color: {
+    type: "linear",
+    range: ["#d70441", "#f4e904", "#009978", "#5e3688"]
+  },
+  marks: [
+    Plot.cellX(d3.range(40), {fill: Plot.identity})
+  ]
+})
+```
+
+The [tree mark](https://observablehq.com/plot/marks/tree) now supports a **textLayout** option, which defaults to *mirrored*, alternating the orientation of labels for internal (non-leaf) *vs.* external (leaf) nodes. The treeNode and treeLink marks now also support a new **treeFilter** option, allowing these marks to be filtered (without affecting the tree layout).
 
 [TK Example of mirrored labels in a tree diagram.]
 
-The treeNode and treeLink marks now support a new **treeFilter** option, allowing these marks to be filtered (without affecting the tree layout).
-
-The [tip mark](https://observablehq.com/plot/marks/tip) now automatically sets the pointer-events attribute to *none* when associated with the [pointer transform](https://observablehq.com/plot/interactions/pointer) when the the pointer is not sticky (as when hovering a chart without clicking to lock the pointer). This prevents the tip mark from interfering with interaction on other marks, such as clickable links.
+The [tip mark](https://observablehq.com/plot/marks/tip) now automatically sets the pointer-events attribute to *none* when associated with the [pointer transform](https://observablehq.com/plot/interactions/pointer) when the the pointer is not sticky, as when hovering a chart without clicking to lock the pointer. This prevents the tip mark from interfering with interaction on other marks, such as clickable links.
 
 Fix [barycentric interpolation](https://observablehq.com/plot/marks/raster#interpolatorbarycentric-options) outside the convex hull of samples.
 
 [TK Before and after comparison of barycentric interpolation.]
+
+TK Fix invisible rects with the [auto mark](https://observablehq.com/plot/marks/auto) when both dimensions are ordinal and the **mark** option is set to *bar*.
+
+TK Fix pointer transform on non-faceted marks in faceted plots.
+
+TK Fix a regression with the [window transform](https://observablehq.com/plot/transforms/window) when using the *median*, *deviation*, *variance*, or percentile reducer.
 
 Fix the **clip** option when the [rule mark](https://observablehq.com/plot/marks/rule) is used with a custom **document**. Fix the **tip** option with the [tree mark](https://observablehq.com/plot/marks/tree) to not produce duplicate tips.
 
