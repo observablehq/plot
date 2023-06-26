@@ -31,6 +31,7 @@ export function tree(
     textAnchor,
     treeLayout = Tree,
     textLayout = treeLayout === Tree || treeLayout === Cluster ? "mirrored" : "normal",
+    tip,
     ...options
   } = {}
 ) {
@@ -74,7 +75,7 @@ export function tree(
       })
     ),
     dotDot
-      ? dot(data, treeNode({treeLayout, fill: fill === undefined ? "node:internal" : fill, title, ...options}))
+      ? dot(data, treeNode({treeLayout, fill: fill === undefined ? "node:internal" : fill, title, tip, ...options}))
       : null,
     textText != null
       ? textLayout === "mirrored"
