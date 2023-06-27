@@ -49,7 +49,7 @@ Plot.plot({
 
 The [barycentric interpolator](https://observablehq.com/plot/marks/raster#interpolatorbarycentric-options) now behaves correctly outside the convex hull of samples. The new algorithm (below right) radiates outwards from the hull, ensuring a continuous image; the old algorithm (below left) radiated inwards from values imputed on the frame’s edges, producing discontinuities.
 
-<img src="./img/barycentric-before-after.png" width="632" alt="A before-and-after comparison of the barycentric interpolator applied to three sample points; in the new algorithm, lines radiate outward perpendicular from the triangle’s sides, producing a more coherent and understandable image.">
+<img src="./img/barycentric-before-after.png" width="640" alt="A before-and-after comparison of the barycentric interpolator applied to three sample points; in the new algorithm, lines radiate outward perpendicular from the triangle’s sides, producing a more coherent and understandable image.">
 
 The [tip mark](https://observablehq.com/plot/marks/tip) now automatically sets the pointer-events attribute to *none* when associated with the [pointer transform](https://observablehq.com/plot/interactions/pointer) when the the pointer is not sticky, as when hovering a chart without clicking to lock the pointer. This prevents the tip mark from interfering with interaction on other marks, such as clickable links.
 
