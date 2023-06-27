@@ -32,7 +32,11 @@ Plot.plot({
 
 The [tree mark](https://observablehq.com/plot/marks/tree) now supports a **textLayout** option, which defaults to *mirrored*, alternating the orientation of labels for internal (non-leaf) *vs.* external (leaf) nodes. The treeNode and treeLink marks now also support a new **treeFilter** option, allowing these marks to be filtered (without affecting the tree layout).
 
-[TK Example of mirrored labels in a tree diagram.]
+<img src="./test/output/greekGods.svg" width="640" alt="A little family tree of Greek gods.">
+
+```js
+Plot.tree(gods).plot({axis: null, inset: 20, insetLeft: 35, insetRight: 120})
+```
 
 The [tip mark](https://observablehq.com/plot/marks/tip) now automatically sets the pointer-events attribute to *none* when associated with the [pointer transform](https://observablehq.com/plot/interactions/pointer) when the the pointer is not sticky, as when hovering a chart without clicking to lock the pointer. This prevents the tip mark from interfering with interaction on other marks, such as clickable links.
 
