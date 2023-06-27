@@ -1,4 +1,4 @@
-import {bisector, extent, timeFormat, utcFormat} from "d3";
+import {bisector, extent, median, pairs, timeFormat, utcFormat} from "d3";
 import {utcSecond, utcMinute, utcHour, unixDay, utcWeek, utcMonth, utcYear} from "d3";
 import {utcMonday, utcTuesday, utcWednesday, utcThursday, utcFriday, utcSaturday, utcSunday} from "d3";
 import {timeSecond, timeMinute, timeHour, timeDay, timeWeek, timeMonth, timeYear} from "d3";
@@ -110,7 +110,7 @@ export function isTimeYear(i) {
   return timeYear(date) >= date; // coercing equality
 }
 
-export function formatTimeTicks(scale, ticks, anchor) {
+export function formatTimeTicks(scale, data, ticks, anchor) {
   const format = scale.type === "time" ? timeFormat : utcFormat;
   const template =
     anchor === "left" || anchor === "right"
@@ -118,7 +118,7 @@ export function formatTimeTicks(scale, ticks, anchor) {
       : anchor === "top"
       ? (f1, f2) => `${f2}\n${f1}`
       : (f1, f2) => `${f1}\n${f2}`;
-  switch (getTimeTicksInterval(scale, ticks)) {
+  switch (getTimeTicksInterval(scale, data, ticks)) {
     case "millisecond":
       return formatConditional(format(".%L"), format(":%M:%S"), template);
     case "second":
@@ -139,10 +139,16 @@ export function formatTimeTicks(scale, ticks, anchor) {
   throw new Error("unable to format time ticks");
 }
 
-// See https://github.com/d3/d3-time/blob/9e8dc940f38f78d7588aad68a54a25b1f0c2d97b/src/ticks.js#L43-L50
-function getTimeTicksInterval(scale, ticks) {
+// Compute the median difference between adjacent ticks, ignoring repeated
+// ticks; this implies an effective time interval, assuming that ticks are
+// regularly spaced; choose the largest format less than this interval so that
+// the ticks show the field that is changing. If the ticks are not available,
+// fallback to an approximation based on the desired number of ticks.
+function getTimeTicksInterval(scale, data, ticks) {
+  const medianStep = median(pairs(data, (a, b) => Math.abs(b - a) || NaN));
+  if (medianStep > 0) return formats[bisector(([, step]) => step).right(formats, medianStep, 1, formats.length) - 1][0];
   const [start, stop] = extent(scale.domain());
-  const count = typeof ticks === "number" ? ticks : 10; // TODO detect ticks as time interval?
+  const count = typeof ticks === "number" ? ticks : 10;
   const step = Math.abs(stop - start) / count;
   return formats[bisector(([, step]) => Math.log(step)).center(formats, Math.log(step))][0];
 }
