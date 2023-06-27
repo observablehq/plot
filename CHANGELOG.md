@@ -30,29 +30,34 @@ Plot.plot({
 })
 ```
 
-The [tree mark](https://observablehq.com/plot/marks/tree) now supports a **textLayout** option, which defaults to *mirrored*, alternating the orientation of labels for internal (non-leaf) *vs.* external (leaf) nodes. The treeNode and treeLink marks now also support a new **treeFilter** option, allowing these marks to be filtered (without affecting the tree layout).
+The [tree mark](https://observablehq.com/plot/marks/tree) now supports a **textLayout** option, which defaults to *mirrored* to alternate the orientation of labels for internal (non-leaf) *vs.* external (leaf) nodes. The treeNode and treeLink marks now also support a new **treeFilter** option, allowing these marks to be filtered without affecting the tree layout.
 
-<img src="./test/output/greekGods.svg" width="640" alt="A little family tree of Greek gods.">
+<img src="./img/tree-gods.png" width="640" alt="A small family tree diagram of Greek gods. Chaos beget Eros, Erebus, Tartarus, and Gaia; Gaia beget Mountains, Pontus, and Uranus.">
 
 ```js
-Plot.tree(gods).plot({axis: null, inset: 20, insetLeft: 35, insetRight: 120})
+Plot.plot({
+  axis: null,
+  height: 100,
+  margin: 10,
+  marginLeft: 40,
+  marginRight: 120,
+  marks: [
+    Plot.tree(gods, {textStroke: "white"})
+  ]
+})
 ```
+
+The [barycentric interpolator](https://observablehq.com/plot/marks/raster#interpolatorbarycentric-options) now behaves correctly outside the convex hull of samples. The new algorithm (below right) radiates outwards from the hull, ensuring a continuous image; the old algorithm (below left) radiated inwards from values imputed on the frame’s edges, producing discontinuities.
+
+<img src="./img/barycentric-before-after.png" width="632" alt="A before-and-after comparison of the barycentric interpolator applied to three sample points; in the new algorithm, lines radiate outward perpendicular from the triangle’s sides, producing a more coherent and understandable image.">
 
 The [tip mark](https://observablehq.com/plot/marks/tip) now automatically sets the pointer-events attribute to *none* when associated with the [pointer transform](https://observablehq.com/plot/interactions/pointer) when the the pointer is not sticky, as when hovering a chart without clicking to lock the pointer. This prevents the tip mark from interfering with interaction on other marks, such as clickable links.
 
-Fix [barycentric interpolation](https://observablehq.com/plot/marks/raster#interpolatorbarycentric-options) outside the convex hull of samples. The new algorithm (right image) radiates outwards from the hull, ensuring a continuous image. The old algorithm (left image) was radiating inwards from values imputed on the frame’s edges.
+The [auto mark](https://observablehq.com/plot/marks/auto) now renders as a cell, instead of a degenerate invisible rect, when **x** and **y** are both ordinal and the **mark** option is set to *bar*. The [tree mark](https://observablehq.com/plot/marks/tree) no longer produces duplicate tips with the **tip** option. The [rule mark](https://observablehq.com/plot/marks/rule) now respects the top-level **document** option, if any, when using the **clip** option.
 
-<img src="./img/barycentric-before-after.png" width="632" alt="A comparison of the barycentric interpolator applied to three sample points.">
+The **title**, **ariaLabel**, and **href** channels no longer filter by default; these channels may now be sparsely defined and the associated mark instance will still render.
 
-TK Fix invisible rects with the [auto mark](https://observablehq.com/plot/marks/auto) when both dimensions are ordinal and the **mark** option is set to *bar*.
-
-TK Fix pointer transform on non-faceted marks in faceted plots.
-
-TK Fix a regression with the [window transform](https://observablehq.com/plot/transforms/window) when using the *median*, *deviation*, *variance*, or percentile reducer.
-
-Fix the **clip** option when the [rule mark](https://observablehq.com/plot/marks/rule) is used with a custom **document**. Fix the **tip** option with the [tree mark](https://observablehq.com/plot/marks/tree) to not produce duplicate tips.
-
-The **title**, **ariaLabel**, and **href** channels no longer filter by default. These channels may now be sparsely defined and the associated mark instance will still render.
+The [pointer transform](https://observablehq.com/plot/interactions/pointer) now handles non-faceted marks in faceted plots. The [window transform](https://observablehq.com/plot/transforms/window)’s *median*, *deviation*, *variance*, and percentile reducers have been fixed.
 
 ## 0.6.8
 
