@@ -4,7 +4,7 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 ## 0.6.9
 
-[Released June 26, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.9)
+[Released June 27, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.9)
 
 Time [axes](https://observablehq.com/plot/marks/axis) now default to a multi-line tick format, greatly improving readability. The previous “multi-scale” format varied based on the date, such as “Jan 29” (for Sunday, January 29) and “Tue 31” (for Tuesday, January 31). In contrast, the new multi-line format is always consistent because it is based on the tick interval. And when a tick has the same second field value as the previous tick (*e.g.*, “19 Jan” after “17 Jan”), only the first field (“19”) is shown for brevity. The new multi-line tick format is similar to [Datawrapper](https://blog.datawrapper.de/new-axis-ticks/).
 
