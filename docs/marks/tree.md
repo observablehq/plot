@@ -42,7 +42,7 @@ Plot.plot({
   axis: null,
   height: 100,
   margin: 10,
-  marginLeft: 35,
+  marginLeft: 40,
   marginRight: 120,
   marks: [
     Plot.tree(gods, {textStroke: "var(--vp-c-bg)"})
