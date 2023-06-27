@@ -5,16 +5,29 @@ import {offset} from "./style.js";
 
 // A heuristic to determine the default margin. Ordinal scales usually reclaim
 // more space. We can also gauge the “type of contents” (domain, ticks?) and
-// decide whether it’s small, medium or large. We don’t want it to match the
-// contents exactly because it shouldn’t wobble when the scale changes a little.
-function autoMarginH({type, domain, ticks} = {}) {
-  if (type === "point" || type === "band") return sizeHeuristicH(ticks ?? domain);
-  return sizeHeuristicH((ticks ?? domain ?? []).map(String));
+// decide whether it’s small, medium or large. When the labelAnchor is
+// explicitly set to "center", we need more space too. We don’t want the result
+// to match the contents exactly because it shouldn’t wobble when the scale
+// changes a little.
+function autoMarginH({type, domain, ticks, tickFormat} = {}, options) {
+  if (!type) return 40;
+  const l =
+    (type === "point" || type === "band"
+      ? max(ticks ?? domain ?? [], tickLength) || 0 // TODO text metrics approximation?
+      : max(ticks ?? domain ?? [], tickLength)) +
+    2 * (type === "point" || type === "band" || options?.labelAnchor === "center");
+  console.warn(type, tickFormat, domain, l, l >= 10 ? 80 : l > 4 ? 60 : 40, options?.marginLeft);
+  return l >= 10 ? 80 : l > 4 ? 60 : 40;
 }
 
-function sizeHeuristicH(values = []) {
-  const l = max(values, (d) => d.length); // TODO text metrics approximation?
-  return l >= 10 ? 120 : l >= 4 ? 80 : 40;
+function tickLength(value) {
+  return typeof value === "string"
+    ? value.length
+    : typeof value === "number"
+    ? Math.ceil(Math.abs(Math.log10(Math.abs(value || 2))))
+    : value instanceof Date
+    ? 4
+    : 1;
 }
 
 export function createDimensions(scales, marks, options = {}) {
@@ -26,8 +39,8 @@ export function createDimensions(scales, marks, options = {}) {
     marginLeftDefault = 0.5 - offset;
 
   for (let {marginTop, marginRight, marginBottom, marginLeft} of marks) {
-    if (marginLeft === "auto") marginLeft = autoMarginH(scales.y);
-    if (marginRight === "auto") marginRight = autoMarginH(scales.y);
+    if (marginLeft === "auto") marginLeft = autoMarginH(scales.y, options.y);
+    if (marginRight === "auto") marginRight = autoMarginH(scales.y, options.y);
     if (marginTop > marginTopDefault) marginTopDefault = marginTop;
     if (marginRight > marginRightDefault) marginRightDefault = marginRight;
     if (marginBottom > marginBottomDefault) marginBottomDefault = marginBottom;
