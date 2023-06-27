@@ -366,9 +366,9 @@ function axisTextKy(
       ...options,
       dx: anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight
     },
-    function (scale, ticks, channels) {
+    function (scale, data, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
-      if (text === undefined) channels.text = inferTextChannel(scale, ticks, tickFormat, anchor);
+      if (text === undefined) channels.text = inferTextChannel(scale, data, ticks, tickFormat, anchor);
     }
   );
 }
@@ -413,9 +413,9 @@ function axisTextKx(
       ...options,
       dy: anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop
     },
-    function (scale, ticks, channels) {
+    function (scale, data, ticks, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
-      if (text === undefined) channels.text = inferTextChannel(scale, ticks, tickFormat, anchor);
+      if (text === undefined) channels.text = inferTextChannel(scale, data, ticks, tickFormat, anchor);
     }
   );
 }
@@ -545,7 +545,7 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
           channels[k] = {scale: k, value: identity};
         }
       }
-      initialize?.call(this, scale, ticks, channels);
+      initialize?.call(this, scale, data, ticks, channels);
       const initializedChannels = Object.fromEntries(
         Object.entries(channels).map(([name, channel]) => {
           return [name, {...channel, value: valueof(data, channel.value)}];
@@ -565,16 +565,16 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
   return m;
 }
 
-function inferTextChannel(scale, ticks, tickFormat, anchor) {
-  return {value: inferTickFormat(scale, ticks, tickFormat, anchor)};
+function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
+  return {value: inferTickFormat(scale, data, ticks, tickFormat, anchor)};
 }
 
 // D3’s ordinal scales simply use toString by default, but if the ordinal scale
 // domain (or ticks) are numbers or dates (say because we’re applying a time
 // interval to the ordinal scale), we want Plot’s default formatter.
-export function inferTickFormat(scale, ticks, tickFormat, anchor) {
+export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
   return tickFormat === undefined && isTemporalScale(scale)
-    ? formatTimeTicks(scale, ticks, anchor)
+    ? formatTimeTicks(scale, data, ticks, anchor)
     : scale.tickFormat
     ? scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)
     : tickFormat === undefined

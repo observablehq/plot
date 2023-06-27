@@ -148,11 +148,11 @@ Time axes default to a consistent multi-line tick format, [à la Datawrapper](ht
 :::plot https://observablehq.com/@observablehq/plot-datawrapper-style-date-axis
 ```js
 Plot.plot({
-  x: {tickSpacing: 60},
   marks: [
     Plot.ruleY([0]),
-    Plot.line(aapl, {x: "Date", y: "Close"}),
+    Plot.axisX({ticks: "3 months"}),
     Plot.gridX(),
+    Plot.line(aapl, {x: "Date", y: "Close"})
   ]
 })
 ```
