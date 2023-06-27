@@ -158,7 +158,7 @@ Plot.plot({
 ```
 :::
 
-The format is inferred from the tick interval, and consists of two fields (*e.g.*, month and year, day and month, minutes and hours…); when a tick has the same second field value as the previous tick (*e.g.*, “19 Jan” after “17 Jan”), only the first field (“19”) is shown for brevity. Alternatively, you can specify multiple explicit axes with options for hierarchical time intervals, here showing weeks, months, and years.
+The format is inferred from the tick interval, and consists of two fields (*e.g.*, month and year, day and month, minutes and hours); when a tick has the same second field value as the previous tick (*e.g.*, “19 Jan” after “17 Jan”), only the first field (“19”) is shown for brevity. Alternatively, you can specify multiple explicit axes with options for hierarchical time intervals, here showing weeks, months, and years.
 
 :::plot https://observablehq.com/@observablehq/plot-multiscale-date-axis
 ```js
