@@ -40,9 +40,9 @@ Plot.tree(gods).plot({axis: null, inset: 20, insetLeft: 35, insetRight: 120})
 
 The [tip mark](https://observablehq.com/plot/marks/tip) now automatically sets the pointer-events attribute to *none* when associated with the [pointer transform](https://observablehq.com/plot/interactions/pointer) when the the pointer is not sticky, as when hovering a chart without clicking to lock the pointer. This prevents the tip mark from interfering with interaction on other marks, such as clickable links.
 
-Fix [barycentric interpolation](https://observablehq.com/plot/marks/raster#interpolatorbarycentric-options) outside the convex hull of samples.
+Fix [barycentric interpolation](https://observablehq.com/plot/marks/raster#interpolatorbarycentric-options) outside the convex hull of samples. The new algorithm (right image) radiates outwards from the hull, ensuring a continuous image. The old algorithm (left image) was radiating inwards from values imputed on the frame’s edges.
 
-[TK Before and after comparison of barycentric interpolation.]
+<img src="./img/barycentric-before-after.png" width="632" alt="A comparison of the barycentric interpolator applied to three sample points.">
 
 TK Fix invisible rects with the [auto mark](https://observablehq.com/plot/marks/auto) when both dimensions are ordinal and the **mark** option is set to *bar*.
 
