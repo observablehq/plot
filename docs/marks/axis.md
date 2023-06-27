@@ -143,34 +143,22 @@ Plot.plot({
 ```
 :::
 
-You can emulate [Datawrapper’s time axes](https://blog.datawrapper.de/new-axis-ticks/) using `\n` (the line feed character) for multi-line tick labels, plus a bit of date math to detect the first month of each year.
+Time axes default to a consistent multi-line tick format, [à la Datawrapper](https://blog.datawrapper.de/new-axis-ticks/), for example showing the first month of each quarter, and the year:
 
 :::plot https://observablehq.com/@observablehq/plot-datawrapper-style-date-axis
 ```js
 Plot.plot({
   marks: [
     Plot.ruleY([0]),
-    Plot.line(aapl, {x: "Date", y: "Close"}),
+    Plot.axisX({ticks: "3 months"}),
     Plot.gridX(),
-    Plot.axisX({
-      ticks: 20,
-      tickFormat: (
-        (formatYear, formatMonth) => (x) =>
-          x.getUTCMonth() === 0
-            ? `${formatMonth(x)}\n${formatYear(x)}`
-            : formatMonth(x)
-      )(d3.utcFormat("%Y"), d3.utcFormat("%b"))
-    })
+    Plot.line(aapl, {x: "Date", y: "Close"})
   ]
 })
 ```
 :::
 
-:::tip
-In the future, Plot may generate multi-line time axis labels by default. If you’re interested in this feature, please upvote [#1285](https://github.com/observablehq/plot/issues/1285).
-:::
-
-Alternatively, you can add multiple axes with options for hierarchical time intervals, here showing weeks, months, and years.
+The format is inferred from the tick interval, and consists of two fields (*e.g.*, month and year, day and month, minutes and hours); when a tick has the same second field value as the previous tick (*e.g.*, “19 Jan” after “17 Jan”), only the first field (“19”) is shown for brevity. Alternatively, you can specify multiple explicit axes with options for hierarchical time intervals, here showing weeks, months, and years.
 
 :::plot https://observablehq.com/@observablehq/plot-multiscale-date-axis
 ```js
