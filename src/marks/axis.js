@@ -8,7 +8,7 @@ import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../opti
 import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
 import {formatTimeTicks, isTimeYear, isUtcYear} from "../time.js";
-import {initializer, filter} from "../transforms/basic.js";
+import {initializer, composeInitializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
@@ -505,7 +505,7 @@ function labelOptions(
   };
 }
 
-function axisMark(mark, k, ariaLabel, data, {filter: f, sort: s, reverse: r, ...options}, initialize) {
+function axisMark(mark, k, ariaLabel, data, {filter, sort, reverse, ...options}, initialize) {
   let channels;
 
   let i = initializer(options, function (data, facets, _channels, scales, dimensions, context) {
@@ -554,10 +554,8 @@ function axisMark(mark, k, ariaLabel, data, {filter: f, sort: s, reverse: r, ...
     return {data, facets, channels: initializedChannels};
   });
 
-  // Apply the filter option after the initializer has determined the mark’s data.
-  if (f != null) i = filter(f, i);
-  if (s != null) throw new Error("Unsupported axis option: sort");
-  if (r != null) throw new Error("Unsupported axis option: reverse");
+  // Apply the sort and filter options after the initializer has determined the mark’s data.
+  i.initializer = composeInitializer(i.initializer, initializer({filter, sort, reverse}).initializer);
 
   const m = mark(data, i);
   if (data == null) {
