@@ -507,54 +507,56 @@ function labelOptions(
 
 function axisMark(mark, k, ariaLabel, data, options, initialize) {
   let channels;
-  const m = mark(
-    data,
-    initializer(options, function (data, facets, _channels, scales, dimensions, context) {
-      const initializeFacets = data == null && (k === "fx" || k === "fy");
-      const {[k]: scale} = scales;
-      if (!scale) throw new Error(`missing scale: ${k}`);
-      let {ticks, tickSpacing, interval} = options;
-      if (isTemporalScale(scale) && typeof ticks === "string") (interval = ticks), (ticks = undefined);
-      if (data == null) {
-        if (isIterable(ticks)) {
-          data = arrayify(ticks);
-        } else if (scale.ticks) {
-          if (ticks !== undefined) {
-            data = scale.ticks(ticks);
+
+  function axisInitializer(data, facets, _channels, scales, dimensions, context) {
+    const initializeFacets = data == null && (k === "fx" || k === "fy");
+    const {[k]: scale} = scales;
+    if (!scale) throw new Error(`missing scale: ${k}`);
+    let {ticks, tickSpacing, interval} = options;
+    if (isTemporalScale(scale) && typeof ticks === "string") (interval = ticks), (ticks = undefined);
+    if (data == null) {
+      if (isIterable(ticks)) {
+        data = arrayify(ticks);
+      } else if (scale.ticks) {
+        if (ticks !== undefined) {
+          data = scale.ticks(ticks);
+        } else {
+          interval = maybeRangeInterval(interval === undefined ? scale.interval : interval, scale.type);
+          if (interval !== undefined) {
+            // For time scales, we could pass the interval directly to
+            // scale.ticks because it’s supported by d3.utcTicks; but
+            // quantitative scales and d3.ticks do not support numeric
+            // intervals for scale.ticks, so we compute them here.
+            const [min, max] = extent(scale.domain());
+            data = interval.range(min, interval.offset(interval.floor(max))); // inclusive max
           } else {
-            interval = maybeRangeInterval(interval === undefined ? scale.interval : interval, scale.type);
-            if (interval !== undefined) {
-              // For time scales, we could pass the interval directly to
-              // scale.ticks because it’s supported by d3.utcTicks; but
-              // quantitative scales and d3.ticks do not support numeric
-              // intervals for scale.ticks, so we compute them here.
-              const [min, max] = extent(scale.domain());
-              data = interval.range(min, interval.offset(interval.floor(max))); // inclusive max
-            } else {
-              const [min, max] = extent(scale.range());
-              ticks = (max - min) / (tickSpacing === undefined ? (k === "x" ? 80 : 35) : tickSpacing);
-              data = scale.ticks(ticks);
-            }
+            const [min, max] = extent(scale.range());
+            ticks = (max - min) / (tickSpacing === undefined ? (k === "x" ? 80 : 35) : tickSpacing);
+            data = scale.ticks(ticks);
           }
-        } else {
-          data = scale.domain();
         }
-        if (k === "y" || k === "x") {
-          facets = [range(data)];
-        } else {
-          channels[k] = {scale: k, value: identity};
-        }
+      } else {
+        data = scale.domain();
       }
-      initialize?.call(this, scale, data, ticks, channels);
-      const initializedChannels = Object.fromEntries(
-        Object.entries(channels).map(([name, channel]) => {
-          return [name, {...channel, value: valueof(data, channel.value)}];
-        })
-      );
-      if (initializeFacets) facets = context.filterFacets(data, initializedChannels);
-      return {data, facets, channels: initializedChannels};
-    })
-  );
+      if (k === "y" || k === "x") {
+        facets = [range(data)];
+      } else {
+        channels[k] = {scale: k, value: identity};
+      }
+    }
+    initialize?.call(this, scale, data, ticks, channels);
+    const initializedChannels = Object.fromEntries(
+      Object.entries(channels).map(([name, channel]) => {
+        return [name, {...channel, value: valueof(data, channel.value)}];
+      })
+    );
+    if (initializeFacets) facets = context.filterFacets(data, initializedChannels);
+    return {data, facets, channels: initializedChannels};
+  }
+
+  // Apply any basic initializers after the axis initializer computes the ticks.
+  const basicInitializer = initializer(options).initializer;
+  const m = mark(data, initializer({...options, initializer: axisInitializer}, basicInitializer));
   if (data == null) {
     channels = m.channels;
     m.channels = {};
