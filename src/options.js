@@ -442,12 +442,19 @@ export function isEvery(values, is) {
   return every;
 }
 
+// TODO Make isPaint the generic one (either a color or a custom paint
+// implementation), rather than making isColor the generic one?
+export function isPaint(value) {
+  return typeof value?.paint === "function";
+}
+
 // Mostly relies on d3-color, with a few extra color keywords. Currently this
 // strictly requires that the value be a string; we might want to apply string
 // coercion here, though note that d3-color instances would need to support
 // valueOf to work correctly with InternMap.
 // https://www.w3.org/TR/SVG11/painting.html#SpecifyingPaint
 export function isColor(value) {
+  if (isPaint(value)) return true;
   if (typeof value !== "string") return false;
   value = value.toLowerCase().trim();
   return (

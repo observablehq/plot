@@ -45,3 +45,4 @@ export {pointer, pointerX, pointerY} from "./interactions/pointer.js";
 export {formatIsoDate, formatWeekday, formatMonth} from "./format.js";
 export {scale} from "./scales.js";
 export {legend} from "./legends.js";
+export {linearGradient} from "./paint.js";

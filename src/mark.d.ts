@@ -1,6 +1,7 @@
 import type {Channel, ChannelDomainSort, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Dimensions} from "./dimensions.js";
+import type {Paint} from "./paint.js";
 import type {plot} from "./plot.js";
 import type {ScaleFunctions} from "./scales.js";
 import type {InitializerFunction, SortOrder, TransformFunction} from "./transforms/basic.js";
@@ -309,7 +310,7 @@ export interface MarkOptions {
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill
    */
-  fill?: ChannelValueSpec;
+  fill?: ChannelValueSpec | Paint;
 
   /**
    * The [fill-opacity][1]; a constant number between 0 and 1, or a channel
@@ -329,7 +330,7 @@ export interface MarkOptions {
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke
    */
-  stroke?: ChannelValueSpec;
+  stroke?: ChannelValueSpec | Paint;
 
   /**
    * The [stroke-dasharray][1]; a constant number indicating the length in
