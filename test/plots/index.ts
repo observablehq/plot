@@ -27,6 +27,7 @@ export * from "./athletes-weight-cumulative.js";
 export * from "./athletes-weight.js";
 export * from "./autoplot.js";
 export * from "./availability.js";
+export * from "./axis-filter.js";
 export * from "./axis-labels.js";
 export * from "./ballot-status-race.js";
 export * from "./band-clip.js";

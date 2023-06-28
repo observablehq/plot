@@ -8,7 +8,7 @@ import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../opti
 import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
 import {formatTimeTicks, isTimeYear, isUtcYear} from "../time.js";
-import {initializer, composeInitializer} from "../transforms/basic.js";
+import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
@@ -505,10 +505,10 @@ function labelOptions(
   };
 }
 
-function axisMark(mark, k, ariaLabel, data, {filter, sort, reverse, ...options}, initialize) {
+function axisMark(mark, k, ariaLabel, data, options, initialize) {
   let channels;
 
-  let i = initializer(options, function (data, facets, _channels, scales, dimensions, context) {
+  function axisInitializer(data, facets, _channels, scales, dimensions, context) {
     const initializeFacets = data == null && (k === "fx" || k === "fy");
     const {[k]: scale} = scales;
     if (!scale) throw new Error(`missing scale: ${k}`);
@@ -552,12 +552,11 @@ function axisMark(mark, k, ariaLabel, data, {filter, sort, reverse, ...options},
     );
     if (initializeFacets) facets = context.filterFacets(data, initializedChannels);
     return {data, facets, channels: initializedChannels};
-  });
+  }
 
-  // Apply the sort and filter options after the initializer has determined the mark’s data.
-  i.initializer = composeInitializer(i.initializer, initializer({filter, sort, reverse}).initializer);
-
-  const m = mark(data, i);
+  // Apply any basic initializers after the axis initializer computes the ticks.
+  const basicInitializer = initializer(options).initializer;
+  const m = mark(data, initializer({...options, initializer: axisInitializer}, basicInitializer));
   if (data == null) {
     channels = m.channels;
     m.channels = {};
