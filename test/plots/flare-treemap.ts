@@ -9,7 +9,23 @@ export async function flareTreemap() {
         path: "name",
         delimiter: ".",
         value: "size",
-        fill: {node: (d) => d.ancestors().reverse()[1].id} as any // TODO
+        text: null,
+        fill: "node:branch"
+      })
+    ]
+  });
+}
+
+export async function flareTreemapText() {
+  const flare = await d3.csv("data/flare.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.treemap(flare, {
+        path: "name",
+        delimiter: ".",
+        value: "size",
+        tip: true,
+        fill: (d) => d.name.split(".")[1]
       })
     ]
   });
