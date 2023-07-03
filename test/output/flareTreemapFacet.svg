@@ -1,0 +1,908 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="430" viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+    <g transform="translate(1,0)">
+      <text y="0.71em" transform="translate(162,400)">not vis</text>
+    </g>
+    <g transform="translate(316,0)">
+      <text y="0.71em" transform="translate(162,400)">vis</text>
+    </g>
+  </g>
+  <g aria-label="rect">
+    <g transform="translate(1,0)">
+      <rect x="20.5" y="371.7367326407128" width="28.709759692742992" height="27.763267359287227" fill="#4e79a7"><title>AgglomerativeCluster
+          3938</title></rect>
+      <rect x="20.5" y="343.8937729724541" width="28.709759692742992" height="26.842959668258686" fill="#4e79a7"><title>CommunityStructure
+          3812</title></rect>
+      <rect x="50.20975969274299" y="349.5338999245081" width="27.58653910048831" height="49.96610007549191" fill="#4e79a7"><title>HierarchicalCluster
+          6714</title></rect>
+      <rect x="50.20975969274299" y="343.8937729724541" width="27.58653910048831" height="4.640126952054004" fill="#4e79a7"><title>MergeEdge
+          743</title></rect>
+      <rect x="20.5" y="319.6072768259745" width="30.576451816386317" height="23.28649614647958" fill="#4e79a7"><title>BetweennessCentrality
+          3534</title></rect>
+      <rect x="20.5" y="280.2224694079001" width="30.576451816386317" height="38.38480741807439" fill="#4e79a7"><title>LinkDistance
+          5731</title></rect>
+      <rect x="52.07645181638632" y="280.2224694079001" width="25.719846976844984" height="62.671303564553966" fill="#4e79a7"><title>MaxFlowMinCut
+          7840</title></rect>
+      <rect x="20.5" y="245.49266746359797" width="35.952230553394415" height="33.72980194430215" fill="#4e79a7"><title>ShortestPaths
+          5914</title></rect>
+      <rect x="57.452230553394415" y="245.49266746359797" width="20.344068239836886" height="33.72980194430215" fill="#4e79a7"><title>SpanningTree
+          3416</title></rect>
+      <rect x="20.5" y="219.16055396370584" width="57.2962987932313" height="25.33211349989213" fill="#4e79a7"><title>AspectRatioBanker
+          7074</title></rect>
+      <rect x="78.7962987932313" y="330.1243405326007" width="51.44975712274831" height="69.37565946739932" fill="#f28e2c"><title>Easing
+          17010</title></rect>
+      <rect x="78.7962987932313" y="305.95416989129865" width="51.44975712274831" height="23.170170641302036" fill="#f28e2c"><title>FunctionSequence
+          5842</title></rect>
+      <rect x="131.2460559159796" y="379.23321183419716" width="19.23403302031076" height="20.266788165802836" fill="#f28e2c"><title>ArrayInterpolator
+          1983</title></rect>
+      <rect x="131.2460559159796" y="357.2800522903755" width="19.23403302031076" height="20.95315954382164" fill="#f28e2c"><title>ColorInterpolator
+          2047</title></rect>
+      <rect x="131.2460559159796" y="342.5337922157518" width="19.23403302031076" height="13.746260074623706" fill="#f28e2c"><title>DateInterpolator
+          1375</title></rect>
+      <rect x="151.48008893629037" y="342.5337922157518" width="31.7413233664455" height="56.96620778424818" fill="#f28e2c"><title>Interpolator
+          8746</title></rect>
+      <rect x="131.2460559159796" y="305.95416989129865" width="12.062904228850755" height="35.57962232445317" fill="#f28e2c"><title>MatrixInterpolator
+          2202</title></rect>
+      <rect x="144.30896014483037" y="325.7443408532828" width="16.862127444627475" height="15.789451362469038" fill="#f28e2c"><title>NumberInterpolator
+          1382</title></rect>
+      <rect x="144.30896014483037" y="305.95416989129865" width="16.862127444627475" height="18.79017096198413" fill="#f28e2c"><title>ObjectInterpolator
+          1629</title></rect>
+      <rect x="162.17108758945784" y="326.0498354243988" width="21.05032471327803" height="15.483956791353023" fill="#f28e2c"><title>PointInterpolator
+          1675</title></rect>
+      <rect x="162.17108758945784" y="305.95416989129865" width="21.05032471327803" height="19.095665533100146" fill="#f28e2c"><title>RectangleInterpolator
+          2042</title></rect>
+      <rect x="184.22141230273587" y="384.66885810790444" width="13.26921670016307" height="14.831141892095559" fill="#f28e2c"><title>ISchedulable
+          1041</title></rect>
+      <rect x="184.22141230273587" y="305.95416989129865" width="13.26921670016307" height="77.7146882166058" fill="#f28e2c"><title>Parallel
+          5176</title></rect>
+      <rect x="78.7962987932313" y="302.3605753045487" width="26.113083151774063" height="2.59359458674993" fill="#f28e2c"><title>Pause
+          449</title></rect>
+      <rect x="78.7962987932313" y="257.59671222282805" width="26.113083151774063" height="43.76386308172067" fill="#f28e2c"><title>Scheduler
+          5593</title></rect>
+      <rect x="105.90938194500536" y="257.59671222282805" width="23.833466097636162" height="47.3574576684706" fill="#f28e2c"><title>Sequence
+          5534</title></rect>
+      <rect x="78.7962987932313" y="219.16055396370584" width="50.946549249410225" height="37.43615825912221" fill="#f28e2c"><title>Transition
+          9201</title></rect>
+      <rect x="130.74284804264153" y="219.16055396370584" width="48.941392946862834" height="85.79361592759281" fill="#f28e2c"><title>Transitioner
+          19975</title></rect>
+      <rect x="180.68424098950436" y="292.3538223238747" width="16.80638801339458" height="12.600347567423967" fill="#f28e2c"><title>TransitionEvent
+          1116</title></rect>
+      <rect x="180.68424098950436" y="219.16055396370584" width="16.80638801339458" height="72.19326836016884" fill="#f28e2c"><title>Tween
+          6006</title></rect>
+      <rect x="198.49062900289894" y="390.7752132690648" width="15.088547025560047" height="8.724786730935193" fill="#e15759"><title>Converters
+          721</title></rect>
+      <rect x="198.49062900289894" y="332.8581061641609" width="15.088547025560047" height="56.91710710490389" fill="#e15759"><title>DelimitedTextConverter
+          4294</title></rect>
+      <rect x="214.579176028459" y="350.785693745971" width="41.77660738560664" height="48.714306254029" fill="#e15759"><title>GraphMLConverter
+          9800</title></rect>
+      <rect x="214.579176028459" y="332.8581061641609" width="14.905054358994647" height="16.927587581810087" fill="#e15759"><title>IDataConverter
+          1314</title></rect>
+      <rect x="230.48423038745364" y="332.8581061641609" width="25.87155302661199" height="16.927587581810087" fill="#e15759"><title>JSONConverter
+          2220</title></rect>
+      <rect x="198.49062900289894" y="315.6981932807438" width="21.243975399611372" height="16.15991288341712" fill="#e15759"><title>DataField
+          1759</title></rect>
+      <rect x="198.49062900289894" y="288.86083094857753" width="16.50570946570653" height="25.837362332166265" fill="#e15759"><title>DataSchema
+          2165</title></rect>
+      <rect x="215.99633846860547" y="288.86083094857753" width="3.7382659339048416" height="25.837362332166265" fill="#e15759"><title>DataSet
+          586</title></rect>
+      <rect x="220.7346044025103" y="288.86083094857753" width="15.42897606565532" height="42.997275215583386" fill="#e15759"><title>DataSource
+          3331</title></rect>
+      <rect x="237.16358046816563" y="324.56159994373337" width="19.192202945899993" height="7.2965062204275455" fill="#e15759"><title>DataTable
+          772</title></rect>
+      <rect x="237.16358046816563" y="288.86083094857753" width="19.192202945899993" height="34.70076899515584" fill="#e15759"><title>DataUtil
+          3322</title></rect>
+      <rect x="257.3557834140656" y="351.8701731249164" width="38.41551018490844" height="47.62982687508361" fill="#76b7b2"><title>DirtySprite
+          8833</title></rect>
+      <rect x="296.77129359897407" y="351.8701731249164" width="6.728706401025931" height="47.62982687508361" fill="#76b7b2"><title>LineSprite
+          1732</title></rect>
+      <rect x="257.3557834140656" y="288.86083094857753" width="11.477426889534684" height="62.00934217633886" fill="#76b7b2"><title>RectSprite
+          3623</title></rect>
+      <rect x="269.8332103036003" y="288.86083094857753" width="33.66678969639969" height="62.00934217633886" fill="#76b7b2"><title>TextSprite
+          10066</title></rect>
+      <rect x="198.49062900289894" y="219.16055396370584" width="11.814524846521806" height="68.70027698487169" fill="#59a14f"><title>FlareVis
+          4116</title></rect>
+      <rect x="211.30515384942075" y="274.4468031353857" width="15.289342331777561" height="13.414027813191808" fill="#edc949"><title>DragForce
+          1082</title></rect>
+      <rect x="227.5944961811983" y="274.4468031353857" width="19.11327297158482" height="13.414027813191808" fill="#edc949"><title>GravityForce
+          1336</title></rect>
+      <rect x="247.70776915278313" y="274.4468031353857" width="3.8024955673170098" height="13.414027813191808" fill="#edc949"><title>IForce
+          319</title></rect>
+      <rect x="211.30515384942075" y="219.16055396370584" width="40.20511087067939" height="54.286249171679884" fill="#edc949"><title>NBodyForce
+          10498</title></rect>
+      <rect x="252.51026472010014" y="219.16055396370584" width="7.785857414209062" height="68.70027698487169" fill="#edc949"><title>Particle
+          2822</title></rect>
+      <rect x="261.2961221343092" y="238.71902327112753" width="42.2038778656908" height="49.141807677450004" fill="#edc949"><title>Simulation
+          9983</title></rect>
+      <rect x="261.2961221343092" y="219.16055396370584" width="23.553205371539207" height="18.55846930742169" fill="#edc949"><title>Spring
+          2213</title></rect>
+      <rect x="285.8493275058484" y="219.16055396370584" width="17.650672494151593" height="18.55846930742169" fill="#edc949"><title>SpringForce
+          1681</title></rect>
+      <rect x="20.5" y="197.78909013109975" width="15.408494345739705" height="20.371463832606082" fill="#af7aa1"><title>AggregateExpression
+          1616</title></rect>
+      <rect x="36.908494345739705" y="197.78909013109975" width="9.427923077397686" height="20.371463832606082" fill="#af7aa1"><title>And
+          1027</title></rect>
+      <rect x="20.5" y="166.32621999388056" width="25.83641742313739" height="30.4628701372192" fill="#af7aa1"><title>Arithmetic
+          3891</title></rect>
+      <rect x="20.5" y="135.728558570278" width="5.3190401490527" height="29.597661423602545" fill="#af7aa1"><title>Average
+          891</title></rect>
+      <rect x="26.8190401490527" y="135.728558570278" width="19.51737727408469" height="29.597661423602545" fill="#af7aa1"><title>BinaryExpression
+          2893</title></rect>
+      <rect x="47.33641742313739" y="188.0881942722256" width="34.63797165456761" height="30.072359691480244" fill="#af7aa1"><title>Comparison
+          5103</title></rect>
+      <rect x="47.33641742313739" y="160.94326393622347" width="28.39453157780285" height="26.14493033600212" fill="#af7aa1"><title>CompositeExpression
+          3677</title></rect>
+      <rect x="76.73094900094024" y="160.94326393622347" width="5.243440076764756" height="26.14493033600212" fill="#af7aa1"><title>Count
+          781</title></rect>
+      <rect x="47.33641742313739" y="135.728558570278" width="34.63797165456761" height="24.214705365945463" fill="#af7aa1"><title>DateUtil
+          4141</title></rect>
+      <rect x="20.5" y="98.80441703846083" width="4.483184786923722" height="35.924141531817185" fill="#af7aa1"><title>Distinct
+          933</title></rect>
+      <rect x="25.983184786923722" y="98.80441703846083" width="29.14870091845519" height="35.924141531817185" fill="#af7aa1"><title>Expression
+          5130</title></rect>
+      <rect x="20.5" y="57.044753755651826" width="17.79546895090499" height="40.759663282809" fill="#af7aa1"><title>ExpressionIterator
+          3617</title></rect>
+      <rect x="39.29546895090499" y="57.044753755651826" width="15.836416754473923" height="40.759663282809" fill="#af7aa1"><title>Fn
+          3240</title></rect>
+      <rect x="56.13188570537891" y="113.64244383139393" width="25.842503372326085" height="21.086114738884078" fill="#af7aa1"><title>If
+          2732</title></rect>
+      <rect x="56.13188570537891" y="97.15870007129706" width="25.842503372326085" height="15.483743760096871" fill="#af7aa1"><title>IsA
+          2039</title></rect>
+      <rect x="56.13188570537891" y="87.34444557166118" width="25.842503372326085" height="8.81425449963588" fill="#af7aa1"><title>Literal
+          1214</title></rect>
+      <rect x="56.13188570537891" y="57.044753755651826" width="25.842503372326085" height="29.299691816009357" fill="#af7aa1"><title>Match
+          3748</title></rect>
+      <rect x="82.974389077705" y="215.28120355832422" width="46.15526725913212" height="2.879350405381615" fill="#af7aa1"><title>Maximum
+          843</title></rect>
+      <rect x="82.974389077705" y="198.72242290168447" width="6.771198196802899" height="15.558780656639755" fill="#af7aa1"><title>add
+          593</title></rect>
+      <rect x="90.7455872745079" y="198.72242290168447" width="3.3246128245277475" height="15.558780656639755" fill="#af7aa1"><title>and
+          330</title></rect>
+      <rect x="82.974389077705" y="190.90788665794102" width="6.969669878540273" height="6.814536243743447" fill="#af7aa1"><title>average
+          287</title></rect>
+      <rect x="82.974389077705" y="183.36563390701093" width="6.969669878540273" height="6.542252750930089" fill="#af7aa1"><title>count
+          277</title></rect>
+      <rect x="90.94405895624527" y="183.36563390701093" width="3.126141142790374" height="14.356788994673536" fill="#af7aa1"><title>distinct
+          292</title></rect>
+      <rect x="95.07020009903565" y="203.76527636455137" width="10.211912520615073" height="10.515927193772853" fill="#af7aa1"><title>div
+          595</title></rect>
+      <rect x="95.07020009903565" y="192.2687036702639" width="10.211912520615073" height="10.496572694287465" fill="#af7aa1"><title>eq
+          594</title></rect>
+      <rect x="95.07020009903565" y="183.36563390701093" width="10.211912520615073" height="7.903069763252972" fill="#af7aa1"><title>fn
+          460</title></rect>
+      <rect x="82.974389077705" y="164.96856108583384" width="6.112630210421699" height="17.39707282117709" fill="#af7aa1"><title>gt
+          603</title></rect>
+      <rect x="90.0870192881267" y="164.96856108583384" width="6.372129156738907" height="17.39707282117709" fill="#af7aa1"><title>gte
+          625</title></rect>
+      <rect x="97.4591484448656" y="164.96856108583384" width="7.822964174785113" height="17.39707282117709" fill="#af7aa1"><title>iff
+          748</title></rect>
+      <rect x="82.974389077705" y="149.35525586259806" width="5.407191742896245" height="14.613305223235784" fill="#af7aa1"><title>isa
+          461</title></rect>
+      <rect x="89.38158082060124" y="149.35525586259806" width="7.297382799368862" height="14.613305223235784" fill="#af7aa1"><title>lt
+          597</title></rect>
+      <rect x="97.6789636199701" y="149.35525586259806" width="7.603148999680613" height="14.613305223235784" fill="#af7aa1"><title>lte
+          619</title></rect>
+      <rect x="106.28211261965072" y="205.40487493154706" width="5.2180262136664055" height="8.876328626777166" fill="#af7aa1"><title>max
+          283</title></rect>
+      <rect x="112.50013883331712" y="205.40487493154706" width="5.218026213666377" height="8.876328626777166" fill="#af7aa1"><title>min
+          283</title></rect>
+      <rect x="106.28211261965072" y="195.09231270818077" width="11.436052427332783" height="9.312562223366285" fill="#af7aa1"><title>mod
+          591</title></rect>
+      <rect x="106.28211261965072" y="184.57035835845176" width="11.436052427332783" height="9.521954349729015" fill="#af7aa1"><title>mul
+          603</title></rect>
+      <rect x="118.7181650469835" y="203.89061762970277" width="10.411491289853615" height="10.390585928621448" fill="#af7aa1"><title>neq
+          599</title></rect>
+      <rect x="118.7181650469835" y="196.550440386885" width="10.411491289853615" height="6.340177242817788" fill="#af7aa1"><title>not
+          386</title></rect>
+      <rect x="118.7181650469835" y="184.57035835845176" width="4.850653470829712" height="10.98008202843323" fill="#af7aa1"><title>or
+          323</title></rect>
+      <rect x="124.56881851781321" y="184.57035835845176" width="4.560837819023902" height="10.98008202843323" fill="#af7aa1"><title>orderby
+          307</title></rect>
+      <rect x="106.28211261965072" y="171.21135796008127" width="11.540215012287092" height="12.359000398370483" fill="#af7aa1"><title>range
+          772</title></rect>
+      <rect x="106.28211261965072" y="166.08925418039522" width="11.540215012287092" height="4.122103779686057" fill="#af7aa1"><title>select
+          296</title></rect>
+      <rect x="118.82232763193781" y="177.60396083338992" width="10.307328704899305" height="5.966397525061836" fill="#af7aa1"><title>stddev
+          363</title></rect>
+      <rect x="118.82232763193781" y="166.08925418039522" width="10.307328704899305" height="10.514706652994704" fill="#af7aa1"><title>sub
+          600</title></rect>
+      <rect x="106.28211261965072" y="158.10710847514275" width="6.612021839036672" height="6.982145705252464" fill="#af7aa1"><title>sum
+          280</title></rect>
+      <rect x="106.28211261965072" y="149.35525586259806" width="6.612021839036672" height="7.751852612544695" fill="#af7aa1"><title>update
+          307</title></rect>
+      <rect x="113.89413445868739" y="149.35525586259806" width="3.3441691926359027" height="15.733998317797159" fill="#af7aa1"><title>variance
+          335</title></rect>
+      <rect x="118.23830365132329" y="149.35525586259806" width="2.877333100292944" height="15.733998317797159" fill="#af7aa1"><title>where
+          299</title></rect>
+      <rect x="122.11563675161624" y="156.50375999835606" width="7.014019585220879" height="8.585494182039156" fill="#af7aa1"><title>xor
+          354</title></rect>
+      <rect x="122.11563675161624" y="149.35525586259806" width="7.014019585220879" height="6.148504135758003" fill="#af7aa1"><title>_
+          264</title></rect>
+      <rect x="130.12965633683712" y="201.6833141955936" width="9.466859045520351" height="16.47723976811224" fill="#af7aa1"><title>Minimum
+          843</title></rect>
+      <rect x="130.12965633683712" y="169.46548430277463" width="9.466859045520351" height="31.21782989281897" fill="#af7aa1"><title>Not
+          1554</title></rect>
+      <rect x="130.12965633683712" y="149.35525586259806" width="9.466859045520351" height="19.11022844017657" fill="#af7aa1"><title>Or
+          970</title></rect>
+      <rect x="82.974389077705" y="97.02387787311842" width="56.62212630465247" height="51.331377989479634" fill="#af7aa1"><title>Query
+          13896</title></rect>
+      <rect x="82.974389077705" y="57.044753755651826" width="7.652003516354185" height="38.9791241174666" fill="#af7aa1"><title>Range
+          1594</title></rect>
+      <rect x="91.62639259405918" y="57.044753755651826" width="21.41704800661404" height="38.9791241174666" fill="#af7aa1"><title>StringUtil
+          4130</title></rect>
+      <rect x="114.04344060067322" y="81.37383235289182" width="9.967875797552082" height="14.650045520226598" fill="#af7aa1"><title>Sum
+          791</title></rect>
+      <rect x="125.0113163982253" y="81.37383235289182" width="14.585198984132163" height="14.650045520226598" fill="#af7aa1"><title>Variable
+          1124</title></rect>
+      <rect x="114.04344060067322" y="57.044753755651826" width="15.73280762191456" height="23.32907859724" fill="#af7aa1"><title>Variance
+          1876</title></rect>
+      <rect x="130.77624822258778" y="57.044753755651826" width="8.820267159769685" height="23.32907859724" fill="#af7aa1"><title>Xor
+          1101</title></rect>
+      <rect x="20.5" y="34.934976646638304" width="19.659955469202252" height="21.10977710901352" fill="#ff9da7"><title>IScaleMap
+          2105</title></rect>
+      <rect x="20.5" y="21.11242715710767" width="19.659955469202252" height="12.822549489530633" fill="#ff9da7"><title>LinearScale
+          1316</title></rect>
+      <rect x="41.15995546920225" y="21.11242715710767" width="18.029383128750744" height="34.93232659854415" fill="#ff9da7"><title>LogScale
+          3151</title></rect>
+      <rect x="20.5" y="0.5" width="38.689338597953" height="19.61242715710767" fill="#ff9da7"><title>OrdinalScale
+          3770</title></rect>
+      <rect x="60.189338597953" y="38.116175889964154" width="26.91532092066427" height="17.92857786568767" fill="#ff9da7"><title>QuantileScale
+          2435</title></rect>
+      <rect x="60.189338597953" y="0.5" width="26.91532092066427" height="36.616175889964154" fill="#ff9da7"><title>QuantitativeScale
+          4839</title></rect>
+      <rect x="88.10465951861727" y="40.56192048956208" width="22.118214631025808" height="15.482833266089749" fill="#ff9da7"><title>RootScale
+          1756</title></rect>
+      <rect x="88.10465951861727" y="0.5" width="22.118214631025808" height="39.06192048956208" fill="#ff9da7"><title>Scale
+          4268</title></rect>
+      <rect x="111.22287414964308" y="43.59191908240359" width="28.37364123271439" height="12.452834673248233" fill="#ff9da7"><title>ScaleType
+          1821</title></rect>
+      <rect x="111.22287414964308" y="0.5" width="28.37364123271439" height="42.09191908240359" fill="#ff9da7"><title>TimeScale
+          5833</title></rect>
+      <rect x="140.59651538235747" y="165.11478548505593" width="32.15696931953039" height="53.045768478649904" fill="#9c755f"><title>Arrays
+          8258</title></rect>
+      <rect x="173.75348470188786" y="165.11478548505593" width="39.1553463507658" height="53.045768478649904" fill="#9c755f"><title>Colors
+          10001</title></rect>
+      <rect x="140.59651538235747" y="103.63065695454955" width="28.000929032487193" height="60.48412853050638" fill="#9c755f"><title>Dates
+          8217</title></rect>
+      <rect x="169.59744441484466" y="103.63065695454955" width="43.311386637808994" height="60.48412853050638" fill="#9c755f"><title>Displays
+          12555</title></rect>
+      <rect x="140.59651538235747" y="85.6329362394956" width="27.020782612402684" height="16.997720715053944" fill="#9c755f"><title>Filter
+          2324</title></rect>
+      <rect x="140.59651538235747" y="0.5" width="27.020782612402684" height="84.1329362394956" fill="#9c755f"><title>Geometry
+          10993</title></rect>
+      <rect x="168.61729799476015" y="51.30113150704242" width="37.78932432004541" height="51.32952544750713" fill="#9c755f"><title>FibonacciHeap
+          9354</title></rect>
+      <rect x="207.40662231480556" y="51.30113150704242" width="4.113025110820615" height="51.32952544750713" fill="#9c755f"><title>HeapNode
+          1233</title></rect>
+      <rect x="212.51964742562618" y="51.30113150704242" width="0.389183627027478" height="51.32952544750713" fill="#9c755f"><title>IEvaluable
+          335</title></rect>
+      <rect x="168.61729799476015" y="35.82234601205651" width="4.3693725411460775" height="14.478785494985914" fill="#9c755f"><title>IPredicate
+          383</title></rect>
+      <rect x="168.61729799476015" y="0.5" width="4.3693725411460775" height="34.32234601205651" fill="#9c755f"><title>IValueProxy
+          874</title></rect>
+      <rect x="173.98667053590623" y="24.413910567278318" width="24.544031659549546" height="25.887220939764102" fill="#9c755f"><title>DenseMatrix
+          3165</title></rect>
+      <rect x="173.98667053590623" y="0.5" width="24.544031659549546" height="22.913910567278318" fill="#9c755f"><title>IMatrix
+          2815</title></rect>
+      <rect x="199.53070219545577" y="0.5" width="13.37812885719788" height="49.80113150704242" fill="#9c755f"><title>SparseMatrix
+          3366</title></rect>
+      <rect x="213.90883105265365" y="131.25941369539868" width="42.70821468859734" height="86.90114026830716" fill="#9c755f"><title>Maths
+          17705</title></rect>
+      <rect x="257.617045741251" y="156.98962478230928" width="4.186723498250558" height="61.17092918139656" fill="#9c755f"><title>Orientation
+          1486</title></rect>
+      <rect x="262.80376923950155" y="186.02458325401622" width="40.69623076049845" height="32.135970709689616" fill="#9c755f"><title>ColorPalette
+          6367</title></rect>
+      <rect x="262.80376923950155" y="156.98962478230928" width="8.185278294434909" height="28.034958471706943" fill="#9c755f"><title>Palette
+          1229</title></rect>
+      <rect x="271.98904753393646" y="156.98962478230928" width="14.388517500603427" height="28.034958471706943" fill="#9c755f"><title>ShapePalette
+          2059</title></rect>
+      <rect x="287.3775650345399" y="156.98962478230928" width="16.122434965460116" height="28.034958471706943" fill="#9c755f"><title>SizePalette
+          2291</title></rect>
+      <rect x="257.617045741251" y="131.25941369539868" width="45.88295425874901" height="24.7302110869106" fill="#9c755f"><title>Property
+          5559</title></rect>
+      <rect x="213.90883105265365" y="68.96736135516194" width="65.59957577140429" height="61.29205234023674" fill="#9c755f"><title>Shapes
+          19118</title></rect>
+      <rect x="280.50840682405794" y="68.96736135516194" width="22.991593175942057" height="61.29205234023674" fill="#9c755f"><title>Sort
+          6887</title></rect>
+      <rect x="213.90883105265365" y="0.5" width="19.781803687077968" height="67.46736135516194" fill="#9c755f"><title>Stats
+          6557</title></rect>
+      <rect x="234.69063473973162" y="0.5" width="68.80936526026838" height="67.46736135516194" fill="#9c755f"><title>Strings
+          22026</title></rect>
+    </g>
+    <g transform="translate(316,0)">
+      <rect x="33.41142245745375" y="298.1225735526119" width="2.3558313728063283" height="83.19232439463633" fill="#bab0ab"><title>Axes
+          1302</title></rect>
+      <rect x="36.76725383026008" y="298.1225735526119" width="62.38706678296946" height="83.19232439463633" fill="#bab0ab"><title>Axis
+          24593</title></rect>
+      <rect x="100.15432061322954" y="368.74466721013255" width="9.426102950824713" height="12.570230737115708" fill="#bab0ab"><title>AxisGridLine
+          652</title></rect>
+      <rect x="110.58042356405426" y="368.74466721013255" width="9.170247663687917" height="12.570230737115708" fill="#bab0ab"><title>AxisLabel
+          636</title></rect>
+      <rect x="100.15432061322954" y="298.1225735526119" width="19.59635061451263" height="69.62209365752062" fill="#bab0ab"><title>CartesianAxes
+          6703</title></rect>
+      <rect x="33.41142245745375" y="276.81050175054844" width="20.769260461102235" height="20.312071802063485" fill="#bab0ab"><title>AnchorControl
+          2138</title></rect>
+      <rect x="33.41142245745375" y="238.6919972738923" width="20.769260461102235" height="37.11850447665614" fill="#bab0ab"><title>ClickControl
+          3824</title></rect>
+      <rect x="55.18068291855599" y="284.7610631330195" width="20.973735232290053" height="12.361510419592435" fill="#bab0ab"><title>Control
+          1353</title></rect>
+      <rect x="55.18068291855599" y="238.6919972738923" width="20.973735232290053" height="45.06906585912719" fill="#bab0ab"><title>ControlList
+          4665</title></rect>
+      <rect x="33.41142245745375" y="213.81218515731538" width="22.1044964243503" height="23.879812116576915" fill="#bab0ab"><title>DragControl
+          2649</title></rect>
+      <rect x="33.41142245745375" y="187.21360912328518" width="22.1044964243503" height="25.598576034030202" fill="#bab0ab"><title>ExpandControl
+          2832</title></rect>
+      <rect x="56.515918881804055" y="187.21360912328518" width="19.638499269041986" height="50.47838815060712" fill="#bab0ab"><title>HoverControl
+          4896</title></rect>
+      <rect x="77.15441815084604" y="268.3321529391338" width="4.557884895183236" height="28.790420613478148" fill="#bab0ab"><title>IControl
+          763</title></rect>
+      <rect x="82.71230304602928" y="268.3321529391338" width="37.0383681817129" height="28.790420613478148" fill="#bab0ab"><title>PanZoomControl
+          5222</title></rect>
+      <rect x="77.15441815084604" y="229.1989387598246" width="42.59625307689613" height="38.133214179309164" fill="#bab0ab"><title>SelectionControl
+          7862</title></rect>
+      <rect x="77.15441815084604" y="187.21360912328518" width="42.59625307689613" height="40.98532963653943" fill="#bab0ab"><title>TooltipControl
+          8435</title></rect>
+      <rect x="120.75067122774217" y="287.07460085551463" width="45.80862783830443" height="94.24029709173362" fill="#bab0ab"><title>Data
+          20544</title></rect>
+      <rect x="167.5592990660466" y="287.07460085551463" width="44.086114080236" height="94.24029709173362" fill="#bab0ab"><title>DataList
+          19788</title></rect>
+      <rect x="212.6454131462826" y="310.106704936087" width="30.100942854013596" height="71.20819301116126" fill="#bab0ab"><title>DataSprite
+          10349</title></rect>
+      <rect x="212.6454131462826" y="287.07460085551463" width="30.100942854013596" height="22.032104080572367" fill="#bab0ab"><title>EdgeSprite
+          3301</title></rect>
+      <rect x="120.75067122774217" y="218.55869792960326" width="60.38593132877298" height="67.51590292591138" fill="#bab0ab"><title>NodeSprite
+          19382</title></rect>
+      <rect x="120.75067122774217" y="187.21360912328518" width="3.8322296230386286" height="30.345088806318074" fill="#bab0ab"><title>ArrowType
+          698</title></rect>
+      <rect x="125.5829008507808" y="187.21360912328518" width="37.55399250816923" height="30.345088806318074" fill="#bab0ab"><title>EdgeRenderer
+          5569</title></rect>
+      <rect x="164.13689335895003" y="214.3029993339762" width="16.999709197565124" height="3.2556985956270523" fill="#bab0ab"><title>IRenderer
+          353</title></rect>
+      <rect x="164.13689335895003" y="187.21360912328518" width="16.999709197565124" height="26.089390210691022" fill="#bab0ab"><title>ShapeRenderer
+          2247</title></rect>
+      <rect x="182.13660255651516" y="247.36196394168542" width="60.609753443781045" height="38.712636913829215" fill="#bab0ab"><title>ScaleBinding
+          11275</title></rect>
+      <rect x="182.13660255651516" y="187.21360912328518" width="24.7846757546819" height="59.148354818400236" fill="#bab0ab"><title>Tree
+          7147</title></rect>
+      <rect x="207.92127831119706" y="187.21360912328518" width="34.825077689099146" height="59.148354818400236" fill="#bab0ab"><title>TreeBuilder
+          9930</title></rect>
+      <rect x="243.7463560002962" y="350.5146669539715" width="14.78363406464473" height="30.800230993276728" fill="#bab0ab"><title>DataEvent
+          2313</title></rect>
+      <rect x="259.52999006494093" y="350.5146669539715" width="11.8288940949123" height="30.800230993276728" fill="#bab0ab"><title>SelectionEvent
+          1880</title></rect>
+      <rect x="272.35888415985323" y="363.11965560531644" width="18.22969338269303" height="18.195242341931817" fill="#bab0ab"><title>TooltipEvent
+          1701</title></rect>
+      <rect x="272.35888415985323" y="350.5146669539715" width="18.22969338269303" height="11.604988651344911" fill="#bab0ab"><title>VisualizationEvent
+          1117</title></rect>
+      <rect x="243.7463560002962" y="255.9031966517665" width="46.84222154225006" height="93.61147030220502" fill="#bab0ab"><title>Legend
+          20859</title></rect>
+      <rect x="243.7463560002962" y="234.97518840715392" width="46.84222154225006" height="19.928008244612585" fill="#bab0ab"><title>LegendItem
+          4614</title></rect>
+      <rect x="243.7463560002962" y="187.21360912328518" width="46.84222154225006" height="46.76157928386874" fill="#bab0ab"><title>LegendRange
+          10530</title></rect>
+      <rect x="33.41142245745375" y="161.27582357525424" width="36.321661826233864" height="24.937785548030945" fill="#bab0ab"><title>BifocalDistortion
+          4461</title></rect>
+      <rect x="33.41142245745375" y="124.56405985629725" width="36.321661826233864" height="35.71176371895699" fill="#bab0ab"><title>Distortion
+          6314</title></rect>
+      <rect x="33.41142245745375" y="104.53946146413894" width="36.321661826233864" height="19.02459839215831" fill="#bab0ab"><title>FisheyeDistortion
+          3444</title></rect>
+      <rect x="70.73308428368762" y="147.03920119520842" width="16.17128072003419" height="39.17440792807676" fill="#bab0ab"><title>ColorEncoder
+          3179</title></rect>
+      <rect x="87.90436500372181" y="147.03920119520842" width="20.929977893469257" height="39.17440792807676" fill="#bab0ab"><title>Encoder
+          4060</title></rect>
+      <rect x="70.73308428368762" y="104.53946146413894" width="20.128363560025747" height="41.49973973106948" fill="#bab0ab"><title>PropertyEncoder
+          4138</title></rect>
+      <rect x="91.86144784371336" y="126.6344966084165" width="16.9728950534777" height="19.404704586791922" fill="#bab0ab"><title>ShapeEncoder
+          1690</title></rect>
+      <rect x="91.86144784371336" y="104.53946146413894" width="16.9728950534777" height="21.09503514427756" fill="#bab0ab"><title>SizeEncoder
+          1830</title></rect>
+      <rect x="33.41142245745375" y="70.5403794573076" width="32.310545987408986" height="32.999082006831344" fill="#bab0ab"><title>FisheyeTreeFilter
+          5219</title></rect>
+      <rect x="33.41142245745375" y="27.06272601534715" width="14.796805221778463" height="42.47765344196044" fill="#bab0ab"><title>GraphDistanceFilter
+          3165</title></rect>
+      <rect x="49.208227679232216" y="27.06272601534715" width="16.513740765630523" height="42.47765344196044" fill="#bab0ab"><title>VisibilityFilter
+          3509</title></rect>
+      <rect x="33.41142245745375" y="18.685102052751745" width="32.310545987408986" height="7.377623962595404" fill="#bab0ab"><title>IOperator
+          1286</title></rect>
+      <rect x="66.72196844486274" y="54.42713208032171" width="42.112374452328325" height="49.112329383817226" fill="#bab0ab"><title>Labeler
+          9956</title></rect>
+      <rect x="66.72196844486274" y="18.685102052751745" width="22.67203886630449" height="34.74203002756997" fill="#bab0ab"><title>RadialLabeler
+          3899</title></rect>
+      <rect x="90.39400731116723" y="18.685102052751745" width="18.440335586023835" height="34.74203002756997" fill="#bab0ab"><title>StackedAreaLabeler
+          3202</title></rect>
+      <rect x="109.83434289719106" y="146.8240472219936" width="35.131400154330194" height="39.389561901291586" fill="#bab0ab"><title>AxisLayout
+          6725</title></rect>
+      <rect x="109.83434289719106" y="124.4401219868837" width="35.131400154330194" height="21.3839252351099" fill="#bab0ab"><title>BundledEdgeRouter
+          3727</title></rect>
+      <rect x="145.96574305152126" y="124.4401219868837" width="31.20783153826011" height="61.773487136401485" fill="#bab0ab"><title>CircleLayout
+          9317</title></rect>
+      <rect x="109.83434289719106" y="86.32640019527928" width="67.3392316925903" height="37.11372179160442" fill="#bab0ab"><title>CirclePackingLayout
+          12003</title></rect>
+      <rect x="109.83434289719106" y="61.577966850459745" width="41.552416166111996" height="23.74843334481953" fill="#bab0ab"><title>DendrogramLayout
+          4853</title></rect>
+      <rect x="109.83434289719106" y="18.685102052751745" width="41.552416166111996" height="41.892864797708" fill="#bab0ab"><title>ForceDirectedLayout
+          8411</title></rect>
+      <rect x="152.38675906330306" y="45.39491547703422" width="24.786815526478307" height="39.93148471824506" fill="#bab0ab"><title>IcicleTreeLayout
+          4864</title></rect>
+      <rect x="152.38675906330306" y="18.685102052751745" width="24.786815526478307" height="25.709813424282473" fill="#bab0ab"><title>IndentedTreeLayout
+          3174</title></rect>
+      <rect x="178.17357458978137" y="115.28209214408079" width="22.775176710301395" height="70.93151697920439" fill="#bab0ab"><title>Layout
+          7881</title></rect>
+      <rect x="201.94875130008276" y="127.86249849869479" width="46.05560288380684" height="58.35111062459039" fill="#bab0ab"><title>NodeLinkTreeLayout
+          12870</title></rect>
+      <rect x="201.94875130008276" y="115.28209214408079" width="46.05560288380684" height="11.580406354613999" fill="#bab0ab"><title>PieLayout
+          2728</title></rect>
+      <rect x="178.17357458978137" y="25.043051922585057" width="28.69366459482785" height="89.23904022149574" fill="#bab0ab"><title>RadialTreeLayout
+          12348</title></rect>
+      <rect x="178.17357458978137" y="18.685102052751745" width="28.69366459482785" height="5.357949869833313" fill="#bab0ab"><title>RandomLayout
+          870</title></rect>
+      <rect x="207.86723918460922" y="67.16822437305564" width="40.137114999280385" height="47.113867771025156" fill="#bab0ab"><title>StackedAreaLayout
+          9121</title></rect>
+      <rect x="207.86723918460922" y="18.685102052751745" width="40.137114999280385" height="47.48312232030389" fill="#bab0ab"><title>TreeMapLayout
+          9191</title></rect>
+      <rect x="249.0043541838896" y="161.83035346119783" width="20.28696119271021" height="24.38325566208735" fill="#bab0ab"><title>Operator
+          2490</title></rect>
+      <rect x="249.0043541838896" y="108.33182907781051" width="20.28696119271021" height="52.49852438338732" fill="#bab0ab"><title>OperatorList
+          5248</title></rect>
+      <rect x="249.0043541838896" y="65.61863983116548" width="20.28696119271021" height="41.71318924664503" fill="#bab0ab"><title>OperatorSequence
+          4190</title></rect>
+      <rect x="249.0043541838896" y="39.307723018375384" width="20.28696119271021" height="25.310916812790097" fill="#bab0ab"><title>OperatorSwitch
+          2581</title></rect>
+      <rect x="249.0043541838896" y="18.685102052751745" width="20.28696119271021" height="19.62262096562364" fill="#bab0ab"><title>SortOperator
+          2023</title></rect>
+      <rect x="270.2913153765998" y="18.685102052751745" width="20.29726216594645" height="167.52850707053344" fill="#bab0ab"><title>Visualization
+          16540</title></rect>
+    </g>
+  </g>
+  <g aria-label="text" transform="translate(0.5,0.5)">
+    <g pointer-events="none" transform="translate(1,0)"><svg viewBox="22 373.2367326407128 25.709759692742992 24.763267359287227" x="22" y="373.2367326407128" width="25.709759692742992" height="24.763267359287227">
+        <text y="0.32em" transform="translate(34.854879846371496,385.6183663203564)">AgglomerativeCluster</text>
+      </svg><svg viewBox="22 345.3937729724541 25.709759692742992 23.842959668258686" x="22" y="345.3937729724541" width="25.709759692742992" height="23.842959668258686">
+        <text y="0.32em" transform="translate(34.854879846371496,357.31525280658343)">CommunityStructure</text>
+      </svg><svg viewBox="51.70975969274299 351.0338999245081 24.58653910048831 46.96610007549191" x="51.70975969274299" y="351.0338999245081" width="24.58653910048831" height="46.96610007549191">
+        <text y="0.32em" transform="translate(64.00302924298714,374.51694996225405)">HierarchicalCluster</text>
+      </svg><svg viewBox="51.70975969274299 345.3937729724541 24.58653910048831 1.640126952054004" x="51.70975969274299" y="345.3937729724541" width="24.58653910048831" height="1.640126952054004">
+        <text y="0.32em" transform="translate(64.00302924298714,346.2138364484811)">MergeEdge</text>
+      </svg><svg viewBox="22 321.1072768259745 27.576451816386317 20.28649614647958" x="22" y="321.1072768259745" width="27.576451816386317" height="20.28649614647958">
+        <text y="0.32em" transform="translate(35.788225908193155,331.2505248992143)">BetweennessCentrality</text>
+      </svg><svg viewBox="22 281.7224694079001 27.576451816386317 35.38480741807439" x="22" y="281.7224694079001" width="27.576451816386317" height="35.38480741807439">
+        <text y="0.32em" transform="translate(35.788225908193155,299.4148731169373)">LinkDistance</text>
+      </svg><svg viewBox="53.57645181638632 281.7224694079001 22.719846976844984 59.671303564553966" x="53.57645181638632" y="281.7224694079001" width="22.719846976844984" height="59.671303564553966">
+        <text y="0.32em" transform="translate(64.93637530480882,311.55812119017713)">MaxFlowMinCut</text>
+      </svg><svg viewBox="22 246.99266746359797 32.952230553394415 30.729801944302153" x="22" y="246.99266746359797" width="32.952230553394415" height="30.729801944302153">
+        <text y="0.32em" transform="translate(38.47611527669721,262.35756843574904)">ShortestPaths</text>
+      </svg><svg viewBox="58.952230553394415 246.99266746359797 17.344068239836886 30.729801944302153" x="58.952230553394415" y="246.99266746359797" width="17.344068239836886" height="30.729801944302153">
+        <text y="0.32em" transform="translate(67.62426467331287,262.35756843574904)">SpanningTree</text>
+      </svg><svg viewBox="22 220.66055396370584 54.2962987932313 22.33211349989213" x="22" y="220.66055396370584" width="54.2962987932313" height="22.33211349989213">
+        <text y="0.32em" transform="translate(49.14814939661565,231.82661071365186)">AspectRatioBanker</text>
+      </svg><svg viewBox="80.2962987932313 331.6243405326007 48.44975712274831 66.37565946739932" x="80.2962987932313" y="331.6243405326007" width="48.44975712274831" height="66.37565946739932">
+        <text y="0.32em" transform="translate(104.52117735460546,364.81217026630037)">Easing</text>
+      </svg><svg viewBox="80.2962987932313 307.45416989129865 48.44975712274831 20.170170641302036" x="80.2962987932313" y="307.45416989129865" width="48.44975712274831" height="20.170170641302036">
+        <text y="0.32em" transform="translate(104.52117735460546,317.5392552119497)">FunctionSequence</text>
+      </svg><svg viewBox="132.7460559159796 380.73321183419716 16.23403302031076 17.266788165802836" x="132.7460559159796" y="380.73321183419716" width="16.23403302031076" height="17.266788165802836">
+        <text y="0.32em" transform="translate(140.86307242613498,389.3666059170986)">ArrayInterpolator</text>
+      </svg><svg viewBox="132.7460559159796 358.7800522903755 16.23403302031076 17.95315954382164" x="132.7460559159796" y="358.7800522903755" width="16.23403302031076" height="17.95315954382164">
+        <text y="0.32em" transform="translate(140.86307242613498,367.75663206228637)">ColorInterpolator</text>
+      </svg><svg viewBox="132.7460559159796 344.0337922157518 16.23403302031076 10.746260074623706" x="132.7460559159796" y="344.0337922157518" width="16.23403302031076" height="10.746260074623706">
+        <text y="0.32em" transform="translate(140.86307242613498,349.40692225306367)">DateInterpolator</text>
+      </svg><svg viewBox="152.98008893629037 344.0337922157518 28.7413233664455 53.96620778424818" x="152.98008893629037" y="344.0337922157518" width="28.7413233664455" height="53.96620778424818">
+        <text y="0.32em" transform="translate(167.35075061951312,371.01689610787594)">Interpolator</text>
+      </svg><svg viewBox="132.7460559159796 307.45416989129865 9.062904228850755 32.57962232445317" x="132.7460559159796" y="307.45416989129865" width="9.062904228850755" height="32.57962232445317">
+        <text y="0.32em" transform="translate(137.277508030405,323.74398105352526)">MatrixInterpolator</text>
+      </svg><svg viewBox="145.80896014483037 327.2443408532828 13.862127444627475 12.789451362469038" x="145.80896014483037" y="327.2443408532828" width="13.862127444627475" height="12.789451362469038">
+        <text y="0.32em" transform="translate(152.7400238671441,333.63906653451727)">NumberInterpolator</text>
+      </svg><svg viewBox="145.80896014483037 307.45416989129865 13.862127444627475 15.790170961984131" x="145.80896014483037" y="307.45416989129865" width="13.862127444627475" height="15.790170961984131">
+        <text y="0.32em" transform="translate(152.7400238671441,315.34925537229077)">ObjectInterpolator</text>
+      </svg><svg viewBox="163.67108758945784 327.5498354243988 18.05032471327803 12.483956791353023" x="163.67108758945784" y="327.5498354243988" width="18.05032471327803" height="12.483956791353023">
+        <text y="0.32em" transform="translate(172.69624994609686,333.79181382007533)">PointInterpolator</text>
+      </svg><svg viewBox="163.67108758945784 307.45416989129865 18.05032471327803 16.095665533100146" x="163.67108758945784" y="307.45416989129865" width="18.05032471327803" height="16.095665533100146">
+        <text y="0.32em" transform="translate(172.69624994609686,315.5020026578487)">RectangleInterpolator</text>
+      </svg><svg viewBox="185.72141230273587 386.16885810790444 10.26921670016307 11.831141892095559" x="185.72141230273587" y="386.16885810790444" width="10.26921670016307" height="11.831141892095559">
+        <text y="0.32em" transform="translate(190.85602065281742,392.0844290539522)">ISchedulable</text>
+      </svg><svg viewBox="185.72141230273587 307.45416989129865 10.26921670016307 74.7146882166058" x="185.72141230273587" y="307.45416989129865" width="10.26921670016307" height="74.7146882166058">
+        <text y="0.32em" transform="translate(190.85602065281742,344.8115139996016)">Parallel</text>
+      </svg><svg viewBox="80.2962987932313 259.09671222282805 23.113083151774063 40.76386308172067" x="80.2962987932313" y="259.09671222282805" width="23.113083151774063" height="40.76386308172067">
+        <text y="0.32em" transform="translate(91.85284036911833,279.47864376368835)">Scheduler</text>
+      </svg><svg viewBox="107.40938194500536 259.09671222282805 20.833466097636162 44.3574576684706" x="107.40938194500536" y="259.09671222282805" width="20.833466097636162" height="44.3574576684706">
+        <text y="0.32em" transform="translate(117.82611499382344,281.27544105706335)">Sequence</text>
+      </svg><svg viewBox="80.2962987932313 220.66055396370584 47.946549249410225 34.43615825912221" x="80.2962987932313" y="220.66055396370584" width="47.946549249410225" height="34.43615825912221">
+        <text y="0.32em" transform="translate(104.26957341793641,237.8786330932669)">Transition</text>
+      </svg><svg viewBox="132.24284804264153 220.66055396370584 45.941392946862834 82.79361592759281" x="132.24284804264153" y="220.66055396370584" width="45.941392946862834" height="82.79361592759281">
+        <text y="0.32em" transform="translate(155.21354451607294,262.05736192750226)">Transitioner</text>
+      </svg><svg viewBox="182.18424098950436 293.8538223238747 13.806388013394582 9.600347567423967" x="182.18424098950436" y="293.8538223238747" width="13.806388013394582" height="9.600347567423967">
+        <text y="0.32em" transform="translate(189.08743499620167,298.6539961075867)">TransitionEvent</text>
+      </svg><svg viewBox="182.18424098950436 220.66055396370584 13.806388013394582 69.19326836016884" x="182.18424098950436" y="220.66055396370584" width="13.806388013394582" height="69.19326836016884">
+        <text y="0.32em" transform="translate(189.08743499620167,255.25718814379024)">Tween</text>
+      </svg><svg viewBox="199.99062900289894 392.2752132690648 12.088547025560047 5.724786730935193" x="199.99062900289894" y="392.2752132690648" width="12.088547025560047" height="5.724786730935193">
+        <text y="0.32em" transform="translate(206.03490251567897,395.1376066345324)">Converters</text>
+      </svg><svg viewBox="199.99062900289894 334.3581061641609 12.088547025560047 53.91710710490389" x="199.99062900289894" y="334.3581061641609" width="12.088547025560047" height="53.91710710490389">
+        <text y="0.32em" transform="translate(206.03490251567897,361.3166597166129)">DelimitedTextConverter</text>
+      </svg><svg viewBox="216.079176028459 352.285693745971 38.77660738560664 45.714306254029" x="216.079176028459" y="352.285693745971" width="38.77660738560664" height="45.714306254029">
+        <text y="0.32em" transform="translate(235.4674797212623,375.14284687298544)">GraphMLConverter</text>
+      </svg><svg viewBox="216.079176028459 334.3581061641609 11.905054358994647 13.927587581810087" x="216.079176028459" y="334.3581061641609" width="11.905054358994647" height="13.927587581810087">
+        <text y="0.32em" transform="translate(222.0317032079563,341.321899955066)">IDataConverter</text>
+      </svg><svg viewBox="231.98423038745364 334.3581061641609 22.87155302661199 13.927587581810087" x="231.98423038745364" y="334.3581061641609" width="22.87155302661199" height="13.927587581810087">
+        <text y="0.32em" transform="translate(243.42000690075963,341.321899955066)">JSONConverter</text>
+      </svg><svg viewBox="199.99062900289894 317.1981932807438 18.243975399611372 13.159912883417121" x="199.99062900289894" y="317.1981932807438" width="18.243975399611372" height="13.159912883417121">
+        <text y="0.32em" transform="translate(209.11261670270463,323.7781497224524)">DataField</text>
+      </svg><svg viewBox="199.99062900289894 290.36083094857753 13.50570946570653 22.837362332166265" x="199.99062900289894" y="290.36083094857753" width="13.50570946570653" height="22.837362332166265">
+        <text y="0.32em" transform="translate(206.74348373575222,301.7795121146607)">DataSchema</text>
+      </svg><svg viewBox="217.49633846860547 290.36083094857753 0.7382659339048416 22.837362332166265" x="217.49633846860547" y="290.36083094857753" width="0.7382659339048416" height="22.837362332166265">
+        <text y="0.32em" transform="translate(217.86547143555788,301.7795121146607)">DataSet</text>
+      </svg><svg viewBox="222.2346044025103 290.36083094857753 12.42897606565532 39.997275215583386" x="222.2346044025103" y="290.36083094857753" width="12.42897606565532" height="39.997275215583386">
+        <text y="0.32em" transform="translate(228.44909243533797,310.3594685563692)">DataSource</text>
+      </svg><svg viewBox="238.66358046816563 326.06159994373337 16.192202945899993 4.2965062204275455" x="238.66358046816563" y="326.06159994373337" width="16.192202945899993" height="4.2965062204275455">
+        <text y="0.32em" transform="translate(246.75968194111562,328.20985305394714)">DataTable</text>
+      </svg><svg viewBox="238.66358046816563 290.36083094857753 16.192202945899993 31.70076899515584" x="238.66358046816563" y="290.36083094857753" width="16.192202945899993" height="31.70076899515584">
+        <text y="0.32em" transform="translate(246.75968194111562,306.21121544615545)">DataUtil</text>
+      </svg><svg viewBox="258.8557834140656 353.3701731249164 35.41551018490844 44.62982687508361" x="258.8557834140656" y="353.3701731249164" width="35.41551018490844" height="44.62982687508361">
+        <text y="0.32em" transform="translate(276.5635385065199,375.6850865624582)">DirtySprite</text>
+      </svg><svg viewBox="298.27129359897407 353.3701731249164 3.7287064010259314 44.62982687508361" x="298.27129359897407" y="353.3701731249164" width="3.7287064010259314" height="44.62982687508361">
+        <text y="0.32em" transform="translate(300.135646799487,375.6850865624582)">LineSprite</text>
+      </svg><svg viewBox="258.8557834140656 290.36083094857753 8.477426889534684 59.00934217633886" x="258.8557834140656" y="290.36083094857753" width="8.477426889534684" height="59.00934217633886">
+        <text y="0.32em" transform="translate(263.09449685883294,319.865502036747)">RectSprite</text>
+      </svg><svg viewBox="271.3332103036003 290.36083094857753 30.66678969639969 59.00934217633886" x="271.3332103036003" y="290.36083094857753" width="30.66678969639969" height="59.00934217633886">
+        <text y="0.32em" transform="translate(286.6666051518002,319.865502036747)">TextSprite</text>
+      </svg><svg viewBox="199.99062900289894 220.66055396370584 8.814524846521806 65.70027698487169" x="199.99062900289894" y="220.66055396370584" width="8.814524846521806" height="65.70027698487169">
+        <text y="0.32em" transform="translate(204.39789142615984,253.5106924561417)">FlareVis</text>
+      </svg><svg viewBox="212.80515384942075 275.9468031353857 12.289342331777561 10.414027813191808" x="212.80515384942075" y="275.9468031353857" width="12.289342331777561" height="10.414027813191808">
+        <text y="0.32em" transform="translate(218.9498250153095,281.15381704198165)">DragForce</text>
+      </svg><svg viewBox="229.0944961811983 275.9468031353857 16.11327297158482 10.414027813191808" x="229.0944961811983" y="275.9468031353857" width="16.11327297158482" height="10.414027813191808">
+        <text y="0.32em" transform="translate(237.1511326669907,281.15381704198165)">GravityForce</text>
+      </svg><svg viewBox="249.20776915278313 275.9468031353857 0.8024955673170098 10.414027813191808" x="249.20776915278313" y="275.9468031353857" width="0.8024955673170098" height="10.414027813191808">
+        <text y="0.32em" transform="translate(249.60901693644163,281.15381704198165)">IForce</text>
+      </svg><svg viewBox="212.80515384942075 220.66055396370584 37.20511087067939 51.286249171679884" x="212.80515384942075" y="220.66055396370584" width="37.20511087067939" height="51.286249171679884">
+        <text y="0.32em" transform="translate(231.40770928476047,246.3036785495458)">NBodyForce</text>
+      </svg><svg viewBox="254.01026472010014 220.66055396370584 4.785857414209062 65.70027698487169" x="254.01026472010014" y="220.66055396370584" width="4.785857414209062" height="65.70027698487169">
+        <text y="0.32em" transform="translate(256.40319342720466,253.5106924561417)">Particle</text>
+      </svg><svg viewBox="262.7961221343092 240.21902327112753 39.2038778656908 46.141807677450004" x="262.7961221343092" y="240.21902327112753" width="39.2038778656908" height="46.141807677450004">
+        <text y="0.32em" transform="translate(282.39806106715463,263.28992710985256)">Simulation</text>
+      </svg><svg viewBox="262.7961221343092 220.66055396370584 20.553205371539207 15.558469307421689" x="262.7961221343092" y="220.66055396370584" width="20.553205371539207" height="15.558469307421689">
+        <text y="0.32em" transform="translate(273.0727248200788,228.43978861741667)">Spring</text>
+      </svg><svg viewBox="287.3493275058484 220.66055396370584 14.650672494151593 15.558469307421689" x="287.3493275058484" y="220.66055396370584" width="14.650672494151593" height="15.558469307421689">
+        <text y="0.32em" transform="translate(294.67466375292423,228.43978861741667)">SpringForce</text>
+      </svg><svg viewBox="22 199.28909013109975 12.408494345739705 17.371463832606082" x="22" y="199.28909013109975" width="12.408494345739705" height="17.371463832606082">
+        <text y="0.32em" transform="translate(28.204247172869852,207.9748220474028)">AggregateExpression</text>
+      </svg><svg viewBox="38.408494345739705 199.28909013109975 6.427923077397686 17.371463832606082" x="38.408494345739705" y="199.28909013109975" width="6.427923077397686" height="17.371463832606082">
+        <text y="0.32em" transform="translate(41.62245588443855,207.9748220474028)">And</text>
+      </svg><svg viewBox="22 167.82621999388056 22.83641742313739 27.4628701372192" x="22" y="167.82621999388056" width="22.83641742313739" height="27.4628701372192">
+        <text y="0.32em" transform="translate(33.418208711568695,181.55765506249014)">Arithmetic</text>
+      </svg><svg viewBox="22 137.228558570278 2.3190401490527 26.597661423602545" x="22" y="137.228558570278" width="2.3190401490527" height="26.597661423602545">
+        <text y="0.32em" transform="translate(23.15952007452635,150.52738928207933)">Average</text>
+      </svg><svg viewBox="28.3190401490527 137.228558570278 16.51737727408469 26.597661423602545" x="28.3190401490527" y="137.228558570278" width="16.51737727408469" height="26.597661423602545">
+        <text y="0.32em" transform="translate(36.57772878609505,150.52738928207933)">BinaryExpression</text>
+      </svg><svg viewBox="48.83641742313739 189.5881942722256 31.637971654567608 27.072359691480244" x="48.83641742313739" y="189.5881942722256" width="31.637971654567608" height="27.072359691480244">
+        <text y="0.32em" transform="translate(64.6554032504212,203.12437411796571)">Comparison</text>
+      </svg><svg viewBox="48.83641742313739 162.44326393622347 25.39453157780285 23.14493033600212" x="48.83641742313739" y="162.44326393622347" width="25.39453157780285" height="23.14493033600212">
+        <text y="0.32em" transform="translate(61.53368321203882,174.01572910422453)">CompositeExpression</text>
+      </svg><svg viewBox="78.23094900094024 162.44326393622347 2.243440076764756 23.14493033600212" x="78.23094900094024" y="162.44326393622347" width="2.243440076764756" height="23.14493033600212">
+        <text y="0.32em" transform="translate(79.35266903932262,174.01572910422453)">Count</text>
+      </svg><svg viewBox="48.83641742313739 137.228558570278 31.637971654567608 21.214705365945463" x="48.83641742313739" y="137.228558570278" width="31.637971654567608" height="21.214705365945463">
+        <text y="0.32em" transform="translate(64.6554032504212,147.83591125325074)">DateUtil</text>
+      </svg><svg viewBox="22 100.30441703846083 1.4831847869237222 32.924141531817185" x="22" y="100.30441703846083" width="1.4831847869237222" height="32.924141531817185">
+        <text y="0.32em" transform="translate(22.74159239346186,116.7664878043694)">Distinct</text>
+      </svg><svg viewBox="27.483184786923722 100.30441703846083 26.14870091845519 32.924141531817185" x="27.483184786923722" y="100.30441703846083" width="26.14870091845519" height="32.924141531817185">
+        <text y="0.32em" transform="translate(40.55753524615132,116.7664878043694)">Expression</text>
+      </svg><svg viewBox="22 58.544753755651826 14.79546895090499 37.759663282809" x="22" y="58.544753755651826" width="14.79546895090499" height="37.759663282809">
+        <text y="0.32em" transform="translate(29.3977344754525,77.42458539705632)">ExpressionIterator</text>
+      </svg><svg viewBox="40.79546895090499 58.544753755651826 12.836416754473923 37.759663282809" x="40.79546895090499" y="58.544753755651826" width="12.836416754473923" height="37.759663282809">
+        <text y="0.32em" transform="translate(47.213677328141955,77.42458539705632)">Fn</text>
+      </svg><svg viewBox="57.63188570537891 115.14244383139393 22.842503372326085 18.086114738884078" x="57.63188570537891" y="115.14244383139393" width="22.842503372326085" height="18.086114738884078">
+        <text y="0.32em" transform="translate(69.05313739154195,124.18550120083597)">If</text>
+      </svg><svg viewBox="57.63188570537891 98.65870007129706 22.842503372326085 12.483743760096871" x="57.63188570537891" y="98.65870007129706" width="22.842503372326085" height="12.483743760096871">
+        <text y="0.32em" transform="translate(69.05313739154195,104.90057195134553)">IsA</text>
+      </svg><svg viewBox="57.63188570537891 88.84444557166118 22.842503372326085 5.814254499635879" x="57.63188570537891" y="88.84444557166118" width="22.842503372326085" height="5.814254499635879">
+        <text y="0.32em" transform="translate(69.05313739154195,91.75157282147914)">Literal</text>
+      </svg><svg viewBox="57.63188570537891 58.544753755651826 22.842503372326085 26.299691816009357" x="57.63188570537891" y="58.544753755651826" width="22.842503372326085" height="26.299691816009357">
+        <text y="0.32em" transform="translate(69.05313739154195,71.69459966365652)">Match</text>
+      </svg><svg viewBox="84.474389077705 200.22242290168447 3.7711981968028994 12.558780656639755" x="84.474389077705" y="200.22242290168447" width="3.7711981968028994" height="12.558780656639755">
+        <text y="0.32em" transform="translate(86.35998817610646,206.5018132300043)">add</text>
+      </svg><svg viewBox="92.2455872745079 200.22242290168447 0.32461282452774753 12.558780656639755" x="92.2455872745079" y="200.22242290168447" width="0.32461282452774753" height="12.558780656639755">
+        <text y="0.32em" transform="translate(92.40789368677176,206.5018132300043)">and</text>
+      </svg><svg viewBox="84.474389077705 192.40788665794102 3.969669878540273 3.814536243743447" x="84.474389077705" y="192.40788665794102" width="3.969669878540273" height="3.814536243743447">
+        <text y="0.32em" transform="translate(86.45922401697514,194.3151547798127)">average</text>
+      </svg><svg viewBox="84.474389077705 184.86563390701093 3.969669878540273 3.542252750930089" x="84.474389077705" y="184.86563390701093" width="3.969669878540273" height="3.542252750930089">
+        <text y="0.32em" transform="translate(86.45922401697514,186.636760282476)">count</text>
+      </svg><svg viewBox="92.44405895624527 184.86563390701093 0.1261411427903738 11.356788994673536" x="92.44405895624527" y="184.86563390701093" width="0.1261411427903738" height="11.356788994673536">
+        <text y="0.32em" transform="translate(92.50712952764046,190.54402840434773)">distinct</text>
+      </svg><svg viewBox="96.57020009903565 205.26527636455137 7.211912520615073 7.515927193772853" x="96.57020009903565" y="205.26527636455137" width="7.211912520615073" height="7.515927193772853">
+        <text y="0.32em" transform="translate(100.1761563593432,209.02323996143778)">div</text>
+      </svg><svg viewBox="96.57020009903565 193.7687036702639 7.211912520615073 7.496572694287465" x="96.57020009903565" y="193.7687036702639" width="7.211912520615073" height="7.496572694287465">
+        <text y="0.32em" transform="translate(100.1761563593432,197.51699001740764)">eq</text>
+      </svg><svg viewBox="96.57020009903565 184.86563390701093 7.211912520615073 4.903069763252972" x="96.57020009903565" y="184.86563390701093" width="7.211912520615073" height="4.903069763252972">
+        <text y="0.32em" transform="translate(100.1761563593432,187.31716878863742)">fn</text>
+      </svg><svg viewBox="84.474389077705 166.46856108583384 3.112630210421699 14.39707282117709" x="84.474389077705" y="166.46856108583384" width="3.112630210421699" height="14.39707282117709">
+        <text y="0.32em" transform="translate(86.03070418291585,173.66709749642243)">gt</text>
+      </svg><svg viewBox="91.5870192881267 166.46856108583384 3.3721291567389073 14.39707282117709" x="91.5870192881267" y="166.46856108583384" width="3.3721291567389073" height="14.39707282117709">
+        <text y="0.32em" transform="translate(93.27308386649615,173.66709749642243)">gte</text>
+      </svg><svg viewBox="98.9591484448656 166.46856108583384 4.822964174785113 14.39707282117709" x="98.9591484448656" y="166.46856108583384" width="4.822964174785113" height="14.39707282117709">
+        <text y="0.32em" transform="translate(101.37063053225816,173.66709749642243)">iff</text>
+      </svg><svg viewBox="84.474389077705 150.85525586259806 2.407191742896245 11.613305223235784" x="84.474389077705" y="150.85525586259806" width="2.407191742896245" height="11.613305223235784">
+        <text y="0.32em" transform="translate(85.67798494915313,156.66190847421592)">isa</text>
+      </svg><svg viewBox="90.88158082060124 150.85525586259806 4.297382799368862 11.613305223235784" x="90.88158082060124" y="150.85525586259806" width="4.297382799368862" height="11.613305223235784">
+        <text y="0.32em" transform="translate(93.03027222028568,156.66190847421592)">lt</text>
+      </svg><svg viewBox="99.1789636199701 150.85525586259806 4.603148999680613 11.613305223235784" x="99.1789636199701" y="150.85525586259806" width="4.603148999680613" height="11.613305223235784">
+        <text y="0.32em" transform="translate(101.48053811981043,156.66190847421592)">lte</text>
+      </svg><svg viewBox="107.78211261965072 206.90487493154706 2.2180262136664055 5.876328626777166" x="107.78211261965072" y="206.90487493154706" width="2.2180262136664055" height="5.876328626777166">
+        <text y="0.32em" transform="translate(108.89112572648392,209.84303924493562)">max</text>
+      </svg><svg viewBox="114.00013883331712 206.90487493154706 2.218026213666377 5.876328626777166" x="114.00013883331712" y="206.90487493154706" width="2.218026213666377" height="5.876328626777166">
+        <text y="0.32em" transform="translate(115.1091519401503,209.84303924493562)">min</text>
+      </svg><svg viewBox="107.78211261965072 196.59231270818077 8.436052427332783 6.312562223366285" x="107.78211261965072" y="196.59231270818077" width="8.436052427332783" height="6.312562223366285">
+        <text y="0.32em" transform="translate(112.00013883331712,199.74859381986388)">mod</text>
+      </svg><svg viewBox="107.78211261965072 186.07035835845176 8.436052427332783 6.521954349729015" x="107.78211261965072" y="186.07035835845176" width="8.436052427332783" height="6.521954349729015">
+        <text y="0.32em" transform="translate(112.00013883331712,189.3313355333163)">mul</text>
+      </svg><svg viewBox="120.2181650469835 205.39061762970277 7.411491289853615 7.390585928621448" x="120.2181650469835" y="205.39061762970277" width="7.411491289853615" height="7.390585928621448">
+        <text y="0.32em" transform="translate(123.92391069191032,209.08591059401348)">neq</text>
+      </svg><svg viewBox="120.2181650469835 198.050440386885 7.411491289853615 3.340177242817788" x="120.2181650469835" y="198.050440386885" width="7.411491289853615" height="3.340177242817788">
+        <text y="0.32em" transform="translate(123.92391069191032,199.72052900829388)">not</text>
+      </svg><svg viewBox="120.2181650469835 186.07035835845176 1.8506534708297124 7.98008202843323" x="120.2181650469835" y="186.07035835845176" width="1.8506534708297124" height="7.98008202843323">
+        <text y="0.32em" transform="translate(121.14349178239834,190.06039937266834)">or</text>
+      </svg><svg viewBox="126.06881851781321 186.07035835845176 1.5608378190239023 7.98008202843323" x="126.06881851781321" y="186.07035835845176" width="1.5608378190239023" height="7.98008202843323">
+        <text y="0.32em" transform="translate(126.84923742732516,190.06039937266834)">orderby</text>
+      </svg><svg viewBox="107.78211261965072 172.71135796008127 8.540215012287092 9.359000398370483" x="107.78211261965072" y="172.71135796008127" width="8.540215012287092" height="9.359000398370483">
+        <text y="0.32em" transform="translate(112.05222012579426,177.39085815926651)">range</text>
+      </svg><svg viewBox="107.78211261965072 167.58925418039522 8.540215012287092 1.1221037796860571" x="107.78211261965072" y="167.58925418039522" width="8.540215012287092" height="1.1221037796860571">
+        <text y="0.32em" transform="translate(112.05222012579426,168.15030607023823)">select</text>
+      </svg><svg viewBox="120.32232763193781 179.10396083338992 7.307328704899305 2.9663975250618364" x="120.32232763193781" y="179.10396083338992" width="7.307328704899305" height="2.9663975250618364">
+        <text y="0.32em" transform="translate(123.97599198438748,180.58715959592084)">stddev</text>
+      </svg><svg viewBox="120.32232763193781 167.58925418039522 7.307328704899305 7.514706652994704" x="120.32232763193781" y="167.58925418039522" width="7.307328704899305" height="7.514706652994704">
+        <text y="0.32em" transform="translate(123.97599198438748,171.34660750689255)">sub</text>
+      </svg><svg viewBox="107.78211261965072 159.60710847514275 3.6120218390366716 3.9821457052524636" x="107.78211261965072" y="159.60710847514275" width="3.6120218390366716" height="3.9821457052524636">
+        <text y="0.32em" transform="translate(109.58812353916906,161.59818132776897)">sum</text>
+      </svg><svg viewBox="107.78211261965072 150.85525586259806 3.6120218390366716 4.751852612544695" x="107.78211261965072" y="150.85525586259806" width="3.6120218390366716" height="4.751852612544695">
+        <text y="0.32em" transform="translate(109.58812353916906,153.23118216887036)">update</text>
+      </svg><svg viewBox="115.39413445868739 150.85525586259806 0.34416919263590273 12.733998317797159" x="115.39413445868739" y="150.85525586259806" width="0.34416919263590273" height="12.733998317797159">
+        <text y="0.32em" transform="translate(115.56621905500533,157.2222550214966)">variance</text>
+      </svg><svg viewBox="123.61563675161624 158.00375999835606 4.014019585220879 5.585494182039156" x="123.61563675161624" y="158.00375999835606" width="4.014019585220879" height="5.585494182039156">
+        <text y="0.32em" transform="translate(125.62264654422668,160.79650708937564)">xor</text>
+      </svg><svg viewBox="123.61563675161624 150.85525586259806 4.014019585220879 3.148504135758003" x="123.61563675161624" y="150.85525586259806" width="4.014019585220879" height="3.148504135758003">
+        <text y="0.32em" transform="translate(125.62264654422668,152.42950793047703)">_</text>
+      </svg><svg viewBox="131.62965633683712 203.1833141955936 6.466859045520351 13.477239768112241" x="131.62965633683712" y="203.1833141955936" width="6.466859045520351" height="13.477239768112241">
+        <text y="0.32em" transform="translate(134.8630858595973,209.9219340796497)">Minimum</text>
+      </svg><svg viewBox="131.62965633683712 170.96548430277463 6.466859045520351 28.21782989281897" x="131.62965633683712" y="170.96548430277463" width="6.466859045520351" height="28.21782989281897">
+        <text y="0.32em" transform="translate(134.8630858595973,185.07439924918413)">Not</text>
+      </svg><svg viewBox="131.62965633683712 150.85525586259806 6.466859045520351 16.11022844017657" x="131.62965633683712" y="150.85525586259806" width="6.466859045520351" height="16.11022844017657">
+        <text y="0.32em" transform="translate(134.8630858595973,158.91037008268634)">Or</text>
+      </svg><svg viewBox="84.474389077705 98.52387787311842 53.62212630465247 48.331377989479634" x="84.474389077705" y="98.52387787311842" width="53.62212630465247" height="48.331377989479634">
+        <text y="0.32em" transform="translate(111.28545223003124,122.68956686785826)">Query</text>
+      </svg><svg viewBox="84.474389077705 58.544753755651826 4.652003516354185 35.9791241174666" x="84.474389077705" y="58.544753755651826" width="4.652003516354185" height="35.9791241174666">
+        <text y="0.32em" transform="translate(86.80039083588208,76.53431581438514)">Range</text>
+      </svg><svg viewBox="93.12639259405918 58.544753755651826 18.41704800661404 35.9791241174666" x="93.12639259405918" y="58.544753755651826" width="18.41704800661404" height="35.9791241174666">
+        <text y="0.32em" transform="translate(102.33491659736622,76.53431581438514)">StringUtil</text>
+      </svg><svg viewBox="115.54344060067322 82.87383235289182 6.967875797552082 11.650045520226598" x="115.54344060067322" y="82.87383235289182" width="6.967875797552082" height="11.650045520226598">
+        <text y="0.32em" transform="translate(119.02737849944927,88.69885511300515)">Sum</text>
+      </svg><svg viewBox="126.5113163982253 82.87383235289182 11.585198984132163 11.650045520226598" x="126.5113163982253" y="82.87383235289182" width="11.585198984132163" height="11.650045520226598">
+        <text y="0.32em" transform="translate(132.3039158902914,88.69885511300515)">Variable</text>
+      </svg><svg viewBox="115.54344060067322 58.544753755651826 12.73280762191456 20.32907859724" x="115.54344060067322" y="58.544753755651826" width="12.73280762191456" height="20.32907859724">
+        <text y="0.32em" transform="translate(121.9098444116305,68.70929305427182)">Variance</text>
+      </svg><svg viewBox="132.27624822258778 58.544753755651826 5.820267159769685 20.32907859724" x="132.27624822258778" y="58.544753755651826" width="5.820267159769685" height="20.32907859724">
+        <text y="0.32em" transform="translate(135.1863818024726,68.70929305427182)">Xor</text>
+      </svg><svg viewBox="22 36.434976646638304 16.659955469202252 18.10977710901352" x="22" y="36.434976646638304" width="16.659955469202252" height="18.10977710901352">
+        <text y="0.32em" transform="translate(30.329977734601126,45.489865201145065)">IScaleMap</text>
+      </svg><svg viewBox="22 22.61242715710767 16.659955469202252 9.822549489530633" x="22" y="22.61242715710767" width="16.659955469202252" height="9.822549489530633">
+        <text y="0.32em" transform="translate(30.329977734601126,27.52370190187299)">LinearScale</text>
+      </svg><svg viewBox="42.65995546920225 22.61242715710767 15.029383128750744 31.93232659854415" x="42.65995546920225" y="22.61242715710767" width="15.029383128750744" height="31.93232659854415">
+        <text y="0.32em" transform="translate(50.17464703357763,38.57859045637974)">LogScale</text>
+      </svg><svg viewBox="22 2 35.689338597953 16.61242715710767" x="22" y="2" width="35.689338597953" height="16.61242715710767">
+        <text y="0.32em" transform="translate(39.8446692989765,10.306213578553836)">OrdinalScale</text>
+      </svg><svg viewBox="61.689338597953 39.616175889964154 23.91532092066427 14.928577865687672" x="61.689338597953" y="39.616175889964154" width="23.91532092066427" height="14.928577865687672">
+        <text y="0.32em" transform="translate(73.64699905828513,47.08046482280799)">QuantileScale</text>
+      </svg><svg viewBox="61.689338597953 2 23.91532092066427 33.616175889964154" x="61.689338597953" y="2" width="23.91532092066427" height="33.616175889964154">
+        <text y="0.32em" transform="translate(73.64699905828513,18.808087944982077)">QuantitativeScale</text>
+      </svg><svg viewBox="89.60465951861727 42.06192048956208 19.118214631025808 12.482833266089749" x="89.60465951861727" y="42.06192048956208" width="19.118214631025808" height="12.482833266089749">
+        <text y="0.32em" transform="translate(99.16376683413017,48.303337122606926)">RootScale</text>
+      </svg><svg viewBox="89.60465951861727 2 19.118214631025808 36.06192048956208" x="89.60465951861727" y="2" width="19.118214631025808" height="36.06192048956208">
+        <text y="0.32em" transform="translate(99.16376683413017,20.03096024478106)">Scale</text>
+      </svg><svg viewBox="112.72287414964308 45.09191908240359 25.37364123271439 9.452834673248233" x="112.72287414964308" y="45.09191908240359" width="25.37364123271439" height="9.452834673248233">
+        <text y="0.32em" transform="translate(125.40969476600027,49.81833641902771)">ScaleType</text>
+      </svg><svg viewBox="112.72287414964308 2 25.37364123271439 39.09191908240359" x="112.72287414964308" y="2" width="25.37364123271439" height="39.09191908240359">
+        <text y="0.32em" transform="translate(125.40969476600027,21.545959541201796)">TimeScale</text>
+      </svg><svg viewBox="142.09651538235747 166.61478548505593 29.15696931953039 50.045768478649904" x="142.09651538235747" y="166.61478548505593" width="29.15696931953039" height="50.045768478649904">
+        <text y="0.32em" transform="translate(156.67500004212266,191.63766972438088)">Arrays</text>
+      </svg><svg viewBox="175.25348470188786 166.61478548505593 36.1553463507658 50.045768478649904" x="175.25348470188786" y="166.61478548505593" width="36.1553463507658" height="50.045768478649904">
+        <text y="0.32em" transform="translate(193.33115787727078,191.63766972438088)">Colors</text>
+      </svg><svg viewBox="142.09651538235747 105.13065695454955 25.000929032487193 57.48412853050638" x="142.09651538235747" y="105.13065695454955" width="25.000929032487193" height="57.48412853050638">
+        <text y="0.32em" transform="translate(154.59697989860106,133.87272121980277)">Dates</text>
+      </svg><svg viewBox="171.09744441484466 105.13065695454955 40.311386637808994 57.48412853050638" x="171.09744441484466" y="105.13065695454955" width="40.311386637808994" height="57.48412853050638">
+        <text y="0.32em" transform="translate(191.25313773374918,133.87272121980277)">Displays</text>
+      </svg><svg viewBox="142.09651538235747 87.1329362394956 24.020782612402684 13.997720715053944" x="142.09651538235747" y="87.1329362394956" width="24.020782612402684" height="13.997720715053944">
+        <text y="0.32em" transform="translate(154.10690668855878,94.13179659702257)">Filter</text>
+      </svg><svg viewBox="142.09651538235747 2 24.020782612402684 81.1329362394956" x="142.09651538235747" y="2" width="24.020782612402684" height="81.1329362394956">
+        <text y="0.32em" transform="translate(154.10690668855878,42.566468119747825)">Geometry</text>
+      </svg><svg viewBox="170.11729799476015 52.80113150704242 34.78932432004541 48.32952544750713" x="170.11729799476015" y="52.80113150704242" width="34.78932432004541" height="48.32952544750713">
+        <text y="0.32em" transform="translate(187.51196015478288,76.96589423079598)">FibonacciHeap</text>
+      </svg><svg viewBox="208.90662231480556 52.80113150704242 1.1130251108206153 48.32952544750713" x="208.90662231480556" y="52.80113150704242" width="1.1130251108206153" height="48.32952544750713">
+        <text y="0.32em" transform="translate(209.46313487021587,76.96589423079598)">HeapNode</text>
+      </svg><svg viewBox="170.11729799476015 37.32234601205651 1.3693725411460775 11.478785494985914" x="170.11729799476015" y="37.32234601205651" width="1.3693725411460775" height="11.478785494985914">
+        <text y="0.32em" transform="translate(170.80198426533318,43.06173875954946)">IPredicate</text>
+      </svg><svg viewBox="170.11729799476015 2 1.3693725411460775 31.322346012056506" x="170.11729799476015" y="2" width="1.3693725411460775" height="31.322346012056506">
+        <text y="0.32em" transform="translate(170.80198426533318,17.661173006028275)">IValueProxy</text>
+      </svg><svg viewBox="175.48667053590623 25.913910567278318 21.544031659549546 22.887220939764102" x="175.48667053590623" y="25.913910567278318" width="21.544031659549546" height="22.887220939764102">
+        <text y="0.32em" transform="translate(186.258686365681,37.357521037160346)">DenseMatrix</text>
+      </svg><svg viewBox="175.48667053590623 2 21.544031659549546 19.913910567278318" x="175.48667053590623" y="2" width="21.544031659549546" height="19.913910567278318">
+        <text y="0.32em" transform="translate(186.258686365681,11.956955283639159)">IMatrix</text>
+      </svg><svg viewBox="201.03070219545577 2 10.37812885719788 46.80113150704242" x="201.03070219545577" y="2" width="10.37812885719788" height="46.80113150704242">
+        <text y="0.32em" transform="translate(206.2197666240547,25.40056575352123)">SparseMatrix</text>
+      </svg><svg viewBox="215.40883105265365 132.75941369539868 39.70821468859734 83.90114026830716" x="215.40883105265365" y="132.75941369539868" width="39.70821468859734" height="83.90114026830716">
+        <text y="0.32em" transform="translate(235.2629383969523,174.70998382955224)">Maths</text>
+      </svg><svg viewBox="259.117045741251 158.48962478230928 1.186723498250558 58.17092918139656" x="259.117045741251" y="158.48962478230928" width="1.186723498250558" height="58.17092918139656">
+        <text y="0.32em" transform="translate(259.7104074903762,187.5750893730076)">Orientation</text>
+      </svg><svg viewBox="264.30376923950155 187.52458325401622 37.69623076049845 29.135970709689616" x="264.30376923950155" y="187.52458325401622" width="37.69623076049845" height="29.135970709689616">
+        <text y="0.32em" transform="translate(283.1518846197507,202.092568608861)">ColorPalette</text>
+      </svg><svg viewBox="264.30376923950155 158.48962478230928 5.185278294434909 25.034958471706943" x="264.30376923950155" y="158.48962478230928" width="5.185278294434909" height="25.034958471706943">
+        <text y="0.32em" transform="translate(266.896408386719,171.00710401816275)">Palette</text>
+      </svg><svg viewBox="273.48904753393646 158.48962478230928 11.388517500603427 25.034958471706943" x="273.48904753393646" y="158.48962478230928" width="11.388517500603427" height="25.034958471706943">
+        <text y="0.32em" transform="translate(279.1833062842382,171.00710401816275)">ShapePalette</text>
+      </svg><svg viewBox="288.8775650345399 158.48962478230928 13.122434965460116 25.034958471706943" x="288.8775650345399" y="158.48962478230928" width="13.122434965460116" height="25.034958471706943">
+        <text y="0.32em" transform="translate(295.43878251726994,171.00710401816275)">SizePalette</text>
+      </svg><svg viewBox="259.117045741251 132.75941369539868 42.88295425874901 21.7302110869106" x="259.117045741251" y="132.75941369539868" width="42.88295425874901" height="21.7302110869106">
+        <text y="0.32em" transform="translate(280.5585228706255,143.62451923885396)">Property</text>
+      </svg><svg viewBox="215.40883105265365 70.46736135516194 62.59957577140429 58.29205234023674" x="215.40883105265365" y="70.46736135516194" width="62.59957577140429" height="58.29205234023674">
+        <text y="0.32em" transform="translate(246.7086189383558,99.6133875252803)">Shapes</text>
+      </svg><svg viewBox="282.00840682405794 70.46736135516194 19.991593175942057 58.29205234023674" x="282.00840682405794" y="70.46736135516194" width="19.991593175942057" height="58.29205234023674">
+        <text y="0.32em" transform="translate(292.00420341202897,99.6133875252803)">Sort</text>
+      </svg><svg viewBox="215.40883105265365 2 16.781803687077968 64.46736135516194" x="215.40883105265365" y="2" width="16.781803687077968" height="64.46736135516194">
+        <text y="0.32em" transform="translate(223.79973289619267,34.23368067758097)">Stats</text>
+      </svg><svg viewBox="236.19063473973162 2 65.80936526026838 64.46736135516194" x="236.19063473973162" y="2" width="65.80936526026838" height="64.46736135516194">
+        <text y="0.32em" transform="translate(269.09531736986577,34.23368067758097)">Strings</text>
+      </svg></g>
+    <g pointer-events="none" transform="translate(316,0)"><svg viewBox="38.26725383026008 299.6225735526119 59.38706678296946 80.19232439463633" x="38.26725383026008" y="299.6225735526119" width="59.38706678296946" height="80.19232439463633">
+        <text y="0.32em" transform="translate(67.96078722174481,339.7187357499301)">Axis</text>
+      </svg><svg viewBox="101.65432061322954 370.24466721013255 6.426102950824713 9.570230737115708" x="101.65432061322954" y="370.24466721013255" width="6.426102950824713" height="9.570230737115708">
+        <text y="0.32em" transform="translate(104.8673720886419,375.0297825786904)">AxisGridLine</text>
+      </svg><svg viewBox="112.08042356405426 370.24466721013255 6.170247663687917 9.570230737115708" x="112.08042356405426" y="370.24466721013255" width="6.170247663687917" height="9.570230737115708">
+        <text y="0.32em" transform="translate(115.16554739589822,375.0297825786904)">AxisLabel</text>
+      </svg><svg viewBox="101.65432061322954 299.6225735526119 16.59635061451263 66.62209365752062" x="101.65432061322954" y="299.6225735526119" width="16.59635061451263" height="66.62209365752062">
+        <text y="0.32em" transform="translate(109.95249592048587,332.93362038137224)">CartesianAxes</text>
+      </svg><svg viewBox="34.91142245745375 278.31050175054844 17.769260461102235 17.312071802063485" x="34.91142245745375" y="278.31050175054844" width="17.769260461102235" height="17.312071802063485">
+        <text y="0.32em" transform="translate(43.79605268800486,286.9665376515802)">AnchorControl</text>
+      </svg><svg viewBox="34.91142245745375 240.1919972738923 17.769260461102235 34.11850447665614" x="34.91142245745375" y="240.1919972738923" width="17.769260461102235" height="34.11850447665614">
+        <text y="0.32em" transform="translate(43.79605268800486,257.2512495122204)">ClickControl</text>
+      </svg><svg viewBox="56.68068291855599 286.2610631330195 17.973735232290053 9.361510419592435" x="56.68068291855599" y="286.2610631330195" width="17.973735232290053" height="9.361510419592435">
+        <text y="0.32em" transform="translate(65.66755053470101,290.94181834281574)">Control</text>
+      </svg><svg viewBox="56.68068291855599 240.1919972738923 17.973735232290053 42.06906585912719" x="56.68068291855599" y="240.1919972738923" width="17.973735232290053" height="42.06906585912719">
+        <text y="0.32em" transform="translate(65.66755053470101,261.2265302034559)">ControlList</text>
+      </svg><svg viewBox="34.91142245745375 215.31218515731538 19.1044964243503 20.879812116576915" x="34.91142245745375" y="215.31218515731538" width="19.1044964243503" height="20.879812116576915">
+        <text y="0.32em" transform="translate(44.463670669628904,225.75209121560385)">DragControl</text>
+      </svg><svg viewBox="34.91142245745375 188.71360912328518 19.1044964243503 22.598576034030202" x="34.91142245745375" y="188.71360912328518" width="19.1044964243503" height="22.598576034030202">
+        <text y="0.32em" transform="translate(44.463670669628904,200.01289714030025)">ExpandControl</text>
+      </svg><svg viewBox="58.015918881804055 188.71360912328518 16.638499269041986 47.47838815060712" x="58.015918881804055" y="188.71360912328518" width="16.638499269041986" height="47.47838815060712">
+        <text y="0.32em" transform="translate(66.33516851632504,212.45280319858875)">HoverControl</text>
+      </svg><svg viewBox="78.65441815084604 269.8321529391338 1.5578848951832356 25.790420613478148" x="78.65441815084604" y="269.8321529391338" width="1.5578848951832356" height="25.790420613478148">
+        <text y="0.32em" transform="translate(79.43336059843766,282.7273632458729)">IControl</text>
+      </svg><svg viewBox="84.21230304602928 269.8321529391338 34.0383681817129 25.790420613478148" x="84.21230304602928" y="269.8321529391338" width="34.0383681817129" height="25.790420613478148">
+        <text y="0.32em" transform="translate(101.23148713688572,282.7273632458729)">PanZoomControl</text>
+      </svg><svg viewBox="78.65441815084604 230.6989387598246 39.59625307689613 35.133214179309164" x="78.65441815084604" y="230.6989387598246" width="39.59625307689613" height="35.133214179309164">
+        <text y="0.32em" transform="translate(98.4525446892941,248.26554584947917)">SelectionControl</text>
+      </svg><svg viewBox="78.65441815084604 188.71360912328518 39.59625307689613 37.98532963653943" x="78.65441815084604" y="188.71360912328518" width="39.59625307689613" height="37.98532963653943">
+        <text y="0.32em" transform="translate(98.4525446892941,207.7062739415549)">TooltipControl</text>
+      </svg><svg viewBox="122.25067122774217 288.57460085551463 42.80862783830443 91.24029709173362" x="122.25067122774217" y="288.57460085551463" width="42.80862783830443" height="91.24029709173362">
+        <text y="0.32em" transform="translate(143.6549851468944,334.19474940138144)">Data</text>
+      </svg><svg viewBox="169.0592990660466 288.57460085551463 41.086114080236 91.24029709173362" x="169.0592990660466" y="288.57460085551463" width="41.086114080236" height="91.24029709173362">
+        <text y="0.32em" transform="translate(189.60235610616462,334.19474940138144)">DataList</text>
+      </svg><svg viewBox="214.1454131462826 311.606704936087 27.100942854013596 68.20819301116126" x="214.1454131462826" y="311.606704936087" width="27.100942854013596" height="68.20819301116126">
+        <text y="0.32em" transform="translate(227.69588457328942,345.7108014416676)">DataSprite</text>
+      </svg><svg viewBox="214.1454131462826 288.57460085551463 27.100942854013596 19.032104080572367" x="214.1454131462826" y="288.57460085551463" width="27.100942854013596" height="19.032104080572367">
+        <text y="0.32em" transform="translate(227.69588457328942,298.0906528958008)">EdgeSprite</text>
+      </svg><svg viewBox="122.25067122774217 220.05869792960326 57.38593132877298 64.51590292591138" x="122.25067122774217" y="220.05869792960326" width="57.38593132877298" height="64.51590292591138">
+        <text y="0.32em" transform="translate(150.94363689212867,252.31664939255896)">NodeSprite</text>
+      </svg><svg viewBox="122.25067122774217 188.71360912328518 0.8322296230386286 27.345088806318074" x="122.25067122774217" y="188.71360912328518" width="0.8322296230386286" height="27.345088806318074">
+        <text y="0.32em" transform="translate(122.66678603926148,202.38615352644422)">ArrowType</text>
+      </svg><svg viewBox="127.0829008507808 188.71360912328518 34.55399250816923 27.345088806318074" x="127.0829008507808" y="188.71360912328518" width="34.55399250816923" height="27.345088806318074">
+        <text y="0.32em" transform="translate(144.3598971048654,202.38615352644422)">EdgeRenderer</text>
+      </svg><svg viewBox="165.63689335895003 215.8029993339762 13.999709197565124 0.2556985956270523" x="165.63689335895003" y="215.8029993339762" width="13.999709197565124" height="0.2556985956270523">
+        <text y="0.32em" transform="translate(172.6367479577326,215.93084863178973)">IRenderer</text>
+      </svg><svg viewBox="165.63689335895003 188.71360912328518 13.999709197565124 23.089390210691022" x="165.63689335895003" y="188.71360912328518" width="13.999709197565124" height="23.089390210691022">
+        <text y="0.32em" transform="translate(172.6367479577326,200.2583042286307)">ShapeRenderer</text>
+      </svg><svg viewBox="183.63660255651516 248.86196394168542 57.609753443781045 35.712636913829215" x="183.63660255651516" y="248.86196394168542" width="57.609753443781045" height="35.712636913829215">
+        <text y="0.32em" transform="translate(212.4414792784057,266.7182823986)">ScaleBinding</text>
+      </svg><svg viewBox="183.63660255651516 188.71360912328518 21.7846757546819 56.148354818400236" x="183.63660255651516" y="188.71360912328518" width="21.7846757546819" height="56.148354818400236">
+        <text y="0.32em" transform="translate(194.5289404338561,216.78778653248528)">Tree</text>
+      </svg><svg viewBox="209.42127831119706 188.71360912328518 31.825077689099146 56.148354818400236" x="209.42127831119706" y="188.71360912328518" width="31.825077689099146" height="56.148354818400236">
+        <text y="0.32em" transform="translate(225.33381715574663,216.78778653248528)">TreeBuilder</text>
+      </svg><svg viewBox="245.2463560002962 352.0146669539715 11.78363406464473 27.800230993276728" x="245.2463560002962" y="352.0146669539715" width="11.78363406464473" height="27.800230993276728">
+        <text y="0.32em" transform="translate(251.13817303261857,365.9147824506099)">DataEvent</text>
+      </svg><svg viewBox="261.02999006494093 352.0146669539715 8.8288940949123 27.800230993276728" x="261.02999006494093" y="352.0146669539715" width="8.8288940949123" height="27.800230993276728">
+        <text y="0.32em" transform="translate(265.4444371123971,365.9147824506099)">SelectionEvent</text>
+      </svg><svg viewBox="273.85888415985323 364.61965560531644 15.229693382693029 15.195242341931817" x="273.85888415985323" y="364.61965560531644" width="15.229693382693029" height="15.195242341931817">
+        <text y="0.32em" transform="translate(281.4737308511998,372.21727677628235)">TooltipEvent</text>
+      </svg><svg viewBox="273.85888415985323 352.0146669539715 15.229693382693029 8.604988651344911" x="273.85888415985323" y="352.0146669539715" width="15.229693382693029" height="8.604988651344911">
+        <text y="0.32em" transform="translate(281.4737308511998,356.317161279644)">VisualizationEvent</text>
+      </svg><svg viewBox="245.2463560002962 257.4031966517665 43.84222154225006 90.61147030220502" x="245.2463560002962" y="257.4031966517665" width="43.84222154225006" height="90.61147030220502">
+        <text y="0.32em" transform="translate(267.16746677142123,302.708931802869)">Legend</text>
+      </svg><svg viewBox="245.2463560002962 236.47518840715392 43.84222154225006 16.928008244612585" x="245.2463560002962" y="236.47518840715392" width="43.84222154225006" height="16.928008244612585">
+        <text y="0.32em" transform="translate(267.16746677142123,244.93919252946023)">LegendItem</text>
+      </svg><svg viewBox="245.2463560002962 188.71360912328518 43.84222154225006 43.76157928386874" x="245.2463560002962" y="188.71360912328518" width="43.84222154225006" height="43.76157928386874">
+        <text y="0.32em" transform="translate(267.16746677142123,210.59439876521955)">LegendRange</text>
+      </svg><svg viewBox="34.91142245745375 162.77582357525424 33.321661826233864 21.937785548030945" x="34.91142245745375" y="162.77582357525424" width="33.321661826233864" height="21.937785548030945">
+        <text y="0.32em" transform="translate(51.572253370570685,173.7447163492697)">BifocalDistortion</text>
+      </svg><svg viewBox="34.91142245745375 126.06405985629725 33.321661826233864 32.71176371895699" x="34.91142245745375" y="126.06405985629725" width="33.321661826233864" height="32.71176371895699">
+        <text y="0.32em" transform="translate(51.572253370570685,142.41994171577574)">Distortion</text>
+      </svg><svg viewBox="34.91142245745375 106.03946146413894 33.321661826233864 16.02459839215831" x="34.91142245745375" y="106.03946146413894" width="33.321661826233864" height="16.02459839215831">
+        <text y="0.32em" transform="translate(51.572253370570685,114.0517606602181)">FisheyeDistortion</text>
+      </svg><svg viewBox="72.23308428368762 148.53920119520842 13.17128072003419 36.17440792807676" x="72.23308428368762" y="148.53920119520842" width="13.17128072003419" height="36.17440792807676">
+        <text y="0.32em" transform="translate(78.81872464370471,166.62640515924681)">ColorEncoder</text>
+      </svg><svg viewBox="89.40436500372181 148.53920119520842 17.929977893469257 36.17440792807676" x="89.40436500372181" y="148.53920119520842" width="17.929977893469257" height="36.17440792807676">
+        <text y="0.32em" transform="translate(98.36935395045643,166.62640515924681)">Encoder</text>
+      </svg><svg viewBox="72.23308428368762 106.03946146413894 17.128363560025747 38.49973973106948" x="72.23308428368762" y="106.03946146413894" width="17.128363560025747" height="38.49973973106948">
+        <text y="0.32em" transform="translate(80.79726606370049,125.28933132967369)">PropertyEncoder</text>
+      </svg><svg viewBox="93.36144784371336 128.1344966084165 13.9728950534777 16.404704586791922" x="93.36144784371336" y="128.1344966084165" width="13.9728950534777" height="16.404704586791922">
+        <text y="0.32em" transform="translate(100.3478953704522,136.33684890181246)">ShapeEncoder</text>
+      </svg><svg viewBox="93.36144784371336 106.03946146413894 13.9728950534777 18.09503514427756" x="93.36144784371336" y="106.03946146413894" width="13.9728950534777" height="18.09503514427756">
+        <text y="0.32em" transform="translate(100.3478953704522,115.08697903627771)">SizeEncoder</text>
+      </svg><svg viewBox="34.91142245745375 72.0403794573076 29.310545987408986 29.999082006831344" x="34.91142245745375" y="72.0403794573076" width="29.310545987408986" height="29.999082006831344">
+        <text y="0.32em" transform="translate(49.56669545115825,87.03992046072324)">FisheyeTreeFilter</text>
+      </svg><svg viewBox="34.91142245745375 28.56272601534715 11.796805221778463 39.47765344196044" x="34.91142245745375" y="28.56272601534715" width="11.796805221778463" height="39.47765344196044">
+        <text y="0.32em" transform="translate(40.80982506834299,48.301552736327395)">GraphDistanceFilter</text>
+      </svg><svg viewBox="50.708227679232216 28.56272601534715 13.513740765630523 39.47765344196044" x="50.708227679232216" y="28.56272601534715" width="13.513740765630523" height="39.47765344196044">
+        <text y="0.32em" transform="translate(57.46509806204748,48.301552736327395)">VisibilityFilter</text>
+      </svg><svg viewBox="34.91142245745375 20.185102052751745 29.310545987408986 4.377623962595404" x="34.91142245745375" y="20.185102052751745" width="29.310545987408986" height="4.377623962595404">
+        <text y="0.32em" transform="translate(49.56669545115825,22.37391403404945)">IOperator</text>
+      </svg><svg viewBox="68.22196844486274 55.92713208032171 39.112374452328325 46.112329383817226" x="68.22196844486274" y="55.92713208032171" width="39.112374452328325" height="46.112329383817226">
+        <text y="0.32em" transform="translate(87.7781556710269,78.98329677223033)">Labeler</text>
+      </svg><svg viewBox="68.22196844486274 20.185102052751745 19.67203886630449 31.742030027569967" x="68.22196844486274" y="20.185102052751745" width="19.67203886630449" height="31.742030027569967">
+        <text y="0.32em" transform="translate(78.05798787801498,36.05611706653673)">RadialLabeler</text>
+      </svg><svg viewBox="91.89400731116723 20.185102052751745 15.440335586023835 31.742030027569967" x="91.89400731116723" y="20.185102052751745" width="15.440335586023835" height="31.742030027569967">
+        <text y="0.32em" transform="translate(99.61417510417915,36.05611706653673)">StackedAreaLabeler</text>
+      </svg><svg viewBox="111.33434289719106 148.3240472219936 32.131400154330194 36.389561901291586" x="111.33434289719106" y="148.3240472219936" width="32.131400154330194" height="36.389561901291586">
+        <text y="0.32em" transform="translate(127.40004297435617,166.5188281726394)">AxisLayout</text>
+      </svg><svg viewBox="111.33434289719106 125.9401219868837 32.131400154330194 18.3839252351099" x="111.33434289719106" y="125.9401219868837" width="32.131400154330194" height="18.3839252351099">
+        <text y="0.32em" transform="translate(127.40004297435617,135.13208460443863)">BundledEdgeRouter</text>
+      </svg><svg viewBox="147.46574305152126 125.9401219868837 28.20783153826011 58.773487136401485" x="147.46574305152126" y="125.9401219868837" width="28.20783153826011" height="58.773487136401485">
+        <text y="0.32em" transform="translate(161.5696588206513,155.32686555508442)">CircleLayout</text>
+      </svg><svg viewBox="111.33434289719106 87.82640019527928 64.3392316925903 34.11372179160442" x="111.33434289719106" y="87.82640019527928" width="64.3392316925903" height="34.11372179160442">
+        <text y="0.32em" transform="translate(143.50395874348624,104.88326109108148)">CirclePackingLayout</text>
+      </svg><svg viewBox="111.33434289719106 63.077966850459745 38.552416166111996 20.74843334481953" x="111.33434289719106" y="63.077966850459745" width="38.552416166111996" height="20.74843334481953">
+        <text y="0.32em" transform="translate(130.61055098024707,73.4521835228695)">DendrogramLayout</text>
+      </svg><svg viewBox="111.33434289719106 20.185102052751745 38.552416166111996 38.892864797708" x="111.33434289719106" y="20.185102052751745" width="38.552416166111996" height="38.892864797708">
+        <text y="0.32em" transform="translate(130.61055098024707,39.631534451605745)">ForceDirectedLayout</text>
+      </svg><svg viewBox="153.88675906330306 46.89491547703422 21.786815526478307 36.93148471824506" x="153.88675906330306" y="46.89491547703422" width="21.786815526478307" height="36.93148471824506">
+        <text y="0.32em" transform="translate(164.78016682654223,65.36065783615675)">IcicleTreeLayout</text>
+      </svg><svg viewBox="153.88675906330306 20.185102052751745 21.786815526478307 22.709813424282473" x="153.88675906330306" y="20.185102052751745" width="21.786815526478307" height="22.709813424282473">
+        <text y="0.32em" transform="translate(164.78016682654223,31.54000876489298)">IndentedTreeLayout</text>
+      </svg><svg viewBox="179.67357458978137 116.78209214408079 19.775176710301395 67.93151697920439" x="179.67357458978137" y="116.78209214408079" width="19.775176710301395" height="67.93151697920439">
+        <text y="0.32em" transform="translate(189.56116294493205,150.74785063368302)">Layout</text>
+      </svg><svg viewBox="203.44875130008276 129.36249849869478 43.05560288380684 55.35111062459039" x="203.44875130008276" y="129.36249849869478" width="43.05560288380684" height="55.35111062459039">
+        <text y="0.32em" transform="translate(224.97655274198618,157.03805381099)">NodeLinkTreeLayout</text>
+      </svg><svg viewBox="203.44875130008276 116.78209214408079 43.05560288380684 8.580406354613999" x="203.44875130008276" y="116.78209214408079" width="43.05560288380684" height="8.580406354613999">
+        <text y="0.32em" transform="translate(224.97655274198618,121.07229532138781)">PieLayout</text>
+      </svg><svg viewBox="179.67357458978137 26.543051922585057 25.69366459482785 86.23904022149574" x="179.67357458978137" y="26.543051922585057" width="25.69366459482785" height="86.23904022149574">
+        <text y="0.32em" transform="translate(192.5204068871953,69.6625720333329)">RadialTreeLayout</text>
+      </svg><svg viewBox="179.67357458978137 20.185102052751745 25.69366459482785 2.3579498698333126" x="179.67357458978137" y="20.185102052751745" width="25.69366459482785" height="2.3579498698333126">
+        <text y="0.32em" transform="translate(192.5204068871953,21.3640769876684)">RandomLayout</text>
+      </svg><svg viewBox="209.36723918460922 68.66822437305564 37.137114999280385 44.113867771025156" x="209.36723918460922" y="68.66822437305564" width="37.137114999280385" height="44.113867771025156">
+        <text y="0.32em" transform="translate(227.9357966842494,90.72515825856824)">StackedAreaLayout</text>
+      </svg><svg viewBox="209.36723918460922 20.185102052751745 37.137114999280385 44.48312232030389" x="209.36723918460922" y="20.185102052751745" width="37.137114999280385" height="44.48312232030389">
+        <text y="0.32em" transform="translate(227.9357966842494,42.42666321290369)">TreeMapLayout</text>
+      </svg><svg viewBox="250.5043541838896 163.33035346119783 17.28696119271021 21.38325566208735" x="250.5043541838896" y="163.33035346119783" width="17.28696119271021" height="21.38325566208735">
+        <text y="0.32em" transform="translate(259.1478347802447,174.02198129224155)">Operator</text>
+      </svg><svg viewBox="250.5043541838896 109.83182907781051 17.28696119271021 49.49852438338732" x="250.5043541838896" y="109.83182907781051" width="17.28696119271021" height="49.49852438338732">
+        <text y="0.32em" transform="translate(259.1478347802447,134.58109126950416)">OperatorList</text>
+      </svg><svg viewBox="250.5043541838896 67.11863983116548 17.28696119271021 38.71318924664503" x="250.5043541838896" y="67.11863983116548" width="17.28696119271021" height="38.71318924664503">
+        <text y="0.32em" transform="translate(259.1478347802447,86.47523445448799)">OperatorSequence</text>
+      </svg><svg viewBox="250.5043541838896 40.807723018375384 17.28696119271021 22.310916812790097" x="250.5043541838896" y="40.807723018375384" width="17.28696119271021" height="22.310916812790097">
+        <text y="0.32em" transform="translate(259.1478347802447,51.96318142477043)">OperatorSwitch</text>
+      </svg><svg viewBox="250.5043541838896 20.185102052751745 17.28696119271021 16.62262096562364" x="250.5043541838896" y="20.185102052751745" width="17.28696119271021" height="16.62262096562364">
+        <text y="0.32em" transform="translate(259.1478347802447,28.496412535563564)">SortOperator</text>
+      </svg><svg viewBox="271.7913153765998 20.185102052751745 17.29726216594645 164.52850707053344" x="271.7913153765998" y="20.185102052751745" width="17.29726216594645" height="164.52850707053344">
+        <text y="0.32em" transform="translate(280.439946459573,102.44935558801846)">Visualization</text>
+      </svg></g>
+  </g>
+  <g aria-label="frame" transform="translate(0.5,0.5)">
+    <rect fill="none" stroke="currentColor" x="20" y="0" width="284" height="400" transform="translate(1,0)"></rect>
+    <rect fill="none" stroke="currentColor" x="20" y="0" width="284" height="400" transform="translate(316,0)"></rect>
+  </g>
+</svg>
