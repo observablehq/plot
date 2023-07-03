@@ -43,6 +43,10 @@ export class Text extends Mark {
     const {
       x,
       y,
+      x1,
+      x2,
+      y1,
+      y2,
       text = isIterable(data) && isTextual(data) ? identity : indexOf,
       frameAnchor,
       textAnchor = /right$/i.test(frameAnchor) ? "end" : /left$/i.test(frameAnchor) ? "start" : "middle",
@@ -65,6 +69,10 @@ export class Text extends Mark {
       {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},
+        x1: {value: x1, scale: "x", optional: true},
+        y1: {value: y1, scale: "y", optional: true},
+        x2: {value: x2, scale: "x", optional: true},
+        y2: {value: y2, scale: "y", optional: true},
         fontSize: {value: vfontSize, optional: true},
         rotate: {value: numberChannel(vrotate), optional: true},
         text: {value: text, filter: nonempty, optional: true}
@@ -94,6 +102,12 @@ export class Text extends Mark {
     const {x: X, y: Y, rotate: R, text: T, title: TL, fontSize: FS} = channels;
     const {rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
+    let clipBox = (s) => s;
+    if (this.clip === "box") {
+      if (!channels.x1 || !channels.y1 || !channels.x2 || !channels.y2)
+        throw new Error("box clipping requires x1, y1, x2, and y2 channels.");
+      clipBox = (selection) => applyClip(selection, channels, 2); // TODO configurable clipInset
+    }
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this, T, dimensions)
@@ -114,9 +128,31 @@ export class Text extends Mark {
           )
           .call(applyAttr, "font-size", FS && ((i) => FS[i]))
           .call(applyChannelStyles, this, channels)
+          .call(clipBox)
       )
       .node();
   }
+}
+
+function applyClip(selection, {x1: X1, x2: X2, y1: Y1, y2: Y2}, clipInset) {
+  return selection.each(function (i) {
+    const g = this.ownerDocument.createElementNS(namespaces.svg, "svg");
+    const x = Math.min(X1[i], X2[i]) + clipInset;
+    const y = Math.min(Y1[i], Y2[i]) + clipInset;
+    const w = Math.abs(X1[i] - X2[i]) - 2 * clipInset;
+    const h = Math.abs(Y1[i] - Y2[i]) - 2 * clipInset;
+    if (w <= 0 || h <= 0) {
+      this.parentElement.removeChild(this);
+    } else {
+      g.setAttribute("viewBox", `${x} ${y} ${w} ${h}`);
+      g.setAttribute("x", `${x}`);
+      g.setAttribute("y", `${y}`);
+      g.setAttribute("width", `${w}`);
+      g.setAttribute("height", `${h}`);
+      this.replaceWith(g);
+      g.appendChild(this);
+    }
+  });
 }
 
 export function maybeTextOverflow(textOverflow) {

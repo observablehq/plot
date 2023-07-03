@@ -198,6 +198,8 @@ export function maybeNodeValue(value) {
       return nodeName;
     case "node:path":
       return nodePath;
+    case "node:branch":
+      return nodeBranch;
     case "node:internal":
       return nodeInternal;
     case "node:external":
@@ -206,6 +208,10 @@ export function maybeNodeValue(value) {
       return nodeDepth;
     case "node:height":
       return nodeHeight;
+    case "node:size":
+      return nodeSize;
+    case "node:title":
+      return nodeTitle;
   }
   throw new Error(`invalid node value: ${value}`);
 }
@@ -244,6 +250,14 @@ function nodePath(node) {
   return node.id;
 }
 
+function nodeAncestor(node, i) {
+  return nameof(node.ancestors().at(i)?.id ?? "");
+}
+
+function nodeBranch(node) {
+  return nodeAncestor(node, -2);
+}
+
 function nodeName(node) {
   return nameof(node.id);
 }
@@ -254,6 +268,14 @@ function nodeDepth(node) {
 
 function nodeHeight(node) {
   return node.height;
+}
+
+function nodeSize(node) {
+  return node.size;
+}
+
+function nodeTitle(node) {
+  return `${nameof(node.id)}\n${node.data.size}`;
 }
 
 function nodeInternal(node) {

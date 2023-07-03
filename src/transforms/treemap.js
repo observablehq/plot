@@ -1,5 +1,5 @@
-import {stratify, treemap, treemapBinary} from "d3";
-import {column, identity, valueof} from "../options.js";
+import {max, stratify, treemap, treemapBinary} from "d3";
+import {column, identity, mid, valueof} from "../options.js";
 import {basic} from "./basic.js";
 import {maybeNodeValue, maybeTreeSort, normalizer} from "./tree.js";
 import {output_evaluate, output_setValues, output_values, treeOutputs} from "./tree.js";
@@ -28,6 +28,8 @@ export function treemapNode(options = {}) {
     y1: Y1,
     x2: X2,
     y2: Y2,
+    x: mid(X1, X2),
+    y: mid(Y1, Y2),
     frameAnchor,
     ...basic(remainingOptions, (data, facets) => {
       const P = normalize(valueof(data, path));
@@ -41,11 +43,13 @@ export function treemapNode(options = {}) {
       const rootof = stratify().path((i) => P[i]);
       const layout = treemap().tile(treeTile);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
+      const sums = [];
       for (const facet of facets) {
         const treeFacet = [];
         const root = rootof(facet.filter((i) => P[i] != null)).each((node) => (node.data = data[node.data]));
         if (value) root.sum(value);
         else root.count();
+        sums.push(root.value);
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.leaves()) {
@@ -59,6 +63,22 @@ export function treemapNode(options = {}) {
         }
         treeFacets.push(treeFacet);
       }
+      // normalize facets
+      if (facets.length > 1) {
+        const m = max(sums);
+        for (let i = 0; i < facets.length; ++i) {
+          const r = Math.sqrt(sums[i] / m);
+          if (r < 1) {
+            for (const j of treeFacets[i]) {
+              X1[j] = 0.5 + r * (X1[j] - 0.5); // centered
+              X2[j] = 0.5 + r * (X2[j] - 0.5);
+              Y1[j] = 0.5 + r * (Y1[j] - 0.5);
+              Y2[j] = 0.5 + r * (Y2[j] - 0.5);
+            }
+          }
+        }
+      }
+
       return {data: treeData, facets: treeFacets};
     }),
     ...Object.fromEntries(outputs)
