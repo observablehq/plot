@@ -1,5 +1,5 @@
 import {stratify, treemap, treemapBinary} from "d3";
-import {column, identity, valueof} from "../options.js";
+import {column, identity, mid, valueof} from "../options.js";
 import {basic} from "./basic.js";
 import {maybeNodeValue, maybeTreeSort, normalizer} from "./tree.js";
 import {output_evaluate, output_setValues, output_values, treeOutputs} from "./tree.js";
@@ -28,6 +28,8 @@ export function treemapNode(options = {}) {
     y1: Y1,
     x2: X2,
     y2: Y2,
+    x: mid(X1, X2),
+    y: mid(Y1, Y2),
     frameAnchor,
     ...basic(remainingOptions, (data, facets) => {
       const P = normalize(valueof(data, path));
