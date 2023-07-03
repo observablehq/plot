@@ -311,7 +311,7 @@ export function* groupIndex(I, position, mark, channels) {
 export function maybeClip(clip) {
   if (clip === true) clip = "frame";
   else if (clip === false) clip = null;
-  return maybeKeyword(clip, "clip", ["frame", "sphere"]);
+  return maybeKeyword(clip, "clip", ["frame", "sphere", "box"]);
 }
 
 // Note: may mutate selection.node!
@@ -350,6 +350,10 @@ function applyClip(selection, mark, dimensions, context) {
         .append("path")
         .attr("d", geoPath(projection)({type: "Sphere"}));
       break;
+    }
+    case "box": {
+      // TODO, see text
+      // console.warn({selection, mark, dimensions, context});
     }
   }
   // Here we’re careful to apply the ARIA attributes to the outer G element when
