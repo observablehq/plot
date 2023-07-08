@@ -84,6 +84,16 @@ export interface ArrowOptions extends MarkOptions {
    * points to a dot.
    */
   insetEnd?: number;
+
+  /**
+   * The sweep order; defaults to null. If set to order-x, the bend angle is
+   * flipped when the ending point is to the left of the starting point—ensuring
+   * all arrows bulge up (down if bend is negative). If set to order-y, the bend
+   * angle is flipped when the ending point is above the starting point—ensuring
+   * all arrows bulge right (left if bend is negative). If set to order, applies
+   * an order-x sweep, and breaks ties with order-y.
+   */
+  sweep?: null | "order-x" | "order-y" | "order";
 }
 
 /**
