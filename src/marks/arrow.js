@@ -53,13 +53,6 @@ export class Arrow extends Mark {
     const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this;
     const sw = SW ? (i) => SW[i] : constant(strokeWidth === undefined ? 1 : strokeWidth);
 
-    // When bending, the offset between the straight line between the two points
-    // and the outgoing tangent from the start point. (Also the negative
-    // incoming tangent to the end point.) This must be within ±π/2. A positive
-    // angle will produce a clockwise curve; a negative angle will produce a
-    // counterclockwise curve; zero will produce a straight line.
-    const bendAngle = bend * radians;
-
     // The angle between the arrow’s shaft and one of the wings; the “head”
     // angle between the wings is twice this value.
     const wingAngle = (headAngle * radians) / 2;
@@ -93,6 +86,23 @@ export class Arrow extends Mark {
             // length of the arrow. (Plot.vector allows arbitrarily large
             // wings, but that’s okay since vectors are usually small.)
             const headLength = Math.min(wingScale * sw(i), lineLength / 3);
+
+            // Maybe flip the bending, if a sweep order is applied.
+            const flip =
+              this.sweep == null
+                ? 1
+                : this.sweep === "order-x"
+                ? descending(x1, x2)
+                : this.sweep === "order-y"
+                ? descending(y1, y2)
+                : descending(x1, x2) || descending(y1, y2); // "order"
+
+            // When bending, the offset between the straight line between the two points
+            // and the outgoing tangent from the start point. (Also the negative
+            // incoming tangent to the end point.) This must be within ±π/2. A positive
+            // angle will produce a clockwise curve; a negative angle will produce a
+            // counterclockwise curve; zero will produce a straight line.
+            const bendAngle = flip * bend * radians;
 
             // The radius of the circle that intersects with the two endpoints
             // and has the specified bend angle.
@@ -142,18 +152,9 @@ export class Arrow extends Mark {
             const x4 = x2 - headLength * Math.cos(rightAngle);
             const y4 = y2 - headLength * Math.sin(rightAngle);
 
-            // Maybe flip the sweep flag.
-            const flip =
-              this.sweep == null
-                ? 1
-                : this.sweep === "order-x"
-                ? descending(x1, x2)
-                : this.sweep === "order-y"
-                ? descending(y1, y2)
-                : descending(x1, x2) || descending(y1, y2); // "order"
             // If the radius is very large (or even infinite, as when the bend
             // angle is zero), then render a straight line.
-            const a = r < 1e5 ? `A${r},${r} 0,0,${flip * bendAngle > 0 ? 1 : 0} ` : `L`;
+            const a = r < 1e5 ? `A${r},${r} 0,0,${bendAngle > 0 ? 1 : 0} ` : `L`;
             const h = headLength ? `M${x3},${y3}L${x2},${y2}L${x4},${y4}` : "";
             return `M${x1},${y1}${a}${x2},${y2}${h}`;
           })
