@@ -1,0 +1,430 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="1080" viewBox="0 0 640 1080" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-opacity="0.6" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+    <path d="M100,554A196,196 0,0,1 100,946" stroke="#aaa"></path>
+    <path d="M100,1072A63,63 0,0,0 100,946" stroke="#aaa"></path>
+    <path d="M100,1058A56,56 0,0,0 100,946" stroke="#aaa"></path>
+    <path d="M100,792A217,217 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,792A91,91 0,0,0 100,610" stroke="#aaa"></path>
+    <path d="M100,638A154,154 0,0,1 100,946" stroke="#aaa"></path>
+    <path d="M100,638A140,140 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,568A175,175 0,0,1 100,918" stroke="#aaa"></path>
+    <path d="M100,568A105,105 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,540A203,203 0,0,1 100,946" stroke="#aaa"></path>
+    <path d="M100,540A91,91 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,596A175,175 0,0,1 100,946" stroke="#aaa"></path>
+    <path d="M100,596A119,119 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,1044A28,28 0,0,0 100,988" stroke="#aaa"></path>
+    <path d="M100,876A259,259 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,904A161,161 0,0,0 100,582" stroke="#aaa"></path>
+    <path d="M100,918A280,280 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,918A154,154 0,0,0 100,610" stroke="#aaa"></path>
+    <path d="M100,988A203,203 0,0,0 100,582" stroke="#aaa"></path>
+    <path d="M100,680A161,161 0,0,1 100,1002" stroke="#aaa"></path>
+    <path d="M100,1002A210,210 0,0,0 100,582" stroke="#aaa"></path>
+    <path d="M100,1002A168,168 0,0,0 100,666" stroke="#aaa"></path>
+    <path d="M100,1002A252,252 0,0,0 100,498" stroke="#aaa"></path>
+    <path d="M100,1002A322,322 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,1002A154,154 0,0,0 100,694" stroke="#aaa"></path>
+    <path d="M100,1002A140,140 0,0,0 100,722" stroke="#aaa"></path>
+    <path d="M100,1002A175,175 0,0,0 100,652" stroke="#aaa"></path>
+    <path d="M100,1002A147,147 0,0,0 100,708" stroke="#aaa"></path>
+    <path d="M100,1002A126,126 0,0,0 100,750" stroke="#aaa"></path>
+    <path d="M100,778A63,63 0,0,0 100,652" stroke="#aaa"></path>
+    <path d="M100,750A196,196 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,736A56,56 0,0,0 100,624" stroke="#aaa"></path>
+    <path d="M100,708A175,175 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,946A294,294 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,946A168,168 0,0,0 100,610" stroke="#aaa"></path>
+    <path d="M100,946A140,140 0,0,0 100,666" stroke="#aaa"></path>
+    <path d="M100,946A49,49 0,0,0 100,848" stroke="#aaa"></path>
+    <path d="M100,36A161,161 0,0,1 100,358" stroke="#aaa"></path>
+    <path d="M100,806A98,98 0,0,0 100,610" stroke="#aaa"></path>
+    <path d="M100,806A224,224 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,820A77,77 0,0,0 100,666" stroke="#aaa"></path>
+    <path d="M100,372A119,119 0,0,1 100,610" stroke="#aaa"></path>
+    <path d="M100,344A133,133 0,0,1 100,610" stroke="#aaa"></path>
+    <path d="M100,344A42,42 0,0,1 100,428" stroke="#aaa"></path>
+    <path d="M100,344A70,70 0,0,1 100,484" stroke="#aaa"></path>
+    <path d="M100,190A210,210 0,0,1 100,610" stroke="#aaa"></path>
+    <path d="M100,190A119,119 0,0,1 100,428" stroke="#aaa"></path>
+    <path d="M100,8A301,301 0,0,1 100,610" stroke="#aaa"></path>
+    <path d="M100,8A175,175 0,0,1 100,358" stroke="#aaa"></path>
+    <path d="M100,610A42,42 0,0,1 100,694" stroke="#aaa"></path>
+    <path d="M100,610A91,91 0,0,0 100,428" stroke="#aaa"></path>
+    <path d="M100,610A126,126 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,694A14,14 0,0,0 100,666" stroke="#aaa"></path>
+    <path d="M100,694A98,98 0,0,0 100,498" stroke="#aaa"></path>
+    <path d="M100,694A168,168 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,694A35,35 0,0,0 100,624" stroke="#aaa"></path>
+    <path d="M100,666A154,154 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,666A119,119 0,0,0 100,428" stroke="#aaa"></path>
+    <path d="M100,624A133,133 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,624A98,98 0,0,0 100,428" stroke="#aaa"></path>
+    <path d="M100,428A35,35 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,470A56,56 0,0,0 100,358" stroke="#aaa"></path>
+    <path d="M100,358A105,105 0,0,0 100,148" stroke="#aaa"></path>
+    <path d="M100,358A119,119 0,0,0 100,120" stroke="#aaa"></path>
+    <path d="M100,358A112,112 0,0,0 100,134" stroke="#aaa"></path>
+    <path d="M100,1072A7,7 0,0,0 100,1058" stroke="#1f77b4"></path>
+    <path d="M100,1016A49,49 0,0,0 100,918" stroke="#bcbd22"></path>
+    <path d="M100,1016A35,35 0,0,0 100,946" stroke="#bcbd22"></path>
+    <path d="M100,1016A56,56 0,0,0 100,904" stroke="#bcbd22"></path>
+    <path d="M100,1016A77,77 0,0,0 100,862" stroke="#bcbd22"></path>
+    <path d="M100,1016A28,28 0,0,0 100,960" stroke="#bcbd22"></path>
+    <path d="M100,1016A21,21 0,0,0 100,974" stroke="#bcbd22"></path>
+    <path d="M100,1016A70,70 0,0,0 100,876" stroke="#bcbd22"></path>
+    <path d="M100,960A35,35 0,0,1 100,1030" stroke="#bcbd22"></path>
+    <path d="M100,960A14,14 0,0,0 100,932" stroke="#bcbd22"></path>
+    <path d="M100,960A49,49 0,0,0 100,862" stroke="#bcbd22"></path>
+    <path d="M100,960A7,7 0,0,0 100,946" stroke="#bcbd22"></path>
+    <path d="M100,960A7,7 0,0,1 100,974" stroke="#bcbd22"></path>
+    <path d="M100,960A28,28 0,0,0 100,904" stroke="#bcbd22"></path>
+    <path d="M100,960A35,35 0,0,0 100,890" stroke="#bcbd22"></path>
+    <path d="M100,960A21,21 0,0,0 100,918" stroke="#bcbd22"></path>
+    <path d="M100,960A42,42 0,0,0 100,876" stroke="#bcbd22"></path>
+    <path d="M100,974A14,14 0,0,1 100,1002" stroke="#bcbd22"></path>
+    <path d="M100,974A7,7 0,0,1 100,988" stroke="#bcbd22"></path>
+    <path d="M100,974A42,42 0,0,0 100,890" stroke="#bcbd22"></path>
+    <path d="M100,974A28,28 0,0,1 100,1030" stroke="#bcbd22"></path>
+    <path d="M100,974A21,21 0,0,0 100,932" stroke="#bcbd22"></path>
+    <path d="M100,974A28,28 0,0,0 100,918" stroke="#bcbd22"></path>
+    <path d="M100,974A35,35 0,0,0 100,904" stroke="#bcbd22"></path>
+    <path d="M100,974A14,14 0,0,0 100,946" stroke="#bcbd22"></path>
+    <path d="M100,974A49,49 0,0,0 100,876" stroke="#bcbd22"></path>
+    <path d="M100,974A56,56 0,0,0 100,862" stroke="#bcbd22"></path>
+    <path d="M100,876A56,56 0,0,1 100,988" stroke="#bcbd22"></path>
+    <path d="M100,876A7,7 0,0,1 100,890" stroke="#bcbd22"></path>
+    <path d="M100,876A77,77 0,0,1 100,1030" stroke="#bcbd22"></path>
+    <path d="M100,876A28,28 0,0,1 100,932" stroke="#bcbd22"></path>
+    <path d="M100,876A21,21 0,0,1 100,918" stroke="#bcbd22"></path>
+    <path d="M100,876A7,7 0,0,0 100,862" stroke="#bcbd22"></path>
+    <path d="M100,876A35,35 0,0,1 100,946" stroke="#bcbd22"></path>
+    <path d="M100,876A14,14 0,0,1 100,904" stroke="#bcbd22"></path>
+    <path d="M100,876A63,63 0,0,1 100,1002" stroke="#bcbd22"></path>
+    <path d="M100,862A70,70 0,0,1 100,1002" stroke="#bcbd22"></path>
+    <path d="M100,862A84,84 0,0,1 100,1030" stroke="#bcbd22"></path>
+    <path d="M100,862A35,35 0,0,1 100,932" stroke="#bcbd22"></path>
+    <path d="M100,862A28,28 0,0,1 100,918" stroke="#bcbd22"></path>
+    <path d="M100,862A63,63 0,0,1 100,988" stroke="#bcbd22"></path>
+    <path d="M100,862A21,21 0,0,1 100,904" stroke="#bcbd22"></path>
+    <path d="M100,862A42,42 0,0,1 100,946" stroke="#bcbd22"></path>
+    <path d="M100,862A14,14 0,0,1 100,890" stroke="#bcbd22"></path>
+    <path d="M100,904A63,63 0,0,1 100,1030" stroke="#bcbd22"></path>
+    <path d="M100,904A14,14 0,0,1 100,932" stroke="#bcbd22"></path>
+    <path d="M100,904A42,42 0,0,1 100,988" stroke="#bcbd22"></path>
+    <path d="M100,904A21,21 0,0,1 100,946" stroke="#bcbd22"></path>
+    <path d="M100,904A7,7 0,0,0 100,890" stroke="#bcbd22"></path>
+    <path d="M100,904A7,7 0,0,1 100,918" stroke="#bcbd22"></path>
+    <path d="M100,904A49,49 0,0,1 100,1002" stroke="#bcbd22"></path>
+    <path d="M100,932A35,35 0,0,1 100,1002" stroke="#bcbd22"></path>
+    <path d="M100,932A28,28 0,0,1 100,988" stroke="#bcbd22"></path>
+    <path d="M100,932A21,21 0,0,0 100,890" stroke="#bcbd22"></path>
+    <path d="M100,932A49,49 0,0,1 100,1030" stroke="#bcbd22"></path>
+    <path d="M100,932A7,7 0,0,0 100,918" stroke="#bcbd22"></path>
+    <path d="M100,932A7,7 0,0,1 100,946" stroke="#bcbd22"></path>
+    <path d="M100,1030A70,70 0,0,0 100,890" stroke="#bcbd22"></path>
+    <path d="M100,1030A56,56 0,0,0 100,918" stroke="#bcbd22"></path>
+    <path d="M100,1030A42,42 0,0,0 100,946" stroke="#bcbd22"></path>
+    <path d="M100,890A49,49 0,0,1 100,988" stroke="#bcbd22"></path>
+    <path d="M100,890A28,28 0,0,1 100,946" stroke="#bcbd22"></path>
+    <path d="M100,890A56,56 0,0,1 100,1002" stroke="#bcbd22"></path>
+    <path d="M100,890A14,14 0,0,1 100,918" stroke="#bcbd22"></path>
+    <path d="M100,918A35,35 0,0,1 100,988" stroke="#bcbd22"></path>
+    <path d="M100,918A14,14 0,0,1 100,946" stroke="#bcbd22"></path>
+    <path d="M100,918A42,42 0,0,1 100,1002" stroke="#bcbd22"></path>
+    <path d="M100,988A21,21 0,0,0 100,946" stroke="#bcbd22"></path>
+    <path d="M100,988A7,7 0,0,1 100,1002" stroke="#bcbd22"></path>
+    <path d="M100,1002A28,28 0,0,0 100,946" stroke="#bcbd22"></path>
+    <path d="M100,848A7,7 0,0,0 100,834" stroke="#7f7f7f"></path>
+    <path d="M100,792A49,49 0,0,0 100,694" stroke="#8c564b"></path>
+    <path d="M100,680A14,14 0,0,1 100,708" stroke="#8c564b"></path>
+    <path d="M100,722A14,14 0,0,0 100,694" stroke="#8c564b"></path>
+    <path d="M100,722A7,7 0,0,0 100,708" stroke="#8c564b"></path>
+    <path d="M100,722A14,14 0,0,1 100,750" stroke="#8c564b"></path>
+    <path d="M100,764A7,7 0,0,0 100,750" stroke="#8c564b"></path>
+    <path d="M100,778A14,14 0,0,0 100,750" stroke="#8c564b"></path>
+    <path d="M100,750A28,28 0,0,0 100,694" stroke="#8c564b"></path>
+    <path d="M100,750A21,21 0,0,0 100,708" stroke="#8c564b"></path>
+    <path d="M100,736A14,14 0,0,0 100,708" stroke="#8c564b"></path>
+    <path d="M100,708A7,7 0,0,0 100,694" stroke="#8c564b"></path>
+    <path d="M100,806A56,56 0,0,0 100,694" stroke="#8c564b"></path>
+    <path d="M100,554A42,42 0,0,1 100,638" stroke="#9467bd"></path>
+    <path d="M100,554A7,7 0,0,1 100,568" stroke="#9467bd"></path>
+    <path d="M100,554A14,14 0,0,1 100,582" stroke="#9467bd"></path>
+    <path d="M100,554A56,56 0,0,1 100,666" stroke="#9467bd"></path>
+    <path d="M100,554A21,21 0,0,1 100,596" stroke="#9467bd"></path>
+    <path d="M100,554A7,7 0,0,0 100,540" stroke="#9467bd"></path>
+    <path d="M100,638A14,14 0,0,1 100,666" stroke="#9467bd"></path>
+    <path d="M100,638A28,28 0,0,0 100,582" stroke="#9467bd"></path>
+    <path d="M100,638A35,35 0,0,0 100,568" stroke="#9467bd"></path>
+    <path d="M100,638A21,21 0,0,0 100,596" stroke="#9467bd"></path>
+    <path d="M100,638A49,49 0,0,0 100,540" stroke="#9467bd"></path>
+    <path d="M100,638A14,14 0,0,0 100,610" stroke="#9467bd"></path>
+    <path d="M100,568A7,7 0,0,1 100,582" stroke="#9467bd"></path>
+    <path d="M100,568A21,21 0,0,1 100,610" stroke="#9467bd"></path>
+    <path d="M100,568A28,28 0,0,1 100,624" stroke="#9467bd"></path>
+    <path d="M100,568A14,14 0,0,1 100,596" stroke="#9467bd"></path>
+    <path d="M100,568A14,14 0,0,0 100,540" stroke="#9467bd"></path>
+    <path d="M100,568A49,49 0,0,1 100,666" stroke="#9467bd"></path>
+    <path d="M100,540A21,21 0,0,1 100,582" stroke="#9467bd"></path>
+    <path d="M100,540A35,35 0,0,1 100,610" stroke="#9467bd"></path>
+    <path d="M100,540A42,42 0,0,1 100,624" stroke="#9467bd"></path>
+    <path d="M100,540A28,28 0,0,1 100,596" stroke="#9467bd"></path>
+    <path d="M100,540A63,63 0,0,1 100,666" stroke="#9467bd"></path>
+    <path d="M100,596A7,7 0,0,0 100,582" stroke="#9467bd"></path>
+    <path d="M100,596A7,7 0,0,1 100,610" stroke="#9467bd"></path>
+    <path d="M100,596A14,14 0,0,1 100,624" stroke="#9467bd"></path>
+    <path d="M100,596A35,35 0,0,1 100,666" stroke="#9467bd"></path>
+    <path d="M100,526A49,49 0,0,1 100,624" stroke="#9467bd"></path>
+    <path d="M100,526A70,70 0,0,1 100,666" stroke="#9467bd"></path>
+    <path d="M100,526A28,28 0,0,1 100,582" stroke="#9467bd"></path>
+    <path d="M100,582A42,42 0,0,1 100,666" stroke="#9467bd"></path>
+    <path d="M100,582A21,21 0,0,1 100,624" stroke="#9467bd"></path>
+    <path d="M100,652A7,7 0,0,1 100,666" stroke="#9467bd"></path>
+    <path d="M100,610A7,7 0,0,1 100,624" stroke="#9467bd"></path>
+    <path d="M100,610A28,28 0,0,1 100,666" stroke="#9467bd"></path>
+    <path d="M100,666A21,21 0,0,0 100,624" stroke="#9467bd"></path>
+    <path d="M100,484A28,28 0,0,0 100,428" stroke="#d62728"></path>
+    <path d="M100,428A21,21 0,0,1 100,470" stroke="#d62728"></path>
+    <path d="M100,428A42,42 0,0,1 100,512" stroke="#d62728"></path>
+    <path d="M100,428A14,14 0,0,0 100,400" stroke="#d62728"></path>
+    <path d="M100,428A7,7 0,0,1 100,442" stroke="#d62728"></path>
+    <path d="M100,428A21,21 0,0,0 100,386" stroke="#d62728"></path>
+    <path d="M100,428A7,7 0,0,0 100,414" stroke="#d62728"></path>
+    <path d="M100,428A14,14 0,0,1 100,456" stroke="#d62728"></path>
+    <path d="M100,428A35,35 0,0,1 100,498" stroke="#d62728"></path>
+    <path d="M100,512A56,56 0,0,0 100,400" stroke="#d62728"></path>
+    <path d="M100,512A35,35 0,0,0 100,442" stroke="#d62728"></path>
+    <path d="M100,512A63,63 0,0,0 100,386" stroke="#d62728"></path>
+    <path d="M100,512A49,49 0,0,0 100,414" stroke="#d62728"></path>
+    <path d="M100,512A28,28 0,0,0 100,456" stroke="#d62728"></path>
+    <path d="M100,512A7,7 0,0,0 100,498" stroke="#d62728"></path>
+    <path d="M100,400A21,21 0,0,1 100,442" stroke="#d62728"></path>
+    <path d="M100,400A7,7 0,0,0 100,386" stroke="#d62728"></path>
+    <path d="M100,400A7,7 0,0,1 100,414" stroke="#d62728"></path>
+    <path d="M100,400A28,28 0,0,1 100,456" stroke="#d62728"></path>
+    <path d="M100,400A49,49 0,0,1 100,498" stroke="#d62728"></path>
+    <path d="M100,442A28,28 0,0,0 100,386" stroke="#d62728"></path>
+    <path d="M100,442A14,14 0,0,0 100,414" stroke="#d62728"></path>
+    <path d="M100,442A7,7 0,0,1 100,456" stroke="#d62728"></path>
+    <path d="M100,442A28,28 0,0,1 100,498" stroke="#d62728"></path>
+    <path d="M100,386A14,14 0,0,1 100,414" stroke="#d62728"></path>
+    <path d="M100,386A35,35 0,0,1 100,456" stroke="#d62728"></path>
+    <path d="M100,386A56,56 0,0,1 100,498" stroke="#d62728"></path>
+    <path d="M100,414A21,21 0,0,1 100,456" stroke="#d62728"></path>
+    <path d="M100,414A42,42 0,0,1 100,498" stroke="#d62728"></path>
+    <path d="M100,456A21,21 0,0,1 100,498" stroke="#d62728"></path>
+    <path d="M100,246A28,28 0,0,0 100,190" stroke="#2ca02c"></path>
+    <path d="M100,246A56,56 0,0,1 100,358" stroke="#2ca02c"></path>
+    <path d="M100,246A7,7 0,0,0 100,232" stroke="#2ca02c"></path>
+    <path d="M100,246A21,21 0,0,0 100,204" stroke="#2ca02c"></path>
+    <path d="M100,246A14,14 0,0,0 100,218" stroke="#2ca02c"></path>
+    <path d="M100,246A21,21 0,0,1 100,288" stroke="#2ca02c"></path>
+    <path d="M100,232A21,21 0,0,0 100,190" stroke="#2ca02c"></path>
+    <path d="M100,232A63,63 0,0,1 100,358" stroke="#2ca02c"></path>
+    <path d="M100,232A14,14 0,0,0 100,204" stroke="#2ca02c"></path>
+    <path d="M100,232A7,7 0,0,0 100,218" stroke="#2ca02c"></path>
+    <path d="M100,232A28,28 0,0,1 100,288" stroke="#2ca02c"></path>
+    <path d="M100,204A7,7 0,0,0 100,190" stroke="#2ca02c"></path>
+    <path d="M100,204A77,77 0,0,1 100,358" stroke="#2ca02c"></path>
+    <path d="M100,204A7,7 0,0,1 100,218" stroke="#2ca02c"></path>
+    <path d="M100,204A42,42 0,0,1 100,288" stroke="#2ca02c"></path>
+    <path d="M100,218A14,14 0,0,0 100,190" stroke="#2ca02c"></path>
+    <path d="M100,218A35,35 0,0,1 100,288" stroke="#2ca02c"></path>
+    <path d="M100,218A70,70 0,0,1 100,358" stroke="#2ca02c"></path>
+    <path d="M100,288A49,49 0,0,0 100,190" stroke="#2ca02c"></path>
+    <path d="M100,288A35,35 0,0,1 100,358" stroke="#2ca02c"></path>
+    <path d="M100,372A7,7 0,0,0 100,358" stroke="#2ca02c"></path>
+    <path d="M100,330A14,14 0,0,1 100,358" stroke="#2ca02c"></path>
+    <path d="M100,344A7,7 0,0,1 100,358" stroke="#2ca02c"></path>
+    <path d="M100,190A84,84 0,0,1 100,358" stroke="#2ca02c"></path>
+    <path d="M100,260A49,49 0,0,1 100,358" stroke="#2ca02c"></path>
+    <path d="M100,274A42,42 0,0,1 100,358" stroke="#2ca02c"></path>
+    <path d="M100,316A21,21 0,0,1 100,358" stroke="#2ca02c"></path>
+    <path d="M100,358A28,28 0,0,0 100,302" stroke="#2ca02c"></path>
+    <path d="M100,176A14,14 0,0,0 100,148" stroke="#ff7f0e"></path>
+    <path d="M100,64A42,42 0,0,1 100,148" stroke="#ff7f0e"></path>
+    <path d="M100,92A28,28 0,0,1 100,148" stroke="#ff7f0e"></path>
+    <path d="M100,50A49,49 0,0,1 100,148" stroke="#ff7f0e"></path>
+    <path d="M100,106A21,21 0,0,1 100,148" stroke="#ff7f0e"></path>
+    <path d="M100,78A35,35 0,0,1 100,148" stroke="#ff7f0e"></path>
+    <path d="M100,134A7,7 0,0,0 100,120" stroke="#ff7f0e"></path>
+    <path d="M100,134A7,7 0,0,1 100,148" stroke="#ff7f0e"></path>
+    <path d="M100,120A14,14 0,0,1 100,148" stroke="#ff7f0e"></path>
+    <path d="M100,162A7,7 0,0,0 100,148" stroke="#ff7f0e"></path>
+    <path d="M100,22A7,7 0,0,0 100,8" stroke="#1f77b4"></path>
+    <path d="M100,36A14,14 0,0,0 100,8" stroke="#1f77b4"></path>
+  </g>
+  <g aria-label="dot" transform="translate(0.5,0.5)">
+    <circle cx="100" cy="148" r="3" fill="#ff7f0e"></circle>
+    <circle cx="100" cy="162" r="3" fill="#ff7f0e"></circle>
+    <circle cx="100" cy="120" r="3" fill="#ff7f0e"></circle>
+    <circle cx="100" cy="134" r="3" fill="#ff7f0e"></circle>
+    <circle cx="100" cy="78" r="3" fill="#ff7f0e"></circle>
+    <circle cx="100" cy="106" r="3" fill="#ff7f0e"></circle>
+    <circle cx="100" cy="50" r="3" fill="#ff7f0e"></circle>
+    <circle cx="100" cy="92" r="3" fill="#ff7f0e"></circle>
+    <circle cx="100" cy="64" r="3" fill="#ff7f0e"></circle>
+    <circle cx="100" cy="176" r="3" fill="#ff7f0e"></circle>
+    <circle cx="100" cy="302" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="358" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="470" r="3" fill="#d62728"></circle>
+    <circle cx="100" cy="316" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="274" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="260" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="498" r="3" fill="#d62728"></circle>
+    <circle cx="100" cy="456" r="3" fill="#d62728"></circle>
+    <circle cx="100" cy="414" r="3" fill="#d62728"></circle>
+    <circle cx="100" cy="386" r="3" fill="#d62728"></circle>
+    <circle cx="100" cy="442" r="3" fill="#d62728"></circle>
+    <circle cx="100" cy="400" r="3" fill="#d62728"></circle>
+    <circle cx="100" cy="512" r="3" fill="#d62728"></circle>
+    <circle cx="100" cy="428" r="3" fill="#d62728"></circle>
+    <circle cx="100" cy="624" r="3" fill="#9467bd"></circle>
+    <circle cx="100" cy="666" r="3" fill="#9467bd"></circle>
+    <circle cx="100" cy="694" r="3" fill="#8c564b"></circle>
+    <circle cx="100" cy="610" r="3" fill="#9467bd"></circle>
+    <circle cx="100" cy="8" r="3" fill="#1f77b4"></circle>
+    <circle cx="100" cy="190" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="484" r="3" fill="#d62728"></circle>
+    <circle cx="100" cy="344" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="330" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="372" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="288" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="218" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="204" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="232" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="246" r="3" fill="#2ca02c"></circle>
+    <circle cx="100" cy="652" r="3" fill="#9467bd"></circle>
+    <circle cx="100" cy="820" r="3" fill="#e377c2"></circle>
+    <circle cx="100" cy="582" r="3" fill="#9467bd"></circle>
+    <circle cx="100" cy="526" r="3" fill="#9467bd"></circle>
+    <circle cx="100" cy="806" r="3" fill="#8c564b"></circle>
+    <circle cx="100" cy="36" r="3" fill="#1f77b4"></circle>
+    <circle cx="100" cy="22" r="3" fill="#1f77b4"></circle>
+    <circle cx="100" cy="834" r="3" fill="#7f7f7f"></circle>
+    <circle cx="100" cy="848" r="3" fill="#7f7f7f"></circle>
+    <circle cx="100" cy="946" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="708" r="3" fill="#8c564b"></circle>
+    <circle cx="100" cy="736" r="3" fill="#8c564b"></circle>
+    <circle cx="100" cy="750" r="3" fill="#8c564b"></circle>
+    <circle cx="100" cy="778" r="3" fill="#8c564b"></circle>
+    <circle cx="100" cy="764" r="3" fill="#8c564b"></circle>
+    <circle cx="100" cy="722" r="3" fill="#8c564b"></circle>
+    <circle cx="100" cy="1002" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="680" r="3" fill="#8c564b"></circle>
+    <circle cx="100" cy="988" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="918" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="890" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="1030" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="932" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="904" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="862" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="876" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="974" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="960" r="3" fill="#bcbd22"></circle>
+    <circle cx="100" cy="1044" r="3" fill="#17becf"></circle>
+    <circle cx="100" cy="596" r="3" fill="#9467bd"></circle>
+    <circle cx="100" cy="540" r="3" fill="#9467bd"></circle>
+    <circle cx="100" cy="568" r="3" fill="#9467bd"></circle>
+    <circle cx="100" cy="638" r="3" fill="#9467bd"></circle>
+    <circle cx="100" cy="792" r="3" fill="#8c564b"></circle>
+    <circle cx="100" cy="1058" r="3" fill="#1f77b4"></circle>
+    <circle cx="100" cy="1072" r="3" fill="#1f77b4"></circle>
+    <circle cx="100" cy="554" r="3" fill="#9467bd"></circle>
+    <circle cx="100" cy="1016" r="3" fill="#bcbd22"></circle>
+  </g>
+  <g aria-label="text" text-anchor="end" transform="translate(-5.5,0.5)">
+    <text y="0.32em" transform="translate(100,148)" fill="rgb(144, 29, 0)">Myriel</text>
+    <text y="0.32em" transform="translate(100,162)" fill="rgb(144, 29, 0)">Napoleon</text>
+    <text y="0.32em" transform="translate(100,120)" fill="rgb(144, 29, 0)">Mlle.Baptistine</text>
+    <text y="0.32em" transform="translate(100,134)" fill="rgb(144, 29, 0)">Mme.Magloire</text>
+    <text y="0.32em" transform="translate(100,78)" fill="rgb(144, 29, 0)">CountessdeLo</text>
+    <text y="0.32em" transform="translate(100,106)" fill="rgb(144, 29, 0)">Geborand</text>
+    <text y="0.32em" transform="translate(100,50)" fill="rgb(144, 29, 0)">Champtercier</text>
+    <text y="0.32em" transform="translate(100,92)" fill="rgb(144, 29, 0)">Cravatte</text>
+    <text y="0.32em" transform="translate(100,64)" fill="rgb(144, 29, 0)">Count</text>
+    <text y="0.32em" transform="translate(100,176)" fill="rgb(144, 29, 0)">OldMan</text>
+    <text y="0.32em" transform="translate(100,302)" fill="rgb(0, 67, 0)">Labarre</text>
+    <text y="0.32em" transform="translate(100,358)" fill="rgb(0, 67, 0)">Valjean</text>
+    <text y="0.32em" transform="translate(100,470)" fill="rgb(104, 0, 0)">Marguerite</text>
+    <text y="0.32em" transform="translate(100,316)" fill="rgb(0, 67, 0)">Mme.deR</text>
+    <text y="0.32em" transform="translate(100,274)" fill="rgb(0, 67, 0)">Isabeau</text>
+    <text y="0.32em" transform="translate(100,260)" fill="rgb(0, 67, 0)">Gervais</text>
+    <text y="0.32em" transform="translate(100,498)" fill="rgb(104, 0, 0)">Tholomyes</text>
+    <text y="0.32em" transform="translate(100,456)" fill="rgb(104, 0, 0)">Listolier</text>
+    <text y="0.32em" transform="translate(100,414)" fill="rgb(104, 0, 0)">Fameuil</text>
+    <text y="0.32em" transform="translate(100,386)" fill="rgb(104, 0, 0)">Blacheville</text>
+    <text y="0.32em" transform="translate(100,442)" fill="rgb(104, 0, 0)">Favourite</text>
+    <text y="0.32em" transform="translate(100,400)" fill="rgb(104, 0, 0)">Dahlia</text>
+    <text y="0.32em" transform="translate(100,512)" fill="rgb(104, 0, 0)">Zephine</text>
+    <text y="0.32em" transform="translate(100,428)" fill="rgb(104, 0, 0)">Fantine</text>
+    <text y="0.32em" transform="translate(100,624)" fill="rgb(55, 17, 94)">Mme.Thenardier</text>
+    <text y="0.32em" transform="translate(100,666)" fill="rgb(55, 17, 94)">Thenardier</text>
+    <text y="0.32em" transform="translate(100,694)" fill="rgb(49, 4, 0)">Cosette</text>
+    <text y="0.32em" transform="translate(100,610)" fill="rgb(55, 17, 94)">Javert</text>
+    <text y="0.32em" transform="translate(100,8)" fill="rgb(0, 36, 87)">Fauchelevent</text>
+    <text y="0.32em" transform="translate(100,190)" fill="rgb(0, 67, 0)">Bamatabois</text>
+    <text y="0.32em" transform="translate(100,484)" fill="rgb(104, 0, 0)">Perpetue</text>
+    <text y="0.32em" transform="translate(100,344)" fill="rgb(0, 67, 0)">Simplice</text>
+    <text y="0.32em" transform="translate(100,330)" fill="rgb(0, 67, 0)">Scaufflaire</text>
+    <text y="0.32em" transform="translate(100,372)" fill="rgb(0, 67, 0)">Woman1</text>
+    <text y="0.32em" transform="translate(100,288)" fill="rgb(0, 67, 0)">Judge</text>
+    <text y="0.32em" transform="translate(100,218)" fill="rgb(0, 67, 0)">Champmathieu</text>
+    <text y="0.32em" transform="translate(100,204)" fill="rgb(0, 67, 0)">Brevet</text>
+    <text y="0.32em" transform="translate(100,232)" fill="rgb(0, 67, 0)">Chenildieu</text>
+    <text y="0.32em" transform="translate(100,246)" fill="rgb(0, 67, 0)">Cochepaille</text>
+    <text y="0.32em" transform="translate(100,652)" fill="rgb(55, 17, 94)">Pontmercy</text>
+    <text y="0.32em" transform="translate(100,820)" fill="rgb(125, 16, 100)">Boulatruelle</text>
+    <text y="0.32em" transform="translate(100,582)" fill="rgb(55, 17, 94)">Eponine</text>
+    <text y="0.32em" transform="translate(100,526)" fill="rgb(55, 17, 94)">Anzelma</text>
+    <text y="0.32em" transform="translate(100,806)" fill="rgb(49, 4, 0)">Woman2</text>
+    <text y="0.32em" transform="translate(100,36)" fill="rgb(0, 36, 87)">MotherInnocent</text>
+    <text y="0.32em" transform="translate(100,22)" fill="rgb(0, 36, 87)">Gribier</text>
+    <text y="0.32em" transform="translate(100,834)" fill="rgb(42, 42, 42)">Jondrette</text>
+    <text y="0.32em" transform="translate(100,848)" fill="rgb(42, 42, 42)">Mme.Burgon</text>
+    <text y="0.32em" transform="translate(100,946)" fill="rgb(89, 96, 0)">Gavroche</text>
+    <text y="0.32em" transform="translate(100,708)" fill="rgb(49, 4, 0)">Gillenormand</text>
+    <text y="0.32em" transform="translate(100,736)" fill="rgb(49, 4, 0)">Magnon</text>
+    <text y="0.32em" transform="translate(100,750)" fill="rgb(49, 4, 0)">Mlle.Gillenormand</text>
+    <text y="0.32em" transform="translate(100,778)" fill="rgb(49, 4, 0)">Mme.Pontmercy</text>
+    <text y="0.32em" transform="translate(100,764)" fill="rgb(49, 4, 0)">Mlle.Vaubois</text>
+    <text y="0.32em" transform="translate(100,722)" fill="rgb(49, 4, 0)">Lt.Gillenormand</text>
+    <text y="0.32em" transform="translate(100,1002)" fill="rgb(89, 96, 0)">Marius</text>
+    <text y="0.32em" transform="translate(100,680)" fill="rgb(49, 4, 0)">BaronessT</text>
+    <text y="0.32em" transform="translate(100,988)" fill="rgb(89, 96, 0)">Mabeuf</text>
+    <text y="0.32em" transform="translate(100,918)" fill="rgb(89, 96, 0)">Enjolras</text>
+    <text y="0.32em" transform="translate(100,890)" fill="rgb(89, 96, 0)">Combeferre</text>
+    <text y="0.32em" transform="translate(100,1030)" fill="rgb(89, 96, 0)">Prouvaire</text>
+    <text y="0.32em" transform="translate(100,932)" fill="rgb(89, 96, 0)">Feuilly</text>
+    <text y="0.32em" transform="translate(100,904)" fill="rgb(89, 96, 0)">Courfeyrac</text>
+    <text y="0.32em" transform="translate(100,862)" fill="rgb(89, 96, 0)">Bahorel</text>
+    <text y="0.32em" transform="translate(100,876)" fill="rgb(89, 96, 0)">Bossuet</text>
+    <text y="0.32em" transform="translate(100,974)" fill="rgb(89, 96, 0)">Joly</text>
+    <text y="0.32em" transform="translate(100,960)" fill="rgb(89, 96, 0)">Grantaire</text>
+    <text y="0.32em" transform="translate(100,1044)" fill="rgb(0, 95, 112)">MotherPlutarch</text>
+    <text y="0.32em" transform="translate(100,596)" fill="rgb(55, 17, 94)">Gueulemer</text>
+    <text y="0.32em" transform="translate(100,540)" fill="rgb(55, 17, 94)">Babet</text>
+    <text y="0.32em" transform="translate(100,568)" fill="rgb(55, 17, 94)">Claquesous</text>
+    <text y="0.32em" transform="translate(100,638)" fill="rgb(55, 17, 94)">Montparnasse</text>
+    <text y="0.32em" transform="translate(100,792)" fill="rgb(49, 4, 0)">Toussaint</text>
+    <text y="0.32em" transform="translate(100,1058)" fill="rgb(0, 36, 87)">Child1</text>
+    <text y="0.32em" transform="translate(100,1072)" fill="rgb(0, 36, 87)">Child2</text>
+    <text y="0.32em" transform="translate(100,554)" fill="rgb(55, 17, 94)">Brujon</text>
+    <text y="0.32em" transform="translate(100,1016)" fill="rgb(89, 96, 0)">Mme.Hucheloup</text>
+  </g>
+</svg>
