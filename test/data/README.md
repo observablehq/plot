@@ -115,6 +115,10 @@ https://observablehq.com/@tophtucker/examples-of-bitemporal-charts
 The New York Times
 https://www.nytimes.com/2019/12/02/upshot/wealth-poverty-divide-american-cities.html
 
+## miserables.json
+Character interactions in the chapters of “Les Miserables”, Donald Knuth, Stanford Graph Base
+https://www-cs-faculty.stanford.edu/~knuth/sgb.html
+
 ## mtcars.csv
 1974 *Motor Trend* US magazine
 https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars
