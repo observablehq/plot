@@ -3,15 +3,14 @@ import * as d3 from "d3";
 
 export async function miserablesArcDiagram() {
   const {nodes, links} = await d3.json<any>("data/miserables.json");
-  // This render transform takes a rendered text mark and makes each text’s fill attribute darker.
-  function darker(i, s, v, d, c, next) {
-    const g = next(i, s, v, d, c);
-    for (const t of g.querySelectorAll("text")) {
-      const f = t.getAttribute("fill");
-      if (f) t.setAttribute("fill", d3.lab(f).darker(2));
-    }
-    return g;
-  }
+  const darker = (options) =>
+    Plot.initializer(options, (data, facets, {fill: {value: F}}, {color}) => ({
+      data,
+      facets,
+      channels: {
+        fill: {value: Plot.valueof(F as number[], (d) => d3.lab(color(d)).darker(2))}
+      }
+    }));
   const orderByGroup = d3
     .sort(
       nodes,
@@ -48,15 +47,17 @@ export async function miserablesArcDiagram() {
         headLength: 0
       }),
       Plot.dot(nodes, {frameAnchor: "left", y: "id", fill: "group"}),
-      Plot.text(nodes, {
-        frameAnchor: "left",
-        y: "id",
-        text: "id",
-        textAnchor: "end",
-        dx: -6,
-        fill: "group",
-        render: darker
-      })
+      Plot.text(
+        nodes,
+        darker({
+          frameAnchor: "left",
+          y: "id",
+          text: "id",
+          textAnchor: "end",
+          dx: -6,
+          fill: "group"
+        })
+      )
     ]
   });
 }
