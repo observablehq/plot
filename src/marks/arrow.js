@@ -2,7 +2,7 @@ import {descending} from "d3";
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
 import {radians} from "../math.js";
-import {constant, keyword} from "../options.js";
+import {constant, maybeKeyword} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSameValue} from "./link.js";
 
@@ -46,7 +46,7 @@ export class Arrow extends Mark {
     this.headLength = +headLength;
     this.insetStart = +insetStart;
     this.insetEnd = +insetEnd;
-    this.sweep = sweep == null ? sweep : keyword(sweep, "sweep", ["order-x", "order-y", "order"]);
+    this.sweep = maybeSweep(sweep);
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
@@ -87,22 +87,12 @@ export class Arrow extends Mark {
             // wings, but that’s okay since vectors are usually small.)
             const headLength = Math.min(wingScale * sw(i), lineLength / 3);
 
-            // Maybe flip the bending, if a sweep order is applied.
-            const flip =
-              this.sweep == null
-                ? 1
-                : this.sweep === "order-x"
-                ? descending(x1, x2)
-                : this.sweep === "order-y"
-                ? descending(y1, y2)
-                : descending(x1, x2) || descending(y1, y2); // "order"
-
             // When bending, the offset between the straight line between the two points
             // and the outgoing tangent from the start point. (Also the negative
             // incoming tangent to the end point.) This must be within ±π/2. A positive
             // angle will produce a clockwise curve; a negative angle will produce a
             // counterclockwise curve; zero will produce a straight line.
-            const bendAngle = flip * bend * radians;
+            const bendAngle = this.sweep(x1, y1, x2, y2) * bend * radians;
 
             // The radius of the circle that intersects with the two endpoints
             // and has the specified bend angle.
@@ -162,6 +152,36 @@ export class Arrow extends Mark {
       )
       .node();
   }
+}
+
+// Maybe flip the bend angle, depending on the arrow orientation.
+function maybeSweep(sweep) {
+  switch (maybeKeyword(sweep, "sweep", ["order-x", "order-y", "order"])) {
+    case "order-x":
+      return sweepOrderX;
+    case "order-y":
+      return sweepOrderY;
+    case "order":
+      return sweepOrder;
+    case undefined:
+      return sweepNone;
+  }
+}
+
+function sweepNone() {
+  return 1;
+}
+
+function sweepOrderX(x1, y1, x2) {
+  return descending(x1, x2);
+}
+
+function sweepOrderY(x1, y1, x2, y2) {
+  return descending(y1, y2);
+}
+
+function sweepOrder(x1, y1, x2, y2) {
+  return descending(x1, x2) || descending(y1, y2);
 }
 
 // Returns the center of a circle that goes through the two given points ⟨ax,ay⟩
