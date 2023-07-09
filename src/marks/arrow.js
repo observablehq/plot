@@ -1,8 +1,8 @@
-import {descending} from "d3";
+import {ascending, descending} from "d3";
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
 import {radians} from "../math.js";
-import {constant, maybeKeyword} from "../options.js";
+import {constant, keyword} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSameValue} from "./link.js";
 
@@ -28,7 +28,7 @@ export class Arrow extends Mark {
       inset = 0,
       insetStart = inset,
       insetEnd = inset,
-      sweep = null
+      sweep
     } = options;
     super(
       data,
@@ -155,33 +155,19 @@ export class Arrow extends Mark {
 }
 
 // Maybe flip the bend angle, depending on the arrow orientation.
-function maybeSweep(sweep) {
-  switch (maybeKeyword(sweep, "sweep", ["order-x", "order-y", "order"])) {
-    case "order-x":
-      return sweepOrderX;
-    case "order-y":
-      return sweepOrderY;
-    case "order":
-      return sweepOrder;
-    case undefined:
-      return sweepNone;
+function maybeSweep(sweep = 1) {
+  if (typeof sweep === "number") return constant(Math.sign(sweep));
+  if (typeof sweep === "function") return (x1, y1, x2, y2) => Math.sign(sweep(x1, y1, x2, y2));
+  switch (keyword(sweep, "sweep", ["+x", "-x", "+y", "-y"])) {
+    case "+x":
+      return (x1, y1, x2) => ascending(x1, x2);
+    case "-x":
+      return (x1, y1, x2) => descending(x1, x2);
+    case "+y":
+      return (x1, y1, x2, y2) => ascending(y1, y2);
+    case "-y":
+      return (x1, y1, x2, y2) => descending(y1, y2);
   }
-}
-
-function sweepNone() {
-  return 1;
-}
-
-function sweepOrderX(x1, y1, x2) {
-  return descending(x1, x2);
-}
-
-function sweepOrderY(x1, y1, x2, y2) {
-  return descending(y1, y2);
-}
-
-function sweepOrder(x1, y1, x2, y2) {
-  return descending(x1, x2) || descending(y1, y2);
 }
 
 // Returns the center of a circle that goes through the two given points ⟨ax,ay⟩

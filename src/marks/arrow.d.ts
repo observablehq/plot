@@ -86,14 +86,15 @@ export interface ArrowOptions extends MarkOptions {
   insetEnd?: number;
 
   /**
-   * The sweep order; defaults to null. If set to order-x, the bend angle is
-   * flipped when the ending point is to the left of the starting point—ensuring
-   * all arrows bulge up (down if bend is negative). If set to order-y, the bend
-   * angle is flipped when the ending point is above the starting point—ensuring
-   * all arrows bulge right (left if bend is negative). If set to order, applies
-   * an order-x sweep, and breaks ties with order-y.
+   * The sweep order; defaults to 1 indicating a positive (clockwise) bend
+   * angle; -1 indicates a negative (anticlockwise) bend angle; 0 effectively
+   * clears the bend angle. If set to -x, the bend angle is flipped when the
+   * ending point is to the left of the starting point—ensuring all arrows bulge
+   * up (down if bend is negative); if set to -y, the bend angle is flipped when
+   * the ending point is above the starting point—ensuring all arrows bulge
+   * right (left if bend is negative); the sign is negated for +x and +y.
    */
-  sweep?: null | "order-x" | "order-y" | "order";
+  sweep?: number | "+x" | "-x" | "+y" | "-y" | ((x1: number, y1: number, x2: number, y2: number) => number);
 }
 
 /**
