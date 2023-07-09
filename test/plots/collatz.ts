@@ -46,7 +46,7 @@ export async function collatzArcDiagramUp() {
         dy: -3,
         bend: 70,
         inset: 4,
-        sweep: "order",
+        sweep: "-x",
         stroke: ([a, b]) => `url(#gradient${+(a > b)})`
       }),
       () =>

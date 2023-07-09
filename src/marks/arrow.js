@@ -1,4 +1,4 @@
-import {descending} from "d3";
+import {ascending, descending} from "d3";
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
 import {radians} from "../math.js";
@@ -28,7 +28,7 @@ export class Arrow extends Mark {
       inset = 0,
       insetStart = inset,
       insetEnd = inset,
-      sweep = null
+      sweep
     } = options;
     super(
       data,
@@ -46,7 +46,7 @@ export class Arrow extends Mark {
     this.headLength = +headLength;
     this.insetStart = +insetStart;
     this.insetEnd = +insetEnd;
-    this.sweep = sweep == null ? sweep : keyword(sweep, "sweep", ["order-x", "order-y", "order"]);
+    this.sweep = maybeSweep(sweep);
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
@@ -87,22 +87,12 @@ export class Arrow extends Mark {
             // wings, but that’s okay since vectors are usually small.)
             const headLength = Math.min(wingScale * sw(i), lineLength / 3);
 
-            // Maybe flip the bending, if a sweep order is applied.
-            const flip =
-              this.sweep == null
-                ? 1
-                : this.sweep === "order-x"
-                ? descending(x1, x2)
-                : this.sweep === "order-y"
-                ? descending(y1, y2)
-                : descending(x1, x2) || descending(y1, y2); // "order"
-
             // When bending, the offset between the straight line between the two points
             // and the outgoing tangent from the start point. (Also the negative
             // incoming tangent to the end point.) This must be within ±π/2. A positive
             // angle will produce a clockwise curve; a negative angle will produce a
             // counterclockwise curve; zero will produce a straight line.
-            const bendAngle = flip * bend * radians;
+            const bendAngle = this.sweep(x1, y1, x2, y2) * bend * radians;
 
             // The radius of the circle that intersects with the two endpoints
             // and has the specified bend angle.
@@ -161,6 +151,22 @@ export class Arrow extends Mark {
           .call(applyChannelStyles, this, channels)
       )
       .node();
+  }
+}
+
+// Maybe flip the bend angle, depending on the arrow orientation.
+function maybeSweep(sweep = 1) {
+  if (typeof sweep === "number") return constant(Math.sign(sweep));
+  if (typeof sweep === "function") return (x1, y1, x2, y2) => Math.sign(sweep(x1, y1, x2, y2));
+  switch (keyword(sweep, "sweep", ["+x", "-x", "+y", "-y"])) {
+    case "+x":
+      return (x1, y1, x2) => ascending(x1, x2);
+    case "-x":
+      return (x1, y1, x2) => descending(x1, x2);
+    case "+y":
+      return (x1, y1, x2, y2) => ascending(y1, y2);
+    case "-y":
+      return (x1, y1, x2, y2) => descending(y1, y2);
   }
 }
 

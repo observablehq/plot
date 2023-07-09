@@ -37,7 +37,7 @@ export async function miserablesArcDiagram() {
         x: 0,
         y1: "source",
         y2: "target",
-        sweep: "order-y",
+        sweep: "-y",
         bend: 90,
         stroke: samegroup,
         sort: samegroup,
