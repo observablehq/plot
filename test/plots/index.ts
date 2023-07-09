@@ -8,6 +8,7 @@ export * from "./aapl-monthly.js";
 export * from "./aapl-volume-rect.js";
 export * from "./aapl-volume.js";
 export * from "./anscombe-quartet.js";
+export * from "./arc.js";
 export * from "./armadillo.js";
 export * from "./aspectRatio.js";
 export * from "./athletes-bins-colors.js";

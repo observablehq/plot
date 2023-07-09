@@ -111,8 +111,11 @@ The arrow mark supports the [standard mark options](../features/marks.md#mark-op
 * **insetEnd** - inset at the end of the arrow (useful if the arrow points to a dot)
 * **insetStart** - inset at the start of the arrow
 * **inset** - shorthand for the two insets
+* **sweep** - the sweep order
 
 The **bend** option sets the angle between the straight line connecting the two points and the outgoing direction of the arrow from the start point. It must be within ±90°. A positive angle will produce a clockwise curve; a negative angle will produce a counterclockwise curve; zero will produce a straight line. The **headAngle** determines how pointy the arrowhead is; it is typically between 0° and 180°. The **headLength** determines the scale of the arrowhead relative to the stroke width. Assuming the default of stroke width 1.5px, the **headLength** is the length of the arrowhead’s side in pixels.
+
+The **sweep** option can be used to make arrows bend in the same direction, independently of the relative positions of the starting and ending points. It defaults to 1 indicating a positive (clockwise) bend angle; -1 indicates a negative (anticlockwise) bend angle. 0 effectively clears the bend angle. If set to *-x*, the bend angle is flipped when the ending point is to the left of the starting point — ensuring all arrows bulge up (down if bend is negative); if set to *-y*, the bend angle is flipped when the ending point is above the starting point — ensuring all arrows bulge right (left if bend is negative); the sign is negated for *+x* and *+y*.
 
 ## arrow(*data*, *options*)
 
