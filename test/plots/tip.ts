@@ -100,6 +100,24 @@ export async function tipDotFilter() {
   });
 }
 
+export async function tipGeoNoProjection() {
+  const counties = await d3.json<any>("data/us-counties-10m.json").then((us) => feature(us, us.objects.counties));
+  counties.features = counties.features.filter((d) => {
+    const [x, y] = d3.geoCentroid(d);
+    return x > -126 && x < -68 && y > 25 && y < 49;
+  });
+  return Plot.geo(counties, Plot.centroid({title: (d) => d.properties.name, tip: true})).plot();
+}
+
+export async function tipGeoProjection() {
+  const counties = await d3.json<any>("data/us-counties-10m.json").then((us) => feature(us, us.objects.counties));
+  counties.features = counties.features.filter((d) => {
+    const [x, y] = d3.geoCentroid(d);
+    return x > -126 && x < -68 && y > 25 && y < 49;
+  });
+  return Plot.geo(counties, Plot.centroid({title: (d) => d.properties.name, tip: true})).plot({projection: "albers"});
+}
+
 export async function tipGeoCentroid() {
   const [[counties, countymesh]] = await Promise.all([
     d3
