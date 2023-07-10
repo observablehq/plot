@@ -2,17 +2,23 @@ import {geoCentroid as GeoCentroid, geoPath} from "d3";
 import {identity, valueof} from "../options.js";
 import {initializer} from "./basic.js";
 
-export function centroid({geometry = identity, ...options} = {}) {
+export function centroid({geometry, ...options} = {}) {
   // Suppress defaults for x and y since they will be computed by the initializer.
-  return initializer({...options, x: null, y: null}, (data, facets, channels, scales, dimensions, {projection}) => {
-    const G = valueof(data, geometry);
-    const n = G.length;
-    const X = new Float64Array(n);
-    const Y = new Float64Array(n);
-    const path = geoPath(projection);
-    for (let i = 0; i < n; ++i) [X[i], Y[i]] = path.centroid(G[i]);
-    return {data, facets, channels: {x: {value: X, source: null}, y: {value: Y, source: null}}};
-  });
+  return initializer({...options, x: null, y: null}, (data, facets, channels, scales, dimensions, {projection}) => ({
+    data,
+    facets,
+    channels: centroidChannels(data, geometry, projection)
+  }));
+}
+
+export function centroidChannels(data, geometry = identity, projection) {
+  const G = valueof(data, geometry);
+  const n = G.length;
+  const X = new Float64Array(n);
+  const Y = new Float64Array(n);
+  const path = geoPath(projection);
+  for (let i = 0; i < n; ++i) [X[i], Y[i]] = path.centroid(G[i]);
+  return {x: {value: X, source: null}, y: {value: Y, source: null}};
 }
 
 export function geoCentroid({geometry = identity, ...options} = {}) {

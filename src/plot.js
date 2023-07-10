@@ -17,6 +17,7 @@ import {innerDimensions, outerDimensions} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
+import {centroidChannels} from "./transforms/centroid.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
@@ -502,8 +503,18 @@ function maybeMarkFacet(mark, topFacetState, options) {
 }
 
 function derive(mark, options = {}) {
-  return initializer({...options, x: null, y: null}, (data, facets, channels, scales, dimensions, context) => {
-    return context.getMarkState(mark);
+  return initializer({...options, x: null, y: null}, (da, f, c, s, di, context) => {
+    let {
+      data,
+      facets,
+      channels: {geometry, x, y, ...channels}
+    } = context.getMarkState(mark);
+    if (geometry && !x && !y) {
+      const {projection} = context;
+      ({x, y} = centroidChannels(data, (d) => d, projection));
+      if (projection == null) (x.scale = "x"), (y.scale = "y");
+    }
+    return {data, facets, channels: {...channels, ...(x && {x}), ...(y && {y})}};
   });
 }
 
