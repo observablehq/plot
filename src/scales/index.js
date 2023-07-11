@@ -23,6 +23,7 @@ export const opacity = Symbol("opacity");
 export const symbol = Symbol("symbol");
 
 // There isn’t really a projection scale; this represents x and y for geometry.
+// This is used to denote channels that should be projected.
 export const projection = Symbol("projection");
 
 // TODO Rather than hard-coding the list of known scale names, collect the names
@@ -40,3 +41,7 @@ export const registry = new Map([
   ["length", length],
   ["projection", projection]
 ]);
+
+export function isPosition(kind) {
+  return kind === position || kind === projection;
+}
