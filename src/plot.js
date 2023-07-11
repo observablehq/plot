@@ -14,7 +14,7 @@ import {arrayify, map, yes, maybeIntervalTransform, subarray} from "./options.js
 import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
-import {position, registry as scaleRegistry} from "./scales/index.js";
+import {isPosition, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
@@ -201,7 +201,7 @@ export function plot(options = {}) {
           // channels as-is rather than creating new scales, and assume that
           // they already have the scale’s transform applied, if any (e.g., when
           // generating ticks for the axis mark).
-          if (scale != null && scaleRegistry.get(scale) !== position) {
+          if (scale != null && !isPosition(scaleRegistry.get(scale))) {
             applyScaleTransform(channel, options);
             newByScale.add(scale);
           }
