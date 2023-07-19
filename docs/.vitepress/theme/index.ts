@@ -2,10 +2,12 @@ import DefaultTheme from "vitepress/theme-without-fonts";
 import {useData} from "vitepress";
 import {watch} from "vue";
 import PlotRender from "../../components/PlotRender.js";
+import CustomLayout from "./CustomLayout.vue";
 import "./custom.css";
 
 export default {
   extends: DefaultTheme,
+  Layout: CustomLayout,
   enhanceApp({app, router}) {
     Object.defineProperty(app.config.globalProperties, "$dark", {get: () => useData().isDark.value});
     app.component("PlotRender", PlotRender);
