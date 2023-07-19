@@ -20,7 +20,7 @@ import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
-  const {facet, style, caption, ariaLabel, ariaDescription} = options;
+  const {facet, style, title, subtitle, caption, ariaLabel, ariaDescription} = options;
 
   // className for inline styles
   const className = maybeClassName(options.className);
@@ -320,17 +320,20 @@ export function plot(options = {}) {
     }
   }
 
-  // Wrap the plot in a figure with a caption, if desired.
+  // Wrap the plot in a figure if there are other elements than the svg.
   const legends = createLegends(scaleDescriptors, context, options);
-  if (caption != null || legends.length > 0) {
+  if (title != null || subtitle != null || caption != null || legends.length > 0) {
     figure = document.createElement("figure");
     figure.style.maxWidth = "initial";
-    for (const legend of legends) figure.appendChild(legend);
-    figure.appendChild(svg);
-    if (caption != null) {
-      const figcaption = document.createElement("figcaption");
-      figcaption.appendChild(caption?.ownerDocument ? caption : document.createTextNode(caption));
-      figure.appendChild(figcaption);
+    for (const e of [[title, "h2"], [subtitle, "h3"], ...legends, svg, [caption, "figcaption"]]) {
+      const [contents, tag] = Array.isArray(e) ? e : [e];
+      if (contents == null) continue;
+      if (tag && (!contents.ownerDocument || tag === "figcaption")) {
+        const c = document.createElement(tag);
+        if (tag === "h2" || tag === "h3") c.className = `${className}-${tag}`;
+        c.appendChild(contents.ownerDocument ? contents : document.createTextNode(contents));
+        figure.appendChild(c);
+      } else figure.appendChild(contents);
     }
   }
 
