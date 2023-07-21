@@ -264,3 +264,18 @@ export async function autoBarNoReducer() {
   const simpsons = await d3.csv<any>("data/simpsons.csv", d3.autoType);
   return Plot.auto(simpsons, {x: "season", y: "number_in_season", color: "imdb_rating", mark: "bar"}).plot();
 }
+
+export async function autoLineCollision() {
+  const data = [
+    {date: new Date(2020, 0, 1), value: 5, series: 1},
+    {date: new Date(2020, 0, 1), value: 50, series: 2},
+    {date: new Date(2020, 0, 1), value: 500, series: 3},
+    {date: new Date(2020, 0, 2), value: 6, series: 1},
+    {date: new Date(2020, 0, 2), value: 60, series: 2},
+    {date: new Date(2020, 0, 2), value: 600, series: 3},
+    {date: new Date(2020, 0, 3), value: 7, series: 1},
+    {date: new Date(2020, 0, 3), value: 70, series: 2},
+    {date: new Date(2020, 0, 3), value: 700, series: 3}
+  ]
+  return Plot.auto(data, {x: "date", y: "value"}).plot();
+}

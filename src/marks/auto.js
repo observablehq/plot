@@ -254,7 +254,8 @@ function isMonotonic(values) {
       continue;
     }
     const order = Math.sign(ascending(previous, value));
-    if (!order) continue; // skip zero, NaN
+    if (isNaN(order)) continue; // skip NaN
+    if (order === 0) return false; // fail on collision, e.g. sorted within series
     if (previousOrder !== undefined && order !== previousOrder) return false;
     previous = value;
     previousOrder = order;
