@@ -68,6 +68,7 @@
     "prettier": "^3.0.0",
     "rollup": "^3.7.0",
     "topojson-client": "^3.1.0",
+    "ts-morph": "^19.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.0.0",
     "vitepress": "^1.0.0-beta.2"
