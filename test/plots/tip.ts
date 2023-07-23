@@ -2,6 +2,11 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
+export async function tipAreaBand() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.areaY(aapl, {x: "Date", y1: "Low", y2: "High", tip: true, curve: "step", stroke: "currentColor"}).plot();
+}
+
 export async function tipAreaStack() {
   const industries = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);
   return Plot.areaY(industries, {x: "date", y: "unemployed", fill: "industry", tip: true}).plot({marginLeft: 50});
