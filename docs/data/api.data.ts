@@ -1,5 +1,5 @@
 import {rollup, sort} from "d3";
-import {Node, FunctionDeclaration, InterfaceDeclaration, Project, VariableDeclaration, VariableStatement} from "ts-morph";
+import {FunctionDeclaration, Node, Project, VariableStatement} from "ts-morph";
 
 // These interfaces tend to represent things that Plot constructs internally,
 // rather than objects that the user is expected to provide.
