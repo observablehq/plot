@@ -72,7 +72,7 @@ Plot.plot({
 
 The pointer transform is similar to the [filter](../transforms/filter.md) and [select](../transforms/select.md) transforms: it filters the mark’s index to show a subset of the data. The difference is that the pointer transform is *interactive*: it listens to [pointer events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events) and re-renders the mark as the closest point changes. Since the mark is lazily rendered during interaction, it is fast: only the visible elements are rendered as needed. And, like the filter and select transforms, unfiltered channel values are incorporated into default scale domains.
 
-The pointer transform supports both one- and two-dimensional pointing modes. The two-dimensional mode, [pointer](#pointer-options-1), is used above and is suitable for scatterplots and the general case: it finds the point closest to the pointer by measuring distance in *x* and *y*. The one-dimensional modes, [pointerX](#pointerx-options) and [pointerY](#pointery-options), in contrast only consider distance in one dimension; this is desirable when a chart has a “dominant” dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
+The pointer transform supports both one- and two-dimensional pointing modes. The two-dimensional mode, [pointer](#pointer), is used above and is suitable for scatterplots and the general case: it finds the point closest to the pointer by measuring distance in *x* and *y*. The one-dimensional modes, [pointerX](#pointerX) and [pointerY](#pointerY), in contrast only consider distance in one dimension; this is desirable when a chart has a “dominant” dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
 
 Try the different modes on the line chart below to get a feel for their behavior.
 
@@ -180,7 +180,7 @@ To resolve the horizontal target position, the pointer transform applies the fol
 
 The same precedence applies to the **py**, **y**, **y1**, and **y2** channels.
 
-## pointer(*options*) {#pointer-options-1}
+## pointer(*options*) {#pointer}
 
 ```js
 Plot.tip(penguins, Plot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm"}))
@@ -188,18 +188,18 @@ Plot.tip(penguins, Plot.pointer({x: "culmen_length_mm", y: "culmen_depth_mm"}))
 
 Applies the pointer render transform to the specified *options* to filter the mark index such that only the point closest to the pointer is rendered; the mark will re-render interactively in response to pointer events.
 
-## pointerX(*options*)
+## pointerX(*options*) {#pointerX}
 
 ```js
 Plot.tip(aapl, Plot.pointerX({x: "Date", y: "Close"}))
 ```
 
-Like [pointer](#pointer-options-1), except the determination of the closest point considers mostly the *x* (horizontal↔︎) position; this should be used for plots where *x* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
+Like [pointer](#pointer), except the determination of the closest point considers mostly the *x* (horizontal↔︎) position; this should be used for plots where *x* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
 
-## pointerY(*options*)
+## pointerY(*options*) {#pointerY}
 
 ```js
 Plot.tip(alphabet, Plot.pointerY({x: "frequency", y: "letter"}))
 ```
 
-Like [pointer](#pointer-options-1), except the determination of the closest point considers mostly the *y* (vertical↕︎) position; this should be used for plots where *y* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
+Like [pointer](#pointer), except the determination of the closest point considers mostly the *y* (vertical↕︎) position; this should be used for plots where *y* is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.

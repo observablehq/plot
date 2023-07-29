@@ -183,7 +183,7 @@ The following named reducers are supported:
 
 A reducer may also be specified as a function to be passed an index of size **k** and the corresponding input channel array; or if the function only takes one argument, an array of **k** values.
 
-## window(*k*)
+## window(*k*) {#window}
 
 ```js
 Plot.map({y: Plot.window(24)}, {x: "Date", y: "Close", stroke: "Symbol"})
@@ -191,18 +191,18 @@ Plot.map({y: Plot.window(24)}, {x: "Date", y: "Close", stroke: "Symbol"})
 
 Returns a window map method for the given window size *k*, suitable for use with Plot.map. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, **reduce**, or **strict**.
 
-## windowX(*k*, *options*)
+## windowX(*k*, *options*) {#windowX}
 
 ```js
 Plot.windowX(24, {y: "Date", x: "Anomaly"})
 ```
 
-Like [mapX](./map.md#mapx-map-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, or **reduce**.
+Like [mapX](./map.md#mapX), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, or **reduce**.
 
-## windowY(*k*, *options*)
+## windowY(*k*, *options*) {#windowY}
 
 ```js
 Plot.windowY(24, {x: "Date", y: "Anomaly"})
 ```
 
-Like [mapY](./map.md#mapy-map-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, or **reduce**.
+Like [mapY](./map.md#mapY), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, or **reduce**.

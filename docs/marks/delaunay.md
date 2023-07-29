@@ -21,7 +21,7 @@ onMounted(() => {
 
 Given set of points in **x** and **y**, the **Delaunay marks** compute the [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation), its dual the [Voronoi tessellation](https://en.wikipedia.org/wiki/Voronoi_diagram), and the [convex hull](https://en.wikipedia.org/wiki/Convex_hull).
 
-The [voronoi mark](#voronoi-data-options) computes the region closest to each point (its *Voronoi cell*). The cell can be empty if another point shares the exact same coordinates. Together, the cells cover the entire plot. Voronoi diagrams can group related points with color, for example.
+The [voronoi mark](#voronoi) computes the region closest to each point (its *Voronoi cell*). The cell can be empty if another point shares the exact same coordinates. Together, the cells cover the entire plot. Voronoi diagrams can group related points with color, for example.
 
 :::plot https://observablehq.com/@observablehq/plot-voronoi-scatterplot
 ```js
@@ -38,7 +38,7 @@ Plot.plot({
 
 Each cell is associated with a particular data point, and channels such as **stroke**, **fill**, **fillOpacity**, **strokeOpacity**, **href**, _etc._, work as they do on other marks, such as [dots](./dot.md).
 
-To show the local density of a scatterplot, one can draw the whole boundary at once with [voronoiMesh](#voronoimesh-data-options). Whereas the [voronoi mark](#voronoi-data-options) will draw shared cell boundaries twice, the mesh will draw them only once.
+To show the local density of a scatterplot, one can draw the whole boundary at once with [voronoiMesh](#voronoiMesh). Whereas the [voronoi mark](#voronoi) will draw shared cell boundaries twice, the mesh will draw them only once.
 
 :::plot https://observablehq.com/@observablehq/plot-voronoi-mesh
 ```js
@@ -51,7 +51,7 @@ Plot.plot({
 ```
 :::
 
-The boundary between two neighboring Voronoi cells is a line segment defined by equal distance from their two respective points. The construction of the Voronoi diagram involves the computation of the Delaunay graph, which defines these neighbors. Use [delaunayMesh](#delaunaymesh-data-options) to draw the graph.
+The boundary between two neighboring Voronoi cells is a line segment defined by equal distance from their two respective points. The construction of the Voronoi diagram involves the computation of the Delaunay graph, which defines these neighbors. Use [delaunayMesh](#delaunayMesh) to draw the graph.
 
 :::plot https://observablehq.com/@observablehq/plot-delaunay-mesh
 ```js
@@ -66,7 +66,7 @@ Plot.plot({
 
 As shown above, the Delaunay graph is computed separately for each color; specifying **z**, **stroke**, or **fill** creates independent series.
 
-Another derivative of the Delaunay graph is the convex hull of a set of points: the polygon with the minimum perimeter that contains all the points. The [hull mark](#hull-data-options) will draw this hull.
+Another derivative of the Delaunay graph is the convex hull of a set of points: the polygon with the minimum perimeter that contains all the points. The [hull mark](#hull) will draw this hull.
 
 :::plot defer https://observablehq.com/@observablehq/plot-convex-hull
 ```js
@@ -129,7 +129,7 @@ Distances between projected points are not exactly proportional to the correspon
 :::
 
 
-## delaunayLink(*data*, *options*)
+## delaunayLink(*data*, *options*) {#delaunayLink}
 
 ```js
 Plot.delaunayLink(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
@@ -139,7 +139,7 @@ Draws links for each edge of the Delaunay triangulation of the points given by t
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate Delaunay triangulations are constructed for each group.
 
-## delaunayMesh(*data*, *options*)
+## delaunayMesh(*data*, *options*) {#delaunayMesh}
 
 ```js
 Plot.delaunayMesh(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
@@ -149,7 +149,7 @@ Draws a mesh of the Delaunay triangulation of the points given by the **x** and 
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate Delaunay triangulations are constructed for each group.
 
-## hull(*data*, *options*)
+## hull(*data*, *options*) {#hull}
 
 ```js
 Plot.hull(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
@@ -159,7 +159,7 @@ Draws a convex hull around the points given by the **x** and **y** channels. The
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate convex hulls are constructed for each group. If the **z** channel is not specified, it defaults to either the **fill** channel, if any, or the **stroke** channel, if any.
 
-## voronoi(*data*, *options*)
+## voronoi(*data*, *options*) {#voronoi}
 
 ```js
 Plot.voronoi(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
@@ -169,7 +169,7 @@ Draws polygons for each cell of the Voronoi tessellation of the points given by 
 
 If a **z** channel is specified, the input points are grouped by *z*, and separate Voronoi tessellations are constructed for each group.
 
-## voronoiMesh(*data*, *options*)
+## voronoiMesh(*data*, *options*) {#voronoiMesh}
 
 ```js
 Plot.voronoiMesh(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})

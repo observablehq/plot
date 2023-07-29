@@ -32,7 +32,7 @@ function indent() {
 
 # Tree mark
 
-The **tree mark** produces tree diagrams using the [tree transform](../transforms/tree.md). It is a [composite mark](../features/marks.md#marks-marks), consisting of a [link](./link.md) to render links from parent to child, an optional [dot](./dot.md) for nodes, and one or two [text](./text.md) for node labels. The link mark uses the [treeLink transform](../transforms/tree.md#treelink-options), while the dot and text marks use the [treeNode transform](../transforms/tree.md#treenode-options).
+The **tree mark** produces tree diagrams using the [tree transform](../transforms/tree.md). It is a [composite mark](../features/marks.md#marks), consisting of a [link](./link.md) to render links from parent to child, an optional [dot](./dot.md) for nodes, and one or two [text](./text.md) for node labels. The link mark uses the [treeLink transform](../transforms/tree.md#treeLink), while the dot and text marks use the [treeNode transform](../transforms/tree.md#treeNode).
 
 For example, here is a little family tree of Greek gods.
 
@@ -75,7 +75,7 @@ Plot.plot({
 ```
 :::
 
-The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://d3js.org/d3-hierarchy/tree), by default. The [cluster](#cluster-data-options) convenience method sets **treeLayout** to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning the leaf nodes.
+The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://d3js.org/d3-hierarchy/tree), by default. The [cluster](#cluster) convenience method sets **treeLayout** to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning the leaf nodes.
 
 :::plot https://observablehq.com/@observablehq/plot-cluster-flare
 ```js
@@ -164,7 +164,7 @@ The **textLayout** option controls how text labels are anchored to the node. Two
 
 If the **treeLayout** is d3.tree or d3.cluster, the **textLayout** defaults to *mirrored*; otherwise it defaults to *normal*.
 
-## tree(*data*, *options*)
+## tree(*data*, *options*) {#tree}
 
 ```js
 Plot.tree(flare, {path: "name", delimiter: "."})
@@ -172,10 +172,10 @@ Plot.tree(flare, {path: "name", delimiter: "."})
 
 Returns a new tree mark with the given *data* and *options*.
 
-## cluster(*data*, *options*)
+## cluster(*data*, *options*) {#cluster}
 
 ```js
 Plot.cluster(flare, {path: "name", delimiter: "."})
 ```
 
-Like [tree](#tree-data-options), except sets the **treeLayout** option to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning leaf nodes, and defaults the **textLayout** option to *mirrored*.
+Like [tree](#tree), except sets the **treeLayout** option to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning leaf nodes, and defaults the **textLayout** option to *mirrored*.

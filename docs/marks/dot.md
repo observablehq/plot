@@ -333,7 +333,7 @@ The **r** option can be specified as either a channel or constant. When the radi
 
 The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise. The **strokeWidth** defaults to 1.5. The **rotate** and **symbol** options can be specified as either channels or constants. When rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. When symbol is a valid symbol name or symbol object (implementing the draw method), it is interpreted as a constant; otherwise it is interpreted as a channel. If the **symbol** channel’s values are all symbols, symbol names, or nullish, the channel is unscaled (values are interpreted literally); otherwise, the channel is bound to the *symbol* scale.
 
-## dot(*data*, *options*)
+## dot(*data*, *options*) {#dot}
 
 ```js
 Plot.dot(sales, {x: "units", y: "fruit"})
@@ -341,30 +341,30 @@ Plot.dot(sales, {x: "units", y: "fruit"})
 
 Returns a new dot with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-## dotX(*data*, *options*)
+## dotX(*data*, *options*) {#dotX}
 
 ```js
 Plot.dotX(cars.map((d) => d["economy (mpg)"]))
 ```
 
-Equivalent to [dot](#dot-data-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [dot](#dot) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
-## dotY(*data*, *options*)
+## dotY(*data*, *options*) {#dotY}
 
 ```js
 Plot.dotY(cars.map((d) => d["economy (mpg)"]))
 ```
 
-Equivalent to [dot](#dot-data-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [dot](#dot) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
-## circle(*data*, *options*)
+## circle(*data*, *options*) {#circle}
 
-Equivalent to [dot](#dot-data-options) except that the **symbol** option is set to *circle*.
+Equivalent to [dot](#dot) except that the **symbol** option is set to *circle*.
 
-## hexagon(*data*, *options*)
+## hexagon(*data*, *options*) {#hexagon}
 
-Equivalent to [dot](#dot-data-options) except that the **symbol** option is set to *hexagon*.
+Equivalent to [dot](#dot) except that the **symbol** option is set to *hexagon*.

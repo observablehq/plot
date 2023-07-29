@@ -25,7 +25,7 @@ Plot.plot({
 
 The hexgrid mark supports the [standard mark options](../features/marks.md#mark-options). It does not accept any data or support channels. The default **stroke** is *currentColor*, the default **strokeOpacity** is 0.1, and the default **clip** is true. The **binWidth** defaults to 20, matching the [hexbin transform](../transforms/hexbin.md). The **fill** option is not supported, but a [frame mark](./frame.md) can be used to the same effect.
 
-## hexgrid(*options*)
+## hexgrid(*options*) {#hexgrid}
 
 ```js
 Plot.hexgrid({stroke: "red"})

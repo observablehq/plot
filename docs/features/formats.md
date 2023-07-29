@@ -9,7 +9,7 @@ import * as d3 from "d3";
 
 These helper functions are provided for convenience as a **tickFormat** option for the [axis mark](../marks/axis.md), as the **text** option for a [text mark](../marks/text.md), or other use. See also [d3-format](https://d3js.org/d3-format), [d3-time-format](https://d3js.org/d3-time-format), and JavaScript’s built-in [date formatting](https://observablehq.com/@mbostock/date-formatting) and [number formatting](https://observablehq.com/@mbostock/number-formatting).
 
-## formatIsoDate(*date*)
+## formatIsoDate(*date*) {#formatIsoDate}
 
 ```js
 Plot.formatIsoDate(new Date("2020-01-01T00:00:00.000Z")) // "2020-01-01"
@@ -17,7 +17,7 @@ Plot.formatIsoDate(new Date("2020-01-01T00:00:00.000Z")) // "2020-01-01"
 
 Given a *date*, returns the shortest equivalent ISO 8601 UTC string. If the given *date* is not valid, returns `"Invalid Date"`. See [isoformat](https://github.com/mbostock/isoformat).
 
-## formatWeekday(*locale*, *format*)
+## formatWeekday(*locale*, *format*) {#formatWeekday}
 
 :::plot https://observablehq.com/@observablehq/plot-format-helpers
 ```js
@@ -31,7 +31,7 @@ Plot.formatWeekday("es-MX", "long")(0) // "domingo"
 
 Returns a function that formats a given week day number (from 0 = Sunday to 6 = Saturday) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [weekday format](https://tc39.es/ecma402/#datetimeformat-objects): either *narrow*, *short*, or *long*; if not specified, it defaults to *short*.
 
-## formatMonth(*locale*, *format*)
+## formatMonth(*locale*, *format*) {#formatMonth}
 
 :::plot https://observablehq.com/@observablehq/plot-format-helpers
 ```js

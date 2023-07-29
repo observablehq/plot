@@ -271,7 +271,7 @@ As shorthand, a single channel may be specified, in which case it is promoted to
 Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
 ```
 
-## contour(*data*, *options*)
+## contour(*data*, *options*) {#contour}
 
 ```js
 Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})

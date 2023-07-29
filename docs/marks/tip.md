@@ -221,7 +221,7 @@ These [standard text options](./text.md#text-options) control the display of tex
 - **lineWidth** - the line width in ems, for wrapping; defaults to Infinity
 - **textOverflow** - how to wrap or clip lines longer than the specified line width
 
-## tip(*data*, *options*)
+## tip(*data*, *options*) {#tip}
 
 ```js
 Plot.tip(aapl, {x: "Date", y: "Close"})

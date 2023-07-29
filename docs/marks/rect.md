@@ -49,7 +49,7 @@ Plot.plot({
 ```
 :::
 
-More commonly, the rect mark is used to produce histograms or heatmaps of quantitative data. For example, given some binned observations computed by [d3.bin](https://d3js.org/d3-array/bin), we can produce a basic histogram with [rectY](#recty-data-options) as follows:
+More commonly, the rect mark is used to produce histograms or heatmaps of quantitative data. For example, given some binned observations computed by [d3.bin](https://d3js.org/d3-array/bin), we can produce a basic histogram with [rectY](#rectY) as follows:
 
 :::plot https://observablehq.com/@observablehq/plot-rects-and-bins
 ```js
@@ -73,7 +73,7 @@ Plot.rectY(d3.range(1000).map(d3.randomNormal()), Plot.binX()).plot()
 ```
 :::
 
-Like the [bar mark](./bar.md), the rect mark has two convenience constructors for common orientations: [rectX](#rectx-data-options) is for horizontal→ rects and applies an implicit [stackX transform](../transforms/stack.md#stackx-stack-options), while [rectY](#recty-data-options) is for vertical↑ rects and applies an implicit [stackY transform](../transforms/stack.md#stacky-stack-options).
+Like the [bar mark](./bar.md), the rect mark has two convenience constructors for common orientations: [rectX](#rectX) is for horizontal→ rects and applies an implicit [stackX transform](../transforms/stack.md#stackX), while [rectY](#rectY) is for vertical↑ rects and applies an implicit [stackY transform](../transforms/stack.md#stackY).
 
 :::plot defer https://observablehq.com/@observablehq/plot-vertical-histogram
 ```js
@@ -119,7 +119,7 @@ Plot.plot({
 ```
 :::
 
-The [rect constructor](#rect-data-options), again with the [bin transform](../transforms/bin.md), can produce two-dimensional histograms (heatmaps) where density is represented by the **fill** color encoding.
+The [rect constructor](#rect), again with the [bin transform](../transforms/bin.md), can produce two-dimensional histograms (heatmaps) where density is represented by the **fill** color encoding.
 
 :::plot defer https://observablehq.com/@observablehq/plot-continuous-dimensions-heatmap
 ```js-vue
@@ -205,7 +205,7 @@ If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be der
 
 The rect mark supports the [standard mark options](../features/marks.md#mark-options), including insets and rounded corners. The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
-## rect(*data*, *options*)
+## rect(*data*, *options*) {#rect}
 
 ```js
 Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
@@ -213,18 +213,18 @@ Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
 
 Returns a new rect with the given *data* and *options*.
 
-## rectX(*data*, *options*)
+## rectX(*data*, *options*) {#rectX}
 
 ```js
 Plot.rectX(olympians, Plot.binY({x: "count"}, {y: "weight"}))
 ```
 
-Equivalent to [rect](#rect-data-options), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](../transforms/stack.md); this is the typical configuration for a histogram with horizontal→ rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
+Equivalent to [rect](#rect), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](../transforms/stack.md); this is the typical configuration for a histogram with horizontal→ rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
 
-## rectY(*data*, *options*)
+## rectY(*data*, *options*) {#rectY}
 
 ```js
 Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
-Equivalent to [rect](#rect-data-options), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](../transforms/stack.md); this is the typical configuration for a histogram with vertical↑ rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
+Equivalent to [rect](#rect), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](../transforms/stack.md); this is the typical configuration for a histogram with vertical↑ rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.

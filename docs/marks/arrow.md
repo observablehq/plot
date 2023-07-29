@@ -117,7 +117,7 @@ The **bend** option sets the angle between the straight line connecting the two 
 
 The **sweep** option can be used to make arrows bend in the same direction, independently of the relative positions of the starting and ending points. It defaults to 1 indicating a positive (clockwise) bend angle; -1 indicates a negative (anticlockwise) bend angle. 0 effectively clears the bend angle. If set to *-x*, the bend angle is flipped when the ending point is to the left of the starting point — ensuring all arrows bulge up (down if bend is negative); if set to *-y*, the bend angle is flipped when the ending point is above the starting point — ensuring all arrows bulge right (left if bend is negative); the sign is negated for *+x* and *+y*.
 
-## arrow(*data*, *options*)
+## arrow(*data*, *options*) {#arrow}
 
 ```js
 Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015", bend: true})

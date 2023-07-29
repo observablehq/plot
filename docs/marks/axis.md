@@ -367,7 +367,7 @@ The axis mark’s default margins depend on its orientation (**anchor**) as foll
 
 For simplicity’s sake and for consistent layout across plots, axis margins are not automatically sized to make room for tick labels; instead, shorten your tick labels (for example using the *k* SI-prefix tick format, or setting a *scale*.transform to show thousands or millions, or setting the **textOverflow** option to *ellipsis* and the **lineWidth** option to clip long labels) or increase the margins as needed.
 
-## axisX(*data*, *options*)
+## axisX(*data*, *options*) {#axisX}
 
 ```js
 Plot.axisX({anchor: "bottom", tickSpacing: 80})
@@ -375,7 +375,7 @@ Plot.axisX({anchor: "bottom", tickSpacing: 80})
 
 Returns a new *x* axis with the given *options*.
 
-## axisY(*data*, *options*)
+## axisY(*data*, *options*) {#axisY}
 
 ```js
 Plot.axisY({anchor: "left", tickSpacing: 35})
@@ -383,7 +383,7 @@ Plot.axisY({anchor: "left", tickSpacing: 35})
 
 Returns a new *y* axis with the given *options*.
 
-## axisFx(*data*, *options*)
+## axisFx(*data*, *options*) {#axisFx}
 
 ```js
 Plot.axisFx({anchor: "top", label: null})
@@ -391,7 +391,7 @@ Plot.axisFx({anchor: "top", label: null})
 
 Returns a new *fx* axis with the given *options*.
 
-## axisFy(*data*, *options*)
+## axisFy(*data*, *options*) {#axisFy}
 
 ```js
 Plot.axisFy({anchor: "right", label: null})

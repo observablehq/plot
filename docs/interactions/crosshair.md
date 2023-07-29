@@ -23,7 +23,7 @@ Plot.plot({
 ```
 :::
 
-For charts which have a “dominant” dimension, such as time in a time-series chart, use the crosshairX or crosshairY mark for the [pointerX](./pointer.md#pointerx-options) or [pointerY](./pointer.md#pointery-options) transform as appropriate.
+For charts which have a “dominant” dimension, such as time in a time-series chart, use the crosshairX or crosshairY mark for the [pointerX](./pointer.md#pointerX) or [pointerY](./pointer.md#pointerY) transform as appropriate.
 
 :::plot defer https://observablehq.com/@observablehq/plot-crosshairx
 ```js
@@ -84,7 +84,7 @@ The following options are supported:
 
 The crosshair mark supports faceting, but most other mark options are ignored.
 
-## crosshair(*data*, *options*)
+## crosshair(*data*, *options*) {#crosshair}
 
 ```js
 Plot.crosshair(cars, {x: "economy (mpg)", y: "cylinders"})
@@ -92,18 +92,18 @@ Plot.crosshair(cars, {x: "economy (mpg)", y: "cylinders"})
 
 Returns a new crosshair for the given *data* and *options*, drawing horizontal and vertical rules. The corresponding **x** and **y** values are also drawn just outside the bottom and left sides of the frame, respectively, typically on top of the axes. If either **x** or **y** is not specified, the crosshair will be one-dimensional.
 
-## crosshairX(*data*, *options*)
+## crosshairX(*data*, *options*) {#crosshairX}
 
 ```js
 Plot.crosshairX(aapl, {x: "Date", y: "Close"})
 ```
 
-Like crosshair, but using [pointerX](./pointer.md#pointerx-options) when *x* is the dominant dimension, like time in a time-series chart.
+Like crosshair, but using [pointerX](./pointer.md#pointerX) when *x* is the dominant dimension, like time in a time-series chart.
 
-## crosshairY(*data*, *options*)
+## crosshairY(*data*, *options*) {#crosshairY}
 
 ```js
 Plot.crosshairY(aapl, {x: "Date", y: "Close"})
 ```
 
-Like crosshair, but using [pointerY](./pointer.md#pointery-options) when *y* is the dominant dimension.
+Like crosshair, but using [pointerY](./pointer.md#pointerY) when *y* is the dominant dimension.

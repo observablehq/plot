@@ -82,7 +82,7 @@ Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"})).plot
 
 Notice that the code above makes you think about nested functions and two different options objects, which the auto mark flattens. The auto mark infers that it should use a [rect](./rect.md); that it should [bin](../transforms/bin.md) on **x** and **y**; that the kind of color should be a **fill**; and that **fill** is an “output” of the reducer, whereas **x** and **y** are “inputs”.
 
-This saves you a little bit of typing, but, more importantly, it means that switching from showing one dimension to another only involves changing _one thing_. In the code above, if you change **y** from *weight* to *sex*, it’ll break, because *sex* is ordinal instead of quantitative. (You’d also have to change [rect](./rect.md) to [barX](./bar.md#barx-data-options), and [bin](../transforms/bin.md#bin-outputs-options) to [binX](../transforms/bin.md#binx-outputs-options).) With the auto mark, it just works:
+This saves you a little bit of typing, but, more importantly, it means that switching from showing one dimension to another only involves changing _one thing_. In the code above, if you change **y** from *weight* to *sex*, it’ll break, because *sex* is ordinal instead of quantitative. (You’d also have to change [rect](./rect.md) to [barX](./bar.md#barX), and [bin](../transforms/bin.md#bin) to [binX](../transforms/bin.md#binX).) With the auto mark, it just works:
 
 :::plot defer https://observablehq.com/@observablehq/plot-auto-mark-heatmap-2
 ```js
@@ -90,7 +90,7 @@ Plot.auto(olympians, {x: "weight", y: "sex", color: "count"}).plot()
 ```
 :::
 
-Similarly, with explicit marks and transforms, changing a vertical histogram to a horizontal histogram involves switching [rectY](./rect.md#recty-data-options) to [rectX](./rect.md#rectx-data-options), [binX](../transforms/bin.md#binx-outputs-options) to [binY](../transforms/bin.md#biny-outputs-options), **x** to **y**, and **y** to **x**. With the auto mark, just specify **y** instead of **x**:
+Similarly, with explicit marks and transforms, changing a vertical histogram to a horizontal histogram involves switching [rectY](./rect.md#rectY) to [rectX](./rect.md#rectX), [binX](../transforms/bin.md#binX) to [binY](../transforms/bin.md#binY), **x** to **y**, and **y** to **x**. With the auto mark, just specify **y** instead of **x**:
 
 :::plot https://observablehq.com/@observablehq/plot-auto-mark-horizontal-histogram
 ```js
@@ -220,7 +220,7 @@ The auto mark chooses the mark type automatically based on several simple heuris
 
 The chosen mark type depends both on the options you provide (*e.g.*, whether you specified **x** or **y** or both) and the inferred type of the corresponding data values (whether the associated dimension of data is quantitative, categorical, monotonic, *etc.*).
 
-## auto(*data*, *options*)
+## auto(*data*, *options*) {#auto}
 
 ```js
 Plot.auto(olympians, {x: "weight", y: "height", color: "count"}) // equivalent to rect + bin, say
@@ -228,7 +228,7 @@ Plot.auto(olympians, {x: "weight", y: "height", color: "count"}) // equivalent t
 
 Returns an automatically-chosen mark with the given *data* and *options*, suitable for a quick view of the data.
 
-## autoSpec(*data*, *options*)
+## autoSpec(*data*, *options*) {#autoSpec}
 
 ```js
 Plot.autoSpec(olympians, {x: "weight", y: "height", color: "count"})

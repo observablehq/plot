@@ -69,7 +69,7 @@ Plot.plot({
 ```
 :::
 
-## select(*selector*, *options*)
+## select(*selector*, *options*) {#select}
 
 ```js
 Plot.select("first", {x: "Date", y: "Close"}) // selectFirst
@@ -130,7 +130,7 @@ function selectorSample(I) {
 }
 ```
 
-## selectFirst(*options*)
+## selectFirst(*options*) {#selectFirst}
 
 ```js
 Plot.selectFirst({x: "Date", y: "Close"})
@@ -138,7 +138,7 @@ Plot.selectFirst({x: "Date", y: "Close"})
 
 Selects the first point of each series according to input order.
 
-## selectLast(*options*)
+## selectLast(*options*) {#selectLast}
 
 ```js
 Plot.selectLast({x: "Date", y: "Close"})
@@ -146,7 +146,7 @@ Plot.selectLast({x: "Date", y: "Close"})
 
 Selects the last point of each series according to input order.
 
-## selectMinX(*options*)
+## selectMinX(*options*) {#selectMinX}
 
 ```js
 Plot.selectMinX({x: "Date", y: "Close"})
@@ -154,7 +154,7 @@ Plot.selectMinX({x: "Date", y: "Close"})
 
 Selects the leftmost point of each series.
 
-## selectMinY(*options*)
+## selectMinY(*options*) {#selectMinY}
 
 ```js
 Plot.selectMinY({x: "Date", y: "Close"})
@@ -162,7 +162,7 @@ Plot.selectMinY({x: "Date", y: "Close"})
 
 Selects the lowest point of each series.
 
-## selectMaxX(*options*)
+## selectMaxX(*options*) {#selectMaxX}
 
 ```js
 Plot.selectMaxX({x: "Date", y: "Close"})
@@ -170,7 +170,7 @@ Plot.selectMaxX({x: "Date", y: "Close"})
 
 Selects the rightmost point of each series.
 
-## selectMaxY(*options*)
+## selectMaxY(*options*) {#selectMaxY}
 
 ```js
 Plot.selectMaxY({x: "Date", y: "Close"})

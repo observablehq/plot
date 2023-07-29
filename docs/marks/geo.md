@@ -86,7 +86,7 @@ Plot.plot({
 Click on any of the earthquakes above to see details.
 :::
 
-The [graticule](#graticule-options) helper draws a uniform grid of meridians (lines of constant longitude) and parallels (lines of constant latitude) every 10° between ±80° latitude; for the polar regions, meridians are drawn every 90°. The [sphere](#sphere-options) helper draws the outline of the projected sphere.
+The [graticule](#graticule) helper draws a uniform grid of meridians (lines of constant longitude) and parallels (lines of constant latitude) every 10° between ±80° latitude; for the polar regions, meridians are drawn every 90°. The [sphere](#sphere) helper draws the outline of the projected sphere.
 
 :::plot https://observablehq.com/@observablehq/plot-sphere-and-graticule
 ```js
@@ -176,7 +176,7 @@ The **geometry** channel specifies the geometry (GeoJSON object) to draw; if not
 
 In addition to the [standard mark options](../features/marks.md#mark-options), the **r** option controls the size of Point and MultiPoint geometries. It can be specified as either a channel or constant. When **r** is specified as a number, it is interpreted as a constant radius in pixels; otherwise it is interpreted as a channel and the effective radius is controlled by the *r* scale. If the **r** option is not specified it defaults to 3 pixels. Geometries with a nonpositive radius are not drawn. If **r** is a channel, geometries will be sorted by descending radius by default.
 
-## geo(*data*, *options*)
+## geo(*data*, *options*) {#geo}
 
 ```js
 Plot.geo(counties, {fill: (d) => d.properties.rate})
@@ -184,7 +184,7 @@ Plot.geo(counties, {fill: (d) => d.properties.rate})
 
 Returns a new geo mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is the single-element array [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an iterable of GeoJSON objects.
 
-## sphere(*options*)
+## sphere(*options*) {#sphere}
 
 ```js
 Plot.sphere()
@@ -192,7 +192,7 @@ Plot.sphere()
 
 Returns a new geo mark with a *Sphere* geometry object and the given *options*.
 
-## graticule(*options*)
+## graticule(*options*) {#graticule}
 
 ```js
 Plot.graticule()

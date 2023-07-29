@@ -99,7 +99,7 @@ The given *options* are passed through to these underlying marks, with the excep
 
 Multiple regressions can be defined by specifying **z**, **fill**, or **stroke**.
 
-## linearRegressionX(*data*, *options*)
+## linearRegressionX(*data*, *options*) {#linearRegressionX}
 
 ```js
 Plot.linearRegressionX(mtcars, {y: "wt", x: "hp"})
@@ -107,7 +107,7 @@ Plot.linearRegressionX(mtcars, {y: "wt", x: "hp"})
 
 Returns a linear regression mark where **x** is the dependent variable and **y** is the independent variable. (This is the uncommon orientation.)
 
-## linearRegressionY(*data*, *options*)
+## linearRegressionY(*data*, *options*) {#linearRegressionY}
 
 ```js
 Plot.linearRegressionY(mtcars, {x: "wt", y: "hp"})

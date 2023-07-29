@@ -88,7 +88,7 @@ Plot.plot({
 ```
 :::
 
-The **shape** option controls the vector’s appearance, while the **anchor** option positions the vector relative to its anchor point specified in **x** and **y**. The [spike constructor](#spike-data-options) sets the **shape** to *spike* and the **anchor** to *start*. For example, this can be used to produce a [spike map](https://observablehq.com/@observablehq/plot-spike) of U.S. county population.
+The **shape** option controls the vector’s appearance, while the **anchor** option positions the vector relative to its anchor point specified in **x** and **y**. The [spike constructor](#spike) sets the **shape** to *spike* and the **anchor** to *start*. For example, this can be used to produce a [spike map](https://observablehq.com/@observablehq/plot-spike) of U.S. county population.
 
 :::plot defer https://observablehq.com/@observablehq/plot-spike-map-example
 ```js
@@ -168,7 +168,7 @@ The **stroke** defaults to *currentColor*. The **strokeWidth** defaults to 1.5, 
 
 Vectors are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest vectors on top, consider a [sort transform](../transforms/sort.md).
 
-## vector(*data*, *options*)
+## vector(*data*, *options*) {#vector}
 
 ```js
 Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "direction"})
@@ -176,26 +176,26 @@ Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "dire
 
 Returns a new vector with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-## vectorX(*data*, *options*)
+## vectorX(*data*, *options*) {#vectorX}
 
 ```js
 Plot.vectorX(cars.map((d) => d["economy (mpg)"]))
 ```
 
-Equivalent to [vector](#vector-data-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [vector](#vector) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
-## vectorY(*data*, *options*)
+## vectorY(*data*, *options*) {#vectorY}
 
 ```js
 Plot.vectorY(cars.map((d) => d["economy (mpg)"]))
 ```
 
-Equivalent to [vector](#vector-data-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [vector](#vector) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
-## spike(*data*, *options*)
+## spike(*data*, *options*) {#spike}
 
 ```js
 Plot.spike(counties, Plot.geoCentroid({length: (d) => d.properties.population}))
 ```
 
-Equivalent to [vector](#vector-data-options) except that the **shape** defaults to *spike*, the **stroke** defaults to *currentColor*, the **strokeWidth** defaults to 1, the **fill** defaults to **stroke**, the **fillOpacity** defaults to 0.3, and the **anchor** defaults to *start*.
+Equivalent to [vector](#vector) except that the **shape** defaults to *spike*, the **stroke** defaults to *currentColor*, the **strokeWidth** defaults to 1, the **fill** defaults to **stroke**, the **fillOpacity** defaults to 0.3, and the **anchor** defaults to *start*.

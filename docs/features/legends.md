@@ -120,7 +120,7 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 
 The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [plot options](./plots.md). The **className** option is suffixed with *-ramp* or *-swatches*, reflecting the **legend** type.
 
-## legend(*options*)
+## legend(*options*) {#legend}
 
 Renders a standalone legend for the scale defined by the given *options* object, returning a SVG or HTML figure element. This element can then be inserted into the page as described in the [getting started guide](../getting-started.md). The *options* object must define at least one scale; see [scale options](./scales.md) for how to define a scale.
 

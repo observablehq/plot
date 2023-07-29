@@ -133,7 +133,7 @@ Plot.plot({
 ```
 :::
 
-The hexbin transform defaults the **symbol** option to *hexagon*, but you can override it. The [circle constructor](../marks/dot.md#circle-data-options) changes it to *circle*.
+The hexbin transform defaults the **symbol** option to *hexagon*, but you can override it. The [circle constructor](../marks/dot.md#circle) changes it to *circle*.
 
 :::plot defer https://observablehq.com/@observablehq/plot-hexbin-circle
 ```js
@@ -198,7 +198,7 @@ The following aggregation methods are supported:
 * a function to be passed the array of values for each bin and the extent of the bin
 * an object with a *reduceIndex* method
 
-## hexbin(*outputs*, *options*)
+## hexbin(*outputs*, *options*) {#hexbin}
 
 ```js
 Plot.dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"}))
