@@ -60,7 +60,7 @@ Plot.plot({
 Dots are sorted by descending **r** by default, so you may not need the **sort** option.
 :::
 
-The sort transform can be applied either via the **sort** [mark option](../features/marks.md#mark-options), as above, or as an explicit [sort transform](#sort-order-options). The latter is generally only needed when composing multiple transforms, or to disambiguate the sort transform from imputed ordinal scale domains, *i.e.*, [scale sorting](../features/scales.md#sort-mark-option).
+The sort transform can be applied either via the **sort** [mark option](../features/marks.md#mark-options), as above, or as an explicit [sort transform](#sort). The latter is generally only needed when composing multiple transforms, or to disambiguate the sort transform from imputed ordinal scale domains, *i.e.*, [scale sorting](../features/scales.md#sort-mark-option).
 
 As another example, in the line chart of unemployment rates below, lines for metropolitan areas in Michigan (which saw exceptionally high unemployment following the [financial crisis of 2008](https://en.wikipedia.org/wiki/2007–2008_financial_crisis), in part due to the [auto industry collapse](https://en.wikipedia.org/wiki/2008–2010_automotive_industry_crisis)) are highlighted in <span style="border-bottom: solid 2px var(--vp-c-red);">red</span>, and the **sort** option is used to draw them on top of other series.
 
@@ -119,9 +119,9 @@ Plot.plot({
 ```
 :::
 
-The closely-related [reverse transform](#reverse-options) likewise reverses the mark index, while the [shuffle transform](#shuffle-options) for randomizes the mark index’s order.
+The closely-related [reverse transform](#reverse) likewise reverses the mark index, while the [shuffle transform](#shuffle) for randomizes the mark index’s order.
 
-## sort(*order*, *options*)
+## sort(*order*, *options*) {#sort}
 
 ```js
 Plot.sort("body_mass_g", {x: "culmen_length_mm", y: "culmen_depth_mm"})
@@ -138,7 +138,7 @@ In the object case, the **channel** option specifies the name of the channel, wh
 
 In the function case, if the sort function does not take exactly one argument, it is interpreted as a comparator function; otherwise it is interpreted as an accessor function.
 
-## shuffle(*options*)
+## shuffle(*options*) {#shuffle}
 
 ```js
 Plot.shuffle({x: "culmen_length_mm", y: "culmen_depth_mm"})
@@ -146,7 +146,7 @@ Plot.shuffle({x: "culmen_length_mm", y: "culmen_depth_mm"})
 
 Shuffles the data randomly. If a **seed** option is specified, a [linear congruential generator](https://d3js.org/d3-random#randomLcg) with the given seed is used to generate random numbers; otherwise, Math.random is used.
 
-## reverse(*options*)
+## reverse(*options*) {#reverse}
 
 ```js
 Plot.reverse({x: "culmen_length_mm", y: "culmen_depth_mm"})

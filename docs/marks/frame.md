@@ -48,7 +48,7 @@ Plot.plot({
 ```
 :::
 
-Unlike most marks, a frame never takes *data*; the first argument to [frame](#frame-options-1) is the *options* object. (For data-driven rectangles, see the [rect mark](./rect.md).)
+Unlike most marks, a frame never takes *data*; the first argument to [frame](#frame) is the *options* object. (For data-driven rectangles, see the [rect mark](./rect.md).)
 
 :::plot
 ```js
@@ -115,7 +115,7 @@ The frame mark supports the [standard mark options](../features/marks.md#mark-op
 
 If the **anchor** option is specified as one of *left*, *right*, *top*, or *bottom*, that side is rendered as a single line (and the **fill**, **fillOpacity**, **rx**, and **ry** options are ignored).
 
-## frame(*options*) {#frame-options-1}
+## frame(*options*) {#frame}
 
 ```js
 Plot.frame({stroke: "red"})

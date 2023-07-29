@@ -1007,9 +1007,9 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", order: 
 
 If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
 
-Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Plot.sort](../transforms/sort.md#sort-order-options).
+Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Plot.sort](../transforms/sort.md#sort).
 
-## scale(*options*) {#scale-options-1}
+## scale(*options*) {#scale}
 
 You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 
@@ -1017,7 +1017,7 @@ You can also create a standalone scale with Plot.**scale**(*options*). The *opti
 const color = Plot.scale({color: {type: "linear"}});
 ```
 
-Both [*plot*.scale](./plots.md#plot-scale-name) and [Plot.scale](#scale-options-1) return scale objects. These objects represent the actual (or “materialized”) scale options used by Plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
+Both [*plot*.scale](./plots.md#plot_scale) and [Plot.scale](#scale) return scale objects. These objects represent the actual (or “materialized”) scale options used by Plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
 
 To reuse a scale across plots, pass the corresponding scale object into another plot specification:
 

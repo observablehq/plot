@@ -26,7 +26,7 @@ onMounted(() => {
 
 # Plots
 
-To render a **plot** in Observable Plot, call [plot](#plot-options) (typically as `Plot.plot`), passing in the desired *options*. This function returns an SVG or HTML figure element.
+To render a **plot** in Observable Plot, call [plot](#plot) (typically as `Plot.plot`), passing in the desired *options*. This function returns an SVG or HTML figure element.
 
 :::plot https://observablehq.com/@observablehq/plot-hello-world
 ```js
@@ -272,7 +272,7 @@ The generated SVG element has a class name which applies a default stylesheet. U
 
 The **document** option specifies the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create plot elements. It defaults to window.document, but can be changed to another document, say when using a virtual DOM implementation for server-side rendering in Node.
 
-## plot(*options*)
+## plot(*options*) {#plot}
 
 ```js
 Plot.plot({
@@ -285,15 +285,15 @@ Plot.plot({
 
 Renders a new plot with the specified *options*, returning a SVG or HTML figure element. This element can then be inserted into the page as described in the [getting started guide](../getting-started.md).
 
-## *mark*.plot(*options*)
+## *mark*.plot(*options*) {#mark_plot}
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot({height: 200})
 ```
 
-Given a [*mark*](./marks.md), this is a convenience shorthand for calling [plot](#plot-options) where the **marks** option includes this *mark*. Any additional **marks** in *options* are drawn on top of this *mark*.
+Given a [*mark*](./marks.md), this is a convenience shorthand for calling [plot](#plot) where the **marks** option includes this *mark*. Any additional **marks** in *options* are drawn on top of this *mark*.
 
-## *plot*.scale(*name*)
+## *plot*.scale(*name*) {#plot_scale}
 
 ```js
 const plot = Plot.plot(options); // render a plot
@@ -301,13 +301,13 @@ const color = plot.scale("color"); // get the color scale
 console.log(color.range); // inspect the scale’s range
 ```
 
-Returns the [scale object](./scales.md#scale-options) for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot-options). If the associated *plot* has no scale with the given *name*, returns undefined.
+Returns the [scale object](./scales.md#scale-options) for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot). If the associated *plot* has no scale with the given *name*, returns undefined.
 
-## *plot*.legend(*name*, *options*)
+## *plot*.legend(*name*, *options*) {#plot_legend}
 
 ```js
 const plot = Plot.plot(options); // render a plot
 const legend = plot.legend("color"); // render a color legend
 ```
 
-Renders a standalone legend for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot-options), returning a SVG or HTML figure element. This element can then be inserted into the page as described in the [getting started guide](../getting-started.md). If the associated *plot* has no scale with the given *name*, returns undefined. Legends are currently only supported for *color*, *opacity*, and *symbol* scales.
+Renders a standalone legend for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot), returning a SVG or HTML figure element. This element can then be inserted into the page as described in the [getting started guide](../getting-started.md). If the associated *plot* has no scale with the given *name*, returns undefined. Legends are currently only supported for *color*, *opacity*, and *symbol* scales.

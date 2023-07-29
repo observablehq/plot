@@ -77,7 +77,7 @@ The following options are supported as constant or data-driven channels:
 
 All the other common options are supported when applicable (*e.g.*, **title**).
 
-## gridX(*data*, *options*)
+## gridX(*data*, *options*) {#gridX}
 
 ```js
 Plot.gridX({strokeDasharray: "5,3"})
@@ -85,7 +85,7 @@ Plot.gridX({strokeDasharray: "5,3"})
 
 Returns a new *x* grid with the given *options*.
 
-## gridY(*data*, *options*)
+## gridY(*data*, *options*) {#gridY}
 
 ```js
 Plot.gridY({strokeDasharray: "5,3"})
@@ -93,7 +93,7 @@ Plot.gridY({strokeDasharray: "5,3"})
 
 Returns a new *y* grid with the given *options*.
 
-## gridFx(*data*, *options*)
+## gridFx(*data*, *options*) {#gridFx}
 
 ```js
 Plot.gridFx({strokeDasharray: "5,3"})
@@ -101,7 +101,7 @@ Plot.gridFx({strokeDasharray: "5,3"})
 
 Returns a new *fx* grid with the given *options*.
 
-## gridFy(*data*, *options*)
+## gridFy(*data*, *options*) {#gridFy}
 
 ```js
 Plot.gridFy({strokeDasharray: "5,3"})

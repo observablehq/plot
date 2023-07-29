@@ -240,7 +240,7 @@ If the **frameAnchor** option is not specified, then **textAnchor** and **lineAn
 
 The **paintOrder** option defaults to *stroke* and the **strokeWidth** option defaults to 3. By setting **fill** to the foreground color and **stroke** to the background color (such as *black* and *white*, respectively), you can surround text with a “halo” which may improve legibility against a busy background.
 
-## text(*data*, *options*)
+## text(*data*, *options*) {#text}
 
 ```js
 Plot.text(driving, {x: "miles", y: "gas", text: "year"})
@@ -248,22 +248,22 @@ Plot.text(driving, {x: "miles", y: "gas", text: "year"})
 
 Returns a new text mark with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-## textX(*data*, *options*)
+## textX(*data*, *options*) {#textX}
 
 ```js
 Plot.textX(alphabet.map((d) => d.frequency))
 ```
 
-Equivalent to [text](#text-data-options), except **x** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [text](#text), except **x** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
-## textY(*data*, *options*)
+## textY(*data*, *options*) {#textY}
 
 ```js
 Plot.textY(alphabet.map((d) => d.frequency))
 ```
 
-Equivalent to [text](#text-data-options), except **y** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [text](#text), except **y** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).

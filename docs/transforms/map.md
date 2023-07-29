@@ -47,9 +47,9 @@ Plot.plot({
 ```
 :::
 
-The [mapY transform](#mapy-map-options) above is shorthand for applying the given map method to all *y* channels. There’s also a less-common [mapX transform](#mapx-map-options) for *x* channels.
+The [mapY transform](#mapY) above is shorthand for applying the given map method to all *y* channels. There’s also a less-common [mapX transform](#mapX) for *x* channels.
 
-The more explicit [map](#map-outputs-options) transform lets you specify which channels to map, and what map method to use for each channel. Like the [group](./group.md) and [bin](./bin.md) transforms, it takes two arguments: an *outputs* object that describes the output channels to compute, and an *options* object that describes the input channels and additional options. So this:
+The more explicit [map](#map) transform lets you specify which channels to map, and what map method to use for each channel. Like the [group](./group.md) and [bin](./bin.md) transforms, it takes two arguments: an *outputs* object that describes the output channels to compute, and an *options* object that describes the input channels and additional options. So this:
 
 ```js
 Plot.mapY("cumsum", {y: d3.randomNormal()})
@@ -119,7 +119,7 @@ The following map methods are supported:
 
 If a function is used, it must return an array of the same length as the given input. If a *mapIndex* method is used, it is repeatedly passed the index for each series (an array of integers), the corresponding input channel’s array of values, and the output channel’s array of values; it must populate the slots specified by the index in the output array.
 
-## map(*outputs*, *options*)
+## map(*outputs*, *options*) {#map}
 
 ```js
 Plot.map({y: "cumsum"}, {y: d3.randomNormal()})
@@ -127,7 +127,7 @@ Plot.map({y: "cumsum"}, {y: d3.randomNormal()})
 
 Groups on the first channel of **z**, **fill**, or **stroke**, if any, and then for each channel declared in the specified *outputs* object, applies the corresponding map method. Each channel in *outputs* must have a corresponding input channel in *options*.
 
-## mapX(*map*, *options*)
+## mapX(*map*, *options*) {#mapX}
 
 ```js
 Plot.mapX("cumsum", {x: d3.randomNormal()})
@@ -135,7 +135,7 @@ Plot.mapX("cumsum", {x: d3.randomNormal()})
 
 Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but ignores any of **x**, **x1**, and **x2** not present in *options*. In addition, if none of **x**, **x1**, or **x2** are specified, then **x** defaults to [identity](../features/transforms.md#identity).
 
-## mapY(*map*, *options*)
+## mapY(*map*, *options*) {#mapY}
 
 ```js
 Plot.mapY("cumsum", {y: d3.randomNormal()})

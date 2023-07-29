@@ -245,7 +245,7 @@ The **thresholds** option, which defaults to 20, specifies one more than the num
 
 If a **z**, **stroke** or **fill** channel is specified, the input points are grouped by series, and separate sets of contours are generated for each series. If the **stroke** or **fill** is specified as *density*, a color channel is constructed with values representing the density threshold value of each contour.
 
-## density(*data*, *options*)
+## density(*data*, *options*) {#density}
 
 ```js
 Plot.density(faithful, {x: "waiting", y: "eruptions"})

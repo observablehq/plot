@@ -19,7 +19,7 @@ onMounted(() => {
 
 # Centroid transform
 
-Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid-options) and [geoCentroid](#geocentroid-options). These transforms can be used by any mark that accepts **x** and **y** channels. Below, a [text mark](../marks/text.md) labels the U.S. states.
+Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid) and [geoCentroid](#geoCentroid). These transforms can be used by any mark that accepts **x** and **y** channels. Below, a [text mark](../marks/text.md) labels the U.S. states.
 
 :::plot defer https://observablehq.com/@observablehq/plot-state-labels
 ```js
@@ -84,7 +84,7 @@ Plot.plot({
 ```
 :::
 
-## centroid(*options*)
+## centroid(*options*) {#centroid}
 
 ```js
 Plot.centroid({geometry: Plot.identity})
@@ -92,7 +92,7 @@ Plot.centroid({geometry: Plot.identity})
 
 The centroid initializer derives **x** and **y** channels representing the planar (projected) centroids for the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
 
-## geoCentroid(*options*)
+## geoCentroid(*options*) {#geoCentroid}
 
 ```js
 Plot.geoCentroid({geometry: Plot.identity})

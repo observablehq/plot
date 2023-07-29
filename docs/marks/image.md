@@ -162,7 +162,7 @@ To crop the image instead of scaling it to fit, set **preserveAspectRatio** to *
 
 Images are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting, consider a [sort transform](../transforms/sort.md).
 
-## image(*data*, *options*)
+## image(*data*, *options*) {#image}
 
 ```js
 Plot.image(presidents, {x: "inauguration", y: "favorability", src: "portrait"})

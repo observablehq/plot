@@ -19,7 +19,7 @@ onMounted(() => {
 
 # Dodge transform
 
-Given one position dimension (either **x** or **y**), the **dodge** transform computes the other position dimension such that dots are packed densely without overlapping. The [dodgeX transform](#dodgex-dodgeoptions-options) computes **x** (horizontal position) given **y** (vertical position), while the [dodgeY transform](#dodgey-dodgeoptions-options) computes **y** given **x**.
+Given one position dimension (either **x** or **y**), the **dodge** transform computes the other position dimension such that dots are packed densely without overlapping. The [dodgeX transform](#dodgeX) computes **x** (horizontal position) given **y** (vertical position), while the [dodgeY transform](#dodgeY) computes **y** given **x**.
 
 The dodge transform is commonly used to produce beeswarm 🐝 plots, a way of showing a one-dimensional distribution that preserves the visual identity of individual data points. For example, the dots below represent the weights of cars; the rough shape of the pile gives a sense of the overall distribution (peaking around 2,100 pounds), and you can hover an individual dot to see which car it represents.
 
@@ -245,7 +245,7 @@ The dodge transforms accept the following options:
 
 The **anchor** option may one of *middle*, *right*, and *left* for dodgeX, and one of *middle*, *top*, and *bottom* for dodgeY. With the *middle* anchor the piles will grow from the center in both directions; with the other anchors, the piles will grow from the specified anchor towards the opposite direction.
 
-## dodgeY(*dodgeOptions*, *options*)
+## dodgeY(*dodgeOptions*, *options*) {#dodgeY}
 
 ```js
 Plot.dodgeY({x: "date"})
@@ -253,7 +253,7 @@ Plot.dodgeY({x: "date"})
 
 Given marks arranged along the *x* axis, the dodgeY transform piles them vertically by defining a *y* position channel that avoids overlapping. The *x* position channel is unchanged.
 
-## dodgeX(*dodgeOptions*, *options*)
+## dodgeX(*dodgeOptions*, *options*) {#dodgeX}
 
 ```js
 Plot.dodgeX({y: "value"})

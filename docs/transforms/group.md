@@ -199,10 +199,10 @@ Plot.plot({
 
 The group transform comes in four orientations:
 
-- [groupX](#groupx-outputs-options) groups on **x**, and often outputs **y** as in a vertical↑ bar chart;
-- [groupY](#groupy-outputs-options) groups on **y**, and often outputs **x** as in a horizontal→ bar chart;
-- [groupZ](#groupz-outputs-options) groups on *neither* **x** nor **y**, combining everything into one group; and
-- [group](#group-outputs-options) groups on *both* **x** and **y**, and often outputs to **fill** or **r** as in a heatmap.
+- [groupX](#groupX) groups on **x**, and often outputs **y** as in a vertical↑ bar chart;
+- [groupY](#groupY) groups on **y**, and often outputs **x** as in a horizontal→ bar chart;
+- [groupZ](#groupZ) groups on *neither* **x** nor **y**, combining everything into one group; and
+- [group](#group) groups on *both* **x** and **y**, and often outputs to **fill** or **r** as in a heatmap.
 
 As you might guess, the groupY transform with the barX mark produces a horizontal→ bar chart. (We must increase the **marginLeft** to avoid the *y* axis labels from being cut off.)
 
@@ -284,7 +284,7 @@ Plot.plot({
 ```
 :::
 
-To group solely on **z** (or **fill** or **stroke**), use [groupZ](#groupz-outputs-options). The single stacked bar chart below (an alternative to a pie chart) shows the proportion of athletes by sport. The *proportion* reducer converts counts into normalized proportions adding up to 1, while the *first* reducer pulls out the name of the sport for labeling.
+To group solely on **z** (or **fill** or **stroke**), use [groupZ](#groupZ). The single stacked bar chart below (an alternative to a pie chart) shows the proportion of athletes by sport. The *proportion* reducer converts counts into normalized proportions adding up to 1, while the *first* reducer pulls out the name of the sport for labeling.
 
 :::plot defer https://observablehq.com/@observablehq/plot-single-stacked-bar
 ```js
@@ -404,7 +404,7 @@ If any of **z**, **fill**, or **stroke** is a channel, the first of these channe
 
 The default reducer for the **title** channel returns a summary list of the top 5 values with the corresponding number of occurrences.
 
-## group(*outputs*, *options*)
+## group(*outputs*, *options*) {#group}
 
 ```js
 Plot.group({fill: "count"}, {x: "island", y: "species"})
@@ -412,7 +412,7 @@ Plot.group({fill: "count"}, {x: "island", y: "species"})
 
 Groups on **x**, **y**, and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## groupX(*outputs*, *options*)
+## groupX(*outputs*, *options*) {#groupX}
 
 ```js
 Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
@@ -420,7 +420,7 @@ Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
 
 Groups on **x** and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## groupY(*outputs*, *options*)
+## groupY(*outputs*, *options*) {#groupY}
 
 ```js
 Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
@@ -428,7 +428,7 @@ Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
 
 Groups on **y** and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## groupZ(*outputs*, *options*)
+## groupZ(*outputs*, *options*) {#groupZ}
 
 ```js
 Plot.groupZ({x: "proportion"}, {fill: "species"})

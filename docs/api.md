@@ -10,7 +10,7 @@ import {data} from "./data/api.data";
 
 <ul :class="$style.oneline">
   <li v-for="({name, href, comment}) in data.methods">
-    <span><a :href="href">{{ name }}</a> - {{ comment }}</span>
+    <span><a :href="`${href}#${name}`">{{ name }}</a> - {{ comment }}</span>
   </li>
 </ul>
 
@@ -18,7 +18,7 @@ import {data} from "./data/api.data";
 
 <ul>
   <li v-for="[name, contexts] in data.options">
-    <b>{{ name }}</b> - <span v-for="({name, href}, index) in contexts"><a :href="href">{{ name }}</a><span v-if="index < contexts.length - 1">, </span></span>
+    <b>{{ name }}</b> - <span v-for="({name: context, href}, index) in contexts"><a :href="href">{{ context }}</a><span v-if="index < contexts.length - 1">, </span></span>
   </li>
 </ul>
 

@@ -158,7 +158,7 @@ If **x** is not specified, the cell will span the full horizontal extent of the 
 
 The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
-## cell(*data*, *options*)
+## cell(*data*, *options*) {#cell}
 
 ```js
 Plot.cell(simpsons, {x: "number_in_season", y: "season", fill: "imdb_rating"})
@@ -166,18 +166,18 @@ Plot.cell(simpsons, {x: "number_in_season", y: "season", fill: "imdb_rating"})
 
 Returns a new cell with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-## cellX(*data*, *options*)
+## cellX(*data*, *options*) {#cellX}
 
 ```js
 Plot.cellX(simpsons.map((d) => d.imdb_rating))
 ```
 
-Equivalent to [cell](#cell-data-options), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [cell](#cell), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
-## cellY(*data*, *options*)
+## cellY(*data*, *options*) {#cellY}
 
 ```js
 Plot.cellY(simpsons.map((d) => d.imdb_rating))
 ```
 
-Equivalent to [cell](#cell-data-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [cell](#cell), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].

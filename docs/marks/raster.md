@@ -292,7 +292,7 @@ The following raster-specific constant options are supported:
 
 The **imageRendering** option may be set to *pixelated* for a sharper image. The **interpolate** option is ignored when **fill** or **fillOpacity** is a function of *x* and *y*.
 
-## raster(*data*, *options*)
+## raster(*data*, *options*) {#raster}
 
 ```js
 Plot.raster(volcano.values, {width: volcano.width, height: volcano.height})
@@ -320,15 +320,15 @@ The **interpolate** option can also be specified as a function with the followin
 
 So, *x*[*index*[0]] represents the *x*-position of the first sample, *y*[*index*[0]] its *y*-position, and *value*[*index*[0]] its value (*e.g.*, the observed height for a topographic map).
 
-## interpolateNone(*index*, *width*, *height*, *x*, *y*, *value*)
+## interpolateNone(*index*, *width*, *height*, *x*, *y*, *value*) {#interpolateNone}
 
 ```js
 Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: Plot.interpolateNone})
 ```
 
-Applies a simple forward mapping of samples, binning them into pixels in the raster grid without any blending or interpolation. If multiple samples map to the same pixel, the last one wins; this can introduce bias if the points are not in random order, so use [Plot.shuffle](../transforms/sort.md#shuffle-options) to randomize the input if needed.
+Applies a simple forward mapping of samples, binning them into pixels in the raster grid without any blending or interpolation. If multiple samples map to the same pixel, the last one wins; this can introduce bias if the points are not in random order, so use [Plot.shuffle](../transforms/sort.md#shuffle) to randomize the input if needed.
 
-## interpolateNearest(*index*, *width*, *height*, *x*, *y*, *value*)
+## interpolateNearest(*index*, *width*, *height*, *x*, *y*, *value*) {#interpolateNearest}
 
 ```js
 Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: Plot.interpolateNearest})
@@ -336,7 +336,7 @@ Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolat
 
 Assigns each pixel in the raster grid the value of the closest sample; effectively a Voronoi diagram.
 
-## interpolatorBarycentric(*options*)
+## interpolatorBarycentric(*options*) {#interpolatorBarycentric}
 
 ```js
 Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: Plot.interpolatorBarycentric()})
@@ -344,7 +344,7 @@ Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolat
 
 Constructs a Delaunay triangulation of the samples, and then for each pixel in the raster grid, determines the triangle that covers the pixel’s centroid and interpolates the values associated with the triangle’s vertices using [barycentric coordinates](https://en.wikipedia.org/wiki/Barycentric_coordinate_system). If the interpolated values are ordinal or categorical (_i.e._, anything other than numbers or dates), then one of the three values will be picked randomly weighted by the barycentric coordinates; the given **random** number generator will be used, which defaults to a [linear congruential generator](https://d3js.org/d3-random#randomLcg) with a fixed seed (for deterministic results).
 
-## interpolatorRandomWalk(*options*)
+## interpolatorRandomWalk(*options*) {#interpolatorRandomWalk}
 
 ```js
 Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: Plot.interpolatorRandomWalk()})
