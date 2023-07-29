@@ -5,6 +5,7 @@ export {Arrow, arrow} from "./marks/arrow.js";
 export {auto, autoSpec} from "./marks/auto.js";
 export {axisX, axisY, axisFx, axisFy, gridX, gridY, gridFx, gridFy} from "./marks/axis.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
+export {bollinger, bollingerX, bollingerY} from "./marks/bollinger.js";
 export {boxX, boxY} from "./marks/box.js";
 export {Cell, cell, cellX, cellY} from "./marks/cell.js";
 export {Contour, contour} from "./marks/contour.js";

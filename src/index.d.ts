@@ -14,6 +14,7 @@ export * from "./marks/arrow.js";
 export * from "./marks/auto.js";
 export * from "./marks/axis.js";
 export * from "./marks/bar.js";
+export * from "./marks/bollinger.js";
 export * from "./marks/box.js";
 export * from "./marks/cell.js";
 export * from "./marks/contour.js";

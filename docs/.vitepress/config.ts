@@ -79,6 +79,7 @@ export default defineConfig({
           {text: "Auto", link: "/marks/auto"},
           {text: "Axis", link: "/marks/axis"},
           {text: "Bar", link: "/marks/bar"},
+          {text: "Bollinger", link: "/marks/bollinger"},
           {text: "Box", link: "/marks/box"},
           {text: "Cell", link: "/marks/cell"},
           {text: "Contour", link: "/marks/contour"},
