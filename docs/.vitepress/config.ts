@@ -130,7 +130,8 @@ export default defineConfig({
           {text: "Crosshair", link: "/interactions/crosshair"},
           {text: "Pointer", link: "/interactions/pointer"}
         ]
-      }
+      },
+      {text: "API index", link: "/api"}
     ],
     search: {
       provider: "local"
