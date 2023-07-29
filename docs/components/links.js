@@ -38,7 +38,10 @@ export async function readMarkdownSource(f) {
 // Recursively find all md files in the directory.
 export async function* readMarkdownFiles(root, subpath = "/") {
   for (const fname of await readdir(root + subpath)) {
-    if (!fname.includes(".") && (await stat(root + subpath + fname)).isDirectory()) yield* readMarkdownFiles(root, subpath + fname + "/");
-    else if (fname.endsWith(".md")) yield subpath + fname;
+    if (!fname.includes(".") && (await stat(root + subpath + fname)).isDirectory()) {
+      yield* readMarkdownFiles(root, subpath + fname + "/");
+    } else if (fname.endsWith(".md")) {
+      yield subpath + fname;
+    }
   }
 }
