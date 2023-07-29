@@ -1,5 +1,6 @@
 import {rollup, sort} from "d3";
 import {FunctionDeclaration, Node, Project, VariableStatement} from "ts-morph";
+import {readMarkdownFiles, readMarkdownSource, getAnchors} from "../components/links.js";
 
 // These interfaces tend to represent things that Plot constructs internally,
 // rather than objects that the user is expected to provide.
@@ -43,8 +44,12 @@ function getHref(name: string, path: string): string {
     case "features/curve":
     case "features/format":
     case "features/mark":
+    case "features/marker":
     case "features/plot":
+    case "features/projection":
       return `${path}s`;
+    case "features/inset":
+      return "features/scales";
     case "features/options":
       return "features/transforms";
     case "marks/axis": {
@@ -88,6 +93,7 @@ function getInterfaceName(name: string, path: string): string {
 export default {
   watch: [],
   async load() {
+    // Parse the TypeScript declarations to get exported symbols.
     const project = new Project({tsConfigFilePath: "tsconfig.json"});
     const allMethods: {name: string; comment: string; href: string}[] = [];
     const allOptions: {name: string; context: {name: string; href: string}}[] = [];
@@ -115,6 +121,27 @@ export default {
             allMethods.push({name, comment, href});
           }
         }
+      }
+    }
+    // Parse the Markdown files to get all known anchors.
+    const root = "docs";
+    const anchors = new Map();
+    for await (const file of readMarkdownFiles(root)) {
+      const text = await readMarkdownSource(root + file);
+      anchors.set(file, getAnchors(text));
+    }
+    // Cross-reference the generated links.
+    for (const {name, href} of allMethods) {
+      if (!anchors.has(`/${href}.md`)) {
+        throw new Error(`file not found: ${href}`);
+      }
+      if (!anchors.get(`/${href}.md`).includes(name)) {
+        throw new Error(`anchor not found: ${href}#${name}`);
+      }
+    }
+    for (const {context: {href}} of allOptions) {
+      if (!anchors.has(`/${href}.md`)) {
+        throw new Error(`file not found: ${href}`);
       }
     }
     return {
