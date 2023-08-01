@@ -2,17 +2,8 @@ import {geoPath, group, namespaces} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
-import {
-  string,
-  number,
-  maybeColorChannel,
-  maybeNumberChannel,
-  maybeKeyword,
-  isNoneish,
-  isNone,
-  isRound,
-  keyof
-} from "./options.js";
+import {isNone, isNoneish, isPaint, isRound} from "./options.js";
+import {keyof, maybeColorChannel, maybeKeyword, maybeNumberChannel, number, string} from "./options.js";
 import {warn} from "./warnings.js";
 
 export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
@@ -115,7 +106,7 @@ export function styles(
 
   // Some marks don’t support fill (e.g., tick and rule).
   if (defaultFill !== null) {
-    mark.fill = impliedString(cfill, "currentColor");
+    mark.fill = isPaint(cfill) ? cfill : impliedString(cfill, "currentColor");
     mark.fillOpacity = impliedNumber(cfillOpacity, 1);
   }
 
@@ -364,7 +355,14 @@ function applyClip(selection, mark, dimensions, context) {
 // Note: may mutate selection.node!
 export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyClip(selection, mark, dimensions, context);
-  applyAttr(selection, "fill", mark.fill);
+  if (isPaint(mark.fill)) {
+    const paint = mark.fill.paint(context);
+    paint.setAttribute("id", "test-paint");
+    context.ownerSVGElement.append(paint);
+    selection.attr("fill", "url(#test-paint)");
+  } else {
+    applyAttr(selection, "fill", mark.fill);
+  }
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);
   applyAttr(selection, "stroke-width", mark.strokeWidth);
