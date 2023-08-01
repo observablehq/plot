@@ -135,9 +135,9 @@ export class Tip extends Mark {
         const value = channel.value[i];
         if (!defined(value) && channel.scale == null) continue;
         if (key === "x2" && "x1" in sources) {
-          yield {name: formatLabel(scales, channel, "x"), value: formatPair(sources.x1, channel, i)};
+          yield {name: formatPairLabel(scales, sources.x1, channel, "x"), value: formatPair(sources.x1, channel, i)};
         } else if (key === "y2" && "y1" in sources) {
-          yield {name: formatLabel(scales, channel, "y"), value: formatPair(sources.y1, channel, i)};
+          yield {name: formatPairLabel(scales, sources.y1, channel, "y"), value: formatPair(sources.y1, channel, i)};
         } else {
           const scale = channel.scale;
           const line = {name: formatLabel(scales, channel, key), value: formatDefault(value)};
@@ -332,6 +332,12 @@ function formatPair(c1, c2, i) {
   return c2.hint?.length // e.g., stackY’s y1 and y2
     ? `${formatDefault(c2.value[i] - c1.value[i])}`
     : `${formatDefault(c1.value[i])}–${formatDefault(c2.value[i])}`;
+}
+
+function formatPairLabel(scales, c1, c2, defaultLabel) {
+  const l1 = formatLabel(scales, c1, defaultLabel);
+  const l2 = formatLabel(scales, c2, defaultLabel);
+  return l1 === l2 ? l1 : `${l1}–${l2}`;
 }
 
 function formatLabel(scales, c, defaultLabel) {
