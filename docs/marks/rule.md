@@ -89,7 +89,7 @@ Plot.plot({
 ```
 :::
 
-In the dense [candlestick chart](https://observablehq.com/@observablehq/observable-plot-candlestick) below, three rules are drawn for each trading day: a gray rule spans the chart, showing gaps for weekends and holidays; a black rule spans the day’s low and high; and a green or red rule spans the day’s open and close.
+In the dense [candlestick chart](https://observablehq.com/@observablehq/observable-plot-candlestick) below, three rules are drawn for each trading day: a gray rule spans the chart, showing gaps for weekends and holidays; a <span style="border-bottom: solid 2px currentColor;">{{$dark ? "white" : "black"}}</span> rule spans the day’s low and high; and a <span style="border-bottom: solid 2px var(--vp-c-green);">green</span> or <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> rule spans the day’s open and close.
 
 :::plot defer https://observablehq.com/@observablehq/plot-candlestick-chart
 ```js
@@ -97,7 +97,7 @@ Plot.plot({
   inset: 6,
   label: null,
   y: {grid: true, label: "Stock price ($)"},
-  color: {type: "threshold", range: ["#e41a1c", "#4daf4a"]},
+  color: {type: "threshold", range: ["red", "green"]},
   marks: [
     Plot.ruleX(aapl, {x: "Date", y1: "Low", y2: "High"}),
     Plot.ruleX(aapl, {x: "Date", y1: "Open", y2: "Close", stroke: (d) => d.Close - d.Open, strokeWidth: 4})

@@ -53,6 +53,23 @@ Plot.plot({
 ```
 :::
 
+Or if you want to get *really* fancy… candlesticks!
+
+:::plot
+```js
+Plot.plot({
+  x: {transform: ((min, max) => (d) => d < min || d >= max ? undefined : d)(new Date("2014-01-01"), new Date("2014-06-01"))},
+  y: {domain: [68, 92], grid: true},
+  color: {domain: [-1, 0, 1], range: ["red", "black", "green"]},
+  marks: [
+    Plot.bollingerY(aapl, {x: "Date", y: "Close", stroke: "none"}),
+    Plot.ruleX(aapl, {x: "Date", y1: "Low", y2: "High", strokeWidth: 1}),
+    Plot.ruleX(aapl, {x: "Date", y1: "Open", y2: "Close", strokeWidth: 3, stroke: (d) => Math.sign(d.Close - d.Open)}),
+  ]
+})
+```
+:::
+
 The bollinger mark has two constructors: the common [bollingerY](#bollingerY) for when time goes right→ (or ←left); and the rare [bollingerX](#bollingerX) for when time goes up↑ (or down↓).
 
 :::plot
@@ -76,7 +93,7 @@ The bollinger mark is a [composite mark](../features/marks.md#marks) consisting 
 * an [area](../marks/area.md) representing volatility as a band, and
 * a [line](../marks/line.md) representing a moving average
 
-In addition to the standard mark options which are passed through to the underlying area and line, the bollinger mark supports the following options:
+The bollinger mark supports the following special options:
 
 * **n** - the window size (corresponding to the window transform’s **k** option), an integer
 * **k** - the band radius, a number representing a multiple of standard deviations
@@ -87,6 +104,8 @@ In addition to the standard mark options which are passed through to the underly
 * **stroke** - the stroke color of the line; defaults to **color**
 * **strokeOpacity** - the stroke opacity of the line; defaults to 1
 * **strokeWidth** - the stroke width of the line in pixels; defaults to 1.5
+
+Any additional options are passed through to the underlying [line mark](./line.md), [area mark](./area.md), and [window transform](../transforms/window.md).
 
 ## bollingerX(*data*, *options*) {#bollingerX}
 
