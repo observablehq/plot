@@ -58,11 +58,36 @@ export type BollingerXOptions = BollingerOptions & AreaXOptions & LineXOptions;
 /** Options for the bollingerY mark. */
 export type BollingerYOptions = BollingerOptions & AreaYOptions & LineYOptions;
 
-/** TODO */
+/**
+ * Returns a new vertically-oriented bollinger mark for the given *data* and
+ * *options*, as in a time-series area chart where time goes up↑ (or down↓).
+ *
+ * If the *x* option is not specified, it defaults to the identity function, as
+ * when data is an array of numbers [*x*₀, *x*₁, *x*₂, …]. If the *y* option is
+ * not specified, it defaults to [0, 1, 2, …].
+ */
 export function bollingerX(data?: Data, options?: BollingerXOptions): CompoundMark;
 
-/** TODO */
+/**
+ * Returns a new horizontally-oriented bollinger mark for the given *data* and
+ * *options*, as in a time-series area chart where time goes right→ (or ←left).
+ *
+ * If the *y* option is not specified, it defaults to the identity function, as
+ * when data is an array of numbers [*y*₀, *y*₁, *y*₂, …]. If the *x* option is
+ * not specified, it defaults to [0, 1, 2, …].
+ */
 export function bollingerY(data?: Data, options?: BollingerYOptions): CompoundMark;
 
-/** TODO */
+/**
+ * Given the specified bollinger *options*, returns a corresponding map
+ * implementation for use with the map transform, allowing the bollinger
+ * transform to be applied to arbitrary channels instead of only *x* and *y*.
+ * For example, to compute the upper volatility band:
+ *
+ * ```js
+ * Plot.map({y: Plot.bollinger({n: 20, k: 2})}, {x: "Date", y: "Close"})
+ * ```
+ *
+ * Here the *k* option defaults to zero instead of two.
+ */
 export function bollinger(options?: BollingerWindowOptions): Map;
