@@ -133,6 +133,54 @@ Plot.plot({
 ```
 :::
 
+## Scale options
+
+The scale options declare (or override) the [scales](./scales.md) associated with the plot.
+
+- **x** - horizontal position
+- **y** - vertical position
+- **fx** - horizontal facet position
+- **fy** - vertical facet position
+- **r** - radius (for dots and point geos)
+- **color** - color
+- **opacity** - opacity
+- **symbol** - categorical symbol (for dots)
+- **length** - length (for vectors)
+
+For example, to fix the **domain** of the *y* scale to the interval [0, 200]:
+
+:::plot
+```js
+Plot.plot({
+  y: {domain: [0, 200]},
+  marks: [
+    Plot.lineY(aapl, {x: "Date", y: "Close"})
+  ]
+})
+```
+:::
+
+Top-level scale options:
+
+- **clamp** - if true, clamp input values to the scale’s domain
+- **nice** - if true (or a tick count), extend the domain to nice round value
+- **zero** - if true, extend the domain to include zero if needed
+
+Position scale options:
+
+- **label** - typically to set the label to null for all axes
+- **labelArrow** - the label arrow: auto (default), up, right, down, left, none, or true
+- **axis** - typically to null to disable axes
+- **grid** - typically set to true to enable grid lines
+- **align** - where to distribute points or bands (0 = at start, 0.5 = at middle, 1 = at end)
+- **padding** - how much of the range to reserve to inset first and last point or band
+- **round** - round the output value to the nearest integer (whole pixel)
+- **inset** - inset the default range by the specified amount in pixels
+- **insetTop** - insets the top of the default range by the specified number of pixels
+- **insetRight** - insets the end of the default range by the specified number of pixels
+- **insetBottom** - insets the bottom of the default range by the specified number of pixels
+- **insetLeft** - insets the start of the default range by the specified number of pixels
+
 ## Layout options
 
 The layout options determine the overall size of the plot; all are specified as numbers in pixels:
