@@ -45,9 +45,9 @@ For more control, you can also use the [bollinger map method](#bollinger) direct
 ```js
 Plot.plot({
   marks: [
-    Plot.lineY(aapl, Plot.mapY(Plot.bollinger(20, -2), {x: "Date", y: "Close", stroke: "red"})),
-    Plot.lineY(aapl, Plot.mapY(Plot.bollinger(20, 2), {x: "Date", y: "Close", stroke: "green"})),
-    Plot.lineY(aapl, Plot.mapY(Plot.bollinger(20, 0), {x: "Date", y: "Close"}))
+    Plot.lineY(aapl, Plot.mapY(Plot.bollinger({n: 20, k: -2}), {x: "Date", y: "Close", stroke: "red"})),
+    Plot.lineY(aapl, Plot.mapY(Plot.bollinger({n: 20, k: 2}), {x: "Date", y: "Close", stroke: "green"})),
+    Plot.lineY(aapl, Plot.mapY(Plot.bollinger({n: 20}), {x: "Date", y: "Close"}))
   ]
 })
 ```
@@ -106,10 +106,10 @@ Returns a bollinger mark for when time goes right→ (or ←left). If the **y** 
 
 TODO Describe the **interval** option inherited from line/area.
 
-## bollinger(*n*, *k*) {#bollinger}
+## bollinger(*options*) {#bollinger}
 
 ```js
-Plot.lineY(data, Plot.map({y: Plot.bollinger(20, 0)}, {x: "Date", y: "Close"}))
+Plot.lineY(data, Plot.map({y: Plot.bollinger({n: 20})}, {x: "Date", y: "Close"}))
 ```
 
 Returns a bollinger map method for use with the [map transform](../transforms/map.md).

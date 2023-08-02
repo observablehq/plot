@@ -6,15 +6,23 @@ import {areaX, areaY} from "./area.js";
 import {lineX, lineY} from "./line.js";
 import {identity} from "../options.js";
 
+const defaults = {
+  n: 20,
+  k: 2,
+  color: "currentColor",
+  opacity: 0.2,
+  strict: true,
+  anchor: "end"
+};
+
 export function bollingerX(
   data,
   {
     x = identity,
     y,
-    n = 20,
-    k = 2,
-    color = "currentColor",
-    opacity = 0.2,
+    k = defaults.k,
+    color = defaults.color,
+    opacity = defaults.opacity,
     fill = color,
     fillOpacity = opacity,
     stroke = color,
@@ -24,8 +32,14 @@ export function bollingerX(
   } = {}
 ) {
   return marks(
-    areaX(data, map({x1: bollinger(n, -k), x2: bollinger(n, k)}, {x1: x, x2: x, y, fill, fillOpacity, ...options})),
-    lineX(data, map({x: bollinger(n, 0)}, {x, y, stroke, strokeOpacity, strokeWidth, ...options}))
+    areaX(
+      data,
+      map(
+        {x1: bollinger({k: -k, ...options}), x2: bollinger({k, ...options})},
+        {x1: x, x2: x, y, fill, fillOpacity, ...options}
+      )
+    ),
+    lineX(data, map({x: bollinger(options)}, {x, y, stroke, strokeOpacity, strokeWidth, ...options}))
   );
 }
 
@@ -34,10 +48,9 @@ export function bollingerY(
   {
     x,
     y = identity,
-    n = 20,
-    k = 2,
-    color = "currentColor",
-    opacity = 0.2,
+    k = defaults.k,
+    color = defaults.color,
+    opacity = defaults.opacity,
     fill = color,
     fillOpacity = opacity,
     stroke = color,
@@ -47,11 +60,17 @@ export function bollingerY(
   } = {}
 ) {
   return marks(
-    areaY(data, map({y1: bollinger(n, -k), y2: bollinger(n, k)}, {x, y1: y, y2: y, fill, fillOpacity, ...options})),
-    lineY(data, map({y: bollinger(n, 0)}, {x, y, stroke, strokeOpacity, strokeWidth, ...options}))
+    areaY(
+      data,
+      map(
+        {y1: bollinger({k: -k, ...options}), y2: bollinger({k, ...options})},
+        {x, y1: y, y2: y, fill, fillOpacity, ...options}
+      )
+    ),
+    lineY(data, map({y: bollinger(options)}, {x, y, stroke, strokeOpacity, strokeWidth, ...options}))
   );
 }
 
-export function bollinger(n, k) {
-  return window({k: n, reduce: (Y) => mean(Y) + k * (deviation(Y) || 0), strict: true, anchor: "end"});
+export function bollinger({n = defaults.n, k = 0, strict = defaults.strict, anchor = defaults.anchor} = {}) {
+  return window({k: n, reduce: (Y) => mean(Y) + k * (deviation(Y) || 0), strict, anchor});
 }
