@@ -123,7 +123,10 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
           g.replaceWith(r);
         }
         state.roots[renderIndex] = g = r;
-        context.dispatchValue(i == null ? null : data[i]);
+
+        // Dispatch the value. When simultaneously exiting this facet and
+        // entering a new one, prioritize the entering facet.
+        if (!(i == null && facetState?.size > 1)) context.dispatchValue(i == null ? null : data[i]);
         return r;
       }
 
