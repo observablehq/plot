@@ -82,3 +82,27 @@ export async function timeAxisExplicitInterval() {
     marks: [Plot.ruleY([0]), Plot.axisX({ticks: "3 months"}), Plot.gridX(), Plot.line(aapl, {x: "Date", y: "Close"})]
   });
 }
+
+export async function timeAxisOrdinal() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "month"},
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
+}
+
+export async function timeAxisOrdinalIrregular() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "4 weeks", ticks: "year"},
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
+}
+
+export async function timeAxisOrdinalTicks() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "month", ticks: "3 months"},
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
+}

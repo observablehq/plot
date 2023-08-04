@@ -8,12 +8,8 @@ export async function integerInterval() {
     [5, 12]
   ];
   return Plot.plot({
-    x: {
-      interval: 1
-    },
-    y: {
-      zero: true
-    },
+    x: {interval: 1},
+    y: {zero: true},
     marks: [Plot.line(requests)]
   });
 }

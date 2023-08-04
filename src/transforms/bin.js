@@ -13,8 +13,10 @@ import {
   coerceDate,
   coerceNumbers,
   identity,
+  isInterval,
   isIterable,
   isTemporal,
+  isTimeInterval,
   labelof,
   map,
   maybeApplyInterval,
@@ -359,14 +361,6 @@ function thresholdAuto(values, min, max) {
 
 function isTimeThresholds(t) {
   return isTimeInterval(t) || (isIterable(t) && isTemporal(t));
-}
-
-function isTimeInterval(t) {
-  return isInterval(t) && typeof t === "function" && t() instanceof Date;
-}
-
-function isInterval(t) {
-  return typeof t?.range === "function";
 }
 
 function bing(EX, EY) {

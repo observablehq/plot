@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="435" viewBox="0 0 640 435" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
       display: block;
@@ -56,60 +56,34 @@
     <text y="0.71em" transform="translate(40,20)">↑ Volume (USD, millions)</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(10.5,0)">
-    <path transform="translate(45,370)" d="M0,0L0,6"></path>
     <path transform="translate(67,370)" d="M0,0L0,6"></path>
-    <path transform="translate(89,370)" d="M0,0L0,6"></path>
     <path transform="translate(111,370)" d="M0,0L0,6"></path>
-    <path transform="translate(133,370)" d="M0,0L0,6"></path>
     <path transform="translate(155,370)" d="M0,0L0,6"></path>
-    <path transform="translate(177,370)" d="M0,0L0,6"></path>
     <path transform="translate(199,370)" d="M0,0L0,6"></path>
-    <path transform="translate(221,370)" d="M0,0L0,6"></path>
     <path transform="translate(243,370)" d="M0,0L0,6"></path>
-    <path transform="translate(265,370)" d="M0,0L0,6"></path>
     <path transform="translate(287,370)" d="M0,0L0,6"></path>
-    <path transform="translate(309,370)" d="M0,0L0,6"></path>
     <path transform="translate(331,370)" d="M0,0L0,6"></path>
-    <path transform="translate(353,370)" d="M0,0L0,6"></path>
     <path transform="translate(375,370)" d="M0,0L0,6"></path>
-    <path transform="translate(397,370)" d="M0,0L0,6"></path>
     <path transform="translate(419,370)" d="M0,0L0,6"></path>
-    <path transform="translate(441,370)" d="M0,0L0,6"></path>
     <path transform="translate(463,370)" d="M0,0L0,6"></path>
-    <path transform="translate(485,370)" d="M0,0L0,6"></path>
     <path transform="translate(507,370)" d="M0,0L0,6"></path>
-    <path transform="translate(529,370)" d="M0,0L0,6"></path>
     <path transform="translate(551,370)" d="M0,0L0,6"></path>
-    <path transform="translate(573,370)" d="M0,0L0,6"></path>
     <path transform="translate(595,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(10.5,12.564177772475912)">
-    <text y="0.32em" transform="translate(45,370) rotate(-40)">2018-04-16</text>
-    <text y="0.32em" transform="translate(67,370) rotate(-40)">2018-04-17</text>
-    <text y="0.32em" transform="translate(89,370) rotate(-40)">2018-04-18</text>
-    <text y="0.32em" transform="translate(111,370) rotate(-40)">2018-04-19</text>
-    <text y="0.32em" transform="translate(133,370) rotate(-40)">2018-04-20</text>
-    <text y="0.32em" transform="translate(155,370) rotate(-40)">2018-04-21</text>
-    <text y="0.32em" transform="translate(177,370) rotate(-40)">2018-04-22</text>
-    <text y="0.32em" transform="translate(199,370) rotate(-40)">2018-04-23</text>
-    <text y="0.32em" transform="translate(221,370) rotate(-40)">2018-04-24</text>
-    <text y="0.32em" transform="translate(243,370) rotate(-40)">2018-04-25</text>
-    <text y="0.32em" transform="translate(265,370) rotate(-40)">2018-04-26</text>
-    <text y="0.32em" transform="translate(287,370) rotate(-40)">2018-04-27</text>
-    <text y="0.32em" transform="translate(309,370) rotate(-40)">2018-04-28</text>
-    <text y="0.32em" transform="translate(331,370) rotate(-40)">2018-04-29</text>
-    <text y="0.32em" transform="translate(353,370) rotate(-40)">2018-04-30</text>
-    <text y="0.32em" transform="translate(375,370) rotate(-40)">2018-05-01</text>
-    <text y="0.32em" transform="translate(397,370) rotate(-40)">2018-05-02</text>
-    <text y="0.32em" transform="translate(419,370) rotate(-40)">2018-05-03</text>
-    <text y="0.32em" transform="translate(441,370) rotate(-40)">2018-05-04</text>
-    <text y="0.32em" transform="translate(463,370) rotate(-40)">2018-05-05</text>
-    <text y="0.32em" transform="translate(485,370) rotate(-40)">2018-05-06</text>
-    <text y="0.32em" transform="translate(507,370) rotate(-40)">2018-05-07</text>
-    <text y="0.32em" transform="translate(529,370) rotate(-40)">2018-05-08</text>
-    <text y="0.32em" transform="translate(551,370) rotate(-40)">2018-05-09</text>
-    <text y="0.32em" transform="translate(573,370) rotate(-40)">2018-05-10</text>
-    <text y="0.32em" transform="translate(595,370) rotate(-40)">2018-05-11</text>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(10.5,9.5)">
+    <text transform="translate(67,370)"><tspan x="0" y="0.71em">17</tspan><tspan x="0" dy="1em">Apr</tspan></text>
+    <text y="0.71em" transform="translate(111,370)">19</text>
+    <text y="0.71em" transform="translate(155,370)">21</text>
+    <text y="0.71em" transform="translate(199,370)">23</text>
+    <text y="0.71em" transform="translate(243,370)">25</text>
+    <text y="0.71em" transform="translate(287,370)">27</text>
+    <text y="0.71em" transform="translate(331,370)">29</text>
+    <text transform="translate(375,370)"><tspan x="0" y="0.71em">1</tspan><tspan x="0" dy="1em">May</tspan></text>
+    <text y="0.71em" transform="translate(419,370)">3</text>
+    <text y="0.71em" transform="translate(463,370)">5</text>
+    <text y="0.71em" transform="translate(507,370)">7</text>
+    <text y="0.71em" transform="translate(551,370)">9</text>
+    <text y="0.71em" transform="translate(595,370)">11</text>
   </g>
   <g aria-label="bar">
     <rect x="45" width="20" y="298.1031513563638" height="71.89684864363619"></rect>

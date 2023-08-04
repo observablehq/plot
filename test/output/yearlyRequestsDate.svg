@@ -1,0 +1,78 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,335)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,300)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,265)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,230)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,160)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,125.00000000000001)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,89.99999999999999)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,54.99999999999999)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,20)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,335)">2</text>
+    <text y="0.32em" transform="translate(40,300)">4</text>
+    <text y="0.32em" transform="translate(40,265)">6</text>
+    <text y="0.32em" transform="translate(40,230)">8</text>
+    <text y="0.32em" transform="translate(40,195)">10</text>
+    <text y="0.32em" transform="translate(40,160)">12</text>
+    <text y="0.32em" transform="translate(40,125.00000000000001)">14</text>
+    <text y="0.32em" transform="translate(40,89.99999999999999)">16</text>
+    <text y="0.32em" transform="translate(40,54.99999999999999)">18</text>
+    <text y="0.32em" transform="translate(40,20)">20</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(15,0)">
+    <path transform="translate(44,370)" d="M0,0L0,6"></path>
+    <path transform="translate(108,370)" d="M0,0L0,6"></path>
+    <path transform="translate(172,370)" d="M0,0L0,6"></path>
+    <path transform="translate(236,370)" d="M0,0L0,6"></path>
+    <path transform="translate(300,370)" d="M0,0L0,6"></path>
+    <path transform="translate(364,370)" d="M0,0L0,6"></path>
+    <path transform="translate(428,370)" d="M0,0L0,6"></path>
+    <path transform="translate(492,370)" d="M0,0L0,6"></path>
+    <path transform="translate(556,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(15,9.5)">
+    <text y="0.71em" transform="translate(44,370)">2002</text>
+    <text y="0.71em" transform="translate(108,370)">2004</text>
+    <text y="0.71em" transform="translate(172,370)">2006</text>
+    <text y="0.71em" transform="translate(236,370)">2008</text>
+    <text y="0.71em" transform="translate(300,370)">2010</text>
+    <text y="0.71em" transform="translate(364,370)">2012</text>
+    <text y="0.71em" transform="translate(428,370)">2014</text>
+    <text y="0.71em" transform="translate(492,370)">2016</text>
+    <text y="0.71em" transform="translate(556,370)">2018</text>
+  </g>
+  <g aria-label="bar">
+    <rect x="44" width="29" y="212.50000000000003" height="157.49999999999997"></rect>
+    <rect x="76" width="29" y="72.5" height="297.5"></rect>
+    <rect x="108" width="29" y="160" height="210"></rect>
+    <rect x="140" width="29" y="282.5" height="87.5"></rect>
+    <rect x="172" width="29" y="160" height="210"></rect>
+    <rect x="204" width="29" y="54.99999999999999" height="315"></rect>
+    <rect x="236" width="29" y="89.99999999999999" height="280"></rect>
+    <rect x="268" width="29" y="177.49999999999997" height="192.50000000000003"></rect>
+    <rect x="300" width="29" y="212.50000000000003" height="157.49999999999997"></rect>
+    <rect x="332" width="29" y="230" height="140"></rect>
+    <rect x="364" width="29" y="212.50000000000003" height="157.49999999999997"></rect>
+    <rect x="588" width="29" y="20" height="350"></rect>
+  </g>
+</svg>
