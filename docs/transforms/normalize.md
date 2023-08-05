@@ -121,7 +121,7 @@ The **basis** option specifies how to normalize the series values; it is one of:
 * a function to be passed an array of values, returning the desired basis
 * a function to be passed an index and channel value array, returning the desired basis
 
-## normalize(*basis*) {#normalize}
+## normalize(*basis*) <VersionBadge version="0.2.3" /> {#normalize}
 
 ```js
 Plot.map({y: Plot.normalize("first")}, {x: "Date", y: "Close", stroke: "Symbol"})

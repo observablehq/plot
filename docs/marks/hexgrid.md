@@ -6,7 +6,7 @@ import penguins from "../data/penguins.ts";
 
 </script>
 
-# Hexgrid mark
+# Hexgrid mark <VersionBadge version="0.5.0" />
 
 The **hexgrid mark** draws a hexagonal grid spanning the frame. It can be used with the [hexbin transform](../transforms/hexbin.md) to show how points are binned. The **binWidth** option specifies the distance between centers of neighboring hexagons in pixels; it defaults to 20, matching the hexbin transform.
 

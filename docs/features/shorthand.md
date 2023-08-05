@@ -73,7 +73,7 @@ const gene = "AAAAGAGTGAAGATGCTGGAGACGAGTGAAGCATTCACTTTAGGGAAAGCGAGGCAAGAGCGTTTC
 
 </script>
 
-# Shorthand
+# Shorthand <VersionBadge version="0.4.2" />
 
 The most concise form of Plot is its **shorthand** syntax where no options are specified — only data. To use this shorthand, the data must have a specific structure: either a one-dimensional array of values [*v₀*, *v₁*, *v₂*, …] or a two-dimensional array of tuples [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …].
 

@@ -181,7 +181,7 @@ The following named reducers are supported:
 
 A reducer may also be specified as a function to be passed an index of size **k** and the corresponding input channel array; or if the function only takes one argument, an array of **k** values.
 
-## window(*k*) {#window}
+## window(*k*) <VersionBadge version="0.2.3" /> {#window}
 
 ```js
 Plot.map({y: Plot.window(24)}, {x: "Date", y: "Close", stroke: "Symbol"})

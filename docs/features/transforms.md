@@ -191,7 +191,7 @@ You can specify a custom initializer by specifying a function as the mark **init
 
 If an initializer desires a channel that is not supported by the downstream mark, additional channels can be declared using the mark **channels** option.
 
-## transform(*options*, *transform*) {#transform}
+## transform(*options*, *transform*) <VersionBadge version="0.4.3" /> {#transform}
 
 ```js
 Plot.transform(options, (data, facets) => {
@@ -203,7 +203,7 @@ Plot.transform(options, (data, facets) => {
 ```
 Given an *options* object that may specify some basic transforms (**filter**, **sort**, or **reverse**) or a custom **transform** function, composes those transforms if any with the given *transform* function, returning a new *options* object. If a custom **transform** function is present on the given *options*, any basic transforms are ignored. Any additional input *options* are passed through in the returned *options* object. This method facilitates applying the basic transforms prior to applying the given custom *transform* and is used internally by Plot’s built-in transforms.
 
-## initializer(*options*, *initializer*) {#initializer}
+## initializer(*options*, *initializer*) <VersionBadge version="0.5.0" /> {#initializer}
 
 This helper composes the *initializer* function with any other transforms present in the *options*, and returns a new *options* object. It is used internally by Plot’s built-in initializer transforms.
 
@@ -226,7 +226,7 @@ If *type* is specified, it must be Array or a similar class that implements the 
 
 valueof is not guaranteed to return a new array. When a transform method is used, or when the given *value* is an array that is compatible with the requested *type*, the array may be returned as-is without making a copy.
 
-## column(*source*) {#column}
+## column(*source*) <VersionBadge version="0.4.3" /> {#column}
 
 ```js
 const [X, setX] = Plot.column();
