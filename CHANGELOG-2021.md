@@ -26,7 +26,7 @@ Update D3 to 7.2.1.
 
 Plot can now produce [legends for *color* and *opacity* scales](https://observablehq.com/plot/features/legends)!
 
-[<img src="./img/legend.png" width="660" alt="a scatterplot with a color legend">](https://observablehq.com/@observablehq/plot-legends)
+[<img src="./img/legend.png" width="660" alt="a scatterplot with a color legend">](https://observablehq.com/plot/features/legends)
 
 ```js
 Plot.plot({
@@ -43,7 +43,7 @@ The top-level plot *scale*.**legend** option generates an inline legend for the 
 
 The new [Plot.image](https://observablehq.com/plot/marks/image) mark centers an image on the given *xy* position.
 
-[<img src="./img/image.png" width="640" alt="a scatterplot of U.S. presidents">](https://observablehq.com/@observablehq/plot-image)
+[<img src="./img/image.png" width="640" alt="a scatterplot of U.S. presidents">](https://observablehq.com/plot/marks/image)
 
 ```js
 Plot.plot({

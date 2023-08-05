@@ -6,9 +6,9 @@ Year: [Current (2023)](./CHANGELOG.md) · **2022** · [2021](./CHANGELOG-2021.md
 
 [Released December 12, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.1)
 
-The new [geo mark](https://observablehq.com/plot/marks/geo) renders GeoJSON geometries such as polygons, lines, and points. Together with Plot’s new [projection system](https://observablehq.com/@observablehq/plot-projections), Plot can now produce [thematic maps](https://observablehq.com/@observablehq/plot-mapping). For example, the choropleth map below shows unemployment rates by U.S. county.
+The new [geo mark](https://observablehq.com/plot/marks/geo) renders GeoJSON geometries such as polygons, lines, and points. Together with Plot’s new [projection system](https://observablehq.com/plot/features/projections), Plot can now produce [thematic maps](https://observablehq.com/@observablehq/plot-mapping). For example, the choropleth map below shows unemployment rates by U.S. county.
 
-[<img src="./img/choropleth.png" width="640" alt="A choropleth of unemployment rate by U.S. county">](https://observablehq.com/@observablehq/plot-geo)
+[<img src="./img/choropleth.png" width="640" alt="A choropleth of unemployment rate by U.S. county">](https://observablehq.com/plot/marks/geo)
 
 ```js
 Plot.geo(counties, {fill: (d) => d.properties.unemployment}).plot({
@@ -25,7 +25,7 @@ Plot.geo(counties, {fill: (d) => d.properties.unemployment}).plot({
 
 The new top-level [**projection** option](https://observablehq.com/plot/features/projections) controls how geometric coordinates are transformed to the screen and supports a variety of common geographic projections, including the composite U.S. Albers projection shown above, the Equal Earth projection, the Mercator projection, the orthographic and stereographic projections, several conic and azimuthal projections, among others. Projections can be fit to geometry using the projection.**domain** option, and rotated to an arbitrary aspect using the projection.**rotate** option.
 
-[<img src="./img/orthographic.png" width="640" alt="A world map using the orthographic projection, centered somewhere around San Antonio, Texas">](https://observablehq.com/@observablehq/plot-projections)
+[<img src="./img/orthographic.png" width="640" alt="A world map using the orthographic projection, centered somewhere around San Antonio, Texas">](https://observablehq.com/plot/features/projections)
 
 ```js
 Plot.plot({
@@ -69,7 +69,7 @@ Plot.plot({
 
 For the [line mark](https://observablehq.com/plot/marks/line), the specified projection doesn’t simply project control points; the projection has full control over how geometry is transformed from its native coordinate system (often spherical) to the screen. This allows line geometry to be represented as [geodesics](https://en.wikipedia.org/wiki/Geodesic), which are sampled and clipped during projection. For example, the map below shows the route of Charles Darwin’s voyage on the HMS *Beagle*; note that the line is cut when it crosses the antimeridian in the Pacific ocean. (Also note the use of the *stroke* channel to vary color.)
 
-[<img src="./img/beagle.png" width="640" alt="A map of the route of the HMS Beagle, 1831–1836; color indicates direction, with the ship initially departing London and heading southwest before circumnavigating the globe">](https://observablehq.com/@observablehq/plot-geo)
+[<img src="./img/beagle.png" width="640" alt="A map of the route of the HMS Beagle, 1831–1836; color indicates direction, with the ship initially departing London and heading southwest before circumnavigating the globe">](https://observablehq.com/plot/marks/geo)
 
 ```js
 Plot.plot({
@@ -144,7 +144,7 @@ Plot.plot({
 
 Plot now supports [mark-level faceting](https://observablehq.com/plot/features/facets#mark-facet-options) via the new *mark*.**fx** and *mark*.**fy** options. Mark-level faceting makes it easier to control which marks are faceted (versus repeated across facets), especially when combining multiple datasets or specifying faceted annotations.
 
-[<img src="./img/anscombe.png" width="640" alt="A faceted scatterplot of Anscombe’s quartet">](https://observablehq.com/@observablehq/plot-facets)
+[<img src="./img/anscombe.png" width="640" alt="A faceted scatterplot of Anscombe’s quartet">](https://observablehq.com/plot/features/facets)
 
 ```js
 Plot.plot({
@@ -162,7 +162,7 @@ In addition to the above new features, this release also includes a variety of b
 
 [Released September 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.0)
 
-[<img src="./img/window-strict.png" width="640" alt="A smoothed line chart of Apple’s stock price">](https://observablehq.com/@observablehq/plot-window)
+[<img src="./img/window-strict.png" width="640" alt="A smoothed line chart of Apple’s stock price">](https://observablehq.com/plot/transforms/window)
 
 ```js
 Plot.plot({
@@ -194,7 +194,7 @@ Plot now uses D3 7.6.1, using [d3.blur2](https://observablehq.com/@d3/d3-blur) f
 
 The new [density mark](https://observablehq.com/plot/marks/density) creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. The **bandwidth** and number of **thresholds** are configurable.
 
-[<img src="./img/density-contours.png" width="640" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
+[<img src="./img/density-contours.png" width="640" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/plot/marks/density)
 
 ```js
 Plot.plot({
@@ -209,7 +209,7 @@ Plot.plot({
 
 By default, as shown above, the density is represented by contour lines. By setting the **fill** option to *density*, you can draw filled regions with a sequential color encoding instead.
 
-[<img src="./img/density-fill.png" width="640" alt="A contour plot showing the relationship between diamond price and weight">](https://observablehq.com/@observablehq/plot-density)
+[<img src="./img/density-fill.png" width="640" alt="A contour plot showing the relationship between diamond price and weight">](https://observablehq.com/plot/marks/density)
 
 ```js
 Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
@@ -223,7 +223,7 @@ Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
 
 The new [linear regression marks](https://observablehq.com/plot/marks/linear-regression) produce [linear regressions](https://en.wikipedia.org/wiki/Linear_regression) with [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*).
 
-[<img src="./img/linear-regression.png" width="640" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
+[<img src="./img/linear-regression.png" width="640" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/plot/marks/linear-regression)
 
 ```js
 Plot.plot({
@@ -238,7 +238,7 @@ Plot.plot({
 
 The new [Delaunay and Voronoi marks](https://observablehq.com/plot/marks/delaunay) produce Delaunay triangulations and Voronoi tesselations: [Plot.delaunayLink](https://observablehq.com/plot/marks/delaunay#delaunayLink) draws links for each edge of the Delaunay triangulation of the given points, [Plot.delaunayMesh](https://observablehq.com/plot/marks/delaunay#delaunayMesh) draws a mesh of the Delaunay triangulation  of the given points, [Plot.hull](https://observablehq.com/plot/marks/delaunay#hull) draws a convex hull around the given points, [Plot.voronoi](https://observablehq.com/plot/marks/delaunay#voronoi) draws polygons for each cell of the Voronoi tesselation of the given points, and [Plot.voronoiMesh](https://observablehq.com/plot/marks/delaunay#voronoiMesh) draws a mesh for the cell boundaries of the Voronoi tesselation of the given points.
 
-[<img src="./img/voronoi.png" width="640" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
+[<img src="./img/voronoi.png" width="640" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/plot/marks/delaunay)
 
 ```js
 Plot.plot({
@@ -267,7 +267,7 @@ Plot now supports [mark initializers](https://observablehq.com/plot/features/tra
 
 The new [hexbin transform](https://observablehq.com/plot/transforms/hexbin) functions similarly to the bin transform, except it aggregates both *x* and *y* into hexagonal bins before reducing. The size of the hexagons can be specified with the **binWidth** option, which controls the width of the (pointy-topped) hexagons.
 
-[<img src="./img/hexbin.png" width="640" alt="a chart showing the inverse relationship of fuel economy to engine displacement, and the positive correlation of engine displacement and weight; hexagonal bins of varying size represent the number of cars at each location, while color encodes the mean weight of nearby cars">](https://observablehq.com/@observablehq/plot-hexbin)
+[<img src="./img/hexbin.png" width="640" alt="a chart showing the inverse relationship of fuel economy to engine displacement, and the positive correlation of engine displacement and weight; hexagonal bins of varying size represent the number of cars at each location, while color encodes the mean weight of nearby cars">](https://observablehq.com/plot/transforms/hexbin)
 
 ```js
 Plot.plot({
@@ -288,7 +288,7 @@ Plot.plot({
 
 The new [dodge transform](https://observablehq.com/plot/transforms/dodge) can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel.
 
-[<img src="./img/dodge-random.png" width="640" alt="a beeswarm chart showing a random normal distribution; each of 800 samples is represented by a dot positioned along the x-axis, stacked on top of the y-axis like grains of sand">](https://observablehq.com/@observablehq/plot-dodge)
+[<img src="./img/dodge-random.png" width="640" alt="a beeswarm chart showing a random normal distribution; each of 800 samples is represented by a dot positioned along the x-axis, stacked on top of the y-axis like grains of sand">](https://observablehq.com/plot/transforms/dodge)
 
 ```js
 Plot.plot({
@@ -304,7 +304,7 @@ Plot.plot({
 
 If an *r* channel is specified, the circles may have varying radius. By default, the dodge transform sorts the input data by descending radius, such that the largest circles are placed first. The order of placement greatly affects the resulting layout; to change the placement order, use the standard mark **sort** option.
 
-[<img src="./img/dodge.png" width="640" alt="a chart showing the monthly percent change in travel by U.S. county in March 2020 after the coronavirus outbreak; each county is represented as a circle with area proportional to its population, positioned according to the change in travel; most counties, and especially those with stay-at-home orders, show a significant reduction in travel">](https://observablehq.com/@observablehq/plot-dodge)
+[<img src="./img/dodge.png" width="640" alt="a chart showing the monthly percent change in travel by U.S. county in March 2020 after the coronavirus outbreak; each county is represented as a circle with area proportional to its population, positioned according to the change in travel; most counties, and especially those with stay-at-home orders, show a significant reduction in travel">](https://observablehq.com/plot/transforms/dodge)
 
 ```js
 Plot.plot({
@@ -463,7 +463,7 @@ The new [box mark](https://observablehq.com/plot/marks/box) generates a horizont
 Plot.boxX(morley, {x: "Speed", y: "Expt"}).plot({x: {grid: true, inset: 6}})
 ```
 
-[Plot’s shorthand syntax](https://observablehq.com/@observablehq/plot-shorthand) has been expanded. The [bar mark](https://observablehq.com/plot/marks/bar) now supports one-dimensional shorthand: if no *options* are specified, then Plot.barX and Plot.barY can be used to visualize an array of numbers. This shorthand also now applies to the [rect mark](https://observablehq.com/plot/marks/rect) and the [vector mark](https://observablehq.com/plot/marks/vector). The [area mark](https://observablehq.com/plot/marks/area) now supports two-dimensional shorthand: if no *options* are specified, then Plot.area can be used to visualize an array of *xy*-tuples, similar to Plot.line.
+[Plot’s shorthand syntax](https://observablehq.com/plot/features/shorthand) has been expanded. The [bar mark](https://observablehq.com/plot/marks/bar) now supports one-dimensional shorthand: if no *options* are specified, then Plot.barX and Plot.barY can be used to visualize an array of numbers. This shorthand also now applies to the [rect mark](https://observablehq.com/plot/marks/rect) and the [vector mark](https://observablehq.com/plot/marks/vector). The [area mark](https://observablehq.com/plot/marks/area) now supports two-dimensional shorthand: if no *options* are specified, then Plot.area can be used to visualize an array of *xy*-tuples, similar to Plot.line.
 
 <img src="./img/bar-shorthand.png" width="640" alt="a bar chart of twenty random values">
 
@@ -559,7 +559,7 @@ Fix a crash in default tuple accessors for *x* and *y* when data is undefined. F
 
 The new [arrow mark](https://observablehq.com/plot/marks/arrow) draws arrows between pairs of points. It is similar to the [link mark](https://observablehq.com/plot/marks/link), except it is suitable for directed edges (say for representing change over time) and supports a configurable arrowhead. It also supports “swoopy” arrows with the *bend* option, and insets for arrows to shorten the arrow’s start or end.
 
-[<img src="./img/arrow.png" width="660" alt="a scatterplot with arrows">](https://observablehq.com/@observablehq/plot-arrow)
+[<img src="./img/arrow.png" width="660" alt="a scatterplot with arrows">](https://observablehq.com/plot/marks/arrow)
 
 ```js
 Plot.arrow(data, {
@@ -574,7 +574,7 @@ Plot.arrow(data, {
 
 The new [vector mark](https://observablehq.com/plot/marks/vector) similarly draws arrows at the given position (*x* and *y*) with the given magnitude (*length*) and direction (*rotate*). It is intended to visualize vector fields, such as a map of wind speed and direction.
 
-[<img src="./img/vector.png" width="660" alt="a vector field">](https://observablehq.com/@observablehq/plot-vector)
+[<img src="./img/vector.png" width="660" alt="a vector field">](https://observablehq.com/plot/marks/vector)
 
 ```js
 Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
@@ -585,7 +585,7 @@ Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
 
 The [dot mark](https://observablehq.com/plot/marks/dot) now supports a *symbol* option to control the displayed shape, which defaults to *circle*. The *symbol* channel (and associated *symbol* scale) can also be used as an categorical encoding. The default symbol set is based on whether symbols are stroked or filled, improving differentiability and giving uniform weight. Plot supports all of D3’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke, based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746)); you can also implement a [custom symbol type](https://d3js.org/d3-shape/symbol#custom-symbols).
 
-[<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/@observablehq/plot-dot)
+[<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/plot/marks/dot)
 
 ```js
 Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})
@@ -593,7 +593,7 @@ Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species",
 
 The [text mark](https://observablehq.com/plot/marks/text) now supports multiline text! When a text value contains `\r`, `\r\n`, or `\n`, it will be split into multiple lines using tspan elements. The new *lineAnchor* and *lineHeight* options control how the lines are positioned relative to the given *xy* position. The text, dot, and image marks now also support a *frameAnchor* option for positioning relative to the frame rather than according to data. This is particularly useful for annotations.
 
-[<img src="./img/poem.png" width="660" alt="This Is Just To Say, by William Carlos Williams">](https://observablehq.com/@observablehq/plot-text)
+[<img src="./img/poem.png" width="660" alt="This Is Just To Say, by William Carlos Williams">](https://observablehq.com/plot/marks/text)
 
 ```js
 Plot.plot({
@@ -615,7 +615,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", href: d => `https://en.wikiped
 
 The [bin](https://observablehq.com/plot/transforms/bin) and [group](https://observablehq.com/plot/transforms/group) transforms now propagate the *title* and *href* channels, if present, by default. The default reducer for the *title* channel automatically selects the top five distinct title values by count, making it easier to inspect the contents of a given bin or group.
 
-[<img src="./img/bin-title.png" width="656" alt="a histogram of penguins by species">](https://observablehq.com/@observablehq/plot-bin)
+[<img src="./img/bin-title.png" width="656" alt="a histogram of penguins by species">](https://observablehq.com/plot/transforms/bin)
 
 ```js
 Plot.rectY(data, Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species", title: d => `${d.species} ${d.sex}`}))
@@ -631,7 +631,7 @@ Plot.dotX(data, Plot.select({fill: "max"}, {x: "letter", fill: "frequency", stro
 
 The *color* scale now defaults to an *identity* scale if all associated defined values are valid CSS colors, rather than defaulting to the tableau10 categorical color scheme. The new *symbol* scale similarly defaults to *identity* if all associated defined values are valid symbol names (or symbol type objects).
 
-[<img src="./img/identity-color.png" width="640" alt="a chart with red and black bars">](https://observablehq.com/@observablehq/plot-bar)
+[<img src="./img/identity-color.png" width="640" alt="a chart with red and black bars">](https://observablehq.com/plot/marks/bar)
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency", fill: d => /[AEIOU]/.test(d.letter) ? "red" : "black"})
@@ -639,7 +639,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", fill: d => /[AEIOU]/.test(d.le
 
 The *color* scale now has a special default range for boolean data, encoding false as light gray and true as dark gray. If you’d prefer more color, specify a sequential scheme such as *reds* or *blues*. (You can opt-out of the special boolean range by setting the scale type to *categorical* or by specifying an explicit *range*.)
 
-[<img src="./img/boolean-color.png" width="640" alt="a chart with grey and black bars">](https://observablehq.com/@observablehq/plot-bar)
+[<img src="./img/boolean-color.png" width="640" alt="a chart with grey and black bars">](https://observablehq.com/plot/marks/bar)
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency", fill: d => /[AEIOU]/.test(d.letter)})

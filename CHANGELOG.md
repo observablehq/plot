@@ -359,7 +359,7 @@ Fix Plot.auto to only default to the *bar* mark if *x* or *y* is zeroed. Fix Plo
 
 The new [auto mark](https://observablehq.com/plot/marks/auto) ([Plot.auto](https://observablehq.com/plot/marks/auto#auto)) automatically selects a mark type that best represents the given dimensions of data according to some simple heuristics. For example,
 
-[<img src="./img/auto-dot.webp" width="640" alt="A scatterplot height and weight of olympic athletes.">](https://observablehq.com/@observablehq/plot-auto)
+[<img src="./img/auto-dot.webp" width="640" alt="A scatterplot height and weight of olympic athletes.">](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.auto(olympians, {x: "height", y: "weight"}).plot()
@@ -367,7 +367,7 @@ Plot.auto(olympians, {x: "height", y: "weight"}).plot()
 
 makes a scatterplot (equivalent to [dot](https://observablehq.com/plot/marks/dot)); adding **color** as
 
-[<img src="./img/auto-bin-color.webp" width="640" alt="A heatmap of .">](https://observablehq.com/@observablehq/plot-auto)
+[<img src="./img/auto-bin-color.webp" width="640" alt="A heatmap of .">](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.auto(olympians, {x: "height", y: "weight", color: "count"}).plot()
@@ -375,7 +375,7 @@ Plot.auto(olympians, {x: "height", y: "weight", color: "count"}).plot()
 
 makes a heatmap (equivalent to [rect](https://observablehq.com/plot/marks/rect) and [bin](https://observablehq.com/plot/transforms/bin); chosen since _height_ and _weight_ are quantitative); switching to
 
-[<img src="./img/auto-line.webp" width="640" alt="A line chart of Apple stock price.">](https://observablehq.com/@observablehq/plot-auto)
+[<img src="./img/auto-line.webp" width="640" alt="A line chart of Apple stock price.">](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
@@ -383,7 +383,7 @@ Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
 
 makes a line chart (equivalent to [lineY](https://observablehq.com/plot/marks/line#lineY); chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
 
-[<img src="./img/auto-bin.webp" width="640" alt="A histogram of penguin body mass.">](https://observablehq.com/@observablehq/plot-auto)
+[<img src="./img/auto-bin.webp" width="640" alt="A histogram of penguin body mass.">](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.auto(penguins, {x: "body_mass_g"}).plot()
@@ -391,7 +391,7 @@ Plot.auto(penguins, {x: "body_mass_g"}).plot()
 
 makes a histogram (equivalent to [rectY](https://observablehq.com/plot/marks/rect#rectY) and [binX](https://observablehq.com/plot/transforms/bin#binX); chosen because the _body_mass_g_ column is quantitative); and
 
-[<img src="./img/auto-group.webp" width="640" alt="A vertical bar chart of penguins by island.">](https://observablehq.com/@observablehq/plot-auto)
+[<img src="./img/auto-group.webp" width="640" alt="A vertical bar chart of penguins by island.">](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.auto(penguins, {x: "island"}).plot()
@@ -401,7 +401,7 @@ makes a bar chart (equivalent to [barY](https://observablehq.com/plot/marks/bar#
 
 Plot’s new [axis](https://observablehq.com/plot/marks/axis) and [grid](https://observablehq.com/plot/marks/grid) marks allow customization and styling of axes. This has been one of our most asked-for features, closing more than a dozen feature requests (see [#1197](https://github.com/observablehq/plot/pull/1197))! The new axis mark composes a [vector](https://observablehq.com/plot/marks/vector) for tick marks and a [text](https://observablehq.com/plot/marks/text) for tick and axis labels. As such, you can use the rich capabilities of these marks, such the **lineWidth** option to wrap long text labels.
 
-[<img src="./img/axis-multiline.webp" width="640" alt="A bar chart of parodical survey responses demonstrating text wrapping of long axis labels.">](https://observablehq.com/@observablehq/plot-auto)
+[<img src="./img/axis-multiline.webp" width="640" alt="A bar chart of parodical survey responses demonstrating text wrapping of long axis labels.">](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.plot({
@@ -417,7 +417,7 @@ Plot.plot({
 
 And since axes and grids are now proper marks, you can interleave them with other marks, for example to produce ggplot2-style axes with a gray background and white grid lines.
 
-[<img src="./img/axis-ggplot.webp" width="640" alt="A line chart of Apple’s stock price demonstrating styled axes with a gray background overlaid with white grid lines.">](https://observablehq.com/@observablehq/plot-auto)
+[<img src="./img/axis-ggplot.webp" width="640" alt="A line chart of Apple’s stock price demonstrating styled axes with a gray background overlaid with white grid lines.">](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.plot({
@@ -433,7 +433,7 @@ Plot.plot({
 
 The *x* and *y* axes are now automatically repeated in empty facets, improving readability by reducing eye travel to read tick values. Below, note that the *x* axis for culmen depth (with ticks at 15 and 20 mm) is rendered below the Adelie/null-sex facet in the top-right.
 
-[<img src="./img/facet-axes.webp" width="640" alt="A scatterplot showing the culmen length and depth of various penguins, faceted by species and sex; the facets are arranged in a grid, with the y-axis on the left and the x-axis on the bottom.">](https://observablehq.com/@observablehq/plot-axes)
+[<img src="./img/facet-axes.webp" width="640" alt="A scatterplot showing the culmen length and depth of various penguins, faceted by species and sex; the facets are arranged in a grid, with the y-axis on the left and the x-axis on the bottom.">](ttps://observablehq.com/plot/marks/axis)
 
 ```js
 Plot.plot({
@@ -448,7 +448,7 @@ Plot.plot({
 })
 ```
 
-See [Plot: Axes](https://observablehq.com/@observablehq/plot-axes) for more examples, including the new _both_ **axis** option to repeat axes on both sides of the plot, dashed grid lines via the **strokeDasharray** option, data-driven tick placement, and layering axes to show hierarchical time intervals (years, months, weeks).
+See [Plot: Axes](https://observablehq.com/plot/marks/axis) for more examples, including the new _both_ **axis** option to repeat axes on both sides of the plot, dashed grid lines via the **strokeDasharray** option, data-driven tick placement, and layering axes to show hierarchical time intervals (years, months, weeks).
 
 Marks can now declare default margins via the **marginTop**, **marginRight**, **marginBottom**, and **marginLeft** options, and the **margin** shorthand. For each side, the maximum corresponding margin across marks becomes the plot’s default. While most marks default to zero margins (because they are drawn inside the chart area), Plot‘s axis mark provides default margins depending on their anchor. The facet margin options (*e.g.*, facet.**marginRight**) now correctly affect the positioning of the *x* and *y* axis labels.
 
@@ -462,7 +462,7 @@ The [frame mark](https://observablehq.com/plot/marks/frame)’s new **anchor** o
 
 The new [raster mark](https://observablehq.com/plot/marks/raster) and [contour mark](https://observablehq.com/plot/marks/contour) generate a raster image and smooth contours, respectively, from spatial samples. For example, the plot below shows a gridded digital elevation model of Maungawhau (R’s [`volcano` dataset](./test/data/volcano.json)) with contours every 10 meters:
 
-[<img src="./img/volcano.webp" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/@observablehq/plot-raster)
+[<img src="./img/volcano.webp" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/plot/marks/raster)
 
 ```js
 Plot.plot({
@@ -476,7 +476,7 @@ Plot.plot({
 
 For non-gridded or sparse data, the raster and contour marks implement a variety of [spatial interpolation methods](https://observablehq.com/plot/marks/raster#spatial-interpolators) to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
 
-[<img src="./img/ca55.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-raster)
+[<img src="./img/ca55.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/plot/marks/raster)
 
 ```js
 Plot.plot({
@@ -495,7 +495,7 @@ Plot.plot({
 
 The same data, with a smidge of blur, as filled contours in projected coordinates:
 
-[<img src="./img/ca55-contours.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-contour)
+[<img src="./img/ca55-contours.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/plot/marks/contour)
 
 ```js
 Plot.plot({
@@ -509,7 +509,7 @@ Plot.plot({
 
 Naturally, the raster and contour mark are compatible with Plot’s [projection system](https://observablehq.com/plot/features/projections), allowing spatial samples to be shown in any geographic projection and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded global water vapor dataset from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
 
-[<img src="./img/water-vapor.png" width="650" alt="A map of global atmospheric water vapor, showing a higher concentration of water vapor near the equator">](https://observablehq.com/@observablehq/plot-raster)
+[<img src="./img/water-vapor.png" width="650" alt="A map of global atmospheric water vapor, showing a higher concentration of water vapor near the equator">](https://observablehq.com/plot/marks/raster)
 
 ```js
 Plot.plot({
@@ -537,7 +537,7 @@ Plot.plot({
 
 The raster and contour mark also support sampling continuous spatial functions *f*(*x*, *y*). For example, here is the famous Mandelbrot set, with color encoding the number of iterations before the point escapes:
 
-[<img src="./img/mandelbrot.webp" width="640" alt="The Mandelbrot set">](https://observablehq.com/@observablehq/plot-raster)
+[<img src="./img/mandelbrot.webp" width="640" alt="The Mandelbrot set">](https://observablehq.com/plot/marks/raster)
 
 ```js
 Plot.plot({
