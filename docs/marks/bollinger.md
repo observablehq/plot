@@ -10,7 +10,7 @@ const k = ref(2);
 
 </script>
 
-# Bollinger mark <Badge type="warning" text="prerelease" />
+# Bollinger mark <VersionBadge pr="1772" />
 
 The **bollinger mark** is a [composite mark](../features/marks.md#marks) consisting of a [line](./line.md) representing a moving average and an [area](./area.md) representing volatility as a band; the band thickness is proportional to the deviation of nearby values. The bollinger mark is often used to analyze the price of financial instruments such as stocks.
 
