@@ -93,7 +93,7 @@ Plot.plot({
 Or: `Plot.rect({length: 1}, {fy: ["Gentoo"], stroke: "currentColor"})`.
 :::
 
-The **anchor** option, if specified to a value of *left*, *right*, *top* or *bottom*, draws only that side of the frame. In that case, the **fill** and **rx**, **ry** options are ignored.
+The **anchor** option <VersionBadge version="0.6.3" />, if specified to a value of *left*, *right*, *top* or *bottom*, draws only that side of the frame. In that case, the **fill** and **rx**, **ry** options are ignored.
 
 :::plot
 ```js

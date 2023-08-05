@@ -28,7 +28,7 @@ onMounted(() => {
 
 </script>
 
-# Projections
+# Projections <VersionBadge version="0.6.1" />
 
 A **projection** maps abstract coordinates in *x* and *y* to pixel positions on screen. Most often, abstract coordinates are spherical (degrees longitude and latitude), as when rendering a geographic map. For example, below we show earthquakes in the last seven days with a magnitude of 2.5 or higher as reported by the [USGS](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php). Use the slider to adjust the *orthographic* projection’s center of longitude.
 

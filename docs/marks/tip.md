@@ -22,7 +22,7 @@ onMounted(() => {
 
 </script>
 
-# Tip mark
+# Tip mark <VersionBadge version="0.6.7" />
 
 The **tip mark** displays text, or several name-value pairs, in a floating box anchored to a given position in **x** and **y**. The tip mark is often paired with the [pointer transform](../interactions/pointer.md) to reveal details on demand when hovering over a chart, as in this line chart of Apple stock price:
 

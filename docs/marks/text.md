@@ -213,7 +213,7 @@ The following text-specific constant options are also supported:
 * **lineAnchor** - the line anchor for vertical position; *top*, *bottom*, or *middle*
 * **lineHeight** - the line height in ems; defaults to 1
 * **lineWidth** - the line width in ems, for wrapping; defaults to Infinity
-* **textOverflow** - how to wrap or clip lines longer than the specified line width
+* **textOverflow** - how to wrap or clip lines longer than the specified line width <VersionBadge version="0.6.4" />
 * **monospace** - if true, changes the default **fontFamily** and metrics to monospace
 * **fontFamily** - the font name; defaults to [*system-ui*](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 * **fontSize** - the font size in pixels; defaults to 10

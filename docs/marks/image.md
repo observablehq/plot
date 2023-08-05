@@ -143,7 +143,8 @@ In addition to the [standard mark options](../features/marks.md#mark-options), t
 * **y** - the vertical position; bound to the *y* scale
 * **width** - the image width (in pixels)
 * **height** - the image height (in pixels)
-* **r** - the image radius; bound to the *r* scale
+* **r** - the image radius; bound to the *r* scale <VersionBadge version="0.6.6" />
+* **rotate** - the rotation angle in degrees clockwise <VersionBadge version="0.6.6" />
 
 If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
@@ -156,7 +157,7 @@ The following image-specific constant options are also supported:
 * **frameAnchor** - how to position the image within the frame; defaults to *middle*
 * **preserveAspectRatio** - the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio); defaults to *xMidYMid meet*
 * **crossOrigin** - the [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior
-* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
+* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear) <VersionBadge version="0.6.4" />
 
 To crop the image instead of scaling it to fit, set **preserveAspectRatio** to *xMidYMid slice*. The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation on enlarged images; however, note that this is not supported in WebKit.
 

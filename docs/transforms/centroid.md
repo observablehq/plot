@@ -17,7 +17,7 @@ onMounted(() => {
 
 </script>
 
-# Centroid transform
+# Centroid transform <VersionBadge version="0.6.2" />
 
 Plot offers two transforms that derive centroids from GeoJSON geometries: [centroid](#centroid) and [geoCentroid](#geoCentroid). These transforms can be used by any mark that accepts **x** and **y** channels. Below, a [text mark](../marks/text.md) labels the U.S. states.
 

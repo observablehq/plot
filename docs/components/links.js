@@ -2,13 +2,14 @@ import {readdir, readFile, stat} from "fs/promises";
 
 // Anchors can be derived from headers, or explicitly written as {#names}.
 export function getAnchors(text) {
+  text = text.replace(/<(?:Version)?Badge[^/]*\/>/g, ""); // ignore badges
   const anchors = [];
   for (const [, header] of text.matchAll(/^#+ ([*\w][*().,\w\d -]+)\n/gm)) {
     anchors.push(
       header
-        .replaceAll(/[^\w\d\s]+/g, " ")
+        .replace(/[^\w\d\s]+/g, " ")
         .trim()
-        .replaceAll(/ +/g, "-")
+        .replace(/ +/g, "-")
         .toLowerCase()
     );
   }

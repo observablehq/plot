@@ -108,7 +108,7 @@ Plot.plot({
 ```
 :::
 
-The **strict** option can also have a dramatic effect if some data is missing: when strict, the reducer will be skipped if any of the values in the current window are null, undefined, or NaN.
+The **strict** option <VersionBadge version="0.6.0" /> can also have a dramatic effect if some data is missing: when strict, the reducer will be skipped if any of the values in the current window are null, undefined, or NaN.
 
 The **reduce** option specifies how to compute the output value for the current window. It defaults to *mean* for a rolling average. Below, the rolling <span style="border-bottom: solid 2px var(--vp-c-blue)">minimum</span>, <span style="border-bottom: solid 2px var(--vp-c-red)">maximum</span>, and <span style="border-bottom: solid 2px;">median</span> are shown. The window transform supports most of the same reducers as [bin](./bin.md) and [group](./group.md), and you can implement a custom reducer as a function if needed.
 

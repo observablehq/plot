@@ -21,7 +21,7 @@ const responses = [
 
 </script>
 
-# Axis mark
+# Axis mark <VersionBadge version="0.6.3" />
 
 The **axis mark** conveys the meaning of a position [scale](../features/scales.md): _x_ or _y_, and _fx_ or _fy_ when [faceting](../features/facets.md). Plot automatically adds default axis marks as needed, but you can customize the appearance of axes either through scale options or by explicitly declaring an axis mark.
 
@@ -143,7 +143,7 @@ Plot.plot({
 ```
 :::
 
-Time axes default to a consistent multi-line tick format, [à la Datawrapper](https://blog.datawrapper.de/new-axis-ticks/), for example showing the first month of each quarter, and the year:
+Time axes default to a consistent multi-line tick format <VersionBadge version="0.6.9" />, [à la Datawrapper](https://blog.datawrapper.de/new-axis-ticks/), for example showing the first month of each quarter, and the year:
 
 :::plot https://observablehq.com/@observablehq/plot-datawrapper-style-date-axis
 ```js
@@ -345,7 +345,7 @@ In addition to the [standard mark options](../features/marks.md), the axis mark 
 * **fontVariant** - the ticks’ font-variant; defaults to *tabular-nums* for quantitative axes
 * **label** - a string to label the axis; defaults to the scale’s label, perhaps with an arrow
 * **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
-* **labelArrow** - the label arrow: *auto* (default), *up*, *right*, *down*, *left*, *none*, or true
+* **labelArrow** - the label arrow: *auto* (default), *up*, *right*, *down*, *left*, *none*, or true <VersionBadge version="0.6.7" />
 * **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
 * **color** - the color of the ticks and labels (defaults to *currentColor*)
 * **textStroke** - the color of the stroke around tick labels (defaults to *none*)

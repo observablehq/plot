@@ -21,7 +21,7 @@ onMounted(() => {
 
 </script>
 
-# Pointer transform
+# Pointer transform <VersionBadge version="0.6.7" />
 
 The **pointer transform** filters a mark interactively such that only the point closest to the pointer is rendered. It is typically used to show details on hover, often with a [tip](../marks/tip.md) or [crosshair](./crosshair.md) mark, but it can be paired with any mark.
 

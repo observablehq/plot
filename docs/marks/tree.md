@@ -157,7 +157,7 @@ The following options are supported:
 
 Any additional *options* are passed through to the constituent link, dot, and text marks and their corresponding treeLink or treeNode transform.
 
-The **textLayout** option controls how text labels are anchored to the node. Two layouts are supported:
+The **textLayout** option <VersionBadge version="0.6.9" /> controls how text labels are anchored to the node. Two layouts are supported:
 
 * *mirrored* - leaf-node labels are left-anchored, and non-leaf nodes right-anchored
 * *normal* - all labels are left-anchored

@@ -3,6 +3,7 @@ import {useData} from "vitepress";
 import {watch} from "vue";
 import PlotRender from "../../components/PlotRender.js";
 import CustomLayout from "./CustomLayout.vue";
+import VersionBadge from "./VersionBadge.vue";
 import "./custom.css";
 
 export default {
@@ -11,6 +12,7 @@ export default {
   enhanceApp({app, router}) {
     Object.defineProperty(app.config.globalProperties, "$dark", {get: () => useData().isDark.value});
     app.component("PlotRender", PlotRender);
+    app.component("VersionBadge", VersionBadge);
     enableAnalytics(router);
   }
 };

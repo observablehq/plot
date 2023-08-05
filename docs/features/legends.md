@@ -89,7 +89,7 @@ Categorical and ordinal color legends are rendered as swatches, unless the **leg
 * **columns** - the number of swatches per row
 * **marginLeft** - the legend’s left margin
 * **className** - a class name, that defaults to a randomly generated string scoping the styles
-* **opacity** - the swatch fill opacity
+* **opacity** - the swatch fill opacity <VersionBadge version="0.6.5" />
 * **width** - the legend’s width (in pixels)
 
 Symbol legends are rendered as swatches and support the options above in addition to the following options:
