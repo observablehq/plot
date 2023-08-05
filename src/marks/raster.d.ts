@@ -209,7 +209,7 @@ export const interpolateNone: RasterInterpolateFunction;
  * congruential generator][2] with a fixed seed (for deterministic results).
  *
  * [1]: https://en.wikipedia.org/wiki/Barycentric_coordinate_system
- * [2]: https://github.com/d3/d3-random/blob/main/README.md#randomLcg
+ * [2]: https://d3js.org/d3-random#randomLcg
  */
 export function interpolatorBarycentric(options?: {random?: RandomSource}): RasterInterpolateFunction;
 

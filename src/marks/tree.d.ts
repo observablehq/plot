@@ -39,7 +39,7 @@ export interface TreeOptions extends DotOptions, LinkOptions, TextOptions, TreeT
  * slash by default); then executes a tree layout algorithm, by default
  * [Reingold–Tilford’s “tidy” algorithm][1].
  *
- * [1]: https://github.com/d3/d3-hierarchy/blob/main/README.md#tree
+ * [1]: https://d3js.org/d3-hierarchy/tree
  */
 export function tree(data?: Data, options?: TreeOptions): CompoundMark;
 
@@ -51,6 +51,6 @@ export function tree(data?: Data, options?: TreeOptions): CompoundMark;
  * Plot.tree(data, {...options, treeLayout: d3.cluster, textLayout: "mirrored"})
  * ```
  *
- * [1]: https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster
+ * [1]: https://d3js.org/d3-hierarchy/cluster
  */
 export function cluster(data?: Data, options?: TreeOptions): CompoundMark;

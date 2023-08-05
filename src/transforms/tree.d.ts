@@ -32,8 +32,8 @@ export interface TreeTransformOptions {
    * Reingold–Tilford “tidy” algorithm. Use [d3.cluster][2] instead to align
    * leaf nodes; see also Plot.cluster.
    *
-   * [1]: https://github.com/d3/d3-hierarchy/blob/main/README.md#tree
-   * [2]: https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster
+   * [1]: https://d3js.org/d3-hierarchy/tree
+   * [2]: https://d3js.org/d3-hierarchy/cluster
    */
   treeLayout?: () => any;
 
@@ -44,7 +44,7 @@ export interface TreeTransformOptions {
    * in the hierarchy and returns the desired (relative) amount of separation;
    * see [d3-hierarchy’s _tree_.separation][1] for more.
    *
-   * [1]: https://github.com/d3/d3-hierarchy/blob/main/README.md#tree_separation
+   * [1]: https://d3js.org/d3-hierarchy/tree#tree_separation
    */
   treeSeparation?: CompareFunction | null;
 
@@ -58,7 +58,7 @@ export interface TreeTransformOptions {
    * node value such as *node:name*.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-   * [2]: https://github.com/d3/d3-hierarchy/blob/main/README.md#node_sort
+   * [2]: https://d3js.org/d3-hierarchy/hierarchy#node_sort
    */
   treeSort?: CompareFunction | {node: (node: any) => any} | string | null;
 }

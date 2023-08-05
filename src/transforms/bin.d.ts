@@ -42,8 +42,8 @@ export type ThresholdsFunction<T = any> = (values: T[], min: T, max: T) => Range
  * built-in thresholds implementations, [d3.ticks][1] is used for numeric
  * domains and [d3.utcTicks][2] is used for temporal domains.
  *
- * [1]: https://github.com/d3/d3-array/blob/main/README.md#ticks
- * [2]: https://github.com/d3/d3-time/blob/main/README.md#utcTicks
+ * [1]: https://d3js.org/d3-array/ticks
+ * [2]: https://d3js.org/d3-time#utcTicks
  */
 export type Thresholds<T = any> = ThresholdsName | ThresholdsFunction<T> | RangeInterval<T> | T[] | number;
 
