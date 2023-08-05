@@ -24,7 +24,7 @@ function mandelbrot(x, y) {
 
 </script>
 
-# Raster mark
+# Raster mark <VersionBadge version="0.6.2" />
 
 :::tip
 To produce contours instead of a heatmap, see the [contour mark](./contour.md).

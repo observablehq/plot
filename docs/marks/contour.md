@@ -23,7 +23,7 @@ function mandelbrot(x, y) {
 
 </script>
 
-# Contour mark
+# Contour mark <VersionBadge version="0.6.2" />
 
 :::tip
 To produce a heatmap instead of contours, see the [raster mark](./raster.md). For contours of estimated point density, see the [density mark](./density.md).

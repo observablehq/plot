@@ -236,7 +236,7 @@ This helper for constructing derived columns returns a [*column*, *setColumn*] a
 
 This method is used by Plot’s transforms to derive channels; the associated columns are populated (derived) when the **transform** option function is invoked.
 
-## identity {#identity}
+## identity <VersionBadge version="0.6.2" /> {#identity}
 
 ```js
 Plot.contour(data, {width: w, height: h, fill: Plot.identity})
@@ -244,7 +244,7 @@ Plot.contour(data, {width: w, height: h, fill: Plot.identity})
 
 This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data.
 
-## indexOf {#indexOf}
+## indexOf <VersionBadge version="0.6.6" /> {#indexOf}
 
 ```js
 Plot.lineY(numbers, {x: Plot.indexOf, y: Plot.identity})

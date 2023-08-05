@@ -232,7 +232,7 @@ Plot.plot({
 
 ## Mark facet options
 
-Facets can be defined for each mark via the **fx** or **fy** channels. The **fx** and **fy** channels are computed prior to the [mark’s transform](./transforms.md), if any (*i.e.*, facet channels are not transformed). Alternatively, the [**facet** plot option](#plot-facet-options) allows top-level faceting based on data.
+Facets can be defined for each mark via the **fx** or **fy** channels. <VersionBadge version="0.6.1" /> The **fx** and **fy** channels are computed prior to the [mark’s transform](./transforms.md), if any (*i.e.*, facet channels are not transformed). Alternatively, the [**facet** plot option](#plot-facet-options) allows top-level faceting based on data.
 
 Faceting can be explicitly enabled or disabled on a mark with the **facet** option, which accepts the following values:
 
@@ -245,7 +245,7 @@ Faceting can be explicitly enabled or disabled on a mark with the **facet** opti
 When mark-level faceting is used, the default *auto* setting is equivalent to *include*: the mark will be faceted if either the **fx** or **fy** channel option (or both) is specified. The null or false option will disable faceting, while *exclude* draws the subset of the mark’s data *not* in the current facet. When a mark uses *super* faceting, it is not allowed to use position scales (*x*, *y*, *fx*, or *fy*); *super* faceting is intended for decorations, such as labels and legends.
 
 
-The **facetAnchor** option controls the placement of the mark with respect to the facets. Based on the value, the mark will be displayed on:
+The **facetAnchor** option <VersionBadge version="0.6.3" /> controls the placement of the mark with respect to the facets. Based on the value, the mark will be displayed on:
 
 * null - non-empty facets
 * *top*, *right*, *bottom*, or *left* - the given side

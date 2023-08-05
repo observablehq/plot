@@ -31,7 +31,7 @@ onMounted(() => {
 
 </script>
 
-# Geo mark
+# Geo mark <VersionBadge version="0.6.1" />
 
 The **geo mark** draws geographic features — polygons, lines, points, and other geometry — often as thematic maps. It works with Plot’s [projection system](../features/projections.md). For example, the [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map) below shows unemployment by county in the United States.
 
@@ -184,7 +184,7 @@ Plot.geo(counties, {fill: (d) => d.properties.rate})
 
 Returns a new geo mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is the single-element array [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an iterable of GeoJSON objects.
 
-## sphere(*options*) {#sphere}
+## sphere(*options*) <VersionBadge version="0.6.1" /> {#sphere}
 
 ```js
 Plot.sphere()
@@ -192,7 +192,7 @@ Plot.sphere()
 
 Returns a new geo mark with a *Sphere* geometry object and the given *options*.
 
-## graticule(*options*) {#graticule}
+## graticule(*options*) <VersionBadge version="0.6.1" /> {#graticule}
 
 ```js
 Plot.graticule()

@@ -8,7 +8,7 @@ import penguins from "../data/penguins.ts";
 
 </script>
 
-# Crosshair mark
+# Crosshair mark <VersionBadge version="0.6.7" />
 
 The **crosshair mark** shows the *x* (horizontal↔︎ position) and *y* (vertical↕︎ position) value of the point closest to the [pointer](./pointer.md) on the bottom and left sides of the frame, respectively.
 
