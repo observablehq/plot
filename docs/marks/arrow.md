@@ -10,7 +10,7 @@ const edges = matrix.flatMap((m, i) => m.map((value, j) => ([nodes[i], nodes[j],
 
 </script>
 
-# Arrow mark
+# Arrow mark <VersionBadge version="0.4.0" />
 
 The **arrow mark** draws arrows between two points [**x1**, **y1**] and [**x2**, **y2**] in quantitative dimensions. It is similar to the [link mark](./link.md), except it draws an arrowhead and is suitable for directed edges. With the **bend** option, it can be swoopy.⤵︎
 

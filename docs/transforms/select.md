@@ -19,7 +19,7 @@ onMounted(() => {
 
 </script>
 
-# Select transform
+# Select transform <VersionBadge version="0.4.0" />
 
 The **select transform** filters a mark’s index to show a subset of the data. It is a specialized [filter transform](./filter.md) that pulls a single value or a sample subset out of each series. For example, below selectLast is used to label the last value in a line chart.
 

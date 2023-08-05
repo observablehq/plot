@@ -253,13 +253,13 @@ Fix the auto mark to choose the rect mark instead of rectX or rectY when appropr
 
 👉 https://observablehq.com/plot 👈
 
-The [image mark](./README.md#image) can now generate circular images with the **r** channel, and rotate images with the **rotate** channel.
+The [image mark](https://observablehq.com/plot/marks/image) can now generate circular images with the **r** channel, and rotate images with the **rotate** channel.
 
-The [axis mark](./README.md#axis) now properly respects the **margin** shorthand option, changing the default for **marginTop**, **marginRight**, **marginBottom**, and **marginLeft**. The axis mark now correctly renders the axis label when the **href** option is used, or any other option that may be interpreted as a channel.
+The [axis mark](https://observablehq.com/plot/marks/axis) now properly respects the **margin** shorthand option, changing the default for **marginTop**, **marginRight**, **marginBottom**, and **marginLeft**. The axis mark now correctly renders the axis label when the **href** option is used, or any other option that may be interpreted as a channel.
 
 Facet scale domains are now imputed correctly when the **sort** mark option is used with a **limit**, or otherwise causing the facet domain to be truncated. Plot no longer generates a spurious warning when faceting and using non-array data, such as an Arquero table. The **interval** scale option, when expressed as a fractional number such as 0.2, now has better floating point precision.
 
-The [Plot.indexOf](./README.md#plotindexof) channel transform, used internally by some mark shorthand, is now exported.
+The [Plot.indexOf](https://observablehq.com/plot/features/transforms#indexOf) channel transform, used internally by some mark shorthand, is now exported.
 
 Plot has a few improvements for server-side rendering. Plot now assumes a high pixel density display when headless. The default class name for plots is now deterministically generated (`plot-d6a7b5`) rather than randomly generated; this makes it easier to apply overrides to Plot’s default styles with an external stylesheet. (The default class name will change if Plot’s default styles change in a future release.) The **className** plot option is now inherited by a plot’s legends, if any. The density mark now respects the Plot’s **document** option, and the **caption** option now uses a duck test instead of testing against the global Node.
 
@@ -301,7 +301,7 @@ The interfaces for reduce and map implementations have changed. To better disamb
 
 [Released February 28, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.4)
 
-The new top-level [**aspectRatio** option](./README.md#layout-options) changes the default plot **height** such that, assuming both *x* and *y* are *linear* scales, a scaled unit distance in *x* divided by a scaled unit distance in *y* is the given aspect ratio. For example, if *x* and *y* represent the same units (say, degrees Fahrenheit), and if the **aspectRatio** is one, then scaled distances in *x* and *y* will be equivalent.
+The new top-level [**aspectRatio** option](https://observablehq.com/plot/features/plots#aspectRatio) changes the default plot **height** such that, assuming both *x* and *y* are *linear* scales, a scaled unit distance in *x* divided by a scaled unit distance in *y* is the given aspect ratio. For example, if *x* and *y* represent the same units (say, degrees Fahrenheit), and if the **aspectRatio** is one, then scaled distances in *x* and *y* will be equivalent.
 
 <img src="./img/aspect-ratio.webp" width="650" alt="A scatterplot of daily temperature variation (y) vs. daily low temperature (x).">
 
@@ -323,17 +323,17 @@ Plot.plot({
 })
 ```
 
-The new **textOverflow** option for the [text mark](./README.md#text) allows text to be truncated when a line of text is longer than the specified **lineWidth**. Overflowing characters can either be clipped (*clip*) or replaced with an ellipsis (*ellipsis*), either at the start, middle, or end of each line.
+The new **textOverflow** option for the [text mark](https://observablehq.com/plot/marks/text) allows text to be truncated when a line of text is longer than the specified **lineWidth**. Overflowing characters can either be clipped (*clip*) or replaced with an ellipsis (*ellipsis*), either at the start, middle, or end of each line.
 
 <img src="./img/text-overflow.webp" width="620" alt="A demonstration of Plot’s text overflow methods, including clip-start, clip-end, ellipsis-start, ellipsis-middle, ellipsis-end, applied to titles of Hayao Miyazaki films.">
 
 When wrapping or truncating, the text mark now more accurately estimates the width of ellipses and emojis, and no longer separates combining marks or emoji character sequences such as 👨‍👩‍👧‍👦.
 
-The [link mark](./README.md#link) now respects the current [**projection**](./README.md#projection-options), if any, given the default [**curve**](./README.md#curves) of *auto*. This matches the behavior of the line mark. To opt-out of the projection and draw a straight line, set the **curve** to *linear*.
+The [link mark](https://observablehq.com/plot/marks/link) now respects the current [**projection**](https://observablehq.com/plot/features/projections), if any, given the default [**curve**](https://observablehq.com/plot/features/curves) of *auto*. This matches the behavior of the line mark. To opt-out of the projection and draw a straight line, set the **curve** to *linear*.
 
-The [image mark](./README.md#image) now supports the **imageRendering** option. (Note: Safari currently ignores the SVG image-rendering attribute.)
+The [image mark](https://observablehq.com/plot/marks/image) now supports the **imageRendering** option. (Note: Safari currently ignores the SVG image-rendering attribute.)
 
-You can now override the scale for a given [mark channel](./README.md#mark-options) by specifying the corresponding option as a {value, scale} object. For example, to force the **stroke** channel to be unscaled, interpreting the associated values as literal color strings:
+You can now override the scale for a given [mark channel](https://observablehq.com/plot/features/marks#marks-have-channels) by specifying the corresponding option as a {value, scale} object. For example, to force the **stroke** channel to be unscaled, interpreting the associated values as literal color strings:
 
 ```js
 Plot.dot(data, {stroke: {value: "foo", scale: null}})
@@ -347,9 +347,9 @@ Plot.dot(data, {stroke: {value: "foo", scale: "color"}})
 
 Color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled. Likewise, if the dot mark’s **symbol** channel values are all symbols, symbol names, or nullish, values are interpreted literally and unscaled; otherwise, the channel is bound to the *symbol* scale. (If some color channels are literal values while other color channels are not, the channels with literal values will now automatically opt-out of the color scale; the same goes for symbol channels. This deviates from the previous behavior, where *all* channels associated with a scale were required to be literal values in order to have the scale default to an *identity* scale.)
 
-The mark [**facetAnchor** option](./README.md#facet-options) can now be set to *empty* such that a mark is only rendered on empty facets. This is typically used for annotation.
+The mark [**facetAnchor** option](https://observablehq.com/plot/features/facets#facetAnchor) can now be set to *empty* such that a mark is only rendered on empty facets. This is typically used for annotation.
 
-The new Plot.autoSpec method takes *data* and *options* suitable for [Plot.auto](./README.md#aut) and returns a corresponding *options* object with default options realized. While intended primarily as an internal helper, Plot.autoSpec may be useful for debugging by letting you inspect which mark and reducers are chosen by Plot.auto.
+The new Plot.autoSpec method takes *data* and *options* suitable for [Plot.auto](https://observablehq.com/plot/marks/auto) and returns a corresponding *options* object with default options realized. While intended primarily as an internal helper, Plot.autoSpec may be useful for debugging by letting you inspect which mark and reducers are chosen by Plot.auto.
 
 Fix Plot.auto to only default to the *bar* mark if *x* or *y* is zeroed. Fix Plot.auto’s support for the *area* mark. Fix Plot.auto’s use of the *bar* mark with possibly ordinal reducers. Fix a bug where arrays of values could be erroneously interpreted as reducers. Fix a crash when the mark **facet** option is set to *exclude*, but the mark is not faceted; the option is now ignored. Fix a crash coercing BigInt values to numbers.
 
@@ -357,7 +357,7 @@ Fix Plot.auto to only default to the *bar* mark if *x* or *y* is zeroed. Fix Plo
 
 [Released February 6, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.3)
 
-The new [auto mark](./README.md#auto) ([Plot.auto](./README.md#plotautodata-options)) automatically selects a mark type that best represents the given dimensions of data according to some simple heuristics. For example,
+The new [auto mark](https://observablehq.com/plot/marks/auto) ([Plot.auto](https://observablehq.com/plot/marks/auto#auto)) automatically selects a mark type that best represents the given dimensions of data according to some simple heuristics. For example,
 
 [<img src="./img/auto-dot.webp" width="640" alt="A scatterplot height and weight of olympic athletes.">](https://observablehq.com/@observablehq/plot-auto)
 
@@ -365,7 +365,7 @@ The new [auto mark](./README.md#auto) ([Plot.auto](./README.md#plotautodata-opti
 Plot.auto(olympians, {x: "height", y: "weight"}).plot()
 ```
 
-makes a scatterplot (equivalent to [dot](./README.md#plotdotdata-options)); adding **color** as
+makes a scatterplot (equivalent to [dot](https://observablehq.com/plot/marks/dot)); adding **color** as
 
 [<img src="./img/auto-bin-color.webp" width="640" alt="A heatmap of .">](https://observablehq.com/@observablehq/plot-auto)
 
@@ -373,7 +373,7 @@ makes a scatterplot (equivalent to [dot](./README.md#plotdotdata-options)); addi
 Plot.auto(olympians, {x: "height", y: "weight", color: "count"}).plot()
 ```
 
-makes a heatmap (equivalent to [rect](./README.md#plotrectdata-options) and [bin](./README.md#plotbinoutputs-options); chosen since _height_ and _weight_ are quantitative); switching to
+makes a heatmap (equivalent to [rect](https://observablehq.com/plot/marks/rect) and [bin](https://observablehq.com/plot/transforms/bin); chosen since _height_ and _weight_ are quantitative); switching to
 
 [<img src="./img/auto-line.webp" width="640" alt="A line chart of Apple stock price.">](https://observablehq.com/@observablehq/plot-auto)
 
@@ -381,7 +381,7 @@ makes a heatmap (equivalent to [rect](./README.md#plotrectdata-options) and [bin
 Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
 ```
 
-makes a line chart (equivalent to [lineY](./README.md#plotlineydata-options); chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
+makes a line chart (equivalent to [lineY](https://observablehq.com/plot/marks/line#lineY); chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
 
 [<img src="./img/auto-bin.webp" width="640" alt="A histogram of penguin body mass.">](https://observablehq.com/@observablehq/plot-auto)
 
@@ -389,7 +389,7 @@ makes a line chart (equivalent to [lineY](./README.md#plotlineydata-options); ch
 Plot.auto(penguins, {x: "body_mass_g"}).plot()
 ```
 
-makes a histogram (equivalent to [rectY](./README.md#plotrectydata-options) and [binX](./README.md#plotbinxoutputs-options); chosen because the _body_mass_g_ column is quantitative); and
+makes a histogram (equivalent to [rectY](https://observablehq.com/plot/marks/rect#rectY) and [binX](https://observablehq.com/plot/transforms/bin#binX); chosen because the _body_mass_g_ column is quantitative); and
 
 [<img src="./img/auto-group.webp" width="640" alt="A vertical bar chart of penguins by island.">](https://observablehq.com/@observablehq/plot-auto)
 
@@ -397,9 +397,9 @@ makes a histogram (equivalent to [rectY](./README.md#plotrectydata-options) and 
 Plot.auto(penguins, {x: "island"}).plot()
 ```
 
-makes a bar chart (equivalent to [barY](./README.md#plotbarydata-options) and [groupX](./README.md#plotgroupxoutputs-options); chosen because the _island_ column is categorical). The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API.
+makes a bar chart (equivalent to [barY](https://observablehq.com/plot/marks/bar#barY) and [groupX](https://observablehq.com/plot/transforms/group#groupX); chosen because the _island_ column is categorical). The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API.
 
-Plot’s new [axis](./README.md#axis) and [grid](./README.md#axis) marks allow customization and styling of axes. This has been one of our most asked-for features, closing more than a dozen feature requests (see [#1197](https://github.com/observablehq/plot/pull/1197))! The new axis mark composes a [vector](./README.md#vector) for tick marks and a [text](./README.md#text) for tick and axis labels. As such, you can use the rich capabilities of these marks, such the **lineWidth** option to wrap long text labels.
+Plot’s new [axis](https://observablehq.com/plot/marks/axis) and [grid](https://observablehq.com/plot/marks/grid) marks allow customization and styling of axes. This has been one of our most asked-for features, closing more than a dozen feature requests (see [#1197](https://github.com/observablehq/plot/pull/1197))! The new axis mark composes a [vector](https://observablehq.com/plot/marks/vector) for tick marks and a [text](https://observablehq.com/plot/marks/text) for tick and axis labels. As such, you can use the rich capabilities of these marks, such the **lineWidth** option to wrap long text labels.
 
 [<img src="./img/axis-multiline.webp" width="640" alt="A bar chart of parodical survey responses demonstrating text wrapping of long axis labels.">](https://observablehq.com/@observablehq/plot-auto)
 
@@ -452,15 +452,15 @@ See [Plot: Axes](https://observablehq.com/@observablehq/plot-axes) for more exam
 
 Marks can now declare default margins via the **marginTop**, **marginRight**, **marginBottom**, and **marginLeft** options, and the **margin** shorthand. For each side, the maximum corresponding margin across marks becomes the plot’s default. While most marks default to zero margins (because they are drawn inside the chart area), Plot‘s axis mark provides default margins depending on their anchor. The facet margin options (*e.g.*, facet.**marginRight**) now correctly affect the positioning of the *x* and *y* axis labels.
 
-The new [*mark*.**facetAnchor**](#facetanchor) mark option controls the facets in which the mark will appear when faceting. It defaults to null for all marks except for axis marks, where it defaults to *top-empty* if the axis anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
+The new [*mark*.**facetAnchor**](https://observablehq.com/plot/features/facets#facetAnchor) mark option controls the facets in which the mark will appear when faceting. It defaults to null for all marks except for axis marks, where it defaults to *top-empty* if the axis anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
 
-The [frame mark](./README.md#frame)’s new **anchor** option allows you to draw a line on one side of the frame (as opposed to the default behavior where a rect is drawn around all four sides); this feature is now used by the *scale*.**line** option for *x* and *y* scales. The [text mark](./README.md#text) now supports soft hyphens (`\xad`); lines are now eligible to break at soft hyphens, in which case a hyphen (-) will appear at the end of the line before the break. The [raster mark](./README.md#raster) no longer crashes with an _identity_ color scale. The [voronoi mark](./README.md#plotvoronoidata-options) now correctly respects the **target**, **mixBlendMode**, and **opacity** options.
+The [frame mark](https://observablehq.com/plot/marks/frame)’s new **anchor** option allows you to draw a line on one side of the frame (as opposed to the default behavior where a rect is drawn around all four sides); this feature is now used by the *scale*.**line** option for *x* and *y* scales. The [text mark](https://observablehq.com/plot/marks/text) now supports soft hyphens (`\xad`); lines are now eligible to break at soft hyphens, in which case a hyphen (-) will appear at the end of the line before the break. The [raster mark](https://observablehq.com/plot/marks/raster) no longer crashes with an _identity_ color scale. The [voronoi mark](https://observablehq.com/plot/marks/delaunay#voronoi) now correctly respects the **target**, **mixBlendMode**, and **opacity** options.
 
 ## 0.6.2
 
 [Released January 18, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.2)
 
-The new [raster mark](./README.md#raster) and [contour mark](./README.md#contour) generate a raster image and smooth contours, respectively, from spatial samples. For example, the plot below shows a gridded digital elevation model of Maungawhau (R’s [`volcano` dataset](./test/data/volcano.json)) with contours every 10 meters:
+The new [raster mark](https://observablehq.com/plot/marks/raster) and [contour mark](https://observablehq.com/plot/marks/contour) generate a raster image and smooth contours, respectively, from spatial samples. For example, the plot below shows a gridded digital elevation model of Maungawhau (R’s [`volcano` dataset](./test/data/volcano.json)) with contours every 10 meters:
 
 [<img src="./img/volcano.webp" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/@observablehq/plot-raster)
 
@@ -474,7 +474,7 @@ Plot.plot({
 })
 ```
 
-For non-gridded or sparse data, the raster and contour marks implement a variety of [spatial interpolation methods](./README.md#spatial-interpolation) to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
+For non-gridded or sparse data, the raster and contour marks implement a variety of [spatial interpolation methods](https://observablehq.com/plot/marks/raster#spatial-interpolators) to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
 
 [<img src="./img/ca55.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/@observablehq/plot-raster)
 
@@ -507,7 +507,7 @@ Plot.plot({
 })
 ```
 
-Naturally, the raster and contour mark are compatible with Plot’s [projection system](./README.md#projection-options), allowing spatial samples to be shown in any geographic projection and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded global water vapor dataset from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
+Naturally, the raster and contour mark are compatible with Plot’s [projection system](https://observablehq.com/plot/features/projections), allowing spatial samples to be shown in any geographic projection and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded global water vapor dataset from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
 
 [<img src="./img/water-vapor.png" width="650" alt="A map of global atmospheric water vapor, showing a higher concentration of water vapor near the equator">](https://observablehq.com/@observablehq/plot-raster)
 
@@ -560,7 +560,7 @@ Plot.plot({
 })
 ```
 
-The [vector mark](./README.md#vector) now supports the **shape** constant option; the built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](./README.md#plotspikedata-options) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to set the shape radius.
+The [vector mark](https://observablehq.com/plot/marks/vector) now supports the **shape** constant option; the built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](https://observablehq.com/plot/marks/vector#spike) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to set the shape radius.
 
 [<img src="./img/spike-map.webp" width="640" alt="A spike map of U.S. county population">](https://observablehq.com/@observablehq/plot-spike)
 
@@ -580,9 +580,9 @@ Plot.plot({
 });
 ```
 
-The new [geoCentroid transform](./README.md#plotgeocentroidoptions) and [centroid initializer](./README.md#plotcentroidoptions) compute the spherical and projected planar centroids of geometry, respectively. The new [identity](./README.md#plotidentity) channel helper returns a source array as-is, avoiding an extra copy.
+The new [geoCentroid transform](https://observablehq.com/plot/transforms/centroid#geoCentroid) and [centroid initializer](https://observablehq.com/plot/transforms/centroid#centroid) compute the spherical and projected planar centroids of geometry, respectively. The new [identity](https://observablehq.com/plot/features/transforms#identity) channel helper returns a source array as-is, avoiding an extra copy.
 
-The **interval** option now supports named time intervals such as “sunday” and “hour”, equivalent to the corresponding d3-time interval (_e.g._, d3.utcSunday and d3.utcHour). The [bin transform](./README.md#bin) is now many times faster, especially when there are many bins and when binning temporal data.
+The **interval** option now supports named time intervals such as “sunday” and “hour”, equivalent to the corresponding d3-time interval (_e.g._, d3.utcSunday and d3.utcHour). The [bin transform](https://observablehq.com/plot/transforms/bin) is now many times faster, especially when there are many bins and when binning temporal data.
 
 Diverging scales now correctly handle descending domains. When the stack **order** option is used without a *z* channel, a helpful error message is now thrown. The **clip** option *frame* now correctly handles band scales. Using D3 7.8, generated SVG path data is now rounded to three decimal points to reduce output size. Fix a crash when a facet scale’s domain includes a value for which there is no corresponding facet data. The bin, group, and hexbin transforms now correctly ignore undefined outputs. Upgrade D3 to 7.8.2.
 

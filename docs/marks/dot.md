@@ -281,7 +281,7 @@ The stackY2 transform places each dot at the upper bound of the associated stack
 The [dodge transform](../transforms/dodge.md) can also be used to produce beeswarm plots; this is particularly effective when dots have varying radius.
 :::
 
-Dots are sorted by descending radius by default to mitigate occlusion; the smallest dots are drawn on top. Set the **sort** option to null to draw them in input order. Use the checkbox below to see the effect of sorting on a bubble map of U.S. county population.
+Dots are sorted by descending radius by default <VersionBadge version="0.5.0" /> to mitigate occlusion; the smallest dots are drawn on top. Set the **sort** option to null to draw them in input order. Use the checkbox below to see the effect of sorting on a bubble map of U.S. county population.
 
 <p>
   <label class="label-input">
@@ -318,7 +318,7 @@ In addition to the [standard mark options](../features/marks.md#mark-options), t
 * **y** - the vertical position; bound to the *y* scale
 * **r** - the radius (area); bound to the *r* (radius) scale, which defaults to *sqrt*
 * **rotate** - the rotation angle in degrees clockwise
-* **symbol** - the categorical symbol; bound to the *symbol* scale
+* **symbol** - the categorical symbol; bound to the *symbol* scale <VersionBadge version="0.4.0" />
 
 If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
@@ -326,7 +326,7 @@ The following dot-specific constant options are also supported:
 
 * **r** - the effective radius (length); a number in pixels
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
-* **symbol** - the categorical symbol; defaults to circle
+* **symbol** - the categorical symbol; defaults to *circle* <VersionBadge version="0.4.0" />
 * **frameAnchor** - how to position the dot within the frame; defaults to *middle*
 
 The **r** option can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. The radius defaults to 4.5 pixels when using the **symbol** channel, and otherwise 3 pixels. Dots with a nonpositive radius are not drawn.
@@ -361,10 +361,10 @@ Equivalent to [dot](#dot) except that if the **y** option is not specified, it d
 
 If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
-## circle(*data*, *options*) {#circle}
+## circle(*data*, *options*) <VersionBadge version="0.5.0" /> {#circle}
 
 Equivalent to [dot](#dot) except that the **symbol** option is set to *circle*.
 
-## hexagon(*data*, *options*) {#hexagon}
+## hexagon(*data*, *options*) <VersionBadge version="0.5.0" /> {#hexagon}
 
 Equivalent to [dot](#dot) except that the **symbol** option is set to *hexagon*.

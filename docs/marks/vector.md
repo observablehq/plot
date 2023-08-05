@@ -37,7 +37,7 @@ onMounted(() => {
 
 </script>
 
-# Vector mark
+# Vector mark <VersionBadge version="0.4.0" />
 
 The **vector mark** draws little arrows, typically positioned in **x** and **y** quantitative dimensions, with an optional magnitude (**length**) and direction (**rotate**), as in a vector field. For example, the chart below, based on a [LitVis example](https://github.com/gicentre/litvis/blob/main/examples/windVectors.md), shows wind speed and direction for a section of western Europe.
 

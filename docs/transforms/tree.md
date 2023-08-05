@@ -23,7 +23,7 @@ function indent() {
 
 </script>
 
-# Tree transform
+# Tree transform <VersionBadge version="0.4.3" />
 
 The **tree transform** is rarely used directly; the two variants, [treeNode](#treeNode) and [treeLink](#treeLink), are typically used internally by the composite [tree mark](../marks/tree.md). The tree transform arranges a tabular dataset into a hierarchy according to the given **path** channel, which is typically a slash-separated string; it then executes a tree layout algorithm to compute **x** and **y**; these channels can then be used to construct a node-link diagram.
 

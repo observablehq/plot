@@ -21,7 +21,7 @@ onMounted(() => {
 
 </script>
 
-# Hexbin transform
+# Hexbin transform <VersionBadge version="0.5.0" />
 
 The **hexbin transform** groups two-dimensional quantitative or temporal data — continuous measurements such as heights, weights, or temperatures — into discrete hexagonal bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The hexbin transform is most often used to make heatmaps with the [dot mark](../marks/dot.md).
 

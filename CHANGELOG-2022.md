@@ -6,7 +6,7 @@ Year: [Current (2023)](./CHANGELOG.md) · **2022** · [2021](./CHANGELOG-2021.md
 
 [Released December 12, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.1)
 
-The new [geo mark](./README.md#geo) renders GeoJSON geometries such as polygons, lines, and points. Together with Plot’s new [projection system](https://observablehq.com/@observablehq/plot-projections), Plot can now produce [thematic maps](https://observablehq.com/@observablehq/plot-mapping). For example, the choropleth map below shows unemployment rates by U.S. county.
+The new [geo mark](https://observablehq.com/plot/marks/geo) renders GeoJSON geometries such as polygons, lines, and points. Together with Plot’s new [projection system](https://observablehq.com/@observablehq/plot-projections), Plot can now produce [thematic maps](https://observablehq.com/@observablehq/plot-mapping). For example, the choropleth map below shows unemployment rates by U.S. county.
 
 [<img src="./img/choropleth.png" width="640" alt="A choropleth of unemployment rate by U.S. county">](https://observablehq.com/@observablehq/plot-geo)
 
@@ -23,7 +23,7 @@ Plot.geo(counties, {fill: (d) => d.properties.unemployment}).plot({
 })
 ```
 
-The new top-level [**projection** option](./README.md#projection-options) controls how geometric coordinates are transformed to the screen and supports a variety of common geographic projections, including the composite U.S. Albers projection shown above, the Equal Earth projection, the Mercator projection, the orthographic and stereographic projections, several conic and azimuthal projections, among others. Projections can be fit to geometry using the projection.**domain** option, and rotated to an arbitrary aspect using the projection.**rotate** option.
+The new top-level [**projection** option](https://observablehq.com/plot/features/projections) controls how geometric coordinates are transformed to the screen and supports a variety of common geographic projections, including the composite U.S. Albers projection shown above, the Equal Earth projection, the Mercator projection, the orthographic and stereographic projections, several conic and azimuthal projections, among others. Projections can be fit to geometry using the projection.**domain** option, and rotated to an arbitrary aspect using the projection.**rotate** option.
 
 [<img src="./img/orthographic.png" width="640" alt="A world map using the orthographic projection, centered somewhere around San Antonio, Texas">](https://observablehq.com/@observablehq/plot-projections)
 
@@ -67,7 +67,7 @@ Plot.plot({
 })
 ```
 
-For the [line mark](./README.md#line), the specified projection doesn’t simply project control points; the projection has full control over how geometry is transformed from its native coordinate system (often spherical) to the screen. This allows line geometry to be represented as [geodesics](https://en.wikipedia.org/wiki/Geodesic), which are sampled and clipped during projection. For example, the map below shows the route of Charles Darwin’s voyage on the HMS *Beagle*; note that the line is cut when it crosses the antimeridian in the Pacific ocean. (Also note the use of the *stroke* channel to vary color.)
+For the [line mark](https://observablehq.com/plot/marks/line), the specified projection doesn’t simply project control points; the projection has full control over how geometry is transformed from its native coordinate system (often spherical) to the screen. This allows line geometry to be represented as [geodesics](https://en.wikipedia.org/wiki/Geodesic), which are sampled and clipped during projection. For example, the map below shows the route of Charles Darwin’s voyage on the HMS *Beagle*; note that the line is cut when it crosses the antimeridian in the Pacific ocean. (Also note the use of the *stroke* channel to vary color.)
 
 [<img src="./img/beagle.png" width="640" alt="A map of the route of the HMS Beagle, 1831–1836; color indicates direction, with the ship initially departing London and heading southwest before circumnavigating the globe">](https://observablehq.com/@observablehq/plot-geo)
 
@@ -142,7 +142,7 @@ Plot.plot({
 })
 ```
 
-Plot now supports [mark-level faceting](./README.md#facet-options) via the new *mark*.**fx** and *mark*.**fy** options. Mark-level faceting makes it easier to control which marks are faceted (versus repeated across facets), especially when combining multiple datasets or specifying faceted annotations.
+Plot now supports [mark-level faceting](https://observablehq.com/plot/features/facets#mark-facet-options) via the new *mark*.**fx** and *mark*.**fy** options. Mark-level faceting makes it easier to control which marks are faceted (versus repeated across facets), especially when combining multiple datasets or specifying faceted annotations.
 
 [<img src="./img/anscombe.png" width="640" alt="A faceted scatterplot of Anscombe’s quartet">](https://observablehq.com/@observablehq/plot-facets)
 
@@ -174,7 +174,7 @@ Plot.plot({
 })
 ```
 
-[breaking] [Plot.window](./README.md#plotwindowk), [Plot.windowX](./README.md#plotwindowxk-options) and [Plot.windowY](./README.md#plotwindowyk-options) now return an aggregate value even when the window contains undefined values, for example at the beginning or end of a series. Set the new **strict** option to true to instead return undefined if the window contains any undefined values.
+[breaking] [Plot.window](https://observablehq.com/plot/transforms/window#window), [Plot.windowX](https://observablehq.com/plot/transforms/window#windowX) and [Plot.windowY](https://observablehq.com/plot/transforms/window#windowY) now return an aggregate value even when the window contains undefined values, for example at the beginning or end of a series. Set the new **strict** option to true to instead return undefined if the window contains any undefined values.
 
 Parts of the README have been incorporated throughout the codebase as JSDoc comments. This allows IDEs to display the documentation as tooltips.
 
@@ -192,7 +192,7 @@ Plot now uses D3 7.6.1, using [d3.blur2](https://observablehq.com/@d3/d3-blur) f
 
 [Released June 27, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.1)
 
-The new [density mark](./README.md#density) creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. The **bandwidth** and number of **thresholds** are configurable.
+The new [density mark](https://observablehq.com/plot/marks/density) creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. The **bandwidth** and number of **thresholds** are configurable.
 
 [<img src="./img/density-contours.png" width="640" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
 
@@ -221,7 +221,7 @@ Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
 })
 ```
 
-The new [linear regression marks](./README.md#linear-regression) produce [linear regressions](https://en.wikipedia.org/wiki/Linear_regression) with [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*).
+The new [linear regression marks](https://observablehq.com/plot/marks/linear-regression) produce [linear regressions](https://en.wikipedia.org/wiki/Linear_regression) with [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*).
 
 [<img src="./img/linear-regression.png" width="640" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
 
@@ -236,7 +236,7 @@ Plot.plot({
 })
 ```
 
-The new [Delaunay and Voronoi marks](./README.md#delaunay) produce Delaunay triangulations and Voronoi tesselations: [Plot.delaunayLink](./README.md#plotdelaunaylinkdata-options) draws links for each edge of the Delaunay triangulation of the given points, [Plot.delaunayMesh](./README.md#plotdelaunaymeshdata-options) draws a mesh of the Delaunay triangulation  of the given points, [Plot.hull](./README.md#plothulldata-options) draws a convex hull around the given points, [Plot.voronoi](./README.md#plotvoronoidata-options) draws polygons for each cell of the Voronoi tesselation of the given points, and [Plot.voronoiMesh](./README.md#plotvoronoimeshdata-options) draws a mesh for the cell boundaries of the Voronoi tesselation of the given points.
+The new [Delaunay and Voronoi marks](https://observablehq.com/plot/marks/delaunay) produce Delaunay triangulations and Voronoi tesselations: [Plot.delaunayLink](https://observablehq.com/plot/marks/delaunay#delaunayLink) draws links for each edge of the Delaunay triangulation of the given points, [Plot.delaunayMesh](https://observablehq.com/plot/marks/delaunay#delaunayMesh) draws a mesh of the Delaunay triangulation  of the given points, [Plot.hull](https://observablehq.com/plot/marks/delaunay#hull) draws a convex hull around the given points, [Plot.voronoi](https://observablehq.com/plot/marks/delaunay#voronoi) draws polygons for each cell of the Voronoi tesselation of the given points, and [Plot.voronoiMesh](https://observablehq.com/plot/marks/delaunay#voronoiMesh) draws a mesh for the cell boundaries of the Voronoi tesselation of the given points.
 
 [<img src="./img/voronoi.png" width="640" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
 
@@ -249,7 +249,7 @@ Plot.plot({
 })
 ```
 
-For data at regular intervals, such as integer values or daily samples, the new [*scale*.**interval** option](./README.md#scale-options) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, for ordinal scales the default *scale*.**domain** is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
+For data at regular intervals, such as integer values or daily samples, the new [*scale*.**interval** option](https://observablehq.com/plot/features/scales#interval) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, for ordinal scales the default *scale*.**domain** is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
 
 All marks now support the **pointerEvents** option to set the [pointer-events attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events). The frame decoration mark now supports the **rx** and **ry** options. The cell mark now respects the **dx** and **dy** options.
 
@@ -263,9 +263,9 @@ Improve the error message when the **facet** option is used without **data**. Th
 
 [Released June 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.0)
 
-Plot now supports [mark initializers](./README.md#initializers) via the **initializer** option. Initializers can transform data, channels, and indexes. Unlike [data transforms](./README.md#transforms) which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. The new hexbin and dodge transforms are implemented as mark initializers.
+Plot now supports [mark initializers](https://observablehq.com/plot/features/transforms#custom-initializers) via the **initializer** option. Initializers can transform data, channels, and indexes. Unlike [data transforms](https://observablehq.com/plot/features/transforms) which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. The new hexbin and dodge transforms are implemented as mark initializers.
 
-The new [hexbin transform](./README.md#hexbin) functions similarly to the bin transform, except it aggregates both *x* and *y* into hexagonal bins before reducing. The size of the hexagons can be specified with the **binWidth** option, which controls the width of the (pointy-topped) hexagons.
+The new [hexbin transform](https://observablehq.com/plot/transforms/hexbin) functions similarly to the bin transform, except it aggregates both *x* and *y* into hexagonal bins before reducing. The size of the hexagons can be specified with the **binWidth** option, which controls the width of the (pointy-topped) hexagons.
 
 [<img src="./img/hexbin.png" width="640" alt="a chart showing the inverse relationship of fuel economy to engine displacement, and the positive correlation of engine displacement and weight; hexagonal bins of varying size represent the number of cars at each location, while color encodes the mean weight of nearby cars">](https://observablehq.com/@observablehq/plot-hexbin)
 
@@ -286,7 +286,7 @@ Plot.plot({
 })
 ```
 
-The new [dodge transform](./README.md#dodge) can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel.
+The new [dodge transform](https://observablehq.com/plot/transforms/dodge) can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel.
 
 [<img src="./img/dodge-random.png" width="640" alt="a beeswarm chart showing a random normal distribution; each of 800 samples is represented by a dot positioned along the x-axis, stacked on top of the y-axis like grains of sand">](https://observablehq.com/@observablehq/plot-dodge)
 
@@ -331,13 +331,13 @@ When using the dodgeY transform, you should set the height of your plot explicit
 
 [breaking] Color scales with diverging color schemes now default to the *diverging* scale type instead of the *linear* scale type. This includes the *brbg*, *prgn*, *piyg*, *puor*, *rdbu*, *rdgy*, *rdylbu*, *rdylgn*, *spectral*, *burd*, and *buylrd* schemes. If you want to use a diverging color scheme with a linear color scale, set the scale **type** option to *linear*. Color scales will also default to diverging if the scale **pivot** option is set. (For diverging scales, the pivot defaults to zero.)
 
-The [sort transform](./README.md#plotsortorder-options) now supports sorting on an existing channel, avoiding the need to duplicate the channel definition. For example, to sort dots by ascending radius:
+The [sort transform](https://observablehq.com/plot/transforms/sort) now supports sorting on an existing channel, avoiding the need to duplicate the channel definition. For example, to sort dots by ascending radius:
 
 ~~~js
 Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: {channel: "r"}})
 ~~~
 
-The [dot mark](./README.md#dot) now sorts by descending radius by default to reduce occlusion. The dot mark now supports the *hexagon* symbol type for pointy-topped hexagons. The new [circle](./README.md#plotcircledata-options) and [hexagon](./README.md#plothexagondata-options) marks are convenience shorthand for dot marks with the *circle* and *hexagon* symbol, respectively. The dotX, dotY, textX, and textY marks now support the **interval** option. The rule mark now correctly respects the **dx** and **dy** options. The new [hexgrid decoration mark](./README.md#hexgrid) draws a hexagonal grid; it is intended to be used with the hexbin transform as an alternative to the default horizontal and vertical axis grid.
+The [dot mark](https://observablehq.com/plot/marks/dot) now sorts by descending radius by default to reduce occlusion. The dot mark now supports the *hexagon* symbol type for pointy-topped hexagons. The new [circle](https://observablehq.com/plot/marks/dot#circle) and [hexagon](https://observablehq.com/plot/marks/dot#hexagon) marks are convenience shorthand for dot marks with the *circle* and *hexagon* symbol, respectively. The dotX, dotY, textX, and textY marks now support the **interval** option. The rule mark now correctly respects the **dx** and **dy** options. The new [hexgrid decoration mark](https://observablehq.com/plot/marks/hexgrid) draws a hexagonal grid; it is intended to be used with the hexbin transform as an alternative to the default horizontal and vertical axis grid.
 
 The **zero** scale option (like the **nice** and **clamp** scale options) may now be specified as a top-level option, applying to all quantitative scales.
 
@@ -345,7 +345,7 @@ Marks can now define a channel hint to set the default range of the *r* scale. T
 
 Improve the performance of internal array operations, including type coercion. Thanks, @yurivish!
 
-Fix a crash when using the [area mark](./README.md#area) shorthand.
+Fix a crash when using the [area mark](https://observablehq.com/plot/marks/area) shorthand.
 
 [breaking] The return signature of the internal *mark*.initialize method has changed. It now returns a {data, facets, channels} object instead of {index, channels}, and *channels* is now represented as an object with named properties representing channels rather than an iterable of [*name*, *channel*].
 
@@ -353,7 +353,7 @@ Fix a crash when using the [area mark](./README.md#area) shorthand.
 
 [Released April 12, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.3)
 
-The new [tree mark and transforms](./README.md#tree) can generate hierarchical node-link diagrams using D3’s [“tidy” tree](https://observablehq.com/@d3/tree) or [cluster (dendrogram)](https://observablehq.com/@d3/cluster) layout. The tree transform uses [d3.stratify](https://observablehq.com/@d3/d3-stratify) to convert tabular data into a hierarchy by parsing a slash-separated **path** for each row.
+The new [tree mark and transforms](https://observablehq.com/plot/marks/tree) can generate hierarchical node-link diagrams using D3’s [“tidy” tree](https://observablehq.com/@d3/tree) or [cluster (dendrogram)](https://observablehq.com/@d3/cluster) layout. The tree transform uses [d3.stratify](https://observablehq.com/@d3/d3-stratify) to convert tabular data into a hierarchy by parsing a slash-separated **path** for each row.
 
 <img src="./img/tree.png" width="640" alt="a node-link tree diagram representing a software hierarchy">
 
@@ -367,7 +367,7 @@ Plot.plot({
 })
 ```
 
-The [line](./README.md#line) and [area](./README.md#area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit [bin transform](./README.md#bin) with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or with missing samples.
+The [line](https://observablehq.com/plot/marks/line) and [area](https://observablehq.com/plot/marks/area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit [bin transform](https://observablehq.com/plot/transforms/bin) with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or with missing samples.
 
 <img src="./img/sparse-series.png" width="640" alt="a time-series area chart showing downloads per day with gaps for missing data">
 
@@ -395,7 +395,7 @@ Plot.plot({
 })
 ```
 
-The [stack transform](./README.md#stack) now allows the **offset** option to be specified as a function. For example, this can be used to visualize Likert survey results with a neutral category as a [diverging stacked bar chart](https://observablehq.com/@observablehq/plot-diverging-stacked-bar).
+The [stack transform](https://observablehq.com/plot/transforms/stack) now allows the **offset** option to be specified as a function. For example, this can be used to visualize Likert survey results with a neutral category as a [diverging stacked bar chart](https://observablehq.com/@observablehq/plot-diverging-stacked-bar).
 
 <img src="./img/likert.png" width="640" alt="a diverging bar chart of responses to a Likert survey question">
 
@@ -427,7 +427,7 @@ function Likert(
 }
 ```
 
-The new [_quantize_ scale type](./README.md#color-options) transforms a continuous domain into discrete, evenly-spaced thresholds. The _threshold_ scale type now supports domains in descending order (in addition to ascending order), such as [20, 10, 5, 0] instead of [0, 5, 10, 20].
+The new [_quantize_ scale type](https://observablehq.com/plot/features/scales#color-scale-options) transforms a continuous domain into discrete, evenly-spaced thresholds. The _threshold_ scale type now supports domains in descending order (in addition to ascending order), such as [20, 10, 5, 0] instead of [0, 5, 10, 20].
 
 <img src="./img/quantize.png" width="640" alt="a scatterplot of Simpsons episodes showing the correlation between number of U.S. viewers and IMDb rating; the decline of the Simspons over time is shown with a quantized color encoding by season">
 
@@ -445,17 +445,17 @@ Plot.plot({
 })
 ```
 
-The [bin transform](./README.md#bin) now coerces the input channel (the quantity being binned) to numbers as necessary. In addition, the bin transform now correctly handles typed array input channels representing temporal data. The [rect mark](./README.md#rect) now promotes the _x_ channel to _x1_ and _x2_ if the latter two are not specified, and likewise the _y_ channel to _y1_ and _y2_.
+The [bin transform](https://observablehq.com/plot/transforms/bin) now coerces the input channel (the quantity being binned) to numbers as necessary. In addition, the bin transform now correctly handles typed array input channels representing temporal data. The [rect mark](https://observablehq.com/plot/marks/rect) now promotes the _x_ channel to _x1_ and _x2_ if the latter two are not specified, and likewise the _y_ channel to _y1_ and _y2_.
 
 Fix a crash when **text** or **title** channels contain heterogenous types; each value is now independently formatted in a type-appropriate default formatter. Fix a rendering bug with one-dimensional rects whose opposite dimension is a band scale. Fix a rendering bug with swoopy arrows. Improve error messages to give more context.
 
-New helpers make it easier to implement custom transforms. [Plot.column](./README.md#plotcolumnsource) constructs lazily-evaluated columns for derived channels, and [Plot.transform](./README.md#plottransformoptions-transform) composes a [custom data transform](./README.md#custom-transforms) with any of Plot’s built-in [basic transforms](./README.md#transforms).
+New helpers make it easier to implement custom transforms. [Plot.column](https://observablehq.com/plot/features/transforms#column) constructs lazily-evaluated columns for derived channels, and [Plot.transform](https://observablehq.com/plot/features/transforms#transform) composes a [custom data transform](https://observablehq.com/plot/features/transforms#custom-transforms) with any of Plot’s built-in [basic transforms](https://observablehq.com/plot/features/transforms).
 
 ## 0.4.2
 
 [Released February 26, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.2)
 
-The new [box mark](./README.md#box) generates a horizontal or vertical boxplot suitable for visualizing one-dimensional distributions. It is a convenience mark that composites a rule, bar, tick, and dot.
+The new [box mark](https://observablehq.com/plot/marks/box) generates a horizontal or vertical boxplot suitable for visualizing one-dimensional distributions. It is a convenience mark that composites a rule, bar, tick, and dot.
 
 <img src="./img/box.png" width="640" alt="a boxplot of Michelson’s 1879 measurements of the speed of light">
 
@@ -463,7 +463,7 @@ The new [box mark](./README.md#box) generates a horizontal or vertical boxplot s
 Plot.boxX(morley, {x: "Speed", y: "Expt"}).plot({x: {grid: true, inset: 6}})
 ```
 
-[Plot’s shorthand syntax](https://observablehq.com/@observablehq/plot-shorthand) has been expanded. The [bar mark](./README.md#bar) now supports one-dimensional shorthand: if no *options* are specified, then Plot.barX and Plot.barY can be used to visualize an array of numbers. This shorthand also now applies to the [rect mark](./README.md#rect) and the [vector mark](./README.md#vector). The [area mark](./README.md#area) now supports two-dimensional shorthand: if no *options* are specified, then Plot.area can be used to visualize an array of *xy*-tuples, similar to Plot.line.
+[Plot’s shorthand syntax](https://observablehq.com/@observablehq/plot-shorthand) has been expanded. The [bar mark](https://observablehq.com/plot/marks/bar) now supports one-dimensional shorthand: if no *options* are specified, then Plot.barX and Plot.barY can be used to visualize an array of numbers. This shorthand also now applies to the [rect mark](https://observablehq.com/plot/marks/rect) and the [vector mark](https://observablehq.com/plot/marks/vector). The [area mark](https://observablehq.com/plot/marks/area) now supports two-dimensional shorthand: if no *options* are specified, then Plot.area can be used to visualize an array of *xy*-tuples, similar to Plot.line.
 
 <img src="./img/bar-shorthand.png" width="640" alt="a bar chart of twenty random values">
 
@@ -471,7 +471,7 @@ Plot.boxX(morley, {x: "Speed", y: "Expt"}).plot({x: {grid: true, inset: 6}})
 Plot.barY(d3.range(20).map(Math.random)).plot()
 ```
 
-The mark [sort options](./README.md#sort-options) now support implicit “width” and “height” channels, defined as |*x2* - *x1*| and |*y2* - *y1*| respectively. These channels are useful for sorting rects and bars by length. The *reverse* option defaults to true when sorting by these channels. When sorting by *y* and no *y* channel is available, sorting will now fallback to *y2* if available; the same fallback logic applies to *x* and *x2*. (This behavior was previously supported on marks that support implicit stacking but now applies universally to all marks.)
+The mark [sort option](https://observablehq.com/plot/features/scales#sort-mark-option) now supports implicit “width” and “height” channels, defined as |*x2* - *x1*| and |*y2* - *y1*| respectively. These channels are useful for sorting rects and bars by length. The *reverse* option defaults to true when sorting by these channels. When sorting by *y* and no *y* channel is available, sorting will now fallback to *y2* if available; the same fallback logic applies to *x* and *x2*. (This behavior was previously supported on marks that support implicit stacking but now applies universally to all marks.)
 
 <img src="./img/sort-length.png" width="640" alt="a bar chart of energy production by source from 1949 to present, with categorical colors assigned in order of the tallest bar">
 
@@ -479,7 +479,7 @@ The mark [sort options](./README.md#sort-options) now support implicit “width�
 Plot.rectY(energy, {x: "Year", interval: 1, y: "Value", fill: "Description", sort: {color: "height"}})
 ```
 
-The [bin transform](./README.md#bin) now supports *x* and *y* reducers which represent the midpoint of the bin: (*x1* + *x2*) / 2 and (*y1* + *y2*) / 2 respectively. The [bin](./README.md#bin), [group](./README.md#group), and [window](./README.md#window) transforms now support percentile reducers of the form *pXX* where *XX* is a number in [00, 99]; for example *p25* represents the first quartile and *p75* represents the third quartile.
+The [bin transform](https://observablehq.com/plot/transforms/bin) now supports *x* and *y* reducers which represent the midpoint of the bin: (*x1* + *x2*) / 2 and (*y1* + *y2*) / 2 respectively. The [bin](https://observablehq.com/plot/transforms/bin), [group](https://observablehq.com/plot/transforms/group), and [window](https://observablehq.com/plot/transforms/window) transforms now support percentile reducers of the form *pXX* where *XX* is a number in [00, 99]; for example *p25* represents the first quartile and *p75* represents the third quartile.
 
 The error message when attempting to create a standalone legend without a valid scale definition has been improved. The high cardinality warning for the implicit *z* channel has been relaxed; it is now only triggered if more than half of the values are distinct. When the axis *ticks* option is specified as null, no ticks are generated. When the axis *tickFormat* option is specified as null, no tick labels are generated.
 
@@ -487,7 +487,7 @@ The error message when attempting to create a standalone legend without a valid 
 
 [Released February 17, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.1)
 
-The [area](./README.md#area) and [line marks](./README.md#line) now support varying fill, stroke, title, and other channels within series. For example, this chart of unemployment rates by metro area highlights increases in red and decreases in blue using a window transform with the *difference* reducer.
+The [area](https://observablehq.com/plot/marks/area) and [line marks](https://observablehq.com/plot/marks/line) now support varying fill, stroke, title, and other channels within series. For example, this chart of unemployment rates by metro area highlights increases in red and decreases in blue using a window transform with the *difference* reducer.
 
 <img src="./img/line-slope.png" width="640" alt="a line chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
 
@@ -515,7 +515,7 @@ Plot.line(aapl, {x: "Date", y: "Close"}) // 🌶 Oops, Date is a string!
 
 We will add [more warnings](https://github.com/observablehq/plot/issues/755) in the future. If Plot did something you didn’t expect, please [let us know](https://github.com/observablehq/plot/discussions); perhaps it will inspire a new warning that will help other users.
 
-The [text mark](./README.md#text) now supports automatic wrapping for easier annotation. The new **lineWidth** option specifies the desired length of a line in ems. The line breaking, wrapping, and text metrics implementations are all rudimentary, but they should be acceptable for text that is mostly ASCII. (For more control, you can hard-wrap text manually.) The **monospace** option now provides convenient defaults for monospaced text.
+The [text mark](https://observablehq.com/plot/marks/text) now supports automatic wrapping for easier annotation. The new **lineWidth** option specifies the desired length of a line in ems. The line breaking, wrapping, and text metrics implementations are all rudimentary, but they should be acceptable for text that is mostly ASCII. (For more control, you can hard-wrap text manually.) The **monospace** option now provides convenient defaults for monospaced text.
 
 <img src="./img/wrap.png" width="640" alt="a snippet of Moby Dick demonstrating line wrapping">
 
@@ -523,7 +523,7 @@ The [text mark](./README.md#text) now supports automatic wrapping for easier ann
 Plot.text([mobydick], {dx: 6, dy: 6, fontSize: 12, lineWidth: 80, lineHeight: 1.2, frameAnchor: "top-left", monospace: true})
 ```
 
-The line and link marks now support [marker options](./README.md#markers) for drawing a shape such as a dot or arrowhead on each vertex. Circle and arrow markers are provided, or you can implement a custom marker function that returns an SVG marker element. Markers automatically inherit the stroke color of the associated mark.
+The line and link marks now support [marker options](https://observablehq.com/plot/features/markers) for drawing a shape such as a dot or arrowhead on each vertex. Circle and arrow markers are provided, or you can implement a custom marker function that returns an SVG marker element. Markers automatically inherit the stroke color of the associated mark.
 
 <img src="./img/marker.png" width="640" alt="a line chart with circle markers overlaid on each data point">
 
@@ -557,7 +557,7 @@ Fix a crash in default tuple accessors for *x* and *y* when data is undefined. F
 
 [Released January 20, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.0)
 
-The new [arrow mark](./README.md#arrow) draws arrows between pairs of points. It is similar to the [link mark](./README.md#link), except it is suitable for directed edges (say for representing change over time) and supports a configurable arrowhead. It also supports “swoopy” arrows with the *bend* option, and insets for arrows to shorten the arrow’s start or end.
+The new [arrow mark](https://observablehq.com/plot/marks/arrow) draws arrows between pairs of points. It is similar to the [link mark](https://observablehq.com/plot/marks/link), except it is suitable for directed edges (say for representing change over time) and supports a configurable arrowhead. It also supports “swoopy” arrows with the *bend* option, and insets for arrows to shorten the arrow’s start or end.
 
 [<img src="./img/arrow.png" width="660" alt="a scatterplot with arrows">](https://observablehq.com/@observablehq/plot-arrow)
 
@@ -572,7 +572,7 @@ Plot.arrow(data, {
 })
 ```
 
-The new [vector mark](./README.md#vector) similarly draws arrows at the given position (*x* and *y*) with the given magnitude (*length*) and direction (*rotate*). It is intended to visualize vector fields, such as a map of wind speed and direction.
+The new [vector mark](https://observablehq.com/plot/marks/vector) similarly draws arrows at the given position (*x* and *y*) with the given magnitude (*length*) and direction (*rotate*). It is intended to visualize vector fields, such as a map of wind speed and direction.
 
 [<img src="./img/vector.png" width="660" alt="a vector field">](https://observablehq.com/@observablehq/plot-vector)
 
@@ -583,7 +583,7 @@ Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
 })
 ```
 
-The [dot mark](./README.md#dot) now supports a *symbol* option to control the displayed shape, which defaults to *circle*. The *symbol* channel (and associated *symbol* scale) can also be used as an categorical encoding. The default symbol set is based on whether symbols are stroked or filled, improving differentiability and giving uniform weight. Plot supports all of D3’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke, based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746)); you can also implement a [custom symbol type](https://d3js.org/d3-shape/symbol#custom-symbols).
+The [dot mark](https://observablehq.com/plot/marks/dot) now supports a *symbol* option to control the displayed shape, which defaults to *circle*. The *symbol* channel (and associated *symbol* scale) can also be used as an categorical encoding. The default symbol set is based on whether symbols are stroked or filled, improving differentiability and giving uniform weight. Plot supports all of D3’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke, based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746)); you can also implement a [custom symbol type](https://d3js.org/d3-shape/symbol#custom-symbols).
 
 [<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/@observablehq/plot-dot)
 
@@ -591,7 +591,7 @@ The [dot mark](./README.md#dot) now supports a *symbol* option to control the di
 Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})
 ```
 
-The [text mark](./README.md#text) now supports multiline text! When a text value contains `\r`, `\r\n`, or `\n`, it will be split into multiple lines using tspan elements. The new *lineAnchor* and *lineHeight* options control how the lines are positioned relative to the given *xy* position. The text, dot, and image marks now also support a *frameAnchor* option for positioning relative to the frame rather than according to data. This is particularly useful for annotations.
+The [text mark](https://observablehq.com/plot/marks/text) now supports multiline text! When a text value contains `\r`, `\r\n`, or `\n`, it will be split into multiple lines using tspan elements. The new *lineAnchor* and *lineHeight* options control how the lines are positioned relative to the given *xy* position. The text, dot, and image marks now also support a *frameAnchor* option for positioning relative to the frame rather than according to data. This is particularly useful for annotations.
 
 [<img src="./img/poem.png" width="660" alt="This Is Just To Say, by William Carlos Williams">](https://observablehq.com/@observablehq/plot-text)
 
@@ -613,7 +613,7 @@ All marks now support the new standard *href* channel and *target* option, turni
 Plot.barY(alphabet, {x: "letter", y: "frequency", href: d => `https://en.wikipedia.org/wiki/${d.letter}`})
 ```
 
-The [bin](./README.md#bin) and [group](./README.md#group) transforms now propagate the *title* and *href* channels, if present, by default. The default reducer for the *title* channel automatically selects the top five distinct title values by count, making it easier to inspect the contents of a given bin or group.
+The [bin](https://observablehq.com/plot/transforms/bin) and [group](https://observablehq.com/plot/transforms/group) transforms now propagate the *title* and *href* channels, if present, by default. The default reducer for the *title* channel automatically selects the top five distinct title values by count, making it easier to inspect the contents of a given bin or group.
 
 [<img src="./img/bin-title.png" width="656" alt="a histogram of penguins by species">](https://observablehq.com/@observablehq/plot-bin)
 
@@ -623,7 +623,7 @@ Plot.rectY(data, Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species", tit
 
 The bin transform now supports shorthand reducers for the bin extent: *x1*, *x2*, *y1*, and *y2*. The window transform now supports the *first* and *last* reducers to select the first or last element of the window, respectively.
 
-The new generalized [select transform](./README.md#select) can now call a custom selector function, or the shorthand *min* and *max*, to select the points to display. The selector function is passed two arguments: the index of the current group (*e.g.*, [0, 1, 2, …]) and the given channel’s values. For example, to select the dot with the greatest *fill* value:
+The new generalized [select transform](https://observablehq.com/plot/transforms/select) can now call a custom selector function, or the shorthand *min* and *max*, to select the points to display. The selector function is passed two arguments: the index of the current group (*e.g.*, [0, 1, 2, …]) and the given channel’s values. For example, to select the dot with the greatest *fill* value:
 
 ```js
 Plot.dotX(data, Plot.select({fill: "max"}, {x: "letter", fill: "frequency", stroke: "black"})
@@ -645,7 +645,7 @@ The *color* scale now has a special default range for boolean data, encoding fal
 Plot.barY(alphabet, {x: "letter", y: "frequency", fill: d => /[AEIOU]/.test(d.letter)})
 ```
 
-The new [Plot.scale](./README.md#scale-options) method allows you to construct a standalone scale for use independent of any chart, or across charts. The returned object has the same form as *plot*.scale(*name*), allowing you to inspect the scale options and invoke the scale programmatically with *scale*.apply (and *scale*.invert, where applicable).
+The new [Plot.scale](https://observablehq.com/plot/features/scales#scale) method allows you to construct a standalone scale for use independent of any chart, or across charts. The returned object has the same form as *plot*.scale(*name*), allowing you to inspect the scale options and invoke the scale programmatically with *scale*.apply (and *scale*.invert, where applicable).
 
 ```js
 const scale = Plot.scale({color: {type: "linear"}});

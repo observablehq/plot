@@ -81,7 +81,7 @@ export async function lineUnemployment() {
 }
 ```
 
-When a snapshot test is run, its output is compared against the SVG or HTML snapshot saved in the `test/output` folder. This makes it easier to review the effect of code changes and to catch unintended changes. Snapshot tests must have deterministic, reproducible behavior; they should not depend on live data, external servers, the current time, the weather, etc. To use randomness in a test, use a seeded random number generator such as [d3.randomLcg](https://github.com/d3/d3-random/blob/master/README.md#randomLcg).
+When a snapshot test is run, its output is compared against the SVG or HTML snapshot saved in the `test/output` folder. This makes it easier to review the effect of code changes and to catch unintended changes. Snapshot tests must have deterministic, reproducible behavior; they should not depend on live data, external servers, the current time, the weather, etc. To use randomness in a test, use a seeded random number generator such as [d3.randomLcg](https://d3js.org/d3-random#randomLcg).
 
 To add a new snapshot test, create a new JavaScript file in the `test/plots` folder using the pattern shown above. Then export your snapshot test function from [`test/plots/index.ts`](./test/plots/index.ts). For example:
 

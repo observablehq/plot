@@ -24,7 +24,7 @@ Update D3 to 7.2.1.
 
 [Released December 4, 2021.](https://github.com/observablehq/plot/releases/tag/v0.3.0)
 
-Plot can now produce [legends for *color* and *opacity* scales](./README.md#legends)!
+Plot can now produce [legends for *color* and *opacity* scales](https://observablehq.com/plot/features/legends)!
 
 [<img src="./img/legend.png" width="660" alt="a scatterplot with a color legend">](https://observablehq.com/@observablehq/plot-legends)
 
@@ -41,7 +41,7 @@ Plot.plot({
 
 The top-level plot *scale*.**legend** option generates an inline legend for the given *scale* (*color* or *opacity*). Alternatively, the new *plot*.legend(*name*) function returns a legend for the scale with the given *name*. The new standalone Plot.**legend**(*options*) function also allows you to create a legend independently of a chart. Two forms of color legend are provided: *swatches* for ordinal or discrete scales (*e.g.*, threshold color scales), and *ramp* for continuous scales.
 
-The new [Plot.image](./README.md#image) mark centers an image on the given *xy* position.
+The new [Plot.image](https://observablehq.com/plot/marks/image) mark centers an image on the given *xy* position.
 
 [<img src="./img/image.png" width="640" alt="a scatterplot of U.S. presidents">](https://observablehq.com/@observablehq/plot-image)
 
@@ -223,7 +223,7 @@ The *x1* and *x2* outputs now default to undefined if *x* is explicitly defined;
 
 ### Marks
 
-The [*marks* option](./README.md#mark-options) now accepts render functions, null, and undefined as shorthand mark definitions. Nullish marks produce no output and are useful for conditional display (equivalent to the empty array). Render functions are invoked when plotting and may return an SVG element to insert into the plot, such as a legend or annotation.
+The [*marks* option](https://observablehq.com/plot/features/plots#marks-option) now accepts render functions, null, and undefined as shorthand mark definitions. Nullish marks produce no output and are useful for conditional display (equivalent to the empty array). Render functions are invoked when plotting and may return an SVG element to insert into the plot, such as a legend or annotation.
 
 <img width="636" alt="a line chart of Apple, Inc.’s daily closing stock price from 2013 to 2018, with a red ‘hello world’ label" src="https://user-images.githubusercontent.com/230541/130157120-8cbf8052-aa31-44ed-a650-d081c4a21d69.png">
 
@@ -234,7 +234,7 @@ Plot.marks(
 ).plot()
 ```
 
-The [Plot.marks(...*marks*)](./README.md#plotmarksmarks) function provides [*mark*.plot](./README.md#plotplotoptions) shorthand for array marks. This is useful for composite marks, such as [boxes](https://github.com/observablehq/plot/blob/8fef4fa52a4cca4135f5f964e3c328ef8f18f672/test/plots/morley-boxplot.js#L18-L23).
+The [Plot.marks(...*marks*)](https://observablehq.com/plot/features/marks#marks) function provides [*mark*.plot](https://observablehq.com/plot/features/plots#mark_plot) shorthand for array marks. This is useful for composite marks, such as [boxes](https://github.com/observablehq/plot/blob/8fef4fa52a4cca4135f5f964e3c328ef8f18f672/test/plots/morley-boxplot.js#L18-L23).
 
 All marks now support the [shapeRendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering)  option. (This is a constant; it may not vary across marks.) All marks now allow strokeWidth to be specified as a channel. (The strokeWidth channel is unscaled; values are specified in literal pixels.) Text marks now also allow stroke and strokeOpacity to be specified as channels. If its fill is not *none*, a line’s default stroke is now *none* rather than *currentColor*, making it consistent with dot and other marks. When a fill or fillOpacity channel is used with a link, or when a stroke or strokeOpacity channel is used with a rule, undefined values will now be filtered. The text mark now uses attributes instead of styles for font rendering properties, improving compatibility with Firefox.
 
@@ -256,7 +256,7 @@ The link mark now supports *x* or *y* shorthand for one-dimensional links, equiv
 
 ### Scales
 
-The new [*sort* options](./README.md#sort-options) allow convenient control over the order of ordinal domains, including the *fx* and *fy* facet domains. The aggregation method can be controlled via the *reduce* option, which defaults to *max*. The *reverse* and *limit* options are also supported. For example, a bar chart can be sorted by descending value like so:
+The new [*sort* mark option](https://observablehq.com/plot/features/scales#sort-mark-option) allows convenient control over the order of ordinal domains, including the *fx* and *fy* facet domains. The aggregation method can be controlled via the *reduce* option, which defaults to *max*. The *reverse* and *limit* options are also supported. For example, a bar chart can be sorted by descending value like so:
 
 <img width="640" alt="a bar chart showing the frequency of letters in the English language in order of descending frequency, starting with E at 13% and ending with Z at almost 0%" src="https://user-images.githubusercontent.com/230541/130157414-be9cbc86-8a0c-40e7-8cfb-999881482691.png">
 

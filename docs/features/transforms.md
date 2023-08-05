@@ -183,7 +183,7 @@ While transform functions often produce new *data* or *facets*, they may return 
 
 When implementing a custom transform for generic usage, keep in mind that it needs to be compatible with Plot’s [faceting system](./facets.md), which partitions the original dataset into discrete subsets.
 
-## Custom initializers
+## Custom initializers <VersionBadge version="0.5.0" />
 
 Initializers are a special class of transform; whereas transforms operate in abstract data space, initializers operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. Initializers are invoked *after* the initial scales are constructed and can modify the channels or derive new channels; these in turn may (or may not, as desired) be passed to scales. Plot’s [hexbin](../transforms/hexbin.md) and [dodge](../transforms/dodge.md) transforms are initializers.
 

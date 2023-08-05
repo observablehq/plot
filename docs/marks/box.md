@@ -13,7 +13,7 @@ onMounted(() => {
 
 </script>
 
-# Box mark
+# Box mark <VersionBadge version="0.4.2" />
 
 The **box mark** summarizes one-dimensional distributions as boxplots. It is a [composite mark](../features/marks.md#marks) consisting of a [rule](./rule.md) to represent the extreme values (not including outliers), a [bar](./bar.md) to represent the interquartile range (trimmed to the data), a [tick](./tick.md) to represent the median value, and a [dot](./dot.md) to represent any outliers. The [group transform](../transforms/group.md) is used to group and aggregate data.
 

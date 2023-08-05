@@ -244,8 +244,7 @@ Faceting can be explicitly enabled or disabled on a mark with the **facet** opti
 
 When mark-level faceting is used, the default *auto* setting is equivalent to *include*: the mark will be faceted if either the **fx** or **fy** channel option (or both) is specified. The null or false option will disable faceting, while *exclude* draws the subset of the mark’s data *not* in the current facet. When a mark uses *super* faceting, it is not allowed to use position scales (*x*, *y*, *fx*, or *fy*); *super* faceting is intended for decorations, such as labels and legends.
 
-
-The **facetAnchor** option <VersionBadge version="0.6.3" /> controls the placement of the mark with respect to the facets. Based on the value, the mark will be displayed on:
+The **facetAnchor** option<a id="facetAnchor" class="header-anchor" href="#facetAnchor" aria-label="Permalink to &quot;facetAnchor&quot;"></a> <VersionBadge version="0.6.3" /> controls the placement of the mark with respect to the facets. Based on the value, the mark will be displayed on:
 
 * null - non-empty facets
 * *top*, *right*, *bottom*, or *left* - the given side

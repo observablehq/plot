@@ -10,7 +10,7 @@ const m = ref(0);
 
 </script>
 
-# Linear regression mark
+# Linear regression mark <VersionBadge version="0.5.1" />
 
 The **linear regression** mark draws [linear regression](https://en.wikipedia.org/wiki/Linear_regression) lines with confidence bands, representing the estimated linear relation of a dependent variable (typically **y**) on an independent variable (typically **x**). Below we can see that, in this example dataset at least, the weight of a car is a good linear predictor of its power.
 

@@ -24,7 +24,7 @@ onMounted(() => {
 
 </script>
 
-# Density mark
+# Density mark <VersionBadge version="0.5.1" />
 
 :::tip
 For contours of spatially-distributed quantitative values, see the [contour mark](./contour.md).

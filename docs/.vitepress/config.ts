@@ -92,7 +92,7 @@ export default defineConfig({
           {text: "Hexgrid", link: "/marks/hexgrid"},
           {text: "Image", link: "/marks/image"},
           {text: "Line", link: "/marks/line"},
-          {text: "Linear Regression", link: "/marks/linear-regression"},
+          {text: "Linear regression", link: "/marks/linear-regression"},
           {text: "Link", link: "/marks/link"},
           {text: "Raster", link: "/marks/raster"},
           {text: "Rect", link: "/marks/rect"},

@@ -17,7 +17,7 @@ onMounted(() => {
 
 </script>
 
-# Delaunay marks
+# Delaunay marks <VersionBadge version="0.5.1" />
 
 Given set of points in **x** and **y**, the **Delaunay marks** compute the [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation), its dual the [Voronoi tessellation](https://en.wikipedia.org/wiki/Voronoi_diagram), and the [convex hull](https://en.wikipedia.org/wiki/Convex_hull).
 

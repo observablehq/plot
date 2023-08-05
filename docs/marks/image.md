@@ -13,7 +13,7 @@ onMounted(() => {
 
 </script>
 
-# Image mark
+# Image mark <VersionBadge version="0.3.0" />
 
 The **image mark** draws images centered at the given position in **x** and **y**. It is often used to construct scatterplots in place of a [dot mark](./dot.md). For example, the chart below, based on one by [Robert Lesser](https://observablehq.com/@rlesser/when-presidents-fade-away), shows the favorability of U.S. presidents over time alongside their portraits.
 

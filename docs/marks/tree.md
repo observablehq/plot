@@ -30,7 +30,7 @@ function indent() {
 
 </script>
 
-# Tree mark
+# Tree mark <VersionBadge version="0.4.3" />
 
 The **tree mark** produces tree diagrams using the [tree transform](../transforms/tree.md). It is a [composite mark](../features/marks.md#marks), consisting of a [link](./link.md) to render links from parent to child, an optional [dot](./dot.md) for nodes, and one or two [text](./text.md) for node labels. The link mark uses the [treeLink transform](../transforms/tree.md#treeLink), while the dot and text marks use the [treeNode transform](../transforms/tree.md#treeNode).
 

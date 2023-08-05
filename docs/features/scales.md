@@ -600,7 +600,7 @@ Plot.plot({
 [Mark transforms](./transforms.md) typically consume values *before* they are passed through scales (_e.g._, when binning). In this case the mark transforms will see the values prior to the scale transform as input, and the scale transform will apply to the *output* of the mark transform.
 :::
 
-The **interval** scale option<a id="interval" class="header-anchor" href="#interval" aria-label="Permalink to &quot;interval&quot;"></a> sets an ordinal scale’s **domain** to the start of every interval within the extent of the data. In addition, it implicitly sets the **transform** of the scale to *interval*.floor, rounding values down to the start of each interval. For example, below we generate a time-series bar chart; when an **interval** is specified, missing days are visible.
+The **interval** scale option<a id="interval" class="header-anchor" href="#interval" aria-label="Permalink to &quot;interval&quot;"></a> <VersionBadge version="0.5.1" /> sets an ordinal scale’s **domain** to the start of every interval within the extent of the data. In addition, it implicitly sets the **transform** of the scale to *interval*.floor, rounding values down to the start of each interval. For example, below we generate a time-series bar chart; when an **interval** is specified, missing days are visible.
 
 <p>
   <label class="label-input">
@@ -733,9 +733,9 @@ The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordin
 * *categorical* - like *ordinal*, but defaults to *tableau10*
 * *sequential* - like *linear*
 * *cyclical* - like *linear*, but defaults to *rainbow*
-* *threshold* - encodes based on discrete thresholds specified as the **domain**; defaults to *rdylbu*
-* *quantile* - encodes based on the computed quantile thresholds; defaults to *rdylbu*
-* *quantize* - transforms a continuous domain into quantized thresholds; defaults to *rdylbu*
+* *threshold* - discretizes using thresholds given as the **domain**; defaults to *rdylbu*
+* *quantile* - discretizes by computing quantile thresholds; defaults to *rdylbu*
+* *quantize* - discretizes by computing uniform thresholds; defaults to *rdylbu* <VersionBadge version="0.4.3" />
 * *diverging* - like *linear*, but with a pivot; defaults to *rdbu*
 * *diverging-log* - like *log*, but with a pivot that defaults to 1; defaults to *rdbu*
 * *diverging-pow* - like *pow*, but with a pivot; defaults to *rdbu*
@@ -955,7 +955,7 @@ For an implicit [grid mark](../marks/grid.md), use the **grid** option. For an i
 
 Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facets](./facets.md)), **label**, **axis**, **inset**, **round**, **align**, and **padding**. If the **grid** option is true, show a grid using *currentColor*; if specified as a string, show a grid with the specified color; if an approximate number of ticks, an interval, or an array of tick values, show corresponding grid lines.
 
-## Sort mark option
+## Sort mark option <VersionBadge version="0.2.0" />
 
 If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://d3js.org/d3-array/group#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
 
@@ -963,7 +963,7 @@ If an ordinal scale’s domain is not set, it defaults to natural ascending orde
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
 ```
 
-The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as **y**, **y1**, or **y2**. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](./transforms.md) (such as [stack](../transforms/stack.md) or [bin](../transforms/bin.md)). When sorting the *x* domain, if no **x** channel is defined, **x2** will be used instead if available, and similarly for *y* and **y2**; this is useful for marks that implicitly stack such as [area](../marks/area.md), [bar](../marks/bar.md), and [rect](../marks/rect.md). A sort value may also be specified as *width* or *height*, representing derived channels |*x2* - *x1*| and |*y2* - *y1*| respectively.
+The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as **y**, **y1**, or **y2**. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](./transforms.md) (such as [stack](../transforms/stack.md) or [bin](../transforms/bin.md)). When sorting the *x* domain, if no **x** channel is defined, **x2** will be used instead if available, and similarly for *y* and **y2**; this is useful for marks that implicitly stack such as [area](../marks/area.md), [bar](../marks/bar.md), and [rect](../marks/rect.md). A sort value may also be specified as *width* or *height* <VersionBadge version="0.4.2" />, representing derived channels |*x2* - *x1*| and |*y2* - *y1*| respectively.
 
 Note that there may be multiple associated values in the secondary dimension for a given value in the primary ordinal dimension. The secondary values are therefore grouped for each associated primary value, and each group is then aggregated by applying a reducer. The default reducer is *max*, but may be changed by specifying the **reduce** option. Lastly the primary values are by default sorted based on the associated reduced value in natural ascending order to produce the domain. The above code is shorthand for:
 
@@ -1009,7 +1009,7 @@ If the input channel is *data*, then the reducer is passed groups of the mark’
 
 Note: when the value of the sort option is a string or a function, it is interpreted as a mark [sort transform](../transforms/sort.md). To use both sort options and a mark sort transform, use [Plot.sort](../transforms/sort.md#sort).
 
-## scale(*options*) {#scale}
+## scale(*options*) <VersionBadge version="0.4.0" /> {#scale}
 
 You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 

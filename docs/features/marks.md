@@ -553,7 +553,7 @@ All marks support the following [transform](./transforms.md) options:
 
 The **sort** option, when not specified as a channel value (such as a field name or an accessor function), can also be used to [impute ordinal scale domains](./scales.md#sort-mark-option).
 
-## marks(...*marks*) {#marks}
+## marks(...*marks*) <VersionBadge version="0.2.0" /> {#marks}
 
 ```js
 Plot.marks(
