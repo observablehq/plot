@@ -1,6 +1,6 @@
 import type {ChannelValue} from "./channel.js";
 import type {LegendOptions} from "./legends.js";
-import type {Data, Markish} from "./mark.js";
+import type {Data, MarkOptions, Markish} from "./mark.js";
 import type {ProjectionFactory, ProjectionImplementation, ProjectionName, ProjectionOptions} from "./projection.js";
 import type {Scale, ScaleDefaults, ScaleName, ScaleOptions} from "./scales.js";
 
@@ -145,6 +145,9 @@ export interface PlotOptions extends ScaleDefaults {
    * rendering in Node.
    */
   document?: Document;
+
+  /** The default clip for all marks. */
+  clip?: MarkOptions["clip"];
 
   // scale, axis, and legend definitions
 

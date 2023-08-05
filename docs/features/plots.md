@@ -270,6 +270,8 @@ Unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecate
 
 The generated SVG element has a class name which applies a default stylesheet. Use the top-level **className** option to specify that class name.
 
+The **clip** option <VersionBadge pr="1792" /> determines the default clipping behavior if the [mark **clip** option](./marks.md#mark-options) is not specified; set it to true to enable clipping. This option does not affect [axis](../marks/axis.md), [grid](../marks/grid.md), and [frame](../marks/frame.md) marks, whose **clip** option defaults to false.
+
 The **document** option specifies the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create plot elements. It defaults to window.document, but can be changed to another document, say when using a virtual DOM implementation for server-side rendering in Node.
 
 ## plot(*options*) {#plot}

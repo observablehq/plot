@@ -564,6 +564,7 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
     channels = {};
   }
   m.ariaLabel = ariaLabel;
+  if (m.clip === undefined) m.clip = false; // don’t clip axes by default
   return m;
 }
 

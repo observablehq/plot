@@ -2,17 +2,8 @@ import {geoPath, group, namespaces} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
-import {
-  string,
-  number,
-  maybeColorChannel,
-  maybeNumberChannel,
-  maybeKeyword,
-  isNoneish,
-  isNone,
-  isRound,
-  keyof
-} from "./options.js";
+import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
+import {keyof, keyword, number, string} from "./options.js";
 import {warn} from "./warnings.js";
 
 export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
@@ -311,13 +302,15 @@ export function* groupIndex(I, position, mark, channels) {
 export function maybeClip(clip) {
   if (clip === true) clip = "frame";
   else if (clip === false) clip = null;
-  return maybeKeyword(clip, "clip", ["frame", "sphere"]);
+  else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
+  return clip;
 }
 
 // Note: may mutate selection.node!
 function applyClip(selection, mark, dimensions, context) {
   let clipUrl;
-  switch (mark.clip) {
+  const {clip = context.clip} = mark;
+  switch (clip) {
     case "frame": {
       const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
       const id = getClipId();
