@@ -1,10 +1,10 @@
 import {deviation, mean} from "d3";
 import {marks} from "../mark.js";
+import {identity, isNoneish} from "../options.js";
 import {map} from "../transforms/map.js";
 import {window} from "../transforms/window.js";
 import {areaX, areaY} from "./area.js";
 import {lineX, lineY} from "./line.js";
-import {identity} from "../options.js";
 
 const defaults = {
   n: 20,
@@ -32,14 +32,18 @@ export function bollingerX(
   } = {}
 ) {
   return marks(
-    areaX(
-      data,
-      map(
-        {x1: bollinger({k: -k, ...options}), x2: bollinger({k, ...options})},
-        {x1: x, x2: x, y, fill, fillOpacity, ...options}
-      )
-    ),
-    lineX(data, map({x: bollinger(options)}, {x, y, stroke, strokeOpacity, strokeWidth, ...options}))
+    isNoneish(fill)
+      ? null
+      : areaX(
+          data,
+          map(
+            {x1: bollinger({k: -k, ...options}), x2: bollinger({k, ...options})},
+            {x1: x, x2: x, y, fill, fillOpacity, ...options}
+          )
+        ),
+    isNoneish(stroke)
+      ? null
+      : lineX(data, map({x: bollinger(options)}, {x, y, stroke, strokeOpacity, strokeWidth, ...options}))
   );
 }
 
@@ -60,14 +64,18 @@ export function bollingerY(
   } = {}
 ) {
   return marks(
-    areaY(
-      data,
-      map(
-        {y1: bollinger({k: -k, ...options}), y2: bollinger({k, ...options})},
-        {x, y1: y, y2: y, fill, fillOpacity, ...options}
-      )
-    ),
-    lineY(data, map({y: bollinger(options)}, {x, y, stroke, strokeOpacity, strokeWidth, ...options}))
+    isNoneish(fill)
+      ? null
+      : areaY(
+          data,
+          map(
+            {y1: bollinger({k: -k, ...options}), y2: bollinger({k, ...options})},
+            {x, y1: y, y2: y, fill, fillOpacity, ...options}
+          )
+        ),
+    isNoneish(stroke)
+      ? null
+      : lineY(data, map({y: bollinger(options)}, {x, y, stroke, strokeOpacity, strokeWidth, ...options}))
   );
 }
 
