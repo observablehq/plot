@@ -17,7 +17,7 @@ onMounted(() => {
 
 </script>
 
-# Dodge transform <VersionBadge version="0.5.0" />{}
+# Dodge transform <VersionBadge version="0.5.0" />
 
 Given one position dimension (either **x** or **y**), the **dodge** transform computes the other position dimension such that dots are packed densely without overlapping. The [dodgeX transform](#dodgeX) computes **x** (horizontal position) given **y** (vertical position), while the [dodgeY transform](#dodgeY) computes **y** given **x**.
 
