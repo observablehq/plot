@@ -47,7 +47,7 @@ Plot.plot({
   marks: [
     Plot.lineY(aapl, Plot.mapY(Plot.bollinger({n: 20, k: -2}), {x: "Date", y: "Close", stroke: "red"})),
     Plot.lineY(aapl, Plot.mapY(Plot.bollinger({n: 20, k: 2}), {x: "Date", y: "Close", stroke: "green"})),
-    Plot.lineY(aapl, Plot.mapY(Plot.bollinger({n: 20}), {x: "Date", y: "Close"}))
+    Plot.lineY(aapl, {x: "Date", y: "Close"})
   ]
 })
 ```
