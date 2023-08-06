@@ -6,14 +6,16 @@ import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransfo
 const defaults = {
   ariaLabel: "frame",
   fill: "none",
-  stroke: "currentColor"
+  stroke: "currentColor",
+  clip: false
 };
 
 const lineDefaults = {
   ariaLabel: "frame",
   fill: null,
   stroke: "currentColor",
-  strokeLinecap: "square"
+  strokeLinecap: "square",
+  clip: false
 };
 
 export class Frame extends Mark {
