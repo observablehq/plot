@@ -9,11 +9,11 @@ export interface PlotOptions extends ScaleDefaults {
 
   /**
    * The outer width of the plot in pixels, including margins. Defaults to 640.
-   * On Observable, this can be set to the built-in
-   * [width](https://github.com/observablehq/stdlib/blob/main/README.md#width)
-   * for full-width responsive plots. Note: the default style has a max-width of
-   * 100%; the plot will automatically shrink to fit even when a fixed width is
-   * specified.
+   * On Observable, this can be set to the built-in [width][1] for full-width
+   * responsive plots. Note: the default style has a max-width of 100%; the plot
+   * will automatically shrink to fit even when a fixed width is specified.
+   *
+   * [1]: https://github.com/observablehq/stdlib/blob/main/README.md#width
    */
   width?: number;
 
@@ -77,20 +77,15 @@ export interface PlotOptions extends ScaleDefaults {
   /**
    * Custom styles to override Plot’s defaults. Styles may be specified either
    * as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion
-   * as assigning
-   * [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style))
-   * or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion
-   * as assigning [*element*.style
-   * properties](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)).
-   * Note that unitless numbers ([quirky
-   * lengths](https://www.w3.org/TR/css-values-4/#deprecated-quirky-length))
-   * such as `{padding: 20}` may not supported by some browsers; you should
-   * instead specify a string with units such as `{padding: "20px"}`. By
-   * default, the returned plot has a white background, a max-width of 100%, and
-   * the system-ui font. Plot’s marks and axes default to
-   * [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword),
-   * meaning that they will inherit the surrounding content’s color. For
-   * example, a dark theme:
+   * as assigning [*element*.style][1]) or an object of properties (*e.g.*,
+   * `{color: "red"}`, in the same fashion as assigning [*element*.style
+   * properties][2]). Note that unitless numbers ([quirky lengths][3]) such as
+   * `{padding: 20}` may not supported by some browsers; you should instead
+   * specify a string with units such as `{padding: "20px"}`. By default, the
+   * returned plot has a white background, a max-width of 100%, and the
+   * system-ui font. Plot’s marks and axes default to [currentColor][4], meaning
+   * that they will inherit the surrounding content’s color. For example, a dark
+   * theme:
    *
    * ```js
    * Plot.plot({
@@ -98,6 +93,11 @@ export interface PlotOptions extends ScaleDefaults {
    *   marks: …
    * })
    * ```
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
+   * [2]: https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration
+   * [3]: https://www.w3.org/TR/css-values-4/#deprecated-quirky-length
+   * [4]: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword
    */
   style?: string | Partial<CSSStyleDeclaration> | null;
 
@@ -110,9 +110,9 @@ export interface PlotOptions extends ScaleDefaults {
   /**
    * The figure caption. If present, Plot wraps the generated SVG element in an
    * HTML figure element with a figcaption, returning the figure. To specify an
-   * HTML caption, consider using the [`html` tagged template
-   * literal](http://github.com/observablehq/htl); otherwise, the specified
-   * string represents text that will be escaped as needed.
+   * HTML caption, consider using the [`html` tagged template literal][1];
+   * otherwise, the specified string represents text that will be escaped as
+   * needed.
    *
    * ```js
    * Plot.plot({
@@ -120,29 +120,31 @@ export interface PlotOptions extends ScaleDefaults {
    *   marks: …
    * })
    * ```
+   *
+   * [1]: https://github.com/observablehq/htl
    */
   caption?: string | Node | null;
 
   /**
-   * The [aria-label
-   * attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label)
-   * on the SVG root.
+   * The [aria-label attribute][1] on the SVG root.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label
    */
   ariaLabel?: string | null;
 
   /**
-   * The [aria-description
-   * attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-description)
-   * on the SVG root.
+   * The [aria-description attribute][1] on the SVG root.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-description
    */
   ariaDescription?: string | null;
 
   /**
-   * The owner
-   * [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used
-   * to create DOM elements. Defaults to window.document, but can be changed to
-   * another document, say when using a virtual DOM library for server-side
-   * rendering in Node.
+   * The owner [Document][1] used to create DOM elements. Defaults to
+   * window.document, but can be changed to another document, say when using a
+   * virtual DOM library for server-side rendering in Node.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/API/Document
    */
   document?: Document;
 
@@ -184,10 +186,11 @@ export interface PlotOptions extends ScaleDefaults {
    * first quartile of values has a radius of 3 pixels, but no value has a
    * radius greater than 30 pixels.
    *
-   * Plot does not currently implement a radius legend; see
-   * [#236](https://github.com/observablehq/plot/issues/236). We recommend
-   * either implementing one manually or labeling points so that values can be
-   * read directly from the plot.
+   * Plot does not currently implement a radius legend; see [#236][1]. We
+   * recommend either implementing one manually or labeling points so that
+   * values can be read directly from the plot.
+   *
+   * [1]: https://github.com/observablehq/plot/issues/236
    */
   r?: ScaleOptions;
 

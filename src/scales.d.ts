@@ -579,9 +579,12 @@ export interface ScaleOptions extends ScaleDefaults {
   /**
    * How to format inputs (abstract values) for axis tick labels; one of:
    *
-   * - a [d3-format](https://github.com/d3/d3-format) string for numeric scales
-   * - a [d3-time-format](https://github.com/d3/d3-time-format) string for temporal scales
+   * - a [d3-format][1] string for numeric scales
+   * - a [d3-time-format][2] string for temporal scales
    * - a function passed a tick *value* and *index*, returning a string
+   *
+   * [1]: https://d3js.org/d3-time
+   * [2]: https://d3js.org/d3-time-format
    */
   tickFormat?: string | ((t: any, i: number) => any) | null;
 

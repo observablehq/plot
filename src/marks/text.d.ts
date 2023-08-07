@@ -205,8 +205,8 @@ export interface TextYOptions extends Omit<TextOptions, "x"> {
  *
  * [1]: https://observablehq.com/@mbostock/number-formatting
  * [2]: https://observablehq.com/@mbostock/date-formatting
- * [3]: https://github.com/d3/d3-format
- * [4]: https://github.com/d3/d3-time-format
+ * [3]: https://d3js.org/d3-format
+ * [4]: https://d3js.org/d3-time-format
  */
 export function text(data?: Data, options?: TextOptions): Text;
 
