@@ -325,16 +325,10 @@ export function plot(options = {}) {
   if (title != null || subtitle != null || caption != null || legends.length > 0) {
     figure = document.createElement("figure");
     figure.style.maxWidth = "initial";
-    for (const e of [[title, "h2"], [subtitle, "h3"], ...legends, svg, [caption, "figcaption"]]) {
-      const [contents, tag] = Array.isArray(e) ? e : [e];
-      if (contents == null) continue;
-      if (tag && (!contents.ownerDocument || tag === "figcaption")) {
-        const c = document.createElement(tag);
-        if (tag === "h2" || tag === "h3") c.className = `${className}-${tag}`;
-        c.appendChild(contents.ownerDocument ? contents : document.createTextNode(contents));
-        figure.appendChild(c);
-      } else figure.appendChild(contents);
-    }
+    if (title != null) figure.appendChild(createTitleElement(title, "h2", className));
+    if (subtitle != null) figure.appendChild(createTitleElement(subtitle, "h3", className));
+    figure.append(...legends, svg);
+    if (caption != null) figure.appendChild(createFigcaption(caption));
   }
 
   figure.scale = exposeScales(scaleDescriptors);
@@ -355,6 +349,20 @@ export function plot(options = {}) {
   }
 
   return figure;
+}
+
+function createTitleElement(contents, tag, className) {
+  if (contents.ownerDocument) return contents;
+  const e = document.createElement(tag);
+  e.className = `${className}-${tag}`;
+  e.appendChild(document.createTextNode(contents));
+  return e;
+}
+
+function createFigcaption(caption) {
+  const e = document.createElement("figcaption");
+  e.appendChild(caption.ownerDocument ? caption : document.createTextNode(caption));
+  return e;
 }
 
 function plotThis({marks = [], ...options} = {}) {
