@@ -146,7 +146,7 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
           const rj = dx * dx + dy * dy;
           if (rj <= ri) (ii = j), (ri = rj);
         }
-        update(ii, Math.hypot(px(ii) - xp, py(ii) - yp));
+        update(ii, ii != null && Math.hypot(px(ii) - xp, py(ii) - yp));
       }
 
       function pointerdown(event) {
