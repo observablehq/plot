@@ -109,10 +109,10 @@ export interface PlotOptions extends ScaleDefaults {
 
   /**
    * The figure title. If present, Plot wraps the generated SVG element in an
-   * HTML figure element with the title in a h2 element, returning the figure. To
-   * specify an HTML title, consider using the [`html` tagged template
-   * literal](http://github.com/observablehq/htl); otherwise, the specified
-   * string represents text that will be escaped as needed.
+   * HTML figure element with the title in a h2 element, returning the figure.
+   * To specify an HTML title, consider using the [`html` tagged template
+   * literal][1]; otherwise, the specified string represents text that will be
+   * escaped as needed.
    *
    * ```js
    * Plot.plot({
@@ -120,6 +120,8 @@ export interface PlotOptions extends ScaleDefaults {
    *   marks: …
    * })
    * ```
+   *
+   * [1]: https://github.com/observablehq/htl
    */
   title?: string | Node | null;
 
@@ -127,8 +129,8 @@ export interface PlotOptions extends ScaleDefaults {
    * The figure subtitle. If present, Plot wraps the generated SVG element in an
    * HTML figure element with the subtitle in a h3 element, returning the
    * figure. To specify an HTML subtitle, consider using the [`html` tagged
-   * template literal](http://github.com/observablehq/htl); otherwise, the
-   * specified string represents text that will be escaped as needed.
+   * template literal][1]; otherwise, the specified string represents text that
+   * will be escaped as needed.
    *
    * ```js
    * Plot.plot({
@@ -136,6 +138,8 @@ export interface PlotOptions extends ScaleDefaults {
    *   marks: …
    * })
    * ```
+   *
+   * [1]: https://github.com/observablehq/htl
    */
   subtitle?: string | Node | null;
 
