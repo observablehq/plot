@@ -250,7 +250,7 @@ When using facets, set the *fx* and *fy* scales’ **round** option to false if 
 
 By default, [plot](#plot) returns an SVG element; however, if the plot includes a title, subtitle, [legend](./legends.md), or caption, plot wraps the SVG element with an HTML figure element. You can also force Plot to generate a figure element by setting the **figure** option <VersionBadge pr="1792" /> to true.
 
-The **title** <VersionBadge pr="1792" />, **subtitle** <VersionBadge pr="1792" />, and **caption** options accept either a string or an HTML element. If given an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl), the title and subtitle are used as-is while the caption is wrapped in a figcaption element; otherwise, the specified text will be escaped and wrapped in an H2, H3, or figcaption, respectively.
+The **title** <VersionBadge pr="1792" />, **subtitle** <VersionBadge pr="1792" />, and **caption** options accept either a string or an HTML element. If given an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl), the title and subtitle are used as-is while the caption is wrapped in a figcaption element; otherwise, the specified text will be escaped and wrapped in an h2, h3, or figcaption, respectively.
 
 :::plot https://observablehq.com/@observablehq/plot-caption
 ```js
