@@ -150,7 +150,7 @@ const treeAnchorRight = {
   }
 };
 
-function maybeTreeSort(sort) {
+export function maybeTreeSort(sort) {
   return sort == null || typeof sort === "function"
     ? sort
     : `${sort}`.trim().toLowerCase().startsWith("node:")
@@ -166,7 +166,7 @@ function nodeData(field) {
   return (node) => node.data?.[field];
 }
 
-function normalizer(delimiter = "/") {
+export function normalizer(delimiter = "/") {
   return `${delimiter}` === "/"
     ? (P) => P // paths are already slash-separated
     : (P) => P.map(replaceAll(delimiter, "/")); // TODO string.replaceAll when supported
@@ -189,7 +189,7 @@ function isLinkValue(option) {
   return isObject(option) && typeof option.link === "function";
 }
 
-function maybeNodeValue(value) {
+export function maybeNodeValue(value) {
   if (isNodeValue(value)) return value.node;
   value = `${value}`.trim().toLowerCase();
   if (!value.startsWith("node:")) return;
@@ -290,11 +290,11 @@ function slash(path, i) {
 // These indexes match the array returned by nodeOutputs. The first two elements
 // are always the name of the output and its column value definition so that
 // the outputs can be passed directly to Object.fromEntries.
-const output_setValues = 2;
-const output_evaluate = 3;
-const output_values = 4;
+export const output_setValues = 2;
+export const output_evaluate = 3;
+export const output_values = 4;
 
-function treeOutputs(options, maybeTreeValue) {
+export function treeOutputs(options, maybeTreeValue) {
   const outputs = [];
   for (const name in options) {
     const value = options[name];

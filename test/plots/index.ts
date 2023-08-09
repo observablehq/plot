@@ -89,6 +89,7 @@ export * from "./first-ladies.js";
 export * from "./flare-cluster.js";
 export * from "./flare-indent.js";
 export * from "./flare-tree.js";
+export * from "./flare-treemap.js";
 export * from "./football-coverage.js";
 export * from "./frame.js";
 export * from "./fruit-sales-date.js";
