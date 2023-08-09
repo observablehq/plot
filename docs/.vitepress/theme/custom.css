@@ -154,3 +154,5 @@ a.plot-fork:hover {
     display: flex;
   }
 }
+
+h2.plot-h2, h3.plot-h3 { margin: 0; }
