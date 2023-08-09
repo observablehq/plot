@@ -3,8 +3,7 @@
  * = December) according to the specified *locale* and *format*.
  *
  * @param locale a [BCP 47 language tag][1]; defaults to U.S. English.
- * @param format a [month format][2]: either *2-digit*, *numeric*, *narrow*,
- * *short*, *long*; defaults to *short*.
+ * @param format a [month format][2]; defaults to *short*.
  *
  * [1]: https://tools.ietf.org/html/bcp47
  * [2]: https://tc39.es/ecma402/#datetimeformat-objects
@@ -19,8 +18,7 @@ export function formatMonth(
  * = Saturday) according to the specified *locale* and *format*.
  *
  * @param locale a [BCP 47 language tag][1]; defaults to U.S. English.
- * @param format a [weekday format][2]: either *narrow*, *short*, or *long*;
- * defaults to *short*.
+ * @param format a [weekday format][2]; defaults to *short*.
  *
  * [1]: https://tools.ietf.org/html/bcp47
  * [2]: https://tc39.es/ecma402/#datetimeformat-objects
