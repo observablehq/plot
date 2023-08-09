@@ -325,10 +325,10 @@ export function plot(options = {}) {
   if (title != null || subtitle != null || caption != null || legends.length > 0) {
     figure = document.createElement("figure");
     figure.style.maxWidth = "initial";
-    if (title != null) figure.append(createTitleElement(title, "h2", className));
-    if (subtitle != null) figure.append(createTitleElement(subtitle, "h3", className));
+    if (title != null) figure.append(createTitleElement(document, title, "h2", className));
+    if (subtitle != null) figure.append(createTitleElement(document, subtitle, "h3", className));
     figure.append(...legends, svg);
-    if (caption != null) figure.append(createFigcaption(caption));
+    if (caption != null) figure.append(createFigcaption(document, caption));
   }
 
   figure.scale = exposeScales(scaleDescriptors);
@@ -351,7 +351,7 @@ export function plot(options = {}) {
   return figure;
 }
 
-function createTitleElement(contents, tag, className) {
+function createTitleElement(document, contents, tag, className) {
   if (contents.ownerDocument) return contents;
   const e = document.createElement(tag);
   e.className = `${className}-${tag}`;
@@ -359,7 +359,7 @@ function createTitleElement(contents, tag, className) {
   return e;
 }
 
-function createFigcaption(caption) {
+function createFigcaption(document, caption) {
   const e = document.createElement("figcaption");
   e.append(caption.ownerDocument ? caption : document.createTextNode(caption));
   return e;
