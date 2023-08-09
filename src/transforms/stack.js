@@ -75,6 +75,7 @@ function mergeOptions(options) {
 const lengthy = {length: true};
 
 function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
+  if (y === null) throw new Error(`stack requires ${ky}`);
   const z = maybeZ(options);
   const [X, setX] = maybeColumn(x);
   const [Y1, setY1] = column(y);
