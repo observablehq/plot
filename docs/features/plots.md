@@ -248,15 +248,15 @@ When using facets, set the *fx* and *fy* scales’ **round** option to false if 
 
 ## Other options
 
-Plot.plot returns an HTML figure element that wraps the figure’s title, subtitle, [legends](./legends.md), chart, and caption — or the chart’s SVG element if there is no other element.
+By default, [plot](#plot) returns an SVG element; however, if the plot includes a title, subtitle, [legend](./legends.md), or caption, plot wraps the SVG element with an HTML figure element. You can also force Plot to generate a figure element by setting the **figure** option <VersionBadge pr="1792" /> to true.
 
-The top-level **title** <VersionBadge pr="1792" />, **subtitle** <VersionBadge pr="1792" />, and **caption** options can be used to specify the corresponding elements. These options accept either a string or an HTML element. If specified as an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl), the title and subtitle are used as given, and the caption is wrapped in a figcaption element; otherwise, the specified string represents text that will be escaped as needed and inserted in an element of type H2, H3, and figcaption, respectively.
+The **title** <VersionBadge pr="1792" />, **subtitle** <VersionBadge pr="1792" />, and **caption** options accept either a string or an HTML element. If given an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl), the title and subtitle are used as-is while the caption is wrapped in a figcaption element; otherwise, the specified text will be escaped and wrapped in an H2, H3, or figcaption, respectively.
 
 :::plot https://observablehq.com/@observablehq/plot-caption
 ```js
 Plot.plot({
-  title: "Title",
-  subtitle: "Subtitle",
+  title: "For charts, a title assists interpretation",
+  subtitle: "Tell the reader what’s interesting instead of forcing them to discover it.",
   caption: "Figure 1. A chart with a title, subtitle, and caption.",
   marks: [
     Plot.frame(),

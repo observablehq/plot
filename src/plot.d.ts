@@ -162,6 +162,14 @@ export interface PlotOptions extends ScaleDefaults {
   caption?: string | Node | null;
 
   /**
+   * Whether to wrap the generated SVG element with an HTML figure element. By
+   * default, this is determined by the presence of non-chart elements such as
+   * legends, title, subtitle, and caption; if false, these non-chart element
+   * options are ignored.
+   */
+  figure?: boolean;
+
+  /**
    * The [aria-label attribute][1] on the SVG root.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label

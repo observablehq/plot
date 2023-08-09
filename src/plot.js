@@ -320,13 +320,15 @@ export function plot(options = {}) {
     }
   }
 
-  // Wrap the plot in a figure if there are other elements than the svg.
+  // Wrap the plot in a figure, if needed.
   const legends = createLegends(scaleDescriptors, context, options);
-  if (title != null || subtitle != null || caption != null || legends.length > 0) {
+  const {figure: figured = title != null || subtitle != null || caption != null || legends.length > 0} = options;
+  if (figured) {
     figure = document.createElement("figure");
-    figure.style.maxWidth = "initial";
-    if (title != null) figure.append(createTitleElement(document, title, "h2", className));
-    if (subtitle != null) figure.append(createTitleElement(document, subtitle, "h3", className));
+    figure.className = `${className}-figure`;
+    figure.style.maxWidth = "initial"; // avoid Observable default style
+    if (title != null) figure.append(createTitleElement(document, title, "h2"));
+    if (subtitle != null) figure.append(createTitleElement(document, subtitle, "h3"));
     figure.append(...legends, svg);
     if (caption != null) figure.append(createFigcaption(document, caption));
   }
@@ -351,10 +353,9 @@ export function plot(options = {}) {
   return figure;
 }
 
-function createTitleElement(document, contents, tag, className) {
+function createTitleElement(document, contents, tag) {
   if (contents.ownerDocument) return contents;
   const e = document.createElement(tag);
-  e.className = `${className}-${tag}`;
   e.append(document.createTextNode(contents));
   return e;
 }
