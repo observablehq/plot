@@ -31,6 +31,23 @@
   z-index: 1;
 }
 
+.vp-doc .plot-figure {
+  margin: 16px 0;
+}
+
+.vp-doc .plot-figure h2,
+.vp-doc .plot-figure h3 {
+  all: unset;
+  display: block;
+}
+
+.vp-doc .plot-figure h2 {
+  line-height: 28px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
 .vp-doc .plot a:hover {
   text-decoration: initial;
 }

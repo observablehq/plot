@@ -248,15 +248,19 @@ When using facets, set the *fx* and *fy* scales’ **round** option to false if 
 
 ## Other options
 
-If a **caption** is specified, Plot.plot wraps the generated SVG element in an HTML figure element with a figcaption, returning the figure. To specify an HTML caption, the caption can be specified as an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed.
+By default, [plot](#plot) returns an SVG element; however, if the plot includes a title, subtitle, [legend](./legends.md), or caption, plot wraps the SVG element with an HTML figure element. You can also force Plot to generate a figure element by setting the **figure** option <VersionBadge pr="1761" /> to true.
+
+The **title** & **subtitle** options <VersionBadge pr="1761" /> and the **caption** option accept either a string or an HTML element. If given an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl), the title and subtitle are used as-is while the caption is wrapped in a figcaption element; otherwise, the specified text will be escaped and wrapped in an h2, h3, or figcaption, respectively.
 
 :::plot https://observablehq.com/@observablehq/plot-caption
 ```js
 Plot.plot({
-  caption: "Figure 1. A chart with a caption.",
+  title: "For charts, an informative title",
+  subtitle: "Subtitle to follow with additional context",
+  caption: "Figure 1. A chart with a title, subtitle, and caption.",
   marks: [
     Plot.frame(),
-    Plot.text(["Hello, world!"], {frameAnchor: "middle"})
+    Plot.text(["Titles, subtitles, captions, and annotations assist inter­pretation by telling the reader what’s interesting. Don’t make the reader work to find what you already know."], {lineWidth: 30, frameAnchor: "middle"})
   ]
 })
 ```

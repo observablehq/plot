@@ -108,6 +108,42 @@ export interface PlotOptions extends ScaleDefaults {
   className?: string;
 
   /**
+   * The figure title. If present, Plot wraps the generated SVG element in an
+   * HTML figure element with the title in a h2 element, returning the figure.
+   * To specify an HTML title, consider using the [`html` tagged template
+   * literal][1]; otherwise, the specified string represents text that will be
+   * escaped as needed.
+   *
+   * ```js
+   * Plot.plot({
+   *   title: html`<h2 class="figure">This is a <i>fancy</i> title`,
+   *   marks: …
+   * })
+   * ```
+   *
+   * [1]: https://github.com/observablehq/htl
+   */
+  title?: string | Node | null;
+
+  /**
+   * The figure subtitle. If present, Plot wraps the generated SVG element in an
+   * HTML figure element with the subtitle in a h3 element, returning the
+   * figure. To specify an HTML subtitle, consider using the [`html` tagged
+   * template literal][1]; otherwise, the specified string represents text that
+   * will be escaped as needed.
+   *
+   * ```js
+   * Plot.plot({
+   *   subtitle: html`<em>This is a <tt>fancy</tt> subtitle`,
+   *   marks: …
+   * })
+   * ```
+   *
+   * [1]: https://github.com/observablehq/htl
+   */
+  subtitle?: string | Node | null;
+
+  /**
    * The figure caption. If present, Plot wraps the generated SVG element in an
    * HTML figure element with a figcaption, returning the figure. To specify an
    * HTML caption, consider using the [`html` tagged template literal][1];
@@ -124,6 +160,14 @@ export interface PlotOptions extends ScaleDefaults {
    * [1]: https://github.com/observablehq/htl
    */
   caption?: string | Node | null;
+
+  /**
+   * Whether to wrap the generated SVG element with an HTML figure element. By
+   * default, this is determined by the presence of non-chart elements such as
+   * legends, title, subtitle, and caption; if false, these non-chart element
+   * options are ignored.
+   */
+  figure?: boolean;
 
   /**
    * The [aria-label attribute][1] on the SVG root.

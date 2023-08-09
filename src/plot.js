@@ -20,7 +20,7 @@ import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
-  const {facet, style, caption, ariaLabel, ariaDescription} = options;
+  const {facet, style, title, subtitle, caption, ariaLabel, ariaDescription} = options;
 
   // className for inline styles
   const className = maybeClassName(options.className);
@@ -320,18 +320,17 @@ export function plot(options = {}) {
     }
   }
 
-  // Wrap the plot in a figure with a caption, if desired.
+  // Wrap the plot in a figure, if needed.
   const legends = createLegends(scaleDescriptors, context, options);
-  if (caption != null || legends.length > 0) {
+  const {figure: figured = title != null || subtitle != null || caption != null || legends.length > 0} = options;
+  if (figured) {
     figure = document.createElement("figure");
-    figure.style.maxWidth = "initial";
-    for (const legend of legends) figure.appendChild(legend);
-    figure.appendChild(svg);
-    if (caption != null) {
-      const figcaption = document.createElement("figcaption");
-      figcaption.appendChild(caption?.ownerDocument ? caption : document.createTextNode(caption));
-      figure.appendChild(figcaption);
-    }
+    figure.className = `${className}-figure`;
+    figure.style.maxWidth = "initial"; // avoid Observable default style
+    if (title != null) figure.append(createTitleElement(document, title, "h2"));
+    if (subtitle != null) figure.append(createTitleElement(document, subtitle, "h3"));
+    figure.append(...legends, svg);
+    if (caption != null) figure.append(createFigcaption(document, caption));
   }
 
   figure.scale = exposeScales(scaleDescriptors);
@@ -352,6 +351,19 @@ export function plot(options = {}) {
   }
 
   return figure;
+}
+
+function createTitleElement(document, contents, tag) {
+  if (contents.ownerDocument) return contents;
+  const e = document.createElement(tag);
+  e.append(document.createTextNode(contents));
+  return e;
+}
+
+function createFigcaption(document, caption) {
+  const e = document.createElement("figcaption");
+  e.append(caption.ownerDocument ? caption : document.createTextNode(caption));
+  return e;
 }
 
 function plotThis({marks = [], ...options} = {}) {

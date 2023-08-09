@@ -212,7 +212,10 @@ export default {
     }
     if (typeof document !== "undefined") {
       const plot = Plot[method](options);
-      const replace = (el) => el.firstChild.replaceWith(plot);
+      const replace = (el) => {
+        while (el.lastChild) el.lastChild.remove();
+        el.append(plot);
+      };
       return withDirectives(h("span", [toHyperScript(plot)]), [[{mounted: replace, updated: replace}]]);
     }
     return h("span", [Plot[method]({...options, document: new Document()}).toHyperScript()]);
