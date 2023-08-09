@@ -255,12 +255,12 @@ The **title** <VersionBadge pr="1792" />, **subtitle** <VersionBadge pr="1792" /
 :::plot https://observablehq.com/@observablehq/plot-caption
 ```js
 Plot.plot({
-  title: "For charts, a title assists interpretation",
-  subtitle: "Tell the reader what’s interesting instead of forcing them to discover it.",
+  title: "For charts, an informative title",
+  subtitle: "Subtitle to follow with additional context",
   caption: "Figure 1. A chart with a title, subtitle, and caption.",
   marks: [
     Plot.frame(),
-    Plot.text(["Hello, world!"], {frameAnchor: "middle"})
+    Plot.text(["Titles, subtitles, captions, and annotations assist inter­pretation by telling the reader what’s interesting. Don’t make the reader work to find what you already know."], {lineWidth: 30, frameAnchor: "middle"})
   ]
 })
 ```
