@@ -133,30 +133,25 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
       // Select the closest point to the mouse in the current facet; for
       // pointerX or pointerY, the orthogonal component of the distance is
       // squashed, selecting primarily on the dominant dimension. Across facets,
-      // use the euclidian distance to determine the winner. The current facet’s
-      // surface includes the frame, margins and pointer radius.
+      // use unsquashed distance to determine the winner.
       function pointermove(event) {
         if (state.sticky || (event.pointerType === "mouse" && event.buttons === 1)) return; // dragging
         let [xp, yp] = pointof(event);
-        const hw = dimensions.width / 2;
-        const hh = dimensions.height / 2;
-        const offFrame =
-          (kx !== 1 && fx && Math.abs(xp - (fx(index.fx) + hw)) > hw + maxRadius) ||
-          (ky !== 1 && fy && Math.abs(yp - (fy(index.fy) + hh)) > hh + maxRadius);
         (xp -= tx), (yp -= ty); // correct for facets and band scales
+        const kpx = xp < dimensions.marginLeft || xp > dimensions.width - dimensions.marginRight ? 1 : kx;
+        const kpy = yp < dimensions.marginTop || yp > dimensions.height - dimensions.marginBottom ? 1 : ky;
         let ii = null;
         let ri = maxRadius * maxRadius;
         for (const j of index) {
-          const dx = kx * (px(j) - xp);
-          const dy = ky * (py(j) - yp);
+          const dx = kpx * (px(j) - xp);
+          const dy = kpy * (py(j) - yp);
           const rj = dx * dx + dy * dy;
           if (rj <= ri) (ii = j), (ri = rj);
         }
-        if (ii != null) {
+        if (ii != null && (kx !== 1 || ky !== 1)) {
           const dx = px(ii) - xp;
           const dy = py(ii) - yp;
           ri = dx * dx + dy * dy;
-          if (offFrame && ri > maxRadius * maxRadius) ii = null;
         }
         update(ii, ri);
       }
