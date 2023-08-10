@@ -237,3 +237,22 @@ export async function tipTransform() {
     marks: [Plot.dotX([0, 0.1, 0.3, 1], {fill: Plot.identity, r: 10, frameAnchor: "middle", tip: true})]
   });
 }
+
+export async function tipFacetX() {
+  const data = d3.range(100).map((i) => ({f: i > 60 || i % 2 ? "b" : "a", x: i, y: i / 10}));
+  return Plot.plot({
+    inset: 10,
+    y: {domain: [0, 7]},
+    marks: [
+      Plot.frame(),
+      Plot.dot(data, {fy: "f", x: "x", y: "y", tip: "x", fill: "f"}),
+      Plot.dot(
+        [
+          {f: "a", y: 3},
+          {f: "b", y: 1}
+        ],
+        {fy: "f", x: 90, y: "y", r: 30, fill: "f", fillOpacity: 0.1, stroke: "currentColor", strokeDasharray: 4}
+      )
+    ]
+  });
+}

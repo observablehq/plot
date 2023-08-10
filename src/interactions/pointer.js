@@ -130,17 +130,28 @@ function pointerK(kx, ky, {x, y, px, py, maxRadius = 40, channels, render, ...op
         return r;
       }
 
+      // Select the closest point to the mouse in the current facet; for
+      // pointerX or pointerY, the orthogonal component of the distance is
+      // squashed, selecting primarily on the dominant dimension. Across facets,
+      // use unsquashed distance to determine the winner.
       function pointermove(event) {
         if (state.sticky || (event.pointerType === "mouse" && event.buttons === 1)) return; // dragging
         let [xp, yp] = pointof(event);
         (xp -= tx), (yp -= ty); // correct for facets and band scales
+        const kpx = xp < dimensions.marginLeft || xp > dimensions.width - dimensions.marginRight ? 1 : kx;
+        const kpy = yp < dimensions.marginTop || yp > dimensions.height - dimensions.marginBottom ? 1 : ky;
         let ii = null;
         let ri = maxRadius * maxRadius;
         for (const j of index) {
-          const dx = kx * (px(j) - xp);
-          const dy = ky * (py(j) - yp);
+          const dx = kpx * (px(j) - xp);
+          const dy = kpy * (py(j) - yp);
           const rj = dx * dx + dy * dy;
           if (rj <= ri) (ii = j), (ri = rj);
+        }
+        if (ii != null && (kx !== 1 || ky !== 1)) {
+          const dx = px(ii) - xp;
+          const dy = py(ii) - yp;
+          ri = dx * dx + dy * dy;
         }
         update(ii, ri);
       }
