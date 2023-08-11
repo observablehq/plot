@@ -22,6 +22,10 @@ function samegroup({source, target}) {
 
 # Arrow mark <VersionBadge version="0.4.0" />
 
+:::tip
+See also the [vector mark](./vector.md), which draws arrows of a given length and direction.
+:::
+
 The **arrow mark** draws arrows between two points [**x1**, **y1**] and [**x2**, **y2**] in quantitative dimensions. It is similar to the [link mark](./link.md), except it draws an arrowhead and is suitable for directed edges. With the **bend** option, it can be swoopy.⤵︎
 
 For example, below we show the rising inequality (and population) in various U.S. cities from 1980 to 2015. Each arrow represents two observations of a city: the city’s population (**x**) and inequality (**y**) in 1980, and the same in 2015. The arrow’s **stroke** redundantly encodes the change in inequality: red indicates rising inequality, while blue (there are only four) indicates declining inequality.
@@ -100,7 +104,24 @@ Plot.plot({
 ```
 :::
 
-See also the [vector mark](./vector.md), which draws arrows of a given length and direction.
+For undirected edges, as in the arc diagram of character co-occurrence in *Les Misérables* below, set the **sweep** option to the desired orientation: *-y* for right-bulging links whose endpoints are vertically separated.
+
+:::plot https://observablehq.com/@observablehq/plot-arc-diagram
+```js
+Plot.plot({
+  height: 1080,
+  marginLeft: 100,
+  axis: null,
+  x: {domain: [0, 1]}, // see https://github.com/observablehq/plot/issues/1541
+  color: {domain: d3.range(10), unknown: "#ccc"},
+  marks: [
+    Plot.dot(miserables.nodes, {x: 0, y: "id", fill: "group", sort: {y: "fill"}}),
+    Plot.text(miserables.nodes, {x: 0, y: "id", text: "id", textAnchor: "end", dx: -6, fill: "group"}),
+    Plot.arrow(miserables.links, {x: 0, y1: "source", y2: "target", sweep: "-y", bend: 90, headLength: 0, stroke: samegroup, sort: samegroup, reverse: true})
+  ]
+})
+```
+:::
 
 ## Arrow options
 
@@ -125,24 +146,7 @@ The arrow mark supports the [standard mark options](../features/marks.md#mark-op
 
 The **bend** option sets the angle between the straight line connecting the two points and the outgoing direction of the arrow from the start point. It must be within ±90°. A positive angle will produce a clockwise curve; a negative angle will produce a counterclockwise curve; zero will produce a straight line. The **headAngle** determines how pointy the arrowhead is; it is typically between 0° and 180°. The **headLength** determines the scale of the arrowhead relative to the stroke width. Assuming the default of stroke width 1.5px, the **headLength** is the length of the arrowhead’s side in pixels.
 
-The **sweep** option <VersionBadge pr="1740" /> controls the bend orientation. It defaults to 1 indicating a positive (clockwise) bend angle; -1 indicates a negative (anticlockwise) bend angle; 0 effectively clears the bend angle. If *-x*, the bend angle is flipped when the ending point is to the left of the starting point — ensuring all arrows bulge up (down if bend is negative); if *-y*, the bend angle is flipped when the ending point is above the starting point — ensuring all arrows bulge right (left if bend is negative); the sign is negated for *+x* and *+y*. Below, *-y* is used to render undirected edges in an arc diagram.
-
-:::plot https://observablehq.com/@observablehq/plot-arc-diagram
-```js
-Plot.plot({
-  height: 1080,
-  marginLeft: 100,
-  axis: null,
-  x: {domain: [0, 1]}, // see https://github.com/observablehq/plot/issues/1541
-  color: {domain: d3.range(10), unknown: "#ccc"},
-  marks: [
-    Plot.dot(miserables.nodes, {x: 0, y: "id", fill: "group", sort: {y: "fill"}}),
-    Plot.text(miserables.nodes, {x: 0, y: "id", text: "id", textAnchor: "end", dx: -6, fill: "group"}),
-    Plot.arrow(miserables.links, {x: 0, y1: "source", y2: "target", sweep: "-y", bend: 90, headLength: 0, stroke: samegroup, sort: samegroup, reverse: true})
-  ]
-})
-```
-:::
+The **sweep** option <VersionBadge pr="1740" /> controls the bend orientation. It defaults to 1 indicating a positive (clockwise) bend angle; -1 indicates a negative (anticlockwise) bend angle; 0 effectively clears the bend angle. If *-x*, the bend angle is flipped when the ending point is to the left of the starting point — ensuring all arrows bulge up (down if bend is negative); if *-y*, the bend angle is flipped when the ending point is above the starting point — ensuring all arrows bulge right (left if bend is negative); the sign is negated for *+x* and *+y*.
 
 ## arrow(*data*, *options*) {#arrow}
 
