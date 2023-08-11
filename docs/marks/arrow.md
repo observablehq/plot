@@ -3,10 +3,20 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import metros from "../data/metros.ts";
+import miserables from "../data/miserables.ts";
 
-const matrix = [[3, 2, 5], [1, 7, 2], [1, 1, 8]];
-const nodes = matrix.map((m, i) => d3.pointRadial(((2 - i) * 2 * Math.PI) / matrix.length, 100));
-const edges = matrix.flatMap((m, i) => m.map((value, j) => ([nodes[i], nodes[j], value])));
+const markov = (() => {
+  const matrix = [[3, 2, 5], [1, 7, 2], [1, 1, 8]];
+  const nodes = matrix.map((m, i) => d3.pointRadial(((2 - i) * 2 * Math.PI) / matrix.length, 100));
+  const edges = matrix.flatMap((m, i) => m.map((value, j) => ([nodes[i], nodes[j], value])));
+  return {nodes, edges};
+})();
+
+function samegroup({source, target}) {
+  source = miserables.groups.get(source);
+  target = miserables.groups.get(target);
+  return source === target ? source : null;
+}
 
 </script>
 
@@ -67,8 +77,8 @@ Plot.plot({
   aspectRatio: 1,
   axis: null,
   marks: [
-    Plot.dot(nodes, {r: 40}),
-    Plot.arrow(edges, {
+    Plot.dot(markov.nodes, {r: 40}),
+    Plot.arrow(markov.edges, {
       x1: ([[x1]]) => x1,
       y1: ([[, y1]]) => y1,
       x2: ([, [x2]]) => x2,
@@ -79,8 +89,8 @@ Plot.plot({
       headLength: 24,
       inset: 48
     }),
-    Plot.text(nodes, {text: ["A", "B", "C"], dy: 12}),
-    Plot.text(edges, {
+    Plot.text(markov.nodes, {text: ["A", "B", "C"], dy: 12}),
+    Plot.text(markov.edges, {
       x: ([[x1, y1], [x2, y2]]) => (x1 + x2) / 2 + (y1 - y2) * 0.15,
       y: ([[x1, y1], [x2, y2]]) => (y1 + y2) / 2 - (x1 - x2) * 0.15,
       text: ([,, value]) => value
@@ -115,7 +125,24 @@ The arrow mark supports the [standard mark options](../features/marks.md#mark-op
 
 The **bend** option sets the angle between the straight line connecting the two points and the outgoing direction of the arrow from the start point. It must be within ±90°. A positive angle will produce a clockwise curve; a negative angle will produce a counterclockwise curve; zero will produce a straight line. The **headAngle** determines how pointy the arrowhead is; it is typically between 0° and 180°. The **headLength** determines the scale of the arrowhead relative to the stroke width. Assuming the default of stroke width 1.5px, the **headLength** is the length of the arrowhead’s side in pixels.
 
-The **sweep** option <VersionBadge pr="1740" /> can be used to make arrows bend in the same direction, independently of the relative positions of the starting and ending points. It defaults to 1 indicating a positive (clockwise) bend angle; -1 indicates a negative (anticlockwise) bend angle. 0 effectively clears the bend angle. If set to *-x*, the bend angle is flipped when the ending point is to the left of the starting point — ensuring all arrows bulge up (down if bend is negative); if set to *-y*, the bend angle is flipped when the ending point is above the starting point — ensuring all arrows bulge right (left if bend is negative); the sign is negated for *+x* and *+y*.
+The **sweep** option <VersionBadge pr="1740" /> controls the bend orientation. It defaults to 1 indicating a positive (clockwise) bend angle; -1 indicates a negative (anticlockwise) bend angle; 0 effectively clears the bend angle. If *-x*, the bend angle is flipped when the ending point is to the left of the starting point — ensuring all arrows bulge up (down if bend is negative); if *-y*, the bend angle is flipped when the ending point is above the starting point — ensuring all arrows bulge right (left if bend is negative); the sign is negated for *+x* and *+y*. Below, *-y* is used to render undirected edges in an arc diagram.
+
+:::plot https://observablehq.com/@observablehq/plot-arc-diagram
+```js
+Plot.plot({
+  height: 1080,
+  marginLeft: 100,
+  axis: null,
+  x: {domain: [0, 1]}, // see https://github.com/observablehq/plot/issues/1541
+  color: {domain: d3.range(10), unknown: "#ccc"},
+  marks: [
+    Plot.dot(miserables.nodes, {x: 0, y: "id", fill: "group", sort: {y: "fill"}}),
+    Plot.text(miserables.nodes, {x: 0, y: "id", text: "id", textAnchor: "end", dx: -6, fill: "group"}),
+    Plot.arrow(miserables.links, {x: 0, y1: "source", y2: "target", sweep: "-y", bend: 90, headLength: 0, stroke: samegroup, sort: samegroup, reverse: true})
+  ]
+})
+```
+:::
 
 ## arrow(*data*, *options*) {#arrow}
 
