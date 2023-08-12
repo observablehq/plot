@@ -2,6 +2,42 @@
 
 Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
+## 0.6.10
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+Add **title**, **subtitle**, and **figure** plot options.
+
+[TK Title, subtitle, caption example]
+
+Add **clip** plot option.
+
+[TK Clip example]
+
+All bollinger mark and transform.
+
+[TK Bollinger example]
+
+Add the **sweep** option to the arrow mark.
+
+[TK Sweep example (arc diagram)]
+
+The auto mark now does a better job determining the appropriate bar mark implementation, such as with ordinal time series bar charts.
+
+[TK Time series bar auto mark example]
+
+The pointerX and pointerY transform now use unscaled distance to decide the closest point across facets, preventing points from distant facets from being considered closest. The pointer transform now correctly reports the closest point when moving between facets, and no longer reports multiple closest points if they are the same distance across facets.
+
+Improve documentation with version information. Add API index. Better anchors.
+
+Improve the default label when the tip mark shows paired channels such as y1–y2 or x1–y2; the labels for both channels are now shown if they differ.
+
+Fix a bug when the **tip** option is set to true on a geo mark without a projection (as when using preprojected planar geometry).
+
+The stack transform now emits a friendlier error message when the supplied value is null.
+
+The figure element now has an associated class (`plot-d6a7b5-figure`).
+
 ## 0.6.9
 
 [Released June 27, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.9)
