@@ -482,7 +482,18 @@ function gridDefaults({
 }
 
 function labelOptions(
-  {fill, fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, monospace, pointerEvents, shapeRendering, clip},
+  {
+    fill,
+    fillOpacity,
+    fontFamily,
+    fontSize,
+    fontStyle,
+    fontWeight,
+    monospace,
+    pointerEvents,
+    shapeRendering,
+    clip = false
+  },
   initializer
 ) {
   // Only propagate these options if constant.
@@ -501,7 +512,7 @@ function labelOptions(
     monospace,
     pointerEvents,
     shapeRendering,
-    clip: clip === undefined ? false : clip,
+    clip,
     initializer
   };
 }
