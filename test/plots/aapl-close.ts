@@ -19,7 +19,7 @@ export async function aaplCloseClip() {
   const AAPL = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     clip: true,
-    x: {domain: [new Date(2015, 0, 1), new Date(2015, 3, 1)]},
+    x: {domain: [new Date(Date.UTC(2015, 0, 1)), new Date(Date.UTC(2015, 3, 1))]},
     y: {
       grid: true
     },
