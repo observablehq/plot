@@ -6,29 +6,66 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-Add **title**, **subtitle**, and **figure** plot options.
+The new **title** and **subtitle** [plot options](https://observablehq.com/plot/features/plots#other-options) create a main and a secondary headings for the chart.
 
-[TK Title, subtitle, caption example]
+<img src="./img/title-subtitle.png" width="691" alt="A chart with a title, subtitle, and caption.">
 
-Add **clip** plot option.
+```js
+Plot.plot({
+  title: "For charts, an informative title",
+  subtitle: "Subtitle to follow with additional context",
+  caption: "Figure 1. A chart with a title, subtitle, and caption.",
+  marks: [
+    Plot.frame(),
+    Plot.text(["Titles, subtitles, captions, and annotations assist inter­pretation by telling the reader what’s interesting. Don’t make the reader work to find what you already know."], {lineWidth: 30, frameAnchor: "middle"})
+  ]
+})
+```
 
-[TK Clip example]
+The new **figure** plot option ensures — when specified as *true* — that the chart is wrapped in a HTML figure element even if it doesn’t have a title, a subtitle, a caption, or a legend. Conversely, set it to *false* to ignore these elements and return the bare chart’s SVG element.
 
-All bollinger mark and transform.
+The new **clip** [plot option](https://observablehq.com/plot/features/plots#other-options) determines the default clipping behavior if the [mark clip option](https://observablehq.com/plot/features/marks#mark-options) is not specified; set it to true to enable clipping. This option does not affect axis, grid, and frame marks, whose **clip** option defaults to false.
 
-[TK Bollinger example]
+<img src="./img/clip.png" width="621" alt="A line chart of the AAPL ticker, clipped to the frame.">
 
-Add the **sweep** option to the arrow mark.
+```js
+Plot.plot({
+  clip: true,
+  x: {domain: [new Date(2015, 0, 1), new Date(2015, 3, 1)]},
+  y: {grid: true},
+  marks: [
+    Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1}),
+    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.ruleY([0], {clip: false})
+  ]
+});
+```
 
-[TK Sweep example (arc diagram)]
+The new [bollinger mark](https://observablehq.com/plot/marks/bollinger) is a composite mark consisting of a line representing a moving average and an area representing volatility as a band; the band thickness is proportional to the deviation of nearby values. The bollinger mark is often used to analyze the price of financial instruments such as stocks.
 
-The auto mark now does a better job determining the appropriate bar mark implementation, such as with ordinal time series bar charts.
+<img src="./img/bollinger.png" width="668" alt="A bollinger chart of the AAPL ticker, computed on a window of the 20 most recent values and a bandwidth of 2 standard deviations.">
 
-[TK Time series bar auto mark example]
+```js
+Plot.bollingerY(aapl, {x: "Date", y: "Close", n: 20, k: 2}).plot()
+```
 
-The pointerX and pointerY transform now use unscaled distance to decide the closest point across facets, preventing points from distant facets from being considered closest. The pointer transform now correctly reports the closest point when moving between facets, and no longer reports multiple closest points if they are the same distance across facets.
+This mark is built on top of the new [bollinger map method](https://observablehq.com/plot/marks/bollinger#bollinger).
 
-Improve documentation with version information. Add API index. Better anchors.
+The [arrow mark](https://observablehq.com/plot/marks/arrow) supports a new **sweep** option to control the bend orientation. Below, we set this option to "-y" to draw all arrows bulging right, independently of the relative vertical positions of its source and target (see [Arc diagram](https://observablehq.com/@observablehq/plot-arc-diagram?intent=fork) for a complete example).
+
+<img src="./img/arc-diagram.png" width="521" alt="Detail of an arc diagram connecting characters in Les Misérables that appear in the same chapters.">
+
+The [auto mark](https://observablehq.com/plot/marks/auto) now does a better job determining the appropriate bar mark implementation, such as with ordinal time series bar charts.
+
+<img src="./img/auto-bar.png" width="596" alt="A stacked bar chart from a time series.">
+
+```js
+Plot.auto(timeSeries, {x: "date", y: {value: "value", reduce: "sum"}, color: "type", mark: "bar"}).plot()
+```
+
+The [pointerX and pointerY transform](https://observablehq.com/plot/interactions/pointer) now use unscaled distance to decide the closest point across facets, preventing points from distant facets from being considered closest. The pointer transform now correctly reports the closest point when moving between facets, and no longer reports multiple closest points if they are the same distance across facets.
+
+The documentation was improved with an [API index](https://observablehq.com/plot/api), better anchors, and version information shown as color tags pointing either to the release notes, or to the pull request for yet-to-be released features.
 
 Improve the default label when the tip mark shows paired channels such as y1–y2 or x1–y2; the labels for both channels are now shown if they differ.
 
