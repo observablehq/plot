@@ -4,7 +4,7 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 ## 0.6.10
 
-*Not yet released. These are forthcoming changes in the main branch.*
+[Released August 14, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.10)
 
 The new **title** and **subtitle** [plot options](https://observablehq.com/plot/features/plots#other-options) specify a primary and secondary heading. Headings are implemented as h2 and h3 elements by default, but you can provide existing elements instead of text for greater control. Like the existing **caption** option, headings add context and assist interpretation.
 
