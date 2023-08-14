@@ -15,6 +15,22 @@ export async function aaplClose() {
   });
 }
 
+export async function aaplCloseClip() {
+  const AAPL = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    clip: true,
+    x: {domain: [new Date(2015, 0, 1), new Date(2015, 3, 1)]},
+    y: {
+      grid: true
+    },
+    marks: [
+      Plot.areaY(AAPL, {x: "Date", y: "Close", fillOpacity: 0.1}),
+      Plot.lineY(AAPL, {x: "Date", y: "Close"}),
+      Plot.ruleY([0], {clip: false})
+    ]
+  });
+}
+
 export async function aaplCloseDataTicks() {
   const AAPL = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
