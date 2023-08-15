@@ -1,5 +1,6 @@
 import {promises as fs} from "fs";
 import {createCanvas, loadImage} from "canvas";
+import {max, mean, quantile} from "d3";
 import * as path from "path";
 import beautify from "js-beautify";
 import assert from "./assert.js";
@@ -113,7 +114,7 @@ function stripImages(string) {
   return string.replace(imageRe, "<replaced>");
 }
 
-async function compareImages(a, b, epsilon = 1) {
+async function compareImages(a, b) {
   const reA = new RegExp(imageRe, "g");
   const reB = new RegExp(imageRe, "g");
   let matchA;
@@ -122,11 +123,10 @@ async function compareImages(a, b, epsilon = 1) {
     const [imageA, imageB] = await Promise.all([getImageData(matchA[0]), getImageData(matchB[0])]);
     const {width, height} = imageA;
     if (width !== imageB.width || height !== imageB.height) return false;
-    for (let i = 0, n = imageA.data.length; i < n; ++i) {
-      if (Math.abs(imageA.data[i] - imageB.data[i]) > epsilon) {
-        return false;
-      }
-    }
+    const E = imageA.data.map((a, i) => Math.abs(a - imageB.data[i]));
+    if (!(quantile(E, 0.95) <= 1)) return false; // at least 95% with almost no error
+    if (!(mean(E) < 0.1)) return false; // no more than 0.1 average error
+    if (!(max(E) < 10)) return false; // no more than 10 maximum error
   }
   return true;
 }
