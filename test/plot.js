@@ -119,8 +119,7 @@ async function compareImages(a, b, epsilon = 1) {
   let matchA;
   let matchB;
   while (((matchA = reA.exec(a)), (matchB = reB.exec(b)))) {
-    const imageA = await getImageData(matchA[0]);
-    const imageB = await getImageData(matchB[0]);
+    const [imageA, imageB] = await Promise.all([getImageData(matchA[0]), getImageData(matchB[0])]);
     const {width, height} = imageA;
     if (width !== imageB.width || height !== imageB.height) return false;
     for (let i = 0, n = imageA.data.length; i < n; ++i) {
