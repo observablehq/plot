@@ -1,5 +1,5 @@
 import {promises as fs} from "fs";
-import {loadImage} from "canvas";
+import {createCanvas, loadImage} from "canvas";
 import * as path from "path";
 import beautify from "js-beautify";
 import assert from "./assert.js";
@@ -114,7 +114,10 @@ async function normalizeImageData(string) {
   let i = 0;
   while ((match = re.exec(string))) {
     const image = await loadImage(match[0]);
-    replaced = `${string.slice(i, match.index)}${image.src}${string.slice((i = re.lastIndex))}`;
+    const canvas = createCanvas(image.width, image.height);
+    const context = canvas.getContext("2d");
+    context.drawImage(image, 0, 0);
+    replaced = `${string.slice(i, match.index)}${canvas.toDataURL()}${string.slice((i = re.lastIndex))}`;
   }
   return replaced;
 }
