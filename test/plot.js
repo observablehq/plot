@@ -39,8 +39,8 @@ for (const [name, plot] of Object.entries(plots)) {
     }
 
     // node-canvas won’t produce the same output on different architectures, so
-    // we parse and re-encode images before comparison.
-    const equal = (await normalizeImageData(actual)) === (await normalizeImageData(expected));
+    // we parse and compare pixel values instead of the encoded output.
+    const equal = stripImages(actual) === stripImages(expected) && (await compareImages(actual, expected));
 
     if (equal) {
       if (process.env.CI !== "true") {
@@ -107,17 +107,35 @@ function reindexClip(root) {
   }
 }
 
-async function normalizeImageData(string) {
-  const re = /data:image\/png;base64,[^"]+/g;
-  let replaced = string;
-  let match;
-  let i = 0;
-  while ((match = re.exec(string))) {
-    const image = await loadImage(match[0]);
-    const canvas = createCanvas(image.width, image.height);
-    const context = canvas.getContext("2d");
-    context.drawImage(image, 0, 0);
-    replaced = `${string.slice(i, match.index)}${canvas.toDataURL()}${string.slice((i = re.lastIndex))}`;
+const imageRe = /data:image\/png;base64,[^"]+/g;
+
+function stripImages(string) {
+  return string.replace(imageRe, "<replaced>");
+}
+
+async function compareImages(a, b, epsilon = 1) {
+  const reA = new RegExp(imageRe, "g");
+  const reB = new RegExp(imageRe, "g");
+  let matchA;
+  let matchB;
+  while (((matchA = reA.exec(a)), (matchB = reB.exec(b)))) {
+    const imageA = await getImageData(matchA[0]);
+    const imageB = await getImageData(matchB[0]);
+    const {width, height} = imageA;
+    if (width !== imageB.width || height !== imageB.height) return false;
+    for (let i = 0, n = imageA.data.length; i < n; ++i) {
+      if (Math.abs(imageA.data[i] - imageB.data[i]) > epsilon) {
+        return false;
+      }
+    }
   }
-  return replaced;
+  return true;
+}
+
+async function getImageData(url) {
+  const image = await loadImage(url);
+  const canvas = createCanvas(image.width, image.height);
+  const context = canvas.getContext("2d");
+  context.drawImage(image, 0, 0);
+  return context.getImageData(0, 0, image.width, image.height);
 }
