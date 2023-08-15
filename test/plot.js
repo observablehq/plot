@@ -1,4 +1,6 @@
 import {promises as fs} from "fs";
+import {createCanvas, loadImage} from "canvas";
+import {max, mean, quantile} from "d3";
 import * as path from "path";
 import beautify from "js-beautify";
 import assert from "./assert.js";
@@ -38,10 +40,8 @@ for (const [name, plot] of Object.entries(plots)) {
     }
 
     // node-canvas won’t produce the same output on different architectures, so
-    // until we have a way to normalize the output, we need to ignore the
-    // generated image data during comparison. But you can still review the
-    // generated output visually and hopefully it’ll be correct.
-    const equal = process.env.CI === "true" ? stripImageData(actual) === stripImageData(expected) : actual === expected;
+    // we parse and compare pixel values instead of the encoded output.
+    const equal = stripImages(actual) === stripImages(expected) && (await compareImages(actual, expected));
 
     if (equal) {
       if (process.env.CI !== "true") {
@@ -108,9 +108,33 @@ function reindexClip(root) {
   }
 }
 
-function stripImageData(string) {
-  return string.replace(
-    /data:image\/png;base64,[^"]+/g,
-    "data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 20 20' style='background-color: white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h10v10H0zm10 10h10v10H10z' fill='%23f4f4f4' fill-rule='evenodd'/%3E%3C/svg%3E"
-  );
+const imageRe = /data:image\/png;base64,[^"]+/g;
+
+function stripImages(string) {
+  return string.replace(imageRe, "<replaced>");
+}
+
+async function compareImages(a, b) {
+  const reA = new RegExp(imageRe, "g");
+  const reB = new RegExp(imageRe, "g");
+  let matchA;
+  let matchB;
+  while (((matchA = reA.exec(a)), (matchB = reB.exec(b)))) {
+    const [imageA, imageB] = await Promise.all([getImageData(matchA[0]), getImageData(matchB[0])]);
+    const {width, height} = imageA;
+    if (width !== imageB.width || height !== imageB.height) return false;
+    const E = imageA.data.map((a, i) => Math.abs(a - imageB.data[i]));
+    if (!(quantile(E, 0.95) <= 1)) return false; // at least 95% with almost no error
+    if (!(mean(E) < 0.1)) return false; // no more than 0.1 average error
+    if (!(max(E) < 10)) return false; // no more than 10 maximum error
+  }
+  return true;
+}
+
+async function getImageData(url) {
+  const image = await loadImage(url);
+  const canvas = createCanvas(image.width, image.height);
+  const context = canvas.getContext("2d");
+  context.drawImage(image, 0, 0);
+  return context.getImageData(0, 0, image.width, image.height);
 }
