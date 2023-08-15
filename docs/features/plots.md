@@ -248,9 +248,9 @@ When using facets, set the *fx* and *fy* scales’ **round** option to false if 
 
 ## Other options
 
-By default, [plot](#plot) returns an SVG element; however, if the plot includes a title, subtitle, [legend](./legends.md), or caption, plot wraps the SVG element with an HTML figure element. You can also force Plot to generate a figure element by setting the **figure** option <VersionBadge pr="1761" /> to true.
+By default, [plot](#plot) returns an SVG element; however, if the plot includes a title, subtitle, [legend](./legends.md), or caption, plot wraps the SVG element with an HTML figure element. You can also force Plot to generate a figure element by setting the **figure** option <VersionBadge version="0.6.10" pr="1761" /> to true.
 
-The **title** & **subtitle** options <VersionBadge pr="1761" /> and the **caption** option accept either a string or an HTML element. If given an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl), the title and subtitle are used as-is while the caption is wrapped in a figcaption element; otherwise, the specified text will be escaped and wrapped in an h2, h3, or figcaption, respectively.
+The **title** & **subtitle** options <VersionBadge version="0.6.10" pr="1761" /> and the **caption** option accept either a string or an HTML element. If given an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl), the title and subtitle are used as-is while the caption is wrapped in a figcaption element; otherwise, the specified text will be escaped and wrapped in an h2, h3, or figcaption, respectively.
 
 :::plot https://observablehq.com/@observablehq/plot-caption
 ```js
@@ -274,7 +274,7 @@ Unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecate
 
 The generated SVG element has a class name which applies a default stylesheet. Use the top-level **className** option to specify that class name.
 
-The **clip** option <VersionBadge pr="1792" /> determines the default clipping behavior if the [mark **clip** option](./marks.md#mark-options) is not specified; set it to true to enable clipping. This option does not affect [axis](../marks/axis.md), [grid](../marks/grid.md), and [frame](../marks/frame.md) marks, whose **clip** option defaults to false.
+The **clip** option <VersionBadge version="0.6.10" pr="1792" /> determines the default clipping behavior if the [mark **clip** option](./marks.md#mark-options) is not specified; set it to true to enable clipping. This option does not affect [axis](../marks/axis.md), [grid](../marks/grid.md), and [frame](../marks/frame.md) marks, whose **clip** option defaults to false.
 
 The **document** option specifies the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create plot elements. It defaults to window.document, but can be changed to another document, say when using a virtual DOM implementation for server-side rendering in Node.
 

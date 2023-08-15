@@ -2,6 +2,88 @@
 
 Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
+## 0.6.10
+
+[Released August 14, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.10)
+
+The new **title** and **subtitle** [plot options](https://observablehq.com/plot/features/plots#other-options) specify a primary and secondary heading. Headings are implemented as h2 and h3 elements by default, but you can provide existing elements instead of text for greater control. Like the existing **caption** option, headings add context and assist interpretation.
+
+<img src="./img/title-subtitle.png" width="691" alt="A chart with a title, subtitle, and caption.">
+
+```js
+Plot.plot({
+  title: "For charts, an informative title",
+  subtitle: "Subtitle to follow with additional context",
+  caption: "Figure 1. A chart with a title, subtitle, and caption.",
+  marks: [
+    Plot.frame(),
+    Plot.text(["Titles, subtitles, captions, and annotations assist inter­pretation by telling the reader what’s interesting. Don’t make the reader work to find what you already know."], {lineWidth: 30, frameAnchor: "middle"})
+  ]
+})
+```
+
+When a chart has a title, subtitle, caption, or legend, Plot automatically wraps the chart’s SVG element with an HTML figure element. The new **figure** plot option, if true, wraps the chart in a figure even if it doesn’t have these other elements; likewise, if false, Plot ignores these other elements and returns a bare SVG element. The figure element now has an associated class (`plot-d6a7b5-figure`).
+
+The new **clip** plot option determines the default clipping behavior if the [**clip** mark option](https://observablehq.com/plot/features/marks#mark-options) is not specified; set it to true to enable clipping. This option does not affect axis, grid, and frame marks, whose **clip** option defaults to false.
+
+<img src="./img/clip.png" width="621" alt="A line chart of the AAPL ticker, clipped to the frame.">
+
+```js
+Plot.plot({
+  clip: true,
+  x: {domain: [new Date(2015, 0, 1), new Date(2015, 3, 1)]},
+  y: {grid: true},
+  marks: [
+    Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1}),
+    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.ruleY([0], {clip: false})
+  ]
+});
+```
+
+The new [bollinger mark](https://observablehq.com/plot/marks/bollinger) composes a line representing a moving average and an area representing volatility as a band; the band thickness is proportional to the deviation of nearby values. The bollinger mark is built on the new [bollinger map method](https://observablehq.com/plot/marks/bollinger#bollinger), and is often used to analyze the price of financial instruments such as stocks.
+
+<img src="./img/bollinger.png" width="668" alt="A bollinger chart of the AAPL ticker, computed on a window of the 20 most recent values and a bandwidth of 2 standard deviations.">
+
+```js
+Plot.bollingerY(aapl, {x: "Date", y: "Close", n: 20, k: 2}).plot()
+```
+
+The [arrow mark](https://observablehq.com/plot/marks/arrow) supports a new **sweep** option to control the bend orientation. Below, we set this option to *-y* to draw arrows bulging right, independent of the relative vertical positions of its source and target.
+
+[<img src="./img/arc-diagram.png" width="521" alt="Detail of an arc diagram connecting characters in Les Misérables that appear in the same chapters.">](https://observablehq.com/@observablehq/plot-arc-diagram?intent=fork)
+
+```js
+Plot.plot({
+  height: 1080,
+  marginLeft: 100,
+  axis: null,
+  x: {domain: [0, 1]}, // see https://github.com/observablehq/plot/issues/1541
+  color: {domain: d3.range(10), unknown: "#ccc"},
+  marks: [
+    Plot.dot(miserables.nodes, {x: 0, y: "id", fill: "group", sort: {y: "fill"}}),
+    Plot.text(miserables.nodes, {x: 0, y: "id", text: "id", textAnchor: "end", dx: -6, fill: "group"}),
+    Plot.arrow(miserables.links, {x: 0, y1: "source", y2: "target", sweep: "-y", bend: 90, headLength: 0, stroke: samegroup, sort: samegroup, reverse: true})
+  ]
+})
+```
+
+The [auto mark](https://observablehq.com/plot/marks/auto) now does a better job determining the appropriate bar mark implementation, such as with ordinal time series bar charts.
+
+<img src="./img/auto-bar.png" width="596" alt="A stacked bar chart from a time series.">
+
+```js
+Plot.auto(timeSeries, {x: "date", y: {value: "value", reduce: "sum"}, color: "type", mark: "bar"}).plot()
+```
+
+The [pointerX and pointerY transform](https://observablehq.com/plot/interactions/pointer) now use unscaled distance to decide the closest point across facets, preventing points from distant facets from being considered closest. The pointer transform now correctly reports the closest point when moving between facets, and no longer reports multiple closest points if they are the same distance across facets.
+
+Plot’s documentation now has an [API index](https://observablehq.com/plot/api), version badges pointing to the release notes for a particular feature (or to the pull request for a prerelease feature), and shorter anchors.
+
+The [tip mark](https://observablehq.com/plot/marks/tip) now shows both labels for paired channels such as *y1*–*y2* or *x1*–*y2* when the channel labels differ. When the **tip** option is set to true on a [geo mark](https://observablehq.com/plot/marks/geo) without a projection, as when using preprojected planar geometry, the display no longer collapses.
+
+The [stack transform](https://observablehq.com/plot/transforms/stack) now emits a friendlier error message when the supplied value is null.
+
 ## 0.6.9
 
 [Released June 27, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.9)
