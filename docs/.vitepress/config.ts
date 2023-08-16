@@ -29,6 +29,9 @@ export default defineConfig({
     ["script", {async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-9B88TP6PKQ"}],
     ["script", {}, "window.dataLayer=window.dataLayer||[];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js',new Date());\ngtag('config','G-9B88TP6PKQ');"]
   ],
+  sitemap: {
+    hostname: 'https://observablehq.com/plot'
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     // Theme related configurations.
