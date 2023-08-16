@@ -70,7 +70,9 @@ class Element {
     // ignored; interaction needs real DOM
   }
   append(...children) {
-    for (const child of children) this.appendChild(child);
+    for (const child of children) {
+      this.appendChild(child?.ownerDocument ? child : this.ownerDocument.createTextNode(child));
+    }
   }
   appendChild(child) {
     this.children.push(child);

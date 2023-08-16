@@ -356,13 +356,13 @@ export function plot(options = {}) {
 function createTitleElement(document, contents, tag) {
   if (contents.ownerDocument) return contents;
   const e = document.createElement(tag);
-  e.append(document.createTextNode(contents));
+  e.append(contents);
   return e;
 }
 
 function createFigcaption(document, caption) {
   const e = document.createElement("figcaption");
-  e.append(caption.ownerDocument ? caption : document.createTextNode(caption));
+  e.append(caption);
   return e;
 }
 
