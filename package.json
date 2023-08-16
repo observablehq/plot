@@ -71,8 +71,8 @@
     "topojson-client": "^3.1.0",
     "ts-morph": "^19.0.0",
     "typescript": "^5.0.2",
-    "vite": "^4.0.0",
-    "vitepress": "^1.0.0-rc.4"
+    "vite": "4.4.7",
+    "vitepress": "1.0.0-beta.7"
   },
   "dependencies": {
     "d3": "^7.8.0",
