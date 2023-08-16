@@ -525,9 +525,6 @@ export function exposeScales(scales) {
 // Note: axis- and legend-related properties (such as label, ticks and
 // tickFormat) are not included here as they do not affect the scale’s behavior.
 function exposeScale({scale, type, range, domain, interpolate, interval, transform, percent, pivot}) {
-  // The domain and range may be missing for non-position identity scales (e.g.,
-  // color), and for position identity scales, only the range is computed
-  // internally (by autoScaleRange) and then promoted to the domain here.
   if (type === "identity") return {type: "identity", apply: (d) => d, invert: (d) => d};
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
