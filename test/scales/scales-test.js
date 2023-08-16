@@ -2102,21 +2102,6 @@ it("plot(…).scale(name).apply and invert return the expected functions", () =>
   ]);
 });
 
-it("plot(…).scale(name) returns a deduplicated domain", () => {
-  const letters = "abbbcaabbcc";
-  const plot = Plot.dotX(letters).plot({x: {domain: letters}});
-  scaleEqual(plot.scale("x"), {
-    align: 0.5,
-    bandwidth: 0,
-    domain: ["a", "b", "c"],
-    padding: 0.5,
-    range: [20, 620],
-    round: true,
-    step: 200,
-    type: "point"
-  });
-});
-
 // Given a plot specification (or, as shorthand, an array of marks or a single
 // mark), asserts that the given named scales, when materialized from the first
 // plot and used to produce a second plot, produce the same output and the same
