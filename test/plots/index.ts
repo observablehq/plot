@@ -240,6 +240,7 @@ export * from "./raster-vapor.js";
 export * from "./raster-walmart.js";
 export * from "./rect-band.js";
 export * from "./reducer-scale-override.js";
+export * from "./render.js";
 export * from "./seattle-precipitation-density.js";
 export * from "./seattle-precipitation-rule.js";
 export * from "./seattle-precipitation-sum.js";
