@@ -527,11 +527,12 @@ export function exposeScales(scales) {
 // Note: axis- and legend-related properties (such as label, ticks and
 // tickFormat) are not included here as they do not affect the scale’s behavior.
 function exposeScale({scale, type, domain, range, interpolate, interval, transform, percent, pivot}) {
-  if (type === "identity") return {type: "identity", apply: (d) => d, invert: (d) => d};
+  if (type === "identity")
+    return {type: "identity", apply: (d) => d, invert: (d) => d, ...(range !== undefined && {range})};
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
     type,
-    domain: slice(domain), // defensive copy
+    domain: [...new Set(domain)], // defensive copy, ensure uniqueness
     ...(range !== undefined && {range: slice(range)}), // defensive copy
     ...(transform !== undefined && {transform}),
     ...(percent && {percent}), // only exposed if truthy
