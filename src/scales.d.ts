@@ -161,9 +161,9 @@ export type ScaleName = "x" | "y" | "fx" | "fy" | "r" | "color" | "opacity" | "s
 
 /**
  * The instantiated scales’ apply functions; passed to marks and initializers
- * for rendering.
+ * for rendering. The scales property exposes all the scale definitions.
  */
-export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any};
+export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any} & {scales: {[key in ScaleName]?: Scale}};
 
 /**
  * The supported scale types. For quantitative data, one of:

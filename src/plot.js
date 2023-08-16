@@ -141,11 +141,11 @@ export function plot(options = {}) {
 
   // Initalize the scales and dimensions.
   const scaleDescriptors = createScales(addScaleChannels(channelsByScale, stateByMark, options), options);
-  const scales = createScaleFunctions(scaleDescriptors);
   const dimensions = createDimensions(scaleDescriptors, marks, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
 
+  const scales = createScaleFunctions(scaleDescriptors);
   const {fx, fy} = scales;
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
@@ -221,9 +221,10 @@ export function plot(options = {}) {
     addScaleChannels(newChannelsByScale, stateByMark, options, (key) => newByScale.has(key));
     addScaleChannels(channelsByScale, stateByMark, options, (key) => newByScale.has(key));
     const newScaleDescriptors = inheritScaleLabels(createScales(newChannelsByScale, options), scaleDescriptors);
-    const newScales = createScaleFunctions(newScaleDescriptors);
+    const {scales: newExposedScales, ...newScales} = createScaleFunctions(newScaleDescriptors);
     Object.assign(scaleDescriptors, newScaleDescriptors);
     Object.assign(scales, newScales);
+    Object.assign(scales.scales, newExposedScales);
   }
 
   // Sort and filter the facets to match the fx and fy domains; this is needed
@@ -333,7 +334,7 @@ export function plot(options = {}) {
     if (caption != null) figure.append(createFigcaption(document, caption));
   }
 
-  figure.scale = exposeScales(scaleDescriptors);
+  figure.scale = exposeScales(scales.scales);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
 
   const w = consumeWarnings();
