@@ -15,10 +15,9 @@ export const ordinalImplicit = Symbol("ordinal");
 function createScaleO(key, scale, channels, {type, interval, domain, range, reverse, hint}) {
   interval = maybeRangeInterval(interval, type);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
-  domain = [...new InternSet(domain)];
   if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
-  scale.domain(domain);
+  domain = scale.domain(domain).domain(); // deduplicate
   if (range !== undefined) {
     // If the range is specified as a function, pass it the domain.
     if (typeof range === "function") range = range(domain);
