@@ -45,3 +45,7 @@ export const registry = new Map([
 export function isPosition(kind) {
   return kind === position || kind === projection;
 }
+
+export function hasNumericRange(kind) {
+  return kind === position || kind === radius || kind === length || kind === opacity;
+}

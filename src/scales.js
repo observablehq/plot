@@ -103,13 +103,11 @@ export function createScaleFunctions(descriptors) {
   for (const [key, desc] of Object.entries(descriptors)) {
     const {scale, type, interval, label} = desc;
     scales[key] = exposeScale(desc);
-    if (scale) {
-      scaleFunctions[key] = scale; // drop identity scales
-      // TODO: pass these properties, which are needed for axes, in the descriptor.
-      scale.type = type;
-      if (interval != null) scale.interval = interval;
-      if (label != null) scale.label = label;
-    }
+    scaleFunctions[key] = scale;
+    // TODO: pass these properties, which are needed for axes, in the descriptor.
+    scale.type = type;
+    if (interval != null) scale.interval = interval;
+    if (label != null) scale.label = label;
   }
   return scaleFunctions;
 }
@@ -366,7 +364,7 @@ function createScale(key, channels = [], options = {}) {
     case "band":
       return createScaleBand(key, channels, options);
     case "identity":
-      return registry.get(key) === position ? createScaleIdentity() : {type: "identity"};
+      return createScaleIdentity(key);
     case undefined:
       return;
     default:
@@ -526,13 +524,15 @@ export function exposeScales(scales) {
 
 // Note: axis- and legend-related properties (such as label, ticks and
 // tickFormat) are not included here as they do not affect the scale’s behavior.
-function exposeScale({scale, type, domain, range, interpolate, interval, transform, percent, pivot}) {
-  if (type === "identity")
-    return {type: "identity", apply: (d) => d, invert: (d) => d, ...(range !== undefined && {range})};
+function exposeScale({scale, type, range, domain, interpolate, interval, transform, percent, pivot}) {
+  // The domain and range may be missing for non-position identity scales (e.g.,
+  // color), and for position identity scales, only the range is computed
+  // internally (by autoScaleRange) and then promoted to the domain here.
+  if (type === "identity") domain = range;
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
     type,
-    domain: slice(domain), // defensive copy
+    ...(domain !== undefined && {domain: slice(domain)}), // defensive copy
     ...(range !== undefined && {range: slice(range)}), // defensive copy
     ...(transform !== undefined && {transform}),
     ...(percent && {percent}), // only exposed if truthy
