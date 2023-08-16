@@ -532,7 +532,7 @@ function exposeScale({scale, type, domain, range, interpolate, interval, transfo
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
     type,
-    domain: [...new Set(domain)], // defensive copy, ensure uniqueness
+    domain: slice(domain), // defensive copy
     ...(range !== undefined && {range: slice(range)}), // defensive copy
     ...(transform !== undefined && {transform}),
     ...(percent && {percent}), // only exposed if truthy
