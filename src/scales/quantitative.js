@@ -261,11 +261,8 @@ function isOrdered(domain, sign) {
 // identity scale because it coerces to number; and we can’t compute the domain
 // (and equivalently range) since we can’t know whether the values are
 // continuous or discrete.
-const identityScale = (d) => d;
-identityScale.invert = identityScale;
-
 export function createScaleIdentity(key) {
-  return {type: "identity", scale: hasNumericRange(registry.get(key)) ? scaleIdentity() : identityScale};
+  return {type: "identity", scale: hasNumericRange(registry.get(key)) ? scaleIdentity() : (d) => d};
 }
 
 export function inferDomain(channels, f = finite) {

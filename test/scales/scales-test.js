@@ -2080,7 +2080,7 @@ it("plot(…).scale(name) reflects the given transform", async () => {
 
 it("plot(…).scale(name) can return an identity scale, ignoring all other options", () => {
   const plot = Plot.dot([1, 2], {x: (d) => d, fill: (d) => d}).plot({x: {type: "identity"}, color: {type: "identity"}});
-  scaleEqual(plot.scale("x"), {domain: [20, 620], range: [20, 620], type: "identity"});
+  scaleEqual(plot.scale("x"), {type: "identity"});
   scaleEqual(plot.scale("color"), {type: "identity"});
 });
 

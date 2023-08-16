@@ -528,11 +528,11 @@ function exposeScale({scale, type, range, domain, interpolate, interval, transfo
   // The domain and range may be missing for non-position identity scales (e.g.,
   // color), and for position identity scales, only the range is computed
   // internally (by autoScaleRange) and then promoted to the domain here.
-  if (type === "identity") domain = range;
+  if (type === "identity") return {type: "identity", apply: (d) => d, invert: (d) => d};
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
     type,
-    ...(domain !== undefined && {domain: slice(domain)}), // defensive copy
+    domain: slice(domain), // defensive copy
     ...(range !== undefined && {range: slice(range)}), // defensive copy
     ...(transform !== undefined && {transform}),
     ...(percent && {percent}), // only exposed if truthy
