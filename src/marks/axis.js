@@ -562,7 +562,7 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
           // interval does not show the year, and hence is not a good choice for
           // yearly ticks; hence we use the default format (2014-01-26) instead.
           let compatible = true;
-          if (interval !== undefined) {
+          if (interval != null) {
             const [start, stop] = extent(data);
             data = maybeRangeInterval(interval).range(start, +stop + 1); // inclusive stop
             compatible = data.every((d) => scale.interval.floor(d) >= d);
