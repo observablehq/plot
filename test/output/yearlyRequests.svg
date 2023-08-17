@@ -41,43 +41,25 @@
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(15,0)">
     <path transform="translate(44,370)" d="M0,0L0,6"></path>
-    <path transform="translate(76,370)" d="M0,0L0,6"></path>
     <path transform="translate(108,370)" d="M0,0L0,6"></path>
-    <path transform="translate(140,370)" d="M0,0L0,6"></path>
     <path transform="translate(172,370)" d="M0,0L0,6"></path>
-    <path transform="translate(204,370)" d="M0,0L0,6"></path>
     <path transform="translate(236,370)" d="M0,0L0,6"></path>
-    <path transform="translate(268,370)" d="M0,0L0,6"></path>
     <path transform="translate(300,370)" d="M0,0L0,6"></path>
-    <path transform="translate(332,370)" d="M0,0L0,6"></path>
     <path transform="translate(364,370)" d="M0,0L0,6"></path>
-    <path transform="translate(396,370)" d="M0,0L0,6"></path>
     <path transform="translate(428,370)" d="M0,0L0,6"></path>
-    <path transform="translate(460,370)" d="M0,0L0,6"></path>
     <path transform="translate(492,370)" d="M0,0L0,6"></path>
-    <path transform="translate(524,370)" d="M0,0L0,6"></path>
     <path transform="translate(556,370)" d="M0,0L0,6"></path>
-    <path transform="translate(588,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(15,9.5)">
     <text y="0.71em" transform="translate(44,370)">2002</text>
-    <text y="0.71em" transform="translate(76,370)">2003</text>
     <text y="0.71em" transform="translate(108,370)">2004</text>
-    <text y="0.71em" transform="translate(140,370)">2005</text>
     <text y="0.71em" transform="translate(172,370)">2006</text>
-    <text y="0.71em" transform="translate(204,370)">2007</text>
     <text y="0.71em" transform="translate(236,370)">2008</text>
-    <text y="0.71em" transform="translate(268,370)">2009</text>
     <text y="0.71em" transform="translate(300,370)">2010</text>
-    <text y="0.71em" transform="translate(332,370)">2011</text>
     <text y="0.71em" transform="translate(364,370)">2012</text>
-    <text y="0.71em" transform="translate(396,370)">2013</text>
     <text y="0.71em" transform="translate(428,370)">2014</text>
-    <text y="0.71em" transform="translate(460,370)">2015</text>
     <text y="0.71em" transform="translate(492,370)">2016</text>
-    <text y="0.71em" transform="translate(524,370)">2017</text>
     <text y="0.71em" transform="translate(556,370)">2018</text>
-    <text y="0.71em" transform="translate(588,370)">2019</text>
   </g>
   <g aria-label="bar">
     <rect x="44" width="29" y="212.50000000000003" height="157.49999999999997"></rect>

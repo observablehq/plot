@@ -57,31 +57,12 @@
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(10.5,0)">
     <path transform="translate(45,370)" d="M0,0L0,6"></path>
-    <path transform="translate(67,370)" d="M0,0L0,6"></path>
-    <path transform="translate(89,370)" d="M0,0L0,6"></path>
-    <path transform="translate(111,370)" d="M0,0L0,6"></path>
     <path transform="translate(133,370)" d="M0,0L0,6"></path>
-    <path transform="translate(155,370)" d="M0,0L0,6"></path>
-    <path transform="translate(177,370)" d="M0,0L0,6"></path>
-    <path transform="translate(199,370)" d="M0,0L0,6"></path>
     <path transform="translate(221,370)" d="M0,0L0,6"></path>
-    <path transform="translate(243,370)" d="M0,0L0,6"></path>
-    <path transform="translate(265,370)" d="M0,0L0,6"></path>
-    <path transform="translate(287,370)" d="M0,0L0,6"></path>
     <path transform="translate(309,370)" d="M0,0L0,6"></path>
-    <path transform="translate(331,370)" d="M0,0L0,6"></path>
-    <path transform="translate(353,370)" d="M0,0L0,6"></path>
-    <path transform="translate(375,370)" d="M0,0L0,6"></path>
     <path transform="translate(397,370)" d="M0,0L0,6"></path>
-    <path transform="translate(419,370)" d="M0,0L0,6"></path>
-    <path transform="translate(441,370)" d="M0,0L0,6"></path>
-    <path transform="translate(463,370)" d="M0,0L0,6"></path>
     <path transform="translate(485,370)" d="M0,0L0,6"></path>
-    <path transform="translate(507,370)" d="M0,0L0,6"></path>
-    <path transform="translate(529,370)" d="M0,0L0,6"></path>
-    <path transform="translate(551,370)" d="M0,0L0,6"></path>
     <path transform="translate(573,370)" d="M0,0L0,6"></path>
-    <path transform="translate(595,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(10.5,9.5)">
     <text transform="translate(45,370)"><tspan x="0" y="0.71em">16</tspan><tspan x="0" dy="1em">Apr</tspan></text>

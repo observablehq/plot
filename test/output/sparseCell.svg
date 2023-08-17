@@ -15,63 +15,35 @@
   </style>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,10.5)">
     <line x1="40" x2="620" y1="32" y2="32"></line>
-    <line x1="40" x2="620" y1="53" y2="53"></line>
     <line x1="40" x2="620" y1="74" y2="74"></line>
-    <line x1="40" x2="620" y1="95" y2="95"></line>
     <line x1="40" x2="620" y1="116" y2="116"></line>
-    <line x1="40" x2="620" y1="137" y2="137"></line>
     <line x1="40" x2="620" y1="158" y2="158"></line>
-    <line x1="40" x2="620" y1="179" y2="179"></line>
     <line x1="40" x2="620" y1="200" y2="200"></line>
-    <line x1="40" x2="620" y1="221" y2="221"></line>
     <line x1="40" x2="620" y1="242" y2="242"></line>
-    <line x1="40" x2="620" y1="263" y2="263"></line>
     <line x1="40" x2="620" y1="284" y2="284"></line>
-    <line x1="40" x2="620" y1="305" y2="305"></line>
     <line x1="40" x2="620" y1="326" y2="326"></line>
-    <line x1="40" x2="620" y1="347" y2="347"></line>
     <line x1="40" x2="620" y1="368" y2="368"></line>
-    <line x1="40" x2="620" y1="389" y2="389"></line>
     <line x1="40" x2="620" y1="410" y2="410"></line>
-    <line x1="40" x2="620" y1="431" y2="431"></line>
     <line x1="40" x2="620" y1="452" y2="452"></line>
-    <line x1="40" x2="620" y1="473" y2="473"></line>
     <line x1="40" x2="620" y1="494" y2="494"></line>
-    <line x1="40" x2="620" y1="515" y2="515"></line>
     <line x1="40" x2="620" y1="536" y2="536"></line>
-    <line x1="40" x2="620" y1="557" y2="557"></line>
     <line x1="40" x2="620" y1="578" y2="578"></line>
-    <line x1="40" x2="620" y1="599" y2="599"></line>
   </g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10.5)">
     <path transform="translate(40,32)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,53)" d="M0,0L-6,0"></path>
     <path transform="translate(40,74)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,95)" d="M0,0L-6,0"></path>
     <path transform="translate(40,116)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,137)" d="M0,0L-6,0"></path>
     <path transform="translate(40,158)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,179)" d="M0,0L-6,0"></path>
     <path transform="translate(40,200)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,221)" d="M0,0L-6,0"></path>
     <path transform="translate(40,242)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,263)" d="M0,0L-6,0"></path>
     <path transform="translate(40,284)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,305)" d="M0,0L-6,0"></path>
     <path transform="translate(40,326)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,347)" d="M0,0L-6,0"></path>
     <path transform="translate(40,368)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,389)" d="M0,0L-6,0"></path>
     <path transform="translate(40,410)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,431)" d="M0,0L-6,0"></path>
     <path transform="translate(40,452)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,473)" d="M0,0L-6,0"></path>
     <path transform="translate(40,494)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,515)" d="M0,0L-6,0"></path>
     <path transform="translate(40,536)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,557)" d="M0,0L-6,0"></path>
     <path transform="translate(40,578)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,599)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,10.5)">
     <text y="0.32em" transform="translate(40,32)">1</text>
@@ -94,50 +66,22 @@
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(13,0)">
     <line x1="45" x2="45" y1="30" y2="620"></line>
-    <line x1="71" x2="71" y1="30" y2="620"></line>
-    <line x1="97" x2="97" y1="30" y2="620"></line>
     <line x1="123" x2="123" y1="30" y2="620"></line>
-    <line x1="149" x2="149" y1="30" y2="620"></line>
-    <line x1="175" x2="175" y1="30" y2="620"></line>
     <line x1="201" x2="201" y1="30" y2="620"></line>
-    <line x1="227" x2="227" y1="30" y2="620"></line>
-    <line x1="253" x2="253" y1="30" y2="620"></line>
     <line x1="279" x2="279" y1="30" y2="620"></line>
-    <line x1="305" x2="305" y1="30" y2="620"></line>
-    <line x1="331" x2="331" y1="30" y2="620"></line>
     <line x1="357" x2="357" y1="30" y2="620"></line>
-    <line x1="383" x2="383" y1="30" y2="620"></line>
-    <line x1="409" x2="409" y1="30" y2="620"></line>
     <line x1="435" x2="435" y1="30" y2="620"></line>
-    <line x1="461" x2="461" y1="30" y2="620"></line>
-    <line x1="487" x2="487" y1="30" y2="620"></line>
     <line x1="513" x2="513" y1="30" y2="620"></line>
-    <line x1="539" x2="539" y1="30" y2="620"></line>
-    <line x1="565" x2="565" y1="30" y2="620"></line>
     <line x1="591" x2="591" y1="30" y2="620"></line>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(13,1)">
     <path transform="translate(45,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(71,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(97,30)" d="M0,0L0,-6"></path>
     <path transform="translate(123,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(149,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(175,30)" d="M0,0L0,-6"></path>
     <path transform="translate(201,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(227,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(253,30)" d="M0,0L0,-6"></path>
     <path transform="translate(279,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(305,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(331,30)" d="M0,0L0,-6"></path>
     <path transform="translate(357,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(383,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(409,30)" d="M0,0L0,-6"></path>
     <path transform="translate(435,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(461,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(487,30)" d="M0,0L0,-6"></path>
     <path transform="translate(513,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(539,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(565,30)" d="M0,0L0,-6"></path>
     <path transform="translate(591,30)" d="M0,0L0,-6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(13,-8.5)">

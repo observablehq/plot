@@ -42,66 +42,13 @@
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(4.771685761047463,0)">
     <path transform="translate(40.94926350245504,370)" d="M0,0L0,6"></path>
-    <path transform="translate(50.44189852700496,370)" d="M0,0L0,6"></path>
-    <path transform="translate(59.93453355155488,370)" d="M0,0L0,6"></path>
-    <path transform="translate(69.42716857610479,370)" d="M0,0L0,6"></path>
-    <path transform="translate(78.91980360065472,370)" d="M0,0L0,6"></path>
-    <path transform="translate(88.41243862520463,370)" d="M0,0L0,6"></path>
-    <path transform="translate(97.90507364975454,370)" d="M0,0L0,6"></path>
-    <path transform="translate(107.39770867430447,370)" d="M0,0L0,6"></path>
     <path transform="translate(116.89034369885438,370)" d="M0,0L0,6"></path>
-    <path transform="translate(126.38297872340429,370)" d="M0,0L0,6"></path>
-    <path transform="translate(135.87561374795422,370)" d="M0,0L0,6"></path>
-    <path transform="translate(145.36824877250413,370)" d="M0,0L0,6"></path>
-    <path transform="translate(154.86088379705404,370)" d="M0,0L0,6"></path>
-    <path transform="translate(164.35351882160398,370)" d="M0,0L0,6"></path>
-    <path transform="translate(173.8461538461539,370)" d="M0,0L0,6"></path>
-    <path transform="translate(183.3387888707038,370)" d="M0,0L0,6"></path>
     <path transform="translate(192.83142389525372,370)" d="M0,0L0,6"></path>
-    <path transform="translate(202.32405891980363,370)" d="M0,0L0,6"></path>
-    <path transform="translate(211.81669394435355,370)" d="M0,0L0,6"></path>
-    <path transform="translate(221.3093289689035,370)" d="M0,0L0,6"></path>
-    <path transform="translate(230.8019639934534,370)" d="M0,0L0,6"></path>
-    <path transform="translate(240.2945990180033,370)" d="M0,0L0,6"></path>
-    <path transform="translate(249.78723404255322,370)" d="M0,0L0,6"></path>
-    <path transform="translate(259.27986906710316,370)" d="M0,0L0,6"></path>
     <path transform="translate(268.77250409165305,370)" d="M0,0L0,6"></path>
-    <path transform="translate(278.265139116203,370)" d="M0,0L0,6"></path>
-    <path transform="translate(287.7577741407529,370)" d="M0,0L0,6"></path>
-    <path transform="translate(297.2504091653028,370)" d="M0,0L0,6"></path>
-    <path transform="translate(306.74304418985275,370)" d="M0,0L0,6"></path>
-    <path transform="translate(316.23567921440264,370)" d="M0,0L0,6"></path>
-    <path transform="translate(325.7283142389526,370)" d="M0,0L0,6"></path>
-    <path transform="translate(335.22094926350246,370)" d="M0,0L0,6"></path>
     <path transform="translate(344.7135842880524,370)" d="M0,0L0,6"></path>
-    <path transform="translate(354.20621931260234,370)" d="M0,0L0,6"></path>
-    <path transform="translate(363.6988543371522,370)" d="M0,0L0,6"></path>
-    <path transform="translate(373.19148936170217,370)" d="M0,0L0,6"></path>
-    <path transform="translate(382.68412438625205,370)" d="M0,0L0,6"></path>
-    <path transform="translate(392.176759410802,370)" d="M0,0L0,6"></path>
-    <path transform="translate(401.66939443535193,370)" d="M0,0L0,6"></path>
-    <path transform="translate(411.1620294599018,370)" d="M0,0L0,6"></path>
     <path transform="translate(420.65466448445176,370)" d="M0,0L0,6"></path>
-    <path transform="translate(430.14729950900164,370)" d="M0,0L0,6"></path>
-    <path transform="translate(439.6399345335516,370)" d="M0,0L0,6"></path>
-    <path transform="translate(449.1325695581015,370)" d="M0,0L0,6"></path>
-    <path transform="translate(458.6252045826514,370)" d="M0,0L0,6"></path>
-    <path transform="translate(468.11783960720135,370)" d="M0,0L0,6"></path>
-    <path transform="translate(477.61047463175123,370)" d="M0,0L0,6"></path>
-    <path transform="translate(487.10310965630117,370)" d="M0,0L0,6"></path>
     <path transform="translate(496.59574468085106,370)" d="M0,0L0,6"></path>
-    <path transform="translate(506.088379705401,370)" d="M0,0L0,6"></path>
-    <path transform="translate(515.581014729951,370)" d="M0,0L0,6"></path>
-    <path transform="translate(525.0736497545008,370)" d="M0,0L0,6"></path>
-    <path transform="translate(534.5662847790508,370)" d="M0,0L0,6"></path>
-    <path transform="translate(544.0589198036007,370)" d="M0,0L0,6"></path>
-    <path transform="translate(553.5515548281505,370)" d="M0,0L0,6"></path>
-    <path transform="translate(563.0441898527006,370)" d="M0,0L0,6"></path>
     <path transform="translate(572.5368248772504,370)" d="M0,0L0,6"></path>
-    <path transform="translate(582.0294599018002,370)" d="M0,0L0,6"></path>
-    <path transform="translate(591.5220949263503,370)" d="M0,0L0,6"></path>
-    <path transform="translate(601.0147299509001,370)" d="M0,0L0,6"></path>
-    <path transform="translate(610.5073649754502,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(4.771685761047463,9.5)">
     <text transform="translate(40.94926350245504,370)"><tspan x="0" y="0.71em">May</tspan><tspan x="0" dy="1em">2013</tspan></text>

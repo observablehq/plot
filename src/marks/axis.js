@@ -545,11 +545,11 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
         // Use explicit ticks, if specified.
         data = arrayify(ticks);
       } else if (scale.ticks) {
-        // For continuous scales, use the specified tick interval, if any. For
-        // time scales, we could pass the interval directly to scale.ticks
-        // because it’s supported by d3.utcTicks, but quantitative scales and
-        // d3.ticks do not support numeric intervals for scale.ticks.
         if (isInterval(ticks)) {
+          // For continuous scales, use the specified tick interval, if any. For
+          // time scales, we could pass the interval directly to scale.ticks
+          // because it’s supported by d3.utcTicks, but quantitative scales and
+          // d3.ticks do not support numeric intervals for scale.ticks.
           const [min, max] = extent(scale.domain());
           data = ticks.range(min, ticks.offset(ticks.floor(max))); // inclusive max
         } else {
@@ -560,38 +560,35 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
       } else {
         data = scale.domain();
         if (scale.interval) {
-          // For ordinal scales with an interval, use the specified tick
-          // interval, if any. Note that the tick interval and scale interval
-          // may be incompatible; for example, if the scale interval is "4
-          // weeks" and the tick interval is "year", years are not aligned with
-          // 4-week intervals. So, rather than generate ticks using the tick
-          // interval, we filter the existing ticks to include only the first
-          // tick in each interval. Also, the time format for the tick interval
-          // may not be specific enough: for example, the "day" format (e.g.,
-          // Jan 26) for the "4 weeks" interval does not show the year; hence we
-          // use the default format (2014-01-26) instead.
           let compatible = true;
           if (isInterval(ticks)) {
+            // For ordinal scales with an interval, use the specified tick
+            // interval, if any. Note that the tick interval and scale interval
+            // may be incompatible; for example, if the scale interval is "4
+            // weeks" and the tick interval is "year", years are not aligned
+            // with 4-week intervals. So, rather than generate ticks using the
+            // tick interval, we filter the existing ticks to include only the
+            // first tick in each interval.
             data = data.filter((d, i) => {
               const e = ticks.floor(d);
               if (scale.interval.floor(e) < e) compatible = false;
               return i === 0 || e > ticks.floor(data[i - 1]);
             });
-          }
-          // Now generate a default tick format that drops ticks to avoid
-          // overlapping labels.
-          if ("text" in options && tickFormat === undefined) {
-            let format = formatDefault;
-            // If the tick and scale intervals are compatible, we can use the
-            // default multi-line time format. TODO We need a better way to
-            // infer whether the ordinal scale is UTC or local time.
-            if (compatible && isTimeInterval(scale.interval)) format = inferTimeFormat(data, anchor);
+          } else {
             // Compute the positive number n such that taking every nth value
             // from the scale’s domain produces as close as possible to the
             // desired number of ticks. For example, if the domain has 100
             // values and 5 ticks are desired, n = 20.
             const n = Math.round(data.length / ticks);
-            tickFormat = n > 0 ? (d, i, D) => (i % n === 0 ? format(d, i, D, n) : null) : format;
+            if (n > 0) data = data.filter((d, i) => i % n === 0);
+          }
+          // If the tick and scale time intervals are incompatible, we can’t use
+          // the multi-line time format. For example, the "day" format (e.g.,
+          // Jan 26) for the "4 weeks" interval does not show the year; hence we
+          // use the default format (2014-01-26) instead. TODO We need a better
+          // way to infer whether the ordinal scale is UTC or local time.
+          if ("text" in options && tickFormat === undefined && compatible && isTimeInterval(scale.interval)) {
+            tickFormat = inferTimeFormat(data, anchor);
           }
         }
       }

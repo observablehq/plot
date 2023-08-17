@@ -46,51 +46,13 @@
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(6,0)">
     <path transform="translate(55,370)" d="M0,0L0,6"></path>
-    <path transform="translate(67,370)" d="M0,0L0,6"></path>
-    <path transform="translate(79,370)" d="M0,0L0,6"></path>
-    <path transform="translate(91,370)" d="M0,0L0,6"></path>
-    <path transform="translate(103,370)" d="M0,0L0,6"></path>
-    <path transform="translate(115,370)" d="M0,0L0,6"></path>
     <path transform="translate(127,370)" d="M0,0L0,6"></path>
-    <path transform="translate(139,370)" d="M0,0L0,6"></path>
-    <path transform="translate(151,370)" d="M0,0L0,6"></path>
-    <path transform="translate(163,370)" d="M0,0L0,6"></path>
-    <path transform="translate(175,370)" d="M0,0L0,6"></path>
-    <path transform="translate(187,370)" d="M0,0L0,6"></path>
     <path transform="translate(199,370)" d="M0,0L0,6"></path>
-    <path transform="translate(211,370)" d="M0,0L0,6"></path>
-    <path transform="translate(223,370)" d="M0,0L0,6"></path>
-    <path transform="translate(235,370)" d="M0,0L0,6"></path>
-    <path transform="translate(247,370)" d="M0,0L0,6"></path>
-    <path transform="translate(259,370)" d="M0,0L0,6"></path>
     <path transform="translate(271,370)" d="M0,0L0,6"></path>
-    <path transform="translate(283,370)" d="M0,0L0,6"></path>
-    <path transform="translate(295,370)" d="M0,0L0,6"></path>
-    <path transform="translate(307,370)" d="M0,0L0,6"></path>
-    <path transform="translate(319,370)" d="M0,0L0,6"></path>
-    <path transform="translate(331,370)" d="M0,0L0,6"></path>
     <path transform="translate(343,370)" d="M0,0L0,6"></path>
-    <path transform="translate(355,370)" d="M0,0L0,6"></path>
-    <path transform="translate(367,370)" d="M0,0L0,6"></path>
-    <path transform="translate(379,370)" d="M0,0L0,6"></path>
-    <path transform="translate(391,370)" d="M0,0L0,6"></path>
-    <path transform="translate(403,370)" d="M0,0L0,6"></path>
     <path transform="translate(415,370)" d="M0,0L0,6"></path>
-    <path transform="translate(427,370)" d="M0,0L0,6"></path>
-    <path transform="translate(439,370)" d="M0,0L0,6"></path>
-    <path transform="translate(451,370)" d="M0,0L0,6"></path>
-    <path transform="translate(463,370)" d="M0,0L0,6"></path>
-    <path transform="translate(475,370)" d="M0,0L0,6"></path>
     <path transform="translate(487,370)" d="M0,0L0,6"></path>
-    <path transform="translate(499,370)" d="M0,0L0,6"></path>
-    <path transform="translate(511,370)" d="M0,0L0,6"></path>
-    <path transform="translate(523,370)" d="M0,0L0,6"></path>
-    <path transform="translate(535,370)" d="M0,0L0,6"></path>
-    <path transform="translate(547,370)" d="M0,0L0,6"></path>
     <path transform="translate(559,370)" d="M0,0L0,6"></path>
-    <path transform="translate(571,370)" d="M0,0L0,6"></path>
-    <path transform="translate(583,370)" d="M0,0L0,6"></path>
-    <path transform="translate(595,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(6,9.5)">
     <text transform="translate(55,370)"><tspan x="0" y="0.71em">1</tspan><tspan x="0" dy="1em">Jan</tspan></text>

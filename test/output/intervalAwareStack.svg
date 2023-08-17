@@ -39,15 +39,10 @@
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(24,0)">
     <path transform="translate(47,370)" d="M0,0L0,6"></path>
-    <path transform="translate(99,370)" d="M0,0L0,6"></path>
     <path transform="translate(151,370)" d="M0,0L0,6"></path>
-    <path transform="translate(203,370)" d="M0,0L0,6"></path>
     <path transform="translate(255,370)" d="M0,0L0,6"></path>
-    <path transform="translate(307,370)" d="M0,0L0,6"></path>
     <path transform="translate(359,370)" d="M0,0L0,6"></path>
-    <path transform="translate(411,370)" d="M0,0L0,6"></path>
     <path transform="translate(463,370)" d="M0,0L0,6"></path>
-    <path transform="translate(515,370)" d="M0,0L0,6"></path>
     <path transform="translate(567,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(24,9.5)">
