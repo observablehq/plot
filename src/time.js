@@ -1,4 +1,4 @@
-import {bisector, extent, median, pairs, timeFormat, utcFormat, zip} from "d3";
+import {bisector, extent, median, pairs, timeFormat, utcFormat} from "d3";
 import {utcSecond, utcMinute, utcHour, unixDay, utcWeek, utcMonth, utcYear} from "d3";
 import {utcMonday, utcTuesday, utcWednesday, utcThursday, utcFriday, utcSaturday, utcSunday} from "d3";
 import {timeSecond, timeMinute, timeHour, timeDay, timeWeek, timeMonth, timeYear} from "d3";
@@ -30,7 +30,6 @@ const formats = [
   ["year", durationYear]
 ];
 
-// Note: this must be in order from smallest to largest!
 const timeIntervals = new Map([
   ["second", timeSecond],
   ["minute", timeMinute],
@@ -48,7 +47,6 @@ const timeIntervals = new Map([
   ["year", timeYear]
 ]);
 
-// Note: this must be in order from smallest to largest!
 const utcIntervals = new Map([
   ["second", utcSecond],
   ["minute", utcMinute],
@@ -67,15 +65,21 @@ const utcIntervals = new Map([
 ]);
 
 // An interleaved array of UTC and local time intervals in order from largest to
-// smallest; used by inferTimeInterval below, which is used to determine the
-// most specific standard time interval for a given array of dates. Note that
-// this does not consider skip intervals such as 2 days, 3 weeks, or 6 months.
-const descendingIntervals = zip(
-  Array.from(utcIntervals, ([name, interval]) => [name, interval, "utc"]),
-  Array.from(timeIntervals, ([name, interval]) => [name, interval, "time"])
-)
-  .flat(1)
-  .reverse();
+// smallest, used to determine the most specific standard time format for a
+// given array of dates.
+const descendingIntervals = [
+  ["year", utcYear, "utc"],
+  ["year", timeYear, "time"],
+  ["month", utcMonth, "utc"],
+  ["month", timeMonth, "time"],
+  ["day", unixDay, "utc"],
+  ["day", timeDay, "time"],
+  // Below day, local time typically has an hourly offset from UTC and hence the
+  // two are aligned and indistinguishable; therefore, we only consider UTC.
+  ["hour", utcHour, "utc"],
+  ["minute", utcMinute, "utc"],
+  ["second", utcSecond, "utc"]
+];
 
 function parseInterval(input, intervals) {
   let name = `${input}`.toLowerCase();

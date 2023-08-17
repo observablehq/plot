@@ -524,60 +524,71 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
     const initializeFacets = data == null && (k === "fx" || k === "fy");
     const {[k]: scale} = scales;
     if (!scale) throw new Error(`missing scale: ${k}`);
-    let {ticks, tickFormat, interval} = options;
-    if (hasTimeTicks(scale) && typeof ticks === "string") (interval = ticks), (ticks = undefined); // TODO allow ticks as interval implementation
+    // The interval axis option is an alternative method of specifying ticks;
+    // for example, for a numeric scale, ticks = 5 means “about 5 ticks” whereas
+    // interval = 5 means “ticks every 5 units”. (This is not to be confused
+    // with the interval scale option, which affects the scale’s behavior!)
+    let {
+      interval,
+      ticks = maybeRangeInterval(interval, scale.type),
+      tickFormat,
+      tickSpacing = k === "x" ? 80 : 35
+    } = options;
+    // For a time scale, or any scale with a time interval, also allow the ticks
+    // to be specified as a string which is promoted to a time interval. In the
+    // case of ordinal scales, the interval is interpreted as UTC.
+    if (typeof ticks === "string" && hasTimeTicks(scale)) ticks = maybeRangeInterval(ticks, scale.type);
+    // Lastly use the tickSpacing option to infer the desired tick count.
+    if (ticks == undefined) ticks = inferTickCount(scale, tickSpacing);
     if (data == null) {
       if (isIterable(ticks)) {
+        // Use explicit ticks, if specified.
         data = arrayify(ticks);
       } else if (scale.ticks) {
-        if (ticks !== undefined) {
-          data = scale.ticks(ticks);
+        // For continuous scales, use the specified tick interval, if any. For
+        // time scales, we could pass the interval directly to scale.ticks
+        // because it’s supported by d3.utcTicks, but quantitative scales and
+        // d3.ticks do not support numeric intervals for scale.ticks.
+        if (isInterval(ticks)) {
+          const [min, max] = extent(scale.domain());
+          data = ticks.range(min, ticks.offset(ticks.floor(max))); // inclusive max
         } else {
-          interval = maybeRangeInterval(interval === undefined ? scale.interval : interval, scale.type);
-          if (interval !== undefined) {
-            // For time scales, we could pass the interval directly to
-            // scale.ticks because it’s supported by d3.utcTicks; but
-            // quantitative scales and d3.ticks do not support numeric
-            // intervals for scale.ticks, so we compute them here.
-            const [min, max] = extent(scale.domain());
-            data = interval.range(min, interval.offset(interval.floor(max))); // inclusive max
-          } else {
-            ticks = inferTickCount(k, scale, options);
-            data = scale.ticks(ticks);
-          }
+          data = scale.ticks(ticks);
         }
+        // Remove any ticks that aren’t compatible with the scale interval.
+        if (scale.interval) data = data.filter((d) => scale.interval.floor(d) >= d);
       } else {
         data = scale.domain();
-        if (isInterval(scale.interval)) {
-          // If a tick interval (the ticks option) is specified on an ordinal
-          // scale with an interval, use it to generate ticks.
+        if (scale.interval) {
+          // For ordinal scales with an interval, use the specified tick
+          // interval, if any. Note that the tick interval and scale interval
+          // may be incompatible; for example, if the scale interval is "4
+          // weeks" and the tick interval is "year", years are not aligned with
+          // 4-week intervals. So, rather than generate ticks using the tick
+          // interval, we filter the existing ticks to include only the first
+          // tick in each interval. Also, the time format for the tick interval
+          // may not be specific enough: for example, the "day" format (e.g.,
+          // Jan 26) for the "4 weeks" interval does not show the year; hence we
+          // use the default format (2014-01-26) instead.
           let compatible = true;
-          interval = maybeRangeInterval(interval);
-          if (interval) {
-            // The tick interval may be incompatible with the scale interval;
-            // for example, if the scale’s interval is "4 weeks" and the tick
-            // interval is "year", years are not aligned with 4-week intervals.
-            // So, rather than generate new ticks using the tick interval, we
-            // filter the existing ticks to include only the first tick in each
-            // interval. Also, the time format for the tick interval may not be
-            // specific enough: for example, the "day" format (e.g., Jan 26) for
-            // the "4 weeks" interval does not show the year; hence we use the
-            // default format (2014-01-26) instead.
+          if (isInterval(ticks)) {
             data = data.filter((d, i) => {
-              const e = interval.floor(d);
+              const e = ticks.floor(d);
               if (scale.interval.floor(e) < e) compatible = false;
-              return i === 0 || e > interval.floor(data[i - 1]);
+              return i === 0 || e > ticks.floor(data[i - 1]);
             });
           }
-          // If the scale has an interval, generate a default tick format that
-          // drops ticks to avoid overlapping labels.
+          // Now generate a default tick format that drops ticks to avoid
+          // overlapping labels. TODO We should have a flag that tests whether a
+          // given interval is UTC or local, or an option that lets the user
+          // indicate which format is desired…
           if ("text" in options && tickFormat === undefined) {
             let format = formatDefault;
-            if (compatible && isTimeInterval(scale.interval)) format = inferTimeFormat(data, anchor);
-            if (ticks === undefined) ticks = inferTickCount(k, scale, options);
-            // Compute the positive number n such that taking every nth value from the
-            // scale’s domain produces as close as possible to the desired number of ticks.
-            // For example, if the domain has 100 values and 5 ticks are desired, n = 20.
+            if (compatible && isTimeInterval(scale.interval)) format = inferTimeFormat(data, anchor); // TODO consider scale.interval
+            // Compute the positive number n such that taking every nth value
+            // from the scale’s domain produces as close as possible to the
+            // desired number of ticks. For example, if the domain has 100
+            // values and 5 ticks are desired, n = 20.
             const n = Math.round(data.length / ticks);
             tickFormat = n > 0 ? (d, i, D) => (i % n === 0 ? format(d, i, D, n) : null) : format;
           }
@@ -613,8 +624,7 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
   return m;
 }
 
-function inferTickCount(k, scale, options) {
-  const {tickSpacing = k === "x" ? 80 : 35} = options;
+function inferTickCount(scale, tickSpacing) {
   const [min, max] = extent(scale.range());
   return (max - min) / tickSpacing;
 }
@@ -632,7 +642,7 @@ export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
   return tickFormat === undefined && isTemporalScale(scale)
     ? formatTimeTicks(scale, data, ticks, anchor)
     : scale.tickFormat
-    ? scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)
+    ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
     : tickFormat === undefined
     ? isUtcYear(scale.interval)
       ? utcFormat("%Y")
