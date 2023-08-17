@@ -5,7 +5,7 @@ import {radians} from "../math.js";
 import {arrayify, constant, identity, keyword, number, range, valueof} from "../options.js";
 import {isIterable, isNoneish, isTemporal, isInterval, isTimeInterval, orderof} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
-import {isOrdinalScale, isTemporalScale} from "../scales.js";
+import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
 import {formatTimeTicks, inferTimeFormat2, isTimeYear, isUtcYear} from "../time.js";
 import {initializer} from "../transforms/basic.js";
@@ -551,16 +551,16 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
       } else {
         data = scale.domain();
         if (isInterval(scale.interval)) {
-          // If a ticks interval (the ticks option) is specified on an ordinal
-          // scale with an interval, we use the ticks interval to generate the
-          // ticks. However, the ticks interval may be incompatible with the scale
-          // interval, and if so, the time format inferred from the subsequent
-          // ticks may not be specific enough. For example, if the scale’s
-          // interval is "4 weeks" and the tick interval is "year", ticks are on
-          // Sunday near the beginning of each year; however, the "day" format
-          // (e.g., "Jan 26") derived from the "4 weeks" scale interval does not
-          // show the year, and hence is not a good choice for yearly ticks; hence
-          // we use the default format (2014-01-26) instead.
+          // If a tick interval (the ticks option) is specified on an ordinal
+          // scale with an interval, we use the tick interval to generate the
+          // ticks. However, the tick interval may be incompatible with the
+          // scale interval, and if so, the time format inferred from the
+          // subsequent ticks may not be specific enough. For example, if the
+          // scale’s interval is "4 weeks" and the tick interval is "year",
+          // ticks are on Sunday near the beginning of each year; however, the
+          // "day" format (e.g., "Jan 26") derived from the "4 weeks" scale
+          // interval does not show the year, and hence is not a good choice for
+          // yearly ticks; hence we use the default format (2014-01-26) instead.
           let compatible = true;
           if (interval !== undefined) {
             const [start, stop] = extent(data);
@@ -744,5 +744,5 @@ function maybeLabelArrow(labelArrow = "auto") {
 }
 
 function hasTimeTicks(scale) {
-  return isTemporalScale(scale) || (isOrdinalScale(scale) && isTimeInterval(scale.interval));
+  return isTemporalScale(scale) || isTimeInterval(scale.interval);
 }
