@@ -9,6 +9,7 @@ import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
 import {formatTimeTicks, inferTimeFormat, isTimeYear, isUtcYear} from "../time.js";
 import {initializer} from "../transforms/basic.js";
+import {warn} from "../warnings.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
@@ -555,7 +556,7 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
         } else {
           data = scale.ticks(ticks);
         }
-        // Remove any ticks that aren’t compatible with the scale interval.
+        // Remove any ticks that aren’t aligned with the scale interval.
         if (scale.interval) data = data.filter((d) => scale.interval.floor(d) >= d);
       } else {
         data = scale.domain();
@@ -563,17 +564,17 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
           let compatible = true;
           if (isInterval(ticks)) {
             // For ordinal scales with an interval, use the specified tick
-            // interval, if any. Note that the tick interval and scale interval
-            // may be incompatible; for example, if the scale interval is "4
-            // weeks" and the tick interval is "year", years are not aligned
-            // with 4-week intervals. So, rather than generate ticks using the
-            // tick interval, we filter the existing ticks to include only the
-            // first tick in each interval.
-            data = data.filter((d, i) => {
-              const e = ticks.floor(d);
-              if (scale.interval.floor(e) < e) compatible = false;
-              return i === 0 || e > ticks.floor(data[i - 1]);
-            });
+            // interval, if any, to filter the domain. If most of the ticks are
+            // removed, then the tick interval may either be misaligned with the
+            // scale interval (e.g., "year" and "4 weeks"), or the tick interval
+            // may be too far apart to be suitable for the multi-line format
+            // (e.g., "52 weeks" and "4 weeks").
+            if (data.length) {
+              const newdata = data.filter((d) => ticks.floor(d) >= d);
+              if (newdata.length < data.length / 4) compatible = false;
+              if (!newdata.length) warn(`Warning: the ${k}-axis ticks interval appears to not align with the scale interval, resulting in no ticks. Try a different interval?`); // prettier-ignore
+              data = newdata;
+            }
           } else {
             // Compute the positive number n such that taking every nth value
             // from the scale’s domain produces as close as possible to the
@@ -582,11 +583,9 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
             const n = Math.round(data.length / ticks);
             if (n > 0) data = data.filter((d, i) => i % n === 0);
           }
-          // If the tick and scale time intervals are incompatible, we can’t use
-          // the multi-line time format. For example, the "day" format (e.g.,
-          // Jan 26) for the "4 weeks" interval does not show the year; hence we
-          // use the default format (2014-01-26) instead. TODO We need a better
-          // way to infer whether the ordinal scale is UTC or local time.
+          // If possible, use the multi-line time format (e.g., Jan 26);
+          // otherwise use the default ISO format (2014-01-26). TODO We need a
+          // better way to infer whether the ordinal scale is UTC or local time.
           if ("text" in options && tickFormat === undefined && compatible && isTimeInterval(scale.interval)) {
             tickFormat = inferTimeFormat(data, anchor);
           }

@@ -41,7 +41,6 @@
     <text y="0.71em" transform="translate(40,20)">↑ Close</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(4.771685761047463,0)">
-    <path transform="translate(40.94926350245504,370)" d="M0,0L0,6"></path>
     <path transform="translate(59.93453355155488,370)" d="M0,0L0,6"></path>
     <path transform="translate(88.41243862520463,370)" d="M0,0L0,6"></path>
     <path transform="translate(116.89034369885438,370)" d="M0,0L0,6"></path>
@@ -64,8 +63,7 @@
     <path transform="translate(601.0147299509001,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(4.771685761047463,9.5)">
-    <text transform="translate(40.94926350245504,370)"><tspan x="0" y="0.71em">May</tspan><tspan x="0" dy="1em">2013</tspan></text>
-    <text y="0.71em" transform="translate(59.93453355155488,370)">Jul</text>
+    <text transform="translate(59.93453355155488,370)"><tspan x="0" y="0.71em">Jul</tspan><tspan x="0" dy="1em">2013</tspan></text>
     <text y="0.71em" transform="translate(88.41243862520463,370)">Oct</text>
     <text transform="translate(116.89034369885438,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2014</tspan></text>
     <text y="0.71em" transform="translate(145.36824877250413,370)">Apr</text>

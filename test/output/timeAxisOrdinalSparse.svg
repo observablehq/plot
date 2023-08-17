@@ -39,20 +39,18 @@
     <text y="0.71em" transform="translate(40,20)">↑ Close</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(4.448562783661119,0)">
-    <path transform="translate(40.87745839636915,370)" d="M0,0L0,6"></path>
-    <path transform="translate(128.6232980332829,370)" d="M0,0L0,6"></path>
-    <path transform="translate(242.6928895612708,370)" d="M0,0L0,6"></path>
-    <path transform="translate(356.76248108925864,370)" d="M0,0L0,6"></path>
-    <path transform="translate(470.8320726172465,370)" d="M0,0L0,6"></path>
-    <path transform="translate(584.9016641452345,370)" d="M0,0L0,6"></path>
+    <path transform="translate(102.29954614220878,370)" d="M0,0L0,6"></path>
+    <path transform="translate(216.36913767019666,370)" d="M0,0L0,6"></path>
+    <path transform="translate(330.43872919818455,370)" d="M0,0L0,6"></path>
+    <path transform="translate(444.5083207261724,370)" d="M0,0L0,6"></path>
+    <path transform="translate(558.5779122541603,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(4.448562783661119,9.5)">
-    <text y="0.71em" transform="translate(40.87745839636915,370)">2013-04-21</text>
-    <text y="0.71em" transform="translate(128.6232980332829,370)">2014-01-26</text>
-    <text y="0.71em" transform="translate(242.6928895612708,370)">2015-01-25</text>
-    <text y="0.71em" transform="translate(356.76248108925864,370)">2016-01-24</text>
-    <text y="0.71em" transform="translate(470.8320726172465,370)">2017-01-22</text>
-    <text y="0.71em" transform="translate(584.9016641452345,370)">2018-01-21</text>
+    <text y="0.71em" transform="translate(102.29954614220878,370)">2013-11-03</text>
+    <text y="0.71em" transform="translate(216.36913767019666,370)">2014-11-02</text>
+    <text y="0.71em" transform="translate(330.43872919818455,370)">2015-11-01</text>
+    <text y="0.71em" transform="translate(444.5083207261724,370)">2016-10-30</text>
+    <text y="0.71em" transform="translate(558.5779122541603,370)">2017-10-29</text>
   </g>
   <g aria-label="bar">
     <rect x="40.87745839636915" width="7.897125567322238" y="247.19565726013724" height="122.80434273986276"><title>2013-05-13</title></rect>

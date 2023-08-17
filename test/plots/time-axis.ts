@@ -91,10 +91,18 @@ export async function timeAxisOrdinal() {
   });
 }
 
-export async function timeAxisOrdinalIrregular() {
+export async function warnTimeAxisOrdinalIncompatible() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
-    x: {interval: "4 weeks", ticks: "year"},
+    x: {interval: "4 weeks", ticks: "year"}, // ⚠️ no years start on Sunday
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
+}
+
+export async function timeAxisOrdinalSparse() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "4 weeks", ticks: "52 weeks"},
     marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
   });
 }

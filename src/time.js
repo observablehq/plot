@@ -185,15 +185,11 @@ export function inferTimeFormat(dates, anchor) {
   return formatDefault;
 }
 
-// TODO This assumes that the format is called sequentially, but if we filter
-// the format by wrapping it then it does not behave as desired. We probably
-// want to make the format stateful, or we need to pass in a skip value here…
 function formatConditional(format1, format2, template) {
-  // TODO n is messy, don’t do this
-  return (x, i, X, n = 1) => {
+  return (x, i, X) => {
     const f1 = format1(x, i); // always shown
     const f2 = format2(x, i); // only shown if different
-    const j = i - orderof(X) * n; // detect reversed domains
+    const j = i - orderof(X); // detect reversed domains
     return i !== j && X[j] !== undefined && f2 === format2(X[j], j) ? f1 : template(f1, f2);
   };
 }
