@@ -41,6 +41,7 @@
     <text y="0.71em" transform="translate(40,20)">↑ Close</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(4.771685761047463,0)">
+    <path transform="translate(40.94926350245504,370)" d="M0,0L0,6"></path>
     <path transform="translate(59.93453355155488,370)" d="M0,0L0,6"></path>
     <path transform="translate(88.41243862520463,370)" d="M0,0L0,6"></path>
     <path transform="translate(116.89034369885438,370)" d="M0,0L0,6"></path>
@@ -63,13 +64,13 @@
     <path transform="translate(601.0147299509001,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(4.771685761047463,9.5)">
-    <text transform="translate(59.93453355155488,370)"><tspan x="0" y="0.71em">Jul</tspan><tspan x="0" dy="1em">2013</tspan></text>
-    <text transform="translate(145.36824877250413,370)"><tspan x="0" y="0.71em">Apr</tspan><tspan x="0" dy="1em">2014</tspan></text>
-    <text transform="translate(230.8019639934534,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2015</tspan></text>
-    <text y="0.71em" transform="translate(316.23567921440264,370)">Oct</text>
-    <text transform="translate(401.66939443535193,370)"><tspan x="0" y="0.71em">Jul</tspan><tspan x="0" dy="1em">2016</tspan></text>
-    <text transform="translate(487.10310965630117,370)"><tspan x="0" y="0.71em">Apr</tspan><tspan x="0" dy="1em">2017</tspan></text>
-    <text transform="translate(572.5368248772504,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2018</tspan></text>
+    <text transform="translate(40.94926350245504,370)"><tspan x="0" y="0.71em">May</tspan><tspan x="0" dy="1em">2013</tspan></text>
+    <text transform="translate(116.89034369885438,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2014</tspan></text>
+    <text y="0.71em" transform="translate(202.32405891980363,370)">Oct</text>
+    <text transform="translate(287.7577741407529,370)"><tspan x="0" y="0.71em">Jul</tspan><tspan x="0" dy="1em">2015</tspan></text>
+    <text transform="translate(373.19148936170217,370)"><tspan x="0" y="0.71em">Apr</tspan><tspan x="0" dy="1em">2016</tspan></text>
+    <text transform="translate(458.6252045826514,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2017</tspan></text>
+    <text y="0.71em" transform="translate(544.0589198036007,370)">Oct</text>
   </g>
   <g aria-label="bar">
     <rect x="40.94926350245504" width="8.543371522094926" y="250.49929994600777" height="119.50070005399223"><title>2013-05-13</title></rect>

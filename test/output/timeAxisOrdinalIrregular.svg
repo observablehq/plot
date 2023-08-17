@@ -39,6 +39,7 @@
     <text y="0.71em" transform="translate(40,20)">↑ Close</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(4.448562783661119,0)">
+    <path transform="translate(40.87745839636915,370)" d="M0,0L0,6"></path>
     <path transform="translate(128.6232980332829,370)" d="M0,0L0,6"></path>
     <path transform="translate(242.6928895612708,370)" d="M0,0L0,6"></path>
     <path transform="translate(356.76248108925864,370)" d="M0,0L0,6"></path>
@@ -46,6 +47,7 @@
     <path transform="translate(584.9016641452345,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(4.448562783661119,9.5)">
+    <text y="0.71em" transform="translate(40.87745839636915,370)">2013-04-21</text>
     <text y="0.71em" transform="translate(128.6232980332829,370)">2014-01-26</text>
     <text y="0.71em" transform="translate(242.6928895612708,370)">2015-01-25</text>
     <text y="0.71em" transform="translate(356.76248108925864,370)">2016-01-24</text>

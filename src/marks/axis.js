@@ -1,4 +1,4 @@
-import {extent, format, timeFormat, union, utcFormat} from "d3";
+import {extent, format, timeFormat, utcFormat} from "d3";
 import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
@@ -552,30 +552,30 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
         data = scale.domain();
         if (isInterval(scale.interval)) {
           // If a tick interval (the ticks option) is specified on an ordinal
-          // scale with an interval, we use the tick interval to generate the
-          // ticks. However, the tick interval may be incompatible with the
-          // scale interval, and if so, the time format inferred from the
-          // subsequent ticks may not be specific enough. For example, if the
-          // scale’s interval is "4 weeks" and the tick interval is "year",
-          // ticks are on Sunday near the beginning of each year; however, the
-          // "day" format (e.g., "Jan 26") derived from the "4 weeks" scale
-          // interval does not show the year, and hence is not a good choice for
-          // yearly ticks; hence we use the default format (2014-01-26) instead.
+          // scale with an interval, use it to generate ticks.
           let compatible = true;
-          if (interval != null) {
-            const [start, stop] = extent(data);
-            data = maybeRangeInterval(interval).range(start, +stop + 1); // inclusive stop
-            compatible = data.every((d) => scale.interval.floor(d) >= d);
-            if (!compatible) data = [...union(data.map(scale.interval.ceil, scale.interval))];
+          interval = maybeRangeInterval(interval);
+          if (interval) {
+            // The tick interval may be incompatible with the scale interval;
+            // for example, if the scale’s interval is "4 weeks" and the tick
+            // interval is "year", years are not aligned with 4-week intervals.
+            // So, rather than generate new ticks using the tick interval, we
+            // filter the existing ticks to include only the first tick in each
+            // interval. Also, the time format for the tick interval may not be
+            // specific enough: for example, the "day" format (e.g., Jan 26) for
+            // the "4 weeks" interval does not show the year; hence we use the
+            // default format (2014-01-26) instead.
+            data = data.filter((d, i) => {
+              const e = interval.floor(d);
+              if (scale.interval.floor(e) < e) compatible = false;
+              return i === 0 || e > interval.floor(data[i - 1]);
+            });
           }
-          // TODO We only need to compute the tickFormat for text; we don’t need
-          // this for rules and vectors. TODO We could also consider skipping
-          // ticks when the scale doesn’t have an associated interval? That
-          // loses information, but maybe it’s better than having overlapping
-          // ticks that are unreadable?
-          if (tickFormat === undefined) {
+          // If the scale has an interval, generate a default tick format that
+          // drops ticks to avoid overlapping labels.
+          if ("text" in options && tickFormat === undefined) {
             let format = formatDefault;
-            if (isTimeInterval(scale.interval) && compatible) format = inferTimeFormat2(data, anchor);
+            if (compatible && isTimeInterval(scale.interval)) format = inferTimeFormat2(data, anchor);
             if (ticks === undefined) ticks = inferTickCount(k, scale, options);
             const n = Math.round(getSkip(data, ticks)); // TODO floor?
             const j = 0; // TODO choose j to align with a standard time interval, if possible
