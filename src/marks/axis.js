@@ -525,9 +525,7 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
     const {[k]: scale} = scales;
     if (!scale) throw new Error(`missing scale: ${k}`);
     let {ticks, tickFormat, interval} = options;
-    // TODO what if ticks is a time interval implementation?
-    // TODO allow ticks to be a function?
-    if (hasTimeTicks(scale) && typeof ticks === "string") (interval = ticks), (ticks = undefined);
+    if (hasTimeTicks(scale) && typeof ticks === "string") (interval = ticks), (ticks = undefined); // TODO allow ticks as interval implementation
     if (data == null) {
       if (isIterable(ticks)) {
         data = arrayify(ticks);
@@ -577,9 +575,11 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
             let format = formatDefault;
             if (compatible && isTimeInterval(scale.interval)) format = inferTimeFormat(data, anchor);
             if (ticks === undefined) ticks = inferTickCount(k, scale, options);
-            const n = Math.round(getSkip(data, ticks)); // TODO floor?
-            const j = 0; // TODO choose j to align with a standard time interval, if possible
-            tickFormat = n > 0 ? (d, i, D) => (i % n === j ? format(d, i, D, n) : null) : format;
+            // Compute the positive number n such that taking every nth value from the
+            // scale’s domain produces as close as possible to the desired number of ticks.
+            // For example, if the domain has 100 values and 5 ticks are desired, n = 20.
+            const n = Math.round(data.length / ticks);
+            tickFormat = n > 0 ? (d, i, D) => (i % n === 0 ? format(d, i, D, n) : null) : format;
           }
         }
       }
@@ -613,29 +613,11 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
   return m;
 }
 
-// Compute the positive number n such that taking every nth value from the
-// scale’s domain produces as close as possible to the desired number of ticks.
-// For example, if the domain has 100 values and 5 ticks are desired, n = 20.
-function getSkip(domain, ticks) {
-  return domain.length / ticks;
-}
-
-// Compute the median step s between adjacent values from the scale’s domain.
-// function getMedianStep(domain) {
-//   return median(pairs(domain, (a, b) => Math.abs(b - a) || NaN));
-// }
-
 function inferTickCount(k, scale, options) {
   const {tickSpacing = k === "x" ? 80 : 35} = options;
   const [min, max] = extent(scale.range());
   return (max - min) / tickSpacing;
 }
-
-// Returns true if the given interval subsumes (i.e., covers, is
-// capable of generating) all of the specified values.
-// function isSubsumingInterval(interval, values) {
-//   return values.every((v) => interval.floor(v) >= v);
-// }
 
 function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
   return {
