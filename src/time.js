@@ -14,7 +14,6 @@ const durationWeek = durationDay * 7;
 const durationMonth = durationDay * 30;
 const durationYear = durationDay * 365;
 
-// [format, interval, step]; year and millisecond are handled dynamically
 // See https://github.com/d3/d3-time/blob/9e8dc940f38f78d7588aad68a54a25b1f0c2d97b/src/ticks.js#L14-L33
 const formats = [
   ["millisecond", 500],
@@ -25,11 +24,8 @@ const formats = [
   ["hour", durationHour],
   ["hour", 12 * durationHour],
   ["day", durationDay],
-  ["day", 2 * durationDay],
-  ["day", durationWeek],
   ["day", 2 * durationWeek], // new!
   ["month", durationMonth],
-  ["month", 3 * durationMonth],
   ["month", 6 * durationMonth], // new! https://github.com/d3/d3-time/issues/46
   ["year", durationYear]
 ];
