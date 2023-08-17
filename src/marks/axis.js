@@ -3,7 +3,7 @@ import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {arrayify, constant, identity, keyword, number, range, valueof} from "../options.js";
-import {isIterable, isNoneish, isTemporal, isTimeInterval, orderof} from "../options.js";
+import {isIterable, isNoneish, isTemporal, isInterval, isTimeInterval, orderof} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
 import {isOrdinalScale, isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
@@ -567,6 +567,10 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
             const template = (f1, f2) => `${f1}\n${f2}`; // TODO based on anchor
             tickFormat = formatTimeInterval(i, format, template);
           }
+        } else if (isInterval(scale.interval) && tickFormat === undefined) {
+          if (ticks === undefined) ticks = inferTickCount(k, scale, options);
+          const n = Math.floor(getSkip(data, ticks));
+          tickFormat = (d, i) => (i % n === 0 ? formatDefault(d) : null);
         }
       }
       if (k === "y" || k === "x") {

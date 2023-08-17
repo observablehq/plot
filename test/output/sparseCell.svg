@@ -156,26 +156,12 @@
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(13,-8.5)">
     <text transform="translate(45,30)">1</text>
-    <text transform="translate(71,30)">2</text>
-    <text transform="translate(97,30)">3</text>
     <text transform="translate(123,30)">4</text>
-    <text transform="translate(149,30)">5</text>
-    <text transform="translate(175,30)">6</text>
     <text transform="translate(201,30)">7</text>
-    <text transform="translate(227,30)">8</text>
-    <text transform="translate(253,30)">9</text>
     <text transform="translate(279,30)">10</text>
-    <text transform="translate(305,30)">11</text>
-    <text transform="translate(331,30)">12</text>
     <text transform="translate(357,30)">13</text>
-    <text transform="translate(383,30)">14</text>
-    <text transform="translate(409,30)">15</text>
     <text transform="translate(435,30)">16</text>
-    <text transform="translate(461,30)">17</text>
-    <text transform="translate(487,30)">18</text>
     <text transform="translate(513,30)">19</text>
-    <text transform="translate(539,30)">20</text>
-    <text transform="translate(565,30)">21</text>
     <text transform="translate(591,30)">22</text>
   </g>
   <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
