@@ -41,14 +41,23 @@
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(15,0)">
     <path transform="translate(44,370)" d="M0,0L0,6"></path>
+    <path transform="translate(76,370)" d="M0,0L0,6"></path>
     <path transform="translate(108,370)" d="M0,0L0,6"></path>
+    <path transform="translate(140,370)" d="M0,0L0,6"></path>
     <path transform="translate(172,370)" d="M0,0L0,6"></path>
+    <path transform="translate(204,370)" d="M0,0L0,6"></path>
     <path transform="translate(236,370)" d="M0,0L0,6"></path>
+    <path transform="translate(268,370)" d="M0,0L0,6"></path>
     <path transform="translate(300,370)" d="M0,0L0,6"></path>
+    <path transform="translate(332,370)" d="M0,0L0,6"></path>
     <path transform="translate(364,370)" d="M0,0L0,6"></path>
+    <path transform="translate(396,370)" d="M0,0L0,6"></path>
     <path transform="translate(428,370)" d="M0,0L0,6"></path>
+    <path transform="translate(460,370)" d="M0,0L0,6"></path>
     <path transform="translate(492,370)" d="M0,0L0,6"></path>
+    <path transform="translate(524,370)" d="M0,0L0,6"></path>
     <path transform="translate(556,370)" d="M0,0L0,6"></path>
+    <path transform="translate(588,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(15,9.5)">
     <text y="0.71em" transform="translate(44,370)">2002</text>

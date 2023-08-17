@@ -1,4 +1,4 @@
-import {extent, format, median, pairs, timeFormat, utcFormat} from "d3";
+import {extent, format, timeFormat, union, utcFormat} from "d3";
 import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
@@ -7,7 +7,7 @@ import {isIterable, isNoneish, isTemporal, isInterval, isTimeInterval, orderof} 
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
 import {isOrdinalScale, isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
-import {formatTimeInterval, formatTimeTicks, inferTimeFormat, isTimeYear, isUtcYear} from "../time.js";
+import {formatTimeTicks, inferTimeFormat2, isTimeYear, isUtcYear} from "../time.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
@@ -550,27 +550,37 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
         }
       } else {
         data = scale.domain();
-        if (isTimeInterval(scale.interval)) {
-          const type = "utc"; // TODO infer type of ordinal time
-          const [start, stop] = extent(data);
-          if (interval !== undefined) data = maybeRangeInterval(interval, type).range(start, +stop + 1); // inclusive stop
-          if (ticks === undefined) ticks = inferTickCount(k, scale, options);
-          const n = Math.max(1, getSkip(data, ticks));
-          const s = getMedianStep(data);
-          const f = inferTimeFormat(s * n);
-          const [i, I] = f;
-          // const [j, J] = inferTimeFormat(s);
-          data = maybeRangeInterval(I, type).range(start, +stop + 1); // inclusive stop
-          // TODO check if isSubsumingInterval(interval, data)
-          if (tickFormat === undefined) {
-            const format = utcFormat; // TODO based on type
-            const template = (f1, f2) => `${f1}\n${f2}`; // TODO based on anchor
-            tickFormat = formatTimeInterval(i, format, template);
+        if (isInterval(scale.interval)) {
+          // If a ticks interval (the ticks option) is specified on an ordinal
+          // scale with an interval, we use the ticks interval to generate the
+          // ticks. However, the ticks interval may be incompatible with the scale
+          // interval, and if so, the time format inferred from the subsequent
+          // ticks may not be specific enough. For example, if the scale’s
+          // interval is "4 weeks" and the tick interval is "year", ticks are on
+          // Sunday near the beginning of each year; however, the "day" format
+          // (e.g., "Jan 26") derived from the "4 weeks" scale interval does not
+          // show the year, and hence is not a good choice for yearly ticks; hence
+          // we use the default format (2014-01-26) instead.
+          let compatible = true;
+          if (interval !== undefined) {
+            const [start, stop] = extent(data);
+            data = maybeRangeInterval(interval).range(start, +stop + 1); // inclusive stop
+            compatible = data.every((d) => scale.interval.floor(d) >= d);
+            if (!compatible) data = [...union(data.map(scale.interval.ceil, scale.interval))];
           }
-        } else if (isInterval(scale.interval) && tickFormat === undefined) {
-          if (ticks === undefined) ticks = inferTickCount(k, scale, options);
-          const n = Math.floor(getSkip(data, ticks));
-          tickFormat = (d, i) => (i % n === 0 ? formatDefault(d) : null);
+          // TODO We only need to compute the tickFormat for text; we don’t need
+          // this for rules and vectors. TODO We could also consider skipping
+          // ticks when the scale doesn’t have an associated interval? That
+          // loses information, but maybe it’s better than having overlapping
+          // ticks that are unreadable?
+          if (tickFormat === undefined) {
+            let format = formatDefault;
+            if (isTimeInterval(scale.interval) && compatible) format = inferTimeFormat2(data, anchor);
+            if (ticks === undefined) ticks = inferTickCount(k, scale, options);
+            const n = Math.round(getSkip(data, ticks)); // TODO floor?
+            const j = 0; // TODO choose j to align with a standard time interval, if possible
+            tickFormat = n > 0 ? (d, i, D) => (i % n === j ? format(d, i, D, n) : null) : format;
+          }
         }
       }
       if (k === "y" || k === "x") {
@@ -611,9 +621,9 @@ function getSkip(domain, ticks) {
 }
 
 // Compute the median step s between adjacent values from the scale’s domain.
-function getMedianStep(domain) {
-  return median(pairs(domain, (a, b) => Math.abs(b - a) || NaN));
-}
+// function getMedianStep(domain) {
+//   return median(pairs(domain, (a, b) => Math.abs(b - a) || NaN));
+// }
 
 function inferTickCount(k, scale, options) {
   const {tickSpacing = k === "x" ? 80 : 35} = options;
