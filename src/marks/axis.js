@@ -579,12 +579,13 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
             });
           }
           // Now generate a default tick format that drops ticks to avoid
-          // overlapping labels. TODO We should have a flag that tests whether a
-          // given interval is UTC or local, or an option that lets the user
-          // indicate which format is desired…
+          // overlapping labels.
           if ("text" in options && tickFormat === undefined) {
             let format = formatDefault;
-            if (compatible && isTimeInterval(scale.interval)) format = inferTimeFormat(data, anchor); // TODO consider scale.interval
+            // If the tick and scale intervals are compatible, we can use the
+            // default multi-line time format. TODO We need a better way to
+            // infer whether the ordinal scale is UTC or local time.
+            if (compatible && isTimeInterval(scale.interval)) format = inferTimeFormat(data, anchor);
             // Compute the positive number n such that taking every nth value
             // from the scale’s domain produces as close as possible to the
             // desired number of ticks. For example, if the domain has 100
