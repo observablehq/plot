@@ -7,7 +7,7 @@ import {isIterable, isNoneish, isTemporal, isInterval, isTimeInterval, orderof} 
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
 import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
-import {formatTimeTicks, inferTimeFormat2, isTimeYear, isUtcYear} from "../time.js";
+import {formatTimeTicks, inferTimeFormat, isTimeYear, isUtcYear} from "../time.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
@@ -575,7 +575,7 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
           // drops ticks to avoid overlapping labels.
           if ("text" in options && tickFormat === undefined) {
             let format = formatDefault;
-            if (compatible && isTimeInterval(scale.interval)) format = inferTimeFormat2(data, anchor);
+            if (compatible && isTimeInterval(scale.interval)) format = inferTimeFormat(data, anchor);
             if (ticks === undefined) ticks = inferTickCount(k, scale, options);
             const n = Math.round(getSkip(data, ticks)); // TODO floor?
             const j = 0; // TODO choose j to align with a standard time interval, if possible

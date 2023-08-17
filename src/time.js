@@ -176,7 +176,7 @@ function getTimeTemplate(anchor) {
 // Given an array of dates, returns the largest compatible standard time
 // interval. If no standard interval is compatible (other than milliseconds,
 // which is universally compatible), returns undefined.
-export function inferTimeFormat2(dates, anchor) {
+export function inferTimeFormat(dates, anchor) {
   for (const [name, interval, type] of descendingIntervals) {
     if (dates.every((d) => interval.floor(d) >= d)) {
       return formatTimeInterval(name, type, anchor);
