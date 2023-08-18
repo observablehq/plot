@@ -41,23 +41,27 @@
     <text y="0.71em" transform="translate(40,20)">↑ Close</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(4.771685761047463,0)">
-    <path transform="translate(40.94926350245504,370)" d="M0,0L0,6"></path>
+    <path transform="translate(59.93453355155488,370)" d="M0,0L0,6"></path>
     <path transform="translate(116.89034369885438,370)" d="M0,0L0,6"></path>
-    <path transform="translate(192.83142389525372,370)" d="M0,0L0,6"></path>
-    <path transform="translate(268.77250409165305,370)" d="M0,0L0,6"></path>
+    <path transform="translate(173.8461538461539,370)" d="M0,0L0,6"></path>
+    <path transform="translate(230.8019639934534,370)" d="M0,0L0,6"></path>
+    <path transform="translate(287.7577741407529,370)" d="M0,0L0,6"></path>
     <path transform="translate(344.7135842880524,370)" d="M0,0L0,6"></path>
-    <path transform="translate(420.65466448445176,370)" d="M0,0L0,6"></path>
-    <path transform="translate(496.59574468085106,370)" d="M0,0L0,6"></path>
+    <path transform="translate(401.66939443535193,370)" d="M0,0L0,6"></path>
+    <path transform="translate(458.6252045826514,370)" d="M0,0L0,6"></path>
+    <path transform="translate(515.581014729951,370)" d="M0,0L0,6"></path>
     <path transform="translate(572.5368248772504,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(4.771685761047463,9.5)">
-    <text transform="translate(40.94926350245504,370)"><tspan x="0" y="0.71em">May</tspan><tspan x="0" dy="1em">2013</tspan></text>
+    <text transform="translate(59.93453355155488,370)"><tspan x="0" y="0.71em">Jul</tspan><tspan x="0" dy="1em">2013</tspan></text>
     <text transform="translate(116.89034369885438,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2014</tspan></text>
-    <text y="0.71em" transform="translate(192.83142389525372,370)">Sep</text>
-    <text transform="translate(268.77250409165305,370)"><tspan x="0" y="0.71em">May</tspan><tspan x="0" dy="1em">2015</tspan></text>
+    <text y="0.71em" transform="translate(173.8461538461539,370)">Jul</text>
+    <text transform="translate(230.8019639934534,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2015</tspan></text>
+    <text y="0.71em" transform="translate(287.7577741407529,370)">Jul</text>
     <text transform="translate(344.7135842880524,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2016</tspan></text>
-    <text y="0.71em" transform="translate(420.65466448445176,370)">Sep</text>
-    <text transform="translate(496.59574468085106,370)"><tspan x="0" y="0.71em">May</tspan><tspan x="0" dy="1em">2017</tspan></text>
+    <text y="0.71em" transform="translate(401.66939443535193,370)">Jul</text>
+    <text transform="translate(458.6252045826514,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2017</tspan></text>
+    <text y="0.71em" transform="translate(515.581014729951,370)">Jul</text>
     <text transform="translate(572.5368248772504,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2018</tspan></text>
   </g>
   <g aria-label="bar">

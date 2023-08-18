@@ -23,17 +23,57 @@ const formats = [
   ["hour", durationHour],
   ["hour", 12 * durationHour],
   ["day", durationDay],
-  ["day", 2 * durationWeek], // new!
+  ["day", 2 * durationWeek], // https://github.com/d3/d3-time/issues/46
   ["month", durationMonth],
-  ["month", 6 * durationMonth], // new! https://github.com/d3/d3-time/issues/46
+  ["month", 6 * durationMonth], // https://github.com/d3/d3-time/issues/46
   ["year", durationYear]
 ];
+
+// See https://github.com/d3/d3-time/blob/9e8dc940f38f78d7588aad68a54a25b1f0c2d97b/src/ticks.js#L14-L33
+const tickIntervals = [
+  ["second", durationSecond],
+  ["5 seconds", 5 * durationSecond],
+  ["15 seconds", 15 * durationSecond],
+  ["30 seconds", 30 * durationSecond],
+  ["minute", durationMinute],
+  ["5 minutes", 5 * durationMinute],
+  ["15 minutes", 15 * durationMinute],
+  ["30 minutes", 30 * durationMinute],
+  ["hour", durationHour],
+  ["3 hours", 3 * durationHour],
+  ["6 hours", 6 * durationHour],
+  ["12 hours", 12 * durationHour],
+  ["day", durationDay],
+  ["2 days", 2 * durationDay],
+  ["week", durationWeek],
+  ["2 weeks", 2 * durationWeek], // https://github.com/d3/d3-time/issues/46
+  ["month", durationMonth],
+  ["3 months", 3 * durationMonth],
+  ["6 months", 6 * durationMonth] // https://github.com/d3/d3-time/issues/46
+];
+
+const durations = new Map([
+  ["second", durationSecond],
+  ["minute", durationMinute],
+  ["hour", durationHour],
+  ["day", durationDay],
+  ["monday", durationWeek],
+  ["tuesday", durationWeek],
+  ["wednesday", durationWeek],
+  ["thursday", durationWeek],
+  ["friday", durationWeek],
+  ["saturday", durationWeek],
+  ["sunday", durationWeek],
+  ["week", durationWeek],
+  ["month", durationMonth],
+  ["year", durationYear]
+]);
 
 const timeIntervals = new Map([
   ["second", timeSecond],
   ["minute", timeMinute],
   ["hour", timeHour],
-  ["day", timeDay], // TODO local time equivalent of unixDay?
+  ["day", timeDay], // https://github.com/d3/d3-time/issues/62
   ["monday", timeMonday],
   ["tuesday", timeTuesday],
   ["wednesday", timeWednesday],
@@ -63,6 +103,26 @@ const utcIntervals = new Map([
   ["year", utcYear]
 ]);
 
+// These hidden fields describe standard intervals so that we can, for example,
+// generalize a scale’s time interval to a larger ticks time interval to reduce
+// the number of displayed ticks. TODO We could instead allow the interval
+// implementation to expose a “generalize” method that returns a larger, aligned
+// interval; that would allow us to move this logic to D3, and allow
+// generalization even when a custom interval is provided.
+const intervalDuration = Symbol("intervalDuration");
+const intervalType = Symbol("intervalType");
+
+// We greedily mutate D3’s standard intervals on load so that the hidden fields
+// are available even if specified as e.g. d3.utcMonth instead of "month".
+for (const [name, interval] of timeIntervals) {
+  interval[intervalDuration] = durations.get(name);
+  interval[intervalType] = "time";
+}
+for (const [name, interval] of utcIntervals) {
+  interval[intervalDuration] = durations.get(name);
+  interval[intervalType] = "utc";
+}
+
 // An interleaved array of UTC and local time intervals in order from largest to
 // smallest, used to determine the most specific standard time format for a
 // given array of dates.
@@ -80,7 +140,7 @@ const descendingIntervals = [
   ["second", utcSecond, "utc", 30 * durationMinute]
 ];
 
-function parseInterval(input, intervals) {
+function parseInterval(input, intervals, type) {
   let name = `${input}`.toLowerCase();
   if (name.endsWith("s")) name = name.slice(0, -1); // drop plural
   let period = 1;
@@ -101,17 +161,21 @@ function parseInterval(input, intervals) {
   }
   let interval = intervals.get(name);
   if (!interval) throw new Error(`unknown interval: ${input}`);
-  if (!(period > 1)) return interval;
-  if (!interval.every) throw new Error(`non-periodic interval: ${name}`);
-  return interval.every(period);
+  if (period > 1) {
+    if (!interval.every) throw new Error(`non-periodic interval: ${name}`);
+    interval = interval.every(period);
+    interval[intervalDuration] = durations.get(name) * period;
+    interval[intervalType] = type;
+  }
+  return interval;
 }
 
 export function maybeTimeInterval(interval) {
-  return parseInterval(interval, timeIntervals);
+  return parseInterval(interval, timeIntervals, "time");
 }
 
 export function maybeUtcInterval(interval) {
-  return parseInterval(interval, utcIntervals);
+  return parseInterval(interval, utcIntervals, "utc");
 }
 
 export function isUtcYear(i) {
@@ -140,6 +204,19 @@ export function formatTimeTicks(scale, data, ticks, anchor) {
   }
   const [name] = formats[bisector(([, step]) => Math.log(step)).center(formats, Math.log(step))];
   return formatTimeInterval(name, scale.type, anchor);
+}
+
+// If the given interval is a standard time interval, we may be able to promote
+// it a larger aligned time interval, rather than showing every nth tick. TODO
+// We could handle very small (<second) and very large (>year) intervals better
+// and in a way that is consistent with temporal axes.
+export function generalizeTimeInterval(interval, n) {
+  if (!(n > 1)) return; // no need to generalize
+  const duration = interval[intervalDuration];
+  if (!tickIntervals.some(([, d]) => d === duration)) return; // nonstandard or unknown interval
+  if (duration % durationDay === 0 && durationDay < duration && duration < durationMonth) return; // not generalizable
+  const [i] = tickIntervals[bisector(([, step]) => Math.log(step)).center(tickIntervals, Math.log(duration * n))];
+  return (interval[intervalType] === "time" ? maybeTimeInterval : maybeUtcInterval)(i);
 }
 
 function formatTimeInterval(name, type, anchor) {

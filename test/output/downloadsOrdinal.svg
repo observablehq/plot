@@ -45,24 +45,20 @@
     <text y="0.71em" transform="translate(40,20)">↑ downloads</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(6,0)">
-    <path transform="translate(55,370)" d="M0,0L0,6"></path>
-    <path transform="translate(127,370)" d="M0,0L0,6"></path>
+    <path transform="translate(115,370)" d="M0,0L0,6"></path>
     <path transform="translate(199,370)" d="M0,0L0,6"></path>
-    <path transform="translate(271,370)" d="M0,0L0,6"></path>
-    <path transform="translate(343,370)" d="M0,0L0,6"></path>
-    <path transform="translate(415,370)" d="M0,0L0,6"></path>
-    <path transform="translate(487,370)" d="M0,0L0,6"></path>
-    <path transform="translate(559,370)" d="M0,0L0,6"></path>
+    <path transform="translate(283,370)" d="M0,0L0,6"></path>
+    <path transform="translate(367,370)" d="M0,0L0,6"></path>
+    <path transform="translate(451,370)" d="M0,0L0,6"></path>
+    <path transform="translate(535,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(6,9.5)">
-    <text transform="translate(55,370)"><tspan x="0" y="0.71em">1</tspan><tspan x="0" dy="1em">Jan</tspan></text>
-    <text y="0.71em" transform="translate(127,370)">7</text>
+    <text transform="translate(115,370)"><tspan x="0" y="0.71em">6</tspan><tspan x="0" dy="1em">Jan</tspan></text>
     <text y="0.71em" transform="translate(199,370)">13</text>
-    <text y="0.71em" transform="translate(271,370)">19</text>
-    <text y="0.71em" transform="translate(343,370)">25</text>
-    <text y="0.71em" transform="translate(415,370)">31</text>
-    <text transform="translate(487,370)"><tspan x="0" y="0.71em">6</tspan><tspan x="0" dy="1em">Feb</tspan></text>
-    <text y="0.71em" transform="translate(559,370)">12</text>
+    <text y="0.71em" transform="translate(283,370)">20</text>
+    <text y="0.71em" transform="translate(367,370)">27</text>
+    <text transform="translate(451,370)"><tspan x="0" y="0.71em">3</tspan><tspan x="0" dy="1em">Feb</tspan></text>
+    <text y="0.71em" transform="translate(535,370)">10</text>
   </g>
   <g aria-label="bar" fill="#ccc">
     <rect x="55" width="11" y="290.45454545454544" height="79.54545454545456"></rect>

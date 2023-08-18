@@ -7,7 +7,7 @@ import {isIterable, isNoneish, isTemporal, isInterval, isTimeInterval, orderof} 
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
 import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
-import {formatTimeTicks, inferTimeFormat, isTimeYear, isUtcYear} from "../time.js";
+import {formatTimeTicks, generalizeTimeInterval, inferTimeFormat, isTimeYear, isUtcYear} from "../time.js";
 import {initializer} from "../transforms/basic.js";
 import {warn} from "../warnings.js";
 import {ruleX, ruleY} from "./rule.js";
@@ -572,12 +572,21 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
               if (!data.length) warn(`Warning: the ${k}-axis ticks interval appears to not align with the scale interval, resulting in no ticks. Try a different interval?`); // prettier-ignore
             }
           } else {
-            // Compute the positive number n such that taking every nth value
-            // from the scale’s domain produces as close as possible to the
-            // desired number of ticks. For example, if the domain has 100
-            // values and 5 ticks are desired, n = 20.
-            const n = Math.round(data.length / ticks);
-            if (n > 0) data = data.filter((d, i) => i % n === 0);
+            // If there are too many ticks, we need to prune some. If the scale
+            // interval is a standard time interval such as "day", we may be
+            // able to generalize it to a larger aligned time interval.
+            const interval = generalizeTimeInterval(scale.interval, data.length / ticks);
+            if (interval) {
+              const [start, stop] = extent(domain);
+              data = interval.range(start, +stop + 1); // inclusive stop
+            } else {
+              // Otherwise, compute the positive number n such that taking every
+              // nth value from the scale’s domain produces as close as possible
+              // to the desired number of ticks. For example, if the domain has
+              // 100 values and 5 ticks are desired, n = 20.
+              const n = Math.round(data.length / ticks);
+              if (n > 1) data = data.filter((d, i) => i % n === 0);
+            }
           }
           // If possible, use the multi-line time format (e.g., Jan 26);
           // otherwise use the default ISO format (2014-01-26). TODO We need a
