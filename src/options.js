@@ -7,6 +7,10 @@ import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
+// If a reindex is attached to the data, channel values expressed as arrays will
+// be reindexed when the channels are instantiated. See exclusiveFacets.
+export const reindex = Symbol("reindex");
+
 export function valueof(data, value, type) {
   const valueType = typeof value;
   return valueType === "string"
@@ -17,7 +21,7 @@ export function valueof(data, value, type) {
     ? map(data, constant(value), type)
     : typeof value?.transform === "function"
     ? maybeTypedArrayify(value.transform(data), type)
-    : maybeTake(maybeTypedArrayify(value, type), data?.reindex);
+    : maybeTake(maybeTypedArrayify(value, type), data?.[reindex]);
 }
 
 function maybeTake(values, index) {
