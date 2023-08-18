@@ -99,10 +99,18 @@ export async function warnTimeAxisOrdinalIncompatible() {
   });
 }
 
-export async function timeAxisOrdinalSparse() {
+export async function timeAxisOrdinalSparseTicks() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     x: {interval: "4 weeks", ticks: "52 weeks"},
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
+}
+
+export async function timeAxisOrdinalSparseInterval() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "52 weeks"},
     marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
   });
 }

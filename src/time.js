@@ -1,9 +1,8 @@
-import {bisector, extent, median, pairs, timeFormat, utcFormat} from "d3";
+import {bisector, extent, max, median, pairs, timeFormat, utcFormat} from "d3";
 import {utcSecond, utcMinute, utcHour, unixDay, utcWeek, utcMonth, utcYear} from "d3";
 import {utcMonday, utcTuesday, utcWednesday, utcThursday, utcFriday, utcSaturday, utcSunday} from "d3";
 import {timeSecond, timeMinute, timeHour, timeDay, timeWeek, timeMonth, timeYear} from "d3";
 import {timeMonday, timeTuesday, timeWednesday, timeThursday, timeFriday, timeSaturday, timeSunday} from "d3";
-import {formatDefault} from "./format.js";
 import {orderof} from "./options.js";
 
 const durationSecond = 1000;
@@ -72,13 +71,13 @@ const descendingIntervals = [
   ["year", timeYear, "time"],
   ["month", utcMonth, "utc"],
   ["month", timeMonth, "time"],
-  ["day", unixDay, "utc"],
-  ["day", timeDay, "time"],
+  ["day", unixDay, "utc", 6 * durationMonth],
+  ["day", timeDay, "time", 6 * durationMonth],
   // Below day, local time typically has an hourly offset from UTC and hence the
   // two are aligned and indistinguishable; therefore, we only consider UTC.
-  ["hour", utcHour, "utc"],
-  ["minute", utcMinute, "utc"],
-  ["second", utcSecond, "utc"]
+  ["hour", utcHour, "utc", 3 * durationDay],
+  ["minute", utcMinute, "utc", 6 * durationHour],
+  ["second", utcSecond, "utc", 30 * durationMinute]
 ];
 
 function parseInterval(input, intervals) {
@@ -177,12 +176,13 @@ function getTimeTemplate(anchor) {
 // interval. If no standard interval is compatible (other than milliseconds,
 // which is universally compatible), returns undefined.
 export function inferTimeFormat(dates, anchor) {
-  for (const [name, interval, type] of descendingIntervals) {
+  const step = max(pairs(dates, (a, b) => Math.abs(b - a)));
+  for (const [name, interval, type, maxStep] of descendingIntervals) {
     if (dates.every((d) => interval.floor(d) >= d)) {
+      if (step > maxStep) break; // e.g., 52 weeks
       return formatTimeInterval(name, type, anchor);
     }
   }
-  return formatDefault;
 }
 
 function formatConditional(format1, format2, template) {
