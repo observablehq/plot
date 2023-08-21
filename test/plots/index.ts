@@ -318,6 +318,7 @@ export * from "./us-congress-age-symbol-explicit.js";
 export * from "./us-congress-age.js";
 export * from "./us-county-choropleth.js";
 export * from "./us-county-spikes.js";
+export * from "./us-county-voronoi.js";
 export * from "./us-population-state-age-dots.js";
 export * from "./us-population-state-age.js";
 export * from "./us-president-favorability-dots.js";

@@ -279,9 +279,13 @@ function voronoiof(delaunay, dimensions) {
   return delaunay.voronoi([marginLeft, marginTop, width - marginRight, height - marginBottom]);
 }
 
-function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
+function delaunayMark(DelaunayMark, data, {x, y, transform, initializer, ...options} = {}) {
   [x, y] = maybeTuple(x, y);
-  return new DelaunayMark(data, {...options, x, y});
+  // Apply the exclusiveFacets transform before any other transform or initializer.
+  options = basic(options, exclusiveFacets);
+  if (transform != null) options = basic(options, transform);
+  options = {...basic(options, exclusiveFacets), initializer, x, y};
+  return new DelaunayMark(data, options);
 }
 
 export function delaunayLink(data, options) {
@@ -297,7 +301,6 @@ export function hull(data, options) {
 }
 
 export function voronoi(data, options) {
-  options = basic(options, (data, facets) => exclusiveFacets(data, facets));
   return delaunayMark(Voronoi, data, options);
 }
 
