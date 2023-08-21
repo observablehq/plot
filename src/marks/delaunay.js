@@ -8,7 +8,8 @@ import {constant, maybeTuple, maybeZ} from "../options.js";
 import {applyPosition} from "../projection.js";
 import {applyFrameAnchor, applyTransform} from "../style.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles} from "../style.js";
-import {initializer} from "../transforms/basic.js";
+import {basic, initializer} from "../transforms/basic.js";
+import {exclusiveFacets} from "../transforms/exclusiveFacets.js";
 import {maybeGroup} from "../transforms/group.js";
 
 const delaunayLinkDefaults = {
@@ -296,6 +297,7 @@ export function hull(data, options) {
 }
 
 export function voronoi(data, options) {
+  options = basic(options, (data, facets) => exclusiveFacets(data, facets));
   return delaunayMark(Voronoi, data, options);
 }
 
