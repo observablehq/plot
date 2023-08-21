@@ -42,6 +42,12 @@ Please run Prettier before submitting any pull request. Check “format on save�
 yarn prettier --write .
 ```
 
+A test coverage report can be generated with [c8](https://github.com/bcoe/c8), in text and lcov formats, to help you identify which lines of code are not (yet!) covered by tests. Just run:
+
+```bash
+yarn test:coverage
+```
+
 ### Unit tests
 
 Unit tests live in `test` and have the `-test.js` file extension; see [`test/marks/area-test.js`](./test/marks/area-test.js) for example. Generally speaking, unit tests make specific, low-level assertions about the behavior of Plot’s API, including internals and helper methods. If you add a new feature, or change the behavior of an existing feature, please update the unit tests so that we can more easily maintain your contribution into the future. For example, here’s a unit test that tests how Plot formats months:
