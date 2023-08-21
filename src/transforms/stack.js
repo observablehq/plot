@@ -4,6 +4,7 @@ import {withTip} from "../mark.js";
 import {maybeApplyInterval, maybeColumn, maybeZ, maybeZero} from "../options.js";
 import {column, field, mid, one, range, valueof} from "../options.js";
 import {basic} from "./basic.js";
+import {exclusiveFacets} from "./exclusiveFacets.js";
 
 export function stackX(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
@@ -85,6 +86,7 @@ function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
   order = maybeOrder(order, offset, ky);
   return [
     basic(options, (data, facets, plotOptions) => {
+      ({data, facets} = exclusiveFacets(data, facets));
       const X = x == null ? undefined : setX(maybeApplyInterval(valueof(data, x), plotOptions?.[kx]));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);

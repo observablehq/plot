@@ -7,6 +7,10 @@ import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
+// If a reindex is attached to the data, channel values expressed as arrays will
+// be reindexed when the channels are instantiated. See exclusiveFacets.
+export const reindex = Symbol("reindex");
+
 export function valueof(data, value, type) {
   const valueType = typeof value;
   return valueType === "string"
@@ -17,7 +21,11 @@ export function valueof(data, value, type) {
     ? map(data, constant(value), type)
     : typeof value?.transform === "function"
     ? maybeTypedArrayify(value.transform(data), type)
-    : maybeTypedArrayify(value, type);
+    : maybeTake(maybeTypedArrayify(value, type), data?.[reindex]);
+}
+
+function maybeTake(values, index) {
+  return index ? take(values, index) : values;
 }
 
 function maybeTypedMap(data, f, type) {
@@ -170,6 +178,7 @@ export function isScaleOptions(option) {
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a channel value
 // definition expressed as a channel transform (e.g., {transform: …}).
+// TODO Check typeof option[Symbol.iterator] !== "function"?
 export function isOptions(option) {
   return isObject(option) && typeof option.transform !== "function";
 }
@@ -223,7 +232,7 @@ export function where(data, test) {
 
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
-  return map(index, (i) => values[i]);
+  return map(index, (i) => values[i], values.constructor);
 }
 
 // If f does not take exactly one argument, wraps it in a function that uses take.
