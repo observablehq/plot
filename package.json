@@ -28,6 +28,7 @@
   ],
   "scripts": {
     "test": "yarn test:mocha && yarn test:tsc && yarn test:lint && yarn test:prettier",
+    "test:coverage": "npx c8 yarn test:mocha",
     "test:mocha": "mkdir -p test/output && mocha 'test/**/*-test.*' 'test/plot.js'",
     "test:lint": "eslint src test",
     "test:prettier": "prettier --check src test",
@@ -73,6 +74,11 @@
     "typescript": "^5.0.2",
     "vite": "4.4.7",
     "vitepress": "1.0.0-beta.7"
+  },
+  "c8": {
+    "all": true,
+    "include": ["src/**/*.js"],
+    "reporter": ["text", "lcov"]
   },
   "dependencies": {
     "d3": "^7.8.0",

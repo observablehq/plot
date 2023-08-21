@@ -1,4 +1,5 @@
 .DS_Store
+coverage/
 dist/
 docs/.vitepress/cache
 docs/.vitepress/dist
