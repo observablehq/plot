@@ -51,7 +51,7 @@ Plot.plot({
 
 The brush transform is similar to the [pointer](./pointer.md) transform: it interactively filters the mark’s index to show a subset of the data, and re-renders the mark as the selection changes. Since the mark is lazily rendered during interaction, it is fast: only the visible elements are rendered as needed. And, like the filter and select transforms, unfiltered channel values are incorporated into default scale domains.
 
-The brush transform supports both one- and two-dimensional brushing modes. The two-dimensional mode, [brush](#brush-options-1), is used above and is suitable for scatterplots and the general case: it allows the user to define a rectangular region by clicking on a corner (_e.g._ the top-left corner) and dragging the pointer to the bottom-right corner. The one-dimensional modes, [brushX](#brushx-options) and [brushY](#brushy-options), in contrast only consider one dimension; this is desirable when a chart has a “dominant” dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
+The brush transform supports both one- and two-dimensional brushing modes. The two-dimensional mode, [brush](#brush), is used above and is suitable for scatterplots and the general case: it allows the user to define a rectangular region by clicking on a corner (_e.g._ the top-left corner) and dragging the pointer to the bottom-right corner. The one-dimensional modes, [brushX](#brushX) and [brushY](#brushY), in contrast only consider one dimension; this is desirable when a chart has a “dominant” dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
 
 The brush transform emits an [*input* event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) whenever the selection changes, and sets the value of the plot element to the selected data. This allows you to use a plot as an [Observable view](https://observablehq.com/@observablehq/views) (viewof), or to register an *input* event listener to react to brushing.
 
@@ -82,7 +82,7 @@ The selection extent is an object with properties *x*: [x1, x2] for brushX, *y*:
 
 For details on the user interface (including touch events, pointer events and modifier keys), see [d3-brush](https://github.com/d3/d3-brush).
 
-## brush(*options*)
+## brush(*options*) {#brush}
 
 ```js
 Plot.dot(penguins, Plot.brush({x: "culmen_length_mm", y: "culmen_depth_mm"}))
@@ -90,18 +90,18 @@ Plot.dot(penguins, Plot.brush({x: "culmen_length_mm", y: "culmen_depth_mm"}))
 
 Applies the brush render transform to the specified *options* to filter the mark index such that the points whose sensitive surface intersect with the brushed region the point closest to the pointer is rendered; the mark will re-render interactively in response to brush events.
 
-## brushX(*options*)
+## brushX(*options*) {#brushX}
 
 ```js
 Plot.tip(aapl, Plot.pointerX({x: "Date", y: "Close"}))
 ```
 
-Like [brush](#brush-options-1), except the determination of the intersection exclusively considers the *x* (horizontal↔︎) position; this should be used for plots where *x* is the dominant dimension, such as the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
+Like [brush](#brush), except the determination of the intersection exclusively considers the *x* (horizontal↔︎) position; this should be used for plots where *x* is the dominant dimension, such as the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart.
 
-## brushY(*options*)
+## brushY(*options*) {#brushY}
 
 ```js
 Plot.tip(alphabet, Plot.pointerY({x: "frequency", y: "letter"}))
 ```
 
-Like [brush](#brush-options-1), except the determination of the intersection exclusively considers the *y* (vertical↕) position; this should be used for plots where *y* is the dominant dimension.
+Like [brush](#brush), except the determination of the intersection exclusively considers the *y* (vertical↕) position; this should be used for plots where *y* is the dominant dimension.

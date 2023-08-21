@@ -64,6 +64,8 @@ function getHref(name: string, path: string): string {
     }
     case "marks/crosshair":
       return "interactions/crosshair";
+    case "marks/brush":
+      return "interactions/brush";
     case "transforms/basic": {
       switch (name) {
         case "filter":
