@@ -1,4 +1,4 @@
-import {select} from "d3";
+import {select, format as numberFormat, utcFormat} from "d3";
 import {getSource} from "../channel.js";
 import {create} from "../context.js";
 import {defined} from "../defined.js";
@@ -7,7 +7,7 @@ import {anchorX, anchorY} from "../interactions/pointer.js";
 import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
 import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
-import {identity, isIterable, isTextual} from "../options.js";
+import {identity, isIterable, isTemporal, isTextual} from "../options.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
 import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
@@ -18,8 +18,8 @@ const defaults = {
   stroke: "currentColor"
 };
 
-// These channels are not displayed in the tip; TODO allow customization.
-const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel"]);
+// These channels are not displayed in the default tip; see formatChannels.
+const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel", "scales"]);
 
 export class Tip extends Mark {
   constructor(data, options = {}) {
@@ -42,6 +42,7 @@ export class Tip extends Mark {
       lineHeight = 1,
       lineWidth = 20,
       frameAnchor,
+      format,
       textAnchor = "start",
       textOverflow,
       textPadding = 8,
@@ -82,6 +83,7 @@ export class Tip extends Mark {
     for (const key in defaults) if (key in this.channels) this[key] = defaults[key]; // apply default even if channel
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
+    this.format = {...format}; // defensive copy before mutate; also promote nullish to empty
   }
   render(index, scales, values, dimensions, context) {
     const mark = this;
@@ -114,40 +116,32 @@ export class Tip extends Mark {
     const widthof = monospace ? monospaceWidth : defaultWidth;
     const ee = widthof(ellipsis);
 
-    // We borrow the scale’s tick format for facet channels; this is safe for
-    // ordinal scales (but not continuous scales where the display value may
-    // need higher precision), and generally better than the default format.
-    const formatFx = fx && inferTickFormat(fx);
-    const formatFy = fy && inferTickFormat(fy);
-
-    function* format(sources, i) {
-      if ("title" in sources) {
-        const text = sources.title.value[i];
-        for (const line of mark.splitLines(formatDefault(text))) {
-          yield {name: "", value: mark.clipLine(line)};
-        }
-        return;
+    // Promote shorthand string formats to functions. Note: mutates this.format,
+    // but that should be safe since we made a defensive copy.
+    for (const key in this.format) {
+      const format = this.format[key];
+      if (typeof format === "string") {
+        const value = key in sources ? sources[key].value : key in scales ? scales[key].domain() : [];
+        this.format[key] = (isTemporal(value) ? utcFormat : numberFormat)(format);
       }
-      for (const key in sources) {
-        if (key === "x1" && "x2" in sources) continue;
-        if (key === "y1" && "y2" in sources) continue;
-        const channel = sources[key];
-        const value = channel.value[i];
-        if (!defined(value) && channel.scale == null) continue;
-        if (key === "x2" && "x1" in sources) {
-          yield {name: formatPairLabel(scales, sources.x1, channel, "x"), value: formatPair(sources.x1, channel, i)};
-        } else if (key === "y2" && "y1" in sources) {
-          yield {name: formatPairLabel(scales, sources.y1, channel, "y"), value: formatPair(sources.y1, channel, i)};
-        } else {
-          const scale = channel.scale;
-          const line = {name: formatLabel(scales, channel, key), value: formatDefault(value)};
-          if (scale === "color" || scale === "opacity") line[scale] = values[key][i];
-          yield line;
-        }
-      }
-      if (index.fi != null && fx) yield {name: String(fx.label ?? "fx"), value: formatFx(index.fx)};
-      if (index.fi != null && fy) yield {name: String(fy.label ?? "fy"), value: formatFy(index.fy)};
     }
+
+    // Borrow the scale tick format for facet channels; this is generally better
+    // than the default format (and safe for ordinal scales). Note: mutates
+    // this.format, but that should be safe since we made a defensive copy.
+    if (index.fi != null) {
+      const {fx, fy} = scales;
+      if (fx && this.format.fx === undefined) this.format.fx = inferTickFormat(fx, fx.domain());
+      if (fy && this.format.fy === undefined) this.format.fy = inferTickFormat(fy, fy.domain());
+    }
+
+    // Determine the appropriate formatter.
+    const format =
+      "title" in sources // if there is a title channel
+        ? formatTitle // display the title as-is
+        : index.fi == null // if this mark is not faceted
+        ? formatChannels // display name-value pairs for channels
+        : formatFacetedChannels; // same, plus facets
 
     // We don’t call applyChannelStyles because we only use the channels to
     // derive the content of the tip, not its aesthetics.
@@ -172,12 +166,19 @@ export class Tip extends Mark {
               this.setAttribute("fill-opacity", 1);
               this.setAttribute("stroke", "none");
               // iteratively render each channel value
-              const names = new Set();
-              for (const line of format(sources, i)) {
-                const name = line.name;
-                if (name && names.has(name)) continue;
-                else names.add(name);
-                renderLine(that, line);
+              const lines = format.call(mark, i, index, sources, scales, values);
+              if (typeof lines === "string") {
+                for (const line of mark.splitLines(lines)) {
+                  renderLine(that, {value: mark.clipLine(line)});
+                }
+              } else {
+                const labels = new Set();
+                for (const line of lines) {
+                  const {label = ""} = line;
+                  if (label && labels.has(label)) continue;
+                  else labels.add(label);
+                  renderLine(that, line);
+                }
               }
             })
           )
@@ -188,19 +189,20 @@ export class Tip extends Mark {
     // just the initial layout of the text; in postrender we will compute the
     // exact text metrics and translate the text as needed once we know the
     // tip’s orientation (anchor).
-    function renderLine(selection, {name, value, color, opacity}) {
+    function renderLine(selection, {label, value, color, opacity}) {
+      (label ??= ""), (value ??= "");
       const swatch = color != null || opacity != null;
       let title;
       let w = lineWidth * 100;
-      const [j] = cut(name, w, widthof, ee);
+      const [j] = cut(label, w, widthof, ee);
       if (j >= 0) {
-        // name is truncated
-        name = name.slice(0, j).trimEnd() + ellipsis;
+        // label is truncated
+        label = label.slice(0, j).trimEnd() + ellipsis;
         title = value.trim();
         value = "";
       } else {
-        if (name || (!value && !swatch)) value = " " + value;
-        const [k] = cut(value, w - widthof(name), widthof, ee);
+        if (label || (!value && !swatch)) value = " " + value;
+        const [k] = cut(value, w - widthof(label), widthof, ee);
         if (k >= 0) {
           // value is truncated
           value = value.slice(0, k).trimEnd() + ellipsis;
@@ -208,7 +210,7 @@ export class Tip extends Mark {
         }
       }
       const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
-      if (name) line.append("tspan").attr("font-weight", "bold").text(name);
+      if (label) line.append("tspan").attr("font-weight", "bold").text(label);
       if (value) line.append(() => document.createTextNode(value));
       if (swatch) line.append("tspan").text(" ■").attr("fill", color).attr("fill-opacity", opacity).style("user-select", "none"); // prettier-ignore
       if (title) line.append("title").text(title);
@@ -332,18 +334,73 @@ function getSources({channels}) {
   return sources;
 }
 
-function formatPair(c1, c2, i) {
-  return c2.hint?.length // e.g., stackY’s y1 and y2
-    ? `${formatDefault(c2.value[i] - c1.value[i])}`
-    : `${formatDefault(c1.value[i])}–${formatDefault(c2.value[i])}`;
+function formatTitle(i, index, {title}) {
+  const format = this.format?.title;
+  return format === null ? [] : (format ?? formatDefault)(title.value[i], i);
 }
 
-function formatPairLabel(scales, c1, c2, defaultLabel) {
-  const l1 = formatLabel(scales, c1, defaultLabel);
-  const l2 = formatLabel(scales, c2, defaultLabel);
+function* formatChannels(i, index, channels, scales, values) {
+  for (const key in channels) {
+    if (key === "x1" && "x2" in channels) continue;
+    if (key === "y1" && "y2" in channels) continue;
+    const channel = channels[key];
+    if (key === "x2" && "x1" in channels) {
+      const format = this.format?.x; // TODO x1, x2?
+      if (format === null) continue;
+      yield {
+        label: formatPairLabel(scales, channels, "x"),
+        value: formatPair(format ?? formatDefault, channels.x1, channel, i)
+      };
+    } else if (key === "y2" && "y1" in channels) {
+      const format = this.format?.y; // TODO y1, y2?
+      if (format === null) continue;
+      yield {
+        label: formatPairLabel(scales, channels, "y"),
+        value: formatPair(format ?? formatDefault, channels.y1, channel, i)
+      };
+    } else {
+      const format = this.format?.[key];
+      if (format === null) continue;
+      const value = channel.value[i];
+      const scale = channel.scale;
+      if (!defined(value) && scale == null) continue;
+      yield {
+        label: formatLabel(scales, channels, key),
+        value: (format ?? formatDefault)(value, i),
+        color: scale === "color" ? values[key][i] : null,
+        opacity: scale === "opacity" ? values[key][i] : null
+      };
+    }
+  }
+}
+
+function* formatFacetedChannels(i, index, channels, scales, values) {
+  yield* formatChannels.call(this, i, index, channels, scales, values);
+  for (const key of ["fx", "fy"]) {
+    if (!scales[key]) return;
+    const format = this.format?.[key];
+    if (format === null) continue;
+    yield {
+      label: formatLabel(scales, channels, key),
+      value: (format ?? formatDefault)(index[key], i)
+    };
+  }
+}
+
+function formatPair(formatValue, c1, c2, i) {
+  return c2.hint?.length // e.g., stackY’s y1 and y2
+    ? `${formatValue(c2.value[i] - c1.value[i], i)}`
+    : `${formatValue(c1.value[i], i)}–${formatValue(c2.value[i], i)}`;
+}
+
+function formatPairLabel(scales, channels, key) {
+  const l1 = formatLabel(scales, channels, `${key}1`, key);
+  const l2 = formatLabel(scales, channels, `${key}2`, key);
   return l1 === l2 ? l1 : `${l1}–${l2}`;
 }
 
-function formatLabel(scales, c, defaultLabel) {
-  return String(scales[c.scale]?.label ?? c?.label ?? defaultLabel);
+function formatLabel(scales, channels, key, defaultLabel = key) {
+  const channel = channels[key];
+  const scale = scales[channel?.scale ?? key];
+  return String(scale?.label ?? channel?.label ?? defaultLabel);
 }

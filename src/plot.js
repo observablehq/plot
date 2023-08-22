@@ -239,6 +239,7 @@ export function plot(options = {}) {
   // Compute value objects, applying scales and projection as needed.
   for (const [mark, state] of stateByMark) {
     state.values = mark.scale(state.channels, scales, context);
+    state.values.data = state.data; // expose transformed data for advanced usage
   }
 
   const {width, height} = dimensions;
@@ -523,12 +524,15 @@ function derive(mark, options = {}) {
 function inferTips(marks) {
   const tips = [];
   for (const mark of marks) {
-    const t = mark.tip;
-    if (t) {
-      const p = t === "x" ? pointerX : t === "y" ? pointerY : pointer;
-      const options = p(derive(mark)); // TODO tip options?
-      options.title = null; // prevent implicit title for primitive data
-      tips.push(tip(mark.data, options));
+    let tipOptions = mark.tip;
+    if (tipOptions) {
+      if (tipOptions === true) tipOptions = {};
+      else if (typeof tipOptions === "string") tipOptions = {pointer: tipOptions};
+      let {pointer: p} = tipOptions;
+      p = /^x$/i.test(p) ? pointerX : /^y$/i.test(p) ? pointerY : pointer; // TODO validate?
+      tipOptions = p(derive(mark, tipOptions));
+      tipOptions.title = null; // prevent implicit title for primitive data
+      tips.push(tip(mark.data, tipOptions));
     }
   }
   return tips;

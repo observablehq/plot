@@ -5,13 +5,13 @@ import {registry} from "./scales/index.js";
 import {isSymbol, maybeSymbol} from "./symbol.js";
 import {maybeReduce} from "./transforms/group.js";
 
-export function createChannel(data, {scale, type, value, filter, hint}, name) {
+export function createChannel(data, {scale, type, value, filter, hint, label = labelof(value)}, name) {
   if (hint === undefined && typeof value?.transform === "function") hint = value.hint;
   return inferChannelScale(name, {
     scale,
     type,
     value: valueof(data, value),
-    label: labelof(value),
+    label,
     filter,
     hint
   });
