@@ -176,6 +176,17 @@ export async function tipLine() {
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
 }
 
+export async function tipIgnoreChannels() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+      marks: [
+        Plot.lineY(aapl, {x: "Date", y: "Close"}),
+        Plot.tip(aapl, Plot.pointerX({
+          x: "Date", y: "Close", channels: {custom: d => d.Close}, ignoreChannels: "x"}))
+      ]
+    })
+}
+
 export async function tipNewLines() {
   return Plot.plot({
     height: 40,

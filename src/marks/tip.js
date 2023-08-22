@@ -18,13 +18,15 @@ const defaults = {
   stroke: "currentColor"
 };
 
-// These channels are not displayed in the tip; TODO allow customization.
-const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel"]);
+// These channels are not displayed in the tip
+const defaultIgnoreChannels = new Set(["geometry", "href", "src", "ariaLabel"]);
 
 export class Tip extends Mark {
   constructor(data, options = {}) {
     if (options.tip) options = {...options, tip: false};
     if (options.title === undefined && isIterable(data) && isTextual(data)) options = {...options, title: identity};
+    if (options.ignoreChannels)
+      options = {...options, ignoreChannels: new Set([...defaultIgnoreChannels, ...options.ignoreChannels])};
     const {
       x,
       y,
@@ -47,7 +49,8 @@ export class Tip extends Mark {
       textPadding = 8,
       title,
       pointerSize = 12,
-      pathFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))"
+      pathFilter = "drop-shadow(0 3px 4px rgba(0,0,0,0.2))",
+      ignoreChannels = defaultIgnoreChannels
     } = options;
     super(
       data,
@@ -82,6 +85,7 @@ export class Tip extends Mark {
     for (const key in defaults) if (key in this.channels) this[key] = defaults[key]; // apply default even if channel
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
+    this.ignoreChannels = ignoreChannels;
   }
   render(index, scales, values, dimensions, context) {
     const mark = this;
@@ -90,7 +94,7 @@ export class Tip extends Mark {
     const {anchor, monospace, lineHeight, lineWidth} = this;
     const {textPadding: r, pointerSize: m, pathFilter} = this;
     const {marginTop, marginLeft} = dimensions;
-    const sources = getSources(values);
+    const sources = getSources(values, this.ignoreChannels);
 
     // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
     // or x & y; the former is considered more specific because it’s how we
@@ -318,10 +322,10 @@ function getPath(anchor, m, r, width, height) {
   }
 }
 
-function getSources({channels}) {
+function getSources({channels}, ignore) {
   const sources = {};
   for (const key in channels) {
-    if (ignoreChannels.has(key)) continue;
+    if (ignore.has(key)) continue;
     const source = getSource(channels, key);
     if (source) sources[key] = source;
   }
