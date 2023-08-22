@@ -13,3 +13,7 @@ it("Plot.stack returns the expected values", () => {
   assert.deepStrictEqual(Y1, Float64Array.of(0, 1, 0, -2));
   assert.deepStrictEqual(Y2, Float64Array.of(1, 3, -2, -3));
 });
+
+it("Plot.stack rejects an invalid order", () => {
+  assert.throws(() => Plot.barY([], {y: 1, order: 42}), /^Error: invalid order: 42$/);
+});
