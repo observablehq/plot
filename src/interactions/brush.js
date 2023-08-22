@@ -1,5 +1,5 @@
 import {create} from "../context.js";
-import {ascending, select, transpose} from "d3";
+import {ascending, transpose} from "d3";
 import {brush as brusher, brushX as brusherX, brushY as brusherY} from "d3";
 import {composeRender} from "../mark.js";
 import {keyword, take} from "../options.js";
@@ -104,18 +104,14 @@ function brushTransform(mode, {selectionMode = "data", ...options}) {
         wrapper.append(() => display);
       }
 
-      // When the plot is complete, append the target element to the top
-      // (z-index), translate it to match the facet’s frame position, and
-      // initialize the plot’s value.
-      // TODO: cleaner.
-      if (typeof requestAnimationFrame === "function") {
-        requestAnimationFrame(() => {
-          select(svg)
-            .append(() => target.node())
-            .attr("transform", wrapper.attr("transform"));
-          context.dispatchValue(selectionMode === "data" ? data : null);
-        });
-      }
+      // Translate the brush target to match the facet’s frame position, and
+      // initialize the plot’s value. We skip a beat so all the marks have been
+      // added before the brush (to top z-index).
+      Promise.resolve().then(() => {
+        node.setAttribute("transform", wrapper.attr("transform"));
+        svg.appendChild(node);
+        context.dispatchValue(selectionMode === "data" ? data : null);
+      });
 
       return wrapper.node();
     }, options.render)
