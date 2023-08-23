@@ -584,10 +584,10 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
         data = domain;
       }
       if (!scale.ticks && data.length && data !== domain) {
-        // For ordinal scales, intersect the ticks with the scale domain, if
-        // any, since the scale is only defined on its domain. If all of the
-        // ticks are removed, then warn that the ticks and scale domain may be
-        // misaligned (e.g., "year" ticks and "4 weeks" interval).
+        // For ordinal scales, intersect the ticks with the scale domain since
+        // the scale is only defined on its domain. If all of the ticks are
+        // removed, then warn that the ticks and scale domain may be misaligned
+        // (e.g., "year" ticks and "4 weeks" interval).
         const domainSet = new InternSet(domain);
         data = data.filter((d) => domainSet.has(d));
         if (!data.length) warn(`Warning: the ${k}-axis ticks appear to not align with the scale domain, resulting in no ticks. Try different ticks?`); // prettier-ignore
