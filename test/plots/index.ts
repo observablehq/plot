@@ -4,6 +4,7 @@ export * from "./aapl-change-volume.js";
 export * from "./aapl-close-untyped.js";
 export * from "./aapl-close.js";
 export * from "./aapl-fancy-axis.js";
+export * from "./aapl-interval.js";
 export * from "./aapl-monthly.js";
 export * from "./aapl-volume-rect.js";
 export * from "./aapl-volume.js";
