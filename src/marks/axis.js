@@ -1,13 +1,12 @@
-import {InternSet, extent, format, timeFormat, utcFormat} from "d3";
+import {InternSet, extent, format, utcFormat} from "d3";
 import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {arrayify, constant, identity, keyword, number, range, valueof} from "../options.js";
 import {isIterable, isNoneish, isTemporal, isInterval, orderof} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
-import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
-import {generalizeTimeInterval, inferTimeFormat, intervalDuration, isTimeYear, isUtcYear} from "../time.js";
+import {generalizeTimeInterval, inferTimeFormat, intervalDuration} from "../time.js";
 import {initializer} from "../transforms/basic.js";
 import {warn} from "../warnings.js";
 import {ruleX, ruleY} from "./rule.js";
@@ -636,24 +635,17 @@ function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
 
 // D3’s ordinal scales simply use toString by default, but if the ordinal scale
 // domain (or ticks) are numbers or dates (say because we’re applying a time
-// interval to the ordinal scale), we want Plot’s default formatter.
+// interval to the ordinal scale), we want Plot’s default formatter. And for
+// time ticks, we want to use the multi-line time format (e.g., Jan 26) if
+// possible, or the default ISO format (2014-01-26). TODO We need a better way
+// to infer whether the ordinal scale is UTC or local time.
 export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
-  // If possible, use the multi-line time format (e.g., Jan 26); otherwise use
-  // the default ISO format (2014-01-26). TODO This is messy and we should
-  // simplify it. TODO We need a better way to infer whether the ordinal scale
-  // is UTC or local time.
-  if (tickFormat === undefined && data && isTemporal(data)) {
-    tickFormat = inferTimeFormat(data, anchor);
-    if (tickFormat !== undefined) return tickFormat;
-  }
-  return scale.tickFormat && !(isTemporalScale(scale) && tickFormat === undefined)
+  return tickFormat === undefined && data && isTemporal(data)
+    ? inferTimeFormat(data, anchor) ?? formatDefault
+    : scale.tickFormat
     ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
     : tickFormat === undefined
-    ? isUtcYear(scale.interval)
-      ? utcFormat("%Y")
-      : isTimeYear(scale.interval)
-      ? timeFormat("%Y")
-      : formatDefault
+    ? formatDefault
     : typeof tickFormat === "string"
     ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
     : constant(tickFormat);

@@ -135,7 +135,8 @@ const formatIntervals = [
   ["day", unixDay, "utc", 6 * durationMonth],
   ["day", timeDay, "time", 6 * durationMonth],
   // Below day, local time typically has an hourly offset from UTC and hence the
-  // two are aligned and indistinguishable; therefore, we only consider UTC.
+  // two are aligned and indistinguishable; therefore, we only consider UTC, and
+  // we don’t consider these if the domain only has a single value.
   ["hour", utcHour, "utc", 3 * durationDay],
   ["minute", utcMinute, "utc", 6 * durationHour],
   ["second", utcSecond, "utc", 30 * durationMinute]
@@ -177,18 +178,6 @@ export function maybeTimeInterval(interval) {
 
 export function maybeUtcInterval(interval) {
   return parseInterval(interval, utcIntervals, "utc");
-}
-
-export function isUtcYear(i) {
-  if (!i) return false;
-  const date = i.floor(new Date(Date.UTC(2000, 11, 31)));
-  return utcYear(date) >= date; // coercing equality
-}
-
-export function isTimeYear(i) {
-  if (!i) return false;
-  const date = i.floor(new Date(2000, 11, 31));
-  return timeYear(date) >= date; // coercing equality
 }
 
 // If the given interval is a standard time interval, we may be able to promote
@@ -236,13 +225,12 @@ function getTimeTemplate(anchor) {
 // interval. If no standard interval is compatible (other than milliseconds,
 // which is universally compatible), returns undefined.
 export function inferTimeFormat(dates, anchor) {
-  const step = max(pairs(dates, (a, b) => Math.abs(b - a)));
+  const step = max(pairs(dates, (a, b) => Math.abs(b - a))); // maybe undefined!
   if (step < 1000) return formatTimeInterval("millisecond", "utc", anchor);
   for (const [name, interval, type, maxStep] of formatIntervals) {
-    if (dates.every((d) => interval.floor(d) >= d)) {
-      if (step > maxStep) break; // e.g., 52 weeks
-      return formatTimeInterval(name, type, anchor);
-    }
+    if (step > maxStep) break; // e.g., 52 weeks
+    if (name === "hour" && !step) break; // e.g., domain with a single date
+    if (dates.every((d) => interval.floor(d) >= d)) return formatTimeInterval(name, type, anchor);
   }
 }
 
