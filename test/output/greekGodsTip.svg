@@ -44,5 +44,5 @@
     <text y="0.32em" transform="translate(35,154.625)">Chaos<title>/Chaos</title></text>
     <text y="0.32em" transform="translate(277,289.25)">Gaia<title>/Chaos/Gaia</title></text>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)" style="visibility: hidden;"></g>
+  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

@@ -155,7 +155,6 @@ export class Tip extends Mark {
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this)
       .call(applyTransform, this, {x: X && x, y: Y && y})
-      .style("visibility", "hidden") // avoid flickering
       .call((g) =>
         g
           .selectAll()
@@ -242,7 +241,7 @@ export class Tip extends Mark {
         text.setAttribute("y", `${+getLineOffset(a, text.childNodes.length, lineHeight).toFixed(6)}em`);
         text.setAttribute("transform", `translate(${getTextTranslate(a, m, r, w, h)})`);
       });
-      g.style("visibility", null);
+      g.attr("visibility", null);
     }
 
     // Wait until the plot is inserted into the page so that we can use getBBox
@@ -252,8 +251,11 @@ export class Tip extends Mark {
     // this step. Perhaps this could be done synchronously; getting the
     // dimensions of the SVG is easy, and although accurate text metrics are
     // hard, we could use approximate heuristics.
-    if (svg.isConnected) Promise.resolve().then(postrender);
-    else if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(postrender);
+    if (index.length) {
+      g.attr("visibility", "hidden"); // hide until postrender
+      if (svg.isConnected) Promise.resolve().then(postrender);
+      else if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(postrender);
+    }
 
     return g.node();
   }
