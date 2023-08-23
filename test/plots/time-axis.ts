@@ -79,7 +79,24 @@ export async function timeAxisRight() {
 export async function timeAxisExplicitInterval() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
-    marks: [Plot.ruleY([0]), Plot.axisX({ticks: "3 months"}), Plot.gridX(), Plot.line(aapl, {x: "Date", y: "Close"})]
+    x: {interval: "month"},
+    marks: [Plot.ruleY([0]), Plot.dot(aapl, {x: "Date", y: "Close"})]
+  });
+}
+
+export async function timeAxisExplicitNonstandardInterval() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "4 weeks"}, // does not align with months
+    marks: [Plot.ruleY([0]), Plot.dot(aapl, {x: "Date", y: "Close"})]
+  });
+}
+
+export async function timeAxisExplicitNonstandardIntervalTicks() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "4 weeks", grid: true, ticks: "year"}, // no years start on Sunday
+    marks: [Plot.ruleY([0]), Plot.dot(aapl, {x: "Date", y: "Close"})]
   });
 }
 
@@ -119,6 +136,15 @@ export async function timeAxisOrdinalTicks() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     x: {interval: "month", ticks: "3 months"},
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
+}
+
+export async function warnTimeAxisOrdinalExplicitIncompatibleTicks() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  const [start, stop] = d3.extent(aapl, (d) => d.Date);
+  return Plot.plot({
+    x: {interval: "4 weeks", ticks: d3.utcYear.range(start, stop)}, // ⚠️ no years start on Sunday
     marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
   });
 }

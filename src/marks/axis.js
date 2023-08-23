@@ -1,13 +1,13 @@
-import {extent, format, timeFormat, utcFormat} from "d3";
+import {InternSet, extent, format, timeFormat, utcFormat} from "d3";
 import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {arrayify, constant, identity, keyword, number, range, valueof} from "../options.js";
-import {isIterable, isNoneish, isTemporal, isInterval, isTimeInterval, orderof} from "../options.js";
+import {isIterable, isNoneish, isTemporal, isInterval, orderof} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
 import {isTemporalScale} from "../scales.js";
 import {offset} from "../style.js";
-import {formatTimeTicks, generalizeTimeInterval, inferTimeFormat, isTimeYear, isUtcYear} from "../time.js";
+import {generalizeTimeInterval, inferTimeFormat, intervalDuration, isTimeYear, isUtcYear} from "../time.js";
 import {initializer} from "../transforms/basic.js";
 import {warn} from "../warnings.js";
 import {ruleX, ruleY} from "./rule.js";
@@ -536,65 +536,62 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
       tickFormat,
       tickSpacing = k === "x" ? 80 : 35
     } = options;
-    // For a time scale, or any scale with a time interval, also allow the ticks
-    // to be specified as a string which is promoted to a time interval. In the
-    // case of ordinal scales, the interval is interpreted as UTC.
-    if (typeof ticks === "string" && hasTimeTicks(scale)) ticks = maybeRangeInterval(ticks, scale.type);
+    // For a scale with a temporal domain, also allow the ticks to be specified
+    // as a string which is promoted to a time interval. In the case of ordinal
+    // scales, the interval is interpreted as UTC.
+    if (typeof ticks === "string" && hasTemporalDomain(scale)) ticks = maybeRangeInterval(ticks, scale.type);
     // Lastly use the tickSpacing option to infer the desired tick count.
     if (ticks == undefined) ticks = inferTickCount(scale, tickSpacing);
     if (data == null) {
       if (isIterable(ticks)) {
         // Use explicit ticks, if specified.
         data = arrayify(ticks);
-      } else if (scale.ticks) {
-        if (isInterval(ticks)) {
-          // For continuous scales, use the specified tick interval, if any. For
-          // time scales, we could pass the interval directly to scale.ticks
-          // because it’s supported by d3.utcTicks, but quantitative scales and
-          // d3.ticks do not support numeric intervals for scale.ticks.
+      } else if (isInterval(ticks)) {
+        // Use the tick interval, if specified.
+        data = inclusiveRange(ticks, ...extent(domain));
+      } else if (scale.interval) {
+        // If the scale interval is a standard time interval such as "day", we
+        // may be able to generalize the scale interval it to a larger aligned
+        // time interval to create the desired number of ticks.
+        let interval = scale.interval;
+        if (scale.ticks) {
           const [min, max] = extent(domain);
-          data = ticks.range(min, ticks.offset(ticks.floor(max))); // inclusive max
+          const n = (max - min) / interval[intervalDuration]; // current tick count
+          // We don’t explicitly check that given interval is a time interval;
+          // in that case the generalized interval will be undefined, just like
+          // a nonstandard interval. TODO Generalize integer intervals, too.
+          interval = generalizeTimeInterval(interval, n / ticks) ?? interval;
+          data = inclusiveRange(interval, min, max);
         } else {
-          data = scale.ticks(ticks);
+          data = domain;
+          const n = data.length; // current tick count
+          interval = generalizeTimeInterval(interval, n / ticks) ?? interval;
+          if (interval !== scale.interval) data = inclusiveRange(interval, ...extent(data));
         }
-        // Remove any ticks that aren’t aligned with the scale interval.
-        if (scale.interval) data = data.filter((d) => scale.interval.floor(d) >= d);
+        if (interval === scale.interval) {
+          // If we weren’t able to generalize the scale’s interval, compute the
+          // positive number n such that taking every nth value from the scale’s
+          // domain produces as close as possible to the desired number of
+          // ticks. For example, if the domain has 100 values and 5 ticks are
+          // desired, n = 20.
+          const n = Math.round(data.length / ticks);
+          if (n > 1) data = data.filter((d, i) => i % n === 0);
+        }
+      } else if (scale.ticks) {
+        data = scale.ticks(ticks);
       } else {
+        // For ordinal scales, the domain will already be generated using the
+        // scale’s interval, if any.
         data = domain;
-        if (scale.interval) {
-          if (isInterval(ticks)) {
-            // For ordinal scales with an interval, use the specified tick
-            // interval, if any, to filter the domain. If all of the ticks are
-            // removed, then the tick interval may be misaligned with the scale
-            // interval (e.g., "year" and "4 weeks").
-            if (data.length) {
-              data = data.filter((d) => ticks.floor(d) >= d);
-              if (!data.length) warn(`Warning: the ${k}-axis ticks interval appears to not align with the scale interval, resulting in no ticks. Try a different interval?`); // prettier-ignore
-            }
-          } else {
-            // If there are too many ticks, we need to prune some. If the scale
-            // interval is a standard time interval such as "day", we may be
-            // able to generalize it to a larger aligned time interval.
-            const interval = generalizeTimeInterval(scale.interval, data.length / ticks);
-            if (interval) {
-              const [start, stop] = extent(domain);
-              data = interval.range(start, +stop + 1); // inclusive stop
-            } else {
-              // Otherwise, compute the positive number n such that taking every
-              // nth value from the scale’s domain produces as close as possible
-              // to the desired number of ticks. For example, if the domain has
-              // 100 values and 5 ticks are desired, n = 20.
-              const n = Math.round(data.length / ticks);
-              if (n > 1) data = data.filter((d, i) => i % n === 0);
-            }
-          }
-          // If possible, use the multi-line time format (e.g., Jan 26);
-          // otherwise use the default ISO format (2014-01-26). TODO We need a
-          // better way to infer whether the ordinal scale is UTC or local time.
-          if ("text" in options && tickFormat === undefined && isTimeInterval(scale.interval)) {
-            tickFormat = inferTimeFormat(data, anchor);
-          }
-        }
+      }
+      if (!scale.ticks && data.length && data !== domain) {
+        // For ordinal scales, intersect the ticks with the scale domain, if
+        // any, since the scale is only defined on its domain. If all of the
+        // ticks are removed, then warn that the ticks and scale domain may be
+        // misaligned (e.g., "year" ticks and "4 weeks" interval).
+        const domainSet = new InternSet(domain);
+        data = data.filter((d) => domainSet.has(d));
+        if (!data.length) warn(`Warning: the ${k}-axis ticks appear to not align with the scale domain, resulting in no ticks. Try different ticks?`); // prettier-ignore
       }
       if (k === "y" || k === "x") {
         facets = [range(data)];
@@ -641,9 +638,15 @@ function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
 // domain (or ticks) are numbers or dates (say because we’re applying a time
 // interval to the ordinal scale), we want Plot’s default formatter.
 export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
-  return tickFormat === undefined && isTemporalScale(scale)
-    ? formatTimeTicks(scale, data, ticks, anchor)
-    : scale.tickFormat
+  // If possible, use the multi-line time format (e.g., Jan 26); otherwise use
+  // the default ISO format (2014-01-26). TODO This is messy and we should
+  // simplify it. TODO We need a better way to infer whether the ordinal scale
+  // is UTC or local time.
+  if (tickFormat === undefined && data && isTemporal(data)) {
+    tickFormat = inferTimeFormat(data, anchor);
+    if (tickFormat !== undefined) return tickFormat;
+  }
+  return scale.tickFormat && !(isTemporalScale(scale) && tickFormat === undefined)
     ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
     : tickFormat === undefined
     ? isUtcYear(scale.interval)
@@ -654,6 +657,10 @@ export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
     : typeof tickFormat === "string"
     ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
     : constant(tickFormat);
+}
+
+function inclusiveRange(interval, min, max) {
+  return interval.range(min, interval.offset(interval.floor(max)));
 }
 
 const shapeTickBottom = {
@@ -700,7 +707,7 @@ function inferScaleOrder(scale) {
 // Takes the scale label, and if this is not an ordinal scale and the label was
 // inferred from an associated channel, adds an orientation-appropriate arrow.
 function formatAxisLabel(k, scale, {anchor, label = scale.label, labelAnchor, labelArrow} = {}) {
-  if (label == null || (label.inferred && hasTimeTicks(scale) && /^(date|time|year)$/i.test(label))) return;
+  if (label == null || (label.inferred && hasTemporalDomain(scale) && /^(date|time|year)$/i.test(label))) return;
   label = String(label); // coerce to a string after checking if inferred
   if (labelArrow === "auto") labelArrow = (!scale.bandwidth || scale.interval) && !/[↑↓→←]/.test(label);
   if (!labelArrow) return label;
@@ -737,6 +744,6 @@ function maybeLabelArrow(labelArrow = "auto") {
     : keyword(labelArrow, "labelArrow", ["auto", "up", "right", "down", "left"]);
 }
 
-function hasTimeTicks(scale) {
-  return isTemporalScale(scale) || isTimeInterval(scale.interval);
+function hasTemporalDomain(scale) {
+  return isTemporal(scale.domain());
 }

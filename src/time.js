@@ -1,4 +1,4 @@
-import {bisector, extent, max, median, pairs, timeFormat, utcFormat} from "d3";
+import {bisector, max, pairs, timeFormat, utcFormat} from "d3";
 import {utcSecond, utcMinute, utcHour, unixDay, utcWeek, utcMonth, utcYear} from "d3";
 import {utcMonday, utcTuesday, utcWednesday, utcThursday, utcFriday, utcSaturday, utcSunday} from "d3";
 import {timeSecond, timeMinute, timeHour, timeDay, timeWeek, timeMonth, timeYear} from "d3";
@@ -14,23 +14,16 @@ const durationMonth = durationDay * 30;
 const durationYear = durationDay * 365;
 
 // See https://github.com/d3/d3-time/blob/9e8dc940f38f78d7588aad68a54a25b1f0c2d97b/src/ticks.js#L14-L33
-const formats = [
-  ["millisecond", 500],
-  ["second", durationSecond],
-  ["second", 30 * durationSecond],
-  ["minute", durationMinute],
-  ["minute", 30 * durationMinute],
-  ["hour", durationHour],
-  ["hour", 12 * durationHour],
-  ["day", durationDay],
-  ["day", 2 * durationWeek], // https://github.com/d3/d3-time/issues/46
-  ["month", durationMonth],
-  ["month", 6 * durationMonth], // https://github.com/d3/d3-time/issues/46
-  ["year", durationYear]
-];
-
-// See https://github.com/d3/d3-time/blob/9e8dc940f38f78d7588aad68a54a25b1f0c2d97b/src/ticks.js#L14-L33
 const tickIntervals = [
+  ["millisecond", 1],
+  ["2 milliseconds", 2],
+  ["5 milliseconds", 5],
+  ["10 milliseconds", 10],
+  ["20 milliseconds", 20],
+  ["50 milliseconds", 50],
+  ["100 milliseconds", 100],
+  ["200 milliseconds", 200],
+  ["500 milliseconds", 500],
   ["second", durationSecond],
   ["5 seconds", 5 * durationSecond],
   ["15 seconds", 15 * durationSecond],
@@ -49,7 +42,14 @@ const tickIntervals = [
   ["2 weeks", 2 * durationWeek], // https://github.com/d3/d3-time/issues/46
   ["month", durationMonth],
   ["3 months", 3 * durationMonth],
-  ["6 months", 6 * durationMonth] // https://github.com/d3/d3-time/issues/46
+  ["6 months", 6 * durationMonth], // https://github.com/d3/d3-time/issues/46
+  ["year", durationYear],
+  ["2 years", 2 * durationYear],
+  ["5 years", 5 * durationYear],
+  ["10 years", 10 * durationYear],
+  ["20 years", 20 * durationYear],
+  ["50 years", 50 * durationYear],
+  ["100 years", 100 * durationYear] // TODO generalize to longer time scales
 ];
 
 const durations = new Map([
@@ -109,8 +109,8 @@ const utcIntervals = new Map([
 // implementation to expose a “generalize” method that returns a larger, aligned
 // interval; that would allow us to move this logic to D3, and allow
 // generalization even when a custom interval is provided.
-const intervalDuration = Symbol("intervalDuration");
-const intervalType = Symbol("intervalType");
+export const intervalDuration = Symbol("intervalDuration");
+export const intervalType = Symbol("intervalType");
 
 // We greedily mutate D3’s standard intervals on load so that the hidden fields
 // are available even if specified as e.g. d3.utcMonth instead of "month".
@@ -123,10 +123,11 @@ for (const [name, interval] of utcIntervals) {
   interval[intervalType] = "utc";
 }
 
-// An interleaved array of UTC and local time intervals in order from largest to
-// smallest, used to determine the most specific standard time format for a
-// given array of dates.
-const descendingIntervals = [
+// An interleaved array of UTC and local time intervals, in descending order
+// from largest to smallest, used to determine the most specific standard time
+// format for a given array of dates. This is a subset of the tick intervals
+// listed above; we only need the breakpoints where the format changes.
+const formatIntervals = [
   ["year", utcYear, "utc"],
   ["year", timeYear, "time"],
   ["month", utcMonth, "utc"],
@@ -190,26 +191,8 @@ export function isTimeYear(i) {
   return timeYear(date) >= date; // coercing equality
 }
 
-// Compute the median difference between adjacent ticks, ignoring repeated
-// ticks; this implies an effective time interval, assuming that ticks are
-// regularly spaced; choose the largest format less than this interval so that
-// the ticks show the field that is changing. If the ticks are not available,
-// fallback to an approximation based on the desired number of ticks.
-export function formatTimeTicks(scale, data, ticks, anchor) {
-  let step = median(pairs(data, (a, b) => Math.abs(b - a) || NaN));
-  if (!(step > 0)) {
-    const [start, stop] = extent(scale.domain());
-    const count = typeof ticks === "number" ? ticks : 10;
-    step = Math.abs(stop - start) / count;
-  }
-  const [name] = formats[bisector(([, step]) => Math.log(step)).center(formats, Math.log(step))];
-  return formatTimeInterval(name, scale.type, anchor);
-}
-
 // If the given interval is a standard time interval, we may be able to promote
-// it a larger aligned time interval, rather than showing every nth tick. TODO
-// We could handle very small (<second) and very large (>year) intervals better
-// and in a way that is consistent with temporal axes.
+// it a larger aligned time interval, rather than showing every nth tick.
 export function generalizeTimeInterval(interval, n) {
   if (!(n > 1)) return; // no need to generalize
   const duration = interval[intervalDuration];
@@ -254,7 +237,8 @@ function getTimeTemplate(anchor) {
 // which is universally compatible), returns undefined.
 export function inferTimeFormat(dates, anchor) {
   const step = max(pairs(dates, (a, b) => Math.abs(b - a)));
-  for (const [name, interval, type, maxStep] of descendingIntervals) {
+  if (step < 1000) return formatTimeInterval("millisecond", "utc", anchor);
+  for (const [name, interval, type, maxStep] of formatIntervals) {
     if (dates.every((d) => interval.floor(d) >= d)) {
       if (step > maxStep) break; // e.g., 52 weeks
       return formatTimeInterval(name, type, anchor);
