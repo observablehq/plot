@@ -628,9 +628,7 @@ function inferTickCount(scale, tickSpacing) {
 }
 
 function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
-  return {
-    value: typeof tickFormat === "function" ? tickFormat : inferTickFormat(scale, data, ticks, tickFormat, anchor)
-  };
+  return {value: inferTickFormat(scale, data, ticks, tickFormat, anchor)};
 }
 
 // D3’s ordinal scales simply use toString by default, but if the ordinal scale
@@ -640,7 +638,9 @@ function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
 // possible, or the default ISO format (2014-01-26). TODO We need a better way
 // to infer whether the ordinal scale is UTC or local time.
 export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
-  return tickFormat === undefined && data && isTemporal(data)
+  return typeof tickFormat === "function"
+    ? tickFormat
+    : tickFormat === undefined && data && isTemporal(data)
     ? inferTimeFormat(data, anchor) ?? formatDefault
     : scale.tickFormat
     ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
