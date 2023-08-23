@@ -2192,14 +2192,48 @@ it("plot(…).scale(name) returns a deduplicated ordinal/temporal domain", () =>
   });
 });
 
-it("Plot channels respect a scale set to false", () => {
+it("mark(data, {channels}) respects a scale set to undefined", () => {
   assert.strictEqual(
-    Plot.dot([], {channels: {fill: {value: (d) => d, scale: false}}}).initialize().channels.fill.scale,
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"]}}}).initialize().channels.fill.scale,
+    undefined
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"]}}}).initialize().channels.fill.scale,
+    undefined
+  );
+});
+
+it("mark(data, {channels}) respects a scale set to auto", () => {
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"], scale: "auto"}}}).initialize().channels.fill.scale,
+    null
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"], scale: "auto"}}}).initialize().channels.fill.scale,
+    "color"
+  );
+});
+
+it("mark(data, {channels}) respects a scale set to true or false", () => {
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"], scale: true}}}).initialize().channels.fill.scale,
+    "color"
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"], scale: false}}}).initialize().channels.fill.scale,
+    null
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"], scale: true}}}).initialize().channels.fill.scale,
+    "color"
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"], scale: false}}}).initialize().channels.fill.scale,
     null
   );
 });
 
-it("Plot channels reject unknown scales", () => {
+it("mark(data, {channels}) rejects unknown scales", () => {
   assert.throws(
     () => Plot.dot([], {channels: {fill: {value: (d) => d, scale: "neo"}}}).initialize().channels.fill.scale,
     /^Error: unknown scale: neo$/
