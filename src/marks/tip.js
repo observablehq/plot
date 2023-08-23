@@ -155,6 +155,7 @@ export class Tip extends Mark {
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyIndirectTextStyles, this)
       .call(applyTransform, this, {x: X && x, y: Y && y})
+      .style("visibility", "hidden") // avoid flickering
       .call((g) =>
         g
           .selectAll()
@@ -241,6 +242,7 @@ export class Tip extends Mark {
         text.setAttribute("y", `${+getLineOffset(a, text.childNodes.length, lineHeight).toFixed(6)}em`);
         text.setAttribute("transform", `translate(${getTextTranslate(a, m, r, w, h)})`);
       });
+      g.style("visibility", null);
     }
 
     // Wait until the plot is inserted into the page so that we can use getBBox
