@@ -2192,6 +2192,20 @@ it("plot(…).scale(name) returns a deduplicated ordinal/temporal domain", () =>
   });
 });
 
+it("Plot channels respect a scale set to false", () => {
+  assert.strictEqual(
+    Plot.dot([], {channels: {fill: {value: (d) => d, scale: false}}}).initialize().channels.fill.scale,
+    null
+  );
+});
+
+it("Plot channels reject unknown scales", () => {
+  assert.throws(
+    () => Plot.dot([], {channels: {fill: {value: (d) => d, scale: "neo"}}}).initialize().channels.fill.scale,
+    /^Error: unknown scale: neo$/
+  );
+});
+
 // Given a plot specification (or, as shorthand, an array of marks or a single
 // mark), asserts that the given named scales, when materialized from the first
 // plot and used to produce a second plot, produce the same output and the same
