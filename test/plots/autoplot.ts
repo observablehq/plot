@@ -6,11 +6,6 @@ export async function autoBox() {
   return Plot.auto(athletes, {x: "weight", y: "sex", mark: "box", color: "sex"}).plot();
 }
 
-export async function autoVoronoi() {
-  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.auto(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", color: "species", mark: "voronoi"}).plot();
-}
-
 // Tanner's bug https://github.com/observablehq/plot/issues/1365
 export async function autoLineZero() {
   const industries = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);

@@ -12,7 +12,6 @@ import {line, lineX, lineY} from "./line.js";
 import {rect, rectX, rectY} from "./rect.js";
 import {ruleX, ruleY} from "./rule.js";
 import {boxX, boxY} from "./box.js";
-import {voronoi} from "./delaunay.js";
 
 export function autoSpec(data, options) {
   options = normalizeOptions(options);
@@ -144,12 +143,8 @@ export function autoSpec(data, options) {
       colorMode = "fill";
       break;
     case "box":
-      markImpl = isOrdinalReduced(xReduce, X) ? boxY : boxX;
+      markImpl = X && isOrdinal(X) ? boxY : boxX;
       colorMode = "fill";
-      break;
-    case "voronoi":
-      markImpl = voronoi;
-      colorMode = "stroke";
       break;
     default:
       throw new Error(`invalid mark: ${mark}`);
@@ -369,6 +364,8 @@ const impls = {
   rectX,
   rectY,
   cell,
+  boxX,
+  boxY,
   bin,
   binX,
   binY,
