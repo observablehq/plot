@@ -23,8 +23,8 @@ export interface LegendOptions {
    * domain is dates, the tick format may also be expressed as a [d3-time-format
    * string][2].
    *
-   * [1]: https://github.com/d3/d3-format/blob/main/README.md#locale_format
-   * [2]: https://github.com/d3/d3-time-format/blob/main/README.md#locale_format
+   * [1]: https://d3js.org/d3-format#locale_format
+   * [2]: https://d3js.org/d3-time-format#locale_format
    */
   tickFormat?: ScaleOptions["tickFormat"];
 

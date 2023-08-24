@@ -113,6 +113,24 @@ export async function autoBar() {
   return Plot.auto(alphabet, {x: "frequency", y: "letter", mark: "bar"}).plot();
 }
 
+const timeSeries = [
+  {date: new Date("2023-04-01"), type: "triangle", value: 5},
+  {date: new Date("2023-04-05"), type: "circle", value: 7},
+  {date: new Date("2023-04-10"), type: "circle", value: 8},
+  {date: new Date("2023-04-15"), type: "circle", value: 3},
+  {date: new Date("2023-04-15"), type: "triangle", value: 7},
+  {date: new Date("2023-04-20"), type: "triangle", value: 4},
+  {date: new Date("2023-04-25"), type: "square", value: 5}
+];
+
+export async function autoBarTimeSeries() {
+  return Plot.auto(timeSeries, {x: "date", y: "value", color: "type", mark: "bar"}).plot({x: {type: "band"}}); // TODO suppress warning?
+}
+
+export async function autoBarTimeSeriesReduce() {
+  return Plot.auto(timeSeries, {x: "date", y: {value: "value", reduce: "sum"}, color: "type", mark: "bar"}).plot();
+}
+
 export async function autoConnectedScatterplot() {
   const driving = await d3.csv<any>("data/driving.csv", d3.autoType);
   return Plot.auto(driving, {x: "miles", y: "gas", mark: "line"}).plot();
@@ -268,4 +286,9 @@ export async function autoDotFacet2() {
 export async function autoChannels() {
   const athletes = await d3.csv<any>("data/athletes.csv", d3.autoType);
   return Plot.auto(athletes, {x: Plot.valueof(athletes, "height"), y: Plot.valueof(athletes, "sport")}).plot();
+}
+
+export async function autoBarNoReducer() {
+  const simpsons = await d3.csv<any>("data/simpsons.csv", d3.autoType);
+  return Plot.auto(simpsons, {x: "season", y: "number_in_season", color: "imdb_rating", mark: "bar"}).plot();
 }

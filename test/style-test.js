@@ -36,12 +36,7 @@ it("maybeClassName coerces to strings", () => {
   assert.strictEqual(maybeClassName({toString: () => "foo-bar"}), "foo-bar");
 });
 
-it("maybeClassName generates distinct random class names", () => {
-  const names = new Set();
-  for (let i = 0; i < 100; ++i) {
-    const name = maybeClassName();
-    assert.match(name, /^plot-[0-9a-f]{6,}$/);
-    assert.strictEqual(names.has(name), false);
-    names.add(name);
-  }
+it("maybeClassName generates a deterministic class name", () => {
+  assert.strictEqual(maybeClassName(), maybeClassName());
+  assert.strictEqual(maybeClassName(maybeClassName()), maybeClassName());
 });

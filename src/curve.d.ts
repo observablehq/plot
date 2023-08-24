@@ -56,8 +56,9 @@ export interface CurveOptions extends CurveAutoOptions {
    * * *step-before* - a piecewise constant function where *x* changes after *y*
    *
    * If *curve* is a function, it will be invoked with a given CanvasPath
-   * *context* in the same fashion as a [D3 curve
-   * factory](https://github.com/d3/d3-shape/blob/main/README.md#custom-curves).
+   * *context* in the same fashion as a [D3 curve factory][1].
+   *
+   * [1]: https://d3js.org/d3-shape/curve#custom-curves
    */
   curve?: Curve;
 }
@@ -92,8 +93,9 @@ export interface CurveAutoOptions {
    * The *auto* curve is typically used in conjunction with a spherical
    * projection to interpolate along geodesics. If *curve* is a function, it
    * will be invoked with a given CanvasPath *context* in the same fashion as a
-   * [D3 curve
-   * factory](https://github.com/d3/d3-shape/blob/main/README.md#custom-curves).
+   * [D3 curve factory][1].
+   *
+   * [1]: https://d3js.org/d3-shape/curve#custom-curves
    */
   curve?: Curve | "auto";
 
@@ -101,12 +103,12 @@ export interface CurveAutoOptions {
    * The tension option only has an effect on bundle, cardinal and Catmull–Rom
    * splines (*bundle*, *cardinal*, *cardinal-open*, *cardinal-closed*,
    * *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For bundle
-   * splines, it corresponds to
-   * [beta](https://github.com/d3/d3-shape/blob/main/README.md#curveBundle_beta);
-   * for cardinal splines,
-   * [tension](https://github.com/d3/d3-shape/blob/main/README.md#curveCardinal_tension);
-   * for Catmull–Rom splines,
-   * [alpha](https://github.com/d3/d3-shape/blob/main/README.md#curveCatmullRom_alpha).
+   * splines, it corresponds to [beta][1]; for cardinal splines, [tension][2];
+   * for Catmull–Rom splines, [alpha][3].
+   *
+   * [1]: https://d3js.org/d3-shape/curve#curveBundle_beta
+   * [2]: https://d3js.org/d3-shape/curve#curveCardinal_tension
+   * [3]: https://d3js.org/d3-shape/curve#curveCatmullRom_alpha
    */
   tension?: number;
 }

@@ -14,7 +14,9 @@ function maybeMarker(marker) {
     case "none":
       return null;
     case "arrow":
-      return markerArrow;
+      return markerArrow("auto");
+    case "arrow-reverse":
+      return markerArrow("auto-start-reverse");
     case "dot":
       return markerDot;
     case "circle":
@@ -26,19 +28,20 @@ function maybeMarker(marker) {
   throw new Error(`invalid marker: ${marker}`);
 }
 
-function markerArrow(color, context) {
-  return create("svg:marker", context)
-    .attr("viewBox", "-5 -5 10 10")
-    .attr("markerWidth", 6.67)
-    .attr("markerHeight", 6.67)
-    .attr("orient", "auto")
-    .attr("fill", "none")
-    .attr("stroke", color)
-    .attr("stroke-width", 1.5)
-    .attr("stroke-linecap", "round")
-    .attr("stroke-linejoin", "round")
-    .call((marker) => marker.append("path").attr("d", "M-1.5,-3l3,3l-3,3"))
-    .node();
+function markerArrow(orient) {
+  return (color, context) =>
+    create("svg:marker", context)
+      .attr("viewBox", "-5 -5 10 10")
+      .attr("markerWidth", 6.67)
+      .attr("markerHeight", 6.67)
+      .attr("orient", orient)
+      .attr("fill", "none")
+      .attr("stroke", color)
+      .attr("stroke-width", 1.5)
+      .attr("stroke-linecap", "round")
+      .attr("stroke-linejoin", "round")
+      .call((marker) => marker.append("path").attr("d", "M-1.5,-3l3,3l-3,3"))
+      .node();
 }
 
 function markerDot(color, context) {

@@ -6,10 +6,10 @@ export async function penguinSizeSymbols() {
   return Plot.plot({
     grid: true,
     x: {
-      label: "Body mass (g) →"
+      label: "Body mass (g)"
     },
     y: {
-      label: "↑ Flipper length (mm)"
+      label: "Flipper length (mm)"
     },
     symbol: {
       legend: true

@@ -1,6 +1,6 @@
 import {ascending, InternSet} from "d3";
 import {marks} from "../mark.js";
-import {isColor, isObject, isOptions, isOrdinal, labelof, valueof} from "../options.js";
+import {isColor, isNumeric, isObject, isOptions, isOrdinal, labelof, valueof} from "../options.js";
 import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
 import {areaX, areaY} from "./area.js";
@@ -9,17 +9,12 @@ import {cell} from "./cell.js";
 import {dot} from "./dot.js";
 import {frame} from "./frame.js";
 import {line, lineX, lineY} from "./line.js";
-import {rectX, rectY} from "./rect.js";
+import {rect, rectX, rectY} from "./rect.js";
 import {ruleX, ruleY} from "./rule.js";
 import {boxX, boxY} from "./box.js";
 import {voronoi} from "./delaunay.js";
 
 export function autoSpec(data, options) {
-  const {x, y, fx, fy, color, size, mark} = autoImpl(data, options);
-  return {x, y, fx, fy, color, size, mark};
-}
-
-function autoImpl(data, options) {
   options = normalizeOptions(options);
 
   // Greedily materialize columns for type inference; we’ll need them anyway to
@@ -97,12 +92,21 @@ function autoImpl(data, options) {
       colorMode = "stroke";
       break;
     case "line":
-      markImpl = X && Y ? line : X ? lineX : lineY; // 1d line by index
+      markImpl =
+        (X && Y) || xReduce != null || yReduce != null // same logic as area (see below), but default to line
+          ? yZero || yReduce != null || (X && isMonotonic(X))
+            ? lineY
+            : xZero || xReduce != null || (Y && isMonotonic(Y))
+            ? lineX
+            : line
+          : X // 1d line by index
+          ? lineX
+          : lineY;
       colorMode = "stroke";
       if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
       break;
     case "area":
-      markImpl = yZero ? areaY : xZero || (Y && isMonotonic(Y)) ? areaX : areaY; // favor areaY if unsure
+      markImpl = !(yZero || yReduce != null) && (xZero || xReduce != null || (Y && isMonotonic(Y))) ? areaX : areaY; // favor areaY if unsure
       colorMode = "fill";
       if (isHighCardinality(C)) Z = null; // TODO only if z not set by user
       break;
@@ -111,21 +115,32 @@ function autoImpl(data, options) {
       colorMode = "stroke";
       break;
     case "bar":
-      markImpl = yZero
-        ? isOrdinalReduced(xReduce, X)
-          ? barY
-          : rectY
-        : xZero
-        ? isOrdinalReduced(yReduce, Y)
-          ? barX
-          : rectX
-        : isOrdinalReduced(xReduce, X) && isOrdinalReduced(yReduce, Y)
-        ? cell
-        : isOrdinalReduced(xReduce, X)
-        ? barY
-        : isOrdinalReduced(yReduce, Y)
-        ? barX
-        : rectY;
+      markImpl =
+        xReduce != null // bin or group on y
+          ? isOrdinal(Y)
+            ? isSelectReducer(xReduce) && X && isOrdinal(X)
+              ? cell
+              : barX
+            : rectX
+          : yReduce != null // bin or group on x
+          ? isOrdinal(X)
+            ? isSelectReducer(yReduce) && Y && isOrdinal(Y)
+              ? cell
+              : barY
+            : rectY
+          : colorReduce != null || sizeReduce != null // bin or group on both x and y
+          ? X && isOrdinal(X) && Y && isOrdinal(Y)
+            ? cell
+            : X && isOrdinal(X)
+            ? barY
+            : Y && isOrdinal(Y)
+            ? barX
+            : rect
+          : X && isNumeric(X) && !(Y && isNumeric(Y))
+          ? barX // if y is temporal, treat as ordinal
+          : Y && isNumeric(Y) && !(X && isNumeric(X))
+          ? barY // if x is temporal, treat as ordinal
+          : cell;
       colorMode = "fill";
       break;
     case "box":
@@ -148,7 +163,8 @@ function autoImpl(data, options) {
     y: Y ?? undefined, // treat null y as undefined for implicit stack
     [colorMode]: C ?? colorColor,
     z: Z,
-    r: S ?? undefined // treat null size as undefined for default constant radius
+    r: S ?? undefined, // treat null size as undefined for default constant radius
+    tip: true
   };
   let transformImpl;
   let transformOptions = {[colorMode]: colorReduce ?? undefined, r: sizeReduce ?? undefined};
@@ -212,27 +228,27 @@ function autoImpl(data, options) {
       reduce: sizeReduce ?? null
     },
     mark,
-    markImpl,
+    markImpl: implNames[markImpl],
     markOptions,
-    transformImpl,
+    transformImpl: implNames[transformImpl],
     transformOptions,
     colorMode
   };
 }
 
 export function auto(data, options) {
+  const spec = autoSpec(data, options);
   const {
     fx,
     fy,
     x: {zero: xZero},
     y: {zero: yZero},
-    markImpl,
     markOptions,
-    transformImpl,
     transformOptions,
     colorMode
-  } = autoImpl(data, options);
-
+  } = spec;
+  const markImpl = impls[spec.markImpl];
+  const transformImpl = impls[spec.transformImpl];
   // In the case of filled marks (particularly bars and areas) the frame and
   // rules should come after the mark; in the case of stroked marks
   // (particularly dots and lines) they should come before the mark.
@@ -299,12 +315,6 @@ function isSelectReducer(reduce) {
   return /^(?:first|last|mode)$/i.test(reduce);
 }
 
-// We can’t infer the type of a custom reducer without invoking it, so
-// assume most reducers produce quantitative values.
-function isOrdinalReduced(reduce, value) {
-  return (reduce != null && !isSelectReducer(reduce)) || !value ? false : isOrdinal(value);
-}
-
 // https://github.com/observablehq/plot/blob/818562649280e155136f730fc496e0b3d15ae464/src/transforms/group.js#L236
 function isReducer(reduce) {
   if (reduce == null) return false;
@@ -343,3 +353,34 @@ function isReducer(reduce) {
 function isHighCardinality(value) {
   return value ? new InternSet(value).size > value.length >> 1 : false;
 }
+
+const impls = {
+  dot,
+  line,
+  lineX,
+  lineY,
+  areaX,
+  areaY,
+  ruleX,
+  ruleY,
+  barX,
+  barY,
+  rect,
+  rectX,
+  rectY,
+  cell,
+  bin,
+  binX,
+  binY,
+  group,
+  groupX,
+  groupY
+};
+
+// Instead of returning the mark or transform implementation directly, we return
+// the implementation name to facilitate code compilation (“eject to explicit
+// marks”). An implementation-to-name mapping needs to live somewhere for
+// compilation, and by having it in Plot we can more easily introduce a new mark
+// or transform implementation in Plot.auto without having to synchronize a
+// downstream change in the compiler.
+const implNames = Object.fromEntries(Object.entries(impls).map(([name, impl]) => [impl, name]));

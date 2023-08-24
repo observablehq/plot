@@ -11,8 +11,8 @@ export async function usPopulationStateAgeDots() {
     grid: true,
     x: {
       axis: "top",
-      label: "Percent (%) →",
-      transform: (d) => d * 100
+      label: "Percent (%)",
+      percent: true
     },
     y: {
       axis: null
@@ -32,7 +32,7 @@ export async function usPopulationStateAgeDots() {
           textAnchor: "end",
           dx: -6,
           text: "state",
-          sort: {y: "x", reduce: "min", reverse: true}
+          sort: {y: "-x", reduce: "min"}
         })
       )
     ]

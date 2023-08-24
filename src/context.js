@@ -1,9 +1,9 @@
 import {creator, select} from "d3";
-import {createProjection} from "./projection.js";
+import {maybeClip} from "./style.js";
 
-export function createContext(options = {}, dimensions) {
-  const {document = typeof window !== "undefined" ? window.document : undefined} = options;
-  return {document, projection: createProjection(options, dimensions)};
+export function createContext(options = {}) {
+  const {document = typeof window !== "undefined" ? window.document : undefined, clip} = options;
+  return {document, clip: maybeClip(clip)};
 }
 
 export function create(name, {document}) {

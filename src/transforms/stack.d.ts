@@ -1,5 +1,5 @@
 import type {ChannelValue} from "../channel.js";
-import type {Transformed} from "./basic.js";
+import type {CompareFunction, Transformed} from "./basic.js";
 
 /**
  * A built-in stack offset method; one of:
@@ -14,7 +14,7 @@ import type {Transformed} from "./basic.js";
  * *wiggle* offset is recommended for streamgraphs in conjunction with the
  * *inside-out* order. For more, see [Byron & Wattenberg][1].
  *
- * [1]: http://leebyron.com/streamgraph/
+ * [1]: https://leebyron.com/streamgraph/
  */
 export type StackOffsetName =
   | "center"
@@ -53,7 +53,7 @@ export type StackOffset = StackOffsetName | StackOffsetFunction;
  * The *inside-out* order is recommended for streamgraphs in conjunction with
  * the *wiggle* offset. For more, see [Byron & Wattenberg][1].
  *
- * [1]: http://leebyron.com/streamgraph/
+ * [1]: https://leebyron.com/streamgraph/
  */
 export type StackOrderName = "value" | "x" | "y" | "z" | "sum" | "appearance" | "inside-out";
 
@@ -62,10 +62,17 @@ export type StackOrderName = "value" | "x" | "y" | "z" | "sum" | "appearance" | 
  *
  * - a named stack order method such as *inside-out* or *sum*
  * - a field name, for natural order of the corresponding values
- * - a function of data, for natural order of the corresponding values
+ * - an accessor function, for natural order of the corresponding values
+ * - a comparator function for ordering data
  * - an array of explicit **z** values in the desired order
  */
-export type StackOrder = StackOrderName | (string & Record<never, never>) | ((d: any, i: number) => any) | any[];
+export type StackOrder =
+  | StackOrderName
+  | `-${StackOrderName}`
+  | (string & Record<never, never>)
+  | ((d: any) => any) // accessor
+  | CompareFunction
+  | any[];
 
 /** Options for the stack transform. */
 export interface StackOptions {

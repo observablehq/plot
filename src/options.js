@@ -1,10 +1,15 @@
+import {color, descending, quantile, range as rangei} from "d3";
 import {parse as isoParse} from "isoformat";
-import {color, descending, range as rangei, quantile} from "d3";
+import {defined} from "./defined.js";
 import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
+
+// If a reindex is attached to the data, channel values expressed as arrays will
+// be reindexed when the channels are instantiated. See exclusiveFacets.
+export const reindex = Symbol("reindex");
 
 export function valueof(data, value, type) {
   const valueType = typeof value;
@@ -16,7 +21,11 @@ export function valueof(data, value, type) {
     ? map(data, constant(value), type)
     : typeof value?.transform === "function"
     ? maybeTypedArrayify(value.transform(data), type)
-    : maybeTypedArrayify(value, type);
+    : maybeTake(maybeTypedArrayify(value, type), data?.[reindex]);
+}
+
+function maybeTake(values, index) {
+  return index ? take(values, index) : values;
 }
 
 function maybeTypedMap(data, f, type) {
@@ -37,8 +46,9 @@ function floater(f) {
   return (d, i) => coerceNumber(f(d, i));
 }
 
+export const singleton = [null]; // for data-less decoration marks, e.g. frame
 export const field = (name) => (d) => d[name];
-export const indexOf = (d, i) => i;
+export const indexOf = {transform: range};
 export const identity = {transform: (d) => d};
 export const zero = () => 0;
 export const one = () => 1;
@@ -137,6 +147,21 @@ export function slice(values, type = Array) {
   return values instanceof type ? values.slice() : type.from(values);
 }
 
+// Returns true if any of x, x1, or x2 is not (strictly) undefined.
+export function hasX({x, x1, x2}) {
+  return x !== undefined || x1 !== undefined || x2 !== undefined;
+}
+
+// Returns true if any of y, y1, or y2 is not (strictly) undefined.
+export function hasY({y, y1, y2}) {
+  return y !== undefined || y1 !== undefined || y2 !== undefined;
+}
+
+// Returns true if has x or y, or if interval is not (strictly) undefined.
+export function hasXY(options) {
+  return hasX(options) || hasY(options) || options.interval !== undefined;
+}
+
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
 export function isObject(option) {
   return option?.toString === objectToString;
@@ -153,6 +178,7 @@ export function isScaleOptions(option) {
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a channel value
 // definition expressed as a channel transform (e.g., {transform: …}).
+// TODO Check typeof option[Symbol.iterator] !== "function"?
 export function isOptions(option) {
   return isObject(option) && typeof option.transform !== "function";
 }
@@ -206,7 +232,17 @@ export function where(data, test) {
 
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
-  return map(index, (i) => values[i]);
+  return map(index, (i) => values[i], values.constructor);
+}
+
+// If f does not take exactly one argument, wraps it in a function that uses take.
+export function taker(f) {
+  return f.length === 1 ? (index, values) => f(take(values, index)) : f;
+}
+
+// Uses subarray if available, and otherwise slice.
+export function subarray(I, i, j) {
+  return I.subarray ? I.subarray(i, j) : I.slice(i, j);
 }
 
 // Based on InternMap (d3.group).
@@ -269,18 +305,37 @@ export function mid(x1, x2) {
   };
 }
 
+// If the scale options declare an interval, applies it to the values V.
+export function maybeApplyInterval(V, scale) {
+  const t = maybeIntervalTransform(scale?.interval, scale?.type);
+  return t ? map(V, t) : V;
+}
+
+// Returns the equivalent scale transform for the specified interval option.
+export function maybeIntervalTransform(interval, type) {
+  const i = maybeInterval(interval, type);
+  return i && ((v) => (defined(v) ? i.floor(v) : v));
+}
+
 // If interval is not nullish, converts interval shorthand such as a number (for
 // multiples) or a time interval name (such as “day”) to a {floor, offset,
 // range} object similar to a D3 time interval.
 export function maybeInterval(interval, type) {
   if (interval == null) return;
   if (typeof interval === "number") {
-    const n = interval;
-    return {
-      floor: (d) => n * Math.floor(d / n),
-      offset: (d) => d + n, // note: no optional step for simplicity
-      range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => n * x)
-    };
+    if (0 < interval && interval < 1 && Number.isInteger(1 / interval)) interval = -1 / interval;
+    const n = Math.abs(interval);
+    return interval < 0
+      ? {
+          floor: (d) => Math.floor(d * n) / n,
+          offset: (d) => (d * n + 1) / n, // note: no optional step for simplicity
+          range: (lo, hi) => rangei(Math.ceil(lo * n), hi * n).map((x) => x / n)
+        }
+      : {
+          floor: (d) => Math.floor(d / n) * n,
+          offset: (d) => d + n, // note: no optional step for simplicity
+          range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => x * n)
+        };
   }
   if (typeof interval === "string") return (type === "time" ? maybeTimeInterval : maybeUtcInterval)(interval);
   if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
@@ -300,6 +355,14 @@ export function maybeNiceInterval(interval, type) {
   interval = maybeRangeInterval(interval, type);
   if (interval && typeof interval.ceil !== "function") throw new Error("invalid interval: missing ceil method");
   return interval;
+}
+
+export function isTimeInterval(t) {
+  return isInterval(t) && typeof t?.floor === "function" && t.floor() instanceof Date;
+}
+
+export function isInterval(t) {
+  return typeof t?.range === "function";
 }
 
 // This distinguishes between per-dimension options and a standalone value.
@@ -429,8 +492,8 @@ export function isRound(value) {
   return /^\s*round\s*$/i.test(value);
 }
 
-export function maybeFrameAnchor(value = "middle") {
-  return keyword(value, "frameAnchor", [
+export function maybeAnchor(value, name) {
+  return maybeKeyword(value, name, [
     "middle",
     "top-left",
     "top",
@@ -441,6 +504,10 @@ export function maybeFrameAnchor(value = "middle") {
     "bottom-left",
     "left"
   ]);
+}
+
+export function maybeFrameAnchor(value = "middle") {
+  return maybeAnchor(value, "frameAnchor");
 }
 
 // Like a sort comparator, returns a positive value if the given array of values

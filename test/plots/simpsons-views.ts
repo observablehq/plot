@@ -8,10 +8,10 @@ export async function simpsonsViews() {
     grid: true,
     x: {
       inset: 6,
-      label: "IMDB rating →"
+      label: "IMDb rating"
     },
     y: {
-      label: "↑ Viewers (U.S., millions)"
+      label: "Viewers (U.S., millions)"
     },
     color: {
       type: "quantize",

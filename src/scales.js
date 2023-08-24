@@ -28,7 +28,7 @@ import {
   createScaleDivergingLog,
   createScaleDivergingSymlog
 } from "./scales/diverging.js";
-import {isDivergingScheme} from "./scales/schemes.js";
+import {isCategoricalScheme, isDivergingScheme} from "./scales/schemes.js";
 import {createScaleTime, createScaleUtc} from "./scales/temporal.js";
 import {createScaleOrdinal, createScalePoint, createScaleBand, ordinalImplicit} from "./scales/ordinal.js";
 import {maybeSymbol} from "./symbol.js";
@@ -97,17 +97,19 @@ export function createScales(
   return scales;
 }
 
-export function createScaleFunctions(scales) {
-  return Object.fromEntries(
-    Object.entries(scales)
-      .filter(([, {scale}]) => scale) // drop identity scales
-      .map(([name, {scale, type, interval, label}]) => {
-        scale.type = type; // for axis
-        if (interval != null) scale.interval = interval; // for axis
-        if (label != null) scale.label = label; // for axis
-        return [name, scale];
-      })
-  );
+export function createScaleFunctions(descriptors) {
+  const scales = {};
+  const scaleFunctions = {scales};
+  for (const [key, descriptor] of Object.entries(descriptors)) {
+    const {scale, type, interval, label} = descriptor;
+    scales[key] = exposeScale(descriptor);
+    scaleFunctions[key] = scale;
+    // TODO: pass these properties, which are needed for axes, in the descriptor.
+    scale.type = type;
+    if (interval != null) scale.interval = interval;
+    if (label != null) scale.label = label;
+  }
+  return scaleFunctions;
 }
 
 // Mutates scale.range!
@@ -136,8 +138,6 @@ function inferScaleLabel(channels = [], scale) {
     else if (label !== l) return;
   }
   if (label === undefined) return;
-  // Ignore the implicit label for temporal scales if it’s simply “date”.
-  if (isTemporalScale(scale) && /^(date|time|year)$/i.test(label)) return;
   if (!isOrdinalScale(scale) && scale.percent) label = `${label} (%)`;
   return {inferred: true, toString: () => label};
 }
@@ -178,7 +178,8 @@ export function innerDimensions({fx, fy}, dimensions) {
     marginBottom,
     marginLeft,
     width: fx ? fx.scale.bandwidth() + marginLeft + marginRight : width,
-    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height
+    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height,
+    facet: {width, height}
   };
 }
 
@@ -363,7 +364,7 @@ function createScale(key, channels = [], options = {}) {
     case "band":
       return createScaleBand(key, channels, options);
     case "identity":
-      return registry.get(key) === position ? createScaleIdentity() : {type: "identity"};
+      return createScaleIdentity(key);
     case undefined:
       return;
     default:
@@ -422,15 +423,18 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   if (domain !== undefined) {
     if (isOrdinal(domain)) return asOrdinalType(kind);
     if (isTemporal(domain)) return "utc";
-    if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
-    return "linear";
+  } else {
+    const values = channels.map(({value}) => value).filter((value) => value !== undefined);
+    if (values.some(isOrdinal)) return asOrdinalType(kind);
+    if (values.some(isTemporal)) return "utc";
   }
 
-  // If any channel is ordinal or temporal, it takes priority.
-  const values = channels.map(({value}) => value).filter((value) => value !== undefined);
-  if (values.some(isOrdinal)) return asOrdinalType(kind);
-  if (values.some(isTemporal)) return "utc";
-  if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
+  // For color scales, take a hint from the color scheme and pivot option.
+  if (kind === color) {
+    if (pivot != null || isDivergingScheme(scheme)) return "diverging";
+    if (isCategoricalScheme(scheme)) return "categorical";
+  }
+
   return "linear";
 }
 
@@ -511,10 +515,10 @@ export function scale(options = {}) {
   return scale;
 }
 
-export function exposeScales(scaleDescriptors) {
+export function exposeScales(scales) {
   return (key) => {
     if (!registry.has((key = `${key}`))) throw new Error(`unknown scale: ${key}`);
-    return key in scaleDescriptors ? exposeScale(scaleDescriptors[key]) : undefined;
+    return scales[key];
   };
 }
 

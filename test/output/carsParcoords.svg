@@ -446,53 +446,53 @@
     <path d="M401.798,25L413.6,50L206.667,75L188.13,100L330.326,125L460.286,150L577,175"></path>
   </g>
   <g aria-label="text" fill="black" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" font-variant="tabular-nums" transform="translate(0.5,0.5)">
-    <text y="0.32em" transform="translate(104,25)">10</text>
-    <text y="0.32em" transform="translate(177.71428571428572,25)">15</text>
-    <text y="0.32em" transform="translate(251.42857142857144,25)">20</text>
-    <text y="0.32em" transform="translate(325.14285714285717,25)">25</text>
-    <text y="0.32em" transform="translate(398.85714285714283,25)">30</text>
-    <text y="0.32em" transform="translate(472.5714285714286,25)">35</text>
-    <text y="0.32em" transform="translate(546.2857142857143,25)">40</text>
-    <text y="0.32em" transform="translate(620,25)">45</text>
+    <text y="0.32em" transform="translate(117.72340425531917,25)">10</text>
+    <text y="0.32em" transform="translate(186.3404255319149,25)">15</text>
+    <text y="0.32em" transform="translate(254.9574468085106,25)">20</text>
+    <text y="0.32em" transform="translate(323.5744680851064,25)">25</text>
+    <text y="0.32em" transform="translate(392.1914893617021,25)">30</text>
+    <text y="0.32em" transform="translate(460.80851063829783,25)">35</text>
+    <text y="0.32em" transform="translate(529.4255319148936,25)">40</text>
+    <text y="0.32em" transform="translate(598.0425531914893,25)">45</text>
     <text y="0.32em" transform="translate(104,50)">3</text>
     <text y="0.32em" transform="translate(207.2,50)">4</text>
     <text y="0.32em" transform="translate(310.4,50)">5</text>
     <text y="0.32em" transform="translate(413.6,50)">6</text>
     <text y="0.32em" transform="translate(516.8,50)">7</text>
     <text y="0.32em" transform="translate(620,50)">8</text>
-    <text y="0.32em" transform="translate(104,75)">100</text>
-    <text y="0.32em" transform="translate(177.71428571428572,75)">150</text>
-    <text y="0.32em" transform="translate(251.42857142857144,75)">200</text>
-    <text y="0.32em" transform="translate(325.14285714285717,75)">250</text>
-    <text y="0.32em" transform="translate(398.85714285714283,75)">300</text>
-    <text y="0.32em" transform="translate(472.5714285714286,75)">350</text>
-    <text y="0.32em" transform="translate(546.2857142857143,75)">400</text>
-    <text y="0.32em" transform="translate(620,75)">450</text>
-    <text y="0.32em" transform="translate(104,100)">60</text>
-    <text y="0.32em" transform="translate(168.5,100)">80</text>
-    <text y="0.32em" transform="translate(233,100)">100</text>
-    <text y="0.32em" transform="translate(297.5,100)">120</text>
-    <text y="0.32em" transform="translate(362,100)">140</text>
-    <text y="0.32em" transform="translate(426.5,100)">160</text>
-    <text y="0.32em" transform="translate(491,100)">180</text>
-    <text y="0.32em" transform="translate(555.5,100)">200</text>
-    <text y="0.32em" transform="translate(620,100)">220</text>
-    <text y="0.32em" transform="translate(104,125)">2,000</text>
-    <text y="0.32em" transform="translate(190,125)">2,500</text>
-    <text y="0.32em" transform="translate(276,125)">3,000</text>
-    <text y="0.32em" transform="translate(362,125)">3,500</text>
-    <text y="0.32em" transform="translate(448,125)">4,000</text>
-    <text y="0.32em" transform="translate(534.0000000000001,125)">4,500</text>
-    <text y="0.32em" transform="translate(620,125)">5,000</text>
+    <text y="0.32em" transform="translate(146.66666666666669,75)">100</text>
+    <text y="0.32em" transform="translate(213.33333333333331,75)">150</text>
+    <text y="0.32em" transform="translate(280,75)">200</text>
+    <text y="0.32em" transform="translate(346.66666666666663,75)">250</text>
+    <text y="0.32em" transform="translate(413.33333333333337,75)">300</text>
+    <text y="0.32em" transform="translate(480,75)">350</text>
+    <text y="0.32em" transform="translate(546.6666666666667,75)">400</text>
+    <text y="0.32em" transform="translate(613.3333333333334,75)">450</text>
+    <text y="0.32em" transform="translate(143.26086956521738,100)">60</text>
+    <text y="0.32em" transform="translate(199.34782608695653,100)">80</text>
+    <text y="0.32em" transform="translate(255.43478260869566,100)">100</text>
+    <text y="0.32em" transform="translate(311.5217391304348,100)">120</text>
+    <text y="0.32em" transform="translate(367.60869565217394,100)">140</text>
+    <text y="0.32em" transform="translate(423.69565217391306,100)">160</text>
+    <text y="0.32em" transform="translate(479.7826086956522,100)">180</text>
+    <text y="0.32em" transform="translate(535.8695652173913,100)">200</text>
+    <text y="0.32em" transform="translate(591.9565217391305,100)">220</text>
+    <text y="0.32em" transform="translate(160.61808902750215,125)">2,000</text>
+    <text y="0.32em" transform="translate(233.7680748511483,125)">2,500</text>
+    <text y="0.32em" transform="translate(306.91806067479445,125)">3,000</text>
+    <text y="0.32em" transform="translate(380.0680464984406,125)">3,500</text>
+    <text y="0.32em" transform="translate(453.2180323220868,125)">4,000</text>
+    <text y="0.32em" transform="translate(526.3680181457329,125)">4,500</text>
+    <text y="0.32em" transform="translate(599.5180039693792,125)">5,000</text>
     <text y="0.32em" transform="translate(104,150)">8</text>
-    <text y="0.32em" transform="translate(168.5,150)">10</text>
-    <text y="0.32em" transform="translate(233,150)">12</text>
-    <text y="0.32em" transform="translate(297.5,150)">14</text>
-    <text y="0.32em" transform="translate(362,150)">16</text>
-    <text y="0.32em" transform="translate(426.5,150)">18</text>
-    <text y="0.32em" transform="translate(491,150)">20</text>
-    <text y="0.32em" transform="translate(555.5,150)">22</text>
-    <text y="0.32em" transform="translate(620,150)">24</text>
+    <text y="0.32em" transform="translate(165.42857142857144,150)">10</text>
+    <text y="0.32em" transform="translate(226.85714285714286,150)">12</text>
+    <text y="0.32em" transform="translate(288.2857142857143,150)">14</text>
+    <text y="0.32em" transform="translate(349.7142857142857,150)">16</text>
+    <text y="0.32em" transform="translate(411.1428571428571,150)">18</text>
+    <text y="0.32em" transform="translate(472.5714285714286,150)">20</text>
+    <text y="0.32em" transform="translate(534,150)">22</text>
+    <text y="0.32em" transform="translate(595.4285714285714,150)">24</text>
     <text y="0.32em" transform="translate(104,175)">70</text>
     <text y="0.32em" transform="translate(190,175)">72</text>
     <text y="0.32em" transform="translate(276,175)">74</text>

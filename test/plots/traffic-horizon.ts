@@ -4,15 +4,14 @@ import * as d3 from "d3";
 export async function trafficHorizon() {
   const data = d3.sort(await d3.csv<any>("data/traffic.csv", d3.autoType), (d) => d.date);
   const bands = 5; // just a hint; not guaranteed
-  const max = d3.max(data, (d) => d.value);
+  const max = d3.max(data, (d) => d.vehicles);
   const step = d3.tickStep(0, max, bands);
   const ticks = d3.ticks(0, max, bands);
   return Plot.plot({
     width: 960,
     height: 1100,
-    x: {
-      axis: "top"
-    },
+    margin: 0,
+    marginTop: 30,
     y: {
       axis: null,
       domain: [0, step]
@@ -27,16 +26,12 @@ export async function trafficHorizon() {
       legend: true
     },
     fy: {
-      axis: null,
-      domain: data.map((d) => d.name) // respect input order
-    },
-    facet: {
-      data,
-      y: "name"
+      domain: data.map((d) => d.location) // respect input order
     },
     marks: [
-      ticks.map((t) => Plot.areaY(data, {x: "date", y: (d) => d.value - t, fill: t, clip: true})),
-      Plot.text(data, Plot.selectFirst({text: "name", frameAnchor: "left"}))
+      ticks.map((t) => Plot.areaY(data, {x: "date", y: (d) => d.vehicles - t, fy: "location", fill: t, clip: true})),
+      Plot.axisFy({frameAnchor: "left", label: null}),
+      Plot.axisX({anchor: "top", filter: (d, i) => i > 0}) // drop first tick
     ]
   });
 }

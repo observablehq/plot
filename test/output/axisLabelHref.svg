@@ -1,0 +1,45 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)"><a fill="inherit" href="https://en.wikipedia.org/wiki/A">
+      <path transform="translate(70,30)" d="M0,0L0,6"></path>
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/B">
+      <path transform="translate(170,30)" d="M0,0L0,6"></path>
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/C">
+      <path transform="translate(270,30)" d="M0,0L0,6"></path>
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/D">
+      <path transform="translate(370,30)" d="M0,0L0,6"></path>
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/E">
+      <path transform="translate(470,30)" d="M0,0L0,6"></path>
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/F">
+      <path transform="translate(570,30)" d="M0,0L0,6"></path>
+    </a></g>
+  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)"><a fill="inherit" href="https://en.wikipedia.org/wiki/A">
+      <text y="0.71em" transform="translate(70,30)">A</text>
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/B">
+      <text y="0.71em" transform="translate(170,30)">B</text>
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/C">
+      <text y="0.71em" transform="translate(270,30)">C</text>
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/D">
+      <text y="0.71em" transform="translate(370,30)">D</text>
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/E">
+      <text y="0.71em" transform="translate(470,30)">E</text>
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/F">
+      <text y="0.71em" transform="translate(570,30)">F</text>
+    </a></g>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(320,30)">Letter</text>
+  </g>
+</svg>

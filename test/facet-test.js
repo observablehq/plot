@@ -31,3 +31,8 @@ it("mark data not parallel to facet data does not trigger a warning", async () =
     Plot.dot(data.slice(0, 1), {x: "x", y: "y", facet: undefined}).plot({facet: {data, x: "series"}})
   );
 });
+
+it("detects missing facet data", async () => {
+  assert.throws(() => Plot.barY([], {x: "x", y: "y"}).plot({facet: {x: "fx"}}), /missing facet data/);
+  assert.throws(() => Plot.barY([], {x: "x", y: "y"}).plot({facet: {data: null, x: "fx"}}), /missing facet data/);
+});

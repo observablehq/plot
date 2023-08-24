@@ -6,7 +6,7 @@ export async function metroUnemploymentNormalize() {
   return Plot.plot({
     y: {
       type: "log",
-      label: "↑ Change in unemployment (%)",
+      label: "Change in unemployment (%)",
       grid: true,
       tickFormat: (x) => `${x.toPrecision(1)}×`
     },

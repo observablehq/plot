@@ -15,9 +15,11 @@ import type {Map} from "./map.js";
  * - *max* - the maximum value
  * - *mean* - the mean (average) value
  * - *median* - the median value
- * - *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+ * - *variance* - the variance per [Welford’s algorithm][1]
  * - *mode* - the mode (most common occurrence)
  * - *pXX* - the percentile value, where XX is a number in [00,99]
+ *
+ * [1]: https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm
  */
 export type WindowReducerName =
   | "difference" // specific to window

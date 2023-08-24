@@ -11,14 +11,8 @@ export async function wordLengthMobyDick() {
     .filter((word) => word); // ignore (now) empty words
 
   return Plot.plot({
-    x: {
-      label: "Word length →",
-      labelAnchor: "right"
-    },
-    y: {
-      grid: true,
-      percent: true
-    },
+    x: {label: "Word length", labelAnchor: "right", labelArrow: true},
+    y: {grid: true, percent: true},
     marks: [Plot.barY(words, Plot.groupX({y: "proportion", title: "mode"}, {x: "length", title: (d) => d}))]
   });
 }

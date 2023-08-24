@@ -1,6 +1,7 @@
 import type {Interval} from "./interval.js";
 import type {Reducer} from "./reducer.js";
 import type {ScaleName, ScaleType} from "./scales.js";
+import type {CompareFunction} from "./transforms/basic.js";
 import type {BinOptions} from "./transforms/bin.js";
 
 /** Lazily-constructed channel values derived from data. */
@@ -108,6 +109,9 @@ export interface Channel {
    */
   filter?: ((value: any) => boolean) | null;
 
+  /** Whether to apply the scale’s transform, if any; defaults to true. */
+  transform?: boolean;
+
   /**
    * An internal hint to affect the default construction of scales. For example,
    * the dot mark uses a channel hint to affect the default range of the
@@ -161,6 +165,9 @@ export type ChannelValueBinSpec = ChannelValue | ({value: ChannelValue} & BinOpt
  */
 export type ChannelValueDenseBinSpec = ChannelValue | ({value: ChannelValue; scale?: Channel["scale"]} & Omit<BinOptions, "interval">); // prettier-ignore
 
+/** A channel name, or an implied one for domain sorting. */
+type ChannelDomainName = ChannelName | "data" | "width" | "height";
+
 /**
  * The available inputs for imputing scale domains. In addition to a named
  * channel, an input may be specified as:
@@ -176,7 +183,7 @@ export type ChannelValueDenseBinSpec = ChannelValue | ({value: ChannelValue; sca
  * custom **reduce** function, as when the built-in single-channel reducers are
  * insufficient.
  */
-export type ChannelDomainValue = ChannelName | "data" | "width" | "height" | null;
+export type ChannelDomainValue = ChannelDomainName | `-${ChannelDomainName}` | null;
 
 /** Options for imputing scale domains from channel values. */
 export interface ChannelDomainOptions {
@@ -192,7 +199,10 @@ export interface ChannelDomainOptions {
    */
   reduce?: Reducer | boolean | null;
 
-  /** If true, use descending instead of ascending order. */
+  /** How to order reduced values. */
+  order?: CompareFunction | "ascending" | "descending" | null;
+
+  /** If true, reverse the order after sorting. */
   reverse?: boolean;
 
   /**

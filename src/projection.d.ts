@@ -85,14 +85,14 @@ export interface ProjectionOptions extends InsetOptions {
   /**
    * The [standard parallels][1]. For conic projections only.
    *
-   * [1]: https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels
+   * [1]: https://d3js.org/d3-geo/conic#conic_parallels
    */
   parallels?: [y1: number, y2: number];
 
   /**
    * The projection’s [sampling threshold][1].
    *
-   * [1]: https://github.com/d3/d3-geo/blob/main/README.md#projection_precision
+   * [1]: https://d3js.org/d3-geo/projection#projection_precision
    */
   precision?: number;
 

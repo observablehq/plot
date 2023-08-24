@@ -8,7 +8,7 @@ import type {TickXOptions, TickYOptions} from "./tick.js";
 type GridScaleOptions = Pick<ScaleOptions, "interval" | "ticks" | "tickSpacing">;
 
 /** The subset of scale options for axes. */
-type AxisScaleOptions = Pick<ScaleOptions, "tickSize" | "tickPadding" | "tickFormat" | "tickRotate" | "label" | "labelOffset" | "labelAnchor">; // prettier-ignore
+type AxisScaleOptions = Pick<ScaleOptions, "tickSize" | "tickPadding" | "tickFormat" | "tickRotate" | "label" | "labelOffset" | "labelAnchor" | "labelArrow">; // prettier-ignore
 
 /** Options for the grid marks. */
 export interface GridOptions extends GridScaleOptions {

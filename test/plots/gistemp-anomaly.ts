@@ -5,7 +5,7 @@ export async function gistempAnomaly() {
   const data = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   return Plot.plot({
     y: {
-      label: "↑ Temperature anomaly (°C)",
+      label: "Temperature anomaly (°C)",
       tickFormat: "+f",
       grid: true
     },

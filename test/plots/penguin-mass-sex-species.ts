@@ -6,7 +6,7 @@ export async function penguinMassSexSpecies() {
   return Plot.plot({
     x: {
       round: true,
-      label: "Body mass (g) →"
+      label: "Body mass (g)"
     },
     facet: {
       data,

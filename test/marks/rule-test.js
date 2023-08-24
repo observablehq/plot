@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import assert from "assert";
+import it from "../jsdom.js";
 
 it("ruleX() has the expected defaults", () => {
   const rule = Plot.ruleX();
@@ -189,11 +190,4 @@ it("ruleY(data, {x1, x2, y}) specifies x1, x2, y", () => {
   const {y} = rule.channels;
   assert.strictEqual(y.value, "2");
   assert.strictEqual(y.scale, "y");
-});
-
-it("rule() is incompatible with a projection", () => {
-  assert.throws(
-    () => Plot.ruleX([]).plot({projection: {stream: () => ({})}}),
-    /projection requires paired x and y channels; x is missing y/
-  );
 });

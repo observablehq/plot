@@ -6,7 +6,7 @@ export async function sfTemperatureBandArea() {
   return Plot.plot({
     y: {
       grid: true,
-      label: "↑ Daily temperature range (°F)"
+      label: "Daily temperature range (°F)"
     },
     marks: [
       Plot.areaY(

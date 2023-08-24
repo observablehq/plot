@@ -13,11 +13,75 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="facet" transform="translate(0,6)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(0,6)">
       <text y="0.32em" transform="translate(140,29)">Construction</text>
     </g>
-    <g aria-label="bar">
+    <g text-anchor="end" transform="translate(0,26)">
+      <text y="0.32em" transform="translate(140,29)">Wholesale and Retail Trade</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,46)">
+      <text y="0.32em" transform="translate(140,29)">Manufacturing</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,66)">
+      <text y="0.32em" transform="translate(140,29)">Leisure and hospitality</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,86)">
+      <text y="0.32em" transform="translate(140,29)">Business services</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,106)">
+      <text y="0.32em" transform="translate(140,29)">Education and Health</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,126)">
+      <text y="0.32em" transform="translate(140,29)">Government</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,146)">
+      <text y="0.32em" transform="translate(140,29)">Self-employed</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,166)">
+      <text y="0.32em" transform="translate(140,29)">Finance</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,186)">
+      <text y="0.32em" transform="translate(140,29)">Transportation and Utilities</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,206)">
+      <text y="0.32em" transform="translate(140,29)">Other</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,226)">
+      <text y="0.32em" transform="translate(140,29)">Information</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,246)">
+      <text y="0.32em" transform="translate(140,29)">Agriculture</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,266)">
+      <text y="0.32em" transform="translate(140,29)">Mining and Extraction</text>
+    </g>
+  </g>
+  <g aria-label="fy-axis label" transform="translate(-136.5,0.5)">
+    <text y="0.71em" transform="translate(140,165) rotate(-90)">industry</text>
+  </g>
+  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+    <g fill="none" stroke="currentColor" transform="translate(0,266)">
+      <path transform="translate(140,38)" d="M0,0L0,6"></path>
+      <path transform="translate(234.52586206896552,38)" d="M0,0L0,6"></path>
+      <path transform="translate(328.9224137931035,38)" d="M0,0L0,6"></path>
+      <path transform="translate(423.448275862069,38)" d="M0,0L0,6"></path>
+      <path transform="translate(517.844827586207,38)" d="M0,0L0,6"></path>
+      <path transform="translate(612.3706896551724,38)" d="M0,0L0,6"></path>
+    </g>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+    <g font-variant="tabular-nums" transform="translate(0,266)">
+      <text y="0.71em" transform="translate(140,38)">2000</text>
+      <text y="0.71em" transform="translate(234.52586206896552,38)">2002</text>
+      <text y="0.71em" transform="translate(328.9224137931035,38)">2004</text>
+      <text y="0.71em" transform="translate(423.448275862069,38)">2006</text>
+      <text y="0.71em" transform="translate(517.844827586207,38)">2008</text>
+      <text y="0.71em" transform="translate(612.3706896551724,38)">2010</text>
+    </g>
+  </g>
+  <g aria-label="bar">
+    <g transform="translate(0,6)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#f1814d"><title>745</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#ed7953"><title>812</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#f58c46"><title>669</title></rect>
@@ -141,18 +205,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#41049d"><title>2,194</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#0d0887"><title>2,440</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="616.3793103448276" cy="29" r="3"><title>2,440</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="163.53448275862067" cy="29" r="3"><title>384</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,26)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Wholesale and Retail Trade</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,26)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#df6263"><title>1,000</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#dd5e66"><title>1,023</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#e06363"><title>983</title></rect>
@@ -276,18 +329,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#4903a0"><title>2,154</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#5601a4"><title>2,071</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="612.3706896551724" cy="29" r="3"><title>2,154</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="179.43965517241378" cy="29" r="3"><title>701</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,46)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Manufacturing</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,46)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#f2844b"><title>734</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#f48948"><title>694</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#f1834c"><title>739</title></rect>
@@ -411,18 +453,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#6f00a8"><title>1,918</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#8004a8"><title>1,814</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="580.6896551724138" cy="29" r="3"><title>2,010</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="498.0603448275862" cy="29" r="3"><title>596</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,66)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Leisure and hospitality</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,66)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#ef7e50"><title>782</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#ef7e50"><title>779</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#ef7c51"><title>789</title></rect>
@@ -546,18 +577,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#8104a7"><title>1,804</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#a01a9c"><title>1,597</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="612.3706896551724" cy="29" r="3"><title>1,804</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="171.55172413793105" cy="29" r="3"><title>636</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,86)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Business services</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,86)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#f68f44"><title>655</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#f9983e"><title>587</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#f79342"><title>623</title></rect>
@@ -681,18 +701,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#9d189d"><title>1,614</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#8b0aa5"><title>1,740</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="616.3793103448276" cy="29" r="3"><title>1,740</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="175.4310344827586" cy="29" r="3"><title>504</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,106)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Education and Health</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,106)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#febd2a"><title>353</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#febd2a"><title>349</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#feb82c"><title>381</title></rect>
@@ -816,18 +825,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#cf4c74"><title>1,175</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#cd4a76"><title>1,200</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="600.4741379310344" cy="29" r="3"><title>1,280</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="183.3189655172414" cy="29" r="3"><title>293</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,126)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Government</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,126)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#fdb130"><title>430</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#fdb42f"><title>409</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#fdc328"><title>311</title></rect>
@@ -951,18 +949,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#e3685f"><title>948</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#e87059"><title>880</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="588.5775862068965" cy="29" r="3"><title>1,129</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="151.76724137931035" cy="29" r="3"><title>269</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,146)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Self-employed</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,146)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#fcd025"><title>239</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#fdcb26"><title>262</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#fbd324"><title>213</title></rect>
@@ -1086,18 +1073,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#f2844b"><title>730</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#f58b47"><title>680</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="612.3706896551724" cy="29" r="3"><title>730</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="183.3189655172414" cy="29" r="3"><title>178</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,166)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Finance</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,166)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#fcd225"><title>228</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#fcd025"><title>240</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#fcd225"><title>226</title></rect>
@@ -1221,18 +1197,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#f79342"><title>623</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#f3874a"><title>708</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="616.3793103448276" cy="29" r="3"><title>708</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="179.43965517241378" cy="29" r="3"><title>184</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,186)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Transportation and Utilities</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,186)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#fcd025"><title>236</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#fcd225"><title>223</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#fad824"><title>192</title></rect>
@@ -1356,18 +1321,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#f68f44"><title>657</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#f9983e"><title>591</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="612.3706896551724" cy="29" r="3"><title>657</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="179.43965517241378" cy="29" r="3"><title>129</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,206)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Other</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,206)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#fdca26"><title>274</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#fcd025"><title>232</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#fcce25"><title>247</title></rect>
@@ -1491,18 +1445,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#f89540"><title>609</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#f89540"><title>603</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="612.3706896551724" cy="29" r="3"><title>609</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="175.4310344827586" cy="29" r="3"><title>161</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,226)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Information</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,226)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#f7e425"><title>125</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#f6e626"><title>112</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#f8e125"><title>140</title></rect>
@@ -1626,18 +1569,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#fdc328"><title>313</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#fdc527"><title>300</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="588.5775862068965" cy="29" r="3"><title>373</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="482.2844827586207" cy="29" r="3"><title>77</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,246)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Agriculture</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,246)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#f8df25"><title>154</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#f9dc24"><title>173</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#f8df25"><title>152</title></rect>
@@ -1761,34 +1693,7 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#fdc229"><title>318</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#fdc827"><title>285</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="612.3706896551724" cy="29" r="3"><title>318</title></circle>
-    </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
-      <circle cx="442.9741379310344" cy="29" r="3"><title>35</title></circle>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,266)">
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(140,29)">Mining and Extraction</text>
-    </g>
-    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(140,38)" d="M0,0L0,6"></path>
-      <path transform="translate(234.52586206896552,38)" d="M0,0L0,6"></path>
-      <path transform="translate(328.9224137931035,38)" d="M0,0L0,6"></path>
-      <path transform="translate(423.448275862069,38)" d="M0,0L0,6"></path>
-      <path transform="translate(517.844827586207,38)" d="M0,0L0,6"></path>
-      <path transform="translate(612.3706896551724,38)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(140,38)">2000</text>
-      <text y="0.71em" transform="translate(234.52586206896552,38)">2002</text>
-      <text y="0.71em" transform="translate(328.9224137931035,38)">2004</text>
-      <text y="0.71em" transform="translate(423.448275862069,38)">2006</text>
-      <text y="0.71em" transform="translate(517.844827586207,38)">2008</text>
-      <text y="0.71em" transform="translate(612.3706896551724,38)">2010</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(0,266)">
       <rect x="140" width="4.008620689655174" y="20" height="18" fill="#f0f724"><title>19</title></rect>
       <rect x="144.00862068965517" width="3.75" y="20" height="18" fill="#f1f525"><title>25</title></rect>
       <rect x="147.75862068965517" width="4.008620689655174" y="20" height="18" fill="#f0f724"><title>17</title></rect>
@@ -1912,14 +1817,93 @@
       <rect x="612.3706896551724" width="4.0086206896551175" y="20" height="18" fill="#f3ee27"><title>68</title></rect>
       <rect x="616.3793103448276" width="3.6206896551724412" y="20" height="18" fill="#f5eb27"><title>79</title></rect>
     </g>
-    <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+  </g>
+  <g aria-label="dot" transform="translate(0.5,0.5)">
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,6)">
+      <circle cx="616.3793103448276" cy="29" r="3"><title>2,440</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,26)">
+      <circle cx="612.3706896551724" cy="29" r="3"><title>2,154</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,46)">
+      <circle cx="580.6896551724138" cy="29" r="3"><title>2,010</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,66)">
+      <circle cx="612.3706896551724" cy="29" r="3"><title>1,804</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,86)">
+      <circle cx="616.3793103448276" cy="29" r="3"><title>1,740</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,106)">
+      <circle cx="600.4741379310344" cy="29" r="3"><title>1,280</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,126)">
+      <circle cx="588.5775862068965" cy="29" r="3"><title>1,129</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,146)">
+      <circle cx="612.3706896551724" cy="29" r="3"><title>730</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,166)">
+      <circle cx="616.3793103448276" cy="29" r="3"><title>708</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,186)">
+      <circle cx="612.3706896551724" cy="29" r="3"><title>657</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,206)">
+      <circle cx="612.3706896551724" cy="29" r="3"><title>609</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,226)">
+      <circle cx="588.5775862068965" cy="29" r="3"><title>373</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,246)">
+      <circle cx="612.3706896551724" cy="29" r="3"><title>318</title></circle>
+    </g>
+    <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0,266)">
       <circle cx="576.8103448275862" cy="29" r="3"><title>125</title></circle>
     </g>
-    <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
+  </g>
+  <g aria-label="dot" transform="translate(0.5,0.5)">
+    <g fill="#333" transform="translate(0,6)">
+      <circle cx="163.53448275862067" cy="29" r="3"><title>384</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,26)">
+      <circle cx="179.43965517241378" cy="29" r="3"><title>701</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,46)">
+      <circle cx="498.0603448275862" cy="29" r="3"><title>596</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,66)">
+      <circle cx="171.55172413793105" cy="29" r="3"><title>636</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,86)">
+      <circle cx="175.4310344827586" cy="29" r="3"><title>504</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,106)">
+      <circle cx="183.3189655172414" cy="29" r="3"><title>293</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,126)">
+      <circle cx="151.76724137931035" cy="29" r="3"><title>269</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,146)">
+      <circle cx="183.3189655172414" cy="29" r="3"><title>178</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,166)">
+      <circle cx="179.43965517241378" cy="29" r="3"><title>184</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,186)">
+      <circle cx="179.43965517241378" cy="29" r="3"><title>129</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,206)">
+      <circle cx="175.4310344827586" cy="29" r="3"><title>161</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,226)">
+      <circle cx="482.2844827586207" cy="29" r="3"><title>77</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,246)">
+      <circle cx="442.9741379310344" cy="29" r="3"><title>35</title></circle>
+    </g>
+    <g fill="#333" transform="translate(0,266)">
       <circle cx="411.551724137931" cy="29" r="3"><title>2</title></circle>
     </g>
-  </g>
-  <g aria-label="fy-axis label" transform="translate(-136.5,0.5)">
-    <text y="0.71em" transform="translate(140,165) rotate(-90)">industry</text>
   </g>
 </svg>

@@ -1,5 +1,5 @@
-import {cross, rollup, sum} from "d3";
-import {range} from "./options.js";
+import {InternMap, cross, rollup, sum} from "d3";
+import {keyof, map, range} from "./options.js";
 import {createScales} from "./scales.js";
 
 // Returns an array of {x?, y?, i} objects representing the facet domain.
@@ -16,16 +16,24 @@ export function createFacets(channelsByScale, options) {
     : undefined;
 }
 
-// Returns an accessor function that returns the order of the given facet value
-// in the associated facet scales’ domains.
-export function facetOrder({x: X, y: Y}) {
-  const xi = X && new Map(X.map((v, i) => [v, i]));
-  const yi = Y && new Map(Y.map((v, i) => [v, i]));
-  return X && Y
-    ? (a, b) => xi.get(a.x) - xi.get(b.x) || yi.get(a.y) - yi.get(b.y)
-    : X
-    ? (a, b) => xi.get(a.x) - xi.get(b.x)
-    : (a, b) => yi.get(a.y) - yi.get(b.y);
+export function recreateFacets(facets, {x: X, y: Y}) {
+  X &&= facetIndex(X);
+  Y &&= facetIndex(Y);
+  return facets
+    .filter(
+      X && Y // remove any facets no longer present in the domain
+        ? (f) => X.has(f.x) && Y.has(f.y)
+        : X
+        ? (f) => X.has(f.x)
+        : (f) => Y.has(f.y)
+    )
+    .sort(
+      X && Y // reorder facets to match the new scale domains
+        ? (a, b) => X.get(a.x) - X.get(b.x) || Y.get(a.y) - Y.get(b.y)
+        : X
+        ? (a, b) => X.get(a.x) - X.get(b.x)
+        : (a, b) => Y.get(a.y) - Y.get(b.y)
+    );
 }
 
 // Returns a (possibly nested) Map of [[key1, index1], [key2, index2], …]
@@ -54,7 +62,7 @@ export function facetGroups(data, {fx, fy}) {
       );
 }
 
-export function facetTranslate(fx, fy, {marginTop, marginLeft}) {
+export function facetTranslator(fx, fy, {marginTop, marginLeft}) {
   return fx && fy
     ? ({x, y}) => `translate(${fx(x) - marginLeft},${fy(y) - marginTop})`
     : fx
@@ -102,56 +110,72 @@ export function maybeFacetAnchor(facetAnchor) {
   throw new Error(`invalid facet anchor: ${facetAnchor}`);
 }
 
+const indexCache = new WeakMap();
+
+function facetIndex(V) {
+  let I = indexCache.get(V);
+  if (!I) indexCache.set(V, (I = new InternMap(map(V, (v, i) => [v, i]))));
+  return I;
+}
+
+// Like V.indexOf(v), but with the same semantics as InternMap.
+function facetIndexOf(V, v) {
+  return facetIndex(V).get(v);
+}
+
+// Like facets.find, but with the same semantics as InternMap.
+function facetFind(facets, x, y) {
+  x = keyof(x);
+  y = keyof(y);
+  return facets.find((f) => Object.is(keyof(f.x), x) && Object.is(keyof(f.y), y));
+}
+
+function facetEmpty(facets, x, y) {
+  return facetFind(facets, x, y)?.empty;
+}
+
 function facetAnchorTop(facets, {y: Y}, {y}) {
-  return Y ? Y.indexOf(y) === 0 : true;
+  return Y ? facetIndexOf(Y, y) === 0 : true;
 }
 
 function facetAnchorBottom(facets, {y: Y}, {y}) {
-  return Y ? Y.indexOf(y) === Y.length - 1 : true;
+  return Y ? facetIndexOf(Y, y) === Y.length - 1 : true;
 }
 
 function facetAnchorLeft(facets, {x: X}, {x}) {
-  return X ? X.indexOf(x) === 0 : true;
+  return X ? facetIndexOf(X, x) === 0 : true;
 }
 
 function facetAnchorRight(facets, {x: X}, {x}) {
-  return X ? X.indexOf(x) === X.length - 1 : true;
+  return X ? facetIndexOf(X, x) === X.length - 1 : true;
 }
 
 function facetAnchorTopEmpty(facets, {y: Y}, {x, y, empty}) {
   if (empty) return false;
-  const i = Y?.indexOf(y);
-  if (i > 0) {
-    const y = Y[i - 1];
-    return facets.find((f) => f.x === x && f.y === y)?.empty;
-  }
+  if (!Y) return;
+  const i = facetIndexOf(Y, y);
+  if (i > 0) return facetEmpty(facets, x, Y[i - 1]);
 }
 
 function facetAnchorBottomEmpty(facets, {y: Y}, {x, y, empty}) {
   if (empty) return false;
-  const i = Y?.indexOf(y);
-  if (i < Y?.length - 1) {
-    const y = Y[i + 1];
-    return facets.find((f) => f.x === x && f.y === y)?.empty;
-  }
+  if (!Y) return;
+  const i = facetIndexOf(Y, y);
+  if (i < Y.length - 1) return facetEmpty(facets, x, Y[i + 1]);
 }
 
 function facetAnchorLeftEmpty(facets, {x: X}, {x, y, empty}) {
   if (empty) return false;
-  const i = X?.indexOf(x);
-  if (i > 0) {
-    const x = X[i - 1];
-    return facets.find((f) => f.x === x && f.y === y)?.empty;
-  }
+  if (!X) return;
+  const i = facetIndexOf(X, x);
+  if (i > 0) return facetEmpty(facets, X[i - 1], y);
 }
 
 function facetAnchorRightEmpty(facets, {x: X}, {x, y, empty}) {
   if (empty) return false;
-  const i = X?.indexOf(x);
-  if (i < X?.length - 1) {
-    const x = X[i + 1];
-    return facets.find((f) => f.x === x && f.y === y)?.empty;
-  }
+  if (!X) return;
+  const i = facetIndexOf(X, x);
+  if (i < X.length - 1) return facetEmpty(facets, X[i + 1], y);
 }
 
 function facetAnchorEmpty(facets, channels, {empty}) {

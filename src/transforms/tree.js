@@ -3,29 +3,30 @@ import {ascendingDefined} from "../defined.js";
 import {column, identity, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
-export function treeNode(options = {}) {
-  let {
-    path = identity, // the delimited path
-    delimiter, // how the path is separated
-    frameAnchor,
-    treeLayout = tree,
-    treeSort,
-    treeSeparation,
-    treeAnchor,
-    ...remainingOptions
-  } = options;
+export function treeNode({
+  path = identity, // the delimited path
+  delimiter, // how the path is separated
+  frameAnchor,
+  treeLayout = tree,
+  treeSort,
+  treeSeparation,
+  treeAnchor,
+  treeFilter,
+  ...options
+} = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
   treeSort = maybeTreeSort(treeSort);
+  if (treeFilter != null) treeFilter = maybeNodeValue(treeFilter);
   if (frameAnchor === undefined) frameAnchor = treeAnchor.frameAnchor;
   const normalize = normalizer(delimiter);
-  const outputs = treeOutputs(remainingOptions, maybeNodeValue);
+  const outputs = treeOutputs(options, maybeNodeValue);
   const [X, setX] = column();
   const [Y, setY] = column();
   return {
     x: X,
     y: Y,
     frameAnchor,
-    ...basic(remainingOptions, (data, facets) => {
+    ...basic(options, (data, facets) => {
       const P = normalize(valueof(data, path));
       const X = setX([]);
       const Y = setY([]);
@@ -43,6 +44,7 @@ export function treeNode(options = {}) {
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.descendants()) {
+          if (treeFilter != null && !treeFilter(node)) continue;
           treeFacet.push(++treeIndex);
           treeData[treeIndex] = node.data;
           treeAnchor.position(node, treeIndex, X, Y);
@@ -56,25 +58,26 @@ export function treeNode(options = {}) {
   };
 }
 
-export function treeLink(options = {}) {
-  let {
-    path = identity, // the delimited path
-    delimiter, // how the path is separated
-    curve = "bump-x",
-    stroke = "#555",
-    strokeWidth = 1.5,
-    strokeOpacity = 0.5,
-    treeLayout = tree,
-    treeSort,
-    treeSeparation,
-    treeAnchor,
-    ...remainingOptions
-  } = options;
+export function treeLink({
+  path = identity, // the delimited path
+  delimiter, // how the path is separated
+  curve = "bump-x",
+  stroke = "#555",
+  strokeWidth = 1.5,
+  strokeOpacity = 0.5,
+  treeLayout = tree,
+  treeSort,
+  treeSeparation,
+  treeAnchor,
+  treeFilter,
+  ...options
+} = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
   treeSort = maybeTreeSort(treeSort);
-  remainingOptions = {curve, stroke, strokeWidth, strokeOpacity, ...remainingOptions};
+  if (treeFilter != null) treeFilter = maybeLinkValue(treeFilter);
+  options = {curve, stroke, strokeWidth, strokeOpacity, ...options};
   const normalize = normalizer(delimiter);
-  const outputs = treeOutputs(remainingOptions, maybeLinkValue);
+  const outputs = treeOutputs(options, maybeLinkValue);
   const [X1, setX1] = column();
   const [X2, setX2] = column();
   const [Y1, setY1] = column();
@@ -84,7 +87,7 @@ export function treeLink(options = {}) {
     x2: X2,
     y1: Y1,
     y2: Y2,
-    ...basic(remainingOptions, (data, facets) => {
+    ...basic(options, (data, facets) => {
       const P = normalize(valueof(data, path));
       const X1 = setX1([]);
       const X2 = setX2([]);
@@ -104,6 +107,7 @@ export function treeLink(options = {}) {
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const {source, target} of root.links()) {
+          if (treeFilter != null && !treeFilter(target, source)) continue;
           treeFacet.push(++treeIndex);
           treeData[treeIndex] = target.data;
           treeAnchor.position(source, treeIndex, X1, Y1);
@@ -196,6 +200,8 @@ function maybeNodeValue(value) {
       return nodePath;
     case "node:internal":
       return nodeInternal;
+    case "node:external":
+      return nodeExternal;
     case "node:depth":
       return nodeDepth;
     case "node:height":
@@ -224,6 +230,8 @@ function maybeLinkValue(value) {
       return nodePath;
     case "node:internal":
       return nodeInternal;
+    case "node:external":
+      return nodeExternal;
     case "node:depth":
       return nodeDepth;
     case "node:height":
@@ -250,6 +258,10 @@ function nodeHeight(node) {
 
 function nodeInternal(node) {
   return !!node.children;
+}
+
+function nodeExternal(node) {
+  return !node.children;
 }
 
 function parentValue(evaluate) {

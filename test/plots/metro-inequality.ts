@@ -8,10 +8,10 @@ export async function metroInequality() {
     inset: 10,
     x: {
       type: "log",
-      label: "Population →"
+      label: "Population"
     },
     y: {
-      label: "↑ Inequality"
+      label: "Inequality"
     },
     marks: [Plot.dot(data, {x: "POP_1980", y: "R90_10_1980"})]
   });

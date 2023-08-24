@@ -1,15 +1,9 @@
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
-import {identity, indexOf, number} from "../options.js";
+import {hasXY, identity, indexOf, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
-import {
-  applyDirectStyles,
-  applyIndirectStyles,
-  applyTransform,
-  impliedString,
-  applyAttr,
-  applyChannelStyles
-} from "../style.js";
+import {applyAttr, applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {impliedString} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeTrivialIntervalX, maybeTrivialIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
@@ -103,10 +97,12 @@ export function rect(data, options) {
   return new Rect(data, maybeTrivialIntervalX(maybeTrivialIntervalY(options)));
 }
 
-export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
+export function rectX(data, options = {}) {
+  if (!hasXY(options)) options = {...options, y: indexOf, x2: identity, interval: 1};
   return new Rect(data, maybeStackX(maybeTrivialIntervalY(maybeIdentityX(options))));
 }
 
-export function rectY(data, options = {x: indexOf, interval: 1, y2: identity}) {
+export function rectY(data, options = {}) {
+  if (!hasXY(options)) options = {...options, x: indexOf, y2: identity, interval: 1};
   return new Rect(data, maybeStackY(maybeTrivialIntervalX(maybeIdentityY(options))));
 }

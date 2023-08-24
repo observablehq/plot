@@ -77,8 +77,7 @@ import {
   schemeYlOrRd
 } from "d3";
 
-const ordinalSchemes = new Map([
-  // categorical
+const categoricalSchemes = new Map([
   ["accent", schemeAccent],
   ["category10", schemeCategory10],
   ["dark2", schemeDark2],
@@ -88,7 +87,15 @@ const ordinalSchemes = new Map([
   ["set1", schemeSet1],
   ["set2", schemeSet2],
   ["set3", schemeSet3],
-  ["tableau10", schemeTableau10],
+  ["tableau10", schemeTableau10]
+]);
+
+export function isCategoricalScheme(scheme) {
+  return scheme != null && categoricalSchemes.has(`${scheme}`.toLowerCase());
+}
+
+const ordinalSchemes = new Map([
+  ...categoricalSchemes,
 
   // diverging
   ["brbg", scheme11(schemeBrBG, interpolateBrBG)],

@@ -22,6 +22,10 @@ export const opacity = Symbol("opacity");
 // Symbol scales have a default range of categorical symbols.
 export const symbol = Symbol("symbol");
 
+// There isn’t really a projection scale; this represents x and y for geometry.
+// This is used to denote channels that should be projected.
+export const projection = Symbol("projection");
+
 // TODO Rather than hard-coding the list of known scale names, collect the names
 // and categories for each plot specification, so that custom marks can register
 // custom scales.
@@ -34,5 +38,14 @@ export const registry = new Map([
   ["color", color],
   ["opacity", opacity],
   ["symbol", symbol],
-  ["length", length]
+  ["length", length],
+  ["projection", projection]
 ]);
+
+export function isPosition(kind) {
+  return kind === position || kind === projection;
+}
+
+export function hasNumericRange(kind) {
+  return kind === position || kind === radius || kind === length || kind === opacity;
+}

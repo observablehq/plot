@@ -7,10 +7,10 @@ export async function driving() {
     inset: 10,
     grid: true,
     x: {
-      label: "Miles driven (per person-year) →"
+      label: "Miles driven (per person-year)"
     },
     y: {
-      label: "↑ Cost of gasoline ($ per gallon)"
+      label: "Cost of gasoline ($ per gallon)"
     },
     marks: [
       Plot.line(driving, {x: "miles", y: "gas", curve: "catmull-rom", markerMid: "arrow"}),

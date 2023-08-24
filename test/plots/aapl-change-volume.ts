@@ -5,11 +5,11 @@ export async function aaplChangeVolume() {
   const data = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({
     x: {
-      label: "Daily change (%) →",
+      label: "Daily change (%)",
       tickFormat: "+f"
     },
     y: {
-      label: "↑ Volume (log₁₀)",
+      label: "Volume (log₁₀)",
       transform: Math.log10
     },
     grid: true,

@@ -13,14 +13,33 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="facet" transform="translate(0,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="fx-axis tick" transform="translate(0.5,0)">
+    <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(130,400)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+    <g fill="none" stroke="currentColor" transform="translate(200,0)">
+      <path transform="translate(130,400)" d="M0,0L0,6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(400,0)">
+      <path transform="translate(130,400)" d="M0,0L0,6"></path>
+    </g>
+  </g>
+  <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
+    <g transform="translate(0,0)">
       <text y="0.71em" transform="translate(130,400)">Adelie</text>
     </g>
-    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <g transform="translate(200,0)">
+      <text y="0.71em" transform="translate(130,400)">Chinstrap</text>
+    </g>
+    <g transform="translate(400,0)">
+      <text y="0.71em" transform="translate(130,400)">Gentoo</text>
+    </g>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,400)">species</text>
+  </g>
+  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+    <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,400)" d="M0,0L-6,0"></path>
       <path transform="translate(40,362)" d="M0,0L-6,0"></path>
       <path transform="translate(40,324)" d="M0,0L-6,0"></path>
@@ -33,7 +52,9 @@
       <path transform="translate(40,57.99999999999999)" d="M0,0L-6,0"></path>
       <path transform="translate(40,20)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+  </g>
+  <g aria-label="y-axis tick label" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,0)">
       <text y="0.32em" transform="translate(40,400)">0</text>
       <text y="0.32em" transform="translate(40,362)">10</text>
       <text y="0.32em" transform="translate(40,324)">20</text>
@@ -46,47 +67,32 @@
       <text y="0.32em" transform="translate(40,57.99999999999999)">90</text>
       <text y="0.32em" transform="translate(40,20)">100</text>
     </g>
-    <g aria-label="bar">
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency (%)</text>
+  </g>
+  <g aria-label="bar">
+    <g transform="translate(0,0)">
       <rect x="40" width="180" y="290" height="110" fill="#4e79a7"></rect>
       <rect x="40" width="180" y="149.99999999999997" height="140.00000000000003" fill="#f28e2c"></rect>
       <rect x="40" width="180" y="20" height="129.99999999999997" fill="#e15759"></rect>
     </g>
-    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="40" x2="220" y1="400" y2="400"></line>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(200,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(130,400)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(130,400)">Chinstrap</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(200,0)">
       <rect x="40" width="180" y="20" height="380" fill="#f28e2c"></rect>
     </g>
-    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="40" x2="220" y1="400" y2="400"></line>
-    </g>
-  </g>
-  <g aria-label="facet" transform="translate(400,0)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(130,400)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="fx-axis tick label" transform="translate(0.5,9.5)">
-      <text y="0.71em" transform="translate(130,400)">Gentoo</text>
-    </g>
-    <g aria-label="bar">
+    <g transform="translate(400,0)">
       <rect x="40" width="180" y="20" height="380" fill="#4e79a7"></rect>
     </g>
-    <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+  </g>
+  <g aria-label="rule" transform="translate(0,0.5)">
+    <g stroke="currentColor" transform="translate(0,0)">
       <line x1="40" x2="220" y1="400" y2="400"></line>
     </g>
-  </g>
-  <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(330,400)">species</text>
-  </g>
-  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(40,20)">↑ Frequency (%)</text>
+    <g stroke="currentColor" transform="translate(200,0)">
+      <line x1="40" x2="220" y1="400" y2="400"></line>
+    </g>
+    <g stroke="currentColor" transform="translate(400,0)">
+      <line x1="40" x2="220" y1="400" y2="400"></line>
+    </g>
   </g>
 </svg>

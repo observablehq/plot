@@ -1,12 +1,30 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+const random = () => d3.randomNormal.source(d3.randomLcg(42))();
+
 export async function randomWalk() {
-  const randomNormal = d3.randomNormal.source(d3.randomLcg(42))();
-  return Plot.plot({
-    marks: [
-      Plot.lineY(d3.cumsum({length: 500} as any, randomNormal), {stroke: "red"}),
-      Plot.lineY({length: 500}, Plot.mapY("cumsum", {y: randomNormal, stroke: "blue"}))
-    ]
-  });
+  return Plot.lineY({length: 500}, Plot.mapY("cumsum", {y: random()})).plot();
+}
+
+export async function randomWalkCustomMap1() {
+  const cumsum = (I, V) => ((sum) => Float64Array.from(I, (i) => (sum += V[i])))(0);
+  return Plot.lineY({length: 500}, Plot.mapY(cumsum, {y: random()})).plot();
+}
+
+export async function randomWalkCustomMap2() {
+  const cumsum = (V) => ((sum) => Float64Array.from(V, (v) => (sum += v)))(0);
+  return Plot.lineY({length: 500}, Plot.mapY(cumsum, {y: random()})).plot();
+}
+
+export async function randomWalkCustomMap3() {
+  const cumsum = {
+    mapIndex(I, S, T) {
+      let sum = 0;
+      for (const i of I) {
+        T[i] = sum += S[i];
+      }
+    }
+  };
+  return Plot.lineY({length: 500}, Plot.mapY(cumsum, {y: random()})).plot();
 }

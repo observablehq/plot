@@ -5,8 +5,8 @@ export async function seattleTemperatureAmplitude() {
   const data = await d3.csv<any>("data/seattle-weather.csv", d3.autoType);
   const delta = (d) => d.temp_max - d.temp_min;
   return Plot.plot({
-    x: {label: "Daily low temperature (°F) →", nice: true},
-    y: {label: "↑ Daily temperature variation (Δ°F)", zero: true},
+    x: {label: "Daily low temperature (°F)", nice: true},
+    y: {label: "Daily temperature variation (Δ°F)", zero: true},
     aspectRatio: 1,
     color: {
       type: "cyclical",
