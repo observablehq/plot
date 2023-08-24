@@ -36,8 +36,8 @@
     "prepublishOnly": "rm -rf dist && rollup -c",
     "postpublish": "git push && git push --tags",
     "dev": "vite",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
+    "docs:dev": "node --experimental-network-imports node_modules/vitepress/dist/node/cli.js dev docs",
+    "docs:build": "node --experimental-network-imports node_modules/vitepress/dist/node/cli.js build docs",
     "docs:preview": "vitepress preview docs"
   },
   "_moduleAliases": {
@@ -48,6 +48,7 @@
   ],
   "devDependencies": {
     "@esbuild-kit/core-utils": "^3.1.0",
+    "@observablehq/runtime": "^5.7.3",
     "@rollup/plugin-commonjs": "^25.0.2",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
