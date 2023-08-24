@@ -15,6 +15,11 @@ import {ruleX, ruleY} from "./rule.js";
 export function autoSpec(data, options) {
   options = normalizeOptions(options);
 
+  for (const channel of ["x", "y", "color", "size"]) {
+    if (isUnderspecifiedReduce(options[channel]))
+      throw new Error(`setting ${channel} reducer to "${options[channel].reduce}" requires setting ${channel} field`);
+  }
+
   // Greedily materialize columns for type inference; we’ll need them anyway to
   // plot! Note that we don’t apply any type inference to the fx and fy
   // channels, if present; these are always ordinal (at least for now).
@@ -338,6 +343,10 @@ function isReducer(reduce) {
       return true;
   }
   return false;
+}
+
+function isUnderspecifiedReduce({value, reduce}) {
+  return value === undefined && reduce !== undefined && reduce !== "count";
 }
 
 function isHighCardinality(value) {
