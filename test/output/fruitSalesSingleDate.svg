@@ -1,0 +1,63 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,338.1818181818182)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,306.3636363636363)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,274.54545454545456)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,242.72727272727272)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,210.9090909090909)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,179.0909090909091)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,147.27272727272728)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,115.45454545454545)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,83.63636363636361)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,51.81818181818183)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,20)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,338.1818181818182)">1</text>
+    <text y="0.32em" transform="translate(40,306.3636363636363)">2</text>
+    <text y="0.32em" transform="translate(40,274.54545454545456)">3</text>
+    <text y="0.32em" transform="translate(40,242.72727272727272)">4</text>
+    <text y="0.32em" transform="translate(40,210.9090909090909)">5</text>
+    <text y="0.32em" transform="translate(40,179.0909090909091)">6</text>
+    <text y="0.32em" transform="translate(40,147.27272727272728)">7</text>
+    <text y="0.32em" transform="translate(40,115.45454545454545)">8</text>
+    <text y="0.32em" transform="translate(40,83.63636363636361)">9</text>
+    <text y="0.32em" transform="translate(40,51.81818181818183)">10</text>
+    <text y="0.32em" transform="translate(40,20)">11</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ units</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(237.5,0)">
+    <path transform="translate(93,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(237.5,9.5)">
+    <text transform="translate(93,370)"><tspan x="0" y="0.71em">15</tspan><tspan x="0" dy="1em">Mar</tspan></text>
+  </g>
+  <g aria-label="bar">
+    <rect x="93" width="474" y="179.0909090909091" height="190.9090909090909" fill="#4e79a7"></rect>
+    <rect x="93" width="474" y="115.45454545454545" height="63.63636363636364" fill="#e15759"></rect>
+    <rect x="93" width="474" y="20" height="95.45454545454545" fill="#f28e2c"></rect>
+  </g>
+  <g aria-label="text" transform="translate(237.5,0.5)">
+    <text y="0.32em" transform="translate(93,274.54545454545456)">apples</text>
+    <text y="0.32em" transform="translate(93,147.27272727272728)">oranges</text>
+    <text y="0.32em" transform="translate(93,67.72727272727272)">grapes</text>
+  </g>
+</svg>

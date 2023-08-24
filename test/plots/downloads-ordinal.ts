@@ -6,13 +6,7 @@ export async function downloadsOrdinal() {
     (d) => d.date.getUTCFullYear() === 2019 && d.date.getUTCMonth() <= 1 && d.downloads > 0
   );
   return Plot.plot({
-    width: 960,
-    marginBottom: 55,
-    x: {
-      interval: "day",
-      tickRotate: -90,
-      tickFormat: "%b %d"
-    },
+    x: {interval: "day"},
     marks: [
       Plot.barY(downloads, {x: "date", y: "downloads", fill: "#ccc"}),
       Plot.tickY(downloads, {x: "date", y: "downloads"}),

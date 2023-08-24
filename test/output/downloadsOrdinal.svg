@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="960" height="425" viewBox="0 0 960 425" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
       display: block;
@@ -44,161 +44,81 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ downloads</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(9,0)">
-    <path transform="translate(54,370)" d="M0,0L0,6"></path>
-    <path transform="translate(73,370)" d="M0,0L0,6"></path>
-    <path transform="translate(92,370)" d="M0,0L0,6"></path>
-    <path transform="translate(111,370)" d="M0,0L0,6"></path>
-    <path transform="translate(130,370)" d="M0,0L0,6"></path>
-    <path transform="translate(149,370)" d="M0,0L0,6"></path>
-    <path transform="translate(168,370)" d="M0,0L0,6"></path>
-    <path transform="translate(187,370)" d="M0,0L0,6"></path>
-    <path transform="translate(206,370)" d="M0,0L0,6"></path>
-    <path transform="translate(225,370)" d="M0,0L0,6"></path>
-    <path transform="translate(244,370)" d="M0,0L0,6"></path>
-    <path transform="translate(263,370)" d="M0,0L0,6"></path>
-    <path transform="translate(282,370)" d="M0,0L0,6"></path>
-    <path transform="translate(301,370)" d="M0,0L0,6"></path>
-    <path transform="translate(320,370)" d="M0,0L0,6"></path>
-    <path transform="translate(339,370)" d="M0,0L0,6"></path>
-    <path transform="translate(358,370)" d="M0,0L0,6"></path>
-    <path transform="translate(377,370)" d="M0,0L0,6"></path>
-    <path transform="translate(396,370)" d="M0,0L0,6"></path>
-    <path transform="translate(415,370)" d="M0,0L0,6"></path>
-    <path transform="translate(434,370)" d="M0,0L0,6"></path>
-    <path transform="translate(453,370)" d="M0,0L0,6"></path>
-    <path transform="translate(472,370)" d="M0,0L0,6"></path>
-    <path transform="translate(491,370)" d="M0,0L0,6"></path>
-    <path transform="translate(510,370)" d="M0,0L0,6"></path>
-    <path transform="translate(529,370)" d="M0,0L0,6"></path>
-    <path transform="translate(548,370)" d="M0,0L0,6"></path>
-    <path transform="translate(567,370)" d="M0,0L0,6"></path>
-    <path transform="translate(586,370)" d="M0,0L0,6"></path>
-    <path transform="translate(605,370)" d="M0,0L0,6"></path>
-    <path transform="translate(624,370)" d="M0,0L0,6"></path>
-    <path transform="translate(643,370)" d="M0,0L0,6"></path>
-    <path transform="translate(662,370)" d="M0,0L0,6"></path>
-    <path transform="translate(681,370)" d="M0,0L0,6"></path>
-    <path transform="translate(700,370)" d="M0,0L0,6"></path>
-    <path transform="translate(719,370)" d="M0,0L0,6"></path>
-    <path transform="translate(738,370)" d="M0,0L0,6"></path>
-    <path transform="translate(757,370)" d="M0,0L0,6"></path>
-    <path transform="translate(776,370)" d="M0,0L0,6"></path>
-    <path transform="translate(795,370)" d="M0,0L0,6"></path>
-    <path transform="translate(814,370)" d="M0,0L0,6"></path>
-    <path transform="translate(833,370)" d="M0,0L0,6"></path>
-    <path transform="translate(852,370)" d="M0,0L0,6"></path>
-    <path transform="translate(871,370)" d="M0,0L0,6"></path>
-    <path transform="translate(890,370)" d="M0,0L0,6"></path>
-    <path transform="translate(909,370)" d="M0,0L0,6"></path>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(6,0)">
+    <path transform="translate(115,370)" d="M0,0L0,6"></path>
+    <path transform="translate(199,370)" d="M0,0L0,6"></path>
+    <path transform="translate(283,370)" d="M0,0L0,6"></path>
+    <path transform="translate(367,370)" d="M0,0L0,6"></path>
+    <path transform="translate(451,370)" d="M0,0L0,6"></path>
+    <path transform="translate(535,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(9,9.5)">
-    <text y="0.32em" transform="translate(54,370) rotate(-90)">Jan 01</text>
-    <text y="0.32em" transform="translate(73,370) rotate(-90)">Jan 02</text>
-    <text y="0.32em" transform="translate(92,370) rotate(-90)">Jan 03</text>
-    <text y="0.32em" transform="translate(111,370) rotate(-90)">Jan 04</text>
-    <text y="0.32em" transform="translate(130,370) rotate(-90)">Jan 05</text>
-    <text y="0.32em" transform="translate(149,370) rotate(-90)">Jan 06</text>
-    <text y="0.32em" transform="translate(168,370) rotate(-90)">Jan 07</text>
-    <text y="0.32em" transform="translate(187,370) rotate(-90)">Jan 08</text>
-    <text y="0.32em" transform="translate(206,370) rotate(-90)">Jan 09</text>
-    <text y="0.32em" transform="translate(225,370) rotate(-90)">Jan 10</text>
-    <text y="0.32em" transform="translate(244,370) rotate(-90)">Jan 11</text>
-    <text y="0.32em" transform="translate(263,370) rotate(-90)">Jan 12</text>
-    <text y="0.32em" transform="translate(282,370) rotate(-90)">Jan 13</text>
-    <text y="0.32em" transform="translate(301,370) rotate(-90)">Jan 14</text>
-    <text y="0.32em" transform="translate(320,370) rotate(-90)">Jan 15</text>
-    <text y="0.32em" transform="translate(339,370) rotate(-90)">Jan 16</text>
-    <text y="0.32em" transform="translate(358,370) rotate(-90)">Jan 17</text>
-    <text y="0.32em" transform="translate(377,370) rotate(-90)">Jan 18</text>
-    <text y="0.32em" transform="translate(396,370) rotate(-90)">Jan 19</text>
-    <text y="0.32em" transform="translate(415,370) rotate(-90)">Jan 20</text>
-    <text y="0.32em" transform="translate(434,370) rotate(-90)">Jan 21</text>
-    <text y="0.32em" transform="translate(453,370) rotate(-90)">Jan 22</text>
-    <text y="0.32em" transform="translate(472,370) rotate(-90)">Jan 23</text>
-    <text y="0.32em" transform="translate(491,370) rotate(-90)">Jan 24</text>
-    <text y="0.32em" transform="translate(510,370) rotate(-90)">Jan 25</text>
-    <text y="0.32em" transform="translate(529,370) rotate(-90)">Jan 26</text>
-    <text y="0.32em" transform="translate(548,370) rotate(-90)">Jan 27</text>
-    <text y="0.32em" transform="translate(567,370) rotate(-90)">Jan 28</text>
-    <text y="0.32em" transform="translate(586,370) rotate(-90)">Jan 29</text>
-    <text y="0.32em" transform="translate(605,370) rotate(-90)">Jan 30</text>
-    <text y="0.32em" transform="translate(624,370) rotate(-90)">Jan 31</text>
-    <text y="0.32em" transform="translate(643,370) rotate(-90)">Feb 01</text>
-    <text y="0.32em" transform="translate(662,370) rotate(-90)">Feb 02</text>
-    <text y="0.32em" transform="translate(681,370) rotate(-90)">Feb 03</text>
-    <text y="0.32em" transform="translate(700,370) rotate(-90)">Feb 04</text>
-    <text y="0.32em" transform="translate(719,370) rotate(-90)">Feb 05</text>
-    <text y="0.32em" transform="translate(738,370) rotate(-90)">Feb 06</text>
-    <text y="0.32em" transform="translate(757,370) rotate(-90)">Feb 07</text>
-    <text y="0.32em" transform="translate(776,370) rotate(-90)">Feb 08</text>
-    <text y="0.32em" transform="translate(795,370) rotate(-90)">Feb 09</text>
-    <text y="0.32em" transform="translate(814,370) rotate(-90)">Feb 10</text>
-    <text y="0.32em" transform="translate(833,370) rotate(-90)">Feb 11</text>
-    <text y="0.32em" transform="translate(852,370) rotate(-90)">Feb 12</text>
-    <text y="0.32em" transform="translate(871,370) rotate(-90)">Feb 13</text>
-    <text y="0.32em" transform="translate(890,370) rotate(-90)">Feb 14</text>
-    <text y="0.32em" transform="translate(909,370) rotate(-90)">Feb 15</text>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(6,9.5)">
+    <text transform="translate(115,370)"><tspan x="0" y="0.71em">6</tspan><tspan x="0" dy="1em">Jan</tspan></text>
+    <text y="0.71em" transform="translate(199,370)">13</text>
+    <text y="0.71em" transform="translate(283,370)">20</text>
+    <text y="0.71em" transform="translate(367,370)">27</text>
+    <text transform="translate(451,370)"><tspan x="0" y="0.71em">3</tspan><tspan x="0" dy="1em">Feb</tspan></text>
+    <text y="0.71em" transform="translate(535,370)">10</text>
   </g>
   <g aria-label="bar" fill="#ccc">
-    <rect x="54" width="17" y="290.45454545454544" height="79.54545454545456"></rect>
-    <rect x="73" width="17" y="20" height="350"></rect>
-    <rect x="92" width="17" y="147.27272727272728" height="222.72727272727272"></rect>
-    <rect x="111" width="17" y="210.9090909090909" height="159.0909090909091"></rect>
-    <rect x="130" width="17" y="226.81818181818178" height="143.18181818181822"></rect>
-    <rect x="149" width="17" y="274.54545454545456" height="95.45454545454544"></rect>
-    <rect x="168" width="17" y="83.63636363636361" height="286.3636363636364"></rect>
-    <rect x="187" width="17" y="210.9090909090909" height="159.0909090909091"></rect>
-    <rect x="206" width="17" y="306.3636363636363" height="63.63636363636368"></rect>
-    <rect x="225" width="17" y="67.72727272727272" height="302.27272727272725"></rect>
-    <rect x="244" width="17" y="131.36363636363637" height="238.63636363636363"></rect>
-    <rect x="263" width="17" y="242.72727272727272" height="127.27272727272728"></rect>
-    <rect x="282" width="17" y="306.3636363636363" height="63.63636363636368"></rect>
-    <rect x="301" width="17" y="67.72727272727272" height="302.27272727272725"></rect>
-    <rect x="320" width="17" y="163.18181818181816" height="206.81818181818184"></rect>
-    <rect x="339" width="17" y="195" height="175"></rect>
-    <rect x="358" width="17" y="195" height="175"></rect>
-    <rect x="377" width="17" y="163.18181818181816" height="206.81818181818184"></rect>
-    <rect x="396" width="17" y="258.6363636363637" height="111.36363636363632"></rect>
-    <rect x="415" width="17" y="274.54545454545456" height="95.45454545454544"></rect>
-    <rect x="434" width="17" y="290.45454545454544" height="79.54545454545456"></rect>
-    <rect x="453" width="17" y="258.6363636363637" height="111.36363636363632"></rect>
-    <rect x="472" width="17" y="322.2727272727273" height="47.72727272727269"></rect>
-    <rect x="662" width="17" y="338.1818181818182" height="31.818181818181813"></rect>
-    <rect x="757" width="17" y="354.0909090909091" height="15.909090909090878"></rect>
-    <rect x="814" width="17" y="354.0909090909091" height="15.909090909090878"></rect>
-    <rect x="909" width="17" y="354.0909090909091" height="15.909090909090878"></rect>
+    <rect x="55" width="11" y="290.45454545454544" height="79.54545454545456"></rect>
+    <rect x="67" width="11" y="20" height="350"></rect>
+    <rect x="79" width="11" y="147.27272727272728" height="222.72727272727272"></rect>
+    <rect x="91" width="11" y="210.9090909090909" height="159.0909090909091"></rect>
+    <rect x="103" width="11" y="226.81818181818178" height="143.18181818181822"></rect>
+    <rect x="115" width="11" y="274.54545454545456" height="95.45454545454544"></rect>
+    <rect x="127" width="11" y="83.63636363636361" height="286.3636363636364"></rect>
+    <rect x="139" width="11" y="210.9090909090909" height="159.0909090909091"></rect>
+    <rect x="151" width="11" y="306.3636363636363" height="63.63636363636368"></rect>
+    <rect x="163" width="11" y="67.72727272727272" height="302.27272727272725"></rect>
+    <rect x="175" width="11" y="131.36363636363637" height="238.63636363636363"></rect>
+    <rect x="187" width="11" y="242.72727272727272" height="127.27272727272728"></rect>
+    <rect x="199" width="11" y="306.3636363636363" height="63.63636363636368"></rect>
+    <rect x="211" width="11" y="67.72727272727272" height="302.27272727272725"></rect>
+    <rect x="223" width="11" y="163.18181818181816" height="206.81818181818184"></rect>
+    <rect x="235" width="11" y="195" height="175"></rect>
+    <rect x="247" width="11" y="195" height="175"></rect>
+    <rect x="259" width="11" y="163.18181818181816" height="206.81818181818184"></rect>
+    <rect x="271" width="11" y="258.6363636363637" height="111.36363636363632"></rect>
+    <rect x="283" width="11" y="274.54545454545456" height="95.45454545454544"></rect>
+    <rect x="295" width="11" y="290.45454545454544" height="79.54545454545456"></rect>
+    <rect x="307" width="11" y="258.6363636363637" height="111.36363636363632"></rect>
+    <rect x="319" width="11" y="322.2727272727273" height="47.72727272727269"></rect>
+    <rect x="439" width="11" y="338.1818181818182" height="31.818181818181813"></rect>
+    <rect x="499" width="11" y="354.0909090909091" height="15.909090909090878"></rect>
+    <rect x="535" width="11" y="354.0909090909091" height="15.909090909090878"></rect>
+    <rect x="595" width="11" y="354.0909090909091" height="15.909090909090878"></rect>
   </g>
   <g aria-label="tick" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="54" x2="71" y1="290.45454545454544" y2="290.45454545454544"></line>
-    <line x1="73" x2="90" y1="20" y2="20"></line>
-    <line x1="92" x2="109" y1="147.27272727272728" y2="147.27272727272728"></line>
-    <line x1="111" x2="128" y1="210.9090909090909" y2="210.9090909090909"></line>
-    <line x1="130" x2="147" y1="226.81818181818178" y2="226.81818181818178"></line>
-    <line x1="149" x2="166" y1="274.54545454545456" y2="274.54545454545456"></line>
-    <line x1="168" x2="185" y1="83.63636363636361" y2="83.63636363636361"></line>
-    <line x1="187" x2="204" y1="210.9090909090909" y2="210.9090909090909"></line>
-    <line x1="206" x2="223" y1="306.3636363636363" y2="306.3636363636363"></line>
-    <line x1="225" x2="242" y1="67.72727272727272" y2="67.72727272727272"></line>
-    <line x1="244" x2="261" y1="131.36363636363637" y2="131.36363636363637"></line>
-    <line x1="263" x2="280" y1="242.72727272727272" y2="242.72727272727272"></line>
-    <line x1="282" x2="299" y1="306.3636363636363" y2="306.3636363636363"></line>
-    <line x1="301" x2="318" y1="67.72727272727272" y2="67.72727272727272"></line>
-    <line x1="320" x2="337" y1="163.18181818181816" y2="163.18181818181816"></line>
-    <line x1="339" x2="356" y1="195" y2="195"></line>
-    <line x1="358" x2="375" y1="195" y2="195"></line>
-    <line x1="377" x2="394" y1="163.18181818181816" y2="163.18181818181816"></line>
-    <line x1="396" x2="413" y1="258.6363636363637" y2="258.6363636363637"></line>
-    <line x1="415" x2="432" y1="274.54545454545456" y2="274.54545454545456"></line>
-    <line x1="434" x2="451" y1="290.45454545454544" y2="290.45454545454544"></line>
-    <line x1="453" x2="470" y1="258.6363636363637" y2="258.6363636363637"></line>
-    <line x1="472" x2="489" y1="322.2727272727273" y2="322.2727272727273"></line>
-    <line x1="662" x2="679" y1="338.1818181818182" y2="338.1818181818182"></line>
-    <line x1="757" x2="774" y1="354.0909090909091" y2="354.0909090909091"></line>
-    <line x1="814" x2="831" y1="354.0909090909091" y2="354.0909090909091"></line>
-    <line x1="909" x2="926" y1="354.0909090909091" y2="354.0909090909091"></line>
+    <line x1="55" x2="66" y1="290.45454545454544" y2="290.45454545454544"></line>
+    <line x1="67" x2="78" y1="20" y2="20"></line>
+    <line x1="79" x2="90" y1="147.27272727272728" y2="147.27272727272728"></line>
+    <line x1="91" x2="102" y1="210.9090909090909" y2="210.9090909090909"></line>
+    <line x1="103" x2="114" y1="226.81818181818178" y2="226.81818181818178"></line>
+    <line x1="115" x2="126" y1="274.54545454545456" y2="274.54545454545456"></line>
+    <line x1="127" x2="138" y1="83.63636363636361" y2="83.63636363636361"></line>
+    <line x1="139" x2="150" y1="210.9090909090909" y2="210.9090909090909"></line>
+    <line x1="151" x2="162" y1="306.3636363636363" y2="306.3636363636363"></line>
+    <line x1="163" x2="174" y1="67.72727272727272" y2="67.72727272727272"></line>
+    <line x1="175" x2="186" y1="131.36363636363637" y2="131.36363636363637"></line>
+    <line x1="187" x2="198" y1="242.72727272727272" y2="242.72727272727272"></line>
+    <line x1="199" x2="210" y1="306.3636363636363" y2="306.3636363636363"></line>
+    <line x1="211" x2="222" y1="67.72727272727272" y2="67.72727272727272"></line>
+    <line x1="223" x2="234" y1="163.18181818181816" y2="163.18181818181816"></line>
+    <line x1="235" x2="246" y1="195" y2="195"></line>
+    <line x1="247" x2="258" y1="195" y2="195"></line>
+    <line x1="259" x2="270" y1="163.18181818181816" y2="163.18181818181816"></line>
+    <line x1="271" x2="282" y1="258.6363636363637" y2="258.6363636363637"></line>
+    <line x1="283" x2="294" y1="274.54545454545456" y2="274.54545454545456"></line>
+    <line x1="295" x2="306" y1="290.45454545454544" y2="290.45454545454544"></line>
+    <line x1="307" x2="318" y1="258.6363636363637" y2="258.6363636363637"></line>
+    <line x1="319" x2="330" y1="322.2727272727273" y2="322.2727272727273"></line>
+    <line x1="439" x2="450" y1="338.1818181818182" y2="338.1818181818182"></line>
+    <line x1="499" x2="510" y1="354.0909090909091" y2="354.0909090909091"></line>
+    <line x1="535" x2="546" y1="354.0909090909091" y2="354.0909090909091"></line>
+    <line x1="595" x2="606" y1="354.0909090909091" y2="354.0909090909091"></line>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="940" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

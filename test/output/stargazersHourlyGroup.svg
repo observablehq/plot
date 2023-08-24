@@ -88,6 +88,7 @@
     <text y="0.71em" transform="translate(446,370)">8</text>
     <text y="0.71em" transform="translate(504,370)">9</text>
     <text y="0.71em" transform="translate(562,370)">10+</text>
+    <text y="0.71em" transform="translate(620,370)"></text>
   </g>
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,370)">New stargazers per hour →</text>

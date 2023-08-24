@@ -38,3 +38,31 @@ export async function walmartsDecades() {
     ]
   });
 }
+
+export async function walmartsAdditions() {
+  const [walmarts, statemesh] = await Promise.all([
+    d3.tsv<any>("data/walmarts.tsv", d3.autoType),
+    d3.json<any>("data/us-counties-10m.json").then((us) =>
+      mesh(us, {
+        type: "GeometryCollection",
+        geometries: us.objects.states.geometries.filter((d) => d.id !== "02" && d.id !== "15")
+      })
+    )
+  ]);
+  return Plot.plot({
+    width: 200,
+    projection: "albers-usa",
+    fy: {interval: "5 years", axis: "right", tickFormat: "%Y—", reverse: true},
+    marks: [
+      Plot.geo(statemesh, {strokeOpacity: 0.25}),
+      Plot.raster(walmarts, {
+        pixelSize: 1.5,
+        imageRendering: "pixelated",
+        fy: "date",
+        x: "longitude",
+        y: "latitude",
+        fill: "date"
+      })
+    ]
+  });
+}
