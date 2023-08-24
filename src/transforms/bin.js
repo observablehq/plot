@@ -67,7 +67,8 @@ export function bin(outputs = {fill: "count"}, options = {}) {
 function maybeDenseInterval(bin, k, options = {}) {
   if (options?.interval == null) return options;
   const {reduce = reduceFirst} = options;
-  const outputs = {[k]: reduce, filter: null};
+  const outputs = {filter: null};
+  if (options[k] != null) outputs[k] = reduce;
   if (options[`${k}1`] != null) outputs[`${k}1`] = reduce;
   if (options[`${k}2`] != null) outputs[`${k}2`] = reduce;
   return bin(outputs, options);
