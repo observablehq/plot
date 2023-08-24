@@ -346,7 +346,7 @@ function isReducer(reduce) {
 }
 
 function isUnderspecifiedReduce({value, reduce}) {
-  return value === undefined && reduce !== undefined && reduce !== "count";
+  return value === undefined && reduce != undefined && reduce !== "count";
 }
 
 function isHighCardinality(value) {
