@@ -525,22 +525,17 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
     const {[k]: scale} = scales;
     if (!scale) throw new Error(`missing scale: ${k}`);
     const domain = scale.domain();
+    let {interval, ticks, tickFormat, tickSpacing = k === "x" ? 80 : 35} = options;
+    // For a scale with a temporal domain, also allow the ticks to be specified
+    // as a string which is promoted to a time interval. In the case of ordinal
+    // scales, the interval is interpreted as UTC.
+    if (typeof ticks === "string" && hasTemporalDomain(scale)) (interval = ticks), (ticks = undefined);
     // The interval axis option is an alternative method of specifying ticks;
     // for example, for a numeric scale, ticks = 5 means “about 5 ticks” whereas
     // interval = 5 means “ticks every 5 units”. (This is not to be confused
     // with the interval scale option, which affects the scale’s behavior!)
-    let {
-      interval,
-      ticks = maybeRangeInterval(interval, scale.type),
-      tickFormat,
-      tickSpacing = k === "x" ? 80 : 35
-    } = options;
-    // For a scale with a temporal domain, also allow the ticks to be specified
-    // as a string which is promoted to a time interval. In the case of ordinal
-    // scales, the interval is interpreted as UTC.
-    if (typeof ticks === "string" && hasTemporalDomain(scale)) ticks = maybeRangeInterval(ticks, scale.type);
     // Lastly use the tickSpacing option to infer the desired tick count.
-    if (ticks == undefined) ticks = inferTickCount(scale, tickSpacing);
+    if (ticks === undefined) ticks = maybeRangeInterval(interval, scale.type) ?? inferTickCount(scale, tickSpacing);
     if (data == null) {
       if (isIterable(ticks)) {
         // Use explicit ticks, if specified.
