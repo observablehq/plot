@@ -44,36 +44,22 @@
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(17.5,0)">
     <path transform="translate(47,370)" d="M0,0L0,6"></path>
-    <path transform="translate(85,370)" d="M0,0L0,6"></path>
     <path transform="translate(123,370)" d="M0,0L0,6"></path>
-    <path transform="translate(161,370)" d="M0,0L0,6"></path>
     <path transform="translate(199,370)" d="M0,0L0,6"></path>
-    <path transform="translate(237,370)" d="M0,0L0,6"></path>
     <path transform="translate(275,370)" d="M0,0L0,6"></path>
-    <path transform="translate(313,370)" d="M0,0L0,6"></path>
     <path transform="translate(351,370)" d="M0,0L0,6"></path>
-    <path transform="translate(389,370)" d="M0,0L0,6"></path>
     <path transform="translate(427,370)" d="M0,0L0,6"></path>
-    <path transform="translate(465,370)" d="M0,0L0,6"></path>
     <path transform="translate(503,370)" d="M0,0L0,6"></path>
-    <path transform="translate(541,370)" d="M0,0L0,6"></path>
     <path transform="translate(579,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(17.5,9.5)">
     <text y="0.71em" transform="translate(47,370)">30</text>
-    <text y="0.71em" transform="translate(85,370)">40</text>
     <text y="0.71em" transform="translate(123,370)">50</text>
-    <text y="0.71em" transform="translate(161,370)">60</text>
     <text y="0.71em" transform="translate(199,370)">70</text>
-    <text y="0.71em" transform="translate(237,370)">80</text>
     <text y="0.71em" transform="translate(275,370)">90</text>
-    <text y="0.71em" transform="translate(313,370)">100</text>
     <text y="0.71em" transform="translate(351,370)">110</text>
-    <text y="0.71em" transform="translate(389,370)">120</text>
     <text y="0.71em" transform="translate(427,370)">130</text>
-    <text y="0.71em" transform="translate(465,370)">140</text>
     <text y="0.71em" transform="translate(503,370)">150</text>
-    <text y="0.71em" transform="translate(541,370)">160</text>
     <text y="0.71em" transform="translate(579,370)">170</text>
   </g>
   <g aria-label="x-axis label" transform="translate(0.5,27.5)">

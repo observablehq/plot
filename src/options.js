@@ -357,6 +357,14 @@ export function maybeNiceInterval(interval, type) {
   return interval;
 }
 
+export function isTimeInterval(t) {
+  return isInterval(t) && typeof t?.floor === "function" && t.floor() instanceof Date;
+}
+
+export function isInterval(t) {
+  return typeof t?.range === "function";
+}
+
 // This distinguishes between per-dimension options and a standalone value.
 export function maybeValue(value) {
   return value === undefined || isOptions(value) ? value : {value};
