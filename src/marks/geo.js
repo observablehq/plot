@@ -2,7 +2,7 @@ import {geoGraticule10, geoPath, geoTransform} from "d3";
 import {create} from "../context.js";
 import {negative, positive} from "../defined.js";
 import {Mark} from "../mark.js";
-import {identity, maybeNumberChannel} from "../options.js";
+import {keyword, identity, maybeNumberChannel} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {withDefaultSort} from "./dot.js";
 
@@ -19,12 +19,13 @@ const defaults = {
 export class Geo extends Mark {
   constructor(data, options = {}) {
     const [vr, cr] = maybeNumberChannel(options.r, 3);
+    let {geometry} = options;
+    if (geometry?.value) geometry = {scale: "projection", ...geometry};
+    else geometry = {value: geometry, scale: "projection"};
+    if (geometry.scale !== null) keyword(geometry.scale, "scale", ["projection"]);
     super(
       data,
-      {
-        geometry: {value: options.geometry, scale: "projection"},
-        r: {value: vr, scale: "r", filter: positive, optional: true}
-      },
+      {geometry, r: {value: vr, scale: "r", filter: positive, optional: true}},
       withDefaultSort(options),
       defaults
     );
@@ -32,7 +33,9 @@ export class Geo extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {geometry: G, r: R} = channels;
-    const path = geoPath(context.projection ?? scaleProjection(scales));
+    const path = geoPath(
+      channels.channels.geometry.scale === "projection" ? context.projection ?? scaleProjection(scales) : null
+    );
     const {r} = this;
     if (negative(r)) index = [];
     else if (r !== undefined) path.pointRadius(r);

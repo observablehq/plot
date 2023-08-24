@@ -2235,9 +2235,15 @@ it("mark(data, {channels}) respects a scale set to true or false", () => {
 
 it("mark(data, {channels}) rejects unknown scales", () => {
   assert.throws(
-    () => Plot.dot([], {channels: {fill: {value: (d) => d, scale: "neo"}}}).initialize().channels.fill.scale,
+    () => Plot.dot([], {channels: {fill: {value: (d) => d, scale: "neo"}}}).initialize(),
     /^Error: unknown scale: neo$/
   );
+});
+
+it("geo(data, {geometry: {scale}}) rejects anything but projection and null", () => {
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: "projection"}}));
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: null}}));
+  assert.throws(() => Plot.geo([], {geometry: {value: Plot.identity, scale: "x"}}), /^Error: invalid scale: x$/);
 });
 
 // Given a plot specification (or, as shorthand, an array of marks or a single

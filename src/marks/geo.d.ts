@@ -8,7 +8,7 @@ export interface GeoOptions extends MarkOptions {
    * A required channel for the geometry to render; defaults to identity,
    * assuming *data* is a GeoJSON object or an iterable of GeoJSON objects.
    */
-  geometry?: ChannelValue;
+  geometry?: ChannelValueSpec | {value: ChannelValue; scale?: null | "projection"};
 
   /**
    * The size of Point and MultiPoint geometries, defaulting to a constant 3

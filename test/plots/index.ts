@@ -305,6 +305,7 @@ export * from "./us-county-choropleth.js";
 export * from "./us-county-spikes.js";
 export * from "./us-population-state-age-dots.js";
 export * from "./us-population-state-age.js";
+export * from "./us-preprojected.js";
 export * from "./us-president-favorability-dots.js";
 export * from "./us-president-gallery.js";
 export * from "./us-presidential-election-2020.js";
