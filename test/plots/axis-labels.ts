@@ -58,6 +58,7 @@ export async function axisLabelFontVariant() {
     marks: [Plot.axisX({label: "Letter", fontVariant: "small-caps"})]
   });
 }
+
 export async function axisLabelVaryingFill() {
   return Plot.plot({
     x: {domain: "ABCDEF"},
