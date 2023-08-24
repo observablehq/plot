@@ -521,6 +521,30 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@observablehq/inspector@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@observablehq/inspector/-/inspector-5.0.0.tgz#7dec08d4fa20dfb79977ce62f7cc4a814b44e595"
+  integrity sha512-Vvg/TQdsZTUaeYbH0IKxYEz37FbRO6kdowoz2PrHLQif54NC1CjEihEjg+ZMSBn587GQxTFABu0CGkFZgtR1UQ==
+  dependencies:
+    isoformat "^0.2.0"
+
+"@observablehq/runtime@^5.7.3":
+  version "5.9.1"
+  resolved "https://registry.yarnpkg.com/@observablehq/runtime/-/runtime-5.9.1.tgz#fd79f9cce8a165e123021ca2f72fe54e61f16d12"
+  integrity sha512-ACNFixkIFVihIaWrDGXxgjxVj4/cHx26kdfGDVpEX1mEVqgP1SnfQMoJyZoqG23txs+uUcyr8LG37NkMEsNpdw==
+  dependencies:
+    "@observablehq/inspector" "^5.0.0"
+    "@observablehq/stdlib" "^5.0.0"
+
+"@observablehq/stdlib@^5.0.0":
+  version "5.8.1"
+  resolved "https://registry.yarnpkg.com/@observablehq/stdlib/-/stdlib-5.8.1.tgz#50002b0d2a021890052d6f96700d86d15ca18c7d"
+  integrity sha512-ng6QQSzFbPQnMMeCUhUl/EPzpyrwfmGsujztGdPXS1ZYrLoAc9co4rhUC5Vv6dBh8E4yzZkxwNyTs73bLN4alQ==
+  dependencies:
+    d3-array "^3.2.0"
+    d3-dsv "^3.0.1"
+    d3-require "^1.3.0"
+
 "@one-ini/wasm@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@one-ini/wasm/-/wasm-0.1.1.tgz#6013659736c9dbfccc96e8a9c2b3de317df39323"
@@ -1434,7 +1458,7 @@ d3-delaunay@6:
     d3-dispatch "1 - 3"
     d3-selection "3"
 
-"d3-dsv@1 - 3", d3-dsv@3:
+"d3-dsv@1 - 3", d3-dsv@3, d3-dsv@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/d3-dsv/-/d3-dsv-3.0.1.tgz#c63af978f4d6a0d084a52a673922be2160789b73"
   integrity sha512-UG6OvdI5afDIFP9w4G0mNq50dSOsXHJaRE8arAS5o9ApWnIElp8GZw1Dun8vP8OyHOZ/QJUKUJwxiiCCnUwm+Q==
@@ -1516,6 +1540,11 @@ d3-random@3:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/d3-random/-/d3-random-3.0.1.tgz#d4926378d333d9c0bfd1e6fa0194d30aebaa20f4"
   integrity sha512-FXMe9GfxTxqd5D6jFsQ+DJ8BJS4E/fT5mqqdjovykEB2oFbTMDVdg1MGFxfQW+FBOGoB++k8swBrgwSHT1cUXQ==
+
+d3-require@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/d3-require/-/d3-require-1.3.0.tgz#2b97f5e2ebcb64ac0c63c11f30056aea1c74f0ec"
+  integrity sha512-XaNc2azaAwXhGjmCMtxlD+AowpMfLimVsAoTMpqrvb8CWoA4QqyV12mc4Ue6KSoDvfuS831tsumfhDYxGd4FGA==
 
 d3-scale-chromatic@3:
   version "3.0.0"
