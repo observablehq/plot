@@ -39,11 +39,8 @@
     <path transform="translate(344,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" transform="translate(124.5,9.5)">
-    <text y="0.71em" transform="translate(68,370)">2021-03-15</text>
-    <text y="0.71em" transform="translate(344,370)">2021-03-16</text>
-  </g>
-  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(330,370)">date</text>
+    <text transform="translate(68,370)"><tspan x="0" y="0.71em">15</tspan><tspan x="0" dy="1em">Mar</tspan></text>
+    <text y="0.71em" transform="translate(344,370)">16</text>
   </g>
   <g aria-label="bar">
     <rect x="68" width="248" y="304.375" height="65.625" fill="#4e79a7"></rect>

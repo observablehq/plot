@@ -22,7 +22,7 @@ onMounted(() => {
 
 </script>
 
-# Tip mark
+# Tip mark <VersionBadge version="0.6.7" />
 
 The **tip mark** displays text, or several name-value pairs, in a floating box anchored to a given position in **x** and **y**. The tip mark is often paired with the [pointer transform](../interactions/pointer.md) to reveal details on demand when hovering over a chart, as in this line chart of Apple stock price:
 
@@ -221,7 +221,7 @@ These [standard text options](./text.md#text-options) control the display of tex
 - **lineWidth** - the line width in ems, for wrapping; defaults to Infinity
 - **textOverflow** - how to wrap or clip lines longer than the specified line width
 
-## tip(*data*, *options*)
+## tip(*data*, *options*) {#tip}
 
 ```js
 Plot.tip(aapl, {x: "Date", y: "Close"})

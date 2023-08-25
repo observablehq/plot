@@ -1,6 +1,6 @@
 import {ascending, InternSet} from "d3";
 import {marks} from "../mark.js";
-import {isColor, isObject, isOptions, isOrdinal, labelof, valueof} from "../options.js";
+import {isColor, isNumeric, isObject, isOptions, isOrdinal, labelof, valueof} from "../options.js";
 import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
 import {areaX, areaY} from "./area.js";
@@ -113,27 +113,32 @@ export function autoSpec(data, options) {
       colorMode = "stroke";
       break;
     case "bar":
-      markImpl = yZero
-        ? isOrdinalReduced(xReduce, X)
-          ? barY
-          : rectY
-        : xZero
-        ? isOrdinalReduced(yReduce, Y)
-          ? barX
-          : rectX
-        : isOrdinalReduced(xReduce, X) && isOrdinalReduced(yReduce, Y)
-        ? cell
-        : isOrdinalReduced(xReduce, X)
-        ? barY
-        : isOrdinalReduced(yReduce, Y)
-        ? barX
-        : xReduce != null
-        ? rectX
-        : yReduce != null
-        ? rectY
-        : colorReduce != null
-        ? rect
-        : cell;
+      markImpl =
+        xReduce != null // bin or group on y
+          ? isOrdinal(Y)
+            ? isSelectReducer(xReduce) && X && isOrdinal(X)
+              ? cell
+              : barX
+            : rectX
+          : yReduce != null // bin or group on x
+          ? isOrdinal(X)
+            ? isSelectReducer(yReduce) && Y && isOrdinal(Y)
+              ? cell
+              : barY
+            : rectY
+          : colorReduce != null || sizeReduce != null // bin or group on both x and y
+          ? X && isOrdinal(X) && Y && isOrdinal(Y)
+            ? cell
+            : X && isOrdinal(X)
+            ? barY
+            : Y && isOrdinal(Y)
+            ? barX
+            : rect
+          : X && isNumeric(X) && !(Y && isNumeric(Y))
+          ? barX // if y is temporal, treat as ordinal
+          : Y && isNumeric(Y) && !(X && isNumeric(X))
+          ? barY // if x is temporal, treat as ordinal
+          : cell;
       colorMode = "fill";
       break;
     default:
@@ -298,12 +303,6 @@ function isZeroReducer(reduce) {
 // The first, last, and mode reducers preserve the type of the aggregated values.
 function isSelectReducer(reduce) {
   return /^(?:first|last|mode)$/i.test(reduce);
-}
-
-// We can’t infer the type of a custom reducer without invoking it, so
-// assume most reducers produce quantitative values.
-function isOrdinalReduced(reduce, value) {
-  return (reduce != null && !isSelectReducer(reduce)) || !value ? false : isOrdinal(value);
 }
 
 // https://github.com/observablehq/plot/blob/818562649280e155136f730fc496e0b3d15ae464/src/transforms/group.js#L236

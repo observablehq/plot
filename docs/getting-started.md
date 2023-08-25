@@ -289,3 +289,33 @@ export default {
 ```
 
 As with React, to update your plot for whatever reason, simply render a new one and replace the old one. You can find more examples on [our GitHub](https://github.com/observablehq/plot/tree/main/docs) as this documentation site is built with VitePress and uses both client- and server-side rendering for plots!
+
+## Plot in Svelte
+
+Here’s an example of client-side rendering in Svelte. For server-side rendering, see [#1759](https://github.com/observablehq/plot/discussions/1759).
+
+:::code-group
+```svelte [App.svelte]
+<script>
+  import * as Plot from '@observablehq/plot';
+  import * as d3 from 'd3';
+
+  let div;
+  let data = d3.ticks(-2, 2, 200).map(Math.sin);
+
+  function onMousemove(event) {
+    const [x, y] = d3.pointer(event);
+    data = data.slice(-200).concat(Math.atan2(x, y));
+  }
+
+  $: {
+    div?.firstChild?.remove(); // remove old chart, if any
+    div?.append(Plot.lineY(data).plot({grid: true})); // add the new chart
+  }
+</script>
+
+<div on:mousemove={onMousemove} bind:this={div} role="img"></div>
+```
+:::
+
+See our [Plot + Svelte REPL](https://svelte.dev/repl/ebf78a6a6c1145ecb84cf9345a7f82ae?version=4.2.0) for details.

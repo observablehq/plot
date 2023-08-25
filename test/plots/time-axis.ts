@@ -1,4 +1,5 @@
 import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
 import {svg} from "htl";
 
 const domains = [
@@ -73,4 +74,77 @@ export async function timeAxisRight() {
         y: {grid: true, axis: "right", type: "utc", domain}
       })}`
   )}`;
+}
+
+export async function timeAxisExplicitInterval() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "month"},
+    marks: [Plot.ruleY([0]), Plot.dot(aapl, {x: "Date", y: "Close"})]
+  });
+}
+
+export async function timeAxisExplicitNonstandardInterval() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "4 weeks"}, // does not align with months
+    marks: [Plot.ruleY([0]), Plot.dot(aapl, {x: "Date", y: "Close"})]
+  });
+}
+
+export async function timeAxisExplicitNonstandardIntervalTicks() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "4 weeks", grid: true, ticks: "year"}, // no years start on Sunday
+    marks: [Plot.ruleY([0]), Plot.dot(aapl, {x: "Date", y: "Close"})]
+  });
+}
+
+export async function timeAxisOrdinal() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "month"},
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
+}
+
+export async function warnTimeAxisOrdinalIncompatible() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "4 weeks", ticks: "year"}, // ⚠️ no years start on Sunday
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
+}
+
+export async function timeAxisOrdinalSparseTicks() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "4 weeks", ticks: "52 weeks"},
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
+}
+
+export async function timeAxisOrdinalSparseInterval() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "52 weeks"},
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
+}
+
+export async function timeAxisOrdinalTicks() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: "month", ticks: "3 months"},
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
+}
+
+export async function warnTimeAxisOrdinalExplicitIncompatibleTicks() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  const [start, stop] = d3.extent(aapl, (d) => d.Date);
+  return Plot.plot({
+    x: {interval: "4 weeks", ticks: d3.utcYear.range(start, stop)}, // ⚠️ no years start on Sunday
+    marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
+  });
 }

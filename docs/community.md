@@ -4,7 +4,11 @@ Learning Plot? Love data visualization? Don’t go it alone! Join our community 
 
 ## Staying up-to-date
 
-Plot is getting better all the time. If you like Plot, please star ⭐️ our [GitHub repo](https://github.com/observablehq/plot) to help get the word out and to see updates on your GitHub dashboard.
+:::tip
+Please star ⭐️ our [GitHub repo](https://github.com/observablehq/plot) to show your support for us on GitHub!
+:::
+
+Plot is getting better all the time; catch up on [recent releases](https://github.com/observablehq/plot/releases) by reading our [CHANGELOG](https://github.com/observablehq/plot/blob/main/CHANGELOG.md).
 
 For email updates, sign up for the [Observable Plot Twist](https://observablehq.com/@observablehq/plot-twist-newsletter-signup) newsletter. (See our [back issues](https://observablehq.com/collection/@observablehq/newsletters/2) and [blog](https://observablehq.com/blog), too.) This monthly newsletter will let you know about new features in Plot, inspiring work by the community, upcoming workshops and community events, and more.
 

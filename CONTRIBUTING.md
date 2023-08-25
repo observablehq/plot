@@ -42,6 +42,12 @@ Please run Prettier before submitting any pull request. Check “format on save�
 yarn prettier --write .
 ```
 
+A test coverage report can be generated with [c8](https://github.com/bcoe/c8), in text and lcov formats, to help you identify which lines of code are not (yet!) covered by tests. Just run:
+
+```bash
+yarn test:coverage
+```
+
 ### Unit tests
 
 Unit tests live in `test` and have the `-test.js` file extension; see [`test/marks/area-test.js`](./test/marks/area-test.js) for example. Generally speaking, unit tests make specific, low-level assertions about the behavior of Plot’s API, including internals and helper methods. If you add a new feature, or change the behavior of an existing feature, please update the unit tests so that we can more easily maintain your contribution into the future. For example, here’s a unit test that tests how Plot formats months:
@@ -81,7 +87,7 @@ export async function lineUnemployment() {
 }
 ```
 
-When a snapshot test is run, its output is compared against the SVG or HTML snapshot saved in the `test/output` folder. This makes it easier to review the effect of code changes and to catch unintended changes. Snapshot tests must have deterministic, reproducible behavior; they should not depend on live data, external servers, the current time, the weather, etc. To use randomness in a test, use a seeded random number generator such as [d3.randomLcg](https://github.com/d3/d3-random/blob/master/README.md#randomLcg).
+When a snapshot test is run, its output is compared against the SVG or HTML snapshot saved in the `test/output` folder. This makes it easier to review the effect of code changes and to catch unintended changes. Snapshot tests must have deterministic, reproducible behavior; they should not depend on live data, external servers, the current time, the weather, etc. To use randomness in a test, use a seeded random number generator such as [d3.randomLcg](https://d3js.org/d3-random#randomLcg).
 
 To add a new snapshot test, create a new JavaScript file in the `test/plots` folder using the pattern shown above. Then export your snapshot test function from [`test/plots/index.ts`](./test/plots/index.ts). For example:
 

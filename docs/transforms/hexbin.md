@@ -21,7 +21,7 @@ onMounted(() => {
 
 </script>
 
-# Hexbin transform
+# Hexbin transform <VersionBadge version="0.5.0" />
 
 The **hexbin transform** groups two-dimensional quantitative or temporal data — continuous measurements such as heights, weights, or temperatures — into discrete hexagonal bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The hexbin transform is most often used to make heatmaps with the [dot mark](../marks/dot.md).
 
@@ -133,7 +133,7 @@ Plot.plot({
 ```
 :::
 
-The hexbin transform defaults the **symbol** option to *hexagon*, but you can override it. The [circle constructor](../marks/dot.md#circle-data-options) changes it to *circle*.
+The hexbin transform defaults the **symbol** option to *hexagon*, but you can override it. The [circle constructor](../marks/dot.md#circle) changes it to *circle*.
 
 :::plot defer https://observablehq.com/@observablehq/plot-hexbin-circle
 ```js
@@ -198,7 +198,7 @@ The following aggregation methods are supported:
 * a function to be passed the array of values for each bin and the extent of the bin
 * an object with a *reduceIndex* method
 
-## hexbin(*outputs*, *options*)
+## hexbin(*outputs*, *options*) {#hexbin}
 
 ```js
 Plot.dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"}))

@@ -23,7 +23,7 @@ onMounted(() => {
 The tick mark is one of two marks in Plot for drawing horizontal or vertical lines; it should be used when the secondary position dimension, if any, is ordinal. When it is quantitative, use a [rule](./rule.md).
 :::
 
-The **tick mark** comes in two orientations: [tickY](#ticky-data-options) draws a horizontal↔︎ line with a given *y* value, while [tickX](#tickx-data-options) draws a vertical↕︎ line with a given *x* value. Ticks have an optional secondary position dimension (**x** for tickY and **y** for tickX); this second dimension is ordinal, unlike a [rule](./rule.md), and requires a corresponding [band scale](../features/scales.md).
+The **tick mark** comes in two orientations: [tickY](#tickY) draws a horizontal↔︎ line with a given *y* value, while [tickX](#tickX) draws a vertical↕︎ line with a given *x* value. Ticks have an optional secondary position dimension (**x** for tickY and **y** for tickX); this second dimension is ordinal, unlike a [rule](./rule.md), and requires a corresponding [band scale](../features/scales.md).
 
 Ticks are often used to show one-dimensional distributions, as in the “barcode” plot below showing the proportion of the population in each age bracket across U.S. states.
 
@@ -86,9 +86,9 @@ Ticks are also used by the [box mark](./box.md) to denote the median value for e
 
 ## Tick options
 
-For the required channels, see [tickX](#tickx-data-options) and [tickY](#ticky-data-options). The tick mark supports the [standard mark options](../features/marks.md#mark-options), including insets, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) to the start or end of the rule. The **stroke** defaults to *currentColor*.
+For the required channels, see [tickX](#tickX) and [tickY](#tickY). The tick mark supports the [standard mark options](../features/marks.md#mark-options), including insets, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) to the start or end of the rule. The **stroke** defaults to *currentColor*.
 
-## tickX(*data*, *options*)
+## tickX(*data*, *options*) {#tickX}
 
 ```js
 Plot.tickX(stateage, {x: "population", y: "age"})
@@ -104,7 +104,7 @@ The following optional channels are supported:
 
 If the **y** channel is not specified, the tick will span the full vertical extent of the frame.
 
-## tickY(*data*, *options*)
+## tickY(*data*, *options*) {#tickY}
 
 ```js
 Plot.tickY(stateage, {y: "population", x: "age"})

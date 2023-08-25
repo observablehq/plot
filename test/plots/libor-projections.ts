@@ -24,3 +24,23 @@ export async function liborProjections() {
     y: {grid: true, line: true}
   });
 }
+
+export async function liborProjectionsFacet() {
+  const libor = await d3.csv<any>("data/libor-projections.csv", d3.autoType);
+  return Plot.plot({
+    fy: {tickFormat: "d"},
+    y: {percent: true, nice: true, grid: true, axis: "right", label: "rate (%)"},
+    color: {legend: true},
+    marks: [
+      Plot.frame(),
+      Plot.lineY(libor, {
+        markerStart: true,
+        fy: (d) => d.on.getFullYear(),
+        x: "about",
+        stroke: (d) => "H" + (1 + d3.utcMonth.count(d3.utcYear(d.on), d.on)) / 3,
+        y: "value",
+        tip: true
+      })
+    ]
+  });
+}

@@ -23,7 +23,7 @@ function mandelbrot(x, y) {
 
 </script>
 
-# Contour mark
+# Contour mark <VersionBadge version="0.6.2" />
 
 :::tip
 To produce a heatmap instead of contours, see the [raster mark](./raster.md). For contours of estimated point density, see the [density mark](./density.md).
@@ -271,7 +271,7 @@ As shorthand, a single channel may be specified, in which case it is promoted to
 Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})
 ```
 
-## contour(*data*, *options*)
+## contour(*data*, *options*) {#contour}
 
 ```js
 Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, fill: Plot.identity})

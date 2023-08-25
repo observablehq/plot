@@ -17,31 +17,16 @@
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,1)">
       <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,22)">
-      <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
-    </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,43)">
-      <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
-    </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,64)">
       <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,85)">
       <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,106)">
-      <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
-    </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,127)">
       <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
     </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,148)">
-      <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
-    </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,169)">
-      <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
-    </g>
-    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,190)">
       <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,211)">
@@ -52,32 +37,17 @@
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,1)">
       <text y="0.32em" transform="translate(40,29.5)">2.2</text>
     </g>
-    <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,22)">
-      <text y="0.32em" transform="translate(40,29.5)">2.1</text>
-    </g>
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,43)">
       <text y="0.32em" transform="translate(40,29.5)">2</text>
-    </g>
-    <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,64)">
-      <text y="0.32em" transform="translate(40,29.5)">1.9</text>
     </g>
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,85)">
       <text y="0.32em" transform="translate(40,29.5)">1.8</text>
     </g>
-    <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,106)">
-      <text y="0.32em" transform="translate(40,29.5)">1.7</text>
-    </g>
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,127)">
       <text y="0.32em" transform="translate(40,29.5)">1.6</text>
     </g>
-    <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,148)">
-      <text y="0.32em" transform="translate(40,29.5)">1.5</text>
-    </g>
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,169)">
       <text y="0.32em" transform="translate(40,29.5)">1.4</text>
-    </g>
-    <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,190)">
-      <text y="0.32em" transform="translate(40,29.5)">1.3</text>
     </g>
     <g text-anchor="end" font-variant="tabular-nums" transform="translate(0,211)">
       <text y="0.32em" transform="translate(40,29.5)">1.2</text>

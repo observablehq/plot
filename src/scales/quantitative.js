@@ -25,7 +25,7 @@ import {
 } from "d3";
 import {finite, negative, positive} from "../defined.js";
 import {arrayify, constant, maybeNiceInterval, maybeRangeInterval, orderof, slice} from "../options.js";
-import {color, length, opacity, radius, registry} from "./index.js";
+import {color, length, opacity, radius, registry, hasNumericRange} from "./index.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 
 export const flip = (i) => (t) => i(1 - t);
@@ -257,8 +257,12 @@ function isOrdered(domain, sign) {
   return true;
 }
 
-export function createScaleIdentity() {
-  return {type: "identity", scale: scaleIdentity()};
+// For non-numeric identity scales such as color and symbol, we can’t use D3’s
+// identity scale because it coerces to number; and we can’t compute the domain
+// (and equivalently range) since we can’t know whether the values are
+// continuous or discrete.
+export function createScaleIdentity(key) {
+  return {type: "identity", scale: hasNumericRange(registry.get(key)) ? scaleIdentity() : (d) => d};
 }
 
 export function inferDomain(channels, f = finite) {

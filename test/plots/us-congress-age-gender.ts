@@ -5,11 +5,7 @@ export async function usCongressAgeGender() {
   const data = await d3.csv<any>("data/us-congress-members.csv", d3.autoType);
   return Plot.plot({
     height: 300,
-    x: {
-      nice: true,
-      label: "Age",
-      labelAnchor: "right"
-    },
+    x: {nice: true, label: "Age"},
     y: {
       grid: true,
       label: "← Women · Men →",

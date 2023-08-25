@@ -14,7 +14,7 @@ import type {CompareFunction, Transformed} from "./basic.js";
  * *wiggle* offset is recommended for streamgraphs in conjunction with the
  * *inside-out* order. For more, see [Byron & Wattenberg][1].
  *
- * [1]: http://leebyron.com/streamgraph/
+ * [1]: https://leebyron.com/streamgraph/
  */
 export type StackOffsetName =
   | "center"
@@ -53,7 +53,7 @@ export type StackOffset = StackOffsetName | StackOffsetFunction;
  * The *inside-out* order is recommended for streamgraphs in conjunction with
  * the *wiggle* offset. For more, see [Byron & Wattenberg][1].
  *
- * [1]: http://leebyron.com/streamgraph/
+ * [1]: https://leebyron.com/streamgraph/
  */
 export type StackOrderName = "value" | "x" | "y" | "z" | "sum" | "appearance" | "inside-out";
 

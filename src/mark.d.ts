@@ -477,5 +477,5 @@ export class RenderableMark extends Mark {
 /** A compound Mark, comprising other marks. */
 export type CompoundMark = Markish[] & Pick<Mark, "plot">;
 
-/** Given an array of marks, returns a compound mark; supports *mark.plot shorthand. */
+/** Given an array of marks, returns a compound mark; supports *mark*.plot shorthand. */
 export function marks(...marks: Markish[]): CompoundMark;

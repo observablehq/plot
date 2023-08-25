@@ -13,8 +13,10 @@ import {
   coerceDate,
   coerceNumbers,
   identity,
+  isInterval,
   isIterable,
   isTemporal,
+  isTimeInterval,
   labelof,
   map,
   maybeApplyInterval,
@@ -65,9 +67,13 @@ export function bin(outputs = {fill: "count"}, options = {}) {
 }
 
 function maybeDenseInterval(bin, k, options = {}) {
-  return options?.interval == null
-    ? options
-    : bin({[k]: options?.reduce === undefined ? reduceFirst : options.reduce, filter: null}, options);
+  if (options?.interval == null) return options;
+  const {reduce = reduceFirst} = options;
+  const outputs = {filter: null};
+  if (options[k] != null) outputs[k] = reduce;
+  if (options[`${k}1`] != null) outputs[`${k}1`] = reduce;
+  if (options[`${k}2`] != null) outputs[`${k}2`] = reduce;
+  return bin(outputs, options);
 }
 
 export function maybeDenseIntervalX(options = {}) {
@@ -359,14 +365,6 @@ function thresholdAuto(values, min, max) {
 
 function isTimeThresholds(t) {
   return isTimeInterval(t) || (isIterable(t) && isTemporal(t));
-}
-
-function isTimeInterval(t) {
-  return isInterval(t) && typeof t === "function" && t() instanceof Date;
-}
-
-function isInterval(t) {
-  return typeof t?.range === "function";
 }
 
 function bing(EX, EY) {

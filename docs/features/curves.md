@@ -79,7 +79,7 @@ The following named curve methods are supported:
 * *step* - a piecewise constant function where *y* changes at the midpoint of *x*
 * *step-after* - a piecewise constant function where *y* changes after *x*
 * *step-before* - a piecewise constant function where *x* changes after *y*
-* *auto* - like *linear*, but use the (possibly spherical) [projection](./projections.md), if any
+* *auto* - like *linear*, but use the (possibly spherical) [projection](./projections.md), if any <VersionBadge version="0.6.1" />
 
 If **curve** is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://d3js.org/d3-shape/curve#custom-curves). The *auto* curve is only available for the [line mark](../marks/line.md) and [link mark](../marks/link.md) and is typically used in conjunction with a spherical [projection](./projections.md) to interpolate along [geodesics](https://en.wikipedia.org/wiki/Geodesic).
 

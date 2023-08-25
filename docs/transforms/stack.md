@@ -51,7 +51,7 @@ const likert = Likert([
 
 # Stack transform
 
-The **stack transform** comes in two orientations: [stackY](#stacky-stack-options) replaces **y** with **y1** and **y2** to form vertical↑ stacks grouped on **x**, while [stackX](#stackx-stack-options) replaces **x** with **x1** and **x2** for horizontal→ stacks grouped on **y**.  In effect, stacking transforms a *length* into *lower* and *upper* positions: the upper position of each element equals the lower position of the next element in the stack. Stacking makes it easier to perceive a total while still showing its parts.
+The **stack transform** comes in two orientations: [stackY](#stackY) replaces **y** with **y1** and **y2** to form vertical↑ stacks grouped on **x**, while [stackX](#stackX) replaces **x** with **x1** and **x2** for horizontal→ stacks grouped on **y**.  In effect, stacking transforms a *length* into *lower* and *upper* positions: the upper position of each element equals the lower position of the next element in the stack. Stacking makes it easier to perceive a total while still showing its parts.
 
 For example, below is a stacked area chart of [deaths in the Crimean War](https://en.wikipedia.org/wiki/Florence_Nightingale#Crimean_War) — predominantly from <span :style="{borderBottom: `solid ${d3.schemeTableau10[0]} 3px`}">disease</span> — using Florence Nightingale’s data.
 
@@ -391,7 +391,7 @@ In addition to the **y1** and **y2** output channels, stackY computes a **y** ou
 
 If two arguments are passed to the stack transform functions below, the stack-specific options (**offset**, **order**, and **reverse**) are pulled exclusively from the first *options* argument, while any channels (*e.g.*, **x**, **y**, and **z**) are pulled from second *options* argument. Options from the second argument that are not consumed by the stack transform will be passed through. Using two arguments is sometimes necessary is disambiguate the option recipient when chaining transforms.
 
-## stackY(*stack*, *options*)
+## stackY(*stack*, *options*) {#stackY}
 
 ```js
 Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
@@ -399,42 +399,42 @@ Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
 
 Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points. The stack options (**offset**, **order**, and **reverse**) may be specified as part of the *options* object, if the only argument, or as a separate *stack* options argument.
 
-## stackY1(*stack*, *options*)
+## stackY1(*stack*, *options*) {#stackY1}
 
 ```js
 Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
 ```
 
-Like [stackY](#stacky-stack-options), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
+Like [stackY](#stackY), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
 
-## stackY2(*stack*, *options*)
+## stackY2(*stack*, *options*) {#stackY2}
 
 ```js
 Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
 ```
 
-Like [stackY](#stacky-stack-options), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
+Like [stackY](#stackY), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
 
-## stackX(*stack*, *options*)
+## stackX(*stack*, *options*) {#stackX}
 
 ```js
 Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
-Like [stackY](#stacky-stack-options), but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
+Like [stackY](#stackY), but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
 
-## stackX1(*stack*, *options*)
+## stackX1(*stack*, *options*) {#stackX1}
 
 ```js
 Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
-Like [stackX](#stackx-stack-options), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
+Like [stackX](#stackX), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
 
-## stackX2(*stack*, *options*)
+## stackX2(*stack*, *options*) {#stackX2}
 
 ```js
 Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
-Like [stackX](#stackx-stack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
+Like [stackX](#stackX), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.

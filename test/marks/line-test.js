@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import {curveStep} from "d3";
+import {curveAuto} from "../../src/curve.js";
 import assert from "assert";
 
 it("line() has the expected defaults", () => {
@@ -113,4 +114,13 @@ it("line(data, {stroke}) implies a default z channel if stroke is variable", () 
 it("line(data, {curve}) specifies a named curve or function", () => {
   assert.strictEqual(Plot.line(undefined, {curve: "step"}).curve, curveStep);
   assert.strictEqual(Plot.line(undefined, {curve: curveStep}).curve, curveStep);
+});
+
+it("line(data, {curve}) rejects an invalid curve", () => {
+  assert.throws(() => Plot.lineY([], {y: 1, curve: "neo"}), /^Error: unknown curve: neo$/);
+  assert.throws(() => Plot.lineY([], {y: 1, curve: 42}), /^Error: unknown curve: 42$/);
+});
+
+it("line(data, {curve}) accepts the explicit auto curve", () => {
+  assert.strictEqual(Plot.lineY([], {y: 1, curve: "auto"}).curve, curveAuto);
 });

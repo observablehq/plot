@@ -21,7 +21,7 @@ const responses = [
 
 </script>
 
-# Axis mark
+# Axis mark <VersionBadge version="0.6.3" />
 
 The **axis mark** conveys the meaning of a position [scale](../features/scales.md): _x_ or _y_, and _fx_ or _fy_ when [faceting](../features/facets.md). Plot automatically adds default axis marks as needed, but you can customize the appearance of axes either through scale options or by explicitly declaring an axis mark.
 
@@ -143,34 +143,22 @@ Plot.plot({
 ```
 :::
 
-You can emulate [Datawrapper’s time axes](https://blog.datawrapper.de/new-axis-ticks/) using `\n` (the line feed character) for multi-line tick labels, plus a bit of date math to detect the first month of each year.
+Time axes default to a consistent multi-line tick format <VersionBadge version="0.6.9" />, [à la Datawrapper](https://blog.datawrapper.de/new-axis-ticks/), for example showing the first month of each quarter, and the year:
 
 :::plot https://observablehq.com/@observablehq/plot-datawrapper-style-date-axis
 ```js
 Plot.plot({
   marks: [
     Plot.ruleY([0]),
-    Plot.line(aapl, {x: "Date", y: "Close"}),
+    Plot.axisX({ticks: "3 months"}),
     Plot.gridX(),
-    Plot.axisX({
-      ticks: 20,
-      tickFormat: (
-        (formatYear, formatMonth) => (x) =>
-          x.getUTCMonth() === 0
-            ? `${formatMonth(x)}\n${formatYear(x)}`
-            : formatMonth(x)
-      )(d3.utcFormat("%Y"), d3.utcFormat("%b"))
-    })
+    Plot.line(aapl, {x: "Date", y: "Close"})
   ]
 })
 ```
 :::
 
-:::tip
-In the future, Plot may generate multi-line time axis labels by default. If you’re interested in this feature, please upvote [#1285](https://github.com/observablehq/plot/issues/1285).
-:::
-
-Alternatively, you can add multiple axes with options for hierarchical time intervals, here showing weeks, months, and years.
+The format is inferred from the tick interval, and consists of two fields (*e.g.*, month and year, day and month, minutes and hours); when a tick has the same second field value as the previous tick (*e.g.*, “19 Jan” after “17 Jan”), only the first field (“19”) is shown for brevity. Alternatively, you can specify multiple explicit axes with options for hierarchical time intervals, here showing weeks, months, and years.
 
 :::plot https://observablehq.com/@observablehq/plot-multiscale-date-axis
 ```js
@@ -357,7 +345,7 @@ In addition to the [standard mark options](../features/marks.md), the axis mark 
 * **fontVariant** - the ticks’ font-variant; defaults to *tabular-nums* for quantitative axes
 * **label** - a string to label the axis; defaults to the scale’s label, perhaps with an arrow
 * **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
-* **labelArrow** - the label arrow: *auto* (default), *up*, *right*, *down*, *left*, *none*, or true
+* **labelArrow** - the label arrow: *auto* (default), *up*, *right*, *down*, *left*, *none*, or true <VersionBadge version="0.6.7" />
 * **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
 * **color** - the color of the ticks and labels (defaults to *currentColor*)
 * **textStroke** - the color of the stroke around tick labels (defaults to *none*)
@@ -379,7 +367,7 @@ The axis mark’s default margins depend on its orientation (**anchor**) as foll
 
 For simplicity’s sake and for consistent layout across plots, axis margins are not automatically sized to make room for tick labels; instead, shorten your tick labels (for example using the *k* SI-prefix tick format, or setting a *scale*.transform to show thousands or millions, or setting the **textOverflow** option to *ellipsis* and the **lineWidth** option to clip long labels) or increase the margins as needed.
 
-## axisX(*data*, *options*)
+## axisX(*data*, *options*) {#axisX}
 
 ```js
 Plot.axisX({anchor: "bottom", tickSpacing: 80})
@@ -387,7 +375,7 @@ Plot.axisX({anchor: "bottom", tickSpacing: 80})
 
 Returns a new *x* axis with the given *options*.
 
-## axisY(*data*, *options*)
+## axisY(*data*, *options*) {#axisY}
 
 ```js
 Plot.axisY({anchor: "left", tickSpacing: 35})
@@ -395,7 +383,7 @@ Plot.axisY({anchor: "left", tickSpacing: 35})
 
 Returns a new *y* axis with the given *options*.
 
-## axisFx(*data*, *options*)
+## axisFx(*data*, *options*) {#axisFx}
 
 ```js
 Plot.axisFx({anchor: "top", label: null})
@@ -403,7 +391,7 @@ Plot.axisFx({anchor: "top", label: null})
 
 Returns a new *fx* axis with the given *options*.
 
-## axisFy(*data*, *options*)
+## axisFy(*data*, *options*) {#axisFy}
 
 ```js
 Plot.axisFy({anchor: "right", label: null})

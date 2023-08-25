@@ -22,7 +22,7 @@ export class Mark {
       marginRight = margin,
       marginBottom = margin,
       marginLeft = margin,
-      clip,
+      clip = defaults?.clip,
       channels: extraChannels,
       tip,
       render

@@ -14,13 +14,13 @@ import {arrayify, map, yes, maybeIntervalTransform, subarray} from "./options.js
 import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
-import {position, registry as scaleRegistry} from "./scales/index.js";
+import {isPosition, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
-  const {facet, style, caption, ariaLabel, ariaDescription} = options;
+  const {facet, style, title, subtitle, caption, ariaLabel, ariaDescription} = options;
 
   // className for inline styles
   const className = maybeClassName(options.className);
@@ -141,11 +141,11 @@ export function plot(options = {}) {
 
   // Initalize the scales and dimensions.
   const scaleDescriptors = createScales(addScaleChannels(channelsByScale, stateByMark, options), options);
-  const scales = createScaleFunctions(scaleDescriptors);
   const dimensions = createDimensions(scaleDescriptors, marks, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
 
+  const scales = createScaleFunctions(scaleDescriptors);
   const {fx, fy} = scales;
   const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
   const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
@@ -201,7 +201,7 @@ export function plot(options = {}) {
           // channels as-is rather than creating new scales, and assume that
           // they already have the scale’s transform applied, if any (e.g., when
           // generating ticks for the axis mark).
-          if (scale != null && scaleRegistry.get(scale) !== position) {
+          if (scale != null && !isPosition(scaleRegistry.get(scale))) {
             applyScaleTransform(channel, options);
             newByScale.add(scale);
           }
@@ -221,9 +221,10 @@ export function plot(options = {}) {
     addScaleChannels(newChannelsByScale, stateByMark, options, (key) => newByScale.has(key));
     addScaleChannels(channelsByScale, stateByMark, options, (key) => newByScale.has(key));
     const newScaleDescriptors = inheritScaleLabels(createScales(newChannelsByScale, options), scaleDescriptors);
-    const newScales = createScaleFunctions(newScaleDescriptors);
+    const {scales: newExposedScales, ...newScales} = createScaleFunctions(newScaleDescriptors);
     Object.assign(scaleDescriptors, newScaleDescriptors);
     Object.assign(scales, newScales);
+    Object.assign(scales.scales, newExposedScales);
   }
 
   // Sort and filter the facets to match the fx and fy domains; this is needed
@@ -320,21 +321,20 @@ export function plot(options = {}) {
     }
   }
 
-  // Wrap the plot in a figure with a caption, if desired.
+  // Wrap the plot in a figure, if needed.
   const legends = createLegends(scaleDescriptors, context, options);
-  if (caption != null || legends.length > 0) {
+  const {figure: figured = title != null || subtitle != null || caption != null || legends.length > 0} = options;
+  if (figured) {
     figure = document.createElement("figure");
-    figure.style.maxWidth = "initial";
-    for (const legend of legends) figure.appendChild(legend);
-    figure.appendChild(svg);
-    if (caption != null) {
-      const figcaption = document.createElement("figcaption");
-      figcaption.appendChild(caption?.ownerDocument ? caption : document.createTextNode(caption));
-      figure.appendChild(figcaption);
-    }
+    figure.className = `${className}-figure`;
+    figure.style.maxWidth = "initial"; // avoid Observable default style
+    if (title != null) figure.append(createTitleElement(document, title, "h2"));
+    if (subtitle != null) figure.append(createTitleElement(document, subtitle, "h3"));
+    figure.append(...legends, svg);
+    if (caption != null) figure.append(createFigcaption(document, caption));
   }
 
-  figure.scale = exposeScales(scaleDescriptors);
+  figure.scale = exposeScales(scales.scales);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
 
   const w = consumeWarnings();
@@ -352,6 +352,19 @@ export function plot(options = {}) {
   }
 
   return figure;
+}
+
+function createTitleElement(document, contents, tag) {
+  if (contents.ownerDocument) return contents;
+  const e = document.createElement(tag);
+  e.append(contents);
+  return e;
+}
+
+function createFigcaption(document, caption) {
+  const e = document.createElement("figcaption");
+  e.append(caption);
+  return e;
 }
 
 function plotThis({marks = [], ...options} = {}) {

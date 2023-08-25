@@ -1,7 +1,8 @@
+import {ascending, descending} from "d3";
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
 import {radians} from "../math.js";
-import {constant} from "../options.js";
+import {constant, keyword} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSameValue} from "./link.js";
 
@@ -26,7 +27,8 @@ export class Arrow extends Mark {
       headLength = 8, // Disable the arrow with headLength = 0; or, use Plot.link.
       inset = 0,
       insetStart = inset,
-      insetEnd = inset
+      insetEnd = inset,
+      sweep
     } = options;
     super(
       data,
@@ -44,18 +46,12 @@ export class Arrow extends Mark {
     this.headLength = +headLength;
     this.insetStart = +insetStart;
     this.insetEnd = +insetEnd;
+    this.sweep = maybeSweep(sweep);
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
     const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this;
     const sw = SW ? (i) => SW[i] : constant(strokeWidth === undefined ? 1 : strokeWidth);
-
-    // When bending, the offset between the straight line between the two points
-    // and the outgoing tangent from the start point. (Also the negative
-    // incoming tangent to the end point.) This must be within ±π/2. A positive
-    // angle will produce a clockwise curve; a negative angle will produce a
-    // counterclockwise curve; zero will produce a straight line.
-    const bendAngle = bend * radians;
 
     // The angle between the arrow’s shaft and one of the wings; the “head”
     // angle between the wings is twice this value.
@@ -90,6 +86,13 @@ export class Arrow extends Mark {
             // length of the arrow. (Plot.vector allows arbitrarily large
             // wings, but that’s okay since vectors are usually small.)
             const headLength = Math.min(wingScale * sw(i), lineLength / 3);
+
+            // When bending, the offset between the straight line between the two points
+            // and the outgoing tangent from the start point. (Also the negative
+            // incoming tangent to the end point.) This must be within ±π/2. A positive
+            // angle will produce a clockwise curve; a negative angle will produce a
+            // counterclockwise curve; zero will produce a straight line.
+            const bendAngle = this.sweep(x1, y1, x2, y2) * bend * radians;
 
             // The radius of the circle that intersects with the two endpoints
             // and has the specified bend angle.
@@ -141,13 +144,29 @@ export class Arrow extends Mark {
 
             // If the radius is very large (or even infinite, as when the bend
             // angle is zero), then render a straight line.
-            return `M${x1},${y1}${
-              r < 1e5 ? `A${r},${r} 0,0,${bendAngle > 0 ? 1 : 0} ` : `L`
-            }${x2},${y2}M${x3},${y3}L${x2},${y2}L${x4},${y4}`;
+            const a = r < 1e5 ? `A${r},${r} 0,0,${bendAngle > 0 ? 1 : 0} ` : `L`;
+            const h = headLength ? `M${x3},${y3}L${x2},${y2}L${x4},${y4}` : "";
+            return `M${x1},${y1}${a}${x2},${y2}${h}`;
           })
           .call(applyChannelStyles, this, channels)
       )
       .node();
+  }
+}
+
+// Maybe flip the bend angle, depending on the arrow orientation.
+function maybeSweep(sweep = 1) {
+  if (typeof sweep === "number") return constant(Math.sign(sweep));
+  if (typeof sweep === "function") return (x1, y1, x2, y2) => Math.sign(sweep(x1, y1, x2, y2));
+  switch (keyword(sweep, "sweep", ["+x", "-x", "+y", "-y"])) {
+    case "+x":
+      return (x1, y1, x2) => ascending(x1, x2);
+    case "-x":
+      return (x1, y1, x2) => descending(x1, x2);
+    case "+y":
+      return (x1, y1, x2, y2) => ascending(y1, y2);
+    case "-y":
+      return (x1, y1, x2, y2) => descending(y1, y2);
   }
 }
 
