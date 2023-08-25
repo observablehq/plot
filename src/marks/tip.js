@@ -122,7 +122,7 @@ export class Tip extends Mark {
       sources = values.channels;
       format = formatTitle;
     } else {
-      sources = getSourceChannels.call(this, index, values, scales);
+      sources = getSourceChannels.call(this, values, scales);
       format = formatChannels;
     }
 
@@ -308,33 +308,25 @@ function getPath(anchor, m, r, width, height) {
 }
 
 // Note: mutates this.format!
-function getSourceChannels(index, {channels}, scales) {
-  const {facet, format} = this;
+function getSourceChannels({channels}, scales) {
   const sources = {};
+
+  // Promote x and y shorthand for paired channels (in order).
+  let format = this.format;
+  format = maybeExpandPairedFormat(format, channels, "x");
+  format = maybeExpandPairedFormat(format, channels, "y");
+  this.format = format;
 
   // Prioritize channels with explicit formats, in the given order.
   for (const key in format) {
     const value = format[key];
     if (value === null || value === false) {
-      // Promote x and y null shorthand for paired channels (in order).
-      if (key === "x" || key === "y") {
-        const key1 = `${key}1`;
-        const key2 = `${key}2`;
-        if (!(key1 in format)) format[key1] = null;
-        if (!(key2 in format)) format[key2] = null;
-      }
+      continue;
     } else if (key === "fx" || key === "fy") {
       sources[key] = true;
     } else {
-      let source = getSource(channels, key);
+      const source = getSource(channels, key);
       if (source) sources[key] = source;
-      // Promote x and y non-null shorthand for paired channels (in order).
-      if (key === "x" || key === "y") {
-        const key1 = `${key}1`;
-        const key2 = `${key}2`;
-        if (!(key1 in format) && (source = getSource(channels, key1))) (format[key1] = value), (sources[key1] = source);
-        if (!(key2 in format) && (source = getSource(channels, key2))) (format[key2] = value), (sources[key2] = source);
-      }
     }
   }
 
@@ -346,7 +338,7 @@ function getSourceChannels(index, {channels}, scales) {
   }
 
   // And lastly facet channels, but only if this mark is faceted.
-  if (facet) {
+  if (this.facet) {
     if (scales.fx && !("fx" in format)) sources.fx = true;
     if (scales.fy && !("fy" in format)) sources.fy = true;
   }
@@ -370,6 +362,18 @@ function getSourceChannels(index, {channels}, scales) {
   }
 
   return sources;
+}
+
+// Promote x and y shorthand for paired channels, while preserving order.
+function maybeExpandPairedFormat(format, channels, key) {
+  if (!(key in format)) return format;
+  const key1 = `${key}1`;
+  const key2 = `${key}2`;
+  if ((key1 in format || !(key1 in channels)) && (key2 in format || !(key2 in channels))) return format;
+  const entries = Object.entries(format);
+  const value = format[key];
+  entries.splice(entries.findIndex(([name]) => name === key) + 1, 0, [key1, value], [key2, value]);
+  return Object.fromEntries(entries);
 }
 
 function formatTitle(i, index, {title}) {
