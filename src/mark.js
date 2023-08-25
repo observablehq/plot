@@ -2,7 +2,7 @@ import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
 import {maybeNamed, maybeValue} from "./options.js";
-import {arrayify, isDomainSort, isOptions, keyword, range, singleton} from "./options.js";
+import {arrayify, isDomainSort, isObject, isOptions, keyword, range, singleton} from "./options.js";
 import {project} from "./projection.js";
 import {maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
@@ -167,6 +167,10 @@ function maybeTip(tip) {
     : tip; // tip options object
 }
 
-export function withTip(options, tip) {
-  return options?.tip === true ? {...options, tip} : options;
+export function withTip(options, pointer) {
+  return options?.tip === true
+    ? {...options, tip: pointer}
+    : isObject(options?.tip) && options.tip.pointer === undefined
+    ? {...options, tip: {...options.tip, pointer}}
+    : options;
 }
