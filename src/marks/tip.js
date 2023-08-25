@@ -124,26 +124,6 @@ export class Tip extends Mark {
     } else {
       sources = getSourceChannels.call(this, index, values, scales);
       format = formatChannels;
-
-      // Promote shorthand string formats to functions, and materialize default
-      // formats. Note: this mutates this.format, but that should be safe since
-      // we made a defensive copy.
-      for (const key in sources) {
-        const format = this.format[key];
-        if (typeof format === "string") {
-          const value = sources[key]?.value ?? scales[key]?.domain() ?? [];
-          this.format[key] = (isTemporal(value) ? utcFormat : numberFormat)(format);
-        } else if (format === undefined || format === true) {
-          // Borrow the scale’s tick format for facet channels; this is
-          // generally better than the default (and safe for ordinal scales).
-          if (key === "fx" || key === "fy") {
-            const scale = scales[key];
-            this.format[key] = inferTickFormat(scale, scale.domain());
-          } else {
-            this.format[key] = formatDefault;
-          }
-        }
-      }
     }
 
     // We don’t call applyChannelStyles because we only use the channels to
@@ -327,29 +307,68 @@ function getPath(anchor, m, r, width, height) {
   }
 }
 
+// Note: mutates this.format!
 function getSourceChannels(index, {channels}, scales) {
   const {facet, format} = this;
   const sources = {};
+
   // Prioritize channels with explicit formats, in the given order.
   for (const key in format) {
-    if (format[key] === null || format[key] === false) continue;
-    if (key === "fx" || key === "fy") sources[key] = true;
-    else {
-      const source = getSource(channels, key);
+    const value = format[key];
+    if (value === null || value === false) {
+      // Promote x and y null shorthand for paired channels (in order).
+      if (key === "x" || key === "y") {
+        const key1 = `${key}1`;
+        const key2 = `${key}2`;
+        if (!(key1 in format)) format[key1] = null;
+        if (!(key2 in format)) format[key2] = null;
+      }
+    } else if (key === "fx" || key === "fy") {
+      sources[key] = true;
+    } else {
+      let source = getSource(channels, key);
       if (source) sources[key] = source;
+      // Promote x and y non-null shorthand for paired channels (in order).
+      if (key === "x" || key === "y") {
+        const key1 = `${key}1`;
+        const key2 = `${key}2`;
+        if (!(key1 in format) && (source = getSource(channels, key1))) (format[key1] = value), (sources[key1] = source);
+        if (!(key2 in format) && (source = getSource(channels, key2))) (format[key2] = value), (sources[key2] = source);
+      }
     }
   }
+
   // Then fallback to all other (non-ignored) channels.
   for (const key in channels) {
     if (key in sources || key in format || ignoreChannels.has(key)) continue;
     const source = getSource(channels, key);
     if (source) sources[key] = source;
   }
+
   // And lastly facet channels, but only if this mark is faceted.
   if (facet) {
     if (scales.fx && !("fx" in format)) sources.fx = true;
     if (scales.fy && !("fy" in format)) sources.fy = true;
   }
+
+  // Promote shorthand string formats, and materialize default formats.
+  for (const key in sources) {
+    const format = this.format[key];
+    if (typeof format === "string") {
+      const value = sources[key]?.value ?? scales[key]?.domain() ?? [];
+      this.format[key] = (isTemporal(value) ? utcFormat : numberFormat)(format);
+    } else if (format === undefined || format === true) {
+      // Borrow the scale’s tick format for facet channels; this is
+      // generally better than the default (and safe for ordinal scales).
+      if (key === "fx" || key === "fy") {
+        const scale = scales[key];
+        this.format[key] = inferTickFormat(scale, scale.domain());
+      } else {
+        this.format[key] = formatDefault;
+      }
+    }
+  }
+
   return sources;
 }
 
@@ -372,12 +391,12 @@ function* formatChannels(i, index, channels, scales, values) {
     if (key === "x2" && "x1" in channels) {
       yield {
         label: formatPairLabel(scales, channels, "x"),
-        value: formatPair(this.format.x, channels.x1, channel, i)
+        value: formatPair(this.format.x2, channels.x1, channel, i)
       };
     } else if (key === "y2" && "y1" in channels) {
       yield {
         label: formatPairLabel(scales, channels, "y"),
-        value: formatPair(this.format.y, channels.y1, channel, i)
+        value: formatPair(this.format.y2, channels.y1, channel, i)
       };
     } else {
       const value = channel.value[i];
