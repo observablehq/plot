@@ -239,7 +239,6 @@ export function plot(options = {}) {
   // Compute value objects, applying scales and projection as needed.
   for (const [mark, state] of stateByMark) {
     state.values = mark.scale(state.channels, scales, context);
-    state.values.data = state.data; // expose transformed data for advanced usage
   }
 
   const {width, height} = dimensions;
