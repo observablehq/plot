@@ -1,5 +1,6 @@
-import type {ChannelTransform, ChannelValue} from "../channel.js";
+import type {ChannelTransform} from "../channel.js";
 import type {Initialized} from "./basic.js";
+import type {GeoOptions} from "../marks/geo.js";
 
 /** Options for the centroid and geoCentroid transforms. */
 export interface CentroidOptions {
@@ -7,7 +8,7 @@ export interface CentroidOptions {
    * A channel supplying GeoJSON geometry; defaults to the identity transform,
    * assuming that the data is GeoJSON geometry.
    */
-  geometry?: ChannelValue;
+  geometry?: GeoOptions["geometry"];
 }
 
 /**

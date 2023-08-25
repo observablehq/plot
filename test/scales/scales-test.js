@@ -2240,10 +2240,38 @@ it("mark(data, {channels}) rejects unknown scales", () => {
   );
 });
 
-it("geo(data, {geometry: {scale}}) rejects anything but projection and null", () => {
+it("geo(data, {geometry: {scale}}) rejects invalid scales", () => {
   assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: "projection"}}));
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: "auto"}}));
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: true}}));
   assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: null}}));
-  assert.throws(() => Plot.geo([], {geometry: {value: Plot.identity, scale: "x"}}), /^Error: invalid scale: x$/);
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity}}));
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: false}}));
+  assert.throws(
+    () => Plot.geo([], {geometry: {value: Plot.identity, scale: "x"}}),
+    /^Error: invalid projection scale: x$/
+  );
+  assert.throws(
+    () => Plot.geo([], {geometry: {value: Plot.identity, scale: "neo"}}),
+    /^Error: invalid projection scale: neo$/
+  );
+});
+
+it("centroid(data, {geometry: {scale}}) rejects invalid scales", () => {
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: "projection"}})).plot());
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: "auto"}})).plot());
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: true}})).plot());
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: null}})).plot());
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity}})).plot());
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: false}})).plot());
+  assert.throws(
+    () => Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: "x"}})).plot(),
+    /^Error: invalid projection scale: x$/
+  );
+  assert.throws(
+    () => Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: "neo"}})).plot(),
+    /^Error: invalid projection scale: neo$/
+  );
 });
 
 // Given a plot specification (or, as shorthand, an array of marks or a single

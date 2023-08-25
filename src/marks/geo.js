@@ -2,7 +2,7 @@ import {geoGraticule10, geoPath, geoTransform} from "d3";
 import {create} from "../context.js";
 import {negative, positive} from "../defined.js";
 import {Mark} from "../mark.js";
-import {keyword, identity, maybeNumberChannel} from "../options.js";
+import {identity, maybeNumberChannel} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {withDefaultSort} from "./dot.js";
 
@@ -19,13 +19,9 @@ const defaults = {
 export class Geo extends Mark {
   constructor(data, options = {}) {
     const [vr, cr] = maybeNumberChannel(options.r, 3);
-    let {geometry} = options;
-    if (geometry?.value) geometry = {scale: "projection", ...geometry};
-    else geometry = {value: geometry, scale: "projection"};
-    if (geometry.scale !== null) keyword(geometry.scale, "scale", ["projection"]);
     super(
       data,
-      {geometry, r: {value: vr, scale: "r", filter: positive, optional: true}},
+      {geometry: maybeGeometry(options.geometry), r: {value: vr, scale: "r", filter: positive, optional: true}},
       withDefaultSort(options),
       defaults
     );
@@ -97,4 +93,20 @@ export function sphere({strokeWidth = 1.5, ...options} = {}) {
 
 export function graticule({strokeOpacity = 0.1, ...options} = {}) {
   return geo(geoGraticule10(), {strokeOpacity, ...options});
+}
+
+export function maybeGeometry(geometry) {
+  const {value, scale} = geometry?.value ? geometry : {value: geometry};
+  switch (scale) {
+    case false:
+    case null:
+      return {value, scale: null};
+    case undefined:
+    case true:
+    case "auto":
+    case "projection":
+      return {value, scale: "projection"};
+    default:
+      throw new Error(`invalid projection scale: ${scale}`);
+  }
 }
