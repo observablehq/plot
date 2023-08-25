@@ -243,3 +243,42 @@ it("Plot.autoSpec makes a faceted heatmap", () => {
     colorMode: "fill"
   });
 });
+
+it.only("autoSpec rejects an underspecified reducer", () => {
+  // primitive array ok
+  assert.deepStrictEqual(Plot.autoSpec([74, 65], {x: Plot.identity, y: "max"}), {
+    fx: null,
+    fy: null,
+    x: {value: Plot.identity, reduce: null, zero: false},
+    y: {value: null, reduce: "max", zero: false},
+    color: {value: null, reduce: null},
+    size: {value: null, reduce: null},
+    mark: "rule",
+    markImpl: "ruleX",
+    markOptions: {
+      fx: undefined,
+      fy: undefined,
+      x: {value: Object.assign([74, 65], {label: undefined})},
+      y: undefined,
+      stroke: undefined,
+      z: undefined,
+      r: undefined,
+      tip: true
+    },
+    transformImpl: "binX",
+    transformOptions: {stroke: undefined, r: undefined, y: "max"},
+    colorMode: "stroke"
+  });
+  // in this case, reducer "max" has no input
+  assert.throws(
+    () =>
+      Plot.autoSpec(
+        [
+          {name: "Toph", height: 74},
+          {name: "Claire", height: 65}
+        ],
+        {x: "height", y: "max"}
+      ),
+    /^Error: setting y reducer to "max" requires setting y field$/
+  );
+});

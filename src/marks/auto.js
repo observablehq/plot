@@ -1,6 +1,6 @@
 import {ascending, InternSet} from "d3";
 import {marks} from "../mark.js";
-import {isColor, isNumeric, isObject, isOptions, isOrdinal, labelof, valueof} from "../options.js";
+import {isColor, isNumeric, isObject, isOptions, isOrdinal, isEvery, labelof, valueof} from "../options.js";
 import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
 import {areaX, areaY} from "./area.js";
@@ -15,11 +15,6 @@ import {ruleX, ruleY} from "./rule.js";
 export function autoSpec(data, options) {
   options = normalizeOptions(options);
 
-  for (const channel of ["x", "y", "color", "size"]) {
-    if (isUnderspecifiedReduce(options[channel]))
-      throw new Error(`setting ${channel} reducer to "${options[channel].reduce}" requires setting ${channel} field`);
-  }
-
   // Greedily materialize columns for type inference; we’ll need them anyway to
   // plot! Note that we don’t apply any type inference to the fx and fy
   // channels, if present; these are always ordinal (at least for now).
@@ -28,6 +23,13 @@ export function autoSpec(data, options) {
   const Y = materializeValue(data, y);
   const C = materializeValue(data, color);
   const S = materializeValue(data, size);
+
+  if (!isPrimitive(data)) {
+    for (const channel of ["x", "y", "color", "size"]) {
+      if (isUnderspecifiedReduce(options[channel]))
+        throw new Error(`setting ${channel} reducer to "${options[channel].reduce}" requires setting ${channel} field`);
+    }
+  }
 
   // Compute the default options.
   let {
@@ -346,7 +348,11 @@ function isReducer(reduce) {
 }
 
 function isUnderspecifiedReduce({value, reduce}) {
-  return value == null && reduce != null && /^count$/i.test(reduce);
+  return value == null && reduce != null && !/^count$/i.test(reduce);
+}
+
+function isPrimitive(values) {
+  return isEvery(values, (d) => ["number", "boolean", "string"].includes(typeof d) || d instanceof Date);
 }
 
 function isHighCardinality(value) {
