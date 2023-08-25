@@ -92,7 +92,6 @@ export class Tip extends Mark {
     const {anchor, monospace, lineHeight, lineWidth} = this;
     const {textPadding: r, pointerSize: m, pathFilter} = this;
     const {marginTop, marginLeft} = dimensions;
-    const sources = getSources(values);
 
     // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
     // or x & y; the former is considered more specific because it’s how we
@@ -116,32 +115,36 @@ export class Tip extends Mark {
     const widthof = monospace ? monospaceWidth : defaultWidth;
     const ee = widthof(ellipsis);
 
-    // Promote shorthand string formats to functions. Note: mutates this.format,
-    // but that should be safe since we made a defensive copy.
-    for (const key in this.format) {
-      const format = this.format[key];
-      if (typeof format === "string") {
-        const value = key in sources ? sources[key].value : key in scales ? scales[key].domain() : [];
-        this.format[key] = (isTemporal(value) ? utcFormat : numberFormat)(format);
+    // If there’s a title channel, display that as-is; otherwise, show multiple
+    // channels as name-value pairs.
+    let sources, format;
+    if ("title" in values) {
+      sources = values.channels;
+      format = formatTitle;
+    } else {
+      sources = getSourceChannels.call(this, index, values, scales);
+      format = formatChannels;
+
+      // Promote shorthand string formats to functions, and materialize default
+      // formats. Note: this mutates this.format, but that should be safe since
+      // we made a defensive copy.
+      for (const key in sources) {
+        const format = this.format[key];
+        if (typeof format === "string") {
+          const value = sources[key]?.value ?? scales[key]?.domain() ?? [];
+          this.format[key] = (isTemporal(value) ? utcFormat : numberFormat)(format);
+        } else if (format === undefined || format === true) {
+          // Borrow the scale’s tick format for facet channels; this is
+          // generally better than the default (and safe for ordinal scales).
+          if (key === "fx" || key === "fy") {
+            const scale = scales[key];
+            this.format[key] = inferTickFormat(scale, scale.domain());
+          } else {
+            this.format[key] = formatDefault;
+          }
+        }
       }
     }
-
-    // Borrow the scale tick format for facet channels; this is generally better
-    // than the default format (and safe for ordinal scales). Note: mutates
-    // this.format, but that should be safe since we made a defensive copy.
-    if (index.fi != null) {
-      const {fx, fy} = scales;
-      if (fx && this.format.fx === undefined) this.format.fx = inferTickFormat(fx, fx.domain());
-      if (fy && this.format.fy === undefined) this.format.fy = inferTickFormat(fy, fy.domain());
-    }
-
-    // Determine the appropriate formatter.
-    const format =
-      "title" in sources // if there is a title channel
-        ? formatTitle // display the title as-is
-        : index.fi == null // if this mark is not faceted
-        ? formatChannels // display name-value pairs for channels
-        : formatFacetedChannels; // same, plus facets
 
     // We don’t call applyChannelStyles because we only use the channels to
     // derive the content of the tip, not its aesthetics.
@@ -324,66 +327,69 @@ function getPath(anchor, m, r, width, height) {
   }
 }
 
-function getSources({channels}) {
+function getSourceChannels(index, {channels}, scales) {
+  const {facet, format} = this;
   const sources = {};
+  // Prioritize channels with explicit formats, in the given order.
+  for (const key in format) {
+    if (format[key] === null || format[key] === false) continue;
+    if (key === "fx" || key === "fy") sources[key] = true;
+    else {
+      const source = getSource(channels, key);
+      if (source) sources[key] = source;
+    }
+  }
+  // Then fallback to all other (non-ignored) channels.
   for (const key in channels) {
-    if (ignoreChannels.has(key)) continue;
+    if (key in sources || key in format || ignoreChannels.has(key)) continue;
     const source = getSource(channels, key);
     if (source) sources[key] = source;
+  }
+  // And lastly facet channels, but only if this mark is faceted.
+  if (facet) {
+    if (scales.fx && !("fx" in format)) sources.fx = true;
+    if (scales.fy && !("fy" in format)) sources.fy = true;
   }
   return sources;
 }
 
 function formatTitle(i, index, {title}) {
-  const format = this.format?.title;
-  return format === null ? [] : (format ?? formatDefault)(title.value[i], i);
+  return formatDefault(title.value[i], i);
 }
 
 function* formatChannels(i, index, channels, scales, values) {
   for (const key in channels) {
+    if (key === "fx" || key === "fy") {
+      yield {
+        label: formatLabel(scales, channels, key),
+        value: this.format[key](index[key], i)
+      };
+      continue;
+    }
     if (key === "x1" && "x2" in channels) continue;
     if (key === "y1" && "y2" in channels) continue;
     const channel = channels[key];
     if (key === "x2" && "x1" in channels) {
-      const format = this.format?.x; // TODO x1, x2?
-      if (format === null) continue;
       yield {
         label: formatPairLabel(scales, channels, "x"),
-        value: formatPair(format ?? formatDefault, channels.x1, channel, i)
+        value: formatPair(this.format.x, channels.x1, channel, i)
       };
     } else if (key === "y2" && "y1" in channels) {
-      const format = this.format?.y; // TODO y1, y2?
-      if (format === null) continue;
       yield {
         label: formatPairLabel(scales, channels, "y"),
-        value: formatPair(format ?? formatDefault, channels.y1, channel, i)
+        value: formatPair(this.format.y, channels.y1, channel, i)
       };
     } else {
-      const format = this.format?.[key];
-      if (format === null) continue;
       const value = channel.value[i];
       const scale = channel.scale;
       if (!defined(value) && scale == null) continue;
       yield {
         label: formatLabel(scales, channels, key),
-        value: (format ?? formatDefault)(value, i),
+        value: this.format[key](value, i),
         color: scale === "color" ? values[key][i] : null,
         opacity: scale === "opacity" ? values[key][i] : null
       };
     }
-  }
-}
-
-function* formatFacetedChannels(i, index, channels, scales, values) {
-  yield* formatChannels.call(this, i, index, channels, scales, values);
-  for (const key of ["fx", "fy"]) {
-    if (!scales[key]) return;
-    const format = this.format?.[key];
-    if (format === null) continue;
-    yield {
-      label: formatLabel(scales, channels, key),
-      value: (format ?? formatDefault)(index[key], i)
-    };
   }
 }
 

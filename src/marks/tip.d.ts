@@ -67,7 +67,7 @@ export interface TipOptions extends MarkOptions, TextStyles {
    * is interpreted as a (UTC) time format for temporal channels, and otherwise
    * a number format.
    */
-  format?: {[name in ChannelName]?: string | ((d: any, i: number) => string)};
+  format?: {[name in ChannelName]?: boolean | string | ((d: any, i: number) => string)};
 }
 
 /**

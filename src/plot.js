@@ -532,7 +532,10 @@ function inferTips(marks) {
       p = /^x$/i.test(p) ? pointerX : /^y$/i.test(p) ? pointerY : pointer; // TODO validate?
       tipOptions = p(derive(mark, tipOptions));
       tipOptions.title = null; // prevent implicit title for primitive data
-      tips.push(tip(mark.data, tipOptions));
+      const t = tip(mark.data, tipOptions);
+      t.facet = mark.facet; // inherit facet settings
+      t.facetAnchor = mark.facetAnchor; // inherit facet settings
+      tips.push(t);
     }
   }
   return tips;
