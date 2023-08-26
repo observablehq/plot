@@ -184,10 +184,9 @@ function binn(
               groupFacet.push(i++);
               groupData.push(reduceData.reduceIndex(b, data, extent));
               if (K) GK.push(k);
-              const u = b.length === 0 ? g[0] : b[0];
-              if (Z) GZ.push(G === Z ? f : Z[u]);
-              if (F) GF.push(G === F ? f : F[u]);
-              if (S) GS.push(G === S ? f : S[u]);
+              if (Z) GZ.push(G === Z ? f : Z[(b.length > 0 ? b : g)[0]]);
+              if (F) GF.push(G === F ? f : F[(b.length > 0 ? b : g)[0]]);
+              if (S) GS.push(G === S ? f : S[(b.length > 0 ? b : g)[0]]);
               if (BX1) BX1.push(extent.x1), BX2.push(extent.x2);
               if (BY1) BY1.push(extent.y1), BY2.push(extent.y2);
               for (const o of outputs) o.reduce(b, extent);

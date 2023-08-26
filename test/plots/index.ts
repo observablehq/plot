@@ -37,6 +37,7 @@ export * from "./beagle.js";
 export * from "./becker-barley.js";
 export * from "./bigint.js";
 export * from "./bin-1m.js";
+export * from "./bin-fill-first-empty.js";
 export * from "./bin-strings.js";
 export * from "./bin-timestamps.js";
 export * from "./bounding-boxes.js";
