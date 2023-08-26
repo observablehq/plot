@@ -292,6 +292,7 @@ export * from "./text-overflow.js";
 export * from "./this-is-just-to-say.js";
 export * from "./time-axis.js";
 export * from "./tip.js";
+export * from "./tip-format.js";
 export * from "./title.js";
 export * from "./traffic-horizon.js";
 export * from "./travelers-covid-drop.js";

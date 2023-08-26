@@ -145,7 +145,7 @@ export type ChannelValue =
  * object to override the scale that would normally be associated with the
  * channel.
  */
-export type ChannelValueSpec = ChannelValue | {value: ChannelValue; scale?: Channel["scale"]}; // TODO label
+export type ChannelValueSpec = ChannelValue | {value: ChannelValue; label?: string; scale?: Channel["scale"]};
 
 /**
  * In some contexts, when specifying a mark channel’s value, you can provide a
