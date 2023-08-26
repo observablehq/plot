@@ -25,7 +25,7 @@ export async function tipFormatFacetFormat() {
 }
 
 export async function tipFormatFacetFormatDefaultHour() {
-  return tip({length: 2}, {fx: [new Date("2001-01-01T12:00"), new Date("2001-01-01T13:00")]}, {height: 110});
+  return tip({length: 2}, {fx: [new Date("2001-01-01T12:00Z"), new Date("2001-01-01T13:00Z")]}, {height: 110});
 }
 
 export async function tipFormatFacetFormatDefaultDay() {
