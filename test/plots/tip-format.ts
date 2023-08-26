@@ -61,7 +61,7 @@ export async function tipFormatPairedLabel() {
 }
 
 export async function tipFormatPairedLabelChannel() {
-  return tip({length: 1}, {x1: Object.assign([0], {label: "Low"}), x2: Object.assign([1], {label: "High"})});
+  return tip({length: 1}, {x1: {value: [0], label: "Low"}, x2: {value: [1], label: "High"}});
 }
 
 export async function tipFormatPairedLabelScale() {

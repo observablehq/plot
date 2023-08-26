@@ -46,9 +46,9 @@ export class Mark {
       Object.entries(channels)
         .map(([name, channel]) => {
           if (isOptions(channel.value)) {
-            // apply scale overrides
-            const {value, scale = channel.scale} = channel.value;
-            channel = {...channel, scale, value};
+            // apply scale and label overrides
+            const {value, label = channel.label, scale = channel.scale} = channel.value;
+            channel = {...channel, label, scale, value};
           }
           if (data === singleton && typeof channel.value === "string") {
             // convert field names to singleton values for decoration marks (e.g., frame)
