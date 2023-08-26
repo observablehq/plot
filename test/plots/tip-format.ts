@@ -21,7 +21,7 @@ export async function tipFormatFacetFalse() {
 }
 
 export async function tipFormatFacetFormat() {
-  return tip({length: 2}, {fx: [new Date("2001-01-01"), new Date("2001-01-02")], format: {fx: "%b %-d"}}, {height: 110});
+  return tip({length: 2}, {fx: [new Date("2001-01-01"), new Date("2001-01-02")], format: {fx: "%b %-d"}}, {height: 110}); // prettier-ignore
 }
 
 export async function tipFormatFacetFormatDefaultHour() {
