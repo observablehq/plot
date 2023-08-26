@@ -350,14 +350,10 @@ function getSourceChannels({channels}, scales) {
       const value = sources[key]?.value ?? scales[key]?.domain() ?? [];
       this.format[key] = (isTemporal(value) ? utcFormat : numberFormat)(format);
     } else if (format === undefined || format === true) {
-      // Borrow the scale’s tick format for facet channels; this is
-      // generally better than the default (and safe for ordinal scales).
-      if (key === "fx" || key === "fy") {
-        const scale = scales[key];
-        this.format[key] = inferTickFormat(scale, scale.domain());
-      } else {
-        this.format[key] = formatDefault;
-      }
+      // For ordinal scales, the inferred tick format can be more concise, such
+      // as only showing the year for yearly data.
+      const scale = scales[key];
+      this.format[key] = scale?.bandwidth ? inferTickFormat(scale, scale.domain()) : formatDefault;
     }
   }
 
