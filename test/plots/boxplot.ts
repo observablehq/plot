@@ -17,7 +17,7 @@ export async function boxplotFacetInterval() {
     marks: [
       Plot.boxX(
         olympians.filter((d) => d.height),
-        {x: "weight", fy: "height"}
+        {x: "weight", fy: "height", tip: true}
       )
     ]
   });
@@ -36,6 +36,24 @@ export async function boxplotFacetNegativeInterval() {
       Plot.boxX(
         olympians.filter((d) => d.height),
         {x: "weight", fy: "height"}
+      )
+    ]
+  });
+}
+
+export async function boxplotY() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    fx: {
+      grid: true,
+      tickFormat: String, // for debugging
+      interval: 5,
+      reverse: true
+    },
+    marks: [
+      Plot.boxY(
+        olympians.filter((d) => d.height),
+        {fx: "weight", y: "height", tip: true}
       )
     ]
   });
