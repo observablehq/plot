@@ -5,7 +5,7 @@ import {createDimensions} from "./dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
 import {pointer, pointerX, pointerY} from "./interactions/pointer.js";
 import {createLegends, exposeLegends} from "./legends.js";
-import {Mark} from "./mark.js";
+import {Mark, derive} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
@@ -16,7 +16,6 @@ import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {isPosition, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
-import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
@@ -192,18 +191,26 @@ export function plot(options = {}) {
       }
       if (update.channels !== undefined) {
         const {fx, fy, ...channels} = update.channels; // separate facet channels
-        inferChannelScales(channels);
-        Object.assign(state.channels, channels);
-        for (const channel of Object.values(channels)) {
-          const {scale} = channel;
-          // Initializers aren’t allowed to redefine position scales as this
-          // would introduce a circular dependency; so simply scale these
-          // channels as-is rather than creating new scales, and assume that
-          // they already have the scale’s transform applied, if any (e.g., when
-          // generating ticks for the axis mark).
-          if (scale != null && !isPosition(scaleRegistry.get(scale))) {
-            applyScaleTransform(channel, options);
-            newByScale.add(scale);
+        // Add or remove the updated channels, as appropriate. An initializer
+        // may generate channels without knowing how the downstream mark will
+        // use them; marks are typically responsible associated scales with
+        // channels, but here we assume common behavior across marks.
+        for (const name in channels) {
+          const channel = channels[name];
+          if (channel == null) {
+            delete state.channels[name];
+          } else {
+            state.channels[name] = channel;
+            const {scale} = inferChannelScale(name, channel);
+            // Initializers aren’t allowed to redefine position scales as this
+            // would introduce a circular dependency; so simply scale these
+            // channels as-is rather than creating new scales, and assume that
+            // they already have the scale’s transform applied, if any (e.g.,
+            // when generating ticks for the axis mark).
+            if (scale != null && !isPosition(scaleRegistry.get(scale))) {
+              applyScaleTransform(channel, options);
+              newByScale.add(scale);
+            }
           }
         }
         // If the initializer returns new mark-level facet channels, we must
@@ -416,15 +423,6 @@ function applyScaleTransform(channel, options) {
   channel.transform = false;
 }
 
-// An initializer may generate channels without knowing how the downstream mark
-// will use them. Marks are typically responsible associated scales with
-// channels, but here we assume common behavior across marks.
-function inferChannelScales(channels) {
-  for (const name in channels) {
-    inferChannelScale(name, channels[name]);
-  }
-}
-
 function addScaleChannels(channelsByScale, stateByMark, options, filter = yes) {
   for (const {channels} of stateByMark.values()) {
     for (const name in channels) {
@@ -512,12 +510,6 @@ function maybeMarkFacet(mark, topFacetState, options) {
       `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
     );
   }
-}
-
-function derive(mark, options = {}) {
-  return initializer({...options, x: null, y: null}, (data, facets, channels, scales, dimensions, context) => {
-    return context.getMarkState(mark);
-  });
 }
 
 function inferTips(marks) {

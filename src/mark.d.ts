@@ -470,6 +470,13 @@ export class Mark {
    * an HTML figure element if a caption or legend is requested.
    */
   plot: typeof plot;
+
+  /**
+   * Returns a new mark of the same class as this mark, given the specified
+   * *options*. The returned mark will also have an initializer that copies all
+   * channels and transformed data from this mark.
+   */
+  derive<T extends MarkOptions>(options: T): typeof this;
 }
 
 /** A concrete Mark implementation. */

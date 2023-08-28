@@ -128,6 +128,24 @@ export class Mark {
     if (context.projection) this.project(channels, values, context);
     return values;
   }
+  derive(options) {
+    return new this.constructor(this.data, derive(this, options));
+  }
+}
+
+export function derive(mark, {x = null, y = null, ...options} = {}) {
+  return initializer(
+    {
+      x,
+      y,
+      ...options,
+      initializer(data, facets, channels, scales, dimensions, context) {
+        const {channels: c, ...state} = context.getMarkState(mark);
+        return {...state, channels: Object.fromEntries(Object.entries(c).filter(([name]) => !(name in options)))};
+      }
+    },
+    initializer(options).initializer
+  );
 }
 
 export function marks(...marks) {
