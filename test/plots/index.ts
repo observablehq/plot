@@ -119,6 +119,7 @@ export * from "./hexbin-z-null.js";
 export * from "./hexbin-z.js";
 export * from "./hexbin.js";
 export * from "./high-cardinality-ordinal.js";
+export * from "./highlight.js";
 export * from "./href-fill.js";
 export * from "./ibm-trading.js";
 export * from "./identity-scale.js";
