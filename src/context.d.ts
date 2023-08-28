@@ -1,5 +1,6 @@
 import type {GeoStreamWrapper} from "d3";
-import type {MarkOptions} from "./mark.js";
+import type {Channels} from "./channel.js";
+import type {Mark, MarkOptions} from "./mark.js";
 
 /** Additional rendering context provided to marks and initializers. */
 export interface Context {
@@ -20,4 +21,12 @@ export interface Context {
 
   /** The default clip for all marks. */
   clip?: MarkOptions["clip"];
+
+  /**
+   * Returns the initialized state of the given mark, including its transformed
+   * data, faceted index, and initialized channels. This advanced method can be
+   * used to create derived marks that borrow channels from other marks; for
+   * example, the tip option uses this to derive a pointered tip mark.
+   */
+  getMarkState: (mark: Mark) => {data: any[]; facets: number[][]; channels: Channels};
 }
