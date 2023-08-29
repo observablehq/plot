@@ -56,7 +56,8 @@ export class Text extends Mark {
       fontStyle,
       fontVariant,
       fontWeight,
-      rotate
+      rotate,
+      dataAttr
     } = options;
     const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
     const [vfontSize, cfontSize] = maybeFontSizeChannel(fontSize);
@@ -88,11 +89,13 @@ export class Text extends Mark {
     if (!(this.lineWidth >= 0)) throw new Error(`invalid lineWidth: ${lineWidth}`);
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
+    this.dataAttr = dataAttr;
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {x: X, y: Y, rotate: R, text: T, title: TL, fontSize: FS} = channels;
     const {rotate} = this;
+    const [dataAttrKey, dataAttrValue] = Array.isArray(this.dataAttr) ? this.dataAttr : ["data-text", this.dataAttr];
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
@@ -114,6 +117,7 @@ export class Text extends Mark {
           )
           .call(applyAttr, "font-size", FS && ((i) => FS[i]))
           .call(applyChannelStyles, this, channels)
+          .call(applyAttr, dataAttrKey, dataAttrValue)
       )
       .node();
   }

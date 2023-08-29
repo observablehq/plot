@@ -151,6 +151,13 @@ export interface TextOptions extends MarkOptions, TextStyles {
    * interpreted as a channel.
    */
   rotate?: ChannelValue;
+
+  /**
+   * Add a data attribute to the text node, which could be used for targeting with CSS.
+   * If a string is provided the data attribute key will be "data-text",
+   * for more control provide an array with the attribute name and value, e.g. ["data-name", "my-text"].
+   */
+  dataAttr?: string | [`data-${string}`, string];
 }
 
 /** Options for the textX mark. */
