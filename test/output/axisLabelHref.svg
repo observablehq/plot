@@ -13,30 +13,30 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)"><a fill="inherit" href="https://en.wikipedia.org/wiki/A">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)"><a fill="inherit" href="https://en.wikipedia.org/wiki/A" target="_blank">
       <path transform="translate(70,30)" d="M0,0L0,6"></path>
-    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/B">
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/B" target="_blank">
       <path transform="translate(170,30)" d="M0,0L0,6"></path>
-    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/C">
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/C" target="_blank">
       <path transform="translate(270,30)" d="M0,0L0,6"></path>
-    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/D">
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/D" target="_blank">
       <path transform="translate(370,30)" d="M0,0L0,6"></path>
-    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/E">
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/E" target="_blank">
       <path transform="translate(470,30)" d="M0,0L0,6"></path>
-    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/F">
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/F" target="_blank">
       <path transform="translate(570,30)" d="M0,0L0,6"></path>
     </a></g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)"><a fill="inherit" href="https://en.wikipedia.org/wiki/A">
+  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)"><a fill="inherit" href="https://en.wikipedia.org/wiki/A" target="_blank">
       <text y="0.71em" transform="translate(70,30)">A</text>
-    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/B">
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/B" target="_blank">
       <text y="0.71em" transform="translate(170,30)">B</text>
-    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/C">
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/C" target="_blank">
       <text y="0.71em" transform="translate(270,30)">C</text>
-    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/D">
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/D" target="_blank">
       <text y="0.71em" transform="translate(370,30)">D</text>
-    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/E">
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/E" target="_blank">
       <text y="0.71em" transform="translate(470,30)">E</text>
-    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/F">
+    </a><a fill="inherit" href="https://en.wikipedia.org/wiki/F" target="_blank">
       <text y="0.71em" transform="translate(570,30)">F</text>
     </a></g>
   <g aria-label="x-axis label" transform="translate(0.5,27.5)">

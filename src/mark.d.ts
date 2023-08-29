@@ -439,17 +439,17 @@ export interface MarkOptions {
   shapeRendering?: string;
 
   /**
-   * The [href][1]; a channel specifying URLs for clickable links. May be used
-   * in conjunction with the **target** option to open links in another window.
+   * The [href][1]; a channel specifying URLs for clickable links. See also the
+   * the **target** option.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/href
    */
   href?: ChannelValue;
 
   /**
-   * The [target][1]; a constant string specifying the target window (_e.g._,
-   * *_blank*) for clickable links; used in conjunction with the **href**
-   * option.
+   * The [target][1]; a constant string specifying the target window for
+   * clickable links; defaults to *_blank* to open in a new window; used in
+   * conjunction with the **href** option.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/target
    */

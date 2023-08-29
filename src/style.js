@@ -22,7 +22,7 @@ export function styles(
     ariaLabel: variaLabel,
     ariaDescription,
     ariaHidden,
-    target,
+    target = "_blank",
     fill,
     fillOpacity,
     stroke,
