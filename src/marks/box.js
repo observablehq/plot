@@ -33,7 +33,7 @@ export function boxX(
     barX(data, group({x1: "p25", x2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickX(data, group({x: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
     dot(data, map({x: oqr}, {x, y, z: y, stroke, strokeOpacity, ...options})),
-    tip && tipmark(data, pointerX(map({x: boxStats}, {x, y, z: y, ...options})))
+    tip && tipmark(data, pointerY(map({x: boxStats}, {x, y, z: y, ...options})))
   );
 }
 
@@ -60,7 +60,7 @@ export function boxY(
     barY(data, group({y1: "p25", y2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickY(data, group({y: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
     dot(data, map({y: oqr}, {x, y, z: x, stroke, strokeOpacity, ...options})),
-    tip && tipmark(data, pointerY(map({y: boxStats}, {x, y, z: x, ...options})))
+    tip && tipmark(data, pointerX(map({y: boxStats}, {x, y, z: x, ...options})))
   );
 }
 
