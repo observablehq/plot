@@ -65,9 +65,14 @@ function highlight({selected = {}, unselected = {}, ...options}: any = {}) {
 
 export async function highlightDot() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  // const highlighter = Plot.highlight();
   return Plot.plot({
     color: {legend: true},
     marks: [
+      // Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species", render: highlighter.inactive}),
+      // Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species", r: d3.randomLcg(), symbol: "asterisk", render: highlighter.selected, initializer: () => context.getMarkState(mark)}),
+      // Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "#ccc", render: highlighter.unselected}),
+      // highlighter,
       Plot.dot(
         penguins,
         highlight({
