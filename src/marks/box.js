@@ -109,5 +109,5 @@ function boxStats(values) {
     }
   }
   const report = [q3, q1, mi, hiqr2, loqr1];
-  return values.map((d) => (d < loqr1 || d > hiqr2 ? d : report.pop() ?? NaN));
+  return values.map((d) => (d !== null && (d < loqr1 || d > hiqr2) ? d : report.pop() ?? NaN));
 }
