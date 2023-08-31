@@ -58,3 +58,18 @@ export async function boxplotY() {
     ]
   });
 }
+
+export async function boxplotCounts() {
+  const numbers = Array.from({length: 64}, (_, i) => {
+    const x = i % 16;
+    const y = Math.floor(i / 16);
+    return {x: x > 15 - y ? NaN : 1 + x, y};
+  });
+  return Plot.boxX(numbers, {
+    x: "x",
+    y: "y",
+    tip: true
+  }).plot({
+    style: "overflow: visible;"
+  });
+}

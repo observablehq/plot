@@ -1,4 +1,4 @@
-import {count, max, min, quantile, quantileSorted} from "d3";
+import {max, min, quantile, quantileSorted} from "d3";
 import {marks} from "../mark.js";
 import {identity} from "../options.js";
 import {groupX, groupY, groupZ} from "../transforms/group.js";
@@ -34,7 +34,7 @@ export function boxX(
     barX(data, group({x1: "p25", x2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickX(data, group({x: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
     dot(data, map({x: oqr}, {x, y, z: y, stroke, strokeOpacity, ...options})),
-    tip && tipmark(data, pointerY(groupZ({x: "median", title: boxStats}, {x, y, z: y, title: x, ...options})))
+    tip && tipmark(data, pointerY(group({x: "median", title: boxStats}, {x, y, z: y, title: x, ...options})))
   );
 }
 
@@ -61,7 +61,7 @@ export function boxY(
     barY(data, group({y1: "p25", y2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickY(data, group({y: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
     dot(data, map({y: oqr}, {x, y, z: x, stroke, strokeOpacity, ...options})),
-    tip && tipmark(data, pointerX(groupZ({y: "median", title: boxStats}, {x, y, z: x, title: y, ...options})))
+    tip && tipmark(data, pointerX(group({y: "median", title: boxStats}, {x, y, z: x, title: y, ...options})))
   );
 }
 
@@ -97,7 +97,7 @@ function boxStats(values) {
     })(values)
   ).sort();
   const q1 = quantileSorted(V, 0.25);
-  const mi = quantileSorted(V, 0.5);
+  const q2 = quantileSorted(V, 0.5);
   const q3 = quantileSorted(V, 0.75);
   const lo = q1 * 2.5 - q3 * 1.5;
   const loqr1 = V.find((d) => d >= lo);
@@ -109,18 +109,41 @@ function boxStats(values) {
       break;
     }
   }
-  const no1 = count(values, (d) => (d !== null && d < loqr1) || NaN);
-  const no2 = count(values, (d) => (d !== null && d > hiqr2) || NaN);
+  let _loqr1 = 0;
+  let _hiqr2 = 0;
+  let _q1 = 0;
+  let _q2 = 0;
+  let _q3 = 0;
+  for (const d of V) {
+    switch (true) {
+      case d < loqr1:
+        _loqr1++;
+      // eslint-disable-next-line no-fallthrough
+      case d <= q1:
+        _q1++;
+      // eslint-disable-next-line no-fallthrough
+      case d <= q2:
+        _q2++;
+      // eslint-disable-next-line no-fallthrough
+      case d <= q3:
+        _q3++;
+      // eslint-disable-next-line no-fallthrough
+      case d <= hiqr2:
+        break;
+      default:
+        _hiqr2++;
+    }
+  }
   const f = formatDefault;
   return (
     q1 === q3
-      ? [f(mi)]
+      ? [f(q2)]
       : [
-          loqr1 < mi && `${f(no1)}# < ${f(loqr1)}`,
-          q1 < mi && `${Math.round(V.length / 4)}# (25%) < ${f(q1)}`,
-          `${Math.round(V.length / 2)}# (50%) < ${f(mi)}`,
-          q3 > mi && `${Math.round((3 * V.length) / 4)}# (75%) < ${f(q1)}`,
-          hiqr2 > mi && `${f(no2)}# > ${f(hiqr2)}`
+          loqr1 < q2 && `${f(_loqr1)}# < ${f(loqr1)}`,
+          q1 < q2 && `${_q1}# ≤ ${f(q1)}`,
+          `${_q2}# ≤ ${f(q2)}`,
+          q3 > q2 && `${_q3}# ≤ ${f(q3)}`,
+          hiqr2 > q2 && `${f(_hiqr2)}# > ${f(hiqr2)}`
         ]
   )
     .filter((d) => d)
