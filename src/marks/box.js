@@ -1,4 +1,4 @@
-import {max, min, quantile, quantileSorted} from "d3";
+import {count, max, min, quantile, quantileSorted} from "d3";
 import {marks} from "../mark.js";
 import {identity} from "../options.js";
 import {groupX, groupY, groupZ} from "../transforms/group.js";
@@ -9,6 +9,7 @@ import {ruleX, ruleY} from "./rule.js";
 import {tickX, tickY} from "./tick.js";
 import {pointerX, pointerY} from "../interactions/pointer.js";
 import {tip as tipmark} from "./tip.js";
+import {formatDefault} from "../format.js";
 
 // Returns a composite mark for producing a horizontal box plot, applying the
 // necessary statistical transforms. The boxes are grouped by y, if present.
@@ -33,7 +34,7 @@ export function boxX(
     barX(data, group({x1: "p25", x2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickX(data, group({x: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
     dot(data, map({x: oqr}, {x, y, z: y, stroke, strokeOpacity, ...options})),
-    tip && tipmark(data, pointerY(map({x: boxStats}, {x, y, z: y, ...options})))
+    tip && tipmark(data, pointerY(groupZ({x: "median", title: boxStats}, {x, y, z: y, title: x, ...options})))
   );
 }
 
@@ -60,7 +61,7 @@ export function boxY(
     barY(data, group({y1: "p25", y2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickY(data, group({y: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
     dot(data, map({y: oqr}, {x, y, z: x, stroke, strokeOpacity, ...options})),
-    tip && tipmark(data, pointerX(map({y: boxStats}, {x, y, z: x, ...options})))
+    tip && tipmark(data, pointerX(groupZ({y: "median", title: boxStats}, {x, y, z: x, title: y, ...options})))
   );
 }
 
@@ -108,6 +109,20 @@ function boxStats(values) {
       break;
     }
   }
-  const report = [q3, q1, mi, hiqr2, loqr1];
-  return values.map((d) => (d !== null && (d < loqr1 || d > hiqr2) ? d : report.pop() ?? NaN));
+  const no1 = count(values, (d) => (d !== null && d < loqr1) || NaN);
+  const no2 = count(values, (d) => (d !== null && d > hiqr2) || NaN);
+  const f = formatDefault;
+  return (
+    q1 === q3
+      ? [f(mi)]
+      : [
+          loqr1 < mi && `${f(no1)}# < ${f(loqr1)}`,
+          q1 < mi && `${Math.round(V.length / 4)}# (25%) < ${f(q1)}`,
+          `${Math.round(V.length / 2)}# (50%) < ${f(mi)}`,
+          q3 > mi && `${Math.round((3 * V.length) / 4)}# (75%) < ${f(q1)}`,
+          hiqr2 > mi && `${f(no2)}# > ${f(hiqr2)}`
+        ]
+  )
+    .filter((d) => d)
+    .join("\n");
 }
