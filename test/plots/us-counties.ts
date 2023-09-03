@@ -18,6 +18,7 @@ export async function usCounties() {
   });
 }
 
+// Tests an explicit null scale override for geometries, when the projection is set at the top-level.
 export async function usCountiesPreprojected() {
   const [nation, statemesh, counties] = await d3
     .json<any>("data/counties-albers-10m.json")

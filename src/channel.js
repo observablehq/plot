@@ -42,6 +42,16 @@ export function valueObject(channels, scales) {
 // Note: mutates channel!
 export function inferChannelScale(name, channel) {
   const {scale, value} = channel;
+  if (name === "geometry") {
+    if (scale === "projection") return channel;
+    if (scale === false || scale === null) return {...channel, scale: null};
+    if (scale === undefined || scale === true || scale === "auto")
+      return {
+        ...channel,
+        scale: "projection"
+      };
+    throw new Error(`invalid projection scale: ${scale}`);
+  }
   if (scale === true || scale === "auto") {
     switch (name) {
       case "fill":
