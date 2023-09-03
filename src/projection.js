@@ -285,3 +285,15 @@ export function getGeometryChannels(channel) {
   for (const object of channel.value) geoStream(object, sink);
   return [x, y];
 }
+
+export function geometryChannel(channel) {
+  const {scale} = channel;
+  if (scale === "projection") return channel;
+  if (scale === false || scale === null) return {...channel, scale: null};
+  if (scale === undefined || scale === true || scale === "auto")
+    return {
+      ...channel,
+      scale: "projection"
+    };
+  throw new Error(`invalid projection scale: ${scale}`);
+}

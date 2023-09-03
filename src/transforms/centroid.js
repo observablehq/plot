@@ -1,12 +1,12 @@
 import {geoCentroid as GeoCentroid, geoPath} from "d3";
-import {identity, valueof} from "../options.js";
+import {identity, valueof, maybeValue} from "../options.js";
 import {initializer} from "./basic.js";
-import {maybeGeometry} from "../marks/geo.js";
+import {geometryChannel} from "../projection.js";
 
 export function centroid({geometry = identity, ...options} = {}) {
   // Suppress defaults for x and y since they will be computed by the initializer.
   return initializer({...options, x: null, y: null}, (data, facets, channels, scales, dimensions, {projection}) => {
-    const {value, scale} = maybeGeometry(geometry);
+    const {value, scale} = geometryChannel(maybeValue(geometry));
     const G = valueof(data, value);
     const n = G.length;
     const X = new Float64Array(n);

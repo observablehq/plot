@@ -3,7 +3,7 @@ import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
 import {maybeKeyword, maybeNamed, maybeValue} from "./options.js";
 import {arrayify, isDomainSort, isOptions, keyword, range, singleton} from "./options.js";
-import {project} from "./projection.js";
+import {project, geometryChannel} from "./projection.js";
 import {maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 
@@ -50,6 +50,7 @@ export class Mark {
             const {value, scale = channel.scale} = channel.value;
             channel = {...channel, scale, value};
           }
+          if (name === "geometry") channel = geometryChannel(channel);
           if (data === singleton && typeof channel.value === "string") {
             // convert field names to singleton values for decoration marks (e.g., frame)
             const {value} = channel;

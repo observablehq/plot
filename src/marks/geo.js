@@ -21,17 +21,18 @@ export class Geo extends Mark {
     const [vr, cr] = maybeNumberChannel(options.r, 3);
     super(
       data,
-      {geometry: maybeGeometry(options.geometry), r: {value: vr, scale: "r", filter: positive, optional: true}},
+      {
+        geometry: {value: options.geometry, scale: "auto"},
+        r: {value: vr, scale: "r", filter: positive, optional: true}
+      },
       withDefaultSort(options),
       defaults
     );
     this.r = cr;
   }
   render(index, scales, channels, dimensions, context) {
-    const {geometry: G, r: R} = channels;
-    const path = geoPath(
-      channels.channels.geometry.scale === "projection" ? context.projection ?? scaleProjection(scales) : null
-    );
+    const {geometry: G, r: R, channels: {geometry: {scale}}} = channels; // prettier-ignore
+    const path = geoPath(scale === "projection" ? context.projection ?? scaleProjection(scales) : null);
     const {r} = this;
     if (negative(r)) index = [];
     else if (r !== undefined) path.pointRadius(r);
@@ -93,20 +94,4 @@ export function sphere({strokeWidth = 1.5, ...options} = {}) {
 
 export function graticule({strokeOpacity = 0.1, ...options} = {}) {
   return geo(geoGraticule10(), {strokeOpacity, ...options});
-}
-
-export function maybeGeometry(geometry) {
-  const {value, scale} = geometry?.value ? geometry : {value: geometry};
-  switch (scale) {
-    case false:
-    case null:
-      return {value, scale: null};
-    case undefined:
-    case true:
-    case "auto":
-    case "projection":
-      return {value, scale: "projection"};
-    default:
-      throw new Error(`invalid projection scale: ${scale}`);
-  }
 }
