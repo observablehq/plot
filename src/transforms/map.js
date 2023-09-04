@@ -1,15 +1,5 @@
 import {count, group, rank} from "d3";
-import {
-  column,
-  identity,
-  isObject,
-  maybeApplyInterval,
-  maybeInput,
-  maybeValue,
-  maybeZ,
-  taker,
-  valueof
-} from "../options.js";
+import {column, identity, isObject, maybeApplyInterval, maybeInput, maybeZ, taker, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
 export function mapX(mapper, options = {}) {
@@ -33,7 +23,8 @@ export function mapY(mapper, options = {}) {
 }
 
 export function map(outputs = {}, options = {}) {
-  const {value: z, scale: zscale} = maybeValue(maybeZ(options)) ?? {};
+  const z = maybeZ(options);
+  const zscale = options.z == null ? null : options.z === options.x ? "x" : options.z === options.y ? "y" : null;
   const channels = Object.entries(outputs).map(([key, map]) => {
     const input = maybeInput(key, options);
     if (input == null) throw new Error(`missing channel: ${key}`);
