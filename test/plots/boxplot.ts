@@ -48,3 +48,11 @@ export async function boxplotXInterval() {
     marks: [Plot.boxX(olympians, {x: "weight", y: "height"})]
   });
 }
+
+export async function boxplotYInterval() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    x: {interval: 5},
+    marks: [Plot.boxY(olympians, {x: "weight", y: "height"})]
+  });
+}
