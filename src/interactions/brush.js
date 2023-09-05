@@ -98,8 +98,8 @@ function brushTransform(mode, {selected = {}, unselected = {}, padding = 1, ...o
               state.selection = S;
               const value = S === null ? data : take(data, S);
               if (selection !== null) {
-                if (X) addBrushDomain(x, X, value);
-                if (Y) addBrushDomain(y, Y, value);
+                if (X) addBrushDomain("x", x, X, value);
+                if (Y) addBrushDomain("y", y, Y, value);
                 if ("fx" in scales) value.fx = index.fx;
                 if ("fy" in scales) value.fy = index.fy;
               }
@@ -152,14 +152,14 @@ export function brushY(options = {}) {
 }
 
 // Note: mutates value!
-function addBrushDomain(x, X, value) {
+function addBrushDomain(k, x, X, value) {
   if (x.type === "band" || x.type === "point") {
     const b = x.bandwidth ?? 0;
-    value.x = x.domain.filter((d) => {
+    value[k] = x.domain.filter((d) => {
       const v = x.apply(d);
       return X[0] < v + b && v < X[1];
     });
   } else {
-    [value.x1, value.x2] = x.invert ? X.map(x.invert).sort(ascending) : X;
+    [value[`${k}1`], value[`${k}2`]] = x.invert ? X.map(x.invert).sort(ascending) : X;
   }
 }
