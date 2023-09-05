@@ -134,6 +134,7 @@ function brushTransform(mode, {selected = {}, unselected = {}, padding = 1, ...o
         svg.removeEventListener("pointerenter", createBrush);
       }
       svg.addEventListener("pointerenter", createBrush);
+      context.dispatchValue(data);
       return g;
     }
   };
