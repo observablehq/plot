@@ -3,16 +3,17 @@ import type {Rendered} from "../transforms/basic.js";
 /** Options for the brush transform. */
 type BrushOptions = {
   /**
-   * The brush’s selection mode determines the contents of the plot’s value
-   * property when the user manipulates the brush:
-   * * **data** - default; the selected data
-   * * **extent** - the selection extent, in data space
-   *
-   * The extent is an object with properties *x*: [x1, x2] for brushX, *y*: [y1,
-   * y2] for brushY, and both *x* and *y* for brush. Additionally, when
-   * faceting, it contains the facet’s *fx* and *fy* properties.
+   * How to display the selected mark when the user manipulates the brush.
    */
-  selectionMode?: "data" | "extent";
+  selected?: null; // TODO
+  /**
+   * How to display the unselected mark when the user manipulates the brush.
+   */
+  unselected?: null;
+  /**
+   * The brush’s padding, defaults to 1.
+   */
+  padding?: number;
 };
 
 /**
