@@ -134,7 +134,7 @@ function showValue(plot) {
     textarea.value = !plot.value
       ? "—"
       : (
-          ["x", "y", "x1", "x2", "y1", "y2"]
+          ["x", "y", "x1", "x2", "y1", "y2", "done"]
             .map((x) =>
               x in plot.value
                 ? `${x}: ${typeof plot.value[x] === "number" ? plot.value[x].toFixed(3) : plot.value[x]}`
