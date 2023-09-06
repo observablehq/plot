@@ -109,7 +109,12 @@ function brushTransform(mode, {selected = {}, unselected = {}, padding = 1, ...o
         }
         const {brush, brushState} = state;
         const fi = index.fi ?? 0;
-        const target = select(g.parentElement).append("g").attr("transform", transform).datum(fi).call(brush);
+        const target = select(g.parentElement)
+          .append("g")
+          .attr("aria-label", "brush")
+          .attr("transform", transform)
+          .datum(fi)
+          .call(brush);
         brushState[fi] = {
           i: fi,
           index,
