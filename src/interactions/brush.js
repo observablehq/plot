@@ -95,15 +95,14 @@ function brushTransform(mode, {selected = {}, unselected = {}, padding = 1, ...o
               }
 
               // Update the plot’s value.
-              state.selection = S;
-              const value = S === null ? data : take(data, S);
+              const value = selection === null ? data : take(data, S);
               if (selection !== null) {
                 if (X) addBrushDomain("x", x, X, value);
                 if (Y) addBrushDomain("y", y, Y, value);
                 if ("fx" in scales) value.fx = index.fx;
                 if ("fy" in scales) value.fy = index.fy;
+                value.done = type === "end";
               }
-              value.done = type === "end";
               context.dispatchValue(value);
             });
           states.set(svg, (state = {brush, brushState: [], selection: null}));
