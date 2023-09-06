@@ -60,16 +60,21 @@ These values are displayed atop the axes on the edge of the frame; unlike the ti
 
 ## Selecting
 
-The [brush transform](../interactions/brush.md) allows the interactive selection of discrete elements, such as dots in a scatterplot, by direct manipulation of the chart. A brush listens to mouse and touch events on the chart, allowing the user to define a rectangular region. All the data points that fall within the region are included in the selection.
+The [brush transform](../interactions/brush.md) allows the interactive selection of discrete elements by direct manipulation of the chart.
 
-:::plot defer https://observablehq.com/@observablehq/plot-brush-interaction-dev
+:::plot defer https://observablehq.com/@observablehq/brushing-plot--1653
 ```js
-Plot.plot({
-  marks: [
-    Plot.dot(penguins, { x: "culmen_length_mm", y: "culmen_depth_mm" }),
-    Plot.dot(penguins, Plot.brush({ x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species", stroke: "currentColor" }))
-  ]
-})
+Plot.dot(
+  penguins,
+  Plot.brush({
+    x: "culmen_length_mm",
+    y: "culmen_depth_mm",
+    stroke: "currentColor",
+    fill: "#fff",
+    unselected: {strokeOpacity: 0.5},
+    selected: {fill: "species"}
+  })
+).plot()
 ```
 :::
 
