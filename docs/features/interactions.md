@@ -9,16 +9,13 @@ const olympians = shallowRef([
   {weight: 170, height: 2.21, sex: "male"}
 ]);
 
-onMounted(() => {
-  d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
-});
-
 const penguins = shallowRef([
   {culmen_length_mm: 32.1, culmen_depth_mm: 13.1},
   {culmen_length_mm: 59.6, culmen_depth_mm: 21.5}
 ]);
 
 onMounted(() => {
+  d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
   d3.csv("../data/penguins.csv", d3.autoType).then((data) => (penguins.value = data));
 });
 
