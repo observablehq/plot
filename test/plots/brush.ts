@@ -14,33 +14,82 @@ export async function brushBand() {
 
 export async function brushFacets() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.dot(
-        penguins,
-        Plot.brush({
-          unselected: {fill: "white"},
-          x: "culmen_length_mm",
-          y: "culmen_depth_mm",
-          fx: "species",
-          fill: "species",
-          stroke: "black"
+  return showValue(
+    Plot.plot({
+      marks: [
+        Plot.dot(
+          penguins,
+          Plot.brush({
+            unselected: {fill: "white"},
+            x: "culmen_length_mm",
+            y: "culmen_depth_mm",
+            fx: "species",
+            fill: "species",
+            stroke: "black"
+          })
+        )
+      ]
+    })
+  );
+}
+
+export async function brushMetroInequalityChange() {
+  const data = await d3.csv<any>("data/metros.csv", d3.autoType);
+  return showValue(
+    Plot.plot({
+      grid: true,
+      inset: 10,
+      x: {
+        type: "log",
+        label: "Population"
+      },
+      y: {
+        label: "Inequality"
+      },
+      color: {
+        scheme: "BuRd",
+        symmetric: false
+      },
+      marks: [
+        Plot.link(
+          data,
+          Plot.brush({
+            x1: "POP_1980",
+            y1: "R90_10_1980",
+            x2: "POP_2015",
+            y2: "R90_10_2015",
+            unselected: {stroke: "#ccc"},
+            markerEnd: "arrow",
+            stroke: (d) => d.R90_10_2015 - d.R90_10_1980
+          })
+        ),
+        Plot.text(data, {
+          x: "POP_2015",
+          y: "R90_10_2015",
+          filter: "highlight",
+          text: "nyt_display",
+          fill: "currentColor",
+          stroke: "white",
+          pointerEvents: "none",
+          dy: -8
         })
-      )
-    ]
-  });
+      ]
+    })
+  );
 }
 
 export async function brushRectX() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.rectX(
-        penguins,
-        Plot.brushY(Plot.binY({x: "count"}, {unselected: {fill: "gray"}, y: "body_mass_g", thresholds: 20}))
-      )
-    ]
-  });
+  return showValue(
+    Plot.plot({
+      marks: [
+        Plot.rectX(
+          penguins,
+          Plot.brushY(Plot.binY({x: "count"}, {unselected: {fill: "gray"}, y: "body_mass_g", thresholds: 20}))
+        )
+      ]
+    })
+  );
 }
 
 export async function brushRectY() {
@@ -59,63 +108,21 @@ export async function brushRectY() {
 
 export async function brushScatterplot() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return Plot.plot({
-    marks: [
-      Plot.dot(
-        penguins,
-        Plot.brush({
-          unselected: {fillOpacity: 0},
-          selected: {fillOpacity: 1},
-          x: "culmen_length_mm",
-          y: "culmen_depth_mm",
-          fill: "species",
-          stroke: "black",
-          fillOpacity: 0.5
-        })
-      )
-    ]
-  });
-}
-
-export async function brushViewof() {
-  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return showValue(
     Plot.plot({
       marks: [
         Plot.dot(
           penguins,
           Plot.brush({
-            unselected: {fill: "white"},
+            unselected: {fillOpacity: 0},
+            selected: {fillOpacity: 1},
             x: "culmen_length_mm",
             y: "culmen_depth_mm",
-            fill: "sex",
-            stroke: "black"
+            fill: "species",
+            stroke: "black",
+            fillOpacity: 0.5
           })
         )
-      ]
-    })
-  );
-}
-
-export async function brushFacetsViewof() {
-  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
-  return showValue(
-    Plot.plot({
-      facet: {data: penguins, x: "species"},
-      marks: [
-        Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"}),
-        Plot.dot(
-          penguins,
-          Plot.brush({
-            selected: {fill: "species"},
-            x: "culmen_length_mm",
-            y: "culmen_depth_mm",
-            stroke: "black",
-            selectionMode: "extent"
-          })
-        ),
-        Plot.gridX({strokeOpacity: 1, pointerEvents: "none"}),
-        Plot.gridY({strokeOpacity: 1, pointerEvents: "none"})
       ]
     })
   );
