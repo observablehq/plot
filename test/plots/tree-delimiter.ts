@@ -38,7 +38,7 @@ export async function treeDelimiter2() {
           "foo/baz/https:\\/\\/example.com\\/posts\\/2",
           "foo/bar;baz/https:\\/\\/example2.com", // “bar;baz” should be a single node
           "foo/bar\\/baz/https:\\/\\/example4.com", // "bar/baz" should be a single node, distinct from “bar;baz”
-          "foo/bar\\\\/baz/https:\\/\\/example3.com" // “bar\/baz” should be a single node
+          "foo/bar\\\\\\/baz/https:\\/\\/example3.com" // “bar\/baz” should be a single node
         ]
       )
     ]
