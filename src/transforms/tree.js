@@ -169,7 +169,15 @@ function nodeData(field) {
 function normalizer(delimiter = "/") {
   return `${delimiter}` === "/"
     ? (P) => P // paths are already slash-separated
-    : (P) => P.map(replaceAll("/", "\\/")).map(replaceAll(delimiter, "/")); // TODO string.replaceAll when supported
+    : (P) => P.map(slashEscape).map(replaceAll(delimiter, "/")); // TODO string.replaceAll when supported
+}
+
+function slashEscape(string) {
+  return string.replace(/\//g, "\\/");
+}
+
+function slashUnescape(string) {
+  return string.replace(/\\\//g, "/");
 }
 
 function replaceAll(search, replace) {
@@ -272,7 +280,7 @@ function parentValue(evaluate) {
 function nameof(path) {
   let i = path.length;
   while (--i > 0) if (slash(path, i)) break;
-  return path.slice(i + 1).replaceAll("\\/", "/");
+  return slashUnescape(path.slice(i + 1));
 }
 
 // Slashes can be escaped; to determine whether a slash is a path delimiter, we
