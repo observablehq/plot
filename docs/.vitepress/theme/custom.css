@@ -1,11 +1,26 @@
 :root {
+  --vp-c-purple-1: #8260a6;
+  --vp-c-purple-2: #c88fff;
+  --vp-c-purple-3: #dd9eff;
+  --vp-c-purple-soft: rgba(147, 82, 229, 0.16);
+}
+
+.dark {
+  --vp-c-purple-1: #cca6f2;
+  --vp-c-purple-2: #9761d5;
+  --vp-c-purple-3: #864eca;
+  --vp-c-purple-soft: rgba(155, 89, 237, 0.16);
+}
+
+:root {
   --vp-c-blue: #0092ff;
   --vp-c-purple: #a463f2;
-  --vp-c-brand-lighter: #d893ff;
-  --vp-c-brand-light: #be7bff;
-  --vp-c-brand: var(--vp-c-purple);
-  --vp-c-brand-dark: #8a4cd8;
-  --vp-c-brand-darker: #7135be;
+
+  --vp-c-brand-1: var(--vp-c-purple-1);
+  --vp-c-brand-2: var(--vp-c-purple-2);
+  --vp-c-brand-3: var(--vp-c-purple-3);
+  --vp-c-brand-soft: var(--vp-c-purple-soft);
+
   --vp-font-family-base: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
 }
 
@@ -46,6 +61,10 @@
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.01em;
+}
+
+.vp-doc .plot a {
+  text-decoration: none;
 }
 
 .vp-doc .plot a:hover {
@@ -100,6 +119,7 @@ a.plot-fork {
   margin-left: 8px;
   margin-top: 18px;
   color: var(--vp-c-text-2);
+  text-decoration: none;
 }
 
 a.plot-fork::after {
