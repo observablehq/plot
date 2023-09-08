@@ -169,20 +169,29 @@ function nodeData(field) {
 function normalizer(delimiter = "/") {
   return `${delimiter}` === "/"
     ? (P) => P // paths are already slash-separated
-    : (P) => P.map(slashEscape).map(replaceAll(delimiter, "/")); // TODO string.replaceAll when supported
+    : (P) => P.map(slashDelimiter(delimiter));
 }
 
-function slashEscape(string) {
-  return string.replace(/\//g, "\\/");
+function slashDelimiter(delimiter) {
+  const search = new RegExp(`(\\\\*)(${regexEscape(delimiter)}|/)`, "g");
+  return (value) =>
+    value == null
+      ? null
+      : value.replace(
+          search,
+          (match, a, b) =>
+            b === delimiter
+              ? a.length & 1
+                ? `${a.slice(1)}${delimiter}` // drop one backslash
+                : `${a}/` // replace delimiter with slash
+              : a.length & 1
+              ? `${a}\\\\/` // add two backslashes to escape backslash
+              : `${a}\\/` // add one backslash to escape slash
+        );
 }
 
 function slashUnescape(string) {
-  return string.replace(/\\\//g, "/");
-}
-
-function replaceAll(search, replace) {
-  search = new RegExp(regexEscape(search), "g");
-  return (value) => (value == null ? null : `${value}`.replace(search, replace));
+  return string.replace(/\\\//g, "/").replace(/\\\\/g, "\\"); // TODO count backslashes properly
 }
 
 function regexEscape(string) {
