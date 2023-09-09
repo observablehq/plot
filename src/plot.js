@@ -711,8 +711,8 @@ function inheritScaleLabels(newScales, scales) {
 }
 
 // This differs from the other outerDimensions in that it accounts for rounding
-// and outer padding in the fact scales; we want the frame to align exactly with
-// the actual range, not the desired range.
+// and outer padding in the facet scales; we want the frame to align exactly
+// with the actual range, not the desired range.
 function actualDimensions({fx, fy}, dimensions) {
   const {marginTop, marginRight, marginBottom, marginLeft, width, height} = outerDimensions(dimensions);
   const fxr = fx && outerRange(fx);
