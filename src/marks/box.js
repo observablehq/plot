@@ -117,7 +117,7 @@ function boxStats(values) {
           q1 < q2 && `p25: ${f(q1)}`,
           `p50: ${f(q2)}`,
           q3 > q2 && `p75: ${f(q3)}`,
-          loqr1 < hiqr2 && `[${f(loqr1)} — ${f(hiqr2)}]`
+          loqr1 < hiqr2 && `low: ${f(loqr1)}\nhigh: ${f(hiqr2)}`
         ]
   )
     .filter((d) => d)
