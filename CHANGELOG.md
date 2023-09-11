@@ -2,6 +2,35 @@
 
 Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
+## 0.6.11
+
+[Released September TK, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)
+
+Code
+- custom tip format ([#1823](https://github.com/observablehq/plot/pull/1823))
+- better ordinal axes with intervals ([#1790](https://github.com/observablehq/plot/pull/1790))
+- channel label override ([#1838](https://github.com/observablehq/plot/pull/1838))
+- empty bins fall back on the first element of their group ([#1837](https://github.com/observablehq/plot/pull/1837))
+- pass fontVariant to the axis label ([#1827](https://github.com/observablehq/plot/pull/1827))
+- fix symbol set hint when fill is a constant currentColor ([#1830](https://github.com/observablehq/plot/pull/1830))
+- the denseInterval option for k must also reduce k1 and k2 if present ([#1828](https://github.com/observablehq/plot/pull/1828))
+- fix tip flicker ([#1826](https://github.com/observablehq/plot/pull/1826))
+- exclusiveFacets ([#1649](https://github.com/observablehq/plot/pull/1649))
+- expose a deduplicated ordinal domain ([#1813](https://github.com/observablehq/plot/pull/1813))
+- expose instantiated scales descriptors in the render API ([#1810](https://github.com/observablehq/plot/pull/1810))
+
+Tests
+- tests for coverage ([#1825](https://github.com/observablehq/plot/pull/1825))
+- document test:coverage ([#1820](https://github.com/observablehq/plot/pull/1820))
+- Add test coverage ([#1818](https://github.com/observablehq/plot/pull/1818))
+- compare image data ([#1807](https://github.com/observablehq/plot/pull/1807))
+
+Docs
+- add examples grid ([#1834](https://github.com/observablehq/plot/pull/1834))
+- only top margin for figures 🤷
+- downgrade vite, vitepress
+- update vitepress, fix a build crash, add a sitemap ([#1809](https://github.com/observablehq/plot/pull/1809))
+
 ## 0.6.10
 
 [Released August 14, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.10)
