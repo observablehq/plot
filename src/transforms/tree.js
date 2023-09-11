@@ -167,35 +167,69 @@ function nodeData(field) {
 }
 
 function normalizer(delimiter = "/") {
-  return `${delimiter}` === "/"
+  delimiter = `${delimiter}`;
+  if (delimiter.length !== 1) throw new Error(`multi-character delimiter`);
+  return delimiter === "/"
     ? (P) => P // paths are already slash-separated
-    : (P) => P.map(slashDelimiter(delimiter));
+    : (P) => P.map((p) => slashDelimiter(p, delimiter));
 }
 
-function slashDelimiter(delimiter) {
-  const search = new RegExp(`(\\\\*)(${regexEscape(delimiter)}|/)`, "g");
-  return (value) =>
-    value == null
-      ? null
-      : value.replace(
-          search,
-          (match, a, b) =>
-            b === delimiter
-              ? a.length & 1
-                ? `${a.slice(1)}${delimiter}` // drop one backslash
-                : `${a}/` // replace delimiter with slash
-              : a.length & 1
-              ? `${a}\\\\/` // add two backslashes to escape backslash
-              : `${a}\\/` // add one backslash to escape slash
-        );
+const CODE_BACKSLASH = 92;
+const CODE_SLASH = 47;
+
+function slashDelimiter(input, delimiter) {
+  const CODE_DELIMITER = delimiter.charCodeAt(0);
+  let afterBackslash = false;
+  for (let i = 0, n = input.length; i < n; ++i) {
+    const code = input.charCodeAt(i);
+    switch (code) {
+      case CODE_BACKSLASH:
+        if (!afterBackslash) {
+          afterBackslash = true;
+          continue;
+        }
+      // eslint-disable-next-line no-fallthrough
+      default:
+        if (afterBackslash) {
+          if (code === CODE_DELIMITER) {
+            (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
+          } else if (code === CODE_SLASH) {
+            (input = input.slice(0, i) + "\\\\" + input.slice(i)), (i += 2), (n += 2); // add two backslashes
+          }
+          afterBackslash = false;
+        } else if (code === CODE_DELIMITER) {
+          input = input.slice(0, i) + "/" + input.slice(i + 1); // replace delimiter with slash
+        } else if (code === CODE_SLASH) {
+          (input = input.slice(0, i) + "\\" + input.slice(i)), ++i, ++n; // add a backslash
+        }
+        break;
+    }
+  }
+  return input;
 }
 
-function slashUnescape(string) {
-  return string.replace(/\\\//g, "/").replace(/\\\\/g, "\\"); // TODO count backslashes properly
-}
-
-function regexEscape(string) {
-  return `${string}`.replace(/[\\^$*+?.()|[\]{}]/g, "\\$&");
+function slashUnescape(input) {
+  let afterBackslash = false;
+  for (let i = 0, n = input.length; i < n; ++i) {
+    const code = input.charCodeAt(i);
+    switch (code) {
+      case CODE_BACKSLASH:
+        if (!afterBackslash) {
+          afterBackslash = true;
+          continue;
+        }
+      // eslint-disable-next-line no-fallthrough
+      default:
+        if (afterBackslash) {
+          if (code === CODE_SLASH || code === CODE_BACKSLASH) {
+            (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
+          }
+          afterBackslash = false;
+        }
+        break;
+    }
+  }
+  return input;
 }
 
 function isNodeValue(option) {
