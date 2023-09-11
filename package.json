@@ -75,7 +75,7 @@
     "ts-morph": "^19.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.9",
-    "vitepress": "^1.0.0-rc.10"
+    "vitepress": "^1.0.0-rc.12"
   },
   "c8": {
     "all": true,
