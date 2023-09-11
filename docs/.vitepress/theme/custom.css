@@ -1,26 +1,24 @@
 :root {
-  --vp-c-purple-1: #8260a6;
-  --vp-c-purple-2: #c88fff;
-  --vp-c-purple-3: #dd9eff;
-  --vp-c-purple-soft: rgba(147, 82, 229, 0.16);
+  --vp-c-purple-1: #7135be;
+  --vp-c-purple-2: #7f42cd;
+  --vp-c-purple-3: #9555e2;
+  --vp-c-purple-soft: rgba(155, 91, 233, 0.14);
 }
 
 .dark {
-  --vp-c-purple-1: #cca6f2;
-  --vp-c-purple-2: #9761d5;
-  --vp-c-purple-3: #864eca;
-  --vp-c-purple-soft: rgba(155, 89, 237, 0.16);
+  --vp-c-purple-1: #db96ff;
+  --vp-c-purple-2: #9a5ae8;
+  --vp-c-purple-3: #884ad6;
+  --vp-c-purple-soft: rgba(155, 91, 233, 0.16);
 }
 
 :root {
   --vp-c-blue: #0092ff;
   --vp-c-purple: #a463f2;
-
   --vp-c-brand-1: var(--vp-c-purple-1);
   --vp-c-brand-2: var(--vp-c-purple-2);
   --vp-c-brand-3: var(--vp-c-purple-3);
   --vp-c-brand-soft: var(--vp-c-purple-soft);
-
   --vp-font-family-base: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
 }
 
