@@ -66,6 +66,7 @@ a.button {
   display: inline-block;
   border: 1px solid transparent;
   text-align: center;
+  text-decoration: none;
   font-weight: 600;
   white-space: nowrap;
   background-color: var(--vp-c-neutral);
@@ -75,10 +76,12 @@ a.button {
   line-height: 38px;
   font-size: 14px;
   margin: 0 24px;
+  opacity: 0.9;
 }
 
 a.button:hover {
-  text-decoration: none;;
+  opacity: 1;
+  color: var(--vp-c-neutral-inverse);
 }
 
 @media (min-width: 640px) {
