@@ -6,8 +6,30 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 [Released September TK, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)
 
-Code
-- custom tip format ([#1823](https://github.com/observablehq/plot/pull/1823))
+The new **format** option controls the order and formatting of the [tip mark](https://observablehq.com/plot/marks/tip)’s channels.
+
+The **format** option is an key-value object mapping channel names to formats; each [format](https://observablehq.com/plot/features/formats) can be a string (to format numbers or dates with the respective number or time format), or a function that receives the value as input and returns a string. Use null or false to suppress the channel. The order of channels in the tip follow their order in the format object. Channels that have not been listed in the format object are appended. (Custom channels can be specified, as usual, with the **channels** option.) The name of the channel can be specified by giving a label to the corresponding scale, or defining it as an object with a **value** and a **label**, or simply by the name given in the **channels** option.
+
+The **tip** mark option can now be an object of options to pass to the derived tip mark. These options include a new **pointer** option to control which pointer mode is used (_x_, _y_, or _xy_, for pointerX, pointerY, or pointer respectively).
+
+[IMAGE TK]
+
+```js
+Plot.dot(cars, {
+  x: "power (hp)",
+  y: "weight (lb)",
+  tip: {
+    pointer: "xy",
+    channels: { start: "0-60 mph (s)" },
+    format: { start: (d) => `${d}s`, x: null, y: ".2f" }
+  }
+}).plot()
+```
+
+_In the chart above, the start custom channel is formatted as a duration in seconds, followed by the y channel formatted as a floating-point number with two decimal places. The x channel is suppressed._
+
+
+
 - better ordinal axes with intervals ([#1790](https://github.com/observablehq/plot/pull/1790))
 - channel label override ([#1838](https://github.com/observablehq/plot/pull/1838))
 - empty bins fall back on the first element of their group ([#1837](https://github.com/observablehq/plot/pull/1837))
