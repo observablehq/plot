@@ -182,28 +182,27 @@ function slashDelimiter(input, delimiter) {
   let afterBackslash = false;
   for (let i = 0, n = input.length; i < n; ++i) {
     const code = input.charCodeAt(i);
+    if (code === CODE_BACKSLASH && !afterBackslash) {
+      afterBackslash = true;
+      continue;
+    }
     switch (code) {
-      case CODE_BACKSLASH:
-        if (!afterBackslash) {
-          afterBackslash = true;
-          continue;
-        }
-      // eslint-disable-next-line no-fallthrough
-      default:
+      case CODE_DELIMITER:
         if (afterBackslash) {
-          if (code === CODE_DELIMITER) {
-            (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
-          } else if (code === CODE_SLASH) {
-            (input = input.slice(0, i) + "\\\\" + input.slice(i)), (i += 2), (n += 2); // add two backslashes
-          }
-          afterBackslash = false;
-        } else if (code === CODE_DELIMITER) {
+          (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
+        } else {
           input = input.slice(0, i) + "/" + input.slice(i + 1); // replace delimiter with slash
-        } else if (code === CODE_SLASH) {
-          (input = input.slice(0, i) + "\\" + input.slice(i)), ++i, ++n; // add a backslash
+        }
+        break;
+      case CODE_SLASH:
+        if (afterBackslash) {
+          (input = input.slice(0, i) + "\\\\" + input.slice(i)), (i += 2), (n += 2); // add two backslashes
+        } else {
+          (input = input.slice(0, i) + "\\" + input.slice(i)), ++i, ++n; // add backslash
         }
         break;
     }
+    afterBackslash = false;
   }
   return input;
 }
@@ -212,22 +211,19 @@ function slashUnescape(input) {
   let afterBackslash = false;
   for (let i = 0, n = input.length; i < n; ++i) {
     const code = input.charCodeAt(i);
+    if (code === CODE_BACKSLASH && !afterBackslash) {
+      afterBackslash = true;
+      continue;
+    }
     switch (code) {
       case CODE_BACKSLASH:
-        if (!afterBackslash) {
-          afterBackslash = true;
-          continue;
-        }
-      // eslint-disable-next-line no-fallthrough
-      default:
+      case CODE_SLASH:
         if (afterBackslash) {
-          if (code === CODE_SLASH || code === CODE_BACKSLASH) {
-            (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
-          }
-          afterBackslash = false;
+          (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
         }
         break;
     }
+    afterBackslash = false;
   }
   return input;
 }
