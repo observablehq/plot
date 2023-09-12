@@ -178,14 +178,16 @@ const CODE_BACKSLASH = 92;
 const CODE_SLASH = 47;
 
 function slashDelimiter(input, delimiterCode) {
+  if (delimiterCode === CODE_BACKSLASH) throw new Error("delimiter cannot be backslash");
   let afterBackslash = false;
   for (let i = 0, n = input.length; i < n; ++i) {
-    const code = input.charCodeAt(i);
-    if (code === CODE_BACKSLASH && !afterBackslash) {
-      afterBackslash = true;
-      continue;
-    }
-    switch (code) {
+    switch (input.charCodeAt(i)) {
+      case CODE_BACKSLASH:
+        if (!afterBackslash) {
+          afterBackslash = true;
+          continue;
+        }
+        break;
       case delimiterCode:
         if (afterBackslash) {
           (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
@@ -209,13 +211,13 @@ function slashDelimiter(input, delimiterCode) {
 function slashUnescape(input) {
   let afterBackslash = false;
   for (let i = 0, n = input.length; i < n; ++i) {
-    const code = input.charCodeAt(i);
-    if (code === CODE_BACKSLASH && !afterBackslash) {
-      afterBackslash = true;
-      continue;
-    }
-    switch (code) {
+    switch (input.charCodeAt(i)) {
       case CODE_BACKSLASH:
+        if (!afterBackslash) {
+          afterBackslash = true;
+          continue;
+        }
+      // eslint-disable-next-line no-fallthrough
       case CODE_SLASH:
         if (afterBackslash) {
           (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
