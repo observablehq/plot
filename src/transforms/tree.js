@@ -169,7 +169,7 @@ function nodeData(field) {
 function normalizer(delimiter = "/") {
   delimiter = `${delimiter}`;
   if (delimiter === "/") return (P) => P; // paths are already slash-separated
-  if (delimiter.length !== 1) throw new Error(`multi-character delimiter`);
+  if (delimiter.length !== 1) throw new Error("delimiter must be exactly one character");
   const delimiterCode = delimiter.charCodeAt(0);
   return (P) => P.map((p) => slashDelimiter(p, delimiterCode));
 }
