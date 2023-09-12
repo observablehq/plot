@@ -168,17 +168,16 @@ function nodeData(field) {
 
 function normalizer(delimiter = "/") {
   delimiter = `${delimiter}`;
+  if (delimiter === "/") return (P) => P; // paths are already slash-separated
   if (delimiter.length !== 1) throw new Error(`multi-character delimiter`);
-  return delimiter === "/"
-    ? (P) => P // paths are already slash-separated
-    : (P) => P.map((p) => slashDelimiter(p, delimiter));
+  const delimiterCode = delimiter.charCodeAt(0);
+  return (P) => P.map((p) => slashDelimiter(p, delimiterCode));
 }
 
 const CODE_BACKSLASH = 92;
 const CODE_SLASH = 47;
 
-function slashDelimiter(input, delimiter) {
-  const CODE_DELIMITER = delimiter.charCodeAt(0);
+function slashDelimiter(input, delimiterCode) {
   let afterBackslash = false;
   for (let i = 0, n = input.length; i < n; ++i) {
     const code = input.charCodeAt(i);
@@ -187,7 +186,7 @@ function slashDelimiter(input, delimiter) {
       continue;
     }
     switch (code) {
-      case CODE_DELIMITER:
+      case delimiterCode:
         if (afterBackslash) {
           (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
         } else {
