@@ -244,7 +244,7 @@ it("Plot.autoSpec makes a faceted heatmap", () => {
   });
 });
 
-it.only("autoSpec rejects an underspecified reducer", () => {
+it("autoSpec rejects an underspecified reducer", () => {
   // primitive array ok
   assert.deepStrictEqual(Plot.autoSpec([74, 65], {x: Plot.identity, y: "max"}), {
     fx: null,

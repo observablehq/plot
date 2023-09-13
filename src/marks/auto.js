@@ -1,6 +1,6 @@
 import {ascending, InternSet} from "d3";
 import {marks} from "../mark.js";
-import {isColor, isNumeric, isObject, isOptions, isOrdinal, isEvery, labelof, valueof} from "../options.js";
+import {isColor, isIterable, isNumeric, isObject, isOptions, isOrdinal, isEvery, labelof, valueof} from "../options.js";
 import {bin, binX, binY} from "../transforms/bin.js";
 import {group, groupX, groupY} from "../transforms/group.js";
 import {areaX, areaY} from "./area.js";
@@ -24,7 +24,7 @@ export function autoSpec(data, options) {
   const C = materializeValue(data, color);
   const S = materializeValue(data, size);
 
-  if (!isPrimitive(data)) {
+  if (isIterable(data) && !isPrimitive(data)) {
     for (const channel of ["x", "y", "color", "size"]) {
       if (isUnderspecifiedReduce(options[channel]))
         throw new Error(`setting ${channel} reducer to "${options[channel].reduce}" requires setting ${channel} field`);
@@ -352,7 +352,10 @@ function isUnderspecifiedReduce({value, reduce}) {
 }
 
 function isPrimitive(values) {
-  return isEvery(values, (d) => ["number", "boolean", "string"].includes(typeof d) || d instanceof Date);
+  return isEvery(values, (d) => {
+    const type = typeof d;
+    return type === "number" || type === "boolean" || type === "string" || type === "bigint" || d instanceof Date;
+  });
 }
 
 function isHighCardinality(value) {
