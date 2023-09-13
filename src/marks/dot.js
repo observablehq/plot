@@ -57,8 +57,16 @@ export class Dot extends Mark {
     if (symbolChannel) {
       const {fill: fillChannel, stroke: strokeChannel} = channels;
       symbolChannel.hint = {
-        fill: fillChannel ? (fillChannel.value === symbolChannel.value ? "color" : "currentColor") : this.fill,
-        stroke: strokeChannel ? (strokeChannel.value === symbolChannel.value ? "color" : "currentColor") : this.stroke
+        fill: fillChannel
+          ? fillChannel.value === symbolChannel.value
+            ? "color"
+            : "currentColor"
+          : this.fill ?? "currentColor",
+        stroke: strokeChannel
+          ? strokeChannel.value === symbolChannel.value
+            ? "color"
+            : "currentColor"
+          : this.stroke ?? "none"
       };
     }
   }

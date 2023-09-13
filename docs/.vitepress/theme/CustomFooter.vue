@@ -40,10 +40,6 @@
 
 <style>
 
-footer a:hover {
-  text-decoration: underline;
-}
-
 .has-sidebar ~ footer {
   display: none;
 }

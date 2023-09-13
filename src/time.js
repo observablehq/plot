@@ -193,6 +193,23 @@ export function generalizeTimeInterval(interval, n) {
 
 function formatTimeInterval(name, type, anchor) {
   const format = type === "time" ? timeFormat : utcFormat;
+  // For tips and legends, use a format that doesn’t require context.
+  if (anchor == null) {
+    return format(
+      name === "year"
+        ? "%Y"
+        : name === "month"
+        ? "%Y-%m"
+        : name === "day"
+        ? "%Y-%m-%d"
+        : name === "hour" || name === "minute"
+        ? "%Y-%m-%dT%H:%M"
+        : name === "second"
+        ? "%Y-%m-%dT%H:%M:%S"
+        : "%Y-%m-%dT%H:%M:%S.%L"
+    );
+  }
+  // Otherwise, assume that this is for axis ticks.
   const template = getTimeTemplate(anchor);
   switch (name) {
     case "millisecond":
