@@ -20,8 +20,8 @@ Plot.dot(cars, {
   y: "weight (lb)",
   tip: {
     pointer: "xy",
-    channels: { start: "0-60 mph (s)" },
-    format: { start: (d) => `${d}s`, x: null, y: ".2f" }
+    channels: {start: "0-60 mph (s)"},
+    format: {start: (d) => `${d}s`, x: null, y: ".2f"}
   }
 }).plot()
 ```
