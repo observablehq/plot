@@ -298,6 +298,7 @@ export * from "./title.js";
 export * from "./traffic-horizon.js";
 export * from "./travelers-covid-drop.js";
 export * from "./travelers-year-over-year.js";
+export * from "./tree-delimiter.js";
 export * from "./uniform-random-difference.js";
 export * from "./untyped-date-bin.js";
 export * from "./us-congress-age-color-explicit.js";
