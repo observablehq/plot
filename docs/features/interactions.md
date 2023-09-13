@@ -60,7 +60,7 @@ These values are displayed atop the axes on the edge of the frame; unlike the ti
 
 ## Selecting
 
-The [brush transform](../interactions/brush.md) allows the interactive selection of discrete elements by direct manipulation of the chart.
+The [brush transform](../interactions/brush.md) <VersionBadge version="0.6.11" pr="1653" /> allows the interactive selection of discrete elements by direct manipulation of the chart.
 
 :::plot defer https://observablehq.com/@observablehq/brushing-plot--1653
 ```js
