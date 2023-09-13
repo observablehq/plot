@@ -318,6 +318,7 @@ export * from "./us-retail-sales.js";
 export * from "./us-state-capitals-voronoi.js";
 export * from "./us-state-capitals.js";
 export * from "./us-state-population-change.js";
+export * from "./var-color.js";
 export * from "./vector-field.js";
 export * from "./vector-frame.js";
 export * from "./volcano.js";
