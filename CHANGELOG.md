@@ -6,61 +6,67 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 [Released September TK, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)
 
-The new **format** option controls the order and formatting of the [tip mark](https://observablehq.com/plot/marks/tip)’s channels. ([#1823](https://github.com/observablehq/plot/pull/1823))
+The new **format** option enables a custom order and formatting of the channels in the [tip mark](https://observablehq.com/plot/marks/tip).
 
-The **format** option is an key-value object mapping channel names to formats; each [format](https://observablehq.com/plot/features/formats) can be a string (to format numbers or dates with the respective number or time format), or a function that receives the value as input and returns a string. Use null or false to suppress the channel. The order of channels in the tip follow their order in the format object. Channels that have not been listed in the format object are appended. (Custom channels can be specified, as usual, with the **channels** option.) The name of the channel can be specified by giving a label to the corresponding scale, or defining it as an object with a **value** and a **label** ([#1838](https://github.com/observablehq/plot/pull/1838)), or simply by the name given in the **channels** option.
-
-The **tip** mark option can now be an object of options to pass to the derived tip mark. These options include a new **pointer** option to control which pointer mode is used (_x_, _y_, or _xy_, for pointerX, pointerY, or pointer respectively).
-
-[IMAGE TK]
+<img src="./img/tip-custom.png" width="674" alt="A tip with a custom order and formatting of the channel values.">
 
 ```js
-Plot.dot(cars, {
-  x: "power (hp)",
-  y: "weight (lb)",
+Plot.dot(olympians, {
+  x: "weight",
+  y: "height",
+  stroke: "sex",
+  channels: {
+    name: "name",
+    nationality: "nationality",
+    sport: "sport"
+  },
   tip: {
-    pointer: "xy",
-    channels: {start: "0-60 mph (s)"},
-    format: {start: (d) => `${d}s`, x: null, y: ".2f"}
+    format: {
+      name: true,
+      y: (d) => `${d}m`,
+      x: (d) => `${d}kg`,
+      stroke: false
+    }
   }
 }).plot()
 ```
 
-_In the chart above, the start custom channel is formatted as a duration in seconds, followed by the y channel formatted as a floating-point number with two decimal places. The x channel is suppressed._
+The **tip** mark option can now be specified as an options object to pass to the derived tip mark, as the example above demonstrates. A new **pointer** option allows to control which pointer mode is used (_x_, _y_, or _xy_, for pointerX, pointerY, or pointer respectively).
 
+Ordinal axes generated from a temporal or quantitative scale now generalize their scale’s **interval** (if specified), resulting in more readable ticks. For instance, a bar chart with daily values now sports a multi-line axis with, say, a label every week, or month, or quarter… depending on the scale’s domain.
 
-Ordinal axes generated from a temporal or quantitative scale do now generalize their scale’s interval (if specified), resulting in more readable ticks. For instance, a bar chart representing, says, one value per month over the course of 5 years might be represented with 5 ticks indicating the beginning of each year, or by 10 ticks indicating January and July, depending on the desired number of ticks. The generalization returns non-ambiguous intervals: for example, days can be generalized to weeks or months, but weeks can only be generalized into multiple weeks — not months or years since those are not multiples of 7 days. ([#1790](https://github.com/observablehq/plot/pull/1790))
-
-[image TK]
+<img src="./img/temporal-ordinal.png" width="672" alt="A temporal bar chart with a multi-line axis.">
 
 ```js
 Plot.barY(aapl, Plot.groupX({y: "median"}, {x: "Date", y: "Close"}))
   .plot({x: {interval: "month"}})
 ```
 
-The **fontVariant** option is now passed to the axis label as well as to the axis tick labels ([#1827](https://github.com/observablehq/plot/pull/1827))
+The **fontVariant** option is now passed to the axis label, not only to the tick labels.
 
-The **interval** option for *x* now also reduces *x1* and *x2* if present (and likewise for *y*) ([#1828](https://github.com/observablehq/plot/pull/1828))
+A channel can now be specified as an object with a **value** and a **label**.
 
-A transform can now request exclusive facets, opening the door to richer operations on facets ([#1649](https://github.com/observablehq/plot/pull/1649))
+The render API now exposes the instantiated scales descriptors in its scales argument, opening the door to richer developments.
 
-The domain exposed with an ordinal scale is now deduplicated, for consistency ([#1813](https://github.com/observablehq/plot/pull/1813))
+Colors expressed with the [CSS Color Module Level 5](https://www.w3.org/TR/css-color-5/) syntax are now recognized as literal values. This allows to use CSS expressions (such as `var(--red)`), wide gamut colors such as this vivid orange `color(display-p3 1 0.5 0)`, and more as browser support improves.
 
-The render API now exposes the instantiated scales descriptors in its scales argument, opening the door to richer developments ([#1810](https://github.com/observablehq/plot/pull/1810))
+On exposed ordinal scales, the domain is now deduplicated.
 
-The tip mark now hides the temporary tip before computing its callout, avoiding a flickering in some interactive use cases ([#1826](https://github.com/observablehq/plot/pull/1826))
+Fix the **interval** option in the bin transform to reduce not only *x* but also *x1* and *x2* (and likewise for *y1* and *y2*).
 
-Fix a bug where empty bins might generate undefined colors — they now fall back on the first element of their group ([#1837](https://github.com/observablehq/plot/pull/1837))
+Fix the stack transform when using the **facet**: exclude option.
 
-Fix a bug where the symbol set hint was ignored if fill was specified as a constant currentColor ([#1830](https://github.com/observablehq/plot/pull/1830))
+The tip mark now hides the temporary tip before computing its callout, avoiding flickering in some interactive use cases.
 
-Fix a bug where the forward slash delimiter was applied by the tree transform in addition to the custom delimiter. ([#1850](https://github.com/observablehq/plot/pull/1850)
+Fix a bug where empty bins generated undefined colors — they now fall back on the first element of their group.
 
-Image tests are now more reliable across platforms ([#1807](https://github.com/observablehq/plot/pull/1807))
+Fix a bug where the symbol set hint was ignored if fill was specified as a constant currentColor.
 
-Test coverage reports are now easier to generate (see [Contributing](https://github.com/observablehq/plot/blob/main/CONTRIBUTING.md#testing))
+Fix the tree transform when using a custom delimiter.
 
-The documentation website now has a stylish hexagonal grid of examples ([#1834](https://github.com/observablehq/plot/pull/1834))
+Image tests are now more reliable across platforms. Test coverage reports are now easier to generate (see [Contributing](https://github.com/observablehq/plot/blob/main/CONTRIBUTING.md#testing)).
+
+The [documentation website](https//observablehq.com/plot/) now has a stylish hexagonal grid of examples on the home page.
 
 ## 0.6.10
 

@@ -129,7 +129,39 @@ Plot.rectY(olympians, Plot.binX({y: "sum"}, {x: "weight", y: (d) => d.sex === "m
 ```
 :::
 
-The tip mark does not provide options for formatting channel names or values. When a channel is bound to a scale, the scale’s label is shown instead of the channel name. If you desire greater customization, please upvote [#1612](https://github.com/observablehq/plot/issues/1612).
+The order of channels in the tip and the formatting of their values can be customized with the **format** option <VersionBadge version="0.6.11" pr="1823" />, which accepts a key-value object mapping channel names to formats.
+
+Each [format](https://observablehq.com/plot/features/formats) can be a string (to format numbers or dates with the respective number or time format), a function that receives the value as input and returns a string, true to use the default format, and null or false to suppress.
+
+The order of channels in the tip follows their order in the format object. Channels that are not listed in the format object are appended. The name of the channel comes from the scale’s label, if any, or from the channel’s **label** if it is specified as an object with a **value** property, or by its name in the **channels** option, or, lastly, by its default name (such as *x*).
+
+:::plot defer
+```js
+Plot.dot(olympians, {
+  x: "weight",
+  y: "height",
+  stroke: "sex",
+  channels: {
+    name: "name",
+    nationality: {
+      value: "nationality",
+      label: "country"
+    },
+    sport: "sport"
+  },
+  tip: {
+    format: {
+      name: true,
+      sport: true,
+      nationality: true,
+      y: (d) => `${d}m`,
+      x: (d) => `${d}kg`,
+      stroke: false
+    }
+  }
+}).plot()
+```
+:::
 
 The tip mark supports nine different orientations specified by the **anchor** option: the four sides (*top*, *right*, *bottom*, *left*), the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), and *middle*. Note that when *middle* is used, the tip will obscure its anchor point.
 
