@@ -2,32 +2,32 @@ import {max, extent} from "d3";
 import {projectionAspectRatio} from "./projection.js";
 import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
+import {defaultWidth} from "./marks/text.js";
 
 // A heuristic to determine the default margin. Ordinal scales usually reclaim
-// more space. We can also gauge the “type of contents” (domain, ticks?) and
+// more space. We can also gauge the “type of contents” (domain, ticks) and
 // decide whether it’s small, medium or large. When the labelAnchor is
 // explicitly set to "center", we need more space too. We don’t want the result
 // to match the contents exactly because it shouldn’t wobble when the scale
 // changes a little.
-function autoMarginH({type, domain, ticks, tickFormat} = {}, options) {
-  if (!type) return 40;
+function autoMarginH([scale = {}, options]) {
+  const marginS = 40;
+  const marginM = 60;
+  const marginL = 90;
+  const {type, ticks, domain} = scale;
+  if (!type) return marginS;
   const l =
-    (type === "point" || type === "band"
-      ? max(ticks ?? domain ?? [], tickLength) || 0 // TODO text metrics approximation?
-      : max(ticks ?? domain ?? [], tickLength)) +
+    (max(ticks ?? domain ?? [], (d) =>
+      typeof d === "string"
+        ? defaultWidth(d)
+        : typeof d === "number"
+        ? 60 * Math.ceil(Math.abs(Math.log10(Math.abs(d || 2))))
+        : d instanceof Date
+        ? 200
+        : 60
+    ) || 0) +
     2 * (type === "point" || type === "band" || options?.labelAnchor === "center");
-  console.warn(type, tickFormat, domain, l, l >= 10 ? 80 : l > 4 ? 60 : 40, options?.marginLeft);
-  return l >= 10 ? 80 : l > 4 ? 60 : 40;
-}
-
-function tickLength(value) {
-  return typeof value === "string"
-    ? value.length
-    : typeof value === "number"
-    ? Math.ceil(Math.abs(Math.log10(Math.abs(value || 2))))
-    : value instanceof Date
-    ? 4
-    : 1;
+  return l >= 400 ? marginL : l > 240 ? marginM : marginS;
 }
 
 export function createDimensions(scales, marks, options = {}) {
@@ -38,9 +38,12 @@ export function createDimensions(scales, marks, options = {}) {
     marginBottomDefault = 0.5 + offset,
     marginLeftDefault = 0.5 - offset;
 
+  // The left and right margins default to a value inferred from the y (and fy)
+  // scales, if present.
+  const yflip = options.y?.axis === "right" || options.fy?.axis === "left";
   for (let {marginTop, marginRight, marginBottom, marginLeft} of marks) {
-    if (marginLeft === "auto") marginLeft = autoMarginH(scales.y, options.y);
-    if (marginRight === "auto") marginRight = autoMarginH(scales.y, options.y);
+    if (marginLeft === "auto") marginLeft = autoMarginH(yflip ? [scales.fy, options.fy] : [scales.y, options.y]);
+    if (marginRight === "auto") marginRight = autoMarginH(yflip ? [scales.y, options.y] : [scales.fy, options.fy]);
     if (marginTop > marginTopDefault) marginTopDefault = marginTop;
     if (marginRight > marginRightDefault) marginRightDefault = marginRight;
     if (marginBottom > marginBottomDefault) marginBottomDefault = marginBottom;
