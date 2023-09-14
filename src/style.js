@@ -1,9 +1,9 @@
-import {geoPath, group, namespaces} from "d3";
+import {geoPath, group, namespaces, select} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
-import {keyof, number, string} from "./options.js";
+import {keyof, keyword, number, string} from "./options.js";
 import {warn} from "./warnings.js";
 
 export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
@@ -297,43 +297,62 @@ export function* groupIndex(I, position, mark, channels) {
   }
 }
 
-// TODO avoid creating a new clip-path each time?
+// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
+// https://github.com/observablehq/plot/issues/181
+export function maybeClip(clip) {
+  if (clip === true) clip = "frame";
+  else if (clip === false) clip = null;
+  else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
+  return clip;
+}
+
+function clipDefs({ownerSVGElement}) {
+  const svg = select(ownerSVGElement);
+  const defs = svg.select("defs.clip");
+  return defs.size() ? defs : svg.insert("defs", ":first-child").attr("class", "clip");
+}
+
 // Note: may mutate selection.node!
 function applyClip(selection, mark, dimensions, context) {
   let clipUrl;
   const {clip = context.clip} = mark;
   switch (clip) {
     case "frame": {
-      const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-      const id = getClipId();
-      clipUrl = `url(#${id})`;
-      selection = create("svg:g", context)
-        .call((g) =>
-          g
-            .append("svg:clipPath")
-            .attr("id", id)
-            .append("rect")
-            .attr("x", marginLeft)
-            .attr("y", marginTop)
-            .attr("width", width - marginRight - marginLeft)
-            .attr("height", height - marginTop - marginBottom)
-        )
-        .each(function () {
-          this.appendChild(selection.node());
-          selection.node = () => this; // Note: mutation!
-        });
+      const clips = context.clips ?? (context.clips = new Map());
+      if (!clips.has("frame")) {
+        const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
+        const id = getClipId();
+        clips.set("frame", id);
+        clipDefs(context)
+          .append("clipPath")
+          .attr("id", id)
+          .append("rect")
+          .attr("x", marginLeft)
+          .attr("y", marginTop)
+          .attr("width", width - marginRight - marginLeft)
+          .attr("height", height - marginTop - marginBottom);
+      }
+      selection = create("svg:g", context).each(function () {
+        this.appendChild(selection.node());
+        selection.node = () => this; // Note: mutation!
+      });
+      clipUrl = `url(#${clips.get("frame")})`;
       break;
     }
     case "sphere": {
+      const clips = context.clips ?? (context.clips = new Map());
       const {projection} = context;
       if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
-      const id = getClipId();
-      clipUrl = `url(#${id})`;
-      selection
-        .append("clipPath")
-        .attr("id", id)
-        .append("path")
-        .attr("d", geoPath(projection)({type: "Sphere"}));
+      if (!clips.has("projection")) {
+        const id = getClipId();
+        clips.set("projection", id);
+        clipDefs(context)
+          .append("clipPath")
+          .attr("id", id)
+          .append("path")
+          .attr("d", geoPath(projection)({type: "Sphere"}));
+      }
+      clipUrl = `url(#${clips.get("projection")})`;
       break;
     }
   }
