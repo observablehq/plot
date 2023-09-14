@@ -68,6 +68,7 @@ export default defineConfig({
           {text: "Legends", link: "/features/legends"},
           {text: "Curves", link: "/features/curves"},
           {text: "Formats", link: "/features/formats"},
+          {text: "Intervals", link: "/features/intervals"},
           {text: "Markers", link: "/features/markers"},
           {text: "Shorthand", link: "/features/shorthand"},
           {text: "Accessibility", link: "/features/accessibility"}
