@@ -121,6 +121,7 @@ export * from "./high-cardinality-ordinal.js";
 export * from "./href-fill.js";
 export * from "./ibm-trading.js";
 export * from "./identity-scale.js";
+export * from "./image-render-svgs.js";
 export * from "./image-rendering.js";
 export * from "./industry-unemployment-share.js";
 export * from "./industry-unemployment-stream.js";

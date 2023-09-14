@@ -33,11 +33,16 @@ function isPath(string) {
 function isUrl(string) {
   return /^(blob|data|file|http|https):/i.test(string);
 }
-
 // Disambiguates a constant src definition from a channel. A path or URL string
 // is assumed to be a constant; any other string is assumed to be a field name.
 function maybePathChannel(value) {
   return typeof value === "string" && (isPath(value) || isUrl(value)) ? [undefined, value] : [value, undefined];
+}
+
+// Returns the encoded outerHTML of an svg (with the appropriate namespace)
+function getSvgString(svg) {
+  svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  return `data:image/svg+xml;utf8,${svg.outerHTML}`;
 }
 
 export class Image extends Mark {
@@ -98,7 +103,7 @@ export class Image extends Mark {
           // TODO: combine x, y, rotate and transform-origin into a single transform
           .attr("transform", A ? (i) => `rotate(${A[i]})` : rotate ? `rotate(${rotate})` : null)
           .attr("transform-origin", A || rotate ? template`${X ? (i) => X[i] : cx}px ${Y ? (i) => Y[i] : cy}px` : null)
-          .call(applyAttr, "href", S ? (i) => S[i] : this.src)
+          .call(applyAttr, "href", S ? (i) => (S[i] instanceof SVGAElement ? getSvgString(S[i]) : S[i]) : this.src)
           .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
           .call(applyAttr, "crossorigin", this.crossOrigin)
           .call(applyAttr, "image-rendering", this.imageRendering)
