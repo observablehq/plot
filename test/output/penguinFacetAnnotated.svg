@@ -15,17 +15,17 @@
   </style>
   <g aria-label="fy-axis tick label" transform="translate(9.5,0.5)">
     <g text-anchor="start" transform="translate(0,1)">
-      <text y="0.32em" transform="translate(570,49.5)">Biscoe</text>
+      <text y="0.32em" transform="translate(550,49.5)">Biscoe</text>
     </g>
     <g text-anchor="start" transform="translate(0,66)">
-      <text y="0.32em" transform="translate(570,49.5)">Dream</text>
+      <text y="0.32em" transform="translate(550,49.5)">Dream</text>
     </g>
     <g text-anchor="start" transform="translate(0,131)">
-      <text y="0.32em" transform="translate(570,49.5)">Torgersen</text>
+      <text y="0.32em" transform="translate(550,49.5)">Torgersen</text>
     </g>
   </g>
-  <g aria-label="fy-axis label" transform="translate(67.5,0.5)">
-    <text transform="translate(570,115.5) rotate(-90)">island</text>
+  <g aria-label="fy-axis label" transform="translate(87.5,0.5)">
+    <text transform="translate(550,115.5) rotate(-90)">island</text>
   </g>
   <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,9)">
     <g fill="none" stroke="currentColor" transform="translate(0,1)">
@@ -67,57 +67,57 @@
   <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,131)">
       <path transform="translate(75,79)" d="M0,0L0,6"></path>
-      <path transform="translate(154.83870967741936,79)" d="M0,0L0,6"></path>
-      <path transform="translate(234.67741935483872,79)" d="M0,0L0,6"></path>
-      <path transform="translate(314.51612903225805,79)" d="M0,0L0,6"></path>
-      <path transform="translate(394.35483870967744,79)" d="M0,0L0,6"></path>
-      <path transform="translate(474.1935483870967,79)" d="M0,0L0,6"></path>
-      <path transform="translate(554.0322580645161,79)" d="M0,0L0,6"></path>
+      <path transform="translate(151.61290322580646,79)" d="M0,0L0,6"></path>
+      <path transform="translate(228.2258064516129,79)" d="M0,0L0,6"></path>
+      <path transform="translate(304.83870967741933,79)" d="M0,0L0,6"></path>
+      <path transform="translate(381.4516129032258,79)" d="M0,0L0,6"></path>
+      <path transform="translate(458.0645161290322,79)" d="M0,0L0,6"></path>
+      <path transform="translate(534.6774193548387,79)" d="M0,0L0,6"></path>
     </g>
   </g>
   <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
     <g font-variant="tabular-nums" transform="translate(0,131)">
       <text y="0.71em" transform="translate(75,79)">0</text>
-      <text y="0.71em" transform="translate(154.83870967741936,79)">20</text>
-      <text y="0.71em" transform="translate(234.67741935483872,79)">40</text>
-      <text y="0.71em" transform="translate(314.51612903225805,79)">60</text>
-      <text y="0.71em" transform="translate(394.35483870967744,79)">80</text>
-      <text y="0.71em" transform="translate(474.1935483870967,79)">100</text>
-      <text y="0.71em" transform="translate(554.0322580645161,79)">120</text>
+      <text y="0.71em" transform="translate(151.61290322580646,79)">20</text>
+      <text y="0.71em" transform="translate(228.2258064516129,79)">40</text>
+      <text y="0.71em" transform="translate(304.83870967741933,79)">60</text>
+      <text y="0.71em" transform="translate(381.4516129032258,79)">80</text>
+      <text y="0.71em" transform="translate(458.0645161290322,79)">100</text>
+      <text y="0.71em" transform="translate(534.6774193548387,79)">120</text>
     </g>
   </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
-    <text transform="translate(570,210)">Frequency →</text>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(87.5,27.5)">
+    <text transform="translate(550,210)">Frequency →</text>
   </g>
   <g aria-label="bar">
     <g transform="translate(0,1)">
-      <rect x="75" width="87.82258064516128" y="22" height="17" fill="#4269d0"></rect>
-      <rect x="75" width="231.53225806451616" y="60" height="17" fill="#4269d0"></rect>
-      <rect x="162.82258064516128" width="87.82258064516131" y="22" height="17" fill="#efb118"></rect>
-      <rect x="306.53225806451616" width="243.50806451612897" y="60" height="17" fill="#efb118"></rect>
-      <rect x="550.0403225806451" width="19.959677419354875" y="60" height="17" fill="#ff725c"></rect>
+      <rect x="75" width="84.2741935483871" y="22" height="17" fill="#4269d0"></rect>
+      <rect x="75" width="222.17741935483872" y="60" height="17" fill="#4269d0"></rect>
+      <rect x="159.2741935483871" width="84.2741935483871" y="22" height="17" fill="#efb118"></rect>
+      <rect x="297.1774193548387" width="233.6693548387097" y="60" height="17" fill="#efb118"></rect>
+      <rect x="530.8467741935484" width="19.153225806451587" y="60" height="17" fill="#ff725c"></rect>
     </g>
     <g transform="translate(0,66)">
-      <rect x="75" width="107.78225806451613" y="22" height="17" fill="#4269d0"></rect>
-      <rect x="75" width="135.7258064516129" y="41" height="17" fill="#4269d0"></rect>
-      <rect x="182.78225806451613" width="111.7741935483871" y="22" height="17" fill="#efb118"></rect>
-      <rect x="210.7258064516129" width="135.7258064516129" y="41" height="17" fill="#efb118"></rect>
-      <rect x="294.55645161290323" width="3.991935483870975" y="22" height="17" fill="#ff725c"></rect>
+      <rect x="75" width="103.42741935483872" y="22" height="17" fill="#4269d0"></rect>
+      <rect x="75" width="130.24193548387095" y="41" height="17" fill="#4269d0"></rect>
+      <rect x="178.42741935483872" width="107.25806451612902" y="22" height="17" fill="#efb118"></rect>
+      <rect x="205.24193548387095" width="130.24193548387095" y="41" height="17" fill="#efb118"></rect>
+      <rect x="285.68548387096774" width="3.830645161290306" y="22" height="17" fill="#ff725c"></rect>
     </g>
     <g transform="translate(0,131)">
-      <rect x="75" width="91.81451612903226" y="22" height="17" fill="#efb118"></rect>
-      <rect x="166.81451612903226" width="95.80645161290323" y="22" height="17" fill="#4269d0"></rect>
-      <rect x="262.6209677419355" width="19.95967741935482" y="22" height="17" fill="#ff725c"></rect>
+      <rect x="75" width="88.10483870967741" y="22" height="17" fill="#efb118"></rect>
+      <rect x="163.1048387096774" width="91.93548387096774" y="22" height="17" fill="#4269d0"></rect>
+      <rect x="255.04032258064515" width="19.153225806451616" y="22" height="17" fill="#ff725c"></rect>
     </g>
   </g>
   <g aria-label="frame" transform="translate(0.5,0.5)">
-    <rect fill="none" stroke="currentColor" x="75" y="20" width="495" height="59" transform="translate(0,1)"></rect>
-    <rect fill="none" stroke="currentColor" x="75" y="20" width="495" height="59" transform="translate(0,66)"></rect>
-    <rect fill="none" stroke="currentColor" x="75" y="20" width="495" height="59" transform="translate(0,131)"></rect>
+    <rect fill="none" stroke="currentColor" x="75" y="20" width="475" height="59" transform="translate(0,1)"></rect>
+    <rect fill="none" stroke="currentColor" x="75" y="20" width="475" height="59" transform="translate(0,66)"></rect>
+    <rect fill="none" stroke="currentColor" x="75" y="20" width="475" height="59" transform="translate(0,131)"></rect>
   </g>
   <g aria-label="text" transform="translate(-3.5,4.5)">
     <g text-anchor="end" transform="translate(0,131)">
-      <text y="0.71em" transform="translate(570,20)">Torgersen Island only has Adelie penguins!</text>
+      <text y="0.71em" transform="translate(550,20)">Torgersen Island only has Adelie penguins!</text>
     </g>
   </g>
 </svg>
