@@ -129,11 +129,9 @@ Plot.rectY(olympians, Plot.binX({y: "sum"}, {x: "weight", y: (d) => d.sex === "m
 ```
 :::
 
-The order of channels in the tip and the formatting of their values can be customized with the **format** option <VersionBadge version="0.6.11" pr="1823" />, which accepts a key-value object mapping channel names to formats.
+The order and formatting of channels in the tip can be customized with the **format** option <VersionBadge version="0.6.11" pr="1823" />, which accepts a key-value object mapping channel names to formats. Each [format](../features/formats.md) can be a string (for number or time formats), a function that receives the value as input and returns a string, true to use the default format, and null or false to suppress. The order of channels in the tip follows their order in the format object followed by any additional channels.
 
-Each [format](https://observablehq.com/plot/features/formats) can be a string (to format numbers or dates with the respective number or time format), a function that receives the value as input and returns a string, true to use the default format, and null or false to suppress.
-
-The order of channels in the tip follows their order in the format object. Channels that are not listed in the format object are appended. The name of the channel comes from the scale’s label, if any, or from the channel’s **label** if it is specified as an object with a **value** property, or by its name in the **channels** option, or, lastly, by its default name (such as *x*).
+A channel’s label can be specified alongside its value as a {value, label} object; if a channel label is not specified, the associated scale’s label is used, if any; if there is no associated scale, or if the scale has no label, the channel name is used instead.
 
 :::plot defer
 ```js

@@ -6,7 +6,7 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 [Released September TK, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)
 
-The new **format** option enables a custom order and formatting of the channels in the [tip mark](https://observablehq.com/plot/marks/tip).
+The **tip** mark option can now pass options to the derived [tip mark](https://observablehq.com/plot/marks/tip); the options object can also specify the **pointer** option to control the derived tip’s pointer mode (_x_, _y_, or _xy_). The new **format** tip mark option enables greater control over order and formatting of channels.
 
 <img src="./img/tip-custom.png" width="674" alt="A tip with a custom order and formatting of the channel values.">
 
@@ -22,51 +22,41 @@ Plot.dot(olympians, {
   },
   tip: {
     format: {
-      name: true,
-      y: (d) => `${d}m`,
-      x: (d) => `${d}kg`,
-      stroke: false
+      name: true, // show name first
+      y: (d) => `${d}m`, // units in meters
+      x: (d) => `${d}kg`, // units in kilograms
+      stroke: false // suppress stroke channel
     }
   }
 }).plot()
 ```
 
-The **tip** mark option can now be specified as an options object to pass to the derived tip mark, as the example above demonstrates. A new **pointer** option allows to control which pointer mode is used (_x_, _y_, or _xy_, for pointerX, pointerY, or pointer respectively).
-
-Ordinal axes generated from a temporal or quantitative scale now generalize their scale’s **interval** (if specified), resulting in more readable ticks. For instance, a bar chart with daily values now sports a multi-line axis with, say, a label every week, or month, or quarter… depending on the scale’s domain.
+Axes for ordinal scales now generalize the scale’s temporal or quantitative **interval** if any, resulting in more readable ticks. For instance, the bar chart below of monthly values now sports multi-line tick labels.
 
 <img src="./img/temporal-ordinal.png" width="672" alt="A temporal bar chart with a multi-line axis.">
 
 ```js
-Plot.barY(aapl, Plot.groupX({y: "median"}, {x: "Date", y: "Close"}))
-  .plot({x: {interval: "month"}})
+Plot.plot({
+  x: {interval: "month"},
+  marks: [
+    Plot.barY(aapl, Plot.groupX({y: "median"}, {x: "Date", y: "Close"}))
+  ]
+})
 ```
 
-The **fontVariant** option is now passed to the axis label, not only to the tick labels.
+Plot now recognizes CSS Color Module [Level 4](https://www.w3.org/TR/css-color-4/) and [Level 5](https://www.w3.org/TR/css-color-5/) syntax as literal colors, making it easier to use modern color syntax such as [oklab()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklab), [color-mix()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix), and alternative color spaces such as [display-p3](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color).
 
-A channel can now be specified as an object with a **value** and a **label**.
+A channel value can now be given a label by specifying it as a {value, label} object; this may affect the label used in axes, legends, and tips.
 
-The render API now exposes the instantiated scales descriptors in its scales argument, opening the door to richer developments.
-
-Colors expressed with the [CSS Color Module Level 5](https://www.w3.org/TR/css-color-5/) syntax are now recognized as literal values. This allows to use CSS expressions (such as `var(--red)`), wide gamut colors such as this vivid orange `color(display-p3 1 0.5 0)`, and more as browser support improves.
-
-On exposed ordinal scales, the domain is now deduplicated.
-
-Fix the **interval** option in the bin transform to reduce not only *x* but also *x1* and *x2* (and likewise for *y1* and *y2*).
-
-Fix the stack transform when using the **facet**: exclude option.
-
-The tip mark now hides the temporary tip before computing its callout, avoiding flickering in some interactive use cases.
-
-Fix a bug where empty bins generated undefined colors — they now fall back on the first element of their group.
-
-Fix a bug where the symbol set hint was ignored if fill was specified as a constant currentColor.
-
-Fix the tree transform when using a custom delimiter.
-
-Image tests are now more reliable across platforms. Test coverage reports are now easier to generate (see [Contributing](https://github.com/observablehq/plot/blob/main/CONTRIBUTING.md#testing)).
-
-The [documentation website](https//observablehq.com/plot/) now has a stylish hexagonal grid of examples on the home page.
+This release also includes numerous bug fixes:
+- exposed ordinal domains are now correctly deduplicated;
+- the default symbol set is now inferred correctly when **fill** is *currentColor*;
+- the **fontVariant** axis option now applies to the axis label in addition to ticks;
+- the tip mark is no longer briefly visible before asynchronous rendering;
+- the bin transform no longer generates undefined colors for empty bins;
+- the bin transform now uses the **interval** option to reduce *x1* & *x2* (and *y1* & *y2*);
+- the stack transform now correctly handles the *exclude* **facet** option;
+- the tree transform now correctly handles escaping with the **delimiter** option.
 
 ## 0.6.10
 
