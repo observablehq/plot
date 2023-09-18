@@ -16,6 +16,7 @@ export async function brushFacets() {
   const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
   return showValue(
     Plot.plot({
+      color: {legend: true},
       marks: [
         Plot.dot(
           penguins,
