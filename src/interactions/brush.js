@@ -21,7 +21,9 @@ function brushTransform(mode, {selected = {}, unselected = {}, padding = 1, ...o
       const uvalues = {...values};
       for (const c in selected) svalues[c] = c in s.channels ? values[`selected:${c}`] : undefined;
       for (const c in unselected) uvalues[c] = c in u.channels ? values[`unselected:${c}`] : undefined;
-      const g = next(index, scales, values, dimensions, context);
+      const g = options.render
+        ? options.render(index, scales, values, dimensions, context, next)
+        : next(index, scales, values, dimensions, context);
       const {data} = context.getMarkState(this); // TODO: data might be attached to values in the future(?)
 
       const svg = context.ownerSVGElement;
