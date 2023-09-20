@@ -27,6 +27,7 @@ export * from "./athletes-sport-sex.js";
 export * from "./athletes-sport-weight.js";
 export * from "./athletes-weight-cumulative.js";
 export * from "./athletes-weight.js";
+export * from "./autoheight.js";
 export * from "./autoplot.js";
 export * from "./availability.js";
 export * from "./axis-filter.js";
