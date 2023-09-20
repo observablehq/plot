@@ -56,7 +56,8 @@ export type ChannelName =
   | "y"
   | "y1"
   | "y2"
-  | "z";
+  | "z"
+  | (string & Record<never, never>); // custom channel; see also https://github.com/microsoft/TypeScript/issues/29729
 
 /**
  * An object literal of channel definitions. This is also used to represent
