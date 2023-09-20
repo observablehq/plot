@@ -4,7 +4,7 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 ## 0.6.11
 
-[Released September TK, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)
+[Released September 20, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)
 
 The **tip** mark option can now pass options to the derived [tip mark](https://observablehq.com/plot/marks/tip); the options object can also specify the **pointer** option to control the derived tip’s pointer mode (_x_, _y_, or _xy_). The new **format** tip mark option enables greater control over order and formatting of channels.
 
