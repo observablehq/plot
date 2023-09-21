@@ -24,6 +24,8 @@ function maybeMarker(marker) {
       return markerCircleFill;
     case "circle-stroke":
       return markerCircleStroke;
+    case "line":
+      return markerLine
   }
   throw new Error(`invalid marker: ${marker}`);
 }
@@ -76,6 +78,19 @@ function markerCircleStroke(color, context) {
     .attr("stroke", color)
     .attr("stroke-width", 1.5)
     .call((marker) => marker.append("circle").attr("r", 3))
+    .node();
+}
+
+function markerLine(color, context) {
+  return create("svg:marker", context)
+    .attr("viewBox", "-5 -5 10 10")
+    .attr("markerWidth", 6.67)
+    .attr("markerHeight", 6.67)
+    .attr("stroke", color)
+    .attr("stroke-width", 1.5)
+    .attr("stroke-linecap", "square")
+    .attr("stroke-linejoin", "square")
+    .call((marker) => marker.append("line").attr("x1", "0").attr("x2", "0").attr("y1", "-2").attr("y2", "2"))
     .node();
 }
 
