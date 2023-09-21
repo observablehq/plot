@@ -10,11 +10,11 @@ import {defaultWidth} from "./marks/text.js";
 // explicitly set to "center", we need more space too. We don’t want the result
 // to match the contents exactly because it shouldn’t wobble when the scale
 // changes a little.
-function autoMarginH([scale = {}, options]) {
+function autoMarginK(k, {[k]: scale} = {}, {[k]: scaleOptions}) {
   const marginS = 40;
   const marginM = 60;
   const marginL = 90;
-  const {type, ticks, domain} = scale;
+  const {type, ticks, domain} = scale ?? {};
   if (!type) return marginS;
   const l =
     (max(ticks ?? domain ?? [], (d) =>
@@ -26,7 +26,7 @@ function autoMarginH([scale = {}, options]) {
         ? 200
         : 60
     ) || 0) +
-    2 * (type === "point" || type === "band" || options?.labelAnchor === "center");
+    2 * (type === "point" || type === "band" || scaleOptions?.labelAnchor === "center");
   return l >= 400 ? marginL : l > 240 ? marginM : marginS;
 }
 
@@ -42,8 +42,8 @@ export function createDimensions(scales, marks, options = {}) {
   // scales, if present.
   const yflip = options.y?.axis === "right" || options.fy?.axis === "left";
   for (let {marginTop, marginRight, marginBottom, marginLeft} of marks) {
-    if (marginLeft === "auto") marginLeft = autoMarginH(yflip ? [scales.fy, options.fy] : [scales.y, options.y]);
-    if (marginRight === "auto") marginRight = autoMarginH(yflip ? [scales.y, options.y] : [scales.fy, options.fy]);
+    if (marginLeft === "auto") marginLeft = autoMarginK(yflip ? "fy" : "y", scales, options);
+    if (marginRight === "auto") marginRight = autoMarginK(yflip ? "y" : "fy", scales, options);
     if (marginTop > marginTopDefault) marginTopDefault = marginTop;
     if (marginRight > marginRightDefault) marginRightDefault = marginRight;
     if (marginBottom > marginBottomDefault) marginBottomDefault = marginBottom;
