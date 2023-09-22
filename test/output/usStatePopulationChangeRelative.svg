@@ -14,207 +14,207 @@
     }
   </style>
   <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="159.16553814698986" x2="159.16553814698986" y1="30" y2="780"></line>
-    <line x1="239.93989296356796" x2="239.93989296356796" y1="30" y2="780"></line>
-    <line x1="320.71424778014614" x2="320.71424778014614" y1="30" y2="780"></line>
-    <line x1="401.48860259672426" x2="401.48860259672426" y1="30" y2="780"></line>
-    <line x1="482.2629574133024" x2="482.2629574133024" y1="30" y2="780"></line>
-    <line x1="563.0373122298806" x2="563.0373122298806" y1="30" y2="780"></line>
+    <line x1="152.38460303453988" x2="152.38460303453988" y1="30" y2="780"></line>
+    <line x1="225.2399034573358" x2="225.2399034573358" y1="30" y2="780"></line>
+    <line x1="298.0952038801318" x2="298.0952038801318" y1="30" y2="780"></line>
+    <line x1="370.9505043029278" x2="370.9505043029278" y1="30" y2="780"></line>
+    <line x1="443.8058047257237" x2="443.8058047257237" y1="30" y2="780"></line>
+    <line x1="516.6611051485197" x2="516.6611051485197" y1="30" y2="780"></line>
   </g>
   <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,1)">
-    <path transform="translate(159.16553814698986,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(239.93989296356796,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(320.71424778014614,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(401.48860259672426,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(482.2629574133024,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(563.0373122298806,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(152.38460303453988,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(225.2399034573358,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(298.0952038801318,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(370.9505043029278,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(443.8058047257237,30)" d="M0,0L0,-6"></path>
+    <path transform="translate(516.6611051485197,30)" d="M0,0L0,-6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
-    <text transform="translate(159.16553814698986,30)">−10</text>
-    <text transform="translate(239.93989296356796,30)">−5</text>
-    <text transform="translate(320.71424778014614,30)">+0</text>
-    <text transform="translate(401.48860259672426,30)">+5</text>
-    <text transform="translate(482.2629574133024,30)">+10</text>
-    <text transform="translate(563.0373122298806,30)">+15</text>
+    <text transform="translate(152.38460303453988,30)">−10</text>
+    <text transform="translate(225.2399034573358,30)">−5</text>
+    <text transform="translate(298.0952038801318,30)">+0</text>
+    <text transform="translate(370.9505043029278,30)">+5</text>
+    <text transform="translate(443.8058047257237,30)">+10</text>
+    <text transform="translate(516.6611051485197,30)">+15</text>
   </g>
   <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
-    <text y="0.71em" transform="translate(345,30)">← decrease · Change in population, 2010–2019 (%) · increase →</text>
+    <text y="0.71em" transform="translate(320,30)">← decrease · Change in population, 2010–2019 (%) · increase →</text>
   </g>
   <g aria-label="bar">
-    <rect x="320.71424778014614" width="97.9018095973949" y="462" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="247.365420749505" y="728" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="229.96978842290218" y="700" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="6.290762676452175" y="126" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="12.66838831258201" y="154" height="13" fill="#a1d76a"></rect>
-    <rect x="300.7185748268955" width="19.99567295325062" y="70" height="13" fill="#e9a3c9"></rect>
-    <rect x="320.71424778014614" width="21.36842053292844" y="210" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="155.0459577315782" y="574" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="161.38821950105125" y="588" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="16.870882753930232" y="182" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="16.591649404594136" y="168" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="107.91990819596822" y="504" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="213.89623419298505" y="630" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="224.1002188068644" y="658" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="99.15379465622595" y="476" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="123.99001978743149" y="518" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="61.894928008196075" y="392" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="40.05750100015132" y="266" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="76.14364130616912" y="420" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="38.47635570474722" y="252" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="234.3441091295166" y="714" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="102.2507532908516" y="490" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="182.78889442325476" y="616" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="41.724117515075136" y="294" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="41.131138506343916" y="280" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="47.76657226317053" y="322" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="163.0480348666852" y="602" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="88.54848739765902" y="434" height="13" fill="#a1d76a"></rect>
-    <rect x="316.73213948295074" width="3.9821082971953956" y="98" height="13" fill="#e9a3c9"></rect>
-    <rect x="320.71424778014614" width="258.3910789112365" y="742" height="13" fill="#a1d76a"></rect>
-    <rect x="90" width="230.71424778014614" y="42" height="13" fill="#e9a3c9"></rect>
-    <rect x="320.71424778014614" width="57.651744356020856" y="378" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="227.08216923247994" y="686" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="56.45887282353635" y="364" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="4.819299105120535" y="112" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="34.08406566106794" y="238" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="29.537543446627694" y="224" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="95.59049708639458" y="448" height="13" fill="#a1d76a"></rect>
-    <rect x="267.59480255129716" width="53.119445228848974" y="56" height="13" fill="#e9a3c9"></rect>
-    <rect x="320.71424778014614" width="226.2748770437779" y="672" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="65.99585932101883" y="406" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="53.06256696504522" y="350" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="19.277203985928168" y="196" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="129.58152284548117" y="532" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="10.427478091633702" y="140" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="136.42693841064306" y="546" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="139.8436648681523" y="560" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="214.89916754146464" y="644" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="48.480694268781406" y="336" height="13" fill="#a1d76a"></rect>
-    <rect x="320.71424778014614" width="279.28575221985386" y="756" height="13" fill="#a1d76a"></rect>
-    <rect x="316.19107702295923" width="4.523170757186904" y="84" height="13" fill="#e9a3c9"></rect>
-    <rect x="320.71424778014614" width="43.37480213614265" y="308" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="88.3035929701993" y="462" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="223.11390891131822" y="728" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="207.42373073438233" y="700" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="5.674021237584327" y="126" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="11.4263894584073" y="154" height="13" fill="#a1d76a"></rect>
+    <rect x="280.05989102033715" width="18.035312859794658" y="70" height="13" fill="#e9a3c9"></rect>
+    <rect x="298.0952038801318" width="19.273477343425668" y="210" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="139.84537364024703" y="574" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="145.56584504016388" y="588" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="15.216874640799801" y="182" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="14.96501711002611" y="168" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="97.33952503950076" y="504" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="192.9260151544571" y="630" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="202.1296091199169" y="658" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="89.43283439581165" y="476" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="111.83413549454605" y="518" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="55.82679781131412" y="392" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="36.130295019744324" y="266" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="68.67857843301528" y="420" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="34.7041639689877" y="252" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="211.36919646976008" y="714" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="92.22616963488576" y="490" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="164.8684145778376" y="616" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="37.63351775869518" y="294" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="37.09867394689843" y="280" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="43.083574982467496" y="322" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="147.06293340916704" y="602" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="79.86726314298659" y="434" height="13" fill="#a1d76a"></rect>
+    <rect x="294.5034983571713" width="3.591705522960524" y="98" height="13" fill="#e9a3c9"></rect>
+    <rect x="298.0952038801318" width="233.05862019444857" y="742" height="13" fill="#a1d76a"></rect>
+    <rect x="90" width="208.0952038801318" y="42" height="13" fill="#e9a3c9"></rect>
+    <rect x="298.0952038801318" width="51.999612556410966" y="378" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="204.81921146458973" y="686" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="50.923689213385785" y="364" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="4.346818800697008" y="112" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="30.742490596257312" y="238" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="26.641705853821065" y="224" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="86.21887972498337" y="448" height="13" fill="#a1d76a"></rect>
+    <rect x="250.1835473992092" width="47.9116564809226" y="56" height="13" fill="#e9a3c9"></rect>
+    <rect x="298.0952038801318" width="204.09106556889776" y="672" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="59.525677034644445" y="406" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="47.86035451749177" y="350" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="17.38728202652345" y="196" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="116.87745197827712" y="532" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="9.405176317944154" y="140" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="123.05174837038396" y="546" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="126.13350164578446" y="560" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="193.83062170406612" y="644" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="43.72768502674404" y="336" height="13" fill="#a1d76a"></rect>
+    <rect x="298.0952038801318" width="251.9047961198682" y="756" height="13" fill="#a1d76a"></rect>
+    <rect x="294.0154812363946" width="4.079722643737227" y="84" height="13" fill="#e9a3c9"></rect>
+    <rect x="298.0952038801318" width="39.1223705541679" y="308" height="13" fill="#a1d76a"></rect>
   </g>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,7)">
-    <path transform="translate(320.71424778014614,112)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,126)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,140)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,154)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,168)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,182)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,196)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,210)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,224)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,238)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,252)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,266)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,280)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,294)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,308)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,322)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,336)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,350)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,364)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,378)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,392)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,406)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,420)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,434)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,448)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,462)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,476)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,490)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,504)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,518)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,532)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,546)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,560)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,574)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,588)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,602)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,616)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,630)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,644)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,658)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,672)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,686)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,700)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,714)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,728)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,742)" d="M0,0L-6,0"></path>
-    <path transform="translate(320.71424778014614,756)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,112)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,126)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,140)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,154)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,168)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,182)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,196)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,210)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,224)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,238)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,252)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,266)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,280)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,294)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,308)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,322)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,336)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,350)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,364)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,378)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,392)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,406)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,420)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,434)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,448)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,462)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,476)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,490)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,504)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,518)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,532)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,546)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,560)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,574)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,588)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,602)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,616)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,630)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,644)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,658)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,672)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,686)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,700)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,714)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,728)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,742)" d="M0,0L-6,0"></path>
+    <path transform="translate(298.0952038801318,756)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,7)">
-    <text y="0.32em" transform="translate(320.71424778014614,112)">Mississippi</text>
-    <text y="0.32em" transform="translate(320.71424778014614,126)">New York</text>
-    <text y="0.32em" transform="translate(320.71424778014614,140)">Rhode Island</text>
-    <text y="0.32em" transform="translate(320.71424778014614,154)">Pennsylvania</text>
-    <text y="0.32em" transform="translate(320.71424778014614,168)">New Jersey</text>
-    <text y="0.32em" transform="translate(320.71424778014614,182)">Michigan</text>
-    <text y="0.32em" transform="translate(320.71424778014614,196)">Maine</text>
-    <text y="0.32em" transform="translate(320.71424778014614,210)">Ohio</text>
-    <text y="0.32em" transform="translate(320.71424778014614,224)">New Mexico</text>
-    <text y="0.32em" transform="translate(320.71424778014614,238)">Kansas</text>
-    <text y="0.32em" transform="translate(320.71424778014614,252)">Wisconsin</text>
-    <text y="0.32em" transform="translate(320.71424778014614,266)">Missouri</text>
-    <text y="0.32em" transform="translate(320.71424778014614,280)">Louisiana</text>
-    <text y="0.32em" transform="translate(320.71424778014614,294)">Alabama</text>
-    <text y="0.32em" transform="translate(320.71424778014614,308)">Wyoming</text>
-    <text y="0.32em" transform="translate(320.71424778014614,322)">Kentucky</text>
-    <text y="0.32em" transform="translate(320.71424778014614,336)">Alaska</text>
-    <text y="0.32em" transform="translate(320.71424778014614,350)">New Hampshire</text>
-    <text y="0.32em" transform="translate(320.71424778014614,364)">Arkansas</text>
-    <text y="0.32em" transform="translate(320.71424778014614,378)">Iowa</text>
-    <text y="0.32em" transform="translate(320.71424778014614,392)">Indiana</text>
-    <text y="0.32em" transform="translate(320.71424778014614,406)">Hawaii</text>
-    <text y="0.32em" transform="translate(320.71424778014614,420)">Maryland</text>
-    <text y="0.32em" transform="translate(320.71424778014614,434)">Oklahoma</text>
-    <text y="0.32em" transform="translate(320.71424778014614,448)">Nebraska</text>
-    <text y="0.32em" transform="translate(320.71424778014614,462)">California</text>
-    <text y="0.32em" transform="translate(320.71424778014614,476)">Massachusetts</text>
-    <text y="0.32em" transform="translate(320.71424778014614,490)">Minnesota</text>
-    <text y="0.32em" transform="translate(320.71424778014614,504)">Virginia</text>
-    <text y="0.32em" transform="translate(320.71424778014614,518)">Tennessee</text>
-    <text y="0.32em" transform="translate(320.71424778014614,532)">Montana</text>
-    <text y="0.32em" transform="translate(320.71424778014614,546)">Delaware</text>
-    <text y="0.32em" transform="translate(320.71424778014614,560)">South Dakota</text>
-    <text y="0.32em" transform="translate(320.71424778014614,574)">Georgia</text>
-    <text y="0.32em" transform="translate(320.71424778014614,588)">North Carolina</text>
-    <text y="0.32em" transform="translate(320.71424778014614,602)">Oregon</text>
-    <text y="0.32em" transform="translate(320.71424778014614,616)">South Carolina</text>
-    <text y="0.32em" transform="translate(320.71424778014614,630)">Washington</text>
-    <text y="0.32em" transform="translate(320.71424778014614,644)">North Dakota</text>
-    <text y="0.32em" transform="translate(320.71424778014614,658)">Arizona</text>
-    <text y="0.32em" transform="translate(320.71424778014614,672)">Idaho</text>
-    <text y="0.32em" transform="translate(320.71424778014614,686)">Nevada</text>
-    <text y="0.32em" transform="translate(320.71424778014614,700)">Florida</text>
-    <text y="0.32em" transform="translate(320.71424778014614,714)">Colorado</text>
-    <text y="0.32em" transform="translate(320.71424778014614,728)">Texas</text>
-    <text y="0.32em" transform="translate(320.71424778014614,742)">Utah</text>
-    <text y="0.32em" transform="translate(320.71424778014614,756)">District of Columbia</text>
+    <text y="0.32em" transform="translate(298.0952038801318,112)">Mississippi</text>
+    <text y="0.32em" transform="translate(298.0952038801318,126)">New York</text>
+    <text y="0.32em" transform="translate(298.0952038801318,140)">Rhode Island</text>
+    <text y="0.32em" transform="translate(298.0952038801318,154)">Pennsylvania</text>
+    <text y="0.32em" transform="translate(298.0952038801318,168)">New Jersey</text>
+    <text y="0.32em" transform="translate(298.0952038801318,182)">Michigan</text>
+    <text y="0.32em" transform="translate(298.0952038801318,196)">Maine</text>
+    <text y="0.32em" transform="translate(298.0952038801318,210)">Ohio</text>
+    <text y="0.32em" transform="translate(298.0952038801318,224)">New Mexico</text>
+    <text y="0.32em" transform="translate(298.0952038801318,238)">Kansas</text>
+    <text y="0.32em" transform="translate(298.0952038801318,252)">Wisconsin</text>
+    <text y="0.32em" transform="translate(298.0952038801318,266)">Missouri</text>
+    <text y="0.32em" transform="translate(298.0952038801318,280)">Louisiana</text>
+    <text y="0.32em" transform="translate(298.0952038801318,294)">Alabama</text>
+    <text y="0.32em" transform="translate(298.0952038801318,308)">Wyoming</text>
+    <text y="0.32em" transform="translate(298.0952038801318,322)">Kentucky</text>
+    <text y="0.32em" transform="translate(298.0952038801318,336)">Alaska</text>
+    <text y="0.32em" transform="translate(298.0952038801318,350)">New Hampshire</text>
+    <text y="0.32em" transform="translate(298.0952038801318,364)">Arkansas</text>
+    <text y="0.32em" transform="translate(298.0952038801318,378)">Iowa</text>
+    <text y="0.32em" transform="translate(298.0952038801318,392)">Indiana</text>
+    <text y="0.32em" transform="translate(298.0952038801318,406)">Hawaii</text>
+    <text y="0.32em" transform="translate(298.0952038801318,420)">Maryland</text>
+    <text y="0.32em" transform="translate(298.0952038801318,434)">Oklahoma</text>
+    <text y="0.32em" transform="translate(298.0952038801318,448)">Nebraska</text>
+    <text y="0.32em" transform="translate(298.0952038801318,462)">California</text>
+    <text y="0.32em" transform="translate(298.0952038801318,476)">Massachusetts</text>
+    <text y="0.32em" transform="translate(298.0952038801318,490)">Minnesota</text>
+    <text y="0.32em" transform="translate(298.0952038801318,504)">Virginia</text>
+    <text y="0.32em" transform="translate(298.0952038801318,518)">Tennessee</text>
+    <text y="0.32em" transform="translate(298.0952038801318,532)">Montana</text>
+    <text y="0.32em" transform="translate(298.0952038801318,546)">Delaware</text>
+    <text y="0.32em" transform="translate(298.0952038801318,560)">South Dakota</text>
+    <text y="0.32em" transform="translate(298.0952038801318,574)">Georgia</text>
+    <text y="0.32em" transform="translate(298.0952038801318,588)">North Carolina</text>
+    <text y="0.32em" transform="translate(298.0952038801318,602)">Oregon</text>
+    <text y="0.32em" transform="translate(298.0952038801318,616)">South Carolina</text>
+    <text y="0.32em" transform="translate(298.0952038801318,630)">Washington</text>
+    <text y="0.32em" transform="translate(298.0952038801318,644)">North Dakota</text>
+    <text y="0.32em" transform="translate(298.0952038801318,658)">Arizona</text>
+    <text y="0.32em" transform="translate(298.0952038801318,672)">Idaho</text>
+    <text y="0.32em" transform="translate(298.0952038801318,686)">Nevada</text>
+    <text y="0.32em" transform="translate(298.0952038801318,700)">Florida</text>
+    <text y="0.32em" transform="translate(298.0952038801318,714)">Colorado</text>
+    <text y="0.32em" transform="translate(298.0952038801318,728)">Texas</text>
+    <text y="0.32em" transform="translate(298.0952038801318,742)">Utah</text>
+    <text y="0.32em" transform="translate(298.0952038801318,756)">District of Columbia</text>
   </g>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(1,7)">
-    <path transform="translate(320.71424778014614,42)" d="M0,0L6,0"></path>
-    <path transform="translate(320.71424778014614,56)" d="M0,0L6,0"></path>
-    <path transform="translate(320.71424778014614,70)" d="M0,0L6,0"></path>
-    <path transform="translate(320.71424778014614,84)" d="M0,0L6,0"></path>
-    <path transform="translate(320.71424778014614,98)" d="M0,0L6,0"></path>
+    <path transform="translate(298.0952038801318,42)" d="M0,0L6,0"></path>
+    <path transform="translate(298.0952038801318,56)" d="M0,0L6,0"></path>
+    <path transform="translate(298.0952038801318,70)" d="M0,0L6,0"></path>
+    <path transform="translate(298.0952038801318,84)" d="M0,0L6,0"></path>
+    <path transform="translate(298.0952038801318,98)" d="M0,0L6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="start" transform="translate(9.5,7)">
-    <text y="0.32em" transform="translate(320.71424778014614,42)">Puerto Rico</text>
-    <text y="0.32em" transform="translate(320.71424778014614,56)">West Virginia</text>
-    <text y="0.32em" transform="translate(320.71424778014614,70)">Illinois</text>
-    <text y="0.32em" transform="translate(320.71424778014614,84)">Vermont</text>
-    <text y="0.32em" transform="translate(320.71424778014614,98)">Connecticut</text>
+    <text y="0.32em" transform="translate(298.0952038801318,42)">Puerto Rico</text>
+    <text y="0.32em" transform="translate(298.0952038801318,56)">West Virginia</text>
+    <text y="0.32em" transform="translate(298.0952038801318,70)">Illinois</text>
+    <text y="0.32em" transform="translate(298.0952038801318,84)">Vermont</text>
+    <text y="0.32em" transform="translate(298.0952038801318,98)">Connecticut</text>
   </g>
   <g aria-label="x-grid" aria-hidden="true" stroke="white" stroke-opacity="0.5" transform="translate(0.5,0)">
-    <line x1="159.16553814698986" x2="159.16553814698986" y1="30" y2="780"></line>
-    <line x1="239.93989296356796" x2="239.93989296356796" y1="30" y2="780"></line>
-    <line x1="320.71424778014614" x2="320.71424778014614" y1="30" y2="780"></line>
-    <line x1="401.48860259672426" x2="401.48860259672426" y1="30" y2="780"></line>
-    <line x1="482.2629574133024" x2="482.2629574133024" y1="30" y2="780"></line>
-    <line x1="563.0373122298806" x2="563.0373122298806" y1="30" y2="780"></line>
+    <line x1="152.38460303453988" x2="152.38460303453988" y1="30" y2="780"></line>
+    <line x1="225.2399034573358" x2="225.2399034573358" y1="30" y2="780"></line>
+    <line x1="298.0952038801318" x2="298.0952038801318" y1="30" y2="780"></line>
+    <line x1="370.9505043029278" x2="370.9505043029278" y1="30" y2="780"></line>
+    <line x1="443.8058047257237" x2="443.8058047257237" y1="30" y2="780"></line>
+    <line x1="516.6611051485197" x2="516.6611051485197" y1="30" y2="780"></line>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="320.71424778014614" x2="320.71424778014614" y1="30" y2="780"></line>
+    <line x1="298.0952038801318" x2="298.0952038801318" y1="30" y2="780"></line>
   </g>
 </svg>
