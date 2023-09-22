@@ -1,34 +1,9 @@
-import {max, extent} from "d3";
+import {extent} from "d3";
 import {projectionAspectRatio} from "./projection.js";
 import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
-import {defaultWidth} from "./marks/text.js";
 
-// A heuristic to determine the default margin. Ordinal scales usually reclaim
-// more space. We can also gauge the “type of contents” (domain, ticks) and
-// decide whether it’s small, medium or large. When the labelAnchor is
-// explicitly set to "center", we need more space too. We don’t want the result
-// to match the contents exactly because it shouldn’t wobble when the scale
-// changes a little.
-function autoMarginK(k, {[k]: scale} = {}, {[k]: scaleOptions}) {
-  const marginS = 40;
-  const marginM = 60;
-  const marginL = 90;
-  const {type, ticks, domain} = scale ?? {};
-  if (!type) return marginS;
-  const l =
-    (max(ticks ?? domain ?? [], (d) =>
-      typeof d === "string"
-        ? defaultWidth(d)
-        : typeof d === "number"
-        ? 60 * Math.ceil(Math.abs(Math.log10(Math.abs(d || 2))))
-        : d instanceof Date
-        ? 200
-        : 60
-    ) || 0) +
-    2 * (type === "point" || type === "band" || scaleOptions?.labelAnchor === "center");
-  return l >= 400 ? marginL : l > 240 ? marginM : marginS;
-}
+const marginS = 40; // TODO regroup with marginM marginL
 
 export function createDimensions(scales, marks, options = {}) {
   // Compute the default margins: the maximum of the marks’ margins. While not
@@ -39,11 +14,16 @@ export function createDimensions(scales, marks, options = {}) {
     marginLeftDefault = 0.5 - offset;
 
   // The left and right margins default to a value inferred from the y (and fy)
-  // scales, if present.
-  const yflip = options.y?.axis === "right" || options.fy?.axis === "left";
-  for (let {marginTop, marginRight, marginBottom, marginLeft} of marks) {
-    if (marginLeft === "auto") marginLeft = autoMarginK(yflip ? "fy" : "y", scales, options);
-    if (marginRight === "auto") marginRight = autoMarginK(yflip ? "y" : "fy", scales, options);
+  // scales, if present. Axis tick marks specify a minimum value for the margin,
+  // that might be auto when it needs to be set from the actual tick labels. In
+  // that case, we will compute the chart dimensions as if we used the default
+  // small margin, compute all the tick labels and check their lengths, then
+  // revise the dimensions if necessary.
+  const marginReview = {}; // TODO rename
+  for (const m of marks) {
+    let {marginTop, marginRight, marginBottom, marginLeft} = m;
+    if (marginLeft === "auto") (marginReview.marginLeft = m), (marginLeft = marginS);
+    if (marginRight === "auto") (marginReview.marginRight = m), (marginRight = marginS);
     if (marginTop > marginTopDefault) marginTopDefault = marginTop;
     if (marginRight > marginRightDefault) marginRightDefault = marginRight;
     if (marginBottom > marginBottomDefault) marginBottomDefault = marginBottom;
@@ -89,7 +69,8 @@ export function createDimensions(scales, marks, options = {}) {
     marginTop,
     marginRight,
     marginBottom,
-    marginLeft
+    marginLeft,
+    marginReview
   };
 
   // Compute the facet margins.

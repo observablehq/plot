@@ -1,4 +1,4 @@
-import {creator, select} from "d3";
+import {creator, max, select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
@@ -18,6 +18,7 @@ import {isPosition, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
+import {defaultWidth} from "./marks/text.js";
 
 export function plot(options = {}) {
   const {facet, style, title, subtitle, caption, ariaLabel, ariaDescription} = options;
@@ -139,17 +140,6 @@ export function plot(options = {}) {
     stateByMark.set(mark, {data, facets, channels});
   }
 
-  // Initalize the scales and dimensions.
-  const scaleDescriptors = createScales(addScaleChannels(channelsByScale, stateByMark, options), options);
-  const dimensions = createDimensions(scaleDescriptors, marks, options);
-
-  autoScaleRange(scaleDescriptors, dimensions);
-
-  const scales = createScaleFunctions(scaleDescriptors);
-  const {fx, fy} = scales;
-  const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
-  const superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
-
   // Initialize the context.
   const context = createContext(options);
   const document = context.document;
@@ -157,7 +147,6 @@ export function plot(options = {}) {
   let figure = svg; // replaced with the figure element, if any
   context.ownerSVGElement = svg;
   context.className = className;
-  context.projection = createProjection(options, subdimensions);
 
   // Allows e.g. the axis mark to determine faceting lazily.
   context.filterFacets = (data, channels) => {
@@ -170,6 +159,53 @@ export function plot(options = {}) {
     const facetState = facetStateByMark.get(mark);
     return {...state, channels: {...state.channels, ...facetState?.channels}};
   };
+
+  // Initalize the scales and dimensions.
+  const channels = addScaleChannels(channelsByScale, stateByMark, options);
+  let scaleDescriptors = createScales(channels, options);
+  let scales, subdimensions, superdimensions;
+  let fx, fy;
+  let marginReview, dimensions;
+
+  // When axes have "auto" margins, we might need to compute the dimensions
+  // twice, after seeing the actual tick labels.
+  function autoMarginK(k, {[k]: m}) {
+    const marginM = 60;
+    const marginL = 90;
+    if (!m) return;
+    const {data, facets} = stateByMark.get(m);
+    const {channels} = m.initializer(
+      data,
+      facets,
+      {},
+      scales,
+      m.facet === "super" ? superdimensions : subdimensions,
+      context
+    );
+    const l = max(channels.text.value, (t) => (t ? defaultWidth(t) : NaN));
+    const newMargin = l >= 400 ? marginL : l > 285 ? marginM : null;
+    if (newMargin) {
+      //      console.warn("new margin!", channels.text.value, l, newMargin);
+      m[k] = newMargin; // TODO cleaner
+      return true;
+    }
+  }
+
+  for (let i = 0; i < 2; ++i) {
+    ({marginReview, ...dimensions} = createDimensions(scaleDescriptors, marks, options));
+    autoScaleRange(scaleDescriptors, dimensions); // !! mutates scales ranges…
+    scales = createScaleFunctions(scaleDescriptors);
+    ({fx, fy} = scales);
+    subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
+    superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
+    context.projection = createProjection(options, subdimensions);
+
+    // If any of the auto margins is larger than the default (40), recreate
+    // scales and repeat.
+    if (autoMarginK("marginLeft", marginReview) | autoMarginK("marginRight", marginReview))
+      scaleDescriptors = createScales(channels, options);
+    else break;
+  }
 
   // Allows e.g. the pointer transform to support viewof.
   context.dispatchValue = (value) => {
