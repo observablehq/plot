@@ -183,9 +183,10 @@ export function plot(options = {}) {
       context
     );
     const l = max(channels.text.value, (t) => (t ? defaultWidth(t) : NaN));
-    const newMargin = l >= 400 ? marginL : l > 285 ? marginM : null;
+    // 295 = 66 * 4 + 31 = width("4,444")
+    const newMargin = l >= 400 ? marginL : l > 295 ? marginM : null;
     if (newMargin) {
-      //      console.warn("new margin!", channels.text.value, l, newMargin);
+      // console.warn("new margin!", channels.text.value, l, newMargin);
       m[k] = newMargin; // TODO cleaner
       return true;
     }
