@@ -81,18 +81,19 @@ function markerCircleStroke(color, context) {
     .node();
 }
 
-function markerLine(color, context) {
-  return create("svg:marker", context)
-    .attr("viewBox", "-5 -5 10 10")
-    .attr("markerWidth", 6.67)
-    .attr("markerHeight", 6.67)
-    .attr("orient", "auto")
-    .attr("stroke", color)
-    .attr("stroke-width", 1.5)
-    .attr("stroke-linecap", "square")
-    .attr("stroke-linejoin", "square")
-    .call((marker) => marker.append("line").attr("x1", "0").attr("x2", "0").attr("y1", "-2").attr("y2", "2"))
-    .node();
+function markerLine(lineLength = 2) {
+  return (color, context) =>
+    create("svg:marker", context)
+      .attr("viewBox", "-5 -5 10 10")
+      .attr("markerWidth", 6.67)
+      .attr("markerHeight", 6.67)
+      .attr("orient", "auto")
+      .attr("stroke", color)
+      .attr("stroke-width", 1.5)
+      .attr("stroke-linecap", "square")
+      .attr("stroke-linejoin", "square")
+      .call((marker) => marker.append("line").attr("x1", "0").attr("x2", "0").attr("y1", `-${lineLength}`).attr("y2", `${lineLength}`))
+      .node();
 }
 
 let nextMarkerId = 0;
