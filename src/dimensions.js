@@ -26,7 +26,6 @@ export function createDimensions(scales, marks, options = {}) {
       if (frameAnchor === "left") marginReview.push(["marginLeft", marginLeft, m]);
       marginLeft = marginS;
     }
-
     if (marginRight === "y" || marginRight === "fy") {
       if (frameAnchor === "right") marginReview.push(["marginRight", marginRight, m]);
       marginRight = marginS;
