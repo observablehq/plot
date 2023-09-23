@@ -167,29 +167,28 @@ export function plot(options = {}) {
   let fx, fy;
   let marginReview, dimensions;
 
-  // When axes have "auto" margins, we might need to compute the dimensions
-  // twice, after seeing the actual tick labels.
-  function autoMarginK(k, {[k]: m}) {
+  // When axes have "auto" margins, we might need to adjust the margins, after
+  // seeing the actual tick labels. In that case we’ll compute the dimensions a
+  // second time.
+  function autoMarginK(options, [side, scale, mark]) {
     const marginM = 60;
     const marginL = 90;
-    if (!m) return;
-    const {data, facets} = stateByMark.get(m);
-    const {channels} = m.initializer(
+    const {data, facets} = stateByMark.get(mark);
+    const {channels} = mark.initializer(
       data,
       facets,
       {},
       scales,
-      m.facet === "super" ? superdimensions : subdimensions,
+      mark.facet === "super" ? superdimensions : subdimensions,
       context
     );
     const l = max(channels.text.value, (t) => (t ? defaultWidth(t) : NaN));
-    // 295 = 66 * 4 + 31 = width("4,444")
+    // 295 = 66 * 4 + 31 = defaultWidth("4,444")
     const newMargin = l >= 400 ? marginL : l > 295 ? marginM : null;
-    if (newMargin) {
-      // console.warn("new margin!", channels.text.value, l, newMargin);
-      m[k] = newMargin; // TODO cleaner
-      return true;
-    }
+    if (!newMargin) return options;
+    if (scale === "fy") return {...options, facet: {[side]: newMargin, ...options.facet}};
+    if (scale === "y") return {[side]: newMargin, ...options};
+    throw new Error("you couldn't possibly get here");
   }
 
   for (let i = 0; i < 2; ++i) {
@@ -203,8 +202,11 @@ export function plot(options = {}) {
 
     // If any of the auto margins is larger than the default (40), recreate
     // scales and repeat.
-    if (autoMarginK("marginLeft", marginReview) | autoMarginK("marginRight", marginReview))
-      scaleDescriptors = createScales(channels, options);
+    let marginOptions = options;
+    for (const review of marginReview) {
+      marginOptions = autoMarginK(marginOptions, review);
+    }
+    if (marginOptions !== options) scaleDescriptors = createScales(channels, (options = marginOptions));
     else break;
   }
 

@@ -19,11 +19,19 @@ export function createDimensions(scales, marks, options = {}) {
   // that case, we will compute the chart dimensions as if we used the default
   // small margin, compute all the tick labels and check their lengths, then
   // revise the dimensions if necessary.
-  const marginReview = {}; // TODO rename
+  const marginReview = []; // TODO rename
   for (const m of marks) {
-    let {marginTop, marginRight, marginBottom, marginLeft} = m;
-    if (marginLeft === "auto") (marginReview.marginLeft = m), (marginLeft = marginS);
-    if (marginRight === "auto") (marginReview.marginRight = m), (marginRight = marginS);
+    let {marginTop, marginRight, marginBottom, marginLeft, frameAnchor} = m;
+    if (marginLeft === "y" || marginLeft === "fy") {
+      if (frameAnchor === "left") marginReview.push(["marginLeft", marginLeft, m]);
+      marginLeft = marginS;
+    }
+
+    if (marginRight === "y" || marginRight === "fy") {
+      if (frameAnchor === "right") marginReview.push(["marginRight", marginRight, m]);
+      marginRight = marginS;
+    }
+
     if (marginTop > marginTopDefault) marginTopDefault = marginTop;
     if (marginRight > marginRightDefault) marginRightDefault = marginRight;
     if (marginBottom > marginBottomDefault) marginBottomDefault = marginBottom;
@@ -69,8 +77,7 @@ export function createDimensions(scales, marks, options = {}) {
     marginTop,
     marginRight,
     marginBottom,
-    marginLeft,
-    marginReview
+    marginLeft
   };
 
   // Compute the facet margins.
@@ -96,6 +103,8 @@ export function createDimensions(scales, marks, options = {}) {
       marginLeft: facetMarginLeft
     };
   }
+
+  dimensions.marginReview = marginReview;
 
   return dimensions;
 }
