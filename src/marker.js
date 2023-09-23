@@ -86,6 +86,7 @@ function markerLine(color, context) {
     .attr("viewBox", "-5 -5 10 10")
     .attr("markerWidth", 6.67)
     .attr("markerHeight", 6.67)
+    .attr("orient", "auto")
     .attr("stroke", color)
     .attr("stroke-width", 1.5)
     .attr("stroke-linecap", "square")
