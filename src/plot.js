@@ -527,10 +527,11 @@ function inferTips(marks) {
     if (tipOptions) {
       if (tipOptions === true) tipOptions = {};
       else if (typeof tipOptions === "string") tipOptions = {pointer: tipOptions};
-      let {pointer: p} = tipOptions;
+      let {pointer: p, preferredAnchor: a} = tipOptions;
       p = /^x$/i.test(p) ? pointerX : /^y$/i.test(p) ? pointerY : pointer; // TODO validate?
       tipOptions = p(derive(mark, tipOptions));
       tipOptions.title = null; // prevent implicit title for primitive data
+      if (a === undefined) tipOptions.preferredAnchor = p === pointerY ? "left" : "bottom";
       const t = tip(mark.data, tipOptions);
       t.facet = mark.facet; // inherit facet settings
       t.facetAnchor = mark.facetAnchor; // inherit facet settings
