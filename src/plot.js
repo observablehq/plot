@@ -1,7 +1,7 @@
-import {creator, max, select} from "d3";
+import {creator, select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
-import {createDimensions} from "./dimensions.js";
+import {createDimensionsScales} from "./dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
 import {pointer, pointerX, pointerY} from "./interactions/pointer.js";
 import {createLegends, exposeLegends} from "./legends.js";
@@ -11,14 +11,12 @@ import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
 import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
 import {arrayify, map, yes, maybeIntervalTransform, subarray} from "./options.js";
-import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
-import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
-import {innerDimensions, outerDimensions} from "./scales.js";
+import {getGeometryChannels, hasProjection} from "./projection.js";
+import {createScales, createScaleFunctions, exposeScales} from "./scales.js";
 import {isPosition, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
-import {defaultWidth} from "./marks/text.js";
 
 export function plot(options = {}) {
   const {facet, style, title, subtitle, caption, ariaLabel, ariaDescription} = options;
@@ -160,55 +158,16 @@ export function plot(options = {}) {
     return {...state, channels: {...state.channels, ...facetState?.channels}};
   };
 
-  // Initalize the scales and dimensions.
+  // Initalize the dimensions and scales.
   const channels = addScaleChannels(channelsByScale, stateByMark, options);
-  let scaleDescriptors = createScales(channels, options);
-  let scales, subdimensions, superdimensions;
-  let fx, fy;
-  let marginReview, dimensions;
-
-  // When axes have "auto" margins, we might need to adjust the margins, after
-  // seeing the actual tick labels. In that case we’ll compute the dimensions a
-  // second time.
-  function autoMarginK(options, [side, scale, mark]) {
-    const marginM = 60;
-    const marginL = 90;
-    const {data, facets} = stateByMark.get(mark);
-    const {channels} = mark.initializer(
-      data,
-      facets,
-      {},
-      scales,
-      mark.facet === "super" ? superdimensions : subdimensions,
-      context
-    );
-    const l = max(channels.text.value, (t) => (t ? defaultWidth(t) : NaN));
-    // 295 = 66 * 4 + 31 = defaultWidth("4,444")
-    const newMargin = l >= 400 ? marginL : l > 295 ? marginM : null;
-    if (!newMargin) return options;
-    if (scale === "fy") return {...options, facet: {[side]: newMargin, ...options.facet}};
-    if (scale === "y") return {[side]: newMargin, ...options};
-    throw new Error("you couldn't possibly get here");
-  }
-
-  for (let i = 0; i < 2; ++i) {
-    ({marginReview, ...dimensions} = createDimensions(scaleDescriptors, marks, options));
-    autoScaleRange(scaleDescriptors, dimensions); // !! mutates scales ranges…
-    scales = createScaleFunctions(scaleDescriptors);
-    ({fx, fy} = scales);
-    subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
-    superdimensions = fx || fy ? actualDimensions(scales, dimensions) : dimensions;
-    context.projection = createProjection(options, subdimensions);
-
-    // If any of the auto margins is larger than the default (40), recreate
-    // scales and repeat.
-    let marginOptions = options;
-    for (const review of marginReview) {
-      marginOptions = autoMarginK(marginOptions, review);
-    }
-    if (marginOptions !== options) scaleDescriptors = createScales(channels, (options = marginOptions));
-    else break;
-  }
+  const {scaleDescriptors, scales, dimensions, subdimensions, superdimensions} = createDimensionsScales(
+    channels,
+    marks,
+    stateByMark,
+    options,
+    context
+  );
+  const {fx, fy} = scales;
 
   // Allows e.g. the pointer transform to support viewof.
   context.dispatchValue = (value) => {
@@ -742,38 +701,4 @@ function inheritScaleLabels(newScales, scales) {
     }
   }
   return newScales;
-}
-
-// This differs from the other outerDimensions in that it accounts for rounding
-// and outer padding in the facet scales; we want the frame to align exactly
-// with the actual range, not the desired range.
-function actualDimensions({fx, fy}, dimensions) {
-  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = outerDimensions(dimensions);
-  const fxr = fx && outerRange(fx);
-  const fyr = fy && outerRange(fy);
-  return {
-    marginTop: fy ? fyr[0] : marginTop,
-    marginRight: fx ? width - fxr[1] : marginRight,
-    marginBottom: fy ? height - fyr[1] : marginBottom,
-    marginLeft: fx ? fxr[0] : marginLeft,
-    // Some marks, namely the x- and y-axis labels, want to know what the
-    // desired (rather than actual) margins are for positioning.
-    inset: {
-      marginTop: dimensions.marginTop,
-      marginRight: dimensions.marginRight,
-      marginBottom: dimensions.marginBottom,
-      marginLeft: dimensions.marginLeft
-    },
-    width,
-    height
-  };
-}
-
-function outerRange(scale) {
-  const domain = scale.domain();
-  if (domain.length === 0) return [0, scale.bandwidth()];
-  let x1 = scale(domain[0]);
-  let x2 = scale(domain[domain.length - 1]);
-  if (x2 < x1) [x1, x2] = [x2, x1];
-  return [x1, x2 + scale.bandwidth()];
 }

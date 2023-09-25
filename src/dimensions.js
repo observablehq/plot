@@ -1,11 +1,70 @@
-import {extent} from "d3";
-import {projectionAspectRatio} from "./projection.js";
-import {isOrdinalScale} from "./scales.js";
+import {extent, max} from "d3";
+import {createProjection, projectionAspectRatio} from "./projection.js";
+import {createScales, isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
+import {defaultWidth} from "./marks/text.js";
+import {createScaleFunctions, autoScaleRange, innerDimensions, outerDimensions} from "./scales.js";
 
-const marginS = 40; // TODO regroup with marginM marginL
+const marginSmall = 40;
+const marginMedium = 60;
+const marginLarge = 90;
 
-export function createDimensions(scales, marks, options = {}) {
+// When axes have "auto" margins, we might need to adjust the margins, after
+// seeing the actual tick labels. In that case we’ll compute the dimensions and
+// scales a second time.
+function autoMarginK(margin, scale, options, mark, stateByMark, scales, dimensions, context) {
+  const {data, facets} = stateByMark.get(mark);
+  const {channels} = mark.initializer(data, facets, {}, scales, dimensions, context);
+  const l = max(channels.text.value, (t) => (t ? defaultWidth(t) : NaN));
+  // 295 = 66 * 4 + 31 = defaultWidth("4,444")
+  const m = l >= 400 ? marginLarge : l > 295 ? marginMedium : null;
+  return !m
+    ? options
+    : scale === "fy"
+    ? {...options, facet: {[margin]: m, ...options.facet}}
+    : {[margin]: m, ...options};
+}
+
+export function createDimensionsScales(channels, marks, stateByMark, options, context) {
+  const scaleDescriptors = createScales(channels, options);
+  const {dimensions, autoMargins} = createDimensions(scaleDescriptors, marks, options);
+  autoScaleRange(scaleDescriptors, dimensions); // !! mutates scales ranges…
+  const scales = createScaleFunctions(scaleDescriptors);
+  const {fx, fy} = scales;
+  const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
+  const superdimensions = fx || fy ? actualDimensions(scaleDescriptors, dimensions) : dimensions;
+  context.projection = createProjection(options, subdimensions);
+
+  // Review the auto margins and create new scales if more space is needed.
+  const originalOptions = options;
+  for (const [margin, scale, mark] of autoMargins) {
+    options = autoMarginK(
+      margin,
+      scale,
+      options,
+      mark,
+      stateByMark,
+      scales,
+      mark.facet === "super" ? superdimensions : subdimensions,
+      context
+    );
+  }
+  if (options !== originalOptions) {
+    const scaleDescriptors = createScales(channels, options);
+    const {dimensions} = createDimensions(scaleDescriptors, marks, options);
+    autoScaleRange(scaleDescriptors, dimensions);
+    const scales = createScaleFunctions(scaleDescriptors);
+    const {fx, fy} = scaleDescriptors;
+    const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
+    const superdimensions = fx || fy ? actualDimensions(scaleDescriptors, dimensions) : dimensions;
+    context.projection = createProjection(options, subdimensions);
+    return {scaleDescriptors, scales, dimensions, subdimensions, superdimensions};
+  }
+
+  return {scaleDescriptors, scales, dimensions, subdimensions, superdimensions};
+}
+
+function createDimensions(scales, marks, options = {}) {
   // Compute the default margins: the maximum of the marks’ margins. While not
   // always used, they may be needed to compute the default height of the plot.
   let marginTopDefault = 0.5 - offset,
@@ -19,16 +78,16 @@ export function createDimensions(scales, marks, options = {}) {
   // that case, we will compute the chart dimensions as if we used the default
   // small margin, compute all the tick labels and check their lengths, then
   // revise the dimensions if necessary.
-  const marginReview = []; // TODO rename
+  const autoMargins = [];
   for (const m of marks) {
     let {marginTop, marginRight, marginBottom, marginLeft, frameAnchor} = m;
     if (marginLeft === "y" || marginLeft === "fy") {
-      if (frameAnchor === "left") marginReview.push(["marginLeft", marginLeft, m]);
-      marginLeft = marginS;
+      if (frameAnchor === "left") autoMargins.push(["marginLeft", marginLeft, m]);
+      marginLeft = marginSmall;
     }
     if (marginRight === "y" || marginRight === "fy") {
-      if (frameAnchor === "right") marginReview.push(["marginRight", marginRight, m]);
-      marginRight = marginS;
+      if (frameAnchor === "right") autoMargins.push(["marginRight", marginRight, m]);
+      marginRight = marginSmall;
     }
 
     if (marginTop > marginTopDefault) marginTopDefault = marginTop;
@@ -103,9 +162,7 @@ export function createDimensions(scales, marks, options = {}) {
     };
   }
 
-  dimensions.marginReview = marginReview;
-
-  return dimensions;
+  return {dimensions, autoMargins};
 }
 
 function autoHeight(
@@ -166,4 +223,37 @@ function aspectRatioLength(k, scale) {
   }
   const [min, max] = extent(domain);
   return Math.abs(transform(max) - transform(min));
+}
+
+// This differs from the other outerDimensions in that it accounts for rounding
+// and outer padding in the facet scales; we want the frame to align exactly
+// with the actual range, not the desired range.
+export function actualDimensions({fx, fy}, dimensions) {
+  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = outerDimensions(dimensions);
+  const fxr = fx && outerRange(fx);
+  const fyr = fy && outerRange(fy);
+  return {
+    marginTop: fy ? fyr[0] : marginTop,
+    marginRight: fx ? width - fxr[1] : marginRight,
+    marginBottom: fy ? height - fyr[1] : marginBottom,
+    marginLeft: fx ? fxr[0] : marginLeft,
+    // Some marks, namely the x- and y-axis labels, want to know what the
+    // desired (rather than actual) margins are for positioning.
+    inset: {
+      marginTop: dimensions.marginTop,
+      marginRight: dimensions.marginRight,
+      marginBottom: dimensions.marginBottom,
+      marginLeft: dimensions.marginLeft
+    },
+    width,
+    height
+  };
+}
+
+function outerRange(scale) {
+  const domain = scale.domain;
+  let x1 = scale.scale(domain[0]);
+  let x2 = scale.scale(domain[domain.length - 1]);
+  if (x2 < x1) [x1, x2] = [x2, x1];
+  return [x1, x2 + scale.scale.bandwidth()];
 }
