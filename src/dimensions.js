@@ -5,7 +5,6 @@ import {offset} from "./style.js";
 import {defaultWidth} from "./marks/text.js";
 import {createScaleFunctions, autoScaleRange, innerDimensions, outerDimensions} from "./scales.js";
 
-const marginSmall = 40;
 const marginMedium = 60;
 const marginLarge = 90;
 
@@ -80,16 +79,9 @@ function createDimensions(scales, marks, options = {}) {
   // revise the dimensions if necessary.
   const autoMargins = [];
   for (const m of marks) {
-    let {marginTop, marginRight, marginBottom, marginLeft, frameAnchor} = m;
-    if (marginLeft === "y" || marginLeft === "fy") {
-      if (frameAnchor === "left") autoMargins.push(["marginLeft", marginLeft, m]);
-      marginLeft = marginSmall;
-    }
-    if (marginRight === "y" || marginRight === "fy") {
-      if (frameAnchor === "right") autoMargins.push(["marginRight", marginRight, m]);
-      marginRight = marginSmall;
-    }
-
+    let {marginTop, marginRight, marginBottom, marginLeft, autoMarginRight, autoMarginLeft, frameAnchor} = m;
+    if (autoMarginLeft && frameAnchor === "left") autoMargins.push(["marginLeft", autoMarginLeft, m]);
+    if (autoMarginRight && frameAnchor === "right") autoMargins.push(["marginRight", autoMarginRight, m]);
     if (marginTop > marginTopDefault) marginTopDefault = marginTop;
     if (marginRight > marginRightDefault) marginRightDefault = marginRight;
     if (marginBottom > marginBottomDefault) marginBottomDefault = marginBottom;
