@@ -125,8 +125,6 @@ You can use Plot’s **style** and **className** options to target the chart’s
 
 Plot returns an HTML figure element, or a raw SVG element containing the chart. Before you return the chart and add it to the DOM, you can manipulate it however you like. For example, make the dots fade in with:
 
-**TODO** intersection observer?
-
 :::plot hidden defer
 ~~~js
 Plot.plot({
@@ -143,7 +141,7 @@ Plot.plot({
       .attr("stroke-width", 0)
       .attr("r", 0)
       .transition()
-      .delay(200)
+      .delay(replayFadeIn ? 500 : 4000)
       .duration(1500)
       .ease(d3.easeQuadIn)
       .attr("r", 6)
@@ -167,12 +165,12 @@ d3.select(chart)
     .selectAll("circle")
     .attr("r", 0)
   .transition()
-    .delay(200)
+    .delay(500)
     .duration(1500)
     .attr("r", 6);
 ~~~
 
-This type of post-processing can be as simple as that, or as elaborated as you need!
+This type of post-processing can be as elaborated as you need!
 
 
 ### document 🌶 {#document}
