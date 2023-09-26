@@ -589,35 +589,32 @@ A custom dot [symbol](../marks/dot.md#dot-options) can be specified as an object
 {draw: (context, r) => context.arc(0, 0, Math.sqrt(r), 0, 2 * Math.PI)}
 ~~~
 
-The context accepts [turtle commands](https://observablehq.com/@d3/d3-path). Now, if we want a [rose](https://observablehq.com/@recifs/a-rose-is-a-rose):
+The context accepts [turtle commands](https://observablehq.com/@d3/d3-path). Now, if we want flowers:
 
-**TODO** doesn't work in this context & breaks the anchor checker…
-
+:::plot
 ~~~js
 Plot.dot(penguins.slice(120, 180), {
   x: "body_mass_g",
   y: "culmen_length_mm",
   strokeWidth: 0.5,
   stroke: "species",
-  r: (d, i) => i % 4,
+  r: 14,
   symbol: {
     draw: (context, size) => {
-      // note: size interpreted as number of petals
-      const n = 2 * Math.sqrt(size) + 1;
-      const r = 25;
-      for (let i = 0; i < 360; ++i) {
-        const a = (i * Math.PI) / 180;
-        const rho = r * Math.sin(n * a);
-        context[i === 0 ? "moveTo" : "lineTo"](
-          rho * Math.cos(a),
-          rho * Math.sin(a)
-        );
+      const r = Math.sqrt(size / Math.PI);
+      context.moveTo(0, 0);
+      let i;
+      for (i = 1; i < 50; ++i) { 
+        const a = (i * Math.PI) / 25;
+        const rho = r * Math.abs(Math.sin(5 * a / 2));
+        context.lineTo(rho * Math.cos(a), rho * Math.sin(a));
       }
       context.closePath();
     }
   }
 }).plot({inset: 20, nice: true})
 ~~~
+:::
 
 ### Marker 🌶 {#marker}
 
