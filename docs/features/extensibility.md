@@ -64,9 +64,124 @@ If you have a use case for an extension that could be useful to more people, ple
 
 Plot’s typescript declarations document the inputs and expected outputs of these options. When in doubt, please open a [GitHub discussion](https://github.com/observablehq/plot/discussions) or post a question [in the Observable forum](https://talk.observablehq.com/).
 
-Below is an overview of the many places where writing custom JavaScript code allows you to go beyond the presets. We have annotated each of the sections with spices indicating their relative difficulty level, from relatively straightforward 🤞 to expert level 🌶🌶🌶.
+Below is an overview of the many places where writing custom JavaScript code allows you to go beyond the presets. Some sections are labeled with spices indicating a higher difficulty level.
 
-## Channel value 🤞 {#channel-value}
+## Chart definitions
+
+### Tick format {#tickFormat}
+
+The [tickFormat](./scales.md#position-scale-options) scale option can be specified as a function that takes as input the tick value, and returns a string. For custom abbreviations of day names:
+
+:::plot
+~~~js
+Plot.plot({
+  x: {tickFormat: (d) => ["*", "M", "Tu", "W", "Th", "F", "Sa"][d.getUTCDay()]},
+  marks: [Plot.dotX(sftemp.slice(-12), {x: "date"})]
+})
+~~~
+:::
+
+### Title, subtitle, and caption {#title}
+
+The **title**, **subtitle**, and **caption** options all accept DOM nodes (as well as strings), allowing you to get as funky as you want with tools that generate HTML such as [htl.html](https://github.com/observablehq/htl) and [md](https://github.com/observablehq/stdlib#markdown).
+
+<figure style="max-width: initial; padding-left: 1em; border-left: solid 2px #ccc;"><h3 id="_who-cares-about-the-actual-chart-_"><em>Who cares about the actual chart?</em></h3><p>when it has a <em style="border-bottom: 2px solid red">good</em> title</p><svg fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="400" height="60" viewBox="0 0 400 60"><rect aria-label="frame" fill="none" stroke="currentColor" x="0.5" y="0.5" width="399" height="59"></rect></svg><figcaption><p>👆 Notice <i>anything</i> missing?</p></figcaption></figure>
+
+~~~js
+Plot.plot({
+  title: md`## _Who cares about the actual chart?_`,
+  subtitle: htl.html`<p>when it has a <em style="border-bottom: 2px…`,
+  marks: [Plot.frame()],
+  caption: md`👆 Notice <i>anything</i> missing?`
+})
+~~~
+
+### Projection {#projection}
+
+You can render your [maps](./projections.md) with any of D3’s extended projections from [d3-geo-projection](https://github.com/d3/d3-geo-projection), or from any other module; for instance, [Fuller’s AirOcean](https://observablehq.com/@d3/fullers-airocean) projection:
+
+:::plot
+~~~js
+// import {geoAirocean} from "d3-geo-polygon";
+Plot.plot({
+  projection: (options) => geoAirocean()
+    .fitSize([options.width, options.height], {type: "Sphere"}),
+  marks: [
+    Plot.graticule(),
+    Plot.sphere(),
+    Plot.geo(land, {fill: "currentColor"})
+  ]
+})
+~~~
+:::
+
+Writing a custom projection can also be fun, for example if you want a base for an [isometric perspective projection](https://observablehq.com/@fil/isometric-projection) or for [ternary plots](https://observablehq.com/@fil/ternary-plot). **TODO** publish and add to the Plot gallery.
+
+### Style and className {#className}
+
+You can use Plot’s **style** and **className** options to target the chart’s constituents with CSS. The corresponding CSS styles can be defined from inside the chart definition, using the style option, if they target the chart’s svg. They can be defined with a more complex stylesheet, that is either returned as a render function mark, or added as an external stylesheet to the document. (Note that each mark can have its own aria label, that can also be used to target a specific mark in the chart.)
+
+### Post-processing techniques {#post-processing}
+
+Plot returns an HTML figure element, or a raw SVG element containing the chart. Before you return the chart and add it to the DOM, you can manipulate it however you like. For example, make the dots fade in with:
+
+**TODO** intersection observer?
+
+:::plot hidden defer
+~~~js
+Plot.plot({
+  height: 400,
+  replayFadeIn,
+  marks: [
+    () => d3.select(Plot.dot(penguins, {
+    x: "culmen_length_mm",
+    y: "culmen_depth_mm",
+    fill: "species",
+    stroke: "white",
+  }).plot()).call(chart => chart
+      .selectAll("circle")
+      .attr("stroke-width", 0)
+      .attr("r", 0)
+      .transition()
+      .delay(200)
+      .duration(1500)
+      .ease(d3.easeQuadIn)
+      .attr("r", 6)
+      .attr("stroke-width", 1.5)
+    ).node()
+  ]
+})
+:::
+
+<button @click="replayFadeIn++">Replay</button>
+
+~~~js
+const chart = Plot.dot(penguins, {
+  x: "culmen_length_mm",
+  y: "culmen_depth_mm",
+  fill: "species",
+  stroke: "white"
+}).plot();
+
+d3.select(chart)
+    .selectAll("circle")
+    .attr("r", 0)
+  .transition()
+    .delay(200)
+    .duration(1500)
+    .attr("r", 6);
+~~~
+
+This type of post-processing can be as simple as that, or as elaborated as you need!
+
+
+### document 🌶 {#document}
+
+The *context* argument of the render transform has a document property, which defaults to the browser document, and allows to create new nodes. This is useful in specific environments — such as server-side-rendering; for examples, see this [implementation of a trellis plot on val.town](https://www.val.town/v/fil.beckerBarley), or the [PlotRender](https://github.com/observablehq/plot/blob/main/docs/components/PlotRender.js) component we use to render the charts on this very website.
+
+## Data transformations
+
+### Channel value {#channel-value}
 
 A [channel](./marks.md#marks-have-channels) can be specified as an **accessor function**. For example, this [candlestick chart](https://observablehq.com/@observablehq/plot-candlestick-chart?intent=fork) draws a vertical link between the opening and closing values of a stock ticker with a color showing whether the value has increased or decreased:
 
@@ -77,7 +192,7 @@ stroke: (d) => Math.sign(d.Close - d.Open)
 The function receives as arguments *d* the current datum, and *i* its index in the mark’s data.
 
 
-## Filter 🤞 {#filter}
+### Filter {#filter}
 
 The [filter transform](../transforms/filter.md#filter-transform) expects a channel, and works exactly as above. To keep only days when a stock’s closing value is higher than its opening value:
 
@@ -85,8 +200,43 @@ The [filter transform](../transforms/filter.md#filter-transform) expects a chann
 filter: (d) => d.Close > d.Open
 ~~~
 
+### Literal color {#literal-color}
 
-## Channel transform 🌶  {#channel-transform}
+Sometimes you will want to apply two color scales, but Plot only accepts one scale at the moment. Don't worry, you can opt out of scales for one mark, and apply literal colors (that might be obtained by applying your own custom scale) to the other. Since scales can be exported from a chart and reused in another one, you can even build the two scales in different plots, then apply them individually on each mark:
+
+~~~js
+chartSpecies = Plot.tickX(penguins, {
+  x: "body_mass_g",
+  stroke: "species"
+}).plot({ color: { scheme: "Category10", legend: true } })
+
+chartMass = Plot.tickX(penguins, {x: "body_mass_g", stroke: "body_mass_g"}).plot({color: {scheme: "Reds", legend: true}})
+
+combined = {
+  const colorMass = chartMass.scale("color").apply;
+  const colorSpecies = chartSpecies.scale("color").apply;
+  return Plot.plot({
+    marginLeft: 80,
+    marks: [
+      Plot.dot(penguins, {
+        x: "body_mass_g",
+        y: "species",
+        fill: (d) => colorSpecies(d["species"]),
+        dy: -3
+      }),
+      Plot.dot(penguins, {
+        x: "body_mass_g",
+        y: "species",
+        fill: (d) => colorMass(d["body_mass_g"]),
+        dy: 3
+      })
+    ]
+  });
+}
+~~~
+
+
+### Channel transform  {#channel-transform}
 
 A [channel](./marks.md#marks-have-channels) can be specified as an object with a **transform** method. For example, to standardize temperatures:
 
@@ -109,181 +259,10 @@ Plot.line(sftemp, {
 ~~~
 
 :::tip
-This operates on the whole dataset; if you have multiple series and want to standardize each series independently, consider a [map transform](#map).
+This operates on the whole dataset; if you have multiple series and want to standardize each series independently, consider a map transform.
 :::
 
-## Custom marks 🌶🌶🌶  {#marks}
-
-[Marks](./marks.md) are class objects with various methods that Plot calls in sequence to:
-1. _construct_ the mark: define its constant options and its channels.
-2. _initialize_ (apply the transforms and gather the channels)
-3. re-initialize with the scales, if an initializer is present in the options
-4. _scale_ the values, _project_ the points if a projection is present
-5. _filter_ out invalid values
-6. _render_ a svg fragment to append to the current facet
-
-Each of these steps can be modified in JavaScript by extending the default [Mark class](https://github.com/observablehq/plot/blob/main/src/mark.js). (It is often easier to extend a built-in mark class — for example Text if the mark you want to create is similar to a text mark.)
-
-A custom mark can be as simple as changing a default option, for example the [hexagon](https://observablehq.com/plot/marks/dot#hexagon) mark just [sets](https://github.com/observablehq/plot/blob/8b9016a5da5b3e26c5ab0ebf934553e8e20f0d03/src/marks/dot.js#L150) the **symbol** option to “hexagon”. On the other end of the spectrum, a mark can overload all the methods.
-
-The example below shows how to extend the Dot mark with a custom filter method that spiks circles whose _scaled_ radius is less than 3 pixels. (Note that this is different from the [filter transform](../transforms/filter.md#filter-transform) which operates in data space.)
-
-~~~js
-class DotFiltered extends Plot.Dot {
-  filter(index, channels, values) {
-    return index.filter((i) => values.r[i] > 3);
-  }
-}
-
-new DotFiltered(sftemp, {
-  x: "date",
-  y: "high",
-  r: "low"
-}).plot();
-~~~
-
-## Render functions 🌶  {#render-function}
-
-A minimalist mark can be specified as a function that renders a SVG fragment. Such a mark doesn’t participate in settings the scales, etc. For example, to add a watermark or a logo to a chart, using the hypertext literal library [htl](https://github.com/observablehq/htl):
-
-~~~js
-Plot.plot({
-  marks: [
-    Plot.frame(),
-    () => htl.svg`<image x="530" y="30" width="80" height="80"
-        xlink:href="https://example.tld/logo.png">`
-  ]
-})
-~~~
-
-The arguments passed to the render function contain enough information to allow us to position the image with resspect to the scales and the frame’s dimensions. These arguments are fully documented with the [marks feature](./marks.md). For example: 
-
-::: plot
-~~~js
-Plot.plot({
-  marks: [
-    Plot.frame(),
-    Plot.dot(sftemp, {
-      x: "date",
-      y: "high",
-      fill: "gray"
-    }),
-
-    // position a logo wrt the frame’s dimensions
-    (index, scales, values, dimensions, context) => {
-      const size = 80; // logo image size
-      const inset = 10; // separation between logo and frame
-      const x = dimensions.width - dimensions.marginRight;
-      const y = dimensions.marginTop;
-      const g = context.document.createElementNS("http://www.w3.org/2000/svg", "g");
-      g.innerHTML = `<image x=${x - size - inset} y=${y + inset} width=${size} height=${size} xlink:href="https://upload.wikimedia.org/wikipedia/commons/2/22/SVG_Simple_Logo.svg">`;
-      return g;
-    },
-
-    // position the annotation wrt the scales
-    (index, scales, values, dimensions, context) => {
-      const x = scales.x(new Date("2011-04-01"));
-      const y = scales.y(45.5);
-      const g = context.document.createElementNS("http://www.w3.org/2000/svg", "g");
-      g.innerHTML = `<g transform="translate(${x},${y})"><text text-anchor="start" font-size=20>👈 YOU ARE HERE`;
-      return g;
-    }
-  ]
-})
-~~~
-:::
-
-Note that an SVG image is a perfectly legal SVG child element inside another SVG image. This allows to create a [plot of plots](https://observablehq.com/@observablehq/plot-of-plots).
-
-## Composite marks 🤞 {#composite-marks}
-
-The [marks](./plots.md#marks-option) option is an array of marks, possibly nested. A function that reads *data* and *options*, then prepares the data, sets some options, and returns an array of (sub-) marks thus fits in. For instance, here is a [composite mark](./marks.md#marks) that uses the [bollinger map method](https://observablehq.com/plot/marks/bollinger#bollinger) to return 21 line marks expressing the uncertainty of a signal:
-
-~~~js
-function envelopes(data, options) {
-  return d3.ticks(-1, 1, 21).map((j) => Plot.lineY(data, Plot.map(
-    { y: Plot.bollinger({ k: 1.5 * j, n: 20 }) },
-    { strokeWidth: 1 - 0.95 * Math.abs(j) ** 0.7, ...options })
-  ));
-}
-~~~
-
-:::plot
-~~~js
-Plot.plot({
-  marks: [
-    Plot.frame(),
-    envelopes(sftemp, {x: "date", y: "high"}),
-    Plot.dot(sftemp, {fill: "brown", r: 1.5, x: "date", y: "high"})
-  ]
-})
-~~~
-:::
-
-## Conditional marks 🤞 {#conditional-marks}
-
-Null(ish) marks are also accepted, and do… nothing. This quite dull feature allows a developer to create conditional marks that kick in or are ignored when an arbitrary criterion is met. For example, the [bollingerY](https://github.com/observablehq/plot/blob/main/src/marks/bollinger.js) composite mark usually returns an area mark to denote the uncertainty band, and a line mark to denote the trailing average of the value. However when the _fill_ option is set to none, it returns null instead of the area mark, and similarly when the _stroke_ option is set to none, it returns null instead of the line mark — thus avoiding unnecessary computations.
-
-## Render transforms 🌶🌶🌶 {#render-transforms}
-
-Render transforms take over the last stage of the process: rendering the processed data to the screen. This power can be used modestly, for example to tweak the usual representation by adding a fade-in effect. You can also totally replace the usual render method with a different technique — for example to render to a canvas image appended to a [foreignObject](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/foreignObject), if you need to draw hundred of thousands of dots. This is where you can plug custom interactive behaviors (for pointing, brushing…, possibly using D3), or the [SVG animation API](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate), or even asynchronous functions for delayed rendering. The [marks feature](./marks.md#custom-marks) **TODO** PR [#1811](https://github.com/observablehq/plot/pull/1811) page goes through the complete API, and details a few examples.
-
-:::tip
-Render transforms are so powerful that it is tempting to use them as a go-to _hook_ to modify a mark; keep in mind however that it is not always the best approach!
-:::
-
-## Gradients and patterns 🌶  {#gradients}
-
-To stroke or fill a shape with a gradient, a pattern, or an image, specify the **stroke** or **fill** option as a [funciri](https://developer.mozilla.org/en-US/docs/Web/SVG/Content_type#funciri) that reference another element anywhere in the document. If you want to create that element within the chart, you can use the render function:
-
-:::plot defer https://observablehq.com/@observablehq/plot-gradient-bars
-```js
-Plot.plot({
-  marks: [
-    () => htl.svg`<defs>
-      <linearGradient id="gradient" gradientTransform="rotate(90)">
-        <stop offset="15%" stop-color="purple" />
-        <stop offset="75%" stop-color="red" />
-        <stop offset="100%" stop-color="gold" />
-      </linearGradient>
-    </defs>`,
-    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "url(#gradient)"}),
-    Plot.ruleY([0])
-  ]
-})
-```
-:::
-
-The [gradient encoding](https://observablehq.com/@observablehq/plot-gradient-encoding?intent=fork) notebook shows how to create a gradient informed by the chart’s scales, for consistent encoding. Funciri can also be used in the range of an ordinal scale, as in [this notebook](https://observablehq.com/@observablehq/cheysson-plot).
-
-## Transform, initializer 🌶🌶🌶 {#transform}
-
-The [transform](./transforms.md) option is a generic entry point through which Plot operates on the mark’s data — for grouping, binning, sorting, stacking, etc. It can be specified as a custom function of the *data* and *facets*, as well as the top-level *options*, as documented [here](./transforms.md#custom-transforms). This is not something that you will usually do when developing a particular chart, but rather if you are working on a new feature for Plot. Transforms operate in data space, before the scales are computed.
-
-By contrast, the [initializer](./transforms.md#initializer) option is called after the scales are computed. It can create new channels, and it can also ask Plot to generate new scales. This is typically where an options transform such as hexbin operates: it reads scaled values of x and y, and generates counts (for example) of the data values that belong to each hexagon. These counts can then be encoded with a new color scale, or radius scale, to create hexagonal bins. Writing a custom initializer is not easy, and will be mostly used by developers who want to create elaborate transformations on scaled data, akin to the [dodge](../transforms/dodge.md) or [hexbin](../transforms/hexbin.md) transforms.
-
-## Projection 🤞 {#projection}
-
-You can render your [maps](./projections.md) with any of D3’s extended projections from [d3-geo-projection](https://github.com/d3/d3-geo-projection), or from any other module; for instance, [Fuller’s AirOcean](https://observablehq.com/@d3/fullers-airocean) projection:
-
-:::plot
-~~~js
-// const {geoAirocean} = import("d3-geo-polygon");
-Plot.plot({
-  projection: (options) => geoAirocean()
-    .fitSize([options.width, options.height], {type: "Sphere"}),
-  marks: [
-    Plot.graticule(),
-    Plot.sphere(),
-    Plot.geo(land, {fill: "currentColor"})
-  ]
-})
-~~~
-:::
-
-Writing a custom projection can also be fun, for example if you want a base for an [isometric perspective projection](https://observablehq.com/@fil/isometric-projection). 
-
-## Map method 🌶 {#map}
+### Map method {#map}
 
 The example below shows a custom [map](../transforms/map.md) method that implements a standardization of the *y* channel series by series (**TODO** there is only one series, though).
 
@@ -305,9 +284,34 @@ Plot.plot({
 ~~~
 :::
 
-See [above](#channel-transform) for the equivalent standardization on the whole dataset.
 
-## Bin and group reducer 🌶 {#bin-reducer}
+
+### Interval {#interval}
+
+Plot has a lot of built-in [intervals](../transforms/interval.md), that you can invoke with strings such as "week" or even "2 days", and use in several options transforms (such as the bin transform), or even as a scale transform. If this is not enough, you can try a custom interval, say to map numbers to a symmetric segment around the integer part of the number — and help draw a histogram chart where each bin is centered on the closest integer:
+
+:::plot
+~~~js
+Plot.rectY(
+  Array.from({length: 400}, d3.randomNormal(0, 3)),
+  Plot.binX(
+    {y: "count"},
+    {
+      interval: {
+        floor: (d) => Math.floor(d + 0.5) - 0.5,
+        offset: (d, n = 1) => d + n,
+        range: d3.range
+      }
+    }
+  )
+).plot()
+~~~
+:::
+
+A custom interval must provide the floor, offset and range methods, and the floor function _f_ must be idempotent, so that _f_(_f_(x)) = _f_(x). For another example of a custom range, see the [extended interval](https://observablehq.com/@recifs/plot-extended-interval) notebook.
+
+
+### Bin and group reducer {#bin-reducer}
 
 The [bin](../transforms/bin.md) and [group](../transforms/group.md) transforms aggregate values that share a common trait, reducing them to a single value. The reducer can be a function, that receives for each group the input values (if an input channel is defined), or else the input data.
 
@@ -381,7 +385,7 @@ Plot.rectY(
 ).plot()
 ~~~
 
-## Map and window reducer 🌶 {#map-reducer}
+### Map and window reducer {#map-reducer}
 
 The [window transform](../transforms/window.md) takes a moving window of *n* values in the series, and reduces it to a single value. This allows to compute a moving average, maximum, minimum, etc. When you have more specific asks, you can write a custom reducer as a function. There are three flavor of custom reducers for the map and window transforms.
 
@@ -446,8 +450,18 @@ If you wanted to count, say, the number of positive minus the number of negative
 }
 ~~~
 
+### Transform, initializer 🌶 {#transform}
 
-## Scale transform 🌶  {#scale-transform}
+The [transform](./transforms.md) option is a generic entry point through which Plot operates on the mark’s data — for grouping, binning, sorting, stacking, etc. It can be specified as a custom function of the *data* and *facets*, as well as the top-level *options*, as documented [here](./transforms.md#custom-transforms). This is not something that you will usually do when developing a particular chart, but rather if you are working on a new feature for Plot. Transforms operate in data space, before the scales are computed.
+
+By contrast, the [initializer](./transforms.md#initializer) option is called after the scales are computed. It can create new channels, and it can also ask Plot to generate new scales. This is typically where an options transform such as [hexbin](../transforms/hexbin.md) operates: it reads scaled values of x and y, and generates counts (for example) of the data values that belong to each hexagon. These counts can then be encoded with a new color scale, or radius scale, to create hexagonal bins. Writing a custom initializer is not easy, and will be mostly used by developers who want to create elaborate transformations on scaled data, akin to the [dodge](../transforms/dodge.md) or hexbin transforms.
+
+
+
+
+## Visual encoding
+
+### Scale transform  {#scale-transform}
 
 A [scale transform](../features/scales.md#scale-transforms) can be any function mapping the actual data domain to the scale’s domain. For example, multiplying by 100 to transform a ratio (in the [0, 1] interval) into a percentage; or, if the data has temperatures in Fahrenheit (°F), to have a scale use Celsius (°C) instead.
 
@@ -509,7 +523,7 @@ Plot.plot({
 })
 ~~~
 
-## Color interpolator 🌶 {#color-interpolator}
+### Color interpolator {#color-interpolator}
 
 Plot cannot incorporate all the color palettes in the universe as built-in color schemes. But does this mean we’re missing out on great color palettes, such as Fabio Crameri’s [scientific color maps](https://www.fabiocrameri.ch/colourmaps/)? No!, because we can always load those and make a custom color interpolator. For example, the code below creates a function which associates the diverging _oleron_ color map to any number between 0 and 1, with [d3.piecewise](https://d3js.org/d3-interpolate/value#piecewise) (but it could be any custom function):
 
@@ -542,35 +556,32 @@ Plot.plot({
 })
 ~~~
 
-## Curve 🌶🌶🌶 {#curve}
+### Gradients and patterns  {#gradients}
 
-Custom [curves](./curves.md#curves) can be written exactly as with [d3-shape](https://d3js.org/d3-shape/curve#custom-curves); creating a new curve from scratch is beyond the scope of this page, though.
+To stroke or fill a shape with a gradient, a pattern, or an image, specify the **stroke** or **fill** option as a [funciri](https://developer.mozilla.org/en-US/docs/Web/SVG/Content_type#funciri) that reference another element anywhere in the document. If you want to create that element within the chart, you can use the render function:
 
-## Interval 🌶 {#interval}
-
-Plot has a lot of built-in [intervals](../transforms/interval.md), that you can invoke with strings such as "week" or even "2 days", and use in several options transforms (such as the bin transform), or even as a scale transform. If this is not enough, you can try a custom interval, say to map numbers to a symmetric segment around the integer part of the number — and help draw a histogram chart where each bin is centered on the closest integer:
-
-:::plot
-~~~js
-Plot.rectY(
-  Array.from({length: 400}, d3.randomNormal(0, 3)),
-  Plot.binX(
-    {y: "count"},
-    {
-      interval: {
-        floor: (d) => Math.floor(d + 0.5) - 0.5,
-        offset: (d, n = 1) => d + n,
-        range: d3.range
-      }
-    }
-  )
-).plot()
-~~~
+:::plot defer https://observablehq.com/@observablehq/plot-gradient-bars
+```js
+Plot.plot({
+  marks: [
+    () => htl.svg`<defs>
+      <linearGradient id="gradient" gradientTransform="rotate(90)">
+        <stop offset="15%" stop-color="purple" />
+        <stop offset="75%" stop-color="red" />
+        <stop offset="100%" stop-color="gold" />
+      </linearGradient>
+    </defs>`,
+    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "url(#gradient)"}),
+    Plot.ruleY([0])
+  ]
+})
+```
 :::
 
-A custom interval must provide the floor, offset and range methods, and the floor function ƒ must be idempotent, so that ƒ(ƒ(x)) = ƒ(x). For another example of a custom range, see the [extended interval](https://observablehq.com/@recifs/plot-extended-interval) notebook.
+The [gradient encoding](https://observablehq.com/@observablehq/plot-gradient-encoding?intent=fork) notebook shows how to create a gradient informed by the chart’s scales, for consistent encoding. Funciri can also be used in the range of an ordinal scale, as in [this notebook](https://observablehq.com/@observablehq/cheysson-plot).
 
-## Symbol 🌶🌶 {#symbol}
+
+### Symbol 🌶 {#symbol}
 
 A custom dot [symbol](../marks/dot.md#dot-options) can be specified as an object with a draw method; for instance, the "circle" symbol is equivalent to:
 
@@ -608,7 +619,7 @@ Plot.dot(penguins.slice(120, 180), {
 }).plot({inset: 20, nice: true})
 ~~~
 
-## Marker 🌶🌶 {#marker}
+### Marker 🌶 {#marker}
 
 [Markers](./markers.md#markers) are similar to symbols (they can draw a shape at a certain location), but their API is quite different, expecting a color and returning a SVG [marker element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker):
 
@@ -630,7 +641,7 @@ Plot.plot({
 ~~~
 :::
 
-## Vector shape 🌶🌶 {#vector-shape}
+### Vector shape 🌶 {#vector-shape}
 
 Custom [vector shapes](../marks/vector.md#vector-options) are similar to symbols: their draw method is passed a context, length, and radius, and applies [turtle commands](https://observablehq.com/@d3/d3-path) to the context. If you use anchor: start, the shape’s coordinate system’s origin is at the point’s location. The radius parameter allows to create shapes with a secondary dimension (like the base of the triangle for the spike shape).
 
@@ -657,42 +668,43 @@ Plot.plot({
 ~~~
 :::
 
-## Tick format 🤞 {#tickFormat}
+### Curve 🌶 {#curve}
 
-An easy one! The [tickFormat](./scales.md#position-scale-options) scale option can be specified as a function that takes as input the tick value, and returns a string. For example if you want to return custom abbreviations of day names:
+Custom [curves](./curves.md#curves) can be written exactly as with [d3-shape](https://d3js.org/d3-shape/curve#custom-curves); creating a new curve from scratch is beyond the scope of this page, though.
+
+## Mark rendering
+
+### Composite marks {#composite-marks}
+
+The [marks](./plots.md#marks-option) option is an array of marks, possibly nested. A function that reads *data* and *options*, then prepares the data, sets some options, and returns an array of (sub-) marks thus fits in. For instance, here is a [composite mark](./marks.md#marks) that uses the [bollinger map method](https://observablehq.com/plot/marks/bollinger#bollinger) to return 21 line marks expressing the uncertainty of a signal:
+
+~~~js
+function envelopes(data, options) {
+  return d3.ticks(-1, 1, 21).map((j) => Plot.lineY(data, Plot.map(
+    { y: Plot.bollinger({ k: 1.5 * j, n: 20 }) },
+    { strokeWidth: 1 - 0.95 * Math.abs(j) ** 0.7, ...options })
+  ));
+}
+~~~
 
 :::plot
 ~~~js
 Plot.plot({
-  x: {
-    ticks: 20,
-    tickFormat: (d) => ["*", "M", "Tu", "W", "Th", "F", "Sa"][d.getUTCDay()]
-  },
-  marks: [Plot.ruleX(sftemp.slice(-25), { x: "date" })]
+  marks: [
+    Plot.frame(),
+    envelopes(sftemp, {x: "date", y: "high"}),
+    Plot.dot(sftemp, {fill: "brown", r: 1.5, x: "date", y: "high"})
+  ]
 })
 ~~~
 :::
 
-## Title, subtitle, and caption 🤞 {#title}
+### Conditional marks {#conditional-marks}
 
-The **title**, **subtitle**, and **caption** options all accept DOM nodes as well as strings, allowing you to get as funky as you want with tools that generate HTML such as [htl.html](https://github.com/observablehq/htl) and [md](https://github.com/observablehq/stdlib#markdown).
+Null(ish) marks are also accepted, and do… nothing. This quite dull feature allows a developer to create conditional marks that kick in or are ignored when an arbitrary criterion is met. For example, the [bollingerY](https://github.com/observablehq/plot/blob/main/src/marks/bollinger.js) composite mark usually returns an area mark to denote the uncertainty band, and a line mark to denote the trailing average of the value. However when the _fill_ option is set to none, it returns null instead of the area mark, and similarly when the _stroke_ option is set to none, it returns null instead of the line mark — thus avoiding unnecessary computations.
 
-<figure style="max-width: initial;"><h3 id="_who-cares-about-the-actual-chart-_"><em>Who cares about the actual chart?</em></h3><p>when it has a <em style="border-bottom: 2px solid red">good</em> title</p><svg fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60"><rect aria-label="frame" fill="none" stroke="currentColor" x="0.5" y="0.5" width="639" height="59"></rect></svg><figcaption><p>👆 Notice <i>anything</i> missing?</p></figcaption></figure>
 
-~~~js
-Plot.plot({
-  title: md`## _Who cares about the actual chart?_`,
-  subtitle: htl.html`<p>when it has a <em style="border-bottom: 2px…`,
-  marks: [Plot.frame()],
-  caption: md`👆 Notice <i>anything</i> missing?`
-})
-~~~
-
-## document 🌶🌶🌶 {#document}
-
-The *context* argument of the render transform has a document property, which defaults to the browser document, and allows to create new nodes. This is useful in specific environments — such as server-side-rendering, like we do for this documentation website. See the [PlotRender](https://github.com/observablehq/plot/blob/main/docs/components/PlotRender.js) vitepress component in our repository to see how this works in practice.
-
-## Spatial interpolator 🌶🌶 {#spatial-interpolator}
+### Spatial interpolator 🌶 {#spatial-interpolator}
 
 [Spatial interpolators](../marks/raster.md#spatial-interpolators) power the raster and contour marks. They attribute a value to every pixel on a grid, based on an array of samples that have x and y coordinates and a value. The built-in interpolators allow to evaluate a pixel based on the nearest neighbor, or through a random walk that returns the first match, for example. However these built-ins are far from covering the whole extent of spatial interpolators that exist in the scientific literature. Programming a custom interpolator can be a fun challenge. Once you do it, it will be available to derive contours and rasters alike, across the diverse landscape of Plot use-cases (including map projections, faceting, etc.). The only thing you need to care about is to fill the output, which is an array representing a grid of pixels.
 
@@ -748,103 +760,97 @@ Plot.raster(penguins, {
 Plot’s built-in interpolators are also JavaScript functions, that can be used as a first step to build a different interpolator, or to compute rasters meant to be used outside of Plot!
 :::
 
-### Random number generator 🌶 {#random}
+#### Random number generator {#random}
 
 The built-in spatial interpolators also accept a custom random number generator (they default to a fixed-seed randomLcg, for reproducible results). Why should we care about customizing the random numbers? First of all, we might want a non-fixed seed random generator, for charts that vary (slightly) on each run. Another use case is to base the randomness of spatial interpolators on _blue noise_, which has good properties. Creating a blue-noise generator is out of scope for this page, though.
 
-## Style and className 🤞 {#className}
+### Custom marks 🌶  {#marks}
 
-Don’t forget that you can use Plot’s **style** and **className** options to target your chart’s constituents with CSS. The corresponding CSS styles can be defined from inside the chart definition, using the style option, if they target the chart’s svg. They can be defined with a more complex stylesheet, that is either returned as a render function mark, or added as an external stylesheet to the document. (Note that each mark can have its own aria label, that can also be used to target a specific mark in the chart.)
+[Marks](./marks.md) are class objects with various methods that Plot calls in sequence to:
+1. _construct_ the mark: define its constant options and its channels.
+2. _initialize_ (apply the transforms and gather the channels)
+3. re-initialize with the scales, if an initializer is present in the options
+4. _scale_ the values, _project_ the points if a projection is present
+5. _filter_ out invalid values
+6. _render_ a svg fragment to append to the current facet
 
-## Post-processing techniques 🌶 {#post-processing}
+Each of these steps can be modified in JavaScript by extending the default [Mark class](https://github.com/observablehq/plot/blob/main/src/mark.js). (It is often easier to extend a built-in mark class — for example Text if the mark you want to create is similar to a text mark.)
 
-Plot returns an HTML figure element, or a raw SVG element containing the chart. Before you return the chart and add it to the DOM, you can manipulate it as any other element. For example, with D3, we can make the dots fade in:
+A custom mark can be as simple as changing a default option, for example the [hexagon](https://observablehq.com/plot/marks/dot#hexagon) mark just [sets](https://github.com/observablehq/plot/blob/8b9016a5da5b3e26c5ab0ebf934553e8e20f0d03/src/marks/dot.js#L150) the **symbol** option to “hexagon”. On the other end of the spectrum, a mark can overload all the methods.
 
-**TODO** intersection observer?
+The example below shows how to extend the Dot mark with a custom filter method that spiks circles whose _scaled_ radius is less than 3 pixels. (Note that this is different from the [filter transform](../transforms/filter.md#filter-transform) which operates in data space.)
 
-:::plot hidden defer
+~~~js
+class DotFiltered extends Plot.Dot {
+  filter(index, channels, values) {
+    return index.filter((i) => values.r[i] > 3);
+  }
+}
+
+new DotFiltered(sftemp, {
+  x: "date",
+  y: "high",
+  r: "low"
+}).plot();
+~~~
+
+### Render functions  {#render-function}
+
+A minimalist mark can be specified as a function that renders a SVG fragment. Such a mark doesn’t participate in settings the scales, etc. For example, to add a watermark or a logo to a chart, using the hypertext literal library [htl](https://github.com/observablehq/htl):
+
 ~~~js
 Plot.plot({
-  height: 400,
   marks: [
-    () => d3.select(Plot.dot(penguins, {
-    x: "culmen_length_mm",
-    y: "culmen_depth_mm",
-    fill: "species",
-    stroke: "white",
-    replayFadeIn
-  }).plot()).call(chart => chart
-      .selectAll("circle")
-      .attr("stroke-width", 0)
-      .attr("r", 0)
-      .transition()
-      .delay(200)
-      .duration(1500)
-      .ease(d3.easeQuadIn)
-      .attr("r", 6)
-      .attr("stroke-width", 1.5)
-    ).node()
+    Plot.frame(),
+    () => htl.svg`<image x="530" y="30" width="80" height="80"
+        xlink:href="https://example.tld/logo.png">`
   ]
 })
+~~~
+
+The arguments passed to the render function contain enough information to allow us to position the image with resspect to the scales and the frame’s dimensions. These arguments are fully documented with the [marks feature](./marks.md). For example: 
+
+::: plot
+~~~js
+Plot.plot({
+  marks: [
+    Plot.frame(),
+    Plot.dot(sftemp, {
+      x: "date",
+      y: "high",
+      fill: "gray"
+    }),
+
+    // position a logo wrt the frame’s dimensions
+    (index, scales, values, dimensions, context) => {
+      const size = 80; // logo image size
+      const inset = 10; // separation between logo and frame
+      const x = dimensions.width - dimensions.marginRight;
+      const y = dimensions.marginTop;
+      const g = context.document.createElementNS("http://www.w3.org/2000/svg", "g");
+      g.innerHTML = `<image x=${x - size - inset} y=${y + inset} width=${size} height=${size} xlink:href="https://upload.wikimedia.org/wikipedia/commons/2/22/SVG_Simple_Logo.svg">`;
+      return g;
+    },
+
+    // position the annotation wrt the scales
+    (index, scales, values, dimensions, context) => {
+      const x = scales.x(new Date("2011-04-01"));
+      const y = scales.y(45.5);
+      const g = context.document.createElementNS("http://www.w3.org/2000/svg", "g");
+      g.innerHTML = `<g transform="translate(${x},${y})"><text text-anchor="start" font-size=20>👈 YOU ARE HERE`;
+      return g;
+    }
+  ]
+})
+~~~
 :::
 
-<button @click="replayFadeIn++">Replay</button>
+Note that an SVG image is a perfectly legal SVG child element inside another SVG image. This allows to create a [plot of plots](https://observablehq.com/@observablehq/plot-of-plots).
 
-~~~js
-const chart = Plot.dot(penguins, {
-  x: "culmen_length_mm",
-  y: "culmen_depth_mm",
-  fill: "species",
-  stroke: "white"
-}).plot();
+### Render transforms 🌶 {#render-transforms}
 
-d3.select(chart)
-  .selectAll("circle")
-  .attr("r", 0)
-  .transition()
-  .delay(200)
-  .duration(1500)
-  .attr("r", 6);
-~~~
+Render transforms take over the last stage of the process: rendering the processed data to the screen. This power can be used modestly, for example to tweak the usual representation by adding a fade-in effect. You can also totally replace the usual render method with a different technique — for example to render to a canvas image appended to a [foreignObject](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/foreignObject), if you need to draw hundred of thousands of dots. This is where you can plug custom [interactions](./interactions.md), invoke the [SVG animation API](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate), or add asynchronous functions for delayed rendering. The [marks feature](./marks.md#custom-marks) **TODO** PR [#1811](https://github.com/observablehq/plot/pull/1811) page goes through the complete API, and details a few examples.
 
-This type of post-processing can be as simple as that, or as elaborated as you need!
-
-## Literal color 🤞 {#literal-color}
-
-Sometimes you will want to apply two color scales, but Plot only accepts one scale at the moment. Don't worry, you can opt out of scales for one mark, and apply literal colors (that might be obtained by applying your own custom scale) to the other. Since scales can be exported from a chart and reused in another one, you can even build the two scales in different plots, then apply them individually on each mark:
-
-~~~js
-chartSpecies = Plot.tickX(penguins, {
-  x: "body_mass_g",
-  stroke: "species"
-}).plot({ color: { scheme: "Category10", legend: true } })
-
-chartMass = Plot.tickX(penguins, {x: "body_mass_g", stroke: "body_mass_g"}).plot({color: {scheme: "Reds", legend: true}})
-
-combined = {
-  const colorMass = chartMass.scale("color").apply;
-  const colorSpecies = chartSpecies.scale("color").apply;
-  return Plot.plot({
-    marginLeft: 80,
-    marks: [
-      Plot.dot(penguins, {
-        x: "body_mass_g",
-        y: "species",
-        fill: (d) => colorSpecies(d["species"]),
-        dy: -3
-      }),
-      Plot.dot(penguins, {
-        x: "body_mass_g",
-        y: "species",
-        fill: (d) => colorMass(d["body_mass_g"]),
-        dy: 3
-      })
-    ]
-  });
-}
-~~~
-
-## Opting out of transforms (⁇) {#transform-out}
-
-(_e.g._, pre-binned data)
-
+:::tip
+Render transforms are so powerful that it is tempting to use them as a go-to _hook_ to modify a mark; keep in mind however that it is not always the best approach!
+:::
