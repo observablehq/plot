@@ -2,7 +2,7 @@ import {extent, max} from "d3";
 import {createProjection, projectionAspectRatio} from "./projection.js";
 import {createScales, isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
-import {defaultWidth} from "./marks/text.js";
+import {defaultWidth, monospaceWidth} from "./marks/text.js";
 import {createScaleFunctions, autoScaleRange, innerDimensions, outerDimensions} from "./scales.js";
 
 const marginMedium = 60;
@@ -14,9 +14,9 @@ const marginLarge = 90;
 function autoMarginK(margin, scale, options, mark, stateByMark, scales, dimensions, context) {
   const {data, facets} = stateByMark.get(mark);
   const {channels} = mark.initializer(data, facets, {}, scales, dimensions, context);
-  const l = max(channels.text.value, (t) => (t ? defaultWidth(`${t}`) : NaN));
-  // 295 = 66 * 4 + 31 = defaultWidth("4,444")
-  const m = l >= 400 ? marginLarge : l > 295 ? marginMedium : null;
+  const [width, small, medium] = mark.monospace ? [monospaceWidth, 400, 700] : [defaultWidth, 295, 400];
+  const l = max(channels.text.value, (t) => (t ? width(`${t}`) : NaN));
+  const m = l >= medium ? marginLarge : l >= small ? marginMedium : null;
   return !m
     ? options
     : scale === "fy"
