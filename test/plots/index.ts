@@ -28,6 +28,7 @@ export * from "./athletes-sport-weight.js";
 export * from "./athletes-weight-cumulative.js";
 export * from "./athletes-weight.js";
 export * from "./autoheight.js";
+export * from "./automargins.js";
 export * from "./autoplot.js";
 export * from "./availability.js";
 export * from "./axis-filter.js";
