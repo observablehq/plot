@@ -14,7 +14,7 @@ const marginLarge = 90;
 function autoMarginK(margin, scale, options, mark, stateByMark, scales, dimensions, context) {
   const {data, facets} = stateByMark.get(mark);
   const {channels} = mark.initializer(data, facets, {}, scales, dimensions, context);
-  const l = max(channels.text.value, (t) => (t ? defaultWidth(t) : NaN));
+  const l = max(channels.text.value, (t) => (t ? defaultWidth(`${t}`) : NaN));
   // 295 = 66 * 4 + 31 = defaultWidth("4,444")
   const m = l >= 400 ? marginLarge : l > 295 ? marginMedium : null;
   return !m
