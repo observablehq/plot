@@ -133,7 +133,7 @@ The order and formatting of channels in the tip can be customized with the **for
 
 A channel’s label can be specified alongside its value as a {value, label} object; if a channel label is not specified, the associated scale’s label is used, if any; if there is no associated scale, or if the scale has no label, the channel name is used instead.
 
-:::plot defer
+:::plot defer https://observablehq.com/@observablehq/plot-tip-format
 ```js
 Plot.dot(olympians, {
   x: "weight",
