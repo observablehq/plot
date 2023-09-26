@@ -1,4 +1,4 @@
-import type {ChannelValueSpec} from "../channel.js";
+import type {ChannelName, ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 import type {TextStyles} from "./text.js";
 
@@ -61,6 +61,13 @@ export interface TipOptions extends MarkOptions, TextStyles {
    * the right of the anchor position.
    */
   anchor?: FrameAnchor;
+
+  /**
+   * How channel values are formatted for display. If a format is a string, it
+   * is interpreted as a (UTC) time format for temporal channels, and otherwise
+   * a number format.
+   */
+  format?: {[name in ChannelName]?: boolean | string | ((d: any, i: number) => string)};
 }
 
 /**

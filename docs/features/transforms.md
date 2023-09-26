@@ -51,12 +51,12 @@ Plot.plot({
 As you might expect, traffic varies significantly throughout the day, so perhaps it would be better to look at the median by hour by location? Instead of grouping only by **y**, we can group by both **x** and **y** to produce a heatmap.
 
 :::plot defer https://observablehq.com/@observablehq/plot-sorted-heatmap
-```js
+```js-vue
 Plot.plot({
   marginLeft: 120,
   padding: 0,
   y: {label: null},
-  color: {legend: true, zero: true},
+  color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}", legend: true, zero: true},
   marks: [
     Plot.cell(
       traffic,

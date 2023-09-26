@@ -1,0 +1,80 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="150" viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="link" fill="none" stroke-width="1.5" stroke-opacity="0.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+    <path d="M40,72.833C108.333,72.833,108.333,14.333,176.667,14.333" stroke="#636363"></path>
+    <path d="M40,72.833C108.333,72.833,108.333,36,176.667,36" stroke="#636363"></path>
+    <path d="M40,72.833C108.333,72.833,108.333,53.333,176.667,53.333" stroke="#636363"></path>
+    <path d="M40,72.833C108.333,72.833,108.333,70.667,176.667,70.667" stroke="#636363"></path>
+    <path d="M40,72.833C108.333,72.833,108.333,88,176.667,88" stroke="#636363"></path>
+    <path d="M40,72.833C108.333,72.833,108.333,105.333,176.667,105.333" stroke="#636363"></path>
+    <path d="M40,72.833C108.333,72.833,108.333,131.333,176.667,131.333" stroke="#636363"></path>
+    <path d="M176.667,14.333C245,14.333,245,10,313.333,10" stroke="#bdbdbd"></path>
+    <path d="M176.667,14.333C245,14.333,245,18.667,313.333,18.667" stroke="#bdbdbd"></path>
+    <path d="M176.667,36C245,36,245,36,313.333,36" stroke="#bdbdbd"></path>
+    <path d="M176.667,53.333C245,53.333,245,53.333,313.333,53.333" stroke="#bdbdbd"></path>
+    <path d="M176.667,70.667C245,70.667,245,70.667,313.333,70.667" stroke="#bdbdbd"></path>
+    <path d="M176.667,88C245,88,245,88,313.333,88" stroke="#bdbdbd"></path>
+    <path d="M176.667,105.333C245,105.333,245,105.333,313.333,105.333" stroke="#bdbdbd"></path>
+    <path d="M176.667,131.333C245,131.333,245,122.667,313.333,122.667" stroke="#636363"></path>
+    <path d="M176.667,131.333C245,131.333,245,140,313.333,140" stroke="#636363"></path>
+    <path d="M313.333,122.667C381.667,122.667,381.667,122.667,450,122.667" stroke="#bdbdbd"></path>
+    <path d="M313.333,140C381.667,140,381.667,140,450,140" stroke="#bdbdbd"></path>
+  </g>
+  <g aria-label="dot" transform="translate(0.5,0.5)">
+    <circle cx="40" cy="72.83333333333333" r="3" fill="#636363"><title>/foo</title></circle>
+    <circle cx="176.66666666666669" cy="14.333333333333332" r="3" fill="#636363"><title>/foo/a</title></circle>
+    <circle cx="176.66666666666669" cy="35.99999999999999" r="3" fill="#636363"><title>/foo/b</title></circle>
+    <circle cx="176.66666666666669" cy="53.333333333333336" r="3" fill="#636363"><title>/foo/c;c</title></circle>
+    <circle cx="176.66666666666669" cy="70.66666666666666" r="3" fill="#636363"><title>/foo/e\\;e</title></circle>
+    <circle cx="176.66666666666669" cy="88" r="3" fill="#636363"><title>/foo/f\/f</title></circle>
+    <circle cx="176.66666666666669" cy="105.33333333333334" r="3" fill="#636363"><title>/foo/g\\\/g</title></circle>
+    <circle cx="176.66666666666669" cy="131.33333333333331" r="3" fill="#636363"><title>/foo/d\\</title></circle>
+    <circle cx="313.3333333333333" cy="10" r="3" fill="#bdbdbd"><title>/foo/a/\/\/example</title></circle>
+    <circle cx="313.3333333333333" cy="18.666666666666664" r="3" fill="#bdbdbd"><title>/foo/a/\/\/example\/1</title></circle>
+    <circle cx="313.3333333333333" cy="35.99999999999999" r="3" fill="#bdbdbd"><title>/foo/b/\/\/example\/2</title></circle>
+    <circle cx="313.3333333333333" cy="53.333333333333336" r="3" fill="#bdbdbd"><title>/foo/c;c/\/\/example2</title></circle>
+    <circle cx="313.3333333333333" cy="70.66666666666666" r="3" fill="#bdbdbd"><title>/foo/e\\;e/\/\/example2</title></circle>
+    <circle cx="313.3333333333333" cy="88" r="3" fill="#bdbdbd"><title>/foo/f\/f/\/\/example4</title></circle>
+    <circle cx="313.3333333333333" cy="105.33333333333334" r="3" fill="#bdbdbd"><title>/foo/g\\\/g/\/\/example3</title></circle>
+    <circle cx="313.3333333333333" cy="122.66666666666667" r="3" fill="#636363"><title>/foo/d\\/d</title></circle>
+    <circle cx="313.3333333333333" cy="140" r="3" fill="#636363"><title>/foo/d\\/\d</title></circle>
+    <circle cx="450" cy="122.66666666666667" r="3" fill="#bdbdbd"><title>/foo/d\\/d/\/\/example2</title></circle>
+    <circle cx="450" cy="140" r="3" fill="#bdbdbd"><title>/foo/d\\/\d/\/\/example2</title></circle>
+  </g>
+  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="start" transform="translate(6.5,0.5)">
+    <text y="0.32em" transform="translate(313.3333333333333,10)">//example<title>/foo/a/\/\/example</title></text>
+    <text y="0.32em" transform="translate(313.3333333333333,18.666666666666664)">//example/1<title>/foo/a/\/\/example\/1</title></text>
+    <text y="0.32em" transform="translate(313.3333333333333,35.99999999999999)">//example/2<title>/foo/b/\/\/example\/2</title></text>
+    <text y="0.32em" transform="translate(313.3333333333333,53.333333333333336)">//example2<title>/foo/c;c/\/\/example2</title></text>
+    <text y="0.32em" transform="translate(313.3333333333333,70.66666666666666)">//example2<title>/foo/e\\;e/\/\/example2</title></text>
+    <text y="0.32em" transform="translate(313.3333333333333,88)">//example4<title>/foo/f\/f/\/\/example4</title></text>
+    <text y="0.32em" transform="translate(313.3333333333333,105.33333333333334)">//example3<title>/foo/g\\\/g/\/\/example3</title></text>
+    <text y="0.32em" transform="translate(450,122.66666666666667)">//example2<title>/foo/d\\/d/\/\/example2</title></text>
+    <text y="0.32em" transform="translate(450,140)">//example2<title>/foo/d\\/\d/\/\/example2</title></text>
+  </g>
+  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="end" transform="translate(-5.5,0.5)">
+    <text y="0.32em" transform="translate(40,72.83333333333333)">foo<title>/foo</title></text>
+    <text y="0.32em" transform="translate(176.66666666666669,14.333333333333332)">a<title>/foo/a</title></text>
+    <text y="0.32em" transform="translate(176.66666666666669,35.99999999999999)">b<title>/foo/b</title></text>
+    <text y="0.32em" transform="translate(176.66666666666669,53.333333333333336)">c;c<title>/foo/c;c</title></text>
+    <text y="0.32em" transform="translate(176.66666666666669,70.66666666666666)">e\;e<title>/foo/e\\;e</title></text>
+    <text y="0.32em" transform="translate(176.66666666666669,88)">f/f<title>/foo/f\/f</title></text>
+    <text y="0.32em" transform="translate(176.66666666666669,105.33333333333334)">g\/g<title>/foo/g\\\/g</title></text>
+    <text y="0.32em" transform="translate(176.66666666666669,131.33333333333331)">d\<title>/foo/d\\</title></text>
+    <text y="0.32em" transform="translate(313.3333333333333,122.66666666666667)">d<title>/foo/d\\/d</title></text>
+    <text y="0.32em" transform="translate(313.3333333333333,140)">\d<title>/foo/d\\/\d</title></text>
+  </g>
+</svg>

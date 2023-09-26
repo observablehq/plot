@@ -1,8 +1,8 @@
 import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
-import {maybeKeyword, maybeNamed, maybeValue} from "./options.js";
-import {arrayify, isDomainSort, isOptions, keyword, range, singleton} from "./options.js";
+import {maybeNamed, maybeValue} from "./options.js";
+import {arrayify, isDomainSort, isObject, isOptions, keyword, range, singleton} from "./options.js";
 import {project} from "./projection.js";
 import {maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
@@ -46,9 +46,9 @@ export class Mark {
       Object.entries(channels)
         .map(([name, channel]) => {
           if (isOptions(channel.value)) {
-            // apply scale overrides
-            const {value, scale = channel.scale} = channel.value;
-            channel = {...channel, scale, value};
+            // apply scale and label overrides
+            const {value, label = channel.label, scale = channel.scale} = channel.value;
+            channel = {...channel, label, scale, value};
           }
           if (data === singleton && typeof channel.value === "string") {
             // convert field names to singleton values for decoration marks (e.g., frame)
@@ -150,7 +150,7 @@ export function composeRender(r1, r2) {
 function maybeChannels(channels) {
   return Object.fromEntries(
     Object.entries(maybeNamed(channels)).map(([name, channel]) => {
-      channel = maybeValue(channel);
+      channel = typeof channel === "string" ? {value: channel, label: name} : maybeValue(channel); // for shorthand extra channels, use name as label
       if (channel.filter === undefined && channel.scale == null) channel = {...channel, filter: null};
       return [name, channel];
     })
@@ -158,9 +158,19 @@ function maybeChannels(channels) {
 }
 
 function maybeTip(tip) {
-  return tip === true ? "xy" : tip === false ? null : maybeKeyword(tip, "tip", ["x", "y", "xy"]);
+  return tip === true
+    ? "xy"
+    : tip === false || tip == null
+    ? null
+    : typeof tip === "string"
+    ? keyword(tip, "tip", ["x", "y", "xy"])
+    : tip; // tip options object
 }
 
-export function withTip(options, tip) {
-  return options?.tip === true ? {...options, tip} : options;
+export function withTip(options, pointer) {
+  return options?.tip === true
+    ? {...options, tip: pointer}
+    : isObject(options?.tip) && options.tip.pointer === undefined
+    ? {...options, tip: {...options.tip, pointer}}
+    : options;
 }
