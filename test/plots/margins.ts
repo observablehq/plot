@@ -5,12 +5,12 @@ export async function margins() {
   return marginChart(false);
 }
 
-export async function marginsLabel() {
-  return marginChart(false, "LABEL");
-}
-
 export async function marginsMonospace() {
   return marginChart(true);
+}
+
+export async function marginsLabel() {
+  return marginChart(false, "LABEL");
 }
 
 export async function marginsMonospaceLabel() {

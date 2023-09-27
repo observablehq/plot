@@ -92,14 +92,14 @@ function axisKy(
     ...options
   }
 ) {
-  let autoMarginLeft, autoMarginRight;
-  if (marginRight === k) (autoMarginRight = k), (marginRight = 40);
-  if (marginLeft === k) (autoMarginLeft = k), (marginLeft = 40);
   tickSize = number(tickSize);
   tickPadding = number(tickPadding);
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
   labelArrow = maybeLabelArrow(labelArrow);
+  let autoMarginLeft, autoMarginRight;
+  if (marginRight === k) (autoMarginRight = {k, labelAnchor, label}), (marginRight = 40);
+  if (marginLeft === k) (autoMarginLeft = {k, labelAnchor, label}), (marginLeft = 40);
   return marks(
     tickSize && !isNoneish(stroke)
       ? axisTickKy(k, anchor, data, {

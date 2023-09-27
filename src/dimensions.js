@@ -11,13 +11,20 @@ const marginLarge = 90;
 // When axes have "auto" margins, we might need to adjust the margins, after
 // seeing the actual tick labels. In that case we’ll compute the dimensions and
 // scales a second time.
-function autoMarginK(margin, scale, options, mark, stateByMark, scales, dimensions, context) {
+function autoMarginK(margin, {k: scale, labelAnchor, label}, options, mark, stateByMark, scales, dimensions, context) {
   const {data, facets} = stateByMark.get(mark);
   const {channels} = mark.initializer(data, facets, {}, scales, dimensions, context);
-  const width = mark.monospace ? monospaceWidth : defaultWidth;
-  const l = max(channels.text.value, (t) => (t ? width(`${t}`) : NaN));
-  const m = l >= 400 ? marginLarge : l >= 295 ? marginMedium : null;
-  return !m
+  const width = mark.monospace ? (d) => (monospaceWidth(d) * 3) / 5 : defaultWidth;
+  const actualLabel = label ?? scales[scale].label;
+  const l =
+    max(channels.text.value, (t) => (t ? width(`${t}`) : NaN)) +
+    (actualLabel != null &&
+    actualLabel !== "" &&
+    ((labelAnchor == null && scales[scale].bandwidth) || labelAnchor === "center")
+      ? 100
+      : 0);
+  const m = l >= 500 ? marginLarge : l >= 295 ? marginMedium : null;
+  return m === null
     ? options
     : scale === "fy"
     ? {...options, facet: {[margin]: m, ...options.facet}}
