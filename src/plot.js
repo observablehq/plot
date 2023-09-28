@@ -158,7 +158,7 @@ export function plot(options = {}) {
     return {...state, channels: {...state.channels, ...facetState?.channels}};
   };
 
-  // Initalize the dimensions and scales.
+  // Initialize the dimensions and scales.
   const channels = addScaleChannels(channelsByScale, stateByMark, options);
   const {scaleDescriptors, scales, dimensions, subdimensions, superdimensions} = createDimensionsScales(
     channels,
