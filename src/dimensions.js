@@ -118,9 +118,9 @@ function createDimensions(scales, marks, options = {}) {
     height = autoHeight(scales, options, {
       width,
       marginTopDefault,
-      marginRightDefault,
+      marginRight,
       marginBottomDefault,
-      marginLeftDefault
+      marginLeft
     }) + Math.max(0, marginTop - marginTopDefault + marginBottom - marginBottomDefault)
   } = options;
 
@@ -167,7 +167,7 @@ function createDimensions(scales, marks, options = {}) {
 function autoHeight(
   {x, y, fy, fx},
   {projection, aspectRatio},
-  {width, marginTopDefault, marginRightDefault, marginBottomDefault, marginLeftDefault}
+  {width, marginTopDefault, marginRight, marginBottomDefault, marginLeft}
 ) {
   const nfy = fy ? fy.scale.domain().length || 1 : 1;
 
@@ -178,7 +178,7 @@ function autoHeight(
     const nfx = fx ? fx.scale.domain().length : 1;
     const far = ((1.1 * nfy - 0.1) / (1.1 * nfx - 0.1)) * ar; // 0.1 is default facet padding
     const lar = Math.max(0.1, Math.min(10, far)); // clamp the aspect ratio to a “reasonable” value
-    return Math.round((width - marginLeftDefault - marginRightDefault) * lar + marginTopDefault + marginBottomDefault);
+    return Math.round((width - marginLeft - marginRight) * lar + marginTopDefault + marginBottomDefault);
   }
   const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length || 1 : Math.max(7, 17 / nfy)) : 1;
 
@@ -189,7 +189,7 @@ function autoHeight(
     const ratio = aspectRatioLength("y", y) / (aspectRatioLength("x", x) * aspectRatio);
     const fxb = fx ? fx.scale.bandwidth() : 1;
     const fyb = fy ? fy.scale.bandwidth() : 1;
-    const w = fxb * (width - marginLeftDefault - marginRightDefault) - x.insetLeft - x.insetRight;
+    const w = fxb * (width - marginLeft - marginRight) - x.insetLeft - x.insetRight;
     return (ratio * w + y.insetTop + y.insetBottom) / fyb + marginTopDefault + marginBottomDefault;
   }
 

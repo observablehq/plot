@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import {svg} from "htl";
+import {svg, html} from "htl";
 
 export async function margins() {
   return marginChart(false);
@@ -15,6 +15,33 @@ export async function marginsLabel() {
 
 export async function marginsMonospaceLabel() {
   return marginChart(true, "LABEL");
+}
+
+export async function marginAspectRatio() {
+  return html`${Plot.plot({
+    style: "border: 1px solid steelblue; margin-bottom: 1em;",
+    aspectRatio: 1,
+    x: {type: "linear", domain: [0, 1], tickSpacing: 40},
+    y: {type: "linear", domain: [1000, 1001]},
+    grid: true,
+    width: 109
+  })}
+  ${Plot.plot({
+    style: "border: 1px solid steelblue; margin-bottom: 1em;",
+    aspectRatio: 1,
+    x: {type: "linear", domain: [0, 1], tickSpacing: 40},
+    y: {type: "linear", domain: [1000, 1001]},
+    grid: true,
+    width: 110
+  })}
+  ${Plot.plot({
+    style: "border: 1px solid steelblue; margin-bottom: 1em;",
+    aspectRatio: 1,
+    x: {type: "linear", domain: [0, 1], tickSpacing: 40},
+    y: {type: "linear", domain: [1000, 1001]},
+    grid: true,
+    width: 130
+  })}`;
 }
 
 function marginChart(monospace, label = null) {
