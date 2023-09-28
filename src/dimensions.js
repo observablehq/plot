@@ -12,8 +12,8 @@ const marginLarge = 90;
 // seeing the actual tick labels. In that case we’ll compute the dimensions and
 // scales a second time.
 function autoMarginK(margin, {k: scale, labelAnchor, label}, options, mark, stateByMark, scales, dimensions, context) {
-  const {data, facets} = stateByMark.get(mark);
-  const {channels} = mark.initializer(data, facets, {}, scales, dimensions, context);
+  let {data, facets, channels} = stateByMark.get(mark);
+  if (mark.initializer) ({channels} = mark.initializer(data, facets, {}, scales, dimensions, context));
   const width = mark.monospace ? (d) => (monospaceWidth(d) * 3) / 5 : defaultWidth;
   const actualLabel = label ?? scales[scale].label;
   const l =
