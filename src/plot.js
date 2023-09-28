@@ -1,7 +1,7 @@
 import {creator, select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
-import {createDimensionsScales} from "./dimensions.js";
+import {createDimensions, autoMarginK, actualDimensions} from "./dimensions.js";
 import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
 import {pointer, pointerX, pointerY} from "./interactions/pointer.js";
 import {createLegends, exposeLegends} from "./legends.js";
@@ -11,8 +11,9 @@ import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
 import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
 import {arrayify, map, yes, maybeIntervalTransform, subarray} from "./options.js";
-import {getGeometryChannels, hasProjection} from "./projection.js";
-import {createScales, createScaleFunctions, exposeScales} from "./scales.js";
+import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
+import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
+import {innerDimensions} from "./scales.js";
 import {isPosition, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
@@ -158,16 +159,41 @@ export function plot(options = {}) {
     return {...state, channels: {...state.channels, ...facetState?.channels}};
   };
 
-  // Initialize the dimensions and scales.
+  // Initialize the dimensions and scales. Needs a double take when the left or
+  // right margins are based on the y (and fy) actual tick labels.
   const channels = addScaleChannels(channelsByScale, stateByMark, options);
-  const {scaleDescriptors, scales, dimensions, subdimensions, superdimensions} = createDimensionsScales(
-    channels,
-    marks,
-    stateByMark,
-    options,
-    context
-  );
-  const {fx, fy} = scales;
+  let scaleDescriptors = createScales(channels, options);
+  let {dimensions, autoMargins} = createDimensions(scaleDescriptors, marks, options);
+  autoScaleRange(scaleDescriptors, dimensions); // !! mutates scales ranges…
+  let scales = createScaleFunctions(scaleDescriptors);
+  let {fx, fy} = scales;
+  let subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
+  let superdimensions = fx || fy ? actualDimensions(scaleDescriptors, dimensions) : dimensions;
+  context.projection = createProjection(options, subdimensions);
+
+  // Review the auto margins and create new scales if more space is needed.
+  const originalOptions = options;
+  for (const [margin, scale, mark] of autoMargins) {
+    options = autoMarginK(
+      margin,
+      scale,
+      options,
+      mark,
+      stateByMark,
+      scales,
+      mark.facet === "super" ? superdimensions : subdimensions,
+      context
+    );
+  }
+  if (options !== originalOptions) {
+    scaleDescriptors = createScales(channels, options);
+    dimensions = createDimensions(scaleDescriptors, marks, options).dimensions;
+    autoScaleRange(scaleDescriptors, dimensions);
+    ({fx, fy} = scales = createScaleFunctions(scaleDescriptors));
+    subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
+    superdimensions = fx || fy ? actualDimensions(scaleDescriptors, dimensions) : dimensions;
+    context.projection = createProjection(options, subdimensions);
+  }
 
   // Allows e.g. the pointer transform to support viewof.
   context.dispatchValue = (value) => {

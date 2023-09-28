@@ -1,9 +1,9 @@
 import {extent, max} from "d3";
-import {createProjection, projectionAspectRatio} from "./projection.js";
-import {createScales, isOrdinalScale} from "./scales.js";
+import {projectionAspectRatio} from "./projection.js";
+import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
 import {defaultWidth, monospaceWidth} from "./marks/text.js";
-import {createScaleFunctions, autoScaleRange, innerDimensions, outerDimensions} from "./scales.js";
+import {outerDimensions} from "./scales.js";
 
 const marginMedium = 60;
 const marginLarge = 90;
@@ -11,18 +11,24 @@ const marginLarge = 90;
 // When axes have "auto" margins, we might need to adjust the margins, after
 // seeing the actual tick labels. In that case we’ll compute the dimensions and
 // scales a second time.
-function autoMarginK(margin, {k: scale, labelAnchor, label}, options, mark, stateByMark, scales, dimensions, context) {
+export function autoMarginK(
+  margin,
+  {scale, labelAnchor, label},
+  options,
+  mark,
+  stateByMark,
+  scales,
+  dimensions,
+  context
+) {
   let {data, facets, channels} = stateByMark.get(mark);
   if (mark.initializer) ({channels} = mark.initializer(data, facets, {}, scales, dimensions, context));
-  const width = mark.monospace ? (d) => (monospaceWidth(d) * 3) / 5 : defaultWidth;
-  const actualLabel = label ?? scales[scale].label;
+  const width = mark.monospace ? monospaceWidth : defaultWidth;
+  const labelPenalty =
+    (label ?? scales[scale].label ?? "") !== "" &&
+    (labelAnchor === "center" || (labelAnchor == null && scales[scale].bandwidth));
   const l =
-    max(channels.text.value, (t) => (t ? width(`${t}`) : NaN)) +
-    (actualLabel != null &&
-    actualLabel !== "" &&
-    ((labelAnchor == null && scales[scale].bandwidth) || labelAnchor === "center")
-      ? 100
-      : 0);
+    max(channels.text.value, (t) => (t ? width(`${t}`) : NaN)) * (mark.monospace ? 0.6 : 1) + (labelPenalty ? 100 : 0);
   const m = l >= 500 ? marginLarge : l >= 295 ? marginMedium : null;
   return m === null
     ? options
@@ -31,46 +37,7 @@ function autoMarginK(margin, {k: scale, labelAnchor, label}, options, mark, stat
     : {[margin]: m, ...options};
 }
 
-export function createDimensionsScales(channels, marks, stateByMark, options, context) {
-  const scaleDescriptors = createScales(channels, options);
-  const {dimensions, autoMargins} = createDimensions(scaleDescriptors, marks, options);
-  autoScaleRange(scaleDescriptors, dimensions); // !! mutates scales ranges…
-  const scales = createScaleFunctions(scaleDescriptors);
-  const {fx, fy} = scales;
-  const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
-  const superdimensions = fx || fy ? actualDimensions(scaleDescriptors, dimensions) : dimensions;
-  context.projection = createProjection(options, subdimensions);
-
-  // Review the auto margins and create new scales if more space is needed.
-  const originalOptions = options;
-  for (const [margin, scale, mark] of autoMargins) {
-    options = autoMarginK(
-      margin,
-      scale,
-      options,
-      mark,
-      stateByMark,
-      scales,
-      mark.facet === "super" ? superdimensions : subdimensions,
-      context
-    );
-  }
-  if (options !== originalOptions) {
-    const scaleDescriptors = createScales(channels, options);
-    const {dimensions} = createDimensions(scaleDescriptors, marks, options);
-    autoScaleRange(scaleDescriptors, dimensions);
-    const scales = createScaleFunctions(scaleDescriptors);
-    const {fx, fy} = scaleDescriptors;
-    const subdimensions = fx || fy ? innerDimensions(scaleDescriptors, dimensions) : dimensions;
-    const superdimensions = fx || fy ? actualDimensions(scaleDescriptors, dimensions) : dimensions;
-    context.projection = createProjection(options, subdimensions);
-    return {scaleDescriptors, scales, dimensions, subdimensions, superdimensions};
-  }
-
-  return {scaleDescriptors, scales, dimensions, subdimensions, superdimensions};
-}
-
-function createDimensions(scales, marks, options = {}) {
+export function createDimensions(scales, marks, options = {}) {
   // Compute the default margins: the maximum of the marks’ margins. While not
   // always used, they may be needed to compute the default height of the plot.
   let marginTopDefault = 0.5 - offset,

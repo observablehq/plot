@@ -100,11 +100,11 @@ function axisKy(
   const autoMarginRight = margin === undefined &&
     marginRight === undefined &&
     anchor === "right" &&
-    x == null && {k, labelAnchor, label};
+    x == null && {scale: k, labelAnchor, label};
   const autoMarginLeft = margin === undefined &&
     marginLeft === undefined &&
     anchor === "left" &&
-    x == null && {k, labelAnchor, label};
+    x == null && {scale: k, labelAnchor, label};
   marginRight = margin === undefined ? (anchor === "right" ? 40 : 0) : margin;
   marginLeft = margin === undefined ? (anchor === "left" ? 40 : 0) : margin;
   return marks(
