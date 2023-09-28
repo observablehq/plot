@@ -1,0 +1,52 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="130" height="130" viewBox="0 0 130 130" style="border: 1px solid steelblue;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="60" x2="120" y1="90" y2="90"></line>
+    <line x1="60" x2="120" y1="70" y2="70"></line>
+    <line x1="60" x2="120" y1="50" y2="50"></line>
+    <line x1="60" x2="120" y1="30" y2="30"></line>
+  </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(60,90)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,70)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,50)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,30)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(60,90)">0</text>
+    <text y="0.32em" transform="translate(60,70)">1</text>
+    <text y="0.32em" transform="translate(60,50)">2</text>
+    <text y="0.32em" transform="translate(60,30)">3</text>
+  </g>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="60" x2="60" y1="30" y2="90"></line>
+    <line x1="80" x2="80" y1="30" y2="90"></line>
+    <line x1="100" x2="100" y1="30" y2="90"></line>
+    <line x1="120" x2="120" y1="30" y2="90"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(60,90)" d="M0,0L0,6"></path>
+    <path transform="translate(80,90)" d="M0,0L0,6"></path>
+    <path transform="translate(100,90)" d="M0,0L0,6"></path>
+    <path transform="translate(120,90)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(60,90)">0</text>
+    <text y="0.71em" transform="translate(80,90)">1</text>
+    <text y="0.71em" transform="translate(100,90)">2</text>
+    <text y="0.71em" transform="translate(120,90)">3</text>
+  </g>
+</svg>
