@@ -82,9 +82,9 @@ function axisKy(
     x,
     margin,
     marginTop = margin === undefined ? 20 : margin,
-    marginRight = margin === undefined ? (anchor === "right" ? (x == null ? k : 40) : 0) : margin,
+    marginRight,
     marginBottom = margin === undefined ? 20 : margin,
-    marginLeft = margin === undefined ? (anchor === "left" ? (x == null ? k : 40) : 0) : margin,
+    marginLeft,
     label,
     labelAnchor,
     labelArrow,
@@ -97,9 +97,16 @@ function axisKy(
   tickRotate = number(tickRotate);
   if (labelAnchor !== undefined) labelAnchor = keyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
   labelArrow = maybeLabelArrow(labelArrow);
-  let autoMarginLeft, autoMarginRight;
-  if (marginRight === k) (autoMarginRight = {k, labelAnchor, label}), (marginRight = 40);
-  if (marginLeft === k) (autoMarginLeft = {k, labelAnchor, label}), (marginLeft = 40);
+  const autoMarginRight = margin === undefined &&
+    marginRight === undefined &&
+    anchor === "right" &&
+    x == null && {k, labelAnchor, label};
+  const autoMarginLeft = margin === undefined &&
+    marginLeft === undefined &&
+    anchor === "left" &&
+    x == null && {k, labelAnchor, label};
+  marginRight = margin === undefined ? (anchor === "right" ? 40 : 0) : margin;
+  marginLeft = margin === undefined ? (anchor === "left" ? 40 : 0) : margin;
   return marks(
     tickSize && !isNoneish(stroke)
       ? axisTickKy(k, anchor, data, {
