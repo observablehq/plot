@@ -156,15 +156,6 @@ function legendItems(scale, options = {}, swatch) {
         `.${className}-swatches {
   font-family: system-ui, sans-serif;
   font-size: 10px;
-  ${[
-    marginTop === undefined ? null : `margin-top: ${+marginTop}px;`,
-    marginBottom === undefined ? `margin-bottom: 0.5em;` : `margin-bottom: ${+marginBottom}px;`,
-    `margin-left: ${marginLeft === undefined ? 0 : +marginLeft}px;`,
-    marginRight === undefined ? null : `margin-right: ${+marginRight}px;`,
-    width === undefined ? null : `width: ${+width}px;`
-  ]
-    .filter((d) => d)
-    .join("\n          ")}
 }
 .${className}-swatch > svg {
   margin-right: 0.5em;
@@ -173,6 +164,9 @@ function legendItems(scale, options = {}, swatch) {
 ${extraStyle}`
       )
     )
+    .style("margin-top", marginTop ? `${+marginTop}px` : null)
+    .style("margin-right", marginRight ? `${+marginRight}px` : null)
+    .style("margin-bottom", `${marginBottom === undefined ? "0.5em" : `${+marginBottom}px`}`)
     .style("margin-left", marginLeft ? `${+marginLeft}px` : null)
     .style("width", width === undefined ? null : `${+width}px`)
     .style("font-variant", impliedString(fontVariant, "normal"))
