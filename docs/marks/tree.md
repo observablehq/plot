@@ -30,9 +30,9 @@ function indent() {
 
 </script>
 
-# Tree mark
+# Tree mark <VersionBadge version="0.4.3" />
 
-The **tree mark** produces tree diagrams using the [tree transform](../transforms/tree.md). It is a [composite mark](../features/marks.md#marks-marks), consisting of a [link](./link.md) to render links from parent to child, an optional [dot](./dot.md) for nodes, and a [text](./text.md) for node labels. The link mark uses the [treeLink transform](../transforms/tree.md#treelink-options), while the dot and text marks use the [treeNode transform](../transforms/tree.md#treenode-options).
+The **tree mark** produces tree diagrams using the [tree transform](../transforms/tree.md). It is a [composite mark](../features/marks.md#marks), consisting of a [link](./link.md) to render links from parent to child, an optional [dot](./dot.md) for nodes, and one or two [text](./text.md) for node labels. The link mark uses the [treeLink transform](../transforms/tree.md#treeLink), while the dot and text marks use the [treeNode transform](../transforms/tree.md#treeNode).
 
 For example, here is a little family tree of Greek gods.
 
@@ -41,7 +41,8 @@ For example, here is a little family tree of Greek gods.
 Plot.plot({
   axis: null,
   height: 100,
-  margin: 20,
+  margin: 10,
+  marginLeft: 40,
   marginRight: 120,
   marks: [
     Plot.tree(gods, {textStroke: "var(--vp-c-bg)"})
@@ -63,6 +64,7 @@ As a more complete example, here is a visualization of a software package hierar
 Plot.plot({
   axis: null,
   margin: 10,
+  marginLeft: 30,
   marginRight: 160,
   width: 688,
   height: 1800,
@@ -73,13 +75,14 @@ Plot.plot({
 ```
 :::
 
-The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://github.com/d3/d3-hierarchy/blob/main/README.md#tree), by default. The [cluster](#cluster-data-options) convenience method sets **treeLayout** to [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster), aligning the leaf nodes.
+The **treeLayout** option specifies the layout algorithm. The tree mark uses the Reingold–Tilford “tidy” tree algorithm, [d3.tree](https://d3js.org/d3-hierarchy/tree), by default. The [cluster](#cluster) convenience method sets **treeLayout** to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning the leaf nodes.
 
 :::plot https://observablehq.com/@observablehq/plot-cluster-flare
 ```js
 Plot.plot({
   axis: null,
   margin: 10,
+  marginLeft: 30,
   marginRight: 160,
   width: 688,
   height: 2400,
@@ -126,7 +129,7 @@ Plot.plot({
 ```
 :::
 
-The tree mark currently does not inform the default layout; you may find it necessary to set the **height** and **margin** [layout options](../features/plots.md#layout) for readability.
+The tree mark currently does not inform the default layout; you may find it necessary to set the **height** and **margin** [layout options](../features/plots.md#layout-options) for readability.
 
 ## Tree options
 
@@ -148,12 +151,20 @@ The following options are supported:
 * **title** - the text and dot title; defaults to *node:path*
 * **text** - the text label; defaults to *node:name*
 * **textStroke** - the text stroke; defaults to *white*
-* **dx** - the text horizontal offset; defaults to 6 if left-anchored, or -6 if right-anchored
+* **textLayout** - the text anchoring layout
+* **dx** - the text horizontal offset; defaults to 6
 * **dy** - the text vertical offset; defaults to 0
 
 Any additional *options* are passed through to the constituent link, dot, and text marks and their corresponding treeLink or treeNode transform.
 
-## tree(*data*, *options*)
+The **textLayout** option <VersionBadge version="0.6.9" /> controls how text labels are anchored to the node. Two layouts are supported:
+
+* *mirrored* - leaf-node labels are left-anchored, and non-leaf nodes right-anchored
+* *normal* - all labels are left-anchored
+
+If the **treeLayout** is d3.tree or d3.cluster, the **textLayout** defaults to *mirrored*; otherwise it defaults to *normal*.
+
+## tree(*data*, *options*) {#tree}
 
 ```js
 Plot.tree(flare, {path: "name", delimiter: "."})
@@ -161,10 +172,10 @@ Plot.tree(flare, {path: "name", delimiter: "."})
 
 Returns a new tree mark with the given *data* and *options*.
 
-## cluster(*data*, *options*)
+## cluster(*data*, *options*) {#cluster}
 
 ```js
 Plot.cluster(flare, {path: "name", delimiter: "."})
 ```
 
-Like [tree](#tree-data-options), except sets the **treeLayout** option to [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster), aligning leaf nodes.
+Like [tree](#tree), except sets the **treeLayout** option to [d3.cluster](https://d3js.org/d3-hierarchy/cluster), aligning leaf nodes, and defaults the **textLayout** option to *mirrored*.

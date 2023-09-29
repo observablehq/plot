@@ -18,7 +18,7 @@ Plot.areaY(aapl, {x: "Date", y: "Close"}).plot()
 ```
 :::
 
-The area mark has three constructors: [areaY](#areay-data-options) for when the baseline and topline share *x* values, as in a time-series area chart where time goes right→ (or ←left); [areaX](#areax-data-options) for when the baseline and topline share *y* values, as in a time-series area chart where time goes up↑ (or down↓); and lastly the rarely-used [area](#area-data-options) where the baseline and topline share neither *x* nor *y* values.
+The area mark has three constructors: [areaY](#areaY) for when the baseline and topline share *x* values, as in a time-series area chart where time goes right→ (or ←left); [areaX](#areaX) for when the baseline and topline share *y* values, as in a time-series area chart where time goes up↑ (or down↓); and lastly the rarely-used [area](#area) where the baseline and topline share neither *x* nor *y* values.
 
 The area mark is often paired with a [line](./line.md) and [rule](./rule.md) mark to accentuate the topline and baseline.
 
@@ -67,7 +67,7 @@ When the baseline is not *y* = 0 but instead represents another dimension of dat
 ```js
 Plot.plot({
   y: {
-    label: "↑ Temperature (°F)",
+    label: "Temperature (°F)",
     grid: true
   },
   marks: [
@@ -102,7 +102,7 @@ Plot.plot({
 ```
 :::
 
-For a vertically-oriented baseline and topline, such as when time goes up↑ instead of right→, use [areaX](#areax-data-options) instead of [areaY](#areay-data-options) and swap **x** and **y**.
+For a vertically-oriented baseline and topline, such as when time goes up↑ instead of right→, use [areaX](#areaX) instead of [areaY](#areaY) and swap **x** and **y**.
 
 :::plot defer https://observablehq.com/@observablehq/plot-vertical-area-chart
 ```js
@@ -160,7 +160,7 @@ If a **fill** channel is specified, it is assumed to be ordinal or nominal; data
 Plot.plot({
   y: {
     transform: (d) => d / 1000,
-    label: "↑ Unemployed (thousands)"
+    label: "Unemployed (thousands)"
   },
   marks: [
     Plot.areaY(industries, {x: "date", y: "unemployed", fill: "industry"}),
@@ -181,7 +181,7 @@ Or, as a streamgraph with the **offset** stack transform option:
 Plot.plot({
   y: {
     transform: (d) => d / 1000,
-    label: "↑ Unemployed (thousands)"
+    label: "Unemployed (thousands)"
   },
   marks: [
     Plot.areaY(industries, {x: "date", y: "unemployed", fill: "industry", offset: "wiggle"}),
@@ -282,7 +282,7 @@ In addition to the [standard mark options](../features/marks.md#mark-options), t
 * **y2** - the vertical position of the topline; bound to the *y* scale
 * **z** - a categorical value to group data into series
 
-If **x2** is not specified, it defaults to **x1**. If **y2** is not specified, it defaults to **y1**. These defaults facilitate sharing *x* or *y* coordinates between the baseline and topline. See also the implicit stack transform and shorthand **x** and **y** options supported by [areaY](#areay-data-options) and [areaX](#areax-data-options).
+If **x2** is not specified, it defaults to **x1**. If **y2** is not specified, it defaults to **y1**. These defaults facilitate sharing *x* or *y* coordinates between the baseline and topline. See also the implicit stack transform and shorthand **x** and **y** options supported by [areaY](#areaY) and [areaX](#areaX).
 
 By default, the data is assumed to represent a single series (*i.e.*, a single value that varies over time). If the **z** channel is specified, data is grouped by **z** to form separate series. Typically **z** is a categorical value such as a series name. If **z** is not specified, it defaults to **fill** if a channel, or **stroke** if a channel.
 
@@ -290,9 +290,9 @@ The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if th
 
 Points along the baseline and topline are connected in input order. Likewise, if there are multiple series via the **z**, **fill**, or **stroke** channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](../transforms/sort.md).
 
-The area mark supports [curve options](../features/curves.md) to control interpolation between points. If any of the **x1**, **y1**, **x2**, or **y2** values are invalid (undefined, null, or NaN), the baseline and topline will be interrupted, resulting in a break that divides the area shape into multiple segments. (See [d3-shape’s *area*.defined](https://github.com/d3/d3-shape/blob/main/README.md#area_defined) for more.) If an area segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
+The area mark supports [curve options](../features/curves.md) to control interpolation between points. If any of the **x1**, **y1**, **x2**, or **y2** values are invalid (undefined, null, or NaN), the baseline and topline will be interrupted, resulting in a break that divides the area shape into multiple segments. (See [d3-shape’s *area*.defined](https://d3js.org/d3-shape/area#area_defined) for more.) If an area segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
 
-## areaY(*data*, *options*)
+## areaY(*data*, *options*) {#areaY}
 
 ```js
 Plot.areaY(aapl, {x: "Date", y: "Close"})
@@ -310,7 +310,7 @@ The **interval** option is recommended to “regularize” sampled data; for exa
 
 The **areaY** mark draws the region between a baseline (*y1*) and a topline (*y2*) as in an area chart. When the baseline is *y* = 0, the *y* channel can be specified instead of *y1* and *y2*. For example, here is an area chart of Apple’s stock price.
 
-## areaX(*data*, *options*)
+## areaX(*data*, *options*) {#areaX}
 
 ```js
 Plot.areaX(aapl, {y: "Date", x: "Close"})
@@ -326,10 +326,10 @@ Plot.areaX(observations, {y: "date", x: "temperature", interval: "day"})
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
-## area(*data*, *options*)
+## area(*data*, *options*) {#area}
 
 ```js
 Plot.area(aapl, {x1: "Date", y1: 0, y2: "Close"})
 ```
 
-Returns a new area with the given *data* and *options*. This method is rarely used directly; it is only needed when the baseline and topline have neither common **x** nor **y** values. [areaY](#areay-data-options) is used in the common horizontal orientation where the baseline and topline share **x** values, while [areaX](#areax-data-options) is used in the vertical orientation where the baseline and topline share **y** values.
+Returns a new area with the given *data* and *options*. This method is rarely used directly; it is only needed when the baseline and topline have neither common **x** nor **y** values. [areaY](#areaY) is used in the common horizontal orientation where the baseline and topline share **x** values, while [areaX](#areaX) is used in the vertical orientation where the baseline and topline share **y** values.

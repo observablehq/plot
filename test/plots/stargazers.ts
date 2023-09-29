@@ -7,7 +7,7 @@ export async function stargazers() {
     marginRight: 40,
     y: {
       grid: true,
-      label: "↑ Stargazers"
+      label: "Stargazers"
     },
     marks: [
       Plot.ruleY([0]),

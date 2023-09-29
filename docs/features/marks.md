@@ -48,7 +48,7 @@ onMounted(() => {
 
 </script>
 
-# Marks
+# Marks {#Marks}
 
 :::tip
 If you aren’t yet up and running with Plot, please read our [getting started guide](../getting-started.md) first. Tinkering with the code below will give a better sense of how Plot works.
@@ -58,7 +58,7 @@ Plot doesn’t have chart types; instead, you construct charts by layering **mar
 
 ## Marks are geometric shapes
 
-Plot provides a variety of mark types. Think of marks as the “visual vocabulary”—the painter’s palette 🎨, but of shapes instead of colors—that you pull from when composing a chart. Each mark type produces a certain type of geometric shape.
+Plot provides a variety of mark types. Think of marks as the “visual vocabulary” — the painter’s palette 🎨, but of shapes instead of colors — that you pull from when composing a chart. Each mark type produces a certain type of geometric shape.
 
 For example, the [dot mark](../marks/dot.md) draws stroked circles (by default).
 
@@ -157,7 +157,7 @@ Plot.plot({
 
 ## Marks use scales
 
-Marks are (typically) not positioned in literal pixels, or colored in literal colors, as in a conventional graphics system. Instead you provide abstract values such as time and temperature—marks are drawn “in data space”—and [scales](./scales.md) encode these into visual values such as position and color. And best of all, Plot automatically creates [axes](../marks/axis.md) and [legends](./legends.md) to document the scales’ encodings.
+Marks are (typically) not positioned in literal pixels, or colored in literal colors, as in a conventional graphics system. Instead you provide abstract values such as time and temperature — marks are drawn “in data space” — and [scales](./scales.md) encode these into visual values such as position and color. And best of all, Plot automatically creates [axes](../marks/axis.md) and [legends](./legends.md) to document the scales’ encodings.
 
 Data is passed through scales automatically during rendering; the mark controls which scales are used. The **x** and **y** options are typically bound to the *x* and *y* scales, respectively, while the **fill** and **stroke** options are typically bound to the *color* scale. Changing a scale’s definition, say by overriding its **domain** (the extent of abstract input values) or **type**, affects the appearance of all marks that use the scale.
 
@@ -178,7 +178,7 @@ Plot.plot({
 
 ## Marks have tidy data
 
-A single mark can draw multiple shapes. A mark generally produces a shape—such as a rectangle or circle—for each element in the data.
+A single mark can draw multiple shapes. A mark generally produces a shape — such as a rectangle or circle — for each element in the data.
 
 :::plot defer https://observablehq.com/@observablehq/plot-tidy-data
 ```js
@@ -194,7 +194,7 @@ Plot.lineY(aapl, {x: "Date", y: "Close"}).plot()
 ```
 :::
 
-And a line mark isn’t even guaranteed to produce a single polyline—there can be multiple polylines, as in a line chart with multiple series (using **z**).
+And a line mark isn’t even guaranteed to produce a single polyline — there can be multiple polylines, as in a line chart with multiple series (using **z**).
 
 :::plot defer https://observablehq.com/@observablehq/plot-multiple-series-line-chart
 ```js
@@ -258,10 +258,10 @@ Note that when accessor functions or parallel arrays are used instead of field n
 Data comes in different types: quantitative (or temporal) values can be subtracted, ordinal values can be ordered, and nominal (or categorical) values can only be the same or different.
 
 :::info
-Because nominal values often need some arbitrary order for display purposes—often alphabetical—Plot uses the term *ordinal* to refer to both ordinal and nominal data.
+Because nominal values often need some arbitrary order for display purposes — often alphabetical — Plot uses the term *ordinal* to refer to both ordinal and nominal data.
 :::
 
-Some marks work with any type of data, while other marks have certain requirements or assumptions of data. For example, a line should only be used when both *x* and *y* are quantitative or temporal, and when the data is in a meaningful order (such as chronological). This is because the line mark will interpolate between adjacent points to draw line segments. If *x* or *y* is nominal—say the names of countries—it doesn’t make sense to use a line because there is no half-way point between two nominal values.
+Some marks work with any type of data, while other marks have certain requirements or assumptions of data. For example, a line should only be used when both *x* and *y* are quantitative or temporal, and when the data is in a meaningful order (such as chronological). This is because the line mark will interpolate between adjacent points to draw line segments. If *x* or *y* is nominal — say the names of countries — it doesn’t make sense to use a line because there is no half-way point between two nominal values.
 
 :::plot https://observablehq.com/@observablehq/plot-dont-do-this
 ```js
@@ -276,8 +276,8 @@ While Plot aspires to give good defaults and helpful warnings, Plot won’t prev
 In particular, beware the simple “bar”! A bar mark is used for a bar chart, but a rect mark is needed for a histogram. Plot has four different mark types for drawing rectangles:
 
 - use [rect](../marks/rect.md) when both *x* and *y* are quantitative
-- use [barX](../marks/bar.md) when *x* is ordinal and *y* is quantitative
-- use [barY](../marks/bar.md) when *x* is quantitative and *y* is ordinal
+- use [barX](../marks/bar.md) when *x* is quantitative and *y* is ordinal
+- use [barY](../marks/bar.md) when *x* is ordinal and *y* is quantitative
 - use [cell](../marks/cell.md) when both *x* and *y* are ordinal
 
 Plot encourages you to think about data types as you visualize because data types often imply semantics. For example, do you notice anything strange about the bar chart below?
@@ -357,18 +357,18 @@ Channels are mark options that can be used to encode data. These options allow t
 * an accessor function, or
 * an array of values of the same length and order as the data.
 
-Not all mark options can be expressed as channels. For example, **stroke** can be a channel but **strokeDasharray** cannot. This is mostly a pragmatic limitation—it would be harder to implement Plot if every option were expressible as a channel—but it also serves to guide you towards options that are intended for encoding data.
+Not all mark options can be expressed as channels. For example, **stroke** can be a channel but **strokeDasharray** cannot. This is mostly a pragmatic limitation — it would be harder to implement Plot if every option were expressible as a channel — but it also serves to guide you towards options that are intended for encoding data.
 
 :::tip
 To vary the definition of a constant option with data, create multiple marks with your different constant options, and then filter the data for each mark to achieve the desired result.
 :::
 
-Some options can be either a channel or a constant depending on the provided value. For example, if you set the **fill** option to *steelblue*, Plot interprets it as a literal color.
+Some options can be either a channel or a constant depending on the provided value. For example, if you set the **fill** option to *purple*, Plot interprets it as a literal color.
 
 :::plot https://observablehq.com/@observablehq/plot-marks-have-channels
 ```js
 Plot
-  .barX(timeseries, {x: "population", y: "year", fill: "steelblue"})
+  .barX(timeseries, {x: "population", y: "year", fill: "purple"})
   .plot({y: {label: null, tickFormat: ""}})
 ```
 :::
@@ -417,7 +417,7 @@ You can then specify the *color* scale’s **domain** and **range** to control t
 
 ## Mark options
 
-Mark constructors take two arguments: **data** and **options**. Together these describe a tabular dataset and how to visualize it. Option values that must be the same for all of a mark’s generated shapes are known as *constants*, whereas option values that may vary across a mark’s generated shapes are known as *channels*. Channels are typically bound to [scales](./scales.md) and encode abstract data values, such as time or temperature, as visual values, such as position or color. (Channels can also be used to order ordinal domains; see the [sort option](./scales.md#sort-option).)
+Mark constructors take two arguments: **data** and **options**. Together these describe a tabular dataset and how to visualize it. Option values that must be the same for all of a mark’s generated shapes are known as *constants*, whereas option values that may vary across a mark’s generated shapes are known as *channels*. Channels are typically bound to [scales](./scales.md) and encode abstract data values, such as time or temperature, as visual values, such as position or color. (Channels can also be used to order ordinal domains; see the [**sort** option](./scales.md#sort-mark-option).)
 
 A mark’s data is most commonly an array of objects representing a tabular dataset, such as the result of loading a CSV file, while a mark’s options bind channels (such as *x* and *y*) to columns in the data (such as *units* and *fruit*).
 
@@ -433,7 +433,7 @@ sales = [
 Plot.dot(sales, {x: "units", y: "fruit"})
 ```
 
-While a column name such as `"units"` is the most concise way of specifying channel values, values can also be specified as functions for greater flexibility, say to transform data or derive a new column on the fly. Channel functions are invoked for each datum (*d*) in the data and return the corresponding channel value. (This is similar to how D3’s [*selection*.attr](https://github.com/d3/d3-selection/blob/main/README.md#selection_attr) accepts functions, though note that Plot channel functions should return abstract values, not visual values.)
+While a column name such as `"units"` is the most concise way of specifying channel values, values can also be specified as functions for greater flexibility, say to transform data or derive a new column on the fly. Channel functions are invoked for each datum (*d*) in the data and return the corresponding channel value. (This is similar to how D3’s [*selection*.attr](https://d3js.org/d3-selection/modifying#selection_attr) accepts functions, though note that Plot channel functions should return abstract values, not visual values.)
 
 ```js
 Plot.dot(sales, {x: (d) => d.units * 1000, y: (d) => d.fruit})
@@ -476,6 +476,7 @@ All marks support the following style options:
 * **strokeDashoffset** - the [stroke dash offset](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset) (typically in pixels)
 * **opacity** - object opacity (a number between 0 and 1)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
+* **imageFilter** - a CSS [filter](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) (*e.g.*, *blur(5px)*) <VersionBadge version="0.6.7" />
 * **shapeRendering** - the [shape-rendering mode](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering) (*e.g.*, *crispEdges*)
 * **paintOrder** - the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order) (*e.g.*, *stroke*)
 * **dx** - horizontal offset (in pixels; defaults to 0)
@@ -485,8 +486,11 @@ All marks support the following style options:
 * **ariaHidden** - if true, hide this content from the accessibility tree
 * **pointerEvents** - the [pointer events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) (*e.g.*, *none*)
 * **clip** - whether and how to clip the mark
+* **tip** - whether to generate an implicit [pointer](../interactions/pointer.md) [tip](../marks/tip.md) <VersionBadge version="0.6.7" />
 
 If the **clip** option is *frame* (or equivalently true), the mark is clipped to the frame’s dimensions; if the **clip** option is null (or equivalently false), the mark is not clipped. If the **clip** option is *sphere*, then a [geographic projection](./projections.md) is required and the mark will be clipped to the projected sphere (_e.g._, the front hemisphere when using the orthographic projection).
+
+If the **tip** option is true, a [tip mark](../marks/tip.md) with the [pointer transform](../interactions/pointer.md) will be derived from this mark and placed atop all other marks, offering details on demand. If the **tip** option is set to an options object, these options will be passed to the derived tip mark. If the **tip** option (or, if an object, its **pointer** option) is set to *x*, *y*, or *xy*, [pointerX](../interactions/pointer.md#pointerX), [pointerY](../interactions/pointer.md#pointerY), or [pointer](../interactions/pointer.md#pointer) will be used, respectively; otherwise the pointing mode will be chosen automatically. (If the **tip** mark option is truthy, the **title** channel is no longer applied using an SVG title element as this would conflict with the tip mark.)
 
 For all marks except [text](../marks/text.md), the **dx** and **dy** options are rendered as a transform property, possibly including a 0.5px offset on low-density screens.
 
@@ -518,7 +522,7 @@ Plot.dot(data, {stroke: {value: "fieldName", scale: "color"}})
 
 The color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled.
 
-In addition to functions of data, arrays, and column names, channel values can be specified as an object with a *transform* method; this transform method is passed the mark’s array of data and must return the corresponding array of channel values. (Whereas a channel value specified as a function is invoked repeatedly for each element in the mark’s data, similar to *array*.map, the transform method is invoked only once being passed the entire array of data.) For example, to pass the mark’s data directly to the **x** channel, equivalent to [Plot.identity](./transforms.md#plotidentity):
+In addition to functions of data, arrays, and column names, channel values can be specified as an object with a *transform* method; this transform method is passed the mark’s array of data and must return the corresponding array of channel values. (Whereas a channel value specified as a function is invoked repeatedly for each element in the mark’s data, similar to *array*.map, the transform method is invoked only once being passed the entire array of data.) For example, to pass the mark’s data directly to the **x** channel, equivalent to [Plot.identity](./transforms.md#identity):
 
 ```js
 Plot.dot(numbers, {x: {transform: (data) => data}})
@@ -535,11 +539,21 @@ The rectangular marks ([bar](../marks/bar.md), [cell](../marks/cell.md), [frame]
 * **rx** - the [*x* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
 * **ry** - the [*y* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
 
-Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](../transforms/bin.md) provides default insets, and that the [band scale padding](./scales.md#position-scales) defaults to 0.1, which also provides separation.
+Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](../transforms/bin.md) provides default insets, and that the [band scale padding](./scales.md#position-scale-options) defaults to 0.1, which also provides separation.
 
 For marks that support the **frameAnchor** option, it may be specified as one of the four sides (*top*, *right*, *bottom*, *left*), one of the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the *middle* of the frame.
 
-## marks(...*marks*)
+All marks support the following [transform](./transforms.md) options:
+
+* **filter** - apply the [filter transform](../transforms/filter.md)
+* **sort** - apply the [sort transform](../transforms/sort.md)
+* **reverse** - apply the [reverse transform](../transforms/sort.md#reverse)
+* **transform** - apply a [custom transform](./transforms.md#custom-transforms)
+* **initializer** - apply a [custom initializer](./transforms.md#custom-initializers)
+
+The **sort** option, when not specified as a channel value (such as a field name or an accessor function), can also be used to [impute ordinal scale domains](./scales.md#sort-mark-option).
+
+## marks(...*marks*) <VersionBadge version="0.2.0" /> {#marks}
 
 ```js
 Plot.marks(

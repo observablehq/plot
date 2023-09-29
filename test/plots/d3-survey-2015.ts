@@ -29,7 +29,7 @@ function bars(groups, title) {
       grid: true,
       axis: "top",
       domain: [0, 100],
-      label: "Frequency (%) →",
+      label: "Frequency (%)",
       transform: (x) => x * 100
     },
     y: {
@@ -43,7 +43,7 @@ function bars(groups, title) {
         y: ([key]) => key,
         fill: "steelblue",
         insetTop: 1,
-        sort: {y: "x", reverse: true}
+        sort: {y: "-x"}
       }),
       Plot.ruleX([0])
     ]

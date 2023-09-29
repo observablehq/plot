@@ -41,13 +41,13 @@
     <text transform="translate(614,30)">1.0</text>
   </g>
   <g aria-label="x-axis label" text-anchor="start" transform="translate(-16.5,-26.5)">
-    <text y="0.71em" transform="translate(20,30)">top-left</text>
+    <text y="0.71em" transform="translate(20,30)">top-left →</text>
   </g>
   <g aria-label="x-axis label" transform="translate(0.5,-26.5)">
-    <text y="0.71em" transform="translate(320,30)">top-center</text>
+    <text y="0.71em" transform="translate(320,30)">top-center →</text>
   </g>
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-26.5)">
-    <text y="0.71em" transform="translate(620,30)">top-right</text>
+    <text y="0.71em" transform="translate(620,30)">top-right →</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(26,370)" d="M0,0L0,6"></path>
@@ -76,12 +76,12 @@
     <text y="0.71em" transform="translate(614,370)">1.0</text>
   </g>
   <g aria-label="x-axis label" text-anchor="start" transform="translate(-16.5,27.5)">
-    <text transform="translate(20,370)">bottom-left</text>
+    <text transform="translate(20,370)">bottom-left →</text>
   </g>
   <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(320,370)">bottom-center</text>
+    <text transform="translate(320,370)">bottom-center →</text>
   </g>
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
-    <text transform="translate(620,370)">bottom-right</text>
+    <text transform="translate(620,370)">bottom-right →</text>
   </g>
 </svg>

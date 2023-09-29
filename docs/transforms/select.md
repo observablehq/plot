@@ -19,9 +19,9 @@ onMounted(() => {
 
 </script>
 
-# Select transform
+# Select transform <VersionBadge version="0.4.0" />
 
-The **select transform** filters a mark’s index to show a subset of the data. It is a specialized [filter transform](./filter.md) that pulls a single value out of each series. For example, below selectLast is used to label the last value in a line chart.
+The **select transform** filters a mark’s index to show a subset of the data. It is a specialized [filter transform](./filter.md) that pulls a single value or a sample subset out of each series. For example, below selectLast is used to label the last value in a line chart.
 
 :::plot https://observablehq.com/@observablehq/plot-value-labeled-line-chart
 ```js
@@ -59,7 +59,6 @@ The select transform groups data into series using the **z**, **fill**, or **str
 :::plot defer https://observablehq.com/@observablehq/plot-labeled-multi-line-chart
 ```js
 Plot.plot({
-  style: "overflow: visible;",
   y: {grid: true},
   marks: [
     Plot.ruleY([0]),
@@ -70,7 +69,7 @@ Plot.plot({
 ```
 :::
 
-## select(*selector*, *options*)
+## select(*selector*, *options*) {#select}
 
 ```js
 Plot.select("first", {x: "Date", y: "Close"}) // selectFirst
@@ -119,7 +118,19 @@ function selectorMedian(I, V) {
 }
 ```
 
-## selectFirst(*options*)
+The following selects a sample of 10% of the data:
+
+```js
+Plot.select({y: selectorSample}, {x: "Date", y: "Close"})
+```
+
+```js
+function selectorSample(I) {
+  return I.filter((i, j) => j % 10 === 0);
+}
+```
+
+## selectFirst(*options*) {#selectFirst}
 
 ```js
 Plot.selectFirst({x: "Date", y: "Close"})
@@ -127,7 +138,7 @@ Plot.selectFirst({x: "Date", y: "Close"})
 
 Selects the first point of each series according to input order.
 
-## selectLast(*options*)
+## selectLast(*options*) {#selectLast}
 
 ```js
 Plot.selectLast({x: "Date", y: "Close"})
@@ -135,7 +146,7 @@ Plot.selectLast({x: "Date", y: "Close"})
 
 Selects the last point of each series according to input order.
 
-## selectMinX(*options*)
+## selectMinX(*options*) {#selectMinX}
 
 ```js
 Plot.selectMinX({x: "Date", y: "Close"})
@@ -143,7 +154,7 @@ Plot.selectMinX({x: "Date", y: "Close"})
 
 Selects the leftmost point of each series.
 
-## selectMinY(*options*)
+## selectMinY(*options*) {#selectMinY}
 
 ```js
 Plot.selectMinY({x: "Date", y: "Close"})
@@ -151,7 +162,7 @@ Plot.selectMinY({x: "Date", y: "Close"})
 
 Selects the lowest point of each series.
 
-## selectMaxX(*options*)
+## selectMaxX(*options*) {#selectMaxX}
 
 ```js
 Plot.selectMaxX({x: "Date", y: "Close"})
@@ -159,7 +170,7 @@ Plot.selectMaxX({x: "Date", y: "Close"})
 
 Selects the rightmost point of each series.
 
-## selectMaxY(*options*)
+## selectMaxY(*options*) {#selectMaxY}
 
 ```js
 Plot.selectMaxY({x: "Date", y: "Close"})

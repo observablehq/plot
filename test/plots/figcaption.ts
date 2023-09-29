@@ -9,7 +9,7 @@ export async function figcaption() {
       label: null
     },
     y: {
-      label: "↑ Frequency (%)",
+      label: "Frequency (%)",
       transform: (y) => y * 100,
       grid: true
     },

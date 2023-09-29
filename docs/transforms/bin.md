@@ -20,7 +20,7 @@ onMounted(() => {
 The bin transform is for aggregating quantitative or temporal data. For ordinal or nominal data, use the [group transform](./group.md). See also the [hexbin transform](./hexbin.md).
 :::
 
-The **bin transform** groups quantitative or temporal data—continuous measurements such as heights, weights, or temperatures—into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is most often used to make histograms or heatmaps with the [rect mark](../marks/rect.md).
+The **bin transform** groups quantitative or temporal data — continuous measurements such as heights, weights, or temperatures — into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is most often used to make histograms or heatmaps with the [rect mark](../marks/rect.md).
 
 For example, here is a histogram showing the distribution of weights of Olympic athletes.
 
@@ -40,7 +40,7 @@ The binX transform takes **x** as input and outputs **x1** and **x2** representi
 
 While the binX transform is often used to generate **y**, it can output any channel. Below, the **fill** channel represents count per bin, resulting in a one-dimensional heatmap.
 
-:::plot defer https://observablehq.com/@observablehq/plot-colored-bins
+:::plot defer https://observablehq.com/@observablehq/plot-color-bins
 ```js-vue
 Plot
   .rect(olympians, Plot.binX({fill: "count"}, {x: "weight"}))
@@ -87,9 +87,9 @@ While the **mixBlendMode** option is useful for mitigating occlusion, it can be 
 
 The bin transform comes in three orientations:
 
-- [binX](#binx-outputs-options) bins on **x**, and often outputs **y** as in a histogram with vertical↑ rects;
-- [binY](#biny-outputs-options) bins on **y**, and often outputs **x** as in a histogram with horizontal→ rects; and
-- [bin](#bin-outputs-options) bins on both **x** and **y**, and often outputs to **fill** or **r** as in a heatmap.
+- [binX](#binX) bins on **x**, and often outputs **y** as in a histogram with vertical↑ rects;
+- [binY](#binY) bins on **y**, and often outputs **x** as in a histogram with horizontal→ rects; and
+- [bin](#bin) bins on both **x** and **y**, and often outputs to **fill** or **r** as in a heatmap.
 
 As you might guess, the binY transform with the rectX mark produces a histogram with horizontal→ rects.
 
@@ -334,7 +334,7 @@ The **thresholds** option may be specified as a named method or a variety of oth
 * an interval or time interval (for temporal binning; see below)
 * a function that returns an array, count, or time interval
 
-If the **thresholds** option is specified as a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/main/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/main/README.md#ticks) is used to choose suitable nice thresholds. If an interval, it must expose an *interval*.floor(*value*), *interval*.ceil(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) methods. If the interval is a time interval such as "day" (equivalently, d3.utcDay), or if the thresholds are specified as an array of dates, then the binned values are implicitly coerced to dates. Time intervals are intervals that are also functions that return a Date instance when called with no arguments.
+If the **thresholds** option is specified as a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://d3js.org/d3-array/ticks) or [d3.utcTicks](https://d3js.org/d3-time#utcTicks) is used to choose suitable nice thresholds. If an interval, it must expose an *interval*.floor(*value*), *interval*.ceil(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) methods. If the interval is a time interval such as "day" (equivalently, d3.utcDay), or if the thresholds are specified as an array of dates, then the binned values are implicitly coerced to dates. Time intervals are intervals that are also functions that return a Date instance when called with no arguments.
 
 If the **interval** option is used instead of **thresholds**, it may be either an interval, a time interval, or a number. If a number *n*, threshold values are consecutive multiples of *n* that span the domain; otherwise, the **interval** option is equivalent to the **thresholds** option. When the thresholds are specified as an interval, and the default **domain** is used, the domain will automatically be extended to start and end to align with the interval.
 
@@ -346,7 +346,7 @@ Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species"})
 
 Lastly, the bin transform changes the default [mark insets](../features/marks.md#mark-options): binX changes the defaults for **insetLeft** and **insetRight**; binY changes the defaults for **insetTop** and **insetBottom**; bin changes all four.
 
-## bin(*outputs*, *options*)
+## bin(*outputs*, *options*) {#bin}
 
 ```js
 Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
@@ -354,7 +354,7 @@ Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
 
 Bins on **x** and **y**. Also groups on the first channel of **z**, **fill**, or **stroke**, if any.
 
-## binX(*outputs*, *options*)
+## binX(*outputs*, *options*) {#binX}
 
 ```js
 Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))
@@ -362,7 +362,7 @@ Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))
 
 Bins on **x**. Also groups on **y** and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## binY(*outputs*, *options*)
+## binY(*outputs*, *options*) {#binY}
 
 ```js
 Plot.rectX(olympians, Plot.binY({x: "count"}, {y: "weight"}))

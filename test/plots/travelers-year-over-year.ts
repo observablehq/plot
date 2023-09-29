@@ -7,7 +7,7 @@ export async function travelersYearOverYear() {
     y: {
       grid: true,
       nice: true,
-      label: "↑ Travelers per day (millions)",
+      label: "Travelers per day (millions)",
       transform: (d) => d / 1e6
     },
     marks: [

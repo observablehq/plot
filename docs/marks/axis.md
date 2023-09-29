@@ -21,7 +21,7 @@ const responses = [
 
 </script>
 
-# Axis mark
+# Axis mark <VersionBadge version="0.6.3" />
 
 The **axis mark** conveys the meaning of a position [scale](../features/scales.md): _x_ or _y_, and _fx_ or _fy_ when [faceting](../features/facets.md). Plot automatically adds default axis marks as needed, but you can customize the appearance of axes either through scale options or by explicitly declaring an axis mark.
 
@@ -76,7 +76,7 @@ Plot.plot({
   y: {percent: true},
   marks: [
     Plot.axisX({label: null, lineWidth: 8, marginBottom: 40}),
-    Plot.axisY({label: "↑ Responses (%)"}),
+    Plot.axisY({label: "Responses (%)"}),
     Plot.barY(responses, {x: "name", y: "value"}),
     Plot.ruleY([0])
   ]
@@ -91,7 +91,7 @@ Or, you can use the **textAnchor** option to extend the *y*-axis tick labels to 
 Plot.plot({
   marginTop: 0,
   marginLeft: 4,
-  x: {ticks: 4, label: "Yield (kg) →"},
+  x: {ticks: 4, label: "Yield (kg)"},
   marks: [
     Plot.barX([42, 17, 32], {y: ["🍌 banana", "🍎 apple", "🍐 pear"]}),
     Plot.axisY({textAnchor: "start", fill: "var(--vp-c-bg)", dx: 14})
@@ -143,34 +143,22 @@ Plot.plot({
 ```
 :::
 
-You can emulate [Datawrapper’s time axes](https://blog.datawrapper.de/new-axis-ticks/) using `\n` (the line feed character) for multi-line tick labels, plus a bit of date math to detect the first month of each year.
+Time axes default to a consistent multi-line tick format <VersionBadge version="0.6.9" />, [à la Datawrapper](https://blog.datawrapper.de/new-axis-ticks/), for example showing the first month of each quarter, and the year:
 
 :::plot https://observablehq.com/@observablehq/plot-datawrapper-style-date-axis
 ```js
 Plot.plot({
   marks: [
     Plot.ruleY([0]),
-    Plot.line(aapl, {x: "Date", y: "Close"}),
+    Plot.axisX({ticks: "3 months"}),
     Plot.gridX(),
-    Plot.axisX({
-      ticks: 20,
-      tickFormat: (
-        (formatYear, formatMonth) => (x) =>
-          x.getUTCMonth() === 0
-            ? `${formatMonth(x)}\n${formatYear(x)}`
-            : formatMonth(x)
-      )(d3.utcFormat("%Y"), d3.utcFormat("%b"))
-    })
+    Plot.line(aapl, {x: "Date", y: "Close"})
   ]
 })
 ```
 :::
 
-:::tip
-In the future, Plot may generate multi-line time axis labels by default. If you’re interested in this feature, please upvote [#1285](https://github.com/observablehq/plot/issues/1285).
-:::
-
-Alternatively, you can add multiple axes with options for hierarchical time intervals, here showing weeks, months, and years.
+The format is inferred from the tick interval, and consists of two fields (*e.g.*, month and year, day and month, minutes and hours); when a tick has the same second field value as the previous tick (*e.g.*, “19 Jan” after “17 Jan”), only the first field (“19”) is shown for brevity. Alternatively, you can specify multiple explicit axes with options for hierarchical time intervals, here showing weeks, months, and years.
 
 :::plot https://observablehq.com/@observablehq/plot-multiscale-date-axis
 ```js
@@ -207,19 +195,19 @@ Plot.plot({
 
 The color of an axis can be controlled with the **color**, **stroke**, and **fill** options, which affect the axis’ component marks differently. The **stroke** option affects the tick vector; the **fill** option affects the label texts. The **color** option is shorthand for setting both **fill** and **stroke**. While these options are typically set to constant colors (such as _red_ or the default _currentColor_), they can be specified as channels to assign colors dynamically based on the associated tick value.
 
-:::plot https://observablehq.com/@observablehq/plot-colored-axes
+:::plot https://observablehq.com/@observablehq/plot-axes-with-color
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {color: "red"}).plot() // text fill and tick stroke
 ```
 :::
 
-:::plot https://observablehq.com/@observablehq/plot-colored-axes
+:::plot https://observablehq.com/@observablehq/plot-axes-with-color
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {stroke: Plot.identity, strokeWidth: 3, tickSize: 10}).plot() // tick stroke
 ```
 :::
 
-:::plot https://observablehq.com/@observablehq/plot-colored-axes
+:::plot https://observablehq.com/@observablehq/plot-axes-with-color
 ```js
 Plot.axisX(d3.ticks(0, 1, 10), {fill: "red"}).plot() // text fill
 ```
@@ -227,7 +215,7 @@ Plot.axisX(d3.ticks(0, 1, 10), {fill: "red"}).plot() // text fill
 
 To draw an outline around the tick labels, say to improve legibility when drawing an axes atop other marks, use the **textStroke** (default _none_), **textStrokeWidth** (default 3), and **textStrokeOpacity**  (default 1) options.
 
-:::plot https://observablehq.com/@observablehq/plot-colored-axes
+:::plot https://observablehq.com/@observablehq/plot-axes-with-color
 ```js
 Plot.plot({
   height: 40,
@@ -345,23 +333,26 @@ By default, the *data* for an axis mark are tick values sampled from the associa
 * **tickSpacing** - the approximate number of pixels between ticks (if **ticks** is not specified)
 * **interval** - an interval or time interval
 
-Note that when an axis mark is declared explicitly (via the [**marks** plot option](../features/plots.md#marks), as opposed to an implicit axis), the corresponding scale’s *scale*.ticks and *scale*.tickSpacing options are not automatically inherited by the axis mark; however, the *scale*.interval option *is* inherited, as is the *scale*.label option. You can declare multiple axis marks for the same scale with different ticks, and styles, as desired.
+Note that when an axis mark is declared explicitly (via the [**marks** plot option](../features/plots.md#marks-option), as opposed to an implicit axis), the corresponding scale’s *scale*.ticks and *scale*.tickSpacing options are not automatically inherited by the axis mark; however, the *scale*.interval option *is* inherited, as is the *scale*.label option. You can declare multiple axis marks for the same scale with different ticks, and styles, as desired.
 
 In addition to the [standard mark options](../features/marks.md), the axis mark supports the following options:
 
-* **anchor** - the orientation: *top*, *bottom* (*x* or *fx*); *left*, *right* (*y* or *fy*); *both*; null to suppress
+* **anchor** - the axis orientation: *top* or *bottom* for *x* or *fx*; *left* or *right* for *y* or *fy*
 * **tickSize** - the length of the tick vector (in pixels; default 6 for *x* or *y*, or 0 for *fx* or *fy*)
 * **tickPadding** - the separation between the tick vector and its label (in pixels; default 3)
 * **tickFormat** - either a function or specifier string to format tick values; see [Formats](../features/formats.md)
 * **tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
-* **fontVariant** - the font-variant attribute for ticks; defaults to tabular-nums for quantitative axes
+* **fontVariant** - the ticks’ font-variant; defaults to *tabular-nums* for quantitative axes
 * **label** - a string to label the axis; defaults to the scale’s label, perhaps with an arrow
 * **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
+* **labelArrow** - the label arrow: *auto* (default), *up*, *right*, *down*, *left*, *none*, or true <VersionBadge version="0.6.7" />
 * **labelOffset** - the label position offset (in pixels; default depends on margins and orientation)
 * **color** - the color of the ticks and labels (defaults to *currentColor*)
 * **textStroke** - the color of the stroke around tick labels (defaults to *none*)
 * **textStrokeOpacity** - the opacity of the stroke around tick labels
 * **textStrokeWidth** - the thickness of the stroke around tick labels (in pixels)
+
+The **labelArrow** option controls the arrow (↑, →, ↓, or ←) added to the axis label indicating the direction of ascending value; for example, horizontal position *x* typically increases in value going right→, while vertical position *y* typically increases in value going up↑. If *auto* (the default), the arrow will be added only if the scale is quantitative or temporal; if true, the arrow will also apply to ordinal scales, provided the domain is consistently ordered.
 
 As a composite mark, the **stroke** option affects the color of the tick vector, while the **fill** option affects the color the text labels; both default to the **color** option, which defaults to *currentColor*. The **x** and **y** channels, if specified, position the ticks; if not specified, the tick positions depend on the axis **anchor**. The orientation of the tick labels likewise depends on the **anchor**. See the [text mark](./text.md) for details on available options for the tick and axis labels.
 
@@ -376,7 +367,7 @@ The axis mark’s default margins depend on its orientation (**anchor**) as foll
 
 For simplicity’s sake and for consistent layout across plots, axis margins are not automatically sized to make room for tick labels; instead, shorten your tick labels (for example using the *k* SI-prefix tick format, or setting a *scale*.transform to show thousands or millions, or setting the **textOverflow** option to *ellipsis* and the **lineWidth** option to clip long labels) or increase the margins as needed.
 
-## axisX(*data*, *options*)
+## axisX(*data*, *options*) {#axisX}
 
 ```js
 Plot.axisX({anchor: "bottom", tickSpacing: 80})
@@ -384,7 +375,7 @@ Plot.axisX({anchor: "bottom", tickSpacing: 80})
 
 Returns a new *x* axis with the given *options*.
 
-## axisY(*data*, *options*)
+## axisY(*data*, *options*) {#axisY}
 
 ```js
 Plot.axisY({anchor: "left", tickSpacing: 35})
@@ -392,7 +383,7 @@ Plot.axisY({anchor: "left", tickSpacing: 35})
 
 Returns a new *y* axis with the given *options*.
 
-## axisFx(*data*, *options*)
+## axisFx(*data*, *options*) {#axisFx}
 
 ```js
 Plot.axisFx({anchor: "top", label: null})
@@ -400,7 +391,7 @@ Plot.axisFx({anchor: "top", label: null})
 
 Returns a new *fx* axis with the given *options*.
 
-## axisFy(*data*, *options*)
+## axisFy(*data*, *options*) {#axisFy}
 
 ```js
 Plot.axisFy({anchor: "right", label: null})

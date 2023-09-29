@@ -8,10 +8,10 @@ export async function metroInequalityChange() {
     inset: 10,
     x: {
       type: "log",
-      label: "Population →"
+      label: "Population"
     },
     y: {
-      label: "↑ Inequality"
+      label: "Inequality"
     },
     color: {
       scheme: "BuRd",

@@ -83,10 +83,10 @@ export interface LineYOptions extends LineOptions, BinOptions {
 }
 
 /**
- * Returns a new line for the given *data* and *options* by connecting control
- * points. If neither the **x** nor **y** options are specified, *data* is
- * assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …]
- * such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+ * Returns a new line mark for the given *data* and *options* by connecting
+ * control points. If neither the **x** nor **y** options are specified, *data*
+ * is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*],
+ * …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
  *
  * Points along the line are connected in input order. If there are multiple
  * series via the **z**, **fill**, or **stroke** channel, series are drawn in

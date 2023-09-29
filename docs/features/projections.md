@@ -7,7 +7,7 @@ import {computed, ref, shallowRef, onMounted} from "vue";
 
 const longitude = ref(90);
 const radius = ref(30);
-const circle = computed(() => d3.geoCircle().center([9, 34]).radius(radius.value).precision(2)());
+const circle = computed(() => d3.geoCircle().center([9, 34]).radius(radius.value)());
 const projection = ref("equirectangular");
 const westport = shallowRef({type: null});
 const earthquakes = shallowRef([]);
@@ -28,7 +28,7 @@ onMounted(() => {
 
 </script>
 
-# Projections
+# Projections <VersionBadge version="0.6.1" />
 
 A **projection** maps abstract coordinates in *x* and *y* to pixel positions on screen. Most often, abstract coordinates are spherical (degrees longitude and latitude), as when rendering a geographic map. For example, below we show earthquakes in the last seven days with a magnitude of 2.5 or higher as reported by the [USGS](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php). Use the slider to adjust the *orthographic* projection’s center of longitude.
 
@@ -45,7 +45,6 @@ A **projection** maps abstract coordinates in *x* and *y* to pixel positions on 
 Plot.plot({
   projection: {type: "orthographic", rotate: [-longitude, -30]},
   r: {transform: (d) => Math.pow(10, d)}, // convert Richter to amplitude
-  style: "overflow: visible;", // allow dots to escape
   marks: [
     Plot.geo(land, {fill: "currentColor", fillOpacity: 0.2}),
     Plot.sphere(),
@@ -55,9 +54,9 @@ Plot.plot({
 ```
 :::
 
-Above, a [geo mark](../marks/geo.md) draws polygons representing land and a [sphere mark](../marks/geo.md#sphere-options) draws the outline of the globe. A [dot mark](../marks/dot.md) draws earthquakes as circles sized by magnitude.
+Above, a [geo mark](../marks/geo.md) draws polygons representing land and a [sphere mark](../marks/geo.md#sphere) draws the outline of the globe. A [dot mark](../marks/dot.md) draws earthquakes as circles sized by magnitude.
 
-The geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen—leaning on [d3-geo](https://github.com/d3/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping. The dot mark is not; instead, Plot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels—as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is also projection-aware.)
+The geo mark is “projection aware” so that it can handle all the nuances of projecting spherical polygons to the screen — leaning on [d3-geo](https://d3js.org/d3-geo) to provide [adaptive sampling](https://observablehq.com/@d3/adaptive-sampling) with configurable precision, [antimeridian cutting](https://observablehq.com/@d3/antimeridian-cutting), and clipping. The dot mark is not; instead, Plot applies the projection in place of the *x* and *y* scales. Hence, projections work with any mark that consumes continuous **x** and **y** channels — as well as marks that use **x1** & **y1** and **x2** & **y2**. Each mark implementation decides whether to handle projections specially or to treat the projection as any other position scale. (For example, the [line mark](../marks/line.md) is projection-aware to draw geodesics.)
 
 :::info
 Marks that require *band* scales (bars, cells, and ticks) cannot be used with projections. Likewise one-dimensional marks such as rules cannot be used, though see [#1164](https://github.com/observablehq/plot/issues/1164).
@@ -132,7 +131,7 @@ Plot.plot({
 Use the *albers-usa* projection for U.S.-centric choropleth maps.
 :::
 
-For maps that focus on a specific region, use the **domain** option to zoom in. This object should be a GeoJSON object. For example, you can use [d3.geoCircle](https://github.com/d3/d3-geo/blob/main/README.md#geoCircle) to generate a circle of a given radius centered at a given longitude and latitude. You can also use the **inset** options for a bit of padding around the **domain**.
+For maps that focus on a specific region, use the **domain** option to zoom in. This object should be a GeoJSON object. For example, you can use [d3.geoCircle](https://d3js.org/d3-geo/shape#geoCircle) to generate a circle of a given radius centered at a given longitude and latitude. You can also use the **inset** options for a bit of padding around the **domain**.
 
 <p>
   <label class="label-input">
@@ -161,7 +160,7 @@ Plot.plot({
 ```
 
 ```js
-circle = d3.geoCircle().center([9, 34]).radius(radius).precision(2)()
+circle = d3.geoCircle().center([9, 34]).radius(radius)()
 ```
 
 If none of Plot’s built-in projections meet your needs, you can use any of [D3’s extended projections](https://github.com/d3/d3-geo-projection) by specifying the **projection** option as a function that returns a D3 projection. Below, a map of Antarctica in a polar aspect of the *azimuthal-equidistant* projection.
@@ -194,7 +193,7 @@ Plot.geo(westport).plot({projection: {type: "identity", domain: westport}})
 :::
 
 :::tip
-There’s also a *reflect-y* projection in case *y* points up↑.
+There’s also a *reflect-y* projection in case *y* points up↑, which is often the case with [projected reference systems](https://en.wikipedia.org/wiki/Projected_coordinate_system).
 :::
 
 Naturally, Plot’s projection system is compatible with its [faceting system](./facets.md). Below, a comic strip of sorts shows the locations of Walmart store openings in past decades.
@@ -206,7 +205,7 @@ Plot.plot({
   marginRight: 0,
   projection: "albers",
   fx: {
-    interval: d3.utcYear.every(10),
+    interval: "10 years",
     tickFormat: (d) => `${d.getUTCFullYear()}’s`,
     label: null
   },
@@ -220,7 +219,7 @@ Plot.plot({
 :::
 
 :::info
-This uses the [**interval** scale option](../transforms/interval.md) to bin temporal data into facets by decade.
+This uses the [**interval** scale option](./scales.md#scale-transforms) to bin temporal data into facets by decade.
 :::
 
 To learn more about mapping with Plot, see our hands-on tutorials:
@@ -252,13 +251,13 @@ The following built-in named projections are supported:
 * *reflect-y* - like the identity projection, but *y* points up
 * null (default) - the null projection for pre-projected geometry in screen coordinates
 
-In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({*width*, *height*, ...*options*}) and returns such a projection. In the last case, the width and height represent the frame dimensions minus any insets.
+In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://d3js.org/d3-geo/projection), or any custom projection that implements [*projection*.stream](https://d3js.org/d3-geo/stream), or a function that receives a configuration object ({*width*, *height*, ...*options*}) and returns such a projection. In the last case, the width and height represent the frame dimensions minus any insets.
 
 If the **projection** option is specified as an object, the following additional projection options are supported:
 
 * **type** - one of the projection names above
-* **parallels** - the [standard parallels](https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels) (for conic projections only)
-* **precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
+* **parallels** - the [standard parallels](https://d3js.org/d3-geo/conic#conic_parallels) (for conic projections only)
+* **precision** - the [sampling threshold](https://d3js.org/d3-geo/projection#projection_precision)
 * **rotate** - a two- or three- element array of Euler angles to rotate the sphere
 * **domain** - a GeoJSON object to fit in the center of the (inset) frame
 * **inset** - inset by the given amount in pixels when fitting to the frame (default zero)

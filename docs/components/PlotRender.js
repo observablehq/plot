@@ -40,13 +40,39 @@ class Element {
     this.attributes[name] = String(value);
   }
   setAttributeNS(namespace, name, value) {
-    this.attributes[name] = String(value);
+    this.setAttribute(name, value);
+  }
+  getAttribute(name) {
+    return this.attributes[name];
+  }
+  getAttributeNS(name) {
+    return this.getAttribute(name);
+  }
+  hasAttribute(name) {
+    return name in this.attributes;
+  }
+  hasAttributeNS(name) {
+    return this.hasAttribute(name);
   }
   removeAttribute(name) {
     delete this.attributes[name];
   }
   removeAttributeNS(namespace, name) {
-    delete this.attributes[name];
+    this.removeAttribute(name);
+  }
+  addEventListener() {
+    // ignored; interaction needs real DOM
+  }
+  removeEventListener() {
+    // ignored; interaction needs real DOM
+  }
+  dispatchEvent() {
+    // ignored; interaction needs real DOM
+  }
+  append(...children) {
+    for (const child of children) {
+      this.appendChild(child?.ownerDocument ? child : this.ownerDocument.createTextNode(child));
+    }
   }
   appendChild(child) {
     this.children.push(child);
@@ -96,6 +122,16 @@ class TextNode {
   toHyperScript() {
     return this.nodeValue;
   }
+}
+
+// Converts the real DOM to virtual DOM (for client-side hydration).
+function toHyperScript(node) {
+  if (node.nodeType === 3) return node.nodeValue; // TextNode
+  const props = {};
+  for (const name of node.getAttributeNames()) props[name] = node.getAttribute(name);
+  const children = [];
+  for (let child = node.firstChild; child; child = child.nextSibling) children.push(toHyperScript(child));
+  return h(node.tagName, props, children);
 }
 
 export default {
@@ -179,7 +215,14 @@ export default {
         ]
       );
     }
-    options.document = new Document();
-    return Plot[method](options).toHyperScript();
+    if (typeof document !== "undefined") {
+      const plot = Plot[method](options);
+      const replace = (el) => {
+        while (el.lastChild) el.lastChild.remove();
+        el.append(plot);
+      };
+      return withDirectives(h("span", [toHyperScript(plot)]), [[{mounted: replace, updated: replace}]]);
+    }
+    return h("span", [Plot[method]({...options, document: new Document()}).toHyperScript()]);
   }
 };

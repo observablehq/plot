@@ -13,9 +13,9 @@ onMounted(() => {
 
 </script>
 
-# Box mark
+# Box mark <VersionBadge version="0.4.2" />
 
-The **box mark** summarizes one-dimensional distributions as boxplots. It is a [composite mark](../features/marks.md#marks-marks) consisting of a [rule](./rule.md) to represent the extreme values (not including outliers), a [bar](./bar.md) to represent the interquartile range (trimmed to the data), a [tick](./tick.md) to represent the median value, and a [dot](./dot.md) to represent any outliers. The [group transform](../transforms/group.md) is used to group and aggregate data.
+The **box mark** summarizes one-dimensional distributions as boxplots. It is a [composite mark](../features/marks.md#marks) consisting of a [rule](./rule.md) to represent the extreme values (not including outliers), a [bar](./bar.md) to represent the interquartile range (trimmed to the data), a [tick](./tick.md) to represent the median value, and a [dot](./dot.md) to represent any outliers. The [group transform](../transforms/group.md) is used to group and aggregate data.
 
 For example, the boxplot below shows [A.A. Michelson’s experimental measurements](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/morley.html) of the speed of light. (Speed is in km/sec minus 299,000.)
 
@@ -33,7 +33,7 @@ Plot.plot({
 ```
 :::
 
-[boxY](#boxy-data-options) produces vertical boxplots; for horizontal boxplots, use [boxX](#boxx-data-options) and swap **x** and **y**.
+[boxY](#boxY) produces vertical boxplots; for horizontal boxplots, use [boxX](#boxX) and swap **x** and **y**.
 
 :::plot https://observablehq.com/@observablehq/plot-horizontal-box-plot
 ```js
@@ -65,11 +65,11 @@ Plot.plot({
   marginLeft: 60,
   y: {
     grid: true,
-    label: "↑ Price"
+    label: "Price"
   },
   x: {
     interval: 0.5,
-    label: "Carats →",
+    label: "Carats",
     labelAnchor: "right",
     tickFormat: (x) => x.toFixed(1)
   },
@@ -81,7 +81,7 @@ Plot.plot({
 ```
 :::
 
-This chart is slightly easier to construct with [faceting](../features/facets.md) using the [**interval** scale option](../transforms/interval.md) on the *fx* scale. (This technique cannot be used with the *x* scale above because the scale interval transform is applied *after* the box mark applies the group transform.)
+This chart is slightly easier to construct with [faceting](../features/facets.md) using the [**interval** scale option](../features/scales.md#scale-transforms) on the *fx* scale. (This technique cannot be used with the *x* scale above because the scale interval transform is applied *after* the box mark applies the group transform.)
 
 :::plot defer https://observablehq.com/@observablehq/plot-binned-box-plot
 ```js
@@ -89,11 +89,11 @@ Plot.plot({
   marginLeft: 60,
   y: {
     grid: true,
-    label: "↑ Price"
+    label: "Price"
   },
   fx: {
     interval: 0.5,
-    label: "Carats →",
+    label: "Carats",
     labelAnchor: "right",
     tickFormat: (x) => x.toFixed(1)
   },
@@ -107,7 +107,7 @@ Plot.plot({
 
 ## Box options
 
-The box mark is a [composite mark](../features/marks.md#marks-marks) consisting of four marks:
+The box mark is a [composite mark](../features/marks.md#marks) consisting of four marks:
 
 * a [rule](../marks/rule.md) representing the extreme values (not including outliers)
 * a [bar](../marks/bar.md) representing the interquartile range (trimmed to the data)
@@ -122,7 +122,7 @@ The given *options* are passed through to these underlying marks, with the excep
 * **strokeOpacity** - the stroke opacity of the rule, tick, and dot; defaults to 1
 * **strokeWidth** - the stroke width of the tick; defaults to 1
 
-## boxX(*data*, *options*)
+## boxX(*data*, *options*) {#boxX}
 
 ```js
 Plot.boxX(simpsons.map((d) => d.imdb_rating))
@@ -130,7 +130,7 @@ Plot.boxX(simpsons.map((d) => d.imdb_rating))
 
 Returns a horizontal box mark. If the **x** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **y** option is not specified, it defaults to null; if the **y** option is specified, it should represent an ordinal (discrete) value.
 
-## boxY(*data*, *options*)
+## boxY(*data*, *options*) {#boxY}
 
 ```js
 Plot.boxY(simpsons.map((d) => d.imdb_rating))

@@ -1,0 +1,1386 @@
+<svg width="640" height="1500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(0,0)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="80" x2="80" y1="0" y2="20"></line>
+        <line x1="140" x2="140" y1="0" y2="20"></line>
+        <line x1="200" x2="200" y1="0" y2="20"></line>
+        <line x1="260" x2="260" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="380" x2="380" y1="0" y2="20"></line>
+        <line x1="440" x2="440" y1="0" y2="20"></line>
+        <line x1="500" x2="500" y1="0" y2="20"></line>
+        <line x1="560" x2="560" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(80,20)" d="M0,0L0,6"></path>
+        <path transform="translate(140,20)" d="M0,0L0,6"></path>
+        <path transform="translate(200,20)" d="M0,0L0,6"></path>
+        <path transform="translate(260,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(380,20)" d="M0,0L0,6"></path>
+        <path transform="translate(440,20)" d="M0,0L0,6"></path>
+        <path transform="translate(500,20)" d="M0,0L0,6"></path>
+        <path transform="translate(560,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">.000</tspan><tspan x="0" dy="1em">:00:00</tspan></text>
+        <text y="0.71em" transform="translate(80,20)">.100</text>
+        <text y="0.71em" transform="translate(140,20)">.200</text>
+        <text y="0.71em" transform="translate(200,20)">.300</text>
+        <text y="0.71em" transform="translate(260,20)">.400</text>
+        <text y="0.71em" transform="translate(320,20)">.500</text>
+        <text y="0.71em" transform="translate(380,20)">.600</text>
+        <text y="0.71em" transform="translate(440,20)">.700</text>
+        <text y="0.71em" transform="translate(500,20)">.800</text>
+        <text y="0.71em" transform="translate(560,20)">.900</text>
+        <text transform="translate(620,20)"><tspan x="0" y="0.71em">.000</tspan><tspan x="0" dy="1em">:00:01</tspan></text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,60)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="80" x2="80" y1="0" y2="20"></line>
+        <line x1="140" x2="140" y1="0" y2="20"></line>
+        <line x1="200" x2="200" y1="0" y2="20"></line>
+        <line x1="260" x2="260" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="380" x2="380" y1="0" y2="20"></line>
+        <line x1="440" x2="440" y1="0" y2="20"></line>
+        <line x1="500" x2="500" y1="0" y2="20"></line>
+        <line x1="560" x2="560" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(80,20)" d="M0,0L0,6"></path>
+        <path transform="translate(140,20)" d="M0,0L0,6"></path>
+        <path transform="translate(200,20)" d="M0,0L0,6"></path>
+        <path transform="translate(260,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(380,20)" d="M0,0L0,6"></path>
+        <path transform="translate(440,20)" d="M0,0L0,6"></path>
+        <path transform="translate(500,20)" d="M0,0L0,6"></path>
+        <path transform="translate(560,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">.000</tspan><tspan x="0" dy="1em">:00:00</tspan></text>
+        <text y="0.71em" transform="translate(80,20)">.500</text>
+        <text transform="translate(140,20)"><tspan x="0" y="0.71em">.000</tspan><tspan x="0" dy="1em">:00:01</tspan></text>
+        <text y="0.71em" transform="translate(200,20)">.500</text>
+        <text transform="translate(260,20)"><tspan x="0" y="0.71em">.000</tspan><tspan x="0" dy="1em">:00:02</tspan></text>
+        <text y="0.71em" transform="translate(320,20)">.500</text>
+        <text transform="translate(380,20)"><tspan x="0" y="0.71em">.000</tspan><tspan x="0" dy="1em">:00:03</tspan></text>
+        <text y="0.71em" transform="translate(440,20)">.500</text>
+        <text transform="translate(500,20)"><tspan x="0" y="0.71em">.000</tspan><tspan x="0" dy="1em">:00:04</tspan></text>
+        <text y="0.71em" transform="translate(560,20)">.500</text>
+        <text transform="translate(620,20)"><tspan x="0" y="0.71em">.000</tspan><tspan x="0" dy="1em">:00:05</tspan></text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,120)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="80" x2="80" y1="0" y2="20"></line>
+        <line x1="140" x2="140" y1="0" y2="20"></line>
+        <line x1="200" x2="200" y1="0" y2="20"></line>
+        <line x1="260" x2="260" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="380" x2="380" y1="0" y2="20"></line>
+        <line x1="440" x2="440" y1="0" y2="20"></line>
+        <line x1="500" x2="500" y1="0" y2="20"></line>
+        <line x1="560" x2="560" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(80,20)" d="M0,0L0,6"></path>
+        <path transform="translate(140,20)" d="M0,0L0,6"></path>
+        <path transform="translate(200,20)" d="M0,0L0,6"></path>
+        <path transform="translate(260,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(380,20)" d="M0,0L0,6"></path>
+        <path transform="translate(440,20)" d="M0,0L0,6"></path>
+        <path transform="translate(500,20)" d="M0,0L0,6"></path>
+        <path transform="translate(560,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">:00</tspan><tspan x="0" dy="1em">12:00</tspan></text>
+        <text y="0.71em" transform="translate(80,20)">:01</text>
+        <text y="0.71em" transform="translate(140,20)">:02</text>
+        <text y="0.71em" transform="translate(200,20)">:03</text>
+        <text y="0.71em" transform="translate(260,20)">:04</text>
+        <text y="0.71em" transform="translate(320,20)">:05</text>
+        <text y="0.71em" transform="translate(380,20)">:06</text>
+        <text y="0.71em" transform="translate(440,20)">:07</text>
+        <text y="0.71em" transform="translate(500,20)">:08</text>
+        <text y="0.71em" transform="translate(560,20)">:09</text>
+        <text y="0.71em" transform="translate(620,20)">:10</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,180)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="70" x2="70" y1="0" y2="20"></line>
+        <line x1="120" x2="120" y1="0" y2="20"></line>
+        <line x1="170" x2="170" y1="0" y2="20"></line>
+        <line x1="220" x2="220" y1="0" y2="20"></line>
+        <line x1="270.00000000000006" x2="270.00000000000006" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="370" x2="370" y1="0" y2="20"></line>
+        <line x1="420" x2="420" y1="0" y2="20"></line>
+        <line x1="470" x2="470" y1="0" y2="20"></line>
+        <line x1="520.0000000000001" x2="520.0000000000001" y1="0" y2="20"></line>
+        <line x1="569.9999999999999" x2="569.9999999999999" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(70,20)" d="M0,0L0,6"></path>
+        <path transform="translate(120,20)" d="M0,0L0,6"></path>
+        <path transform="translate(170,20)" d="M0,0L0,6"></path>
+        <path transform="translate(220,20)" d="M0,0L0,6"></path>
+        <path transform="translate(270.00000000000006,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(370,20)" d="M0,0L0,6"></path>
+        <path transform="translate(420,20)" d="M0,0L0,6"></path>
+        <path transform="translate(470,20)" d="M0,0L0,6"></path>
+        <path transform="translate(520.0000000000001,20)" d="M0,0L0,6"></path>
+        <path transform="translate(569.9999999999999,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">:00</tspan><tspan x="0" dy="1em">12:00</tspan></text>
+        <text y="0.71em" transform="translate(70,20)">:05</text>
+        <text y="0.71em" transform="translate(120,20)">:10</text>
+        <text y="0.71em" transform="translate(170,20)">:15</text>
+        <text y="0.71em" transform="translate(220,20)">:20</text>
+        <text y="0.71em" transform="translate(270.00000000000006,20)">:25</text>
+        <text y="0.71em" transform="translate(320,20)">:30</text>
+        <text y="0.71em" transform="translate(370,20)">:35</text>
+        <text y="0.71em" transform="translate(420,20)">:40</text>
+        <text y="0.71em" transform="translate(470,20)">:45</text>
+        <text y="0.71em" transform="translate(520.0000000000001,20)">:50</text>
+        <text y="0.71em" transform="translate(569.9999999999999,20)">:55</text>
+        <text transform="translate(620,20)"><tspan x="0" y="0.71em">:00</tspan><tspan x="0" dy="1em">12:01</tspan></text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,240)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="95" x2="95" y1="0" y2="20"></line>
+        <line x1="170" x2="170" y1="0" y2="20"></line>
+        <line x1="245" x2="245" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="395" x2="395" y1="0" y2="20"></line>
+        <line x1="470" x2="470" y1="0" y2="20"></line>
+        <line x1="545" x2="545" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(95,20)" d="M0,0L0,6"></path>
+        <path transform="translate(170,20)" d="M0,0L0,6"></path>
+        <path transform="translate(245,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(395,20)" d="M0,0L0,6"></path>
+        <path transform="translate(470,20)" d="M0,0L0,6"></path>
+        <path transform="translate(545,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">:00</tspan><tspan x="0" dy="1em">12:00</tspan></text>
+        <text y="0.71em" transform="translate(95,20)">:15</text>
+        <text y="0.71em" transform="translate(170,20)">:30</text>
+        <text y="0.71em" transform="translate(245,20)">:45</text>
+        <text transform="translate(320,20)"><tspan x="0" y="0.71em">:00</tspan><tspan x="0" dy="1em">12:01</tspan></text>
+        <text y="0.71em" transform="translate(395,20)">:15</text>
+        <text y="0.71em" transform="translate(470,20)">:30</text>
+        <text y="0.71em" transform="translate(545,20)">:45</text>
+        <text transform="translate(620,20)"><tspan x="0" y="0.71em">:00</tspan><tspan x="0" dy="1em">12:02</tspan></text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,300)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="95" x2="95" y1="0" y2="20"></line>
+        <line x1="170" x2="170" y1="0" y2="20"></line>
+        <line x1="245" x2="245" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="395" x2="395" y1="0" y2="20"></line>
+        <line x1="470" x2="470" y1="0" y2="20"></line>
+        <line x1="545" x2="545" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(95,20)" d="M0,0L0,6"></path>
+        <path transform="translate(170,20)" d="M0,0L0,6"></path>
+        <path transform="translate(245,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(395,20)" d="M0,0L0,6"></path>
+        <path transform="translate(470,20)" d="M0,0L0,6"></path>
+        <path transform="translate(545,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">:00</tspan><tspan x="0" dy="1em">12:00</tspan></text>
+        <text y="0.71em" transform="translate(95,20)">:30</text>
+        <text transform="translate(170,20)"><tspan x="0" y="0.71em">:00</tspan><tspan x="0" dy="1em">12:01</tspan></text>
+        <text y="0.71em" transform="translate(245,20)">:30</text>
+        <text transform="translate(320,20)"><tspan x="0" y="0.71em">:00</tspan><tspan x="0" dy="1em">12:02</tspan></text>
+        <text y="0.71em" transform="translate(395,20)">:30</text>
+        <text transform="translate(470,20)"><tspan x="0" y="0.71em">:00</tspan><tspan x="0" dy="1em">12:03</tspan></text>
+        <text y="0.71em" transform="translate(545,20)">:30</text>
+        <text transform="translate(620,20)"><tspan x="0" y="0.71em">:00</tspan><tspan x="0" dy="1em">12:04</tspan></text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,360)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="80" x2="80" y1="0" y2="20"></line>
+        <line x1="140" x2="140" y1="0" y2="20"></line>
+        <line x1="200" x2="200" y1="0" y2="20"></line>
+        <line x1="260" x2="260" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="380" x2="380" y1="0" y2="20"></line>
+        <line x1="440" x2="440" y1="0" y2="20"></line>
+        <line x1="500" x2="500" y1="0" y2="20"></line>
+        <line x1="560" x2="560" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(80,20)" d="M0,0L0,6"></path>
+        <path transform="translate(140,20)" d="M0,0L0,6"></path>
+        <path transform="translate(200,20)" d="M0,0L0,6"></path>
+        <path transform="translate(260,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(380,20)" d="M0,0L0,6"></path>
+        <path transform="translate(440,20)" d="M0,0L0,6"></path>
+        <path transform="translate(500,20)" d="M0,0L0,6"></path>
+        <path transform="translate(560,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">12:00</tspan><tspan x="0" dy="1em">AM</tspan></text>
+        <text y="0.71em" transform="translate(80,20)">12:01</text>
+        <text y="0.71em" transform="translate(140,20)">12:02</text>
+        <text y="0.71em" transform="translate(200,20)">12:03</text>
+        <text y="0.71em" transform="translate(260,20)">12:04</text>
+        <text y="0.71em" transform="translate(320,20)">12:05</text>
+        <text y="0.71em" transform="translate(380,20)">12:06</text>
+        <text y="0.71em" transform="translate(440,20)">12:07</text>
+        <text y="0.71em" transform="translate(500,20)">12:08</text>
+        <text y="0.71em" transform="translate(560,20)">12:09</text>
+        <text y="0.71em" transform="translate(620,20)">12:10</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,420)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="70" x2="70" y1="0" y2="20"></line>
+        <line x1="120" x2="120" y1="0" y2="20"></line>
+        <line x1="170" x2="170" y1="0" y2="20"></line>
+        <line x1="220" x2="220" y1="0" y2="20"></line>
+        <line x1="270.00000000000006" x2="270.00000000000006" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="370" x2="370" y1="0" y2="20"></line>
+        <line x1="420" x2="420" y1="0" y2="20"></line>
+        <line x1="470" x2="470" y1="0" y2="20"></line>
+        <line x1="520.0000000000001" x2="520.0000000000001" y1="0" y2="20"></line>
+        <line x1="569.9999999999999" x2="569.9999999999999" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(70,20)" d="M0,0L0,6"></path>
+        <path transform="translate(120,20)" d="M0,0L0,6"></path>
+        <path transform="translate(170,20)" d="M0,0L0,6"></path>
+        <path transform="translate(220,20)" d="M0,0L0,6"></path>
+        <path transform="translate(270.00000000000006,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(370,20)" d="M0,0L0,6"></path>
+        <path transform="translate(420,20)" d="M0,0L0,6"></path>
+        <path transform="translate(470,20)" d="M0,0L0,6"></path>
+        <path transform="translate(520.0000000000001,20)" d="M0,0L0,6"></path>
+        <path transform="translate(569.9999999999999,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">12:00</tspan><tspan x="0" dy="1em">AM</tspan></text>
+        <text y="0.71em" transform="translate(70,20)">12:05</text>
+        <text y="0.71em" transform="translate(120,20)">12:10</text>
+        <text y="0.71em" transform="translate(170,20)">12:15</text>
+        <text y="0.71em" transform="translate(220,20)">12:20</text>
+        <text y="0.71em" transform="translate(270.00000000000006,20)">12:25</text>
+        <text y="0.71em" transform="translate(320,20)">12:30</text>
+        <text y="0.71em" transform="translate(370,20)">12:35</text>
+        <text y="0.71em" transform="translate(420,20)">12:40</text>
+        <text y="0.71em" transform="translate(470,20)">12:45</text>
+        <text y="0.71em" transform="translate(520.0000000000001,20)">12:50</text>
+        <text y="0.71em" transform="translate(569.9999999999999,20)">12:55</text>
+        <text y="0.71em" transform="translate(620,20)">1:00</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,480)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="80" x2="80" y1="0" y2="20"></line>
+        <line x1="140" x2="140" y1="0" y2="20"></line>
+        <line x1="200" x2="200" y1="0" y2="20"></line>
+        <line x1="260" x2="260" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="380" x2="380" y1="0" y2="20"></line>
+        <line x1="440" x2="440" y1="0" y2="20"></line>
+        <line x1="500" x2="500" y1="0" y2="20"></line>
+        <line x1="560" x2="560" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(80,20)" d="M0,0L0,6"></path>
+        <path transform="translate(140,20)" d="M0,0L0,6"></path>
+        <path transform="translate(200,20)" d="M0,0L0,6"></path>
+        <path transform="translate(260,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(380,20)" d="M0,0L0,6"></path>
+        <path transform="translate(440,20)" d="M0,0L0,6"></path>
+        <path transform="translate(500,20)" d="M0,0L0,6"></path>
+        <path transform="translate(560,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">12:00</tspan><tspan x="0" dy="1em">AM</tspan></text>
+        <text y="0.71em" transform="translate(80,20)">12:15</text>
+        <text y="0.71em" transform="translate(140,20)">12:30</text>
+        <text y="0.71em" transform="translate(200,20)">12:45</text>
+        <text y="0.71em" transform="translate(260,20)">1:00</text>
+        <text y="0.71em" transform="translate(320,20)">1:15</text>
+        <text y="0.71em" transform="translate(380,20)">1:30</text>
+        <text y="0.71em" transform="translate(440,20)">1:45</text>
+        <text y="0.71em" transform="translate(500,20)">2:00</text>
+        <text y="0.71em" transform="translate(560,20)">2:15</text>
+        <text y="0.71em" transform="translate(620,20)">2:30</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,540)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="80" x2="80" y1="0" y2="20"></line>
+        <line x1="140" x2="140" y1="0" y2="20"></line>
+        <line x1="200" x2="200" y1="0" y2="20"></line>
+        <line x1="260" x2="260" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="380" x2="380" y1="0" y2="20"></line>
+        <line x1="440" x2="440" y1="0" y2="20"></line>
+        <line x1="500" x2="500" y1="0" y2="20"></line>
+        <line x1="560" x2="560" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(80,20)" d="M0,0L0,6"></path>
+        <path transform="translate(140,20)" d="M0,0L0,6"></path>
+        <path transform="translate(200,20)" d="M0,0L0,6"></path>
+        <path transform="translate(260,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(380,20)" d="M0,0L0,6"></path>
+        <path transform="translate(440,20)" d="M0,0L0,6"></path>
+        <path transform="translate(500,20)" d="M0,0L0,6"></path>
+        <path transform="translate(560,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">12:00</tspan><tspan x="0" dy="1em">AM</tspan></text>
+        <text y="0.71em" transform="translate(80,20)">12:30</text>
+        <text y="0.71em" transform="translate(140,20)">1:00</text>
+        <text y="0.71em" transform="translate(200,20)">1:30</text>
+        <text y="0.71em" transform="translate(260,20)">2:00</text>
+        <text y="0.71em" transform="translate(320,20)">2:30</text>
+        <text y="0.71em" transform="translate(380,20)">3:00</text>
+        <text y="0.71em" transform="translate(440,20)">3:30</text>
+        <text y="0.71em" transform="translate(500,20)">4:00</text>
+        <text y="0.71em" transform="translate(560,20)">4:30</text>
+        <text y="0.71em" transform="translate(620,20)">5:00</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,600)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="80" x2="80" y1="0" y2="20"></line>
+        <line x1="140" x2="140" y1="0" y2="20"></line>
+        <line x1="200" x2="200" y1="0" y2="20"></line>
+        <line x1="260" x2="260" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="380" x2="380" y1="0" y2="20"></line>
+        <line x1="440" x2="440" y1="0" y2="20"></line>
+        <line x1="500" x2="500" y1="0" y2="20"></line>
+        <line x1="560" x2="560" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(80,20)" d="M0,0L0,6"></path>
+        <path transform="translate(140,20)" d="M0,0L0,6"></path>
+        <path transform="translate(200,20)" d="M0,0L0,6"></path>
+        <path transform="translate(260,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(380,20)" d="M0,0L0,6"></path>
+        <path transform="translate(440,20)" d="M0,0L0,6"></path>
+        <path transform="translate(500,20)" d="M0,0L0,6"></path>
+        <path transform="translate(560,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">10:00</tspan><tspan x="0" dy="1em">AM</tspan></text>
+        <text y="0.71em" transform="translate(80,20)">10:30</text>
+        <text y="0.71em" transform="translate(140,20)">11:00</text>
+        <text y="0.71em" transform="translate(200,20)">11:30</text>
+        <text transform="translate(260,20)"><tspan x="0" y="0.71em">12:00</tspan><tspan x="0" dy="1em">PM</tspan></text>
+        <text y="0.71em" transform="translate(320,20)">12:30</text>
+        <text y="0.71em" transform="translate(380,20)">1:00</text>
+        <text y="0.71em" transform="translate(440,20)">1:30</text>
+        <text y="0.71em" transform="translate(500,20)">2:00</text>
+        <text y="0.71em" transform="translate(560,20)">2:30</text>
+        <text y="0.71em" transform="translate(620,20)">3:00</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,660)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="80" x2="80" y1="0" y2="20"></line>
+        <line x1="140" x2="140" y1="0" y2="20"></line>
+        <line x1="200" x2="200" y1="0" y2="20"></line>
+        <line x1="260" x2="260" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="380" x2="380" y1="0" y2="20"></line>
+        <line x1="440" x2="440" y1="0" y2="20"></line>
+        <line x1="500" x2="500" y1="0" y2="20"></line>
+        <line x1="560" x2="560" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(80,20)" d="M0,0L0,6"></path>
+        <path transform="translate(140,20)" d="M0,0L0,6"></path>
+        <path transform="translate(200,20)" d="M0,0L0,6"></path>
+        <path transform="translate(260,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(380,20)" d="M0,0L0,6"></path>
+        <path transform="translate(440,20)" d="M0,0L0,6"></path>
+        <path transform="translate(500,20)" d="M0,0L0,6"></path>
+        <path transform="translate(560,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">12 AM</tspan><tspan x="0" dy="1em">Jan 1</tspan></text>
+        <text y="0.71em" transform="translate(80,20)">1 AM</text>
+        <text y="0.71em" transform="translate(140,20)">2 AM</text>
+        <text y="0.71em" transform="translate(200,20)">3 AM</text>
+        <text y="0.71em" transform="translate(260,20)">4 AM</text>
+        <text y="0.71em" transform="translate(320,20)">5 AM</text>
+        <text y="0.71em" transform="translate(380,20)">6 AM</text>
+        <text y="0.71em" transform="translate(440,20)">7 AM</text>
+        <text y="0.71em" transform="translate(500,20)">8 AM</text>
+        <text y="0.71em" transform="translate(560,20)">9 AM</text>
+        <text y="0.71em" transform="translate(620,20)">10 AM</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,720)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="82.06896551724138" x2="82.06896551724138" y1="0" y2="20"></line>
+        <line x1="144.13793103448276" x2="144.13793103448276" y1="0" y2="20"></line>
+        <line x1="206.20689655172416" x2="206.20689655172416" y1="0" y2="20"></line>
+        <line x1="268.2758620689655" x2="268.2758620689655" y1="0" y2="20"></line>
+        <line x1="330.3448275862069" x2="330.3448275862069" y1="0" y2="20"></line>
+        <line x1="392.4137931034483" x2="392.4137931034483" y1="0" y2="20"></line>
+        <line x1="454.48275862068965" x2="454.48275862068965" y1="0" y2="20"></line>
+        <line x1="516.551724137931" x2="516.551724137931" y1="0" y2="20"></line>
+        <line x1="578.6206896551723" x2="578.6206896551723" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(82.06896551724138,20)" d="M0,0L0,6"></path>
+        <path transform="translate(144.13793103448276,20)" d="M0,0L0,6"></path>
+        <path transform="translate(206.20689655172416,20)" d="M0,0L0,6"></path>
+        <path transform="translate(268.2758620689655,20)" d="M0,0L0,6"></path>
+        <path transform="translate(330.3448275862069,20)" d="M0,0L0,6"></path>
+        <path transform="translate(392.4137931034483,20)" d="M0,0L0,6"></path>
+        <path transform="translate(454.48275862068965,20)" d="M0,0L0,6"></path>
+        <path transform="translate(516.551724137931,20)" d="M0,0L0,6"></path>
+        <path transform="translate(578.6206896551723,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">12 AM</tspan><tspan x="0" dy="1em">Jan 1</tspan></text>
+        <text y="0.71em" transform="translate(82.06896551724138,20)">3 AM</text>
+        <text y="0.71em" transform="translate(144.13793103448276,20)">6 AM</text>
+        <text y="0.71em" transform="translate(206.20689655172416,20)">9 AM</text>
+        <text y="0.71em" transform="translate(268.2758620689655,20)">12 PM</text>
+        <text y="0.71em" transform="translate(330.3448275862069,20)">3 PM</text>
+        <text y="0.71em" transform="translate(392.4137931034483,20)">6 PM</text>
+        <text y="0.71em" transform="translate(454.48275862068965,20)">9 PM</text>
+        <text transform="translate(516.551724137931,20)"><tspan x="0" y="0.71em">12 AM</tspan><tspan x="0" dy="1em">Jan 2</tspan></text>
+        <text y="0.71em" transform="translate(578.6206896551723,20)">3 AM</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,780)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="95" x2="95" y1="0" y2="20"></line>
+        <line x1="170" x2="170" y1="0" y2="20"></line>
+        <line x1="245" x2="245" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="395" x2="395" y1="0" y2="20"></line>
+        <line x1="470" x2="470" y1="0" y2="20"></line>
+        <line x1="545" x2="545" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(95,20)" d="M0,0L0,6"></path>
+        <path transform="translate(170,20)" d="M0,0L0,6"></path>
+        <path transform="translate(245,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(395,20)" d="M0,0L0,6"></path>
+        <path transform="translate(470,20)" d="M0,0L0,6"></path>
+        <path transform="translate(545,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">12 AM</tspan><tspan x="0" dy="1em">Jan 1</tspan></text>
+        <text y="0.71em" transform="translate(95,20)">6 AM</text>
+        <text y="0.71em" transform="translate(170,20)">12 PM</text>
+        <text y="0.71em" transform="translate(245,20)">6 PM</text>
+        <text transform="translate(320,20)"><tspan x="0" y="0.71em">12 AM</tspan><tspan x="0" dy="1em">Jan 2</tspan></text>
+        <text y="0.71em" transform="translate(395,20)">6 AM</text>
+        <text y="0.71em" transform="translate(470,20)">12 PM</text>
+        <text y="0.71em" transform="translate(545,20)">6 PM</text>
+        <text transform="translate(620,20)"><tspan x="0" y="0.71em">12 AM</tspan><tspan x="0" dy="1em">Jan 3</tspan></text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,840)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="95" x2="95" y1="0" y2="20"></line>
+        <line x1="170" x2="170" y1="0" y2="20"></line>
+        <line x1="245" x2="245" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="395" x2="395" y1="0" y2="20"></line>
+        <line x1="470" x2="470" y1="0" y2="20"></line>
+        <line x1="545" x2="545" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(95,20)" d="M0,0L0,6"></path>
+        <path transform="translate(170,20)" d="M0,0L0,6"></path>
+        <path transform="translate(245,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(395,20)" d="M0,0L0,6"></path>
+        <path transform="translate(470,20)" d="M0,0L0,6"></path>
+        <path transform="translate(545,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">12 AM</tspan><tspan x="0" dy="1em">Jan 1</tspan></text>
+        <text y="0.71em" transform="translate(95,20)">12 PM</text>
+        <text transform="translate(170,20)"><tspan x="0" y="0.71em">12 AM</tspan><tspan x="0" dy="1em">Jan 2</tspan></text>
+        <text y="0.71em" transform="translate(245,20)">12 PM</text>
+        <text transform="translate(320,20)"><tspan x="0" y="0.71em">12 AM</tspan><tspan x="0" dy="1em">Jan 3</tspan></text>
+        <text y="0.71em" transform="translate(395,20)">12 PM</text>
+        <text transform="translate(470,20)"><tspan x="0" y="0.71em">12 AM</tspan><tspan x="0" dy="1em">Jan 4</tspan></text>
+        <text y="0.71em" transform="translate(545,20)">12 PM</text>
+        <text transform="translate(620,20)"><tspan x="0" y="0.71em">12 AM</tspan><tspan x="0" dy="1em">Jan 5</tspan></text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,900)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="120" x2="120" y1="0" y2="20"></line>
+        <line x1="220" x2="220" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="420" x2="420" y1="0" y2="20"></line>
+        <line x1="520.0000000000001" x2="520.0000000000001" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(120,20)" d="M0,0L0,6"></path>
+        <path transform="translate(220,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(420,20)" d="M0,0L0,6"></path>
+        <path transform="translate(520.0000000000001,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">5</tspan><tspan x="0" dy="1em">Jan</tspan></text>
+        <text y="0.71em" transform="translate(120,20)">6</text>
+        <text y="0.71em" transform="translate(220,20)">7</text>
+        <text y="0.71em" transform="translate(320,20)">8</text>
+        <text y="0.71em" transform="translate(420,20)">9</text>
+        <text y="0.71em" transform="translate(520.0000000000001,20)">10</text>
+        <text y="0.71em" transform="translate(620,20)">11</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,960)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="80" x2="80" y1="0" y2="20"></line>
+        <line x1="140" x2="140" y1="0" y2="20"></line>
+        <line x1="200" x2="200" y1="0" y2="20"></line>
+        <line x1="260" x2="260" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="380" x2="380" y1="0" y2="20"></line>
+        <line x1="440" x2="440" y1="0" y2="20"></line>
+        <line x1="500" x2="500" y1="0" y2="20"></line>
+        <line x1="560" x2="560" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(80,20)" d="M0,0L0,6"></path>
+        <path transform="translate(140,20)" d="M0,0L0,6"></path>
+        <path transform="translate(200,20)" d="M0,0L0,6"></path>
+        <path transform="translate(260,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(380,20)" d="M0,0L0,6"></path>
+        <path transform="translate(440,20)" d="M0,0L0,6"></path>
+        <path transform="translate(500,20)" d="M0,0L0,6"></path>
+        <path transform="translate(560,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">1</tspan><tspan x="0" dy="1em">Jan</tspan></text>
+        <text y="0.71em" transform="translate(80,20)">2</text>
+        <text y="0.71em" transform="translate(140,20)">3</text>
+        <text y="0.71em" transform="translate(200,20)">4</text>
+        <text y="0.71em" transform="translate(260,20)">5</text>
+        <text y="0.71em" transform="translate(320,20)">6</text>
+        <text y="0.71em" transform="translate(380,20)">7</text>
+        <text y="0.71em" transform="translate(440,20)">8</text>
+        <text y="0.71em" transform="translate(500,20)">9</text>
+        <text y="0.71em" transform="translate(560,20)">10</text>
+        <text y="0.71em" transform="translate(620,20)">11</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,1020)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="74.54545454545455" x2="74.54545454545455" y1="0" y2="20"></line>
+        <line x1="129.0909090909091" x2="129.0909090909091" y1="0" y2="20"></line>
+        <line x1="183.63636363636363" x2="183.63636363636363" y1="0" y2="20"></line>
+        <line x1="238.1818181818182" x2="238.1818181818182" y1="0" y2="20"></line>
+        <line x1="292.72727272727275" x2="292.72727272727275" y1="0" y2="20"></line>
+        <line x1="347.2727272727272" x2="347.2727272727272" y1="0" y2="20"></line>
+        <line x1="401.8181818181818" x2="401.8181818181818" y1="0" y2="20"></line>
+        <line x1="456.3636363636364" x2="456.3636363636364" y1="0" y2="20"></line>
+        <line x1="510.90909090909093" x2="510.90909090909093" y1="0" y2="20"></line>
+        <line x1="565.4545454545455" x2="565.4545454545455" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(74.54545454545455,20)" d="M0,0L0,6"></path>
+        <path transform="translate(129.0909090909091,20)" d="M0,0L0,6"></path>
+        <path transform="translate(183.63636363636363,20)" d="M0,0L0,6"></path>
+        <path transform="translate(238.1818181818182,20)" d="M0,0L0,6"></path>
+        <path transform="translate(292.72727272727275,20)" d="M0,0L0,6"></path>
+        <path transform="translate(347.2727272727272,20)" d="M0,0L0,6"></path>
+        <path transform="translate(401.8181818181818,20)" d="M0,0L0,6"></path>
+        <path transform="translate(456.3636363636364,20)" d="M0,0L0,6"></path>
+        <path transform="translate(510.90909090909093,20)" d="M0,0L0,6"></path>
+        <path transform="translate(565.4545454545455,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">1</tspan><tspan x="0" dy="1em">Jan</tspan></text>
+        <text y="0.71em" transform="translate(74.54545454545455,20)">3</text>
+        <text y="0.71em" transform="translate(129.0909090909091,20)">5</text>
+        <text y="0.71em" transform="translate(183.63636363636363,20)">7</text>
+        <text y="0.71em" transform="translate(238.1818181818182,20)">9</text>
+        <text y="0.71em" transform="translate(292.72727272727275,20)">11</text>
+        <text y="0.71em" transform="translate(347.2727272727272,20)">13</text>
+        <text y="0.71em" transform="translate(401.8181818181818,20)">15</text>
+        <text y="0.71em" transform="translate(456.3636363636364,20)">17</text>
+        <text y="0.71em" transform="translate(510.90909090909093,20)">19</text>
+        <text y="0.71em" transform="translate(565.4545454545455,20)">21</text>
+        <text y="0.71em" transform="translate(620,20)">23</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,1080)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="64.44444444444444" x2="64.44444444444444" y1="0" y2="20"></line>
+        <line x1="108.88888888888889" x2="108.88888888888889" y1="0" y2="20"></line>
+        <line x1="153.33333333333331" x2="153.33333333333331" y1="0" y2="20"></line>
+        <line x1="197.77777777777777" x2="197.77777777777777" y1="0" y2="20"></line>
+        <line x1="242.2222222222222" x2="242.2222222222222" y1="0" y2="20"></line>
+        <line x1="286.66666666666663" x2="286.66666666666663" y1="0" y2="20"></line>
+        <line x1="331.1111111111111" x2="331.1111111111111" y1="0" y2="20"></line>
+        <line x1="375.55555555555554" x2="375.55555555555554" y1="0" y2="20"></line>
+        <line x1="420" x2="420" y1="0" y2="20"></line>
+        <line x1="464.4444444444444" x2="464.4444444444444" y1="0" y2="20"></line>
+        <line x1="508.88888888888886" x2="508.88888888888886" y1="0" y2="20"></line>
+        <line x1="553.3333333333333" x2="553.3333333333333" y1="0" y2="20"></line>
+        <line x1="597.7777777777777" x2="597.7777777777777" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(64.44444444444444,20)" d="M0,0L0,6"></path>
+        <path transform="translate(108.88888888888889,20)" d="M0,0L0,6"></path>
+        <path transform="translate(153.33333333333331,20)" d="M0,0L0,6"></path>
+        <path transform="translate(197.77777777777777,20)" d="M0,0L0,6"></path>
+        <path transform="translate(242.2222222222222,20)" d="M0,0L0,6"></path>
+        <path transform="translate(286.66666666666663,20)" d="M0,0L0,6"></path>
+        <path transform="translate(331.1111111111111,20)" d="M0,0L0,6"></path>
+        <path transform="translate(375.55555555555554,20)" d="M0,0L0,6"></path>
+        <path transform="translate(420,20)" d="M0,0L0,6"></path>
+        <path transform="translate(464.4444444444444,20)" d="M0,0L0,6"></path>
+        <path transform="translate(508.88888888888886,20)" d="M0,0L0,6"></path>
+        <path transform="translate(553.3333333333333,20)" d="M0,0L0,6"></path>
+        <path transform="translate(597.7777777777777,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">17</tspan><tspan x="0" dy="1em">Jan</tspan></text>
+        <text y="0.71em" transform="translate(64.44444444444444,20)">19</text>
+        <text y="0.71em" transform="translate(108.88888888888889,20)">21</text>
+        <text y="0.71em" transform="translate(153.33333333333331,20)">23</text>
+        <text y="0.71em" transform="translate(197.77777777777777,20)">25</text>
+        <text y="0.71em" transform="translate(242.2222222222222,20)">27</text>
+        <text y="0.71em" transform="translate(286.66666666666663,20)">29</text>
+        <text y="0.71em" transform="translate(331.1111111111111,20)">31</text>
+        <text transform="translate(375.55555555555554,20)"><tspan x="0" y="0.71em">2</tspan><tspan x="0" dy="1em">Feb</tspan></text>
+        <text y="0.71em" transform="translate(420,20)">4</text>
+        <text y="0.71em" transform="translate(464.4444444444444,20)">6</text>
+        <text y="0.71em" transform="translate(508.88888888888886,20)">8</text>
+        <text y="0.71em" transform="translate(553.3333333333333,20)">10</text>
+        <text y="0.71em" transform="translate(597.7777777777777,20)">12</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,1140)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="66.66666666666667" x2="66.66666666666667" y1="0" y2="20"></line>
+        <line x1="113.33333333333333" x2="113.33333333333333" y1="0" y2="20"></line>
+        <line x1="160" x2="160" y1="0" y2="20"></line>
+        <line x1="206.66666666666666" x2="206.66666666666666" y1="0" y2="20"></line>
+        <line x1="253.33333333333334" x2="253.33333333333334" y1="0" y2="20"></line>
+        <line x1="300" x2="300" y1="0" y2="20"></line>
+        <line x1="346.66666666666663" x2="346.66666666666663" y1="0" y2="20"></line>
+        <line x1="393.3333333333333" x2="393.3333333333333" y1="0" y2="20"></line>
+        <line x1="440" x2="440" y1="0" y2="20"></line>
+        <line x1="486.6666666666667" x2="486.6666666666667" y1="0" y2="20"></line>
+        <line x1="533.3333333333334" x2="533.3333333333334" y1="0" y2="20"></line>
+        <line x1="580" x2="580" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(66.66666666666667,20)" d="M0,0L0,6"></path>
+        <path transform="translate(113.33333333333333,20)" d="M0,0L0,6"></path>
+        <path transform="translate(160,20)" d="M0,0L0,6"></path>
+        <path transform="translate(206.66666666666666,20)" d="M0,0L0,6"></path>
+        <path transform="translate(253.33333333333334,20)" d="M0,0L0,6"></path>
+        <path transform="translate(300,20)" d="M0,0L0,6"></path>
+        <path transform="translate(346.66666666666663,20)" d="M0,0L0,6"></path>
+        <path transform="translate(393.3333333333333,20)" d="M0,0L0,6"></path>
+        <path transform="translate(440,20)" d="M0,0L0,6"></path>
+        <path transform="translate(486.6666666666667,20)" d="M0,0L0,6"></path>
+        <path transform="translate(533.3333333333334,20)" d="M0,0L0,6"></path>
+        <path transform="translate(580,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">1</tspan><tspan x="0" dy="1em">Jan</tspan></text>
+        <text y="0.71em" transform="translate(66.66666666666667,20)">8</text>
+        <text y="0.71em" transform="translate(113.33333333333333,20)">15</text>
+        <text y="0.71em" transform="translate(160,20)">22</text>
+        <text y="0.71em" transform="translate(206.66666666666666,20)">29</text>
+        <text transform="translate(253.33333333333334,20)"><tspan x="0" y="0.71em">5</tspan><tspan x="0" dy="1em">Feb</tspan></text>
+        <text y="0.71em" transform="translate(300,20)">12</text>
+        <text y="0.71em" transform="translate(346.66666666666663,20)">19</text>
+        <text y="0.71em" transform="translate(393.3333333333333,20)">26</text>
+        <text transform="translate(440,20)"><tspan x="0" y="0.71em">5</tspan><tspan x="0" dy="1em">Mar</tspan></text>
+        <text y="0.71em" transform="translate(486.6666666666667,20)">12</text>
+        <text y="0.71em" transform="translate(533.3333333333334,20)">19</text>
+        <text y="0.71em" transform="translate(580,20)">26</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,1200)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="70.95890410958904" x2="70.95890410958904" y1="0" y2="20"></line>
+        <line x1="116.98630136986301" x2="116.98630136986301" y1="0" y2="20"></line>
+        <line x1="167.94520547945206" x2="167.94520547945206" y1="0" y2="20"></line>
+        <line x1="217.2602739726027" x2="217.2602739726027" y1="0" y2="20"></line>
+        <line x1="268.2191780821918" x2="268.2191780821918" y1="0" y2="20"></line>
+        <line x1="317.5342465753425" x2="317.5342465753425" y1="0" y2="20"></line>
+        <line x1="368.49315068493144" x2="368.49315068493144" y1="0" y2="20"></line>
+        <line x1="419.45205479452056" x2="419.45205479452056" y1="0" y2="20"></line>
+        <line x1="468.7671232876712" x2="468.7671232876712" y1="0" y2="20"></line>
+        <line x1="519.7260273972603" x2="519.7260273972603" y1="0" y2="20"></line>
+        <line x1="569.0410958904109" x2="569.0410958904109" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(70.95890410958904,20)" d="M0,0L0,6"></path>
+        <path transform="translate(116.98630136986301,20)" d="M0,0L0,6"></path>
+        <path transform="translate(167.94520547945206,20)" d="M0,0L0,6"></path>
+        <path transform="translate(217.2602739726027,20)" d="M0,0L0,6"></path>
+        <path transform="translate(268.2191780821918,20)" d="M0,0L0,6"></path>
+        <path transform="translate(317.5342465753425,20)" d="M0,0L0,6"></path>
+        <path transform="translate(368.49315068493144,20)" d="M0,0L0,6"></path>
+        <path transform="translate(419.45205479452056,20)" d="M0,0L0,6"></path>
+        <path transform="translate(468.7671232876712,20)" d="M0,0L0,6"></path>
+        <path transform="translate(519.7260273972603,20)" d="M0,0L0,6"></path>
+        <path transform="translate(569.0410958904109,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2023</tspan></text>
+        <text y="0.71em" transform="translate(70.95890410958904,20)">Feb</text>
+        <text y="0.71em" transform="translate(116.98630136986301,20)">Mar</text>
+        <text y="0.71em" transform="translate(167.94520547945206,20)">Apr</text>
+        <text y="0.71em" transform="translate(217.2602739726027,20)">May</text>
+        <text y="0.71em" transform="translate(268.2191780821918,20)">Jun</text>
+        <text y="0.71em" transform="translate(317.5342465753425,20)">Jul</text>
+        <text y="0.71em" transform="translate(368.49315068493144,20)">Aug</text>
+        <text y="0.71em" transform="translate(419.45205479452056,20)">Sep</text>
+        <text y="0.71em" transform="translate(468.7671232876712,20)">Oct</text>
+        <text y="0.71em" transform="translate(519.7260273972603,20)">Nov</text>
+        <text y="0.71em" transform="translate(569.0410958904109,20)">Dec</text>
+        <text transform="translate(620,20)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2024</tspan></text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,1260)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="69.18032786885246" x2="69.18032786885246" y1="0" y2="20"></line>
+        <line x1="120" x2="120" y1="0" y2="20"></line>
+        <line x1="169.18032786885246" x2="169.18032786885246" y1="0" y2="20"></line>
+        <line x1="220" x2="220" y1="0" y2="20"></line>
+        <line x1="270.81967213114757" x2="270.81967213114757" y1="0" y2="20"></line>
+        <line x1="320" x2="320" y1="0" y2="20"></line>
+        <line x1="370.81967213114757" x2="370.81967213114757" y1="0" y2="20"></line>
+        <line x1="420" x2="420" y1="0" y2="20"></line>
+        <line x1="470.8196721311475" x2="470.8196721311475" y1="0" y2="20"></line>
+        <line x1="521.6393442622951" x2="521.6393442622951" y1="0" y2="20"></line>
+        <line x1="569.1803278688525" x2="569.1803278688525" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(69.18032786885246,20)" d="M0,0L0,6"></path>
+        <path transform="translate(120,20)" d="M0,0L0,6"></path>
+        <path transform="translate(169.18032786885246,20)" d="M0,0L0,6"></path>
+        <path transform="translate(220,20)" d="M0,0L0,6"></path>
+        <path transform="translate(270.81967213114757,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320,20)" d="M0,0L0,6"></path>
+        <path transform="translate(370.81967213114757,20)" d="M0,0L0,6"></path>
+        <path transform="translate(420,20)" d="M0,0L0,6"></path>
+        <path transform="translate(470.8196721311475,20)" d="M0,0L0,6"></path>
+        <path transform="translate(521.6393442622951,20)" d="M0,0L0,6"></path>
+        <path transform="translate(569.1803278688525,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">Apr</tspan><tspan x="0" dy="1em">2023</tspan></text>
+        <text y="0.71em" transform="translate(69.18032786885246,20)">May</text>
+        <text y="0.71em" transform="translate(120,20)">Jun</text>
+        <text y="0.71em" transform="translate(169.18032786885246,20)">Jul</text>
+        <text y="0.71em" transform="translate(220,20)">Aug</text>
+        <text y="0.71em" transform="translate(270.81967213114757,20)">Sep</text>
+        <text y="0.71em" transform="translate(320,20)">Oct</text>
+        <text y="0.71em" transform="translate(370.81967213114757,20)">Nov</text>
+        <text y="0.71em" transform="translate(420,20)">Dec</text>
+        <text transform="translate(470.8196721311475,20)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2024</tspan></text>
+        <text y="0.71em" transform="translate(521.6393442622951,20)">Feb</text>
+        <text y="0.71em" transform="translate(569.1803278688525,20)">Mar</text>
+        <text y="0.71em" transform="translate(620,20)">Apr</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,1320)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="69.27007299270073" x2="69.27007299270073" y1="0" y2="20"></line>
+        <line x1="119.08759124087592" x2="119.08759124087592" y1="0" y2="20"></line>
+        <line x1="169.45255474452554" x2="169.45255474452554" y1="0" y2="20"></line>
+        <line x1="219.8175182481752" x2="219.8175182481752" y1="0" y2="20"></line>
+        <line x1="269.6350364963504" x2="269.6350364963504" y1="0" y2="20"></line>
+        <line x1="319.4525547445255" x2="319.4525547445255" y1="0" y2="20"></line>
+        <line x1="369.8175182481752" x2="369.8175182481752" y1="0" y2="20"></line>
+        <line x1="420.1824817518248" x2="420.1824817518248" y1="0" y2="20"></line>
+        <line x1="469.4525547445255" x2="469.4525547445255" y1="0" y2="20"></line>
+        <line x1="519.2700729927008" x2="519.2700729927008" y1="0" y2="20"></line>
+        <line x1="569.6350364963504" x2="569.6350364963504" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(69.27007299270073,20)" d="M0,0L0,6"></path>
+        <path transform="translate(119.08759124087592,20)" d="M0,0L0,6"></path>
+        <path transform="translate(169.45255474452554,20)" d="M0,0L0,6"></path>
+        <path transform="translate(219.8175182481752,20)" d="M0,0L0,6"></path>
+        <path transform="translate(269.6350364963504,20)" d="M0,0L0,6"></path>
+        <path transform="translate(319.4525547445255,20)" d="M0,0L0,6"></path>
+        <path transform="translate(369.8175182481752,20)" d="M0,0L0,6"></path>
+        <path transform="translate(420.1824817518248,20)" d="M0,0L0,6"></path>
+        <path transform="translate(469.4525547445255,20)" d="M0,0L0,6"></path>
+        <path transform="translate(519.2700729927008,20)" d="M0,0L0,6"></path>
+        <path transform="translate(569.6350364963504,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text transform="translate(20,20)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2023</tspan></text>
+        <text y="0.71em" transform="translate(69.27007299270073,20)">Apr</text>
+        <text y="0.71em" transform="translate(119.08759124087592,20)">Jul</text>
+        <text y="0.71em" transform="translate(169.45255474452554,20)">Oct</text>
+        <text transform="translate(219.8175182481752,20)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2024</tspan></text>
+        <text y="0.71em" transform="translate(269.6350364963504,20)">Apr</text>
+        <text y="0.71em" transform="translate(319.4525547445255,20)">Jul</text>
+        <text y="0.71em" transform="translate(369.8175182481752,20)">Oct</text>
+        <text transform="translate(420.1824817518248,20)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2025</tspan></text>
+        <text y="0.71em" transform="translate(469.4525547445255,20)">Apr</text>
+        <text y="0.71em" transform="translate(519.2700729927008,20)">Jul</text>
+        <text y="0.71em" transform="translate(569.6350364963504,20)">Oct</text>
+        <text transform="translate(620,20)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2026</tspan></text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,1380)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="79.95072543115248" x2="79.95072543115248" y1="0" y2="20"></line>
+        <line x1="140.06569942513002" x2="140.06569942513002" y1="0" y2="20"></line>
+        <line x1="200.01642485628253" x2="200.01642485628253" y1="0" y2="20"></line>
+        <line x1="259.967150287435" x2="259.967150287435" y1="0" y2="20"></line>
+        <line x1="319.9178757185874" x2="319.9178757185874" y1="0" y2="20"></line>
+        <line x1="380.03284971256505" x2="380.03284971256505" y1="0" y2="20"></line>
+        <line x1="439.9835751437175" x2="439.9835751437175" y1="0" y2="20"></line>
+        <line x1="499.93430057487" x2="499.93430057487" y1="0" y2="20"></line>
+        <line x1="559.8850260060225" x2="559.8850260060225" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(79.95072543115248,20)" d="M0,0L0,6"></path>
+        <path transform="translate(140.06569942513002,20)" d="M0,0L0,6"></path>
+        <path transform="translate(200.01642485628253,20)" d="M0,0L0,6"></path>
+        <path transform="translate(259.967150287435,20)" d="M0,0L0,6"></path>
+        <path transform="translate(319.9178757185874,20)" d="M0,0L0,6"></path>
+        <path transform="translate(380.03284971256505,20)" d="M0,0L0,6"></path>
+        <path transform="translate(439.9835751437175,20)" d="M0,0L0,6"></path>
+        <path transform="translate(499.93430057487,20)" d="M0,0L0,6"></path>
+        <path transform="translate(559.8850260060225,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text y="0.71em" transform="translate(20,20)">2023</text>
+        <text y="0.71em" transform="translate(79.95072543115248,20)">2024</text>
+        <text y="0.71em" transform="translate(140.06569942513002,20)">2025</text>
+        <text y="0.71em" transform="translate(200.01642485628253,20)">2026</text>
+        <text y="0.71em" transform="translate(259.967150287435,20)">2027</text>
+        <text y="0.71em" transform="translate(319.9178757185874,20)">2028</text>
+        <text y="0.71em" transform="translate(380.03284971256505,20)">2029</text>
+        <text y="0.71em" transform="translate(439.9835751437175,20)">2030</text>
+        <text y="0.71em" transform="translate(499.93430057487,20)">2031</text>
+        <text y="0.71em" transform="translate(559.8850260060225,20)">2032</text>
+        <text y="0.71em" transform="translate(620,20)">2033</text>
+      </g>
+    </svg></g>
+  <g transform="translate(0,1440)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+        <line x1="20" x2="20" y1="0" y2="20"></line>
+        <line x1="80.02299731697968" x2="80.02299731697968" y1="0" y2="20"></line>
+        <line x1="140.01314132398838" x2="140.01314132398838" y1="0" y2="20"></line>
+        <line x1="200.00328533099713" x2="200.00328533099713" y1="0" y2="20"></line>
+        <line x1="259.9934293380058" x2="259.9934293380058" y1="0" y2="20"></line>
+        <line x1="320.01642665498554" x2="320.01642665498554" y1="0" y2="20"></line>
+        <line x1="380.00657066199426" x2="380.00657066199426" y1="0" y2="20"></line>
+        <line x1="439.9967146690029" x2="439.9967146690029" y1="0" y2="20"></line>
+        <line x1="499.9868586760116" x2="499.9868586760116" y1="0" y2="20"></line>
+        <line x1="560.0098559929913" x2="560.0098559929913" y1="0" y2="20"></line>
+        <line x1="620" x2="620" y1="0" y2="20"></line>
+      </g>
+      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+        <path transform="translate(20,20)" d="M0,0L0,6"></path>
+        <path transform="translate(80.02299731697968,20)" d="M0,0L0,6"></path>
+        <path transform="translate(140.01314132398838,20)" d="M0,0L0,6"></path>
+        <path transform="translate(200.00328533099713,20)" d="M0,0L0,6"></path>
+        <path transform="translate(259.9934293380058,20)" d="M0,0L0,6"></path>
+        <path transform="translate(320.01642665498554,20)" d="M0,0L0,6"></path>
+        <path transform="translate(380.00657066199426,20)" d="M0,0L0,6"></path>
+        <path transform="translate(439.9967146690029,20)" d="M0,0L0,6"></path>
+        <path transform="translate(499.9868586760116,20)" d="M0,0L0,6"></path>
+        <path transform="translate(560.0098559929913,20)" d="M0,0L0,6"></path>
+        <path transform="translate(620,20)" d="M0,0L0,6"></path>
+      </g>
+      <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+        <text y="0.71em" transform="translate(20,20)">2020</text>
+        <text y="0.71em" transform="translate(80.02299731697968,20)">2025</text>
+        <text y="0.71em" transform="translate(140.01314132398838,20)">2030</text>
+        <text y="0.71em" transform="translate(200.00328533099713,20)">2035</text>
+        <text y="0.71em" transform="translate(259.9934293380058,20)">2040</text>
+        <text y="0.71em" transform="translate(320.01642665498554,20)">2045</text>
+        <text y="0.71em" transform="translate(380.00657066199426,20)">2050</text>
+        <text y="0.71em" transform="translate(439.9967146690029,20)">2055</text>
+        <text y="0.71em" transform="translate(499.9868586760116,20)">2060</text>
+        <text y="0.71em" transform="translate(560.0098559929913,20)">2065</text>
+        <text y="0.71em" transform="translate(620,20)">2070</text>
+      </g>
+    </svg></g>
+</svg>

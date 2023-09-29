@@ -3,7 +3,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {shallowRef, onMounted} from "vue";
-import penguins from "../data/penguins.ts";
 
 const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
 
@@ -19,7 +18,7 @@ onMounted(() => {
 The group transform is for aggregating ordinal or nominal data. For quantitative or temporal data, use the [bin transform](./bin.md).
 :::
 
-The **group transform** groups ordinal or nominal data—discrete values such as name, type, or category. You can then compute summary statistics for each group, such as a count, sum, or proportion. The group transform is most often used to make bar charts with the [bar mark](../marks/bar.md).
+The **group transform** groups ordinal or nominal data — discrete values such as name, type, or category. You can then compute summary statistics for each group, such as a count, sum, or proportion. The group transform is most often used to make bar charts with the [bar mark](../marks/bar.md).
 
 For example, the bar chart below shows a distribution of Olympic athletes by sport.
 
@@ -38,10 +37,10 @@ Plot.plot({
 :::
 
 :::tip
-Ordinal domains are sorted naturally (alphabetically) by default. Either set the [scale **domain**](../features/scales.md) explicitly to change the order, or use the mark [**sort** option](../features/marks.md#sort-option) to derive the scale domain from a channel.
+Ordinal domains are sorted naturally (alphabetically) by default. Either set the [scale **domain**](../features/scales.md) explicitly to change the order, or use the mark [**sort** option](../features/scales.md#sort-mark-option) to derive the scale domain from a channel.
 :::
 
-The groupX transform groups on **x**. The *outputs* argument (here `{y: "count"}`) declares desired output channels (**y**) and the associated reducer (*count*). Hence the height of each bar above represents the number of penguins of each species.
+The groupX transform groups on **x**. The *outputs* argument (here `{y: "count"}`) declares desired output channels (**y**) and the associated reducer (*count*). Hence the height of each bar above represents the number of Olympic athletes by sport.
 
 <!-- For example, to sort **x** by descending **y**: -->
 
@@ -52,7 +51,7 @@ Plot.plot({
   x: {label: null, tickRotate: 90},
   y: {grid: true},
   marks: [
-    Plot.barY(olympians, Plot.groupX({y: "count"}, {x: "sport", sort: {x: "y", reverse: true}})),
+    Plot.barY(olympians, Plot.groupX({y: "count"}, {x: "sport", sort: {x: "-y"}})),
     Plot.ruleY([0])
   ]
 })
@@ -170,7 +169,7 @@ Alternatively, below we use directional arrows (a [link mark](../marks/link.md) 
 Plot.plot({
   marginBottom: 100,
   x: {label: null, tickRotate: 90},
-  y: {grid: true, label: "↑ Frequency"},
+  y: {grid: true, label: "Frequency"},
   color: {type: "categorical", domain: [-1, 1], unknown: "#aaa", transform: Math.sign},
   marks: [
     Plot.ruleY([0]),
@@ -200,10 +199,10 @@ Plot.plot({
 
 The group transform comes in four orientations:
 
-- [groupX](#groupx-outputs-options) groups on **x**, and often outputs **y** as in a vertical↑ bar chart;
-- [groupY](#groupy-outputs-options) groups on **y**, and often outputs **x** as in a horizontal→ bar chart;
-- [groupZ](#groupz-outputs-options) groups on *neither* **x** nor **y**, combining everything into one group; and
-- [group](#group-outputs-options) groups on *both* **x** and **y**, and often outputs to **fill** or **r** as in a heatmap.
+- [groupX](#groupX) groups on **x**, and often outputs **y** as in a vertical↑ bar chart;
+- [groupY](#groupY) groups on **y**, and often outputs **x** as in a horizontal→ bar chart;
+- [groupZ](#groupZ) groups on *neither* **x** nor **y**, combining everything into one group; and
+- [group](#group) groups on *both* **x** and **y**, and often outputs to **fill** or **r** as in a heatmap.
 
 As you might guess, the groupY transform with the barX mark produces a horizontal→ bar chart. (We must increase the **marginLeft** to avoid the *y* axis labels from being cut off.)
 
@@ -244,7 +243,7 @@ Or, we could group athletes by sport and the number of gold medals 🥇 won. ([M
 Plot.plot({
   marginBottom: 100,
   x: {label: null, tickRotate: 90},
-  y: {label: "↑ gold", labelAnchor: "top", reverse: true},
+  y: {label: "gold", labelAnchor: "top", labelArrow: true, reverse: true},
   color: {type: "sqrt", scheme: "{{$dark ? "turbo" : "YlGnBu"}}"},
   marks: [
     Plot.cell(olympians, Plot.group({fill: "count"}, {x: "sport", y: "gold"}))
@@ -260,7 +259,7 @@ We could instead output **r** and use a [dot mark](../marks/dot.md) whose size a
 Plot.plot({
   marginBottom: 100,
   x: {label: null, tickRotate: 90},
-  y: {type: "point", label: "↑ gold", labelAnchor: "top", reverse: true},
+  y: {type: "point", label: "gold", labelAnchor: "top", labelArrow: true, reverse: true},
   r: {range: [0, 12]},
   marks: [
     Plot.dot(olympians, Plot.group({r: "count"}, {x: "sport", y: "gold"}))
@@ -276,7 +275,7 @@ We can add the **stroke** channel to show overlapping distributions by sex.
 Plot.plot({
   marginBottom: 100,
   x: {label: null, tickRotate: 90},
-  y: {type: "point", label: "↑ gold", labelAnchor: "top", reverse: true},
+  y: {type: "point", label: "gold", labelAnchor: "top", labelArrow: true, reverse: true},
   r: {range: [0, 12]},
   marks: [
     Plot.dot(olympians, Plot.group({r: "count"}, {x: "sport", y: "gold", stroke: "sex"}))
@@ -285,7 +284,7 @@ Plot.plot({
 ```
 :::
 
-To group solely on **z** (or **fill** or **stroke**), use [groupZ](#groupz-outputs-options). The single stacked bar chart below (an alternative to a pie chart) shows the proportion of athletes by sport. The *proportion* reducer converts counts into normalized proportions adding up to 1, while the *first* reducer pulls out the name of the sport for labeling.
+To group solely on **z** (or **fill** or **stroke**), use [groupZ](#groupZ). The single stacked bar chart below (an alternative to a pie chart) shows the proportion of athletes by sport. The *proportion* reducer converts counts into normalized proportions adding up to 1, while the *first* reducer pulls out the name of the sport for labeling.
 
 :::plot defer https://observablehq.com/@observablehq/plot-single-stacked-bar
 ```js
@@ -405,7 +404,7 @@ If any of **z**, **fill**, or **stroke** is a channel, the first of these channe
 
 The default reducer for the **title** channel returns a summary list of the top 5 values with the corresponding number of occurrences.
 
-## group(*outputs*, *options*)
+## group(*outputs*, *options*) {#group}
 
 ```js
 Plot.group({fill: "count"}, {x: "island", y: "species"})
@@ -413,7 +412,7 @@ Plot.group({fill: "count"}, {x: "island", y: "species"})
 
 Groups on **x**, **y**, and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## groupX(*outputs*, *options*)
+## groupX(*outputs*, *options*) {#groupX}
 
 ```js
 Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
@@ -421,7 +420,7 @@ Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
 
 Groups on **x** and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## groupY(*outputs*, *options*)
+## groupY(*outputs*, *options*) {#groupY}
 
 ```js
 Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
@@ -429,7 +428,7 @@ Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
 
 Groups on **y** and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## groupZ(*outputs*, *options*)
+## groupZ(*outputs*, *options*) {#groupZ}
 
 ```js
 Plot.groupZ({x: "proportion"}, {fill: "species"})

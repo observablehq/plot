@@ -73,9 +73,9 @@ const gene = "AAAAGAGTGAAGATGCTGGAGACGAGTGAAGCATTCACTTTAGGGAAAGCGAGGCAAGAGCGTTTC
 
 </script>
 
-# Shorthand
+# Shorthand <VersionBadge version="0.4.2" />
 
-The most concise form of Plot is its **shorthand** syntax where no options are specified—only data. To use this shorthand, the data must have a specific structure: either a one-dimensional array of values [*v₀*, *v₁*, *v₂*, …] or a two-dimensional array of tuples [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …].
+The most concise form of Plot is its **shorthand** syntax where no options are specified — only data. To use this shorthand, the data must have a specific structure: either a one-dimensional array of values [*v₀*, *v₁*, *v₂*, …] or a two-dimensional array of tuples [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …].
 
 While none of these charts are particularly groundbreaking, we hope you find this shorthand convenient the next time you want a quick look at some data. And if the shorthand view is useful, you can then enhance it by adding options!
 
@@ -156,7 +156,7 @@ Plot.tickX(numbers).plot()
 ```
 :::
 
-We could even use [Plot.vectorX](../marks/vector.md) here to draw little up-pointing arrows. (Typically the vector mark is used in conjunction with the *rotate* and *length* options to control the direction and magnitude of each vector.)
+We could even use [Plot.vectorX](../marks/vector.md) here to draw little up-pointing arrows. (Typically the vector mark is used in conjunction with the **rotate** and **length** options to control the direction and magnitude of each vector.)
 
 :::plot https://observablehq.com/@observablehq/plot-shorthand-one-dimensional-vector
 ```js
@@ -180,7 +180,7 @@ Plot.boxX(numbers).plot()
 ```
 :::
 
-Some of Plot’s transforms support shorthand syntax, too. For example, we can use Plot.rectY with [Plot.binX](../transforms/bin.md) to generate a histogram—another common way to visualize a one-dimensional distribution.
+Some of Plot’s transforms support shorthand syntax, too. For example, we can use Plot.rectY with [Plot.binX](../transforms/bin.md) to generate a histogram — another common way to visualize a one-dimensional distribution.
 
 :::plot https://observablehq.com/@observablehq/plot-shorthand-histogram
 ```js

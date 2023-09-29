@@ -127,8 +127,7 @@ function position(X, W, R, x, w, r) {
     : x - r;
 }
 
-export function image(data, options = {}) {
-  let {x, y, ...remainingOptions} = options;
+export function image(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
-  return new Image(data, {...remainingOptions, x, y});
+  return new Image(data, {...options, x, y});
 }

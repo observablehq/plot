@@ -26,7 +26,7 @@ export default function plot(md) {
           directives.includes("hidden")
             ? `<div style="display: none;">\n`
             : href
-            ? `<a class="plot-fork" href="${md.utils.escapeHtml(href)}?intent=fork" target="_blank" title="Open on Observable">Fork</a>`
+            ? `<a class="plot-fork no-icon" href="${md.utils.escapeHtml(href)}?intent=fork" target="_blank" title="Open on Observable">Fork</a>`
             : ""
         }`;
         if (/^Plot\.plot\(/.test(content)) {

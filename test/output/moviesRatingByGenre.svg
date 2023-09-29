@@ -13,14 +13,90 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="facet" transform="translate(0,2)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="fy-grid" transform="translate(0,0.5)">
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,2)">
       <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
     </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,41)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,80)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,119)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,158)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,197)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,236)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,275)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,314)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,353)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,392)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,431)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,470)">
+      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
+    </g>
+  </g>
+  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(0,2)">
       <text y="0.32em" transform="translate(120,49.5)">Documentary</text>
     </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g text-anchor="end" transform="translate(0,41)">
+      <text y="0.32em" transform="translate(120,49.5)">Black Comedy</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,80)">
+      <text y="0.32em" transform="translate(120,49.5)">Drama</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,119)">
+      <text y="0.32em" transform="translate(120,49.5)">Musical</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,158)">
+      <text y="0.32em" transform="translate(120,49.5)">Western</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,197)">
+      <text y="0.32em" transform="translate(120,49.5)">N/A</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,236)">
+      <text y="0.32em" transform="translate(120,49.5)">Adventure</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,275)">
+      <text y="0.32em" transform="translate(120,49.5)">Thriller/Suspense</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,314)">
+      <text y="0.32em" transform="translate(120,49.5)">Action</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,353)">
+      <text y="0.32em" transform="translate(120,49.5)">Concert/Performance</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,392)">
+      <text y="0.32em" transform="translate(120,49.5)">Comedy</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,431)">
+      <text y="0.32em" transform="translate(120,49.5)">Romantic Comedy</text>
+    </g>
+    <g text-anchor="end" transform="translate(0,470)">
+      <text y="0.32em" transform="translate(120,49.5)">Horror</text>
+    </g>
+  </g>
+  <g aria-label="x-grid" transform="translate(0.5,0)">
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,2)">
       <line x1="120" x2="120" y1="30" y2="69"></line>
       <line x1="202" x2="202" y1="30" y2="69"></line>
       <line x1="284" x2="284" y1="30" y2="69"></line>
@@ -33,7 +109,165 @@
       <line x1="858" x2="858" y1="30" y2="69"></line>
       <line x1="940" x2="940" y1="30" y2="69"></line>
     </g>
-    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,41)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,80)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,119)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,158)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,197)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,236)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,275)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,314)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,353)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,392)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,431)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+    <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,470)">
+      <line x1="120" x2="120" y1="30" y2="69"></line>
+      <line x1="202" x2="202" y1="30" y2="69"></line>
+      <line x1="284" x2="284" y1="30" y2="69"></line>
+      <line x1="366" x2="366" y1="30" y2="69"></line>
+      <line x1="448" x2="448" y1="30" y2="69"></line>
+      <line x1="530" x2="530" y1="30" y2="69"></line>
+      <line x1="612" x2="612" y1="30" y2="69"></line>
+      <line x1="694" x2="694" y1="30" y2="69"></line>
+      <line x1="776" x2="776" y1="30" y2="69"></line>
+      <line x1="858" x2="858" y1="30" y2="69"></line>
+      <line x1="940" x2="940" y1="30" y2="69"></line>
+    </g>
+  </g>
+  <g aria-label="x-axis tick" transform="translate(0.5,1)">
+    <g fill="none" stroke="currentColor" transform="translate(0,2)">
       <path transform="translate(120,30)" d="M0,0L0,-6"></path>
       <path transform="translate(202,30)" d="M0,0L0,-6"></path>
       <path transform="translate(284,30)" d="M0,0L0,-6"></path>
@@ -46,7 +280,9 @@
       <path transform="translate(858,30)" d="M0,0L0,-6"></path>
       <path transform="translate(940,30)" d="M0,0L0,-6"></path>
     </g>
-    <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,-8.5)">
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(0.5,-8.5)">
+    <g font-variant="tabular-nums" transform="translate(0,2)">
       <text transform="translate(120,30)">0</text>
       <text transform="translate(202,30)">1</text>
       <text transform="translate(284,30)">2</text>
@@ -59,7 +295,12 @@
       <text transform="translate(858,30)">9</text>
       <text transform="translate(940,30)">10</text>
     </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-26.5)">
+    <text y="0.71em" transform="translate(940,32)">IMDB Rating →</text>
+  </g>
+  <g aria-label="dot" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,2)">
       <circle cx="743.1999999999999" cy="49.5" r="2.5" stroke="#edc949"></circle>
       <circle cx="595.5999999999999" cy="49.5" r="2.5" stroke="#edc949"></circle>
       <circle cx="776" cy="49.5" r="2.5" stroke="#edc949"></circle>
@@ -98,28 +339,7 @@
       <circle cx="702.1999999999999" cy="46.5" r="2.5" stroke="#edc949"></circle>
       <circle cx="726.8000000000001" cy="46.5" r="2.5" stroke="#edc949"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,41)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">Black Comedy</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,41)">
       <circle cx="776" cy="49.5" r="2.5" stroke="#e15759"></circle>
       <circle cx="743.1999999999999" cy="49.5" r="2.5" stroke="#e15759"></circle>
       <circle cx="587.4000000000001" cy="49.5" r="2.5" stroke="#e15759"></circle>
@@ -153,28 +373,7 @@
       <circle cx="710.4" cy="46.5" r="2.5" stroke="#e15759"></circle>
       <circle cx="669.4000000000001" cy="46.5" r="2.5" stroke="#e15759"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,80)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">Drama</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,80)">
       <circle cx="685.8000000000001" cy="49.5" r="2.5" stroke="#af7aa1"></circle>
       <circle cx="398.79999999999995" cy="49.5" r="2.5" stroke="#af7aa1"></circle>
       <circle cx="849.8000000000001" cy="49.5" r="2.5" stroke="#af7aa1"></circle>
@@ -914,28 +1113,7 @@
       <circle cx="628.4" cy="82.5" r="2.5" stroke="#af7aa1"></circle>
       <circle cx="710.4" cy="85.5" r="2.5" stroke="#af7aa1"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,119)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">Musical</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,119)">
       <circle cx="735" cy="49.5" r="2.5" stroke="#9c755f"></circle>
       <circle cx="751.4000000000001" cy="49.5" r="2.5" stroke="#9c755f"></circle>
       <circle cx="702.1999999999999" cy="49.5" r="2.5" stroke="#9c755f"></circle>
@@ -987,28 +1165,7 @@
       <circle cx="579.1999999999999" cy="49.5" r="2.5" stroke="#9c755f"></circle>
       <circle cx="702.1999999999999" cy="52.5" r="2.5" stroke="#9c755f"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,158)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">Western</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,158)">
       <circle cx="603.8" cy="49.5" r="2.5" stroke="#f28e2c"></circle>
       <circle cx="792.4" cy="49.5" r="2.5" stroke="#f28e2c"></circle>
       <circle cx="718.5999999999999" cy="49.5" r="2.5" stroke="#f28e2c"></circle>
@@ -1045,28 +1202,7 @@
       <circle cx="661.2" cy="52.5" r="2.5" stroke="#f28e2c"></circle>
       <circle cx="530" cy="49.5" r="2.5" stroke="#f28e2c"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,197)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">N/A</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,197)">
       <circle cx="620.1999999999999" cy="49.5" r="2.5" stroke="#e15759"></circle>
       <circle cx="751.4000000000001" cy="49.5" r="2.5" stroke="#e15759"></circle>
       <circle cx="595.5999999999999" cy="49.5" r="2.5" stroke="#e15759"></circle>
@@ -1310,28 +1446,7 @@
       <circle cx="628.4" cy="58.5" r="2.5" stroke="#e15759"></circle>
       <circle cx="489" cy="46.5" r="2.5" stroke="#e15759"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,236)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">Adventure</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,236)">
       <circle cx="521.8000000000001" cy="49.5" r="2.5" stroke="#f28e2c"></circle>
       <circle cx="718.5999999999999" cy="49.5" r="2.5" stroke="#f28e2c"></circle>
       <circle cx="382.4" cy="49.5" r="2.5" stroke="#f28e2c"></circle>
@@ -1584,28 +1699,7 @@
       <circle cx="587.4000000000001" cy="55.5" r="2.5" stroke="#f28e2c"></circle>
       <circle cx="669.4000000000001" cy="37.5" r="2.5" stroke="#f28e2c"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,275)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">Thriller/Suspense</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,275)">
       <circle cx="636.6" cy="49.5" r="2.5" stroke="#4e79a7"></circle>
       <circle cx="628.4" cy="49.5" r="2.5" stroke="#4e79a7"></circle>
       <circle cx="538.2" cy="49.5" r="2.5" stroke="#4e79a7"></circle>
@@ -1840,28 +1934,7 @@
       <circle cx="423.4" cy="49.5" r="2.5" stroke="#4e79a7"></circle>
       <circle cx="554.6" cy="61.5" r="2.5" stroke="#4e79a7"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,314)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">Action</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,314)">
       <circle cx="382.4" cy="49.5" r="2.5" stroke="#4e79a7"></circle>
       <circle cx="743.1999999999999" cy="49.5" r="2.5" stroke="#4e79a7"></circle>
       <circle cx="497.2" cy="49.5" r="2.5" stroke="#4e79a7"></circle>
@@ -2255,55 +2328,13 @@
       <circle cx="702.1999999999999" cy="31.5" r="2.5" stroke="#4e79a7"></circle>
       <circle cx="456.2" cy="40.5" r="2.5" stroke="#4e79a7"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,353)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">Concert/Performance</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,353)">
       <circle cx="603.8" cy="49.5" r="2.5" stroke="#59a14f"></circle>
       <circle cx="628.4" cy="49.5" r="2.5" stroke="#59a14f"></circle>
       <circle cx="521.8000000000001" cy="49.5" r="2.5" stroke="#59a14f"></circle>
       <circle cx="800.6" cy="49.5" r="2.5" stroke="#59a14f"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,392)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">Comedy</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,392)">
       <circle cx="677.5999999999999" cy="49.5" r="2.5" stroke="#76b7b2"></circle>
       <circle cx="431.6" cy="49.5" r="2.5" stroke="#76b7b2"></circle>
       <circle cx="579.1999999999999" cy="49.5" r="2.5" stroke="#76b7b2"></circle>
@@ -2940,28 +2971,7 @@
       <circle cx="759.6" cy="37.5" r="2.5" stroke="#76b7b2"></circle>
       <circle cx="694" cy="25.5" r="2.5" stroke="#76b7b2"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,431)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">Romantic Comedy</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,431)">
       <circle cx="702.1999999999999" cy="49.5" r="2.5" stroke="#bab0ab"></circle>
       <circle cx="587.4000000000001" cy="49.5" r="2.5" stroke="#bab0ab"></circle>
       <circle cx="677.5999999999999" cy="49.5" r="2.5" stroke="#bab0ab"></circle>
@@ -3093,28 +3103,7 @@
       <circle cx="398.79999999999995" cy="52.5" r="2.5" stroke="#bab0ab"></circle>
       <circle cx="636.6" cy="43.5" r="2.5" stroke="#bab0ab"></circle>
     </g>
-  </g>
-  <g aria-label="facet" transform="translate(0,470)">
-    <g aria-label="fy-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="120" x2="940" y1="49.5" y2="49.5"></line>
-    </g>
-    <g aria-label="fy-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-      <text y="0.32em" transform="translate(120,49.5)">Horror</text>
-    </g>
-    <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="120" x2="120" y1="30" y2="69"></line>
-      <line x1="202" x2="202" y1="30" y2="69"></line>
-      <line x1="284" x2="284" y1="30" y2="69"></line>
-      <line x1="366" x2="366" y1="30" y2="69"></line>
-      <line x1="448" x2="448" y1="30" y2="69"></line>
-      <line x1="530" x2="530" y1="30" y2="69"></line>
-      <line x1="612" x2="612" y1="30" y2="69"></line>
-      <line x1="694" x2="694" y1="30" y2="69"></line>
-      <line x1="776" x2="776" y1="30" y2="69"></line>
-      <line x1="858" x2="858" y1="30" y2="69"></line>
-      <line x1="940" x2="940" y1="30" y2="69"></line>
-    </g>
-    <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <g fill="none" stroke-width="1.5" transform="translate(0,470)">
       <circle cx="620.1999999999999" cy="49.5" r="2.5" stroke="#ff9da7"></circle>
       <circle cx="743.1999999999999" cy="49.5" r="2.5" stroke="#ff9da7"></circle>
       <circle cx="644.8000000000001" cy="49.5" r="2.5" stroke="#ff9da7"></circle>
@@ -3325,8 +3314,5 @@
       <circle cx="726.8000000000001" cy="40.5" r="2.5" stroke="#ff9da7"></circle>
       <circle cx="595.5999999999999" cy="37.5" r="2.5" stroke="#ff9da7"></circle>
     </g>
-  </g>
-  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-26.5)">
-    <text y="0.71em" transform="translate(940,32)">IMDB Rating →</text>
   </g>
 </svg>

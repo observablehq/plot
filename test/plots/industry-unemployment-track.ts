@@ -12,7 +12,7 @@ export async function industryUnemploymentTrack() {
         interval: "month",
         fill: "unemployed",
         title: "unemployed",
-        sort: {fy: "fill", reverse: true},
+        sort: {fy: "-fill"},
         inset: 0
       }),
       Plot.dotX(

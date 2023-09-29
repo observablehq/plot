@@ -6,6 +6,7 @@ export async function flareCluster() {
   return Plot.plot({
     axis: null,
     inset: 10,
+    insetLeft: 30,
     insetRight: 120,
     height: 2400,
     marks: Plot.cluster(flare, {path: "name", delimiter: "."})

@@ -1,57 +1,62 @@
-import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
-import {ascendingDefined} from "../defined.js";
-import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
+import {InternMap, cumsum, greatest, group, groupSort, max, min, rollup, sum} from "d3";
+import {ascendingDefined, descendingDefined} from "../defined.js";
+import {withTip} from "../mark.js";
+import {maybeApplyInterval, maybeColumn, maybeZ, maybeZero} from "../options.js";
+import {column, field, mid, one, range, valueof} from "../options.js";
 import {basic} from "./basic.js";
+import {exclusiveFacets} from "./exclusiveFacets.js";
 
-export function stackX(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackX(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
-  const [transform, Y, x1, x2] = stackAlias(y, x, "x", stack, rest);
+  const [transform, Y, x1, x2] = stack(y, x, "y", "x", stackOptions, rest);
   return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
-export function stackX1(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackX1(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
-  const [transform, Y, X] = stackAlias(y, x, "x", stack, options);
+  const [transform, Y, X] = stack(y, x, "y", "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
-export function stackX2(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackX2(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
-  const [transform, Y, , X] = stackAlias(y, x, "x", stack, options);
+  const [transform, Y, , X] = stack(y, x, "y", "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
-export function stackY(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackY(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
-  const [transform, X, y1, y2] = stackAlias(x, y, "y", stack, rest);
+  const [transform, X, y1, y2] = stack(x, y, "x", "y", stackOptions, rest);
   return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
-export function stackY1(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackY1(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
-  const [transform, X, Y] = stackAlias(x, y, "y", stack, options);
+  const [transform, X, Y] = stack(x, y, "x", "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
-export function stackY2(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackY2(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
-  const [transform, X, , Y] = stackAlias(x, y, "y", stack, options);
+  const [transform, X, , Y] = stack(x, y, "x", "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
 export function maybeStackX({x, x1, x2, ...options} = {}) {
+  options = withTip(options, "y");
   if (x1 === undefined && x2 === undefined) return stackX({x, ...options});
   [x1, x2] = maybeZero(x, x1, x2);
   return {...options, x1, x2};
 }
 
 export function maybeStackY({y, y1, y2, ...options} = {}) {
+  options = withTip(options, "x");
   if (y1 === undefined && y2 === undefined) return stackY({y, ...options});
   [y1, y2] = maybeZero(y, y1, y2);
   return {...options, y1, y2};
@@ -65,29 +70,37 @@ function mergeOptions(options) {
   return [{offset, order, reverse}, rest];
 }
 
-function stack(x, y = one, ky, {offset, order, reverse}, options) {
+// This is a hint to the tooltip mark that the y1 and y2 channels (for stackY,
+// or conversely x1 and x2 for stackX) represent a stacked length, and that the
+// tooltip should therefore show y2-y1 instead of an extent.
+const lengthy = {length: true};
+
+function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
+  if (y === null) throw new Error(`stack requires ${ky}`);
   const z = maybeZ(options);
   const [X, setX] = maybeColumn(x);
   const [Y1, setY1] = column(y);
   const [Y2, setY2] = column(y);
+  Y1.hint = Y2.hint = lengthy;
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
   return [
-    basic(options, (data, facets) => {
-      const X = x == null ? undefined : setX(valueof(data, x));
+    basic(options, (data, facets, plotOptions) => {
+      ({data, facets} = exclusiveFacets(data, facets));
+      const X = x == null ? undefined : setX(maybeApplyInterval(valueof(data, x), plotOptions?.[kx]));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);
-      const O = order && order(data, X, Y, Z);
+      const compare = order && order(data, X, Y, Z);
       const n = data.length;
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
       const facetstacks = [];
       for (const facet of facets) {
         const stacks = X ? Array.from(group(facet, (i) => X[i]).values()) : [facet];
-        if (O) applyOrder(stacks, O);
+        if (compare) for (const stack of stacks) stack.sort(compare);
         for (const stack of stacks) {
-          let yn = 0,
-            yp = 0;
+          let yn = 0;
+          let yp = 0;
           if (reverse) stack.reverse();
           for (const i of stack) {
             const y = Y[i];
@@ -106,9 +119,6 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
     Y2
   ];
 }
-
-// This is used internally so we can use `stack` as an argument name.
-const stackAlias = stack;
 
 function maybeOffset(offset) {
   if (offset == null) return;
@@ -221,43 +231,44 @@ function offsetCenterFacets(facetstacks, Y1, Y2) {
 }
 
 function maybeOrder(order, offset, ky) {
-  if (order === undefined && offset === offsetWiggle) return orderInsideOut;
+  if (order === undefined && offset === offsetWiggle) return orderInsideOut(ascendingDefined);
   if (order == null) return;
   if (typeof order === "string") {
-    switch (order.toLowerCase()) {
+    const negate = order.startsWith("-");
+    const compare = negate ? descendingDefined : ascendingDefined;
+    switch ((negate ? order.slice(1) : order).toLowerCase()) {
       case "value":
       case ky:
-        return orderY;
+        return orderY(compare);
       case "z":
-        return orderZ;
+        return orderZ(compare);
       case "sum":
-        return orderSum;
+        return orderSum(compare);
       case "appearance":
-        return orderAppearance;
+        return orderAppearance(compare);
       case "inside-out":
-        return orderInsideOut;
+        return orderInsideOut(compare);
     }
-    return orderFunction(field(order));
+    return orderAccessor(field(order));
   }
-  if (typeof order === "function") return orderFunction(order);
+  if (typeof order === "function") return (order.length === 1 ? orderAccessor : orderComparator)(order);
   if (Array.isArray(order)) return orderGiven(order);
   throw new Error(`invalid order: ${order}`);
 }
 
 // by value
-function orderY(data, X, Y) {
-  return Y;
+function orderY(compare) {
+  return (data, X, Y) => (i, j) => compare(Y[i], Y[j]);
 }
 
 // by location
-function orderZ(order, X, Y, Z) {
-  return Z;
+function orderZ(compare) {
+  return (data, X, Y, Z) => (i, j) => compare(Z[i], Z[j]);
 }
 
 // by sum of value (a.k.a. “ascending”)
-function orderSum(data, X, Y, Z) {
-  return orderZDomain(
-    Z,
+function orderSum(compare) {
+  return orderZDomain(compare, (data, X, Y, Z) =>
     groupSort(
       range(data),
       (I) => sum(I, (i) => Y[i]),
@@ -267,9 +278,8 @@ function orderSum(data, X, Y, Z) {
 }
 
 // by x = argmax of value
-function orderAppearance(data, X, Y, Z) {
-  return orderZDomain(
-    Z,
+function orderAppearance(compare) {
+  return orderZDomain(compare, (data, X, Y, Z) =>
     groupSort(
       range(data),
       (I) => X[greatest(I, (i) => Y[i])],
@@ -280,52 +290,57 @@ function orderAppearance(data, X, Y, Z) {
 
 // by x = argmax of value, but rearranged inside-out by alternating series
 // according to the sign of a running divergence of sums
-function orderInsideOut(data, X, Y, Z) {
-  const I = range(data);
-  const K = groupSort(
-    I,
-    (I) => X[greatest(I, (i) => Y[i])],
-    (i) => Z[i]
-  );
-  const sums = rollup(
-    I,
-    (I) => sum(I, (i) => Y[i]),
-    (i) => Z[i]
-  );
-  const Kp = [],
-    Kn = [];
-  let s = 0;
-  for (const k of K) {
-    if (s < 0) {
-      s += sums.get(k);
-      Kp.push(k);
-    } else {
-      s -= sums.get(k);
-      Kn.push(k);
+function orderInsideOut(compare) {
+  return orderZDomain(compare, (data, X, Y, Z) => {
+    const I = range(data);
+    const K = groupSort(
+      I,
+      (I) => X[greatest(I, (i) => Y[i])],
+      (i) => Z[i]
+    );
+    const sums = rollup(
+      I,
+      (I) => sum(I, (i) => Y[i]),
+      (i) => Z[i]
+    );
+    const Kp = [],
+      Kn = [];
+    let s = 0;
+    for (const k of K) {
+      if (s < 0) {
+        s += sums.get(k);
+        Kp.push(k);
+      } else {
+        s -= sums.get(k);
+        Kn.push(k);
+      }
     }
-  }
-  return orderZDomain(Z, Kn.reverse().concat(Kp));
+    return Kn.reverse().concat(Kp);
+  });
 }
 
-function orderFunction(f) {
-  return (data) => valueof(data, f);
+function orderAccessor(f) {
+  return (data) => {
+    const O = valueof(data, f);
+    return (i, j) => ascendingDefined(O[i], O[j]);
+  };
+}
+
+function orderComparator(f) {
+  return (data) => (i, j) => f(data[i], data[j]);
 }
 
 function orderGiven(domain) {
-  return (data, X, Y, Z) => orderZDomain(Z, domain);
+  return orderZDomain(ascendingDefined, () => domain);
 }
 
-// Given an explicit ordering of distinct values in z, returns a parallel column
-// O that can be used with applyOrder to sort stacks. Note that this is a series
-// order: it will be consistent across stacks.
-function orderZDomain(Z, domain) {
-  if (!Z) throw new Error("missing channel: z");
-  domain = new InternMap(domain.map((d, i) => [d, i]));
-  return Z.map((z) => domain.get(z));
-}
-
-function applyOrder(stacks, O) {
-  for (const stack of stacks) {
-    stack.sort((i, j) => ascendingDefined(O[i], O[j]));
-  }
+// Given an ordering (domain) of distinct values in z that can be derived from
+// the data, returns a comparator that can be used to sort stacks. Note that
+// this is a series order: it will be consistent across stacks.
+function orderZDomain(compare, domain) {
+  return (data, X, Y, Z) => {
+    if (!Z) throw new Error("missing channel: z");
+    const map = new InternMap(domain(data, X, Y, Z).map((d, i) => [d, i]));
+    return (i, j) => compare(map.get(Z[i]), map.get(Z[j]));
+  };
 }

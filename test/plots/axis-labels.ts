@@ -52,6 +52,13 @@ export async function axisLabelBothReverse() {
   });
 }
 
+export async function axisLabelFontVariant() {
+  return Plot.plot({
+    x: {domain: "abcde"},
+    marks: [Plot.axisX({label: "Letter", fontVariant: "small-caps"})]
+  });
+}
+
 export async function axisLabelVaryingFill() {
   return Plot.plot({
     x: {domain: "ABCDEF"},

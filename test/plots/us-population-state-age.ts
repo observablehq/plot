@@ -10,8 +10,8 @@ export async function usPopulationStateAge() {
     grid: true,
     x: {
       axis: "top",
-      label: "Percent (%) →",
-      transform: (d) => d * 100
+      label: "Percent (%)",
+      percent: true
     },
     y: {
       domain: ages,
@@ -49,7 +49,7 @@ export async function usPopulationStateAgeGrouped() {
         y: "population",
         fill: "age",
         title: "age",
-        sort: {fx: "y", reverse: true, limit: 6}
+        sort: {fx: "-y", limit: 6}
       }),
       Plot.ruleY([0])
     ]

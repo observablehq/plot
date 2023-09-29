@@ -1,19 +1,25 @@
 import {count, group, rank} from "d3";
-import {column, isObject, maybeInput, maybeZ, take, valueof} from "../options.js";
+import {column, identity, isObject, maybeInput, maybeZ, taker, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
-export function mapX(map, options = {}) {
-  return mapAlias(
-    Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, map])),
-    options
-  );
+export function mapX(mapper, options = {}) {
+  let {x, x1, x2} = options;
+  if (x === undefined && x1 === undefined && x2 === undefined) options = {...options, x: (x = identity)};
+  const outputs = {};
+  if (x != null) outputs.x = mapper;
+  if (x1 != null) outputs.x1 = mapper;
+  if (x2 != null) outputs.x2 = mapper;
+  return map(outputs, options);
 }
 
-export function mapY(map, options = {}) {
-  return mapAlias(
-    Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, map])),
-    options
-  );
+export function mapY(mapper, options = {}) {
+  let {y, y1, y2} = options;
+  if (y === undefined && y1 === undefined && y2 === undefined) options = {...options, y: (y = identity)};
+  const outputs = {};
+  if (y != null) outputs.y = mapper;
+  if (y1 != null) outputs.y1 = mapper;
+  if (y2 != null) outputs.y2 = mapper;
+  return map(outputs, options);
 }
 
 export function map(outputs = {}, options = {}) {
@@ -40,21 +46,18 @@ export function map(outputs = {}, options = {}) {
   };
 }
 
-// This is used internally so we can use `map` as an argument name.
-const mapAlias = map;
-
 function maybeMap(map) {
   if (map == null) throw new Error("missing map");
   if (typeof map.mapIndex === "function") return map;
   if (typeof map.map === "function" && isObject(map)) return mapMap(map); // N.B. array.map
-  if (typeof map === "function") return mapFunction(map);
+  if (typeof map === "function") return mapFunction(taker(map));
   switch (`${map}`.toLowerCase()) {
     case "cumsum":
       return mapCumsum;
     case "rank":
-      return mapFunction(rank);
+      return mapFunction((I, V) => rank(I, (i) => V[i]));
     case "quantile":
-      return mapFunction(rankQuantile);
+      return mapFunction((I, V) => rankQuantile(I, (i) => V[i]));
   }
   throw new Error(`invalid map: ${map}`);
 }
@@ -64,15 +67,15 @@ function mapMap(map) {
   return {mapIndex: map.map.bind(map)};
 }
 
-function rankQuantile(V) {
-  const n = count(V) - 1;
-  return rank(V).map((r) => r / n);
+function rankQuantile(I, f) {
+  const n = count(I, f) - 1;
+  return rank(I, f).map((r) => r / n);
 }
 
 function mapFunction(f) {
   return {
     mapIndex(I, S, T) {
-      const M = f(take(S, I));
+      const M = f(I, S);
       if (M.length !== I.length) throw new Error("map function returned a mismatched length");
       for (let i = 0, n = I.length; i < n; ++i) T[I[i]] = M[i];
     }

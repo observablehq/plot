@@ -1,8 +1,10 @@
-import path from "path";
+import {fileURLToPath, URL} from "node:url";
+import path from "node:path";
 import {defineConfig} from "vitepress";
 import plot from "./markdown-it-plot.js";
 
 // https://vitepress.dev/reference/site-config
+// prettier-ignore
 export default defineConfig({
   title: "Observable Plot",
   description: "The JavaScript library for exploratory data visualization",
@@ -10,9 +12,10 @@ export default defineConfig({
   cleanUrls: true,
   vite: {
     resolve: {
-      alias: {
-        "@observablehq/plot": path.resolve("./src/index.js")
-      }
+      alias: [
+        {find: "@observablehq/plot", replacement: path.resolve("./src/index.js")},
+        {find: /^.*\/VPFooter\.vue$/, replacement: fileURLToPath(new URL("./theme/CustomFooter.vue", import.meta.url))}
+      ]
     }
   },
   markdown: {
@@ -26,6 +29,9 @@ export default defineConfig({
     ["script", {async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-9B88TP6PKQ"}],
     ["script", {}, "window.dataLayer=window.dataLayer||[];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js',new Date());\ngtag('config','G-9B88TP6PKQ');"]
   ],
+  sitemap: {
+    hostname: 'https://observablehq.com/plot'
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     // Theme related configurations.
@@ -57,24 +63,26 @@ export default defineConfig({
           {text: "Scales", link: "/features/scales"},
           {text: "Projections", link: "/features/projections"},
           {text: "Transforms", link: "/features/transforms"},
+          {text: "Interactions", link: "/features/interactions"},
           {text: "Facets", link: "/features/facets"},
           {text: "Legends", link: "/features/legends"},
           {text: "Curves", link: "/features/curves"},
           {text: "Formats", link: "/features/formats"},
           {text: "Markers", link: "/features/markers"},
           {text: "Shorthand", link: "/features/shorthand"},
-          {text: "Accessibility", link: "/features/accessibility"},
+          {text: "Accessibility", link: "/features/accessibility"}
         ]
       },
       {
         text: "Marks",
-        collapsed: false,
+        collapsed: true,
         items: [
           {text: "Area", link: "/marks/area"},
           {text: "Arrow", link: "/marks/arrow"},
           {text: "Auto", link: "/marks/auto"},
           {text: "Axis", link: "/marks/axis"},
           {text: "Bar", link: "/marks/bar"},
+          {text: "Bollinger", link: "/marks/bollinger"},
           {text: "Box", link: "/marks/box"},
           {text: "Cell", link: "/marks/cell"},
           {text: "Contour", link: "/marks/contour"},
@@ -87,20 +95,21 @@ export default defineConfig({
           {text: "Hexgrid", link: "/marks/hexgrid"},
           {text: "Image", link: "/marks/image"},
           {text: "Line", link: "/marks/line"},
-          {text: "Linear Regression", link: "/marks/linear-regression"},
+          {text: "Linear regression", link: "/marks/linear-regression"},
           {text: "Link", link: "/marks/link"},
           {text: "Raster", link: "/marks/raster"},
           {text: "Rect", link: "/marks/rect"},
           {text: "Rule", link: "/marks/rule"},
           {text: "Text", link: "/marks/text"},
           {text: "Tick", link: "/marks/tick"},
+          {text: "Tip", link: "/marks/tip"},
           {text: "Tree", link: "/marks/tree"},
           {text: "Vector", link: "/marks/vector"}
         ]
       },
       {
         text: "Transforms",
-        collapsed: false,
+        collapsed: true,
         items: [
           {text: "Bin", link: "/transforms/bin"},
           {text: "Centroid", link: "/transforms/centroid"},
@@ -117,7 +126,16 @@ export default defineConfig({
           {text: "Tree", link: "/transforms/tree"},
           {text: "Window", link: "/transforms/window"}
         ]
-      }
+      },
+      {
+        text: "Interactions",
+        collapsed: true,
+        items: [
+          {text: "Crosshair", link: "/interactions/crosshair"},
+          {text: "Pointer", link: "/interactions/pointer"}
+        ]
+      },
+      {text: "API index", link: "/api"}
     ],
     search: {
       provider: "local"
@@ -126,13 +144,12 @@ export default defineConfig({
       {icon: "github", link: "https://github.com/observablehq/plot"},
       {icon: "twitter", link: "https://twitter.com/observablehq"},
       {icon: "mastodon", link: "https://vis.social/@observablehq"},
-      {icon: "slack", link: "https://observable-community.slack.com/ssb/redirect"},
+      {icon: "slack", link: "https://join.slack.com/t/observable-community/shared_invite/zt-1x7gs4fck-UHhEFxUXKHVE8Qt3XmJCig"},
       {icon: "linkedin", link: "https://www.linkedin.com/company/observable"},
       {icon: "youtube", link: "https://www.youtube.com/c/Observablehq"}
     ],
     footer: {
-      message:
-        "Library released under <a style='text-decoration:underline;' href='https://github.com/observablehq/plot/blob/main/LICENSE'>ISC License</a>.",
+      message: "Library released under <a style='text-decoration:underline;' href='https://github.com/observablehq/plot/blob/main/LICENSE'>ISC License</a>.",
       copyright: `Copyright 2020–${new Date().getUTCFullYear()} Observable, Inc.`
     }
   }

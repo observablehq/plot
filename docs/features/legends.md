@@ -24,7 +24,7 @@ onMounted(() => {
 
 </script>
 
-# Legends
+# Legends <VersionBadge version="0.3.0" />
 
 Plot can generate **legends** for *color*, *opacity*, and *symbol* [scales](./scales.md). For example, the scatterplot below of body measurements of Olympic athletes includes a legend for its *color* scale, allowing the meaning of color to be interpreted by the reader. (The axes similarly document the meaning of the *x* and *y* position scales.)
 
@@ -41,7 +41,7 @@ Plot.plot({
 
 The legend above is a *swatches* legend because the *color* scale is *ordinal* (with a *categorical* scheme). When the *color* scale is continuous, a *ramp* legend with a smooth gradient is generated instead. The plot below of global average surface temperature ([GISTEMP](https://data.giss.nasa.gov/gistemp/)) uses a *diverging* *color* scale to indicate the deviation from the 1951–1980 average in degrees Celsius.
 
-:::plot defer https://observablehq.com/@observablehq/plot-colored-scatterplot
+:::plot defer https://observablehq.com/@observablehq/plot-diverging-color-scatterplot
 ```js
 Plot.plot({
   color: {
@@ -62,8 +62,8 @@ When an ordinal *color* scale is used redundantly with a *symbol* scale, the *sy
 ```js
 Plot.plot({
   grid: true,
-  x: {label: "Body mass (g) →"},
-  y: {label: "↑ Flipper length (mm)"},
+  x: {label: "Body mass (g)"},
+  y: {label: "Flipper length (mm)"},
   symbol: {legend: true},
   marks: [
     Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})
@@ -89,7 +89,7 @@ Categorical and ordinal color legends are rendered as swatches, unless the **leg
 * **columns** - the number of swatches per row
 * **marginLeft** - the legend’s left margin
 * **className** - a class name, that defaults to a randomly generated string scoping the styles
-* **opacity** - the swatch fill opacity
+* **opacity** - the swatch fill opacity <VersionBadge version="0.6.5" />
 * **width** - the legend’s width (in pixels)
 
 Symbol legends are rendered as swatches and support the options above in addition to the following options:
@@ -118,9 +118,9 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * **marginLeft** - the legend’s left margin
 * **opacity** - the ramp’s fill opacity
 
-The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [plot options](./plots.md).
+The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [plot options](./plots.md). The **className** option is suffixed with *-ramp* or *-swatches*, reflecting the **legend** type.
 
-## legend(*options*)
+## legend(*options*) {#legend}
 
 Renders a standalone legend for the scale defined by the given *options* object, returning a SVG or HTML figure element. This element can then be inserted into the page as described in the [getting started guide](../getting-started.md). The *options* object must define at least one scale; see [scale options](./scales.md) for how to define a scale.
 

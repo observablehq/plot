@@ -1,15 +1,9 @@
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
-import {identity, indexOf, number} from "../options.js";
+import {hasXY, identity, indexOf, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
-import {
-  applyDirectStyles,
-  applyIndirectStyles,
-  applyTransform,
-  impliedString,
-  applyAttr,
-  applyChannelStyles
-} from "../style.js";
+import {applyAttr, applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {impliedString} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
@@ -129,10 +123,12 @@ export class BarY extends AbstractBar {
   }
 }
 
-export function barX(data, options = {y: indexOf, x2: identity}) {
+export function barX(data, options = {}) {
+  if (!hasXY(options)) options = {...options, y: indexOf, x2: identity};
   return new BarX(data, maybeStackX(maybeIntervalX(maybeIdentityX(options))));
 }
 
-export function barY(data, options = {x: indexOf, y2: identity}) {
+export function barY(data, options = {}) {
+  if (!hasXY(options)) options = {...options, x: indexOf, y2: identity};
   return new BarY(data, maybeStackY(maybeIntervalY(maybeIdentityY(options))));
 }

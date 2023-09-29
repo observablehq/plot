@@ -1,6 +1,7 @@
 import {create} from "../context.js";
 import {identity, number} from "../options.js";
 import {Mark} from "../mark.js";
+import {applyMarkers, markers} from "../marker.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 
 const defaults = {
@@ -12,6 +13,7 @@ const defaults = {
 class AbstractTick extends Mark {
   constructor(data, channels, options) {
     super(data, channels, options, defaults);
+    markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {
     return create("svg:g", context)
@@ -29,6 +31,7 @@ class AbstractTick extends Mark {
           .attr("y1", this._y1(scales, channels, dimensions))
           .attr("y2", this._y2(scales, channels, dimensions))
           .call(applyChannelStyles, this, channels)
+          .call(applyMarkers, this, channels, context)
       )
       .node();
   }
@@ -100,12 +103,10 @@ export class TickY extends AbstractTick {
   }
 }
 
-export function tickX(data, options = {}) {
-  const {x = identity, ...remainingOptions} = options;
-  return new TickX(data, {...remainingOptions, x});
+export function tickX(data, {x = identity, ...options} = {}) {
+  return new TickX(data, {...options, x});
 }
 
-export function tickY(data, options = {}) {
-  const {y = identity, ...remainingOptions} = options;
-  return new TickY(data, {...remainingOptions, y});
+export function tickY(data, {y = identity, ...options} = {}) {
+  return new TickY(data, {...options, y});
 }

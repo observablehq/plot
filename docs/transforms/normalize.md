@@ -27,16 +27,15 @@ onMounted(() => {
 
 # Normalize transform
 
-The **normalize transform** is a specialized [map transform](./map.md) that normalizes series values relative to some basis, say to convert absolute values into relative values. For example, here is an index chart—a type of multi-series line chart—showing the return of several stocks relative to their closing price on a particular date.
+The **normalize transform** is a specialized [map transform](./map.md) that normalizes series values relative to some basis, say to convert absolute values into relative values. For example, here is an index chart — a type of multi-series line chart — showing the return of several stocks relative to their closing price on a particular date.
 
 :::plot defer https://observablehq.com/@observablehq/plot-index-chart
 ```js
 Plot.plot({
-  style: "overflow: visible;",
   y: {
     type: "log",
     grid: true,
-    label: "↑ Change in price (%)",
+    label: "Change in price (%)",
     tickFormat: ((f) => (x) => f((x - 1) * 100))(d3.format("+d"))
   },
   marks: [
@@ -64,10 +63,10 @@ The [select transform](./select.md) is used to label the endpoints of each line.
 :::
 
 :::info
-This example uses an [immediately-invoked function expression (IIFE)](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) for the **tickFormat** option so that the [d3.format](https://github.com/d3/d3-format) only needs to be constructed once.
+This example uses an [immediately-invoked function expression (IIFE)](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) for the **tickFormat** option so that the [d3.format](https://d3js.org/d3-format) only needs to be constructed once.
 :::
 
-The normalize transform converts absolute values into relative ones. So, if **y** is [*y₀*, *y₁*, *y₂*, …] and the *first* basis is used with [normalizeY](#normalizey-basis-options), the resulting output **y** channel is [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* / *y₀*, …]. But it’s a bit more complicated than this in practice since **y** is first grouped by **z**, **fill**, or **stroke** into separate series.
+The normalize transform converts absolute values into relative ones. So, if **y** is [*y₀*, *y₁*, *y₂*, …] and the *first* basis is used with [normalizeY](#normalizeY), the resulting output **y** channel is [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* / *y₀*, …]. But it’s a bit more complicated than this in practice since **y** is first grouped by **z**, **fill**, or **stroke** into separate series.
 
 As another example, the normalize transform can be used to compute proportional demographics from absolute populations. The plot below compares the demographics of U.S. states: color represents age group, **y** represents the state, and **x** represents the proportion of the state’s population in that age group.
 
@@ -79,7 +78,7 @@ Plot.plot({
   grid: true,
   x: {
     axis: "top",
-    label: "Population (%) →",
+    label: "Population (%)",
     percent: true
   },
   color: {
@@ -120,8 +119,9 @@ The **basis** option specifies how to normalize the series values; it is one of:
 * *extent* - the minimum is mapped to zero, and the maximum to one
 * *deviation* - subtract the mean, then divide by the standard deviation
 * a function to be passed an array of values, returning the desired basis
+* a function to be passed an index and channel value array, returning the desired basis
 
-## normalize(*basis*)
+## normalize(*basis*) <VersionBadge version="0.2.3" /> {#normalize}
 
 ```js
 Plot.map({y: Plot.normalize("first")}, {x: "Date", y: "Close", stroke: "Symbol"})
@@ -129,13 +129,13 @@ Plot.map({y: Plot.normalize("first")}, {x: "Date", y: "Close", stroke: "Symbol"}
 
 Returns a normalize map method for the given *basis*, suitable for use with the [map transform](./map.md).
 
-## normalizeX(*basis*, *options*)
+## normalizeX(*basis*, *options*) {#normalizeX}
 
 ```js
 Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
-Like [mapX](./map.md#mapx-map-options), but applies the normalize map method with the given *basis*. The **basis** option can also be mixed into the specified *options* like so:
+Like [mapX](./map.md#mapX), but applies the normalize map method with the given *basis*. The **basis** option can also be mixed into the specified *options* like so:
 
 ```js
 Plot.normalizeX({basis: "first", y: "Date", x: "Close", stroke: "Symbol"})
@@ -143,13 +143,13 @@ Plot.normalizeX({basis: "first", y: "Date", x: "Close", stroke: "Symbol"})
 
 If not specified, the *basis* defaults to *first*.
 
-## normalizeY(*basis*, *options*)
+## normalizeY(*basis*, *options*) {#normalizeY}
 
 ```js
 Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
-Like [mapY](./map.md#mapy-map-options), but applies the normalize map method with the given *basis*. The **basis** option can also be mixed into the specified *options* like so:
+Like [mapY](./map.md#mapY), but applies the normalize map method with the given *basis*. The **basis** option can also be mixed into the specified *options* like so:
 
 ```js
 Plot.normalizeY({basis: "first", x: "Date", y: "Close", stroke: "Symbol"})

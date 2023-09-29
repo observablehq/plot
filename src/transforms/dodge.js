@@ -61,9 +61,10 @@ function mergeOptions(options) {
 
 function dodge(y, x, anchor, padding, r, options) {
   if (r != null && typeof r !== "number") {
-    const {channels, sort, reverse} = options;
-    options = {...options, channels: {r: {value: r, scale: "r"}, ...maybeNamed(channels)}};
-    if (sort === undefined && reverse === undefined) options.sort = {channel: "r", order: "descending"};
+    let {channels, sort, reverse} = options;
+    channels = maybeNamed(channels);
+    if (channels?.r === undefined) options = {...options, channels: {...channels, r: {value: r, scale: "r"}}};
+    if (sort === undefined && reverse === undefined) options.sort = {channel: "-r"};
   }
   return initializer(options, function (data, facets, channels, scales, dimensions, context) {
     let {[x]: X, r: R} = channels;
@@ -127,9 +128,9 @@ function dodge(y, x, anchor, padding, r, options) {
       data,
       facets,
       channels: {
-        [x]: {value: X},
-        [y]: {value: Y},
-        ...(R && {r: {value: R}})
+        [y]: {value: Y, source: null}, // don’t show in tooltip
+        [x]: {value: X, source: channels[x]},
+        ...(R && {r: {value: R, source: channels.r}})
       }
     };
   });

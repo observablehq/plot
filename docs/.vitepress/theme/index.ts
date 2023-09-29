@@ -2,13 +2,17 @@ import DefaultTheme from "vitepress/theme-without-fonts";
 import {useData} from "vitepress";
 import {watch} from "vue";
 import PlotRender from "../../components/PlotRender.js";
+import CustomLayout from "./CustomLayout.vue";
+import VersionBadge from "./VersionBadge.vue";
 import "./custom.css";
 
 export default {
   extends: DefaultTheme,
+  Layout: CustomLayout,
   enhanceApp({app, router}) {
     Object.defineProperty(app.config.globalProperties, "$dark", {get: () => useData().isDark.value});
     app.component("PlotRender", PlotRender);
+    app.component("VersionBadge", VersionBadge);
     enableAnalytics(router);
   }
 };
@@ -49,12 +53,13 @@ function enableAnalytics(router) {
 
   function emit(event) {
     event.time = new Date().toISOString();
-    event.location = location.href;
+    event.location = `${location.origin}${location.pathname}${location.search}`; // drop hash
     if (queue) queue.push(event);
     else sendEvents([event]);
   }
 
   function sendEvents(events) {
+    if (!events.length) return;
     navigator.sendBeacon(
       "https://events.observablehq.com/beacon-events",
       JSON.stringify({

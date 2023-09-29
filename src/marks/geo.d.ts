@@ -53,7 +53,7 @@ export function sphere(options?: GeoOptions): Geo;
  * a spherical **projection** only.) For more control, use [d3.geoGraticule][1]
  * with the geo mark.
  *
- * [1]: https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule
+ * [1]: https://d3js.org/d3-geo/shape#geoGraticule
  */
 export function graticule(options?: GeoOptions): Geo;
 

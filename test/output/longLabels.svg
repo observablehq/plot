@@ -57,12 +57,12 @@
     <path transform="translate(525,360)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" transform="translate(43.5,9.5)">
-    <text transform="translate(50,360)"><tspan x="0" y="0.71em">Committed 671</tspan><tspan x="0" y="1.71em">birthdays to</tspan><tspan x="0" y="2.71em">memory</tspan></text>
-    <text transform="translate(145,360)"><tspan x="0" y="0.71em">Discovered how</tspan><tspan x="0" y="1.71em">to “like” things</tspan><tspan x="0" y="2.71em">mentally</tspan></text>
-    <text transform="translate(240,360)"><tspan x="0" y="0.71em">Ex is doing too</tspan><tspan x="0" y="1.71em">well</tspan></text>
-    <text transform="translate(335,360)"><tspan x="0" y="0.71em">Family in feud</tspan><tspan x="0" y="1.71em">with Zucker­-</tspan><tspan x="0" y="2.71em">bergs</tspan></text>
-    <text transform="translate(430,360)"><tspan x="0" y="0.71em">High school</tspan><tspan x="0" y="1.71em">friends all dead</tspan><tspan x="0" y="2.71em">now</tspan></text>
-    <text transform="translate(525,360)"><tspan x="0" y="0.71em">Not enough</tspan><tspan x="0" y="1.71em">politics</tspan></text>
+    <text transform="translate(50,360)"><tspan x="0" y="0.71em">Committed 671</tspan><tspan x="0" dy="1em">birthdays to</tspan><tspan x="0" dy="1em">memory</tspan></text>
+    <text transform="translate(145,360)"><tspan x="0" y="0.71em">Discovered how</tspan><tspan x="0" dy="1em">to “like” things</tspan><tspan x="0" dy="1em">mentally</tspan></text>
+    <text transform="translate(240,360)"><tspan x="0" y="0.71em">Ex is doing too</tspan><tspan x="0" dy="1em">well</tspan></text>
+    <text transform="translate(335,360)"><tspan x="0" y="0.71em">Family in feud</tspan><tspan x="0" dy="1em">with Zucker­-</tspan><tspan x="0" dy="1em">bergs</tspan></text>
+    <text transform="translate(430,360)"><tspan x="0" y="0.71em">High school</tspan><tspan x="0" dy="1em">friends all dead</tspan><tspan x="0" dy="1em">now</tspan></text>
+    <text transform="translate(525,360)"><tspan x="0" y="0.71em">Not enough</tspan><tspan x="0" dy="1em">politics</tspan></text>
   </g>
   <g aria-label="bar">
     <rect x="335" width="86" y="145.9259259259259" height="214.0740740740741"></rect>

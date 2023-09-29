@@ -24,7 +24,7 @@ onMounted(() => {
 
 </script>
 
-# Density mark
+# Density mark <VersionBadge version="0.5.1" />
 
 :::tip
 For contours of spatially-distributed quantitative values, see the [contour mark](./contour.md).
@@ -37,8 +37,8 @@ The **density mark** shows the [estimated density](https://en.wikipedia.org/wiki
 Plot.plot({
   inset: 10,
   marks: [
-    Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "steelblue", strokeWidth: 0.25}),
-    Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "steelblue", thresholds: 4}),
+    Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "blue", strokeWidth: 0.25}),
+    Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "blue", thresholds: 4}),
     Plot.dot(faithful, {x: "waiting", y: "eruptions", fill: "currentColor", r: 1.5})
   ]
 })
@@ -97,8 +97,8 @@ Plot.plot({
   height: 100,
   inset: 10,
   marks: [
-    Plot.density(faithful, {x: "waiting", stroke: "steelblue", strokeWidth: 0.25, bandwidth: 10}),
-    Plot.density(faithful, {x: "waiting", stroke: "steelblue", thresholds: 4, bandwidth: 10}),
+    Plot.density(faithful, {x: "waiting", stroke: "blue", strokeWidth: 0.25, bandwidth: 10}),
+    Plot.density(faithful, {x: "waiting", stroke: "blue", thresholds: 4, bandwidth: 10}),
     Plot.dot(faithful, {x: "waiting", fill: "currentColor", r: 1.5})
   ]
 })
@@ -112,7 +112,6 @@ The density mark supports Plot’s [projection system](../features/projections.m
 Plot.plot({
   projection: "albers",
   color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"},
-  style: "overflow: visible;",
   marks: [
     Plot.density(walmarts, {x: "longitude", y: "latitude", bandwidth: 10, fill: "density"}),
     Plot.geo(statemesh, {strokeOpacity: 0.3}),
@@ -166,7 +165,7 @@ Plot.plot({
 ```
 :::
 
-<!-- With the default settings, the density is the local average number of dots on an area of ${tex`100\text{px}^2`}—a square of 10px by 10px. This can be multiplied by the dots’ weights. -->
+<!-- With the default settings, the density is the local average number of dots on an area of ${tex`100\text{px}^2`} — a square of 10px by 10px. This can be multiplied by the dots’ weights. -->
 
 The **weight** channel specifies the contribution of each data point to the estimated density; it defaults to 1, weighing each point equally. This can be used to give some points more influence than others. Try adjusting the skew slider below to transition between female- and male-weighted density.
 
@@ -246,7 +245,7 @@ The **thresholds** option, which defaults to 20, specifies one more than the num
 
 If a **z**, **stroke** or **fill** channel is specified, the input points are grouped by series, and separate sets of contours are generated for each series. If the **stroke** or **fill** is specified as *density*, a color channel is constructed with values representing the density threshold value of each contour.
 
-## density(*data*, *options*)
+## density(*data*, *options*) {#density}
 
 ```js
 Plot.density(faithful, {x: "waiting", y: "eruptions"})

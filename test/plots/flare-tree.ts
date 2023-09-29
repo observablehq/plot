@@ -6,6 +6,7 @@ export async function flareTree() {
   return Plot.plot({
     axis: null,
     inset: 10,
+    insetLeft: 30,
     insetRight: 120,
     height: 1800,
     marks: Plot.tree(flare, {markerEnd: "arrow", path: "name", delimiter: "."})

@@ -1,0 +1,67 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="260" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(20,230)">1</text>
+    <text y="0.71em" transform="translate(59.814200398142006,230)">2</text>
+    <text y="0.71em" transform="translate(99.62840079628401,230)">3</text>
+    <text y="0.71em" transform="translate(139.442601194426,230)">4</text>
+    <text y="0.71em" transform="translate(179.25680159256802,230)">5</text>
+    <text y="0.71em" transform="translate(219.07100199071002,230)">6</text>
+    <text y="0.71em" transform="translate(258.885202388852,230)">7</text>
+    <text y="0.71em" transform="translate(298.699402786994,230)">8</text>
+    <text y="0.71em" transform="translate(338.51360318513605,230)">9</text>
+    <text y="0.71em" transform="translate(378.327803583278,230)">10</text>
+    <text y="0.71em" transform="translate(418.14200398142003,230)">11</text>
+    <text y="0.71em" transform="translate(457.95620437956205,230)">12</text>
+    <text y="0.71em" transform="translate(497.770404777704,230)">13</text>
+    <text y="0.71em" transform="translate(537.584605175846,230)">14</text>
+    <text y="0.71em" transform="translate(577.398805573988,230)">15</text>
+    <text y="0.71em" transform="translate(617.2130059721301,230)">16</text>
+  </g>
+  <g aria-label="dot" transform="translate(0.5,0.5)">
+    <circle cx="457.95620437956205" cy="230" r="3"></circle>
+    <circle cx="219.07100199071002" cy="230" r="3"></circle>
+    <circle cx="99.62840079628401" cy="230" r="3"></circle>
+    <circle cx="378.327803583278" cy="230" r="3"></circle>
+    <circle cx="179.25680159256802" cy="230" r="3"></circle>
+    <circle cx="617.2130059721301" cy="230" r="3"></circle>
+    <circle cx="298.699402786994" cy="230" r="3"></circle>
+    <circle cx="139.442601194426" cy="230" r="3"></circle>
+    <circle cx="59.814200398142006" cy="230" r="3"></circle>
+    <circle cx="20" cy="230" r="3"></circle>
+  </g>
+  <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,-2.5)">
+    <path d="M456.5284561815613,226.26348623940657A125.62523272957182,125.62523272957182 0,0,0 223.28574421658072,226.26348623940655M229.57470709714275,221.3188987048479L223.28574421658072,226.26348623940655L222.1480872406981,218.34479085410314" stroke="url(#gradient1)"></path>
+    <path d="M214.79259700830744,226.2884378807972A60.58822354242419,60.58822354242419 0,0,0 103.90680577868648,226.28843788079743M110.36111266683405,221.5617135823418L103.90680577868648,226.28843788079743L103.04049590361251,218.33548200261293" stroke="url(#gradient1)"></path>
+    <path d="M98.2590676323372,226.25964738628778A151.25871192059745,151.25871192059745 0,0,1 379.6971367472248,226.25964738628778M380.8775106157225,218.3472067052736L379.6971367472248,226.25964738628778L373.43494904577796,221.28119328969842" stroke="url(#gradient0)"></path>
+    <path d="M374.09997124419647,226.26851437615696A102.95761063502849,102.95761063502849 0,0,0 183.48463393164946,226.26851437615719M189.80810994787174,221.36814183192533L183.48463393164946,226.26851437615719L182.40252482844804,218.34203723377112" stroke="url(#gradient1)"></path>
+    <path d="M177.86969333582354,226.25295852334335A235.99748610580613,235.99748610580613 0,0,1 618.6001142288738,226.25295852334165M619.8555702259351,218.35208324022L618.6001142288738,226.25295852334165L612.3854835200885,221.21526409499216" stroke="url(#gradient0)"></path>
+    <path d="M613.0128828337062,226.25793290855145A166.51169127393499,166.51169127393499 0,0,0 302.89952592541783,226.25793290855145M309.1496343918226,221.26432257551826L302.89952592541783,226.25793290855145L301.69998675361296,218.34837503372017" stroke="url(#gradient1)"></path>
+    <path d="M294.4528055185841,226.27581440040845A81.77291708872636,81.77291708872636 0,0,0 143.6891984628359,226.27581440040865M150.06168742567,221.43935035954598L143.6891984628359,226.27581440040865L142.68694222037593,218.33884505282703" stroke="url(#gradient1)"></path>
+    <path d="M135.09850655640054,226.31551391780982A39.40352999612204,39.40352999612204 0,0,0 64.15829503616749,226.31551391780988M70.7764154813151,221.82101931068004L64.15829503616749,226.31551391780988L63.575008751794705,218.33680618344195" stroke="url(#gradient1)"></path>
+    <path d="M55.2846262362921,226.39952579836236A19.701764998061012,19.701764998061012 0,0,0 21.742580133979974,226.39952579836233M28.783264927613768,222.60100534472596L21.742580133979974,226.39952579836233L21.973307321152987,218.40285368021847" stroke="url(#gradient1)"></path>
+  </g>
+  <defs>
+    <linearGradient id="gradient0" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="5%" stop-opacity="0.3"></stop>
+      <stop offset="95%" stop-opacity="1"></stop>
+    </linearGradient>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="5%" stop-opacity="1"></stop>
+      <stop offset="95%" stop-opacity="0.3"></stop>
+    </linearGradient>
+  </defs>
+</svg>

@@ -53,7 +53,7 @@
     <text y="0.32em" transform="translate(40,54.851485148514854)">+70</text>
   </g>
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
-    <text y="0.71em" transform="translate(40,20)">Net favorability (%)</text>
+    <text y="0.71em" transform="translate(40,20)">↑ Net favorability (%)</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(108.68708351056289,570)" d="M0,0L0,6"></path>
@@ -84,7 +84,7 @@
     <text y="0.71em" transform="translate(906.1789309513682,570)">2020</text>
   </g>
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
-    <text transform="translate(940,570)">Date of first inauguration</text>
+    <text transform="translate(940,570)">Date of first inauguration →</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="940" y1="394.4554455445544" y2="394.4554455445544"></line>

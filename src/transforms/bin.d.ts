@@ -1,4 +1,4 @@
-import type {ChannelReducers, ChannelValueBinSpec} from "../channel.js";
+import type {ChannelReducers, ChannelValue, ChannelValueBinSpec} from "../channel.js";
 import type {RangeInterval} from "../interval.js";
 import type {Reducer} from "../reducer.js";
 import type {Transformed} from "./basic.js";
@@ -42,8 +42,8 @@ export type ThresholdsFunction<T = any> = (values: T[], min: T, max: T) => Range
  * built-in thresholds implementations, [d3.ticks][1] is used for numeric
  * domains and [d3.utcTicks][2] is used for temporal domains.
  *
- * [1]: https://github.com/d3/d3-array/blob/main/README.md#ticks
- * [2]: https://github.com/d3/d3-time/blob/main/README.md#utcTicks
+ * [1]: https://d3js.org/d3-array/ticks
+ * [2]: https://d3js.org/d3-time#utcTicks
  */
 export type Thresholds<T = any> = ThresholdsName | ThresholdsFunction<T> | RangeInterval<T> | T[] | number;
 
@@ -102,6 +102,9 @@ export interface BinOptions {
    * ```
    */
   interval?: RangeInterval;
+
+  /** For subdividing bins. */
+  z?: ChannelValue;
 }
 
 /**
@@ -161,7 +164,7 @@ export type BinYInputs<T> = Omit<T, "y"> & {y?: ChannelValueBinSpec} & BinOption
 export type BinInputs<T> = Omit<T, "x" | "y"> & {x?: ChannelValueBinSpec; y?: ChannelValueBinSpec} & BinOptions;
 
 /** Output channels (and options) for the bin transform. */
-export type BinOutputs = ChannelReducers<BinReducer> & GroupOutputOptions<BinReducer> & BinOptions;
+export type BinOutputs = ChannelReducers<BinReducer> | (GroupOutputOptions<BinReducer> & BinOptions);
 
 /**
  * Bins on the **x** channel; then subdivides bins on the first channel of

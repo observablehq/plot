@@ -26,7 +26,7 @@ The cell mark is one of several marks in Plot for drawing rectangles; it should 
 
 The **cell mark** draws rectangles positioned in two ordinal dimensions. Hence, the plot’s *x* and *y* scales are [band scales](../features/scales.md). Cells typically also have a **fill** color encoding.
 
-For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high IMDb ratings are dark green, while low ratings are dark pink. (The worst episode ever—cue Comic Book Guy—is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga).)
+For example, the heatmap below shows the decline of *The Simpsons* after Season 9: high IMDb ratings are dark green, while low ratings are dark pink. (The worst episode ever — cue Comic Book Guy — is season 23’s [“Lisa Goes Gaga”](https://en.wikipedia.org/wiki/Lisa_Goes_Gaga).)
 
 :::plot defer https://observablehq.com/@observablehq/plot-simpsons-ratings
 ```js
@@ -95,8 +95,9 @@ Plot.plot({
   x: {
     ticks: simpsons.filter((d) => d.number_in_season === 1).map((d) => d.id),
     tickFormat: (x) => simpsons.find((d) => d.id === x).season,
-    label: "Season →",
-    labelAnchor: "right"
+    label: "Season",
+    labelAnchor: "right",
+    labelArrow: true
   },
   color: {
     type: "linear",
@@ -115,13 +116,13 @@ Here the *x*-scale domain contains the *id* of every episode. An ordinal scale b
 
 One-dimensional cells can be a compact alternative to a bar chart, where the *fill* color of the cell replaces the length of the bar. However, position is a more salient encoding and should be preferred to color if space is available.
 
-:::plot https://observablehq.com/@observablehq/plot-colored-cells
+:::plot https://observablehq.com/@observablehq/plot-color-cells
 ```js
 Plot.cell(alphabet, {x: "letter", fill: "frequency"}).plot()
 ```
 :::
 
-When ordinal data is regular, such as the yearly observations of the warming stripes below, use the **interval** scale option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://github.com/d3/d3-time/blob/main/README.md#api-reference), or a custom implementation.
+When ordinal data is regular, such as the yearly observations of the warming stripes below, use the **interval** scale option to enforce uniformity and show gaps for missing data. It can be set to a named interval such as *hour* or *day*, a number for numeric intervals, a [d3-time interval](https://d3js.org/d3-time#_interval), or a custom implementation.
 
 :::plot https://observablehq.com/@observablehq/plot-ordinal-scale-interval-2
 ```js{5}
@@ -157,7 +158,7 @@ If **x** is not specified, the cell will span the full horizontal extent of the 
 
 The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
-## cell(*data*, *options*)
+## cell(*data*, *options*) {#cell}
 
 ```js
 Plot.cell(simpsons, {x: "number_in_season", y: "season", fill: "imdb_rating"})
@@ -165,18 +166,18 @@ Plot.cell(simpsons, {x: "number_in_season", y: "season", fill: "imdb_rating"})
 
 Returns a new cell with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-## cellX(*data*, *options*)
+## cellX(*data*, *options*) {#cellX}
 
 ```js
 Plot.cellX(simpsons.map((d) => d.imdb_rating))
 ```
 
-Equivalent to [cell](#cell-data-options), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [cell](#cell), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
-## cellY(*data*, *options*)
+## cellY(*data*, *options*) {#cellY}
 
 ```js
 Plot.cellY(simpsons.map((d) => d.imdb_rating))
 ```
 
-Equivalent to [cell](#cell-data-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [cell](#cell), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].

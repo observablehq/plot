@@ -6,21 +6,26 @@ export async function carsParcoords() {
   const dimensions = cars.columns.slice(1);
 
   // Reshape wide data to make it tidy.
-  const data = dimensions.flatMap((dimension: string) => {
+  const points = dimensions.flatMap((dimension) => {
     return cars.map(({name, year, [dimension]: value}) => {
-      return {name: `${name}-${year}`, dimension, value};
+      return {name, year, dimension, value};
     });
   });
+
+  // Compute normalization scales for each dimension.
+  const scales = new Map(
+    dimensions.map((dimension) => {
+      return [dimension, d3.scaleLinear().domain(d3.extent(cars, (d) => d[dimension]))];
+    })
+  );
 
   // Compute ticks for each dimension.
   const ticks = dimensions.flatMap((dimension) => {
-    return d3.ticks(...(d3.extent(cars, (d) => d[dimension]) as [number, number]), 7).map((value) => {
-      return {dimension, value};
-    });
+    return scales
+      .get(dimension)
+      .ticks(7)
+      .map((value) => ({dimension, value}));
   });
-
-  // Normalize the x-position based on the extent for each dimension.
-  const xy = Plot.normalizeX("extent", {x: "value", y: "dimension", z: "dimension"});
 
   return Plot.plot({
     marginLeft: 104,
@@ -36,8 +41,22 @@ export async function carsParcoords() {
     },
     marks: [
       Plot.ruleY(dimensions),
-      Plot.line(data, {...xy, z: "name", stroke: "#444", strokeWidth: 0.5, strokeOpacity: 0.5}),
-      Plot.text(ticks, {...xy, text: "value", fill: "black", stroke: "white"})
+      Plot.lineX(points, {
+        x: (d) => scales.get(d.dimension)(d.value),
+        y: "dimension",
+        z: (d) => `${d.name}-${d.year}`,
+        stroke: "#444",
+        strokeWidth: 0.5,
+        strokeOpacity: 0.5
+      }),
+      Plot.text(ticks, {
+        x: (d) => scales.get(d.dimension)(d.value),
+        y: "dimension",
+        text: "value",
+        fill: "black",
+        stroke: "white",
+        strokeWidth: 3
+      })
     ]
   });
 }

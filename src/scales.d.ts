@@ -161,9 +161,9 @@ export type ScaleName = "x" | "y" | "fx" | "fy" | "r" | "color" | "opacity" | "s
 
 /**
  * The instantiated scales’ apply functions; passed to marks and initializers
- * for rendering.
+ * for rendering. The scales property exposes all the scale definitions.
  */
-export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any};
+export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any} & {scales: {[key in ScaleName]?: Scale}};
 
 /**
  * The supported scale types. For quantitative data, one of:
@@ -329,6 +329,15 @@ export interface ScaleDefaults extends InsetOptions {
    * For axes and legends only.
    */
   label?: string | null;
+
+  /**
+   * Whether to apply a directional arrow such as → or ↑ to the scale label. If
+   * *auto* (the default), the presence of the arrow depends on whether the
+   * scale is ordinal.
+   *
+   * For axes only.
+   */
+  labelArrow?: "auto" | "up" | "right" | "down" | "left" | "none" | true | false | null;
 }
 
 /** Options for scales. */
@@ -570,9 +579,12 @@ export interface ScaleOptions extends ScaleDefaults {
   /**
    * How to format inputs (abstract values) for axis tick labels; one of:
    *
-   * - a [d3-format](https://github.com/d3/d3-format) string for numeric scales
-   * - a [d3-time-format](https://github.com/d3/d3-time-format) string for temporal scales
+   * - a [d3-format][1] string for numeric scales
+   * - a [d3-time-format][2] string for temporal scales
    * - a function passed a tick *value* and *index*, returning a string
+   *
+   * [1]: https://d3js.org/d3-time
+   * [2]: https://d3js.org/d3-time-format
    */
   tickFormat?: string | ((t: any, i: number) => any) | null;
 

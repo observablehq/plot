@@ -10,7 +10,7 @@ const m = ref(0);
 
 </script>
 
-# Linear regression mark
+# Linear regression mark <VersionBadge version="0.5.1" />
 
 The **linear regression** mark draws [linear regression](https://en.wikipedia.org/wiki/Linear_regression) lines with confidence bands, representing the estimated linear relation of a dependent variable (typically **y**) on an independent variable (typically **x**). Below we can see that, in this example dataset at least, the weight of a car is a good linear predictor of its power.
 
@@ -99,7 +99,7 @@ The given *options* are passed through to these underlying marks, with the excep
 
 Multiple regressions can be defined by specifying **z**, **fill**, or **stroke**.
 
-## linearRegressionX(*data*, *options*)
+## linearRegressionX(*data*, *options*) {#linearRegressionX}
 
 ```js
 Plot.linearRegressionX(mtcars, {y: "wt", x: "hp"})
@@ -107,7 +107,7 @@ Plot.linearRegressionX(mtcars, {y: "wt", x: "hp"})
 
 Returns a linear regression mark where **x** is the dependent variable and **y** is the independent variable. (This is the uncommon orientation.)
 
-## linearRegressionY(*data*, *options*)
+## linearRegressionY(*data*, *options*) {#linearRegressionY}
 
 ```js
 Plot.linearRegressionY(mtcars, {x: "wt", y: "hp"})

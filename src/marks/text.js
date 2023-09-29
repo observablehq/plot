@@ -119,7 +119,7 @@ export class Text extends Mark {
   }
 }
 
-function maybeTextOverflow(textOverflow) {
+export function maybeTextOverflow(textOverflow) {
   return textOverflow == null
     ? null
     : keyword(textOverflow, "textOverflow", [
@@ -141,13 +141,17 @@ function applyMultilineText(selection, mark, T, TL) {
     const n = lines.length;
     const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {
+      let m = 0;
       for (let i = 0; i < n; ++i) {
+        ++m;
         if (!lines[i]) continue;
         const tspan = this.ownerDocument.createElementNS(namespaces.svg, "tspan");
         tspan.setAttribute("x", 0);
-        tspan.setAttribute("y", `${(y + i) * lineHeight}em`);
+        if (i === m - 1) tspan.setAttribute("y", `${(y + i) * lineHeight}em`);
+        else tspan.setAttribute("dy", `${m * lineHeight}em`);
         tspan.textContent = lines[i];
         this.appendChild(tspan);
+        m = 0;
       }
     } else {
       if (y) this.setAttribute("y", `${y * lineHeight}em`);
@@ -161,23 +165,20 @@ function applyMultilineText(selection, mark, T, TL) {
   });
 }
 
-export function text(data, options = {}) {
-  let {x, y, ...remainingOptions} = options;
+export function text(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
-  return new Text(data, {...remainingOptions, x, y});
+  return new Text(data, {...options, x, y});
 }
 
-export function textX(data, options = {}) {
-  const {x = identity, ...remainingOptions} = options;
-  return new Text(data, maybeIntervalMidY({...remainingOptions, x}));
+export function textX(data, {x = identity, ...options} = {}) {
+  return new Text(data, maybeIntervalMidY({...options, x}));
 }
 
-export function textY(data, options = {}) {
-  const {y = identity, ...remainingOptions} = options;
-  return new Text(data, maybeIntervalMidX({...remainingOptions, y}));
+export function textY(data, {y = identity, ...options} = {}) {
+  return new Text(data, maybeIntervalMidX({...options, y}));
 }
 
-function applyIndirectTextStyles(selection, mark, T) {
+export function applyIndirectTextStyles(selection, mark, T) {
   applyAttr(selection, "text-anchor", mark.textAnchor);
   applyAttr(selection, "font-family", mark.fontFamily);
   applyAttr(selection, "font-size", mark.fontSize);
@@ -187,7 +188,7 @@ function applyIndirectTextStyles(selection, mark, T) {
 }
 
 function inferFontVariant(T) {
-  return isNumeric(T) || isTemporal(T) ? "tabular-nums" : undefined;
+  return T && (isNumeric(T) || isTemporal(T)) ? "tabular-nums" : undefined;
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/font-size
@@ -413,14 +414,14 @@ export function monospaceWidth(text, start = 0, end = text.length) {
   return sum;
 }
 
-function splitter({monospace, lineWidth, textOverflow}) {
+export function splitter({monospace, lineWidth, textOverflow}) {
   if (textOverflow != null || lineWidth == Infinity) return (text) => text.split(/\r\n?|\n/g);
   const widthof = monospace ? monospaceWidth : defaultWidth;
   const maxWidth = lineWidth * 100;
   return (text) => lineWrap(text, maxWidth, widthof);
 }
 
-function clipper({monospace, lineWidth, textOverflow}) {
+export function clipper({monospace, lineWidth, textOverflow}) {
   if (textOverflow == null || lineWidth == Infinity) return (text) => text;
   const widthof = monospace ? monospaceWidth : defaultWidth;
   const maxWidth = lineWidth * 100;
@@ -430,13 +431,15 @@ function clipper({monospace, lineWidth, textOverflow}) {
     case "clip-end":
       return (text) => clipEnd(text, maxWidth, widthof, "");
     case "ellipsis-start":
-      return (text) => clipStart(text, maxWidth, widthof, "…");
+      return (text) => clipStart(text, maxWidth, widthof, ellipsis);
     case "ellipsis-middle":
-      return (text) => clipMiddle(text, maxWidth, widthof, "…");
+      return (text) => clipMiddle(text, maxWidth, widthof, ellipsis);
     case "ellipsis-end":
-      return (text) => clipEnd(text, maxWidth, widthof, "…");
+      return (text) => clipEnd(text, maxWidth, widthof, ellipsis);
   }
 }
+
+export const ellipsis = "…";
 
 // Cuts the given text to the given width, using the specified widthof function;
 // the returned [index, error] guarantees text.slice(0, index) fits within the
@@ -444,7 +447,7 @@ function clipper({monospace, lineWidth, textOverflow}) {
 // given width, returns [-1, 0]. If the text needs cutting, the given inset
 // specifies how much space (in the same units as width and widthof) to reserve
 // for a possible ellipsis character.
-function cut(text, width, widthof, inset) {
+export function cut(text, width, widthof, inset) {
   const I = []; // indexes of read character boundaries
   let w = 0; // current line width
   for (let i = 0, j = 0, n = text.length; i < n; i = j) {

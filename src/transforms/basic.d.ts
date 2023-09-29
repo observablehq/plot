@@ -1,17 +1,23 @@
 import type {ChannelName, Channels, ChannelValue} from "../channel.js";
 import type {Context} from "../context.js";
 import type {Dimensions} from "../dimensions.js";
+import type {RenderFunction} from "../mark.js";
+import type {PlotOptions} from "../plot.js";
 import type {ScaleFunctions} from "../scales.js";
 
 /**
- * A mark transform function is passed the mark’s *data* and a nested index into
- * the data, *facets*. The transform function returns new mark data and facets;
- * the returned **data** defaults to the passed *data*, and the returned
- * **facets** defaults to the passed *facets*. The mark is the *this* context.
- * Transform functions can also trigger side-effects, say to populate
- * lazily-derived columns; see also Plot.column.
+ * A mark transform function is passed the mark’s *data*, a nested index into
+ * the data, *facets*, and the plot’s *options*. The transform function returns
+ * new mark data and facets; the returned **data** defaults to the passed
+ * *data*, and the returned **facets** defaults to the passed *facets*. The mark
+ * is the *this* context. Transform functions can also trigger side-effects, say
+ * to populate lazily-derived columns; see also Plot.column.
  */
-export type TransformFunction = (data: any[], facets: number[][]) => {data?: any[]; facets?: number[][]};
+export type TransformFunction = (
+  data: any[],
+  facets: number[][],
+  options?: PlotOptions
+) => {data?: any[]; facets?: number[][]};
 
 /**
  * A mark initializer function is passed the mark’s (possibly transformed)
@@ -61,6 +67,9 @@ export type Transformed<T> = T & {transform: TransformFunction};
 
 /** Mark options with a mark initializer. */
 export type Initialized<T> = T & {initializer: InitializerFunction};
+
+/** Mark options with a mark render transform. */
+export type Rendered<T> = T & {render: RenderFunction};
 
 /**
  * Given an *options* object that may specify some basic transforms (**filter**,
@@ -140,7 +149,7 @@ export type SortOrder =
   | CompareFunction
   | ChannelValue
   | {value?: ChannelValue; order?: CompareFunction | "ascending" | "descending"}
-  | {channel?: ChannelName; order?: CompareFunction | "ascending" | "descending"};
+  | {channel?: ChannelName | `-${ChannelName}`; order?: CompareFunction | "ascending" | "descending"};
 
 /**
  * Applies a transform to *options* to sort the mark’s index by the specified

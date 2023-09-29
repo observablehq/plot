@@ -10,7 +10,7 @@ export async function moviesProfitByGenre() {
     x: {
       grid: true,
       inset: 6,
-      label: "Profit ($M) →",
+      label: "Profit ($M)",
       domain: [d3.min(movies, Profit), 1e3]
     },
     marks: [
@@ -40,7 +40,7 @@ export async function moviesProfitByGenre() {
             x: Profit,
             stroke: "red",
             strokeWidth: 2,
-            sort: {y: "x", reverse: true}
+            sort: {y: "-x"}
           }
         )
       )

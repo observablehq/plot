@@ -51,9 +51,9 @@ const likert = Likert([
 
 # Stack transform
 
-The **stack transform** comes in two orientations: [stackY](#stackystack-options) replaces **y** with **y1** and **y2** to form vertical↑ stacks grouped on **x**, while [stackX](#stackx-stack-options) replaces **x** with **x1** and **x2** for horizontal→ stacks grouped on **y**.  In effect, stacking transforms a *length* into *lower* and *upper* positions: the upper position of each element equals the lower position of the next element in the stack. Stacking makes it easier to perceive a total while still showing its parts.
+The **stack transform** comes in two orientations: [stackY](#stackY) replaces **y** with **y1** and **y2** to form vertical↑ stacks grouped on **x**, while [stackX](#stackX) replaces **x** with **x1** and **x2** for horizontal→ stacks grouped on **y**.  In effect, stacking transforms a *length* into *lower* and *upper* positions: the upper position of each element equals the lower position of the next element in the stack. Stacking makes it easier to perceive a total while still showing its parts.
 
-For example, below is a stacked area chart of [deaths in the Crimean War](https://en.wikipedia.org/wiki/Florence_Nightingale#Crimean_War)—predominantly from <span :style="{borderBottom: `solid ${d3.schemeTableau10[0]} 3px`}">disease</span>—using Florence Nightingale’s data.
+For example, below is a stacked area chart of [deaths in the Crimean War](https://en.wikipedia.org/wiki/Florence_Nightingale#Crimean_War) — predominantly from <span :style="{borderBottom: `solid ${d3.schemeTableau10[0]} 3px`}">disease</span> — using Florence Nightingale’s data.
 
 :::plot https://observablehq.com/@observablehq/plot-crimean-war-casualties
 ```js
@@ -87,7 +87,7 @@ Plot.plot({
 :::
 
 :::info
-The [interval mark option](./interval.md) specifies the periodicity of the data; without it, Plot wouldn’t know how wide to make the rects.
+The [**interval** mark option](./interval.md) specifies the periodicity of the data; without it, Plot wouldn’t know how wide to make the rects.
 :::
 
 And you can stack bars if you’d prefer to treat *x* as ordinal.
@@ -110,7 +110,7 @@ Plot.plot({
 :::
 
 :::info
-The [interval scale option](./interval.md) specifies the periodicity of the data; without it, any gaps in the data would not be visible since barY implies that *x* is ordinal.
+The [**interval** scale option](../features/scales.md#scale-transforms) specifies the periodicity of the data; without it, any gaps in the data would not be visible since barY implies that *x* is ordinal.
 :::
 
 The stackY transform also outputs **y** representing the midpoint of **y1** and **y2**, and likewise stackX outputs **x** representing the midpoint of **x1** and **x2**. This is useful for point-based marks such as [text](../marks/text.md) and [dot](../marks/dot.md). Below, a single stacked horizontal [bar](../marks/bar.md) shows the relative frequency of English letters; this form is a compact alternative to a pie 🥧 or donut 🍩 chart.
@@ -149,7 +149,7 @@ The **order** option controls the order in which the layers are stacked. It defa
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Annual revenue (billions, adj.)",
+    label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000 // convert millions to billions
   },
   color: {legend: true},
@@ -179,7 +179,7 @@ The **reverse** option reverses the order of layers. In conjunction with the *ap
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Annual revenue (billions, adj.)",
+    label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000 // convert millions to billions
   },
   color: {legend: true},
@@ -202,7 +202,7 @@ The *value* **order** is worth special mention: it sorts each stack by value ind
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Annual revenue (billions, adj.)",
+    label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000 // convert millions to billions
   },
   marks: [
@@ -231,7 +231,7 @@ The **offset** option controls the baseline of stacked layers. It defaults to nu
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Annual revenue (billions, adj.)",
+    label: "Annual revenue (billions, adj.)",
     transform: (d) => d / 1000
   },
   marks: [
@@ -251,7 +251,7 @@ The *normalize* **offset** is again worth special mention: it scales stacks to f
 ```js
 Plot.plot({
   y: {
-    label: "↑ Annual revenue (%)",
+    label: "Annual revenue (%)",
     percent: true
   },
   marks: [
@@ -268,7 +268,7 @@ When the provided length (typically **y**) is negative, in conjunction with the 
 ```js
 Plot.plot({
   aspectRatio: 1,
-  x: {label: "Age (years) →"},
+  x: {label: "Age (years)"},
   y: {
     grid: true,
     label: "← Women · Men →",
@@ -278,7 +278,7 @@ Plot.plot({
   marks: [
     Plot.dot(
       congress,
-      Plot.stackY({
+      Plot.stackY2({
         x: (d) => 2023 - d.birthday.getUTCFullYear(),
         y: (d) => d.gender === "M" ? 1 : -1,
         fill: "gender",
@@ -371,7 +371,7 @@ The following **order** methods are supported:
 - a named field or function of data - order data by priority
 - an array of *z* values
 
-The **reverse** option reverses the effective order. For the *value* order, stackY uses the *y* value while stackX uses the *x* value. For the *appearance* order, stackY uses the *x* position of the maximum *y* value while stackX uses the *y* position of the maximum *x* value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort). Note that the input order (null) and *value* order can produce crossing paths: they do not guarantee a consistent series order across stacks.
+The **reverse** option reverses the effective order. For the *value* order, stackY uses the *y* value while stackX uses the *x* value. For the *appearance* order, stackY uses the *x* position of the maximum *y* value while stackX uses the *y* position of the maximum *x* value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://d3js.org/d3-array/group#groupSort). Note that the input order (null) and *value* order can produce crossing paths: they do not guarantee a consistent series order across stacks.
 
 The stack transform supports diverging stacks: negative values are stacked below zero while positive values are stacked above zero. For stackY, the **y1** channel contains the value of lesser magnitude (closer to zero) while the **y2** channel contains the value of greater magnitude (farther from zero); the difference between the two corresponds to the input **y** channel value. For stackX, the same is true, except for **x1**, **x2**, and **x** respectively.
 
@@ -391,7 +391,7 @@ In addition to the **y1** and **y2** output channels, stackY computes a **y** ou
 
 If two arguments are passed to the stack transform functions below, the stack-specific options (**offset**, **order**, and **reverse**) are pulled exclusively from the first *options* argument, while any channels (*e.g.*, **x**, **y**, and **z**) are pulled from second *options* argument. Options from the second argument that are not consumed by the stack transform will be passed through. Using two arguments is sometimes necessary is disambiguate the option recipient when chaining transforms.
 
-## stackY(*stack*, *options*)
+## stackY(*stack*, *options*) {#stackY}
 
 ```js
 Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
@@ -399,42 +399,42 @@ Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
 
 Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points. The stack options (**offset**, **order**, and **reverse**) may be specified as part of the *options* object, if the only argument, or as a separate *stack* options argument.
 
-## stackY1(*stack*, *options*)
+## stackY1(*stack*, *options*) {#stackY1}
 
 ```js
 Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
 ```
 
-Like [stackY](#stacky-stack-options), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
+Like [stackY](#stackY), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
 
-## stackY2(*stack*, *options*)
+## stackY2(*stack*, *options*) {#stackY2}
 
 ```js
 Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
 ```
 
-Like [stackY](#stacky-stack-options), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
+Like [stackY](#stackY), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
 
-## stackX(*stack*, *options*)
+## stackX(*stack*, *options*) {#stackX}
 
 ```js
 Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
-Like [stackY](#stacky-stack-options), but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
+Like [stackY](#stackY), but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
 
-## stackX1(*stack*, *options*)
+## stackX1(*stack*, *options*) {#stackX1}
 
 ```js
 Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
-Like [stackX](#stackx-stack-options), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
+Like [stackX](#stackX), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
 
-## stackX2(*stack*, *options*)
+## stackX2(*stack*, *options*) {#stackX2}
 
 ```js
 Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
-Like [stackX](#stackx-stack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
+Like [stackX](#stackX), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.

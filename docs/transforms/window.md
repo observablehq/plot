@@ -37,7 +37,7 @@ For example, the band chart below shows the daily high and low temperature in Sa
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Temperature (°F)"
+    label: "Temperature (°F)"
   },
   marks: [
     Plot.areaY(sftemp, {x: "date", y1: "low", y2: "high", fillOpacity: 0.3}),
@@ -72,7 +72,7 @@ The **anchor** specifies how to align the rolling window with the data. If *midd
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Temperature (°F)"
+    label: "Temperature (°F)"
   },
   marks: [
     Plot.lineY(sftemp, {x: "date", y: "high", strokeOpacity: 0.3}),
@@ -84,7 +84,7 @@ Plot.plot({
 
 The window transform uses input order, not natural order by value, to determine the meaning of *start* and *end*. When the data is in reverse chronological order, the meaning of *start* and *end* is effectively reversed because the first data point is the most recent. Use a [sort transform](./sort.md) to change the order as needed.
 
-If **strict** is false (the default), the window size is effectively reduced at the start or end of each series or both, depending on the **anchor**. Values computed with a truncated window may be noisy; if you would prefer to not show this data instead, set the **strict** option to true.
+If **strict** is false (the default), the window size is effectively reduced at the start or end of each series or both, depending on the **anchor**. Values computed with a truncated window may be noisy; if you would prefer to not show this data instead, set the **strict** option to true. <VersionBadge version="0.6.0" /> The **strict** option can also have a dramatic effect if some data is missing: when strict, the reducer will be skipped if any of the values in the current window are null, undefined, or NaN.
 
 <p>
   <label class="label-input">
@@ -98,7 +98,7 @@ If **strict** is false (the default), the window size is effectively reduced at 
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Temperature (°F)"
+    label: "Temperature (°F)"
   },
   marks: [
     Plot.lineY(sftemp, {x: "date", y: "low", strokeOpacity: 0.3}),
@@ -108,8 +108,6 @@ Plot.plot({
 ```
 :::
 
-The **strict** option can also have a dramatic effect if some data is missing: when strict, the reducer will be skipped if any of the values in the current window are null, undefined, or NaN.
-
 The **reduce** option specifies how to compute the output value for the current window. It defaults to *mean* for a rolling average. Below, the rolling <span style="border-bottom: solid 2px var(--vp-c-blue)">minimum</span>, <span style="border-bottom: solid 2px var(--vp-c-red)">maximum</span>, and <span style="border-bottom: solid 2px;">median</span> are shown. The window transform supports most of the same reducers as [bin](./bin.md) and [group](./group.md), and you can implement a custom reducer as a function if needed.
 
 :::plot https://observablehq.com/@observablehq/plot-window-reduce
@@ -117,9 +115,9 @@ The **reduce** option specifies how to compute the output value for the current 
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Temperature (°F)"
+    label: "Temperature (°F)"
   },
-  marks: [
+marks: [
     Plot.lineY(sftemp, {x: "date", y: "low", strokeOpacity: 0.3}),
     Plot.lineY(sftemp, Plot.windowY({k: 28, reduce: "min"}, {x: "date", y: "low", stroke: "blue"})),
     Plot.lineY(sftemp, Plot.windowY({k: 28, reduce: "max"}, {x: "date", y: "low", stroke: "red"})),
@@ -181,9 +179,9 @@ The following named reducers are supported:
 * *first* - the first value
 * *last* - the last value
 
-A reducer may also be specified as a function to be passed an array of **k** values.
+A reducer may also be specified as a function to be passed an index of size **k** and the corresponding input channel array; or if the function only takes one argument, an array of **k** values.
 
-## window(*k*)
+## window(*k*) <VersionBadge version="0.2.3" /> {#window}
 
 ```js
 Plot.map({y: Plot.window(24)}, {x: "Date", y: "Close", stroke: "Symbol"})
@@ -191,18 +189,18 @@ Plot.map({y: Plot.window(24)}, {x: "Date", y: "Close", stroke: "Symbol"})
 
 Returns a window map method for the given window size *k*, suitable for use with Plot.map. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, **reduce**, or **strict**.
 
-## windowX(*k*, *options*)
+## windowX(*k*, *options*) {#windowX}
 
 ```js
 Plot.windowX(24, {y: "Date", x: "Anomaly"})
 ```
 
-Like [mapX](./map.md#mapx-map-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, or **reduce**.
+Like [mapX](./map.md#mapX), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, or **reduce**.
 
-## windowY(*k*, *options*)
+## windowY(*k*, *options*) {#windowY}
 
 ```js
 Plot.windowY(24, {x: "Date", y: "Anomaly"})
 ```
 
-Like [mapY](./map.md#mapy-map-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, or **reduce**.
+Like [mapY](./map.md#mapY), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties **k**, **anchor**, or **reduce**.

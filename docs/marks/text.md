@@ -25,7 +25,7 @@ Plot.plot({
   label: null,
   y: {
     grid: true,
-    label: "↑ Frequency (%)",
+    label: "Frequency (%)",
     percent: true
   },
   marks: [
@@ -38,7 +38,7 @@ Plot.plot({
 :::
 
 :::tip
-For formatting numbers and dates, consider [*number*.toLocaleString](https://observablehq.com/@mbostock/number-formatting), [*date*.toLocaleString](https://observablehq.com/@mbostock/date-formatting), [d3-format](https://github.com/d3/d3-format), or [d3-time-format](https://github.com/d3/d3-time-format).
+For formatting numbers and dates, consider [*number*.toLocaleString](https://observablehq.com/@mbostock/number-formatting), [*date*.toLocaleString](https://observablehq.com/@mbostock/date-formatting), [d3-format](https://d3js.org/d3-format), or [d3-time-format](https://d3js.org/d3-time-format).
 :::
 
 If there are too many data points, labels may overlap, making them hard to read. Use the [filter transform](../transforms/filter.md) to choose which points to label. In the connected scatterplot below, recreating Hannah Fairfield’s [“Driving Shifts Into Reverse”](http://www.nytimes.com/imagepages/2010/05/02/business/02metrics.html) from 2009, every fifth year is labeled.
@@ -48,8 +48,8 @@ If there are too many data points, labels may overlap, making them hard to read.
 Plot.plot({
   inset: 10,
   grid: true,
-  x: {label: "Miles driven (per person-year) →"},
-  y: {label: "↑ Cost of gasoline ($ per gallon)"},
+  x: {label: "Miles driven (per person-year)"},
+  y: {label: "Cost of gasoline ($ per gallon)"},
   marks: [
     Plot.line(driving, {x: "miles", y: "gas", curve: "catmull-rom", marker: true}),
     Plot.text(driving, {filter: (d) => d.year % 5 === 0, x: "miles", y: "gas", text: (d) => `${d.year}`, dy: -6, lineAnchor: "bottom"})
@@ -69,7 +69,7 @@ For line charts with multiple series, you may wish to label only the start or en
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Travelers per day (millions)",
+    label: "Travelers per day (millions)",
     transform: (d) => d / 1e6 // convert to millions
   },
   marks: [
@@ -170,9 +170,9 @@ Plot.plot({
   marks: [
     Plot.text(
       [
-        "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before cof\xadfin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people’s hats off—then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship. There is nothing surprising in this. If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.",
-        "There now is your insular city of the Manhattoes, belted round by wharves as Indian isles by coral reefs—commerce surrounds it with her surf. Right and left, the streets take you waterward. Its extreme downtown is the battery, where that noble mole is washed by waves, and cooled by breezes, which a few hours previous were out of sight of land. Look at the crowds of water-gazers there.",
-        "Circumambulate the city of a dreamy Sabbath afternoon. Go from Corlears Hook to Coenties Slip, and from thence, by Whitehall, northward. What do you see?—Posted like silent sentinels all around the town, stand thousands upon thousands of mortal men fixed in ocean reveries. Some leaning against the spiles; some seated upon the pier-heads; some looking over the bulwarks of ships from China; some high aloft in the rigging, as if striving to get a still better seaward peep. But these are all landsmen; of week days pent up in lath and plaster—tied to counters, nailed to benches, clinched to desks. How then is this? Are the green fields gone? What do they here?"
+        "Call me Ishmael. Some years ago — never mind how long precisely — having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before cof\xadfin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people’s hats off — then, I account it high time to get to sea as soon as I can. This is my substitute for pistol and ball. With a philosophical flourish Cato throws himself upon his sword; I quietly take to the ship. There is nothing surprising in this. If they but knew it, almost all men in their degree, some time or other, cherish very nearly the same feelings towards the ocean with me.",
+        "There now is your insular city of the Manhattoes, belted round by wharves as Indian isles by coral reefs — commerce surrounds it with her surf. Right and left, the streets take you waterward. Its extreme downtown is the battery, where that noble mole is washed by waves, and cooled by breezes, which a few hours previous were out of sight of land. Look at the crowds of water-gazers there.",
+        "Circumambulate the city of a dreamy Sabbath afternoon. Go from Corlears Hook to Coenties Slip, and from thence, by Whitehall, northward. What do you see? — Posted like silent sentinels all around the town, stand thousands upon thousands of mortal men fixed in ocean reveries. Some leaning against the spiles; some seated upon the pier-heads; some looking over the bulwarks of ships from China; some high aloft in the rigging, as if striving to get a still better seaward peep. But these are all landsmen; of week days pent up in lath and plaster — tied to counters, nailed to benches, clinched to desks. How then is this? Are the green fields gone? What do they here?"
       ],
       {
         x: (d, i) => 1 + i, // paragraph number
@@ -213,7 +213,7 @@ The following text-specific constant options are also supported:
 * **lineAnchor** - the line anchor for vertical position; *top*, *bottom*, or *middle*
 * **lineHeight** - the line height in ems; defaults to 1
 * **lineWidth** - the line width in ems, for wrapping; defaults to Infinity
-* **textOverflow** - how to wrap or clip lines longer than the specified line width
+* **textOverflow** - how to wrap or clip lines longer than the specified line width <VersionBadge version="0.6.4" />
 * **monospace** - if true, changes the default **fontFamily** and metrics to monospace
 * **fontFamily** - the font name; defaults to [*system-ui*](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 * **fontSize** - the font size in pixels; defaults to 10
@@ -240,7 +240,7 @@ If the **frameAnchor** option is not specified, then **textAnchor** and **lineAn
 
 The **paintOrder** option defaults to *stroke* and the **strokeWidth** option defaults to 3. By setting **fill** to the foreground color and **stroke** to the background color (such as *black* and *white*, respectively), you can surround text with a “halo” which may improve legibility against a busy background.
 
-## text(*data*, *options*)
+## text(*data*, *options*) {#text}
 
 ```js
 Plot.text(driving, {x: "miles", y: "gas", text: "year"})
@@ -248,22 +248,22 @@ Plot.text(driving, {x: "miles", y: "gas", text: "year"})
 
 Returns a new text mark with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-## textX(*data*, *options*)
+## textX(*data*, *options*) {#textX}
 
 ```js
 Plot.textX(alphabet.map((d) => d.frequency))
 ```
 
-Equivalent to [text](#text-data-options), except **x** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [text](#text), except **x** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
-If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
+If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
-## textY(*data*, *options*)
+## textY(*data*, *options*) {#textY}
 
 ```js
 Plot.textY(alphabet.map((d) => d.frequency))
 ```
 
-Equivalent to [text](#text-data-options), except **y** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [text](#text), except **y** defaults to [identity](../features/transforms.md#identity) and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
-If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
+If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).

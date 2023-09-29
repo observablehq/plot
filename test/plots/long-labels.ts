@@ -16,7 +16,7 @@ Not enough politics\t.12
     marginBottom: 40,
     height: 400,
     x: {label: null},
-    y: {percent: true, label: "↑ Responses (%)"},
+    y: {percent: true, label: "Responses (%)"},
     marks: [
       Plot.axisX({lineWidth: 8}),
       Plot.barY(responses, {x: "name", y: "value"}),

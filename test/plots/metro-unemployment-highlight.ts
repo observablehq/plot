@@ -7,7 +7,7 @@ export async function metroUnemploymentHighlight() {
   return Plot.plot({
     y: {
       grid: true,
-      label: "↑ Unemployment (%)"
+      label: "Unemployment (%)"
     },
     color: {
       domain: [false, true],

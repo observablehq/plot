@@ -57,7 +57,7 @@ Plot.line(aapl.map((d) => [d.Date, d.Close])).plot()
 This shorthand loses the automatic *x*- and *y*-axis labels, reducing legibility. Use the **label** [scale option](../features/scales.md) to restore them.
 :::
 
-The [lineY constructor](#liney-data-options) provides default channel definitions of **x** = index and **y** = [identity](../features/transforms.md#identity), letting you pass an array of numbers as data. The [lineX constructor](#linex-data-options) similarly provides **x** = identity and **y** = index defaults for lines that go up↑ instead of to the right→. Below, a random walk is made using [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
+The [lineY constructor](#lineY) provides default channel definitions of **x** = index and **y** = [identity](../features/transforms.md#identity), letting you pass an array of numbers as data. The [lineX constructor](#lineX) similarly provides **x** = identity and **y** = index defaults for lines that go up↑ instead of to the right→. Below, a random walk is made using [d3.cumsum](https://observablehq.com/@d3/d3-cumsum?collection=@d3/d3-array) and [d3.randomNormal](https://observablehq.com/@d3/d3-random?collection=@d3/d3-random).
 
 :::plot defer https://observablehq.com/@observablehq/plot-shorthand-liney
 ```js
@@ -81,16 +81,16 @@ Plot.lineY(d3.shuffle(aapl.slice()), {x: "Date", y: "Close", sort: "Date"}).plot
 ```
 :::
 
-While the *x* scale of a line chart often represents time, this is not required. For example, we can plot the elevation profile of a Tour de France stage—and imagine how tiring it must be to start a climb after riding 160km! ⛰🚴💦
+While the *x* scale of a line chart often represents time, this is not required. For example, we can plot the elevation profile of a Tour de France stage — and imagine how tiring it must be to start a climb after riding 160km! ⛰🚴💦
 
 :::plot defer https://observablehq.com/@observablehq/plot-tour-de-france-elevation-profile
 ```js
 Plot.plot({
   x: {
-    label: "Distance from stage start (km) →"
+    label: "Distance from stage start (km)"
   },
   y: {
-    label: "↑ Elevation (m)",
+    label: "Elevation (m)",
     grid: true
   },
   marks: [
@@ -108,8 +108,8 @@ There is no requirement that **y** be dependent on **x**; lines can be used in c
 Plot.plot({
   inset: 10,
   grid: true,
-  x: {label: "Miles driven (per person-year) →"},
-  y: {label: "↑ Cost of gasoline ($ per gallon)"},
+  x: {label: "Miles driven (per person-year)"},
+  y: {label: "Cost of gasoline ($ per gallon)"},
   marks: [
     Plot.line(driving, {x: "miles", y: "gas", curve: "catmull-rom", marker: true}),
     Plot.text(driving, {filter: (d) => d.year % 5 === 0, x: "miles", y: "gas", text: (d) => `${d.year}`, dy: -8})
@@ -125,7 +125,7 @@ To draw multiple lines, use the **z** channel to group [tidy data](https://r4ds.
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Unemployment (%)"
+    label: "Unemployment (%)"
   },
   marks: [
     Plot.ruleY([0]),
@@ -146,11 +146,10 @@ If a **stroke** (or **fill**) channel is specified, the **z** option defaults to
 :::plot defer https://observablehq.com/@observablehq/plot-index-chart
 ```js
 Plot.plot({
-  style: "overflow: visible;",
   y: {
     type: "log",
     grid: true,
-    label: "↑ Change in price (%)",
+    label: "Change in price (%)",
     tickFormat: ((f) => (x) => f((x - 1) * 100))(d3.format("+d"))
   },
   marks: [
@@ -187,7 +186,7 @@ Plot.plot({
   },
   y: {
     grid: true,
-    label: "↑ Unemployment (%)"
+    label: "Unemployment (%)"
   },
   marks: [
     Plot.ruleY([0]),
@@ -209,7 +208,7 @@ Color encodings can also be used to highlight specific series, such as here to e
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Unemployment (%)"
+    label: "Unemployment (%)"
   },
   color: {
     domain: [false, true],
@@ -238,7 +237,7 @@ As an alternative to **z**, you can render multiple lines using multiple marks. 
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Temperature (°F)"
+    label: "Temperature (°F)"
   },
   marks: [
     Plot.line(sftemp, Plot.windowY(14, {x: "date", y: "low", stroke: "#4e79a7"})),
@@ -287,11 +286,12 @@ While uncommon, you can draw a line with ordinal position values. For example be
 Plot.plot({
   x: {
     domain: stateage.ages, // in age order
-    label: "Age range (years) →",
-    labelAnchor: "right"
+    label: "Age range (years)",
+    labelAnchor: "right",
+    labelArrow: true
   },
   y: {
-    label: "↑ Population (%)",
+    label: "Population (%)",
     percent: true,
     grid: true
   },
@@ -359,9 +359,9 @@ The **fill** defaults to *none*. The **stroke** defaults to *currentColor* if th
 
 Points along the line are connected in input order. Likewise, if there are multiple series via the **z**, **fill**, or **stroke** channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](../transforms/sort.md).
 
-The line mark supports [curve options](../features/curves.md) to control interpolation between points, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) on each of the control points. The default curve is *auto*, which is equivalent to *linear* if there is no [projection](../features/projections.md), and otherwise uses the associated projection. If any of the **x** or **y** values are invalid (undefined, null, or NaN), the line will be interrupted, resulting in a break that divides the line shape into multiple segments. (See [d3-shape’s *line*.defined](https://github.com/d3/d3-shape/blob/main/README.md#line_defined) for more.) If a line segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
+The line mark supports [curve options](../features/curves.md) to control interpolation between points, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) on each of the control points. The default curve is *auto*, which is equivalent to *linear* if there is no [projection](../features/projections.md), and otherwise uses the associated projection. If any of the **x** or **y** values are invalid (undefined, null, or NaN), the line will be interrupted, resulting in a break that divides the line shape into multiple segments. (See [d3-shape’s *line*.defined](https://d3js.org/d3-shape/line#line_defined) for more.) If a line segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
 
-## line(*data*, *options*)
+## line(*data*, *options*) {#line}
 
 ```js
 Plot.line(aapl, {x: "Date", y: "Close"})
@@ -369,13 +369,13 @@ Plot.line(aapl, {x: "Date", y: "Close"})
 
 Returns a new line with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-## lineX(*data*, *options*)
+## lineX(*data*, *options*) {#lineX}
 
 ```js
 Plot.lineX(aapl.map((d) => d.Close))
 ```
 
-Similar to [line](#line-data-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
+Similar to [line](#line) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
 
 If the **interval** option is specified, the [binY transform](../transforms/bin.md) is implicitly applied to the specified *options*. The reducer of the output *x* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
@@ -385,13 +385,13 @@ Plot.lineX(observations, {y: "date", x: "temperature", interval: "day"})
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use "day" as the interval.
 
-## lineY(*data*, *options*)
+## lineY(*data*, *options*) {#lineY}
 
 ```js
 Plot.lineY(aapl.map((d) => d.Close))
 ```
 
-Similar to [line](#line-data-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
+Similar to [line](#line) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
 
 If the **interval** option is specified, the [binX transform](../transforms/bin.md) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 

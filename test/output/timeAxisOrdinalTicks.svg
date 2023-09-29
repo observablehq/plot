@@ -1,0 +1,150 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,332.1948593174582)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,294.3897186349164)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,256.5845779523747)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,218.77943726983284)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,180.97429658729104)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,143.16915590474923)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,105.36401522220748)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,67.55887453966568)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,29.753733857123883)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,332.1948593174582)">20</text>
+    <text y="0.32em" transform="translate(40,294.3897186349164)">40</text>
+    <text y="0.32em" transform="translate(40,256.5845779523747)">60</text>
+    <text y="0.32em" transform="translate(40,218.77943726983284)">80</text>
+    <text y="0.32em" transform="translate(40,180.97429658729104)">100</text>
+    <text y="0.32em" transform="translate(40,143.16915590474923)">120</text>
+    <text y="0.32em" transform="translate(40,105.36401522220748)">140</text>
+    <text y="0.32em" transform="translate(40,67.55887453966568)">160</text>
+    <text y="0.32em" transform="translate(40,29.753733857123883)">180</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Close</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(4.771685761047463,0)">
+    <path transform="translate(59.93453355155488,370)" d="M0,0L0,6"></path>
+    <path transform="translate(88.41243862520463,370)" d="M0,0L0,6"></path>
+    <path transform="translate(116.89034369885438,370)" d="M0,0L0,6"></path>
+    <path transform="translate(145.36824877250413,370)" d="M0,0L0,6"></path>
+    <path transform="translate(173.8461538461539,370)" d="M0,0L0,6"></path>
+    <path transform="translate(202.32405891980363,370)" d="M0,0L0,6"></path>
+    <path transform="translate(230.8019639934534,370)" d="M0,0L0,6"></path>
+    <path transform="translate(259.27986906710316,370)" d="M0,0L0,6"></path>
+    <path transform="translate(287.7577741407529,370)" d="M0,0L0,6"></path>
+    <path transform="translate(316.23567921440264,370)" d="M0,0L0,6"></path>
+    <path transform="translate(344.7135842880524,370)" d="M0,0L0,6"></path>
+    <path transform="translate(373.19148936170217,370)" d="M0,0L0,6"></path>
+    <path transform="translate(401.66939443535193,370)" d="M0,0L0,6"></path>
+    <path transform="translate(430.14729950900164,370)" d="M0,0L0,6"></path>
+    <path transform="translate(458.6252045826514,370)" d="M0,0L0,6"></path>
+    <path transform="translate(487.10310965630117,370)" d="M0,0L0,6"></path>
+    <path transform="translate(515.581014729951,370)" d="M0,0L0,6"></path>
+    <path transform="translate(544.0589198036007,370)" d="M0,0L0,6"></path>
+    <path transform="translate(572.5368248772504,370)" d="M0,0L0,6"></path>
+    <path transform="translate(601.0147299509001,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(4.771685761047463,9.5)">
+    <text transform="translate(59.93453355155488,370)"><tspan x="0" y="0.71em">Jul</tspan><tspan x="0" dy="1em">2013</tspan></text>
+    <text y="0.71em" transform="translate(88.41243862520463,370)">Oct</text>
+    <text transform="translate(116.89034369885438,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2014</tspan></text>
+    <text y="0.71em" transform="translate(145.36824877250413,370)">Apr</text>
+    <text y="0.71em" transform="translate(173.8461538461539,370)">Jul</text>
+    <text y="0.71em" transform="translate(202.32405891980363,370)">Oct</text>
+    <text transform="translate(230.8019639934534,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2015</tspan></text>
+    <text y="0.71em" transform="translate(259.27986906710316,370)">Apr</text>
+    <text y="0.71em" transform="translate(287.7577741407529,370)">Jul</text>
+    <text y="0.71em" transform="translate(316.23567921440264,370)">Oct</text>
+    <text transform="translate(344.7135842880524,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2016</tspan></text>
+    <text y="0.71em" transform="translate(373.19148936170217,370)">Apr</text>
+    <text y="0.71em" transform="translate(401.66939443535193,370)">Jul</text>
+    <text y="0.71em" transform="translate(430.14729950900164,370)">Oct</text>
+    <text transform="translate(458.6252045826514,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2017</tspan></text>
+    <text y="0.71em" transform="translate(487.10310965630117,370)">Apr</text>
+    <text y="0.71em" transform="translate(515.581014729951,370)">Jul</text>
+    <text y="0.71em" transform="translate(544.0589198036007,370)">Oct</text>
+    <text transform="translate(572.5368248772504,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2018</tspan></text>
+    <text y="0.71em" transform="translate(601.0147299509001,370)">Apr</text>
+  </g>
+  <g aria-label="bar">
+    <rect x="40.94926350245504" width="8.543371522094926" y="250.49929994600777" height="119.50070005399223"><title>2013-05-13</title></rect>
+    <rect x="50.44189852700496" width="8.543371522094926" y="253.37519181518272" height="116.62480818481728"><title>2013-06-03</title></rect>
+    <rect x="59.93453355155488" width="8.543371522094926" y="254.7213251302371" height="115.27867486976291"><title>2013-07-01</title></rect>
+    <rect x="69.42716857610479" width="8.543371522094926" y="237.61855262759664" height="132.38144737240336"><title>2013-08-01</title></rect>
+    <rect x="78.91980360065472" width="8.543371522094926" y="239.80449406341555" height="130.19550593658445"><title>2013-09-03</title></rect>
+    <rect x="88.41243862520463" width="8.543371522094926" y="234.68189939118815" height="135.31810060881185"><title>2013-10-01</title></rect>
+    <rect x="97.90507364975454" width="8.543371522094926" y="229.37162298829935" height="140.62837701170065"><title>2013-11-01</title></rect>
+    <rect x="107.39770867430447" width="8.543371522094926" y="218.63362095196325" height="151.36637904803675"><title>2013-12-02</title></rect>
+    <rect x="116.89034369885438" width="8.543371522094926" y="223.2458386639482" height="146.7541613360518"><title>2014-01-02</title></rect>
+    <rect x="126.38297872340429" width="8.543371522094926" y="227.54212448602019" height="142.45787551397981"><title>2014-02-03</title></rect>
+    <rect x="135.87561374795422" width="8.543371522094926" y="226.50249067827843" height="143.49750932172157"><title>2014-03-03</title></rect>
+    <rect x="145.36824877250413" width="8.543371522094926" y="226.5645894023636" height="143.4354105976364"><title>2014-04-01</title></rect>
+    <rect x="154.86088379705404" width="8.543371522094926" y="208.6503550734423" height="161.3496449265577"><title>2014-05-01</title></rect>
+    <rect x="164.35351882160398" width="8.543371522094926" y="195.94512851706355" height="174.05487148293645"><title>2014-06-02</title></rect>
+    <rect x="173.8461538461539" width="8.543371522094926" y="189.79234754175096" height="180.20765245824904"><title>2014-07-01</title></rect>
+    <rect x="183.3387888707038" width="8.543371522094926" y="184.79261012545666" height="185.20738987454334"><title>2014-08-01</title></rect>
+    <rect x="192.83142389525372" width="8.543371522094926" y="179.15965172478607" height="190.84034827521393"><title>2014-09-02</title></rect>
+    <rect x="202.32405891980363" width="8.543371522094926" y="179.5944032816072" height="190.4055967183928"><title>2014-10-01</title></rect>
+    <rect x="211.81669394435355" width="8.543371522094926" y="154.52960446036712" height="215.47039553963288"><title>2014-11-03</title></rect>
+    <rect x="221.3093289689035" width="8.543371522094926" y="157.28937783993567" height="212.71062216006433"><title>2014-12-01</title></rect>
+    <rect x="230.8019639934534" width="8.543371522094926" y="162.68605411134035" height="207.31394588865965"><title>2015-01-02</title></rect>
+    <rect x="240.2945990180033" width="8.543371522094926" y="129.7861323226154" height="240.2138676773846"><title>2015-02-02</title></rect>
+    <rect x="249.78723404255322" width="8.543371522094926" y="131.09040684077752" height="238.90959315922248"><title>2015-03-02</title></rect>
+    <rect x="259.27986906710316" width="8.543371522094926" y="130.22089900149277" height="239.77910099850723"><title>2015-04-01</title></rect>
+    <rect x="268.77250409165305" width="8.543371522094926" y="126.25136112008293" height="243.74863887991705"><title>2015-05-01</title></rect>
+    <rect x="278.265139116203" width="8.543371522094926" y="128.79375210534127" height="241.20624789465873"><title>2015-06-01</title></rect>
+    <rect x="287.7577741407529" width="8.543371522094926" y="132.93341217469404" height="237.06658782530596"><title>2015-07-01</title></rect>
+    <rect x="297.2504091653028" width="8.543371522094926" y="152.60153472452936" height="217.39846527547064"><title>2015-08-03</title></rect>
+    <rect x="306.74304418985275" width="8.543371522094926" y="155.644848549474" height="214.355151450526"><title>2015-09-01</title></rect>
+    <rect x="316.23567921440264" width="8.543371522094926" y="158.62200526848116" height="211.37799473151884"><title>2015-10-01</title></rect>
+    <rect x="325.7283142389526" width="8.543371522094926" y="146.63777567211542" height="223.36222432788458"><title>2015-11-02</title></rect>
+    <rect x="335.22094926350246" width="8.543371522094926" y="160.34214673056496" height="209.65785326943504"><title>2015-12-01</title></rect>
+    <rect x="344.7135842880524" width="8.543371522094926" y="185.90786933661977" height="184.09213066338023"><title>2016-01-04</title></rect>
+    <rect x="354.20621931260234" width="8.543371522094926" y="188.1950784576565" height="181.8049215423435"><title>2016-02-01</title></rect>
+    <rect x="363.6988543371522" width="8.543371522094926" y="171.74038719506618" height="198.25961280493382"><title>2016-03-01</title></rect>
+    <rect x="373.19148936170217" width="8.543371522094926" y="164.83149962558866" height="205.16850037441134"><title>2016-04-01</title></rect>
+    <rect x="382.68412438625205" width="8.543371522094926" y="191.95668617505538" height="178.04331382494462"><title>2016-05-02</title></rect>
+    <rect x="392.176759410802" width="8.543371522094926" y="186.1914107271244" height="183.8085892728756"><title>2016-06-01</title></rect>
+    <rect x="401.66939443535193" width="8.543371522094926" y="184.67919848392313" height="185.32080151607687"><title>2016-07-01</title></rect>
+    <rect x="411.1620294599018" width="8.543371522094926" y="165.85224031427433" height="204.14775968572567"><title>2016-08-01</title></rect>
+    <rect x="420.65466448445176" width="8.543371522094926" y="156.9491315737928" height="213.0508684262072"><title>2016-09-01</title></rect>
+    <rect x="430.14729950900164" width="8.543371522094926" y="150.1631012602484" height="219.8368987397516"><title>2016-10-03</title></rect>
+    <rect x="439.6399345335516" width="8.543371522094926" y="161.08879825904518" height="208.91120174095482"><title>2016-11-01</title></rect>
+    <rect x="449.1325695581015" width="8.543371522094926" y="151.0704303074005" height="218.9295696925995"><title>2016-12-01</title></rect>
+    <rect x="458.6252045826514" width="8.543371522094926" y="143.40543803401516" height="226.59456196598484"><title>2017-01-03</title></rect>
+    <rect x="468.11783960720135" width="8.543371522094926" y="114.77748769113227" height="255.22251230886775"><title>2017-02-01</title></rect>
+    <rect x="477.61047463175123" width="8.543371522094926" y="105.38290834126357" height="264.6170916587364"><title>2017-03-01</title></rect>
+    <rect x="487.10310965630117" width="8.543371522094926" y="99.05056428925111" height="270.9494357107489"><title>2017-04-03</title></rect>
+    <rect x="496.59574468085106" width="8.543371522094926" y="80.22360517447379" height="289.7763948255262"><title>2017-05-01</title></rect>
+    <rect x="506.088379705401" width="8.543371522094926" y="94.30601440794955" height="275.69398559205047"><title>2017-06-01</title></rect>
+    <rect x="515.581014729951" width="8.543371522094926" y="87.84133913174898" height="282.158660868251"><title>2017-07-03</title></rect>
+    <rect x="525.0736497545008" width="8.543371522094926" y="67.97473297743065" height="302.0252670225693"><title>2017-08-01</title></rect>
+    <rect x="534.5662847790508" width="8.543371522094926" y="70.1107187003517" height="299.8892812996483"><title>2017-09-01</title></rect>
+    <rect x="544.0589198036007" width="8.543371522094926" y="74.49611407439806" height="295.50388592560194"><title>2017-10-02</title></rect>
+    <rect x="553.5515548281505" width="8.543371522094926" y="42.85320187182538" height="327.1467981281746"><title>2017-11-01</title></rect>
+    <rect x="563.0441898527006" width="8.543371522094926" y="46.028847866086686" height="323.97115213391334"><title>2017-12-01</title></rect>
+    <rect x="572.5368248772504" width="8.543371522094926" y="40.47148746011041" height="329.52851253988956"><title>2018-01-02</title></rect>
+    <rect x="582.0294599018002" width="8.543371522094926" y="52.852676704413945" height="317.14732329558603"><title>2018-02-01</title></rect>
+    <rect x="591.5220949263503" width="8.543371522094926" y="38.63793624675011" height="331.3620637532499"><title>2018-03-01</title></rect>
+    <rect x="601.0147299509001" width="8.543371522094926" y="48.56178567591731" height="321.4382143240827"><title>2018-04-02</title></rect>
+    <rect x="610.5073649754502" width="8.543371522094926" y="20" height="350"><title>2018-05-01</title></rect>
+  </g>
+</svg>

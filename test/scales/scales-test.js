@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import assert from "assert";
+import assert from "../assert.js";
 import it from "../jsdom.js";
 
 it("Plot throws an error if an ordinal position scale has a huge inferred domain", () => {
@@ -410,6 +410,23 @@ it("plot(…).scale(name) handles a reversed diverging scale with a descending d
   });
 });
 
+it("plot(…).scale(name) ignores extra domain elements with a diverging scale", async () => {
+  const plot = assert.warns(
+    () => Plot.plot({color: {type: "diverging", domain: [-5, 5, 10]}}),
+    /domain contains extra/
+  );
+  const {interpolate, ...color} = plot.scale("color");
+  scaleEqual(color, {
+    type: "diverging",
+    symmetric: false,
+    domain: [-5, 5],
+    pivot: 0,
+    clamp: false
+  });
+  const expected = d3.scaleDiverging([-5, 0, 5], d3.interpolateRdBu);
+  for (const t of d3.range(-5, 6)) assert.strictEqual(color.apply(t), expected(t), t);
+});
+
 it("plot(…).scale(name) promotes the given zero option to the domain", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {zero: true}});
@@ -705,6 +722,74 @@ it("plot(…).scale('color') can return a “polylinear” piecewise linear scal
     interpolate: d3.interpolateRgb,
     clamp: false
   });
+});
+
+it("plot(…).scale('color') distributes an explicit range equally across more domain elements", () => {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"]}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
+    type: "linear",
+    domain: [0, 100, 200],
+    range: [0, 0.5, 1],
+    interpolate: color.interpolate,
+    clamp: false
+  });
+  assert.strictEqual(color.interpolate(0), "rgb(255, 0, 0)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(128, 0, 128)");
+  assert.strictEqual(color.interpolate(1), "rgb(0, 0, 255)");
+});
+
+it("plot(…).scale('color') distributes an explicit range equally across fewer domain elements", () => {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"]}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
+    type: "linear",
+    domain: [0, 100],
+    range: [0, 1],
+    interpolate: color.interpolate,
+    clamp: false
+  });
+  assert.strictEqual(color.interpolate(0), "rgb(255, 0, 0)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(0, 0, 255)");
+  assert.strictEqual(color.interpolate(1), "rgb(0, 128, 0)");
+});
+
+it("plot(…).scale('color') ignores extra domain elements with an explicit range when reversed", () => {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"], reverse: true}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
+    type: "linear",
+    domain: [0, 100, 200],
+    range: [0, 0.5, 1],
+    interpolate: color.interpolate,
+    clamp: false
+  });
+  assert.strictEqual(color.interpolate(0), "rgb(0, 0, 255)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(128, 0, 128)");
+  assert.strictEqual(color.interpolate(1), "rgb(255, 0, 0)");
+});
+
+it("plot(…).scale('color') ignores extra range elements with an explicit range when reversed", () => {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"], reverse: true}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
+    type: "linear",
+    domain: [0, 100],
+    range: [0, 1],
+    interpolate: color.interpolate,
+    clamp: false
+  });
+  assert.strictEqual(color.interpolate(0), "rgb(0, 128, 0)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(0, 0, 255)");
+  assert.strictEqual(color.interpolate(1), "rgb(255, 0, 0)");
 });
 
 it("plot(…).scale('color') can return a polylinear piecewise linear scale with an explicit scheme", () => {
@@ -2015,6 +2100,144 @@ it("plot(…).scale(name).apply and invert return the expected functions", () =>
     [10, 10],
     [100, 100]
   ]);
+});
+
+it("Plot.plot passes render functions scale descriptors", async () => {
+  const seed = d3.randomLcg(42);
+  const x = d3.randomNormal.source(seed)();
+  Plot.plot({
+    marks: [
+      Plot.dotX({length: 10001}, {x, fill: seed}),
+      (index, {x, color, scales}) => {
+        assert.deepStrictEqual(Object.keys(scales), ["color", "x"]);
+        assert.strictEqual(x(0), 314.6324357568407);
+        assert.strictEqual(x(1), 400.26512486789505);
+        assert.strictEqual(color(0), "rgb(35, 23, 27)");
+        assert.strictEqual(color(1), "rgb(144, 12, 0)");
+        scaleEqual(scales.color, {
+          type: "linear",
+          domain: [0.0003394410014152527, 0.999856373295188],
+          range: [0, 1],
+          clamp: false,
+          interpolate: d3.interpolateTurbo
+        });
+        scaleEqual(scales.x, {
+          type: "linear",
+          domain: [-3.440653783215207, 3.5660162890264693],
+          range: [20, 620],
+          clamp: false,
+          interpolate: d3.interpolateNumber
+        });
+        return null;
+      }
+    ]
+  });
+});
+
+it("Plot.plot passes render functions re-initialized scale descriptors and functions", async () => {
+  const seed = d3.randomLcg(42);
+  const x = d3.randomNormal.source(seed)();
+  const y = d3.randomNormal.source(seed)();
+  Plot.plot({
+    marks: [
+      Plot.dot({length: 10001}, Plot.hexbin({fill: "count"}, {x, y})),
+      (index, {x, y, color, scales}) => {
+        assert.deepStrictEqual(Object.keys(scales), ["x", "y", "color"]);
+        assert.ok(Math.abs(x(0) - 351) < 1);
+        assert.ok(Math.abs(x(1) - 426) < 1);
+        assert.ok(Math.abs(y(0) - 196) < 1);
+        assert.ok(Math.abs(y(1) - 148) < 1);
+        assert.strictEqual(color(1), "rgb(35, 23, 27)");
+        assert.strictEqual(color(10), "rgb(72, 58, 164)");
+        scaleEqual(scales.color, {
+          type: "linear",
+          domain: [1, 161],
+          range: [0, 1],
+          clamp: false,
+          interpolate: d3.interpolateTurbo
+        });
+        return null;
+      }
+    ]
+  });
+});
+
+it("plot(…).scale(name) returns a deduplicated ordinal domain", () => {
+  const letters = "abbbcaabbcc";
+  const plot = Plot.dotX(letters).plot({x: {domain: letters}});
+  scaleEqual(plot.scale("x"), {
+    align: 0.5,
+    bandwidth: 0,
+    domain: ["a", "b", "c"],
+    padding: 0.5,
+    range: [20, 620],
+    round: true,
+    step: 200,
+    type: "point"
+  });
+});
+
+it("plot(…).scale(name) returns a deduplicated ordinal/temporal domain", () => {
+  const dates = ["2001", "2002", "2004", "2004"].map(d3.isoParse);
+  const plot = Plot.dotX(dates).plot({x: {type: "point", domain: dates}});
+  scaleEqual(plot.scale("x"), {
+    align: 0.5,
+    bandwidth: 0,
+    domain: dates.slice(0, 3),
+    padding: 0.5,
+    range: [20, 620],
+    round: true,
+    step: 200,
+    type: "point"
+  });
+});
+
+it("mark(data, {channels}) respects a scale set to undefined", () => {
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"]}}}).initialize().channels.fill.scale,
+    undefined
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"]}}}).initialize().channels.fill.scale,
+    undefined
+  );
+});
+
+it("mark(data, {channels}) respects a scale set to auto", () => {
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"], scale: "auto"}}}).initialize().channels.fill.scale,
+    null
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"], scale: "auto"}}}).initialize().channels.fill.scale,
+    "color"
+  );
+});
+
+it("mark(data, {channels}) respects a scale set to true or false", () => {
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"], scale: true}}}).initialize().channels.fill.scale,
+    "color"
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"], scale: false}}}).initialize().channels.fill.scale,
+    null
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"], scale: true}}}).initialize().channels.fill.scale,
+    "color"
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"], scale: false}}}).initialize().channels.fill.scale,
+    null
+  );
+});
+
+it("mark(data, {channels}) rejects unknown scales", () => {
+  assert.throws(
+    () => Plot.dot([], {channels: {fill: {value: (d) => d, scale: "neo"}}}).initialize().channels.fill.scale,
+    /^Error: unknown scale: neo$/
+  );
 });
 
 // Given a plot specification (or, as shorthand, an array of marks or a single

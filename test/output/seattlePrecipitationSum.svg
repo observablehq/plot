@@ -62,17 +62,17 @@
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(67.61904761904762,370)">Fri 11</text>
-    <text y="0.71em" transform="translate(122.85714285714286,370)">Dec 13</text>
-    <text y="0.71em" transform="translate(178.0952380952381,370)">Tue 15</text>
-    <text y="0.71em" transform="translate(233.33333333333331,370)">Thu 17</text>
-    <text y="0.71em" transform="translate(288.57142857142856,370)">Sat 19</text>
-    <text y="0.71em" transform="translate(343.8095238095238,370)">Mon 21</text>
-    <text y="0.71em" transform="translate(399.04761904761904,370)">Wed 23</text>
-    <text y="0.71em" transform="translate(454.28571428571433,370)">Fri 25</text>
-    <text y="0.71em" transform="translate(509.5238095238095,370)">Dec 27</text>
-    <text y="0.71em" transform="translate(564.7619047619048,370)">Tue 29</text>
-    <text y="0.71em" transform="translate(620,370)">Thu 31</text>
+    <text transform="translate(67.61904761904762,370)"><tspan x="0" y="0.71em">11</tspan><tspan x="0" dy="1em">Dec</tspan></text>
+    <text y="0.71em" transform="translate(122.85714285714286,370)">13</text>
+    <text y="0.71em" transform="translate(178.0952380952381,370)">15</text>
+    <text y="0.71em" transform="translate(233.33333333333331,370)">17</text>
+    <text y="0.71em" transform="translate(288.57142857142856,370)">19</text>
+    <text y="0.71em" transform="translate(343.8095238095238,370)">21</text>
+    <text y="0.71em" transform="translate(399.04761904761904,370)">23</text>
+    <text y="0.71em" transform="translate(454.28571428571433,370)">25</text>
+    <text y="0.71em" transform="translate(509.5238095238095,370)">27</text>
+    <text y="0.71em" transform="translate(564.7619047619048,370)">29</text>
+    <text y="0.71em" transform="translate(620,370)">31</text>
   </g>
   <g aria-label="rect">
     <rect x="-124.71428571428572" y="370" width="26.61904761904762" height="0"></rect>

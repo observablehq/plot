@@ -14,6 +14,7 @@ import {
   geoOrthographic,
   geoPath,
   geoStereographic,
+  geoStream,
   geoTransform,
   geoTransverseMercator
 } from "d3";
@@ -204,19 +205,7 @@ const reflectY = constant(
 
 // Applies a point-wise projection to the given paired x and y channels.
 // Note: mutates values!
-export function maybeProject(cx, cy, channels, values, context) {
-  const x = channels[cx] && channels[cx].scale === "x";
-  const y = channels[cy] && channels[cy].scale === "y";
-  if (x && y) {
-    project(cx, cy, values, context.projection);
-  } else if (x) {
-    throw new Error(`projection requires paired x and y channels; ${cx} is missing ${cy}`);
-  } else if (y) {
-    throw new Error(`projection requires paired x and y channels; ${cy} is missing ${cx}`);
-  }
-}
-
-function project(cx, cy, values, projection) {
+export function project(cx, cy, values, projection) {
   const x = values[cx];
   const y = values[cy];
   const n = x.length;
@@ -234,17 +223,28 @@ function project(cx, cy, values, projection) {
   }
 }
 
+// Returns true if a projection was specified. This should match the logic of
+// createProjection above, and is called before we construct the projection.
+// (Though note that we ignore the edge case where the projection initializer
+// may return null.)
+export function hasProjection({projection} = {}) {
+  if (projection == null) return false;
+  if (typeof projection.stream === "function") return true;
+  if (isObject(projection)) projection = projection.type;
+  return projection != null;
+}
+
 // When a named projection is specified, we can use its natural aspect ratio to
 // determine a good value for the projection’s height based on the desired
 // width. When we don’t have a way to know, the golden ratio is our best guess.
 // Due to a circular dependency (we need to know the height before we can
 // construct the projection), we have to test the raw projection option rather
 // than the materialized projection; therefore we must be extremely careful that
-// the logic of this function exactly matches Projection above!
-export function projectionAspectRatio(projection, marks) {
+// the logic of this function exactly matches createProjection above!
+export function projectionAspectRatio(projection) {
   if (typeof projection?.stream === "function") return defaultAspectRatio;
   if (isObject(projection)) projection = projection.type;
-  if (projection == null) return hasGeometry(marks) ? defaultAspectRatio : undefined;
+  if (projection == null) return;
   if (typeof projection !== "function") {
     const {aspectRatio} = namedProjection(projection);
     if (aspectRatio) return aspectRatio;
@@ -254,19 +254,34 @@ export function projectionAspectRatio(projection, marks) {
 
 // Extract the (possibly) scaled values for the x and y channels, and apply the
 // projection if any.
-export function applyPosition(channels, scales, context) {
+export function applyPosition(channels, scales, {projection}) {
   const {x, y} = channels;
   let position = {};
   if (x) position.x = x;
   if (y) position.y = y;
   position = valueObject(position, scales);
-  if (context.projection) maybeProject("x", "y", channels, position, context);
+  if (projection && x?.scale === "x" && y?.scale === "y") project("x", "y", position, projection);
   if (x) position.x = coerceNumbers(position.x);
   if (y) position.y = coerceNumbers(position.y);
   return position;
 }
 
-function hasGeometry(marks) {
-  for (const mark of marks) if (mark.channels.geometry) return true;
-  return false;
+export function getGeometryChannels(channel) {
+  const X = [];
+  const Y = [];
+  const x = {scale: "x", value: X};
+  const y = {scale: "y", value: Y};
+  const sink = {
+    point(x, y) {
+      X.push(x);
+      Y.push(y);
+    },
+    lineStart() {},
+    lineEnd() {},
+    polygonStart() {},
+    polygonEnd() {},
+    sphere() {}
+  };
+  for (const object of channel.value) geoStream(object, sink);
+  return [x, y];
 }

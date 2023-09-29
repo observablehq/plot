@@ -65,13 +65,13 @@
     <path transform="translate(559.3564401241453,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(111.09942666557393,370)">December</text>
-    <text y="0.71em" transform="translate(187.45089599093495,370)">2021</text>
-    <text y="0.71em" transform="translate(263.802365316296,370)">February</text>
-    <text y="0.71em" transform="translate(332.76498277146084,370)">March</text>
-    <text y="0.71em" transform="translate(409.11645209682183,370)">April</text>
+    <text transform="translate(111.09942666557393,370)"><tspan x="0" y="0.71em">Dec</tspan><tspan x="0" dy="1em">2020</tspan></text>
+    <text transform="translate(187.45089599093495,370)"><tspan x="0" y="0.71em">Jan</tspan><tspan x="0" dy="1em">2021</tspan></text>
+    <text y="0.71em" transform="translate(263.802365316296,370)">Feb</text>
+    <text y="0.71em" transform="translate(332.76498277146084,370)">Mar</text>
+    <text y="0.71em" transform="translate(409.11645209682183,370)">Apr</text>
     <text y="0.71em" transform="translate(483.0049707987842,370)">May</text>
-    <text y="0.71em" transform="translate(559.3564401241453,370)">June</text>
+    <text y="0.71em" transform="translate(559.3564401241453,370)">Jun</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="600" y1="370" y2="370"></line>

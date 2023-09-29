@@ -13,7 +13,7 @@ onMounted(() => {
 
 </script>
 
-# Image mark
+# Image mark <VersionBadge version="0.3.0" />
 
 The **image mark** draws images centered at the given position in **x** and **y**. It is often used to construct scatterplots in place of a [dot mark](./dot.md). For example, the chart below, based on one by [Robert Lesser](https://observablehq.com/@rlesser/when-presidents-fade-away), shows the favorability of U.S. presidents over time alongside their portraits.
 
@@ -21,8 +21,8 @@ The **image mark** draws images centered at the given position in **x** and **y*
 ```js
 Plot.plot({
   inset: 20,
-  x: {label: "First inauguration date →"},
-  y: {grid: true, label: "↑ Net favorability (%)", tickFormat: "+f"},
+  x: {label: "First inauguration date"},
+  y: {grid: true, label: "Net favorability (%)", tickFormat: "+f"},
   marks: [
     Plot.ruleY([0]),
     Plot.image(presidents, {
@@ -44,8 +44,8 @@ With the **r** option, images will be clipped to circles of the given radius. Us
 :::plot defer https://observablehq.com/@observablehq/plot-image-medals
 ```js
 Plot.plot({
-  x: {inset: 20, label: "First inauguration date →"},
-  y: {insetTop: 4, grid: true, label: "↑ Any opinion (%)", tickFormat: "+f"},
+  x: {inset: 20, label: "First inauguration date"},
+  y: {insetTop: 4, grid: true, label: "Any opinion (%)", tickFormat: "+f"},
   marks: [
     Plot.ruleY([0]),
     Plot.image(presidents, {
@@ -95,8 +95,8 @@ The default size of an image is only 16×16 pixels. This may be acceptable if th
 Plot.plot({
   aspectRatio: 1,
   grid: true,
-  x: {label: "Favorable opinion (%) →"},
-  y: {label: "↑ Unfavorable opinion (%)"},
+  x: {label: "Favorable opinion (%)"},
+  y: {label: "Unfavorable opinion (%)"},
   marks: [
     Plot.ruleY([0]),
     Plot.ruleX([0]),
@@ -111,7 +111,7 @@ Plot.plot({
 ```
 :::
 
-If—*for reasons*—you want to style the plot with a background image, you can do that using the top-level **style** option rather than an image mark. Below, Kristen Gorman’s penguins dataset is visualized atop her photograph of sea ice near Palmer Station on the Antarctic peninsula, where she collected the measurements.
+If — *for reasons* — you want to style the plot with a background image, you can do that using the top-level **style** option rather than an image mark. Below, Kristen Gorman’s penguins dataset is visualized atop her photograph of sea ice near Palmer Station on the Antarctic peninsula, where she collected the measurements.
 
 :::plot defer https://observablehq.com/@observablehq/plot-background-image
 ```js
@@ -122,7 +122,7 @@ Plot.plot({
   style: {
     padding: "10px",
     color: "black",
-    background: `url(https://i.imgur.com/ru3KGWJ.png)`,
+    background: "url(../sea-ice.jpg)",
     backgroundSize: "cover"
   },
   marks: [
@@ -143,7 +143,8 @@ In addition to the [standard mark options](../features/marks.md#mark-options), t
 * **y** - the vertical position; bound to the *y* scale
 * **width** - the image width (in pixels)
 * **height** - the image height (in pixels)
-* **r** - the image radius; bound to the *r* scale
+* **r** - the image radius; bound to the *r* scale <VersionBadge version="0.6.6" />
+* **rotate** - the rotation angle in degrees clockwise <VersionBadge version="0.6.6" />
 
 If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
@@ -156,13 +157,13 @@ The following image-specific constant options are also supported:
 * **frameAnchor** - how to position the image within the frame; defaults to *middle*
 * **preserveAspectRatio** - the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio); defaults to *xMidYMid meet*
 * **crossOrigin** - the [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior
-* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear)
+* **imageRendering** - the [image-rendering attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering); defaults to *auto* (bilinear) <VersionBadge version="0.6.4" />
 
 To crop the image instead of scaling it to fit, set **preserveAspectRatio** to *xMidYMid slice*. The **imageRendering** option may be set to *pixelated* to disable bilinear interpolation on enlarged images; however, note that this is not supported in WebKit.
 
 Images are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting, consider a [sort transform](../transforms/sort.md).
 
-## image(*data*, *options*)
+## image(*data*, *options*) {#image}
 
 ```js
 Plot.image(presidents, {x: "inauguration", y: "favorability", src: "portrait"})

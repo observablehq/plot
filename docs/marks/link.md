@@ -20,7 +20,7 @@ onMounted(() => {
 
 # Link mark
 
-The **link mark** draws straight lines between two points [**x1**, **y1**] and [**x2**, **y2**] in quantitative dimensions. It is similar to the [arrow mark](./arrow.md), except it draws a straight line—or geodesic when used with a [spherical projection](../features/projections.md).
+The **link mark** draws straight lines between two points [**x1**, **y1**] and [**x2**, **y2**] in quantitative dimensions. It is similar to the [arrow mark](./arrow.md), except it draws a straight line — or geodesic when used with a [spherical projection](../features/projections.md).
 
 For example, the chart below shows the rising inequality (and population) in various U.S. cities from 1980 to 2015. Each link represents two observations of a city: the city’s population (**x**) and inequality (**y**) in 1980, and the same in 2015. The link’s **stroke** redundantly encodes the change in inequality: red indicates rising inequality, while blue (there are only four) indicates declining inequality.
 
@@ -31,10 +31,10 @@ Plot.plot({
   inset: 10,
   x: {
     type: "log",
-    label: "Population →"
+    label: "Population"
   },
   y: {
-    label: "↑ Inequality",
+    label: "Inequality",
     ticks: 4
   },
   color: {
@@ -125,12 +125,12 @@ Plot.plot({
   aspectRatio: 1,
   marginRight: 40,
   x: {
-    label: "Median annual income (men, thousands) →",
+    label: "Median annual income (men, thousands)",
     transform: (d) => d / 1000,
     tickSpacing: 60
   },
   y: {
-    label: "↑ Median annual income (women, thousands)",
+    label: "Median annual income (women, thousands)",
     transform: (d) => d / 1000,
     tickSpacing: 60
   },
@@ -170,7 +170,7 @@ The link mark supports the [standard mark options](../features/marks.md). The **
 
 The link mark supports [curve options](../features/curves.md) to control interpolation between points, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) on each of the control points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area. For a curved link, you can use a bent [arrow](./arrow.md) (with no arrowhead, if desired).
 
-## link(*data*, *options*)
+## link(*data*, *options*) {#link}
 
 ```js
 Plot.link(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015"})

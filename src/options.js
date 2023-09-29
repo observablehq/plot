@@ -1,10 +1,15 @@
+import {descending, quantile, range as rangei} from "d3";
 import {parse as isoParse} from "isoformat";
-import {color, descending, range as rangei, quantile} from "d3";
+import {defined} from "./defined.js";
 import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
+
+// If a reindex is attached to the data, channel values expressed as arrays will
+// be reindexed when the channels are instantiated. See exclusiveFacets.
+export const reindex = Symbol("reindex");
 
 export function valueof(data, value, type) {
   const valueType = typeof value;
@@ -16,7 +21,11 @@ export function valueof(data, value, type) {
     ? map(data, constant(value), type)
     : typeof value?.transform === "function"
     ? maybeTypedArrayify(value.transform(data), type)
-    : maybeTypedArrayify(value, type);
+    : maybeTake(maybeTypedArrayify(value, type), data?.[reindex]);
+}
+
+function maybeTake(values, index) {
+  return index ? take(values, index) : values;
 }
 
 function maybeTypedMap(data, f, type) {
@@ -37,6 +46,7 @@ function floater(f) {
   return (d, i) => coerceNumber(f(d, i));
 }
 
+export const singleton = [null]; // for data-less decoration marks, e.g. frame
 export const field = (name) => (d) => d[name];
 export const indexOf = {transform: range};
 export const identity = {transform: (d) => d};
@@ -137,6 +147,21 @@ export function slice(values, type = Array) {
   return values instanceof type ? values.slice() : type.from(values);
 }
 
+// Returns true if any of x, x1, or x2 is not (strictly) undefined.
+export function hasX({x, x1, x2}) {
+  return x !== undefined || x1 !== undefined || x2 !== undefined;
+}
+
+// Returns true if any of y, y1, or y2 is not (strictly) undefined.
+export function hasY({y, y1, y2}) {
+  return y !== undefined || y1 !== undefined || y2 !== undefined;
+}
+
+// Returns true if has x or y, or if interval is not (strictly) undefined.
+export function hasXY(options) {
+  return hasX(options) || hasY(options) || options.interval !== undefined;
+}
+
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
 export function isObject(option) {
   return option?.toString === objectToString;
@@ -153,6 +178,7 @@ export function isScaleOptions(option) {
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a channel value
 // definition expressed as a channel transform (e.g., {transform: …}).
+// TODO Check typeof option[Symbol.iterator] !== "function"?
 export function isOptions(option) {
   return isObject(option) && typeof option.transform !== "function";
 }
@@ -206,7 +232,17 @@ export function where(data, test) {
 
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
-  return map(index, (i) => values[i]);
+  return map(index, (i) => values[i], values.constructor);
+}
+
+// If f does not take exactly one argument, wraps it in a function that uses take.
+export function taker(f) {
+  return f.length === 1 ? (index, values) => f(take(values, index)) : f;
+}
+
+// Uses subarray if available, and otherwise slice.
+export function subarray(I, i, j) {
+  return I.subarray ? I.subarray(i, j) : I.slice(i, j);
 }
 
 // Based on InternMap (d3.group).
@@ -269,6 +305,18 @@ export function mid(x1, x2) {
   };
 }
 
+// If the scale options declare an interval, applies it to the values V.
+export function maybeApplyInterval(V, scale) {
+  const t = maybeIntervalTransform(scale?.interval, scale?.type);
+  return t ? map(V, t) : V;
+}
+
+// Returns the equivalent scale transform for the specified interval option.
+export function maybeIntervalTransform(interval, type) {
+  const i = maybeInterval(interval, type);
+  return i && ((v) => (defined(v) ? i.floor(v) : v));
+}
+
 // If interval is not nullish, converts interval shorthand such as a number (for
 // multiples) or a time interval name (such as “day”) to a {floor, offset,
 // range} object similar to a D3 time interval.
@@ -307,6 +355,14 @@ export function maybeNiceInterval(interval, type) {
   interval = maybeRangeInterval(interval, type);
   if (interval && typeof interval.ceil !== "function") throw new Error("invalid interval: missing ceil method");
   return interval;
+}
+
+export function isTimeInterval(t) {
+  return isInterval(t) && typeof t?.floor === "function" && t.floor() instanceof Date;
+}
+
+export function isInterval(t) {
+  return typeof t?.range === "function";
 }
 
 // This distinguishes between per-dimension options and a standalone value.
@@ -403,20 +459,20 @@ export function isEvery(values, is) {
   return every;
 }
 
-// Mostly relies on d3-color, with a few extra color keywords. Currently this
-// strictly requires that the value be a string; we might want to apply string
-// coercion here, though note that d3-color instances would need to support
-// valueOf to work correctly with InternMap.
+const namedColors = new Set("none,currentcolor,transparent,aliceblue,antiquewhite,aqua,aquamarine,azure,beige,bisque,black,blanchedalmond,blue,blueviolet,brown,burlywood,cadetblue,chartreuse,chocolate,coral,cornflowerblue,cornsilk,crimson,cyan,darkblue,darkcyan,darkgoldenrod,darkgray,darkgreen,darkgrey,darkkhaki,darkmagenta,darkolivegreen,darkorange,darkorchid,darkred,darksalmon,darkseagreen,darkslateblue,darkslategray,darkslategrey,darkturquoise,darkviolet,deeppink,deepskyblue,dimgray,dimgrey,dodgerblue,firebrick,floralwhite,forestgreen,fuchsia,gainsboro,ghostwhite,gold,goldenrod,gray,green,greenyellow,grey,honeydew,hotpink,indianred,indigo,ivory,khaki,lavender,lavenderblush,lawngreen,lemonchiffon,lightblue,lightcoral,lightcyan,lightgoldenrodyellow,lightgray,lightgreen,lightgrey,lightpink,lightsalmon,lightseagreen,lightskyblue,lightslategray,lightslategrey,lightsteelblue,lightyellow,lime,limegreen,linen,magenta,maroon,mediumaquamarine,mediumblue,mediumorchid,mediumpurple,mediumseagreen,mediumslateblue,mediumspringgreen,mediumturquoise,mediumvioletred,midnightblue,mintcream,mistyrose,moccasin,navajowhite,navy,oldlace,olive,olivedrab,orange,orangered,orchid,palegoldenrod,palegreen,paleturquoise,palevioletred,papayawhip,peachpuff,peru,pink,plum,powderblue,purple,rebeccapurple,red,rosybrown,royalblue,saddlebrown,salmon,sandybrown,seagreen,seashell,sienna,silver,skyblue,slateblue,slategray,slategrey,snow,springgreen,steelblue,tan,teal,thistle,tomato,turquoise,violet,wheat,white,whitesmoke,yellow".split(",")); // prettier-ignore
+
+// Returns true if value is a valid CSS color string. This is intentionally lax
+// because the CSS color spec keeps growing, and we don’t need to parse these
+// colors—we just need to disambiguate them from column names.
 // https://www.w3.org/TR/SVG11/painting.html#SpecifyingPaint
+// https://www.w3.org/TR/css-color-5/
 export function isColor(value) {
   if (typeof value !== "string") return false;
   value = value.toLowerCase().trim();
   return (
-    value === "none" ||
-    value === "currentcolor" ||
-    (value.startsWith("url(") && value.endsWith(")")) || // <funciri>, e.g. pattern or gradient
-    (value.startsWith("var(") && value.endsWith(")")) || // CSS variable
-    color(value) !== null
+    /^#[0-9a-f]{3,8}$/.test(value) || // hex rgb, rgba, rrggbb, rrggbbaa
+    /^(?:url|var|rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color|color-mix)\(.*\)$/.test(value) || // <funciri>, CSS variable, color, etc.
+    namedColors.has(value) // currentColor, red, etc.
   );
 }
 
@@ -436,8 +492,8 @@ export function isRound(value) {
   return /^\s*round\s*$/i.test(value);
 }
 
-export function maybeFrameAnchor(value = "middle") {
-  return keyword(value, "frameAnchor", [
+export function maybeAnchor(value, name) {
+  return maybeKeyword(value, name, [
     "middle",
     "top-left",
     "top",
@@ -448,6 +504,10 @@ export function maybeFrameAnchor(value = "middle") {
     "bottom-left",
     "left"
   ]);
+}
+
+export function maybeFrameAnchor(value = "middle") {
+  return maybeAnchor(value, "frameAnchor");
 }
 
 // Like a sort comparator, returns a positive value if the given array of values

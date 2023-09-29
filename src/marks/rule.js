@@ -1,8 +1,9 @@
 import {create} from "../context.js";
-import {Mark} from "../mark.js";
+import {Mark, withTip} from "../mark.js";
+import {applyMarkers, markers} from "../marker.js";
 import {identity, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 
 const defaults = {
@@ -21,11 +22,12 @@ export class RuleX extends Mark {
         y1: {value: y1, scale: "y", optional: true},
         y2: {value: y2, scale: "y", optional: true}
       },
-      options,
+      withTip(options, "x"),
       defaults
     );
     this.insetTop = number(insetTop);
     this.insetBottom = number(insetBottom);
+    markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
@@ -33,7 +35,7 @@ export class RuleX extends Mark {
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetTop, insetBottom} = this;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, dimensions)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x}, offset, 0)
       .call((g) =>
         g
@@ -54,6 +56,7 @@ export class RuleX extends Mark {
               : height - marginBottom - insetBottom
           )
           .call(applyChannelStyles, this, channels)
+          .call(applyMarkers, this, channels, context)
       )
       .node();
   }
@@ -69,11 +72,12 @@ export class RuleY extends Mark {
         x1: {value: x1, scale: "x", optional: true},
         x2: {value: x2, scale: "x", optional: true}
       },
-      options,
+      withTip(options, "y"),
       defaults
     );
     this.insetRight = number(insetRight);
     this.insetLeft = number(insetLeft);
+    markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
@@ -102,6 +106,7 @@ export class RuleY extends Mark {
           .attr("y1", Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
           .attr("y2", Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
           .call(applyChannelStyles, this, channels)
+          .call(applyMarkers, this, channels, context)
       )
       .node();
   }
@@ -121,7 +126,7 @@ export function ruleY(data, options) {
 
 // For marks specified either as [0, x] or [x1, x2], or nothing.
 function maybeOptionalZero(x, x1, x2) {
-  if (x === undefined) {
+  if (x == null) {
     if (x1 === undefined) {
       if (x2 !== undefined) return [0, x2];
     } else {

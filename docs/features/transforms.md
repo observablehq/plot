@@ -28,7 +28,7 @@ For example, given a [dataset of highway traffic](https://gist.github.com/chrtze
 ```js
 Plot.plot({
   marginLeft: 120,
-  x: {label: "Vehicles per hour (thousands) →", transform: (x) => x / 1000},
+  x: {label: "Vehicles per hour (thousands)", transform: (x) => x / 1000},
   y: {label: null},
   marks: [
     Plot.ruleX([0]),
@@ -51,12 +51,12 @@ Plot.plot({
 As you might expect, traffic varies significantly throughout the day, so perhaps it would be better to look at the median by hour by location? Instead of grouping only by **y**, we can group by both **x** and **y** to produce a heatmap.
 
 :::plot defer https://observablehq.com/@observablehq/plot-sorted-heatmap
-```js
+```js-vue
 Plot.plot({
   marginLeft: 120,
   padding: 0,
   y: {label: null},
-  color: {legend: true, zero: true},
+  color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}", legend: true, zero: true},
   marks: [
     Plot.cell(
       traffic,
@@ -70,9 +70,9 @@ Plot.plot({
 ```
 :::
 
-Plot includes many useful transforms! For example, you can compute a [rolling average](../transforms/window.md) to smooth a noisy signal, [stack layers](../transforms/stack.md) for a streamgraph, or [dodge dots](../transforms/dodge.md) for a beeswarm. Plot’s various built-in transforms include: [bin](../transforms/bin.md), [centroid](../transforms/centroid.md), [dodge](../transforms/dodge.md), [filter](../transforms/filter.md), [group](../transforms/group.md), [hexbin](../transforms/hexbin.md), [interval](../transforms/interval.md), [map](../transforms/map.md), [normalize](../transforms/normalize.md), [reverse](../transforms/sort.md#reverse-options), [select](../transforms/select.md), [shuffle](../transforms/sort.md#shuffle-options), [sort](../transforms/sort.md), [stack](../transforms/stack.md), [tree](../transforms/tree.md), and [window](../transforms/window.md). If these don’t meet your needs, you can even implement a [custom transform](#custom-transforms).
+Plot includes many useful transforms! For example, you can compute a [rolling average](../transforms/window.md) to smooth a noisy signal, [stack layers](../transforms/stack.md) for a streamgraph, or [dodge dots](../transforms/dodge.md) for a beeswarm. Plot’s various built-in transforms include: [bin](../transforms/bin.md), [centroid](../transforms/centroid.md), [dodge](../transforms/dodge.md), [filter](../transforms/filter.md), [group](../transforms/group.md), [hexbin](../transforms/hexbin.md), [interval](../transforms/interval.md), [map](../transforms/map.md), [normalize](../transforms/normalize.md), [reverse](../transforms/sort.md#reverse), [select](../transforms/select.md), [shuffle](../transforms/sort.md#shuffle), [sort](../transforms/sort.md), [stack](../transforms/stack.md), [tree](../transforms/tree.md), and [window](../transforms/window.md). If these don’t meet your needs, you can even implement a [custom transform](#custom-transforms).
 
-Transforms are never required—you can always aggregate and derive data yourself outside of Plot, and then pass in the binned values. For example, we could use [d3.bin](https://github.com/d3/d3-array/blob/main/README.md#bin) to compute a histogram of athletes’ weights as an array of {*x0*, *x1*, *length*} objects.
+Transforms are never required — you can always aggregate and derive data yourself outside of Plot, and then pass in the binned values. For example, we could use [d3.bin](https://d3js.org/d3-array/bin) to compute a histogram of athletes’ weights as an array of {*x0*, *x1*, *length*} objects.
 
 ```js
 bins = d3.bin().thresholds(80).value((d) => d.weight)(olympians)
@@ -149,7 +149,7 @@ For greater control, you can also implement a custom **transform** function, all
 Plot.plot({
   y: {
     grid: true,
-    label: "↑ Unemployment (%)"
+    label: "Unemployment (%)"
   },
   color: {
     domain: [false, true],
@@ -175,7 +175,7 @@ Plot.plot({
 ```
 :::
 
-The **transform** function is passed two arguments, *data* and *facets*, representing the mark’s data and facet indexes; it must then return a {*data*, *facets*} object with the transformed data and facet indexes. The *facets* are represented as a nested array of arrays such as [[0, 1, 3, …], [2, 5, 10, …], …]; each element in *facets* specifies the zero-based indexes of elements in *data* that are in a given facet (*i.e.*, have a distinct value in the associated *fx* or *fy* dimension).
+The **transform** function is passed three arguments, *data*, *facets*, and *options* representing the mark’s data and facet indexes, and the plot’s options; it must then return a {*data*, *facets*} object with the transformed data and facet indexes. The *facets* are represented as a nested array of arrays such as [[0, 1, 3, …], [2, 5, 10, …], …]; each element in *facets* specifies the zero-based indexes of elements in *data* that are in a given facet (*i.e.*, have a distinct value in the associated *fx* or *fy* dimension).
 
 If the **transform** option is specified, it supersedes any basic transforms (*i.e.*, the **filter**, **sort** and **reverse** options are ignored). However, the **transform** option is rarely used directly; instead one of Plot’s built-in transforms are used, and these transforms automatically compose with the basic **filter**, **sort** and **reverse** transforms.
 
@@ -183,7 +183,7 @@ While transform functions often produce new *data* or *facets*, they may return 
 
 When implementing a custom transform for generic usage, keep in mind that it needs to be compatible with Plot’s [faceting system](./facets.md), which partitions the original dataset into discrete subsets.
 
-## Custom initializers
+## Custom initializers <VersionBadge version="0.5.0" />
 
 Initializers are a special class of transform; whereas transforms operate in abstract data space, initializers operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. Initializers are invoked *after* the initial scales are constructed and can modify the channels or derive new channels; these in turn may (or may not, as desired) be passed to scales. Plot’s [hexbin](../transforms/hexbin.md) and [dodge](../transforms/dodge.md) transforms are initializers.
 
@@ -191,7 +191,7 @@ You can specify a custom initializer by specifying a function as the mark **init
 
 If an initializer desires a channel that is not supported by the downstream mark, additional channels can be declared using the mark **channels** option.
 
-## transform(*options*, *transform*)
+## transform(*options*, *transform*) <VersionBadge version="0.4.3" /> {#transform}
 
 ```js
 Plot.transform(options, (data, facets) => {
@@ -203,11 +203,11 @@ Plot.transform(options, (data, facets) => {
 ```
 Given an *options* object that may specify some basic transforms (**filter**, **sort**, or **reverse**) or a custom **transform** function, composes those transforms if any with the given *transform* function, returning a new *options* object. If a custom **transform** function is present on the given *options*, any basic transforms are ignored. Any additional input *options* are passed through in the returned *options* object. This method facilitates applying the basic transforms prior to applying the given custom *transform* and is used internally by Plot’s built-in transforms.
 
-## initializer(*options*, *initializer*)
+## initializer(*options*, *initializer*) <VersionBadge version="0.5.0" /> {#initializer}
 
 This helper composes the *initializer* function with any other transforms present in the *options*, and returns a new *options* object. It is used internally by Plot’s built-in initializer transforms.
 
-## valueof(*data*, *value*, *type*)
+## valueof(*data*, *value*, *type*) {#valueof}
 
 ```js
 Plot.valueof(aapl, "Close")
@@ -226,7 +226,7 @@ If *type* is specified, it must be Array or a similar class that implements the 
 
 valueof is not guaranteed to return a new array. When a transform method is used, or when the given *value* is an array that is compatible with the requested *type*, the array may be returned as-is without making a copy.
 
-## column(*source*)
+## column(*source*) <VersionBadge version="0.4.3" /> {#column}
 
 ```js
 const [X, setX] = Plot.column();
@@ -236,7 +236,7 @@ This helper for constructing derived columns returns a [*column*, *setColumn*] a
 
 This method is used by Plot’s transforms to derive channels; the associated columns are populated (derived) when the **transform** option function is invoked.
 
-## identity
+## identity <VersionBadge version="0.6.2" /> {#identity}
 
 ```js
 Plot.contour(data, {width: w, height: h, fill: Plot.identity})
@@ -244,7 +244,7 @@ Plot.contour(data, {width: w, height: h, fill: Plot.identity})
 
 This channel helper returns a source array as-is, avoiding an extra copy when defining a channel as being equal to the data.
 
-## indexOf
+## indexOf <VersionBadge version="0.6.6" /> {#indexOf}
 
 ```js
 Plot.lineY(numbers, {x: Plot.indexOf, y: Plot.identity})

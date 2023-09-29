@@ -1,6 +1,7 @@
-import type {ChannelDomainSort, Channels, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
+import type {Channel, ChannelDomainSort, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Dimensions} from "./dimensions.js";
+import type {TipOptions} from "./marks/tip.js";
 import type {plot} from "./plot.js";
 import type {ScaleFunctions} from "./scales.js";
 import type {InitializerFunction, SortOrder, TransformFunction} from "./transforms/basic.js";
@@ -22,6 +23,9 @@ export type FrameAnchor =
   | "bottom"
   | "bottom-left"
   | "left";
+
+/** The pointer mode for the tip; corresponds to pointerX, pointerY, and pointer. */
+export type TipPointer = "x" | "y" | "xy";
 
 /**
  * A mark’s data; one of:
@@ -47,7 +51,9 @@ export type RenderFunction = (
   /** The plot’s dimensions. */
   dimensions: Dimensions,
   /** The plot’s context. */
-  context: Context
+  context: Context,
+  /** The next render function; for render transforms only. */
+  next?: RenderFunction
 ) => SVGElement | null;
 
 /**
@@ -100,7 +106,7 @@ export interface MarkOptions {
    * with a *value* object and per-scale options:
    *
    * ```js
-   * sort: {y: {value: "x", reverse: true}}
+   * sort: {y: {value: "-x"}}
    * ```
    *
    * When sorting the mark’s index, the **sort** option is instead one of:
@@ -125,6 +131,9 @@ export interface MarkOptions {
 
   /** A custom mark initializer. */
   initializer?: InitializerFunction;
+
+  /** A custom render transform. */
+  render?: RenderFunction;
 
   /**
    * The horizontal facet position channel, for mark-level faceting, bound to
@@ -261,12 +270,17 @@ export interface MarkOptions {
   pointerEvents?: string;
 
   /**
-   * The [title][1]; a channel specifying accessible, short textual descriptions
-   * as strings (possibly with newlines).
+   * The title; a channel specifying accessible, short textual descriptions as
+   * strings (possibly with newlines). If the tip option is specified, the title
+   * will be displayed with an interactive tooltip instead of using the SVG
+   * [title element][1].
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title
    */
   title?: ChannelValue;
+
+  /** Whether to generate a tooltip for this mark, and any tip options. */
+  tip?: boolean | TipPointer | (TipOptions & {pointer?: TipPointer});
 
   /**
    * How to clip the mark; one of:
@@ -400,6 +414,14 @@ export interface MarkOptions {
   mixBlendMode?: string;
 
   /**
+   * A CSS [filter][1]; a constant string used to adjust the rendering of
+   * images, such as *blur(5px)*.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/CSS/filter
+   */
+  imageFilter?: string;
+
+  /**
    * The [paint-order][1]; a constant string specifying the order in which the
    * **fill**, **stroke**, and any markers are drawn; defaults to *normal*,
    * which draws the fill, then stroke, then markers; defaults to *stroke* for
@@ -437,7 +459,7 @@ export interface MarkOptions {
    * An object defining additional custom channels. This meta option may be used
    * by an **initializer** to declare extra channels.
    */
-  channels?: Channels;
+  channels?: Record<string, Channel | ChannelValue>;
 }
 
 /** The abstract base class for Mark implementations. */
@@ -459,5 +481,5 @@ export class RenderableMark extends Mark {
 /** A compound Mark, comprising other marks. */
 export type CompoundMark = Markish[] & Pick<Mark, "plot">;
 
-/** Given an array of marks, returns a compound mark; supports *mark.plot shorthand. */
+/** Given an array of marks, returns a compound mark; supports *mark*.plot shorthand. */
 export function marks(...marks: Markish[]): CompoundMark;

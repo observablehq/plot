@@ -7,7 +7,7 @@ export async function aaplMonthly() {
   return Plot.plot({
     y: {
       transform: (d) => d / 1e6,
-      label: "↑ Daily trade volume (millions)",
+      label: "Daily trade volume (millions)",
       round: true
     },
     marks: [

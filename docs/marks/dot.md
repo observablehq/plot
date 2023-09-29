@@ -58,8 +58,8 @@ Using a function for **x**, we can instead plot the roughly-linear relationship 
 Plot.plot({
   grid: true,
   inset: 10,
-  x: {label: "Fuel consumption (gallons per 100 miles) →"},
-  y: {label: "↑ Horsepower"},
+  x: {label: "Fuel consumption (gallons per 100 miles)"},
+  y: {label: "Horsepower"},
   marks: [
     Plot.dot(cars, {x: (d) => 100 / d["economy (mpg)"], y: "power (hp)"})
   ]
@@ -69,13 +69,13 @@ Plot.plot({
 
 Dots support **stroke** and **fill** channels in addition to position along **x** and **y**. Below, color is used as a redundant encoding to emphasize the rising trend in average global surface temperatures. A *diverging* color scale encodes values below zero blue and above zero red.
 
-:::plot defer https://observablehq.com/@observablehq/plot-colored-scatterplot
+:::plot defer https://observablehq.com/@observablehq/plot-diverging-color-scatterplot
 ```js
 Plot.plot({
   y: {
     grid: true,
     tickFormat: "+f",
-    label: "↑ Surface temperature anomaly (°F)"
+    label: "Surface temperature anomaly (°F)"
   },
   color: {
     scheme: "BuRd"
@@ -95,13 +95,13 @@ Dots also support an **r** channel allowing dot size to represent quantitative v
 Plot.plot({
   grid: true,
   x: {
-    label: "Daily change (%) →",
+    label: "Daily change (%)",
     tickFormat: "+f",
     percent: true
   },
   y: {
     type: "log",
-    label: "↑ Daily trading volume"
+    label: "Daily trading volume"
   },
   marks: [
     Plot.ruleX([0]),
@@ -119,8 +119,8 @@ Plot.plot({
   height: 640,
   marginLeft: 60,
   grid: true,
-  x: {label: "Carats →"},
-  y: {label: "↑ Price ($)"},
+  x: {label: "Carats"},
+  y: {label: "Price ($)"},
   r: {range: [0, 20]},
   marks: [
     Plot.dot(diamonds, Plot.bin({r: "count"}, {x: "carat", y: "price", thresholds: 100}))
@@ -166,7 +166,7 @@ Plot.plot({
   grid: true,
   x: {
     axis: "top",
-    label: "Population (%) →",
+    label: "Population (%)",
     percent: true
   },
   color: {
@@ -198,8 +198,8 @@ To improve accessibility, particularly for readers with color vision deficiency,
 ```js
 Plot.plot({
   grid: true,
-  x: {label: "Body mass (g) →"},
-  y: {label: "↑ Flipper length (mm)"},
+  x: {label: "Body mass (g)"},
+  y: {label: "Flipper length (mm)"},
   symbol: {legend: true},
   marks: [
     Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})
@@ -241,7 +241,7 @@ Plot.dotX([
 :::
 
 :::info
-The stroked symbols are based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746). There is also a *hexagon* symbol; it is primarily intended for the [hexbin transform](../transforms/hexbin.md). You can even specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types) method.
+The stroked symbols are based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746). There is also a *hexagon* symbol; it is primarily intended for the [hexbin transform](../transforms/hexbin.md). You can even specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://d3js.org/d3-shape/symbol#symbolType_draw) method.
 :::
 
 The dot mark can be combined with the [stack transform](../transforms/stack.md). The diverging stacked dot plot below shows the age and gender distribution of the U.S. Congress in 2023.
@@ -250,7 +250,7 @@ The dot mark can be combined with the [stack transform](../transforms/stack.md).
 ```js
 Plot.plot({
   aspectRatio: 1,
-  x: {label: "Age (years) →"},
+  x: {label: "Age (years)"},
   y: {
     grid: true,
     label: "← Women · Men →",
@@ -281,7 +281,7 @@ The stackY2 transform places each dot at the upper bound of the associated stack
 The [dodge transform](../transforms/dodge.md) can also be used to produce beeswarm plots; this is particularly effective when dots have varying radius.
 :::
 
-Dots are sorted by descending radius by default to mitigate occlusion; the smallest dots are drawn on top. Set the **sort** option to null to draw them in input order. Use the checkbox below to see the effect of sorting on a bubble map of U.S. county population.
+Dots are sorted by descending radius by default <VersionBadge version="0.5.0" /> to mitigate occlusion; the smallest dots are drawn on top. Set the **sort** option to null to draw them in input order. Use the checkbox below to see the effect of sorting on a bubble map of U.S. county population.
 
 <p>
   <label class="label-input">
@@ -316,9 +316,9 @@ In addition to the [standard mark options](../features/marks.md#mark-options), t
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
-* **r** - the radius (area); bound to the *radius* scale, which defaults to *sqrt*
+* **r** - the radius (area); bound to the *r* (radius) scale, which defaults to *sqrt*
 * **rotate** - the rotation angle in degrees clockwise
-* **symbol** - the categorical symbol; bound to the *symbol* scale
+* **symbol** - the categorical symbol; bound to the *symbol* scale <VersionBadge version="0.4.0" />
 
 If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
@@ -326,14 +326,14 @@ The following dot-specific constant options are also supported:
 
 * **r** - the effective radius (length); a number in pixels
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
-* **symbol** - the categorical symbol; defaults to circle
+* **symbol** - the categorical symbol; defaults to *circle* <VersionBadge version="0.4.0" />
 * **frameAnchor** - how to position the dot within the frame; defaults to *middle*
 
 The **r** option can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. The radius defaults to 4.5 pixels when using the **symbol** channel, and otherwise 3 pixels. Dots with a nonpositive radius are not drawn.
 
 The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise. The **strokeWidth** defaults to 1.5. The **rotate** and **symbol** options can be specified as either channels or constants. When rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. When symbol is a valid symbol name or symbol object (implementing the draw method), it is interpreted as a constant; otherwise it is interpreted as a channel. If the **symbol** channel’s values are all symbols, symbol names, or nullish, the channel is unscaled (values are interpreted literally); otherwise, the channel is bound to the *symbol* scale.
 
-## dot(*data*, *options*)
+## dot(*data*, *options*) {#dot}
 
 ```js
 Plot.dot(sales, {x: "units", y: "fruit"})
@@ -341,30 +341,30 @@ Plot.dot(sales, {x: "units", y: "fruit"})
 
 Returns a new dot with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
-## dotX(*data*, *options*)
+## dotX(*data*, *options*) {#dotX}
 
 ```js
 Plot.dotX(cars.map((d) => d["economy (mpg)"]))
 ```
 
-Equivalent to [dot](#dot-data-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [dot](#dot) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
-If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
+If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
-## dotY(*data*, *options*)
+## dotY(*data*, *options*) {#dotY}
 
 ```js
 Plot.dotY(cars.map((d) => d["economy (mpg)"]))
 ```
 
-Equivalent to [dot](#dot-data-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [dot](#dot) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
-If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
+If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
-## circle(*data*, *options*)
+## circle(*data*, *options*) <VersionBadge version="0.5.0" /> {#circle}
 
-Equivalent to [dot](#dot-data-options) except that the **symbol** option is set to *circle*.
+Equivalent to [dot](#dot) except that the **symbol** option is set to *circle*.
 
-## hexagon(*data*, *options*)
+## hexagon(*data*, *options*) <VersionBadge version="0.5.0" /> {#hexagon}
 
-Equivalent to [dot](#dot-data-options) except that the **symbol** option is set to *hexagon*.
+Equivalent to [dot](#dot) except that the **symbol** option is set to *hexagon*.
