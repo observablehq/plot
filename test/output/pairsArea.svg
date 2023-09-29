@@ -1,0 +1,26 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="140" viewBox="0 0 640 140" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="area" fill="none" stroke-linejoin="round" stroke-linecap="round">
+    <path stroke="rgb(35, 23, 27)" d="M0,103.735L45.643,126.685L45.643,139L0,139Z"></path>
+    <path stroke="rgb(64, 118, 245)" d="M91.286,58.325L136.929,107.898L136.929,139L91.286,139Z"></path>
+    <path stroke="rgb(38, 208, 205)" d="M182.571,86.502L228.214,135.413L228.214,139L182.571,139Z"></path>
+    <path stroke="rgb(95, 252, 115)" d="M273.857,76.493L319.5,122.445L319.5,139L273.857,139Z"></path>
+    <path stroke="rgb(203, 232, 57)" d="M365.143,16.885L410.786,0L410.786,139L365.143,139Z"></path>
+    <path stroke="rgb(255, 155, 33)" d="M456.429,19.765L502.071,69.17L502.071,139L456.429,139Z"></path>
+    <path stroke="rgb(214, 57, 15)" d="M547.714,49.28L593.357,18.612L593.357,139L547.714,139Z"></path>
+    <path stroke="rgb(144, 12, 0)" d="M639,55.643L639,139Z"></path>
+  </g>
+</svg>

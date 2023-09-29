@@ -13,45 +13,43 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ probability (%)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,302.22063987514633)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,233.94127975029264)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,165.66191962543894)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,97.38255950058527)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,29.10319937573158)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.5</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ probability (%)</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,301.72063987514633)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,233.44127975029264)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,165.16191962543894)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,96.88255950058527)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,28.60319937573158)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="Electoral votes for Hillary Clinton →" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(40.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(148.30669144981414,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(256.1133828996283,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">200</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(363.9200743494424,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">300</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(471.7267657992565,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">400</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(579.5334572490706,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">500</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Electoral votes for Hillary Clinton →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0.0</text>
+    <text y="0.32em" transform="translate(40,301.72063987514633)">0.5</text>
+    <text y="0.32em" transform="translate(40,233.44127975029264)">1.0</text>
+    <text y="0.32em" transform="translate(40,165.16191962543894)">1.5</text>
+    <text y="0.32em" transform="translate(40,96.88255950058527)">2.0</text>
+    <text y="0.32em" transform="translate(40,28.60319937573158)">2.5</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ probability (%)</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(147.80669144981414,370)" d="M0,0L0,6"></path>
+    <path transform="translate(255.61338289962825,370)" d="M0,0L0,6"></path>
+    <path transform="translate(363.4200743494424,370)" d="M0,0L0,6"></path>
+    <path transform="translate(471.2267657992565,370)" d="M0,0L0,6"></path>
+    <path transform="translate(579.0334572490706,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">0</text>
+    <text y="0.71em" transform="translate(147.80669144981414,370)">100</text>
+    <text y="0.71em" transform="translate(255.61338289962825,370)">200</text>
+    <text y="0.71em" transform="translate(363.4200743494424,370)">300</text>
+    <text y="0.71em" transform="translate(471.2267657992565,370)">400</text>
+    <text y="0.71em" transform="translate(579.0334572490706,370)">500</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,370)">Electoral votes for Hillary Clinton →</text>
   </g>
   <g aria-label="rule" stroke-width="1.5" shape-rendering="crispEdges" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="370" y2="370" stroke="#fc8d59"></line>

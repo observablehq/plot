@@ -1,7 +1,7 @@
 import {extent, range, sum, area as shapeArea, namespaces} from "d3";
 import {create} from "../context.js";
+import {Mark} from "../mark.js";
 import {identity, indexOf, isNone, isNoneish, maybeZ} from "../options.js";
-import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
 import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
@@ -40,7 +40,7 @@ class LinearRegression extends Mark {
     const {x: X, y: Y, z: Z} = channels;
     const {ci} = this;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales)
       .call((g) =>
         g
@@ -122,42 +122,18 @@ class LinearRegressionY extends LinearRegression {
   }
 }
 
-/**
- * ```js
- * Plot.linearRegressionX(mtcars, {y: "wt", x: "hp"})
- * ```
- *
- * Returns a linear regression mark where *x* is the dependent variable and *y*
- * is the independent variable.
- */
-export function linearRegressionX(data, options = {}) {
-  const {
-    y = indexOf,
-    x = identity,
-    stroke,
-    fill = isNoneish(stroke) ? "currentColor" : stroke,
-    ...remainingOptions
-  } = options;
-  return new LinearRegressionX(data, maybeDenseIntervalY({...remainingOptions, x, y, fill, stroke}));
+export function linearRegressionX(
+  data,
+  {y = indexOf, x = identity, stroke, fill = isNoneish(stroke) ? "currentColor" : stroke, ...options} = {}
+) {
+  return new LinearRegressionX(data, maybeDenseIntervalY({...options, x, y, fill, stroke}));
 }
 
-/**
- * ```js
- * Plot.linearRegressionY(mtcars, {x: "wt", y: "hp"})
- * ```
- *
- * Returns a linear regression mark where *y* is the dependent variable and *x*
- * is the independent variable.
- */
-export function linearRegressionY(data, options = {}) {
-  const {
-    x = indexOf,
-    y = identity,
-    stroke,
-    fill = isNoneish(stroke) ? "currentColor" : stroke,
-    ...remainingOptions
-  } = options;
-  return new LinearRegressionY(data, maybeDenseIntervalX({...remainingOptions, x, y, fill, stroke}));
+export function linearRegressionY(
+  data,
+  {x = indexOf, y = identity, stroke, fill = isNoneish(stroke) ? "currentColor" : stroke, ...options} = {}
+) {
+  return new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, fill, stroke}));
 }
 
 function linearRegressionF(I, X, Y) {

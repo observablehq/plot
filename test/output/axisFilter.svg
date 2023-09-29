@@ -1,0 +1,45 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="100" viewBox="0 0 640 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <circle cx="137" cy="70" r="3"></circle>
+    <circle cx="330" cy="20" r="3"></circle>
+    <circle cx="523" cy="45" r="3"></circle>
+  </g>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="137" x2="137" y1="20" y2="70"></line>
+    <line x1="330" x2="330" y1="20" y2="70"></line>
+  </g>
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="45" y2="45"></line>
+    <line x1="40" x2="620" y1="20" y2="20"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(137,70)" d="M0,0L0,6"></path>
+    <path transform="translate(330,70)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(137,70)">A</text>
+    <text y="0.71em" transform="translate(330,70)">B</text>
+  </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,45)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,20)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,45)">1</text>
+    <text y="0.32em" transform="translate(40,20)">2</text>
+  </g>
+</svg>

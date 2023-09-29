@@ -13,137 +13,107 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" transform="translate(100,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,35.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">boxing</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,55.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">wrestling</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,75.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">canoe</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,95.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">cycling</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,115.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">equestrian</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,135.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">shooting</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,155.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">judo</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,175.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">rowing</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,195.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">weightlifting</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,215.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">sailing</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,235.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">football</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,255.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">tennis</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,275.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">athletics</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,295.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">golf</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,315.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">rugby sevens</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,335.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">aquatics</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,355.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">handball</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,375.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">archery</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,395.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">badminton</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,415.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">basketball</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,435.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">hockey</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,455.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">modern pentathlon</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,475.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">table tennis</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,495.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">taekwondo</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,515.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">triathlon</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,535.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">volleyball</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,555.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">fencing</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,575.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">gymnastics</text>
-    </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+    <path transform="translate(100,26)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,46)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,66)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,86)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,106)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,126)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,146)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,166)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,186)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,206)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,226)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,246)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,266)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,286)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,306)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,326)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,346)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,366)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,386)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,406)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,426)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,446)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,466)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,486)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,506)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,526)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,546)" d="M0,0L-6,0"></path>
+    <path transform="translate(100,566)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="Women (%) →" transform="translate(0,590)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(100.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(152.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(204.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(256.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(308.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(360.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">50</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(412.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(464.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">70</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(516.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(568.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">90</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(620.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Women (%) →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,9.5)">
+    <text y="0.32em" transform="translate(100,26)">boxing</text>
+    <text y="0.32em" transform="translate(100,46)">wrestling</text>
+    <text y="0.32em" transform="translate(100,66)">canoe</text>
+    <text y="0.32em" transform="translate(100,86)">cycling</text>
+    <text y="0.32em" transform="translate(100,106)">equestrian</text>
+    <text y="0.32em" transform="translate(100,126)">shooting</text>
+    <text y="0.32em" transform="translate(100,146)">judo</text>
+    <text y="0.32em" transform="translate(100,166)">rowing</text>
+    <text y="0.32em" transform="translate(100,186)">weightlifting</text>
+    <text y="0.32em" transform="translate(100,206)">sailing</text>
+    <text y="0.32em" transform="translate(100,226)">football</text>
+    <text y="0.32em" transform="translate(100,246)">tennis</text>
+    <text y="0.32em" transform="translate(100,266)">athletics</text>
+    <text y="0.32em" transform="translate(100,286)">golf</text>
+    <text y="0.32em" transform="translate(100,306)">rugby sevens</text>
+    <text y="0.32em" transform="translate(100,326)">aquatics</text>
+    <text y="0.32em" transform="translate(100,346)">handball</text>
+    <text y="0.32em" transform="translate(100,366)">archery</text>
+    <text y="0.32em" transform="translate(100,386)">badminton</text>
+    <text y="0.32em" transform="translate(100,406)">basketball</text>
+    <text y="0.32em" transform="translate(100,426)">hockey</text>
+    <text y="0.32em" transform="translate(100,446)">modern pentathlon</text>
+    <text y="0.32em" transform="translate(100,466)">table tennis</text>
+    <text y="0.32em" transform="translate(100,486)">taekwondo</text>
+    <text y="0.32em" transform="translate(100,506)">triathlon</text>
+    <text y="0.32em" transform="translate(100,526)">volleyball</text>
+    <text y="0.32em" transform="translate(100,546)">fencing</text>
+    <text y="0.32em" transform="translate(100,566)">gymnastics</text>
+  </g>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="100" x2="100" y1="20" y2="590"></line>
+    <line x1="152" x2="152" y1="20" y2="590"></line>
+    <line x1="204" x2="204" y1="20" y2="590"></line>
+    <line x1="256" x2="256" y1="20" y2="590"></line>
+    <line x1="308" x2="308" y1="20" y2="590"></line>
+    <line x1="360" x2="360" y1="20" y2="590"></line>
+    <line x1="412" x2="412" y1="20" y2="590"></line>
+    <line x1="464" x2="464" y1="20" y2="590"></line>
+    <line x1="516" x2="516" y1="20" y2="590"></line>
+    <line x1="568" x2="568" y1="20" y2="590"></line>
+    <line x1="620" x2="620" y1="20" y2="590"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(100,590)" d="M0,0L0,6"></path>
+    <path transform="translate(152,590)" d="M0,0L0,6"></path>
+    <path transform="translate(204,590)" d="M0,0L0,6"></path>
+    <path transform="translate(256,590)" d="M0,0L0,6"></path>
+    <path transform="translate(308,590)" d="M0,0L0,6"></path>
+    <path transform="translate(360,590)" d="M0,0L0,6"></path>
+    <path transform="translate(412,590)" d="M0,0L0,6"></path>
+    <path transform="translate(464,590)" d="M0,0L0,6"></path>
+    <path transform="translate(516,590)" d="M0,0L0,6"></path>
+    <path transform="translate(568,590)" d="M0,0L0,6"></path>
+    <path transform="translate(620,590)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(100,590)">0</text>
+    <text y="0.71em" transform="translate(152,590)">10</text>
+    <text y="0.71em" transform="translate(204,590)">20</text>
+    <text y="0.71em" transform="translate(256,590)">30</text>
+    <text y="0.71em" transform="translate(308,590)">40</text>
+    <text y="0.71em" transform="translate(360,590)">50</text>
+    <text y="0.71em" transform="translate(412,590)">60</text>
+    <text y="0.71em" transform="translate(464,590)">70</text>
+    <text y="0.71em" transform="translate(516,590)">80</text>
+    <text y="0.71em" transform="translate(568,590)">90</text>
+    <text y="0.71em" transform="translate(620,590)">100</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,590)">Women (%) →</text>
   </g>
   <g aria-label="bar">
     <rect x="100" width="257.66089965397924" y="326" height="18"></rect>

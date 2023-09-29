@@ -13,54 +13,46 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" transform="translate(50,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,33.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">bananas</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,54.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">oranges</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,75.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">grapes</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,96.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">apples</text>
-    </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10)">
+    <path transform="translate(50,24)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,45)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,66)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,87)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="units →" transform="translate(0,110)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(50.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(107.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(164.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(221.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(278.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(335.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(392.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">12</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(449.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">14</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(506.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">16</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(563.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">18</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(620.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">units →</text>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10)">
+    <text y="0.32em" transform="translate(50,24)">bananas</text>
+    <text y="0.32em" transform="translate(50,45)">oranges</text>
+    <text y="0.32em" transform="translate(50,66)">grapes</text>
+    <text y="0.32em" transform="translate(50,87)">apples</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(50,110)" d="M0,0L0,6"></path>
+    <path transform="translate(107,110)" d="M0,0L0,6"></path>
+    <path transform="translate(164,110)" d="M0,0L0,6"></path>
+    <path transform="translate(221,110)" d="M0,0L0,6"></path>
+    <path transform="translate(278,110)" d="M0,0L0,6"></path>
+    <path transform="translate(335,110)" d="M0,0L0,6"></path>
+    <path transform="translate(392,110)" d="M0,0L0,6"></path>
+    <path transform="translate(449,110)" d="M0,0L0,6"></path>
+    <path transform="translate(506,110)" d="M0,0L0,6"></path>
+    <path transform="translate(563,110)" d="M0,0L0,6"></path>
+    <path transform="translate(620,110)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(50,110)">0</text>
+    <text y="0.71em" transform="translate(107,110)">2</text>
+    <text y="0.71em" transform="translate(164,110)">4</text>
+    <text y="0.71em" transform="translate(221,110)">6</text>
+    <text y="0.71em" transform="translate(278,110)">8</text>
+    <text y="0.71em" transform="translate(335,110)">10</text>
+    <text y="0.71em" transform="translate(392,110)">12</text>
+    <text y="0.71em" transform="translate(449,110)">14</text>
+    <text y="0.71em" transform="translate(506,110)">16</text>
+    <text y="0.71em" transform="translate(563,110)">18</text>
+    <text y="0.71em" transform="translate(620,110)">20</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,110)">units →</text>
   </g>
   <g aria-label="bar">
     <rect x="50" width="570" y="87" height="19"></rect>

@@ -13,58 +13,53 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Temperature anomaly (°F)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,333.6194574856547)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">−1.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,287.9752217005738)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">−0.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,242.330985915493)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+0.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,196.6867501304121)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+0.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,151.04251434533128)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+1.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,105.39827856025045)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+1.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,59.75404277516958)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+2.0</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Temperature anomaly (°F)</text>
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="333.1194574856547" y2="333.1194574856547"></line>
+    <line x1="40" x2="620" y1="287.4752217005738" y2="287.4752217005738"></line>
+    <line x1="40" x2="620" y1="241.830985915493" y2="241.830985915493"></line>
+    <line x1="40" x2="620" y1="196.1867501304121" y2="196.1867501304121"></line>
+    <line x1="40" x2="620" y1="150.54251434533128" y2="150.54251434533128"></line>
+    <line x1="40" x2="620" y1="104.89827856025045" y2="104.89827856025045"></line>
+    <line x1="40" x2="620" y1="59.25404277516958" y2="59.25404277516958"></line>
   </g>
-  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(40.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1880</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(125.22444408894577,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1900</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(209.93729003359462,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1920</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(294.6617341225404,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1940</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(379.3861782114862,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1960</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(464.11062230043194,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1980</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(548.8350663893777,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2000</text>
-    </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,333.1194574856547)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,287.4752217005738)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,241.830985915493)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,196.1867501304121)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,150.54251434533128)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,104.89827856025045)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,59.25404277516958)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,333.1194574856547)">−1.0</text>
+    <text y="0.32em" transform="translate(40,287.4752217005738)">−0.5</text>
+    <text y="0.32em" transform="translate(40,241.830985915493)">+0.0</text>
+    <text y="0.32em" transform="translate(40,196.1867501304121)">+0.5</text>
+    <text y="0.32em" transform="translate(40,150.54251434533128)">+1.0</text>
+    <text y="0.32em" transform="translate(40,104.89827856025045)">+1.5</text>
+    <text y="0.32em" transform="translate(40,59.25404277516958)">+2.0</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Temperature anomaly (°F)</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(124.72444408894577,370)" d="M0,0L0,6"></path>
+    <path transform="translate(209.43729003359462,370)" d="M0,0L0,6"></path>
+    <path transform="translate(294.1617341225404,370)" d="M0,0L0,6"></path>
+    <path transform="translate(378.8861782114862,370)" d="M0,0L0,6"></path>
+    <path transform="translate(463.61062230043194,370)" d="M0,0L0,6"></path>
+    <path transform="translate(548.3350663893777,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">1880</text>
+    <text y="0.71em" transform="translate(124.72444408894577,370)">1900</text>
+    <text y="0.71em" transform="translate(209.43729003359462,370)">1920</text>
+    <text y="0.71em" transform="translate(294.1617341225404,370)">1940</text>
+    <text y="0.71em" transform="translate(378.8861782114862,370)">1960</text>
+    <text y="0.71em" transform="translate(463.61062230043194,370)">1980</text>
+    <text y="0.71em" transform="translate(548.3350663893777,370)">2000</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="241.830985915493" y2="241.830985915493"></line>

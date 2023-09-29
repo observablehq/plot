@@ -54,7 +54,7 @@ it("rect(data, {fill}) allows fill to be a variable color", () => {
   assert.strictEqual(rect.fill, undefined);
   const {fill} = rect.channels;
   assert.strictEqual(fill.value, "4");
-  assert.strictEqual(fill.scale, "color");
+  assert.strictEqual(fill.scale, "auto");
 });
 
 it("rect(data, {stroke}) allows stroke to be a constant color", () => {
@@ -72,5 +72,5 @@ it("rect(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(rect.stroke, undefined);
   const {stroke} = rect.channels;
   assert.strictEqual(stroke.value, "4");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });

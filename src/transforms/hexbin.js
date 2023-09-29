@@ -1,6 +1,6 @@
-import {coerceNumbers} from "../scales.js";
-import {sqrt3} from "../symbols.js";
-import {identity, isNoneish, number, valueof} from "../options.js";
+import {map, number, valueof} from "../options.js";
+import {applyPosition} from "../projection.js";
+import {sqrt3} from "../symbol.js";
 import {initializer} from "./basic.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
 
@@ -12,72 +12,32 @@ import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
 export const ox = 0.5,
   oy = 0;
 
-/**
- * Aggregates the given input channels into hexagonal bins, creating output
- * channels with the reduced data. The *options* must specify the **x** and
- * **y** channels. The **binWidth** option (default 20) defines the distance
- * between centers of neighboring hexagons in pixels. If any of **z**, **fill**,
- * or **stroke** is a channel, the first of these channels will be used to
- * subdivide bins. The *outputs* options are similar to the [bin
- * transform](https://github.com/observablehq/plot/blob/main/README.md#bin);
- * each output channel receives as input, for each hexagon, the subset of the
- * data which has been matched to its center. The outputs object specifies the
- * aggregation method for each output channel.
- *
- * The following aggregation methods are supported:
- *
- * * *first* - the first value, in input order
- * * *last* - the last value, in input order
- * * *count* - the number of elements (frequency)
- * * *distinct* - the number of distinct values
- * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted
- *   frequency)
- * * *proportion-facet* - the sum proportional to the facet total
- * * *min* - the minimum value
- * * *min-index* - the zero-based index of the minimum value
- * * *max* - the maximum value
- * * *max-index* - the zero-based index of the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s
- *   algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
- * * *mode* - the value with the most occurrences
- * * a function to be passed the array of values for each bin and the extent of
- *   the bin
- * * an object with a *reduce* method
- *
- * See also the
- * [hexgrid](https://github.com/observablehq/plot/blob/main/README.md#hexgrid)
- * mark.
- */
-export function hexbin(outputs = {fill: "count"}, options = {}) {
+export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
+  const {z} = options;
+
   // TODO filter e.g. to show empty hexbins?
   // TODO disallow x, x1, x2, y, y1, y2 reducers?
-  let {binWidth, ...remainingOptions} = options;
   binWidth = binWidth === undefined ? 20 : number(binWidth);
-  outputs = maybeOutputs(outputs, remainingOptions);
+  outputs = maybeOutputs(outputs, options);
 
-  // A fill output means a fill channel, and hence the stroke should default to
-  // none (assuming a mark that defaults to fill and no stroke, such as dot).
-  // Note that it’s safe to mutate options here because we just created it with
-  // the rest operator above.
-  const {z, fill, stroke} = remainingOptions;
-  if (stroke === undefined && isNoneish(fill) && hasOutput(outputs, "fill")) remainingOptions.stroke = "none";
+  // A fill output means a fill channel; declaring the channel here instead of
+  // waiting for the initializer allows the mark constructor to determine that
+  // the stroke should default to none (assuming a mark that defaults to fill
+  // and no stroke, such as dot). Note that it’s safe to mutate options here
+  // because we just created it with the rest operator above.
+  if (hasOutput(outputs, "fill")) options.channels = {...options.channels, fill: {value: []}};
 
   // Populate default values for the r and symbol options, as appropriate.
-  if (remainingOptions.symbol === undefined) remainingOptions.symbol = "hexagon";
-  if (remainingOptions.r === undefined && !hasOutput(outputs, "r")) remainingOptions.r = binWidth / 2;
+  if (options.symbol === undefined) options.symbol = "hexagon";
+  if (options.r === undefined && !hasOutput(outputs, "r")) options.r = binWidth / 2;
 
-  return initializer(remainingOptions, (data, facets, {x: X, y: Y, z: Z, fill: F, stroke: S, symbol: Q}, scales) => {
+  return initializer(options, (data, facets, channels, scales, _, context) => {
+    let {x: X, y: Y, z: Z, fill: F, stroke: S, symbol: Q} = channels;
     if (X === undefined) throw new Error("missing channel: x");
     if (Y === undefined) throw new Error("missing channel: y");
 
-    // Coerce the X and Y channels to numbers (so that null is properly treated
-    // as an undefined value rather than being coerced to zero).
-    X = coerceNumbers(valueof(X.value, scales[X.scale] || identity));
-    Y = coerceNumbers(valueof(Y.value, scales[Y.scale] || identity));
+    // Get the (either scaled or projected) xy channels.
+    ({x: X, y: Y} = applyPosition(channels, scales, context));
 
     // Extract the values for channels that are eligible for grouping; not all
     // marks define a z channel, so compute one if it not already computed. If z
@@ -120,22 +80,29 @@ export function hexbin(outputs = {fill: "count"}, options = {}) {
     }
 
     // Construct the output channels, and populate the radius scale hint.
-    const channels = {
-      x: {value: BX},
-      y: {value: BY},
+    const sx = channels.x.scale;
+    const sy = channels.y.scale;
+    const binChannels = {
+      x: {value: BX, source: scales[sx] ? {value: map(BX, scales[sx].invert), scale: sx} : null},
+      y: {value: BY, source: scales[sy] ? {value: map(BY, scales[sy].invert), scale: sy} : null},
       ...(Z && {z: {value: GZ}}),
-      ...(F && {fill: {value: GF, scale: true}}),
-      ...(S && {stroke: {value: GS, scale: true}}),
-      ...(Q && {symbol: {value: GQ, scale: true}}),
+      ...(F && {fill: {value: GF, scale: "auto"}}),
+      ...(S && {stroke: {value: GS, scale: "auto"}}),
+      ...(Q && {symbol: {value: GQ, scale: "auto"}}),
       ...Object.fromEntries(
         outputs.map(({name, output}) => [
           name,
-          {scale: true, radius: name === "r" ? binWidth / 2 : undefined, value: output.transform()}
+          {
+            scale: "auto",
+            label: output.label,
+            radius: name === "r" ? binWidth / 2 : undefined,
+            value: output.transform()
+          }
         ])
       )
     };
 
-    return {data, facets: binFacets, channels};
+    return {data, facets: binFacets, channels: binChannels};
   });
 }
 

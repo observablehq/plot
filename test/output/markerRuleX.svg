@@ -1,0 +1,56 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(20,30)" d="M0,0L0,6"></path>
+    <path transform="translate(79.99999999999999,30)" d="M0,0L0,6"></path>
+    <path transform="translate(139.99999999999997,30)" d="M0,0L0,6"></path>
+    <path transform="translate(200.00000000000003,30)" d="M0,0L0,6"></path>
+    <path transform="translate(260,30)" d="M0,0L0,6"></path>
+    <path transform="translate(320,30)" d="M0,0L0,6"></path>
+    <path transform="translate(380.00000000000006,30)" d="M0,0L0,6"></path>
+    <path transform="translate(440,30)" d="M0,0L0,6"></path>
+    <path transform="translate(500,30)" d="M0,0L0,6"></path>
+    <path transform="translate(560,30)" d="M0,0L0,6"></path>
+    <path transform="translate(620,30)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(20,30)">1.0</text>
+    <text y="0.71em" transform="translate(79.99999999999999,30)">1.2</text>
+    <text y="0.71em" transform="translate(139.99999999999997,30)">1.4</text>
+    <text y="0.71em" transform="translate(200.00000000000003,30)">1.6</text>
+    <text y="0.71em" transform="translate(260,30)">1.8</text>
+    <text y="0.71em" transform="translate(320,30)">2.0</text>
+    <text y="0.71em" transform="translate(380.00000000000006,30)">2.2</text>
+    <text y="0.71em" transform="translate(440,30)">2.4</text>
+    <text y="0.71em" transform="translate(500,30)">2.6</text>
+    <text y="0.71em" transform="translate(560,30)">2.8</text>
+    <text y="0.71em" transform="translate(620,30)">3.0</text>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto-start-reverse" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
+      <path d="M-1.5,-3l3,3l-3,3"></path>
+    </marker>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto-start-reverse" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-2">
+      <path d="M-1.5,-3l3,3l-3,3"></path>
+    </marker>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto-start-reverse" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-3">
+      <path d="M-1.5,-3l3,3l-3,3"></path>
+    </marker>
+    <line x1="20" x2="20" y1="3" y2="27" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="320" x2="320" y1="3" y2="27" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <line x1="620" x2="620" y1="3" y2="27" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+  </g>
+</svg>

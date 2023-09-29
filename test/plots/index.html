@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <head>
   <meta charset="utf-8" />
 </head>
@@ -20,7 +20,7 @@
   }
 </style>
 <script type="module">
-  import * as tests from "./index.js";
+  import * as tests from "./index.ts";
 
   if (location.pathname !== "/") {
     location = `/${location.search}${location.hash}`;
@@ -76,12 +76,23 @@
 
   document.body.append(select);
 
+  const info = document.createElement("SPAN");
+  info.style = "margin-left: 1em; font: 10px sans-serif;";
+  document.body.append(info);
+
   let currentChart = document.createElement("DIV");
+  document.body.append(currentChart);
 
   async function render() {
-    if (currentChart) currentChart.remove();
-    const div = (currentChart = document.body.appendChild(document.createElement("DIV")));
-    div.append(await tests[select.value]());
+    const newChart = document.createElement("DIV");
+    currentChart.replaceWith(newChart);
+    currentChart = newChart;
+    info.textContent = "⋯";
+    const start = performance.now();
+    const plot = await tests[select.value]();
+    const end = performance.now();
+    info.textContent = `${(end - start).toFixed(0)} ms`;
+    newChart.append(plot);
   }
 
   render();

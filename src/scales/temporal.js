@@ -1,14 +1,14 @@
 import {scaleTime, scaleUtc} from "d3";
-import {ScaleQ} from "./quantitative.js";
+import {createScaleQ} from "./quantitative.js";
 
-function ScaleT(key, scale, channels, options) {
-  return ScaleQ(key, scale, channels, options);
+function createScaleT(key, scale, channels, options) {
+  return createScaleQ(key, scale, channels, options);
 }
 
-export function ScaleTime(key, channels, options) {
-  return ScaleT(key, scaleTime(), channels, options);
+export function createScaleTime(key, channels, options) {
+  return createScaleT(key, scaleTime(), channels, options);
 }
 
-export function ScaleUtc(key, channels, options) {
-  return ScaleT(key, scaleUtc(), channels, options);
+export function createScaleUtc(key, channels, options) {
+  return createScaleT(key, scaleUtc(), channels, options);
 }

@@ -13,40 +13,31 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(20.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(80.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.1</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(140.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(200.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.3</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(260.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(320.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(380.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.6</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(440.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.7</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(500.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(560.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.9</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(620.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1.0</text>
-    </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(20,370)" d="M0,0L0,6"></path>
+    <path transform="translate(80,370)" d="M0,0L0,6"></path>
+    <path transform="translate(140,370)" d="M0,0L0,6"></path>
+    <path transform="translate(200,370)" d="M0,0L0,6"></path>
+    <path transform="translate(260,370)" d="M0,0L0,6"></path>
+    <path transform="translate(320,370)" d="M0,0L0,6"></path>
+    <path transform="translate(380,370)" d="M0,0L0,6"></path>
+    <path transform="translate(440,370)" d="M0,0L0,6"></path>
+    <path transform="translate(500,370)" d="M0,0L0,6"></path>
+    <path transform="translate(560,370)" d="M0,0L0,6"></path>
+    <path transform="translate(620,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(20,370)">0.0</text>
+    <text y="0.71em" transform="translate(80,370)">0.1</text>
+    <text y="0.71em" transform="translate(140,370)">0.2</text>
+    <text y="0.71em" transform="translate(200,370)">0.3</text>
+    <text y="0.71em" transform="translate(260,370)">0.4</text>
+    <text y="0.71em" transform="translate(320,370)">0.5</text>
+    <text y="0.71em" transform="translate(380,370)">0.6</text>
+    <text y="0.71em" transform="translate(440,370)">0.7</text>
+    <text y="0.71em" transform="translate(500,370)">0.8</text>
+    <text y="0.71em" transform="translate(560,370)">0.9</text>
+    <text y="0.71em" transform="translate(620,370)">1.0</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="542.7806177455932" cy="347.0385960798633" r="21.961403920136704"></circle>
@@ -150,5 +141,106 @@
     <circle cx="279.7737398929894" cy="166.1219055790112" r="3.41304670128488"></circle>
     <circle cx="616.7805651947856" cy="353.46328519651587" r="2.4527404462481295"></circle>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(542.7806177455932,347.0385960798633)">58</text><text y="0.32em" transform="translate(369.39376721158624,347.18999920176145)">59</text><text y="0.32em" transform="translate(517.9761586990207,309.80484057834326)">32</text><text y="0.32em" transform="translate(523.686096239835,265.67356950667056)">83</text><text y="0.32em" transform="translate(78.75584525056183,347.30648361646934)">42</text><text y="0.32em" transform="translate(342.3732634447515,312.1121109243654)">31</text><text y="0.32em" transform="translate(585.8729975577444,336.32711723270813)">24</text><text y="0.32em" transform="translate(446.03616188280284,347.664642531115)">68</text><text y="0.32em" transform="translate(128.30993130803108,347.71571741892546)">21</text><text y="0.32em" transform="translate(113.17634520120919,306.99547582599564)">26</text><text y="0.32em" transform="translate(175.38007793948054,347.88885121827997)">23</text><text y="0.32em" transform="translate(612.6923980936408,302.0881957176426)">89</text><text y="0.32em" transform="translate(153.5325595922768,291.61635897392665)">3</text><text y="0.32em" transform="translate(549.719668906182,230.6495524508774)">55</text><text y="0.32em" transform="translate(275.57760116644204,348.33697793477717)">90</text><text y="0.32em" transform="translate(186.7831115424633,265.55479572025183)">53</text><text y="0.32em" transform="translate(366.368718938902,276.8607818101609)">2</text><text y="0.32em" transform="translate(428.55083991773427,309.24692274764254)">34</text><text y="0.32em" transform="translate(208.59646804630756,322.84198906779363)">61</text><text y="0.32em" transform="translate(289.851709716022,309.9850915843974)">41</text><text y="0.32em" transform="translate(47.32377387583256,319.8624819253269)">93</text><text y="0.32em" transform="translate(503.44105263240635,229.17366503956316)">66</text><text y="0.32em" transform="translate(593.5268463846296,265.8916505993504)">56</text><text y="0.32em" transform="translate(220.3810024354607,243.78911848326268)">54</text><text y="0.32em" transform="translate(149.46145092137158,251.10828917518478)">50</text><text y="0.32em" transform="translate(527.199271209538,197.07850199944556)">33</text><text y="0.32em" transform="translate(74.4500938616693,292.6129014280219)">15</text><text y="0.32em" transform="translate(343.887865524739,244.27647469867873)">87</text><text y="0.32em" transform="translate(437.8382933139801,271.2779237669603)">37</text><text y="0.32em" transform="translate(260.9843950998038,284.8938845335763)">84</text><text y="0.32em" transform="translate(376.2322831712663,225.5141953711131)">47</text><text y="0.32em" transform="translate(278.15862524323165,252.34900444473655)">92</text><text y="0.32em" transform="translate(531.9216341990978,160.16353141446191)">10</text><text y="0.32em" transform="translate(481.2589264754206,328.6972442122986)">46</text><text y="0.32em" transform="translate(222.00864928774536,287.4724896869212)">60</text><text y="0.32em" transform="translate(81.78363873623312,256.6725571720391)">64</text><text y="0.32em" transform="translate(590.0529659166932,229.05616749962377)">17</text><text y="0.32em" transform="translate(111.89428463578224,238.27496594274083)">85</text><text y="0.32em" transform="translate(377.88186588324606,189.62345957010223)">14</text><text y="0.32em" transform="translate(438.6946743167937,235.18149551507838)">75</text><text y="0.32em" transform="translate(66.35145389474928,225.08360302667433)">94</text><text y="0.32em" transform="translate(288.42716964893043,218.3645829276109)">44</text><text y="0.32em" transform="translate(325.54009629413486,352.3134176289694)">71</text><text y="0.32em" transform="translate(512.9005881771445,130.38047629174338)">25</text><text y="0.32em" transform="translate(90.42477852664888,200.35130633519597)">72</text><text y="0.32em" transform="translate(371.3941071461886,155.76862513941876)">36</text><text y="0.32em" transform="translate(510.1756817474961,96.38841947816928)">81</text><text y="0.32em" transform="translate(468.22235563769937,296.15005376092574)">91</text><text y="0.32em" transform="translate(104.12587880156934,169.2573801992556)">16</text><text y="0.32em" transform="translate(607.9821090959013,199.80100836038432)">63</text><text y="0.32em" transform="translate(56.42292656004429,192.4875456323166)">29</text><text y="0.32em" transform="translate(135.61915930360556,213.72282231072762)">57</text><text y="0.32em" transform="translate(288.36877153255045,184.65572106464373)">6</text><text y="0.32em" transform="translate(183.23567973449826,228.8584522599208)">51</text><text y="0.32em" transform="translate(33.473141426220536,353.40930344418365)">30</text><text y="0.32em" transform="translate(72.87502724677324,159.44466984978447)">1</text><text y="0.32em" transform="translate(405.2005678694695,260.5136567102943)">12</text><text y="0.32em" transform="translate(502.78643577359617,64.72072946642231)">48</text><text y="0.32em" transform="translate(614.1724685486406,168.2692305970397)">40</text><text y="0.32em" transform="translate(203.99875611066818,205.3338940860585)">69</text><text y="0.32em" transform="translate(438.3015346992761,202.86312544421384)">82</text><text y="0.32em" transform="translate(350.30502195470035,132.03227801556878)">20</text><text y="0.32em" transform="translate(382.45708358474076,312.7288823528985)">74</text><text y="0.32em" transform="translate(544.2882234510034,126.63385203369182)">8</text><text y="0.32em" transform="translate(553.6813737638295,303.0599072445515)">19</text><text y="0.32em" transform="translate(319.80603689327836,284.33335932296075)">11</text><text y="0.32em" transform="translate(95.77415914274752,139.8376775151452)">86</text><text y="0.32em" transform="translate(91.15589366294444,112.9415497717967)">70</text><text y="0.32em" transform="translate(251.95700170472264,323.14172796609694)">99</text><text y="0.32em" transform="translate(451.1708460561931,177.7233066252458)">39</text><text y="0.32em" transform="translate(35.39834290742874,289.73575814442574)">5</text><text y="0.32em" transform="translate(248.45485033467412,228.34683461889432)">35</text><text y="0.32em" transform="translate(96.20066963136196,87.25300669441935)">45</text><text y="0.32em" transform="translate(171.40710487030447,203.08563265965174)">0</text><text y="0.32em" transform="translate(549.0931337978691,100.39696349689984)">80</text><text y="0.32em" transform="translate(411.0033499356359,357.36303268311855)">88</text><text y="0.32em" transform="translate(515.4349412582815,40.14941831771131)">95</text><text y="0.32em" transform="translate(91.07600225135684,63.376243321563436)">7</text><text y="0.32em" transform="translate(436.5698847733438,157.4867513902977)">79</text><text y="0.32em" transform="translate(300.15337395481765,159.11235697454208)">28</text><text y="0.32em" transform="translate(536.873712465167,79.97577429145167)">13</text><text y="0.32em" transform="translate(253.64682886749506,204.57698182346354)">49</text><text y="0.32em" transform="translate(572.9082121327519,205.56638882940157)">65</text><text y="0.32em" transform="translate(350.0512841437012,211.58762546605746)">22</text><text y="0.32em" transform="translate(499.8211859539151,358.3712845104082)">97</text><text y="0.32em" transform="translate(574.7332674730569,183.05727455712065)">18</text><text y="0.32em" transform="translate(245.39611826650798,359.22100276041357)">4</text><text y="0.32em" transform="translate(607.2387246694416,360.56071602129657)">96</text><text y="0.32em" transform="translate(145.8045356720686,322.69365347871684)">77</text><text y="0.32em" transform="translate(156.38033368624747,189.98661615426371)">78</text><text y="0.32em" transform="translate(121.19072427041829,278.8891634791813)">98</text><text y="0.32em" transform="translate(314.40794470719993,331.63031465669343)">76</text><text y="0.32em" transform="translate(97.61556380428374,284.4671373485213)">62</text><text y="0.32em" transform="translate(446.8192364368588,143.86851649313087)">38</text><text y="0.32em" transform="translate(134.95647514238954,272.94979190922584)">43</text><text y="0.32em" transform="translate(31.45084942691028,272.7481886296022)">52</text><text y="0.32em" transform="translate(166.11785393208265,323.6359256306527)">73</text><text y="0.32em" transform="translate(517.6368264295161,365.49663574765015)">27</text><text y="0.32em" transform="translate(279.7737398929894,166.1219055790112)">67</text><text y="0.32em" transform="translate(616.7805651947856,353.46328519651587)">9</text></g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)">
+    <text y="0.32em" transform="translate(542.7806177455932,347.0385960798633)">58</text>
+    <text y="0.32em" transform="translate(369.39376721158624,347.18999920176145)">59</text>
+    <text y="0.32em" transform="translate(517.9761586990207,309.80484057834326)">32</text>
+    <text y="0.32em" transform="translate(523.686096239835,265.67356950667056)">83</text>
+    <text y="0.32em" transform="translate(78.75584525056183,347.30648361646934)">42</text>
+    <text y="0.32em" transform="translate(342.3732634447515,312.1121109243654)">31</text>
+    <text y="0.32em" transform="translate(585.8729975577444,336.32711723270813)">24</text>
+    <text y="0.32em" transform="translate(446.03616188280284,347.664642531115)">68</text>
+    <text y="0.32em" transform="translate(128.30993130803108,347.71571741892546)">21</text>
+    <text y="0.32em" transform="translate(113.17634520120919,306.99547582599564)">26</text>
+    <text y="0.32em" transform="translate(175.38007793948054,347.88885121827997)">23</text>
+    <text y="0.32em" transform="translate(612.6923980936408,302.0881957176426)">89</text>
+    <text y="0.32em" transform="translate(153.5325595922768,291.61635897392665)">3</text>
+    <text y="0.32em" transform="translate(549.719668906182,230.6495524508774)">55</text>
+    <text y="0.32em" transform="translate(275.57760116644204,348.33697793477717)">90</text>
+    <text y="0.32em" transform="translate(186.7831115424633,265.55479572025183)">53</text>
+    <text y="0.32em" transform="translate(366.368718938902,276.8607818101609)">2</text>
+    <text y="0.32em" transform="translate(428.55083991773427,309.24692274764254)">34</text>
+    <text y="0.32em" transform="translate(208.59646804630756,322.84198906779363)">61</text>
+    <text y="0.32em" transform="translate(289.851709716022,309.9850915843974)">41</text>
+    <text y="0.32em" transform="translate(47.32377387583256,319.8624819253269)">93</text>
+    <text y="0.32em" transform="translate(503.44105263240635,229.17366503956316)">66</text>
+    <text y="0.32em" transform="translate(593.5268463846296,265.8916505993504)">56</text>
+    <text y="0.32em" transform="translate(220.3810024354607,243.78911848326268)">54</text>
+    <text y="0.32em" transform="translate(149.46145092137158,251.10828917518478)">50</text>
+    <text y="0.32em" transform="translate(527.199271209538,197.07850199944556)">33</text>
+    <text y="0.32em" transform="translate(74.4500938616693,292.6129014280219)">15</text>
+    <text y="0.32em" transform="translate(343.887865524739,244.27647469867873)">87</text>
+    <text y="0.32em" transform="translate(437.8382933139801,271.2779237669603)">37</text>
+    <text y="0.32em" transform="translate(260.9843950998038,284.8938845335763)">84</text>
+    <text y="0.32em" transform="translate(376.2322831712663,225.5141953711131)">47</text>
+    <text y="0.32em" transform="translate(278.15862524323165,252.34900444473655)">92</text>
+    <text y="0.32em" transform="translate(531.9216341990978,160.16353141446191)">10</text>
+    <text y="0.32em" transform="translate(481.2589264754206,328.6972442122986)">46</text>
+    <text y="0.32em" transform="translate(222.00864928774536,287.4724896869212)">60</text>
+    <text y="0.32em" transform="translate(81.78363873623312,256.6725571720391)">64</text>
+    <text y="0.32em" transform="translate(590.0529659166932,229.05616749962377)">17</text>
+    <text y="0.32em" transform="translate(111.89428463578224,238.27496594274083)">85</text>
+    <text y="0.32em" transform="translate(377.88186588324606,189.62345957010223)">14</text>
+    <text y="0.32em" transform="translate(438.6946743167937,235.18149551507838)">75</text>
+    <text y="0.32em" transform="translate(66.35145389474928,225.08360302667433)">94</text>
+    <text y="0.32em" transform="translate(288.42716964893043,218.3645829276109)">44</text>
+    <text y="0.32em" transform="translate(325.54009629413486,352.3134176289694)">71</text>
+    <text y="0.32em" transform="translate(512.9005881771445,130.38047629174338)">25</text>
+    <text y="0.32em" transform="translate(90.42477852664888,200.35130633519597)">72</text>
+    <text y="0.32em" transform="translate(371.3941071461886,155.76862513941876)">36</text>
+    <text y="0.32em" transform="translate(510.1756817474961,96.38841947816928)">81</text>
+    <text y="0.32em" transform="translate(468.22235563769937,296.15005376092574)">91</text>
+    <text y="0.32em" transform="translate(104.12587880156934,169.2573801992556)">16</text>
+    <text y="0.32em" transform="translate(607.9821090959013,199.80100836038432)">63</text>
+    <text y="0.32em" transform="translate(56.42292656004429,192.4875456323166)">29</text>
+    <text y="0.32em" transform="translate(135.61915930360556,213.72282231072762)">57</text>
+    <text y="0.32em" transform="translate(288.36877153255045,184.65572106464373)">6</text>
+    <text y="0.32em" transform="translate(183.23567973449826,228.8584522599208)">51</text>
+    <text y="0.32em" transform="translate(33.473141426220536,353.40930344418365)">30</text>
+    <text y="0.32em" transform="translate(72.87502724677324,159.44466984978447)">1</text>
+    <text y="0.32em" transform="translate(405.2005678694695,260.5136567102943)">12</text>
+    <text y="0.32em" transform="translate(502.78643577359617,64.72072946642231)">48</text>
+    <text y="0.32em" transform="translate(614.1724685486406,168.2692305970397)">40</text>
+    <text y="0.32em" transform="translate(203.99875611066818,205.3338940860585)">69</text>
+    <text y="0.32em" transform="translate(438.3015346992761,202.86312544421384)">82</text>
+    <text y="0.32em" transform="translate(350.30502195470035,132.03227801556878)">20</text>
+    <text y="0.32em" transform="translate(382.45708358474076,312.7288823528985)">74</text>
+    <text y="0.32em" transform="translate(544.2882234510034,126.63385203369182)">8</text>
+    <text y="0.32em" transform="translate(553.6813737638295,303.0599072445515)">19</text>
+    <text y="0.32em" transform="translate(319.80603689327836,284.33335932296075)">11</text>
+    <text y="0.32em" transform="translate(95.77415914274752,139.8376775151452)">86</text>
+    <text y="0.32em" transform="translate(91.15589366294444,112.9415497717967)">70</text>
+    <text y="0.32em" transform="translate(251.95700170472264,323.14172796609694)">99</text>
+    <text y="0.32em" transform="translate(451.1708460561931,177.7233066252458)">39</text>
+    <text y="0.32em" transform="translate(35.39834290742874,289.73575814442574)">5</text>
+    <text y="0.32em" transform="translate(248.45485033467412,228.34683461889432)">35</text>
+    <text y="0.32em" transform="translate(96.20066963136196,87.25300669441935)">45</text>
+    <text y="0.32em" transform="translate(171.40710487030447,203.08563265965174)">0</text>
+    <text y="0.32em" transform="translate(549.0931337978691,100.39696349689984)">80</text>
+    <text y="0.32em" transform="translate(411.0033499356359,357.36303268311855)">88</text>
+    <text y="0.32em" transform="translate(515.4349412582815,40.14941831771131)">95</text>
+    <text y="0.32em" transform="translate(91.07600225135684,63.376243321563436)">7</text>
+    <text y="0.32em" transform="translate(436.5698847733438,157.4867513902977)">79</text>
+    <text y="0.32em" transform="translate(300.15337395481765,159.11235697454208)">28</text>
+    <text y="0.32em" transform="translate(536.873712465167,79.97577429145167)">13</text>
+    <text y="0.32em" transform="translate(253.64682886749506,204.57698182346354)">49</text>
+    <text y="0.32em" transform="translate(572.9082121327519,205.56638882940157)">65</text>
+    <text y="0.32em" transform="translate(350.0512841437012,211.58762546605746)">22</text>
+    <text y="0.32em" transform="translate(499.8211859539151,358.3712845104082)">97</text>
+    <text y="0.32em" transform="translate(574.7332674730569,183.05727455712065)">18</text>
+    <text y="0.32em" transform="translate(245.39611826650798,359.22100276041357)">4</text>
+    <text y="0.32em" transform="translate(607.2387246694416,360.56071602129657)">96</text>
+    <text y="0.32em" transform="translate(145.8045356720686,322.69365347871684)">77</text>
+    <text y="0.32em" transform="translate(156.38033368624747,189.98661615426371)">78</text>
+    <text y="0.32em" transform="translate(121.19072427041829,278.8891634791813)">98</text>
+    <text y="0.32em" transform="translate(314.40794470719993,331.63031465669343)">76</text>
+    <text y="0.32em" transform="translate(97.61556380428374,284.4671373485213)">62</text>
+    <text y="0.32em" transform="translate(446.8192364368588,143.86851649313087)">38</text>
+    <text y="0.32em" transform="translate(134.95647514238954,272.94979190922584)">43</text>
+    <text y="0.32em" transform="translate(31.45084942691028,272.7481886296022)">52</text>
+    <text y="0.32em" transform="translate(166.11785393208265,323.6359256306527)">73</text>
+    <text y="0.32em" transform="translate(517.6368264295161,365.49663574765015)">27</text>
+    <text y="0.32em" transform="translate(279.7737398929894,166.1219055790112)">67</text>
+    <text y="0.32em" transform="translate(616.7805651947856,353.46328519651587)">9</text>
+  </g>
 </svg>

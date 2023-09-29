@@ -1,0 +1,81 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(20,30)" d="M0,0L0,6"></path>
+    <path transform="translate(94.99999999999999,30)" d="M0,0L0,6"></path>
+    <path transform="translate(170.00000000000006,30)" d="M0,0L0,6"></path>
+    <path transform="translate(245.00000000000006,30)" d="M0,0L0,6"></path>
+    <path transform="translate(320.00000000000006,30)" d="M0,0L0,6"></path>
+    <path transform="translate(395.0000000000001,30)" d="M0,0L0,6"></path>
+    <path transform="translate(470,30)" d="M0,0L0,6"></path>
+    <path transform="translate(545.0000000000001,30)" d="M0,0L0,6"></path>
+    <path transform="translate(620,30)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(20,30)">0.30</text>
+    <text y="0.71em" transform="translate(94.99999999999999,30)">0.35</text>
+    <text y="0.71em" transform="translate(170.00000000000006,30)">0.40</text>
+    <text y="0.71em" transform="translate(245.00000000000006,30)">0.45</text>
+    <text y="0.71em" transform="translate(320.00000000000006,30)">0.50</text>
+    <text y="0.71em" transform="translate(395.0000000000001,30)">0.55</text>
+    <text y="0.71em" transform="translate(470,30)">0.60</text>
+    <text y="0.71em" transform="translate(545.0000000000001,30)">0.65</text>
+    <text y="0.71em" transform="translate(620,30)">0.70</text>
+  </g>
+  <g aria-label="dot" fill="black" transform="translate(0.5,0.5)">
+    <circle cx="20" cy="15" r="7" fill-opacity="0.3"></circle>
+    <circle cx="35.000000000000014" cy="15" r="7" fill-opacity="0.31"></circle>
+    <circle cx="50.00000000000003" cy="15" r="7" fill-opacity="0.32"></circle>
+    <circle cx="65.00000000000004" cy="15" r="7" fill-opacity="0.33"></circle>
+    <circle cx="80.00000000000006" cy="15" r="7" fill-opacity="0.34"></circle>
+    <circle cx="94.99999999999999" cy="15" r="7" fill-opacity="0.35"></circle>
+    <circle cx="110" cy="15" r="7" fill-opacity="0.36"></circle>
+    <circle cx="125.00000000000003" cy="15" r="7" fill-opacity="0.37"></circle>
+    <circle cx="140.00000000000003" cy="15" r="7" fill-opacity="0.38"></circle>
+    <circle cx="155.00000000000006" cy="15" r="7" fill-opacity="0.39"></circle>
+    <circle cx="170.00000000000006" cy="15" r="7" fill-opacity="0.4"></circle>
+    <circle cx="184.99999999999997" cy="15" r="7" fill-opacity="0.41"></circle>
+    <circle cx="200" cy="15" r="7" fill-opacity="0.42"></circle>
+    <circle cx="215" cy="15" r="7" fill-opacity="0.43"></circle>
+    <circle cx="230.00000000000006" cy="15" r="7" fill-opacity="0.44"></circle>
+    <circle cx="245.00000000000006" cy="15" r="7" fill-opacity="0.45"></circle>
+    <circle cx="260.00000000000006" cy="15" r="7" fill-opacity="0.46"></circle>
+    <circle cx="275" cy="15" r="7" fill-opacity="0.47"></circle>
+    <circle cx="290" cy="15" r="7" fill-opacity="0.48"></circle>
+    <circle cx="305" cy="15" r="7" fill-opacity="0.49"></circle>
+    <circle cx="320.00000000000006" cy="15" r="7" fill-opacity="0.5"></circle>
+    <circle cx="335.00000000000006" cy="15" r="7" fill-opacity="0.51"></circle>
+    <circle cx="350.0000000000001" cy="15" r="7" fill-opacity="0.52"></circle>
+    <circle cx="365.0000000000001" cy="15" r="7" fill-opacity="0.53"></circle>
+    <circle cx="380.0000000000001" cy="15" r="7" fill-opacity="0.54"></circle>
+    <circle cx="395.0000000000001" cy="15" r="7" fill-opacity="0.55"></circle>
+    <circle cx="410.00000000000017" cy="15" r="7" fill-opacity="0.56"></circle>
+    <circle cx="424.99999999999994" cy="15" r="7" fill-opacity="0.57"></circle>
+    <circle cx="440" cy="15" r="7" fill-opacity="0.58"></circle>
+    <circle cx="455" cy="15" r="7" fill-opacity="0.59"></circle>
+    <circle cx="470" cy="15" r="7" fill-opacity="0.6"></circle>
+    <circle cx="485" cy="15" r="7" fill-opacity="0.61"></circle>
+    <circle cx="500" cy="15" r="7" fill-opacity="0.62"></circle>
+    <circle cx="515" cy="15" r="7" fill-opacity="0.63"></circle>
+    <circle cx="530" cy="15" r="7" fill-opacity="0.64"></circle>
+    <circle cx="545.0000000000001" cy="15" r="7" fill-opacity="0.65"></circle>
+    <circle cx="560.0000000000001" cy="15" r="7" fill-opacity="0.66"></circle>
+    <circle cx="575.0000000000001" cy="15" r="7" fill-opacity="0.67"></circle>
+    <circle cx="590.0000000000001" cy="15" r="7" fill-opacity="0.68"></circle>
+    <circle cx="605" cy="15" r="7" fill-opacity="0.69"></circle>
+    <circle cx="620" cy="15" r="7" fill-opacity="0.7"></circle>
+  </g>
+</svg>

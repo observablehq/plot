@@ -1,50 +1,54 @@
+import {descending, quantile, range as rangei} from "d3";
 import {parse as isoParse} from "isoformat";
-import {color, descending, quantile} from "d3";
+import {defined} from "./defined.js";
+import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
-const TypedArray = Object.getPrototypeOf(Uint8Array);
+export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
-/**
- * Given an iterable *data* and some *value* accessor, returns an array (a
- * column) of the specified *type* with the corresponding value of each element
- * of the data. The *value* accessor may be one of the following types:
- *
- * * a string - corresponding to the field accessor (`d => d[value]`)
- * * an accessor function - called as *type*.from(*data*, *value*)
- * * a number, Date, or boolean — resulting in an array uniformly filled with
- *   the *value*
- * * an object with a transform method — called as *value*.transform(*data*)
- * * an array of values - returning the same
- * * null or undefined - returning the same
- *
- * If *type* is specified, it must be Array or a similar class that implements
- * the
- * [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)
- * interface such as a typed array. When *type* is Array or a typed array class,
- * the return value of valueof will be an instance of the same (or null or
- * undefined). If *type* is not specified, valueof may return either an array or
- * a typed array (or null or undefined).
- *
- * Plot.valueof is not guaranteed to return a new array. When a transform method
- * is used, or when the given *value* is an array that is compatible with the
- * requested *type*, the array may be returned as-is without making a copy.
- */
+// If a reindex is attached to the data, channel values expressed as arrays will
+// be reindexed when the channels are instantiated. See exclusiveFacets.
+export const reindex = Symbol("reindex");
+
 export function valueof(data, value, type) {
   const valueType = typeof value;
   return valueType === "string"
-    ? map(data, field(value), type)
+    ? maybeTypedMap(data, field(value), type)
     : valueType === "function"
-    ? map(data, value, type)
+    ? maybeTypedMap(data, value, type)
     : valueType === "number" || value instanceof Date || valueType === "boolean"
     ? map(data, constant(value), type)
-    : value && typeof value.transform === "function"
-    ? arrayify(value.transform(data), type)
-    : arrayify(value, type); // preserve undefined type
+    : typeof value?.transform === "function"
+    ? maybeTypedArrayify(value.transform(data), type)
+    : maybeTake(maybeTypedArrayify(value, type), data?.[reindex]);
 }
 
+function maybeTake(values, index) {
+  return index ? take(values, index) : values;
+}
+
+function maybeTypedMap(data, f, type) {
+  return map(data, type?.prototype instanceof TypedArray ? floater(f) : f, type);
+}
+
+function maybeTypedArrayify(data, type) {
+  return type === undefined
+    ? arrayify(data) // preserve undefined type
+    : data instanceof type
+    ? data
+    : type.prototype instanceof TypedArray && !(data instanceof TypedArray)
+    ? type.from(data, coerceNumber)
+    : type.from(data);
+}
+
+function floater(f) {
+  return (d, i) => coerceNumber(f(d, i));
+}
+
+export const singleton = [null]; // for data-less decoration marks, e.g. frame
 export const field = (name) => (d) => d[name];
-export const indexOf = (d, i) => i;
+export const indexOf = {transform: range};
 export const identity = {transform: (d) => d};
 export const zero = () => 0;
 export const one = () => 1;
@@ -54,6 +58,7 @@ export const number = (x) => (x == null ? x : +x);
 export const boolean = (x) => (x == null ? x : !!x);
 export const first = (x) => (x ? x[0] : undefined);
 export const second = (x) => (x ? x[1] : undefined);
+export const third = (x) => (x ? x[2] : undefined);
 export const constant = (x) => () => x;
 
 // Converts a string like “p25” into a function that takes an index I and an
@@ -61,6 +66,38 @@ export const constant = (x) => () => x;
 export function percentile(reduce) {
   const p = +`${reduce}`.slice(1) / 100;
   return (I, f) => quantile(I, p, f);
+}
+
+// If the values are specified as a typed array, no coercion is required.
+export function coerceNumbers(values) {
+  return values instanceof TypedArray ? values : map(values, coerceNumber, Float64Array);
+}
+
+// Unlike Mark’s number, here we want to convert null and undefined to NaN since
+// the result will be stored in a Float64Array and we don’t want null to be
+// coerced to zero. We use Number instead of unary + to allow BigInt coercion.
+function coerceNumber(x) {
+  return x == null ? NaN : Number(x);
+}
+
+export function coerceDates(values) {
+  return map(values, coerceDate);
+}
+
+// When coercing strings to dates, we only want to allow the ISO 8601 format
+// since the built-in string parsing of the Date constructor varies across
+// browsers. (In the future, this could be made more liberal if desired, though
+// it is still generally preferable to do date parsing yourself explicitly,
+// rather than rely on Plot.) Any non-string values are coerced to number first
+// and treated as milliseconds since UNIX epoch.
+export function coerceDate(x) {
+  return x instanceof Date && !isNaN(x)
+    ? x
+    : typeof x === "string"
+    ? isoParse(x)
+    : x == null || isNaN((x = +x))
+    ? undefined
+    : new Date(x);
 }
 
 // Some channels may allow a string constant to be specified; to differentiate
@@ -93,26 +130,15 @@ export function keyword(input, name, allowed) {
   return i;
 }
 
-// Promotes the specified data to an array or typed array as needed. If an array
-// type is provided (e.g., Array), then the returned array will strictly be of
-// the specified type; otherwise, any array or typed array may be returned. If
-// the specified data is null or undefined, returns the value as-is.
-export function arrayify(data, type) {
-  return data == null
-    ? data
-    : type === undefined
-    ? data instanceof Array || data instanceof TypedArray
-      ? data
-      : Array.from(data)
-    : data instanceof type
-    ? data
-    : type.from(data);
+// Promotes the specified data to an array as needed.
+export function arrayify(data) {
+  return data == null || data instanceof Array || data instanceof TypedArray ? data : Array.from(data);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
 // instanceof the desired array type, the faster values.map method is used.
 export function map(values, f, type = Array) {
-  return values instanceof type ? values.map(f) : type.from(values, f);
+  return values == null ? values : values instanceof type ? values.map(f) : type.from(values, f);
 }
 
 // An optimization of type.from(values): if the given values are already an
@@ -121,8 +147,19 @@ export function slice(values, type = Array) {
   return values instanceof type ? values.slice() : type.from(values);
 }
 
-export function isTypedArray(values) {
-  return values instanceof TypedArray;
+// Returns true if any of x, x1, or x2 is not (strictly) undefined.
+export function hasX({x, x1, x2}) {
+  return x !== undefined || x1 !== undefined || x2 !== undefined;
+}
+
+// Returns true if any of y, y1, or y2 is not (strictly) undefined.
+export function hasY({y, y1, y2}) {
+  return y !== undefined || y1 !== undefined || y2 !== undefined;
+}
+
+// Returns true if has x or y, or if interval is not (strictly) undefined.
+export function hasXY(options) {
+  return hasX(options) || hasY(options) || options.interval !== undefined;
 }
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
@@ -141,6 +178,7 @@ export function isScaleOptions(option) {
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a channel value
 // definition expressed as a channel transform (e.g., {transform: …}).
+// TODO Check typeof option[Symbol.iterator] !== "function"?
 export function isOptions(option) {
   return isObject(option) && typeof option.transform !== "function";
 }
@@ -194,7 +232,17 @@ export function where(data, test) {
 
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
-  return map(index, (i) => values[i]);
+  return map(index, (i) => values[i], values.constructor);
+}
+
+// If f does not take exactly one argument, wraps it in a function that uses take.
+export function taker(f) {
+  return f.length === 1 ? (index, values) => f(take(values, index)) : f;
+}
+
+// Uses subarray if available, and otherwise slice.
+export function subarray(I, i, j) {
+  return I.subarray ? I.subarray(i, j) : I.slice(i, j);
 }
 
 // Based on InternMap (d3.group).
@@ -217,21 +265,6 @@ export function maybeInput(key, options) {
   return options[key];
 }
 
-/**
- * This helper for constructing derived columns returns a [*column*,
- * *setColumn*] array. The *column* object implements *column*.transform,
- * returning whatever value was most recently passed to *setColumn*. If
- * *setColumn* is not called, then *column*.transform returns undefined. If a
- * *source* is specified, then *column*.label exposes the given *source*’s
- * label, if any: if *source* is a string as when representing a named field of
- * data, then *column*.label is *source*; otherwise *column*.label propagates
- * *source*.label. This allows derived columns to propagate a human-readable
- * axis or legend label.
- *
- * Plot.column is typically used by options transforms to define new channels;
- * the associated columns are populated (derived) when the **transform** option
- * function is invoked.
- */
 export function column(source) {
   // Defines a column whose values are lazily populated by calling the returned
   // setter. If the given source is labeled, the label is propagated to the
@@ -272,6 +305,66 @@ export function mid(x1, x2) {
   };
 }
 
+// If the scale options declare an interval, applies it to the values V.
+export function maybeApplyInterval(V, scale) {
+  const t = maybeIntervalTransform(scale?.interval, scale?.type);
+  return t ? map(V, t) : V;
+}
+
+// Returns the equivalent scale transform for the specified interval option.
+export function maybeIntervalTransform(interval, type) {
+  const i = maybeInterval(interval, type);
+  return i && ((v) => (defined(v) ? i.floor(v) : v));
+}
+
+// If interval is not nullish, converts interval shorthand such as a number (for
+// multiples) or a time interval name (such as “day”) to a {floor, offset,
+// range} object similar to a D3 time interval.
+export function maybeInterval(interval, type) {
+  if (interval == null) return;
+  if (typeof interval === "number") {
+    if (0 < interval && interval < 1 && Number.isInteger(1 / interval)) interval = -1 / interval;
+    const n = Math.abs(interval);
+    return interval < 0
+      ? {
+          floor: (d) => Math.floor(d * n) / n,
+          offset: (d) => (d * n + 1) / n, // note: no optional step for simplicity
+          range: (lo, hi) => rangei(Math.ceil(lo * n), hi * n).map((x) => x / n)
+        }
+      : {
+          floor: (d) => Math.floor(d / n) * n,
+          offset: (d) => d + n, // note: no optional step for simplicity
+          range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => x * n)
+        };
+  }
+  if (typeof interval === "string") return (type === "time" ? maybeTimeInterval : maybeUtcInterval)(interval);
+  if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
+  if (typeof interval.offset !== "function") throw new Error("invalid interval; missing offset method");
+  return interval;
+}
+
+// Like maybeInterval, but requires a range method too.
+export function maybeRangeInterval(interval, type) {
+  interval = maybeInterval(interval, type);
+  if (interval && typeof interval.range !== "function") throw new Error("invalid interval: missing range method");
+  return interval;
+}
+
+// Like maybeRangeInterval, but requires a ceil method too.
+export function maybeNiceInterval(interval, type) {
+  interval = maybeRangeInterval(interval, type);
+  if (interval && typeof interval.ceil !== "function") throw new Error("invalid interval: missing ceil method");
+  return interval;
+}
+
+export function isTimeInterval(t) {
+  return isInterval(t) && typeof t?.floor === "function" && t.floor() instanceof Date;
+}
+
+export function isInterval(t) {
+  return typeof t?.range === "function";
+}
+
 // This distinguishes between per-dimension options and a standalone value.
 export function maybeValue(value) {
   return value === undefined || isOptions(value) ? value : {value};
@@ -287,6 +380,14 @@ export function numberChannel(source) {
         transform: (data) => valueof(data, source, Float64Array),
         label: labelof(source)
       };
+}
+
+export function isTuples(data) {
+  if (!isIterable(data)) return false;
+  for (const d of data) {
+    if (d == null) continue;
+    return typeof d === "object" && "0" in d && "1" in d;
+  }
 }
 
 export function isIterable(value) {
@@ -330,8 +431,10 @@ export function isTemporalString(values) {
 // coercion because we want to ignore false positives on e.g. empty strings.
 export function isNumericString(values) {
   for (const value of values) {
-    if (value == null || value === "") continue;
-    return typeof value === "string" && !isNaN(value);
+    if (value == null) continue;
+    if (typeof value !== "string") return false;
+    if (!value.trim()) continue;
+    return !isNaN(value);
   }
 }
 
@@ -342,40 +445,39 @@ export function isNumeric(values) {
   }
 }
 
-export function isFirst(values, is) {
-  for (const value of values) {
-    if (value == null) continue;
-    return is(value);
-  }
-}
-
-// Whereas isFirst only tests the first defined value and returns undefined for
-// an empty array, this tests all defined values and only returns true if all of
-// them are valid colors. It also returns true for an empty array, and thus
-// should generally be used in conjunction with isFirst.
+// Returns true if every non-null value in the specified iterable of values
+// passes the specified predicate, and there is at least one non-null value;
+// returns false if at least one non-null value does not pass the specified
+// predicate; otherwise returns undefined (as if all values are null).
 export function isEvery(values, is) {
+  let every;
   for (const value of values) {
     if (value == null) continue;
     if (!is(value)) return false;
+    every = true;
   }
-  return true;
+  return every;
 }
 
-// Mostly relies on d3-color, with a few extra color keywords. Currently this
-// strictly requires that the value be a string; we might want to apply string
-// coercion here, though note that d3-color instances would need to support
-// valueOf to work correctly with InternMap.
+const namedColors = new Set("none,currentcolor,transparent,aliceblue,antiquewhite,aqua,aquamarine,azure,beige,bisque,black,blanchedalmond,blue,blueviolet,brown,burlywood,cadetblue,chartreuse,chocolate,coral,cornflowerblue,cornsilk,crimson,cyan,darkblue,darkcyan,darkgoldenrod,darkgray,darkgreen,darkgrey,darkkhaki,darkmagenta,darkolivegreen,darkorange,darkorchid,darkred,darksalmon,darkseagreen,darkslateblue,darkslategray,darkslategrey,darkturquoise,darkviolet,deeppink,deepskyblue,dimgray,dimgrey,dodgerblue,firebrick,floralwhite,forestgreen,fuchsia,gainsboro,ghostwhite,gold,goldenrod,gray,green,greenyellow,grey,honeydew,hotpink,indianred,indigo,ivory,khaki,lavender,lavenderblush,lawngreen,lemonchiffon,lightblue,lightcoral,lightcyan,lightgoldenrodyellow,lightgray,lightgreen,lightgrey,lightpink,lightsalmon,lightseagreen,lightskyblue,lightslategray,lightslategrey,lightsteelblue,lightyellow,lime,limegreen,linen,magenta,maroon,mediumaquamarine,mediumblue,mediumorchid,mediumpurple,mediumseagreen,mediumslateblue,mediumspringgreen,mediumturquoise,mediumvioletred,midnightblue,mintcream,mistyrose,moccasin,navajowhite,navy,oldlace,olive,olivedrab,orange,orangered,orchid,palegoldenrod,palegreen,paleturquoise,palevioletred,papayawhip,peachpuff,peru,pink,plum,powderblue,purple,rebeccapurple,red,rosybrown,royalblue,saddlebrown,salmon,sandybrown,seagreen,seashell,sienna,silver,skyblue,slateblue,slategray,slategrey,snow,springgreen,steelblue,tan,teal,thistle,tomato,turquoise,violet,wheat,white,whitesmoke,yellow".split(",")); // prettier-ignore
+
+// Returns true if value is a valid CSS color string. This is intentionally lax
+// because the CSS color spec keeps growing, and we don’t need to parse these
+// colors—we just need to disambiguate them from column names.
 // https://www.w3.org/TR/SVG11/painting.html#SpecifyingPaint
+// https://www.w3.org/TR/css-color-5/
 export function isColor(value) {
   if (typeof value !== "string") return false;
   value = value.toLowerCase().trim();
   return (
-    value === "none" ||
-    value === "currentcolor" ||
-    (value.startsWith("url(") && value.endsWith(")")) || // <funciri>, e.g. pattern or gradient
-    (value.startsWith("var(") && value.endsWith(")")) || // CSS variable
-    color(value) !== null
+    /^#[0-9a-f]{3,8}$/.test(value) || // hex rgb, rgba, rrggbb, rrggbbaa
+    /^(?:url|var|rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color|color-mix)\(.*\)$/.test(value) || // <funciri>, CSS variable, color, etc.
+    namedColors.has(value) // currentColor, red, etc.
   );
+}
+
+export function isOpacity(value) {
+  return typeof value === "number" && ((0 <= value && value <= 1) || isNaN(value));
 }
 
 export function isNoneish(value) {
@@ -390,8 +492,8 @@ export function isRound(value) {
   return /^\s*round\s*$/i.test(value);
 }
 
-export function maybeFrameAnchor(value = "middle") {
-  return keyword(value, "frameAnchor", [
+export function maybeAnchor(value, name) {
+  return maybeKeyword(value, name, [
     "middle",
     "top-left",
     "top",
@@ -404,10 +506,14 @@ export function maybeFrameAnchor(value = "middle") {
   ]);
 }
 
+export function maybeFrameAnchor(value = "middle") {
+  return maybeAnchor(value, "frameAnchor");
+}
+
 // Like a sort comparator, returns a positive value if the given array of values
 // is in ascending order, a negative value if the values are in descending
 // order. Assumes monotonicity; only tests the first and last values.
-export function order(values) {
+export function orderof(values) {
   if (values == null) return;
   const first = values[0];
   const last = values[values.length - 1];
@@ -432,7 +538,7 @@ export function inherit(options = {}, ...rest) {
 
 // Given an iterable of named things (objects with a name property), returns a
 // corresponding object with properties associated with the given name.
-export function Named(things) {
+export function named(things) {
   console.warn("named iterables are deprecated; please use an object instead");
   const names = new Set();
   return Object.fromEntries(
@@ -449,5 +555,5 @@ export function Named(things) {
 }
 
 export function maybeNamed(things) {
-  return isIterable(things) ? Named(things) : things;
+  return isIterable(things) ? named(things) : things;
 }

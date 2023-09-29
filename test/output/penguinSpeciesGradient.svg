@@ -13,42 +13,41 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Frequency" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,324.44736842105266)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,278.39473684210526)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,232.3421052631579)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,186.28947368421052)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,140.23684210526315)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,94.18421052631578)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">120</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,48.131578947368425)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">140</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,323.94736842105266)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,277.89473684210526)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,231.8421052631579)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,185.78947368421052)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,139.73684210526315)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,93.68421052631578)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,47.631578947368425)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="species" transform="translate(0,370)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(143.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Adelie</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(330.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Chinstrap</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(517.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Gentoo</text>
-    </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">species</text>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,323.94736842105266)">20</text>
+    <text y="0.32em" transform="translate(40,277.89473684210526)">40</text>
+    <text y="0.32em" transform="translate(40,231.8421052631579)">60</text>
+    <text y="0.32em" transform="translate(40,185.78947368421052)">80</text>
+    <text y="0.32em" transform="translate(40,139.73684210526315)">100</text>
+    <text y="0.32em" transform="translate(40,93.68421052631578)">120</text>
+    <text y="0.32em" transform="translate(40,47.631578947368425)">140</text>
+  </g>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(84.5,0)">
+    <path transform="translate(59,370)" d="M0,0L0,6"></path>
+    <path transform="translate(246,370)" d="M0,0L0,6"></path>
+    <path transform="translate(433,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(84.5,9.5)">
+    <text y="0.71em" transform="translate(59,370)">Adelie</text>
+    <text y="0.71em" transform="translate(246,370)">Chinstrap</text>
+    <text y="0.71em" transform="translate(433,370)">Gentoo</text>
+  </g>
+  <g aria-label="x-axis label" transform="translate(0.5,27.5)">
+    <text transform="translate(330,370)">species</text>
   </g>
   <defs>
     <linearGradient id="gradient" gradientTransform="rotate(90)">

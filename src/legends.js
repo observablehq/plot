@@ -1,5 +1,5 @@
 import {rgb} from "d3";
-import {Context} from "./context.js";
+import {createContext} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
 import {legendSwatches, legendSymbols} from "./legends/swatches.js";
 import {inherit, isScaleOptions} from "./options.js";
@@ -11,36 +11,12 @@ const legendRegistry = new Map([
   ["opacity", legendOpacity]
 ]);
 
-/**
- * Returns a standalone legend for the scale defined by the given *options*
- * object. The *options* object must define at least one scale; see [Scale
- * options](https://github.com/observablehq/plot/blob/main/README.md#scale-options)
- * for how to define a scale. For example, here is a ramp legend of a linear
- * color scale with the default domain of [0, 1] and default scheme *turbo*:
- *
- * ```js
- * Plot.legend({color: {type: "linear"}})
- * ```
- *
- * The *options* object may also include any additional legend options described
- * in the previous section. For example, to make the above legend slightly
- * wider:
- *
- * ```js
- * Plot.legend({
- *   width: 320,
- *   color: {
- *     type: "linear"
- *   }
- * })
- * ```
- */
 export function legend(options = {}) {
   for (const [key, value] of legendRegistry) {
     const scale = options[key];
     if (isScaleOptions(scale)) {
       // e.g., ignore {color: "red"}
-      const context = Context(options);
+      const context = createContext(options);
       let hint;
       // For symbol legends, pass a hint to the symbol scale.
       if (key === "symbol") {
@@ -63,8 +39,8 @@ export function exposeLegends(scales, context, defaults = {}) {
   };
 }
 
-function legendOptions(context, {label, ticks, tickFormat} = {}, options) {
-  return inherit(options, context, {label, ticks, tickFormat});
+function legendOptions({className, ...context}, {label, ticks, tickFormat} = {}, options) {
+  return inherit(options, {className, ...context}, {label, ticks, tickFormat});
 }
 
 function legendColor(color, {legend = true, ...options}) {
@@ -92,7 +68,7 @@ function interpolateOpacity(color) {
   return (t) => `rgba(${r},${g},${b},${t})`;
 }
 
-export function Legends(scales, context, options) {
+export function createLegends(scales, context, options) {
   const legends = [];
   for (const [key, value] of legendRegistry) {
     const o = options[key];

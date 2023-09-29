@@ -1,920 +1,729 @@
 # Observable Plot - Changelog
 
-## 0.6.0
+Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
-[Released September 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.0)
+## 0.6.11
 
-[<img src="./img/window-strict.png" width="640" height="398" alt="A smoothed line chart of Apple’s stock price">](https://observablehq.com/@observablehq/plot-window)
+[Released September 20, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)
+
+The **tip** mark option can now pass options to the derived [tip mark](https://observablehq.com/plot/marks/tip); the options object can also specify the **pointer** option to control the derived tip’s pointer mode (_x_, _y_, or _xy_). The new **format** tip mark option enables greater control over order and formatting of channels.
+
+<img src="./img/tip-custom.png" width="674" alt="A tip with a custom order and formatting of the channel values.">
+
+```js
+Plot.dot(olympians, {
+  x: "weight",
+  y: "height",
+  stroke: "sex",
+  channels: {
+    name: "name",
+    nationality: "nationality",
+    sport: "sport"
+  },
+  tip: {
+    format: {
+      name: true, // show name first
+      y: (d) => `${d}m`, // units in meters
+      x: (d) => `${d}kg`, // units in kilograms
+      stroke: false // suppress stroke channel
+    }
+  }
+}).plot()
+```
+
+Axes for ordinal scales now generalize the scale’s temporal or quantitative **interval** if any, resulting in more readable ticks. For instance, the bar chart below of monthly values now sports multi-line tick labels.
+
+<img src="./img/temporal-ordinal.png" width="672" alt="A temporal bar chart with a multi-line axis.">
 
 ```js
 Plot.plot({
+  x: {interval: "month"},
   marks: [
-    Plot.lineY(aapl, {x: "Date", y: "Close", stroke: "#ccc", strokeWidth: 1}),
-    Plot.lineY(aapl, Plot.windowY({k: 20, strict: false}, {x: "Date", y: "Close", stroke: "red"})),
-    Plot.lineY(aapl, Plot.windowY({k: 20, strict: true}, {x: "Date", y: "Close"}))
+    Plot.barY(aapl, Plot.groupX({y: "median"}, {x: "Date", y: "Close"}))
   ]
 })
 ```
 
-[breaking] [Plot.window](./README.md#plotwindowk), [Plot.windowX](./README.md#plotwindowxk-options) and [Plot.windowY](./README.md#plotwindowyk-options) now return an aggregate value even when the window contains undefined values, for example at the beginning or end of a series. Set the new **strict** option to true to instead return undefined if the window contains any undefined values.
+Plot now recognizes CSS Color Module [Level 4](https://www.w3.org/TR/css-color-4/) and [Level 5](https://www.w3.org/TR/css-color-5/) syntax as literal colors, making it easier to use modern color syntax such as [oklab()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklab), [color-mix()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix), and alternative color spaces such as [display-p3](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color).
 
-Parts of the README have been incorporated throughout the codebase as JSDoc comments. This allows IDEs to display the documentation as tooltips.
+A channel value can now be given a label by specifying it as a {value, label} object; this may affect the label used in axes, legends, and tips.
 
-## 0.5.2
+This release also includes numerous bug fixes:
+- exposed ordinal domains are now correctly deduplicated;
+- the default symbol set is now inferred correctly when **fill** is *currentColor*;
+- the **fontVariant** axis option now applies to the axis label in addition to ticks;
+- the tip mark is no longer briefly visible before asynchronous rendering;
+- the bin transform no longer generates undefined colors for empty bins;
+- the bin transform now uses the **interval** option to reduce *x1* & *x2* (and *y1* & *y2*);
+- the stack transform now correctly handles the *exclude* **facet** option;
+- the tree transform now correctly handles escaping with the **delimiter** option.
 
-[Released July 4, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.2)
+## 0.6.10
 
-Swatches legends are now rendered in SVG, supporting patterns and gradients. Swatches legends now require an *ordinal*, *categorical*, or *threshold* color scale and will throw an error if you attempt to use them with an unsupported color scale type (such as a *linear* or *diverging* scale).
+[Released August 14, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.10)
 
-The new top-level **document** option specifies the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create plot elements. It defaults to window.document, but can be changed to another document, say when using a virtual DOM library for server-side rendering in Node.
+The new **title** and **subtitle** [plot options](https://observablehq.com/plot/features/plots#other-options) specify a primary and secondary heading. Headings are implemented as h2 and h3 elements by default, but you can provide existing elements instead of text for greater control. Like the existing **caption** option, headings add context and assist interpretation.
 
-Plot now uses D3 7.6.1, using [d3.blur2](https://observablehq.com/@d3/d3-blur) for a faster blur operator supporting fractional bandwidths when computing density contours. Plot now uses a duck test to detect marks (rather than strict instanceof), allowing marks from different versions of Plot to be combined into a single plot. Plot is now partially written in TypeScript. In the future, Plot will be written entirely in TypeScript and will export TypeScript type definition files to assist Plot development.
-
-## 0.5.1
-
-[Released June 27, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.1)
-
-The new [density mark](./README.md#density) creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. The **bandwidth** and number of **thresholds** are configurable.
-
-[<img src="./img/density-contours.png" width="640" height="400" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
+<img src="./img/title-subtitle.png" width="691" alt="A chart with a title, subtitle, and caption.">
 
 ```js
 Plot.plot({
-  inset: 20,
+  title: "For charts, an informative title",
+  subtitle: "Subtitle to follow with additional context",
+  caption: "Figure 1. A chart with a title, subtitle, and caption.",
   marks: [
-    Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "steelblue", strokeWidth: 0.25}),
-    Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "steelblue", thresholds: 4}),
-    Plot.dot(faithful, {x: "waiting", y: "eruptions", fill: "currentColor", r: 1.5})
+    Plot.frame(),
+    Plot.text(["Titles, subtitles, captions, and annotations assist inter­pretation by telling the reader what’s interesting. Don’t make the reader work to find what you already know."], {lineWidth: 30, frameAnchor: "middle"})
   ]
 })
 ```
 
-By default, as shown above, the density is represented by contour lines. By setting the **fill** option to *density*, you can draw filled regions with a sequential color encoding instead.
+When a chart has a title, subtitle, caption, or legend, Plot automatically wraps the chart’s SVG element with an HTML figure element. The new **figure** plot option, if true, wraps the chart in a figure even if it doesn’t have these other elements; likewise, if false, Plot ignores these other elements and returns a bare SVG element. The figure element now has an associated class (`plot-d6a7b5-figure`).
 
-[<img src="./img/density-fill.png" width="640" height="500" alt="A contour plot showing the relationship between diamond price and weight">](https://observablehq.com/@observablehq/plot-density)
+The new **clip** plot option determines the default clipping behavior if the [**clip** mark option](https://observablehq.com/plot/features/marks#mark-options) is not specified; set it to true to enable clipping. This option does not affect axis, grid, and frame marks, whose **clip** option defaults to false.
 
-```js
-Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
-  height: 500,
-  grid: true,
-  x: {type: "log"},
-  y: {type: "log"},
-  color: {scheme: "ylgnbu"}
-})
-```
-
-The new [linear regression marks](./README.md#linear-regression) produce [linear regressions](https://en.wikipedia.org/wiki/Linear_regression) with [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*).
-
-[<img src="./img/linear-regression.png" width="640" height="400" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
+<img src="./img/clip.png" width="621" alt="A line chart of the AAPL ticker, clipped to the frame.">
 
 ```js
 Plot.plot({
-  grid: true,
+  clip: true,
+  x: {domain: [new Date(2015, 0, 1), new Date(2015, 3, 1)]},
+  y: {grid: true},
   marks: [
-    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species"}),
-    Plot.linearRegressionY(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species"}),
-    Plot.linearRegressionY(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+    Plot.areaY(aapl, {x: "Date", y: "Close", fillOpacity: 0.1}),
+    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.ruleY([0], {clip: false})
+  ]
+});
+```
+
+The new [bollinger mark](https://observablehq.com/plot/marks/bollinger) composes a line representing a moving average and an area representing volatility as a band; the band thickness is proportional to the deviation of nearby values. The bollinger mark is built on the new [bollinger map method](https://observablehq.com/plot/marks/bollinger#bollinger), and is often used to analyze the price of financial instruments such as stocks.
+
+<img src="./img/bollinger.png" width="668" alt="A bollinger chart of the AAPL ticker, computed on a window of the 20 most recent values and a bandwidth of 2 standard deviations.">
+
+```js
+Plot.bollingerY(aapl, {x: "Date", y: "Close", n: 20, k: 2}).plot()
+```
+
+The [arrow mark](https://observablehq.com/plot/marks/arrow) supports a new **sweep** option to control the bend orientation. Below, we set this option to *-y* to draw arrows bulging right, independent of the relative vertical positions of its source and target.
+
+[<img src="./img/arc-diagram.png" width="521" alt="Detail of an arc diagram connecting characters in Les Misérables that appear in the same chapters.">](https://observablehq.com/@observablehq/plot-arc-diagram?intent=fork)
+
+```js
+Plot.plot({
+  height: 1080,
+  marginLeft: 100,
+  axis: null,
+  x: {domain: [0, 1]}, // see https://github.com/observablehq/plot/issues/1541
+  color: {domain: d3.range(10), unknown: "#ccc"},
+  marks: [
+    Plot.dot(miserables.nodes, {x: 0, y: "id", fill: "group", sort: {y: "fill"}}),
+    Plot.text(miserables.nodes, {x: 0, y: "id", text: "id", textAnchor: "end", dx: -6, fill: "group"}),
+    Plot.arrow(miserables.links, {x: 0, y1: "source", y2: "target", sweep: "-y", bend: 90, headLength: 0, stroke: samegroup, sort: samegroup, reverse: true})
   ]
 })
 ```
 
-The new [Delaunay and Voronoi marks](./README.md#delaunay) produce Delaunay triangulations and Voronoi tesselations: [Plot.delaunayLink](./README.md#plotdelaunaylinkdata-options) draws links for each edge of the Delaunay triangulation of the given points, [Plot.delaunayMesh](./README.md#plotdelaunaymeshdata-options) draws a mesh of the Delaunay triangulation  of the given points, [Plot.hull](./README.md#plothulldata-options) draws a convex hull around the given points, [Plot.voronoi](./README.md#plotvoronoidata-options) draws polygons for each cell of the Voronoi tesselation of the given points, and [Plot.voronoiMesh](./README.md#plotvoronoimeshdata-options) draws a mesh for the cell boundaries of the Voronoi tesselation of the given points.
+The [auto mark](https://observablehq.com/plot/marks/auto) now does a better job determining the appropriate bar mark implementation, such as with ordinal time series bar charts.
 
-[<img src="./img/voronoi.png" width="640" height="396" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
+<img src="./img/auto-bar.png" width="596" alt="A stacked bar chart from a time series.">
 
 ```js
-Plot.plot({
-  marks: [
-    Plot.voronoi(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: "species", fillOpacity: 0.2, stroke: "white"}),
-    Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: "species"})
-  ]
-})
+Plot.auto(timeSeries, {x: "date", y: {value: "value", reduce: "sum"}, color: "type", mark: "bar"}).plot()
 ```
 
-For data at regular intervals, such as integer values or daily samples, the new [*scale*.**interval** option](./README.md#scale-options) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, for ordinal scales the default *scale*.**domain** is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
+The [pointerX and pointerY transform](https://observablehq.com/plot/interactions/pointer) now use unscaled distance to decide the closest point across facets, preventing points from distant facets from being considered closest. The pointer transform now correctly reports the closest point when moving between facets, and no longer reports multiple closest points if they are the same distance across facets.
 
-All marks now support the **pointerEvents** option to set the [pointer-events attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events). The frame decoration mark now supports the **rx** and **ry** options. The cell mark now respects the **dx** and **dy** options.
+Plot’s documentation now has an [API index](https://observablehq.com/plot/api), version badges pointing to the release notes for a particular feature (or to the pull request for a prerelease feature), and shorter anchors.
 
-Fix a bug where arrow heads would not render correctly when the **strokeWidth** was exactly one. Fix the *scale*.**zero** option when the domain is negative. Fix the **clip** mark option when *x* or *y* is a *band* scale. Fix the fill color of text marks using the **href** option. Fix a crash in the bar and tick mark when the associated band scale is not present, as when these marks are used (erroneously) with the dodge transform. Use *element*.appendChild instead of *element*.append for the benefit of DOM implementations that do not support the full DOM standard.
+The [tip mark](https://observablehq.com/plot/marks/tip) now shows both labels for paired channels such as *y1*–*y2* or *x1*–*y2* when the channel labels differ. When the **tip** option is set to true on a [geo mark](https://observablehq.com/plot/marks/geo) without a projection, as when using preprojected planar geometry, the display no longer collapses.
 
-Improve the error message when the **facet** option is used without **data**. Throw an error if initializers attempt to create position scales. Throw an error if an implicit ordinal position domain has more than 10,000 values.
+The [stack transform](https://observablehq.com/plot/transforms/stack) now emits a friendlier error message when the supplied value is null.
 
-[breaking] Plot now requires [D3 ^7.5.0](https://github.com/d3/d3/releases/tag/v7.5.0).
+## 0.6.9
 
-## 0.5.0
+[Released June 27, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.9)
 
-[Released June 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.0)
+Time [axes](https://observablehq.com/plot/marks/axis) now default to multi-line ticks, greatly improving readability. When a tick has the same second field value as the previous tick (*e.g.*, “19 Jan” after “17 Jan”), only the first field (“19”) is shown for brevity. The tick format is now based on the tick interval and hence is always consistent, whereas the prior “multi-scale” format varied based on the date, such as “Jan 29” (for Sunday, January 29) and “Tue 31” (for Tuesday, January 31). The new ticks are similar to [Datawrapper](https://blog.datawrapper.de/new-axis-ticks/).
 
-Plot now supports [mark initializers](./README.md#initializers) via the **initializer** option. Initializers can transform data, channels, and indexes. Unlike [data transforms](./README.md#transforms) which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. The new hexbin and dodge transforms are implemented as mark initializers.
+Before:<br>
+<img src="./img/time-axis-before.png" width="640" alt="A horizontal time axis showing dates “Wed 25”, “Fri 27”, “Jan 29”, “Tue 31”, and so on.">
 
-The new [hexbin transform](./README.md#hexbin) functions similarly to the bin transform, except it aggregates both *x* and *y* into hexagonal bins before reducing. The size of the hexagons can be specified with the **binWidth** option, which controls the width of the (pointy-topped) hexagons.
+After:<br>
+<img src="./img/time-axis-after.png" width="640" alt="A horizontal time axis showing dates “17 Jan”, “19”, “21”, through “2 Feb”, “4”, and so on. When the month name is shown, it is on a second line below the date.">
 
-[<img src="./img/hexbin.png" width="640" alt="a chart showing the inverse relationship of fuel economy to engine displacement, and the positive correlation of engine displacement and weight; hexagonal bins of varying size represent the number of cars at each location, while color encodes the mean weight of nearby cars">](https://observablehq.com/@observablehq/plot-hexbin)
+It is now easier to construct a “piecewise” [continuous scale](https://observablehq.com/plot/features/scales#continuous-scales) with more than two elements in the **domain** or **range**. This is most often used for a custom color scheme interpolating through fixed colors, such as this pleasing rainbow (sometimes used by artist [Dave Whyte](https://beesandbombs.com/), *a.k.a.* beesandbombs).
+
+<img src="./img/piecewise-rainbow.png" width="640" alt="A one-dimensional cell plot of the numbers 0 through 39, laid out horizontally, with color varying smoothly through red, yellow, green-blue, and purple.">
 
 ```js
 Plot.plot({
   color: {
-    legend: true
+    type: "linear",
+    range: ["#d70441", "#f4e904", "#009978", "#5e3688"]
   },
   marks: [
-    Plot.hexagon(
-      cars,
-      Plot.hexbin(
-        {r: "count", fill: "mean"},
-        {x:  "displacement (cc)", y: "economy (mpg)", fill: "weight (lb)"}
-      )
+    Plot.cellX(d3.range(40), {fill: Plot.identity})
+  ]
+})
+```
+
+The [tree mark](https://observablehq.com/plot/marks/tree) now supports a **textLayout** option, which defaults to *mirrored* to alternate the orientation of labels for internal (non-leaf) *vs.* external (leaf) nodes. The treeNode and treeLink marks now also support a new **treeFilter** option, allowing these marks to be filtered without affecting the tree layout.
+
+<img src="./img/tree-gods.png" width="640" alt="A small family tree diagram of Greek gods. Chaos beget Eros, Erebus, Tartarus, and Gaia; Gaia beget Mountains, Pontus, and Uranus.">
+
+```js
+Plot.plot({
+  axis: null,
+  height: 100,
+  margin: 10,
+  marginLeft: 40,
+  marginRight: 120,
+  marks: [
+    Plot.tree(gods, {textStroke: "white"})
+  ]
+})
+```
+
+The [barycentric interpolator](https://observablehq.com/plot/marks/raster#interpolatorBarycentric) used by the [raster](https://observablehq.com/plot/marks/raster) and [contour](https://observablehq.com/plot/marks/contour) marks now behaves correctly outside the convex hull of samples. The new algorithm (below right) radiates outwards from the hull, ensuring a continuous image; the old algorithm (below left) radiated inwards from values imputed on the frame’s edges, producing discontinuities.
+
+<img src="./img/barycentric-before-after.png" width="640" alt="A before-and-after comparison of the barycentric interpolator applied to three sample points; in the new algorithm, lines radiate outward perpendicular from the triangle’s sides, producing a more coherent and understandable image.">
+
+The [tip mark](https://observablehq.com/plot/marks/tip) now automatically sets the pointer-events attribute to *none* when associated with the [pointer transform](https://observablehq.com/plot/interactions/pointer) when the the pointer is not sticky, as when hovering a chart without clicking to lock the pointer. This prevents the tip mark from interfering with interaction on other marks, such as clickable links.
+
+The [auto mark](https://observablehq.com/plot/marks/auto) now renders as a cell, instead of a degenerate invisible rect, when **x** and **y** are both ordinal and the **mark** option is set to *bar*. The [tree mark](https://observablehq.com/plot/marks/tree) no longer produces duplicate tips with the **tip** option. The [rule mark](https://observablehq.com/plot/marks/rule) now respects the top-level **document** option, if any, when using the **clip** option. The [axis mark](https://observablehq.com/plot/marks/axis) now correctly handles the **sort**, **filter**, **reverse**, and **initializer** options.
+
+The **title**, **ariaLabel**, and **href** channels no longer filter by default; these channels may now be sparsely defined and the associated mark instance will still render.
+
+The [pointer transform](https://observablehq.com/plot/interactions/pointer) now handles non-faceted marks in faceted plots. The [window transform](https://observablehq.com/plot/transforms/window)’s *median*, *deviation*, *variance*, and percentile reducers have been fixed.
+
+## 0.6.8
+
+[Released June 2, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.8)
+
+The *x* and *y* scale default domains now incorporate geometry. This allows arbitrary polygonal geometry to be defined in abstract coordinates using the [geo mark](https://observablehq.com/plot/marks/geo) and then displayed using scales.
+
+<img src="./test/output/geoLine.svg" width="640" alt="A line chart of Apple stock price from 2013 to 2018.">
+
+```js
+Plot.geo({type: "LineString", coordinates: aapl.map((d) => [d.Date, d.Close])}).plot()
+```
+
+The stack transform’s **order** option now supports *-order* descending shorthand or a two-argument comparator. For example, you can use *-appearance* to sort by descending appearance. Below, a custom comparator is used to sort by ascending *group* and then descending *revenue*.
+
+<img src="./test/output/musicRevenueCustomOrder.svg" width="640" alt="A line chart of Apple stock price from 2013 to 2018.">
+
+```js
+Plot.plot({
+  y: {
+    grid: true,
+    label: "Annual revenue (billions, adj.)",
+    transform: (d) => d / 1000
+  },
+  marks: [
+    Plot.areaY(
+      riaa,
+      Plot.stackY({
+        x: "year",
+        y: "revenue",
+        z: "format",
+        order: (a, b) => d3.ascending(a.group, b.group) || d3.descending(a.revenue, b.revenue),
+        fill: "group",
+        stroke: "white"
+      })
+    ),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+Fix the default **stroke** with the hexbin transform when used with the tip mark. Fix spurious high-cardinality warning with an odd number of elements when using varying aesthetics with the area or line mark.
+
+Fix *color* legends when the **domain** and **range** have different lengths: extra elements in the range are now ignored by the color legend, and a warning is issued.
+
+Fix duplicate application of scale transforms with the **tip** mark option. Fix erroneous implicit **title** channel with the **tip** mark option.
+
+## 0.6.7
+
+[Released May 24, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.7)
+
+The new [tip mark](https://observablehq.com/plot/marks/tip) displays text, or name-value pairs derived from channels, in a floating box anchored to a given position in **x** and **y**. The tip mark is often paired with the new [pointer interaction](https://observablehq.com/plot/interactions/pointer) such that only the point closest to the pointer is rendered, allowing the tip mark to reveal details interactively by hovering the chart.
+
+<img src="./img/tip-line.webp" width="640" alt="A line chart of Apple stock price from 2013 to 2018, with an annotation on May 12, 2016, showing the two-year low closing price of $90.34.">
+
+```js
+Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot()
+```
+
+The new **tip** mark option adds an implicit tip mark with pointer interaction derived from the current mark. The line chart above can be written more explicitly as:
+
+```js
+Plot.plot({
+  marks: [
+    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.tip(aapl, Plot.pointerX({x: "Date", y: "Close"}))
+  ]
+})
+```
+
+The tip mark can be also used to draw attention to points of interest and add commentary. When used with the **title** channel, the tip mark supports text wrapping and multi-line text.
+
+<img src="./img/tip-title.png" width="640" alt="A line chart of Apple stock price from 2013 to 2018, with an annotation describing the decline from 2015 through mid-2016, followed by a recovery.">
+
+```js
+Plot.plot({
+  y: {grid: true},
+  marks: [
+    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.tip(
+      [`Apple stock reaches a new high of $133 on Feb. 23, 2015. The release of the first Apple Watch, slated for April, is hotly anticipated.`],
+      {x: new Date("2015-02-23"), y: 133, dy: -3, anchor: "bottom"}
+    ),
+    Plot.tip(
+      [`Apple stock drops 8% after the company misses Q2 revenue targets and reports declining iPhone sales. It reaches a two-year low of $90.34 on May 12.`],
+      {x: new Date("2016-05-12"), y: 90.34, dy: 3, anchor: "top"}
     )
   ]
 })
 ```
 
-The new [dodge transform](./README.md#dodge) can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel.
+The pointer interaction can be paired with any mark, not just a tip: a red dot, say, to emphasize the focused point, or a rule to highlight its *x* or *y* position, or text to show a value. You can independently control the target position from the display using the **px** and **py** channels, say to show the currently-focused point’s value in the top-left corner.
 
-[<img src="./img/dodge-random.png" width="640" alt="a beeswarm chart showing a random normal distribution; each of 800 samples is represented by a dot positioned along the x-axis, stacked on top of the y-axis like grains of sand">](https://observablehq.com/@observablehq/plot-dodge)
+<img src="./img/pointer-text.webp" width="640" alt="A line chart of Apple stock price from 2013 to 2018; as the pointer moves over the chart, the date and close are shown in the top-left corner, while a red rule and dot highlights the focused point.">
 
 ```js
 Plot.plot({
-  height: 320,
-  x: {
-    domain: [-3, 3]
-  },
+  height: 160,
+  y: {axis: "right", grid: true, nice: true},
   marks: [
-    Plot.dotX(Array.from({length: 800}, d3.randomNormal()), Plot.dodgeY())
+    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.ruleX(aapl, Plot.pointerX({x: "Date", py: "Close", stroke: "red"})),
+    Plot.dot(aapl, Plot.pointerX({x: "Date", y: "Close", stroke: "red"})),
+    Plot.text(aapl, Plot.pointerX({px: "Date", py: "Close", dy: -17, frameAnchor: "top-left", fontVariant: "tabular-nums", text: (d) => [`Date ${Plot.formatIsoDate(d.Date)}`, `Close ${d.Close.toFixed(2)}`].join("   ")}))
   ]
 })
 ```
 
-If an *r* channel is specified, the circles may have varying radius. By default, the dodge transform sorts the input data by descending radius, such that the largest circles are placed first. The order of placement greatly affects the resulting layout; to change the placement order, use the standard mark **sort** option.
+The pointer interaction supports both two-dimensional (pointer) and one-dimensional (pointerX and pointerY) pointing modes. Above, one-dimensional pointing is used for a time-series chart to find the closest *x*-value; below, two-dimensional pointing is used for a scatterplot to find the closest point in *x* and *y*.
 
-[<img src="./img/dodge.png" width="640" alt="a chart showing the monthly percent change in travel by U.S. county in March 2020 after the coronavirus outbreak; each county is represented as a circle with area proportional to its population, positioned according to the change in travel; most counties, and especially those with stay-at-home orders, show a significant reduction in travel">](https://observablehq.com/@observablehq/plot-dodge)
+The pointer interaction also powers the new [crosshair mark](https://observablehq.com/plot/interactions/crosshair) which shows the *x* (horizontal↔︎ position) and *y* (vertical↕︎ position) value of the point closest to the pointer on the bottom and left sides of the frame, respectively.
 
-```js
-Plot.plot({
-  height: 400,
-  x: {
-    domain: [-100, -20],
-    percent: true,
-    label: "← Reduction in travel (%)"
-  },
-  r: {
-    range: [0, 20]
-  },
-  color: {
-    legend: true,
-    tickFormat: d => d ? "lockdown" : "no lockdown"
-  },
-  marks: [
-    Plot.dot(lockdown, Plot.dodgeY("middle", {x: "pct_change", r: "pop", fill: "in_lockdown"}))
-  ]
-})
-```
-
-When using the dodgeY transform, you should set the height of your plot explicitly; otherwise dots may be drawn outside the canvas. You can also adjust the **range** of the *r* scale to produce denser beeswarms.
-
-[breaking] Color scales with diverging color schemes now default to the *diverging* scale type instead of the *linear* scale type. This includes the *brbg*, *prgn*, *piyg*, *puor*, *rdbu*, *rdgy*, *rdylbu*, *rdylgn*, *spectral*, *burd*, and *buylrd* schemes. If you want to use a diverging color scheme with a linear color scale, set the scale **type** option to *linear*. Color scales will also default to diverging if the scale **pivot** option is set. (For diverging scales, the pivot defaults to zero.)
-
-The [sort transform](./README.md#plotsortorder-options) now supports sorting on an existing channel, avoiding the need to duplicate the channel definition. For example, to sort dots by ascending radius:
-
-~~~js
-Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: {channel: "r"}})
-~~~
-
-The [dot mark](./README.md#dot) now sorts by descending radius by default to reduce occlusion. The dot mark now supports the *hexagon* symbol type for pointy-topped hexagons. The new [circle](./README.md#plotcircledata-options) and [hexagon](./README.md#plothexagondata-options) marks are convenience shorthand for dot marks with the *circle* and *hexagon* symbol, respectively. The dotX, dotY, textX, and textY marks now support the **interval** option. The rule mark now correctly respects the **dx** and **dy** options. The new [hexgrid decoration mark](./README.md#hexgrid) draws a hexagonal grid; it is intended to be used with the hexbin transform as an alternative to the default horizontal and vertical axis grid.
-
-The **zero** scale option (like the **nice** and **clamp** scale options) may now be specified as a top-level option, applying to all quantitative scales.
-
-Marks can now define a channel hint to set the default range of the *r* scale. This is used by the hexbin transform when producing an *r* output channel.
-
-Improve the performance of internal array operations, including type coercion. Thanks, @yurivish!
-
-Fix a crash when using the [area mark](./README.md#area) shorthand.
-
-[breaking] The return signature of the internal *mark*.initialize method has changed. It now returns a {data, facets, channels} object instead of {index, channels}, and *channels* is now represented as an object with named properties representing channels rather than an iterable of [*name*, *channel*].
-
-## 0.4.3
-
-[Released April 12, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.3)
-
-The new [tree mark and transforms](./README.md#tree) can generate hierarchical node-link diagrams using D3’s [“tidy” tree](https://observablehq.com/@d3/tree) or [cluster (dendrogram)](https://observablehq.com/@d3/cluster) layout. The tree transform uses [d3.stratify](https://observablehq.com/@d3/d3-stratify) to convert tabular data into a hierarchy by parsing a slash-separated **path** for each row.
-
-<img src="./img/tree.png" width="640" alt="a node-link tree diagram representing a software hierarchy">
-
-```js
-Plot.plot({
-  axis: null,
-  inset: 10,
-  insetRight: 120,
-  height: 500,
-  marks: Plot.tree(plotsrc, {markerEnd: "arrow"})
-})
-```
-
-The [line](./README.md#line) and [area](./README.md#area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit [bin transform](./README.md#bin) with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or with missing samples.
-
-<img src="./img/sparse-series.png" width="640" alt="a time-series area chart showing downloads per day with gaps for missing data">
+<img src="./img/crosshair-dot.webp" width="640" alt="A scatterplot of penguins, comparing culmen depth (y) and culmen length (x); a pointer moves around the chart highlighting the x and y values of the closest point.">
 
 ```js
 Plot.plot({
   marks: [
-    Plot.lineY(downloads, {x: "date", y: "downloads", interval: d3.utcDay, curve: "step"}),
-    Plot.areaY(downloads, {x: "date", y: "downloads", interval: d3.utcDay, fill: "#eee", curve: "step"}),
-    Plot.ruleY([0])
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "sex"}),
+    Plot.crosshair(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
   ]
 })
 ```
 
-The default **reduce** is *first*, picking the first value in each interval. If there is no data for a given interval, the value is undefined, resulting in a visible gap in the line or area. By using *sum* instead, you can default to zero when data is missing (and sum values if the data contains more than one observation per time interval).
+The pointer interaction (and by extension the crosshair mark and **tip** mark option) supports “click-to-stick”: if you click on the chart, the currently-focused point will remain locked until you click again. By temporarily locking the pointer, you can select text from the tip for copy and paste.
 
-<img src="./img/dense-series.png" width="640" alt="a time-series area chart showing downloads per day with zeroes for missing data">
+The pointer interaction also emits an [input event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) when the focused point changes, and assigns the generated plot’s value to the corresponding data. This allows event listeners to react to pointing, and supports [Observable views](https://observablehq.com/@observablehq/views).
+
+In addition to these exciting new interaction features, Plot 0.6.7 includes a variety of improvements and bug fixes.
+
+The **sort** mark option now supports *-channel* descending shorthand for [imputed scales domains](https://observablehq.com/plot/features/scales#sort-mark-option) and the [sort transform](https://observablehq.com/plot/transforms/sort). For example, sorting *x* by *-y* orders a bar chart by descending value:
+
+<img src="./img/bar-sort.png" width="640" alt="A bar chart showing English letters by descending frequency, starting with E (12.7%), T (9.1%), down to Z (0.7%).">
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "-y"}}).plot()
+```
+
+This is equivalent to:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", order: "descending"}}).plot()
+```
+
+The **sort** option for imputed channel domains now also takes an **order** option which can be *ascending*, *descending*, a custom comparator, or null. (This more closely matches the **order** option for the sort transform.) The **reverse** option now reverses the order rather than using descending natural order, placing nulls first instead of last.
+
+Previously setting the scale **label** option would disable Plot’s automatic directional arrow in axis labels (↑, →, ↓, or ←); now Plot implicitly adds an arrow to the label you provide, unless the label already has an arrow or you set the **labelArrow** option to *none* or false. You can also force an arrow by setting this option to true, or *up*, *right*, *down*, or *left*. In Plot’s code base, we were able to remove 161 Unicode arrows thanks to this change! 😌
+
+Color scales now default to a *categorical* scale when a categorical color scheme is specified. For example, this no longer throws a “unknown quantitative scheme” error:
+
+<img src="./img/cell-categorical.png" width="640" alt="A row of 10 rectangular swatches showing the Tableau10 color scheme.">
+
+```js
+Plot.cellX(d3.range(10)).plot({color: {scheme: "Tableau10"}})
+```
+
+Time intervals can now be specified as integer multiples of a base time interval, such as *3 months* or *10 years*. Ordinal scales are now smarter about choosing a default time format when the **interval** option is a yearly interval: the four-digit year is (YYYY) shown instead of year, month, and day (YYYY-01-01).
+
+Mark transforms are now passed the plot’s *options* as a third argument; this allows the group, bin, and stack transforms (and other transforms) to check if the scale has a declared **interval** option, and if so, apply that interval before grouping. For example, to count athletes by age at 5-year intervals:
+
+<img src="./img/group-interval.png" width="640" alt="A bar chart showing the frequency of athletes by age, grouped at 5-year intervals; the chart peaks at 1990 with more than 4,500 athletes, following a skewed bell curve.">
+
+```js
+Plot.barY(olympians, Plot.groupX({y: "count"}, {x: "date_of_birth"})).plot({x: {interval: "5 years"}})
+```
+
+The new **imageFilter** mark option applies a [CSS filter effect](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) to the mark, such as a drop shadow or blur. The [rule](https://observablehq.com/plot/marks/rule) and [tick](https://observablehq.com/plot/marks/tick) marks now support **marker** options.
+
+The [normalize](https://observablehq.com/plot/transforms/normalize) and [window](https://observablehq.com/plot/transforms/window) transforms now accept two-argument “index-aware” reducers; the [map](https://observablehq.com/plot/transforms/map) transform now also accepts a two-argument index-aware map method. The mapX transform now defaults **x** to identity if none of **x**, **x1**, and **x2** are specified; the mapY transform does the same for **y**.
+
+When faceting, the plot dimensions now includes **facet**.**width** and **facet**.**height** for the plot’s outer dimensions. The plot context now includes the ownerSVGElement.
+
+Fix a bug where the *opacity* channel didn’t automatically opt-out of the *opacity* scale when all values are in the interval [0,1].
+
+Fix a bug where the frame mark would crash if a channel-eligible option such as **fill** were specified as an invalid CSS color string, such as *bleu*. The frame mark now supports channel-eligible options to be specified as abstract values, in which case the abstract values will be encoded using a scale; for example, setting **fill** to *Biscoe* would apply an *ordinal* *color* scale.
+
+Fix a bug where the position defaults for the rectX, rectY, barX, and barY marks were only applied if the *options* object was strictly undefined; now the position defaults apply if the relevant position options are undefined.
+
+Fix a bug when filtering facets and computing facet anchors with non-primitive facet domains, such as dates. Fix *z*-order across facets: each mark now draws atop all earlier marks across facets. Fix *z*-order of facet axes, which should be drawn below rather than above other marks, as other axes do.
+
+Fix the auto mark to choose the rect mark instead of rectX or rectY when appropriate, and likewise choose correctly between line, lineX, and lineY, and areaX and areaY. Also, the autoSpec method now returns the name of the explicit mark and transform implementations as **markImpl** and **transformImpl** respectively, along with the **markOptions** and **transformOptions** needed to instantiate them.
+
+<!-- The text mark now positions multi-line text using the *dy* attribute instead of the *y* attribute. -->
+
+<!-- The new **render** transform mark option. -->
+
+<!-- Derived channels can now declare **source** and **hint** options which are used by the tip mark. -->
+
+## 0.6.6
+
+[Released April 26, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.6)
+
+**Plot has a new documentation website!**
+
+👉 https://observablehq.com/plot 👈
+
+The [image mark](https://observablehq.com/plot/marks/image) can now generate circular images with the **r** channel, and rotate images with the **rotate** channel.
+
+The [axis mark](https://observablehq.com/plot/marks/axis) now properly respects the **margin** shorthand option, changing the default for **marginTop**, **marginRight**, **marginBottom**, and **marginLeft**. The axis mark now correctly renders the axis label when the **href** option is used, or any other option that may be interpreted as a channel.
+
+Facet scale domains are now imputed correctly when the **sort** mark option is used with a **limit**, or otherwise causing the facet domain to be truncated. Plot no longer generates a spurious warning when faceting and using non-array data, such as an Arquero table. The **interval** scale option, when expressed as a fractional number such as 0.2, now has better floating point precision.
+
+The [Plot.indexOf](https://observablehq.com/plot/features/transforms#indexOf) channel transform, used internally by some mark shorthand, is now exported.
+
+Plot has a few improvements for server-side rendering. Plot now assumes a high pixel density display when headless. The default class name for plots is now deterministically generated (`plot-d6a7b5`) rather than randomly generated; this makes it easier to apply overrides to Plot’s default styles with an external stylesheet. (The default class name will change if Plot’s default styles change in a future release.) The **className** plot option is now inherited by a plot’s legends, if any. The density mark now respects the Plot’s **document** option, and the **caption** option now uses a duck test instead of testing against the global Node.
+
+## 0.6.5
+
+[Released April 1, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.5)
+
+**TypeScript!** The feature you asked for most is here. 🎉 Plot now exports TypeScript type declarations (.d.ts) with precise types and documentation for all of Plot’s public API. This allows code editors such as VS Code to offer better suggestions, complete with inline documentation. For example, if you type “Plot.g”, Plot.geo is now suggested:
+
+<img src="./img/ts-property.png" width="840" alt="A screenshot of VS Code, showing suggested completions for Plot.g, including geo, geoCentroid, graticule, and other methods. A details panel showing documentation for Plot.geo, the top suggestion, is also shown.">
+
+Function calls also have hints, showing their expected arguments.
+
+<img src="./img/ts-function.png" width="840" alt="A screenshot of VS Code, showing documentation for calling Plot.geo, including the data and options arguments.">
+
+Types are especially useful for suggesting well-known names, such as projections, scale types, and color schemes.
+
+<img src="./img/ts-enum.png" width="840" alt="A screenshot of VS Code, showing suggested completions for the color scale scheme option. An open menu lists color schemes, including Accent, Blues, BrBG, BuGn, and more.">
+
+TypeScript also helps for reading code; hover any symbol and immediately see the relevant documentation.
+
+<img src="./img/ts-hover.png" width="840" alt="A screenshot of VS Code, with the mouse hovering the color scale’s unknown option. A panel shows documentation explaining the option.">
+
+Lastly, if you’re using Plot in a TypeScript project, you can now benefit from additional static type checking to find errors.
+
+<img src="./img/ts-error.png" width="840" alt="A screenshot of VS Code, showing a red squiggly underline under a typo in the code, which accidentally calls mark.plots. A panel suggests calling mark.plot instead.">
+
+If you have suggestions or clarifications on how to improve the documentation, please open an issue or discussion, or send us a pull request.
+
+The **strokeOpacity**, **fillOpacity**, and **opacity** channels now opt-out of the *opacity* scale by default when all values are numbers in the range [0, 1]; to opt-in to the *opacity* scale, specify the channel as {value, scale: true}. The raster mark now also supports scale overrides.
+
+The scale **nice** option now accepts named time intervals such as *day* and *week*. The new *quarter* and *half* time intervals represent quarters (three months) and half-years (six months). The quantile scale now supports the **unknown** option. BigInt channels are now supported; values are coerced to numbers. Color legends now support the **opacity** option.
+
+The text mark no longer crashes when a NaN tick value is specified for an axis. The **className** option now allows mixed-case class names. Channel-derived scale domains now correctly handle non-orderable values, duplicate values, and mark transforms. Plot.auto now renders correctly when a non-zero **reduce** is used in conjunction with the *bar* **mark**, and in some cases when the **zero** option is specified. The **zero** option no longer changes the default mark type, and Plot.autoSpec now materializes the **zero** option.
+
+The interfaces for reduce and map implementations have changed. To better disambiguate from arrays, reduce implementations now have a *reduceIndex* method instead of a *reduce* method, and map implementations now have a *mapIndex* method instead of a *map* method. The old interfaces are still supported, but now deprecated.
+
+## 0.6.4
+
+[Released February 28, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.4)
+
+The new top-level [**aspectRatio** option](https://observablehq.com/plot/features/plots#aspectRatio) changes the default plot **height** such that, assuming both *x* and *y* are *linear* scales, a scaled unit distance in *x* divided by a scaled unit distance in *y* is the given aspect ratio. For example, if *x* and *y* represent the same units (say, degrees Fahrenheit), and if the **aspectRatio** is one, then scaled distances in *x* and *y* will be equivalent.
+
+<img src="./img/aspect-ratio.webp" width="650" alt="A scatterplot of daily temperature variation (y) vs. daily low temperature (x).">
 
 ```js
 Plot.plot({
-  marks: [
-    Plot.lineY(downloads, {x: "date", y: "downloads", interval: d3.utcDay, reduce: "sum", curve: "step"}),
-    Plot.areaY(downloads, {x: "date", y: "downloads", interval: d3.utcDay, reduce: "sum", fill: "#eee", curve: "step"}),
-    Plot.ruleY([0])
-  ]
-})
-```
-
-The [stack transform](./README.md#stack) now allows the **offset** option to be specified as a function. For example, this can be used to visualize Likert survey results with a neutral category as a [diverging stacked bar chart](https://observablehq.com/@observablehq/plot-diverging-stacked-bar).
-
-<img src="./img/likert.png" width="640" alt="a diverging bar chart of responses to a Likert survey question">
-
-```js
-function Likert(
-  responses = [
-    ["Strongly Disagree", -1],
-    ["Disagree", -1],
-    ["Neutral", 0],
-    ["Agree", 1],
-    ["Strongly Agree", 1]
-  ]
-) {
-  const map = new Map(responses);
-  return {
-    order: Array.from(map.keys()),
-    offset(facetstacks, X1, X2, Z) {
-      for (const stacks of facetstacks) {
-        for (const stack of stacks) {
-          const k = d3.sum(stack, i => (X2[i] - X1[i]) * (1 - map.get(Z[i]))) / 2;
-          for (const i of stack) {
-            X1[i] -= k;
-            X2[i] -= k;
-          }
-        }
-      }
-    }
-  };
-}
-```
-
-The new [_quantize_ scale type](./README.md#color-options) transforms a continuous domain into discrete, evenly-spaced thresholds. The _threshold_ scale type now supports domains in descending order (in addition to ascending order), such as [20, 10, 5, 0] instead of [0, 5, 10, 20].
-
-<img src="./img/quantize.png" width="640" alt="a scatterplot of Simpsons episodes showing the correlation between number of U.S. viewers and IMDb rating; the decline of the Simspons over time is shown with a quantized color encoding by season">
-
-```js
-Plot.plot({
+  aspectRatio: 1,
   grid: true,
-  color: {
-    type: "quantize",
-    legend: true
-  },
+  x: {label: "Daily low temperature (°F) →", tickSpacing: 40},
+  y: {label: "↑ Daily temperature variation (Δ°F)", tickSpacing: 40},
+  color: {scheme: "rainbow", nice: true, legend: true, tickFormat: "%b"},
   marks: [
     Plot.ruleY([0]),
-    Plot.dot(simpsons, {x: "imdb_rating", y: "us_viewers_in_millions", fill: "season"})
-  ]
-})
-```
-
-The [bin transform](./README.md#bin) now coerces the input channel (the quantity being binned) to numbers as necessary. In addition, the bin transform now correctly handles typed array input channels representing temporal data. The [rect mark](./README.md#rect) now promotes the _x_ channel to _x1_ and _x2_ if the latter two are not specified, and likewise the _y_ channel to _y1_ and _y2_.
-
-Fix a crash when **text** or **title** channels contain heterogenous types; each value is now independently formatted in a type-appropriate default formatter. Fix a rendering bug with one-dimensional rects whose opposite dimension is a band scale. Fix a rendering bug with swoopy arrows. Improve error messages to give more context.
-
-New helpers make it easier to implement custom transforms. [Plot.column](./README.md#plotcolumnsource) constructs lazily-evaluated columns for derived channels, and [Plot.transform](./README.md#plottransformoptions-transform) composes a [custom data transform](./README.md#custom-transforms) with any of Plot’s built-in [basic transforms](./README.md#transforms).
-
-## 0.4.2
-
-[Released February 26, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.2)
-
-The new [box mark](./README.md#box) generates a horizontal or vertical boxplot suitable for visualizing one-dimensional distributions. It is a convenience mark that composites a rule, bar, tick, and dot.
-
-<img src="./img/box.png" width="640" alt="a boxplot of Michelson’s 1879 measurements of the speed of light">
-
-```js
-Plot.boxX(morley, {x: "Speed", y: "Expt"}).plot({x: {grid: true, inset: 6}})
-```
-
-[Plot’s shorthand syntax](https://observablehq.com/@observablehq/plot-shorthand) has been expanded. The [bar mark](./README.md#bar) now supports one-dimensional shorthand: if no *options* are specified, then Plot.barX and Plot.barY can be used to visualize an array of numbers. This shorthand also now applies to the [rect mark](./README.md#rect) and the [vector mark](./README.md#vector). The [area mark](./README.md#area) now supports two-dimensional shorthand: if no *options* are specified, then Plot.area can be used to visualize an array of *xy*-tuples, similar to Plot.line.
-
-<img src="./img/bar-shorthand.png" width="640" alt="a bar chart of twenty random values">
-
-```js
-Plot.barY(d3.range(20).map(Math.random)).plot()
-```
-
-The mark [sort options](./README.md#sort-options) now support implicit “width” and “height” channels, defined as |*x2* - *x1*| and |*y2* - *y1*| respectively. These channels are useful for sorting rects and bars by length. The *reverse* option defaults to true when sorting by these channels. When sorting by *y* and no *y* channel is available, sorting will now fallback to *y2* if available; the same fallback logic applies to *x* and *x2*. (This behavior was previously supported on marks that support implicit stacking but now applies universally to all marks.)
-
-<img src="./img/sort-length.png" width="640" alt="a bar chart of energy production by source from 1949 to present, with categorical colors assigned in order of the tallest bar">
-
-```js
-Plot.rectY(energy, {x: "Year", interval: 1, y: "Value", fill: "Description", sort: {color: "height"}})
-```
-
-The [bin transform](./README.md#bin) now supports *x* and *y* reducers which represent the midpoint of the bin: (*x1* + *x2*) / 2 and (*y1* + *y2*) / 2 respectively. The [bin](./README.md#bin), [group](./README.md#group), and [window](./README.md#window) transforms now support percentile reducers of the form *pXX* where *XX* is a number in [00, 99]; for example *p25* represents the first quartile and *p75* represents the third quartile.
-
-The error message when attempting to create a standalone legend without a valid scale definition has been improved. The high cardinality warning for the implicit *z* channel has been relaxed; it is now only triggered if more than half of the values are distinct. When the axis *ticks* option is specified as null, no ticks are generated. When the axis *tickFormat* option is specified as null, no tick labels are generated.
-
-## 0.4.1
-
-[Released February 17, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.1)
-
-The [area](./README.md#area) and [line marks](./README.md#line) now support varying fill, stroke, title, and other channels within series. For example, this chart of unemployment rates by metro area highlights increases in red and decreases in blue using a window transform with the *difference* reducer.
-
-<img src="./img/line-slope.png" width="640" alt="a line chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
-
-```js
-Plot.line(bls, Plot.map({stroke: Plot.window({k: 2, reduce: "difference"})}, {x: "date", y: "unemployment", z: "division", stroke: "unemployment"}))
-```
-
-The new *clip* mark option enables clipping to the plot frame. For example, this can be used to clip overlapping areas and produce a horizon chart of hourly traffic patterns.
-
-<img src="./img/horizon.png" width="640" alt="a horizon chart of traffic volume over time">
-
-```js
-d3.ticks(0, max, bands).map(t => Plot.areaY(traffic, {x: "date", y: d => d.value - t, fill: t, clip: true}))
-```
-
-Plot can now generate helpful warnings for common mistakes. Warnings ⚠️ are indicated in the top-right corner of the plot; open your browser’s developer console to read the warnings. For example, if you use data with date strings resulting in an *ordinal* scale rather than the desired *utc* scale, Plot will advise you to parse strings to dates.
-
-<img src="./img/warning.png" width="640" alt="a line chart with an unreadable ordinal x-axis due to incorrect data typing">
-
-```js
-Plot.line(aapl, {x: "Date", y: "Close"}) // 🌶 Oops, Date is a string!
-```
-
-> Warning: some data associated with the x scale are strings that appear to be dates (e.g., YYYY-MM-DD). If these strings represent dates, you should parse them to Date objects. Dates are typically associated with a "utc" or "time" scale rather than a "point" scale. If you are using a bar mark, you probably want a rect mark with the interval option instead; if you are using a group transform, you probably want a bin transform instead. If you want to treat this data as ordinal, you can suppress this warning by setting the type of the x scale to "point".
-
-We will add [more warnings](https://github.com/observablehq/plot/issues/755) in the future. If Plot did something you didn’t expect, please [let us know](https://github.com/observablehq/plot/discussions); perhaps it will inspire a new warning that will help other users.
-
-The [text mark](./README.md#text) now supports automatic wrapping for easier annotation. The new **lineWidth** option specifies the desired length of a line in ems. The line breaking, wrapping, and text metrics implementations are all rudimentary, but they should be acceptable for text that is mostly ASCII. (For more control, you can hard-wrap text manually.) The **monospace** option now provides convenient defaults for monospaced text.
-
-<img src="./img/wrap.png" width="640" alt="a snippet of Moby Dick demonstrating line wrapping">
-
-```js
-Plot.text([mobydick], {dx: 6, dy: 6, fontSize: 12, lineWidth: 80, lineHeight: 1.2, frameAnchor: "top-left", monospace: true})
-```
-
-The line and link marks now support [marker options](./README.md#markers) for drawing a shape such as a dot or arrowhead on each vertex. Circle and arrow markers are provided, or you can implement a custom marker function that returns an SVG marker element. Markers automatically inherit the stroke color of the associated mark.
-
-<img src="./img/marker.png" width="640" alt="a line chart with circle markers overlaid on each data point">
-
-```js
-Plot.lineY(crimea, {x: "date", y: "deaths", stroke: "cause", marker: "circle"})
-```
-
-The *fill* and *stroke* mark options can now be expressed as patterns or gradients using funciri color definitions, *e.g.* “url(#pattern)”. Colors can now also be expressed as CSS variables, *e.g.*, “var(--blue)”. All marks now support the *strokeDashoffset* option (for use with *strokeDasharray*).
-
-<img src="./img/gradient.png" width="640" alt="a bar chart with bars that fade from blue to purple">
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "url(#gradient)"})
-```
-
-The bin transform now supports the *interval* option, allowing numeric intervals such as integer binning with a nice default domain that aligns with interval boundaries. (The bin transform already supported time intervals as the *thresholds* option; time intervals can now also be specified as the *interval* option.) For example, if you want to bin by hour of the day, use an *interval* of 1:
-
-<img src="./img/bin-interval.png" width="640" alt="a histogram of average traffic per hour of day">
-
-```js
-Plot.rectY(traffic, Plot.binX({y: "mean"}, {x: d => d.date.getUTCHours(), interval: 1, y: "value"}))
-```
-
-Plot now supports ARIA attributes for improved accessibility: aria-label, aria-description, aria-hidden. The top-level **ariaLabel** and **ariaDescription** options apply to the root SVG element. The new **ariaLabel** and **ariaDescription** scale options apply to axes; the label defaults to *e.g.* “y-axis” and the description defaults to the scale’s label (*e.g.*, “↑ temperature”). Marks define a group-level aria-label (*e.g.*, “dot”). There is also an optional **ariaLabel** channel for labeling data (*e.g.*, “E 12.7%”), and a group-level **ariaDescription** option for a human-readable description. The **ariaHidden** mark option allows the hiding of decorative elements from the accessibility tree.
-
-The new **paintOrder** mark option controls the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order). The text mark’s paint order now defaults to *stroke*, with a stroke width of 3px and a stroke linejoin of *round*, making it easier to create a halo for separating labels from a busy background, improving legibility.
-
-Fix a crash in default tuple accessors for *x* and *y* when data is undefined. Fix a bug where “none” with surrounding whitespace or capital letters would not be recognized as a valid color. When a channel is specified as a boolean value (*e.g.*, `fill: true`), it is now considered a constant value rather than undefined. Fix a bug where an identity color legend would be rendered as the text “undefined” instead of showing nothing. If scale options are declared, but the scale has no defined type, domain, or data, a scale is no longer constructed rather than a default linear scale. The vector mark now respects the *frameAnchor* option. The default boolean color schemes have been adjusted slightly so that the false value is slightly darker, improving contrast against a white background. The returned scale object now exposes *bandwidth* and *step* values for *band* and *point* scales.
-
-## 0.4.0
-
-[Released January 20, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.0)
-
-The new [arrow mark](./README.md#arrow) draws arrows between pairs of points. It is similar to the [link mark](./README.md#link), except it is suitable for directed edges (say for representing change over time) and supports a configurable arrowhead. It also supports “swoopy” arrows with the *bend* option, and insets for arrows to shorten the arrow’s start or end.
-
-[<img src="./img/arrow.png" width="660" alt="a scatterplot with arrows">](https://observablehq.com/@observablehq/plot-arrow)
-
-```js
-Plot.arrow(data, {
-  x1: "POP_1980",
-  y1: "R90_10_1980",
-  x2: "POP_2015",
-  y2: "R90_10_2015",
-  bend: true,
-  stroke: d => d.R90_10_2015 - d.R90_10_1980
-})
-```
-
-The new [vector mark](./README.md#vector) similarly draws arrows at the given position (*x* and *y*) with the given magnitude (*length*) and direction (*rotate*). It is intended to visualize vector fields, such as a map of wind speed and direction.
-
-[<img src="./img/vector.png" width="660" alt="a vector field">](https://observablehq.com/@observablehq/plot-vector)
-
-```js
-Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
-  length: ([x, y]) => (x + y) * 2 + 2,
-  rotate: ([x, y]) => (Math.sin(x) - Math.sin(y)) * 60
-})
-```
-
-The [dot mark](./README.md#dot) now supports a *symbol* option to control the displayed shape, which defaults to *circle*. The *symbol* channel (and associated *symbol* scale) can also be used as an categorical encoding. The default symbol set is based on whether symbols are stroked or filled, improving differentiability and giving uniform weight. Plot supports all of D3’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke, based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746)); you can also implement a [custom symbol type](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types).
-
-[<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/@observablehq/plot-dot)
-
-```js
-Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})
-```
-
-The [text mark](./README.md#text) now supports multiline text! When a text value contains `\r`, `\r\n`, or `\n`, it will be split into multiple lines using tspan elements. The new *lineAnchor* and *lineHeight* options control how the lines are positioned relative to the given *xy* position. The text, dot, and image marks now also support a *frameAnchor* option for positioning relative to the frame rather than according to data. This is particularly useful for annotations.
-
-[<img src="./img/poem.png" width="660" alt="This Is Just To Say, by William Carlos Williams">](https://observablehq.com/@observablehq/plot-text)
-
-```js
-Plot.plot({
-  height: 200,
-  marks: [
-    Plot.frame(),
-    Plot.text([`This Is Just To Say\nWilliam Carlos Williams, …`], {frameAnchor: "middle"})
-  ]
-})
-```
-
-When a text mark’s *text* channel, or the *title* channel on any mark, is specified as numbers or dates, the values are now automatically formatted (in the U.S. English locale) to improve readability. For the *text* channel, the default *fontVariant* option additionally changes to tabular-nums. The text mark now also allows *fontSize* to be specified as a CSS length (*e.g.*, “12pt”), keyword (*e.g.*, “x-large”), or percentage.
-
-All marks now support the new standard *href* channel and *target* option, turning the mark into a clickable link.
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", href: d => `https://en.wikipedia.org/wiki/${d.letter}`})
-```
-
-The [bin](./README.md#bin) and [group](./README.md#group) transforms now propagate the *title* and *href* channels, if present, by default. The default reducer for the *title* channel automatically selects the top five distinct title values by count, making it easier to inspect the contents of a given bin or group.
-
-[<img src="./img/bin-title.png" width="656" alt="a histogram of penguins by species">](https://observablehq.com/@observablehq/plot-bin)
-
-```js
-Plot.rectY(data, Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species", title: d => `${d.species} ${d.sex}`}))
-```
-
-The bin transform now supports shorthand reducers for the bin extent: *x1*, *x2*, *y1*, and *y2*. The window transform now supports the *first* and *last* reducers to select the first or last element of the window, respectively.
-
-The new generalized [select transform](./README.md#select) can now call a custom selector function, or the shorthand *min* and *max*, to select the points to display. The selector function is passed two arguments: the index of the current group (*e.g.*, [0, 1, 2, …]) and the given channel’s values. For example, to select the dot with the greatest *fill* value:
-
-```js
-Plot.dotX(data, Plot.select({fill: "max"}, {x: "letter", fill: "frequency", stroke: "black"})
-```
-
-The *color* scale now defaults to an *identity* scale if all associated defined values are valid CSS colors, rather than defaulting to the tableau10 categorical color scheme. The new *symbol* scale similarly defaults to *identity* if all associated defined values are valid symbol names (or symbol type objects).
-
-[<img src="./img/identity-color.png" width="640" alt="a chart with red and black bars">](https://observablehq.com/@observablehq/plot-bar)
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", fill: d => /[AEIOU]/.test(d.letter) ? "red" : "black"})
-```
-
-The *color* scale now has a special default range for boolean data, encoding false as light gray and true as dark gray. If you’d prefer more color, specify a sequential scheme such as *reds* or *blues*. (You can opt-out of the special boolean range by setting the scale type to *categorical* or by specifying an explicit *range*.)
-
-[<img src="./img/boolean-color.png" width="640" alt="a chart with grey and black bars">](https://observablehq.com/@observablehq/plot-bar)
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", fill: d => /[AEIOU]/.test(d.letter)})
-```
-
-The new [Plot.scale](./README.md#scale-options) method allows you to construct a standalone scale for use independent of any chart, or across charts. The returned object has the same form as *plot*.scale(*name*), allowing you to inspect the scale options and invoke the scale programmatically with *scale*.apply (and *scale*.invert, where applicable).
-
-```js
-const scale = Plot.scale({color: {type: "linear"}});
-console.log(scale.domain); // [0, 1]
-console.log(scale.apply(0.5)); // "rgb(149, 251, 81)"
-```
-
-This release includes various minor new features and bug fixes. The new top-level *clamp* option applies to all scales. When margins or insets would result in a scale’s range being inverted, Plot now collapses the range instead of producing confusing output. When the *buylrd* color scheme is applied to a (discrete) ordinal scale, it now has the expected colors (not *rdgy*). Plot now ignores non-finite values when inferring the default domain for quantitative scales. The *swatches* legend now wraps correctly in narrow windows. When the *tickFormat* option is null, ticks will now be unlabeled (rather than using the default format). Plot no longer crashes when you try to display a legend on an identity color scale.
-
-To improve compatibility with popular bundlers such as webpack and Rollup, Plot no longer uses circular ES module imports and thereby avoids the dreaded temporal dead zone. 😱 Plot now uses [vite](https://vitejs.dev) for local development instead of [Snowpack](https://snowpack.dev).
-
-[breaking] For consistency with other marks, the text mark now requires the *dx* and *dy* to be specified as numbers in pixels rather than typographic units such as ems; in addition, the *dx* and *dy* translation now happens prior to rotation (if any). To affect the typographic layout, use the new *lineAnchor* and *lineHeight* options.
-
-[breaking] Plot now requires [D3 ^7.3.0](https://github.com/d3/d3/releases/tag/v7.3.0).
-
-## 0.3.2
-
-[Released December 10, 2021.](https://github.com/observablehq/plot/releases/tag/v0.3.2)
-
-The font-variant now only defaults to *tabular-nums* for axis and legend tick labels on non-ordinal scales; on ordinal scales it defaults to *normal*.
-
-If a scale has an implicit label (such as inferred from a channel), the legend will now inherit the label.
-
-## 0.3.1
-
-[Released December 10, 2021.](https://github.com/observablehq/plot/releases/tag/v0.3.1)
-
-The normalize transform now also supports the *min*, *max*, and *deviation* basis methods.
-
-The generated figure element now resets the max-width style to initial.
-
-Update D3 to 7.2.1.
-
-## 0.3.0
-
-[Released December 4, 2021.](https://github.com/observablehq/plot/releases/tag/v0.3.0)
-
-Plot can now produce [legends for *color* and *opacity* scales](./README.md#legends)!
-
-[<img src="./img/legend.png" width="660" alt="a scatterplot with a color legend">](https://observablehq.com/@observablehq/plot-legends)
-
-```js
-Plot.plot({
-  color: {
-    legend: true
-  },
-  marks: [
-    Plot.dot(athletes, {x: "weight", y: "height", stroke: "sex"})
-  ]
-})
-```
-
-The top-level plot *scale*.**legend** option generates an inline legend for the given *scale* (*color* or *opacity*). Alternatively, the new *plot*.legend(*name*) function returns a legend for the scale with the given *name*. The new standalone Plot.**legend**(*options*) function also allows you to create a legend independently of a chart. Two forms of color legend are provided: *swatches* for ordinal or discrete scales (*e.g.*, threshold color scales), and *ramp* for continuous scales.
-
-The new [Plot.image](./README.md#image) mark centers an image on the given *xy* position.
-
-[<img src="./img/image.png" width="640" alt="a scatterplot of U.S. presidents">](https://observablehq.com/@observablehq/plot-image)
-
-```js
-Plot.plot({
-  x: {
-    label: "Date of first inauguration →"
-  },
-  y: {
-    grid: true,
-    label: `↑ Net favorability (%)`,
-    percent: true,
-    tickFormat: "+f"
-  },
-  marks: [
-    Plot.ruleY([0]),
-    Plot.image(favorability, {x: "First Inauguration Date", y: "Net favorability", src: "Portrait URL"})
-  ]
-})
-```
-
-All marks now support a new *opacity* option, either as a constant or a channel bound to the *opacity* scale, which sets the mark’s object opacity. The *strokeOpacity* or *fillOpacity* options should be preferred for performance, but the *opacity* option is needed for some cases (such as images).
-
-All quantitative scales now have a default domain (typically [0, 1]). Ordinal scales now allow a *range* option to be specified in conjunction with a continuous *scheme*; in this case, the *range* should be a subset of the unit interval [0, 1], and the scheme’s interpolator will be truncated accordingly. The *plot*.**scale** method now correctly represents the symmetric transform for diverging scales. The scale definition returned by *plot*.**scale**(*name*) now includes a *scale*.apply function, allowing you to apply the scale’s encoding directly on the given data value. When applicable, a *scale*.invert function is also returned, which can be useful for interaction.
-
-Plot’s stylesheet is now inlined in the generated SVG element rather than injected into the document head. To avoid namespace collisions, we use a randomly-generated class name; use the top-level **className** option to specify a custom class name. The default style now uses font-variant: tabular-nums for a better alignment of numbers.
-
-A new top-level *margin* option allows to set all of marginLeft, marginRight, marginTop, and marginBottom at once. This shorthand notation is also available as a facet option.
-
-Update D3 to 7.2.0.
-
-## 0.2.9
-
-[Released October 12, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.9)
-
-Update D3 to 7.1.1.
-
-## 0.2.8
-
-[Released October 1, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.8)
-
-The map transform now supports *rank* and *quantile* map methods. These compute the 0-based ordinal rank or the *p*-quantile of the data, respectively.
-
-The bin transform now allows bin options (*domain*, *cumulative*, and *thresholds*) to be specified on the *outputs* object; this avoids ambiguity when composing multiple bin transforms. To facilitate transform composition, the bin and group transforms now consume the *x1* and *x2* channels when *x* is an output, and the *y1* and *y2* channels when *y* is an output. Also, the bin, group, and stack transforms now consume their respective transform options rather than propagating them in the returned options. The bin and group transform no longer use the channel name as the default label for the *count* reducer. The bin transform now automatically coerces values to dates when the *thresholds* are specified as a time interval or an array of dates.
-
-The new shuffle transform randomizes the order of data. It takes an optional *seed* for deterministic order.
-
-Position scales (*x*, *y*, *fx*, and *fy*) now support asymmetric insets via the *scale*.**insetLeft**, *scale*.**insetRight**, *scale*.**insetTop**, and *scale*.**insetBottom** options. Threshold and quantile scales can now be used as position scales without requiring an explicit range.
-
-The radius scale (*r*) now limits the maximum default radius to 30 pixels.
-
-Text marks now default strokeLinejoin to “round” to reduce the effect of miter joins.
-
-## 0.2.7
-
-[Released September 27, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.7)
-
-Implement symmetric diverging scales by extending the domain instead of slicing the interpolator.
-
-## 0.2.6
-
-[Released September 26, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.6)
-
-Fix the symmetric transform for reversed diverging scales.
-
-## 0.2.5
-
-[Released September 26, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.5)
-
-The new *plot*.**scale**(*name*) method exposes scales used by a particular plot. This method on returned plots takes the *name* of a scale and returns an object specifying the options that fully describe the scale’s behavior. The returned object represents the actual options in-use, including *scale*.domain, *scale*.range, *scale*.interpolate, *etc.* The *scale*.label, if any, is also returned; however, note that other axis options are not. The scale object is undefined if the associated plot has no scale with the given *name*, and throws an error if the *name* is invalid (*i.e.*, not one of the known scale names: *x*, *y*, *fx*, *fy*, *r*, *color*, or *opacity*). For example, given a plot:
-
-```js
-myplot = Plot.dot(gistemp, {x: "Date", y: "Anomaly", stroke: "Anomaly"}).plot()
-```
-
-You can retrieve the color scale like so:
-
-```js
-mycolor = myplot.scale("color")
-```
-
-The resulting object is:
-
-```js
-({
-  type: "linear",
-  domain: [-0.78, 1.35],
-  range: [0, 1],
-  interpolate: d3.interpolateTurbo,
-  clamp: false,
-  label: "Anomaly"
-})
-```
-
-Inspecting materialized scales is useful for debugging and for generating color legends. (For now, we recommend using the [D3 color legend](https://observablehq.com/@d3/color-legend); in the near future Plot will have built-in support for color legends.) Scales can also now be shared between plots, ensuring consistent encoding. To reuse a scale, pass the scale from one plot into the specification for another:
-
-```js
-Plot.plot({…, color: myplot.scale("color")})
-```
-
-The new *scale*.**unknown** option provides more control over how unexpected, undefined, or invalid values are displayed. For quantitative and temporal scales, the unknown value is returned whenever the input value is undefined, null, or NaN. For ordinal or categorical scales, the unknown value is returned for any input value outside the domain. For band or point scales, the unknown option has no effect; it is always equal to undefined. If the unknown option is set to undefined (the default), or null or NaN, then affected input values will be considered undefined and filtered from the output. Hence, by setting *scale*.unknown to a defined value, you can ensure that these values are plotted.
-
-Plot now supports piecewise (a.k.a. “polylinear”) scales. If a single-argument *interpolate* function is specified (such as d3.interpolateWarm, or equivalently if you specify a color *scheme* such as *warm*), and the *range* is undefined, and the *domain* has more than two elements, the range [0, 1] will be partitioned into *domain*.length - 1 equal-size segments. The default scale range for *x* and *y* now supports piecewise scales, as does the default axis tick count. Additionally, ordinal color schemes now return the correct number of colors when the natural scheme size is not equal to the desired scheme size; and the *rainbow* and *sinebow* cyclical color schemes, when used with an ordinal color scale, no longer duplicate the first color as the last color.
-
-Plot now automatically detects “reversed” quantitative or temporal scales with descending domains or ranges. Reversed scales are detected by comparing the natural order of the domain and range. This improves the default axis label arrow orientation and the behavior of the *zero* option.
-
-The *interval* option for rect and bar now works with the default identity accessor. Also, the *interval* option is now ignored if the necessary value channel (*e.g.*, *x*) is not defined, rather than throwing an error. For example, you no longer have to define *x* as the identity function here:
-
-```js
-Plot.barX(d3.utcDays(start, end), {interval: d3.utcDay, fill: d => d})
-```
-
-Plot’s default rounding behavior for band and point scales is now slightly smarter. Previously, automatic rounding could introduce substantial empty space on tall or wide plots; now Plot disables default rounding if it would introduce more than 30px of empty space.
-
-The *percent* and *transform* options are now supported on all scales, including diverging scales.
-
-The *center* and *wiggle* stack offsets now center across facets, facilitating comparison.
-
-Internal string coercion now uses *object*.toString instead of *object*.valueOf.
-
-## 0.2.4
-
-[Released September 24, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.4)
-
-Update [Observable Hypertext Literal](https://github.com/observablehq/htl) to [0.3.1](https://github.com/observablehq/htl/releases/tag/v0.3.1).
-
-## 0.2.3
-
-[Released September 24, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.3)
-
-Rect, bar, and rule marks now accept an *interval* option that allows you to derive *x1* and *x2* from *x*, or *y1* and *y2* from *y*, where appropriate. For example, using d3.utcDay as the interval creates rects that span from UTC midnight to UTC midnight, bounding the associated time instant. The interval is typically specifed as a [D3 time interval](https://github.com/d3/d3-time/blob/main/README.md), but may be any compatible object which implements *interval*.floor and *interval*.offset: *interval*.floor(*x*) returns the start of the interval *x1* for the given *x*, while *interval*.offset(*x*) returns the end of the interval *x2* for the given interval start *x*. If the interval is specified as a number *n*, *x1* and *x2* are the two consecutive multiples of *n* that bracket *x*.
-
-The new Plot.normalize and Plot.window methods return map methods for use in conjunction with Plot.map. This allows greater flexibility; for example, you can apply separate window methods to *y1* and *y2* to produce Bollinger bands.
-
-Update [D3](https://github.com/d3/d3) to [7.0.4](https://github.com/d3/d3/releases/tag/v7.0.4).
-
-## 0.2.2
-
-[Released September 19, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.2)
-
-Fix a crash with the scale.tickRotate option when there are no ticks to rotate.
-
-## 0.2.1
-
-[Released September 19, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.1)
-
-The constant *dx* and *dy* options have been extended to all marks, allowing to shift the mark by *dx* pixels horizontally and *dy* pixels vertically. Since only text elements accept the dx and dy properties, in all the other marks these are rendered as a transform (2D transformation) property of the mark’s parent, possibly including a 0.5px offset on low-density screens.
-
-Quantitative scales, as well as identity position scales, now coerce channel values to numbers; both null and undefined are coerced to NaN. Similarly, time scales coerce channel values to dates; numbers are assumed to be milliseconds since UNIX epoch, while strings are assumed to be in [ISO 8601 format](https://github.com/mbostock/isoformat/blob/main/README.md#parsedate-fallback).
-
-Bin transform reducers now receive the extent of the current bin as an argument after the data. For example, it allows to create meaningful titles:
-
-```js
-Plot.rect(
-  athletes,
-  Plot.bin(
-    {
-      fill: "count",
-      title: (bin, {x1, x2, y1, y2}) => `${bin.length} athletes weighing between ${x1} and ${x2} and with a height between ${y1} and ${y2}`
-    },
-    {
-      x: "weight",
-      y: "height",
-      inset: 0
-    }
-  )
-).plot()
-```
-
-The *x1* and *x2* outputs now default to undefined if *x* is explicitly defined; similary, the *y1* and *y2* outputs now default to undefined if *y* is explicitly defined.
-
-## 0.2.0
-
-[Released August 20, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.0)
-
-[breaking] Plot is now published as an ES module and requires Node 12 or higher. For more, please read [Sindre Sorhus’s FAQ](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
-
-[breaking] Plot now depends on [D3 7.0](https://github.com/d3/d3/releases/tag/v7.0.0) or higher.
-
-### Marks
-
-The [*marks* option](./README.md#mark-options) now accepts render functions, null, and undefined as shorthand mark definitions. Nullish marks produce no output and are useful for conditional display (equivalent to the empty array). Render functions are invoked when plotting and may return an SVG element to insert into the plot, such as a legend or annotation.
-
-<img width="636" alt="a line chart of Apple, Inc.’s daily closing stock price from 2013 to 2018, with a red ‘hello world’ label" src="https://user-images.githubusercontent.com/230541/130157120-8cbf8052-aa31-44ed-a650-d081c4a21d69.png">
-
-```js
-Plot.marks(
-  Plot.line(aapl, {x: "Date", y: "Close"}),
-  () => svg`<text x=20% y=20% fill=red>Hello, world!</text>`
-).plot()
-```
-
-The [Plot.marks(...*marks*)](./README.md#plotmarksmarks) function provides [*mark*.plot](./README.md#plotplotoptions) shorthand for array marks. This is useful for composite marks, such as [boxes](https://github.com/observablehq/plot/blob/8fef4fa52a4cca4135f5f964e3c328ef8f18f672/test/plots/morley-boxplot.js#L18-L23).
-
-All marks now support the [shapeRendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering)  option. (This is a constant; it may not vary across marks.) All marks now allow strokeWidth to be specified as a channel. (The strokeWidth channel is unscaled; values are specified in literal pixels.) Text marks now also allow stroke and strokeOpacity to be specified as channels. If its fill is not *none*, a line’s default stroke is now *none* rather than *currentColor*, making it consistent with dot and other marks. When a fill or fillOpacity channel is used with a link, or when a stroke or strokeOpacity channel is used with a rule, undefined values will now be filtered. The text mark now uses attributes instead of styles for font rendering properties, improving compatibility with Firefox.
-
-<img width="640" alt="a series of dots with an increasing stroke width" src="https://user-images.githubusercontent.com/7001/130228992-eb2452f1-8822-4239-87b7-07f79e5a2ccb.png">
-
-```js
-Plot.dotX(d3.range(41), {strokeWidth: d => (1 + d) / 15}).plot()
-```
-
-Marks that represent continuous intervals (rect, bar, and rule) now handle collapsed domains during rendering. A domain is considered collapsed when it contains only a single value. A collapsed domain can occur when all input values to the bin transform are equal (*e.g.*, [1, 1, 1, …] produces a domain of [1, 1]). Previously a collapsed domain would result in an invisible zero-width mark; now the mark spans the full extent of the chart.
-
-<img width="640" alt="a histogram with a collapsed domain showing a single bar that represents the value 1 with frequency 3" src="https://user-images.githubusercontent.com/230541/130156841-d888e397-0040-4aef-bbb5-9ff19e1e3389.png">
-
-```js
-Plot.rectY([1, 1, 1], Plot.binX()).plot()
-```
-
-The link mark now supports *x* or *y* shorthand for one-dimensional links, equivalent to rule. The rect mark now supports one-dimensional (and zero-dimensional) rects: the *x1*, *x2*, *y1* and *y2* channels are now optional.
-
-### Scales
-
-The new [*sort* options](./README.md#sort-options) allow convenient control over the order of ordinal domains, including the *fx* and *fy* facet domains. The aggregation method can be controlled via the *reduce* option, which defaults to *max*. The *reverse* and *limit* options are also supported. For example, a bar chart can be sorted by descending value like so:
-
-<img width="640" alt="a bar chart showing the frequency of letters in the English language in order of descending frequency, starting with E at 13% and ending with Z at almost 0%" src="https://user-images.githubusercontent.com/230541/130157414-be9cbc86-8a0c-40e7-8cfb-999881482691.png">
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
-```
-
-Color scales now support the *threshold* scale type, allowing you to specify a set of *n* - 1 discrete (typically numeric) thresholds to produce *n* discrete colors. The new *quantile* color scale type will automatically compute *n* - 1 thresholds for *n* quantiles based on the data.
-
-<img width="640" alt="a histogram showing the forecast probabilities of Democratic electoral votes in the 2016 U.S. presidential election, with outcomes of 270 votes highlighted in blue" src="https://user-images.githubusercontent.com/230541/130157825-0624447b-f39d-4a2a-9363-e18129d6f20e.png">
-
-```js
-Plot.plot({
-  y: {
-    percent: true
-  },
-  color: {
-    type: "threshold",
-    domain: [270]
-  },
-  marks: [
-    Plot.ruleX(data, {x: "dem_electoral_votes", y: "probability", stroke: "dem_electoral_votes", strokeWidth: 1.5}),
-    Plot.ruleX([270])
-  ]
-})
-```
-
-Diverging scales now support a *symmetric* option, which defaults to true, to ensure that differences above and below the pivot are equally apparent. For example, the choropleth below gives equal visual weight to West Virginia’s population decline of −3% and Alaska’s gain of +3%. If *symmetric* is false, as before, then −3% is mapped to the darkest purple. (Diverging scales should always use balanced interpolators where the negative and positive extremes have equal weight; this is true of Plot’s built-in diverging color schemes from ColorBrewer.)
-
-<img width="641" alt="a choropleth with symmetric diverging scale, showing the change in population of the fifty U.S. states between 2010 and 2019; the change in negative values is commensurate with the change in positive values" src="https://user-images.githubusercontent.com/230541/129834634-2617a895-5040-4135-b015-0aa4b812c262.png">
-
-Diverging color scales now also support transformations via four new scale types: *diverging-sqrt*, *diverging-pow*, *diverging-log*, and *diverging-symlog*, corresponding to the *sqrt*, *pow*, *log*, and *symlog* quantitative scale types respectively. (The above choropleth uses a *diverging-log* scale to show relative change.)
-
-The new axis *line* option, which defaults to false, can be used to show a continuous line along the *x* or *y* axis to denote the extent. This is most useful when the opposite axis is ordinal and thus a rule cannot annotate a meaningful value such as zero; if the opposite axis is quantitative, a rule is generally preferred. If set at the top level, applies to both *x* and *y*.
-
-<img width="640" alt="an empty plot showing a vertical line along the quantitative y-axis; the opposite x-axis is categorical" src="https://user-images.githubusercontent.com/230541/130247773-d868d261-9744-4d57-855a-61a2a870655b.png">
-
-```js
-Plot.plot({
-  grid: true,
-  inset: 6,
-  x: {
-    domain: "ABCDEFGH"
-  },
-  y: {
-    line: true,
-    domain: [0, 1]
-  }
-})
-```
-
-The *axis* and *label* options (along with *grid*) can now be set as a top-level option, or a facet-level option, and inherited by *x* and *y* or *fx* and *fy*. This is most often useful for turning off all default axes or labels by setting the respective option to null.
-
-### Facets
-
-The mark *facet* option can be used to control whether or not a mark is faceted. The supported values are *auto*, *include*, *exclude*, and null. True is an alias for *include* and false is an alias for null. The default is *auto*, which facets a mark if and only if its data is strictly equal to the facet data. The *include* facet mode allows a mark with different data to be faceted; however, it requires that the mark’s data be parallel with the facet data (*i.e.*, have the same length and order). The *exclude* facet mode shows all data that are not present in the current facet; this can provide shared context across facets without overdrawing. The null mode disables faceting, replicating the mark across all facets.
-
-<img width="640" alt="a faceted scatterplot showing the correlation between culmen depth and length across sex and species; each facet shows the current sex and species with black dots and all other penguins as pale gray dots" src="https://user-images.githubusercontent.com/7001/130275538-ec33aaa4-73e2-4fb3-862a-8fdd47a788d6.png">
-
-```js
-Plot.plot({
-  facet: {
-    data: penguins,
-    x: "sex",
-    y: "species",
-    marginRight: 80
-  },
-  marks: [
-    Plot.frame(),
-    Plot.dot(penguins, {
-      facet: "exclude",
-      x: "culmen_depth_mm",
-      y: "culmen_length_mm",
-      r: 2,
-      fill: "#ddd"
-    }),
-    Plot.dot(penguins, {
-      x: "culmen_depth_mm",
-      y: "culmen_length_mm"
+    Plot.dot(weather, {
+      x: (d) => d.temp_min,
+      y: (d) => d.temp_max - d.temp_min,
+      fill: (d) => (d = new Date(d.date), d.setUTCFullYear(2020), d)
     })
   ]
 })
 ```
 
-Empty facets, which can occur when faceting in both *x* and *y*, or when the specified *fx* or *fy* domain includes values not present in the data, are no longer rendered. When the facet *data* is null, a better error message is thrown.
+The new **textOverflow** option for the [text mark](https://observablehq.com/plot/marks/text) allows text to be truncated when a line of text is longer than the specified **lineWidth**. Overflowing characters can either be clipped (*clip*) or replaced with an ellipsis (*ellipsis*), either at the start, middle, or end of each line.
 
-### Transforms
+<img src="./img/text-overflow.webp" width="620" alt="A demonstration of Plot’s text overflow methods, including clip-start, clip-end, ellipsis-start, ellipsis-middle, ellipsis-end, applied to titles of Hayao Miyazaki films.">
 
-The bin and group transforms now support new *filter*, *sort* and *reverse* options on the *outputs* object. By setting the *filter* to null, the bin transform will now return all bins, even if empty; this is useful with marks such as lines and areas that require zeroes to be present, rather than interpolating across the missing bins. (The *z*, *fill* or *stroke* channels, when used for grouping, are propagated to empty bins.)
+When wrapping or truncating, the text mark now more accurately estimates the width of ellipses and emojis, and no longer separates combining marks or emoji character sequences such as 👨‍👩‍👧‍👦.
 
-<img width="641" alt="a stacked area chart showing the count of covid cases resulting in deaths over time for San Francisco, broken down by transmission category; if empty bins were not present, this chart would render incorrectly" src="https://user-images.githubusercontent.com/230541/130282717-01fb2979-0c8b-415b-8a67-bef169b9c6b5.png">
+The [link mark](https://observablehq.com/plot/marks/link) now respects the current [**projection**](https://observablehq.com/plot/features/projections), if any, given the default [**curve**](https://observablehq.com/plot/features/curves) of *auto*. This matches the behavior of the line mark. To opt-out of the projection and draw a straight line, set the **curve** to *linear*.
+
+The [image mark](https://observablehq.com/plot/marks/image) now supports the **imageRendering** option. (Note: Safari currently ignores the SVG image-rendering attribute.)
+
+You can now override the scale for a given [mark channel](https://observablehq.com/plot/features/marks#marks-have-channels) by specifying the corresponding option as a {value, scale} object. For example, to force the **stroke** channel to be unscaled, interpreting the associated values as literal color strings:
+
+```js
+Plot.dot(data, {stroke: {value: "foo", scale: null}})
+```
+
+To instead force the **stroke** channel to be bound to the *color* scale regardless of the provided values, say:
+
+```js
+Plot.dot(data, {stroke: {value: "foo", scale: "color"}})
+```
+
+Color channels (**fill** and **stroke**) are bound to the *color* scale by default, unless the provided values are all valid CSS color strings or nullish, in which case the values are interpreted literally and unscaled. Likewise, if the dot mark’s **symbol** channel values are all symbols, symbol names, or nullish, values are interpreted literally and unscaled; otherwise, the channel is bound to the *symbol* scale. (If some color channels are literal values while other color channels are not, the channels with literal values will now automatically opt-out of the color scale; the same goes for symbol channels. This deviates from the previous behavior, where *all* channels associated with a scale were required to be literal values in order to have the scale default to an *identity* scale.)
+
+The mark [**facetAnchor** option](https://observablehq.com/plot/features/facets#facetAnchor) can now be set to *empty* such that a mark is only rendered on empty facets. This is typically used for annotation.
+
+The new Plot.autoSpec method takes *data* and *options* suitable for [Plot.auto](https://observablehq.com/plot/marks/auto) and returns a corresponding *options* object with default options realized. While intended primarily as an internal helper, Plot.autoSpec may be useful for debugging by letting you inspect which mark and reducers are chosen by Plot.auto.
+
+Fix Plot.auto to only default to the *bar* mark if *x* or *y* is zeroed. Fix Plot.auto’s support for the *area* mark. Fix Plot.auto’s use of the *bar* mark with possibly ordinal reducers. Fix a bug where arrays of values could be erroneously interpreted as reducers. Fix a crash when the mark **facet** option is set to *exclude*, but the mark is not faceted; the option is now ignored. Fix a crash coercing BigInt values to numbers.
+
+## 0.6.3
+
+[Released February 6, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.3)
+
+The new [auto mark](https://observablehq.com/plot/marks/auto) ([Plot.auto](https://observablehq.com/plot/marks/auto#auto)) automatically selects a mark type that best represents the given dimensions of data according to some simple heuristics. For example,
+
+[<img src="./img/auto-dot.webp" width="640" alt="A scatterplot height and weight of olympic athletes.">](https://observablehq.com/plot/marks/auto)
+
+```js
+Plot.auto(olympians, {x: "height", y: "weight"}).plot()
+```
+
+makes a scatterplot (equivalent to [dot](https://observablehq.com/plot/marks/dot)); adding **color** as
+
+[<img src="./img/auto-bin-color.webp" width="640" alt="A heatmap of .">](https://observablehq.com/plot/marks/auto)
+
+```js
+Plot.auto(olympians, {x: "height", y: "weight", color: "count"}).plot()
+```
+
+makes a heatmap (equivalent to [rect](https://observablehq.com/plot/marks/rect) and [bin](https://observablehq.com/plot/transforms/bin); chosen since _height_ and _weight_ are quantitative); switching to
+
+[<img src="./img/auto-line.webp" width="640" alt="A line chart of Apple stock price.">](https://observablehq.com/plot/marks/auto)
+
+```js
+Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
+```
+
+makes a line chart (equivalent to [lineY](https://observablehq.com/plot/marks/line#lineY); chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
+
+[<img src="./img/auto-bin.webp" width="640" alt="A histogram of penguin body mass.">](https://observablehq.com/plot/marks/auto)
+
+```js
+Plot.auto(penguins, {x: "body_mass_g"}).plot()
+```
+
+makes a histogram (equivalent to [rectY](https://observablehq.com/plot/marks/rect#rectY) and [binX](https://observablehq.com/plot/transforms/bin#binX); chosen because the _body_mass_g_ column is quantitative); and
+
+[<img src="./img/auto-group.webp" width="640" alt="A vertical bar chart of penguins by island.">](https://observablehq.com/plot/marks/auto)
+
+```js
+Plot.auto(penguins, {x: "island"}).plot()
+```
+
+makes a bar chart (equivalent to [barY](https://observablehq.com/plot/marks/bar#barY) and [groupX](https://observablehq.com/plot/transforms/group#groupX); chosen because the _island_ column is categorical). The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API.
+
+Plot’s new [axis](https://observablehq.com/plot/marks/axis) and [grid](https://observablehq.com/plot/marks/grid) marks allow customization and styling of axes. This has been one of our most asked-for features, closing more than a dozen feature requests (see [#1197](https://github.com/observablehq/plot/pull/1197))! The new axis mark composes a [vector](https://observablehq.com/plot/marks/vector) for tick marks and a [text](https://observablehq.com/plot/marks/text) for tick and axis labels. As such, you can use the rich capabilities of these marks, such the **lineWidth** option to wrap long text labels.
+
+[<img src="./img/axis-multiline.webp" width="640" alt="A bar chart of parodical survey responses demonstrating text wrapping of long axis labels.">](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.plot({
+  y: {percent: true},
   marks: [
-    Plot.areaY(cases, Plot.binX({y: "sum", filter: null}, {
-      x: "specimen_collection_date",
-      y: "case_count",
-      filter: d => d.case_disposition === "Death",
-      fill: "transmission_category",
-      curve: "step",
-      thresholds: d3.utcWeek
-    })),
+    Plot.axisX({label: null, lineWidth: 8, marginBottom: 40}),
+    Plot.axisY({label: "↑ Responses (%)"}),
+    Plot.barY(responses, {x: "name", y: "value"}),
     Plot.ruleY([0])
   ]
 })
 ```
 
-The *outputs* argument to the bin and group transforms is now optional; it defaults to the *count* reducer for *y*, *x* and *fill* for Plot.binX, Plot.binY, and Plot.bin respectively, and the same for the group transforms.
+And since axes and grids are now proper marks, you can interleave them with other marks, for example to produce ggplot2-style axes with a gray background and white grid lines.
 
-The bin and group transforms now support new *distinct*, *mode*, *min-index*, and *max-index* reducers. The *distinct* reducer counts the number of distinct values in each group, while the *mode* reducer returns the most frequent value in each group. The *min-index* and *max-index* reducers are similar to *min* and *max*, except they return the zero-based index of the minimum and maximum value, respectively; for example, this is useful to sort time series by the date of each series’ peak.
-
-<img width="640" alt="a small-multiples area chart of Google search trends for the year 2020; trends are ordered chronologically by their peak, starting with Australian bushfires and ending with COVID-19 vaccine" src="https://user-images.githubusercontent.com/230541/130283717-71d42637-89e4-4794-82e6-9a8570bb527d.png">
+[<img src="./img/axis-ggplot.webp" width="640" alt="A line chart of Apple’s stock price demonstrating styled axes with a gray background overlaid with white grid lines.">](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.plot({
-  height: 900,
-  label: null,
-  x: {axis: "top"},
-  y: {axis: null},
-  facet: {
-    data: trends,
-    y: "search",
-    marginLeft: 160
-  },
+  inset: 10,
   marks: [
-    Plot.areaY(trends, {x: "week", y: "interest", sort: {fy: "y", reduce: "max-index"}})
+    Plot.frame({fill: "#eaeaea"}),
+    Plot.gridY({stroke: "#fff", strokeOpacity: 1}),
+    Plot.gridX({stroke: "#fff", strokeOpacity: 1}),
+    Plot.line(aapl, {x: "Date", y: "Close"})
   ]
 })
 ```
 
-The default *thresholds* option for the bin transforms is now *auto* instead of *scott*. The *auto* option applies a maximum limit of 200 bins to Scott’s rule. This reduces the risk of producing vanishing rects when they are too numerous and thin to be visible. (Note, however, that it is still possible to produce invisible rects if the insets are larger than the width.)
+The *x* and *y* axes are now automatically repeated in empty facets, improving readability by reducing eye travel to read tick values. Below, note that the *x* axis for culmen depth (with ticks at 15 and 20 mm) is rendered below the Adelie/null-sex facet in the top-right.
 
-The normalize, window, and stack transforms can now accept a transform *options* argument in addition to an *inputs* argument that specifies the input channels. This allows makes these transforms more consistent with the other transforms, reduces ambiguity, and allows for additional shorthand. For example, you can pass *k* as the first argument to the window transform, here for a 24-month moving average:
-
-<img width="640" alt="a smoothed line chart showing the rise of the average global surface temperature anomaly from 1880 to the present" src="https://user-images.githubusercontent.com/230541/130284148-04622afe-c8a9-4a1e-a459-ada8f1744a3e.png">
+[<img src="./img/facet-axes.webp" width="640" alt="A scatterplot showing the culmen length and depth of various penguins, faceted by species and sex; the facets are arranged in a grid, with the y-axis on the left and the x-axis on the bottom.">](ttps://observablehq.com/plot/marks/axis)
 
 ```js
 Plot.plot({
-  y: {
-    label: "↑ Temperature anomaly (°C)",
-    tickFormat: "+f",
-    grid: true
-  },
+  facet: {marginRight: 80},
   marks: [
-    Plot.ruleY([0]),
-    Plot.line(gistemp, Plot.windowY(24, {x: "Date", y: "Anomaly"}))
+    Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", stroke: "#ddd"}),
+    Plot.frame(),
+    Plot.gridX(),
+    Plot.gridY(),
+    Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", fx: "sex", fy: "species"})
   ]
 })
 ```
 
-The *offset* stack options have been renamed: *offset* = *expand* is now *offset* = *normalize*, and *offset* = *silhouette* is *offset* = *center*. The *shift* window option has been replaced with the *anchor* option: *shift* = *centered* is now *anchor* = *middle*, *shift* = *leading* is *anchor* = *start*, and *shift* = *trailing* is *anchor* = *end*. The old names are supported for backwards compatibility.
+See [Plot: Axes](https://observablehq.com/plot/marks/axis) for more examples, including the new _both_ **axis** option to repeat axes on both sides of the plot, dashed grid lines via the **strokeDasharray** option, data-driven tick placement, and layering axes to show hierarchical time intervals (years, months, weeks).
 
-The basic transforms are now available as explicit option transforms: Plot.filter, Plot.sort, and Plot.reverse. These are useful when you wish to control the order of these transforms with respect to other transforms such as Plot.bin and Plot.stack.
+Marks can now declare default margins via the **marginTop**, **marginRight**, **marginBottom**, and **marginLeft** options, and the **margin** shorthand. For each side, the maximum corresponding margin across marks becomes the plot’s default. While most marks default to zero margins (because they are drawn inside the chart area), Plot‘s axis mark provides default margins depending on their anchor. The facet margin options (*e.g.*, facet.**marginRight**) now correctly affect the positioning of the *x* and *y* axis labels.
 
-The select transforms now throw better error messages when required input channels are missing. When mark *transform* option is null, it is considered equivalent to undefined and no transform is applied instead of throwing an error.
+The new [*mark*.**facetAnchor**](https://observablehq.com/plot/features/facets#facetAnchor) mark option controls the facets in which the mark will appear when faceting. It defaults to null for all marks except for axis marks, where it defaults to *top-empty* if the axis anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
 
-## 0.1.0
+The [frame mark](https://observablehq.com/plot/marks/frame)’s new **anchor** option allows you to draw a line on one side of the frame (as opposed to the default behavior where a rect is drawn around all four sides); this feature is now used by the *scale*.**line** option for *x* and *y* scales. The [text mark](https://observablehq.com/plot/marks/text) now supports soft hyphens (`\xad`); lines are now eligible to break at soft hyphens, in which case a hyphen (-) will appear at the end of the line before the break. The [raster mark](https://observablehq.com/plot/marks/raster) no longer crashes with an _identity_ color scale. The [voronoi mark](https://observablehq.com/plot/marks/delaunay#voronoi) now correctly respects the **target**, **mixBlendMode**, and **opacity** options.
 
-[Released May 3, 2021.](https://github.com/observablehq/plot/releases/tag/v0.1.0)
+## 0.6.2
+
+[Released January 18, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.2)
+
+The new [raster mark](https://observablehq.com/plot/marks/raster) and [contour mark](https://observablehq.com/plot/marks/contour) generate a raster image and smooth contours, respectively, from spatial samples. For example, the plot below shows a gridded digital elevation model of Maungawhau (R’s [`volcano` dataset](./test/data/volcano.json)) with contours every 10 meters:
+
+[<img src="./img/volcano.webp" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/plot/marks/raster)
+
+```js
+Plot.plot({
+  color: {legend: true, label: "Height (m)"},
+  marks: [
+    Plot.raster(volcano.values, {width: volcano.width, height: volcano.height}),
+    Plot.contour(volcano.values, {width: volcano.width, height: volcano.height, interval: 10})
+  ]
+})
+```
+
+For non-gridded or sparse data, the raster and contour marks implement a variety of [spatial interpolation methods](https://observablehq.com/plot/marks/raster#spatial-interpolators) to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
+
+[<img src="./img/ca55.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/plot/marks/raster)
+
+```js
+Plot.plot({
+  width: 640,
+  height: 484,
+  inset: 4,
+  x: {tickFormat: "s"},
+  y: {tickFormat: "s", ticks: 5},
+  color: {type: "diverging", legend: true},
+  marks: [
+    Plot.raster(ca55, {x: "LONGITUDE", y: "LATITUDE", fill: "MAG_IGRF90", interpolate: "barycentric"}),
+    Plot.dot(ca55, {x: "LONGITUDE", y: "LATITUDE", r: 0.75, fill: "currentColor"})
+  ]
+})
+```
+
+The same data, with a smidge of blur, as filled contours in projected coordinates:
+
+[<img src="./img/ca55-contours.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/plot/marks/contour)
+
+```js
+Plot.plot({
+  width: 640,
+  height: 484,
+  color: {type: "diverging", legend: true},
+  projection: {type: "reflect-y", domain: {type: "MultiPoint", coordinates: ca55.map((d) => [d.GRID_EAST, d.GRID_NORTH])}},
+  marks: [Plot.contour(ca55, {x: "GRID_EAST", y: "GRID_NORTH", fill: "MAG_IGRF90", stroke: "currentColor", blur: 2})]
+})
+```
+
+Naturally, the raster and contour mark are compatible with Plot’s [projection system](https://observablehq.com/plot/features/projections), allowing spatial samples to be shown in any geographic projection and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded global water vapor dataset from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
+
+[<img src="./img/water-vapor.png" width="650" alt="A map of global atmospheric water vapor, showing a higher concentration of water vapor near the equator">](https://observablehq.com/plot/marks/raster)
+
+```js
+Plot.plot({
+  projection: "equirectangular",
+  color: {
+    scheme: "ylgnbu",
+    unknown: "#ccc",
+    legend: true,
+    label: "Water vapor (cm)"
+  },
+  marks: [
+    Plot.raster(vapor, {
+      x1: -180,
+      y1: 90,
+      x2: 180,
+      y2: -90,
+      width: 720,
+      height: 360
+    }),
+    Plot.graticule(),
+    Plot.frame()
+  ]
+})
+```
+
+The raster and contour mark also support sampling continuous spatial functions *f*(*x*, *y*). For example, here is the famous Mandelbrot set, with color encoding the number of iterations before the point escapes:
+
+[<img src="./img/mandelbrot.webp" width="640" alt="The Mandelbrot set">](https://observablehq.com/plot/marks/raster)
+
+```js
+Plot.plot({
+  height: 500,
+  marks: [
+    Plot.raster({
+      fill: (x, y) => {
+        for (let n = 0, zr = 0, zi = 0; n < 80; ++n) {
+          [zr, zi] = [zr * zr - zi * zi + x, 2 * zr * zi + y];
+          if (zr * zr + zi * zi > 4) return n;
+        }
+      },
+      x1: -2,
+      y1: -1.164,
+      x2: 1,
+      y2: 1.164,
+      pixelSize: 0.5
+    })
+  ]
+})
+```
+
+The [vector mark](https://observablehq.com/plot/marks/vector) now supports the **shape** constant option; the built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](https://observablehq.com/plot/marks/vector#spike) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to set the shape radius.
+
+[<img src="./img/spike-map.webp" width="640" alt="A spike map of U.S. county population">](https://observablehq.com/@observablehq/plot-spike)
+
+```js
+Plot.plot({
+  width: 960,
+  height: 600,
+  projection: "albers-usa",
+  length: {
+    range: [0, 200]
+  },
+  marks: [
+    Plot.geo(nation, {fill: "#e0e0e0"}),
+    Plot.geo(statemesh, {stroke: "white"}),
+    Plot.spike(counties.features, Plot.geoCentroid({stroke: "red", length: (d) => population.get(d.id)}))
+  ]
+});
+```
+
+The new [geoCentroid transform](https://observablehq.com/plot/transforms/centroid#geoCentroid) and [centroid initializer](https://observablehq.com/plot/transforms/centroid#centroid) compute the spherical and projected planar centroids of geometry, respectively. The new [identity](https://observablehq.com/plot/features/transforms#identity) channel helper returns a source array as-is, avoiding an extra copy.
+
+The **interval** option now supports named time intervals such as “sunday” and “hour”, equivalent to the corresponding d3-time interval (_e.g._, d3.utcSunday and d3.utcHour). The [bin transform](https://observablehq.com/plot/transforms/bin) is now many times faster, especially when there are many bins and when binning temporal data.
+
+Diverging scales now correctly handle descending domains. When the stack **order** option is used without a *z* channel, a helpful error message is now thrown. The **clip** option *frame* now correctly handles band scales. Using D3 7.8, generated SVG path data is now rounded to three decimal points to reduce output size. Fix a crash when a facet scale’s domain includes a value for which there is no corresponding facet data. The bin, group, and hexbin transforms now correctly ignore undefined outputs. Upgrade D3 to 7.8.2.
+
+---
+
+For earlier changes, continue to the [2022 CHANGELOG](./CHANGELOG-2022.md).

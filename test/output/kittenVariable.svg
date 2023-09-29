@@ -1,0 +1,43 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="520" height="520" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="image" transform="translate(0.5,0.5)">
+    <image x="399" y="0" width="120" height="120" href="https://placekitten.com/148/148" clip-path="circle(60px)"></image>
+    <image x="300.30274948137196" y="1.0527494813719542" width="117.89450103725609" height="117.89450103725609" href="https://placekitten.com/146/146" clip-path="circle(58.947250518628046px)"></image>
+    <image x="201.62864461218308" y="2.1286446121830878" width="115.74271077563382" height="115.74271077563382" href="https://placekitten.com/144/144" clip-path="circle(57.87135538781691px)"></image>
+    <image x="102.97928266532574" y="3.2292826653257336" width="113.54143466934853" height="113.54143466934853" href="https://placekitten.com/142/142" clip-path="circle(56.770717334674266px)"></image>
+    <image x="4.356453541236149" y="4.356453541236149" width="111.2870929175277" height="111.2870929175277" href="https://placekitten.com/140/140" clip-path="circle(55.64354645876385px)"></image>
+    <image x="404.5121739498695" y="105.26217394986953" width="108.97565210026093" height="108.97565210026093" href="https://placekitten.com/138/138" clip-path="circle(54.487826050130465px)"></image>
+    <image x="305.9487298107781" y="106.44872981077808" width="106.60254037844385" height="106.60254037844385" href="https://placekitten.com/136/136" clip-path="circle(53.301270189221924px)"></image>
+    <image x="207.41872942349136" y="107.66872942349134" width="104.16254115301732" height="104.16254115301732" href="https://placekitten.com/134/134" clip-path="circle(52.08127057650866px)"></image>
+    <image x="108.9251709536137" y="108.9251709536137" width="101.64965809277261" height="101.64965809277261" href="https://placekitten.com/132/132" clip-path="circle(50.824829046386306px)"></image>
+    <image x="10.471529247895255" y="110.22152924789526" width="99.05694150420949" height="99.05694150420949" href="https://placekitten.com/130/130" clip-path="circle(49.528470752104745px)"></image>
+    <image x="410.81186920870135" y="211.31186920870132" width="96.37626158259734" height="96.37626158259734" href="https://placekitten.com/128/128" clip-path="circle(48.18813079129867px)"></image>
+    <image x="312.45099639030065" y="212.70099639030065" width="93.59800721939874" height="93.59800721939874" href="https://placekitten.com/126/126" clip-path="circle(46.79900360969937px)"></image>
+    <image x="214.14466094067262" y="214.14466094067262" width="90.71067811865476" height="90.71067811865476" href="https://placekitten.com/124/124" clip-path="circle(45.35533905932738px)"></image>
+    <image x="115.8998399806835" y="215.6498399806835" width="87.70032003863301" height="87.70032003863301" href="https://placekitten.com/122/122" clip-path="circle(43.850160019316505px)"></image>
+    <image x="17.725138781604855" y="217.22513878160487" width="84.54972243679029" height="84.54972243679029" href="https://placekitten.com/120/120" clip-path="circle(42.274861218395145px)"></image>
+    <image x="418.38137821521025" y="318.63137821521025" width="81.23724356957946" height="81.23724356957946" href="https://placekitten.com/118/118" clip-path="circle(40.61862178478973px)"></image>
+    <image x="320.3824865405187" y="320.3824865405187" width="77.73502691896257" height="77.73502691896257" href="https://placekitten.com/116/116" clip-path="circle(38.86751345948129px)"></image>
+    <image x="222.49691375663392" y="322.24691375663394" width="74.00617248673217" height="74.00617248673217" href="https://placekitten.com/114/114" clip-path="circle(37.003086243366084px)"></image>
+    <image x="124.75" y="324.25" width="70" height="70" href="https://placekitten.com/112/112" clip-path="circle(35px)"></image>
+    <image x="27.178226770618075" y="326.4282267706181" width="65.64354645876385" height="65.64354645876385" href="https://placekitten.com/110/110" clip-path="circle(32.821773229381925px)"></image>
+    <image x="428.58758547680685" y="428.58758547680685" width="60.824829046386306" height="60.824829046386306" href="https://placekitten.com/108/108" clip-path="circle(30.412414523193153px)"></image>
+    <image x="331.5723304703363" y="431.3223304703363" width="55.35533905932738" height="55.35533905932738" href="https://placekitten.com/106/106" clip-path="circle(27.67766952966369px)"></image>
+    <image x="235.06624327025935" y="434.56624327025935" width="48.86751345948129" height="48.86751345948129" href="https://placekitten.com/104/104" clip-path="circle(24.433756729740644px)"></image>
+    <image x="139.54379273840343" y="438.79379273840345" width="40.41241452319315" height="40.41241452319315" href="https://placekitten.com/102/102" clip-path="circle(20.206207261596575px)"></image>
+    <image x="50" y="449" width="20" height="20" href="https://placekitten.com/100/100" clip-path="circle(10px)"></image>
+  </g>
+</svg>

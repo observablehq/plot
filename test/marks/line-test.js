@@ -1,5 +1,6 @@
 import * as Plot from "@observablehq/plot";
-import {curveLinear, curveStep} from "d3";
+import {curveStep} from "d3";
+import {curveAuto} from "../../src/curve.js";
 import assert from "assert";
 
 it("line() has the expected defaults", () => {
@@ -26,7 +27,7 @@ it("line() has the expected defaults", () => {
     Object.values(line.channels).map((c) => c.scale),
     ["x", "y"]
   );
-  assert.strictEqual(line.curve, curveLinear);
+  assert.strictEqual(line.curve.name, "curveAuto");
   assert.strictEqual(line.fill, "none");
   assert.strictEqual(line.fillOpacity, undefined);
   assert.strictEqual(line.stroke, "currentColor");
@@ -70,7 +71,7 @@ it("line(data, {fill}) allows fill to be a variable color", () => {
   assert.strictEqual(line.fill, undefined);
   const {fill} = line.channels;
   assert.strictEqual(fill.value, "x");
-  assert.strictEqual(fill.scale, "color");
+  assert.strictEqual(fill.scale, "auto");
 });
 
 it("line(data, {fill}) implies a default z channel if fill is variable", () => {
@@ -100,7 +101,7 @@ it("line(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(line.stroke, undefined);
   const {stroke} = line.channels;
   assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });
 
 it("line(data, {stroke}) implies a default z channel if stroke is variable", () => {
@@ -113,4 +114,13 @@ it("line(data, {stroke}) implies a default z channel if stroke is variable", () 
 it("line(data, {curve}) specifies a named curve or function", () => {
   assert.strictEqual(Plot.line(undefined, {curve: "step"}).curve, curveStep);
   assert.strictEqual(Plot.line(undefined, {curve: curveStep}).curve, curveStep);
+});
+
+it("line(data, {curve}) rejects an invalid curve", () => {
+  assert.throws(() => Plot.lineY([], {y: 1, curve: "neo"}), /^Error: unknown curve: neo$/);
+  assert.throws(() => Plot.lineY([], {y: 1, curve: 42}), /^Error: unknown curve: 42$/);
+});
+
+it("line(data, {curve}) accepts the explicit auto curve", () => {
+  assert.strictEqual(Plot.lineY([], {y: 1, curve: "auto"}).curve, curveAuto);
 });

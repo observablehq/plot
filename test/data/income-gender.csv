@@ -1,0 +1,50 @@
+type,m,f,age
+All workers,57791,41518,total
+Less than 9th grade,26789,20499,total
+9th to 12th grade (no diploma),31434,23351,total
+High school graduate,42466,29410,total
+"Some college, no degree",48431,35916,total
+Associate’s degree,51485,40463,total
+Bachelor’s degree or more,88843,59052,total
+All workers,26170,23462,18 to 24 years old
+Less than 9th grade,19361,NaN,18 to 24 years old
+9th to 12th grade (no diploma),20918,17514,18 to 24 years old
+High school graduate,24974,20427,18 to 24 years old
+"Some college, no degree",26957,21822,18 to 24 years old
+Associate’s degree,29698,26638,18 to 24 years old
+Bachelor’s degree or more,38275,32865,18 to 24 years old
+All workers,46181,38581,25 to 34 years old
+Less than 9th grade,23453,18180,25 to 34 years old
+9th to 12th grade (no diploma),29347,21955,25 to 34 years old
+High school graduate,37181,26299,25 to 34 years old
+"Some college, no degree",41073,32853,25 to 34 years old
+Associate’s degree,42357,38857,25 to 34 years old
+Bachelor’s degree or more,67195,50341,25 to 34 years old
+All workers,63247,44183,35 to 44 years old
+Less than 9th grade,29302,21152,35 to 44 years old
+9th to 12th grade (no diploma),31018,24637,35 to 44 years old
+High school graduate,45316,30769,35 to 44 years old
+"Some college, no degree",53080,37323,35 to 44 years old
+Associate’s degree,58759,41892,35 to 44 years old
+Bachelor’s degree or more,95002,63427,35 to 44 years old
+All workers,67635,45332,45 to 54 years old
+Less than 9th grade,28988,21633,45 to 54 years old
+9th to 12th grade (no diploma),35615,24304,45 to 54 years old
+High school graduate,49199,31984,45 to 54 years old
+"Some college, no degree",56320,39785,45 to 54 years old
+Associate’s degree,57363,44191,45 to 54 years old
+Bachelor’s degree or more,101763,65001,45 to 54 years old
+All workers,65956,43870,55 to 64 years old
+Less than 9th grade,29913,19681,55 to 64 years old
+9th to 12th grade (no diploma),41136,25078,55 to 64 years old
+High school graduate,47741,31015,55 to 64 years old
+"Some college, no degree",56120,40749,55 to 64 years old
+Associate’s degree,51978,39477,55 to 64 years old
+Bachelor’s degree or more,92223,64054,55 to 64 years old
+All workers,58565,38629,65 years old and over
+Less than 9th grade,26062,NaN,65 years old and over
+9th to 12th grade (no diploma),32810,27948,65 years old and over
+High school graduate,42766,29170,65 years old and over
+"Some college, no degree",51091,43082,65 years old and over
+Associate’s degree,48347,37079,65 years old and over
+Bachelor’s degree or more,85106,58288,65 years old and over
