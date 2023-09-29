@@ -75,6 +75,15 @@ export interface TipOptions extends MarkOptions, TextStyles {
    * a number format.
    */
   format?: {[name in ChannelName]?: boolean | string | ((d: any, i: number) => string)};
+
+  /** The image filter for the tip’s box; defaults to a drop shadow. */
+  pathFilter?: string;
+
+  /** The size of the tip’s pointer in pixels; defaults to 12. */
+  pointerSize?: number;
+
+  /** The padding around the text in pixels; defaults to 8. */
+  textPadding?: number;
 }
 
 /**
