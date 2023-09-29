@@ -176,6 +176,21 @@ export async function tipLineX() {
   return Plot.lineX(aapl, {y: "Date", x: "Close", tip: true}).plot();
 }
 
+export async function tipLineXVisible() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.lineX(aapl, {y: "Date", x: "Close"}),
+      Plot.tip(aapl, {
+        filter: (d) => d.Date.toISOString() === "2017-11-30T00:00:00.000Z",
+        y: "Date",
+        x: "Close",
+        preferredAnchor: "left"
+      })
+    ]
+  });
+}
+
 export async function tipLineY() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
