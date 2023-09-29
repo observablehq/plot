@@ -12,7 +12,8 @@ export async function penguinSpeciesCheysson() {
         "url(#grouped-12512014-3)",
         "url(#grouped-12512014-4)"
       ],
-      legend: true
+      legend: true,
+      label: null
     },
     marks: [
       // Based on https://observablehq.com/@tomshanley/cheysson-color-palettes

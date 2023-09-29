@@ -19,5 +19,5 @@ export async function binFillFirstEmpty() {
         insetBottom: -0.5 // make empty bins visible
       }
     )
-  ).plot({color: {legend: true}});
+  ).plot({color: {legend: true, label: null}});
 }
