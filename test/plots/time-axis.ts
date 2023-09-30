@@ -148,3 +148,14 @@ export async function warnTimeAxisOrdinalExplicitIncompatibleTicks() {
     marks: [Plot.barY(aapl, Plot.groupX({y: "median", title: "min"}, {title: "Date", x: "Date", y: "Close"}))]
   });
 }
+
+export async function timeAxisLocal() {
+  const dates = [
+    "2023-09-30T15:05:48.452Z",
+    "2023-09-30T16:05:48.452Z",
+    "2023-09-30T17:05:48.452Z",
+    "2023-09-30T18:05:48.452Z",
+    "2023-09-30T19:05:48.452Z"
+  ].map((d) => new Date(d));
+  return Plot.dotX(dates).plot({x: {type: "time"}});
+}
