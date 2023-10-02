@@ -13,11 +13,13 @@ import {
 } from "../style.js";
 import {withDefaultSort} from "./dot.js";
 import {template} from "../template.js";
+import {creator} from "d3";
 
 const defaults = {
   ariaLabel: "image",
   fill: null,
-  stroke: null
+  stroke: "none",
+  strokeWidth: 1.5
 };
 
 // Tests if the given string is a path: does it start with a dot-slash
@@ -81,6 +83,7 @@ export class Image extends Mark {
     const {x: X, y: Y, width: W, height: H, r: R, rotate: A, src: S} = channels;
     const {r, width, height, rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const [stroke, nonstroke] = splitChannels(channels);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
@@ -103,10 +106,30 @@ export class Image extends Mark {
           .call(applyAttr, "crossorigin", this.crossOrigin)
           .call(applyAttr, "image-rendering", this.imageRendering)
           .call(applyAttr, "clip-path", R ? (i) => `circle(${R[i]}px)` : r !== undefined ? `circle(${r}px)` : null)
-          .call(applyChannelStyles, this, channels)
+          .call(applyChannelStyles, this, nonstroke)
+          .call(applyStroke, this, stroke)
       )
       .node();
   }
+}
+
+function splitChannels({stroke, strokeOpacity, strokeWidth, ...channels}) {
+  return [{stroke, strokeOpacity, strokeWidth}, channels];
+}
+
+function applyStroke(selection, {stroke, r}, {stroke: S, strokeOpacity: SO, strokeWidth: SW}) {
+  if (stroke == null && !S) return;
+  selection = selection.select(function () {
+    const circle = this.parentNode.insertBefore(creator("circle").call(this), this.nextSibling);
+    circle.setAttribute("r", r);
+    circle.setAttribute("cx", +this.getAttribute("x") + r);
+    circle.setAttribute("cy", +this.getAttribute("y") + r);
+    circle.setAttribute("fill", "none");
+    return circle;
+  });
+  if (S) applyAttr(selection, "stroke", (i) => S[i]);
+  if (SO) applyAttr(selection, "stroke-opacity", (i) => SO[i]);
+  if (SW) applyAttr(selection, "stroke-width", (i) => SW[i]);
 }
 
 function position(X, W, R, x, w, r) {
