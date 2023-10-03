@@ -4,6 +4,7 @@ import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
 import {defaultWidth, monospaceWidth} from "./marks/text.js";
 import {outerDimensions} from "./scales.js";
+import {formatAxisLabel} from "./marks/axis.js";
 
 const marginMedium = 60;
 const marginLarge = 90;
@@ -21,18 +22,28 @@ export function autoMarginK(
   dimensions,
   context
 ) {
+  const actualLabel = formatAxisLabel(scale, scales[scale], {...options, label});
   let {data, facets, channels} = stateByMark.get(mark);
   if (mark.initializer) ({channels} = mark.initializer(data, facets, {}, scales, dimensions, context));
-  const width = mark.monospace ? monospaceWidth : defaultWidth;
-  const labelPenalty =
-    (label ?? scales[scale].label ?? "") !== "" &&
-    (labelAnchor === "center" || (labelAnchor == null && scales[scale].bandwidth));
-  const l =
-    max(channels.text.value, (t) => (t ? width(`${t}`) : NaN)) * (mark.monospace ? 0.6 : 1) + (labelPenalty ? 100 : 0);
-  const m = l >= 500 ? marginLarge : l >= 295 ? marginMedium : null;
+  if (scale === "y" || scale === "fy") {
+    const width = mark.monospace ? monospaceWidth : defaultWidth;
+    const labelPenalty = actualLabel && (labelAnchor === "center" || (labelAnchor == null && scales[scale].bandwidth));
+    const l =
+      max(channels.text.value, (t) => (t ? width(`${t}`) : NaN)) * (mark.monospace ? 0.6 : 1) +
+      (labelPenalty ? 100 : 0);
+    const m = l >= 500 ? marginLarge : l >= 295 ? marginMedium : null;
+    return m === null
+      ? options
+      : scale === "fy"
+      ? {...options, facet: {[margin]: m, ...options.facet}}
+      : {[margin]: m, ...options};
+  }
+  // For the x scale, we bump the margin only if the axis uses multi-line ticks!
+  const re = new RegExp(/\n/);
+  const m = actualLabel && channels.text.value.some((d) => re.test(d)) ? 40 : null;
   return m === null
     ? options
-    : scale === "fy"
+    : scale === "fx"
     ? {...options, facet: {[margin]: m, ...options.facet}}
     : {[margin]: m, ...options};
 }
@@ -53,9 +64,21 @@ export function createDimensions(scales, marks, options = {}) {
   // revise the dimensions if necessary.
   const autoMargins = [];
   for (const m of marks) {
-    let {marginTop, marginRight, marginBottom, marginLeft, autoMarginRight, autoMarginLeft, frameAnchor} = m;
-    if (autoMarginLeft && frameAnchor === "left") autoMargins.push(["marginLeft", autoMarginLeft, m]);
+    let {
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
+      autoMarginTop,
+      autoMarginRight,
+      autoMarginBottom,
+      autoMarginLeft,
+      frameAnchor
+    } = m;
+    if (autoMarginTop) autoMargins.push(["marginTop", autoMarginTop, m]);
     if (autoMarginRight && frameAnchor === "right") autoMargins.push(["marginRight", autoMarginRight, m]);
+    if (autoMarginBottom) autoMargins.push(["marginBottom", autoMarginBottom, m]);
+    if (autoMarginLeft && frameAnchor === "left") autoMargins.push(["marginLeft", autoMarginLeft, m]);
     if (marginTop > marginTopDefault) marginTopDefault = marginTop;
     if (marginRight > marginRightDefault) marginRightDefault = marginRight;
     if (marginBottom > marginBottomDefault) marginBottomDefault = marginBottom;

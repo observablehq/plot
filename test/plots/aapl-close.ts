@@ -62,6 +62,37 @@ export async function aaplCloseGridIterable() {
   return Plot.lineY(aapl, {x: "Date", y: "Close"}).plot({y: {grid: [100, 120, 140]}});
 }
 
+export async function aaplCloseAxisMargins() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.plot({
+    height: 100,
+    marks: [
+      Plot.lineY(aapl, {x: "Date", y: "Close"}),
+      Plot.axisY({marginRight: 28, anchor: "right"}),
+      Plot.axisY({marginLeft: 28, anchor: "left", label: null}),
+      Plot.ruleY([0])
+    ]
+  });
+}
+
+export async function aaplCloseLabel() {
+  const aapl = (await d3.csv<any>("data/aapl.csv", d3.autoType)).slice(0, 60);
+  return Plot.plot({
+    height: 120,
+    x: {label: "Trading"},
+    marks: [Plot.ruleX(aapl, {x: "Date", y: "Close"}), Plot.ruleY([0])]
+  });
+}
+
+export async function aaplCloseLabelTop() {
+  const aapl = (await d3.csv<any>("data/aapl.csv", d3.autoType)).slice(0, 60);
+  return Plot.plot({
+    height: 120,
+    x: {label: "Trading", axis: "top"},
+    marks: [Plot.ruleX(aapl, {x: "Date", y: "Close"}), Plot.ruleY([0])]
+  });
+}
+
 export async function aaplCloseNormalize() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const x = new Date("2014-01-01");
