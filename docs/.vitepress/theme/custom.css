@@ -13,6 +13,8 @@
 }
 
 :root {
+  --vp-c-red: #f43f5e;
+  --vp-c-green: #10b981;
   --vp-c-blue: #0092ff;
   --vp-c-purple: #a463f2;
   --vp-c-brand-1: var(--vp-c-purple-1);

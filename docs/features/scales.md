@@ -940,7 +940,7 @@ Plot implicitly generates an [axis mark](../marks/axis.md) for position scales i
 * **tickPadding** - the separation between the tick and its label (in pixels; default 3)
 * **tickFormat** - either a function or specifier string to format tick values; see [Formats](./formats.md)
 * **tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
-* **fontVariant** - the font-variant attribute for ticks; defaults to *tabular-nums* if quantitative
+* **fontVariant** - the font-variant attribute; defaults to *tabular-nums* if quantitative
 * **label** - a string to label the axis
 * **labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * **labelArrow** - the label arrow: *auto* (default), *up*, *right*, *down*, *left*, *none*, or true <VersionBadge version="0.6.7" />
