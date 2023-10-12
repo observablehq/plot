@@ -65,7 +65,7 @@
     <rect x="389" y="292.22222222222223" width="115" height="77.77777777777777" fill="#e15759"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <path d="M40,370H620"></path>
   </g>
   <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

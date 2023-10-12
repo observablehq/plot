@@ -32,13 +32,13 @@
     <text y="0.32em" transform="translate(104,175)">year</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="104" x2="620" y1="25" y2="25"></line>
-    <line x1="104" x2="620" y1="50" y2="50"></line>
-    <line x1="104" x2="620" y1="75" y2="75"></line>
-    <line x1="104" x2="620" y1="100" y2="100"></line>
-    <line x1="104" x2="620" y1="125" y2="125"></line>
-    <line x1="104" x2="620" y1="150" y2="150"></line>
-    <line x1="104" x2="620" y1="175" y2="175"></line>
+    <path d="M104,25H620"></path>
+    <path d="M104,50H620"></path>
+    <path d="M104,75H620"></path>
+    <path d="M104,100H620"></path>
+    <path d="M104,125H620"></path>
+    <path d="M104,150H620"></path>
+    <path d="M104,175H620"></path>
   </g>
   <g aria-label="line" fill="none" stroke="#444" stroke-width="0.5" stroke-opacity="0.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path d="M158.894,25L620,50L493.333,75L465.761,100L427.03,125L196.143,150L233,175"></path>

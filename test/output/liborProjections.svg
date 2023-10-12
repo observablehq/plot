@@ -14,12 +14,12 @@
     }
   </style>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-    <line x1="40" x2="940" y1="327.14075739235693" y2="327.14075739235693"></line>
-    <line x1="40" x2="940" y1="271.28307107037864" y2="271.28307107037864"></line>
-    <line x1="40" x2="940" y1="215.27234999135396" y2="215.27234999135396"></line>
-    <line x1="40" x2="940" y1="159.41466366937576" y2="159.41466366937576"></line>
-    <line x1="40" x2="940" y1="103.55697734739752" y2="103.55697734739752"></line>
-    <line x1="40" x2="940" y1="47.699291025419335" y2="47.699291025419335"></line>
+    <path d="M40,327.14075739235693H940"></path>
+    <path d="M40,271.28307107037864H940"></path>
+    <path d="M40,215.27234999135396H940"></path>
+    <path d="M40,159.41466366937576H940"></path>
+    <path d="M40,103.55697734739752H940"></path>
+    <path d="M40,47.699291025419335H940"></path>
   </g>
   <line aria-label="frame" stroke="currentColor" stroke-linecap="square" transform="translate(0.5,0.5)" x1="40" x2="40" y1="20" y2="362.4521874459623"></line>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">

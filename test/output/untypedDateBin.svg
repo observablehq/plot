@@ -120,6 +120,6 @@
     <rect x="611.3177167474421" y="312.78598574503195" width="8.682283252557909" height="57.21401425496805"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <path d="M40,370H620"></path>
   </g>
 </svg>

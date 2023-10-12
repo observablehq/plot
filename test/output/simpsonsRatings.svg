@@ -14,34 +14,34 @@
     }
   </style>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,10.5)">
-    <line x1="40" x2="620" y1="32" y2="32"></line>
-    <line x1="40" x2="620" y1="53" y2="53"></line>
-    <line x1="40" x2="620" y1="74" y2="74"></line>
-    <line x1="40" x2="620" y1="95" y2="95"></line>
-    <line x1="40" x2="620" y1="116" y2="116"></line>
-    <line x1="40" x2="620" y1="137" y2="137"></line>
-    <line x1="40" x2="620" y1="158" y2="158"></line>
-    <line x1="40" x2="620" y1="179" y2="179"></line>
-    <line x1="40" x2="620" y1="200" y2="200"></line>
-    <line x1="40" x2="620" y1="221" y2="221"></line>
-    <line x1="40" x2="620" y1="242" y2="242"></line>
-    <line x1="40" x2="620" y1="263" y2="263"></line>
-    <line x1="40" x2="620" y1="284" y2="284"></line>
-    <line x1="40" x2="620" y1="305" y2="305"></line>
-    <line x1="40" x2="620" y1="326" y2="326"></line>
-    <line x1="40" x2="620" y1="347" y2="347"></line>
-    <line x1="40" x2="620" y1="368" y2="368"></line>
-    <line x1="40" x2="620" y1="389" y2="389"></line>
-    <line x1="40" x2="620" y1="410" y2="410"></line>
-    <line x1="40" x2="620" y1="431" y2="431"></line>
-    <line x1="40" x2="620" y1="452" y2="452"></line>
-    <line x1="40" x2="620" y1="473" y2="473"></line>
-    <line x1="40" x2="620" y1="494" y2="494"></line>
-    <line x1="40" x2="620" y1="515" y2="515"></line>
-    <line x1="40" x2="620" y1="536" y2="536"></line>
-    <line x1="40" x2="620" y1="557" y2="557"></line>
-    <line x1="40" x2="620" y1="578" y2="578"></line>
-    <line x1="40" x2="620" y1="599" y2="599"></line>
+    <path d="M40,32H620"></path>
+    <path d="M40,53H620"></path>
+    <path d="M40,74H620"></path>
+    <path d="M40,95H620"></path>
+    <path d="M40,116H620"></path>
+    <path d="M40,137H620"></path>
+    <path d="M40,158H620"></path>
+    <path d="M40,179H620"></path>
+    <path d="M40,200H620"></path>
+    <path d="M40,221H620"></path>
+    <path d="M40,242H620"></path>
+    <path d="M40,263H620"></path>
+    <path d="M40,284H620"></path>
+    <path d="M40,305H620"></path>
+    <path d="M40,326H620"></path>
+    <path d="M40,347H620"></path>
+    <path d="M40,368H620"></path>
+    <path d="M40,389H620"></path>
+    <path d="M40,410H620"></path>
+    <path d="M40,431H620"></path>
+    <path d="M40,452H620"></path>
+    <path d="M40,473H620"></path>
+    <path d="M40,494H620"></path>
+    <path d="M40,515H620"></path>
+    <path d="M40,536H620"></path>
+    <path d="M40,557H620"></path>
+    <path d="M40,578H620"></path>
+    <path d="M40,599H620"></path>
   </g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10.5)">
     <path transform="translate(40,32)" d="M0,0L-6,0"></path>
@@ -107,31 +107,31 @@
     <text y="0.71em" transform="translate(40,325) rotate(-90)">Season</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(11.5,0)">
-    <line x1="43" x2="43" y1="30" y2="620"></line>
-    <line x1="66" x2="66" y1="30" y2="620"></line>
-    <line x1="89" x2="89" y1="30" y2="620"></line>
-    <line x1="112" x2="112" y1="30" y2="620"></line>
-    <line x1="135" x2="135" y1="30" y2="620"></line>
-    <line x1="158" x2="158" y1="30" y2="620"></line>
-    <line x1="181" x2="181" y1="30" y2="620"></line>
-    <line x1="204" x2="204" y1="30" y2="620"></line>
-    <line x1="227" x2="227" y1="30" y2="620"></line>
-    <line x1="250" x2="250" y1="30" y2="620"></line>
-    <line x1="273" x2="273" y1="30" y2="620"></line>
-    <line x1="296" x2="296" y1="30" y2="620"></line>
-    <line x1="319" x2="319" y1="30" y2="620"></line>
-    <line x1="342" x2="342" y1="30" y2="620"></line>
-    <line x1="365" x2="365" y1="30" y2="620"></line>
-    <line x1="388" x2="388" y1="30" y2="620"></line>
-    <line x1="411" x2="411" y1="30" y2="620"></line>
-    <line x1="434" x2="434" y1="30" y2="620"></line>
-    <line x1="457" x2="457" y1="30" y2="620"></line>
-    <line x1="480" x2="480" y1="30" y2="620"></line>
-    <line x1="503" x2="503" y1="30" y2="620"></line>
-    <line x1="526" x2="526" y1="30" y2="620"></line>
-    <line x1="549" x2="549" y1="30" y2="620"></line>
-    <line x1="572" x2="572" y1="30" y2="620"></line>
-    <line x1="595" x2="595" y1="30" y2="620"></line>
+    <path d="M43,30V620"></path>
+    <path d="M66,30V620"></path>
+    <path d="M89,30V620"></path>
+    <path d="M112,30V620"></path>
+    <path d="M135,30V620"></path>
+    <path d="M158,30V620"></path>
+    <path d="M181,30V620"></path>
+    <path d="M204,30V620"></path>
+    <path d="M227,30V620"></path>
+    <path d="M250,30V620"></path>
+    <path d="M273,30V620"></path>
+    <path d="M296,30V620"></path>
+    <path d="M319,30V620"></path>
+    <path d="M342,30V620"></path>
+    <path d="M365,30V620"></path>
+    <path d="M388,30V620"></path>
+    <path d="M411,30V620"></path>
+    <path d="M434,30V620"></path>
+    <path d="M457,30V620"></path>
+    <path d="M480,30V620"></path>
+    <path d="M503,30V620"></path>
+    <path d="M526,30V620"></path>
+    <path d="M549,30V620"></path>
+    <path d="M572,30V620"></path>
+    <path d="M595,30V620"></path>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(11.5,1)">
     <path transform="translate(43,30)" d="M0,0L0,-6"></path>

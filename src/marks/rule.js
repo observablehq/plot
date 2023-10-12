@@ -4,6 +4,7 @@ import {applyMarkers, markers} from "../marker.js";
 import {identity, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {template} from "../template.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 
 const defaults = {
@@ -14,7 +15,7 @@ const defaults = {
 
 export class RuleX extends Mark {
   constructor(data, options = {}) {
-    const {x, y1, y2, inset = 0, insetTop = inset, insetBottom = inset} = options;
+    const {x, y1, y2, tick = 0, inset = 0, insetTop = inset, insetBottom = inset} = options;
     super(
       data,
       {
@@ -27,13 +28,15 @@ export class RuleX extends Mark {
     );
     this.insetTop = number(insetTop);
     this.insetBottom = number(insetBottom);
+    this.tick = number(tick === true ? 3 : tick);
     markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {x: X, y1: Y1, y2: Y2} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
-    const {insetTop, insetBottom} = this;
+    const {tick, insetTop, insetBottom} = this;
+    const t = tick ? `m${tick},0h${-tick * 2}m${tick},0` : "";
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x}, offset, 0)
@@ -42,18 +45,19 @@ export class RuleX extends Mark {
           .selectAll()
           .data(index)
           .enter()
-          .append("line")
+          .append("path")
           .call(applyDirectStyles, this)
-          .attr("x1", X ? (i) => X[i] : (marginLeft + width - marginRight) / 2)
-          .attr("x2", X ? (i) => X[i] : (marginLeft + width - marginRight) / 2)
-          .attr("y1", Y1 && !isCollapsed(y) ? (i) => Y1[i] + insetTop : marginTop + insetTop)
           .attr(
-            "y2",
-            Y2 && !isCollapsed(y)
-              ? y.bandwidth
-                ? (i) => Y2[i] + y.bandwidth() - insetBottom
-                : (i) => Y2[i] - insetBottom
-              : height - marginBottom - insetBottom
+            "d",
+            template`M${X ? (i) => X[i] : (marginLeft + width - marginRight) / 2},${
+              Y1 && !isCollapsed(y) ? (i) => Y1[i] + insetTop : marginTop + insetTop
+            }${t}V${
+              Y2 && !isCollapsed(y)
+                ? y.bandwidth
+                  ? (i) => Y2[i] + y.bandwidth() - insetBottom
+                  : (i) => Y2[i] - insetBottom
+                : height - marginBottom - insetBottom
+            }${tick ? `m${tick},0h${-tick * 2}m${tick},0` : ""}${t}`
           )
           .call(applyChannelStyles, this, channels)
           .call(applyMarkers, this, channels, context)
@@ -64,7 +68,7 @@ export class RuleX extends Mark {
 
 export class RuleY extends Mark {
   constructor(data, options = {}) {
-    const {x1, x2, y, inset = 0, insetRight = inset, insetLeft = inset} = options;
+    const {x1, x2, y, tick = 0, inset = 0, insetRight = inset, insetLeft = inset} = options;
     super(
       data,
       {
@@ -77,13 +81,15 @@ export class RuleY extends Mark {
     );
     this.insetRight = number(insetRight);
     this.insetLeft = number(insetLeft);
+    this.tick = number(tick === true ? 3 : tick);
     markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {y: Y, x1: X1, x2: X2} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
-    const {insetLeft, insetRight} = this;
+    const {tick, insetLeft, insetRight} = this;
+    const t = tick ? `m0,${tick}v${-tick * 2}m0,${tick}` : "";
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {y: Y && y}, 0, offset)
@@ -92,19 +98,20 @@ export class RuleY extends Mark {
           .selectAll()
           .data(index)
           .enter()
-          .append("line")
+          .append("path")
           .call(applyDirectStyles, this)
-          .attr("x1", X1 && !isCollapsed(x) ? (i) => X1[i] + insetLeft : marginLeft + insetLeft)
           .attr(
-            "x2",
-            X2 && !isCollapsed(x)
-              ? x.bandwidth
-                ? (i) => X2[i] + x.bandwidth() - insetRight
-                : (i) => X2[i] - insetRight
-              : width - marginRight - insetRight
+            "d",
+            template`M${X1 && !isCollapsed(x) ? (i) => X1[i] + insetLeft : marginLeft + insetLeft},${
+              Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2
+            }${t}H${
+              X2 && !isCollapsed(x)
+                ? x.bandwidth
+                  ? (i) => X2[i] + x.bandwidth() - insetRight
+                  : (i) => X2[i] - insetRight
+                : width - marginRight - insetRight
+            }${t}`
           )
-          .attr("y1", Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
-          .attr("y2", Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
           .call(applyChannelStyles, this, channels)
           .call(applyMarkers, this, channels, context)
       )

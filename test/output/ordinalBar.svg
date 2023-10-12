@@ -14,13 +14,13 @@
     }
   </style>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="32" y2="32"></line>
-    <line x1="40" x2="620" y1="53" y2="53"></line>
-    <line x1="40" x2="620" y1="74" y2="74"></line>
-    <line x1="40" x2="620" y1="95" y2="95"></line>
-    <line x1="40" x2="620" y1="116" y2="116"></line>
-    <line x1="40" x2="620" y1="137" y2="137"></line>
-    <line x1="40" x2="620" y1="158" y2="158"></line>
+    <path d="M40,32H620"></path>
+    <path d="M40,53H620"></path>
+    <path d="M40,74H620"></path>
+    <path d="M40,95H620"></path>
+    <path d="M40,116H620"></path>
+    <path d="M40,137H620"></path>
+    <path d="M40,158H620"></path>
   </g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,32)" d="M0,0L-6,0"></path>
@@ -65,6 +65,6 @@
     <rect x="525" width="86" y="32" height="126"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="32" y2="32"></line>
+    <path d="M40,32H620"></path>
   </g>
 </svg>

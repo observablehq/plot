@@ -89,6 +89,6 @@
     <text y="0.32em" transform="translate(497.4863387978142,246)">897</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="40" x2="40" y1="20" y2="270"></line>
+    <path d="M40,20V270"></path>
   </g>
 </svg>

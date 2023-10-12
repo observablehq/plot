@@ -68,15 +68,15 @@
     <text y="0.32em" transform="translate(140,506)">Legends</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="140" x2="140" y1="20" y2="530"></line>
-    <line x1="198.53658536585365" x2="198.53658536585365" y1="20" y2="530"></line>
-    <line x1="257.0731707317073" x2="257.0731707317073" y1="20" y2="530"></line>
-    <line x1="315.609756097561" x2="315.609756097561" y1="20" y2="530"></line>
-    <line x1="374.1463414634146" x2="374.1463414634146" y1="20" y2="530"></line>
-    <line x1="432.6829268292683" x2="432.6829268292683" y1="20" y2="530"></line>
-    <line x1="491.2195121951219" x2="491.2195121951219" y1="20" y2="530"></line>
-    <line x1="549.7560975609756" x2="549.7560975609756" y1="20" y2="530"></line>
-    <line x1="608.2926829268292" x2="608.2926829268292" y1="20" y2="530"></line>
+    <path d="M140,20V530"></path>
+    <path d="M198.53658536585365,20V530"></path>
+    <path d="M257.0731707317073,20V530"></path>
+    <path d="M315.609756097561,20V530"></path>
+    <path d="M374.1463414634146,20V530"></path>
+    <path d="M432.6829268292683,20V530"></path>
+    <path d="M491.2195121951219,20V530"></path>
+    <path d="M549.7560975609756,20V530"></path>
+    <path d="M608.2926829268292,20V530"></path>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(140,530)" d="M0,0L0,6"></path>
@@ -182,6 +182,6 @@
     <text y="0.32em" transform="translate(350.7317073170732,506)"> 18</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="140" x2="140" y1="20" y2="530"></line>
+    <path d="M140,20V530"></path>
   </g>
 </svg>

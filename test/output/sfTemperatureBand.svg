@@ -14,15 +14,15 @@
     }
   </style>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-    <line x1="40" x2="940" y1="349.6875" y2="349.6875"></line>
-    <line x1="40" x2="940" y1="310.625" y2="310.625"></line>
-    <line x1="40" x2="940" y1="271.5625" y2="271.5625"></line>
-    <line x1="40" x2="940" y1="232.50000000000003" y2="232.50000000000003"></line>
-    <line x1="40" x2="940" y1="193.4375" y2="193.4375"></line>
-    <line x1="40" x2="940" y1="154.375" y2="154.375"></line>
-    <line x1="40" x2="940" y1="115.31250000000001" y2="115.31250000000001"></line>
-    <line x1="40" x2="940" y1="76.25000000000003" y2="76.25000000000003"></line>
-    <line x1="40" x2="940" y1="37.187500000000014" y2="37.187500000000014"></line>
+    <path d="M40,349.6875H940"></path>
+    <path d="M40,310.625H940"></path>
+    <path d="M40,271.5625H940"></path>
+    <path d="M40,232.50000000000003H940"></path>
+    <path d="M40,193.4375H940"></path>
+    <path d="M40,154.375H940"></path>
+    <path d="M40,115.31250000000001H940"></path>
+    <path d="M40,76.25000000000003H940"></path>
+    <path d="M40,37.187500000000014H940"></path>
   </g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,349.6875)" d="M0,0L-6,0"></path>

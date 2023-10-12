@@ -14,17 +14,17 @@
     }
   </style>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-    <line x1="40" x2="940" y1="540" y2="540"></line>
-    <line x1="40" x2="940" y1="491.48514851485146" y2="491.48514851485146"></line>
-    <line x1="40" x2="940" y1="442.970297029703" y2="442.970297029703"></line>
-    <line x1="40" x2="940" y1="394.4554455445544" y2="394.4554455445544"></line>
-    <line x1="40" x2="940" y1="345.94059405940595" y2="345.94059405940595"></line>
-    <line x1="40" x2="940" y1="297.4257425742574" y2="297.4257425742574"></line>
-    <line x1="40" x2="940" y1="248.91089108910893" y2="248.91089108910893"></line>
-    <line x1="40" x2="940" y1="200.39603960396042" y2="200.39603960396042"></line>
-    <line x1="40" x2="940" y1="151.88118811881185" y2="151.88118811881185"></line>
-    <line x1="40" x2="940" y1="103.36633663366337" y2="103.36633663366337"></line>
-    <line x1="40" x2="940" y1="54.851485148514854" y2="54.851485148514854"></line>
+    <path d="M40,540H940"></path>
+    <path d="M40,491.48514851485146H940"></path>
+    <path d="M40,442.970297029703H940"></path>
+    <path d="M40,394.4554455445544H940"></path>
+    <path d="M40,345.94059405940595H940"></path>
+    <path d="M40,297.4257425742574H940"></path>
+    <path d="M40,248.91089108910893H940"></path>
+    <path d="M40,200.39603960396042H940"></path>
+    <path d="M40,151.88118811881185H940"></path>
+    <path d="M40,103.36633663366337H940"></path>
+    <path d="M40,54.851485148514854H940"></path>
   </g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,540)" d="M0,0L-6,0"></path>
@@ -87,7 +87,7 @@
     <text transform="translate(940,570)">Date of first inauguration →</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="940" y1="394.4554455445544" y2="394.4554455445544"></line>
+    <path d="M40,394.4554455445544H940"></path>
   </g>
   <g aria-label="image" transform="translate(0.5,0.5)">
     <image x="40" y="73.36633663366337" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/160px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg"><title>George Washington</title></image>

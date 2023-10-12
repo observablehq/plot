@@ -14,9 +14,9 @@
     }
   </style>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="255.55578383936358" y2="255.55578383936358"></line>
-    <line x1="40" x2="620" y1="203.23330446303498" y2="203.23330446303498"></line>
-    <line x1="40" x2="620" y1="150.91082508670638" y2="150.91082508670638"></line>
+    <path d="M40,255.55578383936358H620"></path>
+    <path d="M40,203.23330446303498H620"></path>
+    <path d="M40,150.91082508670638H620"></path>
   </g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,360.2007425920208)" d="M0,0L-6,0"></path>

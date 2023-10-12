@@ -29,6 +29,6 @@
     <rect x="93" width="474" y="20" height="350"></rect>
   </g>
   <g aria-label="rule" stroke="red" transform="translate(237.5,0)">
-    <line x1="93" x2="93" y1="20" y2="370"></line>
+    <path d="M93,20V370"></path>
   </g>
 </svg>

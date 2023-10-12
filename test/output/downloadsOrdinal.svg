@@ -119,6 +119,6 @@
     <line x1="595" x2="606" y1="354.0909090909091" y2="354.0909090909091"></line>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <path d="M40,370H620"></path>
   </g>
 </svg>

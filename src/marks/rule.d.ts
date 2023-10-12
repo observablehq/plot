@@ -23,6 +23,13 @@ interface RuleOptions extends MarkOptions, MarkerOptions {
    * ```
    */
   interval?: Interval;
+
+  /**
+   * If non-zero, draws an orthogonal line of the given length at the start and
+   * end of the rule, as in an error bar. True is equivalent to 3. Defaults to
+   * zero.
+   */
+  tick?: number | boolean;
 }
 
 /** Options for the ruleX mark. */

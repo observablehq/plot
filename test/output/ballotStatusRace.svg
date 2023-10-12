@@ -41,52 +41,52 @@
   </g>
   <g aria-label="x-grid" transform="translate(0.5,0)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
-      <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
-      <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
-      <line x1="521.2055992921478" x2="521.2055992921478" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
+      <path d="M313.7351997640493,20V76"></path>
+      <path d="M417.47039952809854,20V76"></path>
+      <path d="M521.2055992921478,20V76"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,62)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
-      <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
-      <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
-      <line x1="521.2055992921478" x2="521.2055992921478" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
+      <path d="M313.7351997640493,20V76"></path>
+      <path d="M417.47039952809854,20V76"></path>
+      <path d="M521.2055992921478,20V76"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,124)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
-      <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
-      <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
-      <line x1="521.2055992921478" x2="521.2055992921478" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
+      <path d="M313.7351997640493,20V76"></path>
+      <path d="M417.47039952809854,20V76"></path>
+      <path d="M521.2055992921478,20V76"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,186)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
-      <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
-      <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
-      <line x1="521.2055992921478" x2="521.2055992921478" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
+      <path d="M313.7351997640493,20V76"></path>
+      <path d="M417.47039952809854,20V76"></path>
+      <path d="M521.2055992921478,20V76"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,248)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
-      <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
-      <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
-      <line x1="521.2055992921478" x2="521.2055992921478" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
+      <path d="M313.7351997640493,20V76"></path>
+      <path d="M417.47039952809854,20V76"></path>
+      <path d="M521.2055992921478,20V76"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,310)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
-      <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
-      <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
-      <line x1="521.2055992921478" x2="521.2055992921478" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
+      <path d="M313.7351997640493,20V76"></path>
+      <path d="M417.47039952809854,20V76"></path>
+      <path d="M521.2055992921478,20V76"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,372)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
-      <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
-      <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
-      <line x1="521.2055992921478" x2="521.2055992921478" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
+      <path d="M313.7351997640493,20V76"></path>
+      <path d="M417.47039952809854,20V76"></path>
+      <path d="M521.2055992921478,20V76"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,434)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
-      <line x1="313.7351997640493" x2="313.7351997640493" y1="20" y2="76"></line>
-      <line x1="417.47039952809854" x2="417.47039952809854" y1="20" y2="76"></line>
-      <line x1="521.2055992921478" x2="521.2055992921478" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
+      <path d="M313.7351997640493,20V76"></path>
+      <path d="M417.47039952809854,20V76"></path>
+      <path d="M521.2055992921478,20V76"></path>
     </g>
   </g>
   <g aria-label="x-axis tick" transform="translate(0.5,0)">
@@ -151,28 +151,28 @@
   </g>
   <g aria-label="rule" transform="translate(0.5,0)">
     <g stroke="currentColor" transform="translate(0,0)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,62)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,124)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,186)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,248)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,310)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,372)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,434)">
-      <line x1="210" x2="210" y1="20" y2="76"></line>
+      <path d="M210,20V76"></path>
     </g>
   </g>
 </svg>

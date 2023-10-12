@@ -44,7 +44,7 @@
   </g>
   <rect aria-label="frame" fill="#efefef" transform="translate(0.5,0.5)" x="50" y="20" width="890" height="350"></rect>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="50" x2="940" y1="370" y2="370"></line>
+    <path d="M50,370H940"></path>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(119,370)" d="M0,0L0,28"></path>
@@ -87,68 +87,68 @@
     <text y="0.71em" transform="translate(880,370)"> January</text>
   </g>
   <g aria-label="x-grid" stroke="#fff" transform="translate(0.5,0)">
-    <line x1="50" x2="50" y1="20" y2="370.5"></line>
-    <line x1="65" x2="65" y1="20" y2="370.5"></line>
-    <line x1="79" x2="79" y1="20" y2="370.5"></line>
-    <line x1="94" x2="94" y1="20" y2="370.5"></line>
-    <line x1="108" x2="108" y1="20" y2="370.5"></line>
-    <line x1="123" x2="123" y1="20" y2="370.5"></line>
-    <line x1="138" x2="138" y1="20" y2="370.5"></line>
-    <line x1="152" x2="152" y1="20" y2="370.5"></line>
-    <line x1="167" x2="167" y1="20" y2="370.5"></line>
-    <line x1="181" x2="181" y1="20" y2="370.5"></line>
-    <line x1="196" x2="196" y1="20" y2="370.5"></line>
-    <line x1="210" x2="210" y1="20" y2="370.5"></line>
-    <line x1="225" x2="225" y1="20" y2="370.5"></line>
-    <line x1="240" x2="240" y1="20" y2="370.5"></line>
-    <line x1="254" x2="254" y1="20" y2="370.5"></line>
-    <line x1="269" x2="269" y1="20" y2="370.5"></line>
-    <line x1="283" x2="283" y1="20" y2="370.5"></line>
-    <line x1="298" x2="298" y1="20" y2="370.5"></line>
-    <line x1="313" x2="313" y1="20" y2="370.5"></line>
-    <line x1="327" x2="327" y1="20" y2="370.5"></line>
-    <line x1="342" x2="342" y1="20" y2="370.5"></line>
-    <line x1="356" x2="356" y1="20" y2="370.5"></line>
-    <line x1="371" x2="371" y1="20" y2="370.5"></line>
-    <line x1="386" x2="386" y1="20" y2="370.5"></line>
-    <line x1="400" x2="400" y1="20" y2="370.5"></line>
-    <line x1="415" x2="415" y1="20" y2="370.5"></line>
-    <line x1="429" x2="429" y1="20" y2="370.5"></line>
-    <line x1="444" x2="444" y1="20" y2="370.5"></line>
-    <line x1="459" x2="459" y1="20" y2="370.5"></line>
-    <line x1="473" x2="473" y1="20" y2="370.5"></line>
-    <line x1="488" x2="488" y1="20" y2="370.5"></line>
-    <line x1="502" x2="502" y1="20" y2="370.5"></line>
-    <line x1="517" x2="517" y1="20" y2="370.5"></line>
-    <line x1="531" x2="531" y1="20" y2="370.5"></line>
-    <line x1="546" x2="546" y1="20" y2="370.5"></line>
-    <line x1="561" x2="561" y1="20" y2="370.5"></line>
-    <line x1="575" x2="575" y1="20" y2="370.5"></line>
-    <line x1="590" x2="590" y1="20" y2="370.5"></line>
-    <line x1="604" x2="604" y1="20" y2="370.5"></line>
-    <line x1="619" x2="619" y1="20" y2="370.5"></line>
-    <line x1="634" x2="634" y1="20" y2="370.5"></line>
-    <line x1="648" x2="648" y1="20" y2="370.5"></line>
-    <line x1="663" x2="663" y1="20" y2="370.5"></line>
-    <line x1="677" x2="677" y1="20" y2="370.5"></line>
-    <line x1="692" x2="692" y1="20" y2="370.5"></line>
-    <line x1="707" x2="707" y1="20" y2="370.5"></line>
-    <line x1="721" x2="721" y1="20" y2="370.5"></line>
-    <line x1="736" x2="736" y1="20" y2="370.5"></line>
-    <line x1="750" x2="750" y1="20" y2="370.5"></line>
-    <line x1="765" x2="765" y1="20" y2="370.5"></line>
-    <line x1="780" x2="780" y1="20" y2="370.5"></line>
-    <line x1="794" x2="794" y1="20" y2="370.5"></line>
-    <line x1="809" x2="809" y1="20" y2="370.5"></line>
-    <line x1="823" x2="823" y1="20" y2="370.5"></line>
-    <line x1="838" x2="838" y1="20" y2="370.5"></line>
-    <line x1="852" x2="852" y1="20" y2="370.5"></line>
-    <line x1="867" x2="867" y1="20" y2="370.5"></line>
-    <line x1="882" x2="882" y1="20" y2="370.5"></line>
-    <line x1="896" x2="896" y1="20" y2="370.5"></line>
-    <line x1="911" x2="911" y1="20" y2="370.5"></line>
-    <line x1="925" x2="925" y1="20" y2="370.5"></line>
-    <line x1="940" x2="940" y1="20" y2="370.5"></line>
+    <path d="M50,20V370.5"></path>
+    <path d="M65,20V370.5"></path>
+    <path d="M79,20V370.5"></path>
+    <path d="M94,20V370.5"></path>
+    <path d="M108,20V370.5"></path>
+    <path d="M123,20V370.5"></path>
+    <path d="M138,20V370.5"></path>
+    <path d="M152,20V370.5"></path>
+    <path d="M167,20V370.5"></path>
+    <path d="M181,20V370.5"></path>
+    <path d="M196,20V370.5"></path>
+    <path d="M210,20V370.5"></path>
+    <path d="M225,20V370.5"></path>
+    <path d="M240,20V370.5"></path>
+    <path d="M254,20V370.5"></path>
+    <path d="M269,20V370.5"></path>
+    <path d="M283,20V370.5"></path>
+    <path d="M298,20V370.5"></path>
+    <path d="M313,20V370.5"></path>
+    <path d="M327,20V370.5"></path>
+    <path d="M342,20V370.5"></path>
+    <path d="M356,20V370.5"></path>
+    <path d="M371,20V370.5"></path>
+    <path d="M386,20V370.5"></path>
+    <path d="M400,20V370.5"></path>
+    <path d="M415,20V370.5"></path>
+    <path d="M429,20V370.5"></path>
+    <path d="M444,20V370.5"></path>
+    <path d="M459,20V370.5"></path>
+    <path d="M473,20V370.5"></path>
+    <path d="M488,20V370.5"></path>
+    <path d="M502,20V370.5"></path>
+    <path d="M517,20V370.5"></path>
+    <path d="M531,20V370.5"></path>
+    <path d="M546,20V370.5"></path>
+    <path d="M561,20V370.5"></path>
+    <path d="M575,20V370.5"></path>
+    <path d="M590,20V370.5"></path>
+    <path d="M604,20V370.5"></path>
+    <path d="M619,20V370.5"></path>
+    <path d="M634,20V370.5"></path>
+    <path d="M648,20V370.5"></path>
+    <path d="M663,20V370.5"></path>
+    <path d="M677,20V370.5"></path>
+    <path d="M692,20V370.5"></path>
+    <path d="M707,20V370.5"></path>
+    <path d="M721,20V370.5"></path>
+    <path d="M736,20V370.5"></path>
+    <path d="M750,20V370.5"></path>
+    <path d="M765,20V370.5"></path>
+    <path d="M780,20V370.5"></path>
+    <path d="M794,20V370.5"></path>
+    <path d="M809,20V370.5"></path>
+    <path d="M823,20V370.5"></path>
+    <path d="M838,20V370.5"></path>
+    <path d="M852,20V370.5"></path>
+    <path d="M867,20V370.5"></path>
+    <path d="M882,20V370.5"></path>
+    <path d="M896,20V370.5"></path>
+    <path d="M911,20V370.5"></path>
+    <path d="M925,20V370.5"></path>
+    <path d="M940,20V370.5"></path>
   </g>
   <g aria-label="dot" fill="none" stroke="red" stroke-width="1.5" stroke-opacity="0.3" transform="translate(0.5,0.5)">
     <circle cx="63" cy="179.61839282767724" r="3"></circle>

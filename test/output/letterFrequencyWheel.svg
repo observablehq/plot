@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)">
-    <line x1="0" x2="499" y1="239" y2="239"></line>
+    <path d="M0,239H499"></path>
   </g>
   <g aria-label="link" fill="none" stroke="currentColor" stroke-width="2" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M249.5,239L109.508,230.903"></path>

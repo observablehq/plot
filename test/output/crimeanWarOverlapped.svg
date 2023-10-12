@@ -145,6 +145,6 @@
     <rect style="mix-blend-mode: multiply;" x="596.4035567715459" y="365.5632017385006" width="23.596443228454064" height="4.436798261499405" fill="#f28e2c"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <path d="M40,370H620"></path>
   </g>
 </svg>

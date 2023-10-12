@@ -175,28 +175,28 @@
   </g>
   <g aria-label="rule" transform="translate(0,0.5)">
     <g stroke="currentColor" transform="translate(1,0)">
-      <line x1="40" x2="204" y1="170" y2="170"></line>
+      <path d="M40,170H204"></path>
     </g>
     <g stroke="currentColor" transform="translate(1,155)">
-      <line x1="40" x2="204" y1="170" y2="170"></line>
+      <path d="M40,170H204"></path>
     </g>
     <g stroke="currentColor" transform="translate(1,310)">
-      <line x1="40" x2="204" y1="170" y2="170"></line>
+      <path d="M40,170H204"></path>
     </g>
     <g stroke="currentColor" transform="translate(183,0)">
-      <line x1="40" x2="204" y1="170" y2="170"></line>
+      <path d="M40,170H204"></path>
     </g>
     <g stroke="currentColor" transform="translate(183,155)">
-      <line x1="40" x2="204" y1="170" y2="170"></line>
+      <path d="M40,170H204"></path>
     </g>
     <g stroke="currentColor" transform="translate(183,310)">
-      <line x1="40" x2="204" y1="170" y2="170"></line>
+      <path d="M40,170H204"></path>
     </g>
     <g stroke="currentColor" transform="translate(365,0)">
-      <line x1="40" x2="204" y1="170" y2="170"></line>
+      <path d="M40,170H204"></path>
     </g>
     <g stroke="currentColor" transform="translate(365,310)">
-      <line x1="40" x2="204" y1="170" y2="170"></line>
+      <path d="M40,170H204"></path>
     </g>
   </g>
 </svg>

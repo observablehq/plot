@@ -74,17 +74,17 @@
     <text y="0.32em" transform="translate(100,566)">gymnastics</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="100" x2="100" y1="20" y2="590"></line>
-    <line x1="152" x2="152" y1="20" y2="590"></line>
-    <line x1="204" x2="204" y1="20" y2="590"></line>
-    <line x1="256" x2="256" y1="20" y2="590"></line>
-    <line x1="308" x2="308" y1="20" y2="590"></line>
-    <line x1="360" x2="360" y1="20" y2="590"></line>
-    <line x1="412" x2="412" y1="20" y2="590"></line>
-    <line x1="464" x2="464" y1="20" y2="590"></line>
-    <line x1="516" x2="516" y1="20" y2="590"></line>
-    <line x1="568" x2="568" y1="20" y2="590"></line>
-    <line x1="620" x2="620" y1="20" y2="590"></line>
+    <path d="M100,20V590"></path>
+    <path d="M152,20V590"></path>
+    <path d="M204,20V590"></path>
+    <path d="M256,20V590"></path>
+    <path d="M308,20V590"></path>
+    <path d="M360,20V590"></path>
+    <path d="M412,20V590"></path>
+    <path d="M464,20V590"></path>
+    <path d="M516,20V590"></path>
+    <path d="M568,20V590"></path>
+    <path d="M620,20V590"></path>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(100,590)" d="M0,0L0,6"></path>

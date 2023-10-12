@@ -14,15 +14,15 @@
     }
   </style>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,9.5)">
-    <line x1="50" x2="620" y1="36" y2="36"></line>
-    <line x1="50" x2="620" y1="56" y2="56"></line>
-    <line x1="50" x2="620" y1="76" y2="76"></line>
-    <line x1="50" x2="620" y1="96" y2="96"></line>
-    <line x1="50" x2="620" y1="116" y2="116"></line>
-    <line x1="50" x2="620" y1="136" y2="136"></line>
-    <line x1="50" x2="620" y1="156" y2="156"></line>
-    <line x1="50" x2="620" y1="176" y2="176"></line>
-    <line x1="50" x2="620" y1="196" y2="196"></line>
+    <path d="M50,36H620"></path>
+    <path d="M50,56H620"></path>
+    <path d="M50,76H620"></path>
+    <path d="M50,96H620"></path>
+    <path d="M50,116H620"></path>
+    <path d="M50,136H620"></path>
+    <path d="M50,156H620"></path>
+    <path d="M50,176H620"></path>
+    <path d="M50,196H620"></path>
   </g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9.5)">
     <path transform="translate(50,36)" d="M0,0L-6,0"></path>
@@ -50,17 +50,17 @@
     <text y="0.71em" transform="translate(50,125) rotate(-90)">Age</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="50" x2="50" y1="30" y2="220"></line>
-    <line x1="104.84685346338046" x2="104.84685346338046" y1="30" y2="220"></line>
-    <line x1="159.6937069267609" x2="159.6937069267609" y1="30" y2="220"></line>
-    <line x1="214.54056039014134" x2="214.54056039014134" y1="30" y2="220"></line>
-    <line x1="269.3874138535218" x2="269.3874138535218" y1="30" y2="220"></line>
-    <line x1="324.2342673169022" x2="324.2342673169022" y1="30" y2="220"></line>
-    <line x1="379.0811207802827" x2="379.0811207802827" y1="30" y2="220"></line>
-    <line x1="433.92797424366313" x2="433.92797424366313" y1="30" y2="220"></line>
-    <line x1="488.7748277070436" x2="488.7748277070436" y1="30" y2="220"></line>
-    <line x1="543.6216811704239" x2="543.6216811704239" y1="30" y2="220"></line>
-    <line x1="598.4685346338044" x2="598.4685346338044" y1="30" y2="220"></line>
+    <path d="M50,30V220"></path>
+    <path d="M104.84685346338046,30V220"></path>
+    <path d="M159.6937069267609,30V220"></path>
+    <path d="M214.54056039014134,30V220"></path>
+    <path d="M269.3874138535218,30V220"></path>
+    <path d="M324.2342673169022,30V220"></path>
+    <path d="M379.0811207802827,30V220"></path>
+    <path d="M433.92797424366313,30V220"></path>
+    <path d="M488.7748277070436,30V220"></path>
+    <path d="M543.6216811704239,30V220"></path>
+    <path d="M598.4685346338044,30V220"></path>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
     <path transform="translate(50,30)" d="M0,0L0,-6"></path>
@@ -92,7 +92,7 @@
     <text y="0.71em" transform="translate(620,30)">Percent (%) →</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="50" x2="50" y1="30" y2="220"></line>
+    <path d="M50,30V220"></path>
   </g>
   <g aria-label="tick" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="389.0159388016705" x2="389.0159388016705" y1="36" y2="54"></line>

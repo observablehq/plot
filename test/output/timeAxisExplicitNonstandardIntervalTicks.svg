@@ -41,11 +41,11 @@
     <text y="0.71em" transform="translate(40,20)">↑ Close</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="121.26373626373626" x2="121.26373626373626" y1="20" y2="370"></line>
-    <line x1="237.58241758241758" x2="237.58241758241758" y1="20" y2="370"></line>
-    <line x1="353.90109890109886" x2="353.90109890109886" y1="20" y2="370"></line>
-    <line x1="470.53846153846155" x2="470.53846153846155" y1="20" y2="370"></line>
-    <line x1="586.8571428571429" x2="586.8571428571429" y1="20" y2="370"></line>
+    <path d="M121.26373626373626,20V370"></path>
+    <path d="M237.58241758241758,20V370"></path>
+    <path d="M353.90109890109886,20V370"></path>
+    <path d="M470.53846153846155,20V370"></path>
+    <path d="M586.8571428571429,20V370"></path>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(121.26373626373626,370)" d="M0,0L0,6"></path>
@@ -62,7 +62,7 @@
     <text y="0.71em" transform="translate(586.8571428571429,370)">2018</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <path d="M40,370H620"></path>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="40" cy="250.35675732739054" r="3"></circle>

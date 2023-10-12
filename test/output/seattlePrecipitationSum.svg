@@ -129,6 +129,6 @@
     <text y="0.32em" transform="translate(633.8095238095237,329.4448612153038)">16</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <path d="M40,370H620"></path>
   </g>
 </svg>

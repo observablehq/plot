@@ -131,6 +131,6 @@
     <rect x="596.4035567715459" y="366.13320707070704" width="23.596443228454064" height="3.8667929292929557" fill="#f28e2c"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <path d="M40,370H620"></path>
   </g>
 </svg>

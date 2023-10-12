@@ -136,13 +136,13 @@
   </g>
   <g aria-label="rule" transform="translate(0,0.5)">
     <g stroke="currentColor" transform="translate(0,0)">
-      <line x1="40" x2="570" y1="153" y2="153"></line>
+      <path d="M40,153H570"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,148)">
-      <line x1="40" x2="570" y1="153" y2="153"></line>
+      <path d="M40,153H570"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,296)">
-      <line x1="40" x2="570" y1="153" y2="153"></line>
+      <path d="M40,153H570"></path>
     </g>
   </g>
 </svg>

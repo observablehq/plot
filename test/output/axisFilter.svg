@@ -19,12 +19,12 @@
     <circle cx="523" cy="45" r="3"></circle>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="137" x2="137" y1="20" y2="70"></line>
-    <line x1="330" x2="330" y1="20" y2="70"></line>
+    <path d="M137,20V70"></path>
+    <path d="M330,20V70"></path>
   </g>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="45" y2="45"></line>
-    <line x1="40" x2="620" y1="20" y2="20"></line>
+    <path d="M40,45H620"></path>
+    <path d="M40,20H620"></path>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(137,70)" d="M0,0L0,6"></path>

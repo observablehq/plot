@@ -31,17 +31,17 @@
     <text y="0.71em" transform="translate(300,30)">How comfortable are you with d3 now?</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="300" x2="300" y1="30" y2="130"></line>
-    <line x1="364" x2="364" y1="30" y2="130"></line>
-    <line x1="428" x2="428" y1="30" y2="130"></line>
-    <line x1="492" x2="492" y1="30" y2="130"></line>
-    <line x1="556" x2="556" y1="30" y2="130"></line>
-    <line x1="620" x2="620" y1="30" y2="130"></line>
-    <line x1="684" x2="684" y1="30" y2="130"></line>
-    <line x1="748" x2="748" y1="30" y2="130"></line>
-    <line x1="812" x2="812" y1="30" y2="130"></line>
-    <line x1="876" x2="876" y1="30" y2="130"></line>
-    <line x1="940" x2="940" y1="30" y2="130"></line>
+    <path d="M300,30V130"></path>
+    <path d="M364,30V130"></path>
+    <path d="M428,30V130"></path>
+    <path d="M492,30V130"></path>
+    <path d="M556,30V130"></path>
+    <path d="M620,30V130"></path>
+    <path d="M684,30V130"></path>
+    <path d="M748,30V130"></path>
+    <path d="M812,30V130"></path>
+    <path d="M876,30V130"></path>
+    <path d="M940,30V130"></path>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
     <path transform="translate(300,30)" d="M0,0L0,-6"></path>
@@ -80,6 +80,6 @@
     <rect x="300" width="3.9143730886850108" y="111" height="19"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="300" x2="300" y1="30" y2="130"></line>
+    <path d="M300,30V130"></path>
   </g>
 </svg>

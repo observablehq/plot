@@ -49,8 +49,8 @@
     <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto-start-reverse" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-3">
       <path d="M-1.5,-3l3,3l-3,3"></path>
     </marker>
-    <line x1="20" x2="20" y1="3" y2="27" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="320" x2="320" y1="3" y2="27" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
-    <line x1="620" x2="620" y1="3" y2="27" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></line>
+    <path d="M20,3V27" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></path>
+    <path d="M320,3V27" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></path>
+    <path d="M620,3V27" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-3)"></path>
   </g>
 </svg>

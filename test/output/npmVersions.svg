@@ -26,14 +26,14 @@
     <text y="0.32em" transform="translate(40,87)">0</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="40" x2="40" y1="20" y2="110"></line>
-    <line x1="114.77975428404187" x2="114.77975428404187" y1="20" y2="110"></line>
-    <line x1="189.55950856808374" x2="189.55950856808374" y1="20" y2="110"></line>
-    <line x1="264.3392628521256" x2="264.3392628521256" y1="20" y2="110"></line>
-    <line x1="339.1190171361675" x2="339.1190171361675" y1="20" y2="110"></line>
-    <line x1="413.8987714202093" x2="413.8987714202093" y1="20" y2="110"></line>
-    <line x1="488.67852570425123" x2="488.67852570425123" y1="20" y2="110"></line>
-    <line x1="563.4582799882932" x2="563.4582799882932" y1="20" y2="110"></line>
+    <path d="M40,20V110"></path>
+    <path d="M114.77975428404187,20V110"></path>
+    <path d="M189.55950856808374,20V110"></path>
+    <path d="M264.3392628521256,20V110"></path>
+    <path d="M339.1190171361675,20V110"></path>
+    <path d="M413.8987714202093,20V110"></path>
+    <path d="M488.67852570425123,20V110"></path>
+    <path d="M563.4582799882932,20V110"></path>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,110)" d="M0,0L0,6"></path>
@@ -128,6 +128,6 @@
     <text y="0.32em" transform="translate(464.94249694756775,24)">3.2.1</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="40" x2="40" y1="20" y2="110"></line>
+    <path d="M40,20V110"></path>
   </g>
 </svg>

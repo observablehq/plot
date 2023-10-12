@@ -15,114 +15,114 @@
   </style>
   <g aria-label="x-grid" transform="translate(0.5,0)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,117)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+      <path d="M40,30V135"></path>
+      <path d="M57.5,30V135"></path>
+      <path d="M75,30V135"></path>
+      <path d="M92.5,30V135"></path>
+      <path d="M110,30V135"></path>
+      <path d="M127.50000000000001,30V135"></path>
+      <path d="M145,30V135"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,234)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+      <path d="M40,30V135"></path>
+      <path d="M57.5,30V135"></path>
+      <path d="M75,30V135"></path>
+      <path d="M92.5,30V135"></path>
+      <path d="M110,30V135"></path>
+      <path d="M127.50000000000001,30V135"></path>
+      <path d="M145,30V135"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(117,0)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+      <path d="M40,30V135"></path>
+      <path d="M57.5,30V135"></path>
+      <path d="M75,30V135"></path>
+      <path d="M92.5,30V135"></path>
+      <path d="M110,30V135"></path>
+      <path d="M127.50000000000001,30V135"></path>
+      <path d="M145,30V135"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(117,234)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+      <path d="M40,30V135"></path>
+      <path d="M57.5,30V135"></path>
+      <path d="M75,30V135"></path>
+      <path d="M92.5,30V135"></path>
+      <path d="M110,30V135"></path>
+      <path d="M127.50000000000001,30V135"></path>
+      <path d="M145,30V135"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(234,0)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+      <path d="M40,30V135"></path>
+      <path d="M57.5,30V135"></path>
+      <path d="M75,30V135"></path>
+      <path d="M92.5,30V135"></path>
+      <path d="M110,30V135"></path>
+      <path d="M127.50000000000001,30V135"></path>
+      <path d="M145,30V135"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(234,117)">
-      <line x1="40" x2="40" y1="30" y2="135"></line>
-      <line x1="57.5" x2="57.5" y1="30" y2="135"></line>
-      <line x1="75" x2="75" y1="30" y2="135"></line>
-      <line x1="92.5" x2="92.5" y1="30" y2="135"></line>
-      <line x1="110" x2="110" y1="30" y2="135"></line>
-      <line x1="127.50000000000001" x2="127.50000000000001" y1="30" y2="135"></line>
-      <line x1="145" x2="145" y1="30" y2="135"></line>
+      <path d="M40,30V135"></path>
+      <path d="M57.5,30V135"></path>
+      <path d="M75,30V135"></path>
+      <path d="M92.5,30V135"></path>
+      <path d="M110,30V135"></path>
+      <path d="M127.50000000000001,30V135"></path>
+      <path d="M145,30V135"></path>
     </g>
   </g>
   <g aria-label="y-grid" transform="translate(0,0.5)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,117)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+      <path d="M40,135H145"></path>
+      <path d="M40,117.5H145"></path>
+      <path d="M40,100.00000000000001H145"></path>
+      <path d="M40,82.5H145"></path>
+      <path d="M40,65H145"></path>
+      <path d="M40,47.5H145"></path>
+      <path d="M40,30H145"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,234)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+      <path d="M40,135H145"></path>
+      <path d="M40,117.5H145"></path>
+      <path d="M40,100.00000000000001H145"></path>
+      <path d="M40,82.5H145"></path>
+      <path d="M40,65H145"></path>
+      <path d="M40,47.5H145"></path>
+      <path d="M40,30H145"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(117,0)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+      <path d="M40,135H145"></path>
+      <path d="M40,117.5H145"></path>
+      <path d="M40,100.00000000000001H145"></path>
+      <path d="M40,82.5H145"></path>
+      <path d="M40,65H145"></path>
+      <path d="M40,47.5H145"></path>
+      <path d="M40,30H145"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(117,234)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+      <path d="M40,135H145"></path>
+      <path d="M40,117.5H145"></path>
+      <path d="M40,100.00000000000001H145"></path>
+      <path d="M40,82.5H145"></path>
+      <path d="M40,65H145"></path>
+      <path d="M40,47.5H145"></path>
+      <path d="M40,30H145"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(234,0)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+      <path d="M40,135H145"></path>
+      <path d="M40,117.5H145"></path>
+      <path d="M40,100.00000000000001H145"></path>
+      <path d="M40,82.5H145"></path>
+      <path d="M40,65H145"></path>
+      <path d="M40,47.5H145"></path>
+      <path d="M40,30H145"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(234,117)">
-      <line x1="40" x2="145" y1="135" y2="135"></line>
-      <line x1="40" x2="145" y1="117.5" y2="117.5"></line>
-      <line x1="40" x2="145" y1="100.00000000000001" y2="100.00000000000001"></line>
-      <line x1="40" x2="145" y1="82.5" y2="82.5"></line>
-      <line x1="40" x2="145" y1="65" y2="65"></line>
-      <line x1="40" x2="145" y1="47.5" y2="47.5"></line>
-      <line x1="40" x2="145" y1="30" y2="30"></line>
+      <path d="M40,135H145"></path>
+      <path d="M40,117.5H145"></path>
+      <path d="M40,100.00000000000001H145"></path>
+      <path d="M40,82.5H145"></path>
+      <path d="M40,65H145"></path>
+      <path d="M40,47.5H145"></path>
+      <path d="M40,30H145"></path>
     </g>
   </g>
   <g aria-label="x-axis tick" transform="translate(0.5,0)">

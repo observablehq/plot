@@ -15,22 +15,22 @@
   </style>
   <g aria-label="fy-grid" transform="translate(0,0.5)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,1)">
-      <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
+      <path d="M40,29.5H620"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,43)">
-      <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
+      <path d="M40,29.5H620"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,85)">
-      <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
+      <path d="M40,29.5H620"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,127)">
-      <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
+      <path d="M40,29.5H620"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,169)">
-      <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
+      <path d="M40,29.5H620"></path>
     </g>
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,211)">
-      <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
+      <path d="M40,29.5H620"></path>
     </g>
   </g>
   <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
@@ -83,37 +83,37 @@
   </g>
   <g aria-label="rule" transform="translate(0,0.5)">
     <g stroke="currentColor" transform="translate(0,1)">
-      <line x1="277.841726618705" x2="277.841726618705" y1="29.5" y2="29.5"></line>
+      <path d="M277.841726618705,29.5H277.841726618705"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,22)">
-      <line x1="277.841726618705" x2="453.0935251798561" y1="29.5" y2="29.5"></line>
+      <path d="M277.841726618705,29.5H453.0935251798561"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,43)">
-      <line x1="231.9424460431655" x2="444.7482014388489" y1="29.5" y2="29.5"></line>
+      <path d="M231.9424460431655,29.5H444.7482014388489"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,64)">
-      <line x1="173.5251798561151" x2="403.0215827338129" y1="29.5" y2="29.5"></line>
+      <path d="M173.5251798561151,29.5H403.0215827338129"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,85)">
-      <line x1="140.14388489208633" x2="340.43165467625903" y1="29.5" y2="29.5"></line>
+      <path d="M140.14388489208633,29.5H340.43165467625903"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,106)">
-      <line x1="102.58992805755395" x2="282.0143884892086" y1="29.5" y2="29.5"></line>
+      <path d="M102.58992805755395,29.5H282.0143884892086"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,127)">
-      <line x1="85.89928057553956" x2="227.76978417266184" y1="29.5" y2="29.5"></line>
+      <path d="M85.89928057553956,29.5H227.76978417266184"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,148)">
-      <line x1="56.690647482014384" x2="202.73381294964025" y1="29.5" y2="29.5"></line>
+      <path d="M56.690647482014384,29.5H202.73381294964025"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,169)">
-      <line x1="48.34532374100719" x2="156.83453237410072" y1="29.5" y2="29.5"></line>
+      <path d="M48.34532374100719,29.5H156.83453237410072"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,190)">
-      <line x1="40" x2="198.5611510791367" y1="29.5" y2="29.5"></line>
+      <path d="M40,29.5H198.5611510791367"></path>
     </g>
     <g stroke="currentColor" transform="translate(0,211)">
-      <line x1="106.76258992805755" x2="106.76258992805755" y1="29.5" y2="29.5"></line>
+      <path d="M106.76258992805755,29.5H106.76258992805755"></path>
     </g>
   </g>
   <g aria-label="bar">

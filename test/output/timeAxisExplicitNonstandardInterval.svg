@@ -61,7 +61,7 @@
     <text y="0.71em" transform="translate(602.1538461538462,370)">2018-02-18</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <path d="M40,370H620"></path>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="40" cy="250.35675732739054" r="3"></circle>

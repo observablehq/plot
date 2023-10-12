@@ -34,7 +34,7 @@
     <text y="0.71em" transform="translate(620,30)">7</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="277.14285714285717" x2="448.5714285714286" y1="15" y2="15"></line>
+    <path d="M277.14285714285717,15H448.5714285714286"></path>
   </g>
   <g aria-label="bar" fill="#ccc">
     <rect x="337.14285714285717" width="94.28571428571428" y="0" height="30"></rect>

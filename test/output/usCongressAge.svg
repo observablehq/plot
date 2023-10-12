@@ -14,13 +14,13 @@
     }
   </style>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="270" y2="270"></line>
-    <line x1="40" x2="620" y1="229.67741935483872" y2="229.67741935483872"></line>
-    <line x1="40" x2="620" y1="189.35483870967744" y2="189.35483870967744"></line>
-    <line x1="40" x2="620" y1="149.03225806451613" y2="149.03225806451613"></line>
-    <line x1="40" x2="620" y1="108.70967741935485" y2="108.70967741935485"></line>
-    <line x1="40" x2="620" y1="68.38709677419357" y2="68.38709677419357"></line>
-    <line x1="40" x2="620" y1="28.06451612903225" y2="28.06451612903225"></line>
+    <path d="M40,270H620"></path>
+    <path d="M40,229.67741935483872H620"></path>
+    <path d="M40,189.35483870967744H620"></path>
+    <path d="M40,149.03225806451613H620"></path>
+    <path d="M40,108.70967741935485H620"></path>
+    <path d="M40,68.38709677419357H620"></path>
+    <path d="M40,28.06451612903225H620"></path>
   </g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,270)" d="M0,0L-6,0"></path>
@@ -956,6 +956,6 @@
     <circle cx="603.4285714285714" cy="261.93548387096774" r="3"><title>Ralph M. Hall</title></circle>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="270" y2="270"></line>
+    <path d="M40,270H620"></path>
   </g>
 </svg>

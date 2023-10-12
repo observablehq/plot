@@ -14,12 +14,12 @@
     }
   </style>
   <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,42.5)">
-    <line x1="40" x2="620" y1="36" y2="36"></line>
-    <line x1="40" x2="620" y1="129" y2="129"></line>
-    <line x1="40" x2="620" y1="222" y2="222"></line>
-    <line x1="40" x2="620" y1="315" y2="315"></line>
-    <line x1="40" x2="620" y1="408" y2="408"></line>
-    <line x1="40" x2="620" y1="501" y2="501"></line>
+    <path d="M40,36H620"></path>
+    <path d="M40,129H620"></path>
+    <path d="M40,222H620"></path>
+    <path d="M40,315H620"></path>
+    <path d="M40,408H620"></path>
+    <path d="M40,501H620"></path>
   </g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,42.5)">
     <path transform="translate(40,36)" d="M0,0L-6,0"></path>
@@ -38,12 +38,12 @@
     <text y="0.32em" transform="translate(40,501)">6</text>
   </g>
   <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(42.5,0)">
-    <line x1="56" x2="56" y1="20" y2="600"></line>
-    <line x1="149" x2="149" y1="20" y2="600"></line>
-    <line x1="242" x2="242" y1="20" y2="600"></line>
-    <line x1="335" x2="335" y1="20" y2="600"></line>
-    <line x1="428" x2="428" y1="20" y2="600"></line>
-    <line x1="521" x2="521" y1="20" y2="600"></line>
+    <path d="M56,20V600"></path>
+    <path d="M149,20V600"></path>
+    <path d="M242,20V600"></path>
+    <path d="M335,20V600"></path>
+    <path d="M428,20V600"></path>
+    <path d="M521,20V600"></path>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(42.5,0)">
     <path transform="translate(56,600)" d="M0,0L0,6"></path>
