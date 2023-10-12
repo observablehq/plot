@@ -29,7 +29,7 @@
   "scripts": {
     "test": "yarn test:mocha && yarn test:tsc && yarn test:lint && yarn test:prettier",
     "test:coverage": "npx c8 yarn test:mocha",
-    "test:mocha": "mkdir -p test/output && mocha 'test/**/*-test.*' 'test/plot.js'",
+    "test:mocha": "mkdir -p test/output && TZ=America/Los_Angeles mocha 'test/**/*-test.*' 'test/plot.js'",
     "test:lint": "eslint src test",
     "test:prettier": "prettier --check src test",
     "test:tsc": "tsc",
