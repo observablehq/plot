@@ -211,9 +211,9 @@ export class Tip extends Mark {
         if (a === undefined) {
           const x = px(i) + ox;
           const y = py(i) + oy;
-          const fitLeft = x + w + r * 2 < width;
-          const fitRight = x - w - r * 2 > 0;
-          const fitTop = y + h + m + r * 2 + 7 < height;
+          const fitLeft = x + w + m + r * 2 < width;
+          const fitRight = x - w - m - r * 2 > 0;
+          const fitTop = y + h + m + r * 2 < height;
           const fitBottom = y - h - m - r * 2 > 0;
           a =
             fitLeft && fitRight
