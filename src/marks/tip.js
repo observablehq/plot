@@ -33,6 +33,7 @@ export class Tip extends Mark {
       y1,
       y2,
       anchor,
+      preferredAnchor = "bottom",
       monospace,
       fontFamily = monospace ? "ui-monospace, monospace" : undefined,
       fontSize,
@@ -65,7 +66,7 @@ export class Tip extends Mark {
       defaults
     );
     this.anchor = maybeAnchor(anchor, "anchor");
-    this.previousAnchor = this.anchor ?? "top-left";
+    this.preferredAnchor = maybeAnchor(preferredAnchor, "preferredAnchor");
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.textAnchor = impliedString(textAnchor, "middle");
     this.textPadding = +textPadding;
@@ -208,16 +209,26 @@ export class Tip extends Mark {
         (w = Math.round(w)), (h = Math.round(h)); // crisp edges
         let a = anchor; // use the specified anchor, if any
         if (a === undefined) {
-          a = mark.previousAnchor; // favor the previous anchor, if it fits
           const x = px(i) + ox;
           const y = py(i) + oy;
-          const fitLeft = x + w + r * 2 < width;
-          const fitRight = x - w - r * 2 > 0;
-          const fitTop = y + h + m + r * 2 + 7 < height;
+          const fitLeft = x + w + m + r * 2 < width;
+          const fitRight = x - w - m - r * 2 > 0;
+          const fitTop = y + h + m + r * 2 < height;
           const fitBottom = y - h - m - r * 2 > 0;
-          const ax = (/-left$/.test(a) ? fitLeft || !fitRight : fitLeft && !fitRight) ? "left" : "right";
-          const ay = (/^top-/.test(a) ? fitTop || !fitBottom : fitTop && !fitBottom) ? "top" : "bottom";
-          a = mark.previousAnchor = `${ay}-${ax}`;
+          a =
+            fitLeft && fitRight
+              ? fitTop && fitBottom
+                ? mark.preferredAnchor
+                : fitBottom
+                ? "bottom"
+                : "top"
+              : fitTop && fitBottom
+              ? fitLeft
+                ? "left"
+                : "right"
+              : (fitLeft || fitRight) && (fitTop || fitBottom)
+              ? `${fitBottom ? "bottom" : "top"}-${fitLeft ? "left" : "right"}`
+              : mark.preferredAnchor;
         }
         const path = this.firstChild; // note: assumes exactly two children!
         const text = this.lastChild; // note: assumes exactly two children!
