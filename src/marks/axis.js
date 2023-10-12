@@ -638,7 +638,7 @@ export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
   return typeof tickFormat === "function"
     ? tickFormat
     : tickFormat === undefined && data && isTemporal(data)
-    ? inferTimeFormat(data, anchor) ?? formatDefault
+    ? inferTimeFormat(scale.type, data, anchor) ?? formatDefault
     : scale.tickFormat
     ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
     : tickFormat === undefined
