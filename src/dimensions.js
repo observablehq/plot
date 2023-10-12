@@ -28,9 +28,7 @@ export function autoMarginK(
   if (scale === "y" || scale === "fy") {
     const width = mark.monospace ? monospaceWidth : defaultWidth;
     const labelPenalty = actualLabel && (labelAnchor === "center" || (labelAnchor == null && scales[scale].bandwidth));
-    const l =
-      max(channels.text.value, (t) => (t ? width(`${t}`) : NaN)) * (mark.monospace ? 0.6 : 1) +
-      (labelPenalty ? 100 : 0);
+    const l = max(channels.text.value, (t) => (t ? width(`${t}`) : NaN)) + (labelPenalty ? 100 : 0);
     const m = l >= 500 ? marginLarge : l >= 295 ? marginMedium : null;
     return m === null
       ? options
