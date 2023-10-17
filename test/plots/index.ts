@@ -69,6 +69,7 @@ export * from "./diamonds-boxplot.js";
 export * from "./diamonds-carat-price-dots.js";
 export * from "./diamonds-carat-price.js";
 export * from "./diamonds-carat-sampling.js";
+export * from "./difference.js";
 export * from "./documentation-links.js";
 export * from "./dodge-rule.js";
 export * from "./dodge-text-radius.js";

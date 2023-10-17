@@ -10,7 +10,7 @@ export const offset = (typeof window !== "undefined" ? window.devicePixelRatio >
 
 let nextClipId = 0;
 
-function getClipId() {
+export function getClipId() {
   return `plot-clip-${++nextClipId}`;
 }
 

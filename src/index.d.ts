@@ -21,6 +21,7 @@ export * from "./marks/contour.js";
 export * from "./marks/crosshair.js";
 export * from "./marks/delaunay.js";
 export * from "./marks/density.js";
+export * from "./marks/difference.js";
 export * from "./marks/dot.js";
 export * from "./marks/frame.js";
 export * from "./marks/geo.js";

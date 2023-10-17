@@ -12,6 +12,7 @@ export {Contour, contour} from "./marks/contour.js";
 export {crosshair, crosshairX, crosshairY} from "./marks/crosshair.js";
 export {delaunayLink, delaunayMesh, hull, voronoi, voronoiMesh} from "./marks/delaunay.js";
 export {Density, density} from "./marks/density.js";
+export {differenceY} from "./marks/difference.js";
 export {Dot, dot, dotX, dotY, circle, hexagon} from "./marks/dot.js";
 export {Frame, frame} from "./marks/frame.js";
 export {Geo, geo, sphere, graticule} from "./marks/geo.js";
