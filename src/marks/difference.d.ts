@@ -1,4 +1,4 @@
-import type {ChannelValue, ChannelValueSpec} from "../channel.js";
+import type {ChannelValueSpec} from "../channel.js";
 import type {CurveOptions} from "../curve.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
