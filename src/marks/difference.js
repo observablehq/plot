@@ -2,9 +2,8 @@ import {area as shapeArea, line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {maybeCurve} from "../curve.js";
 import {Mark} from "../mark.js";
-import {identity, indexOf, isColor} from "../options.js";
-import {applyIndirectStyles, applyTransform, getClipId} from "../style.js";
-import {maybeDenseIntervalX} from "../transforms/bin.js";
+import {identity, indexOf, isColor, number} from "../options.js";
+import {applyIndirectStyles, applyTransform, getClipId, groupIndex} from "../style.js";
 
 const defaults = {
   ariaLabel: "difference",
@@ -22,9 +21,21 @@ function maybeColor(value) {
   return value;
 }
 
-class Difference extends Mark {
+class DifferenceY extends Mark {
   constructor(data, options = {}) {
-    const {x1, y1, x2, y2, curve, tension, positiveColor = "green", negativeColor = "blue"} = options;
+    const {
+      x1,
+      y1,
+      x2,
+      y2,
+      curve,
+      tension,
+      positiveColor = "#01ab63",
+      negativeColor = "#4269d0",
+      opacity = 1,
+      positiveOpacity = opacity,
+      negativeOpacity = opacity
+    } = options;
     super(
       data,
       {
@@ -39,13 +50,15 @@ class Difference extends Mark {
     this.curve = maybeCurve(curve, tension);
     this.positiveColor = maybeColor(positiveColor);
     this.negativeColor = maybeColor(negativeColor);
+    this.positiveOpacity = number(positiveOpacity);
+    this.negativeOpacity = number(negativeOpacity);
   }
   filter(index) {
     return index;
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
-    const {negativeColor, positiveColor} = this;
+    const {negativeColor, positiveColor, negativeOpacity, positiveOpacity} = this;
     const {height} = dimensions;
     const clipPositive = getClipId();
     const clipNegative = getClipId();
@@ -56,54 +69,75 @@ class Difference extends Mark {
         g
           .append("clipPath")
           .attr("id", clipPositive)
+          .selectAll()
+          .data(groupIndex(index, [X1, Y1], this, channels))
+          .enter()
           .append("path")
-          .attr("d", renderArea(X1, Y1, height, this, index))
+          .attr("d", renderArea(X1, Y1, height, this))
       )
       .call((g) =>
         g
           .append("clipPath")
           .attr("id", clipNegative)
+          .selectAll()
+          .data(groupIndex(index, [X1, Y1], this, channels))
+          .enter()
           .append("path")
-          .attr("d", renderArea(X1, Y1, 0, this, index))
+          .attr("d", renderArea(X1, Y1, 0, this))
       )
       .call((g) =>
         g
+          .selectAll()
+          .data(groupIndex(index, [X2, Y2], this, channels))
+          .enter()
           .append("path")
           .attr("fill", positiveColor)
+          .attr("fill-opacity", positiveOpacity)
           .attr("stroke", "none")
           .attr("clip-path", `url(#${clipPositive})`)
-          .attr("d", renderArea(X2, Y2, 0, this, index))
+          .attr("d", renderArea(X2, Y2, 0, this))
       )
       .call((g) =>
         g
+          .selectAll()
+          .data(groupIndex(index, [X2, Y2], this, channels))
+          .enter()
           .append("path")
           .attr("fill", negativeColor)
+          .attr("fill-opacity", negativeOpacity)
           .attr("stroke", "none")
           .attr("clip-path", `url(#${clipNegative})`)
-          .attr("d", renderArea(X2, Y2, height, this, index))
+          .attr("d", renderArea(X2, Y2, height, this))
       )
-      .call((g) => g.append("path").attr("d", renderLine(X1, Y1, this, index)))
+      .call((g) =>
+        g
+          .selectAll()
+          .data(groupIndex(index, [X1, Y1], this, channels))
+          .enter()
+          .append("path")
+          .attr("d", renderLine(X1, Y1, this))
+      )
       .node();
   }
 }
 
-function renderArea(X, Y, y0, {curve}, index) {
+function renderArea(X, Y, y0, {curve}) {
   return shapeArea()
     .curve(curve)
     .defined((i) => i >= 0)
     .x((i) => X[i])
     .y1((i) => Y[i])
-    .y0(y0)(index);
+    .y0(y0);
 }
 
-function renderLine(X, Y, {curve}, index) {
+function renderLine(X, Y, {curve}) {
   return shapeLine()
     .curve(curve)
     .defined((i) => i >= 0)
     .x((i) => X[i])
-    .y((i) => Y[i])(index);
+    .y((i) => Y[i]);
 }
 
 export function differenceY(data, {x = indexOf, x1 = x, x2 = x, y = identity, y1 = y, y2 = y, ...options} = {}) {
-  return new Difference(data, maybeDenseIntervalX({...options, x1, x2, y1, y2}));
+  return new DifferenceY(data, {...options, x1, x2, y1, y2});
 }
