@@ -77,10 +77,25 @@ import {
   schemeYlOrRd
 } from "d3";
 
+// https://observablehq.com/d/b0f1d0a1d5778142
+const schemeObservable10 = [
+  "#4269d0",
+  "#f4bd4a",
+  "#ff725c",
+  "#6cc5b0",
+  "#a463f2",
+  "#ff8ab7",
+  "#9c6b4e",
+  "#97bbf5",
+  "#01ab63",
+  "#9498a0"
+];
+
 const categoricalSchemes = new Map([
   ["accent", schemeAccent],
   ["category10", schemeCategory10],
   ["dark2", schemeDark2],
+  ["observable10", schemeObservable10],
   ["paired", schemePaired],
   ["pastel1", schemePastel1],
   ["pastel2", schemePastel2],

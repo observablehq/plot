@@ -39,7 +39,7 @@ export function createScaleOrdinal(key, channels, {type, interval, domain, range
       if (range !== undefined) scheme = undefined; // Don’t re-apply scheme.
     }
     if (scheme === undefined && range === undefined) {
-      scheme = type === "ordinal" ? "turbo" : "tableau10";
+      scheme = type === "ordinal" ? "turbo" : "observable10";
     }
     if (scheme !== undefined) {
       if (range !== undefined) {

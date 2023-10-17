@@ -3,6 +3,20 @@ import * as d3 from "d3";
 import assert from "../assert.js";
 import it from "../jsdom.js";
 
+// TODO Expose as d3.schemeObservable10, or Plot.scheme("observable10")?
+const schemeObservable10 = [
+  "#4269d0",
+  "#f4bd4a",
+  "#ff725c",
+  "#6cc5b0",
+  "#a463f2",
+  "#ff8ab7",
+  "#9c6b4e",
+  "#97bbf5",
+  "#01ab63",
+  "#9498a0"
+];
+
 it("Plot throws an error if an ordinal position scale has a huge inferred domain", () => {
   assert.ok(Plot.cellX({length: 10000}, {x: d3.randomLcg(42)}).plot());
   assert.throws(() => Plot.cellX({length: 10001}, {x: d3.randomLcg(42)}).plot(), /implicit ordinal domain of x scale/);
@@ -333,7 +347,7 @@ it("plot(…).scale(name).unknown reflects the given unknown option for an ordin
     type: "ordinal",
     domain: ["Dream"],
     unknown: "#ccc",
-    range: d3.schemeTableau10
+    range: schemeObservable10
   });
 });
 
@@ -1194,7 +1208,7 @@ it("plot(…).scale('color') can return an ordinal scale", async () => {
   scaleEqual(plot.scale("color"), {
     type: "ordinal",
     domain: ["Biscoe", "Dream", "Torgersen"],
-    range: d3.schemeTableau10
+    range: schemeObservable10
   });
 });
 
@@ -1206,7 +1220,7 @@ it("plot(…).scale('color') can return an ordinal scale with a transform", asyn
     type: "ordinal",
     domain: ["BISCOE", "DREAM", "TORGERSEN"],
     transform,
-    range: d3.schemeTableau10
+    range: schemeObservable10
   });
 });
 
@@ -1216,7 +1230,7 @@ it("plot(…).scale('color') can promote a reversed categorical scale to an ordi
   scaleEqual(plot.scale("color"), {
     type: "ordinal",
     domain: ["Torgersen", "Dream", "Biscoe"],
-    range: d3.schemeTableau10
+    range: schemeObservable10
   });
 });
 
@@ -1226,7 +1240,7 @@ it("plot(…).scale('color') can promotes an explicitly categorical scale to an 
   scaleEqual(plot.scale("color"), {
     type: "ordinal",
     domain: ["Biscoe", "Dream", "Torgersen"],
-    range: d3.schemeTableau10
+    range: schemeObservable10
   });
 });
 
@@ -2031,12 +2045,12 @@ it("plot(…).scale('color') promotes the given scheme option to an interpolator
 
 it("plot(…).scale('color') promotes the given scheme option to a range for ordinal scales", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  assert.deepStrictEqual(Plot.dotX(penguins, {fill: "island"}).plot().scale("color").range, d3.schemeTableau10);
+  assert.deepStrictEqual(Plot.dotX(penguins, {fill: "island"}).plot().scale("color").range, schemeObservable10);
   assert.deepStrictEqual(
     Plot.dotX(penguins, {fill: "island"})
       .plot({color: {type: "categorical"}})
       .scale("color").range,
-    d3.schemeTableau10
+    schemeObservable10
   );
   assert.deepStrictEqual(
     Plot.dotX(penguins, {fill: "island"})
