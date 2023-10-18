@@ -1,7 +1,7 @@
 import {area as shapeArea, line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {maybeCurve} from "../curve.js";
-import {Mark} from "../mark.js";
+import {Mark, withTip} from "../mark.js";
 import {identity, indexOf, isColor, number} from "../options.js";
 import {applyIndirectStyles, applyTransform, getClipId, groupIndex} from "../style.js";
 
@@ -41,8 +41,8 @@ class DifferenceY extends Mark {
       {
         x1: {value: x1, scale: "x"},
         y1: {value: y1, scale: "y"},
-        x2: {value: x2, scale: "x", optional: true},
-        y2: {value: y2, scale: "y", optional: true}
+        x2: {value: x2 === x1 ? undefined : x2, scale: "x", optional: true},
+        y2: {value: y2 === y1 ? undefined : y2, scale: "y", optional: true}
       },
       options,
       defaults
@@ -139,5 +139,5 @@ function renderLine(X, Y, {curve}) {
 }
 
 export function differenceY(data, {x = indexOf, x1 = x, x2 = x, y = identity, y1 = y, y2 = y, ...options} = {}) {
-  return new DifferenceY(data, {...options, x1, x2, y1, y2});
+  return new DifferenceY(data, withTip({...options, x1, x2, y1, y2}, "x"));
 }
