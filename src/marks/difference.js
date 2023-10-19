@@ -1,6 +1,7 @@
 import {area as shapeArea} from "d3";
 import {create} from "../context.js";
-import {identity, indexOf} from "../options.js";
+import {identity, indexOf, column, valueof} from "../options.js";
+import {basic as transform} from "../transforms/basic.js";
 import {groupIndex, getClipId} from "../style.js";
 import {marks} from "../mark.js";
 import {area} from "./area.js";
@@ -114,6 +115,21 @@ export function differenceY(
     }),
 
     // reference line
-    lineY(data, {x: x1, y: y1, tip, channels: {...channels, y2}, ...options})
+    lineY(data, maybeDifferenceChannelsY({x: x1, y: y1, y2, tip, ...options}))
   );
+}
+
+// Adds the y2 and difference channels for the default tip mark.
+function maybeDifferenceChannelsY(options) {
+  if (!options.tip) return options;
+  const [Y1, setY1] = column(options.y);
+  const [Y2, setY2] = column(options.y2);
+  const [D, setD] = column();
+  options = transform(options, function (data, facets) {
+    const Y1 = setY1(valueof(data, options.y));
+    const Y2 = setY2(valueof(data, options.y2));
+    setD(Float64Array.from(Y1, (y1, i) => y1 - Y2[i]));
+    return {data, facets};
+  });
+  return {channels: {x: true, y: true, y2: Y2, difference: D}, ...options, y: Y1};
 }
