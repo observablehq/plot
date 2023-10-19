@@ -158,7 +158,7 @@ The pointer transform emits an [*input* event](https://developer.mozilla.org/en-
 ```js
 const plot = Plot.plot(options);
 
-addEventListener("input", (event) => {
+plot.addEventListener("input", (event) => {
   console.log(plot.value);
 });
 ```
