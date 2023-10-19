@@ -9,7 +9,32 @@ export async function differenceY() {
   const x = aapl.map((d) => d.Date);
   const y1 = aapl.map((d, i, data) => d.Close / data[0].Close);
   const y2 = goog.map((d, i, data) => d.Close / data[0].Close);
-  return Plot.differenceY(aapl, {x, y1, y2}).plot();
+  return Plot.differenceY(aapl, {x, y1, y2, tip: true}).plot();
+}
+
+export async function differenceYCurve() {
+  const aapl = (await d3.csv<any>("data/aapl.csv", d3.autoType)).slice(60, 100);
+  const goog = (await d3.csv<any>("data/goog.csv", d3.autoType)).slice(60, 100);
+  const x = aapl.map((d) => d.Date);
+  const y1 = aapl.map((d, i, data) => d.Close / data[0].Close);
+  const y2 = goog.map((d, i, data) => d.Close / data[0].Close);
+  return Plot.differenceY(aapl, {x, y1, y2, curve: "cardinal", tension: 0.1}).plot();
+}
+
+export async function differenceYVariable() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
+  const x = aapl.map((d) => d.Date);
+  const y1 = aapl.map((d, i, data) => d.Close / data[0].Close);
+  const y2 = goog.map((d, i, data) => d.Close / data[0].Close);
+  return Plot.differenceY(aapl, {
+    x,
+    y1,
+    y2,
+    negativeColor: "#eee",
+    positiveColor: (d) => d.Date.getUTCFullYear(),
+    tip: true
+  }).plot();
 }
 
 // Here we shift x2 forward to show year-over-year growth; to suppress the year

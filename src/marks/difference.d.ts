@@ -42,13 +42,13 @@ export interface DifferenceOptions extends MarkOptions, CurveOptions {
    * The fill color when the primary value is greater than the secondary value;
    * defaults to green.
    */
-  positiveColor?: string;
+  positiveColor?: ChannelValueSpec;
 
   /**
    * The fill color when the primary value is less than the secondary value;
    * defaults to blue.
    */
-  negativeColor?: string;
+  negativeColor?: ChannelValueSpec;
 
   /**
    * The fill opacity; defaults to 1.
