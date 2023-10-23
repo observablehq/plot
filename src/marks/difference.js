@@ -8,12 +8,12 @@ import {lineY} from "./line.js";
 export function differenceY(
   data,
   {
-    x = indexOf,
-    x1 = x,
-    x2 = x,
-    y = identity,
-    y1 = y,
-    y2 = y,
+    x,
+    x1,
+    x2,
+    y,
+    y1,
+    y2,
     positiveColor = "#01ab63",
     negativeColor = "#4269d0",
     opacity = 1,
@@ -26,10 +26,8 @@ export function differenceY(
     ...options
   } = {}
 ) {
-  x1 = cacheColumn(x1);
-  x2 = cacheColumn(x2);
-  y1 = cacheColumn(y1);
-  y2 = cacheColumn(y2);
+  [x1, x2] = maybeTrivialTuple(x, x1, x2, indexOf);
+  [y1, y2] = maybeTrivialTuple(y, y1, y2, identity);
   return marks(
     Object.assign(
       area(data, {
@@ -68,7 +66,30 @@ export function differenceY(
   );
 }
 
-function cacheColumn(value) {
+function maybeTrivialTuple(x, x1, x2, x3) {
+  if (x1 === undefined && x2 === undefined) {
+    // {} → [x3, x3]
+    // {x} → [x, x]
+    x1 = x2 = memo(x === undefined ? x3 : x);
+  } else if (x1 === undefined) {
+    // {x2} → [x2, x2]
+    // {x, x2} → [x, x2]
+    x2 = memo(x2);
+    x1 = x === undefined ? x2 : memo(x);
+  } else if (x2 === undefined) {
+    // {x1} → [x1, x1]
+    // {x, x1} → [x1, x]
+    x1 = memo(x1);
+    x2 = x === undefined ? x1 : memo(x);
+  } else {
+    // {x1, x2} → [x1, x2]
+    x1 = memo(x1);
+    x2 = memo(x2);
+  }
+  return [x1, x2];
+}
+
+function memo(value) {
   let V;
   return {
     transform: (data) => V || (V = valueof(data, value)),
