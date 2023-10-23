@@ -6,9 +6,9 @@ import * as d3 from "d3";
 export async function differenceY() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
-  const x = aapl.map((d) => d.Date);
-  const y1 = aapl.map((d, i, data) => d.Close / data[0].Close);
-  const y2 = goog.map((d, i, data) => d.Close / data[0].Close);
+  const x = Object.assign(aapl.map((d) => d.Date), {label: "Date"});
+  const y1 = Object.assign(aapl.map((d, i, data) => d.Close / data[0].Close), {label: "Close"});
+  const y2 = Object.assign(goog.map((d, i, data) => d.Close / data[0].Close), {label: "Close"});
   return Plot.differenceY(aapl, {x, y1, y2, tip: true}).plot();
 }
 

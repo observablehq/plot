@@ -27,7 +27,6 @@ export function differenceY(
     stroke,
     strokeOpacity,
     tip,
-    channels,
     ...options
   } = {}
 ) {
@@ -35,87 +34,60 @@ export function differenceY(
   x2 = cacheColumn(x2);
   y1 = cacheColumn(y1);
   y2 = cacheColumn(y2);
-
-  // TODO handle faceting
-  const clipPositive = getClipId();
-  const clipNegative = getClipId();
-
-  const areaClipPositive = area(data, {
-    x1,
-    x2,
-    y1,
-    y2,
-    ...options,
-    initializer: (data, facets, channels) => ({
-      channels: {y1: {value: new Float32Array(channels.x1.value.length)}}
+  return marks(
+    area(data, {
+      x1,
+      x2,
+      y1,
+      y2,
+      fill: positiveColor,
+      fillOpacity: positiveOpacity,
+      ...options,
+      render(index, scales, channels, dimensions, context, next) {
+        const clip = getClipId();
+        const clipPath = create("svg:clipPath", context).attr("id", clip).node();
+        const {x1, x2} = channels;
+        const {height} = dimensions;
+        const y1 = new Float32Array(x1.length);
+        const y2 = new Float32Array(x2.length).fill(height);
+        const c = next(index, scales, {...channels, y1}, dimensions, context);
+        clipPath.append(...c.childNodes);
+        const g = next(index, scales, {...channels, y2}, dimensions, context);
+        g.insertBefore(clipPath, g.firstChild);
+        g.setAttribute("clip-path", `url(#${clip})`);
+        return g;
+      }
     }),
-    render(index, scales, channels, dimensions, context, next) {
-      const clipPath = create("svg:clipPath", context).attr("id", clipPositive).node();
-      clipPath.append(...next(index, scales, channels, dimensions, context).childNodes);
-      return clipPath;
-    }
-  });
-
-  const areaClipNegative = area(data, {
-    x1,
-    x2,
-    y1,
-    y2,
-    ...options,
-    initializer: (data, facets, channels, scales, dimensions) => ({
-      channels: {y1: {value: new Float32Array(channels.x1.value.length).fill(dimensions.height)}}
+    area(data, {
+      x1,
+      x2,
+      y1,
+      y2,
+      fill: negativeColor,
+      fillOpacity: negativeOpacity,
+      ...options,
+      render(index, scales, channels, dimensions, context, next) {
+        const clip = getClipId();
+        const clipPath = create("svg:clipPath", context).attr("id", clip).node();
+        const {x1, x2} = channels;
+        const {height} = dimensions;
+        const y1 = new Float32Array(x1.length).fill(height);
+        const y2 = new Float32Array(x2.length);
+        const c = next(index, scales, {...channels, y1}, dimensions, context);
+        clipPath.append(...c.childNodes);
+        const g = next(index, scales, {...channels, y2}, dimensions, context);
+        g.insertBefore(clipPath, g.firstChild);
+        g.setAttribute("clip-path", `url(#${clip})`);
+        return g;
+      }
     }),
-    render(index, scales, channels, dimensions, context, next) {
-      const clipPath = create("svg:clipPath", context).attr("id", clipNegative).node();
-      clipPath.append(...next(index, scales, channels, dimensions, context).childNodes);
-      return clipPath;
-    }
-  });
-
-  const areaPositive = area(data, {
-    x1,
-    x2,
-    y1,
-    y2,
-    fill: positiveColor,
-    fillOpacity: positiveOpacity,
-    ...options,
-    initializer: (data, facets, channels, scales, dimensions) => ({
-      channels: {y2: {value: new Float32Array(channels.x2.value.length).fill(dimensions.height)}}
-    }),
-    render(index, scales, channels, dimensions, context, next) {
-      const g = next(index, scales, channels, dimensions, context);
-      g.setAttribute("clip-path", `url(#${clipPositive})`);
-      return g;
-    }
-  });
-
-  const areaNegative = area(data, {
-    x1,
-    x2,
-    y1,
-    y2,
-    fill: negativeColor,
-    fillOpacity: negativeOpacity,
-    ...options,
-    initializer: (data, facets, channels) => ({
-      channels: {y2: {value: new Float32Array(channels.x2.value.length)}}
-    }),
-    render(index, scales, channels, dimensions, context, next) {
-      const g = next(index, scales, channels, dimensions, context);
-      g.setAttribute("clip-path", `url(#${clipNegative})`);
-      return g;
-    }
-  });
-
-  // reference line
-  const primaryLine = lineY(data, {
-    x: x1,
-    y: y1,
-    stroke,
-    strokeOpacity,
-    ...options
-  });
-
-  return marks(areaClipPositive, areaPositive, areaClipNegative, areaNegative, primaryLine);
+    lineY(data, {
+      x: x1,
+      y: y1,
+      stroke,
+      strokeOpacity,
+      tip,
+      ...options
+    })
+  );
 }
