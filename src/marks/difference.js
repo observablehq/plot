@@ -1,6 +1,5 @@
 import {create} from "../context.js";
-import {composeRender} from "../mark.js";
-import {marks} from "../mark.js";
+import {composeRender, marks} from "../mark.js";
 import {identity, indexOf, labelof, valueof} from "../options.js";
 import {getClipId} from "../style.js";
 import {area} from "./area.js";
