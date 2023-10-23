@@ -32,26 +32,32 @@ export function differenceY(
   y1 = cacheColumn(y1);
   y2 = cacheColumn(y2);
   return marks(
-    area(data, {
-      x1,
-      x2,
-      y1,
-      y2,
-      fill: positiveColor,
-      fillOpacity: positiveOpacity,
-      ...options,
-      render: renderDifference(true, render)
-    }),
-    area(data, {
-      x1,
-      x2,
-      y1,
-      y2,
-      fill: negativeColor,
-      fillOpacity: negativeOpacity,
-      ...options,
-      render: renderDifference(false, render)
-    }),
+    Object.assign(
+      area(data, {
+        x1,
+        x2,
+        y1,
+        y2,
+        fill: positiveColor,
+        fillOpacity: positiveOpacity,
+        render: composeRender(render, renderDifference(true)),
+        ...options
+      }),
+      {ariaLabel: "positive difference"}
+    ),
+    Object.assign(
+      area(data, {
+        x1,
+        x2,
+        y1,
+        y2,
+        fill: negativeColor,
+        fillOpacity: negativeOpacity,
+        render: composeRender(render, renderDifference(false)),
+        ...options
+      }),
+      {ariaLabel: "negative difference"}
+    ),
     lineY(data, {
       x: x1,
       y: y1,
@@ -71,8 +77,8 @@ function cacheColumn(value) {
   };
 }
 
-function renderDifference(positive, render) {
-  return composeRender(render, (index, scales, channels, dimensions, context, next) => {
+function renderDifference(positive) {
+  return (index, scales, channels, dimensions, context, next) => {
     const clip = getClipId();
     const clipPath = create("svg:clipPath", context).attr("id", clip).node();
     const {x1, x2} = channels;
@@ -86,5 +92,5 @@ function renderDifference(positive, render) {
     g.insertBefore(clipPath, g.firstChild);
     g.setAttribute("clip-path", `url(#${clip})`);
     return g;
-  });
+  };
 }
