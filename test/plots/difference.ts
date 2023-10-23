@@ -12,6 +12,13 @@ export async function differenceY() {
   return Plot.differenceY(aapl, {x, y1, y2, tip: true}).plot();
 }
 
+export async function differenceYRandom() {
+  const random = d3.randomLcg(42);
+  let sum = 3;
+  const cumsum = () => (sum += random() - 0.5);
+  return Plot.differenceY({length: 60}, {y1: cumsum, y2: cumsum, curve: "natural", tip: true}).plot();
+}
+
 export async function differenceYCurve() {
   const aapl = (await d3.csv<any>("data/aapl.csv", d3.autoType)).slice(60, 100);
   const goog = (await d3.csv<any>("data/goog.csv", d3.autoType)).slice(60, 100);
