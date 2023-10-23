@@ -85,9 +85,9 @@ function renderDifference(positive) {
     const y1 = new Float32Array(x1.length);
     const y2 = new Float32Array(x2.length);
     (positive ? y2 : y1).fill(height);
-    const c = next(index, scales, {...channels, y1}, dimensions, context);
+    const c = next(index, scales, {...channels, x1: x2, y1}, dimensions, context);
     clipPath.append(...c.childNodes);
-    const g = next(index, scales, {...channels, y2}, dimensions, context);
+    const g = next(index, scales, {...channels, x2: x1, y2}, dimensions, context);
     g.insertBefore(clipPath, g.firstChild);
     g.setAttribute("clip-path", `url(#${clip})`);
     return g;
