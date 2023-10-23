@@ -155,6 +155,14 @@ The pointer transform supports “click-to-stick”: clicking on the chart locks
 
 The pointer transform emits an [*input* event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event) whenever the focused points changes, and sets the value of the plot element to the focused data. This allows you to use a plot as an [Observable view](https://observablehq.com/@observablehq/views) (viewof), or to register an *input* event listener to react to pointing.
 
+```js
+const plot = Plot.plot(options);
+
+plot.addEventListener("input", (event) => {
+  console.log(plot.value);
+});
+```
+
 ## Pointer options
 
 The following options control the pointer transform:
