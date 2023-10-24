@@ -38,8 +38,8 @@ export async function differenceYVariable() {
     x,
     y1,
     y2,
-    negative: "#eee",
-    positive: (d) => d.Date.getUTCFullYear(),
+    negativeFill: "#eee",
+    positiveFill: (d) => d.Date.getUTCFullYear(),
     tip: true
   }).plot();
 }
