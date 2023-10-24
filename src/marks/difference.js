@@ -26,8 +26,8 @@ export function differenceY(
     ...options
   } = {}
 ) {
-  [x1, x2] = maybeTrivialTuple(x, x1, x2, indexOf);
-  [y1, y2] = maybeTrivialTuple(y, y1, y2, identity);
+  [x1, x2] = memoTuple(x, x1, x2, indexOf);
+  [y1, y2] = memoTuple(y, y1, y2, identity);
   return marks(
     Object.assign(
       area(data, {
@@ -66,7 +66,7 @@ export function differenceY(
   );
 }
 
-function maybeTrivialTuple(x, x1, x2, x3) {
+function memoTuple(x, x1, x2, x3) {
   if (x1 === undefined && x2 === undefined) {
     // {} → [x3, x3]
     // {x} → [x, x]
