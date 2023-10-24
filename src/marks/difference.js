@@ -1,9 +1,10 @@
 import {create} from "../context.js";
+import {withTip} from "../mark.js";
 import {composeRender, marks} from "../mark.js";
 import {identity, indexOf, labelof, maybeValue, valueof} from "../options.js";
 import {getClipId} from "../style.js";
 import {area} from "./area.js";
-import {lineY} from "./line.js";
+import {line} from "./line.js";
 
 export function differenceY(
   data,
@@ -28,6 +29,7 @@ export function differenceY(
 ) {
   [x1, x2] = memoTuple(x, x1, x2, indexOf);
   [y1, y2] = memoTuple(y, y1, y2, identity);
+  ({tip} = withTip({tip}, "x"));
   return marks(
     Object.assign(
       area(data, {
@@ -55,12 +57,12 @@ export function differenceY(
       }),
       {ariaLabel: "negative difference"}
     ),
-    lineY(data, {
+    line(data, {
       x: x1,
       y: y1,
       stroke,
       strokeOpacity,
-      tip: tip && {...(x1 === x2 ? {x: x1} : {x1, x2}), ...(y1 === y2 ? {y: y1} : {y1, y2}), ...tip},
+      tip, // TODO find the closest y2 for the given x, when x2 is shifted?
       ...options
     })
   );
