@@ -45,10 +45,20 @@ export async function differenceYVariable() {
 }
 
 // Here we shift x2 forward to show year-over-year growth; to suppress the year
-// before and the year after the dataset, x1 and x2 are padded with NaN.
+// before and the year after the dataset, x1 and x2 are padded with null.
 export async function differenceY1() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return Plot.differenceY(aapl, shiftX(d3.utcYear, {x: "Date", y: "Close"})).plot({y: {grid: true}});
+  return Plot.differenceY(
+    aapl,
+    shiftX(d3.utcYear, {
+      x: "Date",
+      y: "Close",
+      positiveOpacity: 0.2,
+      positiveColor: "currentColor",
+      negativeOpacity: 0.8,
+      negativeColor: "red"
+    })
+  ).plot();
 }
 
 function shiftX(interval, options) {
