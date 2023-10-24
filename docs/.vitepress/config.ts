@@ -88,6 +88,7 @@ export default defineConfig({
           {text: "Contour", link: "/marks/contour"},
           {text: "Delaunay", link: "/marks/delaunay"},
           {text: "Density", link: "/marks/density"},
+          {text: "Difference", link: "/marks/difference"},
           {text: "Dot", link: "/marks/dot"},
           {text: "Frame", link: "/marks/frame"},
           {text: "Geo", link: "/marks/geo"},

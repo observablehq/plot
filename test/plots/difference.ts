@@ -9,7 +9,7 @@ export async function differenceY() {
   const x = aapl.map((d) => d.Date);
   const y1 = aapl.map((d, i, data) => d.Close / data[0].Close);
   const y2 = goog.map((d, i, data) => d.Close / data[0].Close);
-  return Plot.differenceY(aapl, {x: {value: x, label: "Date"}, y1: {value: y1, label: "Close"}, y2, tip: true}).plot();
+  return Plot.differenceY(aapl, {x, y1: {value: y1, label: "Close"}, y2, tip: true}).plot();
 }
 
 export async function differenceYRandom() {
@@ -48,21 +48,23 @@ export async function differenceYVariable() {
 // before and the year after the dataset, x1 and x2 are padded with NaN.
 export async function differenceY1() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  const interval = d3.utcYear;
-  const start = interval.offset(aapl[0].Date, 1);
-  const end = interval.offset(aapl[aapl.length - 1].Date, -1);
-  const x1 = aapl.map((d) => (d.Date < start ? NaN : d.Date));
-  const x2 = aapl.map((d) => (d.Date > end ? NaN : interval.offset(d.Date, 1)));
-  const y = aapl.map((d) => d.Close);
-  return Plot.differenceY(aapl, {
-    x1,
-    x2,
-    y,
-    positiveOpacity: 0.2,
-    positiveColor: "currentColor",
-    negativeOpacity: 0.8,
-    negativeColor: "red"
-  }).plot();
+  return Plot.differenceY(aapl, shiftX(d3.utcYear, {x: "Date", y: "Close"})).plot({y: {grid: true}});
+}
+
+function shiftX(interval, options) {
+  return Plot.map(
+    {
+      x1(D) {
+        const min = interval.offset(d3.min(D), 1);
+        return D.map((d) => (d < min ? null : d));
+      },
+      x2(D) {
+        const max = interval.offset(d3.max(D), -1);
+        return D.map((d) => (max < d ? null : interval.offset(d, 1)));
+      }
+    },
+    options
+  );
 }
 
 export async function differenceFilterX() {

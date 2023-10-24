@@ -37,7 +37,7 @@ export function differenceY(
         y2,
         fill: positiveColor,
         fillOpacity: positiveOpacity,
-        render: composeRender(render, renderDifference(true)),
+        render: composeRender(render, clipDifference(true)),
         ...options
       }),
       {ariaLabel: "positive difference"}
@@ -50,7 +50,7 @@ export function differenceY(
         y2,
         fill: negativeColor,
         fillOpacity: negativeOpacity,
-        render: composeRender(render, renderDifference(false)),
+        render: composeRender(render, clipDifference(false)),
         ...options
       }),
       {ariaLabel: "negative difference"}
@@ -95,7 +95,7 @@ function memo(v) {
   return {transform: (data) => V || (V = valueof(data, value)), label};
 }
 
-function renderDifference(positive) {
+function clipDifference(positive) {
   return (index, scales, channels, dimensions, context, next) => {
     const clip = getClipId();
     const clipPath = create("svg:clipPath", context).attr("id", clip).node();
