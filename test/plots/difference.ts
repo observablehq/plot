@@ -38,8 +38,8 @@ export async function differenceYVariable() {
     x,
     y1,
     y2,
-    negativeColor: "#eee",
-    positiveColor: (d) => d.Date.getUTCFullYear(),
+    negative: "#eee",
+    positive: (d) => d.Date.getUTCFullYear(),
     tip: true
   }).plot();
 }
@@ -54,9 +54,9 @@ export async function differenceY1() {
       x: "Date",
       y: "Close",
       positiveOpacity: 0.2,
-      positiveColor: "currentColor",
+      positive: "currentColor",
       negativeOpacity: 0.8,
-      negativeColor: "red"
+      negative: "red"
     })
   ).plot();
 }
