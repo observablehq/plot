@@ -9,7 +9,7 @@ export async function differenceY() {
   const x = aapl.map((d) => d.Date);
   const y1 = aapl.map((d, i, data) => d.Close / data[0].Close);
   const y2 = goog.map((d, i, data) => d.Close / data[0].Close);
-  return Plot.differenceY(aapl, {x, y1, y2, tip: true}).plot();
+  return Plot.differenceY(aapl, {x: {value: x, label: "Date"}, y1: {value: y1, label: "Close"}, y2, tip: true}).plot();
 }
 
 export async function differenceYRandom() {

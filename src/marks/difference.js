@@ -1,6 +1,6 @@
 import {create} from "../context.js";
 import {composeRender, marks} from "../mark.js";
-import {identity, indexOf, labelof, valueof} from "../options.js";
+import {identity, indexOf, labelof, maybeValue, valueof} from "../options.js";
 import {getClipId} from "../style.js";
 import {area} from "./area.js";
 import {lineY} from "./line.js";
@@ -60,7 +60,7 @@ export function differenceY(
       y: y1,
       stroke,
       strokeOpacity,
-      tip,
+      tip: tip && {...(x1 === x2 ? {x: x1} : {x1, x2}), ...(y1 === y2 ? {y: y1} : {y1, y2}), ...tip},
       ...options
     })
   );
@@ -89,12 +89,10 @@ function maybeTrivialTuple(x, x1, x2, x3) {
   return [x1, x2];
 }
 
-function memo(value) {
+function memo(v) {
   let V;
-  return {
-    transform: (data) => V || (V = valueof(data, value)),
-    label: labelof(value)
-  };
+  const {value, label = labelof(value)} = maybeValue(v);
+  return {transform: (data) => V || (V = valueof(data, value)), label};
 }
 
 function renderDifference(positive) {
