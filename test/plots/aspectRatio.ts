@@ -54,3 +54,18 @@ export async function aspectRatioBand() {
     marks: [Plot.frame()]
   });
 }
+
+export function aspectRatioMargins() {
+  return Plot.plot({
+    width: 130,
+    marginTop: 30,
+    marginRight: 10,
+    marginBottom: 40,
+    marginLeft: 60,
+    aspectRatio: 1,
+    style: "border: solid 1px steelblue;",
+    grid: true,
+    x: {domain: [0, 3], ticks: 4},
+    y: {domain: [0, 3], ticks: 4}
+  });
+}

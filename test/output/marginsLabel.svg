@@ -1,0 +1,395 @@
+<svg width="640" height="580" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <line y2="560" stroke="red"></line>
+  <g transform="translate(0,0)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="0.5" width="599" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(40,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(40,4)">0</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+        <text y="0.71em" transform="translate(40,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,40)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="0.5" width="599" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(40,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(40,4)">1</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+        <text y="0.71em" transform="translate(40,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,80)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="0.5" width="599" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(40,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(40,4)">200</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+        <text y="0.71em" transform="translate(40,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,120)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="0.5" width="599" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(40,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(40,4)">1e7</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+        <text y="0.71em" transform="translate(40,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,160)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="60" y="0.5" width="579" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(60,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(60,4)">-1e3</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-56.5,0.5)">
+        <text y="0.71em" transform="translate(60,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,200)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="0.5" width="599" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(40,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(40,4)">A</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+        <text y="0.71em" transform="translate(40,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,240)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="0.5" width="599" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(40,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(40,4)">Ab</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+        <text y="0.71em" transform="translate(40,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,280)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="0.5" width="599" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(40,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(40,4)">Abc</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
+        <text y="0.71em" transform="translate(40,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,320)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="60" y="0.5" width="579" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(60,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(60,4)">Abcd</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-56.5,0.5)">
+        <text y="0.71em" transform="translate(60,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,360)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="60" y="0.5" width="579" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(60,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(60,4)">Abcde</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-56.5,0.5)">
+        <text y="0.71em" transform="translate(60,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,400)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="60" y="0.5" width="579" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(60,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(60,4)">Abcdef</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-56.5,0.5)">
+        <text y="0.71em" transform="translate(60,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,440)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="90" y="0.5" width="549" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(90,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(90,4)">Abcdefg</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-86.5,0.5)">
+        <text y="0.71em" transform="translate(90,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,480)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="90" y="0.5" width="549" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(90,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(90,4)">Chinstrap</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-86.5,0.5)">
+        <text y="0.71em" transform="translate(90,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+  <g transform="translate(0,520)">
+    <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="36" viewBox="0 0 640 36">
+      <style>
+        .plot {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+
+        .plot text,
+        .plot tspan {
+          white-space: pre;
+        }
+      </style>
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="90" y="0.5" width="549" height="35"></rect>
+      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,14.5)">
+        <path transform="translate(90,4)" d="M0,0L-6,0"></path>
+      </g>
+      <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,14.5)">
+        <text y="0.32em" transform="translate(90,4)">Agriculture</text>
+      </g>
+      <g aria-label="y-axis label" transform="translate(-86.5,0.5)">
+        <text y="0.71em" transform="translate(90,18) rotate(-90)">LABEL</text>
+      </g>
+    </svg>
+  </g>
+</svg>

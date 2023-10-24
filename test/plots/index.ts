@@ -149,6 +149,7 @@ export * from "./linear-regression-mtcars.js";
 export * from "./linear-regression-penguins.js";
 export * from "./log-degenerate.js";
 export * from "./long-labels.js";
+export * from "./margins.js";
 export * from "./markers.js";
 export * from "./markov-chain.js";
 export * from "./metro-inequality-change.js";

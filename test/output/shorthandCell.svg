@@ -14,54 +14,54 @@
     }
   </style>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10)">
-    <path transform="translate(40,23)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,44)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,65)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,86)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,107)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,128)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,149)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,23)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,44)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,65)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,86)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,107)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,128)" d="M0,0L-6,0"></path>
+    <path transform="translate(60,149)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,10)">
-    <text y="0.32em" transform="translate(40,23)">Ava</text>
-    <text y="0.32em" transform="translate(40,44)">Emma</text>
-    <text y="0.32em" transform="translate(40,65)">Jacob</text>
-    <text y="0.32em" transform="translate(40,86)">Mason</text>
-    <text y="0.32em" transform="translate(40,107)">Mia</text>
-    <text y="0.32em" transform="translate(40,128)">Noah</text>
-    <text y="0.32em" transform="translate(40,149)">Olivia</text>
+    <text y="0.32em" transform="translate(60,23)">Ava</text>
+    <text y="0.32em" transform="translate(60,44)">Emma</text>
+    <text y="0.32em" transform="translate(60,65)">Jacob</text>
+    <text y="0.32em" transform="translate(60,86)">Mason</text>
+    <text y="0.32em" transform="translate(60,107)">Mia</text>
+    <text y="0.32em" transform="translate(60,128)">Noah</text>
+    <text y="0.32em" transform="translate(60,149)">Olivia</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(37,0)">
-    <path transform="translate(51,170)" d="M0,0L0,6"></path>
-    <path transform="translate(132,170)" d="M0,0L0,6"></path>
-    <path transform="translate(213,170)" d="M0,0L0,6"></path>
-    <path transform="translate(294,170)" d="M0,0L0,6"></path>
-    <path transform="translate(375,170)" d="M0,0L0,6"></path>
-    <path transform="translate(456,170)" d="M0,0L0,6"></path>
-    <path transform="translate(537,170)" d="M0,0L0,6"></path>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(35.5,0)">
+    <path transform="translate(71,170)" d="M0,0L0,6"></path>
+    <path transform="translate(149,170)" d="M0,0L0,6"></path>
+    <path transform="translate(227,170)" d="M0,0L0,6"></path>
+    <path transform="translate(305,170)" d="M0,0L0,6"></path>
+    <path transform="translate(383,170)" d="M0,0L0,6"></path>
+    <path transform="translate(461,170)" d="M0,0L0,6"></path>
+    <path transform="translate(539,170)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(37,9.5)">
-    <text y="0.71em" transform="translate(51,170)">Ava</text>
-    <text y="0.71em" transform="translate(132,170)">Emma</text>
-    <text y="0.71em" transform="translate(213,170)">Jacob</text>
-    <text y="0.71em" transform="translate(294,170)">Mason</text>
-    <text y="0.71em" transform="translate(375,170)">Mia</text>
-    <text y="0.71em" transform="translate(456,170)">Noah</text>
-    <text y="0.71em" transform="translate(537,170)">Olivia</text>
+  <g aria-label="x-axis tick label" transform="translate(35.5,9.5)">
+    <text y="0.71em" transform="translate(71,170)">Ava</text>
+    <text y="0.71em" transform="translate(149,170)">Emma</text>
+    <text y="0.71em" transform="translate(227,170)">Jacob</text>
+    <text y="0.71em" transform="translate(305,170)">Mason</text>
+    <text y="0.71em" transform="translate(383,170)">Mia</text>
+    <text y="0.71em" transform="translate(461,170)">Noah</text>
+    <text y="0.71em" transform="translate(539,170)">Olivia</text>
   </g>
   <g aria-label="cell">
-    <rect x="213" width="73" y="149" height="19"></rect>
-    <rect x="375" width="73" y="128" height="19"></rect>
-    <rect x="456" width="73" y="23" height="19"></rect>
-    <rect x="51" width="73" y="86" height="19"></rect>
-    <rect x="537" width="73" y="128" height="19"></rect>
-    <rect x="213" width="73" y="44" height="19"></rect>
-    <rect x="51" width="73" y="128" height="19"></rect>
-    <rect x="456" width="73" y="65" height="19"></rect>
-    <rect x="537" width="73" y="23" height="19"></rect>
-    <rect x="294" width="73" y="44" height="19"></rect>
-    <rect x="213" width="73" y="107" height="19"></rect>
-    <rect x="375" width="73" y="65" height="19"></rect>
-    <rect x="132" width="73" y="65" height="19"></rect>
+    <rect x="227" width="70" y="149" height="19"></rect>
+    <rect x="383" width="70" y="128" height="19"></rect>
+    <rect x="461" width="70" y="23" height="19"></rect>
+    <rect x="71" width="70" y="86" height="19"></rect>
+    <rect x="539" width="70" y="128" height="19"></rect>
+    <rect x="227" width="70" y="44" height="19"></rect>
+    <rect x="71" width="70" y="128" height="19"></rect>
+    <rect x="461" width="70" y="65" height="19"></rect>
+    <rect x="539" width="70" y="23" height="19"></rect>
+    <rect x="305" width="70" y="44" height="19"></rect>
+    <rect x="227" width="70" y="107" height="19"></rect>
+    <rect x="383" width="70" y="65" height="19"></rect>
+    <rect x="149" width="70" y="65" height="19"></rect>
   </g>
 </svg>

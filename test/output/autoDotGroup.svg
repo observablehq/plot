@@ -14,37 +14,37 @@
     }
   </style>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,32)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,55)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,78)" d="M0,0L-6,0"></path>
+    <path transform="translate(90,32)" d="M0,0L-6,0"></path>
+    <path transform="translate(90,55)" d="M0,0L-6,0"></path>
+    <path transform="translate(90,78)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
-    <text y="0.32em" transform="translate(40,32)">Adelie</text>
-    <text y="0.32em" transform="translate(40,55)">Chinstrap</text>
-    <text y="0.32em" transform="translate(40,78)">Gentoo</text>
+    <text y="0.32em" transform="translate(90,32)">Adelie</text>
+    <text y="0.32em" transform="translate(90,55)">Chinstrap</text>
+    <text y="0.32em" transform="translate(90,78)">Gentoo</text>
   </g>
-  <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
-    <text y="0.71em" transform="translate(40,55) rotate(-90)">species</text>
+  <g aria-label="y-axis label" transform="translate(-86.5,0.5)">
+    <text y="0.71em" transform="translate(90,55) rotate(-90)">species</text>
   </g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(137,90)" d="M0,0L0,6"></path>
-    <path transform="translate(330,90)" d="M0,0L0,6"></path>
-    <path transform="translate(523,90)" d="M0,0L0,6"></path>
+    <path transform="translate(179,90)" d="M0,0L0,6"></path>
+    <path transform="translate(355,90)" d="M0,0L0,6"></path>
+    <path transform="translate(531,90)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(137,90)">Biscoe</text>
-    <text y="0.71em" transform="translate(330,90)">Dream</text>
-    <text y="0.71em" transform="translate(523,90)">Torgersen</text>
+    <text y="0.71em" transform="translate(179,90)">Biscoe</text>
+    <text y="0.71em" transform="translate(355,90)">Dream</text>
+    <text y="0.71em" transform="translate(531,90)">Torgersen</text>
   </g>
   <g aria-label="x-axis label" transform="translate(0.5,27.5)">
-    <text transform="translate(330,90)">island</text>
+    <text transform="translate(355,90)">island</text>
   </g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="137" cy="78" r="4.632659976896477"></circle>
-    <circle cx="330" cy="55" r="3.4306312493811943"></circle>
-    <circle cx="330" cy="32" r="3.1132471299766253"></circle>
-    <circle cx="523" cy="32" r="3.0000000000000004"></circle>
-    <circle cx="137" cy="32" r="2.7595986330234"></circle>
+    <circle cx="179" cy="78" r="4.632659976896477"></circle>
+    <circle cx="355" cy="55" r="3.4306312493811943"></circle>
+    <circle cx="355" cy="32" r="3.1132471299766253"></circle>
+    <circle cx="531" cy="32" r="3.0000000000000004"></circle>
+    <circle cx="179" cy="32" r="2.7595986330234"></circle>
   </g>
   <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>
