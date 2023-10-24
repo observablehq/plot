@@ -44,6 +44,11 @@ export async function differenceYVariable() {
   }).plot();
 }
 
+export async function differenceYConstant() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.differenceY(aapl, {x: "Date", y1: "Close", y2: 115}).plot();
+}
+
 // Here we shift x2 forward to show year-over-year growth; to suppress the year
 // before and the year after the dataset, x1 and x2 are padded with null.
 export async function differenceY1() {
