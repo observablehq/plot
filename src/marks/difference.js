@@ -18,8 +18,8 @@ export function differenceY(
     positiveFill = "#01ab63",
     negativeFill = "#4269d0",
     fillOpacity = 1,
-    positiveOpacity = fillOpacity,
-    negativeOpacity = fillOpacity,
+    positiveFillOpacity = fillOpacity,
+    negativeFillOpacity = fillOpacity,
     stroke,
     strokeOpacity,
     tip,
@@ -38,7 +38,7 @@ export function differenceY(
         y1,
         y2,
         fill: positiveFill,
-        fillOpacity: positiveOpacity,
+        fillOpacity: positiveFillOpacity,
         render: composeRender(render, clipDifference(true)),
         ...options
       }),
@@ -51,7 +51,7 @@ export function differenceY(
         y1,
         y2,
         fill: negativeFill,
-        fillOpacity: negativeOpacity,
+        fillOpacity: negativeFillOpacity,
         render: composeRender(render, clipDifference(false)),
         ...options
       }),

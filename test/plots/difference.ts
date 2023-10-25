@@ -58,10 +58,10 @@ export async function differenceY1() {
     shiftX(d3.utcYear, {
       x: "Date",
       y: "Close",
-      positiveOpacity: 0.2,
-      positive: "currentColor",
-      negativeOpacity: 0.8,
-      negative: "red"
+      positiveFillOpacity: 0.2,
+      positiveFill: "currentColor",
+      negativeFillOpacity: 0.8,
+      negativeFill: "red"
     })
   ).plot();
 }

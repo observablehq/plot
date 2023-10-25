@@ -59,13 +59,13 @@ export interface DifferenceOptions extends MarkOptions, CurveOptions {
    * The fill opacity when the primary value is greater than the secondary
    * value; defaults to **fillOpacity**.
    */
-  positiveOpacity?: number;
+  positiveFillOpacity?: number;
 
   /**
    * The fill opacity when the primary value is less than the secondary value;
    * defaults to **fillOpacity**.
    */
-  negativeOpacity?: number;
+  negativeFillOpacity?: number;
 }
 
 /** TODO */
