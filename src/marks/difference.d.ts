@@ -5,37 +5,34 @@ import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 /** Options for the difference mark. */
 export interface DifferenceOptions extends MarkOptions, CurveOptions {
   /**
-   * The primary horizontal position channel, typically bound to the *x* scale;
-   * if not specified, **x** is used.
+   * The comparison horizontal position channel, typically bound to the *x*
+   * scale; if not specified, **x** is used.
    */
   x1?: ChannelValueSpec;
 
   /**
-   * The secondary horizontal position channel, typically bound to the *x*
-   * scale; if not specified, **x1** is used.
+   * The primary horizontal position channel, typically bound to the *x* scale;
+   * if not specified, **x1** is used.
    */
   x2?: ChannelValueSpec;
 
-  /**
-   * The horizontal position channel, typically bound to the *x* scale.
-   */
+  /** The horizontal position channel, typically bound to the *x* scale. */
   x?: ChannelValueSpec;
 
   /**
-   * The primary vertical position channel, typically bound to the *y* scale; if
-   * not specified, **y** is used.
+   * The comparison vertical position channel, typically bound to the *y* scale;
+   * if not specified, **y** is used. For differenceY, defaults to zero if only
+   * one *x* and *y* channel is specified.
    */
   y1?: ChannelValueSpec;
 
   /**
-   * The secondary vertical position channel, typically bound to the *y* scale;
+   * The primary vertical position channel, typically bound to the *y* scale;
    * if not specified, **y1** is used.
    */
   y2?: ChannelValueSpec;
 
-  /**
-   * The vertical position channel, typically bound to the *y* scale.
-   */
+  /** The vertical position channel, typically bound to the *y* scale. */
   y?: ChannelValueSpec;
 
   /**
@@ -50,9 +47,7 @@ export interface DifferenceOptions extends MarkOptions, CurveOptions {
    */
   negativeFill?: ChannelValueSpec;
 
-  /**
-   * The fill opacity; defaults to 1.
-   */
+  /** The fill opacity; defaults to 1. */
   fillOpacity?: number;
 
   /**

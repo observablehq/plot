@@ -7,9 +7,9 @@ export async function differenceY() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
   const x = aapl.map((d) => d.Date);
-  const y1 = aapl.map((d, i, data) => d.Close / data[0].Close);
-  const y2 = goog.map((d, i, data) => d.Close / data[0].Close);
-  return Plot.differenceY(aapl, {x, y1: {value: y1, label: "Close"}, y2, tip: true}).plot();
+  const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
+  const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
+  return Plot.differenceY(aapl, {x, y1, y2: {value: y2, label: "Close"}, tip: true}).plot();
 }
 
 export async function differenceYRandom() {
@@ -23,8 +23,8 @@ export async function differenceYCurve() {
   const aapl = (await d3.csv<any>("data/aapl.csv", d3.autoType)).slice(60, 100);
   const goog = (await d3.csv<any>("data/goog.csv", d3.autoType)).slice(60, 100);
   const x = aapl.map((d) => d.Date);
-  const y1 = aapl.map((d, i, data) => d.Close / data[0].Close);
-  const y2 = goog.map((d, i, data) => d.Close / data[0].Close);
+  const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
+  const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
   return Plot.differenceY(aapl, {x, y1, y2, curve: "cardinal", tension: 0.1}).plot();
 }
 
@@ -32,8 +32,8 @@ export async function differenceYVariable() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
   const x = aapl.map((d) => d.Date);
-  const y1 = aapl.map((d, i, data) => d.Close / data[0].Close);
-  const y2 = goog.map((d, i, data) => d.Close / data[0].Close);
+  const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
+  const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
   return Plot.differenceY(aapl, {
     x,
     y1,
@@ -46,7 +46,17 @@ export async function differenceYVariable() {
 
 export async function differenceYConstant() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  return Plot.differenceY(aapl, {x: "Date", y1: "Close", y2: 115}).plot();
+  return Plot.differenceY(aapl, {x: "Date", y1: 115, y2: "Close"}).plot();
+}
+
+export async function differenceYZero() {
+  const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
+  return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", y: "Anomaly"})).plot();
+}
+
+export async function differenceYNegative() {
+  const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
+  return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", positiveFill: "none", y: "Anomaly"})).plot();
 }
 
 // Here we shift x2 forward to show year-over-year growth; to suppress the year
@@ -70,12 +80,12 @@ function shiftX(interval, options) {
   return Plot.map(
     {
       x1(D) {
-        const min = interval.offset(d3.min(D), 1);
-        return D.map((d) => (d < min ? null : d));
-      },
-      x2(D) {
         const max = interval.offset(d3.max(D), -1);
         return D.map((d) => (max < d ? null : interval.offset(d, 1)));
+      },
+      x2(D) {
+        const min = interval.offset(d3.min(D), 1);
+        return D.map((d) => (d < min ? null : d));
       }
     },
     options
@@ -86,8 +96,8 @@ export async function differenceFilterX() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
   const x = aapl.map((d, i) => (200 <= i && i < 400 ? NaN : d.Date));
-  const y1 = aapl.map((d, i, data) => d.Close / data[0].Close);
-  const y2 = goog.map((d, i, data) => d.Close / data[0].Close);
+  const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
+  const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
   return Plot.differenceY(aapl, {x, y1, y2}).plot();
 }
 
@@ -95,8 +105,8 @@ export async function differenceFilterY1() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
   const x = aapl.map((d) => d.Date);
-  const y1 = aapl.map((d, i, data) => (200 <= i && i < 400 ? NaN : d.Close / data[0].Close));
-  const y2 = goog.map((d, i, data) => d.Close / data[0].Close);
+  const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
+  const y2 = aapl.map((d, i, data) => (200 <= i && i < 400 ? NaN : d.Close / data[0].Close));
   return Plot.differenceY(aapl, {x, y1, y2}).plot();
 }
 
@@ -104,7 +114,7 @@ export async function differenceFilterY2() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
   const x = aapl.map((d) => d.Date);
-  const y1 = aapl.map((d, i, data) => d.Close / data[0].Close);
-  const y2 = goog.map((d, i, data) => (200 <= i && i < 400 ? NaN : d.Close / data[0].Close));
+  const y1 = goog.map((d, i, data) => (200 <= i && i < 400 ? NaN : d.Close / data[0].Close));
+  const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
   return Plot.differenceY(aapl, {x, y1, y2}).plot();
 }
