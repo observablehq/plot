@@ -285,11 +285,11 @@ function createScale(key, channels = [], options = {}) {
       );
   }
 
-  options.type = type; // Mutates input!
+  options.type = typeof type === "string" ? `${type}`.toLowerCase() : type; // Mutates input!
 
   // Once the scale type is known, coerce the associated channel values and any
   // explicitly-specified domain to the expected type.
-  switch (type) {
+  switch (options.type) {
     case "diverging":
     case "diverging-sqrt":
     case "diverging-pow":
@@ -322,7 +322,7 @@ function createScale(key, channels = [], options = {}) {
       break;
   }
 
-  switch (type) {
+  switch (options.type) {
     case "diverging":
       return createScaleDiverging(key, channels, options);
     case "diverging-sqrt":
