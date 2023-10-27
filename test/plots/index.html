@@ -11,8 +11,12 @@
 
   @media (prefers-color-scheme: dark) {
     body {
-      background: rgb(31, 31, 31);
+      --plot-background: rgb(31, 31, 31);
+      background: var(--plot-background);
       color: rgb(223, 223, 214);
+    }
+    svg.plot-d6a7b5 {
+      --plot-background: inherit;
     }
   }
 
