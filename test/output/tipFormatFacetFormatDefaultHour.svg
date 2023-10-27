@@ -1,0 +1,54 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="110" viewBox="0 0 640 110" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+    <g transform="translate(1,0)">
+      <text transform="translate(162,30)"><tspan x="0" y="-1em">Jan 1</tspan><tspan x="0" dy="1em">12 PM</tspan></text>
+    </g>
+    <g transform="translate(316,0)">
+      <text transform="translate(162,30)">1 PM</text>
+    </g>
+  </g>
+  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+    <g fill="none" stroke="currentColor" transform="translate(1,0)">
+      <path transform="translate(162,80)" d="M0,0L0,6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(316,0)">
+      <path transform="translate(162,80)" d="M0,0L0,6"></path>
+    </g>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+    <g font-variant="tabular-nums" transform="translate(1,0)">
+      <text y="0.71em" transform="translate(162,80)">0</text>
+    </g>
+    <g font-variant="tabular-nums" transform="translate(316,0)">
+      <text y="0.71em" transform="translate(162,80)">0</text>
+    </g>
+  </g>
+  <g aria-label="tip" transform="translate(0.5,0.5)">
+    <g fill="white" stroke="currentColor" text-anchor="start" visibility="hidden" transform="translate(1,0)">
+      <g transform="translate(162,80)">
+        <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
+        <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​<tspan font-weight="bold">x</tspan> 0</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">fx</tspan> 2001-01-01T12:00</tspan></text>
+      </g>
+    </g>
+    <g fill="white" stroke="currentColor" text-anchor="start" visibility="hidden" transform="translate(316,0)">
+      <g transform="translate(162,80)">
+        <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
+        <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​<tspan font-weight="bold">x</tspan> 0</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">fx</tspan> 2001-01-01T13:00</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

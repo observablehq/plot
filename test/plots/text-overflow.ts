@@ -71,7 +71,7 @@ export async function textOverflow() {
         fx: () => "monospace",
         monospace: true,
         textOverflow: "ellipsis-end",
-        lineWidth: 13,
+        lineWidth: 8,
         dx: -4,
         frameAnchor: "right"
       }),
@@ -117,7 +117,7 @@ async function textOverflowPlot(textOverflow, {monospace = false} = {}) {
     color: {domain: opinions, scheme: "rdylbu"},
     marks: [
       Plot.axisX({monospace}),
-      Plot.axisY({lineWidth: monospace ? 9 : 6, textOverflow, monospace}),
+      Plot.axisY({lineWidth: 6, textOverflow, monospace}),
       Plot.axisY({
         anchor: "right",
         tickFormat: (name) => `${dates.get(name).getUTCFullYear()}`,

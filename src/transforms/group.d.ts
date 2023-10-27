@@ -39,7 +39,7 @@ export interface GroupOutputOptions<T = Reducer> {
 }
 
 /** Output channels (and options) for the group transform. */
-export type GroupOutputs = ChannelReducers & GroupOutputOptions;
+export type GroupOutputs = ChannelReducers | GroupOutputOptions;
 
 /**
  * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and

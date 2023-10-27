@@ -60,7 +60,7 @@ Given a text file, you can use `text.split("\n")` to split the contents into mul
 The following options control how the tabular data is organized into a hierarchy:
 
 * **path** - a column specifying each node’s hierarchy location; defaults to identity
-* **delimiter** - the path separator; defaults to forward slash (/)
+* **delimiter** - the path separator, a single character; defaults to forward slash (/)
 
 The **path** column is typically slash-separated, as with UNIX-based file systems or URLs.
 

@@ -2,6 +2,62 @@
 
 Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
+## 0.6.11
+
+[Released September 20, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)
+
+The **tip** mark option can now pass options to the derived [tip mark](https://observablehq.com/plot/marks/tip); the options object can also specify the **pointer** option to control the derived tip’s pointer mode (_x_, _y_, or _xy_). The new **format** tip mark option enables greater control over order and formatting of channels.
+
+<img src="./img/tip-custom.png" width="674" alt="A tip with a custom order and formatting of the channel values.">
+
+```js
+Plot.dot(olympians, {
+  x: "weight",
+  y: "height",
+  stroke: "sex",
+  channels: {
+    name: "name",
+    nationality: "nationality",
+    sport: "sport"
+  },
+  tip: {
+    format: {
+      name: true, // show name first
+      y: (d) => `${d}m`, // units in meters
+      x: (d) => `${d}kg`, // units in kilograms
+      stroke: false // suppress stroke channel
+    }
+  }
+}).plot()
+```
+
+Axes for ordinal scales now generalize the scale’s temporal or quantitative **interval** if any, resulting in more readable ticks. For instance, the bar chart below of monthly values now sports multi-line tick labels.
+
+<img src="./img/temporal-ordinal.png" width="672" alt="A temporal bar chart with a multi-line axis.">
+
+```js
+Plot.plot({
+  x: {interval: "month"},
+  marks: [
+    Plot.barY(aapl, Plot.groupX({y: "median"}, {x: "Date", y: "Close"}))
+  ]
+})
+```
+
+Plot now recognizes CSS Color Module [Level 4](https://www.w3.org/TR/css-color-4/) and [Level 5](https://www.w3.org/TR/css-color-5/) syntax as literal colors, making it easier to use modern color syntax such as [oklab()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklab), [color-mix()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix), and alternative color spaces such as [display-p3](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color).
+
+A channel value can now be given a label by specifying it as a {value, label} object; this may affect the label used in axes, legends, and tips.
+
+This release also includes numerous bug fixes:
+- exposed ordinal domains are now correctly deduplicated;
+- the default symbol set is now inferred correctly when **fill** is *currentColor*;
+- the **fontVariant** axis option now applies to the axis label in addition to ticks;
+- the tip mark is no longer briefly visible before asynchronous rendering;
+- the bin transform no longer generates undefined colors for empty bins;
+- the bin transform now uses the **interval** option to reduce *x1* & *x2* (and *y1* & *y2*);
+- the stack transform now correctly handles the *exclude* **facet** option;
+- the tree transform now correctly handles escaping with the **delimiter** option.
+
 ## 0.6.10
 
 [Released August 14, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.10)

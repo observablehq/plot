@@ -129,7 +129,37 @@ Plot.rectY(olympians, Plot.binX({y: "sum"}, {x: "weight", y: (d) => d.sex === "m
 ```
 :::
 
-The tip mark does not provide options for formatting channel names or values. When a channel is bound to a scale, the scale’s label is shown instead of the channel name. If you desire greater customization, please upvote [#1612](https://github.com/observablehq/plot/issues/1612).
+The order and formatting of channels in the tip can be customized with the **format** option <VersionBadge version="0.6.11" pr="1823" />, which accepts a key-value object mapping channel names to formats. Each [format](../features/formats.md) can be a string (for number or time formats), a function that receives the value as input and returns a string, true to use the default format, and null or false to suppress. The order of channels in the tip follows their order in the format object followed by any additional channels.
+
+A channel’s label can be specified alongside its value as a {value, label} object; if a channel label is not specified, the associated scale’s label is used, if any; if there is no associated scale, or if the scale has no label, the channel name is used instead.
+
+:::plot defer https://observablehq.com/@observablehq/plot-tip-format
+```js
+Plot.dot(olympians, {
+  x: "weight",
+  y: "height",
+  stroke: "sex",
+  channels: {
+    name: "name",
+    nationality: {
+      value: "nationality",
+      label: "country"
+    },
+    sport: "sport"
+  },
+  tip: {
+    format: {
+      name: true,
+      sport: true,
+      nationality: true,
+      y: (d) => `${d}m`,
+      x: (d) => `${d}kg`,
+      stroke: false
+    }
+  }
+}).plot()
+```
+:::
 
 The tip mark supports nine different orientations specified by the **anchor** option: the four sides (*top*, *right*, *bottom*, *left*), the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), and *middle*. Note that when *middle* is used, the tip will obscure its anchor point.
 
@@ -152,7 +182,7 @@ Plot.plot({
 ```
 :::
 
-If you don’t specify an **anchor**, the tip mark will choose one automatically. It will prefer *top-left* if the tip fits; otherwise it will switch sides to try to contain the tip within the plot’s frame. When dynamically rendering the tip mark, say with the [pointer interaction](../interactions/pointer.md), the tip will also attempt to use the anchor it chose previously, making the tip more stable as you move the pointer and improving readability. In some cases, it may not be possible to fit the tip within the plot’s frame; consider setting the plot’s **style** to `overflow: visible;` to prevent the tip from being truncated.
+If you don’t specify an explicit **anchor**, the tip mark will choose one automatically, using the **preferredAnchor** <VersionBadge pr="1872" /> if it fits. The preferred anchor defaults to *bottom*, except when using the **tip** option and the [pointerY pointing mode](../interactions/pointer.md), in which case it defaults to *left*. In some cases, it may not be possible to fit the tip within the plot’s frame; consider setting the plot’s **style** to `overflow: visible;` to prevent the tip from being truncated.
 
 The tip mark is compatible with transforms that derive **x** and **y** dynamically from data, such as the [centroid transform](../transforms/centroid.md) which computes polygon centroids. Below, a map of the United States shows state names. We reduce the size of the tips by setting the **textPadding** option to 3 pixels instead of the default 8.
 

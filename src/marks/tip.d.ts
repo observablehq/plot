@@ -1,4 +1,4 @@
-import type {ChannelValueSpec} from "../channel.js";
+import type {ChannelName, ChannelValueSpec} from "../channel.js";
 import type {Data, FrameAnchor, MarkOptions, RenderableMark} from "../mark.js";
 import type {TextStyles} from "./text.js";
 
@@ -61,6 +61,29 @@ export interface TipOptions extends MarkOptions, TextStyles {
    * the right of the anchor position.
    */
   anchor?: FrameAnchor;
+
+  /**
+   * If an explicit tip anchor is not specified, an anchor is chosen
+   * automatically such that the tip fits within the plot’s frame; if the
+   * preferred anchor fits, it is chosen.
+   */
+  preferredAnchor?: FrameAnchor | null;
+
+  /**
+   * How channel values are formatted for display. If a format is a string, it
+   * is interpreted as a (UTC) time format for temporal channels, and otherwise
+   * a number format.
+   */
+  format?: {[name in ChannelName]?: boolean | string | ((d: any, i: number) => string)};
+
+  /** The image filter for the tip’s box; defaults to a drop shadow. */
+  pathFilter?: string;
+
+  /** The size of the tip’s pointer in pixels; defaults to 12. */
+  pointerSize?: number;
+
+  /** The padding around the text in pixels; defaults to 8. */
+  textPadding?: number;
 }
 
 /**

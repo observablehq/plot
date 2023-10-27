@@ -4,7 +4,7 @@ import type {WindowOptions} from "../transforms/window.js";
 import type {AreaXOptions, AreaYOptions} from "./area.js";
 import type {LineXOptions, LineYOptions} from "./line.js";
 
-/** Options for the bollinger window transform. */
+/** Options for the bollinger map method. */
 export interface BollingerWindowOptions {
   /** The number of consecutive values in the window; defaults to 20. */
   n?: number;
