@@ -2,7 +2,6 @@
     <style>
       .plot-ramp {
         display: block;
-        background: white;
         height: auto;
         height: intrinsic;
         max-width: 100%;
@@ -43,8 +42,8 @@
   </svg><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="245" height="60" viewBox="0 0 245 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <style>
       .plot {
+        --plot-background: white;
         display: block;
-        background: white;
         height: auto;
         height: intrinsic;
         max-width: 100%;
@@ -71,5 +70,5 @@
       <circle cx="81.5" cy="15" r="10" fill="rgb(39, 215, 196)"></circle>
       <circle cx="225" cy="15" r="10" fill="rgb(144, 12, 0)"></circle>
     </g>
-    <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+    <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
   </svg></figure>

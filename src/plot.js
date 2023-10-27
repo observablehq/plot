@@ -258,8 +258,8 @@ export function plot(options = {}) {
       // Warning: if you edit this, change defaultClassName.
       svg.append("style").text(
         `.${className} {
+  --plot-background: white;
   display: block;
-  background: white;
   height: auto;
   height: intrinsic;
   max-width: 100%;
