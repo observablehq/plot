@@ -58,7 +58,8 @@ export async function metroUnemploymentPointer() {
           x: "date",
           y: "unemployment",
           z: "date",
-          fill: "red"
+          fill: "red",
+          tip: true
         })
       )
     ]
