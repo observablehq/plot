@@ -158,6 +158,10 @@ https://github.com/vega/vega-datasets/blob/master/scripts/weather.py
 National Climatic Data Center
 https://www.ncdc.noaa.gov/
 
+## sf-sj-temperatures.csv
+National Climatic Data Center - Climatic Data Online
+https://www.ncei.noaa.gov/cdo-web/
+
 ## simpsons.csv
 IMDb/Todd W. Schneider
 https://data.world/data-society/the-simpsons-by-the-data

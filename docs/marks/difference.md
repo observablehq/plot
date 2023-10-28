@@ -7,10 +7,12 @@ import {ref, shallowRef, onMounted} from "vue";
 const shift = ref(365);
 const aapl = shallowRef([]);
 const goog = shallowRef([]);
+const temperature = shallowRef([{date: new Date("2020-01-01")}]);
 
 onMounted(() => {
   d3.csv("../data/aapl.csv", d3.autoType).then((data) => (aapl.value = data));
   d3.csv("../data/goog.csv", d3.autoType).then((data) => (goog.value = data));
+  d3.csv("../data/sf-sj-temperatures.csv", d3.autoType).then((data) => (temperature.value = data.filter((d) => d.date.getUTCFullYear() === 2020)));
 });
 
 const offset = (date) => d3.utcDay.offset(date, shift.value);
@@ -20,6 +22,25 @@ const offset = (date) => d3.utcDay.offset(date, shift.value);
 # Difference mark
 
 The **difference mark** compares a metric to another metric.
+
+:::plot
+```js
+Plot.plot({
+  x: {tickFormat: "%b"},
+  y: {grid: true},
+  marks: [
+    Plot.ruleY([32]),
+    Plot.differenceY(temperature, Plot.windowY(14, {
+      filter: (d) => d.station === "SF",
+      x: "date",
+      y: "tmin",
+      y1: (d, i) => temperature[i + 1]?.tmin,
+      tip: true
+    }))
+  ]
+})
+```
+:::
 
 :::plot
 ```js
