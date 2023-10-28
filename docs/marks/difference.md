@@ -94,3 +94,15 @@ Plot.plot({
 })
 ```
 :::
+
+## Difference options
+
+TK
+
+## differenceY(*data*, *options*) {#differenceY}
+
+```js
+Plot.differenceY(gistemp, {x: "Date", y: "Anomaly"})
+```
+
+TK

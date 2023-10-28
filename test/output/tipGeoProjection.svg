@@ -1,8 +1,8 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="401" viewBox="0 0 640 401" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
+      --plot-background: white;
       display: block;
-      background: white;
       height: auto;
       height: intrinsic;
       max-width: 100%;
@@ -3122,5 +3122,5 @@
     <path d="M485.792,184.452L486.453,183.28L487.06,183.714L487.511,183.66L488.152,184.599L487.879,185.007L488.135,185.322L489.81,187.286L489.605,187.592L490.133,188.036L488.095,188.709L486.973,189.622L487.389,191.591L485.243,190.125L485.716,189.636L485.404,188.359L484.797,187.073L485.559,186.28L485.433,185.421Z"></path>
     <path d="M118.703,228.87L119.558,229.001L120.517,229.532L120.78,230.014L121.437,230.515L122.597,231.647L122.83,232.307L124.543,233.075L124.969,233.401L125.709,233.453L126.941,234.71L128.167,235.004L128.61,234.74L128.278,236.39L129.56,236.627L129.108,239.228L135.43,240.255L135.828,240.256L135.385,242.899L138.053,243.356L137.242,248.271L137.164,248.743L135.734,249.319L135.442,250.805L134.896,251.409L134.836,252.304L134.544,252.714L137.368,253.182L137.152,253.408L137.351,254.371L136.919,254.825L136.781,255.392L133.996,254.93L128.811,253.317L128.233,254.333L127.582,254.733L127.49,255.268L127.039,255.544L121.647,252.8L114.525,251.522L115.395,246.804Z"></path>
   </g>
-  <g aria-label="tip" fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
+  <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,0.5)"></g>
 </svg>

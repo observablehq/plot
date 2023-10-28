@@ -14,7 +14,7 @@ import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
 
 const defaults = {
   ariaLabel: "tip",
-  fill: "white",
+  fill: "var(--plot-background)",
   stroke: "currentColor"
 };
 
