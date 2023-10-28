@@ -4,7 +4,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {ref, shallowRef, onMounted} from "vue";
 
-const shift = ref(0);
+const shift = ref(365);
 const aapl = shallowRef([]);
 const goog = shallowRef([]);
 
@@ -19,7 +19,7 @@ const offset = (date) => d3.utcDay.offset(date, shift.value);
 
 # Difference mark
 
-The **difference mark** compares a primary metric to a secondary metric.
+The **difference mark** compares a metric to another metric.
 
 :::plot
 ```js
@@ -29,26 +29,10 @@ Plot.plot({
     Plot.ruleY([1]),
     Plot.differenceY(aapl, Plot.normalizeY({
       x: "Date",
-      y1: "Close",
-      y2: Plot.valueof(goog, "Close"),
+      y: "Close",
+      y1: Plot.valueof(goog, "Close"),
       tip: true
     }))
-  ]
-})
-```
-:::
-
-:::plot
-```js
-Plot.plot({
-  y: {grid: true},
-  marks: [
-    Plot.differenceY(aapl, {
-      x1: "Date",
-      x2: (d) => d3.utcYear.offset(d.Date),
-      y: "Close",
-      tip: true
-    })
   ]
 })
 ```
@@ -62,38 +46,25 @@ Plot.plot({
   </label>
 </p>
 
-:::plot
+:::plot hidden
 ```js
 Plot.plot({
-  x: {label: "Date"},
   y: {grid: true},
   marks: [
-    Plot.differenceY(aapl, {
-      x1: (d, i, data) => d.Date < offset(data[0].Date) ? null : d.Date,
-      x2: (d, i, data) => data.at(-1).Date < offset(d.Date) ? null : offset(d.Date),
-      y: "Close"
-    })
+    Plot.differenceY(aapl, {x: "Date", y: "Close", shift: `${shift} days`})
   ]
 })
 ```
 :::
 
-:::plot
-```js
+```js-vue
 Plot.plot({
-  x: {label: "Date"},
   y: {grid: true},
   marks: [
-    Plot.differenceY(aapl, {
-      x: (d, i) => i < shift ? null : d.Date,
-      y1: "Close",
-      y2: (d, i) => aapl[i - shift]?.Close,
-      tip: true
-    })
+    Plot.differenceY(aapl, {x: "Date", y: "Close", shift: "{{ shift }} days"})
   ]
 })
 ```
-:::
 
 ## Difference options
 
