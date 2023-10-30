@@ -34,27 +34,23 @@ export async function youngAdults() {
       Plot.frame(),
       Plot.differenceY(wider, {
         x: "year",
-        y1: "M",
-        y2: "T",
-        fillOpacity: 0.5,
-        negativeFill: "age",
-        positiveFill: "grey",
-        stroke: "none",
-        fx: "geo",
-        z: (d) => `${d.age}, ${d.geo}`,
-        curve: "basis"
-      }),
-      Plot.differenceY(wider, {
-        x: "year",
         y1: "F",
-        y2: "T",
+        y2: "M",
         fillOpacity: 0.5,
         negativeFill: "grey",
         positiveFill: "age",
         fx: "geo",
-        z: (d) => `${d.age}, ${d.geo}`,
+        stroke: "none",
+        curve: "basis",
+        z: (d) => `${d.age}, ${d.geo}`
+      }),
+      Plot.lineY(wider, {
+        x: "year",
+        y: "T",
+        fx: "geo",
         sort: {fx: {value: "y", reduce: "mean"}},
         curve: "basis",
+        z: (d) => `${d.age}, ${d.geo}`,
         channels: {M: "M", F: "F"},
         tip: true
       })
