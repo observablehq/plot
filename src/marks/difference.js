@@ -1,4 +1,4 @@
-import {max, min} from "d3";
+import {max, min, rollups} from "d3";
 import {create} from "../context.js";
 import {composeRender, marks, withTip} from "../mark.js";
 import {identity, indexOf, isNoneish, labelof, maybeInterval, maybeValue, valueof} from "../options.js";
@@ -107,19 +107,37 @@ function memo(v) {
 
 function clipDifference(positive) {
   return (index, scales, channels, dimensions, context, next) => {
-    const clip = getClipId();
-    const clipPath = create("svg:clipPath", context).attr("id", clip).node();
+    const {z: Z} = channels;
     const {x1, x2} = channels;
     const {height} = dimensions;
     const y1 = new Float32Array(x1.length);
     const y2 = new Float32Array(x2.length);
     (positive ? y1 : y2).fill(height);
-    const c = next(index, scales, {...channels, x2: x1, y2}, dimensions, context);
-    clipPath.append(...c.childNodes);
-    const g = next(index, scales, {...channels, x1: x2, y1}, dimensions, context);
-    g.insertBefore(clipPath, g.firstChild);
-    g.setAttribute("clip-path", `url(#${clip})`);
-    return g;
+    const differences = rollups(
+      index,
+      (I) => {
+        const clip = getClipId();
+        const clipPath = create("svg:clipPath", context).attr("id", clip).node();
+        const c = next(I, scales, {...channels, x2: x1, y2}, dimensions, context);
+        clipPath.append(...c.childNodes);
+        const g = next(I, scales, {...channels, x1: x2, y1}, dimensions, context);
+        g.insertBefore(clipPath, g.firstChild);
+        g.setAttribute("clip-path", `url(#${clip})`);
+        return g;
+      },
+      ...(Z ? [(i) => Z[i]] : [])
+    );
+    switch (true) {
+      case !Z:
+        return differences;
+      case differences.length === 1:
+        return differences[0][1];
+      default: {
+        const g = create("svg:g", context).node();
+        for (const [, diff] of differences) g.appendChild(diff);
+        return g;
+      }
+    }
   };
 }
 

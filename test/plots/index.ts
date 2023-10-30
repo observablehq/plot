@@ -335,3 +335,4 @@ export * from "./word-length-moby-dick.js";
 export * from "./yearly-requests-dot.js";
 export * from "./yearly-requests-line.js";
 export * from "./yearly-requests.js";
+export * from "./young-adults.js";
