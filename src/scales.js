@@ -5,6 +5,7 @@ import {
   isNumericString,
   isScaleOptions,
   map,
+  orderof,
   slice,
   coerceNumbers,
   coerceDates
@@ -140,6 +141,13 @@ function inferScaleLabel(channels = [], scale) {
   if (label === undefined) return;
   if (!isOrdinalScale(scale) && scale.percent) label = `${label} (%)`;
   return {inferred: true, toString: () => label};
+}
+
+// Determines whether the scale points in the “positive” (right or down) or
+// “negative” (left or up) direction; if the scale order cannot be determined,
+// returns NaN; used to assign an appropriate label arrow.
+export function inferScaleOrder(scale) {
+  return Math.sign(orderof(scale.domain())) * Math.sign(orderof(scale.range()));
 }
 
 // Returns the dimensions of the outer frame; this is subdivided into facets

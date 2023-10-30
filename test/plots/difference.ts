@@ -49,6 +49,11 @@ export async function differenceYConstant() {
   return Plot.differenceY(aapl, {x: "Date", y1: 115, y2: "Close"}).plot();
 }
 
+export async function differenceYReverse() {
+  const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
+  return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", y: "Anomaly"})).plot({y: {reverse: true}});
+}
+
 export async function differenceYZero() {
   const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
   return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", y: "Anomaly"})).plot();
