@@ -18,8 +18,5 @@ export async function rectBand() {
 
 export async function rectBandY() {
   const alphabet = await d3.csv<any>("data/alphabet.csv", d3.autoType);
-  return Plot.plot({
-    y: {type: "band"},
-    marks: [Plot.rectX(alphabet, {y: "letter", x: "frequency"})]
-  });
+  return Plot.rectX(alphabet, {y: "letter", x: "frequency"}).plot();
 }

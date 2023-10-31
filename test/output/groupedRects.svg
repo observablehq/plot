@@ -42,40 +42,40 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(69,370)" d="M0,0L0,6"></path>
-    <path transform="translate(127,370)" d="M0,0L0,6"></path>
-    <path transform="translate(185,370)" d="M0,0L0,6"></path>
-    <path transform="translate(243,370)" d="M0,0L0,6"></path>
-    <path transform="translate(301,370)" d="M0,0L0,6"></path>
-    <path transform="translate(359,370)" d="M0,0L0,6"></path>
-    <path transform="translate(417,370)" d="M0,0L0,6"></path>
-    <path transform="translate(475,370)" d="M0,0L0,6"></path>
-    <path transform="translate(533,370)" d="M0,0L0,6"></path>
-    <path transform="translate(591,370)" d="M0,0L0,6"></path>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(26,0)">
+    <path transform="translate(48,370)" d="M0,0L0,6"></path>
+    <path transform="translate(105,370)" d="M0,0L0,6"></path>
+    <path transform="translate(162,370)" d="M0,0L0,6"></path>
+    <path transform="translate(219,370)" d="M0,0L0,6"></path>
+    <path transform="translate(276,370)" d="M0,0L0,6"></path>
+    <path transform="translate(333,370)" d="M0,0L0,6"></path>
+    <path transform="translate(390,370)" d="M0,0L0,6"></path>
+    <path transform="translate(447,370)" d="M0,0L0,6"></path>
+    <path transform="translate(504,370)" d="M0,0L0,6"></path>
+    <path transform="translate(561,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
-    <text y="0.71em" transform="translate(69,370)">A</text>
-    <text y="0.71em" transform="translate(127,370)">B</text>
-    <text y="0.71em" transform="translate(185,370)">C</text>
-    <text y="0.71em" transform="translate(243,370)">D</text>
-    <text y="0.71em" transform="translate(301,370)">E</text>
-    <text y="0.71em" transform="translate(359,370)">F</text>
-    <text y="0.71em" transform="translate(417,370)">G</text>
-    <text y="0.71em" transform="translate(475,370)">H</text>
-    <text y="0.71em" transform="translate(533,370)">I</text>
-    <text y="0.71em" transform="translate(591,370)">J</text>
+  <g aria-label="x-axis tick label" transform="translate(26,9.5)">
+    <text y="0.71em" transform="translate(48,370)">A</text>
+    <text y="0.71em" transform="translate(105,370)">B</text>
+    <text y="0.71em" transform="translate(162,370)">C</text>
+    <text y="0.71em" transform="translate(219,370)">D</text>
+    <text y="0.71em" transform="translate(276,370)">E</text>
+    <text y="0.71em" transform="translate(333,370)">F</text>
+    <text y="0.71em" transform="translate(390,370)">G</text>
+    <text y="0.71em" transform="translate(447,370)">H</text>
+    <text y="0.71em" transform="translate(504,370)">I</text>
+    <text y="0.71em" transform="translate(561,370)">J</text>
   </g>
   <g aria-label="rect">
-    <rect x="69" y="20" width="0" height="350"></rect>
-    <rect x="127" y="20" width="0" height="350"></rect>
-    <rect x="185" y="20" width="0" height="350"></rect>
-    <rect x="243" y="20" width="0" height="350"></rect>
-    <rect x="301" y="20" width="0" height="350"></rect>
-    <rect x="359" y="20" width="0" height="350"></rect>
-    <rect x="417" y="20" width="0" height="350"></rect>
-    <rect x="475" y="20" width="0" height="350"></rect>
-    <rect x="533" y="20" width="0" height="350"></rect>
-    <rect x="591" y="20" width="0" height="350"></rect>
+    <rect x="48" y="20" width="51" height="350"></rect>
+    <rect x="105" y="20" width="51" height="350"></rect>
+    <rect x="162" y="20" width="51" height="350"></rect>
+    <rect x="219" y="20" width="51" height="350"></rect>
+    <rect x="276" y="20" width="51" height="350"></rect>
+    <rect x="333" y="20" width="51" height="350"></rect>
+    <rect x="390" y="20" width="51" height="350"></rect>
+    <rect x="447" y="20" width="51" height="350"></rect>
+    <rect x="504" y="20" width="51" height="350"></rect>
+    <rect x="561" y="20" width="51" height="350"></rect>
   </g>
 </svg>
