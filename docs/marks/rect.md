@@ -195,7 +195,7 @@ The following channels are optional:
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-If **x1** is specified but **x2** is not specified, then *x* must be a *band* scale; if **y1** is specified but **y2** is not specified, theN *y* must be a *band* scale.
+If **x1** is specified but **x2** is not specified, then *x* must be a *band* scale; if **y1** is specified but **y2** is not specified, then *y* must be a *band* scale.
 
 If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each **x** to produce **x1**, and *interval*.offset(*x1*) is invoked for each **x1** to produce **x2**. The same is true for **y**, **y1**, and **y2**, respectively. If the interval is specified as a number *n*, **x1** and **x2** are taken as the two consecutive multiples of *n* that bracket **x**. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
