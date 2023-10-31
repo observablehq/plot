@@ -2,6 +2,7 @@ import {max, min, rollups} from "d3";
 import {create} from "../context.js";
 import {composeRender, marks, withTip} from "../mark.js";
 import {identity, indexOf, isNoneish, labelof, maybeInterval, maybeValue, valueof} from "../options.js";
+import {inferScaleOrder} from "../scales.js";
 import {getClipId} from "../style.js";
 import {parseTimeInterval} from "../time.js";
 import {map} from "../transforms/map.js";
@@ -112,7 +113,7 @@ function clipDifference(positive) {
     const {height} = dimensions;
     const y1 = new Float32Array(x1.length);
     const y2 = new Float32Array(x2.length);
-    (positive ? y1 : y2).fill(height);
+    (positive === inferScaleOrder(scales.y) < 0 ? y1 : y2).fill(height);
     const differences = rollups(
       index,
       (I) => {
