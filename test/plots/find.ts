@@ -29,16 +29,8 @@ export async function findArrow() {
       Plot.arrow(
         ilc,
         Plot.groupX(
-          {
-            y1: Plot.find((d) => d.sex === "F"),
-            y2: Plot.find((d) => d.sex === "M")
-          },
-          {
-            x: "TIME_PERIOD",
-            y: "OBS_VALUE",
-            stroke: "age",
-            bend: true
-          }
+          {y1: Plot.find((d) => d.sex === "F"), y2: Plot.find((d) => d.sex === "M")},
+          {x: "TIME_PERIOD", y: "OBS_VALUE", stroke: "age", bend: true}
         )
       )
     ]
