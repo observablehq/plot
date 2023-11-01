@@ -25,8 +25,11 @@ export async function findArrow() {
       }),
       Plot.arrow(
         ilc,
-        Plot.findX(
-          {y1: (d) => d.sex === "F", y2: (d) => d.sex === "M"},
+        Plot.groupX(
+          {
+            y1: Plot.find((d) => d.sex === "F"),
+            y2: Plot.find((d) => d.sex === "M")
+          },
           {
             filter: (d) => d.geo === "EL",
             x: "TIME_PERIOD",

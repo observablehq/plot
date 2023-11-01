@@ -398,3 +398,12 @@ function reduceProportion(value, scope) {
     ? {scope, label: "Frequency", reduceIndex: (I, V, basis = 1) => I.length / basis}
     : {scope, reduceIndex: (I, V, basis = 1) => sum(I, (i) => V[i]) / basis};
 }
+
+export function find(test) {
+  if (typeof test !== "function") throw new Error(`invalid test function: ${test}`);
+  return {
+    reduceIndex(I, V, {data}) {
+      return V[I.find((i) => test(data[i], i, data))];
+    }
+  };
+}
