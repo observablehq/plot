@@ -1,15 +1,45 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
+async function readStocks() {
+  return (
+    await Promise.all(
+      ["AAPL", "GOOG"].map((symbol) =>
+        d3.csv<any>(`data/${symbol.toLowerCase()}.csv`, (d) => ((d.Symbol = symbol), d3.autoType(d)))
+      )
+    )
+  ).flat();
+}
+
 // Here we compare the normalized performance of Apple and Google stock; green
 // represents Apple outperforming, while blue represents Google outperforming.
 export async function differenceY() {
-  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
-  const x = aapl.map((d) => d.Date);
-  const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
-  const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
-  return Plot.differenceY(aapl, {x, y1, y2: {value: y2, label: "Close"}, tip: true}).plot();
+  const stocks = await readStocks();
+  return Plot.plot({
+    marks: [
+      Plot.differenceY(
+        stocks,
+        Plot.normalizeY(
+          Plot_findX(
+            {y1: (d) => d.Symbol === "GOOG", y2: (d) => d.Symbol === "AAPL"},
+            {x: "Date", y: "Close", tip: true}
+          )
+        )
+      )
+    ]
+  });
+}
+
+function Plot_findX(tests: Record<string, (value: any, index: number, data: any[]) => unknown>, options) {
+  return Plot.groupX(
+    Object.fromEntries(
+      Object.entries(tests).map(([key, test]) => [
+        key,
+        {reduceIndex: (I, V, {data}) => V[I.find((i) => test(data[i], i, data))]}
+      ])
+    ),
+    options
+  );
 }
 
 export async function differenceYRandom() {

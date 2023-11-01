@@ -167,7 +167,7 @@ function binn(
       const BX2 = bx && setBX2([]);
       const BY1 = by && setBY1([]);
       const BY2 = by && setBY2([]);
-      const bin = bing(bx?.(data), by?.(data));
+      const bin = bing(bx, by, data);
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
@@ -367,14 +367,16 @@ function isTimeThresholds(t) {
   return isTimeInterval(t) || (isIterable(t) && isTemporal(t));
 }
 
-function bing(EX, EY) {
+function bing(bx, by, data) {
+  const EX = bx?.(data);
+  const EY = by?.(data);
   return EX && EY
     ? function* (I) {
         const X = EX.bin(I); // first bin on x
         for (const [ix, [x1, x2]] of EX.entries()) {
           const Y = EY.bin(X[ix]); // then bin on y
           for (const [iy, [y1, y2]] of EY.entries()) {
-            yield [Y[iy], {x1, y1, x2, y2}];
+            yield [Y[iy], {data, x1, y1, x2, y2}];
           }
         }
       }
@@ -382,13 +384,13 @@ function bing(EX, EY) {
     ? function* (I) {
         const X = EX.bin(I);
         for (const [i, [x1, x2]] of EX.entries()) {
-          yield [X[i], {x1, x2}];
+          yield [X[i], {data, x1, x2}];
         }
       }
     : function* (I) {
         const Y = EY.bin(I);
         for (const [i, [y1, y2]] of EY.entries()) {
-          yield [Y[i], {y1, y2}];
+          yield [Y[i], {data, y1, y2}];
         }
       };
 }
