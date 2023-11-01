@@ -34,6 +34,7 @@ export {filter, reverse, sort, shuffle, basic as transform, initializer} from ".
 export {bin, binX, binY} from "./transforms/bin.js";
 export {centroid, geoCentroid} from "./transforms/centroid.js";
 export {dodgeX, dodgeY} from "./transforms/dodge.js";
+export {findX} from "./transforms/find.js";
 export {group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {hexbin} from "./transforms/hexbin.js";
 export {normalize, normalizeX, normalizeY} from "./transforms/normalize.js";
