@@ -189,8 +189,8 @@ export class Tip extends Mark {
         const [k] = cut(value, w - widthof(label), widthof, ee);
         if (k >= 0) {
           // value is truncated
-          value = value.slice(0, k).trimEnd() + ellipsis;
           title = value.trim();
+          value = value.slice(0, k).trimEnd() + ellipsis;
         }
       }
       const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
