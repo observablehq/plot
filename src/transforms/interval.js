@@ -22,7 +22,7 @@ function maybeIntervalK(k, maybeInsetK, options, trivial) {
       ...options,
       [k]: undefined,
       [`${k}1`]: v1 === undefined ? kv : v1,
-      [`${k}2`]: v2 === undefined ? kv : v2
+      [`${k}2`]: v2 === undefined && !(v1 === v2 && trivial) ? kv : v2
     };
   }
   let D1, V1;
