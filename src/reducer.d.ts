@@ -67,7 +67,7 @@ export interface ReducerImplementation<S = any, T = S> {
    * value. If no input channel is supplied (e.g., as with the *count* reducer)
    * then *values* may be undefined.
    */
-  reduceIndex(index: number[], values: S[]): T;
+  reduceIndex(index: number[], values: S[], extent: {data: any[]}): T;
   // TODO scope
   // TODO label
 }

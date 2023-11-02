@@ -90,6 +90,7 @@ export * from "./faithful-density.js";
 export * from "./federal-funds.js";
 export * from "./figcaption-html.js";
 export * from "./figcaption.js";
+export * from "./find.js";
 export * from "./first-ladies.js";
 export * from "./flare-cluster.js";
 export * from "./flare-indent.js";

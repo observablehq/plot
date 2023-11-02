@@ -1,5 +1,5 @@
 import type {ChannelReducers, ChannelValue} from "../channel.js";
-import type {Reducer} from "../reducer.js";
+import type {Reducer, ReducerImplementation} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 
 /** Options for outputs of the group (and bin) transform. */
@@ -143,3 +143,10 @@ export function groupY<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
  * *options*.
  */
 export function group<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
+
+/**
+ * Given the specified *test* function, returns a corresponding reducer
+ * implementation for use with the group or bin transform. The reducer returns
+ * the first channel value for which the *test* function returns a truthy value.
+ */
+export function find<T = any>(test: (d: T, index: number, data: T[]) => unknown): ReducerImplementation;

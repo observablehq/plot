@@ -134,16 +134,19 @@ function groupn(
         for (const [f, I] of maybeGroup(facet, G)) {
           for (const [y, gg] of maybeGroup(I, Y)) {
             for (const [x, g] of maybeGroup(gg, X)) {
-              if (filter && !filter.reduce(g)) continue;
+              const extent = {data};
+              if (X) extent.x = x;
+              if (Y) extent.y = y;
+              if (filter && !filter.reduce(g, extent)) continue;
               groupFacet.push(i++);
-              groupData.push(reduceData.reduceIndex(g, data));
+              groupData.push(reduceData.reduceIndex(g, data, extent));
               if (X) GX.push(x);
               if (Y) GY.push(y);
               if (Z) GZ.push(G === Z ? f : Z[g[0]]);
               if (F) GF.push(G === F ? f : F[g[0]]);
               if (S) GS.push(G === S ? f : S[g[0]]);
-              for (const o of outputs) o.reduce(g);
-              if (sort) sort.reduce(g);
+              for (const o of outputs) o.reduce(g, extent);
+              if (sort) sort.reduce(g, extent);
             }
           }
         }
@@ -394,4 +397,13 @@ function reduceProportion(value, scope) {
   return value == null
     ? {scope, label: "Frequency", reduceIndex: (I, V, basis = 1) => I.length / basis}
     : {scope, reduceIndex: (I, V, basis = 1) => sum(I, (i) => V[i]) / basis};
+}
+
+export function find(test) {
+  if (typeof test !== "function") throw new Error(`invalid test function: ${test}`);
+  return {
+    reduceIndex(I, V, {data}) {
+      return V[I.find((i) => test(data[i], i, data))];
+    }
+  };
 }
