@@ -285,11 +285,11 @@ function createScale(key, channels = [], options = {}) {
       );
   }
 
-  options.type = typeof type === "string" ? `${type}`.toLowerCase() : type; // Mutates input!
+  options.type = type; // Mutates input!
 
   // Once the scale type is known, coerce the associated channel values and any
   // explicitly-specified domain to the expected type.
-  switch (options.type) {
+  switch (type) {
     case "diverging":
     case "diverging-sqrt":
     case "diverging-pow":
@@ -322,7 +322,7 @@ function createScale(key, channels = [], options = {}) {
       break;
   }
 
-  switch (options.type) {
+  switch (type) {
     case "diverging":
       return createScaleDiverging(key, channels, options);
     case "diverging-sqrt":
@@ -376,10 +376,16 @@ function formatScaleType(type) {
   return typeof type === "symbol" ? type.description : type;
 }
 
+function maybeScaleType(type) {
+  return typeof type === "string" ? `${type}`.toLowerCase() : type;
+}
+
 // A special type symbol when the x and y scales are replaced with a projection.
 const typeProjection = {toString: () => "projection"};
 
 function inferScaleType(key, channels, {type, domain, range, scheme, pivot, projection}) {
+  type = maybeScaleType(type);
+
   // The facet scales are always band scales; this cannot be changed.
   if (key === "fx" || key === "fy") return "band";
 
@@ -391,7 +397,8 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   // If a channel dictates a scale type, make sure that it is consistent with
   // the user-specified scale type (if any) and all other channels. For example,
   // barY requires x to be a band scale and disallows any other scale type.
-  for (const {type: t} of channels) {
+  for (const channel of channels) {
+    const t = maybeScaleType(channel.type);
     if (t === undefined) continue;
     else if (type === undefined) type = t;
     else if (type !== t) throw new Error(`scale incompatible with channel: ${type} !== ${t}`);
