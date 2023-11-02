@@ -30,8 +30,8 @@ export class Rect extends Mark {
     super(
       data,
       {
-        x1: {value: x1, scale: "x", optional: true},
-        y1: {value: y1, scale: "y", optional: true},
+        x1: {value: x1, scale: "x", type: x1 != null && x2 == null ? "band" : undefined, optional: true},
+        y1: {value: y1, scale: "y", type: y1 != null && y2 == null ? "band" : undefined, optional: true},
         x2: {value: x2, scale: "x", optional: true},
         y2: {value: y2, scale: "y", optional: true}
       },
@@ -51,9 +51,11 @@ export class Rect extends Mark {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const {projection} = context;
     const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
+    const bx = (x?.bandwidth ? x.bandwidth() : 0) - insetLeft - insetRight;
+    const by = (y?.bandwidth ? y.bandwidth() : 0) - insetTop - insetBottom;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
-      .call(applyTransform, this, {x: X1 && X2 && x, y: Y1 && Y2 && y}, 0, 0)
+      .call(applyTransform, this, {}, 0, 0)
       .call((g) =>
         g
           .selectAll()
@@ -63,26 +65,34 @@ export class Rect extends Mark {
           .call(applyDirectStyles, this)
           .attr(
             "x",
-            X1 && X2 && (projection || !isCollapsed(x))
-              ? (i) => Math.min(X1[i], X2[i]) + insetLeft
+            X1 && (projection || !isCollapsed(x))
+              ? X2
+                ? (i) => Math.min(X1[i], X2[i]) + insetLeft
+                : (i) => X1[i] + insetLeft
               : marginLeft + insetLeft
           )
           .attr(
             "y",
-            Y1 && Y2 && (projection || !isCollapsed(y))
-              ? (i) => Math.min(Y1[i], Y2[i]) + insetTop
+            Y1 && (projection || !isCollapsed(y))
+              ? Y2
+                ? (i) => Math.min(Y1[i], Y2[i]) + insetTop
+                : (i) => Y1[i] + insetTop
               : marginTop + insetTop
           )
           .attr(
             "width",
-            X1 && X2 && (projection || !isCollapsed(x))
-              ? (i) => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight)
+            X1 && (projection || !isCollapsed(x))
+              ? X2
+                ? (i) => Math.max(0, Math.abs(X2[i] - X1[i]) + bx)
+                : bx
               : width - marginRight - marginLeft - insetRight - insetLeft
           )
           .attr(
             "height",
-            Y1 && Y2 && (projection || !isCollapsed(y))
-              ? (i) => Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom)
+            Y1 && (projection || !isCollapsed(y))
+              ? Y2
+                ? (i) => Math.max(0, Math.abs(Y1[i] - Y2[i]) + by)
+                : by
               : height - marginTop - marginBottom - insetTop - insetBottom
           )
           .call(applyAttr, "rx", rx)

@@ -21,7 +21,7 @@ onMounted(() => {
 # Cell mark
 
 :::tip
-The cell mark is one of several marks in Plot for drawing rectangles; it should be used when both dimensions are ordinal. See also [bar](./bar.md) and [rect](./rect.md).
+The cell mark is a variant of the [rect mark](./rect.md) for use when both dimensions are ordinal. See also the [bar mark](./bar.md).
 :::
 
 The **cell mark** draws rectangles positioned in two ordinal dimensions. Hence, the plot’s *x* and *y* scales are [band scales](../features/scales.md). Cells typically also have a **fill** color encoding.

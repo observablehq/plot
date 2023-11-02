@@ -26,7 +26,7 @@ const timeseries = [
 # Bar mark
 
 :::tip
-The bar mark is one of several marks in Plot for drawing rectangles; it should be used when one dimension is ordinal and the other is quantitative. See also [rect](./rect.md) and [cell](./cell.md).
+The bar mark is a variant of the [rect mark](./rect.md) for use when one dimension is ordinal and the other is quantitative. See also the [cell mark](./cell.md).
 :::
 
 The **bar mark** comes in two orientations: [barY](#barY) extends vertically↑ as in a vertical bar chart or column chart, while [barX](#barX) extends horizontally→. For example, the bar chart below shows the frequency of letters in the English language.
