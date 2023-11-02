@@ -82,17 +82,9 @@ export interface PlotOptions extends ScaleDefaults {
    * properties][2]). Note that unitless numbers ([quirky lengths][3]) such as
    * `{padding: 20}` may not supported by some browsers; you should instead
    * specify a string with units such as `{padding: "20px"}`. By default, the
-   * returned plot has a white background, a max-width of 100%, and the
-   * system-ui font. Plot’s marks and axes default to [currentColor][4], meaning
-   * that they will inherit the surrounding content’s color. For example, a dark
-   * theme:
-   *
-   * ```js
-   * Plot.plot({
-   *   style: "background: black; color: white;",
-   *   marks: …
-   * })
-   * ```
+   * returned plot has a max-width of 100%, and the system-ui font. Plot’s marks
+   * and axes default to [currentColor][4], meaning that they will inherit the
+   * surrounding content’s color.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
    * [2]: https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration

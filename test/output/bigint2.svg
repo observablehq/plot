@@ -1,8 +1,8 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
+      --plot-background: white;
       display: block;
-      background: white;
       height: auto;
       height: intrinsic;
       max-width: 100%;
@@ -60,7 +60,7 @@
     <text transform="translate(620,370)">big1 →</text>
   </g>
   <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="currentColor" stroke="white" stroke-width="1.5" id="plot-marker-1">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="currentColor" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-1">
       <circle r="3"></circle>
     </marker>
     <path marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-1)" d="M40,370L54.872,369.77L69.744,369.08L84.615,367.929L99.487,366.318L114.359,364.247L129.231,361.716L144.103,358.725L158.974,355.273L173.846,351.361L188.718,346.989L203.59,342.156L218.462,336.864L233.333,331.111L248.205,324.898L263.077,318.225L277.949,311.091L292.821,303.498L307.692,295.444L322.564,286.93L337.436,277.955L352.308,268.521L367.179,258.626L382.051,248.271L396.923,237.456L411.795,226.18L426.667,214.444L441.538,202.249L456.41,189.592L471.282,176.476L486.154,162.899L501.026,148.863L515.897,134.366L530.769,119.408L545.641,103.991L560.513,88.113L575.385,71.775L590.256,54.977L605.128,37.719L620,20"></path>

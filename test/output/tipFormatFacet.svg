@@ -1,8 +1,8 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="110" viewBox="0 0 640 110" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
+      --plot-background: white;
       display: block;
-      background: white;
       height: auto;
       height: intrinsic;
       max-width: 100%;
@@ -38,13 +38,13 @@
     </g>
   </g>
   <g aria-label="tip" transform="translate(0.5,0.5)">
-    <g fill="white" stroke="currentColor" text-anchor="start" visibility="hidden" transform="translate(1,0)">
+    <g fill="var(--plot-background)" stroke="currentColor" text-anchor="start" visibility="hidden" transform="translate(1,0)">
       <g transform="translate(162,80)">
         <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
         <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​<tspan font-weight="bold">x</tspan> 0</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">fx</tspan> a</tspan></text>
       </g>
     </g>
-    <g fill="white" stroke="currentColor" text-anchor="start" visibility="hidden" transform="translate(316,0)">
+    <g fill="var(--plot-background)" stroke="currentColor" text-anchor="start" visibility="hidden" transform="translate(316,0)">
       <g transform="translate(162,80)">
         <path filter="drop-shadow(0 3px 4px rgba(0,0,0,0.2))"></path>
         <text fill="currentColor" fill-opacity="1" stroke="none"><tspan x="0" dy="1em">​<tspan font-weight="bold">x</tspan> 0</tspan><tspan x="0" dy="1em">​<tspan font-weight="bold">fx</tspan> b</tspan></text>
