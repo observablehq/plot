@@ -23,6 +23,9 @@ A **marker** defines a graphic drawn on vertices of a [line](../marks/line.md) o
       <option>dot</option>
       <option>circle</option>
       <option>circle-stroke</option>
+      <option>tick</option>
+      <option>tick-x</option>
+      <option>tick-y</option>
     </select>
   </label>
 </p>
@@ -53,6 +56,9 @@ The following named markers are supported:
 * *dot* - a filled *circle* without a stroke and 2.5px radius
 * *circle*, equivalent to *circle-fill* - a filled circle with a white stroke and 3px radius
 * *circle-stroke* - a hollow circle with a colored stroke and a white fill and 3px radius
+* *tick* - a small opposing line
+* *tick-x* - a small horizontal line
+* *tick-y* - a small vertical line
 
 If **marker** is true, it defaults to *circle*. If **marker** is a function, it will be called with a given *color* and must return an [SVG marker element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker).
 
