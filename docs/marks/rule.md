@@ -120,7 +120,23 @@ Plot.plot({
 ```
 :::
 
-Rules can also be a stylistic choice, as in the lollipop 🍭 chart below, serving the role of a skinny [bar](./bar.md) topped with a [dot](./dot.md).
+Rules can indicate uncertainty or error by setting the [**marker** option](../features/markers.md) to *tick*; this draws a small perpendicular line at the start and end of the rule. For example, to simulate ±10% error:
+
+:::plot
+```js
+Plot.plot({
+  x: {label: null},
+  y: {percent: true},
+  marks: [
+    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "blue"}),
+    Plot.ruleX(alphabet, {x: "letter", y1: (d) => d.frequency * 0.9, y2: (d) => d.frequency * 1.1, marker: "tick"}),
+    Plot.ruleY([0])
+  ]
+})
+```
+:::
+
+Rules can also be a stylistic choice, as in the lollipop 🍭 chart below, serving the role of a skinny [bar](./bar.md) topped with a [*dot* marker](../features/markers.md).
 
 :::plot https://observablehq.com/@observablehq/plot-lollipop
 ```js
@@ -128,8 +144,7 @@ Plot.plot({
   x: {label: null, tickPadding: 6, tickSize: 0},
   y: {percent: true},
   marks: [
-    Plot.ruleX(alphabet, {x: "letter", y: "frequency", strokeWidth: 2}),
-    Plot.dot(alphabet, {x: "letter", y: "frequency", fill: "currentColor", r: 4})
+    Plot.ruleX(alphabet, {x: "letter", y: "frequency", strokeWidth: 2, markerEnd: "dot"})
   ]
 })
 ```

@@ -102,6 +102,10 @@ https://data.giss.nasa.gov/gistemp/
 Met Office Hadley Centre
 https://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/series_format.html
 
+## ilc_lvps08.csv
+“Share of young adults aged 18-34 living with their parents”, Eurostat
+https://ec.europa.eu/eurostat/databrowser/view/ILC_LVPS08__custom_7530569/default/table?lang=en
+
 ## ipos.csv
 “The Facebook Offering: How It Compares”, The New York Times
 https://archive.nytimes.com/www.nytimes.com/interactive/2012/05/17/business/dealbook/how-the-facebook-offering-compares.html?hp

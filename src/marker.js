@@ -24,6 +24,12 @@ function maybeMarker(marker) {
       return markerCircleFill;
     case "circle-stroke":
       return markerCircleStroke;
+    case "tick":
+      return markerTick("auto");
+    case "tick-x":
+      return markerTick(90);
+    case "tick-y":
+      return markerTick(0);
   }
   throw new Error(`invalid marker: ${marker}`);
 }
@@ -77,6 +83,18 @@ function markerCircleStroke(color, context) {
     .attr("stroke-width", 1.5)
     .call((marker) => marker.append("circle").attr("r", 3))
     .node();
+}
+
+function markerTick(orient) {
+  return (color, context) =>
+    create("svg:marker", context)
+      .attr("viewBox", "-3 -3 6 6")
+      .attr("markerWidth", 6)
+      .attr("markerHeight", 6)
+      .attr("orient", orient)
+      .attr("stroke", color)
+      .call((marker) => marker.append("path").attr("d", "M0,-3v6"))
+      .node();
 }
 
 let nextMarkerId = 0;

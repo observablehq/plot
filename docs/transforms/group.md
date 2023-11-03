@@ -369,12 +369,12 @@ The following named reducers are supported:
 
 In addition, a reducer may be specified as:
 
-* a function - passed the array of values for each group
+* a function to be passed the array of values for each group and the extent of the group
 * an object with a **reduceIndex** method, an optionally a **scope**
 
-In the last case, the **reduceIndex** method is repeatedly passed two arguments: the index for each group (an array of integers), and the input channel’s array of values; it must then return the corresponding aggregate value for the group.
+In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each group (an array of integers), the input channel’s array of values, and the extent of the group (an object {data, x, y}); it must then return the corresponding aggregate value for the group.
 
-If the reducer object’s **scope** is *data*, then the **reduceIndex** method is first invoked for the full data; the return value of the **reduceIndex** method is then made available as a third argument. Similarly if the **scope** is *facet*, then the **reduceIndex** method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s groups. (This optional **scope** is used by the *proportion* and *proportion-facet* reducers.)
+If the reducer object’s **scope** is *data*, then the **reduceIndex** method is first invoked for the full data; the return value of the **reduceIndex** method is then made available as a third argument (making the extent the fourth argument). Similarly if the **scope** is *facet*, then the **reduceIndex** method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s groups. (This optional **scope** is used by the *proportion* and *proportion-facet* reducers.)
 
 Most reducers require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
 
@@ -435,3 +435,14 @@ Plot.groupZ({x: "proportion"}, {fill: "species"})
 ```
 
 Groups on the first channel of **z**, **fill**, or **stroke**, if any. If none of **z**, **fill**, or **stroke** are channels, then all data (within each facet) is placed into a single group.
+
+## find(*test*) {#find}
+
+```js
+Plot.groupX(
+  {y1: Plot.find((d) => d.sex === "F"), y2: Plot.find((d) => d.sex === "M")},
+  {x: "date", y: "value"}
+)
+```
+
+Returns a reducer that finds the first datum for which the given *test* function returns a truthy value, and returns the corresponding channel value. This may be used with the group or bin transform to implement a “pivot wider” transform; for example, a “tall” dataset with separate rows for male and female observations may be transformed into a “wide” dataset with separate columns for male and female values.

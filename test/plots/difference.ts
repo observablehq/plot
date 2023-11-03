@@ -1,11 +1,13 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-async function readStocks() {
+async function readStocks(start = 0, end = Infinity) {
   return (
     await Promise.all(
       ["AAPL", "GOOG"].map((symbol) =>
-        d3.csv<any>(`data/${symbol.toLowerCase()}.csv`, (d) => ((d.Symbol = symbol), d3.autoType(d)))
+        d3.csv<any>(`data/${symbol.toLowerCase()}.csv`, (d, i) =>
+          start <= i && i < end ? ((d.Symbol = symbol), d3.autoType(d)) : null
+        )
       )
     )
   ).flat();
@@ -20,26 +22,14 @@ export async function differenceY() {
       Plot.differenceY(
         stocks,
         Plot.normalizeY(
-          Plot_findX(
-            {y1: (d) => d.Symbol === "GOOG", y2: (d) => d.Symbol === "AAPL"},
+          Plot.groupX(
+            {y1: Plot.find((d) => d.Symbol === "GOOG"), y2: Plot.find((d) => d.Symbol === "AAPL")},
             {x: "Date", y: "Close", tip: true}
           )
         )
       )
     ]
   });
-}
-
-function Plot_findX(tests: Record<string, (value: any, index: number, data: any[]) => unknown>, options) {
-  return Plot.groupX(
-    Object.fromEntries(
-      Object.entries(tests).map(([key, test]) => [
-        key,
-        {reduceIndex: (I, V, {data}) => V[I.find((i) => test(data[i], i, data))]}
-      ])
-    ),
-    options
-  );
 }
 
 export async function differenceYRandom() {
@@ -50,28 +40,37 @@ export async function differenceYRandom() {
 }
 
 export async function differenceYCurve() {
-  const aapl = (await d3.csv<any>("data/aapl.csv", d3.autoType)).slice(60, 100);
-  const goog = (await d3.csv<any>("data/goog.csv", d3.autoType)).slice(60, 100);
-  const x = aapl.map((d) => d.Date);
-  const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
-  const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
-  return Plot.differenceY(aapl, {x, y1, y2, curve: "cardinal", tension: 0.1}).plot();
+  const stocks = await readStocks(60, 100);
+  return Plot.plot({
+    marks: [
+      Plot.differenceY(
+        stocks,
+        Plot.normalizeY(
+          Plot.groupX(
+            {y1: Plot.find((d) => d.Symbol === "GOOG"), y2: Plot.find((d) => d.Symbol === "AAPL")},
+            {x: "Date", y: "Close", curve: "cardinal", tension: 0.1}
+          )
+        )
+      )
+    ]
+  });
 }
 
 export async function differenceYVariable() {
-  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
-  const goog = await d3.csv<any>("data/goog.csv", d3.autoType);
-  const x = aapl.map((d) => d.Date);
-  const y1 = goog.map((d, i, data) => d.Close / data[0].Close);
-  const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
-  return Plot.differenceY(aapl, {
-    x,
-    y1,
-    y2,
-    negativeFill: "#eee",
-    positiveFill: (d) => d.Date.getUTCFullYear(),
-    tip: true
-  }).plot();
+  const stocks = await readStocks();
+  return Plot.plot({
+    marks: [
+      Plot.differenceY(
+        stocks,
+        Plot.normalizeY(
+          Plot.groupX(
+            {y1: Plot.find((d) => d.Symbol === "GOOG"), y2: Plot.find((d) => d.Symbol === "AAPL")},
+            {x: "Date", y: "Close", negativeFill: "#eee", positiveFill: ([d]) => d.Date.getUTCFullYear()}
+          )
+        )
+      )
+    ]
+  });
 }
 
 export async function differenceYConstant() {
