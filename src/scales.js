@@ -505,6 +505,7 @@ export function isCollapsed(scale) {
 function coerceType(channels, {domain, ...options}, coerceValues) {
   for (const c of channels) {
     if (c.value !== undefined) {
+      if (domain === undefined) domain = c.value?.domain; // promote channel domain
       c.value = coerceValues(c.value);
     }
   }
