@@ -93,13 +93,11 @@ export async function differenceYNegative() {
   return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", positiveFill: "none", y: "Anomaly"})).plot();
 }
 
-// Here we shift x2 forward to show year-over-year growth; to suppress the year
-// before and the year after the dataset, x1 and x2 are padded with null.
 export async function differenceY1() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.differenceY(
     aapl,
-    shiftX(d3.utcYear, {
+    Plot.shiftX("year", {
       x: "Date",
       y: "Close",
       positiveFillOpacity: 0.2,
@@ -108,22 +106,6 @@ export async function differenceY1() {
       negativeFill: "red"
     })
   ).plot();
-}
-
-function shiftX(interval, options) {
-  return Plot.map(
-    {
-      x1(D) {
-        const max = interval.offset(d3.max(D), -1);
-        return D.map((d) => (max < d ? null : interval.offset(d, 1)));
-      },
-      x2(D) {
-        const min = interval.offset(d3.min(D), 1);
-        return D.map((d) => (d < min ? null : d));
-      }
-    },
-    options
-  );
 }
 
 export async function differenceFilterX() {

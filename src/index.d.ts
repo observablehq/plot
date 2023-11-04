@@ -53,6 +53,7 @@ export * from "./transforms/hexbin.js";
 export * from "./transforms/map.js";
 export * from "./transforms/normalize.js";
 export * from "./transforms/select.js";
+export * from "./transforms/shift.js";
 export * from "./transforms/stack.js";
 export * from "./transforms/tree.js";
 export * from "./transforms/window.js";

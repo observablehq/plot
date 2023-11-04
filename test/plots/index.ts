@@ -257,6 +257,7 @@ export * from "./sf-covid-deaths.js";
 export * from "./sf-temperature-band-area.js";
 export * from "./sf-temperature-band.js";
 export * from "./sf-temperature-window.js";
+export * from "./shift.js";
 export * from "./shorthand-area.js";
 export * from "./shorthand-areaY.js";
 export * from "./shorthand-barY.js";
