@@ -1,6 +1,6 @@
 import {create} from "../context.js";
 import {composeRender, marks, withTip} from "../mark.js";
-import {identity, indexOf, isNoneish, labelof, maybeValue, valueof} from "../options.js";
+import {identity, indexOf, isNoneish, labelof, maybeColorChannel, maybeValue, valueof} from "../options.js";
 import {inferScaleOrder} from "../scales.js";
 import {getClipId} from "../style.js";
 import {area} from "./area.js";
@@ -15,6 +15,7 @@ export function differenceY(
     y2,
     x = x1 === undefined && x2 === undefined ? indexOf : undefined,
     y = y1 === undefined && y2 === undefined ? identity : undefined,
+    fill, // ignored
     positiveFill = "#01ab63",
     negativeFill = "#4269d0",
     fillOpacity = 1,
@@ -22,6 +23,7 @@ export function differenceY(
     negativeFillOpacity = fillOpacity,
     stroke,
     strokeOpacity,
+    z = maybeColorChannel(stroke)[0],
     clip = true,
     tip,
     render,
@@ -40,6 +42,7 @@ export function differenceY(
             x2,
             y1,
             y2,
+            z,
             fill: positiveFill,
             fillOpacity: positiveFillOpacity,
             render: composeRender(render, clipDifference(true)),
@@ -55,6 +58,7 @@ export function differenceY(
             x2,
             y1,
             y2,
+            z,
             fill: negativeFill,
             fillOpacity: negativeFillOpacity,
             render: composeRender(render, clipDifference(false)),
@@ -66,6 +70,7 @@ export function differenceY(
     line(data, {
       x: x2,
       y: y2,
+      z,
       stroke,
       strokeOpacity,
       tip,
