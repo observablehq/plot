@@ -1,7 +1,8 @@
-import {max, min} from "d3";
+import {extent} from "d3";
 import {maybeInterval} from "../options.js";
 import {parseTimeInterval} from "../time.js";
 import {map} from "../transforms/map.js";
+import {basic} from "./basic.js";
 
 export function shiftX(interval, options) {
   return shiftK("x", interval, options);
@@ -22,28 +23,26 @@ function shiftK(x, interval, options = {}) {
     interval = maybeInterval(interval);
     offset = (x, k) => interval.offset(x, k);
   }
-  return map(
-    k < 1
-      ? {
-          [`${x}1`](D) {
-            const start = offset(min(D), -k);
-            return D.map((d) => (d < start ? null : offset(d, k)));
-          },
-          [`${x}2`](D) {
-            const end = offset(max(D), k);
-            return D.map((d) => (end < d ? null : d));
+  let V;
+  return basic(
+    map(
+      {
+        [`${x}1`]: (D) => (V = D).map((d) => offset(d, k)),
+        [`${x}2`]: (D) => D
+      },
+      options
+    ),
+    function (data, facets) {
+      const {[`${x}1`]: channel} = this.channels;
+      if (channel) {
+        channel.hint = {
+          get domain() {
+            const [x0, x1] = extent(V);
+            return k < 0 ? [x0, offset(x1, k)] : [offset(x0, k), x1];
           }
-        }
-      : {
-          [`${x}1`](D) {
-            const end = offset(max(D), -k);
-            return D.map((d) => (end < d ? null : offset(d, k)));
-          },
-          [`${x}2`](D) {
-            const start = offset(min(D), k);
-            return D.map((d) => (d < start ? null : d));
-          }
-        },
-    options
+        };
+      }
+      return {data, facets};
+    }
   );
 }

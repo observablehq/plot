@@ -22,6 +22,7 @@ export function differenceY(
     negativeFillOpacity = fillOpacity,
     stroke,
     strokeOpacity,
+    clip = true,
     tip,
     render,
     ...options
@@ -68,6 +69,7 @@ export function differenceY(
       stroke,
       strokeOpacity,
       tip,
+      clip,
       ...options
     })
   );
