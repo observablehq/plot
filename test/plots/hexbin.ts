@@ -11,3 +11,14 @@ export async function hexbin() {
     ]
   });
 }
+
+export async function hexbinFillX() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    marks: [
+      Plot.hexgrid(),
+      Plot.frame(),
+      Plot.dot(penguins, Plot.hexbin({r: "count", fill: "x"}, {x: "culmen_depth_mm", y: "culmen_length_mm"}))
+    ]
+  });
+}
