@@ -23,7 +23,7 @@ onMounted(() => {
 
 The **difference mark** compares a metric. Like the [area mark](./area.md), the region between two lines is filled; unlike the area mark, alternating color shows when the primary metric is above or below the secondary metric.
 
-In the simplest case, the difference mark compares a metric to a constant, often zero. For example, the plot below shows the [global surface temperature anomaly](https://data.giss.nasa.gov/gistemp/) from 1880–2016; 0° represents the 1951–1980 average; above-average temperatures are in <span style="border-bottom: solid var(--vp-c-red) 3px;">red</span>, while below-average temperatures are in <span style="border-bottom: solid var(--vp-c-blue) 3px;">blue</span>.
+In the simplest case, the difference mark compares a metric to a constant, often zero. For example, the plot below shows the [global surface temperature anomaly](https://data.giss.nasa.gov/gistemp/) from 1880–2016; 0° represents the 1951–1980 average; above-average temperatures are in <span style="border-bottom: solid var(--vp-c-red) 3px;">red</span>, while below-average temperatures are in <span style="border-bottom: solid var(--vp-c-blue) 3px;">blue</span>. (It’s getting hotter.)
 
 :::plot
 ```js
@@ -66,12 +66,7 @@ Plot.plot({
   marks: [
     Plot.axisY({label: "Daily travelers (thousands, 2020 vs. 2019)", tickFormat: (d) => d / 1000}),
     Plot.ruleY([0]),
-    Plot.differenceY(tsa, {
-      x: "Date",
-      y1: "2019",
-      y2: "2020",
-      tip: {format: {x: "%B %-d"}}
-    })
+    Plot.differenceY(tsa, {x: "Date", y1: "2019", y2: "2020", tip: {format: {x: "%B %-d"}}})
   ]
 })
 ```
