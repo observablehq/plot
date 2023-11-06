@@ -1,11 +1,9 @@
 import {max, min, rollups} from "d3";
 import {create} from "../context.js";
 import {composeRender, marks, withTip} from "../mark.js";
-import {identity, indexOf, isNoneish, labelof, maybeInterval, maybeValue, valueof} from "../options.js";
+import {identity, indexOf, isNoneish, labelof, maybeColorChannel, maybeValue, valueof} from "../options.js";
 import {inferScaleOrder} from "../scales.js";
 import {getClipId} from "../style.js";
-import {parseTimeInterval} from "../time.js";
-import {map} from "../transforms/map.js";
 import {area} from "./area.js";
 import {line} from "./line.js";
 
@@ -18,14 +16,16 @@ export function differenceY(
     y2,
     x = x1 === undefined && x2 === undefined ? indexOf : undefined,
     y = y1 === undefined && y2 === undefined ? identity : undefined,
+    fill, // ignored
     positiveFill = "#01ab63",
     negativeFill = "#4269d0",
     fillOpacity = 1,
     positiveFillOpacity = fillOpacity,
     negativeFillOpacity = fillOpacity,
-    shift,
     stroke,
     strokeOpacity,
+    z = maybeColorChannel(stroke)[0],
+    clip = true,
     tip,
     render,
     ...options
@@ -33,7 +33,6 @@ export function differenceY(
 ) {
   [x1, x2] = memoTuple(x, x1, x2);
   [y1, y2] = memoTuple(y, y1, y2);
-  if (shift != null) ({x1, x2, ...options} = shiftK("x", shift, {x1, x2, ...options}));
   if (x1 === x2 && y1 === y2) y1 = memo(0);
   ({tip} = withTip({tip}, "x"));
   return marks(
@@ -44,6 +43,7 @@ export function differenceY(
             x2,
             y1,
             y2,
+            z,
             fill: positiveFill,
             fillOpacity: positiveFillOpacity,
             render: composeRender(render, clipDifference(true)),
@@ -59,6 +59,7 @@ export function differenceY(
             x2,
             y1,
             y2,
+            z,
             fill: negativeFill,
             fillOpacity: negativeFillOpacity,
             render: composeRender(render, clipDifference(false)),
@@ -70,9 +71,11 @@ export function differenceY(
     line(data, {
       x: x2,
       y: y2,
+      z,
       stroke,
       strokeOpacity,
       tip,
+      clip,
       ...options
     })
   );
@@ -140,45 +143,4 @@ function clipDifference(positive) {
       }
     }
   };
-}
-
-function shiftK(x, interval, options) {
-  let offset;
-  let k = 1;
-  if (typeof interval === "number") {
-    k = interval;
-    offset = (x, k) => +x + k;
-  } else {
-    if (typeof interval === "string") {
-      const sign = interval.startsWith("-") ? -1 : 1;
-      [interval, k] = parseTimeInterval(interval.replace(/^[+-]/, ""));
-      k *= sign;
-    }
-    interval = maybeInterval(interval);
-    offset = (x, k) => interval.offset(x, k);
-  }
-  return map(
-    k < 1
-      ? {
-          [`${x}1`](D) {
-            const start = offset(min(D), -k);
-            return D.map((d) => (d < start ? null : offset(d, k)));
-          },
-          [`${x}2`](D) {
-            const end = offset(max(D), k);
-            return D.map((d) => (end < d ? null : d));
-          }
-        }
-      : {
-          [`${x}1`](D) {
-            const end = offset(max(D), -k);
-            return D.map((d) => (end < d ? null : offset(d, k)));
-          },
-          [`${x}2`](D) {
-            const start = offset(min(D), k);
-            return D.map((d) => (d < start ? null : d));
-          }
-        },
-    options
-  );
 }

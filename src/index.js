@@ -35,10 +35,11 @@ export {filter, reverse, sort, shuffle, basic as transform, initializer} from ".
 export {bin, binX, binY} from "./transforms/bin.js";
 export {centroid, geoCentroid} from "./transforms/centroid.js";
 export {dodgeX, dodgeY} from "./transforms/dodge.js";
-export {group, groupX, groupY, groupZ} from "./transforms/group.js";
+export {find, group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {hexbin} from "./transforms/hexbin.js";
 export {normalize, normalizeX, normalizeY} from "./transforms/normalize.js";
 export {map, mapX, mapY} from "./transforms/map.js";
+export {shiftX} from "./transforms/shift.js";
 export {window, windowX, windowY} from "./transforms/window.js";
 export {select, selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "./transforms/select.js";
 export {stackX, stackX1, stackX2, stackY, stackY1, stackY2} from "./transforms/stack.js";

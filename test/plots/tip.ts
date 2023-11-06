@@ -181,6 +181,10 @@ export async function tipLineY() {
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
 }
 
+export async function tipLongText() {
+  return Plot.tip([{x: "Long sentence that gets cropped after a certain length"}], {x: "x"}).plot();
+}
+
 export async function tipNewLines() {
   return Plot.plot({
     height: 40,
