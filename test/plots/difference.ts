@@ -73,6 +73,13 @@ export async function differenceYVariable() {
   });
 }
 
+export async function differenceYClip() {
+  const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
+  return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", y: "Anomaly", clip: "frame"})).plot({
+    x: {insetLeft: -50}
+  });
+}
+
 export async function differenceYClipVariable() {
   const stocks = await readStocks();
   return Plot.plot({
@@ -90,16 +97,40 @@ export async function differenceYClipVariable() {
   });
 }
 
-export async function differenceYClip() {
-  const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
-  return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", y: "Anomaly", clip: "frame"})).plot({
-    x: {insetLeft: -50}
-  });
-}
-
 export async function differenceYConstant() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.differenceY(aapl, {x: "Date", y1: 115, y2: "Close"}).plot();
+}
+
+export async function differenceYOrdinal() {
+  const random = d3.randomLcg(42);
+  return Plot.plot({
+    marks: [
+      Plot.differenceY(
+        {length: 30},
+        {
+          y1: () => "ABCDE"[(random() * 5) | 0],
+          y2: () => "ABCDE"[(random() * 5) | 0]
+        }
+      )
+    ]
+  });
+}
+
+export async function differenceYOrdinalFlip() {
+  const random = d3.randomLcg(42);
+  return Plot.plot({
+    y: {reverse: true},
+    marks: [
+      Plot.differenceY(
+        {length: 30},
+        {
+          y1: () => "ABCDE"[(random() * 5) | 0],
+          y2: () => "ABCDE"[(random() * 5) | 0]
+        }
+      )
+    ]
+  });
 }
 
 export async function differenceYReverse() {
