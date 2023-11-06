@@ -122,23 +122,19 @@ In addition to the [standard mark options](../features/marks.md#mark-options), t
 * **x1** - the horizontal position of the comparison; bound to the *x* scale
 * **y1** - the vertical position of the comparison; bound to the *y* scale
 
-If **x1** is not specified, it defaults to **x2**. If **y1** is not specified, it defaults to **y2** — TODO that’s not right, because **y1** defaults to zero for differenceY. These defaults facilitate sharing *x* or *y* coordinates between the metric and its comparison.
+If **x1** is not specified, it defaults to **x2**. If **y1** is not specified, it defaults to 0 if **x1** and **x2** are equal, and to **y2** otherwise. These defaults facilitate sharing *x* or *y* coordinates between the metric and its comparison.
 
-TODO
+The standard option for **fill** is ignored and replaced with two channels:
+* **positiveFill** - the color for when the metric is greater, defaults to <span style="border-bottom:solid #01ab63 3px;">green</span>
+* **negativeFill** - the color for when the comparison is greater, defaults to <span style="border-bottom:solid #4269d0 3px;">blue</span>
 
-* **fill**
-* **positiveFill**
-* **negativeFill**
-* **fillOpacity**
-* **positiveFillOpacity**
-* **negativeFillOpacity**
-* **stroke**
-* **strokeOpacity**
+* **fillOpacity** - the areas’ opacity, defaults to 1
+* **positiveFillOpacity** - the positive area’s opacity, defaults to *opacity*
+* **negativeFillOpacity** - the negative area’s opacity, defaults to *opacity*
+* **stroke** - the metric line’s stroke color, defaults to currentColor
+* **strokeOpacity** - the metric line’s opacity, defaults to 1
 
-TODO
-
-* **z**
-* **clip**
+These options are passed to the underlying area and line marks; in particular, when they are defined as a channel, the underlying marks are broken into contiguous overlapping segments when the values change. When any of these channels are used, setting an explicit **z** channel (possibly to null) is strongly recommended.
 
 ## differenceY(*data*, *options*) {#differenceY}
 
@@ -146,4 +142,4 @@ TODO
 Plot.differenceY(gistemp, {x: "Date", y: "Anomaly"})
 ```
 
-TODO
+Returns a new difference with the given *data* and *options*. The mark is a composite mark consisting of a positive area, a negative area, and a line for the metric. The positive area extends from the bottom of the frame to the metric; it is clipped by an area extending from the comparison to the top of the frame. The negative area conversely extends from the top of the frame to the metric; it is clipped by an area extending from the comparison to the bottom of the frame.
