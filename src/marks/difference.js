@@ -24,7 +24,6 @@ export function differenceY(
     stroke,
     strokeOpacity,
     z = maybeColorChannel(stroke)[0],
-    clip = true,
     tip,
     render,
     ...options
@@ -74,7 +73,7 @@ export function differenceY(
       stroke,
       strokeOpacity,
       tip,
-      clip,
+      clip: true,
       ...options
     })
   );
@@ -115,15 +114,15 @@ function clipDifferenceY(positive) {
     const y1 = new Float32Array(x1.length);
     const y2 = new Float32Array(x2.length);
     (positive === inferScaleOrder(scales.y) < 0 ? y1 : y2).fill(height);
-    const c = next(index, scales, {...channels, x2: x1, y2}, dimensions, context);
+    const c = next(index, scales, {...channels, x2: x1, y2}, dimensions, context).querySelectorAll("path");
     const g = next(index, scales, {...channels, x1: x2, y1}, dimensions, context);
-    let i = 0;
-    for (const node of [...g.childNodes]) {
+    let i = -1;
+    for (const node of g.querySelectorAll("path")) {
       const clip = getClipId();
       const clipPath = create("svg:clipPath", context).attr("id", clip).node();
-      clipPath.append(c.childNodes[i]);
+      clipPath.append(c[++i]);
+      node.parentElement.insertBefore(clipPath, node);
       node.setAttribute("clip-path", `url(#${clip})`);
-      g.insertBefore(clipPath, node);
     }
     return g;
   };

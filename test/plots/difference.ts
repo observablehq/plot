@@ -73,6 +73,30 @@ export async function differenceYVariable() {
   });
 }
 
+export async function differenceYClipVariable() {
+  const stocks = await readStocks();
+  return Plot.plot({
+    marks: [
+      Plot.differenceY(
+        stocks,
+        Plot.normalizeY(
+          Plot.groupX(
+            {y1: Plot.find((d) => d.Symbol === "GOOG"), y2: Plot.find((d) => d.Symbol === "AAPL")},
+            {x: "Date", y: "Close", negativeFill: "#eee", positiveFill: ([d]) => d.Date.getUTCFullYear(), clip: true}
+          )
+        )
+      )
+    ]
+  });
+}
+
+export async function differenceYClip() {
+  const gistemp = await d3.csv<any>("data/gistemp.csv", d3.autoType);
+  return Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", y: "Anomaly", clip: "frame"})).plot({
+    x: {insetLeft: -50}
+  });
+}
+
 export async function differenceYConstant() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.differenceY(aapl, {x: "Date", y1: 115, y2: "Close"}).plot();
