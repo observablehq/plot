@@ -120,7 +120,7 @@ export interface StackOptions {
  * one.
  */
 export function stackX<T>(options?: T & StackOptions): Transformed<T>;
-export function stackX<T>(stackOptions: StackOptions, options?: T): Transformed<T>;
+export function stackX<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
 
 /**
  * Like **stackX**, but returns the starting position **x1** as the **x**
@@ -128,7 +128,7 @@ export function stackX<T>(stackOptions: StackOptions, options?: T): Transformed<
  * of a stack.
  */
 export function stackX1<T>(options?: T & StackOptions): Transformed<T>;
-export function stackX1<T>(stackOptions: StackOptions, options?: T): Transformed<T>;
+export function stackX1<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
 
 /**
  * Like **stackX**, but returns the starting position **x2** as the **x**
@@ -136,7 +136,7 @@ export function stackX1<T>(stackOptions: StackOptions, options?: T): Transformed
  * of a stack.
  */
 export function stackX2<T>(options?: T & StackOptions): Transformed<T>;
-export function stackX2<T>(stackOptions: StackOptions, options?: T): Transformed<T>;
+export function stackX2<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
 
 /**
  * Transforms a length channel **y** into starting and ending position channels
@@ -148,7 +148,7 @@ export function stackX2<T>(stackOptions: StackOptions, options?: T): Transformed
  * specified, the input channel **y** defaults to the constant one.
  */
 export function stackY<T>(options?: T & StackOptions): Transformed<T>;
-export function stackY<T>(stackOptions: StackOptions, options?: T): Transformed<T>;
+export function stackY<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
 
 /**
  * Like **stackY**, but returns the starting position **y1** as the **y**
@@ -156,11 +156,11 @@ export function stackY<T>(stackOptions: StackOptions, options?: T): Transformed<
  * stack.
  */
 export function stackY1<T>(options?: T & StackOptions): Transformed<T>;
-export function stackY1<T>(stackOptions: StackOptions, options?: T): Transformed<T>;
+export function stackY1<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;
 
 /**
  * Like **stackY**, but returns the ending position **y2** as the **y** channel,
  * for example to position a dot at the top of each element of a stack.
  */
 export function stackY2<T>(options?: T & StackOptions): Transformed<T>;
-export function stackY2<T>(stackOptions: StackOptions, options?: T): Transformed<T>;
+export function stackY2<T>(stackOptions?: StackOptions, options?: T): Transformed<T>;

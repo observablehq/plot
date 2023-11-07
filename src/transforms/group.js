@@ -287,7 +287,7 @@ function invalidReduce(reduce) {
   throw new Error(`invalid reduce: ${reduce}`);
 }
 
-function maybeGroupOutputs(outputs, inputs) {
+export function maybeGroupOutputs(outputs, inputs) {
   return maybeOutputs(outputs, inputs, maybeGroupOutput);
 }
 
