@@ -71,7 +71,17 @@ export interface DifferenceOptions extends MarkOptions, CurveOptions {
   z?: ChannelValue;
 }
 
-/** TODO */
+/**
+ * Returns a new vertical difference mark for the given the specified *data* and
+ * *options*, as in a time-series chart where time goes right→ (or ←left).
+ *
+ * The mark is a composite of a positive area, negative area, and line. The
+ * positive area extends from the bottom of the frame to the line, and is
+ * clipped by the area extending from the comparison to the top of the frame.
+ * The negative area conversely extends from the top of the frame to the line,
+ * and is clipped by the area extending from the comparison to the bottom of the
+ * frame.
+ */
 export function differenceY(data?: Data, options?: DifferenceOptions): Difference;
 
 /** The difference mark. */

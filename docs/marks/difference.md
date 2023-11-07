@@ -20,7 +20,7 @@ onMounted(() => {
 
 # Difference mark <VersionBadge pr="1896" />
 
-The **difference mark** puts a metric in context by comparing it to something. Like the [area mark](./area.md), the region between two lines is filled; unlike the area mark, alternating color shows when the metric is above or below the comparison value.
+The **difference mark** puts a metric in context by comparing it. Like the [area mark](./area.md), the region between two lines is filled; unlike the area mark, alternating color shows when the metric is above or below the comparison value.
 
 In the simplest case, the difference mark compares a metric to a constant. For example, the plot below shows the [global surface temperature anomaly](https://data.giss.nasa.gov/gistemp/) from 1880–2016; 0° represents the 1951–1980 average; above-average temperatures are in <span style="border-bottom: solid var(--vp-c-red) 3px;">red</span>, while below-average temperatures are in <span style="border-bottom: solid var(--vp-c-blue) 3px;">blue</span>. (It’s getting hotter.)
 
@@ -53,7 +53,7 @@ Plot.differenceY(
 ```
 :::
 
-More powerfully, the difference mark compares two metrics. For example, the plot below shows the number of travelers per day through TSA checkpoints in 2020 compared to 2019. (This in effect compares a metric against itself, but as the data represents each year as a separate column, we can think of it as two separate metrics.) In the first two months of 2020, there were on average <span style="border-bottom: solid #01ab63 3px;">more travelers</span> per day than 2019; yet when COVID-19 hit, there were many <span style="border-bottom: solid #4269d0 3px;">fewer travelers</span> per day, dropping almost to zero.
+More powerfully, the difference mark compares two metrics. For example, the plot below shows the number of travelers per day through TSA checkpoints in 2020 compared to 2019. (This in effect compares a metric against itself, but as the data represents each year as a separate column, it is equivalent to two metrics.) In the first two months of 2020, there were on average <span style="border-bottom: solid #01ab63 3px;">more travelers</span> per day than 2019; yet when COVID-19 hit, there were many <span style="border-bottom: solid #4269d0 3px;">fewer travelers</span> per day, dropping almost to zero.
 
 :::plot
 ```js
@@ -124,10 +124,10 @@ In addition to the [standard mark options](../features/marks.md#mark-options), t
 
 If **x1** is not specified, it defaults to **x2**. If **y1** is not specified, it defaults to 0 if **x1** and **x2** are equal, and to **y2** otherwise. These defaults facilitate sharing *x* or *y* coordinates between the metric and its comparison.
 
-The standard option for **fill** is ignored and replaced with two channels:
+The standard **fill** option is ignored; instead, there are separate channels based on the sign of the difference:
+
 * **positiveFill** - the color for when the metric is greater, defaults to <span style="border-bottom:solid #01ab63 3px;">green</span>
 * **negativeFill** - the color for when the comparison is greater, defaults to <span style="border-bottom:solid #4269d0 3px;">blue</span>
-
 * **fillOpacity** - the areas’ opacity, defaults to 1
 * **positiveFillOpacity** - the positive area’s opacity, defaults to *opacity*
 * **negativeFillOpacity** - the negative area’s opacity, defaults to *opacity*
@@ -142,4 +142,4 @@ These options are passed to the underlying area and line marks; in particular, w
 Plot.differenceY(gistemp, {x: "Date", y: "Anomaly"})
 ```
 
-Returns a new difference with the given *data* and *options*. The mark is a composite mark consisting of a positive area, a negative area, and a line for the metric. The positive area extends from the bottom of the frame to the metric; it is clipped by an area extending from the comparison to the top of the frame. The negative area conversely extends from the top of the frame to the metric; it is clipped by an area extending from the comparison to the bottom of the frame.
+Returns a new difference with the given *data* and *options*. The mark is a composite of a positive area, negative area, and line. The positive area extends from the bottom of the frame to the line, and is clipped by the area extending from the comparison to the top of the frame. The negative area conversely extends from the top of the frame to the line, and is clipped by the area extending from the comparison to the bottom of the frame.

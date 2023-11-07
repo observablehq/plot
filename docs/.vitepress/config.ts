@@ -122,6 +122,7 @@ export default defineConfig({
           {text: "Map", link: "/transforms/map"},
           {text: "Normalize", link: "/transforms/normalize"},
           {text: "Select", link: "/transforms/select"},
+          {text: "Shift", link: "/transforms/shift"},
           {text: "Sort", link: "/transforms/sort"},
           {text: "Stack", link: "/transforms/stack"},
           {text: "Tree", link: "/transforms/tree"},
