@@ -1,0 +1,66 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="160" viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,31)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,53)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,75)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,97)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,119)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,31)">A</text>
+    <text y="0.32em" transform="translate(40,53)">B</text>
+    <text y="0.32em" transform="translate(40,75)">C</text>
+    <text y="0.32em" transform="translate(40,97)">D</text>
+    <text y="0.32em" transform="translate(40,119)">E</text>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,130)" d="M0,0L0,6"></path>
+    <path transform="translate(140,130)" d="M0,0L0,6"></path>
+    <path transform="translate(240,130)" d="M0,0L0,6"></path>
+    <path transform="translate(340.00000000000006,130)" d="M0,0L0,6"></path>
+    <path transform="translate(440,130)" d="M0,0L0,6"></path>
+    <path transform="translate(540,130)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,130)">0</text>
+    <text y="0.71em" transform="translate(140,130)">5</text>
+    <text y="0.71em" transform="translate(240,130)">10</text>
+    <text y="0.71em" transform="translate(340.00000000000006,130)">15</text>
+    <text y="0.71em" transform="translate(440,130)">20</text>
+    <text y="0.71em" transform="translate(540,130)">25</text>
+  </g>
+  <g aria-label="positive difference" fill="#01ab63">
+    <clipPath id="plot-clip-1">
+      <path d="M40,160L60,160L80,160L100,160L120,160L140,160L160,160L180,160L200,160L220,160L240,160L260,160L280,160L300,160L320,160L340,160L360,160L380,160L400,160L420,160L440,160L460,160L480,160L500,160L520,160L540,160L560,160L580,160L600,160L620,160L620,31L600,75L580,119L560,31L540,119L520,119L500,53L480,75L460,31L440,75L420,119L400,119L380,119L360,31L340,31L320,75L300,119L280,97L260,75L240,119L220,119L200,119L180,31L160,75L140,31L120,53L100,53L80,75L60,31L40,53Z"></path>
+    </clipPath>
+    <path d="M40,31L60,75L80,119L100,119L120,97L140,53L160,75L180,97L200,97L220,97L240,119L260,75L280,31L300,31L320,75L340,31L360,97L380,75L400,119L420,53L440,53L460,53L480,31L500,53L520,53L540,119L560,119L580,31L600,119L620,75L620,0L600,0L580,0L560,0L540,0L520,0L500,0L480,0L460,0L440,0L420,0L400,0L380,0L360,0L340,0L320,0L300,0L280,0L260,0L240,0L220,0L200,0L180,0L160,0L140,0L120,0L100,0L80,0L60,0L40,0Z" clip-path="url(#plot-clip-1)"></path>
+  </g>
+  <g aria-label="negative difference" fill="#4269d0">
+    <clipPath id="plot-clip-2">
+      <path d="M40,0L60,0L80,0L100,0L120,0L140,0L160,0L180,0L200,0L220,0L240,0L260,0L280,0L300,0L320,0L340,0L360,0L380,0L400,0L420,0L440,0L460,0L480,0L500,0L520,0L540,0L560,0L580,0L600,0L620,0L620,31L600,75L580,119L560,31L540,119L520,119L500,53L480,75L460,31L440,75L420,119L400,119L380,119L360,31L340,31L320,75L300,119L280,97L260,75L240,119L220,119L200,119L180,31L160,75L140,31L120,53L100,53L80,75L60,31L40,53Z"></path>
+    </clipPath>
+    <path d="M40,31L60,75L80,119L100,119L120,97L140,53L160,75L180,97L200,97L220,97L240,119L260,75L280,31L300,31L320,75L340,31L360,97L380,75L400,119L420,53L440,53L460,53L480,31L500,53L520,53L540,119L560,119L580,31L600,119L620,75L620,160L600,160L580,160L560,160L540,160L520,160L500,160L480,160L460,160L440,160L420,160L400,160L380,160L360,160L340,160L320,160L300,160L280,160L260,160L240,160L220,160L200,160L180,160L160,160L140,160L120,160L100,160L80,160L60,160L40,160Z" clip-path="url(#plot-clip-2)"></path>
+  </g>
+  <g aria-label="line" clip-path="url(#plot-clip-3)">
+    <clipPath id="plot-clip-3">
+      <rect x="40" y="20" width="580" height="110"></rect>
+    </clipPath>
+    <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+      <path d="M40,31L60,75L80,119L100,119L120,97L140,53L160,75L180,97L200,97L220,97L240,119L260,75L280,31L300,31L320,75L340,31L360,97L380,75L400,119L420,53L440,53L460,53L480,31L500,53L520,53L540,119L560,119L580,31L600,119L620,75"></path>
+    </g>
+  </g>
+</svg>

@@ -24,7 +24,7 @@ export function differenceY(
     stroke,
     strokeOpacity,
     z = maybeColorChannel(stroke)[0],
-    clip = true,
+    clip, // optional additional clip for area
     tip,
     render,
     ...options
@@ -45,7 +45,8 @@ export function differenceY(
             z,
             fill: positiveFill,
             fillOpacity: positiveFillOpacity,
-            render: composeRender(render, clipDifference(true)),
+            render: composeRender(render, clipDifferenceY(true)),
+            clip,
             ...options
           }),
           {ariaLabel: "positive difference"}
@@ -61,7 +62,8 @@ export function differenceY(
             z,
             fill: negativeFill,
             fillOpacity: negativeFillOpacity,
-            render: composeRender(render, clipDifference(false)),
+            render: composeRender(render, clipDifferenceY(false)),
+            clip,
             ...options
           }),
           {ariaLabel: "negative difference"}
@@ -74,7 +76,7 @@ export function differenceY(
       stroke,
       strokeOpacity,
       tip,
-      clip,
+      clip: true,
       ...options
     })
   );
@@ -108,20 +110,24 @@ function memo(v) {
   return {transform: (data) => V || (V = valueof(data, value)), label};
 }
 
-function clipDifference(positive) {
+function clipDifferenceY(positive) {
   return (index, scales, channels, dimensions, context, next) => {
-    const clip = getClipId();
-    const clipPath = create("svg:clipPath", context).attr("id", clip).node();
     const {x1, x2} = channels;
     const {height} = dimensions;
     const y1 = new Float32Array(x1.length);
     const y2 = new Float32Array(x2.length);
     (positive === inferScaleOrder(scales.y) < 0 ? y1 : y2).fill(height);
-    const c = next(index, scales, {...channels, x2: x1, y2}, dimensions, context);
-    clipPath.append(...c.childNodes);
-    const g = next(index, scales, {...channels, x1: x2, y1}, dimensions, context);
-    g.insertBefore(clipPath, g.firstChild);
-    g.setAttribute("clip-path", `url(#${clip})`);
-    return g;
+    const oc = next(index, scales, {...channels, x2: x1, y2}, dimensions, context);
+    const og = next(index, scales, {...channels, x1: x2, y1}, dimensions, context);
+    const c = oc.querySelector("g") ?? oc; // applyClip
+    const g = og.querySelector("g") ?? og; // applyClip
+    for (let i = 0; c.firstChild; i += 2) {
+      const id = getClipId();
+      const clipPath = create("svg:clipPath", context).attr("id", id).node();
+      clipPath.appendChild(c.firstChild);
+      g.childNodes[i].setAttribute("clip-path", `url(#${id})`);
+      g.insertBefore(clipPath, g.childNodes[i]);
+    }
+    return og;
   };
 }

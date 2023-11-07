@@ -1,4 +1,4 @@
-import type {ChannelValueSpec} from "../channel.js";
+import type {ChannelValue, ChannelValueSpec} from "../channel.js";
 import type {CurveOptions} from "../curve.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
@@ -61,6 +61,14 @@ export interface DifferenceOptions extends MarkOptions, CurveOptions {
    * defaults to **fillOpacity**.
    */
   negativeFillOpacity?: number;
+
+  /**
+   * An optional ordinal channel for grouping data into series to be drawn as
+   * separate areas; defaults to **fillPositive** if a channel for the positive
+   * area, **fillNegative** if a channel for the negative area, or **stroke** if
+   * a channel.
+   */
+  z?: ChannelValue;
 }
 
 /** TODO */
