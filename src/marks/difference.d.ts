@@ -64,9 +64,7 @@ export interface DifferenceOptions extends MarkOptions, CurveOptions {
 
   /**
    * An optional ordinal channel for grouping data into series to be drawn as
-   * separate areas; defaults to **fillPositive** if a channel for the positive
-   * area, **fillNegative** if a channel for the negative area, or **stroke** if
-   * a channel.
+   * separate areas; defaults to **stroke**, if a channel.
    */
   z?: ChannelValue;
 }
