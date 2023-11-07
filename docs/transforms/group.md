@@ -366,6 +366,8 @@ The following named reducers are supported:
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *identity* - the array of values
+* *x* - the group’s *x* value (when grouping on *x*)
+* *y* - the group’s *y* value (when grouping on *y*)
 
 In addition, a reducer may be specified as:
 

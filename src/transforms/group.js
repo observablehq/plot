@@ -76,10 +76,10 @@ function groupn(
   inputs = {} // input channels and options
 ) {
   // Compute the outputs.
-  outputs = maybeOutputs(outputs, inputs);
-  reduceData = maybeReduce(reduceData, identity);
-  sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
-  filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
+  outputs = maybeGroupOutputs(outputs, inputs);
+  reduceData = maybeGroupReduce(reduceData, identity);
+  sort = sort == null ? undefined : maybeGroupOutput("sort", sort, inputs);
+  filter = filter == null ? undefined : maybeGroupEvaluator("filter", filter, inputs);
 
   // Produce x and y output channels as appropriate.
   const [GX, setGX] = maybeColumn(x);
@@ -287,6 +287,32 @@ function invalidReduce(reduce) {
   throw new Error(`invalid reduce: ${reduce}`);
 }
 
+export function maybeGroupOutputs(outputs, inputs) {
+  return maybeOutputs(outputs, inputs, maybeGroupOutput);
+}
+
+function maybeGroupOutput(name, reduce, inputs) {
+  return maybeOutput(name, reduce, inputs, maybeGroupEvaluator);
+}
+
+function maybeGroupEvaluator(name, reduce, inputs) {
+  return maybeEvaluator(name, reduce, inputs, maybeGroupReduce);
+}
+
+function maybeGroupReduce(reduce, value) {
+  return maybeReduce(reduce, value, maybeGroupReduceFallback);
+}
+
+function maybeGroupReduceFallback(reduce) {
+  switch (`${reduce}`.toLowerCase()) {
+    case "x":
+      return reduceX;
+    case "y":
+      return reduceY;
+  }
+  throw new Error(`invalid group reduce: ${reduce}`);
+}
+
 export function maybeSubgroup(outputs, inputs) {
   for (const name in inputs) {
     const value = inputs[name];
@@ -398,6 +424,18 @@ function reduceProportion(value, scope) {
     ? {scope, label: "Frequency", reduceIndex: (I, V, basis = 1) => I.length / basis}
     : {scope, reduceIndex: (I, V, basis = 1) => sum(I, (i) => V[i]) / basis};
 }
+
+const reduceX = {
+  reduceIndex(I, X, {x}) {
+    return x;
+  }
+};
+
+const reduceY = {
+  reduceIndex(I, X, {y}) {
+    return y;
+  }
+};
 
 export function find(test) {
   if (typeof test !== "function") throw new Error(`invalid test function: ${test}`);
