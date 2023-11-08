@@ -1,5 +1,6 @@
 import type {ChannelReducers, ChannelValue} from "../channel.js";
 import type {Initialized} from "./basic.js";
+import type {GroupReducer} from "./group.js";
 
 /** Options for the hexbin transform. */
 export interface HexbinOptions {
@@ -43,4 +44,4 @@ export interface HexbinOptions {
  *
  * To draw empty hexagons, see the hexgrid mark.
  */
-export function hexbin<T>(outputs?: ChannelReducers, options?: T & HexbinOptions): Initialized<T>;
+export function hexbin<T>(outputs?: ChannelReducers<GroupReducer>, options?: T & HexbinOptions): Initialized<T>;

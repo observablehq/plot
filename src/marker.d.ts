@@ -7,8 +7,20 @@
  * - *circle-fill* - a filled circle with a white stroke and 3px radius
  * - *circle-stroke* - a stroked circle with a white fill and 3px radius
  * - *circle* - alias for *circle-fill*
+ * - *tick* - a small opposing line
+ * - *tick-x* - a small horizontal line
+ * - *tick-y* - a small vertical line
  */
-export type MarkerName = "arrow" | "arrow-reverse" | "dot" | "circle" | "circle-fill" | "circle-stroke";
+export type MarkerName =
+  | "arrow"
+  | "arrow-reverse"
+  | "dot"
+  | "circle"
+  | "circle-fill"
+  | "circle-stroke"
+  | "tick"
+  | "tick-x"
+  | "tick-y";
 
 /** A custom marker implementation. */
 export type MarkerFunction = (color: string, context: {document: Document}) => SVGMarkerElement;

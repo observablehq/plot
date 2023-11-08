@@ -2,7 +2,7 @@ import {map, number, valueof} from "../options.js";
 import {applyPosition} from "../projection.js";
 import {sqrt3} from "../symbol.js";
 import {initializer} from "./basic.js";
-import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
+import {hasOutput, maybeGroup, maybeGroupOutputs, maybeSubgroup} from "./group.js";
 
 // We don’t want the hexagons to align with the edges of the plot frame, as that
 // would cause extreme x-values (the upper bound of the default x-scale domain)
@@ -16,9 +16,8 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
   const {z} = options;
 
   // TODO filter e.g. to show empty hexbins?
-  // TODO disallow x, x1, x2, y, y1, y2 reducers?
   binWidth = binWidth === undefined ? 20 : number(binWidth);
-  outputs = maybeOutputs(outputs, options);
+  outputs = maybeGroupOutputs(outputs, options);
 
   // A fill output means a fill channel; declaring the channel here instead of
   // waiting for the initializer allows the mark constructor to determine that
@@ -65,15 +64,15 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
       const binFacet = [];
       for (const o of outputs) o.scope("facet", facet);
       for (const [f, I] of maybeGroup(facet, G)) {
-        for (const bin of hbin(I, X, Y, binWidth)) {
+        for (const {index: b, extent} of hbin(data, I, X, Y, binWidth)) {
           binFacet.push(++i);
-          BX.push(bin.x);
-          BY.push(bin.y);
-          if (Z) GZ.push(G === Z ? f : Z[bin[0]]);
-          if (F) GF.push(G === F ? f : F[bin[0]]);
-          if (S) GS.push(G === S ? f : S[bin[0]]);
-          if (Q) GQ.push(G === Q ? f : Q[bin[0]]);
-          for (const o of outputs) o.reduce(bin);
+          BX.push(extent.x);
+          BY.push(extent.y);
+          if (Z) GZ.push(G === Z ? f : Z[b[0]]);
+          if (F) GF.push(G === F ? f : F[b[0]]);
+          if (S) GS.push(G === S ? f : S[b[0]]);
+          if (Q) GQ.push(G === Q ? f : Q[b[0]]);
+          for (const o of outputs) o.reduce(b, extent);
         }
       }
       binFacets.push(binFacet);
@@ -106,7 +105,7 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
   });
 }
 
-function hbin(I, X, Y, dx) {
+function hbin(data, I, X, Y, dx) {
   const dy = dx * (1.5 / sqrt3);
   const bins = new Map();
   for (const i of I) {
@@ -127,11 +126,10 @@ function hbin(I, X, Y, dx) {
     const key = `${pi},${pj}`;
     let bin = bins.get(key);
     if (bin === undefined) {
-      bins.set(key, (bin = []));
-      bin.x = (pi + (pj & 1) / 2) * dx + ox;
-      bin.y = pj * dy + oy;
+      bin = {index: [], extent: {data, x: (pi + (pj & 1) / 2) * dx + ox, y: pj * dy + oy}};
+      bins.set(key, bin);
     }
-    bin.push(i);
+    bin.index.push(i);
   }
   return bins.values();
 }

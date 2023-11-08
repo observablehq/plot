@@ -112,8 +112,7 @@ function inferHint(channels, key) {
   for (const {hint} of channels) {
     const candidate = hint?.[key];
     if (candidate === undefined) continue; // no hint here
-    if (value === undefined) value = candidate;
-    // first hint
+    if (value === undefined) value = candidate; // first hint
     else if (value !== candidate) return; // inconsistent hint
   }
   return value;

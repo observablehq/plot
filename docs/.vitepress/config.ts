@@ -88,6 +88,7 @@ export default defineConfig({
           {text: "Contour", link: "/marks/contour"},
           {text: "Delaunay", link: "/marks/delaunay"},
           {text: "Density", link: "/marks/density"},
+          {text: "Difference", link: "/marks/difference"},
           {text: "Dot", link: "/marks/dot"},
           {text: "Frame", link: "/marks/frame"},
           {text: "Geo", link: "/marks/geo"},
@@ -121,6 +122,7 @@ export default defineConfig({
           {text: "Map", link: "/transforms/map"},
           {text: "Normalize", link: "/transforms/normalize"},
           {text: "Select", link: "/transforms/select"},
+          {text: "Shift", link: "/transforms/shift"},
           {text: "Sort", link: "/transforms/sort"},
           {text: "Stack", link: "/transforms/stack"},
           {text: "Tree", link: "/transforms/tree"},
@@ -142,8 +144,7 @@ export default defineConfig({
     },
     socialLinks: [
       {icon: "github", link: "https://github.com/observablehq/plot"},
-      {icon: "twitter", link: "https://twitter.com/observablehq"},
-      {icon: "mastodon", link: "https://vis.social/@observablehq"},
+      {icon: "x", link: "https://twitter.com/observablehq"},
       {icon: "slack", link: "https://observablehq.com/slack/join"},
       {icon: "linkedin", link: "https://www.linkedin.com/company/observable"},
       {icon: "youtube", link: "https://www.youtube.com/c/Observablehq"}

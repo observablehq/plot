@@ -12,7 +12,7 @@ const k = ref(2);
 
 # Bollinger mark <VersionBadge version="0.6.10" pr="1772" />
 
-The **bollinger mark** is a [composite mark](../features/marks.md#marks) consisting of a [line](./line.md) representing a moving average and an [area](./area.md) representing volatility as a band; the band thickness is proportional to the deviation of nearby values. The bollinger mark is often used to analyze the price of financial instruments such as stocks.
+The **bollinger mark** is a [composite mark](../features/marks.md#marks) consisting of a [line](./line.md) representing a moving average and an [area](./area.md) representing volatility as a band; the band thickness is proportional to the deviation of nearby values. The bollinger mark is often used to [analyze the price](https://en.wikipedia.org/wiki/Bollinger_Bands) of financial instruments such as stocks.
 
 For example, the chart below shows the price of Apple stock from 2013 to 2018, with a window size *n* of {{n}} days and radius *k* of {{k}} standard deviations.
 

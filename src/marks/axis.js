@@ -3,8 +3,9 @@ import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {arrayify, constant, identity, keyword, number, range, valueof} from "../options.js";
-import {isIterable, isNoneish, isTemporal, isInterval, orderof} from "../options.js";
+import {isIterable, isNoneish, isTemporal, isInterval} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
+import {inferScaleOrder} from "../scales.js";
 import {offset} from "../style.js";
 import {generalizeTimeInterval, inferTimeFormat, intervalDuration} from "../time.js";
 import {initializer} from "../transforms/basic.js";
@@ -684,13 +685,6 @@ const shapeTickRight = {
 // function rather than a scale descriptor.
 function inferFontVariant(scale) {
   return scale.bandwidth && !scale.interval ? undefined : "tabular-nums";
-}
-
-// Determines whether the scale points in the “positive” (right or down) or
-// “negative” (left or up) direction; if the scale order cannot be determined,
-// returns NaN; used to assign an appropriate label arrow.
-function inferScaleOrder(scale) {
-  return Math.sign(orderof(scale.domain())) * Math.sign(orderof(scale.range()));
 }
 
 // Takes the scale label, and if this is not an ordinal scale and the label was

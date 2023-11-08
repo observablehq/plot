@@ -2,8 +2,8 @@
   <g transform="translate(0,0)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="80" height="400" viewBox="0 0 80 400">
       <style>
         .plot {
+          --plot-background: white;
           display: block;
-          background: white;
           height: auto;
           height: intrinsic;
           max-width: 100%;
@@ -57,8 +57,8 @@
   <g transform="translate(80,0)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="80" height="400" viewBox="0 0 80 400">
       <style>
         .plot {
+          --plot-background: white;
           display: block;
-          background: white;
           height: auto;
           height: intrinsic;
           max-width: 100%;
@@ -118,8 +118,8 @@
   <g transform="translate(160,0)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="80" height="400" viewBox="0 0 80 400">
       <style>
         .plot {
+          --plot-background: white;
           display: block;
-          background: white;
           height: auto;
           height: intrinsic;
           max-width: 100%;
@@ -173,8 +173,8 @@
   <g transform="translate(240,0)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="80" height="400" viewBox="0 0 80 400">
       <style>
         .plot {
+          --plot-background: white;
           display: block;
-          background: white;
           height: auto;
           height: intrinsic;
           max-width: 100%;
@@ -228,8 +228,8 @@
   <g transform="translate(320,0)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="80" height="400" viewBox="0 0 80 400">
       <style>
         .plot {
+          --plot-background: white;
           display: block;
-          background: white;
           height: auto;
           height: intrinsic;
           max-width: 100%;
@@ -280,8 +280,8 @@
   <g transform="translate(400,0)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="80" height="400" viewBox="0 0 80 400">
       <style>
         .plot {
+          --plot-background: white;
           display: block;
-          background: white;
           height: auto;
           height: intrinsic;
           max-width: 100%;
@@ -341,8 +341,8 @@
   <g transform="translate(480,0)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="80" height="400" viewBox="0 0 80 400">
       <style>
         .plot {
+          --plot-background: white;
           display: block;
-          background: white;
           height: auto;
           height: intrinsic;
           max-width: 100%;
@@ -405,8 +405,8 @@
   <g transform="translate(560,0)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="80" height="400" viewBox="0 0 80 400">
       <style>
         .plot {
+          --plot-background: white;
           display: block;
-          background: white;
           height: auto;
           height: intrinsic;
           max-width: 100%;
@@ -466,8 +466,8 @@
   <g transform="translate(640,0)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="80" height="400" viewBox="0 0 80 400">
       <style>
         .plot {
+          --plot-background: white;
           display: block;
-          background: white;
           height: auto;
           height: intrinsic;
           max-width: 100%;

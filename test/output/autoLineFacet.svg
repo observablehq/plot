@@ -1,8 +1,8 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="1260" viewBox="0 0 640 1260" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
+      --plot-background: white;
       display: block;
-      background: white;
       height: auto;
       height: intrinsic;
       max-width: 100%;
@@ -260,19 +260,19 @@
     </g>
   </g>
   <g aria-label="tip" transform="translate(0.5,0.5)">
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,0)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,87)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,174)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,261)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,348)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,435)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,522)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,609)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,696)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,783)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,870)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,957)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,1044)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,1131)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,0)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,87)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,174)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,261)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,348)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,435)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,522)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,609)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,696)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,783)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,870)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,957)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,1044)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,1131)"></g>
   </g>
 </svg>

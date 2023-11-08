@@ -1,8 +1,8 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
+      --plot-background: white;
       display: block;
-      background: white;
       height: auto;
       height: intrinsic;
       max-width: 100%;
@@ -195,7 +195,7 @@
     </g>
   </g>
   <g aria-label="tip" transform="translate(0.5,0.5)">
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,0)"></g>
-    <g fill="white" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,184)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,0)"></g>
+    <g fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0,184)"></g>
   </g>
 </svg>

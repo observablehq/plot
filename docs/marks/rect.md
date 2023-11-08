@@ -26,10 +26,6 @@ onMounted(() => {
 
 # Rect mark
 
-:::tip
-The rect mark is one of several marks in Plot for drawing rectangles; it should be used when both dimensions are quantitative. See also [bar](./bar.md) and [cell](./cell.md).
-:::
-
 The **rect mark** draws axis-aligned rectangles defined by **x1**, **y1**, **x2**, and **y2**. For example, here we display geographic bounding boxes of U.S. counties represented as [*x1*, *y1*, *x2*, *y2*] tuples, where *x1* & *x2* are degrees longitude and *y1* & *y2* are degrees latitude.
 
 :::plot defer https://observablehq.com/@observablehq/plot-county-boxes
@@ -199,7 +195,7 @@ The following channels are optional:
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-Typically either **x1** and **x2** are specified, or **y1** and **y2**, or both.
+If **x1** is specified but **x2** is not specified, then *x* must be a *band* scale; if **y1** is specified but **y2** is not specified, then *y* must be a *band* scale.
 
 If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each **x** to produce **x1**, and *interval*.offset(*x1*) is invoked for each **x1** to produce **x2**. The same is true for **y**, **y1**, and **y2**, respectively. If the interval is specified as a number *n*, **x1** and **x2** are taken as the two consecutive multiples of *n* that bracket **x**. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
