@@ -6,14 +6,14 @@ import it from "../jsdom.js";
 // TODO Expose as d3.schemeObservable10, or Plot.scheme("observable10")?
 const schemeObservable10 = [
   "#4269d0",
-  "#f4bd4a",
+  "#efb118",
   "#ff725c",
   "#6cc5b0",
   "#a463f2",
   "#ff8ab7",
   "#9c6b4e",
   "#97bbf5",
-  "#01ab63",
+  "#3ca951",
   "#9498a0"
 ];
 

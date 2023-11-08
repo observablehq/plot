@@ -80,14 +80,14 @@ import {
 // https://observablehq.com/d/b0f1d0a1d5778142
 const schemeObservable10 = [
   "#4269d0",
-  "#f4bd4a",
+  "#efb118",
   "#ff725c",
   "#6cc5b0",
   "#a463f2",
   "#ff8ab7",
   "#9c6b4e",
   "#97bbf5",
-  "#01ab63",
+  "#3ca951",
   "#9498a0"
 ];
 

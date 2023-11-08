@@ -62,8 +62,8 @@
   <g aria-label="bar">
     <rect x="59" width="168" y="268.6842105263158" height="101.31578947368422" fill="#4269d0"></rect>
     <rect x="433" width="168" y="84.47368421052632" height="285.5263157894737" fill="#4269d0"></rect>
-    <rect x="59" width="168" y="139.73684210526315" height="128.94736842105263" fill="#f4bd4a"></rect>
-    <rect x="246" width="168" y="213.42105263157893" height="156.57894736842107" fill="#f4bd4a"></rect>
+    <rect x="59" width="168" y="139.73684210526315" height="128.94736842105263" fill="#efb118"></rect>
+    <rect x="246" width="168" y="213.42105263157893" height="156.57894736842107" fill="#efb118"></rect>
     <rect x="59" width="168" y="20" height="119.73684210526315" fill="#ff725c"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
