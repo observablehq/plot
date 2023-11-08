@@ -162,6 +162,10 @@ https://github.com/vega/vega-datasets/blob/master/scripts/weather.py
 National Climatic Data Center
 https://www.ncdc.noaa.gov/
 
+## sf-sj-temperatures.csv
+National Climatic Data Center - Climatic Data Online
+https://www.ncei.noaa.gov/cdo-web/
+
 ## simpsons.csv
 IMDb/Todd W. Schneider
 https://data.world/data-society/the-simpsons-by-the-data
@@ -181,6 +185,10 @@ https://gist.github.com/chrtze/c74efb46cadb6a908bbbf5227934bfea
 ## travelers.csv
 TSA
 https://www.tsa.gov/coronavirus/passenger-throughput
+
+## tsa.csv
+TSA
+https://www.tsa.gov/travel/passenger-volumes
 
 ## us-congress-2023.csv
 Members of U.S. Congress, April 2023
