@@ -56,8 +56,8 @@ export interface NormalizeOptions {
  * is used, the derived series values would be [*x₀* / *x₀*, *x₁* / *x₀*, *x₂* /
  * *x₀*, …] as in an index chart.
  */
-export function normalizeX<T>(basis?: NormalizeBasis, options?: T): Transformed<T>;
 export function normalizeX<T>(options?: T & NormalizeOptions): Transformed<T>;
+export function normalizeX<T>(basis?: NormalizeBasis, options?: T): Transformed<T>;
 
 /**
  * Groups data into series using the first channel of **z**, **fill**, or
@@ -67,8 +67,8 @@ export function normalizeX<T>(options?: T & NormalizeOptions): Transformed<T>;
  * is used, the derived series values would be [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* /
  * *y₀*, …] as in an index chart.
  */
-export function normalizeY<T>(basis?: NormalizeBasis, options?: T): Transformed<T>;
 export function normalizeY<T>(options?: T & NormalizeOptions): Transformed<T>;
+export function normalizeY<T>(basis?: NormalizeBasis, options?: T): Transformed<T>;
 
 /**
  * Given a normalize *basis*, returns a corresponding map implementation for use

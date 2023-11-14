@@ -409,7 +409,7 @@ export function defaultWidth(text, start = 0, end = text.length) {
 export function monospaceWidth(text, start = 0, end = text.length) {
   let sum = 0;
   for (let i = start; i < end; i = readCharacter(text, i)) {
-    sum += isPictographic(text, i) ? 200 : 100;
+    sum += isPictographic(text, i) ? 126 : 63;
   }
   return sum;
 }

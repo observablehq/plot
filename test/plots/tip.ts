@@ -171,9 +171,18 @@ export async function tipHexbinExplicit() {
   });
 }
 
-export async function tipLine() {
+export async function tipLineX() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.lineX(aapl, {y: "Date", x: "Close", tip: true}).plot();
+}
+
+export async function tipLineY() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
+}
+
+export async function tipLongText() {
+  return Plot.tip([{x: "Long sentence that gets cropped after a certain length"}], {x: "x"}).plot();
 }
 
 export async function tipNewLines() {

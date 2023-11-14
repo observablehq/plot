@@ -1,8 +1,8 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="1800" viewBox="0 0 640 1800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
+      --plot-background: white;
       display: block;
-      background: white;
       height: auto;
       height: intrinsic;
       max-width: 100%;
@@ -272,7 +272,7 @@
     <path d="M396.75,1720.008C457.875,1720.008,457.875,1779.144,519,1779.144" stroke="#bdbdbd" marker-end="url(#plot-marker-2)"></path>
     <path d="M396.75,1720.008C457.875,1720.008,457.875,1789,519,1789" stroke="#bdbdbd" marker-end="url(#plot-marker-2)"></path>
   </g>
-  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="start" transform="translate(6.5,0.5)">
+  <g aria-label="text" stroke="var(--plot-background)" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="start" transform="translate(6.5,0.5)">
     <text y="0.32em" transform="translate(274.5,157.83933518005537)">Easing<title>/flare/animate/Easing</title></text>
     <text y="0.32em" transform="translate(274.5,167.69529085872583)">FunctionSequence<title>/flare/animate/FunctionSequence</title></text>
     <text y="0.32em" transform="translate(274.5,187.40720221606657)">ISchedulable<title>/flare/animate/ISchedulable</title></text>
@@ -494,7 +494,7 @@
     <text y="0.32em" transform="translate(519,1779.1440443213298)">StackedAreaLayout<title>/flare/vis/operator/layout/StackedAreaLayout</title></text>
     <text y="0.32em" transform="translate(519,1789)">TreeMapLayout<title>/flare/vis/operator/layout/TreeMapLayout</title></text>
   </g>
-  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="end" transform="translate(-5.5,0.5)">
+  <g aria-label="text" stroke="var(--plot-background)" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="end" transform="translate(-5.5,0.5)">
     <text y="0.32em" transform="translate(30,729.4847645429364)">flare<title>/flare</title></text>
     <text y="0.32em" transform="translate(152.25,71.59972299168976)">analytics<title>/flare/analytics</title></text>
     <text y="0.32em" transform="translate(152.25,212.04709141274242)">animate<title>/flare/animate</title></text>

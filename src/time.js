@@ -123,26 +123,42 @@ for (const [name, interval] of utcIntervals) {
   interval[intervalType] = "utc";
 }
 
-// An interleaved array of UTC and local time intervals, in descending order
-// from largest to smallest, used to determine the most specific standard time
-// format for a given array of dates. This is a subset of the tick intervals
-// listed above; we only need the breakpoints where the format changes.
-const formatIntervals = [
+const utcFormatIntervals = [
   ["year", utcYear, "utc"],
-  ["year", timeYear, "time"],
   ["month", utcMonth, "utc"],
-  ["month", timeMonth, "time"],
   ["day", unixDay, "utc", 6 * durationMonth],
-  ["day", timeDay, "time", 6 * durationMonth],
-  // Below day, local time typically has an hourly offset from UTC and hence the
-  // two are aligned and indistinguishable; therefore, we only consider UTC, and
-  // we don’t consider these if the domain only has a single value.
   ["hour", utcHour, "utc", 3 * durationDay],
   ["minute", utcMinute, "utc", 6 * durationHour],
   ["second", utcSecond, "utc", 30 * durationMinute]
 ];
 
-function parseInterval(input, intervals, type) {
+const timeFormatIntervals = [
+  ["year", timeYear, "time"],
+  ["month", timeMonth, "time"],
+  ["day", timeDay, "time", 6 * durationMonth],
+  ["hour", timeHour, "time", 3 * durationDay],
+  ["minute", timeMinute, "time", 6 * durationHour],
+  ["second", timeSecond, "time", 30 * durationMinute]
+];
+
+// An interleaved array of UTC and local time intervals, in descending order
+// from largest to smallest, used to determine the most specific standard time
+// format for a given array of dates. This is a subset of the tick intervals
+// listed above; we only need the breakpoints where the format changes.
+const formatIntervals = [
+  utcFormatIntervals[0],
+  timeFormatIntervals[0],
+  utcFormatIntervals[1],
+  timeFormatIntervals[1],
+  utcFormatIntervals[2],
+  timeFormatIntervals[2],
+  // Below day, local time typically has an hourly offset from UTC and hence the
+  // two are aligned and indistinguishable; therefore, we only consider UTC, and
+  // we don’t consider these if the domain only has a single value.
+  ...utcFormatIntervals.slice(3)
+];
+
+export function parseTimeInterval(input) {
   let name = `${input}`.toLowerCase();
   if (name.endsWith("s")) name = name.slice(0, -1); // drop plural
   let period = 1;
@@ -161,23 +177,28 @@ function parseInterval(input, intervals, type) {
       period *= 6;
       break;
   }
-  let interval = intervals.get(name);
+  let interval = utcIntervals.get(name);
   if (!interval) throw new Error(`unknown interval: ${input}`);
+  if (period > 1 && !interval.every) throw new Error(`non-periodic interval: ${name}`);
+  return [name, period];
+}
+
+export function maybeTimeInterval(input) {
+  return asInterval(parseTimeInterval(input), "time");
+}
+
+export function maybeUtcInterval(input) {
+  return asInterval(parseTimeInterval(input), "utc");
+}
+
+function asInterval([name, period], type) {
+  let interval = (type === "time" ? timeIntervals : utcIntervals).get(name);
   if (period > 1) {
-    if (!interval.every) throw new Error(`non-periodic interval: ${name}`);
     interval = interval.every(period);
     interval[intervalDuration] = durations.get(name) * period;
     interval[intervalType] = type;
   }
   return interval;
-}
-
-export function maybeTimeInterval(interval) {
-  return parseInterval(interval, timeIntervals, "time");
-}
-
-export function maybeUtcInterval(interval) {
-  return parseInterval(interval, utcIntervals, "utc");
 }
 
 // If the given interval is a standard time interval, we may be able to promote
@@ -238,16 +259,20 @@ function getTimeTemplate(anchor) {
     : (f1, f2) => `${f1}\n${f2}`;
 }
 
+function getFormatIntervals(type) {
+  return type === "time" ? timeFormatIntervals : type === "utc" ? utcFormatIntervals : formatIntervals;
+}
+
 // Given an array of dates, returns the largest compatible standard time
 // interval. If no standard interval is compatible (other than milliseconds,
 // which is universally compatible), returns undefined.
-export function inferTimeFormat(dates, anchor) {
+export function inferTimeFormat(type, dates, anchor) {
   const step = max(pairs(dates, (a, b) => Math.abs(b - a))); // maybe undefined!
   if (step < 1000) return formatTimeInterval("millisecond", "utc", anchor);
-  for (const [name, interval, type, maxStep] of formatIntervals) {
+  for (const [name, interval, intervalType, maxStep] of getFormatIntervals(type)) {
     if (step > maxStep) break; // e.g., 52 weeks
     if (name === "hour" && !step) break; // e.g., domain with a single date
-    if (dates.every((d) => interval.floor(d) >= d)) return formatTimeInterval(name, type, anchor);
+    if (dates.every((d) => interval.floor(d) >= d)) return formatTimeInterval(name, intervalType, anchor);
   }
 }
 

@@ -37,6 +37,12 @@ it("Plot does not throw an error if a quantile scale has a non-monotonic domain"
   });
 });
 
+it("Scale types are lowercased", () => {
+  assert.strictEqual(Plot.scale({x: {type: "UTC"}}).type, "utc");
+  assert.strictEqual(Plot.scale({color: {type: "OrDiNaL"}}).type, "ordinal");
+  assert.strictEqual(Plot.scale({fx: {type: "BAND"}}).type, "band");
+});
+
 it("Plot.scale(description) returns a standalone scale", () => {
   const color = Plot.scale({color: {type: "linear"}});
   scaleEqual(color, {

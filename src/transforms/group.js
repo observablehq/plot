@@ -76,10 +76,10 @@ function groupn(
   inputs = {} // input channels and options
 ) {
   // Compute the outputs.
-  outputs = maybeOutputs(outputs, inputs);
-  reduceData = maybeReduce(reduceData, identity);
-  sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
-  filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
+  outputs = maybeGroupOutputs(outputs, inputs);
+  reduceData = maybeGroupReduce(reduceData, identity);
+  sort = sort == null ? undefined : maybeGroupOutput("sort", sort, inputs);
+  filter = filter == null ? undefined : maybeGroupEvaluator("filter", filter, inputs);
 
   // Produce x and y output channels as appropriate.
   const [GX, setGX] = maybeColumn(x);
@@ -134,16 +134,19 @@ function groupn(
         for (const [f, I] of maybeGroup(facet, G)) {
           for (const [y, gg] of maybeGroup(I, Y)) {
             for (const [x, g] of maybeGroup(gg, X)) {
-              if (filter && !filter.reduce(g)) continue;
+              const extent = {data};
+              if (X) extent.x = x;
+              if (Y) extent.y = y;
+              if (filter && !filter.reduce(g, extent)) continue;
               groupFacet.push(i++);
-              groupData.push(reduceData.reduceIndex(g, data));
+              groupData.push(reduceData.reduceIndex(g, data, extent));
               if (X) GX.push(x);
               if (Y) GY.push(y);
               if (Z) GZ.push(G === Z ? f : Z[g[0]]);
               if (F) GF.push(G === F ? f : F[g[0]]);
               if (S) GS.push(G === S ? f : S[g[0]]);
-              for (const o of outputs) o.reduce(g);
-              if (sort) sort.reduce(g);
+              for (const o of outputs) o.reduce(g, extent);
+              if (sort) sort.reduce(g, extent);
             }
           }
         }
@@ -284,6 +287,32 @@ function invalidReduce(reduce) {
   throw new Error(`invalid reduce: ${reduce}`);
 }
 
+export function maybeGroupOutputs(outputs, inputs) {
+  return maybeOutputs(outputs, inputs, maybeGroupOutput);
+}
+
+function maybeGroupOutput(name, reduce, inputs) {
+  return maybeOutput(name, reduce, inputs, maybeGroupEvaluator);
+}
+
+function maybeGroupEvaluator(name, reduce, inputs) {
+  return maybeEvaluator(name, reduce, inputs, maybeGroupReduce);
+}
+
+function maybeGroupReduce(reduce, value) {
+  return maybeReduce(reduce, value, maybeGroupReduceFallback);
+}
+
+function maybeGroupReduceFallback(reduce) {
+  switch (`${reduce}`.toLowerCase()) {
+    case "x":
+      return reduceX;
+    case "y":
+      return reduceY;
+  }
+  throw new Error(`invalid group reduce: ${reduce}`);
+}
+
 export function maybeSubgroup(outputs, inputs) {
   for (const name in inputs) {
     const value = inputs[name];
@@ -394,4 +423,25 @@ function reduceProportion(value, scope) {
   return value == null
     ? {scope, label: "Frequency", reduceIndex: (I, V, basis = 1) => I.length / basis}
     : {scope, reduceIndex: (I, V, basis = 1) => sum(I, (i) => V[i]) / basis};
+}
+
+const reduceX = {
+  reduceIndex(I, X, {x}) {
+    return x;
+  }
+};
+
+const reduceY = {
+  reduceIndex(I, X, {y}) {
+    return y;
+  }
+};
+
+export function find(test) {
+  if (typeof test !== "function") throw new Error(`invalid test function: ${test}`);
+  return {
+    reduceIndex(I, V, {data}) {
+      return V[I.find((i) => test(data[i], i, data))];
+    }
+  };
 }

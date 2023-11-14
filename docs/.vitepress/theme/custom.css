@@ -13,6 +13,8 @@
 }
 
 :root {
+  --vp-c-red: #f43f5e;
+  --vp-c-green: #10b981;
   --vp-c-blue: #0092ff;
   --vp-c-purple: #a463f2;
   --vp-c-brand-1: var(--vp-c-purple-1);
@@ -38,10 +40,14 @@
 
 .vp-doc .plot,
 .vp-doc .plot-ramp {
-  background: none;
+  --plot-background: var(--vp-c-bg);
   overflow: visible;
   position: relative;
   z-index: 1;
+}
+
+.vp-doc .plot [aria-label="tip"] {
+  --plot-background: var(--vp-c-bg-alt);
 }
 
 .vp-doc .plot-figure {
@@ -67,20 +73,6 @@
 
 .vp-doc .plot a:hover {
   text-decoration: initial;
-}
-
-:root [aria-label="tip"][fill="white"],
-:root [aria-label="tip"] [fill="white"] {
-  fill: var(--vp-c-bg-alt);
-}
-
-:root.dark marker[stroke="white"],
-:root.dark [aria-label^="crosshair"][stroke="white"] {
-  stroke: var(--vp-c-bg);
-}
-
-:root.dark marker[fill="white"] {
-  fill: var(--vp-c-bg);
 }
 
 .vp-doc :not(pre) > code {

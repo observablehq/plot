@@ -164,7 +164,7 @@ export type BinYInputs<T> = Omit<T, "y"> & {y?: ChannelValueBinSpec} & BinOption
 export type BinInputs<T> = Omit<T, "x" | "y"> & {x?: ChannelValueBinSpec; y?: ChannelValueBinSpec} & BinOptions;
 
 /** Output channels (and options) for the bin transform. */
-export type BinOutputs = ChannelReducers<BinReducer> & GroupOutputOptions<BinReducer> & BinOptions;
+export type BinOutputs = ChannelReducers<BinReducer> | (GroupOutputOptions<BinReducer> & BinOptions);
 
 /**
  * Bins on the **x** channel; then subdivides bins on the first channel of
