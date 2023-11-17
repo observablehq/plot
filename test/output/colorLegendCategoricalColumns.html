@@ -1,28 +1,28 @@
 <div class="plot-swatches plot-swatches-columns" style="columns: 180px;">
   <style>
-    .plot-swatches {
+    :where(.plot-swatches) {
       font-family: system-ui, sans-serif;
       font-size: 10px;
       margin-bottom: 0.5em;
     }
 
-    .plot-swatch>svg {
+    :where(.plot-swatch > svg) {
       margin-right: 0.5em;
       overflow: visible;
     }
 
-    .plot-swatches-columns .plot-swatch {
+    :where(.plot-swatches-columns .plot-swatch) {
       display: flex;
       align-items: center;
       break-inside: avoid;
       padding-bottom: 1px;
     }
 
-    .plot-swatches-columns .plot-swatch::before {
+    :where(.plot-swatches-columns .plot-swatch::before) {
       flex-shrink: 0;
     }
 
-    .plot-swatches-columns .plot-swatch-label {
+    :where(.plot-swatches-columns .plot-swatch-label) {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
