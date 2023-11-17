@@ -38,14 +38,14 @@ export function legendRamp(color, options) {
     .call((svg) =>
       // Warning: if you edit this, change defaultClassName.
       svg.append("style").text(
-        `.${className}-ramp {
+        `:where(.${className}-ramp) {
   display: block;
   height: auto;
   height: intrinsic;
   max-width: 100%;
   overflow: visible;
 }
-.${className}-ramp text {
+:where(.${className}-ramp text) {
   white-space: pre;
 }`
       )
