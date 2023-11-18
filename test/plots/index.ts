@@ -292,6 +292,7 @@ export * from "./stargazers-hourly-group.js";
 export * from "./stargazers-hourly.js";
 export * from "./stargazers.js";
 export * from "./stocks-index.js";
+export * from "./style-overrides.js";
 export * from "./symbol-set.js";
 export * from "./text-overflow.js";
 export * from "./this-is-just-to-say.js";
