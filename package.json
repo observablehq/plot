@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "test": "yarn test:mocha && yarn test:tsc && yarn test:lint && yarn test:prettier",
-    "test:coverage": "npx c8 yarn test:mocha",
+    "test:coverage": "c8 yarn test:mocha",
     "test:mocha": "mkdir -p test/output && TZ=America/Los_Angeles mocha 'test/**/*-test.*' 'test/plot.js'",
     "test:lint": "eslint src test",
     "test:prettier": "prettier --check src test",
@@ -58,6 +58,7 @@
     "@types/node": "^20.5.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "c8": "^8.0.1",
     "canvas": "^2.0.0",
     "d3-geo-projection": "^4.0.0",
     "eslint": "^8.16.0",
