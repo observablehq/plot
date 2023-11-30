@@ -2,6 +2,62 @@
 
 Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
+## 0.6.12
+
+[Released December TK, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.12)
+
+To make it easier to support dark mode, we’ve made a breaking change to the default plot style. The background color is now unset (transparent) instead of white; additionally, marks that expect to use the same color as the background (for instance, the tree mark) now use the CSS variable `--plot-background` instead of white. For instance, the following style gives a dark background color (with contrasting white for currentColor) to all plots on a page:
+
+```css
+.plot-d6a7b5 { --plot-background: #333; background: var(--plot-background); color: white; }
+```
+
+The [rect mark](https://observablehq.com/plot/marks/rect) now supports *band* scales, and can now be used in place of [bar](https://observablehq.com/plot/marks/bar) and [cell](https://observablehq.com/plot/marks/cell).
+
+[image TK]
+
+```js
+Plot.rectY(alphabet, { x: "letter", y: "frequency" }).plot()
+```
+
+[image TK]
+
+```js
+Plot.differenceY(gistemp, {x: "Date", y: "Anomaly", positiveFill: "red", negativeFill: "blue"}).plot({y: {grid: true}})
+```
+
+The new [difference mark](https://observablehq.com/plot/marks/difference) puts a metric in context by comparing it. Like the [area](https://observablehq.com/plot/marks/area) mark, the region between two lines is filled; unlike the area mark, alternating color shows when the metric is above or below the comparison value. You can compare a metric to a constant (e.g., positive vs negative), to another metric (temperature in San Francisco vs. New York, or to the same metric at a shifted point in time.
+
+[image TK]
+
+```js
+Plot.differenceY(aapl, Plot.shiftX("365 days", {x: "Date", y: "Close"})).plot({y: {grid: true}})
+```
+
+The new [shift transform](https://observablehq.com/plot/transforms/shift) derives a time-shifted metric, enabling year over year comparisons.
+
+[image TK]
+
+```js
+Plot.arrow(ilc_lvps08,
+  Plot.groupX(
+    {y1: Plot.find((d) => d.sex === "F"), y2: Plot.find((d) => d.sex === "M")},
+    {x: "Date", y: "Value"}
+  )
+).plot()
+```
+
+The new [find reducer](https://observablehq.com/plot/transforms/group#find) allows to pivot data within the bin and group transforms.
+
+The [tip mark](https://observablehq.com/plot/marks/tip) now supports a **preferredAnchor** option. The [**marker** option](https://observablehq.com/plot/features/markers) now supports *tick*, *tick-x*, and *tick-y*. The [bin](https://observablehq.com/plot/transforms/bin) and [group](https://observablehq.com/plot/transforms/group) transforms now pass _data_ to reducers. The [group](https://observablehq.com/plot/transforms/group) and [hexbin](https://observablehq.com/plot/transforms/hexbin) transforms now support _x_ and _y_ reducers.
+
+Bug fixes:
+* The default [axis](https://observablehq.com/plot/marks/axis) for a *time* scale now uses local time as intended. #1886 #1887
+* The [text mark](https://observablehq.com/plot/marks/text)’s **lineWidth** option is now more accurate when **monospace** is true. #1879 #1880
+* Fix erroneous truncation of **title** text on the [tip mark](https://observablehq.com/plot/marks/tip). #1913
+* Fix scale **type** option to be case-insensitive. #1894 #1904
+* Fix overload precedence in transform type definitions. #1915
+
 ## 0.6.11
 
 [Released September 20, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)
