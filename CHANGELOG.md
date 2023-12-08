@@ -4,7 +4,7 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 ## 0.6.12
 
-[Released December TK, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.12)
+[Released December 7, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.12)
 
 To better support dark mode, we’ve made a breaking change to default styles: the background color is now `unset` (transparent) instead of `white`. Additionally, marks that expect to use the same color as the background (for instance, the tip mark) now use the CSS custom property `--plot-background` instead of `white`.
 
