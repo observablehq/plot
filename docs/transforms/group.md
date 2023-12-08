@@ -368,8 +368,8 @@ The following named reducers are supported:
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *identity* - the array of values
-* *x* - the group’s *x* value (when grouping on *x*)
-* *y* - the group’s *y* value (when grouping on *y*)
+* *x* <VersionBadge version="0.6.12" pr="1916" /> - the group’s *x* value (when grouping on *x*)
+* *y* <VersionBadge version="0.6.12" pr="1916" /> - the group’s *y* value (when grouping on *y*)
 
 In addition, a reducer may be specified as:
 
@@ -440,7 +440,7 @@ Plot.groupZ({x: "proportion"}, {fill: "species"})
 
 Groups on the first channel of **z**, **fill**, or **stroke**, if any. If none of **z**, **fill**, or **stroke** are channels, then all data (within each facet) is placed into a single group.
 
-## find(*test*) {#find}
+## find(*test*) {#find} <VersionBadge version="0.6.12" pr="1914" />
 
 ```js
 Plot.groupX(

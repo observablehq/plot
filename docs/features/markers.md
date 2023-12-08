@@ -56,9 +56,9 @@ The following named markers are supported:
 * *dot* - a filled *circle* without a stroke and 2.5px radius
 * *circle*, equivalent to *circle-fill* - a filled circle with a white stroke and 3px radius
 * *circle-stroke* - a hollow circle with a colored stroke and a white fill and 3px radius
-* *tick* - a small opposing line
-* *tick-x* - a small horizontal line
-* *tick-y* - a small vertical line
+* *tick* <VersionBadge version="0.6.12" pr="1872" /> - a small opposing line
+* *tick-x* <VersionBadge version="0.6.12" pr="1872" /> - a small horizontal line
+* *tick-y* <VersionBadge version="0.6.12" pr="1872" /> - a small vertical line
 
 If **marker** is true, it defaults to *circle*. If **marker** is a function, it will be called with a given *color* and must return an [SVG marker element](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker).
 

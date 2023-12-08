@@ -2,6 +2,124 @@
 
 Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
+## 0.6.12
+
+[Released December 7, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.12)
+
+To better support dark mode, we’ve made a breaking change to default styles: the background color is now `unset` (transparent) instead of `white`. Additionally, marks that expect to use the same color as the background (for instance, the tip mark) now use the CSS custom property `--plot-background` instead of `white`.
+
+As since [version 0.6.6](#066), you can override Plot’s styles via the `plot-d6a7b5` class. For example, the following stylesheet applies a dark background and white foreground:
+
+```css
+.plot-d6a7b5 {
+  --plot-background: #333;
+  background: var(--plot-background);
+  color: white;
+}
+```
+
+Previously Plot forced you to choose between [rect](https://observablehq.com/plot/marks/rect), [bar](https://observablehq.com/plot/marks/bar), and [cell](https://observablehq.com/plot/marks/cell) based on whether the *x* and *y* scales were ordinal or quantitative. Rejoice: the [rect mark](https://observablehq.com/plot/marks/rect) now supports *band* scales so you can simply use rect in all cases! 🎉 (The bar and cell marks still offer conveniences for ordinal scales, so use them if you like.)
+
+<img src="./img/rect-band.png" width="626" alt="A bar chart showing the relative frequency of English letters.">
+
+```js
+Plot.rectY(alphabet, {x: "letter", y: "frequency"}).plot()
+```
+
+Categorical color scales now default to the new *observable10* color scheme by [Jeff Pettiross](https://github.com/pettiross). These colors are intended as a drop-in replacement for *tableau10* with similar ease of discrimination and ordering, but with a slightly more saturated vibe that helps charts pop.
+
+<img src="./img/observable10.png" width="600" alt="Color swatches of the ten colors in the observable10 color scheme: blue, yellow, red, teal, purple, pink, brown, light blue, green, and gray.">
+
+```js
+Plot.cellX(d3.range(10)).plot({color: {type: "categorical"}})
+```
+
+The new [difference mark](https://observablehq.com/plot/marks/difference) puts a metric in context by comparing it to another metric or constant value. Like the [area mark](https://observablehq.com/plot/marks/area), the region between two lines is filled; unlike the area mark, alternating color shows when the metric is above or below the comparison.
+
+<img src="./img/difference-zero.png" width="630" alt="A difference chart showing a moving average of global temperature anomaly; positive anomalies are shown in green, and negative anomalies are shown in blue.">
+
+```js
+Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", y: "Anomaly"})).plot()
+```
+
+The chart above shows a moving average of global temperature anomaly; above-average temperatures are shown in green and below-average temperatures are shown in blue.
+
+The difference mark can also compare a metric to its earlier self, showing change over time. The chart below shows the year-over-year change in Apple stock price; the gray region represents an increase over last year while the red region represents a decrease.
+
+<img src="./img/difference-shift.png" width="630" alt="A difference chart showing the year-over-year change in Apple stock price; the gray region represents an increase over last year, while the red region represents a decrease.">
+
+```js
+Plot.differenceY(
+  aapl,
+  Plot.shiftX("year", {
+    x: "Date",
+    y: "Close",
+    positiveFillOpacity: 0.2,
+    positiveFill: "currentColor",
+    negativeFillOpacity: 0.8,
+    negativeFill: "red"
+  })
+).plot()
+```
+
+The chart above is constructed using the new [shift transform](https://observablehq.com/plot/transforms/shift), which derives a time-shifted copy of a metric for the given time interval, enabling year–over-year, month-over-month, or any other period-over-period comparison.
+
+The new [find reducer](https://observablehq.com/plot/transforms/group#find) allows you to pivot data with the [bin](https://observablehq.com/plot/transforms/bin) and [group](https://observablehq.com/plot/transforms/group) transforms, effectively turning “tall” data (with fewer columns) into “wide” data (with more columns). For example, say you have time-series data that has separate rows for observed daily temperatures in San Francisco (SF) and San Jose (SJ):
+
+```csv
+date,station,tmax,tmin
+2020-12-31,SJ,59,43
+2020-12-31,SF,60,47
+2020-12-30,SJ,58,33
+2020-12-30,SF,57,40
+2020-12-29,SJ,62,38
+2020-12-29,SF,61,41
+2020-12-28,SJ,57,43
+2020-12-28,SF,56,47
+2020-12-27,SJ,62,43
+2020-12-27,SF,57,46
+2020-12-26,SJ,60,46
+2020-12-26,SF,61,49
+```
+
+To compare the average minimum temperatures of San Francisco and San Jose as another difference chart:
+
+<img src="./img/difference-find.png" width="630" alt="A difference chart showing moving averages of daily minimum temperatures of San Francisco and San Jose; the green region represents when San Francisco was warmer than San Jose, and the blue region when San Francisco was cooler than San Jose.">
+
+```js
+Plot.plot({
+  x: {tickFormat: "%b"},
+  y: {grid: true},
+  marks: [
+    Plot.ruleY([32]),
+    Plot.differenceY(
+      temperature,
+      Plot.windowY(
+        14,
+        Plot.groupX(
+          {y1: Plot.find((d) => d.station === "SJ"), y2: Plot.find((d) => d.station === "SF")},
+          {x: "date", y: "tmin"}
+        )
+      )
+    )
+  ]
+})
+```
+
+The green region above represents when San Francisco was warmer than San Jose, and the blue region when San Francisco was cooler than San Jose.
+
+The [tip mark](https://observablehq.com/plot/marks/tip) now supports a **preferredAnchor** option, providing greater control over tip placement: if the tip  fits within the frame at the preferred anchor, this anchor will be used. (In contrast, the **anchor** option uses the specified anchor regardless of whether it will fit.) The tip mark now also prefers the *bottom* anchor by default for a more traditional, less comic-like appearance.
+
+The [**marker** option](https://observablehq.com/plot/features/markers) now supports new marker types: *tick*, *tick-x*, and *tick-y*. The [bin](https://observablehq.com/plot/transforms/bin) and [group](https://observablehq.com/plot/transforms/group) transforms now pass _data_ to reducers. The [group](https://observablehq.com/plot/transforms/group) and [hexbin](https://observablehq.com/plot/transforms/hexbin) transforms now support _x_ and _y_ reducers.
+
+This release includes several additional fixes:
+
+* The default axis for a *time* scale now uses local time.
+* The text mark’s **lineWidth** option is now more accurate when **monospace** is true.
+* The tip mark no longer truncates **title** text.
+* The scale **type** option is now case-insensitive.
+* Transform type definitions have correct overload precedence.
+
 ## 0.6.11
 
 [Released September 20, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)

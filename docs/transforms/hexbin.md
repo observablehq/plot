@@ -197,8 +197,8 @@ The following named reducers are supported:
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *mode* - the value with the most occurrences
 * *identity* - the array of values
-* *x* - the hexagon’s *x* center
-* *y* - the hexagon’s *y* center
+* *x* <VersionBadge version="0.6.12" pr="1916" /> - the hexagon’s *x* center
+* *y* <VersionBadge version="0.6.12" pr="1916" /> - the hexagon’s *y* center
 
 In addition, a reducer may be specified as:
 
