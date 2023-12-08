@@ -43,13 +43,13 @@
     <text y="0.71em" transform="translate(344,370)">16</text>
   </g>
   <g aria-label="bar">
-    <rect x="68" width="248" y="304.375" height="65.625" fill="#4e79a7"></rect>
-    <rect x="68" width="248" y="282.5" height="21.875" fill="#76b7b2"></rect>
-    <rect x="68" width="248" y="249.6875" height="32.8125" fill="#e15759"></rect>
-    <rect x="344" width="248" y="216.875" height="153.125" fill="#4e79a7"></rect>
-    <rect x="344" width="248" y="140.3125" height="76.5625" fill="#76b7b2"></rect>
-    <rect x="344" width="248" y="63.75" height="76.5625" fill="#e15759"></rect>
-    <rect x="344" width="248" y="20" height="43.75" fill="#f28e2c"></rect>
+    <rect x="68" width="248" y="304.375" height="65.625" fill="#4269d0"></rect>
+    <rect x="68" width="248" y="282.5" height="21.875" fill="#6cc5b0"></rect>
+    <rect x="68" width="248" y="249.6875" height="32.8125" fill="#ff725c"></rect>
+    <rect x="344" width="248" y="216.875" height="153.125" fill="#4269d0"></rect>
+    <rect x="344" width="248" y="140.3125" height="76.5625" fill="#6cc5b0"></rect>
+    <rect x="344" width="248" y="63.75" height="76.5625" fill="#ff725c"></rect>
+    <rect x="344" width="248" y="20" height="43.75" fill="#efb118"></rect>
   </g>
   <g aria-label="text" transform="translate(124.5,0.5)">
     <text y="0.32em" transform="translate(68,337.1875)">apples</text>

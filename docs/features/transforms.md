@@ -10,6 +10,8 @@ const olympians = shallowRef([]);
 const traffic = shallowRef(["Saarbrücken-Neuhaus", "Oldenburg (Holstein)", "Holz", "Göttelborn", "Riegelsberg", "Kastel", "Neustadt i. H.-Süd", "Nettersheim", "Hasborn", "Laufeld", "Otzenhausen", "Nonnweiler", "Kirschheck", "AS Eppelborn", "Bierfeld", "Von der Heydt", "Illingen", "Hetzerath", "Groß Ippener", "Bockel", "Ladbergen", "Dibbersen", "Euskirchen/Bliesheim", "Hürth", "Lotte", "Ascheberg", "Bad Schwartau", "Schloss Burg", "Uphusen", "HB-Silbersee", "Barsbüttel", "HB-Mahndorfer See", "Glüsingen", "HB-Weserbrücke", "Hengsen", "Köln-Nord", "Hagen-Vorhalle", "Unna"].map((location, i) => ({location, date: new Date(Date.UTC(2000, 0, 1, i)), vehicles: (10 + i) ** 2.382})));
 const bins = computed(() => d3.bin().thresholds(80).value((d) => d.weight)(olympians.value));
 
+const scheme = Plot.scale({color: {type: "categorical"}}).range;
+
 onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
   d3.csv("../data/bls-metro-unemployment.csv", d3.autoType).then((data) => (bls.value = data));
@@ -116,7 +118,7 @@ If a transform isn’t doing what you expect, try inspecting the options object 
 
 Transforms can derive channels (such as **y** above) as well as changing the default options. For example, the bin transform sets default insets for a one-pixel gap between adjacent rects.
 
-Transforms are composable: you can pass *options* through more than one transform before passing it to a mark. For example, above it’s a bit difficult to compare the weight distribution by sex because there are fewer <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">female</span> than <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">male</span> athletes in the data. We can remove this effect using the [normalize transform](../transforms/normalize.md) with the *sum* reducer.
+Transforms are composable: you can pass *options* through more than one transform before passing it to a mark. For example, above it’s a bit difficult to compare the weight distribution by sex because there are fewer <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">female</span> than <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">male</span> athletes in the data. We can remove this effect using the [normalize transform](../transforms/normalize.md) with the *sum* reducer.
 
 :::plot defer https://observablehq.com/@observablehq/plot-overlapping-relative-histogram
 ```js-vue
