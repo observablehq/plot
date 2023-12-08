@@ -11,7 +11,7 @@ To better support dark mode, we’ve made a breaking change to default styles: t
 As since [version 0.6.6](#066), you can override Plot’s styles via the `plot-d6a7b5` class. For example, the following stylesheet applies a dark background and white foreground:
 
 ```css
-.plot-d6a7b5 {
+svg.plot-d6a7b5 {
   --plot-background: #333;
   background: var(--plot-background);
   color: white;
