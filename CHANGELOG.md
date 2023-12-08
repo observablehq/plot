@@ -26,6 +26,14 @@ Previously Plot forced you to choose between [rect](https://observablehq.com/plo
 Plot.rectY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
 
+Categorical color scales now default to the new *observable10* color scheme by [Jeff Pettiross](https://github.com/pettiross). These colors are intended as a drop-in replacement for *tableau10* with similar ease of discrimination and ordering, but with a slightly more saturated vibe that helps charts pop.
+
+<img src="./img/observable10.png" width="600" alt="Color swatches of the ten colors in the observable10 color scheme: blue, yellow, red, teal, purple, pink, brown, light blue, green, and gray.">
+
+```js
+Plot.cellX(d3.range(10)).plot({color: {type: "categorical"}})
+```
+
 The new [difference mark](https://observablehq.com/plot/marks/difference) puts a metric in context by comparing it to another metric or constant value. Like the [area mark](https://observablehq.com/plot/marks/area), the region between two lines is filled; unlike the area mark, alternating color shows when the metric is above or below the comparison.
 
 <img src="./img/difference-zero.png" width="630" alt="A difference chart showing a moving average of global temperature anomaly; positive anomalies are shown in green, and negative anomalies are shown in blue.">

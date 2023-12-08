@@ -11,7 +11,7 @@ const align = ref(0.5);
 const radius = ref(8);
 const schemeq = ref("turbo");
 const schemed = ref("rdbu");
-const schemeo = ref("Tableau10");
+const schemeo = ref("Observable10");
 const interpolateq = ref("rgb");
 const anomaly = gistemp.map((d) => d.Anomaly);
 const aapl = shallowRef([]);
@@ -457,6 +457,7 @@ Plot also provides color schemes for discrete data. Use the *categorical* type f
         <option>Accent</option>
         <option>Category10</option>
         <option>Dark2</option>
+        <option>Observable10</option>
         <option>Paired</option>
         <option>Pastel1</option>
         <option>Pastel2</option>
@@ -730,7 +731,7 @@ Plot.plot({
 
 The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color. In addition, Plot supports special scale types for color:
 
-* *categorical* - like *ordinal*, but defaults to *tableau10*
+* *categorical* - like *ordinal*, but defaults to *observable10*
 * *sequential* - like *linear*
 * *cyclical* - like *linear*, but defaults to *rainbow*
 * *threshold* - discretizes using thresholds given as the **domain**; defaults to *rdylbu*
@@ -878,6 +879,7 @@ Plot.plot({
       ["Accent", d3.schemeAccent],
       ["Category10", d3.schemeCategory10],
       ["Dark2", d3.schemeDark2],
+      ["Observable10", Plot.scale({color: {type: "categorical"}}).range],
       ["Paired", d3.schemePaired],
       ["Pastel1", d3.schemePastel1],
       ["Pastel2", d3.schemePastel2],
