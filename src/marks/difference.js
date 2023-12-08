@@ -16,7 +16,7 @@ export function differenceY(
     x = x1 === undefined && x2 === undefined ? indexOf : undefined,
     y = y1 === undefined && y2 === undefined ? identity : undefined,
     fill, // ignored
-    positiveFill = "#01ab63",
+    positiveFill = "#3ca951",
     negativeFill = "#4269d0",
     fillOpacity = 1,
     positiveFillOpacity = fillOpacity,
