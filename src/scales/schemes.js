@@ -77,7 +77,7 @@ import {
   schemeYlOrRd
 } from "d3";
 
-// https://observablehq.com/d/b0f1d0a1d5778142
+// TODO https://github.com/d3/d3-scale-chromatic/pull/51
 const schemeObservable10 = [
   "#4269d0",
   "#efb118",
