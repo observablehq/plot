@@ -6,6 +6,8 @@ import {shallowRef, onMounted} from "vue";
 
 const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
 
+const scheme = Plot.scale({color: {type: "categorical"}}).range;
+
 onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
 });
@@ -88,7 +90,7 @@ Plot.plot({
 ```
 :::
 
-We aren’t limited to the *count* reducer. We can use the *mode* reducer, for example, to show which sex is more prevalent in each sport: <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">men</span> are represented more often than <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">women</span> in every sport except gymnastics and fencing.
+We aren’t limited to the *count* reducer. We can use the *mode* reducer, for example, to show which sex is more prevalent in each sport: <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">men</span> are represented more often than <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">women</span> in every sport except gymnastics and fencing.
 
 :::plot defer https://observablehq.com/@observablehq/plot-group-and-mode-reducer
 ```js
@@ -162,7 +164,7 @@ Plot.plot({
 ```
 :::
 
-Alternatively, below we use directional arrows (a [link mark](../marks/link.md) with [markers](../features/markers.md)) to indicate the difference in counts of <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">male</span> and <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">female</span> athletes by sport. The color of the arrow indicates which sex is more prevalent, while its length is proportional to the difference.
+Alternatively, below we use directional arrows (a [link mark](../marks/link.md) with [markers](../features/markers.md)) to indicate the difference in counts of <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">male</span> and <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">female</span> athletes by sport. The color of the arrow indicates which sex is more prevalent, while its length is proportional to the difference.
 
 :::plot defer https://observablehq.com/@observablehq/plot-difference-arrows
 ```js

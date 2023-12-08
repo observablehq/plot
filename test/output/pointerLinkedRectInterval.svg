@@ -57,14 +57,14 @@
   </g>
   <g aria-label="rect" fill-opacity="0.1" pointer-events="none"></g>
   <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#4e79a7" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-1">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#4269d0" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-1">
       <circle r="3"></circle>
     </marker>
-    <path stroke="#4e79a7" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-1)" d="M64.167,222.479C80.278,219.822,96.389,217.165,112.5,215.73C128.611,214.295,144.722,214.083,160.833,214.766C176.944,215.449,193.056,217.027,209.167,219.587C225.278,222.147,241.389,225.69,257.5,230.193C273.611,234.696,289.722,240.16,305.833,246.584C321.944,253.008,338.056,260.393,354.167,268.76C370.278,277.128,386.389,286.477,402.5,296.722C418.611,306.966,434.722,318.106,450.833,330.468C466.944,342.831,483.056,356.415,499.167,370"></path>
-    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#f28e2c" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-2">
+    <path stroke="#4269d0" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-1)" d="M64.167,222.479C80.278,219.822,96.389,217.165,112.5,215.73C128.611,214.295,144.722,214.083,160.833,214.766C176.944,215.449,193.056,217.027,209.167,219.587C225.278,222.147,241.389,225.69,257.5,230.193C273.611,234.696,289.722,240.16,305.833,246.584C321.944,253.008,338.056,260.393,354.167,268.76C370.278,277.128,386.389,286.477,402.5,296.722C418.611,306.966,434.722,318.106,450.833,330.468C466.944,342.831,483.056,356.415,499.167,370"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#efb118" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-2">
       <circle r="3"></circle>
     </marker>
-    <path stroke="#f28e2c" marker-start="url(#plot-marker-2)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-2)" d="M64.167,367.107C80.278,330.396,96.389,293.684,112.5,261.047C128.611,228.41,144.722,199.848,160.833,174.27C176.944,148.692,193.056,126.096,209.167,106.777C225.278,87.457,241.389,71.414,257.5,58.567C273.611,45.721,289.722,36.073,305.833,29.642C321.944,23.211,338.056,19.997,354.167,20C370.278,20.003,386.389,23.224,402.5,29.642C418.611,36.06,434.722,45.676,450.833,58.567C466.944,71.459,483.056,87.626,499.167,106.777C515.278,125.927,531.389,148.061,547.5,174.27C563.611,200.479,579.722,230.763,595.833,261.047"></path>
+    <path stroke="#efb118" marker-start="url(#plot-marker-2)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-2)" d="M64.167,367.107C80.278,330.396,96.389,293.684,112.5,261.047C128.611,228.41,144.722,199.848,160.833,174.27C176.944,148.692,193.056,126.096,209.167,106.777C225.278,87.457,241.389,71.414,257.5,58.567C273.611,45.721,289.722,36.073,305.833,29.642C321.944,23.211,338.056,19.997,354.167,20C370.278,20.003,386.389,23.224,402.5,29.642C418.611,36.06,434.722,45.676,450.833,58.567C466.944,71.459,483.056,87.626,499.167,106.777C515.278,125.927,531.389,148.061,547.5,174.27C563.611,200.479,579.722,230.763,595.833,261.047"></path>
   </g>
   <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" pointer-events="none" transform="translate(0.5,0.5)"></g>
 </svg>

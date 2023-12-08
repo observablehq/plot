@@ -160,23 +160,23 @@
   </g>
   <g aria-label="bar">
     <g transform="translate(0,0)">
-      <rect x="46" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4e79a7"></rect>
-      <rect x="104" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4e79a7"></rect>
-      <rect x="46" width="52" y="151.64383561643834" height="136.84931506849315" fill="#f28e2c"></rect>
-      <rect x="104" width="52" y="146.57534246575344" height="141.91780821917806" fill="#f28e2c"></rect>
-      <rect x="162" width="52" y="394.93150684931504" height="5.068493150684958" fill="#f28e2c"></rect>
-      <rect x="46" width="52" y="30" height="121.64383561643834" fill="#e15759"></rect>
-      <rect x="104" width="52" y="30" height="116.57534246575344" fill="#e15759"></rect>
-      <rect x="162" width="52" y="369.5890410958904" height="25.34246575342462" fill="#e15759"></rect>
+      <rect x="46" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4269d0"></rect>
+      <rect x="104" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4269d0"></rect>
+      <rect x="46" width="52" y="151.64383561643834" height="136.84931506849315" fill="#efb118"></rect>
+      <rect x="104" width="52" y="146.57534246575344" height="141.91780821917806" fill="#efb118"></rect>
+      <rect x="162" width="52" y="394.93150684931504" height="5.068493150684958" fill="#efb118"></rect>
+      <rect x="46" width="52" y="30" height="121.64383561643834" fill="#ff725c"></rect>
+      <rect x="104" width="52" y="30" height="116.57534246575344" fill="#ff725c"></rect>
+      <rect x="162" width="52" y="369.5890410958904" height="25.34246575342462" fill="#ff725c"></rect>
     </g>
     <g transform="translate(200,0)">
-      <rect x="46" width="52" y="227.67123287671234" height="172.32876712328766" fill="#f28e2c"></rect>
-      <rect x="104" width="52" y="227.67123287671234" height="172.32876712328766" fill="#f28e2c"></rect>
+      <rect x="46" width="52" y="227.67123287671234" height="172.32876712328766" fill="#efb118"></rect>
+      <rect x="104" width="52" y="227.67123287671234" height="172.32876712328766" fill="#efb118"></rect>
     </g>
     <g transform="translate(400,0)">
-      <rect x="46" width="52" y="106.027397260274" height="293.97260273972597" fill="#4e79a7"></rect>
-      <rect x="104" width="52" y="90.82191780821917" height="309.17808219178085" fill="#4e79a7"></rect>
-      <rect x="162" width="52" y="374.6575342465753" height="25.342465753424676" fill="#4e79a7"></rect>
+      <rect x="46" width="52" y="106.027397260274" height="293.97260273972597" fill="#4269d0"></rect>
+      <rect x="104" width="52" y="90.82191780821917" height="309.17808219178085" fill="#4269d0"></rect>
+      <rect x="162" width="52" y="374.6575342465753" height="25.342465753424676" fill="#4269d0"></rect>
     </g>
   </g>
   <g aria-label="rule" transform="translate(0,0.5)">
