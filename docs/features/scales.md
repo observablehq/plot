@@ -1013,19 +1013,35 @@ Note: when the value of the sort option is a string or a function, it is interpr
 
 ## scale(*options*) <VersionBadge version="0.4.0" /> {#scale}
 
-You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
+You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a categorical color scale with the *Tableau10* color scheme and a domain of fruits:
 
 ```js
-const color = Plot.scale({color: {type: "linear"}});
+const color = Plot.scale({color: {scheme: "Tableau10", domain: ["apple", "orange", "pear"]}});
 ```
 
 Both [*plot*.scale](./plots.md#plot_scale) and [Plot.scale](#scale) return scale objects. These objects represent the actual (or “materialized”) scale options used by Plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
 
-To reuse a scale across plots, pass the corresponding scale object into another plot specification:
-
 ```js
-const plot1 = Plot.plot(options);
-const plot2 = Plot.plot({...options, color: plot1.scale("color")});
+color.domain // ["apple", "orange", "pear"]
 ```
 
 For convenience, scale objects expose a *scale*.**apply**(*input*) method which returns the scale’s output for the given *input* value. When applicable, scale objects also expose a *scale*.**invert**(*output*) method which returns the corresponding input value from the scale’s domain for the given *output* value.
+
+```js
+color.apply("apple") // "#4e79a7"
+```
+
+To apply a standalone scale object to a plot, pass it to Plot.plot as the corresponding scale options, such as **color**:
+
+:::plot
+```js
+Plot.cellX(["apple", "apple", "orange", "pear", "orange"]).plot({color})
+```
+:::
+
+As another example, below are two plots with different options where the second plot uses the *color* scale from the first plot:
+
+```js
+const plot1 = Plot.plot({...options1});
+const plot2 = Plot.plot({...options2, color: plot1.scale("color")});
+```
