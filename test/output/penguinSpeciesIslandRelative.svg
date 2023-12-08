@@ -73,15 +73,15 @@
   </g>
   <g aria-label="bar">
     <g transform="translate(0,0)">
-      <rect x="40" width="180" y="290" height="110" fill="#4e79a7"></rect>
-      <rect x="40" width="180" y="149.99999999999997" height="140.00000000000003" fill="#f28e2c"></rect>
-      <rect x="40" width="180" y="20" height="129.99999999999997" fill="#e15759"></rect>
+      <rect x="40" width="180" y="290" height="110" fill="#4269d0"></rect>
+      <rect x="40" width="180" y="149.99999999999997" height="140.00000000000003" fill="#efb118"></rect>
+      <rect x="40" width="180" y="20" height="129.99999999999997" fill="#ff725c"></rect>
     </g>
     <g transform="translate(200,0)">
-      <rect x="40" width="180" y="20" height="380" fill="#f28e2c"></rect>
+      <rect x="40" width="180" y="20" height="380" fill="#efb118"></rect>
     </g>
     <g transform="translate(400,0)">
-      <rect x="40" width="180" y="20" height="380" fill="#4e79a7"></rect>
+      <rect x="40" width="180" y="20" height="380" fill="#4269d0"></rect>
     </g>
   </g>
   <g aria-label="rule" transform="translate(0,0.5)">

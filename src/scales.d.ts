@@ -187,7 +187,7 @@ export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any} & {scale
  *
  * For color, one of:
  *
- * - *categorical* - equivalent to *ordinal*; defaults to *tableau10*
+ * - *categorical* - equivalent to *ordinal*; defaults to *observable10*
  * - *sequential* - equivalent to *linear*; defaults to *turbo*
  * - *cyclical* - equivalent to *linear*; defaults to *rainbow*
  * - *threshold* - encodes using discrete thresholds; defaults to *rdylbu*

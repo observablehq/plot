@@ -13,6 +13,8 @@ const us = shallowRef(null);
 const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
 const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
 
+const scheme = Plot.scale({color: {type: "categorical"}}).range;
+
 onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
   d3.tsv("../data/walmarts.tsv", d3.autoType).then((data) => (walmarts.value = data));
@@ -69,7 +71,7 @@ Plot
 Setting a **stroke** ensures that the smallest hexagons are visible.
 :::
 
-Alternatively, the **fill** and **r** channels can encode independent (or “bivariate”) dimensions of data. Below, the **r** channel uses *count* as before, while the **fill** channel uses *mode* to show the most frequent sex of athletes in each hexagon. The larger athletes are more likely to be <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">male</span>, while the smaller athletes are more likely to be <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">female</span>.
+Alternatively, the **fill** and **r** channels can encode independent (or “bivariate”) dimensions of data. Below, the **r** channel uses *count* as before, while the **fill** channel uses *mode* to show the most frequent sex of athletes in each hexagon. The larger athletes are more likely to be <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">male</span>, while the smaller athletes are more likely to be <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">female</span>.
 
 :::plot defer https://observablehq.com/@observablehq/plot-bivariate-hexbin
 ```js

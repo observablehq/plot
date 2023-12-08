@@ -51,9 +51,9 @@
     <text transform="translate(93,370)"><tspan x="0" y="0.71em">15</tspan><tspan x="0" dy="1em">Mar</tspan></text>
   </g>
   <g aria-label="bar">
-    <rect x="93" width="474" y="179.0909090909091" height="190.9090909090909" fill="#4e79a7"></rect>
-    <rect x="93" width="474" y="115.45454545454545" height="63.63636363636364" fill="#e15759"></rect>
-    <rect x="93" width="474" y="20" height="95.45454545454545" fill="#f28e2c"></rect>
+    <rect x="93" width="474" y="179.0909090909091" height="190.9090909090909" fill="#4269d0"></rect>
+    <rect x="93" width="474" y="115.45454545454545" height="63.63636363636364" fill="#ff725c"></rect>
+    <rect x="93" width="474" y="20" height="95.45454545454545" fill="#efb118"></rect>
   </g>
   <g aria-label="text" transform="translate(237.5,0.5)">
     <text y="0.32em" transform="translate(93,274.54545454545456)">apples</text>
