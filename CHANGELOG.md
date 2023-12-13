@@ -8,6 +8,8 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 Fixes the *observable10* categorical color scheme. In 0.6.12, we inadvertently published an earlier draft; this fixed version better aligns the order of colors with *tableau10*.
 
+We reduced the specificity of selectors in the generated stylesheets to 0, allowing consumers of Plot to much more easily override these styles using their own stylesheets while still enjoying the default styling. Thanks, @mstade!
+
 ## 0.6.12
 
 [Released December 7, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.12)
