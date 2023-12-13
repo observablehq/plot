@@ -83,11 +83,11 @@ const schemeObservable10 = [
   "#efb118",
   "#ff725c",
   "#6cc5b0",
-  "#a463f2",
-  "#ff8ab7",
-  "#9c6b4e",
-  "#97bbf5",
   "#3ca951",
+  "#ff8ab7",
+  "#a463f2",
+  "#97bbf5",
+  "#9c6b4e",
   "#9498a0"
 ];
 
