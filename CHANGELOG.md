@@ -6,7 +6,7 @@ Year: **Current (2023)** · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-20
 
 [Released December 13, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.13)
 
-Refines the *observable10* categorical color scheme: the order of colors now better aligns with *tableau10*, and the saturation of the green has been reduced.
+Reorders the *observable10* categorical color scheme to better align with *tableau10*.
 
 ## 0.6.12
 
