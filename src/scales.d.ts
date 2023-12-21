@@ -25,10 +25,10 @@ export type Interpolate =
 
 /** The built-in color schemes, cased. */
 type ColorSchemeCase =
-  | "Observable10"
   | "Accent"
   | "Category10"
   | "Dark2"
+  | "Observable10"
   | "Paired"
   | "Pastel1"
   | "Pastel2"
@@ -83,13 +83,14 @@ type ColorSchemeCase =
  * - *Accent* - eight colors
  * - *Category10* - ten colors
  * - *Dark2* - eight colors
+ * - *Observable10* (default) - ten colors
  * - *Paired* - twelve paired colors
  * - *Pastel1* - nine colors
  * - *Pastel2* - eight colors
  * - *Set1* - nine colors
  * - *Set2* - eight colors
  * - *Set3* - twelve colors
- * - *Tableau10* (default) - ten colors
+ * - *Tableau10* - ten colors
  *
  * For diverging data, one of:
  *
