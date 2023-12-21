@@ -25,6 +25,7 @@ export type Interpolate =
 
 /** The built-in color schemes, cased. */
 type ColorSchemeCase =
+  | "Observable10"
   | "Accent"
   | "Category10"
   | "Dark2"
