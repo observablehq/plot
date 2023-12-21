@@ -4,6 +4,7 @@ import {h, withDirectives} from "vue";
 class Document {
   constructor() {
     this.documentElement = new Element(this, "html");
+    if (!globalThis.navigator) globalThis.navigator = {};
   }
   createElementNS(namespace, tagName) {
     return new Element(this, tagName);
