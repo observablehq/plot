@@ -18,7 +18,7 @@ onMounted(() => {
 
 </script>
 
-# Difference mark <VersionBadge pr="1896" />
+# Difference mark <VersionBadge version="0.6.12" pr="1896" />
 
 The **difference mark** puts a metric in context by comparing it. Like the [area mark](./area.md), the region between two lines is filled; unlike the area mark, alternating color shows when the metric is above or below the comparison value.
 

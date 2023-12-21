@@ -257,15 +257,15 @@ export function plot(options = {}) {
     .call((svg) =>
       // Warning: if you edit this, change defaultClassName.
       svg.append("style").text(
-        `.${className} {
+        `:where(.${className}) {
   --plot-background: white;
   display: block;
   height: auto;
   height: intrinsic;
   max-width: 100%;
 }
-.${className} text,
-.${className} tspan {
+:where(.${className} text),
+:where(.${className} tspan) {
   white-space: pre;
 }`
       )

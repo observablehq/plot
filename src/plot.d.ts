@@ -234,7 +234,7 @@ export interface PlotOptions extends ScaleDefaults {
    * Options for the *color* scale for fill or stroke. The *color* scale
    * defaults to a *linear* scale with the *turbo* scheme for quantitative
    * (numbers) or temporal (dates) data, and an *ordinal* scale with the
-   * *tableau10* scheme for categorical (strings or booleans) data.
+   * *observable10* scheme for categorical (strings or booleans) data.
    *
    * Plot does not currently render a color legend by default; set the
    * **legend** *color* scale option to true to produce a color legend.
