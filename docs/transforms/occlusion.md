@@ -68,11 +68,11 @@ Plot.plot({
 })
 ```
 
-Without this transform, some of these labels would otherwise be masking each other. Note that when several labels share an identical position and text contents, only the first one is retained—and the others are filtered out (for example, check the value 62 in the first column).
+Without this transform, some of these labels would otherwise be masking each other. Note that when several labels share an identical position and text contents, only the first one is retained—and the others are filtered out (for example, value 62 in the first column).
 
 The **minDistance** option is a constant indicating the minimum distance between nodes, in pixels. It defaults to 11, about the height of a line of text with the default font size. (If zero, the transform is not applied.)
 
-The chart below shows how the positions are transformed as we repeatedly inject nodes into a collection, at a random vertical position, and apply the occlusionY transform at each step (horizontal axis). Adjust the range slider below to see how the positions change with the mininmum distance option:
+The chart below shows how the positions are transformed as we repeatedly inject nodes into a collection at a random vertical position, and apply the occlusionY transform at each step (horizontal axis). Adjust the range slider below to see how the positions change with the minimum distance option:
 
 <p>
   <label class="label-input">
