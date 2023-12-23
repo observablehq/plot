@@ -56,9 +56,9 @@
   </g>
   <g aria-label="bar">
     <rect x="50" width="570" y="87" height="19"></rect>
-    <rect x="50" width="114" y="24" height="19"></rect>
-    <rect x="50" width="285" y="66" height="19"></rect>
     <rect x="50" width="256.5" y="45" height="19"></rect>
+    <rect x="50" width="285" y="66" height="19"></rect>
+    <rect x="50" width="114" y="24" height="19"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="50" x2="50" y1="20" y2="110"></line>

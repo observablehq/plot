@@ -110,8 +110,8 @@
       <rect x="294.55645161290323" width="3.991935483870975" y="22" height="17" fill="#ff725c"></rect>
     </g>
     <g transform="translate(0,131)">
-      <rect x="75" width="95.8064516129032" y="22" height="17" fill="#4269d0"></rect>
-      <rect x="170.8064516129032" width="91.81451612903228" y="22" height="17" fill="#efb118"></rect>
+      <rect x="75" width="91.81451612903226" y="22" height="17" fill="#efb118"></rect>
+      <rect x="166.81451612903226" width="95.80645161290323" y="22" height="17" fill="#4269d0"></rect>
       <rect x="262.6209677419355" width="19.95967741935482" y="22" height="17" fill="#ff725c"></rect>
     </g>
   </g>

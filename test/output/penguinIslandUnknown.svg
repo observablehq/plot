@@ -51,15 +51,15 @@
     <text transform="translate(330,370)">sex</text>
   </g>
   <g aria-label="bar">
-    <rect x="59" width="168" y="203.33333333333334" height="166.66666666666666" fill="#ccc"></rect>
-    <rect x="246" width="168" y="197.08333333333331" height="172.91666666666669" fill="#ccc"></rect>
+    <rect x="246" width="168" y="322.08333333333337" height="47.91666666666663" fill="#ccc"></rect>
+    <rect x="59" width="168" y="320" height="50" fill="#ccc"></rect>
     <rect x="433" width="168" y="359.5833333333333" height="10.416666666666686" fill="#ccc"></rect>
-    <rect x="59" width="168" y="76.25" height="127.08333333333334" fill="#4269d0"></rect>
-    <rect x="246" width="168" y="67.91666666666666" height="129.16666666666666" fill="#4269d0"></rect>
-    <rect x="433" width="168" y="357.5" height="2.0833333333333144" fill="#4269d0"></rect>
-    <rect x="59" width="168" y="26.250000000000018" height="49.999999999999986" fill="#ccc"></rect>
-    <rect x="246" width="168" y="20" height="47.91666666666666" fill="#ccc"></rect>
-    <rect x="433" width="168" y="347.0833333333333" height="10.416666666666686" fill="#ccc"></rect>
+    <rect x="59" width="168" y="153.33333333333331" height="166.66666666666669" fill="#ccc"></rect>
+    <rect x="246" width="168" y="149.16666666666669" height="172.91666666666669" fill="#ccc"></rect>
+    <rect x="433" width="168" y="349.1666666666667" height="10.416666666666629" fill="#ccc"></rect>
+    <rect x="59" width="168" y="26.250000000000018" height="127.0833333333333" fill="#4269d0"></rect>
+    <rect x="246" width="168" y="20" height="129.16666666666669" fill="#4269d0"></rect>
+    <rect x="433" width="168" y="347.0833333333333" height="2.0833333333333712" fill="#4269d0"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>

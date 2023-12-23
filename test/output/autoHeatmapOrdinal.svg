@@ -40,9 +40,9 @@
     <text transform="translate(330,90)">island</text>
   </g>
   <g aria-label="cell">
+    <rect x="433" width="168" y="23" height="20" fill="rgb(74, 88, 221)"></rect>
     <rect x="59" width="168" y="23" height="20" fill="rgb(35, 23, 27)"></rect>
     <rect x="246" width="168" y="23" height="20" fill="rgb(62, 123, 247)"></rect>
-    <rect x="433" width="168" y="23" height="20" fill="rgb(74, 88, 221)"></rect>
     <rect x="246" width="168" y="45" height="20" fill="rgb(39, 215, 196)"></rect>
     <rect x="59" width="168" y="67" height="20" fill="rgb(144, 12, 0)"></rect>
   </g>

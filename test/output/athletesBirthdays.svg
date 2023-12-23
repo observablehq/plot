@@ -61,32 +61,32 @@
     <text transform="translate(600,270)">Frequency →</text>
   </g>
   <g aria-label="bar">
+    <rect x="40" width="433.0054644808743" y="206" height="18"></rect>
+    <rect x="40" width="490.12750455373407" y="186" height="18"></rect>
+    <rect x="40" width="524.2987249544627" y="106" height="18"></rect>
     <rect x="40" width="560" y="26" height="18"></rect>
+    <rect x="40" width="421.78506375227687" y="226" height="18"></rect>
+    <rect x="40" width="490.12750455373407" y="126" height="18"></rect>
+    <rect x="40" width="457.4863387978142" y="246" height="18"></rect>
+    <rect x="40" width="503.89799635701263" y="146" height="18"></rect>
+    <rect x="40" width="490.63752276867035" y="86" height="18"></rect>
     <rect x="40" width="487.5774134790528" y="46" height="18"></rect>
     <rect x="40" width="521.2386156648452" y="66" height="18"></rect>
-    <rect x="40" width="490.63752276867035" y="86" height="18"></rect>
-    <rect x="40" width="524.2987249544627" y="106" height="18"></rect>
-    <rect x="40" width="490.12750455373407" y="126" height="18"></rect>
-    <rect x="40" width="503.89799635701263" y="146" height="18"></rect>
     <rect x="40" width="504.408014571949" y="166" height="18"></rect>
-    <rect x="40" width="490.12750455373407" y="186" height="18"></rect>
-    <rect x="40" width="433.0054644808743" y="206" height="18"></rect>
-    <rect x="40" width="421.78506375227687" y="226" height="18"></rect>
-    <rect x="40" width="457.4863387978142" y="246" height="18"></rect>
   </g>
   <g aria-label="text" text-anchor="start" font-variant="tabular-nums" transform="translate(4.5,9.5)">
+    <text y="0.32em" transform="translate(473.0054644808743,206)">849</text>
+    <text y="0.32em" transform="translate(530.1275045537341,186)">961</text>
+    <text y="0.32em" transform="translate(564.2987249544627,106)">1,028</text>
     <text y="0.32em" transform="translate(600,26)">1,098</text>
+    <text y="0.32em" transform="translate(461.78506375227687,226)">827</text>
+    <text y="0.32em" transform="translate(530.1275045537341,126)">961</text>
+    <text y="0.32em" transform="translate(497.4863387978142,246)">897</text>
+    <text y="0.32em" transform="translate(543.8979963570126,146)">988</text>
+    <text y="0.32em" transform="translate(530.6375227686704,86)">962</text>
     <text y="0.32em" transform="translate(527.5774134790528,46)">956</text>
     <text y="0.32em" transform="translate(561.2386156648452,66)">1,022</text>
-    <text y="0.32em" transform="translate(530.6375227686704,86)">962</text>
-    <text y="0.32em" transform="translate(564.2987249544627,106)">1,028</text>
-    <text y="0.32em" transform="translate(530.1275045537341,126)">961</text>
-    <text y="0.32em" transform="translate(543.8979963570126,146)">988</text>
     <text y="0.32em" transform="translate(544.408014571949,166)">989</text>
-    <text y="0.32em" transform="translate(530.1275045537341,186)">961</text>
-    <text y="0.32em" transform="translate(473.0054644808743,206)">849</text>
-    <text y="0.32em" transform="translate(461.78506375227687,226)">827</text>
-    <text y="0.32em" transform="translate(497.4863387978142,246)">897</text>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="20" y2="270"></line>

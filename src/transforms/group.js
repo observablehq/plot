@@ -17,7 +17,6 @@ import {
 import {ascendingDefined} from "../defined.js";
 import {
   column,
-  first,
   identity,
   isObject,
   isTemporal,
@@ -230,12 +229,7 @@ export function maybeEvaluator(name, reduce, inputs, asReduce = maybeReduce) {
 }
 
 export function maybeGroup(I, X) {
-  return X
-    ? sort(
-        grouper(I, (i) => X[i]),
-        first
-      )
-    : [[, I]];
+  return X ? grouper(I, (i) => X[i]) : [[, I]];
 }
 
 export function maybeReduce(reduce, value, fallback = invalidReduce) {
