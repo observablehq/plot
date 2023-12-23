@@ -72,7 +72,7 @@
     "rollup": "^3.7.0",
     "topojson-client": "^3.1.0",
     "ts-morph": "^19.0.0",
-    "tsx": "~4.2.1",
+    "tsx": "^4.7.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.9",
     "vitepress": "^1.0.0-rc.12"
