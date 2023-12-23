@@ -44,13 +44,14 @@ export interface GroupOutputOptions<T = Reducer> {
  * - a generic reducer name, such as *count* or *first*
  * - *x* - the group’s **x** value (when grouping on **x**)
  * - *y* - the group’s **y** value (when grouping on **y**)
+ * - *z* - the group’s **z** value (when grouping on **z**, **fill**, or **stroke**)
  * - a function that takes an array of values and returns the reduced value
  * - an object that implements the *reduceIndex* method
  *
  * When a reducer function or implementation is used with the group transform,
  * it is passed the group extent {x, y} as an additional argument.
  */
-export type GroupReducer = Reducer | GroupReducerFunction | GroupReducerImplementation | "x" | "y";
+export type GroupReducer = Reducer | GroupReducerFunction | GroupReducerImplementation | "x" | "y" | "z";
 
 /**
  * A shorthand functional group reducer implementation: given an array of input

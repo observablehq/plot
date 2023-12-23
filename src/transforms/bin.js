@@ -41,7 +41,8 @@ import {
   maybeSubgroup,
   reduceCount,
   reduceFirst,
-  reduceIdentity
+  reduceIdentity,
+  reduceZ
 } from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
@@ -180,6 +181,7 @@ function binn(
         for (const [f, I] of maybeGroup(facet, G)) {
           for (const [k, g] of maybeGroup(I, K)) {
             for (const [b, extent] of bin(g)) {
+              if (G) extent.z = f;
               if (filter && !filter.reduce(b, extent)) continue;
               groupFacet.push(i++);
               groupData.push(reduceData.reduceIndex(b, data, extent));
@@ -190,7 +192,7 @@ function binn(
               if (BX1) BX1.push(extent.x1), BX2.push(extent.x2);
               if (BY1) BY1.push(extent.y1), BY2.push(extent.y2);
               for (const o of outputs) o.reduce(b, extent);
-              if (sort) sort.reduce(b);
+              if (sort) sort.reduce(b, extent);
             }
           }
         }
@@ -355,6 +357,8 @@ function maybeBinReduceFallback(reduce) {
       return reduceY1;
     case "y2":
       return reduceY2;
+    case "z":
+      return reduceZ;
   }
   throw new Error(`invalid bin reduce: ${reduce}`);
 }

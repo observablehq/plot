@@ -136,6 +136,7 @@ function groupn(
               const extent = {data};
               if (X) extent.x = x;
               if (Y) extent.y = y;
+              if (G) extent.z = f;
               if (filter && !filter.reduce(g, extent)) continue;
               groupFacet.push(i++);
               groupData.push(reduceData.reduceIndex(g, data, extent));
@@ -303,6 +304,8 @@ function maybeGroupReduceFallback(reduce) {
       return reduceX;
     case "y":
       return reduceY;
+    case "z":
+      return reduceZ;
   }
   throw new Error(`invalid group reduce: ${reduce}`);
 }
@@ -428,6 +431,12 @@ const reduceX = {
 const reduceY = {
   reduceIndex(I, X, {y}) {
     return y;
+  }
+};
+
+export const reduceZ = {
+  reduceIndex(I, X, {z}) {
+    return z;
   }
 };
 
