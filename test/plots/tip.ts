@@ -27,7 +27,7 @@ export async function tipBin() {
 
 export async function tipBinStack() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", tip: true})).plot();
+  return Plot.rectY(olympians, Plot.binX({y: "count", sort: "z"}, {x: "weight", fill: "sex", tip: true})).plot();
 }
 
 export async function tipCell() {

@@ -80,25 +80,25 @@
     <text transform="translate(620,430)">Frequency →</text>
   </g>
   <g aria-label="bar">
-    <rect x="40" width="2.0458553791887084" y="206" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="406" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="386" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="186" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="166" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="146" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="366" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="126" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="346" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="326" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="106" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="86" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="306" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="66" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="286" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="266" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="46" height="18"></rect>
     <rect x="40" width="3.0687830687830626" y="246" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="186" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="146" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="406" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="326" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="266" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="346" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="366" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="86" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="126" height="18"></rect>
     <rect x="40" width="1.0229276895943542" y="26" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="286" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="106" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="386" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="306" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="206" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="66" height="18"></rect>
     <rect x="40" width="3.0687830687830626" y="226" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="46" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="166" height="18"></rect>
   </g>
 </svg>

@@ -49,16 +49,16 @@
     <text y="0.71em" transform="translate(561,50)">f</text>
   </g>
   <g aria-label="bar">
-    <rect x="48" width="51" y="20" height="30"></rect>
-    <rect x="105" width="51" y="20" height="30"></rect>
-    <rect x="162" width="51" y="20" height="30"></rect>
-    <rect x="219" width="51" y="20" height="30"></rect>
-    <rect x="276" width="51" y="20" height="30"></rect>
-    <rect x="333" width="51" y="20" height="30"></rect>
-    <rect x="390" width="51" y="20" height="30"></rect>
     <rect x="447" width="51" y="20" height="30"></rect>
     <rect x="504" width="51" y="20" height="30"></rect>
+    <rect x="48" width="51" y="20" height="30"></rect>
+    <rect x="162" width="51" y="20" height="30"></rect>
+    <rect x="219" width="51" y="20" height="30"></rect>
+    <rect x="333" width="51" y="20" height="30"></rect>
+    <rect x="105" width="51" y="20" height="30"></rect>
     <rect x="561" width="51" y="20" height="30"></rect>
+    <rect x="390" width="51" y="20" height="30"></rect>
+    <rect x="276" width="51" y="20" height="30"></rect>
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(26,0.5)"></g>
 </svg>

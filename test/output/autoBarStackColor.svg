@@ -50,12 +50,12 @@
     <text transform="translate(620,90)">Frequency →</text>
   </g>
   <g aria-label="bar">
-    <rect x="40" width="278.55263157894734" y="23" height="20" fill="#4269d0"></rect>
-    <rect x="40" width="129.73684210526315" y="45" height="20" fill="#4269d0"></rect>
-    <rect x="40" width="221.31578947368422" y="67" height="20" fill="#4269d0"></rect>
-    <rect x="318.55263157894734" width="278.55263157894734" y="23" height="20" fill="#efb118"></rect>
-    <rect x="169.73684210526315" width="129.73684210526315" y="45" height="20" fill="#efb118"></rect>
-    <rect x="261.3157894736842" width="232.76315789473688" y="67" height="20" fill="#efb118"></rect>
+    <rect x="40" width="278.55263157894734" y="23" height="20" fill="#efb118"></rect>
+    <rect x="40" width="129.73684210526315" y="45" height="20" fill="#efb118"></rect>
+    <rect x="40" width="232.76315789473688" y="67" height="20" fill="#efb118"></rect>
+    <rect x="318.55263157894734" width="278.55263157894734" y="23" height="20" fill="#4269d0"></rect>
+    <rect x="169.73684210526315" width="129.73684210526315" y="45" height="20" fill="#4269d0"></rect>
+    <rect x="272.7631578947369" width="221.31578947368422" y="67" height="20" fill="#4269d0"></rect>
     <rect x="597.1052631578947" width="22.894736842105317" y="23" height="20" fill="#ff725c"></rect>
     <rect x="494.0789473684211" width="19.078947368420984" y="67" height="20" fill="#ff725c"></rect>
   </g>

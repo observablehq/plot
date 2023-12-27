@@ -40,9 +40,9 @@
     <text transform="translate(330,90)">island</text>
   </g>
   <g aria-label="cell">
+    <rect x="433" width="168" y="23" height="20"></rect>
     <rect x="59" width="168" y="67" height="20"></rect>
     <rect x="246" width="168" y="45" height="20"></rect>
-    <rect x="433" width="168" y="23" height="20"></rect>
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(84.5,10.5)"></g>
 </svg>

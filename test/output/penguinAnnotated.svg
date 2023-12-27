@@ -49,17 +49,17 @@
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
     <text transform="translate(620,90)">Frequency →</text>
   </g>
-  <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="75" y="20" width="545" height="70"></rect>
   <g aria-label="bar">
-    <rect x="75" width="256.9407894736842" y="23" height="20" fill="#4269d0"><title>FEMALE (73)</title></rect>
-    <rect x="75" width="119.67105263157896" y="67" height="20" fill="#4269d0"><title>FEMALE (34)</title></rect>
-    <rect x="75" width="204.14473684210526" y="45" height="20" fill="#4269d0"><title>FEMALE (58)</title></rect>
-    <rect x="331.9407894736842" width="256.9407894736842" y="23" height="20" fill="#efb118"><title>MALE (73)</title></rect>
-    <rect x="194.67105263157896" width="119.67105263157896" y="67" height="20" fill="#efb118"><title>MALE (34)</title></rect>
-    <rect x="279.14473684210526" width="214.70394736842104" y="45" height="20" fill="#efb118"><title>MALE (61)</title></rect>
+    <rect x="75" width="256.9407894736842" y="23" height="20" fill="#efb118"><title>MALE (73)</title></rect>
+    <rect x="75" width="119.67105263157896" y="67" height="20" fill="#efb118"><title>MALE (34)</title></rect>
+    <rect x="75" width="214.7039473684211" y="45" height="20" fill="#efb118"><title>MALE (61)</title></rect>
+    <rect x="331.9407894736842" width="256.9407894736842" y="23" height="20" fill="#4269d0"><title>FEMALE (73)</title></rect>
+    <rect x="194.67105263157896" width="119.67105263157896" y="67" height="20" fill="#4269d0"><title>FEMALE (34)</title></rect>
+    <rect x="289.7039473684211" width="204.1447368421052" y="45" height="20" fill="#4269d0"><title>FEMALE (58)</title></rect>
     <rect x="588.8815789473684" width="21.11842105263156" y="23" height="20" fill="#ff725c"><title>null (6)</title></rect>
     <rect x="493.8486842105263" width="17.5986842105263" y="45" height="20" fill="#ff725c"><title>null (5)</title></rect>
   </g>
+  <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="75" y="20" width="545" height="70"></rect>
   <g aria-label="text" text-anchor="end" font-style="italic" transform="translate(-2.5,-2.5)">
     <text transform="translate(620,90)"><tspan x="0" y="-2em">Count of penguins</tspan><tspan x="0" dy="1em">grouped by species</tspan><tspan x="0" dy="1em"> and colored by sex</tspan></text>
   </g>

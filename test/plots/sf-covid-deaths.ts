@@ -10,7 +10,8 @@ export async function sfCovidDeaths() {
         Plot.binX(
           {
             y: "sum",
-            filter: null
+            filter: null,
+            sort: "z"
           },
           {
             x: "specimen_collection_date",

@@ -77,30 +77,6 @@
     <text transform="translate(620,370)">weight →</text>
   </g>
   <g aria-label="rect">
-    <rect style="mix-blend-mode: multiply;" x="41" y="368.63013698630135" width="19" height="1.369863013698648" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="61" y="366.23287671232873" width="19" height="3.767123287671268" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="81" y="348.7671232876712" width="19" height="21.23287671232879" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="101" y="258.01369863013696" width="19" height="111.98630136986304" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="121" y="133.01369863013701" width="19" height="236.98630136986299" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="141" y="20" width="19" height="350" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="161" y="27.1917808219178" width="19" height="342.8082191780822" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="181" y="103.56164383561642" width="19" height="266.43835616438355" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="201" y="190.20547945205476" width="19" height="179.79452054794524" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="221" y="271.027397260274" width="19" height="98.97260273972603" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="241" y="331.3013698630137" width="19" height="38.69863013698631" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="261" y="349.45205479452056" width="19" height="20.547945205479436" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="281" y="356.6438356164383" width="19" height="13.35616438356169" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="301" y="360.7534246575342" width="19" height="9.246575342465803" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="321" y="363.83561643835617" width="19.000000000000057" height="6.164383561643831" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="341.00000000000006" y="367.26027397260276" width="18.999999999999943" height="2.7397260273972392" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="361" y="367.6027397260274" width="19" height="2.39726027397262" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="381" y="368.28767123287673" width="19" height="1.7123287671232674" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="401" y="367.6027397260274" width="19" height="2.39726027397262" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="421" y="368.28767123287673" width="19" height="1.7123287671232674" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="441" y="369.3150684931507" width="19" height="0.6849315068492956" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="461" y="369.6575342465754" width="18.999999999999943" height="0.3424657534246194" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="480.99999999999994" y="369.6575342465754" width="19.000000000000057" height="0.3424657534246194" fill="#4269d0"></rect>
-    <rect style="mix-blend-mode: multiply;" x="521" y="369.3150684931507" width="19" height="0.6849315068492956" fill="#4269d0"></rect>
     <rect style="mix-blend-mode: multiply;" x="61" y="369.6575342465754" width="19" height="0.3424657534246194" fill="#efb118"></rect>
     <rect style="mix-blend-mode: multiply;" x="101" y="367.6027397260274" width="19" height="2.39726027397262" fill="#efb118"></rect>
     <rect style="mix-blend-mode: multiply;" x="121" y="348.0821917808219" width="19" height="21.917808219178085" fill="#efb118"></rect>
@@ -128,6 +104,30 @@
     <rect style="mix-blend-mode: multiply;" x="561" y="368.972602739726" width="18.999999999999886" height="1.0273972602739718" fill="#efb118"></rect>
     <rect style="mix-blend-mode: multiply;" x="580.9999999999999" y="369.6575342465754" width="19.000000000000114" height="0.3424657534246194" fill="#efb118"></rect>
     <rect style="mix-blend-mode: multiply;" x="601" y="369.3150684931507" width="19" height="0.6849315068492956" fill="#efb118"></rect>
+    <rect style="mix-blend-mode: multiply;" x="41" y="368.63013698630135" width="19" height="1.369863013698648" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="61" y="366.23287671232873" width="19" height="3.767123287671268" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="81" y="348.7671232876712" width="19" height="21.23287671232879" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="101" y="258.01369863013696" width="19" height="111.98630136986304" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="121" y="133.01369863013701" width="19" height="236.98630136986299" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="141" y="20" width="19" height="350" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="161" y="27.1917808219178" width="19" height="342.8082191780822" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="181" y="103.56164383561642" width="19" height="266.43835616438355" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="201" y="190.20547945205476" width="19" height="179.79452054794524" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="221" y="271.027397260274" width="19" height="98.97260273972603" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="241" y="331.3013698630137" width="19" height="38.69863013698631" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="261" y="349.45205479452056" width="19" height="20.547945205479436" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="281" y="356.6438356164383" width="19" height="13.35616438356169" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="301" y="360.7534246575342" width="19" height="9.246575342465803" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="321" y="363.83561643835617" width="19.000000000000057" height="6.164383561643831" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="341.00000000000006" y="367.26027397260276" width="18.999999999999943" height="2.7397260273972392" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="361" y="367.6027397260274" width="19" height="2.39726027397262" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="381" y="368.28767123287673" width="19" height="1.7123287671232674" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="401" y="367.6027397260274" width="19" height="2.39726027397262" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="421" y="368.28767123287673" width="19" height="1.7123287671232674" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="441" y="369.3150684931507" width="19" height="0.6849315068492956" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="461" y="369.6575342465754" width="18.999999999999943" height="0.3424657534246194" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="480.99999999999994" y="369.6575342465754" width="19.000000000000057" height="0.3424657534246194" fill="#4269d0"></rect>
+    <rect style="mix-blend-mode: multiply;" x="521" y="369.3150684931507" width="19" height="0.6849315068492956" fill="#4269d0"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
