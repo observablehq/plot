@@ -29,7 +29,7 @@
   "scripts": {
     "test": "yarn test:mocha && yarn test:tsc && yarn test:lint && yarn test:prettier",
     "test:coverage": "c8 yarn test:mocha",
-    "test:mocha": "mkdir -p test/output && TZ=America/Los_Angeles mocha 'test/**/*-test.*' 'test/plot.js'",
+    "test:mocha": "mkdir -p test/output && TZ=America/Los_Angeles tsx node_modules/.bin/mocha 'test/**/*-test.*' 'test/plot.*'",
     "test:lint": "eslint src test",
     "test:prettier": "prettier --check src test",
     "test:tsc": "tsc",
@@ -47,7 +47,6 @@
     "./src/plot.js"
   ],
   "devDependencies": {
-    "@esbuild-kit/core-utils": "^3.1.0",
     "@observablehq/runtime": "^5.7.3",
     "@rollup/plugin-commonjs": "^25.0.2",
     "@rollup/plugin-json": "^6.0.0",
@@ -63,7 +62,6 @@
     "d3-geo-projection": "^4.0.0",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^9.1.0",
-    "get-tsconfig": "^4.1.0",
     "htl": "^0.3.0",
     "js-beautify": "1",
     "jsdom": "^23.0.1",
@@ -74,6 +72,7 @@
     "rollup": "^4.9.1",
     "topojson-client": "^3.1.0",
     "ts-morph": "^21.0.1",
+    "tsx": "^4.7.0",
     "typescript": "^5.0.2",
     "vite": "^5.0.10",
     "vitepress": "^1.0.0-rc.12"
