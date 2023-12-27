@@ -5,7 +5,7 @@ import * as path from "path";
 import beautify from "js-beautify";
 import assert from "./assert.js";
 import it from "./jsdom.js";
-import * as plots from "./plots/index.js";
+import * as plots from "./plots/index.ts"; // TODO index.js
 
 for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
