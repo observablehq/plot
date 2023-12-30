@@ -92,8 +92,7 @@ export class Dot extends Mark {
             circle
               ? (selection) => {
                   selection
-                    .attr("cx", X ? (i) => X[i] : cx)
-                    .attr("cy", Y ? (i) => Y[i] : cy)
+                    .attr("transform", template`translate(${X ? (i) => X[i] : cx},${Y ? (i) => Y[i] : cy})`)
                     .attr("r", R ? (i) => R[i] : r);
                 }
               : (selection) => {

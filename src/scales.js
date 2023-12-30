@@ -249,7 +249,7 @@ export function normalizeScale(key, scale, hint) {
   return createScale(key, hint === undefined ? undefined : [{hint}], {...scale});
 }
 
-function createScale(key, channels = [], options = {}) {
+export function createScale(key, channels = [], options = {}) {
   const type = inferScaleType(key, channels, options);
 
   // Warn for common misuses of implicit ordinal scales. We disable this test if
