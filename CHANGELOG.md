@@ -28,7 +28,7 @@ svg.plot-d6a7b5 {
 
 Previously Plot forced you to choose between [rect](https://observablehq.com/plot/marks/rect), [bar](https://observablehq.com/plot/marks/bar), and [cell](https://observablehq.com/plot/marks/cell) based on whether the *x* and *y* scales were ordinal or quantitative. Rejoice: the [rect mark](https://observablehq.com/plot/marks/rect) now supports *band* scales so you can simply use rect in all cases! 🎉 (The bar and cell marks still offer conveniences for ordinal scales, so use them if you like.)
 
-<img src="./img/rect-band.png" width="626" alt="A bar chart showing the relative frequency of English letters.">
+![A bar chart showing the relative frequency of English letters.](./img/rect-band.png){width=626}
 
 ```js
 Plot.rectY(alphabet, {x: "letter", y: "frequency"}).plot()
@@ -36,7 +36,7 @@ Plot.rectY(alphabet, {x: "letter", y: "frequency"}).plot()
 
 Categorical color scales now default to the new *observable10* color scheme by [Jeff Pettiross](https://github.com/pettiross). These colors are intended as a drop-in replacement for *tableau10* with similar ease of discrimination and ordering, but with a slightly more saturated vibe that helps charts pop.
 
-<img src="./img/observable10.png" width="600" alt="Color swatches of the ten colors in the observable10 color scheme: blue, yellow, red, teal, purple, pink, brown, light blue, green, and gray.">
+![Color swatches of the ten colors in the observable10 color scheme: blue, yellow, red, teal, purple, pink, brown, light blue, green, and gray.](./img/observable10.png){width=600}
 
 ```js
 Plot.cellX(d3.range(10)).plot({color: {type: "categorical"}})
@@ -44,7 +44,7 @@ Plot.cellX(d3.range(10)).plot({color: {type: "categorical"}})
 
 The new [difference mark](https://observablehq.com/plot/marks/difference) puts a metric in context by comparing it to another metric or constant value. Like the [area mark](https://observablehq.com/plot/marks/area), the region between two lines is filled; unlike the area mark, alternating color shows when the metric is above or below the comparison.
 
-<img src="./img/difference-zero.png" width="630" alt="A difference chart showing a moving average of global temperature anomaly; positive anomalies are shown in green, and negative anomalies are shown in blue.">
+![A difference chart showing a moving average of global temperature anomaly; positive anomalies are shown in green, and negative anomalies are shown in blue.](./img/difference-zero.png){width=630}
 
 ```js
 Plot.differenceY(gistemp, Plot.windowY(28, {x: "Date", y: "Anomaly"})).plot()
@@ -54,7 +54,7 @@ The chart above shows a moving average of global temperature anomaly; above-aver
 
 The difference mark can also compare a metric to its earlier self, showing change over time. The chart below shows the year-over-year change in Apple stock price; the gray region represents an increase over last year while the red region represents a decrease.
 
-<img src="./img/difference-shift.png" width="630" alt="A difference chart showing the year-over-year change in Apple stock price; the gray region represents an increase over last year, while the red region represents a decrease.">
+![A difference chart showing the year-over-year change in Apple stock price; the gray region represents an increase over last year, while the red region represents a decrease.](./img/difference-shift.png){width=630}
 
 ```js
 Plot.differenceY(
@@ -92,7 +92,7 @@ date,station,tmax,tmin
 
 To compare the average minimum temperatures of San Francisco and San Jose as another difference chart:
 
-<img src="./img/difference-find.png" width="630" alt="A difference chart showing moving averages of daily minimum temperatures of San Francisco and San Jose; the green region represents when San Francisco was warmer than San Jose, and the blue region when San Francisco was cooler than San Jose.">
+![A difference chart showing moving averages of daily minimum temperatures of San Francisco and San Jose; the green region represents when San Francisco was warmer than San Jose, and the blue region when San Francisco was cooler than San Jose.](./img/difference-find.png){width=630}
 
 ```js
 Plot.plot({
@@ -118,7 +118,7 @@ The green region above represents when San Francisco was warmer than San Jose, a
 
 The [tip mark](https://observablehq.com/plot/marks/tip) now supports a **preferredAnchor** option, providing greater control over tip placement: if the tip  fits within the frame at the preferred anchor, this anchor will be used. (In contrast, the **anchor** option uses the specified anchor regardless of whether it will fit.) The tip mark now also prefers the *bottom* anchor by default for a more traditional, less comic-like appearance.
 
-The [**marker** option](https://observablehq.com/plot/features/markers) now supports new marker types: *tick*, *tick-x*, and *tick-y*. The [bin](https://observablehq.com/plot/transforms/bin) and [group](https://observablehq.com/plot/transforms/group) transforms now pass _data_ to reducers. The [group](https://observablehq.com/plot/transforms/group) and [hexbin](https://observablehq.com/plot/transforms/hexbin) transforms now support _x_ and _y_ reducers.
+The [**marker** option](https://observablehq.com/plot/features/markers) now supports new marker types: *tick*, *tick-x*, and *tick-y*. The [bin](https://observablehq.com/plot/transforms/bin) and [group](https://observablehq.com/plot/transforms/group) transforms now pass *data* to reducers. The [group](https://observablehq.com/plot/transforms/group) and [hexbin](https://observablehq.com/plot/transforms/hexbin) transforms now support *x* and *y* reducers.
 
 This release includes several additional fixes:
 
@@ -132,9 +132,9 @@ This release includes several additional fixes:
 
 [Released September 20, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)
 
-The **tip** mark option can now pass options to the derived [tip mark](https://observablehq.com/plot/marks/tip); the options object can also specify the **pointer** option to control the derived tip’s pointer mode (_x_, _y_, or _xy_). The new **format** tip mark option enables greater control over order and formatting of channels.
+The **tip** mark option can now pass options to the derived [tip mark](https://observablehq.com/plot/marks/tip); the options object can also specify the **pointer** option to control the derived tip’s pointer mode (*x*, *y*, or *xy*). The new **format** tip mark option enables greater control over order and formatting of channels.
 
-<img src="./img/tip-custom.png" width="674" alt="A tip with a custom order and formatting of the channel values.">
+![A tip with a custom order and formatting of the channel values.](./img/tip-custom.png){width=674}
 
 ```js
 Plot.dot(olympians, {
@@ -159,7 +159,7 @@ Plot.dot(olympians, {
 
 Axes for ordinal scales now generalize the scale’s temporal or quantitative **interval** if any, resulting in more readable ticks. For instance, the bar chart below of monthly values now sports multi-line tick labels.
 
-<img src="./img/temporal-ordinal.png" width="672" alt="A temporal bar chart with a multi-line axis.">
+![A temporal bar chart with a multi-line axis.](./img/temporal-ordinal.png){width=672}
 
 ```js
 Plot.plot({
@@ -175,14 +175,15 @@ Plot now recognizes CSS Color Module [Level 4](https://www.w3.org/TR/css-color-4
 A channel value can now be given a label by specifying it as a {value, label} object; this may affect the label used in axes, legends, and tips.
 
 This release also includes numerous bug fixes:
-- exposed ordinal domains are now correctly deduplicated;
-- the default symbol set is now inferred correctly when **fill** is *currentColor*;
-- the **fontVariant** axis option now applies to the axis label in addition to ticks;
-- the tip mark is no longer briefly visible before asynchronous rendering;
-- the bin transform no longer generates undefined colors for empty bins;
-- the bin transform now uses the **interval** option to reduce *x1* & *x2* (and *y1* & *y2*);
-- the stack transform now correctly handles the *exclude* **facet** option;
-- the tree transform now correctly handles escaping with the **delimiter** option.
+
+* exposed ordinal domains are now correctly deduplicated;
+* the default symbol set is now inferred correctly when **fill** is *currentColor*;
+* the **fontVariant** axis option now applies to the axis label in addition to ticks;
+* the tip mark is no longer briefly visible before asynchronous rendering;
+* the bin transform no longer generates undefined colors for empty bins;
+* the bin transform now uses the **interval** option to reduce *x1* & *x2* (and *y1* & *y2*);
+* the stack transform now correctly handles the *exclude* **facet** option;
+* the tree transform now correctly handles escaping with the **delimiter** option.
 
 ## 0.6.10
 
@@ -190,7 +191,7 @@ This release also includes numerous bug fixes:
 
 The new **title** and **subtitle** [plot options](https://observablehq.com/plot/features/plots#other-options) specify a primary and secondary heading. Headings are implemented as h2 and h3 elements by default, but you can provide existing elements instead of text for greater control. Like the existing **caption** option, headings add context and assist interpretation.
 
-<img src="./img/title-subtitle.png" width="691" alt="A chart with a title, subtitle, and caption.">
+![A chart with a title, subtitle, and caption.](./img/title-subtitle.png){width=691}
 
 ```js
 Plot.plot({
@@ -208,7 +209,7 @@ When a chart has a title, subtitle, caption, or legend, Plot automatically wraps
 
 The new **clip** plot option determines the default clipping behavior if the [**clip** mark option](https://observablehq.com/plot/features/marks#mark-options) is not specified; set it to true to enable clipping. This option does not affect axis, grid, and frame marks, whose **clip** option defaults to false.
 
-<img src="./img/clip.png" width="621" alt="A line chart of the AAPL ticker, clipped to the frame.">
+![A line chart of the AAPL ticker, clipped to the frame.](./img/clip.png){width=621}
 
 ```js
 Plot.plot({
@@ -225,7 +226,7 @@ Plot.plot({
 
 The new [bollinger mark](https://observablehq.com/plot/marks/bollinger) composes a line representing a moving average and an area representing volatility as a band; the band thickness is proportional to the deviation of nearby values. The bollinger mark is built on the new [bollinger map method](https://observablehq.com/plot/marks/bollinger#bollinger), and is often used to analyze the price of financial instruments such as stocks.
 
-<img src="./img/bollinger.png" width="668" alt="A bollinger chart of the AAPL ticker, computed on a window of the 20 most recent values and a bandwidth of 2 standard deviations.">
+![A bollinger chart of the AAPL ticker, computed on a window of the 20 most recent values and a bandwidth of 2 standard deviations.](./img/bollinger.png){width=668}
 
 ```js
 Plot.bollingerY(aapl, {x: "Date", y: "Close", n: 20, k: 2}).plot()
@@ -233,7 +234,7 @@ Plot.bollingerY(aapl, {x: "Date", y: "Close", n: 20, k: 2}).plot()
 
 The [arrow mark](https://observablehq.com/plot/marks/arrow) supports a new **sweep** option to control the bend orientation. Below, we set this option to *-y* to draw arrows bulging right, independent of the relative vertical positions of its source and target.
 
-[<img src="./img/arc-diagram.png" width="521" alt="Detail of an arc diagram connecting characters in Les Misérables that appear in the same chapters.">](https://observablehq.com/@observablehq/plot-arc-diagram?intent=fork)
+[![Detail of an arc diagram connecting characters in Les Misérables that appear in the same chapters.](./img/arc-diagram.png){width=521}](https://observablehq.com/@observablehq/plot-arc-diagram?intent=fork)
 
 ```js
 Plot.plot({
@@ -251,8 +252,6 @@ Plot.plot({
 ```
 
 The [auto mark](https://observablehq.com/plot/marks/auto) now does a better job determining the appropriate bar mark implementation, such as with ordinal time series bar charts.
-
-<img src="./img/auto-bar.png" width="596" alt="A stacked bar chart from a time series.">
 
 ```js
 Plot.auto(timeSeries, {x: "date", y: {value: "value", reduce: "sum"}, color: "type", mark: "bar"}).plot()
@@ -272,15 +271,15 @@ The [stack transform](https://observablehq.com/plot/transforms/stack) now emits 
 
 Time [axes](https://observablehq.com/plot/marks/axis) now default to multi-line ticks, greatly improving readability. When a tick has the same second field value as the previous tick (*e.g.*, “19 Jan” after “17 Jan”), only the first field (“19”) is shown for brevity. The tick format is now based on the tick interval and hence is always consistent, whereas the prior “multi-scale” format varied based on the date, such as “Jan 29” (for Sunday, January 29) and “Tue 31” (for Tuesday, January 31). The new ticks are similar to [Datawrapper](https://blog.datawrapper.de/new-axis-ticks/).
 
-Before:<br>
-<img src="./img/time-axis-before.png" width="640" alt="A horizontal time axis showing dates “Wed 25”, “Fri 27”, “Jan 29”, “Tue 31”, and so on.">
+Before :  
+![A horizontal time axis showing dates “Wed 25”, “Fri 27”, “Jan 29”, “Tue 31”, and so on.](./img/time-axis-before.png){width=640}
 
-After:<br>
-<img src="./img/time-axis-after.png" width="640" alt="A horizontal time axis showing dates “17 Jan”, “19”, “21”, through “2 Feb”, “4”, and so on. When the month name is shown, it is on a second line below the date.">
+After:  
+![A horizontal time axis showing dates “17 Jan”, “19”, “21”, through “2 Feb”, “4”, and so on. When the month name is shown, it is on a second line below the date.](./img/time-axis-after.png){width=640}
 
 It is now easier to construct a “piecewise” [continuous scale](https://observablehq.com/plot/features/scales#continuous-scales) with more than two elements in the **domain** or **range**. This is most often used for a custom color scheme interpolating through fixed colors, such as this pleasing rainbow (sometimes used by artist [Dave Whyte](https://beesandbombs.com/), *a.k.a.* beesandbombs).
 
-<img src="./img/piecewise-rainbow.png" width="640" alt="A one-dimensional cell plot of the numbers 0 through 39, laid out horizontally, with color varying smoothly through red, yellow, green-blue, and purple.">
+![A one-dimensional cell plot of the numbers 0 through 39, laid out horizontally, with color varying smoothly through red, yellow, green-blue, and purple.](./img/piecewise-rainbow.png){width=640}
 
 ```js
 Plot.plot({
@@ -296,7 +295,7 @@ Plot.plot({
 
 The [tree mark](https://observablehq.com/plot/marks/tree) now supports a **textLayout** option, which defaults to *mirrored* to alternate the orientation of labels for internal (non-leaf) *vs.* external (leaf) nodes. The treeNode and treeLink marks now also support a new **treeFilter** option, allowing these marks to be filtered without affecting the tree layout.
 
-<img src="./img/tree-gods.png" width="640" alt="A small family tree diagram of Greek gods. Chaos beget Eros, Erebus, Tartarus, and Gaia; Gaia beget Mountains, Pontus, and Uranus.">
+![A small family tree diagram of Greek gods. Chaos beget Eros, Erebus, Tartarus, and Gaia; Gaia beget Mountains, Pontus, and Uranus.](./img/tree-gods.png){width=640}
 
 ```js
 Plot.plot({
@@ -313,7 +312,9 @@ Plot.plot({
 
 The [barycentric interpolator](https://observablehq.com/plot/marks/raster#interpolatorBarycentric) used by the [raster](https://observablehq.com/plot/marks/raster) and [contour](https://observablehq.com/plot/marks/contour) marks now behaves correctly outside the convex hull of samples. The new algorithm (below right) radiates outwards from the hull, ensuring a continuous image; the old algorithm (below left) radiated inwards from values imputed on the frame’s edges, producing discontinuities.
 
-<img src="./img/barycentric-before-after.png" width="640" alt="A before-and-after comparison of the barycentric interpolator applied to three sample points; in the new algorithm, lines radiate outward perpendicular from the triangle’s sides, producing a more coherent and understandable image.">
+![A stacked bar chart from a time series.](./img/auto-bar.png){width=596}
+
+![A before-and-after comparison of the barycentric interpolator applied to three sample points; in the new algorithm, lines radiate outward perpendicular from the triangle’s sides, producing a more coherent and understandable image.](./img/barycentric-before-after.png){width=640}
 
 The [tip mark](https://observablehq.com/plot/marks/tip) now automatically sets the pointer-events attribute to *none* when associated with the [pointer transform](https://observablehq.com/plot/interactions/pointer) when the the pointer is not sticky, as when hovering a chart without clicking to lock the pointer. This prevents the tip mark from interfering with interaction on other marks, such as clickable links.
 
@@ -329,7 +330,7 @@ The [pointer transform](https://observablehq.com/plot/interactions/pointer) now 
 
 The *x* and *y* scale default domains now incorporate geometry. This allows arbitrary polygonal geometry to be defined in abstract coordinates using the [geo mark](https://observablehq.com/plot/marks/geo) and then displayed using scales.
 
-<img src="./test/output/geoLine.svg" width="640" alt="A line chart of Apple stock price from 2013 to 2018.">
+![A line chart of Apple stock price from 2013 to 2018.](./test/output/geoLine.svg){width=640}
 
 ```js
 Plot.geo({type: "LineString", coordinates: aapl.map((d) => [d.Date, d.Close])}).plot()
@@ -337,7 +338,7 @@ Plot.geo({type: "LineString", coordinates: aapl.map((d) => [d.Date, d.Close])}).
 
 The stack transform’s **order** option now supports *-order* descending shorthand or a two-argument comparator. For example, you can use *-appearance* to sort by descending appearance. Below, a custom comparator is used to sort by ascending *group* and then descending *revenue*.
 
-<img src="./test/output/musicRevenueCustomOrder.svg" width="640" alt="A line chart of Apple stock price from 2013 to 2018.">
+![A line chart of Apple stock price from 2013 to 2018.](./test/output/musicRevenueCustomOrder.svg){width=640}
 
 ```js
 Plot.plot({
@@ -375,7 +376,7 @@ Fix duplicate application of scale transforms with the **tip** mark option. Fix 
 
 The new [tip mark](https://observablehq.com/plot/marks/tip) displays text, or name-value pairs derived from channels, in a floating box anchored to a given position in **x** and **y**. The tip mark is often paired with the new [pointer interaction](https://observablehq.com/plot/interactions/pointer) such that only the point closest to the pointer is rendered, allowing the tip mark to reveal details interactively by hovering the chart.
 
-<img src="./img/tip-line.webp" width="640" alt="A line chart of Apple stock price from 2013 to 2018, with an annotation on May 12, 2016, showing the two-year low closing price of $90.34.">
+![A line chart of Apple stock price from 2013 to 2018, with an annotation on May 12, 2016, showing the two-year low closing price of $90.34.](./img/tip-line.webp){width=640}
 
 ```js
 Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot()
@@ -394,7 +395,7 @@ Plot.plot({
 
 The tip mark can be also used to draw attention to points of interest and add commentary. When used with the **title** channel, the tip mark supports text wrapping and multi-line text.
 
-<img src="./img/tip-title.png" width="640" alt="A line chart of Apple stock price from 2013 to 2018, with an annotation describing the decline from 2015 through mid-2016, followed by a recovery.">
+![A line chart of Apple stock price from 2013 to 2018, with an annotation describing the decline from 2015 through mid-2016, followed by a recovery.](./img/tip-title.png){width=640}
 
 ```js
 Plot.plot({
@@ -415,7 +416,7 @@ Plot.plot({
 
 The pointer interaction can be paired with any mark, not just a tip: a red dot, say, to emphasize the focused point, or a rule to highlight its *x* or *y* position, or text to show a value. You can independently control the target position from the display using the **px** and **py** channels, say to show the currently-focused point’s value in the top-left corner.
 
-<img src="./img/pointer-text.webp" width="640" alt="A line chart of Apple stock price from 2013 to 2018; as the pointer moves over the chart, the date and close are shown in the top-left corner, while a red rule and dot highlights the focused point.">
+![A line chart of Apple stock price from 2013 to 2018; as the pointer moves over the chart, the date and close are shown in the top-left corner, while a red rule and dot highlights the focused point.](./img/pointer-text.webp){width=640}
 
 ```js
 Plot.plot({
@@ -434,7 +435,7 @@ The pointer interaction supports both two-dimensional (pointer) and one-dimensio
 
 The pointer interaction also powers the new [crosshair mark](https://observablehq.com/plot/interactions/crosshair) which shows the *x* (horizontal↔︎ position) and *y* (vertical↕︎ position) value of the point closest to the pointer on the bottom and left sides of the frame, respectively.
 
-<img src="./img/crosshair-dot.webp" width="640" alt="A scatterplot of penguins, comparing culmen depth (y) and culmen length (x); a pointer moves around the chart highlighting the x and y values of the closest point.">
+![A scatterplot of penguins, comparing culmen depth (y) and culmen length (x); a pointer moves around the chart highlighting the x and y values of the closest point.](./img/crosshair-dot.webp){width=640}
 
 ```js
 Plot.plot({
@@ -453,7 +454,7 @@ In addition to these exciting new interaction features, Plot 0.6.7 includes a va
 
 The **sort** mark option now supports *-channel* descending shorthand for [imputed scales domains](https://observablehq.com/plot/features/scales#sort-mark-option) and the [sort transform](https://observablehq.com/plot/transforms/sort). For example, sorting *x* by *-y* orders a bar chart by descending value:
 
-<img src="./img/bar-sort.png" width="640" alt="A bar chart showing English letters by descending frequency, starting with E (12.7%), T (9.1%), down to Z (0.7%).">
+![A bar chart showing English letters by descending frequency, starting with E (12.7%), T (9.1%), down to Z (0.7%).](./img/bar-sort.png){width=640}
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "-y"}}).plot()
@@ -471,7 +472,7 @@ Previously setting the scale **label** option would disable Plot’s automatic d
 
 Color scales now default to a *categorical* scale when a categorical color scheme is specified. For example, this no longer throws a “unknown quantitative scheme” error:
 
-<img src="./img/cell-categorical.png" width="640" alt="A row of 10 rectangular swatches showing the Tableau10 color scheme.">
+![A row of 10 rectangular swatches showing the Tableau10 color scheme.](./img/cell-categorical.png){width=640}
 
 ```js
 Plot.cellX(d3.range(10)).plot({color: {scheme: "Tableau10"}})
@@ -481,7 +482,7 @@ Time intervals can now be specified as integer multiples of a base time interval
 
 Mark transforms are now passed the plot’s *options* as a third argument; this allows the group, bin, and stack transforms (and other transforms) to check if the scale has a declared **interval** option, and if so, apply that interval before grouping. For example, to count athletes by age at 5-year intervals:
 
-<img src="./img/group-interval.png" width="640" alt="A bar chart showing the frequency of athletes by age, grouped at 5-year intervals; the chart peaks at 1990 with more than 4,500 athletes, following a skewed bell curve.">
+![A bar chart showing the frequency of athletes by age, grouped at 5-year intervals; the chart peaks at 1990 with more than 4,500 athletes, following a skewed bell curve.](./img/group-interval.png){width=640}
 
 ```js
 Plot.barY(olympians, Plot.groupX({y: "count"}, {x: "date_of_birth"})).plot({x: {interval: "5 years"}})
@@ -515,7 +516,7 @@ Fix the auto mark to choose the rect mark instead of rectX or rectY when appropr
 
 **Plot has a new documentation website!**
 
-👉 https://observablehq.com/plot 👈
+👉 <https://observablehq.com/plot> 👈
 
 The [image mark](https://observablehq.com/plot/marks/image) can now generate circular images with the **r** channel, and rotate images with the **rotate** channel.
 
@@ -533,23 +534,23 @@ Plot has a few improvements for server-side rendering. Plot now assumes a high p
 
 **TypeScript!** The feature you asked for most is here. 🎉 Plot now exports TypeScript type declarations (.d.ts) with precise types and documentation for all of Plot’s public API. This allows code editors such as VS Code to offer better suggestions, complete with inline documentation. For example, if you type “Plot.g”, Plot.geo is now suggested:
 
-<img src="./img/ts-property.png" width="840" alt="A screenshot of VS Code, showing suggested completions for Plot.g, including geo, geoCentroid, graticule, and other methods. A details panel showing documentation for Plot.geo, the top suggestion, is also shown.">
+![A screenshot of VS Code, showing suggested completions for Plot.g, including geo, geoCentroid, graticule, and other methods. A details panel showing documentation for Plot.geo, the top suggestion, is also shown.](./img/ts-property.png){width=840}
 
 Function calls also have hints, showing their expected arguments.
 
-<img src="./img/ts-function.png" width="840" alt="A screenshot of VS Code, showing documentation for calling Plot.geo, including the data and options arguments.">
+![A screenshot of VS Code, showing documentation for calling Plot.geo, including the data and options arguments.](./img/ts-function.png){width=840}
 
 Types are especially useful for suggesting well-known names, such as projections, scale types, and color schemes.
 
-<img src="./img/ts-enum.png" width="840" alt="A screenshot of VS Code, showing suggested completions for the color scale scheme option. An open menu lists color schemes, including Accent, Blues, BrBG, BuGn, and more.">
+![A screenshot of VS Code, showing suggested completions for the color scale scheme option. An open menu lists color schemes, including Accent, Blues, BrBG, BuGn, and more.](./img/ts-enum.png){width=840}
 
 TypeScript also helps for reading code; hover any symbol and immediately see the relevant documentation.
 
-<img src="./img/ts-hover.png" width="840" alt="A screenshot of VS Code, with the mouse hovering the color scale’s unknown option. A panel shows documentation explaining the option.">
+![A screenshot of VS Code, with the mouse hovering the color scale’s unknown option. A panel shows documentation explaining the option.](./img/ts-hover.png){width=840}
 
 Lastly, if you’re using Plot in a TypeScript project, you can now benefit from additional static type checking to find errors.
 
-<img src="./img/ts-error.png" width="840" alt="A screenshot of VS Code, showing a red squiggly underline under a typo in the code, which accidentally calls mark.plots. A panel suggests calling mark.plot instead.">
+![A screenshot of VS Code, showing a red squiggly underline under a typo in the code, which accidentally calls mark.plots. A panel suggests calling mark.plot instead.](./img/ts-error.png){width=840}
 
 If you have suggestions or clarifications on how to improve the documentation, please open an issue or discussion, or send us a pull request.
 
@@ -567,7 +568,7 @@ The interfaces for reduce and map implementations have changed. To better disamb
 
 The new top-level [**aspectRatio** option](https://observablehq.com/plot/features/plots#aspectRatio) changes the default plot **height** such that, assuming both *x* and *y* are *linear* scales, a scaled unit distance in *x* divided by a scaled unit distance in *y* is the given aspect ratio. For example, if *x* and *y* represent the same units (say, degrees Fahrenheit), and if the **aspectRatio** is one, then scaled distances in *x* and *y* will be equivalent.
 
-<img src="./img/aspect-ratio.webp" width="650" alt="A scatterplot of daily temperature variation (y) vs. daily low temperature (x).">
+![A scatterplot of daily temperature variation (y) vs. daily low temperature (x).](./img/aspect-ratio.webp){width=650}
 
 ```js
 Plot.plot({
@@ -589,7 +590,7 @@ Plot.plot({
 
 The new **textOverflow** option for the [text mark](https://observablehq.com/plot/marks/text) allows text to be truncated when a line of text is longer than the specified **lineWidth**. Overflowing characters can either be clipped (*clip*) or replaced with an ellipsis (*ellipsis*), either at the start, middle, or end of each line.
 
-<img src="./img/text-overflow.webp" width="620" alt="A demonstration of Plot’s text overflow methods, including clip-start, clip-end, ellipsis-start, ellipsis-middle, ellipsis-end, applied to titles of Hayao Miyazaki films.">
+![A demonstration of Plot’s text overflow methods, including clip-start, clip-end, ellipsis-start, ellipsis-middle, ellipsis-end, applied to titles of Hayao Miyazaki films.](./img/text-overflow.webp){width=620}
 
 When wrapping or truncating, the text mark now more accurately estimates the width of ellipses and emojis, and no longer separates combining marks or emoji character sequences such as 👨‍👩‍👧‍👦.
 
@@ -623,7 +624,7 @@ Fix Plot.auto to only default to the *bar* mark if *x* or *y* is zeroed. Fix Plo
 
 The new [auto mark](https://observablehq.com/plot/marks/auto) ([Plot.auto](https://observablehq.com/plot/marks/auto#auto)) automatically selects a mark type that best represents the given dimensions of data according to some simple heuristics. For example,
 
-[<img src="./img/auto-dot.webp" width="640" alt="A scatterplot height and weight of olympic athletes.">](https://observablehq.com/plot/marks/auto)
+[![A scatterplot height and weight of olympic athletes.](./img/auto-dot.webp){width=640}](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.auto(olympians, {x: "height", y: "weight"}).plot()
@@ -631,41 +632,41 @@ Plot.auto(olympians, {x: "height", y: "weight"}).plot()
 
 makes a scatterplot (equivalent to [dot](https://observablehq.com/plot/marks/dot)); adding **color** as
 
-[<img src="./img/auto-bin-color.webp" width="640" alt="A heatmap of .">](https://observablehq.com/plot/marks/auto)
+[![A heatmap of .](./img/auto-bin-color.webp){width=640}](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.auto(olympians, {x: "height", y: "weight", color: "count"}).plot()
 ```
 
-makes a heatmap (equivalent to [rect](https://observablehq.com/plot/marks/rect) and [bin](https://observablehq.com/plot/transforms/bin); chosen since _height_ and _weight_ are quantitative); switching to
+makes a heatmap (equivalent to [rect](https://observablehq.com/plot/marks/rect) and [bin](https://observablehq.com/plot/transforms/bin); chosen since *height* and *weight* are quantitative); switching to
 
-[<img src="./img/auto-line.webp" width="640" alt="A line chart of Apple stock price.">](https://observablehq.com/plot/marks/auto)
+[![A line chart of Apple stock price.](./img/auto-line.webp){width=640}](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
 ```
 
-makes a line chart (equivalent to [lineY](https://observablehq.com/plot/marks/line#lineY); chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
+makes a line chart (equivalent to [lineY](https://observablehq.com/plot/marks/line#lineY); chosen because the selected *x* dimension *Date* is temporal and monotonic, *i.e.*, the data is in chronological order);
 
-[<img src="./img/auto-bin.webp" width="640" alt="A histogram of penguin body mass.">](https://observablehq.com/plot/marks/auto)
+[![A histogram of penguin body mass.](./img/auto-bin.webp){width=640}](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.auto(penguins, {x: "body_mass_g"}).plot()
 ```
 
-makes a histogram (equivalent to [rectY](https://observablehq.com/plot/marks/rect#rectY) and [binX](https://observablehq.com/plot/transforms/bin#binX); chosen because the _body_mass_g_ column is quantitative); and
+makes a histogram (equivalent to [rectY](https://observablehq.com/plot/marks/rect#rectY) and [binX](https://observablehq.com/plot/transforms/bin#binX); chosen because the *body_mass_g* column is quantitative); and
 
-[<img src="./img/auto-group.webp" width="640" alt="A vertical bar chart of penguins by island.">](https://observablehq.com/plot/marks/auto)
+[![A vertical bar chart of penguins by island.](./img/auto-group.webp){width=640}](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.auto(penguins, {x: "island"}).plot()
 ```
 
-makes a bar chart (equivalent to [barY](https://observablehq.com/plot/marks/bar#barY) and [groupX](https://observablehq.com/plot/transforms/group#groupX); chosen because the _island_ column is categorical). The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API.
+makes a bar chart (equivalent to [barY](https://observablehq.com/plot/marks/bar#barY) and [groupX](https://observablehq.com/plot/transforms/group#groupX); chosen because the *island* column is categorical). The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API.
 
 Plot’s new [axis](https://observablehq.com/plot/marks/axis) and [grid](https://observablehq.com/plot/marks/grid) marks allow customization and styling of axes. This has been one of our most asked-for features, closing more than a dozen feature requests (see [#1197](https://github.com/observablehq/plot/pull/1197))! The new axis mark composes a [vector](https://observablehq.com/plot/marks/vector) for tick marks and a [text](https://observablehq.com/plot/marks/text) for tick and axis labels. As such, you can use the rich capabilities of these marks, such the **lineWidth** option to wrap long text labels.
 
-[<img src="./img/axis-multiline.webp" width="640" alt="A bar chart of parodical survey responses demonstrating text wrapping of long axis labels.">](https://observablehq.com/plot/marks/auto)
+[![A bar chart of parodical survey responses demonstrating text wrapping of long axis labels.](./img/axis-multiline.webp){width=640}](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.plot({
@@ -681,7 +682,7 @@ Plot.plot({
 
 And since axes and grids are now proper marks, you can interleave them with other marks, for example to produce ggplot2-style axes with a gray background and white grid lines.
 
-[<img src="./img/axis-ggplot.webp" width="640" alt="A line chart of Apple’s stock price demonstrating styled axes with a gray background overlaid with white grid lines.">](https://observablehq.com/plot/marks/auto)
+[![AA line chart of Apple’s stock price demonstrating styled axes with a gray background overlaid with white grid lines.](./img/axis-ggplot.webp){width=640}](https://observablehq.com/plot/marks/auto)
 
 ```js
 Plot.plot({
@@ -697,7 +698,7 @@ Plot.plot({
 
 The *x* and *y* axes are now automatically repeated in empty facets, improving readability by reducing eye travel to read tick values. Below, note that the *x* axis for culmen depth (with ticks at 15 and 20 mm) is rendered below the Adelie/null-sex facet in the top-right.
 
-[<img src="./img/facet-axes.webp" width="640" alt="A scatterplot showing the culmen length and depth of various penguins, faceted by species and sex; the facets are arranged in a grid, with the y-axis on the left and the x-axis on the bottom.">](ttps://observablehq.com/plot/marks/axis)
+[![A scatterplot showing the culmen length and depth of various penguins, faceted by species and sex; the facets are arranged in a grid, with the y-axis on the left and the x-axis on the bottom.](./img/facet-axes.webp){width=640}](ttps://observablehq.com/plot/marks/axis)
 
 ```js
 Plot.plot({
@@ -712,13 +713,13 @@ Plot.plot({
 })
 ```
 
-See [Plot: Axes](https://observablehq.com/plot/marks/axis) for more examples, including the new _both_ **axis** option to repeat axes on both sides of the plot, dashed grid lines via the **strokeDasharray** option, data-driven tick placement, and layering axes to show hierarchical time intervals (years, months, weeks).
+See [Plot: Axes](https://observablehq.com/plot/marks/axis) for more examples, including the new *both* **axis** option to repeat axes on both sides of the plot, dashed grid lines via the **strokeDasharray** option, data-driven tick placement, and layering axes to show hierarchical time intervals (years, months, weeks).
 
 Marks can now declare default margins via the **marginTop**, **marginRight**, **marginBottom**, and **marginLeft** options, and the **margin** shorthand. For each side, the maximum corresponding margin across marks becomes the plot’s default. While most marks default to zero margins (because they are drawn inside the chart area), Plot‘s axis mark provides default margins depending on their anchor. The facet margin options (*e.g.*, facet.**marginRight**) now correctly affect the positioning of the *x* and *y* axis labels.
 
 The new [*mark*.**facetAnchor**](https://observablehq.com/plot/features/facets#facetAnchor) mark option controls the facets in which the mark will appear when faceting. It defaults to null for all marks except for axis marks, where it defaults to *top-empty* if the axis anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
 
-The [frame mark](https://observablehq.com/plot/marks/frame)’s new **anchor** option allows you to draw a line on one side of the frame (as opposed to the default behavior where a rect is drawn around all four sides); this feature is now used by the *scale*.**line** option for *x* and *y* scales. The [text mark](https://observablehq.com/plot/marks/text) now supports soft hyphens (`\xad`); lines are now eligible to break at soft hyphens, in which case a hyphen (-) will appear at the end of the line before the break. The [raster mark](https://observablehq.com/plot/marks/raster) no longer crashes with an _identity_ color scale. The [voronoi mark](https://observablehq.com/plot/marks/delaunay#voronoi) now correctly respects the **target**, **mixBlendMode**, and **opacity** options.
+The [frame mark](https://observablehq.com/plot/marks/frame)’s new **anchor** option allows you to draw a line on one side of the frame (as opposed to the default behavior where a rect is drawn around all four sides); this feature is now used by the *scale*.**line** option for *x* and *y* scales. The [text mark](https://observablehq.com/plot/marks/text) now supports soft hyphens (`\xad`); lines are now eligible to break at soft hyphens, in which case a hyphen (-) will appear at the end of the line before the break. The [raster mark](https://observablehq.com/plot/marks/raster) no longer crashes with an *identity* color scale. The [voronoi mark](https://observablehq.com/plot/marks/delaunay#voronoi) now correctly respects the **target**, **mixBlendMode**, and **opacity** options.
 
 ## 0.6.2
 
@@ -726,7 +727,7 @@ The [frame mark](https://observablehq.com/plot/marks/frame)’s new **anchor** o
 
 The new [raster mark](https://observablehq.com/plot/marks/raster) and [contour mark](https://observablehq.com/plot/marks/contour) generate a raster image and smooth contours, respectively, from spatial samples. For example, the plot below shows a gridded digital elevation model of Maungawhau (R’s [`volcano` dataset](./test/data/volcano.json)) with contours every 10 meters:
 
-[<img src="./img/volcano.webp" width="640" alt="A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes">](https://observablehq.com/plot/marks/raster)
+[![A heatmap of Maungawhau’s topography, showing the circular caldera and surrounding slopes](./img/volcano.webp){width=640}](https://observablehq.com/plot/marks/raster)
 
 ```js
 Plot.plot({
@@ -740,7 +741,7 @@ Plot.plot({
 
 For non-gridded or sparse data, the raster and contour marks implement a variety of [spatial interpolation methods](https://observablehq.com/plot/marks/raster#spatial-interpolators) to populate the raster grid. The *barycentric* interpolation method, shown below with data from the [Great Britain aeromagnetic survey](https://www.bgs.ac.uk/datasets/gb-aeromagnetic-survey/), uses barycentric coordinates from a Delaunay triangulation of the samples (small black dots).
 
-[<img src="./img/ca55.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/plot/marks/raster)
+[![A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern](./img/ca55.webp){width=650}](https://observablehq.com/plot/marks/raster)
 
 ```js
 Plot.plot({
@@ -759,7 +760,7 @@ Plot.plot({
 
 The same data, with a smidge of blur, as filled contours in projected coordinates:
 
-[<img src="./img/ca55-contours.webp" width="650" alt="A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern">](https://observablehq.com/plot/marks/contour)
+[![A map showing the varying intensity of the magnetic field as periodically observed from an airplane flying in an approximate grid pattern](./img/ca55-contours.webp){width=650}](https://observablehq.com/plot/marks/contour)
 
 ```js
 Plot.plot({
@@ -773,7 +774,7 @@ Plot.plot({
 
 Naturally, the raster and contour mark are compatible with Plot’s [projection system](https://observablehq.com/plot/features/projections), allowing spatial samples to be shown in any geographic projection and in conjunction with other geographic data. The *equirectangular* projection is the natural choice for this gridded global water vapor dataset from [NASA Earth Observations](https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV&date=2022-11-01).
 
-[<img src="./img/water-vapor.png" width="650" alt="A map of global atmospheric water vapor, showing a higher concentration of water vapor near the equator">](https://observablehq.com/plot/marks/raster)
+[![A map of global atmospheric water vapor, showing a higher concentration of water vapor near the equator](./img/water-vapor.png){width=650}](https://observablehq.com/plot/marks/raster)
 
 ```js
 Plot.plot({
@@ -801,7 +802,7 @@ Plot.plot({
 
 The raster and contour mark also support sampling continuous spatial functions *f*(*x*, *y*). For example, here is the famous Mandelbrot set, with color encoding the number of iterations before the point escapes:
 
-[<img src="./img/mandelbrot.webp" width="640" alt="The Mandelbrot set">](https://observablehq.com/plot/marks/raster)
+[![The Mandelbrot set](./img/mandelbrot.webp){width=640}](https://observablehq.com/plot/marks/raster)
 
 ```js
 Plot.plot({
@@ -826,7 +827,7 @@ Plot.plot({
 
 The [vector mark](https://observablehq.com/plot/marks/vector) now supports the **shape** constant option; the built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](https://observablehq.com/plot/marks/vector#spike) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to set the shape radius.
 
-[<img src="./img/spike-map.webp" width="640" alt="A spike map of U.S. county population">](https://observablehq.com/@observablehq/plot-spike)
+[![A spike map of U.S. county population](./img/spike-map.webp){width=640}](https://observablehq.com/@observablehq/plot-spike)
 
 ```js
 Plot.plot({
@@ -846,7 +847,7 @@ Plot.plot({
 
 The new [geoCentroid transform](https://observablehq.com/plot/transforms/centroid#geoCentroid) and [centroid initializer](https://observablehq.com/plot/transforms/centroid#centroid) compute the spherical and projected planar centroids of geometry, respectively. The new [identity](https://observablehq.com/plot/features/transforms#identity) channel helper returns a source array as-is, avoiding an extra copy.
 
-The **interval** option now supports named time intervals such as “sunday” and “hour”, equivalent to the corresponding d3-time interval (_e.g._, d3.utcSunday and d3.utcHour). The [bin transform](https://observablehq.com/plot/transforms/bin) is now many times faster, especially when there are many bins and when binning temporal data.
+The **interval** option now supports named time intervals such as “sunday” and “hour”, equivalent to the corresponding d3-time interval (*e.g.*, d3.utcSunday and d3.utcHour). The [bin transform](https://observablehq.com/plot/transforms/bin) is now many times faster, especially when there are many bins and when binning temporal data.
 
 Diverging scales now correctly handle descending domains. When the stack **order** option is used without a *z* channel, a helpful error message is now thrown. The **clip** option *frame* now correctly handles band scales. Using D3 7.8, generated SVG path data is now rounded to three decimal points to reduce output size. Fix a crash when a facet scale’s domain includes a value for which there is no corresponding facet data. The bin, group, and hexbin transforms now correctly ignore undefined outputs. Upgrade D3 to 7.8.2.
 
