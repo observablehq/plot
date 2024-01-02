@@ -56,8 +56,8 @@ function decimateIndex(index, [X, Y], Z, {pixelSize = 0.5, curve} = {}) {
 function decimateK(k, pixelSize, options) {
   if (!pixelSize) return options;
   return initializer(options, function (data, facets, values, scales) {
-    let X = values.x ?? values.x2 ?? values.x1;
-    let Y = values.y ?? values.y2 ?? values.y1;
+    let X = values.x2 ?? values.x ?? values.x1;
+    let Y = values.y2 ?? values.y ?? values.y1;
     if (!X) throw new Error("missing channel x");
     if (!Y) throw new Error("missing channel y");
     const XY = [
