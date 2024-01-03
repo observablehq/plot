@@ -116,33 +116,33 @@
     <text transform="translate(620,590)">Women (%) →</text>
   </g>
   <g aria-label="bar">
-    <rect x="100" width="257.66089965397924" y="326" height="18"></rect>
-    <rect x="100" width="260" y="366" height="18"></rect>
     <rect x="100" width="250.20736352094798" y="266" height="18"></rect>
-    <rect x="100" width="260" y="386" height="18"></rect>
-    <rect x="100" width="260" y="406" height="18"></rect>
-    <rect x="100" width="65.45454545454547" y="26" height="18"></rect>
-    <rect x="100" width="174.380664652568" y="66" height="18"></rect>
-    <rect x="100" width="198.09523809523807" y="86" height="18"></rect>
-    <rect x="100" width="199.09909909909908" y="106" height="18"></rect>
     <rect x="100" width="262.1138211382114" y="546" height="18"></rect>
-    <rect x="100" width="224.68085106382972" y="226" height="18"></rect>
-    <rect x="100" width="255.66666666666663" y="286" height="18"></rect>
-    <rect x="100" width="337.037037037037" y="566" height="18"></rect>
-    <rect x="100" width="257.8512396694215" y="346" height="18"></rect>
-    <rect x="100" width="260" y="426" height="18"></rect>
-    <rect x="100" width="202.9591836734694" y="146" height="18"></rect>
-    <rect x="100" width="260" y="446" height="18"></rect>
-    <rect x="100" width="205.33820840950642" y="166" height="18"></rect>
-    <rect x="100" width="256.5333333333333" y="306" height="18"></rect>
-    <rect x="100" width="223.05263157894734" y="206" height="18"></rect>
-    <rect x="100" width="201.33333333333337" y="126" height="18"></rect>
-    <rect x="100" width="260" y="466" height="18"></rect>
     <rect x="100" width="260" y="486" height="18"></rect>
-    <rect x="100" width="241.42857142857144" y="246" height="18"></rect>
+    <rect x="100" width="198.09523809523807" y="86" height="18"></rect>
     <rect x="100" width="260" y="506" height="18"></rect>
     <rect x="100" width="260" y="526" height="18"></rect>
-    <rect x="100" width="209.61240310077517" y="186" height="18"></rect>
+    <rect x="100" width="257.66089965397924" y="326" height="18"></rect>
+    <rect x="100" width="256.5333333333333" y="306" height="18"></rect>
     <rect x="100" width="167.93201133144476" y="46" height="18"></rect>
+    <rect x="100" width="224.68085106382972" y="226" height="18"></rect>
+    <rect x="100" width="201.33333333333337" y="126" height="18"></rect>
+    <rect x="100" width="65.45454545454547" y="26" height="18"></rect>
+    <rect x="100" width="199.09909909909908" y="106" height="18"></rect>
+    <rect x="100" width="205.33820840950642" y="166" height="18"></rect>
+    <rect x="100" width="202.9591836734694" y="146" height="18"></rect>
+    <rect x="100" width="257.8512396694215" y="346" height="18"></rect>
+    <rect x="100" width="260" y="386" height="18"></rect>
+    <rect x="100" width="260" y="426" height="18"></rect>
+    <rect x="100" width="260" y="446" height="18"></rect>
+    <rect x="100" width="260" y="466" height="18"></rect>
+    <rect x="100" width="174.380664652568" y="66" height="18"></rect>
+    <rect x="100" width="260" y="406" height="18"></rect>
+    <rect x="100" width="255.66666666666663" y="286" height="18"></rect>
+    <rect x="100" width="260" y="366" height="18"></rect>
+    <rect x="100" width="209.61240310077517" y="186" height="18"></rect>
+    <rect x="100" width="223.05263157894734" y="206" height="18"></rect>
+    <rect x="100" width="241.42857142857144" y="246" height="18"></rect>
+    <rect x="100" width="337.037037037037" y="566" height="18"></rect>
   </g>
 </svg>

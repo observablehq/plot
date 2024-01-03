@@ -57,8 +57,8 @@
     <rect x="59" width="168" y="76.25" height="127.08333333333334" fill="#4269d0"></rect>
     <rect x="246" width="168" y="67.91666666666666" height="129.16666666666666" fill="#4269d0"></rect>
     <rect x="433" width="168" y="357.5" height="2.0833333333333144" fill="#4269d0"></rect>
-    <rect x="59" width="168" y="26.250000000000018" height="49.999999999999986" fill="#ccc"></rect>
     <rect x="246" width="168" y="20" height="47.91666666666666" fill="#ccc"></rect>
+    <rect x="59" width="168" y="26.250000000000018" height="49.999999999999986" fill="#ccc"></rect>
     <rect x="433" width="168" y="347.0833333333333" height="10.416666666666686" fill="#ccc"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">

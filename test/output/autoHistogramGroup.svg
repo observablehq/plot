@@ -52,9 +52,9 @@
     <text transform="translate(330,370)">island</text>
   </g>
   <g aria-label="bar">
+    <rect x="433" width="168" y="261.6666666666667" height="108.33333333333331"></rect>
     <rect x="59" width="168" y="20" height="350"></rect>
     <rect x="246" width="168" y="111.66666666666664" height="258.33333333333337"></rect>
-    <rect x="433" width="168" y="261.6666666666667" height="108.33333333333331"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>

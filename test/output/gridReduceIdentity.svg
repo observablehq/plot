@@ -68,12 +68,12 @@
   </g>
   <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="end" transform="translate(-9.5,0.5)">
     <text y="0.32em" transform="translate(639,18.291666666666664)">AK,ME</text>
-    <text y="0.32em" transform="translate(639,54.87499999999999)">VT,NH,MA</text>
+    <text y="0.32em" transform="translate(639,164.62499999999997)">CA,NV,UT,CO,KS,MO,KY,WV,DC,MD,DE</text>
+    <text y="0.32em" transform="translate(639,274.37499999999994)">HI,FL</text>
     <text y="0.32em" transform="translate(639,91.45833333333331)">WA,MT,ND,SD,MN,WI,MI,NY,CT,RI</text>
     <text y="0.32em" transform="translate(639,128.04166666666666)">OR,ID,WY,NE,IA,IL,IN,OH,PA,NJ</text>
-    <text y="0.32em" transform="translate(639,164.62499999999997)">CA,NV,UT,CO,KS,MO,KY,WV,DC,MD,DE</text>
     <text y="0.32em" transform="translate(639,201.20833333333331)">AZ,NM,OK,AR,TN,VA,NC</text>
     <text y="0.32em" transform="translate(639,237.79166666666663)">TX,LA,MS,AL,GA,SC</text>
-    <text y="0.32em" transform="translate(639,274.37499999999994)">HI,FL</text>
+    <text y="0.32em" transform="translate(639,54.87499999999999)">VT,NH,MA</text>
   </g>
 </svg>

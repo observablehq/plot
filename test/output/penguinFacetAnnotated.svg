@@ -89,11 +89,6 @@
   <g aria-label="x-axis label" text-anchor="end" transform="translate(37.5,27.5)">
     <text transform="translate(570,210)">Frequency →</text>
   </g>
-  <g aria-label="frame" transform="translate(0.5,0.5)">
-    <rect fill="none" stroke="currentColor" x="75" y="20" width="495" height="59" transform="translate(0,1)"></rect>
-    <rect fill="none" stroke="currentColor" x="75" y="20" width="495" height="59" transform="translate(0,66)"></rect>
-    <rect fill="none" stroke="currentColor" x="75" y="20" width="495" height="59" transform="translate(0,131)"></rect>
-  </g>
   <g aria-label="bar">
     <g transform="translate(0,1)">
       <rect x="75" width="87.82258064516128" y="22" height="17" fill="#4269d0"></rect>
@@ -110,10 +105,15 @@
       <rect x="294.55645161290323" width="3.991935483870975" y="22" height="17" fill="#ff725c"></rect>
     </g>
     <g transform="translate(0,131)">
-      <rect x="75" width="95.8064516129032" y="22" height="17" fill="#4269d0"></rect>
-      <rect x="170.8064516129032" width="91.81451612903228" y="22" height="17" fill="#efb118"></rect>
+      <rect x="75" width="91.81451612903226" y="22" height="17" fill="#efb118"></rect>
+      <rect x="166.81451612903226" width="95.80645161290323" y="22" height="17" fill="#4269d0"></rect>
       <rect x="262.6209677419355" width="19.95967741935482" y="22" height="17" fill="#ff725c"></rect>
     </g>
+  </g>
+  <g aria-label="frame" transform="translate(0.5,0.5)">
+    <rect fill="none" stroke="currentColor" x="75" y="20" width="495" height="59" transform="translate(0,1)"></rect>
+    <rect fill="none" stroke="currentColor" x="75" y="20" width="495" height="59" transform="translate(0,66)"></rect>
+    <rect fill="none" stroke="currentColor" x="75" y="20" width="495" height="59" transform="translate(0,131)"></rect>
   </g>
   <g aria-label="text" transform="translate(-3.5,4.5)">
     <g text-anchor="end" transform="translate(0,131)">
