@@ -64,6 +64,6 @@ function occlusion(k, h, minDistance, options) {
       }
     }
 
-    return {data, facets, channels: {[k]: {value: K}}};
+    return {data, facets, channels: {[k]: {value: K, source: null}}};
   });
 }
