@@ -103,3 +103,57 @@ export async function occlusionStocks() {
     ]
   });
 }
+
+export async function occlusionCancer() {
+  const cancer = await d3.csv<any>("data/cancer.csv", d3.autoType);
+  return Plot.plot({
+    width: 460,
+    height: 600,
+    marginRight: 120,
+    marginBottom: 20,
+    x: {
+      axis: "top",
+      domain: ["5 Year", "10 Year", "15 Year", "20 Year"],
+      label: null,
+      padding: 0
+    },
+    y: {axis: null, insetTop: 20},
+    marks: [
+      Plot.line(cancer, {x: "year", y: "survival", z: "name", strokeWidth: 1}),
+      Plot.text(
+        cancer,
+        Plot.occlusionY(
+          Plot.group(
+            {
+              text: "first"
+            },
+            {
+              text: "survival",
+              x: "year",
+              y: "survival",
+              textAnchor: "end",
+              dx: 5,
+              fontVariant: "tabular-nums",
+              stroke: "var(--plot-background)",
+              strokeWidth: 7,
+              fill: "currentColor",
+              tip: true
+            }
+          )
+        )
+      ),
+      Plot.text(
+        cancer,
+        Plot.occlusionY({
+          filter: (d) => d.year === "20 Year",
+          text: "name",
+          textAnchor: "start",
+          frameAnchor: "right",
+          dx: 10,
+          y: "survival"
+        })
+      )
+    ],
+    caption: "Estimates of survival rate (%), per type of cancer"
+  });
+}

@@ -25,34 +25,18 @@ function occlusion(k, h, minDistance, options) {
   const sk = k[0]; // e.g., the scale for x1 is x
   if (typeof minDistance !== "number" || !(minDistance >= 0)) throw new Error(`unsupported minDistance ${minDistance}`);
   if (minDistance === 0) return options;
-  return initializer(options, function (data, facets, {[k]: channel, text}, {[sk]: s}) {
-    const {value: K, scale} = channel ?? {};
-    if (K === undefined) throw new Error(`missing channel ${k}`);
-    const T = text?.value;
+  return initializer(options, function (data, facets, {[k]: channel}, {[sk]: s}) {
+    const {value, scale} = channel ?? {};
+    if (value === undefined) throw new Error(`missing channel ${k}`);
+    const K = value.slice();
     const H = valueof(data, options[h]);
     const bisect = bisector((d) => d.lo).left;
 
     for (const facet of facets) {
       for (const index of H ? group(facet, (i) => H[i]).values() : [facet]) {
-        const I = [];
-        const unique = new Set();
         const groups = [];
         for (const i of index) {
           if (scale === sk) K[i] = s(K[i]);
-
-          // Remove empty and duplicate labels.
-          if (T) {
-            if (T[i] == null || unique.has(`${K[i]} ${T[i]}`)) {
-              K[i] = NaN;
-              continue;
-            }
-            unique.add(`${K[i]} ${T[i]}`);
-          }
-
-          I.push(i);
-        }
-
-        for (const i of index) {
           let j = bisect(groups, K[i]);
           groups.splice(j, 0, {lo: K[i], hi: K[i], items: [i]});
 

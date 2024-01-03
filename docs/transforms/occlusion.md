@@ -43,18 +43,21 @@ Plot.plot({
   y: { axis: null, insetTop: 20 },
   marks: [
     Plot.line(cancer, {x: "year", y: "survival", z: "name", strokeWidth: 1}),
-    Plot.text(cancer, Plot.occlusionY({
-      text: "survival",
-      x: "year",
-      y: "survival",
-      textAnchor: "end",
-      dx: 5,
-      fontVariant: "tabular-nums",
-      stroke: "var(--plot-background)",
-      strokeWidth: 7,
-      fill: "currentColor",
-      tip: true
-    })),
+    Plot.text(cancer, Plot.occlusionY(
+      Plot.group({
+        text:"first"
+      }, {
+        text: "survival",
+        x: "year",
+        y: "survival",
+        textAnchor: "end",
+        dx: 5,
+        fontVariant: "tabular-nums",
+        stroke: "var(--plot-background)",
+        strokeWidth: 7,
+        fill: "currentColor"
+      })
+    )),
     Plot.text(cancer, Plot.occlusionY({
       filter: d => d.year === "20 Year",
       text: "name",
@@ -68,7 +71,7 @@ Plot.plot({
 })
 ```
 
-Without this transform, some of these labels would otherwise be masking each other. Note that when several labels share an identical position and text contents, only the first one is retained—and the others are filtered out (for example, value 62 in the first column).
+Without this transform, some of these labels would otherwise be masking each other. (Note the use of the [group](group.md) transform so that, when several labels share an identical position and text contents, only the first one is retained—and the others filtered out; for example, value 62 in the first column.)
 
 The **minDistance** option is a constant indicating the minimum distance between nodes, in pixels. It defaults to 11, about the height of a line of text with the default font size. (If zero, the transform is not applied.)
 
