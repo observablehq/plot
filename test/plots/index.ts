@@ -6,6 +6,7 @@ export * from "./aapl-close.js";
 export * from "./aapl-fancy-axis.js";
 export * from "./aapl-interval.js";
 export * from "./aapl-monthly.js";
+export * from "./aapl-stack-gains.js";
 export * from "./aapl-volume-rect.js";
 export * from "./aapl-volume.js";
 export * from "./anscombe-quartet.js";
