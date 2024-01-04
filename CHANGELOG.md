@@ -118,7 +118,7 @@ The green region above represents when San Francisco was warmer than San Jose, a
 
 The [tip mark](https://observablehq.com/plot/marks/tip) now supports a **preferredAnchor** option, providing greater control over tip placement: if the tip  fits within the frame at the preferred anchor, this anchor will be used. (In contrast, the **anchor** option uses the specified anchor regardless of whether it will fit.) The tip mark now also prefers the *bottom* anchor by default for a more traditional, less comic-like appearance.
 
-The [**marker** option](https://observablehq.com/plot/features/markers) now supports new marker types: *tick*, *tick-x*, and *tick-y*. The [bin](https://observablehq.com/plot/transforms/bin) and [group](https://observablehq.com/plot/transforms/group) transforms now pass _data_ to reducers. The [group](https://observablehq.com/plot/transforms/group) and [hexbin](https://observablehq.com/plot/transforms/hexbin) transforms now support _x_ and _y_ reducers.
+The [**marker** option](https://observablehq.com/plot/features/markers) now supports new marker types: *tick*, *tick-x*, and *tick-y*. The [bin](https://observablehq.com/plot/transforms/bin) and [group](https://observablehq.com/plot/transforms/group) transforms now pass *data* to reducers. The [group](https://observablehq.com/plot/transforms/group) and [hexbin](https://observablehq.com/plot/transforms/hexbin) transforms now support *x* and *y* reducers.
 
 This release includes several additional fixes:
 
@@ -132,7 +132,7 @@ This release includes several additional fixes:
 
 [Released September 20, 2023.](https://github.com/observablehq/plot/releases/tag/v0.6.11)
 
-The **tip** mark option can now pass options to the derived [tip mark](https://observablehq.com/plot/marks/tip); the options object can also specify the **pointer** option to control the derived tip’s pointer mode (_x_, _y_, or _xy_). The new **format** tip mark option enables greater control over order and formatting of channels.
+The **tip** mark option can now pass options to the derived [tip mark](https://observablehq.com/plot/marks/tip); the options object can also specify the **pointer** option to control the derived tip’s pointer mode (*x*, *y*, or *xy*). The new **format** tip mark option enables greater control over order and formatting of channels.
 
 <img src="./img/tip-custom.png" width="674" alt="A tip with a custom order and formatting of the channel values.">
 
@@ -175,14 +175,14 @@ Plot now recognizes CSS Color Module [Level 4](https://www.w3.org/TR/css-color-4
 A channel value can now be given a label by specifying it as a {value, label} object; this may affect the label used in axes, legends, and tips.
 
 This release also includes numerous bug fixes:
-- exposed ordinal domains are now correctly deduplicated;
-- the default symbol set is now inferred correctly when **fill** is *currentColor*;
-- the **fontVariant** axis option now applies to the axis label in addition to ticks;
-- the tip mark is no longer briefly visible before asynchronous rendering;
-- the bin transform no longer generates undefined colors for empty bins;
-- the bin transform now uses the **interval** option to reduce *x1* & *x2* (and *y1* & *y2*);
-- the stack transform now correctly handles the *exclude* **facet** option;
-- the tree transform now correctly handles escaping with the **delimiter** option.
+* exposed ordinal domains are now correctly deduplicated;
+* the default symbol set is now inferred correctly when **fill** is *currentColor*;
+* the **fontVariant** axis option now applies to the axis label in addition to ticks;
+* the tip mark is no longer briefly visible before asynchronous rendering;
+* the bin transform no longer generates undefined colors for empty bins;
+* the bin transform now uses the **interval** option to reduce *x1* & *x2* (and *y1* & *y2*);
+* the stack transform now correctly handles the *exclude* **facet** option;
+* the tree transform now correctly handles escaping with the **delimiter** option.
 
 ## 0.6.10
 
@@ -515,7 +515,7 @@ Fix the auto mark to choose the rect mark instead of rectX or rectY when appropr
 
 **Plot has a new documentation website!**
 
-👉 https://observablehq.com/plot 👈
+👉 <https://observablehq.com/plot> 👈
 
 The [image mark](https://observablehq.com/plot/marks/image) can now generate circular images with the **r** channel, and rotate images with the **rotate** channel.
 
@@ -637,7 +637,7 @@ makes a scatterplot (equivalent to [dot](https://observablehq.com/plot/marks/dot
 Plot.auto(olympians, {x: "height", y: "weight", color: "count"}).plot()
 ```
 
-makes a heatmap (equivalent to [rect](https://observablehq.com/plot/marks/rect) and [bin](https://observablehq.com/plot/transforms/bin); chosen since _height_ and _weight_ are quantitative); switching to
+makes a heatmap (equivalent to [rect](https://observablehq.com/plot/marks/rect) and [bin](https://observablehq.com/plot/transforms/bin); chosen since *height* and *weight* are quantitative); switching to
 
 [<img src="./img/auto-line.webp" width="640" alt="A line chart of Apple stock price.">](https://observablehq.com/plot/marks/auto)
 
@@ -645,7 +645,7 @@ makes a heatmap (equivalent to [rect](https://observablehq.com/plot/marks/rect) 
 Plot.auto(aapl, {x: "Date", y: "Close"}).plot()
 ```
 
-makes a line chart (equivalent to [lineY](https://observablehq.com/plot/marks/line#lineY); chosen because the selected *x* dimension *Date* is temporal and monotonic, _i.e._, the data is in chronological order);
+makes a line chart (equivalent to [lineY](https://observablehq.com/plot/marks/line#lineY); chosen because the selected *x* dimension *Date* is temporal and monotonic, *i.e.*, the data is in chronological order);
 
 [<img src="./img/auto-bin.webp" width="640" alt="A histogram of penguin body mass.">](https://observablehq.com/plot/marks/auto)
 
@@ -653,7 +653,7 @@ makes a line chart (equivalent to [lineY](https://observablehq.com/plot/marks/li
 Plot.auto(penguins, {x: "body_mass_g"}).plot()
 ```
 
-makes a histogram (equivalent to [rectY](https://observablehq.com/plot/marks/rect#rectY) and [binX](https://observablehq.com/plot/transforms/bin#binX); chosen because the _body_mass_g_ column is quantitative); and
+makes a histogram (equivalent to [rectY](https://observablehq.com/plot/marks/rect#rectY) and [binX](https://observablehq.com/plot/transforms/bin#binX); chosen because the *body_mass_g* column is quantitative); and
 
 [<img src="./img/auto-group.webp" width="640" alt="A vertical bar chart of penguins by island.">](https://observablehq.com/plot/marks/auto)
 
@@ -661,7 +661,7 @@ makes a histogram (equivalent to [rectY](https://observablehq.com/plot/marks/rec
 Plot.auto(penguins, {x: "island"}).plot()
 ```
 
-makes a bar chart (equivalent to [barY](https://observablehq.com/plot/marks/bar#barY) and [groupX](https://observablehq.com/plot/transforms/group#groupX); chosen because the _island_ column is categorical). The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API.
+makes a bar chart (equivalent to [barY](https://observablehq.com/plot/marks/bar#barY) and [groupX](https://observablehq.com/plot/transforms/group#groupX); chosen because the *island* column is categorical). The auto mark is intended to support fast exploratory analysis where the goal is to get a useful plot as quickly as possible. It’s also great if you’re new to Plot, since you can get started with a minimal API.
 
 Plot’s new [axis](https://observablehq.com/plot/marks/axis) and [grid](https://observablehq.com/plot/marks/grid) marks allow customization and styling of axes. This has been one of our most asked-for features, closing more than a dozen feature requests (see [#1197](https://github.com/observablehq/plot/pull/1197))! The new axis mark composes a [vector](https://observablehq.com/plot/marks/vector) for tick marks and a [text](https://observablehq.com/plot/marks/text) for tick and axis labels. As such, you can use the rich capabilities of these marks, such the **lineWidth** option to wrap long text labels.
 
@@ -712,13 +712,13 @@ Plot.plot({
 })
 ```
 
-See [Plot: Axes](https://observablehq.com/plot/marks/axis) for more examples, including the new _both_ **axis** option to repeat axes on both sides of the plot, dashed grid lines via the **strokeDasharray** option, data-driven tick placement, and layering axes to show hierarchical time intervals (years, months, weeks).
+See [Plot: Axes](https://observablehq.com/plot/marks/axis) for more examples, including the new *both* **axis** option to repeat axes on both sides of the plot, dashed grid lines via the **strokeDasharray** option, data-driven tick placement, and layering axes to show hierarchical time intervals (years, months, weeks).
 
 Marks can now declare default margins via the **marginTop**, **marginRight**, **marginBottom**, and **marginLeft** options, and the **margin** shorthand. For each side, the maximum corresponding margin across marks becomes the plot’s default. While most marks default to zero margins (because they are drawn inside the chart area), Plot‘s axis mark provides default margins depending on their anchor. The facet margin options (*e.g.*, facet.**marginRight**) now correctly affect the positioning of the *x* and *y* axis labels.
 
 The new [*mark*.**facetAnchor**](https://observablehq.com/plot/features/facets#facetAnchor) mark option controls the facets in which the mark will appear when faceting. It defaults to null for all marks except for axis marks, where it defaults to *top-empty* if the axis anchor is *top*, *right-empty* if anchor is *right*, *bottom-empty* if anchor is *bottom*, and *left-empty* if anchor is *left*. This ensures the proper positioning of the axes with respect to empty facets.
 
-The [frame mark](https://observablehq.com/plot/marks/frame)’s new **anchor** option allows you to draw a line on one side of the frame (as opposed to the default behavior where a rect is drawn around all four sides); this feature is now used by the *scale*.**line** option for *x* and *y* scales. The [text mark](https://observablehq.com/plot/marks/text) now supports soft hyphens (`\xad`); lines are now eligible to break at soft hyphens, in which case a hyphen (-) will appear at the end of the line before the break. The [raster mark](https://observablehq.com/plot/marks/raster) no longer crashes with an _identity_ color scale. The [voronoi mark](https://observablehq.com/plot/marks/delaunay#voronoi) now correctly respects the **target**, **mixBlendMode**, and **opacity** options.
+The [frame mark](https://observablehq.com/plot/marks/frame)’s new **anchor** option allows you to draw a line on one side of the frame (as opposed to the default behavior where a rect is drawn around all four sides); this feature is now used by the *scale*.**line** option for *x* and *y* scales. The [text mark](https://observablehq.com/plot/marks/text) now supports soft hyphens (`\xad`); lines are now eligible to break at soft hyphens, in which case a hyphen (-) will appear at the end of the line before the break. The [raster mark](https://observablehq.com/plot/marks/raster) no longer crashes with an *identity* color scale. The [voronoi mark](https://observablehq.com/plot/marks/delaunay#voronoi) now correctly respects the **target**, **mixBlendMode**, and **opacity** options.
 
 ## 0.6.2
 
@@ -846,7 +846,7 @@ Plot.plot({
 
 The new [geoCentroid transform](https://observablehq.com/plot/transforms/centroid#geoCentroid) and [centroid initializer](https://observablehq.com/plot/transforms/centroid#centroid) compute the spherical and projected planar centroids of geometry, respectively. The new [identity](https://observablehq.com/plot/features/transforms#identity) channel helper returns a source array as-is, avoiding an extra copy.
 
-The **interval** option now supports named time intervals such as “sunday” and “hour”, equivalent to the corresponding d3-time interval (_e.g._, d3.utcSunday and d3.utcHour). The [bin transform](https://observablehq.com/plot/transforms/bin) is now many times faster, especially when there are many bins and when binning temporal data.
+The **interval** option now supports named time intervals such as “sunday” and “hour”, equivalent to the corresponding d3-time interval (*e.g.*, d3.utcSunday and d3.utcHour). The [bin transform](https://observablehq.com/plot/transforms/bin) is now many times faster, especially when there are many bins and when binning temporal data.
 
 Diverging scales now correctly handle descending domains. When the stack **order** option is used without a *z* channel, a helpful error message is now thrown. The **clip** option *frame* now correctly handles band scales. Using D3 7.8, generated SVG path data is now rounded to three decimal points to reduce output size. Fix a crash when a facet scale’s domain includes a value for which there is no corresponding facet data. The bin, group, and hexbin transforms now correctly ignore undefined outputs. Upgrade D3 to 7.8.2.
 
