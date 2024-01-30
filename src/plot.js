@@ -172,10 +172,11 @@ export function plot(options = {}) {
   };
 
   // Allows e.g. the pointer transform to support viewof.
-  context.dispatchValue = (value) => {
-    if (figure.value === value) return;
+  context.dispatchValue = (value, detail) => {
+    if (figure.value === value && figure._detail === detail) return;
     figure.value = value;
-    figure.dispatchEvent(new Event("input", {bubbles: true}));
+    figure._detail = detail;
+    figure.dispatchEvent(new CustomEvent("input", {bubbles: true, detail}));
   };
 
   // Reinitialize; for deriving channels dependent on other channels.
