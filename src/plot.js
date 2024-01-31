@@ -171,6 +171,13 @@ export function plot(options = {}) {
     return {...state, channels: {...state.channels, ...facetState?.channels}};
   };
 
+  class StickyEvent extends Event {
+    constructor(type, options) {
+      super(type, options);
+      this.sticky = options.sticky;
+    }
+  }
+
   // Allows e.g. the pointer transform to support viewof.
   context.dispatchValue = (value, sticky) => {
     if (figure.value === value && figure._sticky === sticky) return;
@@ -743,11 +750,4 @@ function outerRange(scale) {
   let x2 = scale(domain[domain.length - 1]);
   if (x2 < x1) [x1, x2] = [x2, x1];
   return [x1, x2 + scale.bandwidth()];
-}
-
-class StickyEvent extends Event {
-  constructor(type, options) {
-    super(type, options);
-    this.sticky = options.sticky;
-  }
 }
