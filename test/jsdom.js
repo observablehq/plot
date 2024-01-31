@@ -21,6 +21,7 @@ function withJsdom(run) {
     global.document = jsdom.window.document;
     global.navigator = jsdom.window.navigator;
     global.Event = jsdom.window.Event;
+    global.EventTarget = jsdom.window.EventTarget;
     global.Node = jsdom.window.Node;
     global.NodeList = jsdom.window.NodeList;
     global.HTMLCollection = jsdom.window.HTMLCollection;
@@ -32,6 +33,7 @@ function withJsdom(run) {
       delete global.document;
       delete global.navigator;
       delete global.Event;
+      delete global.EventTarget;
       delete global.Node;
       delete global.NodeList;
       delete global.HTMLCollection;
