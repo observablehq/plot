@@ -173,8 +173,8 @@ export function plot(options = {}) {
 
   class StickyEvent extends Event {
     constructor(type, options) {
-      super(type, options)
-      this.sticky = options.sticky
+      super(type, options);
+      this.sticky = options.sticky;
     }
   }
 
