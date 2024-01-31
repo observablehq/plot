@@ -172,11 +172,11 @@ export function plot(options = {}) {
   };
 
   // Allows e.g. the pointer transform to support viewof.
-  context.dispatchValue = (value, detail) => {
-    if (figure.value === value && figure._detail === detail) return;
+  context.dispatchValue = (value, sticky) => {
+    if (figure.value === value && figure._sticky === sticky) return;
     figure.value = value;
-    figure._detail = detail;
-    figure.dispatchEvent(new CustomEvent("input", {bubbles: true, detail}));
+    figure._sticky = sticky;
+    figure.dispatchEvent(new StickyEvent("input", {bubbles: true, sticky}));
   };
 
   // Reinitialize; for deriving channels dependent on other channels.
@@ -743,4 +743,11 @@ function outerRange(scale) {
   let x2 = scale(domain[domain.length - 1]);
   if (x2 < x1) [x1, x2] = [x2, x1];
   return [x1, x2 + scale.bandwidth()];
+}
+
+class StickyEvent extends Event {
+  constructor(type, options) {
+    super(type, options)
+    this.sticky = options.sticky
+  }
 }
