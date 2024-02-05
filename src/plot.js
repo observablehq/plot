@@ -178,8 +178,6 @@ export function plot(options = {}) {
     }
   }
 
-  context.stickyState = undefined;
-
   // Allows e.g. the pointer transform to support viewof.
   context.dispatchValue = (value, sticky) => {
     if (figure.value === value && context.stickyState === sticky) return;
