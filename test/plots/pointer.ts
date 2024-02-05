@@ -63,8 +63,7 @@ export async function pointerSticky() {
       textarea.value = JSON.stringify(value, null, 2);
     }
   };
-  // initialize the textarea to null
-  textarea.value = JSON.stringify(null);
+  textarea.value = JSON.stringify(null); // initialize the textarea to null
   plot.oninput = oninput; // update during interaction
   return html`<figure>${plot}${textarea}</figure>`;
 }
