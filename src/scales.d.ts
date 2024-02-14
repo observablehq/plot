@@ -541,7 +541,7 @@ export interface ScaleOptions extends ScaleDefaults {
    * scale with varying transparency. The symbol legend is combined with color
    * if they encode the same channels.
    *
-   * For *color*, *opacity*, and *symbol* scales only. See also *plot*.legend.
+   * For *color*, *opacity*, and *symbol* scales only.
    */
   legend?: LegendOptions["legend"] | boolean | null;
 
