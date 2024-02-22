@@ -1,5 +1,5 @@
 import type {GeoPermissibleObjects} from "d3";
-import type {ChannelValue, ChannelValueSpec} from "../channel.js";
+import type {ChannelValueSpec} from "../channel.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
 /** Options for the geo mark. */
@@ -8,7 +8,7 @@ export interface GeoOptions extends MarkOptions {
    * A required channel for the geometry to render; defaults to identity,
    * assuming *data* is a GeoJSON object or an iterable of GeoJSON objects.
    */
-  geometry?: ChannelValue;
+  geometry?: ChannelValueSpec;
 
   /**
    * The size of Point and MultiPoint geometries, defaulting to a constant 3

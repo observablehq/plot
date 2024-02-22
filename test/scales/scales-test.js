@@ -2255,8 +2255,42 @@ it("mark(data, {channels}) respects a scale set to true or false", () => {
 
 it("mark(data, {channels}) rejects unknown scales", () => {
   assert.throws(
-    () => Plot.dot([], {channels: {fill: {value: (d) => d, scale: "neo"}}}).initialize().channels.fill.scale,
+    () => Plot.dot([], {channels: {fill: {value: (d) => d, scale: "neo"}}}).initialize(),
     /^Error: unknown scale: neo$/
+  );
+});
+
+it("geo(data, {geometry: {scale}}) rejects invalid scales", () => {
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: "projection"}}));
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: "auto"}}));
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: true}}));
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: null}}));
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity}}));
+  assert.ok(Plot.geo([], {geometry: {value: Plot.identity, scale: false}}));
+  assert.throws(
+    () => Plot.geo([], {geometry: {value: Plot.identity, scale: "x"}}),
+    /^Error: invalid projection scale: x$/
+  );
+  assert.throws(
+    () => Plot.geo([], {geometry: {value: Plot.identity, scale: "neo"}}),
+    /^Error: invalid projection scale: neo$/
+  );
+});
+
+it("centroid(data, {geometry: {scale}}) rejects invalid scales", () => {
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: "projection"}})).plot());
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: "auto"}})).plot());
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: true}})).plot());
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: null}})).plot());
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity}})).plot());
+  assert.ok(Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: false}})).plot());
+  assert.throws(
+    () => Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: "x"}})).plot(),
+    /^Error: invalid projection scale: x$/
+  );
+  assert.throws(
+    () => Plot.text([], Plot.centroid({geometry: {value: Plot.identity, scale: "neo"}})).plot(),
+    /^Error: invalid projection scale: neo$/
   );
 });
 
