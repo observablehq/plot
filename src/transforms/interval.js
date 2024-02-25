@@ -12,7 +12,7 @@ function maybeIntervalValue(value, {interval}) {
 
 function maybeIntervalK(k, maybeInsetK, options, trivial) {
   const {[k]: v, [`${k}1`]: v1, [`${k}2`]: v2} = options;
-  const {value, interval} = maybeIntervalValue(v, options);
+  const {value, interval, scale} = maybeIntervalValue(v, options);
   if (value == null || (interval == null && !trivial)) return options;
   const label = labelof(v);
   if (interval == null) {
@@ -33,31 +33,37 @@ function maybeIntervalK(k, maybeInsetK, options, trivial) {
   return maybeInsetK({
     ...options,
     [k]: undefined,
-    [`${k}1`]: v1 === undefined ? {transform, label} : v1,
-    [`${k}2`]: v2 === undefined ? {transform: (data) => transform(data).map((v) => interval.offset(v)), label} : v2
+    [`${k}1`]: v1 === undefined ? {value: {transform, label}, scale} : v1,
+    [`${k}2`]:
+      v2 === undefined
+        ? {value: {transform: (data) => transform(data).map((v) => interval.offset(v)), label}, scale}
+        : v2
   });
 }
 
 function maybeIntervalMidK(k, maybeInsetK, options) {
   const {[k]: v} = options;
-  const {value, interval} = maybeIntervalValue(v, options);
+  const {value, interval, scale} = maybeIntervalValue(v, options);
   if (value == null || interval == null) return options;
   return maybeInsetK({
     ...options,
     [k]: {
-      label: labelof(v),
-      transform: (data) => {
-        const V1 = map(valueof(data, value), (v) => interval.floor(v));
-        const V2 = V1.map((v) => interval.offset(v));
-        return V1.map(
-          isTemporal(V1)
-            ? (v1, v2) =>
-                v1 == null || isNaN((v1 = +v1)) || ((v2 = V2[v2]), v2 == null) || isNaN((v2 = +v2))
-                  ? undefined
-                  : new Date((v1 + v2) / 2)
-            : (v1, v2) => (v1 == null || ((v2 = V2[v2]), v2 == null) ? NaN : (+v1 + +v2) / 2)
-        );
-      }
+      value: {
+        label: labelof(v),
+        transform: (data) => {
+          const V1 = map(valueof(data, value), (v) => interval.floor(v));
+          const V2 = V1.map((v) => interval.offset(v));
+          return V1.map(
+            isTemporal(V1)
+              ? (v1, v2) =>
+                  v1 == null || isNaN((v1 = +v1)) || ((v2 = V2[v2]), v2 == null) || isNaN((v2 = +v2))
+                    ? undefined
+                    : new Date((v1 + v2) / 2)
+              : (v1, v2) => (v1 == null || ((v2 = V2[v2]), v2 == null) ? NaN : (+v1 + +v2) / 2)
+          );
+        }
+      },
+      scale
     }
   });
 }

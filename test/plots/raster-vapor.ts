@@ -30,7 +30,7 @@ export async function rasterVapor2() {
       Plot.raster(await vapor(), {
         width: 360,
         height: 180,
-        fill: {value: (d) => (d > 4 ? "red" : null), scale: null}
+        fill: (d) => (d > 4 ? "red" : null)
       })
     ]
   });
