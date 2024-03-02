@@ -1,0 +1,198 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="928" height="150" viewBox="0 0 928 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="fy-axis tick label" transform="translate(-8.5,0.5)">
+    <g text-anchor="end" transform="translate(1,0)">
+      <text y="0.32em" transform="translate(60,44)">2011</text>
+    </g>
+    <g text-anchor="end" transform="translate(1,31)">
+      <text y="0.32em" transform="translate(60,44)">2014</text>
+    </g>
+    <g text-anchor="end" transform="translate(1,62)">
+      <text y="0.32em" transform="translate(60,44)">2017</text>
+    </g>
+  </g>
+  <g aria-label="fy-axis label" transform="translate(-57.5,0.5)">
+    <text y="0.71em" transform="translate(61,75) rotate(-90)">year</text>
+  </g>
+  <g aria-label="fx-axis tick label" transform="translate(0.5,-8.5)">
+    <g transform="translate(1,0)">
+      <text transform="translate(157.5,30)">Low income</text>
+    </g>
+    <g transform="translate(218,0)">
+      <text transform="translate(157.5,30)">Lower middle income</text>
+    </g>
+    <g transform="translate(435,0)">
+      <text transform="translate(157.5,30)">Upper middle income</text>
+    </g>
+    <g transform="translate(652,0)">
+      <text transform="translate(157.5,30)">High income</text>
+    </g>
+  </g>
+  <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
+    <text y="0.71em" transform="translate(484,30)">group</text>
+  </g>
+  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+    <g fill="none" stroke="currentColor" transform="translate(1,62)">
+      <path transform="translate(81.66666666666666,58)" d="M0,0L0,6"></path>
+      <path transform="translate(125,58)" d="M0,0L0,6"></path>
+      <path transform="translate(168.33333333333334,58)" d="M0,0L0,6"></path>
+      <path transform="translate(211.66666666666669,58)" d="M0,0L0,6"></path>
+      <path transform="translate(255,58)" d="M0,0L0,6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(218,62)">
+      <path transform="translate(81.66666666666666,58)" d="M0,0L0,6"></path>
+      <path transform="translate(125,58)" d="M0,0L0,6"></path>
+      <path transform="translate(168.33333333333334,58)" d="M0,0L0,6"></path>
+      <path transform="translate(211.66666666666669,58)" d="M0,0L0,6"></path>
+      <path transform="translate(255,58)" d="M0,0L0,6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(435,62)">
+      <path transform="translate(81.66666666666666,58)" d="M0,0L0,6"></path>
+      <path transform="translate(125,58)" d="M0,0L0,6"></path>
+      <path transform="translate(168.33333333333334,58)" d="M0,0L0,6"></path>
+      <path transform="translate(211.66666666666669,58)" d="M0,0L0,6"></path>
+      <path transform="translate(255,58)" d="M0,0L0,6"></path>
+    </g>
+    <g fill="none" stroke="currentColor" transform="translate(652,62)">
+      <path transform="translate(81.66666666666666,58)" d="M0,0L0,6"></path>
+      <path transform="translate(125,58)" d="M0,0L0,6"></path>
+      <path transform="translate(168.33333333333334,58)" d="M0,0L0,6"></path>
+      <path transform="translate(211.66666666666669,58)" d="M0,0L0,6"></path>
+      <path transform="translate(255,58)" d="M0,0L0,6"></path>
+    </g>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(0.5,9.5)">
+    <g font-variant="tabular-nums" transform="translate(1,62)">
+      <text y="0.71em" transform="translate(81.66666666666666,58)">20</text>
+      <text y="0.71em" transform="translate(125,58)">40</text>
+      <text y="0.71em" transform="translate(168.33333333333334,58)">60</text>
+      <text y="0.71em" transform="translate(211.66666666666669,58)">80</text>
+      <text y="0.71em" transform="translate(255,58)">100</text>
+    </g>
+    <g font-variant="tabular-nums" transform="translate(218,62)">
+      <text y="0.71em" transform="translate(81.66666666666666,58)">20</text>
+      <text y="0.71em" transform="translate(125,58)">40</text>
+      <text y="0.71em" transform="translate(168.33333333333334,58)">60</text>
+      <text y="0.71em" transform="translate(211.66666666666669,58)">80</text>
+      <text y="0.71em" transform="translate(255,58)">100</text>
+    </g>
+    <g font-variant="tabular-nums" transform="translate(435,62)">
+      <text y="0.71em" transform="translate(81.66666666666666,58)">20</text>
+      <text y="0.71em" transform="translate(125,58)">40</text>
+      <text y="0.71em" transform="translate(168.33333333333334,58)">60</text>
+      <text y="0.71em" transform="translate(211.66666666666669,58)">80</text>
+      <text y="0.71em" transform="translate(255,58)">100</text>
+    </g>
+    <g font-variant="tabular-nums" transform="translate(652,62)">
+      <text y="0.71em" transform="translate(81.66666666666666,58)">20</text>
+      <text y="0.71em" transform="translate(125,58)">40</text>
+      <text y="0.71em" transform="translate(168.33333333333334,58)">60</text>
+      <text y="0.71em" transform="translate(211.66666666666669,58)">80</text>
+      <text y="0.71em" transform="translate(255,58)">100</text>
+    </g>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(907,120)">value →</text>
+  </g>
+  <g aria-label="frame" transform="translate(0.5,0.5)">
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(1,0)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(1,31)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(1,62)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(218,0)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(218,31)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(218,62)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(435,0)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(435,31)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(435,62)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(652,0)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(652,31)"></rect>
+    <rect fill="none" stroke="currentColor" x="60" y="30" width="195" height="28" transform="translate(652,62)"></rect>
+  </g>
+  <g aria-label="link" transform="translate(0.5,0.5)">
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(1,0)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M62.167,44L72.567,44" marker-end="url(#plot-marker-1)"></path>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(1,31)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-2">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M80.8,44L95.317,44" marker-end="url(#plot-marker-2)"></path>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(1,62)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-3">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M103.117,44L125,44" marker-end="url(#plot-marker-3)"></path>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(218,0)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-4">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M89.033,44L112.65,44" marker-end="url(#plot-marker-4)"></path>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(218,31)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-5">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M115.467,44L142.333,44" marker-end="url(#plot-marker-5)"></path>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(218,62)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-6">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M153.167,44L174.183,44" marker-end="url(#plot-marker-6)"></path>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(435,0)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-7">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M151.867,44L172.233,44" marker-end="url(#plot-marker-7)"></path>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(435,31)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-8">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M187.183,44L199.75,44" marker-end="url(#plot-marker-8)"></path>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(435,62)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-9">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M188.483,44L205.167,44" marker-end="url(#plot-marker-9)"></path>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(652,0)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-10">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M225.1,44L234.417,44" marker-end="url(#plot-marker-10)"></path>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(652,31)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-11">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M238.533,44L240.267,44" marker-end="url(#plot-marker-11)"></path>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-miterlimit="1" transform="translate(652,62)">
+      <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-12">
+        <path d="M-1.5,-3l3,3l-3,3"></path>
+      </marker>
+      <path d="M239.617,44L243.083,44" marker-end="url(#plot-marker-12)"></path>
+    </g>
+  </g>
+</svg>

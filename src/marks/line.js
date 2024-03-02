@@ -7,6 +7,7 @@ import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.j
 import {
   applyDirectStyles,
   applyIndirectStyles,
+  applyFrameAnchor,
   applyTransform,
   applyGroupedChannelStyles,
   groupIndex
@@ -29,8 +30,8 @@ export class Line extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x"},
-        y: {value: y, scale: "y"},
+        x: {value: x, scale: "x", optional: y != null},
+        y: {value: y, scale: "y", optional: true},
         z: {value: maybeZ(options), optional: true}
       },
       options,
@@ -51,6 +52,7 @@ export class Line extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
     const {curve} = this;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
@@ -71,8 +73,8 @@ export class Line extends Mark {
               : shapeLine()
                   .curve(curve)
                   .defined((i) => i >= 0)
-                  .x((i) => X[i])
-                  .y((i) => Y[i])
+                  .x(X ? (i) => X[i] : cx)
+                  .y(Y ? (i) => Y[i] : cy)
           )
       )
       .node();
