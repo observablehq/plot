@@ -3,7 +3,7 @@ import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
-import {keyof, keyword, number, string} from "./options.js";
+import {keyof, number, string} from "./options.js";
 import {warn} from "./warnings.js";
 
 export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
