@@ -297,15 +297,6 @@ export function* groupIndex(I, position, mark, channels) {
   }
 }
 
-// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
-// https://github.com/observablehq/plot/issues/181
-export function maybeClip(clip) {
-  if (clip === true) clip = "frame";
-  else if (clip === false) clip = null;
-  else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
-  return clip;
-}
-
 // Note: may mutate selection.node!
 function applyClip(selection, mark, dimensions, context) {
   let clipUrl;

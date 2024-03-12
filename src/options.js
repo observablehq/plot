@@ -1,4 +1,4 @@
-import {descending, quantile, range as rangei} from "d3";
+import {quantile, range as rangei} from "d3";
 import {parse as isoParse} from "isoformat";
 import {defined} from "./defined.js";
 import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
@@ -510,16 +510,6 @@ export function maybeFrameAnchor(value = "middle") {
   return maybeAnchor(value, "frameAnchor");
 }
 
-// Like a sort comparator, returns a positive value if the given array of values
-// is in ascending order, a negative value if the values are in descending
-// order. Assumes monotonicity; only tests the first and last values.
-export function orderof(values) {
-  if (values == null) return;
-  const first = values[0];
-  const last = values[values.length - 1];
-  return descending(first, last);
-}
-
 // Unlike {...defaults, ...options}, this ensures that any undefined (but
 // present) properties in options inherit the given default value.
 export function inherit(options = {}, ...rest) {
@@ -556,4 +546,13 @@ export function named(things) {
 
 export function maybeNamed(things) {
   return isIterable(things) ? named(things) : things;
+}
+
+// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
+// https://github.com/observablehq/plot/issues/181
+export function maybeClip(clip) {
+  if (clip === true) clip = "frame";
+  else if (clip === false) clip = null;
+  else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
+  return clip;
 }
