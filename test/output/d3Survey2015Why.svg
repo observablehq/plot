@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,10.5)">
     <path transform="translate(300,30)" d="M0,0L-6,0"></path>
     <path transform="translate(300,50)" d="M0,0L-6,0"></path>
     <path transform="translate(300,70)" d="M0,0L-6,0"></path>
@@ -50,7 +50,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-296.5,-26.5)">
     <text y="0.71em" transform="translate(300,30)">Why do you want to learn d3?</text>
   </g>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="300" x2="300" y1="30" y2="330"></line>
     <line x1="364" x2="364" y1="30" y2="330"></line>
     <line x1="428" x2="428" y1="30" y2="330"></line>
@@ -63,7 +63,7 @@
     <line x1="876" x2="876" y1="30" y2="330"></line>
     <line x1="940" x2="940" y1="30" y2="330"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,1)">
     <path transform="translate(300,30)" d="M0,0L0,-6"></path>
     <path transform="translate(364,30)" d="M0,0L0,-6"></path>
     <path transform="translate(428,30)" d="M0,0L0,-6"></path>

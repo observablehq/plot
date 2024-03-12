@@ -47,7 +47,7 @@
   <g aria-label="fx-axis label" transform="translate(0.5,-27.5)">
     <text y="0.71em" transform="translate(320.5,31)">sex</text>
   </g>
-  <g aria-label="y-grid" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" transform="translate(0,0.5)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(1,1)">
       <line x1="40" x2="305" y1="136.92" y2="136.92"></line>
       <line x1="40" x2="305" y1="110.51999999999998" y2="110.51999999999998"></line>
@@ -133,7 +133,7 @@
       <line x1="40" x2="305" y1="31.319999999999972" y2="31.319999999999972"></line>
     </g>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(1,1)">
       <path transform="translate(40,136.92)" d="M0,0L-6,0"></path>
       <path transform="translate(40,110.51999999999998)" d="M0,0L-6,0"></path>
@@ -224,7 +224,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(41,31)">↑ height</text>
   </g>
-  <g aria-label="x-grid" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" transform="translate(0.5,0)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(1,1)">
       <line x1="76.22302158273382" x2="76.22302158273382" y1="30" y2="162"></line>
       <line x1="171.54676258992808" x2="171.54676258992808" y1="30" y2="162"></line>
@@ -286,7 +286,7 @@
       <line x1="266.8705035971223" x2="266.8705035971223" y1="30" y2="162"></line>
     </g>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(1,736)">
       <path transform="translate(76.22302158273382,162)" d="M0,0L0,6"></path>
       <path transform="translate(171.54676258992808,162)" d="M0,0L0,6"></path>

@@ -24,7 +24,7 @@
   <g aria-label="fy-axis label" transform="translate(37.5,0.5)">
     <text transform="translate(600,195) rotate(-90)">sex</text>
   </g>
-  <g aria-label="y-grid" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" transform="translate(0,0.5)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="40" x2="600" y1="154.46" y2="154.46"></line>
       <line x1="40" x2="600" y1="121.25999999999998" y2="121.25999999999998"></line>
@@ -40,7 +40,7 @@
       <line x1="40" x2="600" y1="21.659999999999965" y2="21.659999999999965"></line>
     </g>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,154.46)" d="M0,0L-6,0"></path>
       <path transform="translate(40,121.25999999999998)" d="M0,0L-6,0"></path>
@@ -75,7 +75,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ height</text>
   </g>
-  <g aria-label="x-grid" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" transform="translate(0.5,0)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="76.25899280575538" x2="76.25899280575538" y1="20" y2="186"></line>
       <line x1="156.83453237410072" x2="156.83453237410072" y1="20" y2="186"></line>
@@ -95,7 +95,7 @@
       <line x1="559.7122302158274" x2="559.7122302158274" y1="20" y2="186"></line>
     </g>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,184)">
       <path transform="translate(76.25899280575538,186)" d="M0,0L0,6"></path>
       <path transform="translate(156.83453237410072,186)" d="M0,0L0,6"></path>

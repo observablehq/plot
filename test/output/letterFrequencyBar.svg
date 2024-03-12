@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9.5)">
     <path transform="translate(40,26)" d="M0,0L-6,0"></path>
     <path transform="translate(40,46)" d="M0,0L-6,0"></path>
     <path transform="translate(40,66)" d="M0,0L-6,0"></path>
@@ -69,7 +69,7 @@
     <text y="0.32em" transform="translate(40,506)">T</text>
     <text y="0.32em" transform="translate(40,526)">E</text>
   </g>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="20" y2="550"></line>
     <line x1="131.324200913242" x2="131.324200913242" y1="20" y2="550"></line>
     <line x1="222.64840182648402" x2="222.64840182648402" y1="20" y2="550"></line>
@@ -78,7 +78,7 @@
     <line x1="496.62100456621" x2="496.62100456621" y1="20" y2="550"></line>
     <line x1="587.945205479452" x2="587.945205479452" y1="20" y2="550"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,550)" d="M0,0L0,6"></path>
     <path transform="translate(131.324200913242,550)" d="M0,0L0,6"></path>
     <path transform="translate(222.64840182648402,550)" d="M0,0L0,6"></path>
@@ -127,7 +127,7 @@
     <rect x="40" width="4.337899543378995" y="46" height="18" aria-label="Q 0.1%"></rect>
     <rect x="40" width="3.37899543378996" y="26" height="18" aria-label="Z 0.1%"></rect>
   </g>
-  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" aria-hidden="true" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="20" y2="550"></line>
   </g>
 </svg>

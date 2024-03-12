@@ -24,7 +24,7 @@
   <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
     <text transform="translate(360.5,370)">sex</text>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,6)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,6)">
     <g fill="none" stroke="currentColor" transform="translate(1,0)">
       <path transform="translate(100,28)" d="M0,0L-6,0"></path>
       <path transform="translate(100,40)" d="M0,0L-6,0"></path>

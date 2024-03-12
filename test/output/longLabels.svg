@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,360)" d="M0,0L-6,0"></path>
     <path transform="translate(40,334.8148148148148)" d="M0,0L-6,0"></path>
     <path transform="translate(40,309.6296296296297)" d="M0,0L-6,0"></path>
@@ -48,7 +48,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Responses (%)</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(43.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(43.5,0)">
     <path transform="translate(50,360)" d="M0,0L0,6"></path>
     <path transform="translate(145,360)" d="M0,0L0,6"></path>
     <path transform="translate(240,360)" d="M0,0L0,6"></path>
@@ -72,7 +72,7 @@
     <rect x="145" width="86" y="20" height="340"></rect>
     <rect x="525" width="86" y="208.88888888888889" height="151.11111111111111"></rect>
   </g>
-  <g aria-label="y-grid" stroke="#eee" stroke-opacity="0.2" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="#eee" stroke-opacity="0.2" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="360" y2="360"></line>
     <line x1="40" x2="620" y1="334.8148148148148" y2="334.8148148148148"></line>
     <line x1="40" x2="620" y1="309.6296296296297" y2="309.6296296296297"></line>

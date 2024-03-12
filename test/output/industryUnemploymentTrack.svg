@@ -60,7 +60,7 @@
   <g aria-label="fy-axis label" transform="translate(-136.5,0.5)">
     <text y="0.71em" transform="translate(140,165) rotate(-90)">industry</text>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,266)">
       <path transform="translate(140,38)" d="M0,0L0,6"></path>
       <path transform="translate(234.52586206896552,38)" d="M0,0L0,6"></path>

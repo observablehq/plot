@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="940" y1="540" y2="540"></line>
     <line x1="40" x2="940" y1="491.48514851485146" y2="491.48514851485146"></line>
     <line x1="40" x2="940" y1="442.970297029703" y2="442.970297029703"></line>
@@ -26,7 +26,7 @@
     <line x1="40" x2="940" y1="103.36633663366337" y2="103.36633663366337"></line>
     <line x1="40" x2="940" y1="54.851485148514854" y2="54.851485148514854"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,540)" d="M0,0L-6,0"></path>
     <path transform="translate(40,491.48514851485146)" d="M0,0L-6,0"></path>
     <path transform="translate(40,442.970297029703)" d="M0,0L-6,0"></path>
@@ -55,7 +55,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Net favorability (%)</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(108.68708351056289,570)" d="M0,0L0,6"></path>
     <path transform="translate(181.17822203317735,570)" d="M0,0L0,6"></path>
     <path transform="translate(253.67928541046362,570)" d="M0,0L0,6"></path>

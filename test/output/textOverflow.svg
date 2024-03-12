@@ -33,7 +33,7 @@
       <text transform="translate(225.5,30)">monospace</text>
     </g>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(2,0)">
       <path transform="translate(180,42)" d="M0,0L-6,0"></path>
       <path transform="translate(180,63)" d="M0,0L-6,0"></path>

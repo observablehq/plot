@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="115.94647325943984" x2="115.94647325943984" y1="30" y2="780"></line>
     <line x1="204.6398824698001" x2="204.6398824698001" y1="30" y2="780"></line>
     <line x1="293.33329168016047" x2="293.33329168016047" y1="30" y2="780"></line>
@@ -21,7 +21,7 @@
     <line x1="470.7201101008811" x2="470.7201101008811" y1="30" y2="780"></line>
     <line x1="559.4135193112414" x2="559.4135193112414" y1="30" y2="780"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,1)">
     <path transform="translate(115.94647325943984,30)" d="M0,0L0,-6"></path>
     <path transform="translate(204.6398824698001,30)" d="M0,0L0,-6"></path>
     <path transform="translate(293.33329168016047,30)" d="M0,0L0,-6"></path>
@@ -94,7 +94,7 @@
     <rect x="288.36667280952383" width="4.966618870636637" y="84" height="13" fill="#e9a3c9"></rect>
     <rect x="293.33329168016047" width="47.62723371811745" y="308" height="13" fill="#a1d76a"></rect>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,7)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,7)">
     <path transform="translate(293.33329168016047,112)" d="M0,0L-6,0"></path>
     <path transform="translate(293.33329168016047,126)" d="M0,0L-6,0"></path>
     <path transform="translate(293.33329168016047,140)" d="M0,0L-6,0"></path>
@@ -192,7 +192,7 @@
     <text y="0.32em" transform="translate(293.33329168016047,742)">Utah</text>
     <text y="0.32em" transform="translate(293.33329168016047,756)">District of Columbia</text>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(1,7)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(1,7)">
     <path transform="translate(293.33329168016047,42)" d="M0,0L6,0"></path>
     <path transform="translate(293.33329168016047,56)" d="M0,0L6,0"></path>
     <path transform="translate(293.33329168016047,70)" d="M0,0L6,0"></path>
@@ -206,7 +206,7 @@
     <text y="0.32em" transform="translate(293.33329168016047,84)">Vermont</text>
     <text y="0.32em" transform="translate(293.33329168016047,98)">Connecticut</text>
   </g>
-  <g aria-label="x-grid" stroke="white" stroke-opacity="0.5" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="white" stroke-opacity="0.5" transform="translate(0.5,0)">
     <line x1="115.94647325943984" x2="115.94647325943984" y1="30" y2="780"></line>
     <line x1="204.6398824698001" x2="204.6398824698001" y1="30" y2="780"></line>
     <line x1="293.33329168016047" x2="293.33329168016047" y1="30" y2="780"></line>

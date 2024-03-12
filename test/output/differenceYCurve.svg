@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,347.3713864398507)" d="M0,0L-6,0"></path>
     <path transform="translate(40,322.5631884965045)" d="M0,0L-6,0"></path>
     <path transform="translate(40,297.75499055315834)" d="M0,0L-6,0"></path>
@@ -48,7 +48,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Close</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(81.42857142857143,370)" d="M0,0L0,6"></path>
     <path transform="translate(153.92857142857142,370)" d="M0,0L0,6"></path>
     <path transform="translate(226.42857142857144,370)" d="M0,0L0,6"></path>

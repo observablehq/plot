@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,10.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,10.5)">
     <line x1="40" x2="620" y1="32" y2="32"></line>
     <line x1="40" x2="620" y1="53" y2="53"></line>
     <line x1="40" x2="620" y1="74" y2="74"></line>
@@ -43,7 +43,7 @@
     <line x1="40" x2="620" y1="578" y2="578"></line>
     <line x1="40" x2="620" y1="599" y2="599"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,10.5)">
     <path transform="translate(40,32)" d="M0,0L-6,0"></path>
     <path transform="translate(40,74)" d="M0,0L-6,0"></path>
     <path transform="translate(40,116)" d="M0,0L-6,0"></path>
@@ -78,7 +78,7 @@
   <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
     <text y="0.71em" transform="translate(40,325) rotate(-90)">← Season</text>
   </g>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(13,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(13,0)">
     <line x1="45" x2="45" y1="30" y2="620"></line>
     <line x1="71" x2="71" y1="30" y2="620"></line>
     <line x1="97" x2="97" y1="30" y2="620"></line>
@@ -102,7 +102,7 @@
     <line x1="565" x2="565" y1="30" y2="620"></line>
     <line x1="591" x2="591" y1="30" y2="620"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(13,1)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(13,1)">
     <path transform="translate(45,30)" d="M0,0L0,-6"></path>
     <path transform="translate(123,30)" d="M0,0L0,-6"></path>
     <path transform="translate(201,30)" d="M0,0L0,-6"></path>

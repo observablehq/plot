@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="32" y2="32"></line>
     <line x1="40" x2="620" y1="53" y2="53"></line>
     <line x1="40" x2="620" y1="74" y2="74"></line>
@@ -22,7 +22,7 @@
     <line x1="40" x2="620" y1="137" y2="137"></line>
     <line x1="40" x2="620" y1="158" y2="158"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,32)" d="M0,0L-6,0"></path>
     <path transform="translate(40,53)" d="M0,0L-6,0"></path>
     <path transform="translate(40,74)" d="M0,0L-6,0"></path>
@@ -40,7 +40,7 @@
     <text y="0.32em" transform="translate(40,137)">E</text>
     <text y="0.32em" transform="translate(40,158)">F</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(43.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(43.5,0)">
     <path transform="translate(50,170)" d="M0,0L0,6"></path>
     <path transform="translate(145,170)" d="M0,0L0,6"></path>
     <path transform="translate(240,170)" d="M0,0L0,6"></path>

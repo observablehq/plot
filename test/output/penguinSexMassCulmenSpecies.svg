@@ -24,7 +24,7 @@
   <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
     <text y="0.71em" transform="translate(330,30)">sex</text>
   </g>
-  <g aria-label="y-grid" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" transform="translate(0,0.5)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="40" x2="220" y1="270.7692307692308" y2="270.7692307692308"></line>
       <line x1="40" x2="220" y1="252.3076923076923" y2="252.3076923076923"></line>
@@ -71,7 +71,7 @@
       <line x1="40" x2="220" y1="49.230769230769226" y2="49.230769230769226"></line>
     </g>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,270.7692307692308)" d="M0,0L-6,0"></path>
       <path transform="translate(40,252.3076923076923)" d="M0,0L-6,0"></path>
@@ -108,7 +108,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
   </g>
-  <g aria-label="x-grid" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" transform="translate(0.5,0)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="61.42857142857143" x2="61.42857142857143" y1="30" y2="290"></line>
       <line x1="84.28571428571428" x2="84.28571428571428" y1="30" y2="290"></line>
@@ -137,7 +137,7 @@
       <line x1="198.57142857142858" x2="198.57142857142858" y1="30" y2="290"></line>
     </g>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(61.42857142857143,290)" d="M0,0L0,6"></path>
       <path transform="translate(84.28571428571428,290)" d="M0,0L0,6"></path>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="341.0743801652893" y2="341.0743801652893"></line>
     <line x1="40" x2="620" y1="312.1487603305785" y2="312.1487603305785"></line>
@@ -28,7 +28,7 @@
     <line x1="40" x2="620" y1="51.81818181818183" y2="51.81818181818183"></line>
     <line x1="40" x2="620" y1="22.892561983471065" y2="22.892561983471065"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,341.0743801652893)" d="M0,0L-6,0"></path>
     <path transform="translate(40,312.1487603305785)" d="M0,0L-6,0"></path>
@@ -61,7 +61,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(10.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(10.5,0)">
     <path transform="translate(45,370)" d="M0,0L0,6"></path>
     <path transform="translate(67,370)" d="M0,0L0,6"></path>
     <path transform="translate(89,370)" d="M0,0L0,6"></path>

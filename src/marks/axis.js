@@ -278,19 +278,28 @@ function axisTickKy(
     ...options
   }
 ) {
-  return axisMark(vectorY, k, anchor, `${k}-axis tick`, true, data, {
-    strokeWidth,
-    strokeLinecap,
-    strokeLinejoin,
-    facetAnchor,
-    frameAnchor,
-    y,
-    ...options,
-    dx: anchor === "left" ? +dx - offset + +insetLeft : +dx + offset - insetRight,
-    anchor: "start",
-    length: tickSize,
-    shape: anchor === "left" ? shapeTickLeft : shapeTickRight
-  });
+  return axisMark(
+    vectorY,
+    k,
+    data,
+    {
+      ariaLabel: `${k}-axis tick`,
+      ariaHidden: true
+    },
+    {
+      strokeWidth,
+      strokeLinecap,
+      strokeLinejoin,
+      facetAnchor,
+      frameAnchor,
+      y,
+      ...options,
+      dx: anchor === "left" ? +dx - offset + +insetLeft : +dx + offset - insetRight,
+      anchor: "start",
+      length: tickSize,
+      shape: anchor === "left" ? shapeTickLeft : shapeTickRight
+    }
+  );
 }
 
 function axisTickKx(
@@ -312,19 +321,28 @@ function axisTickKx(
     ...options
   }
 ) {
-  return axisMark(vectorX, k, anchor, `${k}-axis tick`, true, data, {
-    strokeWidth,
-    strokeLinejoin,
-    strokeLinecap,
-    facetAnchor,
-    frameAnchor,
-    x,
-    ...options,
-    dy: anchor === "bottom" ? +dy - offset - insetBottom : +dy + offset + +insetTop,
-    anchor: "start",
-    length: tickSize,
-    shape: anchor === "bottom" ? shapeTickBottom : shapeTickTop
-  });
+  return axisMark(
+    vectorX,
+    k,
+    data,
+    {
+      ariaLabel: `${k}-axis tick`,
+      ariaHidden: true
+    },
+    {
+      strokeWidth,
+      strokeLinejoin,
+      strokeLinecap,
+      facetAnchor,
+      frameAnchor,
+      x,
+      ...options,
+      dy: anchor === "bottom" ? +dy - offset - insetBottom : +dy + offset + +insetTop,
+      anchor: "start",
+      length: tickSize,
+      shape: anchor === "bottom" ? shapeTickBottom : shapeTickTop
+    }
+  );
 }
 
 function axisTextKy(
@@ -352,10 +370,8 @@ function axisTextKy(
   return axisMark(
     textY,
     k,
-    anchor,
-    `${k}-axis tick label`,
-    undefined,
     data,
+    {ariaLabel: `${k}-axis tick label`},
     {
       facetAnchor,
       frameAnchor,
@@ -400,10 +416,8 @@ function axisTextKx(
   return axisMark(
     textX,
     k,
-    anchor,
-    `${k}-axis tick label`,
-    undefined,
     data,
+    {ariaLabel: `${k}-axis tick label`},
     {
       facetAnchor,
       frameAnchor,
@@ -455,7 +469,7 @@ function gridKy(
     ...options
   }
 ) {
-  return axisMark(ruleY, k, anchor, `${k}-grid`, true, data, {y, x1, x2, ...gridDefaults(options)});
+  return axisMark(ruleY, k, data, {ariaLabel: `${k}-grid`, ariaHidden: true}, {y, x1, x2, ...gridDefaults(options)});
 }
 
 function gridKx(
@@ -470,7 +484,7 @@ function gridKx(
     ...options
   }
 ) {
-  return axisMark(ruleX, k, anchor, `${k}-grid`, true, data, {x, y1, y2, ...gridDefaults(options)});
+  return axisMark(ruleX, k, data, {ariaLabel: `${k}-grid`, ariaHidden: true}, {x, y1, y2, ...gridDefaults(options)});
 }
 
 function gridDefaults({
@@ -522,7 +536,7 @@ function labelOptions(
   };
 }
 
-function axisMark(mark, k, anchor, ariaLabel, ariaHidden, data, options, initialize) {
+function axisMark(mark, k, data, properties, options, initialize) {
   let channels;
 
   function axisInitializer(data, facets, _channels, scales, dimensions, context) {
@@ -617,8 +631,7 @@ function axisMark(mark, k, anchor, ariaLabel, ariaHidden, data, options, initial
   } else {
     channels = {};
   }
-  m.ariaLabel = ariaLabel;
-  m.ariaHidden = ariaHidden;
+  if (properties !== undefined) Object.assign(m, properties);
   if (m.clip === undefined) m.clip = false; // don’t clip axes by default
   return m;
 }

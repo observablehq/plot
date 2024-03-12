@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(20,220)" d="M0,0L0,6"></path>
     <path transform="translate(82,220)" d="M0,0L0,6"></path>
     <path transform="translate(144,220)" d="M0,0L0,6"></path>

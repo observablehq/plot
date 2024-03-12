@@ -38,7 +38,7 @@
   <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
     <text y="0.71em" transform="translate(299.5,30)">sex</text>
   </g>
-  <g aria-label="y-grid" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" transform="translate(0,0.5)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="40" x2="201" y1="179.38909090909092" y2="179.38909090909092"></line>
       <line x1="40" x2="201" y1="149.02545454545455" y2="149.02545454545455"></line>
@@ -96,7 +96,7 @@
       <line x1="40" x2="201" y1="57.93454545454547" y2="57.93454545454547"></line>
     </g>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,179.38909090909092)" d="M0,0L-6,0"></path>
       <path transform="translate(40,149.02545454545455)" d="M0,0L-6,0"></path>
@@ -145,7 +145,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
   </g>
-  <g aria-label="x-grid" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" transform="translate(0.5,0)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="76.41666666666667" x2="76.41666666666667" y1="30" y2="197"></line>
       <line x1="172.25" x2="172.25" y1="30" y2="197"></line>
@@ -179,7 +179,7 @@
       <line x1="172.25" x2="172.25" y1="30" y2="197"></line>
     </g>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,372)">
       <path transform="translate(76.41666666666667,197)" d="M0,0L0,6"></path>
       <path transform="translate(172.25,197)" d="M0,0L0,6"></path>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="940" y1="570" y2="570"></line>
     <line x1="40" x2="940" y1="524.5627235402541" y2="524.5627235402541"></line>
     <line x1="40" x2="940" y1="497.9836206764026" y2="497.9836206764026"></line>
@@ -46,7 +46,7 @@
     <line x1="40" x2="940" y1="45.1655249960203" y2="45.1655249960203"></line>
     <line x1="40" x2="940" y1="26.307351400125846" y2="26.307351400125846"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,570)" d="M0,0L-6,0"></path>
     <path transform="translate(40,524.5627235402541)" d="M0,0L-6,0"></path>
     <path transform="translate(40,497.9836206764026)" d="M0,0L-6,0"></path>
@@ -115,7 +115,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Deaths per day to COVID-19 (projected)</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(65.71428571428571,570)" d="M0,0L0,6"></path>
     <path transform="translate(110.71428571428572,570)" d="M0,0L0,6"></path>
     <path transform="translate(155.71428571428572,570)" d="M0,0L0,6"></path>
@@ -159,7 +159,7 @@
     <text transform="translate(875.7142857142858,570)"><tspan x="0" y="0.71em">5</tspan><tspan x="0" dy="1em">Jul</tspan></text>
     <text y="0.71em" transform="translate(920.7142857142857,570)">12</text>
   </g>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="65.71428571428571" x2="65.71428571428571" y1="20" y2="570"></line>
     <line x1="110.71428571428572" x2="110.71428571428572" y1="20" y2="570"></line>
     <line x1="155.71428571428572" x2="155.71428571428572" y1="20" y2="570"></line>

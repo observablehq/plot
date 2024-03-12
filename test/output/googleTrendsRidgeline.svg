@@ -207,7 +207,7 @@
       <text y="0.32em" transform="translate(160,38)">COVID-19 vaccine</text>
     </g>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,1)">
     <g fill="none" stroke="currentColor" transform="translate(0,30)">
       <path transform="translate(166.42857142857144,30)" d="M0,0L0,-6"></path>
       <path transform="translate(232.85714285714286,30)" d="M0,0L0,-6"></path>

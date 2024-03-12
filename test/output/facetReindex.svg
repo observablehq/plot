@@ -27,7 +27,7 @@
   <g aria-label="fy-axis label" transform="translate(-70.5,0.5)">
     <text y="0.71em" transform="translate(74,60) rotate(-90)">facet value</text>
   </g>
-  <g aria-label="y-axis tick" transform="translate(1,5.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(1,5.5)">
     <g fill="none" stroke="currentColor" transform="translate(0,1)">
       <path transform="translate(762,22)" d="M0,0L6,0"></path>
       <path transform="translate(762,33)" d="M0,0L6,0"></path>
@@ -58,7 +58,7 @@
   <g aria-label="y-axis label" transform="translate(65.5,0.5)">
     <text transform="translate(762,60) rotate(-90)">facet option</text>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,55)">
       <path transform="translate(74,44)" d="M0,0L0,6"></path>
       <path transform="translate(174,44)" d="M0,0L0,6"></path>
