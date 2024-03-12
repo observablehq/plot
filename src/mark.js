@@ -1,10 +1,10 @@
 import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
-import {maybeNamed, maybeValue} from "./options.js";
+import {maybeClip, maybeNamed, maybeValue} from "./options.js";
 import {arrayify, isDomainSort, isObject, isOptions, keyword, range, singleton} from "./options.js";
 import {project} from "./projection.js";
-import {maybeClip, styles} from "./style.js";
+import {styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 
 export class Mark {

@@ -24,7 +24,8 @@ import {
   ticks
 } from "d3";
 import {finite, negative, positive} from "../defined.js";
-import {arrayify, constant, maybeNiceInterval, maybeRangeInterval, orderof, slice} from "../options.js";
+import {arrayify, constant, maybeNiceInterval, maybeRangeInterval, slice} from "../options.js";
+import {orderof} from "../order.js";
 import {color, length, opacity, radius, registry, hasNumericRange} from "./index.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 
