@@ -278,7 +278,7 @@ function axisTickKy(
     ...options
   }
 ) {
-  return axisMark(vectorY, k, anchor, `${k}-axis tick`, data, {
+  return axisMark(vectorY, k, anchor, `${k}-axis tick`, true, data, {
     strokeWidth,
     strokeLinecap,
     strokeLinejoin,
@@ -312,7 +312,7 @@ function axisTickKx(
     ...options
   }
 ) {
-  return axisMark(vectorX, k, anchor, `${k}-axis tick`, data, {
+  return axisMark(vectorX, k, anchor, `${k}-axis tick`, true, data, {
     strokeWidth,
     strokeLinejoin,
     strokeLinecap,
@@ -354,6 +354,7 @@ function axisTextKy(
     k,
     anchor,
     `${k}-axis tick label`,
+    undefined,
     data,
     {
       facetAnchor,
@@ -401,6 +402,7 @@ function axisTextKx(
     k,
     anchor,
     `${k}-axis tick label`,
+    undefined,
     data,
     {
       facetAnchor,
@@ -453,7 +455,7 @@ function gridKy(
     ...options
   }
 ) {
-  return axisMark(ruleY, k, anchor, `${k}-grid`, data, {y, x1, x2, ...gridDefaults(options)});
+  return axisMark(ruleY, k, anchor, `${k}-grid`, true, data, {y, x1, x2, ...gridDefaults(options)});
 }
 
 function gridKx(
@@ -468,7 +470,7 @@ function gridKx(
     ...options
   }
 ) {
-  return axisMark(ruleX, k, anchor, `${k}-grid`, data, {x, y1, y2, ...gridDefaults(options)});
+  return axisMark(ruleX, k, anchor, `${k}-grid`, true, data, {x, y1, y2, ...gridDefaults(options)});
 }
 
 function gridDefaults({
@@ -520,7 +522,7 @@ function labelOptions(
   };
 }
 
-function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
+function axisMark(mark, k, anchor, ariaLabel, ariaHidden, data, options, initialize) {
   let channels;
 
   function axisInitializer(data, facets, _channels, scales, dimensions, context) {
@@ -616,6 +618,7 @@ function axisMark(mark, k, anchor, ariaLabel, data, options, initialize) {
     channels = {};
   }
   m.ariaLabel = ariaLabel;
+  m.ariaHidden = ariaHidden;
   if (m.clip === undefined) m.clip = false; // don’t clip axes by default
   return m;
 }
