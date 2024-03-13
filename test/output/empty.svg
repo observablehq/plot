@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="364" y2="364"></line>
     <line x1="40" x2="620" y1="330.20000000000005" y2="330.20000000000005"></line>
     <line x1="40" x2="620" y1="296.4" y2="296.4"></line>
@@ -26,7 +26,7 @@
     <line x1="40" x2="620" y1="59.8" y2="59.8"></line>
     <line x1="40" x2="620" y1="26" y2="26"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,364)" d="M0,0L-6,0"></path>
     <path transform="translate(40,330.20000000000005)" d="M0,0L-6,0"></path>
     <path transform="translate(40,296.4)" d="M0,0L-6,0"></path>
@@ -52,7 +52,7 @@
     <text y="0.32em" transform="translate(40,59.8)">0.9</text>
     <text y="0.32em" transform="translate(40,26)">1.0</text>
   </g>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="46" x2="46" y1="20" y2="370"></line>
     <line x1="102.80000000000001" x2="102.80000000000001" y1="20" y2="370"></line>
     <line x1="159.60000000000002" x2="159.60000000000002" y1="20" y2="370"></line>
@@ -65,7 +65,7 @@
     <line x1="557.2" x2="557.2" y1="20" y2="370"></line>
     <line x1="614" x2="614" y1="20" y2="370"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(46,370)" d="M0,0L0,6"></path>
     <path transform="translate(102.80000000000001,370)" d="M0,0L0,6"></path>
     <path transform="translate(159.60000000000002,370)" d="M0,0L0,6"></path>

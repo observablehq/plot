@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="270" y2="270"></line>
     <line x1="40" x2="620" y1="237.10526315789474" y2="237.10526315789474"></line>
     <line x1="40" x2="620" y1="204.2105263157895" y2="204.2105263157895"></line>
@@ -23,7 +23,7 @@
     <line x1="40" x2="620" y1="72.63157894736841" y2="72.63157894736841"></line>
     <line x1="40" x2="620" y1="39.736842105263165" y2="39.736842105263165"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,270)" d="M0,0L-6,0"></path>
     <path transform="translate(40,237.10526315789474)" d="M0,0L-6,0"></path>
     <path transform="translate(40,204.2105263157895)" d="M0,0L-6,0"></path>
@@ -46,7 +46,7 @@
   <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
     <text y="0.71em" transform="translate(40,145) rotate(-90)">← Women · Men →</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,270)" d="M0,0L0,6"></path>
     <path transform="translate(122.85714285714286,270)" d="M0,0L0,6"></path>
     <path transform="translate(205.71428571428572,270)" d="M0,0L0,6"></path>

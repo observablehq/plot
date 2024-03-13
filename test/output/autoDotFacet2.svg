@@ -41,7 +41,7 @@
   <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
     <text y="0.71em" transform="translate(320,30)">island</text>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,155.23636363636365)" d="M0,0L-6,0"></path>
       <path transform="translate(40,129.78181818181818)" d="M0,0L-6,0"></path>
@@ -90,7 +90,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(40,30)">↑ culmen_length_mm</text>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(102.83333333333333,170)" d="M0,0L0,6"></path>
       <path transform="translate(199.5,170)" d="M0,0L0,6"></path>

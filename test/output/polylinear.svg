@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="20" x2="20" y1="0" y2="60"></line>
     <line x1="36.66666666666667" x2="36.66666666666667" y1="0" y2="60"></line>
     <line x1="53.333333333333336" x2="53.333333333333336" y1="0" y2="60"></line>
@@ -38,7 +38,7 @@
     <line x1="603.3333333333334" x2="603.3333333333334" y1="0" y2="60"></line>
     <line x1="620" x2="620" y1="0" y2="60"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(20,60)" d="M0,0L0,6"></path>
     <path transform="translate(36.66666666666667,60)" d="M0,0L0,6"></path>
     <path transform="translate(53.333333333333336,60)" d="M0,0L0,6"></path>

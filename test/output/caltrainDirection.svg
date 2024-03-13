@@ -24,7 +24,7 @@
       <text y="0.32em" transform="translate(40,31)">N</text>
     </g>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,48)">
       <path transform="translate(68.61204013377926,42)" d="M0,0L0,6"></path>
       <path transform="translate(155.90301003344482,42)" d="M0,0L0,6"></path>

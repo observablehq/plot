@@ -27,7 +27,7 @@
   <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
     <text y="0.71em" transform="translate(330,30)">species</text>
   </g>
-  <g aria-label="y-grid" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" transform="translate(0,0.5)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="40" x2="220" y1="400" y2="400"></line>
       <line x1="40" x2="220" y1="374.6575342465753" y2="374.6575342465753"></line>
@@ -80,7 +80,7 @@
       <line x1="40" x2="220" y1="45.20547945205482" y2="45.20547945205482"></line>
     </g>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,400)" d="M0,0L-6,0"></path>
       <path transform="translate(40,374.6575342465753)" d="M0,0L-6,0"></path>
@@ -121,7 +121,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(40,30)">↑ Frequency</text>
   </g>
-  <g aria-label="x-axis tick" transform="translate(26.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(26.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(46,400)" d="M0,0L0,6"></path>
       <path transform="translate(104,400)" d="M0,0L0,6"></path>

@@ -14,7 +14,7 @@
           white-space: pre;
         }
       </style>
-      <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
         <line x1="60" x2="79" y1="380" y2="380"></line>
         <line x1="60" x2="79" y1="344" y2="344"></line>
         <line x1="60" x2="79" y1="308" y2="308"></line>
@@ -27,7 +27,7 @@
         <line x1="60" x2="79" y1="55.99999999999999" y2="55.99999999999999"></line>
         <line x1="60" x2="79" y1="20" y2="20"></line>
       </g>
-      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(60,380)" d="M0,0L-6,0"></path>
         <path transform="translate(60,344)" d="M0,0L-6,0"></path>
         <path transform="translate(60,308)" d="M0,0L-6,0"></path>
@@ -69,7 +69,7 @@
           white-space: pre;
         }
       </style>
-      <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
         <line x1="60" x2="79" y1="380" y2="380"></line>
         <line x1="60" x2="79" y1="350" y2="350"></line>
         <line x1="60" x2="79" y1="320" y2="320"></line>
@@ -84,7 +84,7 @@
         <line x1="60" x2="79" y1="50.000000000000014" y2="50.000000000000014"></line>
         <line x1="60" x2="79" y1="20" y2="20"></line>
       </g>
-      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(60,380)" d="M0,0L-6,0"></path>
         <path transform="translate(60,350)" d="M0,0L-6,0"></path>
         <path transform="translate(60,320)" d="M0,0L-6,0"></path>
@@ -130,7 +130,7 @@
           white-space: pre;
         }
       </style>
-      <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
         <line x1="60" x2="79" y1="380" y2="380"></line>
         <line x1="60" x2="79" y1="344" y2="344"></line>
         <line x1="60" x2="79" y1="308" y2="308"></line>
@@ -143,7 +143,7 @@
         <line x1="60" x2="79" y1="55.99999999999999" y2="55.99999999999999"></line>
         <line x1="60" x2="79" y1="20" y2="20"></line>
       </g>
-      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(60,380)" d="M0,0L-6,0"></path>
         <path transform="translate(60,344)" d="M0,0L-6,0"></path>
         <path transform="translate(60,308)" d="M0,0L-6,0"></path>
@@ -185,7 +185,7 @@
           white-space: pre;
         }
       </style>
-      <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
         <line x1="60" x2="79" y1="380" y2="380"></line>
         <line x1="60" x2="79" y1="344" y2="344"></line>
         <line x1="60" x2="79" y1="308" y2="308"></line>
@@ -198,7 +198,7 @@
         <line x1="60" x2="79" y1="55.99999999999999" y2="55.99999999999999"></line>
         <line x1="60" x2="79" y1="20" y2="20"></line>
       </g>
-      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(60,380)" d="M0,0L-6,0"></path>
         <path transform="translate(60,344)" d="M0,0L-6,0"></path>
         <path transform="translate(60,308)" d="M0,0L-6,0"></path>
@@ -240,7 +240,7 @@
           white-space: pre;
         }
       </style>
-      <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
         <line x1="60" x2="79" y1="380" y2="380"></line>
         <line x1="60" x2="79" y1="342.7586206896552" y2="342.7586206896552"></line>
         <line x1="60" x2="79" y1="305.51724137931035" y2="305.51724137931035"></line>
@@ -252,7 +252,7 @@
         <line x1="60" x2="79" y1="82.06896551724138" y2="82.06896551724138"></line>
         <line x1="60" x2="79" y1="44.82758620689656" y2="44.82758620689656"></line>
       </g>
-      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(60,380)" d="M0,0L-6,0"></path>
         <path transform="translate(60,342.7586206896552)" d="M0,0L-6,0"></path>
         <path transform="translate(60,305.51724137931035)" d="M0,0L-6,0"></path>
@@ -292,7 +292,7 @@
           white-space: pre;
         }
       </style>
-      <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
         <line x1="60" x2="79" y1="380" y2="380"></line>
         <line x1="60" x2="79" y1="350" y2="350"></line>
         <line x1="60" x2="79" y1="320" y2="320"></line>
@@ -307,7 +307,7 @@
         <line x1="60" x2="79" y1="50.000000000000014" y2="50.000000000000014"></line>
         <line x1="60" x2="79" y1="20" y2="20"></line>
       </g>
-      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(60,380)" d="M0,0L-6,0"></path>
         <path transform="translate(60,350)" d="M0,0L-6,0"></path>
         <path transform="translate(60,320)" d="M0,0L-6,0"></path>
@@ -353,7 +353,7 @@
           white-space: pre;
         }
       </style>
-      <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
         <line x1="60" x2="79" y1="380" y2="380"></line>
         <line x1="60" x2="79" y1="353.3333333333333" y2="353.3333333333333"></line>
         <line x1="60" x2="79" y1="326.6666666666667" y2="326.6666666666667"></line>
@@ -369,7 +369,7 @@
         <line x1="60" x2="79" y1="60.00000000000002" y2="60.00000000000002"></line>
         <line x1="60" x2="79" y1="33.33333333333336" y2="33.33333333333336"></line>
       </g>
-      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(60,380)" d="M0,0L-6,0"></path>
         <path transform="translate(60,353.3333333333333)" d="M0,0L-6,0"></path>
         <path transform="translate(60,326.6666666666667)" d="M0,0L-6,0"></path>
@@ -417,7 +417,7 @@
           white-space: pre;
         }
       </style>
-      <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
         <line x1="60" x2="79" y1="380" y2="380"></line>
         <line x1="60" x2="79" y1="350.4918032786885" y2="350.4918032786885"></line>
         <line x1="60" x2="79" y1="320" y2="320"></line>
@@ -432,7 +432,7 @@
         <line x1="60" x2="79" y1="50.491803278688515" y2="50.491803278688515"></line>
         <line x1="60" x2="79" y1="20" y2="20"></line>
       </g>
-      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(60,380)" d="M0,0L-6,0"></path>
         <path transform="translate(60,350.4918032786885)" d="M0,0L-6,0"></path>
         <path transform="translate(60,320)" d="M0,0L-6,0"></path>
@@ -478,7 +478,7 @@
           white-space: pre;
         }
       </style>
-      <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
         <line x1="60" x2="79" y1="380" y2="380"></line>
         <line x1="60" x2="79" y1="343.9862016098122" y2="343.9862016098122"></line>
         <line x1="60" x2="79" y1="307.992115205607" y2="307.992115205607"></line>
@@ -491,7 +491,7 @@
         <line x1="60" x2="79" y1="55.99408640420523" y2="55.99408640420523"></line>
         <line x1="60" x2="79" y1="20" y2="20"></line>
       </g>
-      <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
         <path transform="translate(60,380)" d="M0,0L-6,0"></path>
         <path transform="translate(60,343.9862016098122)" d="M0,0L-6,0"></path>
         <path transform="translate(60,307.992115205607)" d="M0,0L-6,0"></path>

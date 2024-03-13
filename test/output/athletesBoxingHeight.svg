@@ -33,7 +33,7 @@
   <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
     <text transform="translate(310.5,320)">continent</text>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(1,0)">
       <path transform="translate(40,296.9230769230769)" d="M0,0L-6,0"></path>
       <path transform="translate(40,250.76923076923072)" d="M0,0L-6,0"></path>

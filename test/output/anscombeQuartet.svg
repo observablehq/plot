@@ -30,7 +30,7 @@
   <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
     <text y="0.71em" transform="translate(490.5,30)">series</text>
   </g>
-  <g aria-label="y-grid" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" transform="translate(0,0.5)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(2,0)">
       <line x1="40" x2="247" y1="185.0622406639004" y2="185.0622406639004"></line>
       <line x1="40" x2="247" y1="151.86721991701245" y2="151.86721991701245"></line>
@@ -60,7 +60,7 @@
       <line x1="40" x2="247" y1="52.28215767634856" y2="52.28215767634856"></line>
     </g>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(2,0)">
       <path transform="translate(40,185.0622406639004)" d="M0,0L-6,0"></path>
       <path transform="translate(40,151.86721991701245)" d="M0,0L-6,0"></path>
@@ -81,7 +81,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(42,30)">↑ y</text>
   </g>
-  <g aria-label="x-grid" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" transform="translate(0.5,0)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(2,0)">
       <line x1="62.46666666666666" x2="62.46666666666666" y1="30" y2="210"></line>
       <line x1="124.80000000000001" x2="124.80000000000001" y1="30" y2="210"></line>
@@ -103,7 +103,7 @@
       <line x1="187.13333333333333" x2="187.13333333333333" y1="30" y2="210"></line>
     </g>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(2,0)">
       <path transform="translate(62.46666666666666,210)" d="M0,0L0,6"></path>
       <path transform="translate(124.80000000000001,210)" d="M0,0L0,6"></path>

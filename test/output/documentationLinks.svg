@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9.5)">
     <path transform="translate(140,26)" d="M0,0L-6,0"></path>
     <path transform="translate(140,46)" d="M0,0L-6,0"></path>
     <path transform="translate(140,66)" d="M0,0L-6,0"></path>
@@ -67,7 +67,7 @@
     <text y="0.32em" transform="translate(140,486)">Interval Transform</text>
     <text y="0.32em" transform="translate(140,506)">Legends</text>
   </g>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="140" x2="140" y1="20" y2="530"></line>
     <line x1="198.53658536585365" x2="198.53658536585365" y1="20" y2="530"></line>
     <line x1="257.0731707317073" x2="257.0731707317073" y1="20" y2="530"></line>
@@ -78,7 +78,7 @@
     <line x1="549.7560975609756" x2="549.7560975609756" y1="20" y2="530"></line>
     <line x1="608.2926829268292" x2="608.2926829268292" y1="20" y2="530"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(140,530)" d="M0,0L0,6"></path>
     <path transform="translate(198.53658536585365,530)" d="M0,0L0,6"></path>
     <path transform="translate(257.0731707317073,530)" d="M0,0L0,6"></path>

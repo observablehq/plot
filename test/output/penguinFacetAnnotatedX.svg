@@ -27,7 +27,7 @@
   <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
     <text y="0.71em" transform="translate(347,30)">island</text>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,13.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,13.5)">
     <g fill="none" stroke="currentColor" transform="translate(1,0)">
       <path transform="translate(75,33)" d="M0,0L-6,0"></path>
       <path transform="translate(75,62)" d="M0,0L-6,0"></path>
@@ -44,7 +44,7 @@
   <g aria-label="y-axis label" transform="translate(-71.5,0.5)">
     <text y="0.71em" transform="translate(76,75) rotate(-90)">species</text>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(1,0)">
       <path transform="translate(75,120)" d="M0,0L0,6"></path>
       <path transform="translate(138.70967741935482,120)" d="M0,0L0,6"></path>
