@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,35)" d="M0,0L-6,0"></path>
     <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     <path transform="translate(40,75)" d="M0,0L-6,0"></path>
@@ -73,7 +73,7 @@
     <text y="0.32em" transform="translate(40,555)">weightlifting</text>
     <text y="0.32em" transform="translate(40,575)">wrestling</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(92.20000000000005,590)" d="M0,0L0,6"></path>
     <path transform="translate(150.2,590)" d="M0,0L0,6"></path>
     <path transform="translate(208.20000000000002,590)" d="M0,0L0,6"></path>

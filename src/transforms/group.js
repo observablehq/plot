@@ -17,7 +17,6 @@ import {
 import {ascendingDefined} from "../defined.js";
 import {
   column,
-  first,
   identity,
   isObject,
   isTemporal,
@@ -137,6 +136,7 @@ function groupn(
               const extent = {data};
               if (X) extent.x = x;
               if (Y) extent.y = y;
+              if (G) extent.z = f;
               if (filter && !filter.reduce(g, extent)) continue;
               groupFacet.push(i++);
               groupData.push(reduceData.reduceIndex(g, data, extent));
@@ -230,12 +230,7 @@ export function maybeEvaluator(name, reduce, inputs, asReduce = maybeReduce) {
 }
 
 export function maybeGroup(I, X) {
-  return X
-    ? sort(
-        grouper(I, (i) => X[i]),
-        first
-      )
-    : [[, I]];
+  return X ? grouper(I, (i) => X[i]) : [[, I]];
 }
 
 export function maybeReduce(reduce, value, fallback = invalidReduce) {
@@ -309,6 +304,8 @@ function maybeGroupReduceFallback(reduce) {
       return reduceX;
     case "y":
       return reduceY;
+    case "z":
+      return reduceZ;
   }
   throw new Error(`invalid group reduce: ${reduce}`);
 }
@@ -434,6 +431,12 @@ const reduceX = {
 const reduceY = {
   reduceIndex(I, X, {y}) {
     return y;
+  }
+};
+
+export const reduceZ = {
+  reduceIndex(I, X, {z}) {
+    return z;
   }
 };
 

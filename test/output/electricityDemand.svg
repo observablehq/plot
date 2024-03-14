@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(50,370)" d="M0,0L-6,0"></path>
     <path transform="translate(50,338.46524760280886)" d="M0,0L-6,0"></path>
     <path transform="translate(50,306.93049520561755)" d="M0,0L-6,0"></path>
@@ -46,7 +46,7 @@
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="50" x2="940" y1="370" y2="370"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(119,370)" d="M0,0L0,28"></path>
     <path transform="translate(880,370)" d="M0,0L0,28"></path>
   </g>
@@ -54,7 +54,7 @@
     <text y="0.71em" transform="translate(119,370)"> 2021</text>
     <text y="0.71em" transform="translate(880,370)"> 2022</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(54,370)" d="M0,0L0,16"></path>
     <path transform="translate(119,370)" d="M0,0L0,16"></path>
     <path transform="translate(183,370)" d="M0,0L0,16"></path>
@@ -86,7 +86,7 @@
     <text y="0.71em" transform="translate(815,370)"> December</text>
     <text y="0.71em" transform="translate(880,370)"> January</text>
   </g>
-  <g aria-label="x-grid" stroke="#fff" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="#fff" transform="translate(0.5,0)">
     <line x1="50" x2="50" y1="20" y2="370.5"></line>
     <line x1="65" x2="65" y1="20" y2="370.5"></line>
     <line x1="79" x2="79" y1="20" y2="370.5"></line>

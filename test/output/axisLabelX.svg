@@ -14,7 +14,7 @@
     }
   </style>
   <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="20" y="30" width="600" height="340"></rect>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,1)">
     <path transform="translate(26,30)" d="M0,0L0,-6"></path>
     <path transform="translate(84.80000000000001,30)" d="M0,0L0,-6"></path>
     <path transform="translate(143.60000000000002,30)" d="M0,0L0,-6"></path>
@@ -49,7 +49,7 @@
   <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,-26.5)">
     <text y="0.71em" transform="translate(620,30)">top-right →</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(26,370)" d="M0,0L0,6"></path>
     <path transform="translate(84.80000000000001,370)" d="M0,0L0,6"></path>
     <path transform="translate(143.60000000000002,370)" d="M0,0L0,6"></path>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="338.723518391829" y2="338.723518391829"></line>
     <line x1="40" x2="620" y1="307.447036783658" y2="307.447036783658"></line>
@@ -27,7 +27,7 @@
     <line x1="40" x2="620" y1="57.235183918289906" y2="57.235183918289906"></line>
     <line x1="40" x2="620" y1="25.958702310118873" y2="25.958702310118873"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,338.723518391829)" d="M0,0L-6,0"></path>
     <path transform="translate(40,307.447036783658)" d="M0,0L-6,0"></path>
@@ -58,7 +58,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Annual revenue (billions, adj.)</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(65.20088089994643,370)" d="M0,0L0,6"></path>
     <path transform="translate(128.23760490446998,370)" d="M0,0L0,6"></path>
     <path transform="translate(191.30885066365096,370)" d="M0,0L0,6"></path>

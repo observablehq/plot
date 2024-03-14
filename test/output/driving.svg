@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="357.9530883502736" y2="357.9530883502736"></line>
     <line x1="40" x2="620" y1="323.55121188428456" y2="323.55121188428456"></line>
     <line x1="40" x2="620" y1="289.1493354182955" y2="289.1493354182955"></line>
@@ -25,7 +25,7 @@
     <line x1="40" x2="620" y1="82.7380766223612" y2="82.7380766223612"></line>
     <line x1="40" x2="620" y1="48.33620015637213" y2="48.33620015637213"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,357.9530883502736)" d="M0,0L-6,0"></path>
     <path transform="translate(40,323.55121188428456)" d="M0,0L-6,0"></path>
     <path transform="translate(40,289.1493354182955)" d="M0,0L-6,0"></path>
@@ -52,7 +52,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Cost of gasoline ($ per gallon)</text>
   </g>
-  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="77.80188410270392" x2="77.80188410270392" y1="20" y2="370"></line>
     <line x1="165.69811067845762" x2="165.69811067845762" y1="20" y2="370"></line>
     <line x1="253.59433725421138" x2="253.59433725421138" y1="20" y2="370"></line>
@@ -61,7 +61,7 @@
     <line x1="517.2830169814725" x2="517.2830169814725" y1="20" y2="370"></line>
     <line x1="605.1792435572262" x2="605.1792435572262" y1="20" y2="370"></line>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(77.80188410270392,370)" d="M0,0L0,6"></path>
     <path transform="translate(165.69811067845762,370)" d="M0,0L0,6"></path>
     <path transform="translate(253.59433725421138,370)" d="M0,0L0,6"></path>

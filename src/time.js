@@ -3,7 +3,7 @@ import {utcSecond, utcMinute, utcHour, unixDay, utcWeek, utcMonth, utcYear} from
 import {utcMonday, utcTuesday, utcWednesday, utcThursday, utcFriday, utcSaturday, utcSunday} from "d3";
 import {timeSecond, timeMinute, timeHour, timeDay, timeWeek, timeMonth, timeYear} from "d3";
 import {timeMonday, timeTuesday, timeWednesday, timeThursday, timeFriday, timeSaturday, timeSunday} from "d3";
-import {orderof} from "./options.js";
+import {orderof} from "./order.js";
 
 const durationSecond = 1000;
 const durationMinute = durationSecond * 60;

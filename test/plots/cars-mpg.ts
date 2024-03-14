@@ -18,7 +18,7 @@ export async function carsMpg() {
       Plot.line(
         data,
         Plot.groupX(
-          {y: "mean"},
+          {y: "mean", sort: "x"},
           {
             x: "year",
             y: "economy (mpg)",

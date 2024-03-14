@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis tick" transform="translate(0,0.5)">
+  <g aria-label="fy-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(3,0)">
       <path transform="translate(40,55)" d="M0,0L-6,0"></path>
     </g>
@@ -65,7 +65,7 @@
       <text y="0.32em" transform="translate(40,55)">9</text>
     </g>
   </g>
-  <g aria-label="fx-axis tick" transform="translate(0.5,1)">
+  <g aria-label="fx-axis tick" aria-hidden="true" transform="translate(0.5,1)">
     <g fill="none" stroke="currentColor" transform="translate(3,0)">
       <path transform="translate(64,30)" d="M0,0L0,-6"></path>
     </g>

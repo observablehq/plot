@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-grid" transform="translate(0,0.5)">
+  <g aria-label="fy-grid" aria-hidden="true" transform="translate(0,0.5)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,1)">
       <line x1="40" x2="620" y1="29.5" y2="29.5"></line>
     </g>
@@ -56,7 +56,7 @@
   <g aria-label="fy-axis label" transform="translate(-36.5,0.5)">
     <text y="0.71em" transform="translate(40,135.5) rotate(-90)">height →</text>
   </g>
-  <g aria-label="x-axis tick" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,211)">
       <path transform="translate(77.55395683453237,39)" d="M0,0L0,6"></path>
       <path transform="translate(161.0071942446043,39)" d="M0,0L0,6"></path>

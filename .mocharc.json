@@ -1,5 +1,0 @@
-{
-  "require": ["module-alias/register.js"],
-  "loader": "./loader.js",
-  "extensions": ["js", "ts"]
-}

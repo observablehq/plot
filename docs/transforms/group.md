@@ -329,7 +329,7 @@ Although barX applies an implicit stackX transform, [textX](../marks/text.md) do
 
 ## Group options
 
-Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting grouped data is an array of arrays where each inner array is a subset of the input data such as [[*d₁*, *d₂*, …], [*d₀*, …], …]. Each inner array is in input order. The outer array is in natural ascending order according to the associated dimension (*x* then *y*).
+Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting grouped data is an array of arrays where each inner array is a subset of the input data such as [[*d₁*, *d₂*, …], [*d₀*, …], …]. Each inner array is in input order. The outer array is in input order according to the first element of each group.
 
 By specifying a different reducer for the **data** output, as described below, you can change how the grouped data is computed. The outputs may also include **filter** and **sort** options specified as reducers, and a **reverse** option to reverse the order of generated groups. By default, empty groups are omitted, and non-empty groups are generated in ascending (natural) order.
 
@@ -370,6 +370,7 @@ The following named reducers are supported:
 * *identity* - the array of values
 * *x* <VersionBadge version="0.6.12" pr="1916" /> - the group’s *x* value (when grouping on *x*)
 * *y* <VersionBadge version="0.6.12" pr="1916" /> - the group’s *y* value (when grouping on *y*)
+* *z* <VersionBadge pr="1959" /> - the group’s *z* value (*z*, *fill*, or *stroke*)
 
 In addition, a reducer may be specified as:
 

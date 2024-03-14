@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="600" y1="370" y2="370"></line>
     <line x1="40" x2="600" y1="338.0656934306569" y2="338.0656934306569"></line>
     <line x1="40" x2="600" y1="306.1313868613139" y2="306.1313868613139"></line>
@@ -26,7 +26,7 @@
     <line x1="40" x2="600" y1="82.59124087591239" y2="82.59124087591239"></line>
     <line x1="40" x2="600" y1="50.65693430656935" y2="50.65693430656935"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,338.0656934306569)" d="M0,0L-6,0"></path>
     <path transform="translate(40,306.1313868613139)" d="M0,0L-6,0"></path>
@@ -55,7 +55,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Stargazers</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(111.09942666557393,370)" d="M0,0L0,6"></path>
     <path transform="translate(187.45089599093495,370)" d="M0,0L0,6"></path>
     <path transform="translate(263.802365316296,370)" d="M0,0L0,6"></path>
