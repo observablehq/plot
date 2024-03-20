@@ -1,0 +1,100 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="350" y2="350"></line>
+    <line x1="40" x2="620" y1="319" y2="319"></line>
+    <line x1="40" x2="620" y1="288" y2="288"></line>
+    <line x1="40" x2="620" y1="257" y2="257"></line>
+    <line x1="40" x2="620" y1="226" y2="226"></line>
+    <line x1="40" x2="620" y1="195" y2="195"></line>
+    <line x1="40" x2="620" y1="164" y2="164"></line>
+    <line x1="40" x2="620" y1="133" y2="133"></line>
+    <line x1="40" x2="620" y1="101.99999999999999" y2="101.99999999999999"></line>
+    <line x1="40" x2="620" y1="71" y2="71"></line>
+    <line x1="40" x2="620" y1="40" y2="40"></line>
+  </g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,350)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,319)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,288)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,257)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,226)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,164)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,133)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,101.99999999999999)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,71)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,40)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,350)">−1.0</text>
+    <text y="0.32em" transform="translate(40,319)">−0.8</text>
+    <text y="0.32em" transform="translate(40,288)">−0.6</text>
+    <text y="0.32em" transform="translate(40,257)">−0.4</text>
+    <text y="0.32em" transform="translate(40,226)">−0.2</text>
+    <text y="0.32em" transform="translate(40,195)">0.0</text>
+    <text y="0.32em" transform="translate(40,164)">0.2</text>
+    <text y="0.32em" transform="translate(40,133)">0.4</text>
+    <text y="0.32em" transform="translate(40,101.99999999999999)">0.6</text>
+    <text y="0.32em" transform="translate(40,71)">0.8</text>
+    <text y="0.32em" transform="translate(40,40)">1.0</text>
+  </g>
+  <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="102.88415956453429" x2="102.88415956453429" y1="20" y2="370"></line>
+    <line x1="159.66311967340073" x2="159.66311967340073" y1="20" y2="370"></line>
+    <line x1="216.44207978226714" x2="216.44207978226714" y1="20" y2="370"></line>
+    <line x1="273.22103989113356" x2="273.22103989113356" y1="20" y2="370"></line>
+    <line x1="330" x2="330" y1="20" y2="370"></line>
+    <line x1="386.7789601088664" x2="386.7789601088664" y1="20" y2="370"></line>
+    <line x1="443.5579202177328" x2="443.5579202177328" y1="20" y2="370"></line>
+    <line x1="500.33688032659927" x2="500.33688032659927" y1="20" y2="370"></line>
+    <line x1="557.1158404354657" x2="557.1158404354657" y1="20" y2="370"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(102.88415956453429,370)" d="M0,0L0,6"></path>
+    <path transform="translate(159.66311967340073,370)" d="M0,0L0,6"></path>
+    <path transform="translate(216.44207978226714,370)" d="M0,0L0,6"></path>
+    <path transform="translate(273.22103989113356,370)" d="M0,0L0,6"></path>
+    <path transform="translate(330,370)" d="M0,0L0,6"></path>
+    <path transform="translate(386.7789601088664,370)" d="M0,0L0,6"></path>
+    <path transform="translate(443.5579202177328,370)" d="M0,0L0,6"></path>
+    <path transform="translate(500.33688032659927,370)" d="M0,0L0,6"></path>
+    <path transform="translate(557.1158404354657,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(102.88415956453429,370)">−0.8</text>
+    <text y="0.71em" transform="translate(159.66311967340073,370)">−0.6</text>
+    <text y="0.71em" transform="translate(216.44207978226714,370)">−0.4</text>
+    <text y="0.71em" transform="translate(273.22103989113356,370)">−0.2</text>
+    <text y="0.71em" transform="translate(330,370)">0.0</text>
+    <text y="0.71em" transform="translate(386.7789601088664,370)">0.2</text>
+    <text y="0.71em" transform="translate(443.5579202177328,370)">0.4</text>
+    <text y="0.71em" transform="translate(500.33688032659927,370)">0.6</text>
+    <text y="0.71em" transform="translate(557.1158404354657,370)">0.8</text>
+  </g>
+  <g aria-label="line" fill="none" stroke="orange" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="orange" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-1">
+      <circle r="3"></circle>
+    </marker>
+    <path marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-1)" d="M496.869,69.602C535.315,75.901,585.034,67.719,600,85.102C611.54,98.506,600,124.197,600,147.102C600,175.575,613.712,215.442,600,242.898C584.088,274.759,537.84,302.59,496.869,320.398C449.909,340.808,385.623,350,330,350C274.377,350,210.091,340.808,163.131,320.398C122.16,302.59,75.912,274.759,60,242.898C46.288,215.442,46.288,174.558,60,147.102C75.912,115.241,122.16,87.41,163.131,69.602C210.091,49.192,274.377,40,330,40C385.623,40,447.859,61.574,496.869,69.602"></path>
+  </g>
+  <g aria-label="line" fill="none" stroke="steelblue" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="steelblue" stroke="var(--plot-background)" stroke-width="1.5" id="plot-marker-2">
+      <circle r="3"></circle>
+    </marker>
+    <path style="mix-blend-mode: multiply;" marker-start="url(#plot-marker-2)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-2)" d="M496.869,69.602C535.315,75.901,585.034,67.719,600,85.102C611.54,98.506,600,124.197,600,147.102C600,175.575,613.712,215.442,600,242.898C584.088,274.759,537.84,302.59,496.869,320.398C449.909,340.808,385.623,350,330,350C274.377,350,210.091,340.808,163.131,320.398C122.16,302.59,75.912,274.759,60,242.898C46.288,215.442,46.288,174.558,60,147.102C75.912,115.241,122.16,87.41,163.131,69.602C210.091,49.192,274.377,40,330,40C385.623,40,447.859,61.574,496.869,69.602"></path>
+  </g>
+</svg>

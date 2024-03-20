@@ -47,6 +47,7 @@ export * from "./symbol.js";
 export * from "./transforms/basic.js";
 export * from "./transforms/bin.js";
 export * from "./transforms/centroid.js";
+export * from "./transforms/decimate.js";
 export * from "./transforms/dodge.js";
 export * from "./transforms/group.js";
 export * from "./transforms/hexbin.js";
