@@ -164,6 +164,7 @@ export * from "./metro-unemployment-ridgeline.js";
 export * from "./metro-unemployment-slope.js";
 export * from "./metro-unemployment-stroke.js";
 export * from "./metro-unemployment.js";
+export * from "./mixed-facets.js";
 export * from "./moby-dick-faceted.js";
 export * from "./moby-dick-letter-frequency.js";
 export * from "./moby-dick-letter-pairs.js";
