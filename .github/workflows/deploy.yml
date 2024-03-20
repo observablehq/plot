@@ -15,11 +15,11 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: 'yarn'
+          node-version: 20
+          cache: yarn
       - run: yarn --frozen-lockfile
       - run: yarn prepublishOnly
       - run: yarn docs:build

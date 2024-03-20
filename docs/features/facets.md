@@ -13,6 +13,8 @@ const olympians = shallowRef([
   {weight: 170, height: 2.21, sex: "male"}
 ]);
 
+const scheme = Plot.scale({color: {type: "categorical"}}).range;
+
 onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
 });
@@ -23,7 +25,7 @@ onMounted(() => {
 
 Faceting partitions data by ordinal or categorical value and then repeats a plot for each partition (each **facet**), producing [small multiples](https://en.wikipedia.org/wiki/Small_multiple) for comparison. Faceting is typically enabled by declaring the horizontal↔︎ facet channel **fx**, the vertical↕︎ facet channel **fy**, or both for two-dimensional faceting.
 
-For example, below we recreate the Trellis display (“reminiscent of garden trelliswork”) of [Becker *et al.*](https://hci.stanford.edu/courses/cs448b/papers/becker-trellis-jcgs.pdf) using the dot’s **fy** channel to declare vertical↕︎ facets, showing the yields of several varieties of barley across several sites for the years <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">1931</span> and <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">1932</span>.
+For example, below we recreate the Trellis display (“reminiscent of garden trelliswork”) of [Becker *et al.*](https://hci.stanford.edu/courses/cs448b/papers/becker-trellis-jcgs.pdf) using the dot’s **fy** channel to declare vertical↕︎ facets, showing the yields of several varieties of barley across several sites for the years <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">1931</span> and <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">1932</span>.
 
 :::plot https://observablehq.com/@observablehq/plot-trellis
 ```js
@@ -57,7 +59,7 @@ This plot uses the [**sort** mark option](./scales.md#sort-mark-option) to order
 Use the [frame mark](../marks/frame.md) for stronger visual separation of facets.
 :::
 
-The chart above reveals a likely data collection error: the years appear to be reversed for the Morris site as it is the only site where the yields in <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">1932</span> were higher than in <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">1931</span>. The anomaly in Morris is more obvious if we use directed arrows to show the year-over-year change. The [group transform](../transforms/group.md) groups the observations by site and variety to compute the change.
+The chart above reveals a likely data collection error: the years appear to be reversed for the Morris site as it is the only site where the yields in <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">1932</span> were higher than in <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">1931</span>. The anomaly in Morris is more obvious if we use directed arrows to show the year-over-year change. The [group transform](../transforms/group.md) groups the observations by site and variety to compute the change.
 
 :::plot defer https://observablehq.com/@observablehq/plot-trellis-anomaly
 ```js

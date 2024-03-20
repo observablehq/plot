@@ -9,6 +9,17 @@
     padding: 0 1em;
   }
 
+  @media (prefers-color-scheme: dark) {
+    body {
+      --plot-background: rgb(31, 31, 31);
+      background: var(--plot-background);
+      color: rgb(223, 223, 214);
+    }
+    svg.plot-d6a7b5 {
+      --plot-background: inherit;
+    }
+  }
+
   figure {
     font: 13px/1.2 system-ui;
     margin: 0;

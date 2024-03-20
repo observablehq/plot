@@ -39,7 +39,7 @@ export function createScaleOrdinal(key, channels, {type, interval, domain, range
       if (range !== undefined) scheme = undefined; // Don’t re-apply scheme.
     }
     if (scheme === undefined && range === undefined) {
-      scheme = type === "ordinal" ? "turbo" : "tableau10";
+      scheme = type === "ordinal" ? "turbo" : "observable10";
     }
     if (scheme !== undefined) {
       if (range !== undefined) {
@@ -112,8 +112,7 @@ function inferHint(channels, key) {
   for (const {hint} of channels) {
     const candidate = hint?.[key];
     if (candidate === undefined) continue; // no hint here
-    if (value === undefined) value = candidate;
-    // first hint
+    if (value === undefined) value = candidate; // first hint
     else if (value !== candidate) return; // inconsistent hint
   }
   return value;

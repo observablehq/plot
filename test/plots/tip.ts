@@ -27,7 +27,7 @@ export async function tipBin() {
 
 export async function tipBinStack() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", tip: true})).plot();
+  return Plot.rectY(olympians, Plot.binX({y: "count", sort: "z"}, {x: "weight", fill: "sex", tip: true})).plot();
 }
 
 export async function tipCell() {
@@ -179,6 +179,10 @@ export async function tipLineX() {
 export async function tipLineY() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
+}
+
+export async function tipLongText() {
+  return Plot.tip([{x: "Long sentence that gets cropped after a certain length"}], {x: "x"}).plot();
 }
 
 export async function tipNewLines() {

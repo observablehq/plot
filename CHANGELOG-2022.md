@@ -1,6 +1,6 @@
 # Observable Plot - Changelog [2022]
 
-Year: [Current (2023)](./CHANGELOG.md) · **2022** · [2021](./CHANGELOG-2021.md)
+Year: [Current (2024)](./CHANGELOG.md) · [2023](./CHANGELOG-2023.md) · **2022** · [2021](./CHANGELOG-2021.md)
 
 ## 0.6.1
 

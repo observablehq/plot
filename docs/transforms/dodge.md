@@ -177,7 +177,7 @@ Plot.plot({
 ```
 :::
 
-The dodge transform can be use with any mark that supports **x** and **y** position. Below, we use the [text mark](../marks/text.md) instead to show company valuations (in billions).
+The dodge transform can be used with any mark that supports **x** and **y** position. Below, we use the [text mark](../marks/text.md) instead to show company valuations (in billions).
 
 :::plot defer https://observablehq.com/@observablehq/plot-text-dodge
 ```js

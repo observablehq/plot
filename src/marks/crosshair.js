@@ -85,7 +85,7 @@ function textOptions(k, pointerOptions, options) {
     color = "currentColor",
     textFill: fill = color,
     textFillOpacity: fillOpacity,
-    textStroke: stroke = "white",
+    textStroke: stroke = "var(--plot-background)",
     textStrokeOpacity: strokeOpacity,
     textStrokeWidth: strokeWidth = 5
   } = options;

@@ -108,8 +108,8 @@ export interface WindowOptions {
  *
  * If *windowOptions* is a number, it is shorthand for the window size **k**.
  */
-export function windowX<T>(windowOptions?: WindowOptions | WindowOptions["k"], options?: T): Transformed<T>;
 export function windowX<T>(options?: T & WindowOptions): Transformed<T>;
+export function windowX<T>(windowOptions?: WindowOptions | WindowOptions["k"], options?: T): Transformed<T>;
 
 /**
  * Groups data into series using the first channel of *z*, *fill*, or *stroke*
@@ -123,8 +123,8 @@ export function windowX<T>(options?: T & WindowOptions): Transformed<T>;
  *
  * If *windowOptions* is a number, it is shorthand for the window size **k**.
  */
-export function windowY<T>(windowOptions?: WindowOptions | WindowOptions["k"], options?: T): Transformed<T>;
 export function windowY<T>(options?: T & WindowOptions): Transformed<T>;
+export function windowY<T>(windowOptions?: WindowOptions | WindowOptions["k"], options?: T): Transformed<T>;
 
 /**
  * Given the specified window *options*, returns a corresponding map

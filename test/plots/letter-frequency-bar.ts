@@ -24,7 +24,7 @@ export async function letterFrequencyBar() {
         )(d3.format(".1%")),
         sort: {y: "x"}
       }),
-      Plot.ruleX([0])
+      Plot.ruleX([0], {ariaHidden: "true"})
     ],
     height: 580
   });
