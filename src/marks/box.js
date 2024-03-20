@@ -1,4 +1,4 @@
-import {max, min, quantile} from "d3";
+import {max, min, quantile, quantileSorted} from "d3";
 import {marks} from "../mark.js";
 import {identity} from "../options.js";
 import {groupX, groupY, groupZ} from "../transforms/group.js";
@@ -7,6 +7,9 @@ import {barX, barY} from "./bar.js";
 import {dot} from "./dot.js";
 import {ruleX, ruleY} from "./rule.js";
 import {tickX, tickY} from "./tick.js";
+import {pointerX, pointerY} from "../interactions/pointer.js";
+import {tip as tipmark} from "./tip.js";
+import {formatDefault} from "../format.js";
 
 // Returns a composite mark for producing a horizontal box plot, applying the
 // necessary statistical transforms. The boxes are grouped by y, if present.
@@ -21,6 +24,7 @@ export function boxX(
     strokeOpacity,
     strokeWidth = 2,
     sort,
+    tip,
     ...options
   } = {}
 ) {
@@ -29,7 +33,8 @@ export function boxX(
     ruleY(data, group({x1: loqr1, x2: hiqr2}, {x, y, stroke, strokeOpacity, ...options})),
     barX(data, group({x1: "p25", x2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickX(data, group({x: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
-    dot(data, map({x: oqr}, {x, y, z: y, stroke, strokeOpacity, ...options}))
+    dot(data, map({x: oqr}, {x, y, z: y, stroke, strokeOpacity, ...options})),
+    tip && tipmark(data, pointerY(group({x: "p50", title: boxStats}, {x, y, z: y, title: x, ...options})))
   );
 }
 
@@ -46,6 +51,7 @@ export function boxY(
     strokeOpacity,
     strokeWidth = 2,
     sort,
+    tip,
     ...options
   } = {}
 ) {
@@ -54,7 +60,8 @@ export function boxY(
     ruleX(data, group({y1: loqr1, y2: hiqr2}, {x, y, stroke, strokeOpacity, ...options})),
     barY(data, group({y1: "p25", y2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickY(data, group({y: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
-    dot(data, map({y: oqr}, {x, y, z: x, stroke, strokeOpacity, ...options}))
+    dot(data, map({y: oqr}, {x, y, z: x, stroke, strokeOpacity, ...options})),
+    tip && tipmark(data, pointerX(group({y: "p50", title: boxStats}, {x, y, z: x, title: y, ...options})))
   );
 }
 
@@ -81,4 +88,38 @@ function quartile1(values) {
 
 function quartile3(values) {
   return quantile(values, 0.75);
+}
+
+function boxStats(values) {
+  const V = Float64Array.from(
+    (function* (V) {
+      for (let v of V) if (v !== null && !isNaN((v = +v))) yield v;
+    })(values)
+  ).sort();
+  const q1 = quantileSorted(V, 0.25);
+  const q2 = quantileSorted(V, 0.5);
+  const q3 = quantileSorted(V, 0.75);
+  const lo = q1 * 2.5 - q3 * 1.5;
+  const loqr1 = V.find((d) => d >= lo);
+  const hi = q3 * 2.5 - q1 * 1.5;
+  let hiqr2;
+  for (let i = V.length - 1; i >= 0; --i) {
+    if (V[i] <= hi) {
+      hiqr2 = V[i];
+      break;
+    }
+  }
+  const f = formatDefault;
+  return (
+    q1 === q3
+      ? [f(q2)]
+      : [
+          q1 < q2 && `p25: ${f(q1)}`,
+          `p50: ${f(q2)}`,
+          q3 > q2 && `p75: ${f(q3)}`,
+          loqr1 < hiqr2 && `low: ${f(loqr1)}\nhigh: ${f(hiqr2)}`
+        ]
+  )
+    .filter((d) => d)
+    .join("\n");
 }
