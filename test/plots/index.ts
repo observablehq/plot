@@ -176,6 +176,7 @@ export * from "./movies-rating-by-genre.js";
 export * from "./multiplication-table.js";
 export * from "./music-revenue.js";
 export * from "./npm-versions.js";
+export * from "./occlusion.js";
 export * from "./opacity.js";
 export * from "./ordinal-bar.js";
 export * from "./pairs.js";
