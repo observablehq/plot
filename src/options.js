@@ -2,6 +2,7 @@ import {quantile, range as rangei} from "d3";
 import {parse as isoParse} from "isoformat";
 import {defined} from "./defined.js";
 import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
+import * as Arrow from "apache-arrow";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -585,4 +586,21 @@ function arrowTableProxy(data) {
         : target[prop]; // pass all other properties
     }
   });
+}
+
+const mmm = new WeakMap();
+export function convertArrow(data) {
+  if (
+    Array.isArray(data) &&
+    data.length &&
+    data[0] &&
+    typeof data[0] === "object" &&
+    !(data[0] instanceof Date) &&
+    !data[0].type &&
+    !Array.isArray(data[0])
+  ) {
+    if (!mmm.has(data)) mmm.set(data, Arrow.tableFromJSON(data));
+    data = mmm.get(data);
+  }
+  return data;
 }

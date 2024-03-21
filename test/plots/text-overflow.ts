@@ -132,7 +132,7 @@ async function textOverflowPlot(textOverflow, {monospace = false} = {}) {
         title: (d) => d.opinion.replace("%", `${d.share}%`),
         offset: "normalize",
         transform: (data, facets) => ({
-          data: data.flatMap((p) => opinions.map((o) => ({President: p.Name, share: p[o], opinion: o}))),
+          data: [...data].flatMap((p) => opinions.map((o) => ({President: p.Name, share: p[o], opinion: o}))),
           facets: facets.map((f) =>
             Array.from(f, (i) => d3.range(i * opinions.length, (i + 1) * opinions.length)).flat()
           )

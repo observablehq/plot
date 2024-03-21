@@ -9,7 +9,7 @@ import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
-import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
+import {convertArrow, isColor, isIterable, isNone, isScaleOptions} from "./options.js";
 import {arrayify, map, yes, maybeIntervalTransform, subarray} from "./options.js";
 import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
@@ -35,6 +35,7 @@ export function plot(options = {}) {
   // mark-specific facet state, except there isn’t a facetsIndex, and there’s a
   // data and dataLength so we can warn the user if a different data of the same
   // length is used in a mark.
+  if (facet?.data) facet.data = convertArrow(facet.data);
   const topFacetState = maybeTopFacet(facet, options);
 
   // Construct a map from (faceted) Mark instance to facet state, including:
