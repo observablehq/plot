@@ -14,7 +14,7 @@ export const reindex = Symbol("reindex");
 export function valueof(data, value, type) {
   const valueType = typeof value;
   return valueType === "string"
-    ? maybeTypedMap(data, field(value), type)
+    ? columnar(data, value, type)
     : valueType === "function"
     ? maybeTypedMap(data, value, type)
     : valueType === "number" || value instanceof Date || valueType === "boolean"
@@ -132,7 +132,11 @@ export function keyword(input, name, allowed) {
 
 // Promotes the specified data to an array as needed.
 export function arrayify(data) {
-  return data == null || data instanceof Array || data instanceof TypedArray ? data : Array.from(data);
+  return data == null || data instanceof Array || data instanceof TypedArray
+    ? data
+    : isArrowTable(data)
+    ? arrowTableProxy(data)
+    : Array.from(data);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
@@ -555,4 +559,30 @@ export function maybeClip(clip) {
   else if (clip === false) clip = null;
   else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
   return clip;
+}
+
+// Duck typing Apache Arrow tables
+function isArrowTable(data) {
+  return typeof data?.getChild === "function" && typeof data.numRows === "number" && typeof data.slice === "function";
+}
+
+// Extract columnar data
+function columnar(data, name, type) {
+  return isArrowTable(data) ? maybeTypedArrayify(data.getChild(name), type) : maybeTypedMap(data, field(name), type);
+}
+
+// “Arrayify” but for Arrow tables. We try to avoid materializing the values,
+// but the Proxy might be used by the group reducer to construct groupData.
+function arrowTableProxy(data) {
+  return new Proxy(data, {
+    get(target, prop) {
+      return prop === "length"
+        ? target.numRows
+        : prop === "constructor" // for take/map
+        ? Array
+        : typeof prop === "string" && !isNaN(prop)
+        ? {...target.get(prop)}
+        : target[prop]; // pass all other properties
+    }
+  });
 }

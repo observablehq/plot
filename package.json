@@ -57,6 +57,7 @@
     "@types/node": "^20.5.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
+    "apache-arrow": "^15.0.2",
     "c8": "^9.1.0",
     "canvas": "^2.0.0",
     "d3-geo-projection": "^4.0.0",
