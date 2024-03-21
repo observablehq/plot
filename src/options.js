@@ -571,8 +571,8 @@ function columnar(data, name, type) {
   return isArrowTable(data) ? maybeTypedArrayify(data.getChild(name), type) : maybeTypedMap(data, field(name), type);
 }
 
-// “Arrayify” but for Arrow tables. We try to avoid materializing the values,
-// but the Proxy might be used by the group reducer to construct groupData.
+// Arrayify arrow tables. We try to avoid materializing the values, but the
+// Proxy might be used by the group reducer to construct groupData.
 function arrowTableProxy(data) {
   return new Proxy(data, {
     get(target, prop) {
