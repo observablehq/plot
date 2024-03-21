@@ -581,7 +581,7 @@ function arrowTableProxy(data) {
         : prop === "constructor" // for take/map
         ? Array
         : typeof prop === "string" && !isNaN(prop)
-        ? {...target.get(prop)}
+        ? target.get(prop)
         : target[prop]; // pass all other properties
     }
   });
