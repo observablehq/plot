@@ -25,7 +25,7 @@ export function valueof(data, value, type) {
 }
 
 function maybeTake(values, index) {
-  return index ? take(values, index) : values;
+  return values != null && index ? take(values, index) : values;
 }
 
 function maybeTypedMap(data, f, type) {
