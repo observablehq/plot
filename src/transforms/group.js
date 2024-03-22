@@ -362,7 +362,8 @@ function reduceMaybeTemporalAccessor(f) {
 
 export const reduceIdentity = {
   reduceIndex(I, X) {
-    return take(X, I);
+    let K; // lazy
+    return new Proxy(I, {get: (I, prop) => (K ??= take(X, I))[prop]});
   }
 };
 
