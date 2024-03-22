@@ -132,6 +132,7 @@ export function keyword(input, name, allowed) {
 
 // Promotes the specified data to an array as needed.
 export function arrayify(data) {
+  if (typeof data?.transform === "function") data = data.transform();
   return data == null || data instanceof Array || data instanceof TypedArray ? data : Array.from(data);
 }
 
