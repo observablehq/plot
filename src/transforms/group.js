@@ -66,7 +66,7 @@ function groupn(
   x, // optionally group on x
   y, // optionally group on y
   {
-    data: reduceData = reduceIdentity,
+    data: reduceData = reduceIdentityLazy,
     filter,
     sort,
     reverse,
@@ -153,6 +153,7 @@ function groupn(
         groupFacets.push(groupFacet);
       }
       maybeSort(groupFacets, sort, reverse);
+      if (reduceData === reduceIdentityLazy) groupData.transform = () => groupData.map((d) => d());
       return {data: groupData, facets: groupFacets};
     }),
     ...(!hasOutput(outputs, "x") && (GX ? {x: GX} : {x1, x2})),
@@ -236,6 +237,7 @@ export function maybeGroup(I, X) {
 export function maybeReduce(reduce, value, fallback = invalidReduce) {
   if (reduce == null) return fallback(reduce);
   if (typeof reduce.reduceIndex === "function") return reduce;
+  if (typeof reduce.reduceIndexLazy === "function") return reduce;
   if (typeof reduce.reduce === "function" && isObject(reduce)) return reduceReduce(reduce); // N.B. array.reduce
   if (typeof reduce === "function") return reduceFunction(reduce);
   if (/^p\d{2}$/i.test(reduce)) return reduceAccessor(percentile(reduce));
@@ -363,6 +365,12 @@ function reduceMaybeTemporalAccessor(f) {
 export const reduceIdentity = {
   reduceIndex(I, X) {
     return take(X, I);
+  }
+};
+
+const reduceIdentityLazy = {
+  reduceIndex(I, X) {
+    return () => take(X, I);
   }
 };
 
