@@ -11,7 +11,7 @@ import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
 import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
 import {arrayify, map, yes, maybeIntervalTransform, subarray} from "./options.js";
-import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
+import {createProjection, exposeProjection, getGeometryChannels, hasProjection} from "./projection.js";
 import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {innerDimensions, outerDimensions} from "./scales.js";
 import {isPosition, registry as scaleRegistry} from "./scales/index.js";
@@ -334,6 +334,7 @@ export function plot(options = {}) {
     if (caption != null) figure.append(createFigcaption(document, caption));
   }
 
+  figure.projection = exposeProjection(context.projection);
   figure.scale = exposeScales(scales.scales);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
 

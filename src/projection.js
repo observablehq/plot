@@ -40,6 +40,7 @@ export function createProjection(
   if (projection == null) return;
   if (typeof projection.stream === "function") return projection; // d3 projection
   let options;
+  let name;
   let domain;
   let clip = "frame";
 
@@ -58,13 +59,14 @@ export function createProjection(
       insetBottom = inset !== undefined ? inset : insetBottom,
       insetLeft = inset !== undefined ? inset : insetLeft,
       clip = clip,
+      name,
       ...options
     } = projection);
     if (projection == null) return;
   }
 
   // For named projections, retrieve the corresponding projection initializer.
-  if (typeof projection !== "function") ({type: projection} = namedProjection(projection));
+  if (typeof projection !== "function") ({type: projection, name} = namedProjection(projection));
 
   // Compute the frame dimensions and invoke the projection initializer.
   const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
@@ -82,6 +84,7 @@ export function createProjection(
   let transform;
 
   // If a domain is specified, fit the projection to the frame.
+  let scale = projection.scale?.() || 1;
   if (domain != null) {
     const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
     const k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
@@ -93,6 +96,7 @@ export function createProjection(
           this.stream.point(x * k + tx, y * k + ty);
         }
       });
+      scale *= k;
     } else {
       warn(`Warning: the projection could not be fit to the specified domain; using the default scale.`);
     }
@@ -107,43 +111,45 @@ export function createProjection(
           }
         });
 
-  return {stream: (s) => projection.stream(transform.stream(clip(s)))};
+  console.warn({name, ...options, scale});
+  return {name, stream: (s) => projection.stream(transform.stream(clip(s))), ...options, scale};
 }
 
 function namedProjection(projection) {
-  switch (`${projection}`.toLowerCase()) {
+  const name = `${projection}`.toLowerCase();
+  switch (name) {
     case "albers-usa":
-      return scaleProjection(geoAlbersUsa, 0.7463, 0.4673);
+      return scaleProjection(name, geoAlbersUsa, 0.7463, 0.4673);
     case "albers":
-      return conicProjection(geoAlbers, 0.7463, 0.4673);
+      return conicProjection(name, geoAlbers, 0.7463, 0.4673);
     case "azimuthal-equal-area":
-      return scaleProjection(geoAzimuthalEqualArea, 4, 4);
+      return scaleProjection(name, geoAzimuthalEqualArea, 4, 4);
     case "azimuthal-equidistant":
-      return scaleProjection(geoAzimuthalEquidistant, tau, tau);
+      return scaleProjection(name, geoAzimuthalEquidistant, tau, tau);
     case "conic-conformal":
-      return conicProjection(geoConicConformal, tau, tau);
+      return conicProjection(name, geoConicConformal, tau, tau);
     case "conic-equal-area":
-      return conicProjection(geoConicEqualArea, 6.1702, 2.9781);
+      return conicProjection(name, geoConicEqualArea, 6.1702, 2.9781);
     case "conic-equidistant":
-      return conicProjection(geoConicEquidistant, 7.312, 3.6282);
+      return conicProjection(name, geoConicEquidistant, 7.312, 3.6282);
     case "equal-earth":
-      return scaleProjection(geoEqualEarth, 5.4133, 2.6347);
+      return scaleProjection(name, geoEqualEarth, 5.4133, 2.6347);
     case "equirectangular":
-      return scaleProjection(geoEquirectangular, tau, pi);
+      return scaleProjection(name, geoEquirectangular, tau, pi);
     case "gnomonic":
-      return scaleProjection(geoGnomonic, 3.4641, 3.4641);
+      return scaleProjection(name, geoGnomonic, 3.4641, 3.4641);
     case "identity":
-      return {type: identity};
+      return {name, type: identity};
     case "reflect-y":
-      return {type: reflectY};
+      return {name, type: reflectY};
     case "mercator":
-      return scaleProjection(geoMercator, tau, tau);
+      return scaleProjection(name, geoMercator, tau, tau);
     case "orthographic":
-      return scaleProjection(geoOrthographic, 2, 2);
+      return scaleProjection(name, geoOrthographic, 2, 2);
     case "stereographic":
-      return scaleProjection(geoStereographic, 2, 2);
+      return scaleProjection(name, geoStereographic, 2, 2);
     case "transverse-mercator":
-      return scaleProjection(geoTransverseMercator, tau, tau);
+      return scaleProjection(name, geoTransverseMercator, tau, tau);
     default:
       throw new Error(`unknown projection type: ${projection}`);
   }
@@ -160,8 +166,9 @@ function maybePostClip(clip, x1, y1, x2, y2) {
   }
 }
 
-function scaleProjection(createProjection, kx, ky) {
+function scaleProjection(name, createProjection, kx, ky) {
   return {
+    name,
     type: ({width, height, rotate, precision = 0.15, clip}) => {
       const projection = createProjection();
       if (precision != null) projection.precision?.(precision);
@@ -175,9 +182,10 @@ function scaleProjection(createProjection, kx, ky) {
   };
 }
 
-function conicProjection(createProjection, kx, ky) {
-  const {type, aspectRatio} = scaleProjection(createProjection, kx, ky);
+function conicProjection(name, createProjection, kx, ky) {
+  const {type, aspectRatio} = scaleProjection(name, createProjection, kx, ky);
   return {
+    name,
     type: (options) => {
       const {parallels, domain, width, height} = options;
       const projection = type(options);
@@ -284,4 +292,17 @@ export function getGeometryChannels(channel) {
   };
   for (const object of channel.value) geoStream(object, sink);
   return [x, y];
+}
+
+export function exposeProjection(projection) {
+  if (projection === undefined) return projection;
+  const {name, stream, ...options} = projection;
+  let x, y;
+  const pointProjection = stream({point: (x_, y_) => ((x = x_), (y = y_))});
+  return () => ({
+    name,
+    stream,
+    point: (coordinates) => (geoStream({type: "Point", coordinates}, pointProjection), [x, y]),
+    ...options
+  });
 }
