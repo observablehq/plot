@@ -1,3 +1,4 @@
+import {select} from "d3";
 import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
@@ -127,6 +128,24 @@ export class Mark {
     const values = valueObject(channels, scales);
     if (context.projection) this.project(channels, values, context);
     return values;
+  }
+  // On zoom, a mark can do more interesting things than just applying a
+  // transform; for instance, an axis mark might want to adapt its ticks, and a
+  // dot mark might adjust its radius. By default, though, we just zoom the
+  // zoomable SVG elements (ie everything but clipPath?).
+  zoom(node, transform) {
+    let z = select(node).selectAll(".zoomable");
+    if (z.size() === 0) {
+      z = select(node).append("g").classed("zoomable", true);
+      select(node)
+        .selectChildren("circle,g:not(.zoomable),image,line,path,rect,text")
+        .attr("vector-effect", "non-scaling-stroke")
+        .each(function () {
+          z.append(() => this);
+        });
+    }
+    z.attr("transform", transform);
+    return node;
   }
 }
 
