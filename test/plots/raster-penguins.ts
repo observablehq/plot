@@ -15,6 +15,10 @@ export async function rasterPenguinsBarycentric() {
   return rasterPenguins({interpolate: "barycentric"});
 }
 
+export async function rasterPenguinsBarycentricBlur() {
+  return rasterPenguins({interpolate: "barycentric", blur: 7});
+}
+
 export async function rasterPenguinsRandomWalk() {
   return rasterPenguins({interpolate: "random-walk"});
 }
