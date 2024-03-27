@@ -189,3 +189,11 @@ export async function differenceFilterY2() {
   const y2 = aapl.map((d, i, data) => d.Close / data[0].Close);
   return Plot.differenceY(aapl, {x, y1, y2}).plot();
 }
+
+export async function differenceX() {
+  const random = d3.randomNormal.source(d3.randomLcg(22))();
+  return Plot.differenceX({length: 100}, Plot.mapX("cumsum", {x1: random, x2: random, curve: "basis"})).plot({
+    height: 600,
+    y: {reverse: true}
+  });
+}

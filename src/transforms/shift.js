@@ -7,6 +7,10 @@ export function shiftX(interval, options) {
   return shiftK("x", interval, options);
 }
 
+export function shiftY(interval, options) {
+  return shiftK("y", interval, options);
+}
+
 function shiftK(x, interval, options = {}) {
   let offset;
   let k = 1;
