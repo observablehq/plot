@@ -32,17 +32,16 @@ export class WaffleY extends Mark {
     // TODO recycle patterns that share the same fill color
     const patternId = `plot-waffle-${++nextWaffleId}`;
 
-    // The “density” of the y-scale, in pixels per unit; the number of waffle
-    // cells must correspond to the same number of units along the y-scale.
+    // The length of a unit along y in pixels.
     // TODO multiples (e.g., each cell in the waffle represents one thousand)
-    const density = Math.abs(scales.y(0) - scales.y(1));
+    const scale = Math.abs(scales.y(0) - scales.y(1));
 
     // The width of the waffle, in cells. This must be an integer. TODO We need
     // to compute this automatically, but how?
     const columns = 10;
 
-    // The outer width of each waffle cell, in pixels, including the gap.
-    const cellwidth = density * columns;
+    // The outer size of each square waffle cell, in pixels, including the gap.
+    const cellsize = scale * columns;
 
     // The gap between adjacent cells, in pixels.
     const cellgap = 1;
@@ -95,15 +94,15 @@ export class WaffleY extends Mark {
     const Y2 = channels.channels.y2.value;
     const {y} = scales;
 
-    const x0 = (i) => marginLeft + (columns - (Y2[i] % columns)) * cellwidth;
+    const x0 = (i) => marginLeft + (columns - (Y2[i] % columns)) * cellsize;
     const y0 = (i) => y(Math.ceil(Y2[i] / columns) * columns);
-    const x1 = () => marginLeft + columns * cellwidth;
+    const x1 = () => marginLeft + columns * cellsize;
     const y2 = (i) => y(Math.ceil(Y1[i] / columns) * columns);
-    const x3 = (i) => marginLeft + (columns - (Y1[i] % columns)) * cellwidth;
+    const x3 = (i) => marginLeft + (columns - (Y1[i] % columns)) * cellsize;
     const y4 = (i) => y(Math.floor(Y1[i] / columns) * columns);
     const x5 = () => marginLeft + 0;
     const y6 = (i) => y(Math.floor(Y2[i] / columns) * columns);
-    const x7 = (i) => marginLeft + (columns - (Y2[i] % columns)) * cellwidth;
+    const x7 = (i) => marginLeft + (columns - (Y2[i] % columns)) * cellsize;
 
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
@@ -117,15 +116,17 @@ export class WaffleY extends Mark {
             g
               .append("pattern")
               .attr("id", (i) => `${patternId}-${i}`)
-              .attr("width", cellwidth)
-              .attr("height", cellwidth)
-              .attr("x", marginLeft + cellgap / 2)
-              .attr("y", height - marginBottom - cellwidth + cellgap / 2)
+              .attr("width", cellsize)
+              .attr("height", cellsize)
+              .attr("x", marginLeft)
+              .attr("y", height - marginBottom - cellsize)
               .attr("patternUnits", "userSpaceOnUse")
               .append("rect")
               .attr("fill", (i) => F[i])
-              .attr("width", cellwidth - cellgap)
-              .attr("height", cellwidth - cellgap)
+              .attr("x", cellgap / 2)
+              .attr("y", cellgap / 2)
+              .attr("width", cellsize - cellgap)
+              .attr("height", cellsize - cellgap)
           )
           .call((g) =>
             g
