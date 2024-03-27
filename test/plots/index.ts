@@ -327,6 +327,7 @@ export * from "./var-color.js";
 export * from "./vector-field.js";
 export * from "./vector-frame.js";
 export * from "./volcano.js";
+export * from "./waffle.js";
 export * from "./walmarts-decades.js";
 export * from "./walmarts-density-unprojected.js";
 export * from "./walmarts-density.js";
