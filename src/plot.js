@@ -175,7 +175,7 @@ export function plot(options = {}) {
   context.dispatchValue = (value) => {
     if (figure.value === value) return;
     figure.value = value;
-    figure.dispatchEvent(new Event("input", {bubbles: true}));
+    if (figure.isConnected) figure.dispatchEvent(new Event("input", {bubbles: true}));
   };
 
   // Reinitialize; for deriving channels dependent on other channels.
@@ -332,6 +332,10 @@ export function plot(options = {}) {
     if (subtitle != null) figure.append(createTitleElement(document, subtitle, "h3"));
     figure.append(...legends, svg);
     if (caption != null) figure.append(createFigcaption(document, caption));
+    if ("value" in svg) {
+      figure.value = svg.value;
+      delete svg.value;
+    }
   }
 
   figure.scale = exposeScales(scales.scales);
