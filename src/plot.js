@@ -171,11 +171,19 @@ export function plot(options = {}) {
     return {...state, channels: {...state.channels, ...facetState?.channels}};
   };
 
+  class StickyEvent extends Event {
+    constructor(type, options) {
+      super(type, options);
+      this.sticky = options.sticky;
+    }
+  }
+
   // Allows e.g. the pointer transform to support viewof.
-  context.dispatchValue = (value) => {
-    if (figure.value === value) return;
+  context.dispatchValue = (value, sticky) => {
+    if (figure.value === value && context.stickyState === sticky) return;
     figure.value = value;
-    figure.dispatchEvent(new Event("input", {bubbles: true}));
+    context.stickyState = sticky;
+    figure.dispatchEvent(new StickyEvent("input", {bubbles: true, sticky}));
   };
 
   // Reinitialize; for deriving channels dependent on other channels.
