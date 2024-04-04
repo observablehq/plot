@@ -17,11 +17,11 @@ export default {
   }
 };
 
-async function enableAnalytics(router) {
+function enableAnalytics(router) {
   if (typeof location === "undefined" || location.origin !== "https://observablehq.com") return;
-  const {pageLoad, routeChanged} = await import("https://events.observablehq.com/client.js?pageLoad");
   let pageLoaded = false;
-  watch(router.route, () => {
+  watch(router.route, async () => {
+    const {pageLoad, routeChanged} = await import("https://events.observablehq.com/client.js");
     if (pageLoaded) {
       routeChanged();
     } else {
