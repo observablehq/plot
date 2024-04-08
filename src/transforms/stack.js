@@ -2,7 +2,7 @@ import {InternMap, cumsum, greatest, group, groupSort, max, min, rollup, sum} fr
 import {ascendingDefined, descendingDefined} from "../defined.js";
 import {withTip} from "../mark.js";
 import {maybeApplyInterval, maybeColumn, maybeZ, maybeZero} from "../options.js";
-import {column, field, mid, one, range, valueof} from "../options.js";
+import {column, field, maybeValue, mid, one, range, valueof} from "../options.js";
 import {basic} from "./basic.js";
 import {exclusiveFacets} from "./exclusiveFacets.js";
 
@@ -87,7 +87,7 @@ function stack(x, y = one, kx, ky, {offset, order, reverse}, options) {
   return [
     basic(options, (data, facets, plotOptions) => {
       ({data, facets} = exclusiveFacets(data, facets));
-      const X = x == null ? undefined : setX(maybeApplyInterval(valueof(data, x), plotOptions?.[kx]));
+      const X = x == null ? undefined : setX(maybeApplyInterval(valueof(data, maybeValue(x).value), plotOptions?.[kx]));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);
       const compare = order && order(data, X, Y, Z);

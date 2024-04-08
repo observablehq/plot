@@ -134,6 +134,7 @@ export * from "./integer-interval.js";
 export * from "./intern-facet.js";
 export * from "./interpolate-barycentric.js";
 export * from "./interval-aware.js";
+export * from "./interval-scale-override.js";
 export * from "./intraday-histogram.js";
 export * from "./kitten.js";
 export * from "./learning-poverty.js";
