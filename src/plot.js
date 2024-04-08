@@ -332,6 +332,7 @@ export function plot(options = {}) {
     if (subtitle != null) figure.append(createTitleElement(document, subtitle, "h3"));
     figure.append(...legends, svg);
     if (caption != null) figure.append(createFigcaption(document, caption));
+    if ("value" in svg) (figure.value = svg.value), delete svg.value;
   }
 
   figure.scale = exposeScales(scales.scales);
