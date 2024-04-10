@@ -192,7 +192,7 @@ Plot.plot({
 ```
 :::
 
-The bin transform works with Plot’s [faceting system](../features/facets.md), partitioning bins by facet. Below, we compare the weight distributions of athletes within each sport using the *proportion-facet* reducer. Sports are sorted by median weight: gymnasts tend to be the lightest, and basketball players the heaviest.
+The bin transform works with Plot’s [faceting system](../features/facets.md), partitioning bins by facet. Below, we compare the weight distributions of athletes within each sport using the *density* reducer. Sports are sorted by median weight: gymnasts tend to be the lightest, and basketball players the heaviest.
 
 :::plot defer
 ```js-vue
@@ -202,7 +202,7 @@ Plot.plot({
   x: {grid: true},
   fy: {domain: d3.groupSort(olympians.filter((d) => d.weight), (g) => d3.median(g, (d) => d.weight), (d) => d.sport)},
   color: {scheme: "{{$dark ? "turbo" : "YlGnBu"}}"},
-  marks: [Plot.rect(olympians, Plot.binX({fill: "proportion-facet"}, {x: "weight", fy: "sport", inset: 0.5}))]
+  marks: [Plot.rect(olympians, Plot.binX({fill: "density"}, {x: "weight", fy: "sport", inset: 0.5}))]
 })
 ```
 :::
@@ -253,6 +253,7 @@ The following named reducers are supported:
 * *first* - the first value, in input order
 * *last* - the last value, in input order
 * *count* - the number of elements (frequency)
+* *density* – the number of elements normalized to have total area of 1
 * *distinct* - the number of distinct values
 * *sum* - the sum of values
 * *proportion* - the sum proportional to the overall total (weighted frequency)
