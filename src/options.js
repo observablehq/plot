@@ -50,12 +50,10 @@ export const singleton = [null]; // for data-less decoration marks, e.g. frame
 export const field = (name) => (d) => d[name];
 export const indexOf = {transform: range};
 export const identity = {transform: (d) => d};
-export const zero = () => 0;
 export const one = () => 1;
 export const yes = () => true;
 export const string = (x) => (x == null ? x : `${x}`);
 export const number = (x) => (x == null ? x : +x);
-export const boolean = (x) => (x == null ? x : !!x);
 export const first = (x) => (x ? x[0] : undefined);
 export const second = (x) => (x ? x[1] : undefined);
 export const third = (x) => (x ? x[2] : undefined);
@@ -223,11 +221,6 @@ export function range(data) {
   const r = new Uint32Array(n);
   for (let i = 0; i < n; ++i) r[i] = i;
   return r;
-}
-
-// Returns a filtered range of data given the test function.
-export function where(data, test) {
-  return range(data).filter((i) => test(data[i], i, data));
 }
 
 // Returns an array [values[index[0]], values[index[1]], …].
@@ -528,7 +521,7 @@ export function inherit(options = {}, ...rest) {
 
 // Given an iterable of named things (objects with a name property), returns a
 // corresponding object with properties associated with the given name.
-export function named(things) {
+function named(things) {
   console.warn("named iterables are deprecated; please use an object instead");
   const names = new Set();
   return Object.fromEntries(

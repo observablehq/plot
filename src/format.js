@@ -14,7 +14,7 @@ const weekdayFormat = memoize1((locale, weekday) => {
   return new Intl.DateTimeFormat(locale, {timeZone: "UTC", ...(weekday && {weekday})});
 });
 
-export function formatNumber(locale = "en-US") {
+function formatNumber(locale) {
   const format = numberFormat(locale);
   return (i) => (i != null && !isNaN(i) ? format.format(i) : undefined);
 }
@@ -33,7 +33,7 @@ export function formatIsoDate(date) {
   return isoFormat(date, "Invalid Date");
 }
 
-export function formatAuto(locale = "en-US") {
+function formatAuto(locale = "en-US") {
   const number = formatNumber(locale);
   return (v) => (v instanceof Date ? formatIsoDate : typeof v === "number" ? number : string)(v);
 }
