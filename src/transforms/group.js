@@ -413,9 +413,9 @@ export const reduceDensity = {
   scope: "group",
   reduceIndex(I, V, context, extent) {
     if (context === undefined) return I.length;
-    var proportion = I.length / context;
-    if ("y2" in extent) proportion /= extent.y2 - extent.y1;
-    if ("x2" in extent) proportion /= extent.x2 - extent.x1;
+    let proportion = I.length / context;
+    if ("y2" in extent && !("x2" in extent)) proportion /= extent.y2 - extent.y1;
+    else if ("x2" in extent && !("y2" in extent)) proportion /= extent.x2 - extent.x1;
     return proportion;
   }
 };

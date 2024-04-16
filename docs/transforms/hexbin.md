@@ -183,7 +183,7 @@ The following named reducers are supported:
 * *first* - the first value, in input order
 * *last* - the last value, in input order
 * *count* - the number of elements (frequency)
-* *density* – the number of elements normalized to have total area of 1
+the count or sum normalized by series (*z*)
 * *distinct* - the number of distinct values
 * *sum* - the sum of values
 * *proportion* - the sum proportional to the overall total (weighted frequency)
