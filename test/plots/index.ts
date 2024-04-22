@@ -312,6 +312,7 @@ export * from "./us-congress-age-color-explicit.js";
 export * from "./us-congress-age-gender.js";
 export * from "./us-congress-age-symbol-explicit.js";
 export * from "./us-congress-age.js";
+export * from "./us-counties.js";
 export * from "./us-county-choropleth.js";
 export * from "./us-county-spikes.js";
 export * from "./us-population-state-age-dots.js";

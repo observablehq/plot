@@ -22,7 +22,7 @@ export class Geo extends Mark {
     super(
       data,
       {
-        geometry: {value: options.geometry, scale: "projection"},
+        geometry: {value: options.geometry, scale: "auto"},
         r: {value: vr, scale: "r", filter: positive, optional: true}
       },
       withDefaultSort(options),
@@ -31,8 +31,8 @@ export class Geo extends Mark {
     this.r = cr;
   }
   render(index, scales, channels, dimensions, context) {
-    const {geometry: G, r: R} = channels;
-    const path = geoPath(context.projection ?? scaleProjection(scales));
+    const {geometry: G, r: R, channels: {geometry: {scale}}} = channels; // prettier-ignore
+    const path = geoPath(scale === "projection" ? context.projection ?? scaleProjection(scales) : null);
     const {r} = this;
     if (negative(r)) index = [];
     else if (r !== undefined) path.pointRadius(r);

@@ -86,9 +86,10 @@ export interface Channel {
    * scale will not be used if the associated values met certain criteria; for
    * example, a channel that would normally be associated with the *color* scale
    * will not if all values are valid CSS color strings. if the scale is
-   * specified as false or null, the channel values will not be scaled.
+   * specified as false or null, the channel values will not be scaled. The
+   * *projection* scale is used by the *geometry* channel.
    */
-  scale?: ScaleName | "auto" | boolean | null;
+  scale?: ScaleName | "auto" | "projection" | boolean | null;
 
   /**
    * The required scale type, if any. Marks may require a certain scale type;
