@@ -16,7 +16,7 @@
         <span :class="$style['column-body']">Create a home for your team’s data analysis where you can spin up charts, maps, and data apps to explore, analyze, and iterate on together.</span>
       </div>
     </div>
-    <a :class="$style.button" href="https://observablehq.com" target="_blank">Build with Plot on Observable →</a>
+    <a :class="$style.button" href="https://observablehq.com/?utm_source=observable-plot&utm_medium=promo&utm_campaign=try-observable" target="_blank">Build with Plot on Observable →</a>
   </div>
 </template>
 
