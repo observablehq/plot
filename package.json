@@ -44,6 +44,7 @@
     "@observablehq/plot": "./src/index.js"
   },
   "sideEffects": [
+    "./src/index.js",
     "./src/plot.js"
   ],
   "devDependencies": {
