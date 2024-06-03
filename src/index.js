@@ -1,7 +1,7 @@
 import {Mark} from "./mark.js";
 import {plot} from "./plot.js";
 
-// Note: This side-effect avoids a circular dependency.
+// Note: this side effect avoids a circular dependency.
 Mark.prototype.plot = function plotThis({marks = [], ...options} = {}) {
   return plot({...options, marks: [...marks, this]});
 };
