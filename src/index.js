@@ -1,3 +1,11 @@
+import {Mark} from "./mark.js";
+import {plot} from "./plot.js";
+
+// Note: this side effect avoids a circular dependency.
+Mark.prototype.plot = function ({marks = [], ...options} = {}) {
+  return plot({...options, marks: [...marks, this]});
+};
+
 export {plot} from "./plot.js";
 export {Mark, marks} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";

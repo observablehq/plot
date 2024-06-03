@@ -44,7 +44,7 @@
     "@observablehq/plot": "./src/index.js"
   },
   "sideEffects": [
-    "./src/plot.js"
+    "./src/index.js"
   ],
   "devDependencies": {
     "@observablehq/runtime": "^5.7.3",

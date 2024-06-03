@@ -368,13 +368,6 @@ function createFigcaption(document, caption) {
   return e;
 }
 
-function plotThis({marks = [], ...options} = {}) {
-  return plot({...options, marks: [...marks, this]});
-}
-
-// Note: This side-effect avoids a circular dependency.
-Mark.prototype.plot = plotThis;
-
 function flatMarks(marks) {
   return marks
     .flat(Infinity)
