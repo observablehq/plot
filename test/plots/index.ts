@@ -217,6 +217,7 @@ export * from "./penguin-species-island-sex.js";
 export * from "./penguin-species-island.js";
 export * from "./penguin-species.js";
 export * from "./penguin-voronoi-1d.js";
+export * from "./percent-null.js";
 export * from "./pointer-linked.js";
 export * from "./pointer.js";
 export * from "./polylinear.js";

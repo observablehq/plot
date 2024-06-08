@@ -368,13 +368,6 @@ function createFigcaption(document, caption) {
   return e;
 }
 
-function plotThis({marks = [], ...options} = {}) {
-  return plot({...options, marks: [...marks, this]});
-}
-
-// Note: This side-effect avoids a circular dependency.
-Mark.prototype.plot = plotThis;
-
 function flatMarks(marks) {
   return marks
     .flat(Infinity)
@@ -410,7 +403,7 @@ function applyScaleTransform(channel, options) {
     type,
     percent,
     interval,
-    transform = percent ? (x) => x * 100 : maybeIntervalTransform(interval, type)
+    transform = percent ? (x) => (x == null ? NaN : x * 100) : maybeIntervalTransform(interval, type)
   } = options[scale] ?? {};
   if (transform == null) return;
   channel.value = map(channel.value, transform);
