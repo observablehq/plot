@@ -1,5 +1,4 @@
 import type {ChannelTransform, ChannelValue} from "./channel.js";
-import type {RangeIntervalImplementation} from "./interval.js";
 import type {Data} from "./mark.js";
 
 /** Array, Float32Array, etc. */
