@@ -1,4 +1,4 @@
-// For internal use.
+/** A named interval. */
 export type LiteralTimeInterval =
   | "3 months"
   | "10 years"
@@ -124,3 +124,12 @@ export type RangeInterval<T = any> = LiteralInterval<T> | RangeIntervalImplement
  * - a number (for number intervals), defining intervals at integer multiples of *n*
  */
 export type NiceInterval<T = any> = LiteralInterval<T> | NiceIntervalImplementation<T>;
+
+/** Given a number *period*, returns a corresponding range interval. */
+export function numberInterval(period: number): RangeIntervalImplementation<number>;
+
+/** Given a string *period*, returns a corresponding local time nice interval. */
+export function timeInterval(period: LiteralTimeInterval): NiceIntervalImplementation<Date>;
+
+/** Given a string *period*, returns a corresponding UTC nice interval. */
+export function utcInterval(period: LiteralTimeInterval): NiceIntervalImplementation<Date>;
