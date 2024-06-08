@@ -1,4 +1,5 @@
 import type {ChannelTransform, ChannelValue} from "./channel.js";
+import type {RangeIntervalImplementation} from "./interval.js";
 import type {Data} from "./mark.js";
 
 /** Array, Float32Array, etc. */
@@ -47,3 +48,6 @@ export const identity: ChannelTransform;
  * data; often used as a default for mark shorthand.
  */
 export const indexOf: ChannelTransform;
+
+/** Given a number *period*, returns a corresponding range interval. */
+export function numberInterval(period: number): RangeIntervalImplementation<number>;

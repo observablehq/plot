@@ -44,6 +44,7 @@ export * from "./projection.js";
 export * from "./reducer.js";
 export * from "./scales.js";
 export * from "./symbol.js";
+export * from "./time.js";
 export * from "./transforms/basic.js";
 export * from "./transforms/bin.js";
 export * from "./transforms/centroid.js";
