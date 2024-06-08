@@ -91,7 +91,7 @@ export interface TipOptions extends MarkOptions, TextStyles {
  *
  * - a [d3-format][1] string for numeric scales
  * - a [d3-time-format][2] string for temporal scales
- * - a function passed a tick *value* and *index*, returning a string
+ * - a function passed a channel *value* and *index*, returning a string
  *
  * [1]: https://d3js.org/d3-time
  * [2]: https://d3js.org/d3-time-format
