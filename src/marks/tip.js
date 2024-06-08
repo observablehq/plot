@@ -84,7 +84,7 @@ export class Tip extends Mark {
     for (const key in defaults) if (key in this.channels) this[key] = defaults[key]; // apply default even if channel
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
-    this.format = {...format}; // defensive copy before mutate; also promote nullish to empty
+    this.format = typeof format === "string" || typeof format === "function" ? {title: format} : {...format}; // defensive copy before mutate; also promote nullish to empty
   }
   render(index, scales, values, dimensions, context) {
     const mark = this;
@@ -120,10 +120,10 @@ export class Tip extends Mark {
     // channels as name-value pairs.
     let sources, format;
     if ("title" in values) {
-      sources = values.channels;
+      sources = getSourceChannels.call(this, {title: values.channels.title}, scales);
       format = formatTitle;
     } else {
-      sources = getSourceChannels.call(this, values, scales);
+      sources = getSourceChannels.call(this, values.channels, scales);
       format = formatChannels;
     }
 
@@ -319,7 +319,7 @@ function getPath(anchor, m, r, width, height) {
 }
 
 // Note: mutates this.format!
-function getSourceChannels({channels}, scales) {
+function getSourceChannels(channels, scales) {
   const sources = {};
 
   // Promote x and y shorthand for paired channels (in order).
@@ -384,7 +384,7 @@ function maybeExpandPairedFormat(format, channels, key) {
 }
 
 function formatTitle(i, index, {title}) {
-  return formatDefault(title.value[i], i);
+  return this.format.title(title.value[i], i);
 }
 
 function* formatChannels(i, index, channels, scales, values) {
