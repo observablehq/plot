@@ -12,6 +12,9 @@ export interface Context {
   /** The current owner SVG element. */
   ownerSVGElement: SVGSVGElement;
 
+  /** The current locale. Defaults to "en-US". */
+  locale: string;
+
   /** The Plot’s (typically generated) class name, for custom styles. */
   className: string;
 

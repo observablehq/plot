@@ -74,6 +74,9 @@ export interface PlotOptions extends ScaleDefaults {
 
   // other top-level options
 
+  /** The desired locale. Defaults to "en-US". */
+  locale?: string;
+
   /**
    * Custom styles to override Plot’s defaults. Styles may be specified either
    * as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion
