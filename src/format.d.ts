@@ -1,4 +1,14 @@
 /**
+ * Returns a function that formats a given number according to the specified
+ * *locale*.
+ *
+ * [1]: https://tools.ietf.org/html/bcp47
+ *
+ * @param locale - a [BCP 47 language tag][1]; defaults to U.S. English.
+ */
+export function formatNumber(locale?: string): (i: number) => string;
+
+/**
  * Returns a function that formats a given month number (from 0 = January to 11
  * = December) according to the specified *locale* and *format*.
  *

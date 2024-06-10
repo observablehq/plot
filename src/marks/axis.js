@@ -652,7 +652,7 @@ function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
 // possible, or the default ISO format (2014-01-26). TODO We need a better way
 // to infer whether the ordinal scale is UTC or local time.
 export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
-  return typeof tickFormat === "function"
+  return typeof tickFormat === "function" && !(scale.type === "log" && scale.tickFormat)
     ? tickFormat
     : tickFormat === undefined && data && isTemporal(data)
     ? inferTimeFormat(scale.type, data, anchor) ?? formatDefault
