@@ -1,6 +1,15 @@
 import * as Plot from "@observablehq/plot";
 import assert from "assert";
 
+it("formatNumber(locale) does the right thing", () => {
+  assert.strictEqual(Plot.formatNumber()(Math.PI), "3.142");
+  assert.strictEqual(Plot.formatNumber()(12345), "12,345");
+  assert.strictEqual(Plot.formatNumber("en")(Math.PI), "3.142");
+  assert.strictEqual(Plot.formatNumber("en")(12345), "12,345");
+  assert.strictEqual(Plot.formatNumber("fr")(Math.PI), "3,142");
+  assert.strictEqual(Plot.formatNumber("fr")(12345), "12\u202f345");
+});
+
 it("formatMonth(locale, format) does the right thing", () => {
   assert.strictEqual(Plot.formatMonth("en", "long")(0), "January");
   assert.strictEqual(Plot.formatMonth("en", "short")(0), "Jan");
