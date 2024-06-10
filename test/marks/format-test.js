@@ -7,8 +7,7 @@ it("formatMonth(locale, format) does the right thing", () => {
   assert.strictEqual(Plot.formatMonth("en", "narrow")(0), "J");
 });
 
-// GitHub Actions does not support locales.
-it.skip("formatMonth('fr', format) does the right thing", () => {
+it("formatMonth('fr', format) does the right thing", () => {
   assert.strictEqual(Plot.formatMonth("fr", "long")(11), "décembre");
   assert.strictEqual(Plot.formatMonth("fr", "short")(11), "déc.");
   assert.strictEqual(Plot.formatMonth("fr", "narrow")(11), "D");
@@ -27,7 +26,7 @@ it("formatMonth(locale) has the expected default", () => {
   assert.strictEqual(Plot.formatMonth("en", undefined)(0), "Jan");
 });
 
-it.skip("formatMonth('fr') has the expected default", () => {
+it("formatMonth('fr') has the expected default", () => {
   assert.strictEqual(Plot.formatMonth("fr")(11), "déc.");
   assert.strictEqual(Plot.formatMonth("fr", undefined)(11), "déc.");
 });

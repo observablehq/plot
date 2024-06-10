@@ -9,6 +9,14 @@ import * as d3 from "d3";
 
 These helper functions are provided for convenience as a **tickFormat** option for the [axis mark](../marks/axis.md), as the **text** option for a [text mark](../marks/text.md), or other use. See also [d3-format](https://d3js.org/d3-format), [d3-time-format](https://d3js.org/d3-time-format), and JavaScript’s built-in [date formatting](https://observablehq.com/@mbostock/date-formatting) and [number formatting](https://observablehq.com/@mbostock/number-formatting).
 
+## formatNumber(*locale*) {#formatNumber}
+
+```js
+Plot.formatNumber("en-US")(Math.PI) // "3.142"
+```
+
+Returns a function that formats a given number according to the specified *locale*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English.
+
 ## formatIsoDate(*date*) {#formatIsoDate}
 
 ```js
