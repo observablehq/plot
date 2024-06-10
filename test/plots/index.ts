@@ -151,6 +151,7 @@ export * from "./likert-survey.js";
 export * from "./linear-regression-cars.js";
 export * from "./linear-regression-mtcars.js";
 export * from "./linear-regression-penguins.js";
+export * from "./locale.js";
 export * from "./log-degenerate.js";
 export * from "./log-tick-format.js";
 export * from "./long-labels.js";
