@@ -5,7 +5,7 @@ import * as d3 from "d3";
 
 </script>
 
-# Intervals <VersionBadge pr="2075" />
+# Intervals <VersionBadge version="0.6.15" pr="2075" />
 
 Plot provides several built-in interval implementations for use with the **tick** option for [scales](./scales.md), as the **thresholds** option for a [bin transform](../transforms/bin.md), or other use. See also [d3-time](https://d3js.org/d3-time). You can also implement custom intervals.
 
