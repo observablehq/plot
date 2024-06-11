@@ -1,7 +1,7 @@
 import {quantile, range as rangei} from "d3";
 import {parse as isoParse} from "isoformat";
 import {defined} from "./defined.js";
-import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
+import {timeInterval, utcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -322,25 +322,28 @@ export function maybeIntervalTransform(interval, type) {
 // range} object similar to a D3 time interval.
 export function maybeInterval(interval, type) {
   if (interval == null) return;
-  if (typeof interval === "number") {
-    if (0 < interval && interval < 1 && Number.isInteger(1 / interval)) interval = -1 / interval;
-    const n = Math.abs(interval);
-    return interval < 0
-      ? {
-          floor: (d) => Math.floor(d * n) / n,
-          offset: (d) => (d * n + 1) / n, // note: no optional step for simplicity
-          range: (lo, hi) => rangei(Math.ceil(lo * n), hi * n).map((x) => x / n)
-        }
-      : {
-          floor: (d) => Math.floor(d / n) * n,
-          offset: (d) => d + n, // note: no optional step for simplicity
-          range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => x * n)
-        };
-  }
-  if (typeof interval === "string") return (type === "time" ? maybeTimeInterval : maybeUtcInterval)(interval);
+  if (typeof interval === "number") return numberInterval(interval);
+  if (typeof interval === "string") return (type === "time" ? timeInterval : utcInterval)(interval);
   if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
   if (typeof interval.offset !== "function") throw new Error("invalid interval; missing offset method");
   return interval;
+}
+
+export function numberInterval(interval) {
+  interval = +interval;
+  if (0 < interval && interval < 1 && Number.isInteger(1 / interval)) interval = -1 / interval;
+  const n = Math.abs(interval);
+  return interval < 0
+    ? {
+        floor: (d) => Math.floor(d * n) / n,
+        offset: (d, s = 1) => (d * n + Math.floor(s)) / n,
+        range: (lo, hi) => rangei(Math.ceil(lo * n), hi * n).map((x) => x / n)
+      }
+    : {
+        floor: (d) => Math.floor(d / n) * n,
+        offset: (d, s = 1) => d + n * Math.floor(s),
+        range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => x * n)
+      };
 }
 
 // Like maybeInterval, but requires a range method too.
