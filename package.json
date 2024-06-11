@@ -34,7 +34,6 @@
     "test:prettier": "prettier --check src test",
     "test:tsc": "tsc",
     "prepublishOnly": "rm -rf dist && rollup -c",
-    "postpublish": "git push && git push --tags",
     "dev": "vite",
     "docs:dev": "node --experimental-network-imports node_modules/vitepress/dist/node/cli.js dev docs",
     "docs:build": "node --experimental-network-imports node_modules/vitepress/dist/node/cli.js build docs",
