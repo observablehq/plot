@@ -42,7 +42,7 @@ Plot.utcInterval("day").ceil(new Date("2013-04-12T12:34:56Z")) // 2013-04-13
 Plot.numberInterval(2)
 ```
 
-Given a number *period*, returns a corresponding range interval implementation. The returned interval implements the *interval*.range, *interval*.floor, and *interval*.offset methods.
+Given a number *period*, returns a corresponding range interval implementation. If *period* is a negative number, the resulting interval uses 1 / -*period*; this allows more precise results when *period* is a negative integer. The returned interval implements the *interval*.range, *interval*.floor, and *interval*.offset methods.
 
 ## timeInterval(*period*) {#timeInterval}
 

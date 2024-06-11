@@ -125,7 +125,11 @@ export type RangeInterval<T = any> = LiteralInterval<T> | RangeIntervalImplement
  */
 export type NiceInterval<T = any> = LiteralInterval<T> | NiceIntervalImplementation<T>;
 
-/** Given a number *period*, returns a corresponding range interval. */
+/**
+ * Given a number *period*, returns a corresponding numeric range interval. If
+ * *period* is a negative number, the returned interval uses 1 / -*period*,
+ * allowing greater precision when *period* is a negative integer.
+ */
 export function numberInterval(period: number): RangeIntervalImplementation<number>;
 
 /** Given a string *period*, returns a corresponding local time nice interval. */
