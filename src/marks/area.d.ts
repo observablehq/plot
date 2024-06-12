@@ -3,6 +3,7 @@ import type {CurveOptions} from "../curve.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 import type {BinOptions, BinReducer} from "../transforms/bin.js";
 import type {StackOptions} from "../transforms/stack.js";
+import type {DecimateOptions} from "../transforms/decimate.js";
 
 /** Options for the area, areaX, and areaY marks. */
 export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
@@ -45,7 +46,7 @@ export interface AreaOptions extends MarkOptions, StackOptions, CurveOptions {
 }
 
 /** Options for the areaX mark. */
-export interface AreaXOptions extends Omit<AreaOptions, "y1" | "y2">, BinOptions {
+export interface AreaXOptions extends Omit<AreaOptions, "y1" | "y2">, BinOptions, DecimateOptions {
   /**
    * The horizontal position (or length) channel, typically bound to the *x*
    * scale.
@@ -85,7 +86,7 @@ export interface AreaXOptions extends Omit<AreaOptions, "y1" | "y2">, BinOptions
 }
 
 /** Options for the areaY mark. */
-export interface AreaYOptions extends Omit<AreaOptions, "x1" | "x2">, BinOptions {
+export interface AreaYOptions extends Omit<AreaOptions, "x1" | "x2">, BinOptions, DecimateOptions {
   /**
    * The horizontal position channel, typically bound to the *x* scale; defaults
    * to the zero-based index of the data [0, 1, 2, …].

@@ -13,6 +13,7 @@ import {
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
+import {decimateX, decimateY} from "../transforms/decimate.js";
 
 const defaults = {
   ariaLabel: "area",
@@ -78,10 +79,10 @@ export function area(data, options) {
 
 export function areaX(data, options) {
   const {y = indexOf, ...rest} = maybeDenseIntervalY(options);
-  return new Area(data, maybeStackX(maybeIdentityX({...rest, y1: y, y2: undefined})));
+  return new Area(data, decimateY(maybeStackX(maybeIdentityX({...rest, y1: y, y2: undefined}))));
 }
 
 export function areaY(data, options) {
   const {x = indexOf, ...rest} = maybeDenseIntervalX(options);
-  return new Area(data, maybeStackY(maybeIdentityY({...rest, x1: x, x2: undefined})));
+  return new Area(data, decimateX(maybeStackY(maybeIdentityY({...rest, x1: x, x2: undefined}))));
 }

@@ -12,6 +12,7 @@ import {
   groupIndex
 } from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
+import {decimateX, decimateY} from "../transforms/decimate.js";
 
 const defaults = {
   ariaLabel: "line",
@@ -105,9 +106,9 @@ export function line(data, {x, y, ...options} = {}) {
 }
 
 export function lineX(data, {x = identity, y = indexOf, ...options} = {}) {
-  return new Line(data, maybeDenseIntervalY({...options, x, y}));
+  return new Line(data, decimateY(maybeDenseIntervalY({...options, x, y})));
 }
 
 export function lineY(data, {x = indexOf, y = identity, ...options} = {}) {
-  return new Line(data, maybeDenseIntervalX({...options, x, y}));
+  return new Line(data, decimateX(maybeDenseIntervalX({...options, x, y})));
 }

@@ -5,6 +5,7 @@ import {inferScaleOrder} from "../scales.js";
 import {getClipId} from "../style.js";
 import {area} from "./area.js";
 import {line} from "./line.js";
+import {decimateX} from "../transforms/decimate.js";
 
 export function differenceY(
   data,
@@ -37,48 +38,57 @@ export function differenceY(
   return marks(
     !isNoneish(positiveFill)
       ? Object.assign(
-          area(data, {
-            x1,
-            x2,
-            y1,
-            y2,
-            z,
-            fill: positiveFill,
-            fillOpacity: positiveFillOpacity,
-            render: composeRender(render, clipDifferenceY(true)),
-            clip,
-            ...options
-          }),
+          area(
+            data,
+            decimateX({
+              x1,
+              x2,
+              y1,
+              y2,
+              z,
+              fill: positiveFill,
+              fillOpacity: positiveFillOpacity,
+              render: composeRender(render, clipDifferenceY(true)),
+              clip,
+              ...options
+            })
+          ),
           {ariaLabel: "positive difference"}
         )
       : null,
     !isNoneish(negativeFill)
       ? Object.assign(
-          area(data, {
-            x1,
-            x2,
-            y1,
-            y2,
-            z,
-            fill: negativeFill,
-            fillOpacity: negativeFillOpacity,
-            render: composeRender(render, clipDifferenceY(false)),
-            clip,
-            ...options
-          }),
+          area(
+            data,
+            decimateX({
+              x1,
+              x2,
+              y1,
+              y2,
+              z,
+              fill: negativeFill,
+              fillOpacity: negativeFillOpacity,
+              render: composeRender(render, clipDifferenceY(false)),
+              clip,
+              ...options
+            })
+          ),
           {ariaLabel: "negative difference"}
         )
       : null,
-    line(data, {
-      x: x2,
-      y: y2,
-      z,
-      stroke,
-      strokeOpacity,
-      tip,
-      clip: true,
-      ...options
-    })
+    line(
+      data,
+      decimateX({
+        x: x2,
+        y: y2,
+        z,
+        stroke,
+        strokeOpacity,
+        tip,
+        clip: true,
+        ...options
+      })
+    )
   );
 }
 
