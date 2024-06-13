@@ -132,7 +132,7 @@ The following channels are required:
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-For vertical or horizontal arrows, the **x** option can be specified as shorthand for **x1** and **x2**, and the **y** option can be specified as shorthand for **y1** and **y2**, respectively.
+For vertical arrows, the **x** option can be ignored, or specified as shorthand for **x1** and **x2**; for horizontal links, the **y** option can likewise be ignored or specified as shorthand for **y1** and **y2**.
 
 The arrow mark supports the [standard mark options](../features/marks.md#mark-options). The **stroke** defaults to *currentColor*. The **fill** defaults to *none*. The **strokeWidth** defaults to 1.5, and the **strokeMiterlimit** defaults to 1. The following additional options are supported:
 
