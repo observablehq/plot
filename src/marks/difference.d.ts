@@ -3,10 +3,11 @@ import type {CurveOptions} from "../curve.js";
 import type {Data, MarkOptions, RenderableMark} from "../mark.js";
 
 /** Options for the difference mark. */
-export interface DifferenceYOptions extends MarkOptions, CurveOptions {
+export interface DifferenceOptions extends MarkOptions, CurveOptions {
   /**
    * The comparison horizontal position channel, typically bound to the *x*
-   * scale; if not specified, **x** is used.
+   * scale; if not specified, **x** is used. For differenceX, defaults to zero
+   * if only one *x* and *y* channel is specified.
    */
   x1?: ChannelValueSpec;
 
@@ -69,42 +70,9 @@ export interface DifferenceYOptions extends MarkOptions, CurveOptions {
   z?: ChannelValue;
 }
 
-export interface DifferenceXOptions extends DifferenceYOptions {
-  /**
-   * The comparison vertical position channel, typically bound to the *y*
-   * scale; if not specified, **y** is used.
-   */
-  y1?: ChannelValueSpec;
-
-  /**
-   * The primary vertical position channel, typically bound to the *y* scale;
-   * if not specified, **y1** is used.
-   */
-  y2?: ChannelValueSpec;
-
-  /** The vertical position channel, typically bound to the *y* scale. */
-  y?: ChannelValueSpec;
-
-  /**
-   * The comparison horizontal position channel, typically bound to the *x* scale;
-   * if not specified, **x** is used. For differenceY, defaults to zero if only
-   * one *x* and *y* channel is specified.
-   */
-  x1?: ChannelValueSpec;
-
-  /**
-   * The primary horizontal position channel, typically bound to the *x* scale;
-   * if not specified, **x1** is used.
-   */
-  x2?: ChannelValueSpec;
-
-  /** The horizontal position channel, typically bound to the *x* scale. */
-  x?: ChannelValueSpec;
-}
-
 /**
  * Returns a new horizontal difference mark for the given the specified *data*
- * and *options*.
+ * and *options*, as in a time-series chart where time goes down↓ (or up↑).
  *
  * The mark is a composite of a positive area, negative area, and line. The
  * positive area extends from the left of the frame to the line, and is clipped
@@ -113,7 +81,7 @@ export interface DifferenceXOptions extends DifferenceYOptions {
  * is clipped by the area extending from the comparison to the left of the
  * frame.
  */
-export function differenceX(data?: Data, options?: DifferenceXOptions): Difference;
+export function differenceX(data?: Data, options?: DifferenceOptions): Difference;
 
 /**
  * Returns a new vertical difference mark for the given the specified *data* and
@@ -126,7 +94,7 @@ export function differenceX(data?: Data, options?: DifferenceXOptions): Differen
  * and is clipped by the area extending from the comparison to the bottom of the
  * frame.
  */
-export function differenceY(data?: Data, options?: DifferenceYOptions): Difference;
+export function differenceY(data?: Data, options?: DifferenceOptions): Difference;
 
 /** The difference mark. */
 export class Difference extends RenderableMark {}
