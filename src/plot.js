@@ -513,9 +513,10 @@ function derive(mark, options = {}) {
   return initializer({...options, x: null, y: null}, (_data, _facets, _channels, scales, dimensions, context) => {
     const state = context.getMarkState(mark);
     const {facets, channels} = state;
-    // Promote the geometry channel to the x and y channel using the centroid initializer, if needed.
-    if (!channels.x && !channels.y && channels.geometry) {
-      const update = centroid().initializer(channels.geometry.value, facets, channels, scales, dimensions, context);
+    const {x, y, geometry} = channels;
+    if (!x && !y && geometry) {
+      // Promote the geometry channel to x and y channels using the centroid initializer.
+      const update = centroid().initializer(geometry.value, facets, channels, scales, dimensions, context);
       return {...state, channels: {...channels, x: update.channels.x, y: update.channels.y}};
     }
     return state;

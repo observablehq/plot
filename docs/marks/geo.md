@@ -49,7 +49,8 @@ Plot.plot({
   marks: [
     Plot.geo(counties, {
       fill: (d) => d.properties.unemployment,
-      title: (d) => `${d.properties.name}\n${d.properties.unemployment}%`
+      title: (d) => `${d.properties.name} ${d.properties.unemployment}%`,
+      tip: true
     })
   ]
 })
@@ -129,17 +130,16 @@ Plot.plot({
 ```
 :::
 
-The geo mark doesn’t have **x** and **y** channels; to derive those, for example to add [interactive tips](./tip.md), you can apply a [centroid transform](../transforms/centroid.md) on the geometries.
+The geo mark doesn’t have **x** and **y** channels; when you use the [**tip** option](./tip.md), the [centroid transform](../transforms/centroid.md) is implicitly applied on the geometries to compute the tip position. <VersionBadge pr="2088" /> The centroids are shown below in red.
 
 :::plot defer https://observablehq.com/@observablehq/plot-state-centroids
 ```js
 Plot.plot({
   projection: "albers-usa",
   marks: [
-    Plot.geo(statemesh, {strokeOpacity: 0.2}),
+    Plot.geo(states, {strokeOpacity: 0.1, tip: true, title: (d) => d.properties.name}),
     Plot.geo(nation),
-    Plot.dot(states, Plot.centroid({fill: "red", stroke: "var(--vp-c-bg-alt)"})),
-    Plot.tip(states, Plot.pointer(Plot.centroid({title: (d) => d.properties.name})))
+    Plot.dot(states, Plot.centroid({fill: "red", stroke: "var(--vp-c-bg-alt)"}))
   ]
 })
 ```
@@ -157,7 +157,7 @@ Plot.plot({
   marks: [
     Plot.geo(statemesh, {strokeOpacity: 0.2}),
     Plot.geo(nation),
-    Plot.geo(walmarts, {fy: (d) => d.properties.date, r: 1.5, fill: "blue"}),
+    Plot.geo(walmarts, {fy: (d) => d.properties.date, r: 1.5, fill: "blue", tip: true, title: (d) => d.properties.date}),
     Plot.axisFy({frameAnchor: "top", dy: 30, tickFormat: (d) => `${d.getUTCFullYear()}’s`})
   ]
 })
