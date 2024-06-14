@@ -28,7 +28,10 @@ export function geoCentroid(options = {}) {
   const {geometry = identity} = options;
   return {
     ...options,
-    x: {transform: (data) => Float64Array.from((C = valueof(valueof(data, geometry), GeoCentroid)), ([x]) => x)},
-    y: {transform: () => Float64Array.from(C, ([, y]) => y)}
+    x: {
+      transform: (data) => Float64Array.from((C = valueof(valueof(data, geometry), GeoCentroid)), ([x]) => x),
+      source: null
+    },
+    y: {transform: () => Float64Array.from(C, ([, y]) => y), source: null}
   };
 }
