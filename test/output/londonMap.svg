@@ -48,4 +48,39 @@
     <path d="M441.406,266.728L436.511,254.694L437.233,248.489L438.012,248.813L437.552,252.933L443.186,266.133L443.12,266.086ZM438.27,248.856L444.736,248.425L455.223,242.831L456.281,246.166L469.376,237.674L473.835,232.202L475.025,224.596L482.72,220.216L484.259,213.64L482.242,208.206L484.626,202.051L481.029,201.76L479.759,195.562L483.253,194.52L482.074,191.437L494.607,179.64L495.839,180.148L498.206,184.383L498.498,198.675L495.979,202.361L498.106,215.857L507.621,225.424L516.207,220.913L523.847,221.28L524.806,229.762L529.409,235.711L526.275,242.435L522.044,246.817L521.528,251.039L518.39,253.359L515.398,260.623L511.51,265.835L506.966,285.812L502.206,285.457L495.381,282.54L489.488,278.556L482.724,277.665L476.742,279.422L467.4,284.837L461.789,283.91L458.828,281.373L458.64,277.024L455.602,269.54L450.944,270.465L443.955,266.111L437.766,251.443Z"></path>
     <path d="M301.721,293.22L301.576,287.633L299.817,284.116L306.221,283.604L311.987,280.783L311.726,278.168L321.49,281.03L326.518,279.463L325.898,282.745L330.207,287.975L331.239,293.044L326.732,294.943L326.732,294.943L326.314,296.142L310.764,292.986Z"></path>
   </g>
+  <g aria-label="text" stroke="var(--plot-background)" stroke-width="3" stroke-linejoin="round" paint-order="stroke" transform="translate(0.5,0.5)">
+    <text y="0.32em" transform="translate(172.13833446366397,446.59724157199946)">Kingston upon Thames</text>
+    <text y="0.32em" transform="translate(325.24597372183604,482.3539642601964)">Croydon</text>
+    <text y="0.32em" transform="translate(430.41732037645437,459.233591094283)">Bromley</text>
+    <text y="0.32em" transform="translate(108.79257528567072,349.59024947003314)">Hounslow</text>
+    <text y="0.32em" transform="translate(134.69905637848694,282.92662295047325)">Ealing</text>
+    <text y="0.32em" transform="translate(552.4780630284624,220.74013464263447)">Havering</text>
+    <text y="0.32em" transform="translate(47.0853585928029,261.6997383052762)">Hillingdon</text>
+    <text y="0.32em" transform="translate(124.92964220550685,191.45266012755982)">Harrow</text>
+    <text y="0.32em" transform="translate(181.86667797871175,237.8711749775419)">Brent</text>
+    <text y="0.32em" transform="translate(223.88890391719332,166.63873126965476)">Barnet</text>
+    <text y="0.32em" transform="translate(298.51403581501125,363.5239835989295)">Lambeth</text>
+    <text y="0.32em" transform="translate(331.0689216560168,338.4457578870687)">Southwark</text>
+    <text y="0.32em" transform="translate(373.28353437479404,367.8119883573751)">Lewisham</text>
+    <text y="0.32em" transform="translate(430.49152697376695,336.13050601390864)">Greenwich</text>
+    <text y="0.32em" transform="translate(494.99410351568366,351.09699506253935)">Bexley</text>
+    <text y="0.32em" transform="translate(315.66899669008365,121.53772877745668)">Enfield</text>
+    <text y="0.32em" transform="translate(374.0457322790309,189.53206337527763)">Waltham Forest</text>
+    <text y="0.32em" transform="translate(441.38835019313785,198.18230543390735)">Redbridge</text>
+    <text y="0.32em" transform="translate(256.2411750355682,475.92510341559887)">Sutton</text>
+    <text y="0.32em" transform="translate(150.60083436224664,380.7182815173715)">Richmond upon Thames</text>
+    <text y="0.32em" transform="translate(239.64413480436795,417.90063652936163)">Merton</text>
+    <text y="0.32em" transform="translate(246.59307497946355,367.2653821955259)">Wandsworth</text>
+    <text y="0.32em" transform="translate(218.76570915036842,313.2362997606855)">Hammersmith and Fulham</text>
+    <text y="0.32em" transform="translate(240.2830286092444,305.9209348899549)">Kensington and Chelsea</text>
+    <text y="0.32em" transform="translate(264.0588972530255,290.49403700524834)">Westminster</text>
+    <text y="0.32em" transform="translate(265.7541158292977,250.65223681367786)">Camden</text>
+    <text y="0.32em" transform="translate(359.12838270896856,283.9496289703851)">Tower Hamlets</text>
+    <text y="0.32em" transform="translate(301.3591842267692,246.983863517772)">Islington</text>
+    <text y="0.32em" transform="translate(337.0049199249213,241.65102852501371)">Hackney</text>
+    <text y="0.32em" transform="translate(302.3360462844475,195.95302258154928)">Haringey</text>
+    <text y="0.32em" transform="translate(413.4279884748254,268.77532676225485)">Newham</text>
+    <text y="0.32em" transform="translate(486.85613766232086,245.78698591675627)">Barking and Dagenham</text>
+    <text y="0.32em" transform="translate(316.38432808428763,287.7345667595254)">City of London</text>
+  </g>
 </svg>

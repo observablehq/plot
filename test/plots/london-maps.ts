@@ -6,7 +6,10 @@ export async function londonMap() {
   const london = feature(await d3.json("data/london.json"), "boroughs");
   return Plot.plot({
     projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
-    marks: [Plot.geo(london)]
+    marks: [
+      Plot.geo(london),
+      Plot.text(london.features, Plot.centroid({text: "id", stroke: "var(--plot-background)", fill: "currentColor"}))
+    ]
   });
 }
 
