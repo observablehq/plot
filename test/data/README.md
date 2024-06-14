@@ -120,7 +120,8 @@ giCentre, City University of London
 https://github.com/gicentre/data
 
 ## london-car-access.csv
-Jo Wood, TK
+Derived by Jo Wood from UK Census data
+https://github.com/observablehq/plot/pull/2086
 
 ## metros.csv
 The New York Times
