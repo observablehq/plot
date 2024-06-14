@@ -142,4 +142,12 @@ These options are passed to the underlying area and line marks; in particular, w
 Plot.differenceY(gistemp, {x: "Date", y: "Anomaly"})
 ```
 
-Returns a new difference with the given *data* and *options*. The mark is a composite of a positive area, negative area, and line. The positive area extends from the bottom of the frame to the line, and is clipped by the area extending from the comparison to the top of the frame. The negative area conversely extends from the top of the frame to the line, and is clipped by the area extending from the comparison to the bottom of the frame.
+Returns a new vertical difference with the given *data* and *options*. The mark is a composite of a positive area, negative area, and line. The positive area extends from the bottom of the frame to the line, and is clipped by the area extending from the comparison to the top of the frame. The negative area conversely extends from the top of the frame to the line, and is clipped by the area extending from the comparison to the bottom of the frame.
+
+## differenceX(*data*, *options*) <VersionBadge pr="1922" /> {#differenceX}
+
+```js
+Plot.differenceX(gistemp, {y: "Date", x: "Anomaly"})
+```
+
+Returns a new horizontal difference with the given *data* and *options*. See [differenceY](#differenceY) for more.
