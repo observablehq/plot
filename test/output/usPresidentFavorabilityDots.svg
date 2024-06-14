@@ -1,6 +1,6 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="960" height="600" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
-    .plot {
+    :where(.plot) {
       --plot-background: white;
       display: block;
       height: auto;
@@ -8,12 +8,12 @@
       max-width: 100%;
     }
 
-    .plot text,
-    .plot tspan {
+    :where(.plot text),
+    :where(.plot tspan) {
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="940" y1="540" y2="540"></line>
     <line x1="40" x2="940" y1="491.48514851485146" y2="491.48514851485146"></line>
     <line x1="40" x2="940" y1="442.970297029703" y2="442.970297029703"></line>
@@ -26,7 +26,7 @@
     <line x1="40" x2="940" y1="103.36633663366337" y2="103.36633663366337"></line>
     <line x1="40" x2="940" y1="54.851485148514854" y2="54.851485148514854"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,540)" d="M0,0L-6,0"></path>
     <path transform="translate(40,491.48514851485146)" d="M0,0L-6,0"></path>
     <path transform="translate(40,442.970297029703)" d="M0,0L-6,0"></path>
@@ -55,7 +55,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Net favorability (%)</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(108.68708351056289,570)" d="M0,0L0,6"></path>
     <path transform="translate(181.17822203317735,570)" d="M0,0L0,6"></path>
     <path transform="translate(253.67928541046362,570)" d="M0,0L0,6"></path>
@@ -114,7 +114,7 @@
     <image x="387.4294626400113" y="349.90099009900985" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Grover_Cleveland_-_NARA_-_518139_%28cropped%29.jpg/160px-Grover_Cleveland_-_NARA_-_518139_%28cropped%29.jpg"><title>Grover Cleveland</title></image>
     <image x="401.92967531546856" y="354.7524752475247" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Benjamin_Harrison%2C_head_and_shoulders_bw_photo%2C_1896.jpg/160px-Benjamin_Harrison%2C_head_and_shoulders_bw_photo%2C_1896.jpg"><title>Benjamin Harrison</title></image>
     <image x="430.93010066638305" y="349.90099009900985" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Mckinley.jpg/160px-Mckinley.jpg"><title>William McKinley</title></image>
-    <image x="447.3458102934921" y="121.88118811881185" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/President_Roosevelt_-_Pach_Bros.jpg/160px-President_Roosevelt_-_Pach_Bros.jpg"><title>Theodore Roosevelt</title></image>
+    <image x="447.3458102934921" y="121.88118811881185" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Theodore_Roosevelt_by_the_Pach_Bros.jpg/101px-Theodore_Roosevelt_by_the_Pach_Bros.jpg"><title>Theodore Roosevelt</title></image>
     <image x="474.42081383808306" y="354.7524752475247" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/William_Howard_Taft_-_Harris_and_Ewing.jpg/160px-William_Howard_Taft_-_Harris_and_Ewing.jpg"><title>William Howard Taft</title></image>
     <image x="488.92102651354037" y="330.49504950495054" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Thomas_Woodrow_Wilson%2C_Harris_%26_Ewing_bw_photo_portrait%2C_1919.jpg/160px-Thomas_Woodrow_Wilson%2C_Harris_%26_Ewing_bw_photo_portrait%2C_1919.jpg"><title>Woodrow Wilson</title></image>
     <image x="517.9214518644549" y="403.26732673267327" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Warren_G_Harding-Harris_%26_Ewing.jpg/160px-Warren_G_Harding-Harris_%26_Ewing.jpg"><title>Warren G. Harding</title></image>

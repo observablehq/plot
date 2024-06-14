@@ -1,6 +1,6 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="460" viewBox="0 0 640 460" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
-    .plot {
+    :where(.plot) {
       --plot-background: white;
       display: block;
       height: auto;
@@ -8,12 +8,12 @@
       max-width: 100%;
     }
 
-    .plot text,
-    .plot tspan {
+    :where(.plot text),
+    :where(.plot tspan) {
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9.5)">
     <path transform="translate(40,26)" d="M0,0L-6,0"></path>
     <path transform="translate(40,46)" d="M0,0L-6,0"></path>
     <path transform="translate(40,66)" d="M0,0L-6,0"></path>
@@ -60,7 +60,7 @@
   <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
     <text y="0.71em" transform="translate(40,225) rotate(-90)">nationality</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,430)" d="M0,0L0,6"></path>
     <path transform="translate(142.29276895943562,430)" d="M0,0L0,6"></path>
     <path transform="translate(244.58553791887124,430)" d="M0,0L0,6"></path>
@@ -80,25 +80,25 @@
     <text transform="translate(620,430)">Frequency →</text>
   </g>
   <g aria-label="bar">
-    <rect x="40" width="2.0458553791887084" y="206" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="406" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="386" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="186" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="166" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="146" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="366" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="126" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="346" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="326" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="106" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="86" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="306" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="66" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="286" height="18"></rect>
-    <rect x="40" width="3.0687830687830626" y="266" height="18"></rect>
-    <rect x="40" width="2.0458553791887084" y="46" height="18"></rect>
     <rect x="40" width="3.0687830687830626" y="246" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="186" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="146" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="406" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="326" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="266" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="346" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="366" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="86" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="126" height="18"></rect>
     <rect x="40" width="1.0229276895943542" y="26" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="286" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="106" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="386" height="18"></rect>
+    <rect x="40" width="3.0687830687830626" y="306" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="206" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="66" height="18"></rect>
     <rect x="40" width="3.0687830687830626" y="226" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="46" height="18"></rect>
+    <rect x="40" width="2.0458553791887084" y="166" height="18"></rect>
   </g>
 </svg>

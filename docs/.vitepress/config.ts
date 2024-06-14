@@ -30,7 +30,7 @@ export default defineConfig({
     ["script", {}, "window.dataLayer=window.dataLayer||[];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js',new Date());\ngtag('config','G-9B88TP6PKQ');"]
   ],
   sitemap: {
-    hostname: 'https://observablehq.com/plot'
+    hostname: 'https://observablehq.com/plot/'
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -68,6 +68,7 @@ export default defineConfig({
           {text: "Legends", link: "/features/legends"},
           {text: "Curves", link: "/features/curves"},
           {text: "Formats", link: "/features/formats"},
+          {text: "Intervals", link: "/features/intervals"},
           {text: "Markers", link: "/features/markers"},
           {text: "Shorthand", link: "/features/shorthand"},
           {text: "Accessibility", link: "/features/accessibility"}

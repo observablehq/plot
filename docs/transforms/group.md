@@ -6,6 +6,8 @@ import {shallowRef, onMounted} from "vue";
 
 const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
 
+const scheme = Plot.scale({color: {type: "categorical"}}).range;
+
 onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
 });
@@ -88,7 +90,7 @@ Plot.plot({
 ```
 :::
 
-We aren’t limited to the *count* reducer. We can use the *mode* reducer, for example, to show which sex is more prevalent in each sport: <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">men</span> are represented more often than <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">women</span> in every sport except gymnastics and fencing.
+We aren’t limited to the *count* reducer. We can use the *mode* reducer, for example, to show which sex is more prevalent in each sport: <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">men</span> are represented more often than <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">women</span> in every sport except gymnastics and fencing.
 
 :::plot defer https://observablehq.com/@observablehq/plot-group-and-mode-reducer
 ```js
@@ -162,7 +164,7 @@ Plot.plot({
 ```
 :::
 
-Alternatively, below we use directional arrows (a [link mark](../marks/link.md) with [markers](../features/markers.md)) to indicate the difference in counts of <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">male</span> and <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">female</span> athletes by sport. The color of the arrow indicates which sex is more prevalent, while its length is proportional to the difference.
+Alternatively, below we use directional arrows (a [link mark](../marks/link.md) with [markers](../features/markers.md)) to indicate the difference in counts of <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">male</span> and <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">female</span> athletes by sport. The color of the arrow indicates which sex is more prevalent, while its length is proportional to the difference.
 
 :::plot defer https://observablehq.com/@observablehq/plot-difference-arrows
 ```js
@@ -327,7 +329,7 @@ Although barX applies an implicit stackX transform, [textX](../marks/text.md) do
 
 ## Group options
 
-Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting grouped data is an array of arrays where each inner array is a subset of the input data such as [[*d₁*, *d₂*, …], [*d₀*, …], …]. Each inner array is in input order. The outer array is in natural ascending order according to the associated dimension (*x* then *y*).
+Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting grouped data is an array of arrays where each inner array is a subset of the input data such as [[*d₁*, *d₂*, …], [*d₀*, …], …]. Each inner array is in input order. The outer array is in input order according to the first element of each group.
 
 By specifying a different reducer for the **data** output, as described below, you can change how the grouped data is computed. The outputs may also include **filter** and **sort** options specified as reducers, and a **reverse** option to reverse the order of generated groups. By default, empty groups are omitted, and non-empty groups are generated in ascending (natural) order.
 
@@ -366,8 +368,9 @@ The following named reducers are supported:
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *identity* - the array of values
-* *x* - the group’s *x* value (when grouping on *x*)
-* *y* - the group’s *y* value (when grouping on *y*)
+* *x* <VersionBadge version="0.6.12" pr="1916" /> - the group’s *x* value (when grouping on *x*)
+* *y* <VersionBadge version="0.6.12" pr="1916" /> - the group’s *y* value (when grouping on *y*)
+* *z* <VersionBadge version="0.6.14" pr="1959" /> - the group’s *z* value (*z*, *fill*, or *stroke*)
 
 In addition, a reducer may be specified as:
 
@@ -438,7 +441,7 @@ Plot.groupZ({x: "proportion"}, {fill: "species"})
 
 Groups on the first channel of **z**, **fill**, or **stroke**, if any. If none of **z**, **fill**, or **stroke** are channels, then all data (within each facet) is placed into a single group.
 
-## find(*test*) {#find}
+## find(*test*) <VersionBadge version="0.6.12" pr="1914" /> {#find}
 
 ```js
 Plot.groupX(

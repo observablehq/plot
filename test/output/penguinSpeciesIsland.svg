@@ -1,6 +1,6 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
-    .plot {
+    :where(.plot) {
       --plot-background: white;
       display: block;
       height: auto;
@@ -8,12 +8,12 @@
       max-width: 100%;
     }
 
-    .plot text,
-    .plot tspan {
+    :where(.plot text),
+    :where(.plot tspan) {
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="323.94736842105266" y2="323.94736842105266"></line>
     <line x1="40" x2="620" y1="277.89473684210526" y2="277.89473684210526"></line>
@@ -23,7 +23,7 @@
     <line x1="40" x2="620" y1="93.68421052631578" y2="93.68421052631578"></line>
     <line x1="40" x2="620" y1="47.631578947368425" y2="47.631578947368425"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,323.94736842105266)" d="M0,0L-6,0"></path>
     <path transform="translate(40,277.89473684210526)" d="M0,0L-6,0"></path>
@@ -46,7 +46,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Frequency</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(84.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(84.5,0)">
     <path transform="translate(59,370)" d="M0,0L0,6"></path>
     <path transform="translate(246,370)" d="M0,0L0,6"></path>
     <path transform="translate(433,370)" d="M0,0L0,6"></path>
@@ -60,11 +60,11 @@
     <text transform="translate(330,370)">species</text>
   </g>
   <g aria-label="bar">
-    <rect x="59" width="168" y="268.6842105263158" height="101.31578947368422" fill="#4e79a7"></rect>
-    <rect x="433" width="168" y="84.47368421052632" height="285.5263157894737" fill="#4e79a7"></rect>
-    <rect x="59" width="168" y="139.73684210526315" height="128.94736842105263" fill="#f28e2c"></rect>
-    <rect x="246" width="168" y="213.42105263157893" height="156.57894736842107" fill="#f28e2c"></rect>
-    <rect x="59" width="168" y="20" height="119.73684210526315" fill="#e15759"></rect>
+    <rect x="59" width="168" y="268.6842105263158" height="101.31578947368422" fill="#4269d0"></rect>
+    <rect x="433" width="168" y="84.47368421052632" height="285.5263157894737" fill="#4269d0"></rect>
+    <rect x="59" width="168" y="139.73684210526315" height="128.94736842105263" fill="#efb118"></rect>
+    <rect x="246" width="168" y="213.42105263157893" height="156.57894736842107" fill="#efb118"></rect>
+    <rect x="59" width="168" y="20" height="119.73684210526315" fill="#ff725c"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>

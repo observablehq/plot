@@ -96,16 +96,16 @@ function legendItems(scale, options = {}, swatch) {
   let extraStyle;
 
   if (columns != null) {
-    extraStyle = `.${className}-swatches-columns .${className}-swatch {
+    extraStyle = `:where(.${className}-swatches-columns .${className}-swatch) {
   display: flex;
   align-items: center;
   break-inside: avoid;
   padding-bottom: 1px;
 }
-.${className}-swatches-columns .${className}-swatch::before {
+:where(.${className}-swatches-columns .${className}-swatch::before) {
   flex-shrink: 0;
 }
-.${className}-swatches-columns .${className}-swatch-label {
+:where(.${className}-swatches-columns .${className}-swatch-label) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -123,13 +123,13 @@ function legendItems(scale, options = {}, swatch) {
         item.append("div").attr("class", `${className}-swatch-label`).attr("title", tickFormat).text(tickFormat)
       );
   } else {
-    extraStyle = `.${className}-swatches-wrap {
+    extraStyle = `:where(.${className}-swatches-wrap) {
   display: flex;
   align-items: center;
   min-height: 33px;
   flex-wrap: wrap;
 }
-.${className}-swatches-wrap .${className}-swatch {
+:where(.${className}-swatches-wrap .${className}-swatch) {
   display: inline-flex;
   align-items: center;
   margin-right: 1em;
@@ -150,12 +150,12 @@ function legendItems(scale, options = {}, swatch) {
   return swatches
     .call((div) =>
       div.insert("style", "*").text(
-        `.${className}-swatches {
+        `:where(.${className}-swatches) {
   font-family: system-ui, sans-serif;
   font-size: 10px;
   margin-bottom: 0.5em;
 }
-.${className}-swatch > svg {
+:where(.${className}-swatch > svg) {
   margin-right: 0.5em;
   overflow: visible;
 }

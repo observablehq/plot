@@ -7,6 +7,6 @@ export async function penguinSpeciesIsland() {
     y: {
       grid: true
     },
-    marks: [Plot.barY(data, Plot.groupX({y: "count"}, {x: "species", fill: "island"})), Plot.ruleY([0])]
+    marks: [Plot.barY(data, Plot.groupX({y: "count", sort: "z"}, {x: "species", fill: "island"})), Plot.ruleY([0])]
   });
 }

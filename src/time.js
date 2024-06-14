@@ -3,7 +3,7 @@ import {utcSecond, utcMinute, utcHour, unixDay, utcWeek, utcMonth, utcYear} from
 import {utcMonday, utcTuesday, utcWednesday, utcThursday, utcFriday, utcSaturday, utcSunday} from "d3";
 import {timeSecond, timeMinute, timeHour, timeDay, timeWeek, timeMonth, timeYear} from "d3";
 import {timeMonday, timeTuesday, timeWednesday, timeThursday, timeFriday, timeSaturday, timeSunday} from "d3";
-import {orderof} from "./options.js";
+import {orderof} from "./order.js";
 
 const durationSecond = 1000;
 const durationMinute = durationSecond * 60;
@@ -183,11 +183,11 @@ export function parseTimeInterval(input) {
   return [name, period];
 }
 
-export function maybeTimeInterval(input) {
+export function timeInterval(input) {
   return asInterval(parseTimeInterval(input), "time");
 }
 
-export function maybeUtcInterval(input) {
+export function utcInterval(input) {
   return asInterval(parseTimeInterval(input), "utc");
 }
 
@@ -209,7 +209,7 @@ export function generalizeTimeInterval(interval, n) {
   if (!tickIntervals.some(([, d]) => d === duration)) return; // nonstandard or unknown interval
   if (duration % durationDay === 0 && durationDay < duration && duration < durationMonth) return; // not generalizable
   const [i] = tickIntervals[bisector(([, step]) => Math.log(step)).center(tickIntervals, Math.log(duration * n))];
-  return (interval[intervalType] === "time" ? maybeTimeInterval : maybeUtcInterval)(i);
+  return (interval[intervalType] === "time" ? timeInterval : utcInterval)(i);
 }
 
 function formatTimeInterval(name, type, anchor) {

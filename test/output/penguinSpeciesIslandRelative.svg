@@ -1,6 +1,6 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="430" viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
-    .plot {
+    :where(.plot) {
       --plot-background: white;
       display: block;
       height: auto;
@@ -8,12 +8,12 @@
       max-width: 100%;
     }
 
-    .plot text,
-    .plot tspan {
+    :where(.plot text),
+    :where(.plot tspan) {
       white-space: pre;
     }
   </style>
-  <g aria-label="fx-axis tick" transform="translate(0.5,0)">
+  <g aria-label="fx-axis tick" aria-hidden="true" transform="translate(0.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(130,400)" d="M0,0L0,6"></path>
     </g>
@@ -38,7 +38,7 @@
   <g aria-label="fx-axis label" transform="translate(0.5,27.5)">
     <text transform="translate(330,400)">species</text>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,400)" d="M0,0L-6,0"></path>
       <path transform="translate(40,362)" d="M0,0L-6,0"></path>
@@ -73,15 +73,15 @@
   </g>
   <g aria-label="bar">
     <g transform="translate(0,0)">
-      <rect x="40" width="180" y="290" height="110" fill="#4e79a7"></rect>
-      <rect x="40" width="180" y="149.99999999999997" height="140.00000000000003" fill="#f28e2c"></rect>
-      <rect x="40" width="180" y="20" height="129.99999999999997" fill="#e15759"></rect>
+      <rect x="40" width="180" y="290" height="110" fill="#4269d0"></rect>
+      <rect x="40" width="180" y="149.99999999999997" height="140.00000000000003" fill="#efb118"></rect>
+      <rect x="40" width="180" y="20" height="129.99999999999997" fill="#ff725c"></rect>
     </g>
     <g transform="translate(200,0)">
-      <rect x="40" width="180" y="20" height="380" fill="#f28e2c"></rect>
+      <rect x="40" width="180" y="20" height="380" fill="#efb118"></rect>
     </g>
     <g transform="translate(400,0)">
-      <rect x="40" width="180" y="20" height="380" fill="#4e79a7"></rect>
+      <rect x="40" width="180" y="20" height="380" fill="#4269d0"></rect>
     </g>
   </g>
   <g aria-label="rule" transform="translate(0,0.5)">

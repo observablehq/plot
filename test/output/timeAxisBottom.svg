@@ -1,7 +1,7 @@
 <svg width="640" height="1500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="translate(0,0)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -9,12 +9,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="80" x2="80" y1="0" y2="20"></line>
         <line x1="140" x2="140" y1="0" y2="20"></line>
@@ -27,7 +27,7 @@
         <line x1="560" x2="560" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(80,20)" d="M0,0L0,6"></path>
         <path transform="translate(140,20)" d="M0,0L0,6"></path>
@@ -56,7 +56,7 @@
     </svg></g>
   <g transform="translate(0,60)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -64,12 +64,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="80" x2="80" y1="0" y2="20"></line>
         <line x1="140" x2="140" y1="0" y2="20"></line>
@@ -82,7 +82,7 @@
         <line x1="560" x2="560" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(80,20)" d="M0,0L0,6"></path>
         <path transform="translate(140,20)" d="M0,0L0,6"></path>
@@ -111,7 +111,7 @@
     </svg></g>
   <g transform="translate(0,120)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -119,12 +119,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="80" x2="80" y1="0" y2="20"></line>
         <line x1="140" x2="140" y1="0" y2="20"></line>
@@ -137,7 +137,7 @@
         <line x1="560" x2="560" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(80,20)" d="M0,0L0,6"></path>
         <path transform="translate(140,20)" d="M0,0L0,6"></path>
@@ -166,7 +166,7 @@
     </svg></g>
   <g transform="translate(0,180)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -174,12 +174,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="70" x2="70" y1="0" y2="20"></line>
         <line x1="120" x2="120" y1="0" y2="20"></line>
@@ -194,7 +194,7 @@
         <line x1="569.9999999999999" x2="569.9999999999999" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(70,20)" d="M0,0L0,6"></path>
         <path transform="translate(120,20)" d="M0,0L0,6"></path>
@@ -227,7 +227,7 @@
     </svg></g>
   <g transform="translate(0,240)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -235,12 +235,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="95" x2="95" y1="0" y2="20"></line>
         <line x1="170" x2="170" y1="0" y2="20"></line>
@@ -251,7 +251,7 @@
         <line x1="545" x2="545" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(95,20)" d="M0,0L0,6"></path>
         <path transform="translate(170,20)" d="M0,0L0,6"></path>
@@ -276,7 +276,7 @@
     </svg></g>
   <g transform="translate(0,300)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -284,12 +284,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="95" x2="95" y1="0" y2="20"></line>
         <line x1="170" x2="170" y1="0" y2="20"></line>
@@ -300,7 +300,7 @@
         <line x1="545" x2="545" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(95,20)" d="M0,0L0,6"></path>
         <path transform="translate(170,20)" d="M0,0L0,6"></path>
@@ -325,7 +325,7 @@
     </svg></g>
   <g transform="translate(0,360)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -333,12 +333,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="80" x2="80" y1="0" y2="20"></line>
         <line x1="140" x2="140" y1="0" y2="20"></line>
@@ -351,7 +351,7 @@
         <line x1="560" x2="560" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(80,20)" d="M0,0L0,6"></path>
         <path transform="translate(140,20)" d="M0,0L0,6"></path>
@@ -380,7 +380,7 @@
     </svg></g>
   <g transform="translate(0,420)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -388,12 +388,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="70" x2="70" y1="0" y2="20"></line>
         <line x1="120" x2="120" y1="0" y2="20"></line>
@@ -408,7 +408,7 @@
         <line x1="569.9999999999999" x2="569.9999999999999" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(70,20)" d="M0,0L0,6"></path>
         <path transform="translate(120,20)" d="M0,0L0,6"></path>
@@ -441,7 +441,7 @@
     </svg></g>
   <g transform="translate(0,480)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -449,12 +449,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="80" x2="80" y1="0" y2="20"></line>
         <line x1="140" x2="140" y1="0" y2="20"></line>
@@ -467,7 +467,7 @@
         <line x1="560" x2="560" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(80,20)" d="M0,0L0,6"></path>
         <path transform="translate(140,20)" d="M0,0L0,6"></path>
@@ -496,7 +496,7 @@
     </svg></g>
   <g transform="translate(0,540)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -504,12 +504,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="80" x2="80" y1="0" y2="20"></line>
         <line x1="140" x2="140" y1="0" y2="20"></line>
@@ -522,7 +522,7 @@
         <line x1="560" x2="560" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(80,20)" d="M0,0L0,6"></path>
         <path transform="translate(140,20)" d="M0,0L0,6"></path>
@@ -551,7 +551,7 @@
     </svg></g>
   <g transform="translate(0,600)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -559,12 +559,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="80" x2="80" y1="0" y2="20"></line>
         <line x1="140" x2="140" y1="0" y2="20"></line>
@@ -577,7 +577,7 @@
         <line x1="560" x2="560" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(80,20)" d="M0,0L0,6"></path>
         <path transform="translate(140,20)" d="M0,0L0,6"></path>
@@ -606,7 +606,7 @@
     </svg></g>
   <g transform="translate(0,660)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -614,12 +614,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="80" x2="80" y1="0" y2="20"></line>
         <line x1="140" x2="140" y1="0" y2="20"></line>
@@ -632,7 +632,7 @@
         <line x1="560" x2="560" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(80,20)" d="M0,0L0,6"></path>
         <path transform="translate(140,20)" d="M0,0L0,6"></path>
@@ -661,7 +661,7 @@
     </svg></g>
   <g transform="translate(0,720)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -669,12 +669,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="82.06896551724138" x2="82.06896551724138" y1="0" y2="20"></line>
         <line x1="144.13793103448276" x2="144.13793103448276" y1="0" y2="20"></line>
@@ -686,7 +686,7 @@
         <line x1="516.551724137931" x2="516.551724137931" y1="0" y2="20"></line>
         <line x1="578.6206896551723" x2="578.6206896551723" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(82.06896551724138,20)" d="M0,0L0,6"></path>
         <path transform="translate(144.13793103448276,20)" d="M0,0L0,6"></path>
@@ -713,7 +713,7 @@
     </svg></g>
   <g transform="translate(0,780)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -721,12 +721,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="95" x2="95" y1="0" y2="20"></line>
         <line x1="170" x2="170" y1="0" y2="20"></line>
@@ -737,7 +737,7 @@
         <line x1="545" x2="545" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(95,20)" d="M0,0L0,6"></path>
         <path transform="translate(170,20)" d="M0,0L0,6"></path>
@@ -762,7 +762,7 @@
     </svg></g>
   <g transform="translate(0,840)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -770,12 +770,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="95" x2="95" y1="0" y2="20"></line>
         <line x1="170" x2="170" y1="0" y2="20"></line>
@@ -786,7 +786,7 @@
         <line x1="545" x2="545" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(95,20)" d="M0,0L0,6"></path>
         <path transform="translate(170,20)" d="M0,0L0,6"></path>
@@ -811,7 +811,7 @@
     </svg></g>
   <g transform="translate(0,900)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -819,12 +819,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="120" x2="120" y1="0" y2="20"></line>
         <line x1="220" x2="220" y1="0" y2="20"></line>
@@ -833,7 +833,7 @@
         <line x1="520.0000000000001" x2="520.0000000000001" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(120,20)" d="M0,0L0,6"></path>
         <path transform="translate(220,20)" d="M0,0L0,6"></path>
@@ -854,7 +854,7 @@
     </svg></g>
   <g transform="translate(0,960)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -862,12 +862,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="80" x2="80" y1="0" y2="20"></line>
         <line x1="140" x2="140" y1="0" y2="20"></line>
@@ -880,7 +880,7 @@
         <line x1="560" x2="560" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(80,20)" d="M0,0L0,6"></path>
         <path transform="translate(140,20)" d="M0,0L0,6"></path>
@@ -909,7 +909,7 @@
     </svg></g>
   <g transform="translate(0,1020)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -917,12 +917,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="74.54545454545455" x2="74.54545454545455" y1="0" y2="20"></line>
         <line x1="129.0909090909091" x2="129.0909090909091" y1="0" y2="20"></line>
@@ -936,7 +936,7 @@
         <line x1="565.4545454545455" x2="565.4545454545455" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(74.54545454545455,20)" d="M0,0L0,6"></path>
         <path transform="translate(129.0909090909091,20)" d="M0,0L0,6"></path>
@@ -967,7 +967,7 @@
     </svg></g>
   <g transform="translate(0,1080)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -975,12 +975,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="64.44444444444444" x2="64.44444444444444" y1="0" y2="20"></line>
         <line x1="108.88888888888889" x2="108.88888888888889" y1="0" y2="20"></line>
@@ -996,7 +996,7 @@
         <line x1="553.3333333333333" x2="553.3333333333333" y1="0" y2="20"></line>
         <line x1="597.7777777777777" x2="597.7777777777777" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(64.44444444444444,20)" d="M0,0L0,6"></path>
         <path transform="translate(108.88888888888889,20)" d="M0,0L0,6"></path>
@@ -1031,7 +1031,7 @@
     </svg></g>
   <g transform="translate(0,1140)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -1039,12 +1039,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="66.66666666666667" x2="66.66666666666667" y1="0" y2="20"></line>
         <line x1="113.33333333333333" x2="113.33333333333333" y1="0" y2="20"></line>
@@ -1059,7 +1059,7 @@
         <line x1="533.3333333333334" x2="533.3333333333334" y1="0" y2="20"></line>
         <line x1="580" x2="580" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(66.66666666666667,20)" d="M0,0L0,6"></path>
         <path transform="translate(113.33333333333333,20)" d="M0,0L0,6"></path>
@@ -1092,7 +1092,7 @@
     </svg></g>
   <g transform="translate(0,1200)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -1100,12 +1100,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="70.95890410958904" x2="70.95890410958904" y1="0" y2="20"></line>
         <line x1="116.98630136986301" x2="116.98630136986301" y1="0" y2="20"></line>
@@ -1120,7 +1120,7 @@
         <line x1="569.0410958904109" x2="569.0410958904109" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(70.95890410958904,20)" d="M0,0L0,6"></path>
         <path transform="translate(116.98630136986301,20)" d="M0,0L0,6"></path>
@@ -1153,7 +1153,7 @@
     </svg></g>
   <g transform="translate(0,1260)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -1161,12 +1161,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="69.18032786885246" x2="69.18032786885246" y1="0" y2="20"></line>
         <line x1="120" x2="120" y1="0" y2="20"></line>
@@ -1181,7 +1181,7 @@
         <line x1="569.1803278688525" x2="569.1803278688525" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(69.18032786885246,20)" d="M0,0L0,6"></path>
         <path transform="translate(120,20)" d="M0,0L0,6"></path>
@@ -1214,7 +1214,7 @@
     </svg></g>
   <g transform="translate(0,1320)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -1222,12 +1222,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="69.27007299270073" x2="69.27007299270073" y1="0" y2="20"></line>
         <line x1="119.08759124087592" x2="119.08759124087592" y1="0" y2="20"></line>
@@ -1242,7 +1242,7 @@
         <line x1="569.6350364963504" x2="569.6350364963504" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(69.27007299270073,20)" d="M0,0L0,6"></path>
         <path transform="translate(119.08759124087592,20)" d="M0,0L0,6"></path>
@@ -1275,7 +1275,7 @@
     </svg></g>
   <g transform="translate(0,1380)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -1283,12 +1283,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="79.95072543115248" x2="79.95072543115248" y1="0" y2="20"></line>
         <line x1="140.06569942513002" x2="140.06569942513002" y1="0" y2="20"></line>
@@ -1301,7 +1301,7 @@
         <line x1="559.8850260060225" x2="559.8850260060225" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(79.95072543115248,20)" d="M0,0L0,6"></path>
         <path transform="translate(140.06569942513002,20)" d="M0,0L0,6"></path>
@@ -1330,7 +1330,7 @@
     </svg></g>
   <g transform="translate(0,1440)"><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60">
       <style>
-        .plot {
+        :where(.plot) {
           --plot-background: white;
           display: block;
           height: auto;
@@ -1338,12 +1338,12 @@
           max-width: 100%;
         }
 
-        .plot text,
-        .plot tspan {
+        :where(.plot text),
+        :where(.plot tspan) {
           white-space: pre;
         }
       </style>
-      <g aria-label="x-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <g aria-label="x-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
         <line x1="20" x2="20" y1="0" y2="20"></line>
         <line x1="80.02299731697968" x2="80.02299731697968" y1="0" y2="20"></line>
         <line x1="140.01314132398838" x2="140.01314132398838" y1="0" y2="20"></line>
@@ -1356,7 +1356,7 @@
         <line x1="560.0098559929913" x2="560.0098559929913" y1="0" y2="20"></line>
         <line x1="620" x2="620" y1="0" y2="20"></line>
       </g>
-      <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
         <path transform="translate(20,20)" d="M0,0L0,6"></path>
         <path transform="translate(80.02299731697968,20)" d="M0,0L0,6"></path>
         <path transform="translate(140.01314132398838,20)" d="M0,0L0,6"></path>

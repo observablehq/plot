@@ -35,6 +35,16 @@ export async function pointerViewof() {
   return html`<figure>${plot}${textarea}</figure>`;
 }
 
+export async function pointerViewofTitle() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", tip: true}).plot({title: "Penguins"});
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = () => (textarea.value = JSON.stringify(plot.value, null, 2));
+  oninput(); // initialize the textarea to the initial value
+  plot.oninput = oninput; // update during interaction
+  return html`<figure>${plot}${textarea}</figure>`;
+}
+
 export async function pointerNonFaceted() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.plot({

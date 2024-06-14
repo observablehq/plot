@@ -13,7 +13,7 @@ onMounted(() => {
 
 </script>
 
-# Shift transform <VersionBadge pr="1896" />
+# Shift transform <VersionBadge version="0.6.12" pr="1896" />
 
 The **shift transform** is a specialized [map transform](./map.md) that derives an output **x1** channel by shifting the **x** channel; it can be used with the [difference mark](../marks/difference.md) to show change over time. For example, the chart below shows the price of Apple stock. The <span style="border-bottom: solid #01ab63 3px;">green region</span> shows when the price went up over the given interval, while the <span style="border-bottom: solid #4269d0 3px;">blue region</span> shows when the price went down.
 

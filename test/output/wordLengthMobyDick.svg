@@ -1,6 +1,6 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
-    .plot {
+    :where(.plot) {
       --plot-background: white;
       display: block;
       height: auto;
@@ -8,12 +8,12 @@
       max-width: 100%;
     }
 
-    .plot text,
-    .plot tspan {
+    :where(.plot text),
+    :where(.plot tspan) {
       white-space: pre;
     }
   </style>
-  <g aria-label="y-grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="335.8845315904139" y2="335.8845315904139"></line>
     <line x1="40" x2="620" y1="301.7690631808279" y2="301.7690631808279"></line>
@@ -26,7 +26,7 @@
     <line x1="40" x2="620" y1="62.96078431372551" y2="62.96078431372551"></line>
     <line x1="40" x2="620" y1="28.84531590413947" y2="28.84531590413947"></line>
   </g>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,335.8845315904139)" d="M0,0L-6,0"></path>
     <path transform="translate(40,301.7690631808279)" d="M0,0L-6,0"></path>
@@ -55,7 +55,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
     <text y="0.71em" transform="translate(40,20)">↑ Frequency (%)</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(19,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(19,0)">
     <path transform="translate(45,370)" d="M0,0L0,6"></path>
     <path transform="translate(86,370)" d="M0,0L0,6"></path>
     <path transform="translate(127,370)" d="M0,0L0,6"></path>
@@ -91,19 +91,19 @@
     <text transform="translate(620,370)">Word length →</text>
   </g>
   <g aria-label="bar">
-    <rect x="45" width="37" y="284.59694989106754" height="85.40305010893246"><title>a</title></rect>
-    <rect x="86" width="37" y="46.688453159041444" height="323.31154684095856"><title>of</title></rect>
-    <rect x="127" width="37" y="20" height="350"><title>the</title></rect>
     <rect x="168" width="37" y="42.11328976034861" height="327.8867102396514"><title>that</title></rect>
-    <rect x="209" width="37" y="180.89324618736387" height="189.10675381263613"><title>there</title></rect>
-    <rect x="250" width="37" y="231.98257080610028" height="138.01742919389972"><title>though</title></rect>
+    <rect x="86" width="37" y="46.688453159041444" height="323.31154684095856"><title>of</title></rect>
     <rect x="291" width="37" y="258.6710239651416" height="111.32897603485839"><title>because</title></rect>
-    <rect x="332" width="37" y="307.4727668845316" height="62.52723311546839"><title>whenever</title></rect>
+    <rect x="209" width="37" y="180.89324618736387" height="189.10675381263613"><title>there</title></rect>
+    <rect x="127" width="37" y="20" height="350"><title>the</title></rect>
     <rect x="373" width="37" y="315.86056644880176" height="54.13943355119824"><title>passenger</title></rect>
+    <rect x="250" width="37" y="231.98257080610028" height="138.01742919389972"><title>though</title></rect>
     <rect x="414" width="37" y="338.73638344226583" height="31.263616557734167"><title>passengers</title></rect>
+    <rect x="332" width="37" y="307.4727668845316" height="62.52723311546839"><title>whenever</title></rect>
+    <rect x="45" width="37" y="284.59694989106754" height="85.40305010893246"><title>a</title></rect>
     <rect x="455" width="37" y="357.79956427015253" height="12.20043572984747"><title>circulation</title></rect>
-    <rect x="496" width="37" y="357.03703703703707" height="12.962962962962933"><title>metaphysical</title></rect>
     <rect x="537" width="37" y="363.89978213507624" height="6.1002178649237635"><title>involuntarily</title></rect>
+    <rect x="496" width="37" y="357.03703703703707" height="12.962962962962933"><title>metaphysical</title></rect>
     <rect x="578" width="37" y="368.4749455337691" height="1.5250544662309267"><title>Circumambulate</title></rect>
   </g>
 </svg>

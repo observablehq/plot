@@ -1,6 +1,6 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="620" viewBox="0 0 640 620" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
-    .plot {
+    :where(.plot) {
       --plot-background: white;
       display: block;
       height: auto;
@@ -8,12 +8,12 @@
       max-width: 100%;
     }
 
-    .plot text,
-    .plot tspan {
+    :where(.plot text),
+    :where(.plot tspan) {
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,9.5)">
     <path transform="translate(100,26)" d="M0,0L-6,0"></path>
     <path transform="translate(100,46)" d="M0,0L-6,0"></path>
     <path transform="translate(100,66)" d="M0,0L-6,0"></path>
@@ -76,7 +76,7 @@
   <g aria-label="y-axis label" transform="translate(-96.5,0.5)">
     <text y="0.71em" transform="translate(100,305) rotate(-90)">sport</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(100,590)" d="M0,0L0,6"></path>
     <path transform="translate(210.02962336013542,590)" d="M0,0L0,6"></path>
     <path transform="translate(320.05924672027083,590)" d="M0,0L0,6"></path>
@@ -94,34 +94,34 @@
     <text transform="translate(620,590)">Frequency →</text>
   </g>
   <g aria-label="bar">
-    <rect x="100" width="317.98561151079133" y="546" height="18"></rect>
-    <rect x="100" width="28.167583580194673" y="86" height="18"></rect>
     <rect x="100" width="520" y="566" height="18"></rect>
-    <rect x="100" width="37.85019043588659" y="126" height="18"></rect>
-    <rect x="100" width="63.377063055437986" y="266" height="18"></rect>
-    <rect x="100" width="62.93694456199745" y="246" height="18"></rect>
-    <rect x="100" width="72.83961066440963" y="326" height="18"></rect>
-    <rect x="100" width="115.53110452814221" y="486" height="18"></rect>
-    <rect x="100" width="48.85315277190011" y="186" height="18"></rect>
     <rect x="100" width="54.134574693186636" y="206" height="18"></rect>
-    <rect x="100" width="134.45619974608547" y="526" height="18"></rect>
-    <rect x="100" width="26.4071096064325" y="66" height="18"></rect>
-    <rect x="100" width="71.29919593736776" y="306" height="18"></rect>
-    <rect x="100" width="79.88150655945833" y="366" height="18"></rect>
-    <rect x="100" width="95.06559458315701" y="466" height="18"></rect>
-    <rect x="100" width="86.26322471434617" y="446" height="18"></rect>
-    <rect x="100" width="15.844265763859497" y="26" height="18"></rect>
-    <rect x="100" width="120.37240795598814" y="506" height="18"></rect>
-    <rect x="100" width="66.01777401608126" y="286" height="18"></rect>
-    <rect x="100" width="83.62251375370295" y="386" height="18"></rect>
-    <rect x="100" width="85.82310622090563" y="426" height="18"></rect>
-    <rect x="100" width="37.85019043588659" y="146" height="18"></rect>
     <rect x="100" width="28.167583580194673" y="106" height="18"></rect>
-    <rect x="100" width="43.13161235717308" y="166" height="18"></rect>
+    <rect x="100" width="115.53110452814221" y="486" height="18"></rect>
     <rect x="100" width="24.20651713922979" y="46" height="18"></rect>
     <rect x="100" width="84.50275074058402" y="406" height="18"></rect>
-    <rect x="100" width="56.77528565382988" y="226" height="18"></rect>
+    <rect x="100" width="317.98561151079133" y="546" height="18"></rect>
+    <rect x="100" width="66.01777401608126" y="286" height="18"></rect>
     <rect x="100" width="77.68091409225559" y="346" height="18"></rect>
+    <rect x="100" width="134.45619974608547" y="526" height="18"></rect>
+    <rect x="100" width="85.82310622090563" y="426" height="18"></rect>
+    <rect x="100" width="62.93694456199745" y="246" height="18"></rect>
+    <rect x="100" width="48.85315277190011" y="186" height="18"></rect>
+    <rect x="100" width="120.37240795598814" y="506" height="18"></rect>
+    <rect x="100" width="86.26322471434617" y="446" height="18"></rect>
+    <rect x="100" width="79.88150655945833" y="366" height="18"></rect>
+    <rect x="100" width="37.85019043588659" y="126" height="18"></rect>
+    <rect x="100" width="95.06559458315701" y="466" height="18"></rect>
+    <rect x="100" width="15.844265763859497" y="26" height="18"></rect>
+    <rect x="100" width="37.85019043588659" y="146" height="18"></rect>
+    <rect x="100" width="72.83961066440963" y="326" height="18"></rect>
+    <rect x="100" width="63.377063055437986" y="266" height="18"></rect>
+    <rect x="100" width="26.4071096064325" y="66" height="18"></rect>
+    <rect x="100" width="28.167583580194673" y="86" height="18"></rect>
+    <rect x="100" width="56.77528565382988" y="226" height="18"></rect>
+    <rect x="100" width="83.62251375370295" y="386" height="18"></rect>
+    <rect x="100" width="43.13161235717308" y="166" height="18"></rect>
+    <rect x="100" width="71.29919593736776" y="306" height="18"></rect>
   </g>
   <g aria-label="tip" fill="var(--plot-background)" stroke="currentColor" pointer-events="none" text-anchor="start" transform="translate(0.5,9.5)"></g>
 </svg>

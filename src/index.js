@@ -1,3 +1,11 @@
+import {Mark} from "./mark.js";
+import {plot} from "./plot.js";
+
+// Note: this side effect avoids a circular dependency.
+Mark.prototype.plot = function ({marks = [], ...options} = {}) {
+  return plot({...options, marks: [...marks, this]});
+};
+
 export {plot} from "./plot.js";
 export {Mark, marks} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
@@ -45,6 +53,8 @@ export {select, selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, sel
 export {stackX, stackX1, stackX2, stackY, stackY1, stackY2} from "./transforms/stack.js";
 export {treeNode, treeLink} from "./transforms/tree.js";
 export {pointer, pointerX, pointerY} from "./interactions/pointer.js";
-export {formatIsoDate, formatWeekday, formatMonth} from "./format.js";
+export {formatIsoDate, formatNumber, formatWeekday, formatMonth} from "./format.js";
 export {scale} from "./scales.js";
 export {legend} from "./legends.js";
+export {numberInterval} from "./options.js";
+export {timeInterval, utcInterval} from "./time.js";

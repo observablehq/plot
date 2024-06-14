@@ -7,8 +7,8 @@ export async function penguinFacetAnnotatedX() {
     marginLeft: 75,
     x: {insetRight: 10},
     marks: [
-      Plot.frame(),
       Plot.barX(penguins, Plot.groupY({x: "count"}, {fx: "island", y: "species", fill: "sex"})),
+      Plot.frame(),
       Plot.text(["Torgersen Island only has Adelie penguins!"], {
         fx: ["Torgersen"],
         frameAnchor: "top-right",

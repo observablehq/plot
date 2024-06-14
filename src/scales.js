@@ -5,11 +5,11 @@ import {
   isNumericString,
   isScaleOptions,
   map,
-  orderof,
   slice,
   coerceNumbers,
   coerceDates
 } from "./options.js";
+import {orderof} from "./order.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
   createScaleLinear,

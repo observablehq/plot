@@ -1,7 +1,7 @@
-import {descending, quantile, range as rangei} from "d3";
+import {quantile, range as rangei} from "d3";
 import {parse as isoParse} from "isoformat";
 import {defined} from "./defined.js";
-import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
+import {timeInterval, utcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -25,7 +25,7 @@ export function valueof(data, value, type) {
 }
 
 function maybeTake(values, index) {
-  return index ? take(values, index) : values;
+  return values != null && index ? take(values, index) : values;
 }
 
 function maybeTypedMap(data, f, type) {
@@ -322,25 +322,28 @@ export function maybeIntervalTransform(interval, type) {
 // range} object similar to a D3 time interval.
 export function maybeInterval(interval, type) {
   if (interval == null) return;
-  if (typeof interval === "number") {
-    if (0 < interval && interval < 1 && Number.isInteger(1 / interval)) interval = -1 / interval;
-    const n = Math.abs(interval);
-    return interval < 0
-      ? {
-          floor: (d) => Math.floor(d * n) / n,
-          offset: (d) => (d * n + 1) / n, // note: no optional step for simplicity
-          range: (lo, hi) => rangei(Math.ceil(lo * n), hi * n).map((x) => x / n)
-        }
-      : {
-          floor: (d) => Math.floor(d / n) * n,
-          offset: (d) => d + n, // note: no optional step for simplicity
-          range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => x * n)
-        };
-  }
-  if (typeof interval === "string") return (type === "time" ? maybeTimeInterval : maybeUtcInterval)(interval);
+  if (typeof interval === "number") return numberInterval(interval);
+  if (typeof interval === "string") return (type === "time" ? timeInterval : utcInterval)(interval);
   if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
   if (typeof interval.offset !== "function") throw new Error("invalid interval; missing offset method");
   return interval;
+}
+
+export function numberInterval(interval) {
+  interval = +interval;
+  if (0 < interval && interval < 1 && Number.isInteger(1 / interval)) interval = -1 / interval;
+  const n = Math.abs(interval);
+  return interval < 0
+    ? {
+        floor: (d) => Math.floor(d * n) / n,
+        offset: (d, s = 1) => (d * n + Math.floor(s)) / n,
+        range: (lo, hi) => rangei(Math.ceil(lo * n), hi * n).map((x) => x / n)
+      }
+    : {
+        floor: (d) => Math.floor(d / n) * n,
+        offset: (d, s = 1) => d + n * Math.floor(s),
+        range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => x * n)
+      };
 }
 
 // Like maybeInterval, but requires a range method too.
@@ -510,16 +513,6 @@ export function maybeFrameAnchor(value = "middle") {
   return maybeAnchor(value, "frameAnchor");
 }
 
-// Like a sort comparator, returns a positive value if the given array of values
-// is in ascending order, a negative value if the values are in descending
-// order. Assumes monotonicity; only tests the first and last values.
-export function orderof(values) {
-  if (values == null) return;
-  const first = values[0];
-  const last = values[values.length - 1];
-  return descending(first, last);
-}
-
 // Unlike {...defaults, ...options}, this ensures that any undefined (but
 // present) properties in options inherit the given default value.
 export function inherit(options = {}, ...rest) {
@@ -556,4 +549,13 @@ export function named(things) {
 
 export function maybeNamed(things) {
   return isIterable(things) ? named(things) : things;
+}
+
+// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
+// https://github.com/observablehq/plot/issues/181
+export function maybeClip(clip) {
+  if (clip === true) clip = "frame";
+  else if (clip === false) clip = null;
+  else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
+  return clip;
 }

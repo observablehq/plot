@@ -1,0 +1,47 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,195)">100</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(112.5,370)" d="M0,0L0,6"></path>
+    <path transform="translate(185,370)" d="M0,0L0,6"></path>
+    <path transform="translate(257.5,370)" d="M0,0L0,6"></path>
+    <path transform="translate(330,370)" d="M0,0L0,6"></path>
+    <path transform="translate(402.5,370)" d="M0,0L0,6"></path>
+    <path transform="translate(475,370)" d="M0,0L0,6"></path>
+    <path transform="translate(547.5,370)" d="M0,0L0,6"></path>
+    <path transform="translate(620,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(40,370)">1.0</text>
+    <text y="0.71em" transform="translate(112.5,370)">1.5</text>
+    <text y="0.71em" transform="translate(185,370)">2.0</text>
+    <text y="0.71em" transform="translate(257.5,370)">2.5</text>
+    <text y="0.71em" transform="translate(330,370)">3.0</text>
+    <text y="0.71em" transform="translate(402.5,370)">3.5</text>
+    <text y="0.71em" transform="translate(475,370)">4.0</text>
+    <text y="0.71em" transform="translate(547.5,370)">4.5</text>
+    <text y="0.71em" transform="translate(620,370)">5.0</text>
+  </g>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <circle cx="330" cy="195" r="3"></circle>
+  </g>
+</svg>

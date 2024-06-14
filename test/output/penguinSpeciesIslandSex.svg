@@ -1,6 +1,6 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="430" viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
-    .plot {
+    :where(.plot) {
       --plot-background: white;
       display: block;
       height: auto;
@@ -8,8 +8,8 @@
       max-width: 100%;
     }
 
-    .plot text,
-    .plot tspan {
+    :where(.plot text),
+    :where(.plot tspan) {
       white-space: pre;
     }
   </style>
@@ -27,7 +27,7 @@
   <g aria-label="fx-axis label" transform="translate(0.5,-26.5)">
     <text y="0.71em" transform="translate(330,30)">species</text>
   </g>
-  <g aria-label="y-grid" transform="translate(0,0.5)">
+  <g aria-label="y-grid" aria-hidden="true" transform="translate(0,0.5)">
     <g stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0)">
       <line x1="40" x2="220" y1="400" y2="400"></line>
       <line x1="40" x2="220" y1="374.6575342465753" y2="374.6575342465753"></line>
@@ -80,7 +80,7 @@
       <line x1="40" x2="220" y1="45.20547945205482" y2="45.20547945205482"></line>
     </g>
   </g>
-  <g aria-label="y-axis tick" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" transform="translate(0,0.5)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(40,400)" d="M0,0L-6,0"></path>
       <path transform="translate(40,374.6575342465753)" d="M0,0L-6,0"></path>
@@ -121,7 +121,7 @@
   <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-26.5)">
     <text y="0.71em" transform="translate(40,30)">↑ Frequency</text>
   </g>
-  <g aria-label="x-axis tick" transform="translate(26.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" transform="translate(26.5,0)">
     <g fill="none" stroke="currentColor" transform="translate(0,0)">
       <path transform="translate(46,400)" d="M0,0L0,6"></path>
       <path transform="translate(104,400)" d="M0,0L0,6"></path>
@@ -160,23 +160,23 @@
   </g>
   <g aria-label="bar">
     <g transform="translate(0,0)">
-      <rect x="46" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4e79a7"></rect>
-      <rect x="104" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4e79a7"></rect>
-      <rect x="46" width="52" y="151.64383561643834" height="136.84931506849315" fill="#f28e2c"></rect>
-      <rect x="104" width="52" y="146.57534246575344" height="141.91780821917806" fill="#f28e2c"></rect>
-      <rect x="162" width="52" y="394.93150684931504" height="5.068493150684958" fill="#f28e2c"></rect>
-      <rect x="46" width="52" y="30" height="121.64383561643834" fill="#e15759"></rect>
-      <rect x="104" width="52" y="30" height="116.57534246575344" fill="#e15759"></rect>
-      <rect x="162" width="52" y="369.5890410958904" height="25.34246575342462" fill="#e15759"></rect>
+      <rect x="104" width="52" y="283.42465753424665" height="116.57534246575335" fill="#ff725c"></rect>
+      <rect x="46" width="52" y="278.35616438356163" height="121.64383561643837" fill="#ff725c"></rect>
+      <rect x="162" width="52" y="374.6575342465753" height="25.342465753424676" fill="#ff725c"></rect>
+      <rect x="46" width="52" y="166.84931506849315" height="111.50684931506848" fill="#4269d0"></rect>
+      <rect x="104" width="52" y="171.91780821917808" height="111.50684931506856" fill="#4269d0"></rect>
+      <rect x="46" width="52" y="30" height="136.84931506849315" fill="#efb118"></rect>
+      <rect x="104" width="52" y="30" height="141.91780821917808" fill="#efb118"></rect>
+      <rect x="162" width="52" y="369.5890410958904" height="5.068493150684901" fill="#efb118"></rect>
     </g>
     <g transform="translate(200,0)">
-      <rect x="46" width="52" y="227.67123287671234" height="172.32876712328766" fill="#f28e2c"></rect>
-      <rect x="104" width="52" y="227.67123287671234" height="172.32876712328766" fill="#f28e2c"></rect>
+      <rect x="46" width="52" y="227.67123287671234" height="172.32876712328766" fill="#efb118"></rect>
+      <rect x="104" width="52" y="227.67123287671234" height="172.32876712328766" fill="#efb118"></rect>
     </g>
     <g transform="translate(400,0)">
-      <rect x="46" width="52" y="106.027397260274" height="293.97260273972597" fill="#4e79a7"></rect>
-      <rect x="104" width="52" y="90.82191780821917" height="309.17808219178085" fill="#4e79a7"></rect>
-      <rect x="162" width="52" y="374.6575342465753" height="25.342465753424676" fill="#4e79a7"></rect>
+      <rect x="46" width="52" y="106.027397260274" height="293.97260273972597" fill="#4269d0"></rect>
+      <rect x="104" width="52" y="90.82191780821917" height="309.17808219178085" fill="#4269d0"></rect>
+      <rect x="162" width="52" y="374.6575342465753" height="25.342465753424676" fill="#4269d0"></rect>
     </g>
   </g>
   <g aria-label="rule" transform="translate(0,0.5)">

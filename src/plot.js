@@ -257,15 +257,15 @@ export function plot(options = {}) {
     .call((svg) =>
       // Warning: if you edit this, change defaultClassName.
       svg.append("style").text(
-        `.${className} {
+        `:where(.${className}) {
   --plot-background: white;
   display: block;
   height: auto;
   height: intrinsic;
   max-width: 100%;
 }
-.${className} text,
-.${className} tspan {
+:where(.${className} text),
+:where(.${className} tspan) {
   white-space: pre;
 }`
       )
@@ -332,6 +332,7 @@ export function plot(options = {}) {
     if (subtitle != null) figure.append(createTitleElement(document, subtitle, "h3"));
     figure.append(...legends, svg);
     if (caption != null) figure.append(createFigcaption(document, caption));
+    if ("value" in svg) (figure.value = svg.value), delete svg.value;
   }
 
   figure.scale = exposeScales(scales.scales);
@@ -366,13 +367,6 @@ function createFigcaption(document, caption) {
   e.append(caption);
   return e;
 }
-
-function plotThis({marks = [], ...options} = {}) {
-  return plot({...options, marks: [...marks, this]});
-}
-
-// Note: This side-effect avoids a circular dependency.
-Mark.prototype.plot = plotThis;
 
 function flatMarks(marks) {
   return marks
@@ -409,7 +403,7 @@ function applyScaleTransform(channel, options) {
     type,
     percent,
     interval,
-    transform = percent ? (x) => x * 100 : maybeIntervalTransform(interval, type)
+    transform = percent ? (x) => (x == null ? NaN : x * 100) : maybeIntervalTransform(interval, type)
   } = options[scale] ?? {};
   if (transform == null) return;
   channel.value = map(channel.value, transform);

@@ -1,6 +1,6 @@
 <svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
-    .plot {
+    :where(.plot) {
       --plot-background: white;
       display: block;
       height: auto;
@@ -8,12 +8,12 @@
       max-width: 100%;
     }
 
-    .plot text,
-    .plot tspan {
+    :where(.plot text),
+    :where(.plot tspan) {
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,361.22685282508627)" d="M0,0L-6,0"></path>
     <path transform="translate(40,321.9860392396924)" d="M0,0L-6,0"></path>
     <path transform="translate(40,282.74522565429845)" d="M0,0L-6,0"></path>
@@ -35,7 +35,7 @@
     <text y="0.32em" transform="translate(40,86.54115772732895)">70</text>
     <text y="0.32em" transform="translate(40,47.30034414193506)">72</text>
   </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(133.30434782608694,370)" d="M0,0L0,6"></path>
     <path transform="translate(284.60869565217394,370)" d="M0,0L0,6"></path>
     <path transform="translate(440.95652173913044,370)" d="M0,0L0,6"></path>

@@ -1,25 +1,25 @@
 <figure class="plot-d6a7b5-figure" style="max-width: initial;">
   <div class="plot-swatches plot-swatches-wrap">
     <style>
-      .plot-swatches {
+      :where(.plot-swatches) {
         font-family: system-ui, sans-serif;
         font-size: 10px;
         margin-bottom: 0.5em;
       }
 
-      .plot-swatch>svg {
+      :where(.plot-swatch > svg) {
         margin-right: 0.5em;
         overflow: visible;
       }
 
-      .plot-swatches-wrap {
+      :where(.plot-swatches-wrap) {
         display: flex;
         align-items: center;
         min-height: 33px;
         flex-wrap: wrap;
       }
 
-      .plot-swatches-wrap .plot-swatch {
+      :where(.plot-swatches-wrap .plot-swatch) {
         display: inline-flex;
         align-items: center;
         margin-right: 1em;
@@ -37,7 +37,7 @@
       </svg>Strongly Agree</span>
   </div><svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="160" viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <style>
-      .plot {
+      :where(.plot) {
         --plot-background: white;
         display: block;
         height: auto;
@@ -45,8 +45,8 @@
         max-width: 100%;
       }
 
-      .plot text,
-      .plot tspan {
+      :where(.plot text),
+      :where(.plot tspan) {
         white-space: pre;
       }
     </style>
@@ -60,7 +60,7 @@
     <g aria-label="y-axis label" transform="translate(-36.5,0.5)">
       <text y="0.71em" transform="translate(40,75) rotate(-90)">Question</text>
     </g>
-    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(72.22222222222223,130)" d="M0,0L0,6"></path>
       <path transform="translate(158.14814814814815,130)" d="M0,0L0,6"></path>
       <path transform="translate(244.07407407407408,130)" d="M0,0L0,6"></path>
@@ -87,26 +87,26 @@
       <rect x="435.2592592592593" width="94.51851851851842" y="66" height="19" fill="#92c5de"></rect>
       <rect x="375.1111111111111" width="21.481481481481467" y="87" height="19" fill="#92c5de"></rect>
       <rect x="375.1111111111111" width="73.03703703703707" y="108" height="19" fill="#92c5de"></rect>
-      <rect x="186.07407407407405" width="64.44444444444449" y="24" height="19" fill="#f4a582"></rect>
-      <rect x="248.37037037037038" width="21.481481481481467" y="45" height="19" fill="#f4a582"></rect>
-      <rect x="194.66666666666669" width="30.074074074074076" y="66" height="19" fill="#f4a582"></rect>
-      <rect x="65.77777777777777" width="219.1111111111111" y="87" height="19" fill="#f4a582"></rect>
-      <rect x="233.33333333333331" width="51.55555555555554" y="108" height="19" fill="#f4a582"></rect>
       <rect x="250.51851851851853" width="158.962962962963" y="24" height="19" fill="#f7f7f7"></rect>
       <rect x="269.85185185185185" width="120.2962962962963" y="45" height="19" fill="#f7f7f7"></rect>
       <rect x="224.74074074074076" width="210.51851851851853" y="66" height="19" fill="#f7f7f7"></rect>
       <rect x="284.88888888888886" width="90.22222222222223" y="87" height="19" fill="#f7f7f7"></rect>
       <rect x="284.88888888888886" width="90.22222222222223" y="108" height="19" fill="#f7f7f7"></rect>
-      <rect x="486.8148148148148" width="90.22222222222229" y="24" height="19" fill="#0571b0"></rect>
-      <rect x="506.14814814814815" width="51.55555555555554" y="45" height="19" fill="#0571b0"></rect>
-      <rect x="529.7777777777777" width="73.03703703703707" y="66" height="19" fill="#0571b0"></rect>
-      <rect x="396.59259259259255" width="73.03703703703707" y="87" height="19" fill="#0571b0"></rect>
-      <rect x="448.14814814814815" width="171.85185185185185" y="108" height="19" fill="#0571b0"></rect>
       <rect x="143.11111111111111" width="42.96296296296293" y="24" height="19" fill="#ca0020"></rect>
       <rect x="149.55555555555554" width="98.81481481481484" y="45" height="19" fill="#ca0020"></rect>
       <rect x="160.29629629629628" width="34.37037037037041" y="66" height="19" fill="#ca0020"></rect>
       <rect x="40" width="25.77777777777777" y="87" height="19" fill="#ca0020"></rect>
       <rect x="186.07407407407405" width="47.25925925925927" y="108" height="19" fill="#ca0020"></rect>
+      <rect x="486.8148148148148" width="90.22222222222229" y="24" height="19" fill="#0571b0"></rect>
+      <rect x="506.14814814814815" width="51.55555555555554" y="45" height="19" fill="#0571b0"></rect>
+      <rect x="529.7777777777777" width="73.03703703703707" y="66" height="19" fill="#0571b0"></rect>
+      <rect x="396.59259259259255" width="73.03703703703707" y="87" height="19" fill="#0571b0"></rect>
+      <rect x="448.14814814814815" width="171.85185185185185" y="108" height="19" fill="#0571b0"></rect>
+      <rect x="186.07407407407405" width="64.44444444444449" y="24" height="19" fill="#f4a582"></rect>
+      <rect x="248.37037037037038" width="21.481481481481467" y="45" height="19" fill="#f4a582"></rect>
+      <rect x="194.66666666666669" width="30.074074074074076" y="66" height="19" fill="#f4a582"></rect>
+      <rect x="65.77777777777777" width="219.1111111111111" y="87" height="19" fill="#f4a582"></rect>
+      <rect x="233.33333333333331" width="51.55555555555554" y="108" height="19" fill="#f4a582"></rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
       <line x1="330" x2="330" y1="20" y2="130"></line>

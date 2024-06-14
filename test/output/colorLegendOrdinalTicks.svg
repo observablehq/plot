@@ -1,6 +1,6 @@
 <svg class="plot-ramp" font-family="system-ui, sans-serif" font-size="10" width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
-    .plot-ramp {
+    :where(.plot-ramp) {
       display: block;
       height: auto;
       height: intrinsic;
@@ -8,16 +8,16 @@
       overflow: visible;
     }
 
-    .plot-ramp text {
+    :where(.plot-ramp text) {
       white-space: pre;
     }
   </style>
   <g>
-    <rect x="0" y="18" width="47" height="10" fill="#4e79a7"></rect>
-    <rect x="48" y="18" width="47" height="10" fill="#f28e2c"></rect>
-    <rect x="96" y="18" width="47" height="10" fill="#e15759"></rect>
-    <rect x="144" y="18" width="47" height="10" fill="#76b7b2"></rect>
-    <rect x="192" y="18" width="47" height="10" fill="#59a14f"></rect>
+    <rect x="0" y="18" width="47" height="10" fill="#4269d0"></rect>
+    <rect x="48" y="18" width="47" height="10" fill="#efb118"></rect>
+    <rect x="96" y="18" width="47" height="10" fill="#ff725c"></rect>
+    <rect x="144" y="18" width="47" height="10" fill="#6cc5b0"></rect>
+    <rect x="192" y="18" width="47" height="10" fill="#3ca951"></rect>
   </g>
   <g transform="translate(0,28)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(24.5,0)">

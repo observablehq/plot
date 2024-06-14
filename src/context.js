@@ -1,5 +1,5 @@
 import {creator, select} from "d3";
-import {maybeClip} from "./style.js";
+import {maybeClip} from "./options.js";
 
 export function createContext(options = {}) {
   const {document = typeof window !== "undefined" ? window.document : undefined, clip} = options;

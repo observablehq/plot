@@ -11,7 +11,7 @@ const align = ref(0.5);
 const radius = ref(8);
 const schemeq = ref("turbo");
 const schemed = ref("rdbu");
-const schemeo = ref("Tableau10");
+const schemeo = ref("Observable10");
 const interpolateq = ref("rgb");
 const anomaly = gistemp.map((d) => d.Anomaly);
 const aapl = shallowRef([]);
@@ -457,6 +457,7 @@ Plot also provides color schemes for discrete data. Use the *categorical* type f
         <option>Accent</option>
         <option>Category10</option>
         <option>Dark2</option>
+        <option>Observable10</option>
         <option>Paired</option>
         <option>Pastel1</option>
         <option>Pastel2</option>
@@ -730,7 +731,7 @@ Plot.plot({
 
 The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color. In addition, Plot supports special scale types for color:
 
-* *categorical* - like *ordinal*, but defaults to *tableau10*
+* *categorical* - like *ordinal*, but defaults to *observable10*
 * *sequential* - like *linear*
 * *cyclical* - like *linear*, but defaults to *rainbow*
 * *threshold* - discretizes using thresholds given as the **domain**; defaults to *rdylbu*
@@ -878,6 +879,7 @@ Plot.plot({
       ["Accent", d3.schemeAccent],
       ["Category10", d3.schemeCategory10],
       ["Dark2", d3.schemeDark2],
+      ["Observable10", Plot.scale({color: {type: "categorical"}}).range],
       ["Paired", d3.schemePaired],
       ["Pastel1", d3.schemePastel1],
       ["Pastel2", d3.schemePastel2],
@@ -1011,19 +1013,35 @@ Note: when the value of the sort option is a string or a function, it is interpr
 
 ## scale(*options*) <VersionBadge version="0.4.0" /> {#scale}
 
-You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
+You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a categorical color scale with the *Tableau10* color scheme and a domain of fruits:
 
 ```js
-const color = Plot.scale({color: {type: "linear"}});
+const color = Plot.scale({color: {scheme: "Tableau10", domain: ["apple", "orange", "pear"]}});
 ```
 
 Both [*plot*.scale](./plots.md#plot_scale) and [Plot.scale](#scale) return scale objects. These objects represent the actual (or “materialized”) scale options used by Plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
 
-To reuse a scale across plots, pass the corresponding scale object into another plot specification:
-
 ```js
-const plot1 = Plot.plot(options);
-const plot2 = Plot.plot({...options, color: plot1.scale("color")});
+color.domain // ["apple", "orange", "pear"]
 ```
 
 For convenience, scale objects expose a *scale*.**apply**(*input*) method which returns the scale’s output for the given *input* value. When applicable, scale objects also expose a *scale*.**invert**(*output*) method which returns the corresponding input value from the scale’s domain for the given *output* value.
+
+```js
+color.apply("apple") // "#4e79a7"
+```
+
+To apply a standalone scale object to a plot, pass it to Plot.plot as the corresponding scale options, such as **color**:
+
+:::plot
+```js
+Plot.cellX(["apple", "apple", "orange", "pear", "orange"]).plot({color})
+```
+:::
+
+As another example, below are two plots with different options where the second plot uses the *color* scale from the first plot:
+
+```js
+const plot1 = Plot.plot({...options1});
+const plot2 = Plot.plot({...options2, color: plot1.scale("color")});
+```
