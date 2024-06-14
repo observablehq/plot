@@ -9,6 +9,7 @@ import {line} from "./line.js";
 export function differenceX(data, options) {
   return differenceK("x", data, options);
 }
+
 export function differenceY(data, options) {
   return differenceK("y", data, options);
 }
