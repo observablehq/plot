@@ -23,6 +23,8 @@ export class Geo extends Mark {
       data,
       {
         geometry: {value: options.geometry, scale: "projection"},
+        x: {value: options.x, scale: "x", optional: true},
+        y: {value: options.y, scale: "y", optional: true},
         r: {value: vr, scale: "r", filter: positive, optional: true}
       },
       withDefaultSort(options),

@@ -16,14 +16,16 @@ export function centroid({geometry = identity, ...options} = {}) {
       facets,
       channels: {
         x: {value: X, scale: projection == null ? "x" : null, source: null},
-        y: {value: Y, scale: projection == null ? "y" : null, source: null}
+        y: {value: Y, scale: projection == null ? "y" : null, source: null},
+        geometry: {value: G}
       }
     };
   });
 }
 
-export function geoCentroid({geometry = identity, ...options} = {}) {
+export function geoCentroid(options = {}) {
   let C;
+  const {geometry = identity} = options;
   return {
     ...options,
     x: {transform: (data) => Float64Array.from((C = valueof(valueof(data, geometry), GeoCentroid)), ([x]) => x)},

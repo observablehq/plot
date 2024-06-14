@@ -115,6 +115,13 @@ CBO
 https://www.cbo.gov/topics/budget/accuracy-projections
 https://observablehq.com/@tophtucker/examples-of-bitemporal-charts
 
+## london.json
+giCentre, City University of London
+https://github.com/gicentre/data
+
+## london-car-access.csv
+Jo Wood, TK
+
 ## metros.csv
 The New York Times
 https://www.nytimes.com/2019/12/02/upshot/wealth-poverty-divide-american-cities.html
