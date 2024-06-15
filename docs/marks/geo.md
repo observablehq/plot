@@ -130,7 +130,7 @@ Plot.plot({
 ```
 :::
 
-The geo mark doesn’t have **x** and **y** channels; when you use the [**tip** option](./tip.md), the [centroid transform](../transforms/centroid.md) is implicitly applied on the geometries to compute the tip position. <VersionBadge pr="2088" /> The centroids are shown below in red.
+By default, the geo mark doesn’t have **x** and **y** channels; when you use the [**tip** option](./tip.md), the [centroid transform](../transforms/centroid.md) is implicitly applied on the geometries to compute the tip position by generating **x** and **y** channels. <VersionBadge pr="2088" /> You can alternatively specify these channels explicitly. The centroids are shown below in red.
 
 :::plot defer https://observablehq.com/@observablehq/plot-state-centroids
 ```js
@@ -175,6 +175,8 @@ Lastly, the geo mark is not limited to spherical geometries! [Plot’s projectio
 The **geometry** channel specifies the geometry (GeoJSON object) to draw; if not specified, the mark’s *data* is assumed to be GeoJSON.
 
 In addition to the [standard mark options](../features/marks.md#mark-options), the **r** option controls the size of Point and MultiPoint geometries. It can be specified as either a channel or constant. When **r** is specified as a number, it is interpreted as a constant radius in pixels; otherwise it is interpreted as a channel and the effective radius is controlled by the *r* scale. If the **r** option is not specified it defaults to 3 pixels. Geometries with a nonpositive radius are not drawn. If **r** is a channel, geometries will be sorted by descending radius by default.
+
+The **x** and **y** position channels may also be specified in conjunction with the **tip** option. <VersionBadge pr="2088" /> These are bound to the *x* and *y* scale (or projection), respectively.
 
 ## geo(*data*, *options*) {#geo}
 
