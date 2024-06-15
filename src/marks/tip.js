@@ -345,7 +345,11 @@ function getSourceChannels(channels, scales) {
   for (const key in channels) {
     if (key in sources || key in format || ignoreChannels.has(key)) continue;
     const source = getSource(channels, key);
-    if (source) sources[key] = source;
+    if (source) {
+      // Ignore color channels if the values are all literal colors.
+      if (source.scale == null && source.defaultScale === "color") continue;
+      sources[key] = source;
+    }
   }
 
   // And lastly facet channels, but only if this mark is faceted.
