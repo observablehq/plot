@@ -11,8 +11,8 @@ const walmarts = shallowRef({type: "FeatureCollection", features: []});
 const world = shallowRef(null);
 const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
 const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
-const states = computed(() => us.value ? topojson.feature(us.value, us.value.objects.states).features : []);
-const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties).features : []);
+const states = computed(() => us.value ? topojson.feature(us.value, us.value.objects.states) : {type: null});
+const counties = computed(() => us.value ? topojson.feature(us.value, us.value.objects.counties) : {type: null});
 const land = computed(() => world.value ? topojson.feature(world.value, world.value.objects.land) : {type: null});
 
 onMounted(() => {
