@@ -5,7 +5,7 @@ import {feature} from "topojson-client";
 export async function countryCentroids() {
   const world = await d3.json<any>("data/countries-110m.json");
   const land = feature(world, world.objects.land);
-  const countries = feature(world, world.objects.countries).features;
+  const countries = feature(world, world.objects.countries);
   return Plot.plot({
     projection: "mercator",
     marks: [

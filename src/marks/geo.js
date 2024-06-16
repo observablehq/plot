@@ -70,24 +70,6 @@ function scaleProjection({x: X, y: Y}) {
 }
 
 export function geo(data, options = {}) {
-  switch (data?.type) {
-    case "FeatureCollection":
-      data = data.features;
-      break;
-    case "GeometryCollection":
-      data = data.geometries;
-      break;
-    case "Feature":
-    case "LineString":
-    case "MultiLineString":
-    case "MultiPoint":
-    case "MultiPolygon":
-    case "Point":
-    case "Polygon":
-    case "Sphere":
-      data = [data];
-      break;
-  }
   if (options.tip && options.x === undefined && options.y === undefined) options = centroid(options);
   else if (options.geometry === undefined) options = {...options, geometry: identity};
   return new Geo(data, options);

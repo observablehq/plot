@@ -47,7 +47,7 @@ function floater(f) {
 }
 
 export const singleton = [null]; // for data-less decoration marks, e.g. frame
-export const field = (name) => (d) => d[name];
+export const field = (name) => (d) => { const v = d[name]; return v === undefined && d.type === "Feature" ? d.properties?.[name] : v; }; // prettier-ignore
 export const indexOf = {transform: range};
 export const identity = {transform: (d) => d};
 export const zero = () => 0;
@@ -131,8 +131,24 @@ export function keyword(input, name, allowed) {
 }
 
 // Promotes the specified data to an array as needed.
-export function arrayify(data) {
-  return data == null || data instanceof Array || data instanceof TypedArray ? data : Array.from(data);
+export function arrayify(values) {
+  if (values == null || values instanceof Array || values instanceof TypedArray) return values;
+  switch (values.type) {
+    case "FeatureCollection":
+      return values.features;
+    case "GeometryCollection":
+      return values.geometries;
+    case "Feature":
+    case "LineString":
+    case "MultiLineString":
+    case "MultiPoint":
+    case "MultiPolygon":
+    case "Point":
+    case "Polygon":
+    case "Sphere":
+      return [values];
+  }
+  return Array.from(values);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
