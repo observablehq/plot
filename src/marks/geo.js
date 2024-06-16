@@ -67,24 +67,6 @@ function scaleProjection({x: X, y: Y}) {
 }
 
 export function geo(data, {geometry = identity, ...options} = {}) {
-  switch (data?.type) {
-    case "FeatureCollection":
-      data = data.features;
-      break;
-    case "GeometryCollection":
-      data = data.geometries;
-      break;
-    case "Feature":
-    case "LineString":
-    case "MultiLineString":
-    case "MultiPoint":
-    case "MultiPolygon":
-    case "Point":
-    case "Polygon":
-    case "Sphere":
-      data = [data];
-      break;
-  }
   return new Geo(data, {geometry, ...options});
 }
 
