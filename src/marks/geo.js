@@ -4,6 +4,7 @@ import {negative, positive} from "../defined.js";
 import {Mark} from "../mark.js";
 import {identity, maybeNumberChannel} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {centroid} from "../transforms/centroid.js";
 import {withDefaultSort} from "./dot.js";
 
 const defaults = {
@@ -22,8 +23,10 @@ export class Geo extends Mark {
     super(
       data,
       {
-        geometry: {value: options.geometry, scale: "projection"},
-        r: {value: vr, scale: "r", filter: positive, optional: true}
+        x: {value: options.tip ? options.x : null, scale: "x", optional: true},
+        y: {value: options.tip ? options.y : null, scale: "y", optional: true},
+        r: {value: vr, scale: "r", filter: positive, optional: true},
+        geometry: {value: options.geometry, scale: "projection"}
       },
       withDefaultSort(options),
       defaults
@@ -66,7 +69,7 @@ function scaleProjection({x: X, y: Y}) {
   }
 }
 
-export function geo(data, {geometry = identity, ...options} = {}) {
+export function geo(data, options = {}) {
   switch (data?.type) {
     case "FeatureCollection":
       data = data.features;
@@ -85,7 +88,9 @@ export function geo(data, {geometry = identity, ...options} = {}) {
       data = [data];
       break;
   }
-  return new Geo(data, {geometry, ...options});
+  if (options.tip && options.x === undefined && options.y === undefined) options = centroid(options);
+  else if (options.geometry === undefined) options = {...options, geometry: identity};
+  return new Geo(data, options);
 }
 
 export function sphere({strokeWidth = 1.5, ...options} = {}) {

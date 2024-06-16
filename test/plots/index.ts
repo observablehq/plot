@@ -103,6 +103,7 @@ export * from "./fruit-sales.js";
 export * from "./function-contour.js";
 export * from "./geo-line.js";
 export * from "./geo-link.js";
+export * from "./geo-tip.js";
 export * from "./gistemp-anomaly-moving.js";
 export * from "./gistemp-anomaly-transform.js";
 export * from "./gistemp-anomaly.js";
