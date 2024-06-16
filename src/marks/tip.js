@@ -344,8 +344,13 @@ function getSourceChannels(channels, scales) {
   // Then fallback to all other (non-ignored) channels.
   for (const key in channels) {
     if (key in sources || key in format || ignoreChannels.has(key)) continue;
+    if ((key === "x" || key === "y") && channels.geometry) continue; // ignore x & y on geo
     const source = getSource(channels, key);
-    if (source) sources[key] = source;
+    if (source) {
+      // Ignore color channels if the values are all literal colors.
+      if (source.scale == null && source.defaultScale === "color") continue;
+      sources[key] = source;
+    }
   }
 
   // And lastly facet channels, but only if this mark is faceted.
