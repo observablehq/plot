@@ -48,11 +48,13 @@ export function inferChannelScale(name, channel) {
       case "stroke":
       case "color":
         channel.scale = scale !== true && isEvery(value, isColor) ? null : "color";
+        channel.defaultScale = "color";
         break;
       case "fillOpacity":
       case "strokeOpacity":
       case "opacity":
         channel.scale = scale !== true && isEvery(value, isOpacity) ? null : "opacity";
+        channel.defaultScale = "opacity";
         break;
       case "symbol":
         if (scale !== true && isEvery(value, isSymbol)) {
@@ -61,6 +63,7 @@ export function inferChannelScale(name, channel) {
         } else {
           channel.scale = "symbol";
         }
+        channel.defaultScale = "symbol";
         break;
       default:
         channel.scale = registry.has(name) ? name : null;
