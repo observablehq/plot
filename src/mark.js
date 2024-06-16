@@ -22,6 +22,7 @@ export class Mark {
       marginRight = margin,
       marginBottom = margin,
       marginLeft = margin,
+      creator,
       clip = defaults?.clip,
       channels: extraChannels,
       tip,
@@ -85,6 +86,7 @@ export class Mark {
     if (render != null) {
       this.render = composeRender(render, this.render);
     }
+    creator?.call(this, options); // XXX
   }
   initialize(facets, facetChannels, plotOptions) {
     let data = arrayify(this.data);

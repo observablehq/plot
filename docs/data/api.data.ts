@@ -63,6 +63,8 @@ function getHref(name: string, path: string): string {
       }
       break;
     }
+    case "marks/brush":
+      return "interactions/brush";
     case "marks/crosshair":
       return "interactions/crosshair";
     case "transforms/basic": {
@@ -141,7 +143,9 @@ export default {
         throw new Error(`anchor not found: ${href}#${name}`);
       }
     }
-    for (const {context: {href}} of allOptions) {
+    for (const {
+      context: {href}
+    } of allOptions) {
       if (!anchors.has(`/${href}.md`)) {
         throw new Error(`file not found: ${href}`);
       }
