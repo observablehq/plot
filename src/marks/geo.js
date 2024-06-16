@@ -19,7 +19,6 @@ const defaults = {
 
 export class Geo extends Mark {
   constructor(data, options = {}) {
-    if (options.tip && options.x === undefined && options.y === undefined) options = centroid(options);
     const [vr, cr] = maybeNumberChannel(options.r, 3);
     super(
       data,
@@ -70,7 +69,7 @@ function scaleProjection({x: X, y: Y}) {
   }
 }
 
-export function geo(data, {geometry = identity, ...options} = {}) {
+export function geo(data, options = {}) {
   switch (data?.type) {
     case "FeatureCollection":
       data = data.features;
@@ -89,7 +88,9 @@ export function geo(data, {geometry = identity, ...options} = {}) {
       data = [data];
       break;
   }
-  return new Geo(data, {geometry, ...options});
+  if (options.tip && options.x === undefined && options.y === undefined) options = centroid(options);
+  else if (options.geometry === undefined) options = {...options, geometry: identity};
+  return new Geo(data, options);
 }
 
 export function sphere({strokeWidth = 1.5, ...options} = {}) {
