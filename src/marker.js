@@ -1,3 +1,4 @@
+import {select, selectAll, group} from "d3";
 import {create} from "./context.js";
 
 export function markers(mark, {marker, markerStart = marker, markerMid = marker, markerEnd = marker} = {}) {
@@ -100,16 +101,15 @@ function markerTick(orient) {
 let nextMarkerId = 0;
 
 export function applyMarkers(path, mark, {stroke: S}, context) {
-  return applyMarkersColor(path, mark, S && ((i) => S[i]), context);
+  return applyMarkersColor(path, mark, S && ((i) => S[i]), null, context);
 }
 
-export function applyGroupedMarkers(path, mark, {stroke: S}, context) {
-  return applyMarkersColor(path, mark, S && (([i]) => S[i]), context);
+export function applyGroupedMarkers(path, mark, {stroke: S, z: Z}, context) {
+  return applyMarkersColor(path, mark, S && (([i]) => S[i]), Z, context);
 }
 
-function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, strokeof = () => stroke, context) {
+function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, strokeof = () => stroke, Z, context) {
   const iriByMarkerColor = new Map();
-
   function applyMarker(marker) {
     return function (i) {
       const color = strokeof(i);
@@ -126,7 +126,26 @@ function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, st
     };
   }
 
-  if (markerStart) path.attr("marker-start", applyMarker(markerStart));
-  if (markerMid) path.attr("marker-mid", applyMarker(markerMid));
-  if (markerEnd) path.attr("marker-end", applyMarker(markerEnd));
+  if (!(markerStart || markerMid || markerEnd)) return;
+
+  const start = markerStart && applyMarker(markerStart);
+  const mid = markerMid && applyMarker(markerMid);
+  const end = markerEnd && applyMarker(markerEnd);
+  if (Z) {
+    for (const g of group(
+      path.filter((i) => i.length >= 2),
+      (d) => Z[select(d).datum()[0]]
+    ).values()) {
+      if (start) select(g.at(0)).attr("marker-start", start);
+      if (mid) {
+        selectAll(g.slice(1)).attr("marker-start", mid);
+        selectAll(g).attr("marker-mid", mid);
+      }
+      if (end) select(g.at(-1)).attr("marker-end", end);
+    }
+  } else {
+    if (start) path.attr("marker-start", start);
+    if (mid) path.attr("marker-mid", mid);
+    if (end) path.attr("marker-end", end);
+  }
 }
