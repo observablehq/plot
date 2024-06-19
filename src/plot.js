@@ -1,4 +1,4 @@
-import {creator, select} from "d3";
+import {creator, select, zoom as zoomer} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
@@ -20,7 +20,7 @@ import {initializer} from "./transforms/basic.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
-  const {facet, style, title, subtitle, caption, ariaLabel, ariaDescription} = options;
+  const {facet, style, title, subtitle, caption, ariaLabel, ariaDescription, zoom} = options;
 
   // className for inline styles
   const className = maybeClassName(options.className);
@@ -273,6 +273,7 @@ export function plot(options = {}) {
     .call(applyInlineStyles, style);
 
   // Render marks.
+  const nodesByMark = new Map();
   for (const mark of marks) {
     const {channels, values, facets: indexes} = stateByMark.get(mark);
 
@@ -286,6 +287,7 @@ export function plot(options = {}) {
       }
       const node = mark.render(index, scales, values, superdimensions, context);
       if (node == null) continue;
+      nodesByMark.set(mark, node);
       svg.appendChild(node);
     }
 
@@ -337,6 +339,25 @@ export function plot(options = {}) {
 
   figure.scale = exposeScales(scales.scales);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
+
+  if (zoom || true) {
+    select(svg).call(
+      zoomer().on("start zoom end", ({transform}) => {
+        // todo also opt-out when a scale is collapsed.
+        if (scales.y?.bandwidth || zoom === "x") {
+          transform.toString = () => `translate(${transform.x},${0})scale(${transform.k},1)`;
+          transform.rescaleY = (y) => y;
+        }
+        if (scales.x?.bandwidth || zoom === "y") {
+          transform.toString = () => `translate(${0},${transform.y})scale(1,${transform.k})`;
+          transform.rescaleX = (x) => x;
+        }
+        for (const [mark, node] of nodesByMark) {
+          if (mark.zoom != null) nodesByMark.set(mark, mark.zoom(node, transform, stateByMark.get(mark).values));
+        }
+      })
+    );
+  }
 
   const w = consumeWarnings();
   if (w > 0) {

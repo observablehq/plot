@@ -1,4 +1,4 @@
-import {pathRound as path, symbolCircle} from "d3";
+import {pathRound as path, select, symbolCircle} from "d3";
 import {create} from "../context.js";
 import {negative, positive} from "../defined.js";
 import {Mark} from "../mark.js";
@@ -135,6 +135,15 @@ export class Dot extends Mark {
           .call(applyChannelStyles, this, channels)
       )
       .node();
+  }
+  zoom(node, transform, values) {
+    const a = 1 / Math.sqrt(transform.k);
+    select(node)
+      .attr("transform", transform)
+      .selectAll("circle")
+      .attr("vector-effect", "non-scaling-stroke")
+      .attr("r", values.r ? (i) => a * values.r[i] : this.r * a);
+    return node;
   }
 }
 
