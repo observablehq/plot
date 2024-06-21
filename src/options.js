@@ -148,6 +148,20 @@ export function arrayify(values) {
     case "Sphere":
       return [values];
   }
+
+  // Duck type Arrow tables to retype date fields to Dates. Note that we only
+  // need the first non-nullish value to be typed correctly for isTemporal to
+  // return true.
+  const fields = values?.schema?.fields;
+  if (Array.isArray(fields)) {
+    values = Array.from(values);
+    for (const f of fields) {
+      if (String(f).endsWith("<MILLISECOND>"))
+        values.some((d, i) => d[f.name] != null && (values[i] = {...values[i], [f.name]: new Date(values[i][f.name])}));
+    }
+    return values;
+  }
+
   return Array.from(values);
 }
 
