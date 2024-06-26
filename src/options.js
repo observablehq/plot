@@ -584,7 +584,13 @@ function isArrowTable(data) {
 
 // Extract columnar data
 function columnar(data, name, type) {
-  return isArrowTable(data) ? maybeTypedArrayify(data.getChild(name), type) : maybeTypedMap(data, field(name), type);
+  if (isArrowTable(data)) {
+    const column = maybeTypedArrayify(data.getChild(name), type);
+    if (Array.isArray(column) && String(data.schema?.fields?.find((d) => d.name === name)).endsWith("<MILLISECOND>"))
+      column.find((d, i) => d != null && (column[i] = new Date(d)));
+    return column;
+  }
+  return maybeTypedMap(data, field(name), type);
 }
 
 // Arrayify arrow tables. We try to avoid materializing the values, but the
