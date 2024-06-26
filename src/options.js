@@ -14,7 +14,7 @@ export const reindex = Symbol("reindex");
 export function valueof(data, value, type) {
   const valueType = typeof value;
   return valueType === "string"
-    ? maybeTypedMap(data, field(value), type)
+    ? columnar(data, value, type)
     : valueType === "function"
     ? maybeTypedMap(data, value, type)
     : valueType === "number" || value instanceof Date || valueType === "boolean"
@@ -133,6 +133,7 @@ export function keyword(input, name, allowed) {
 // Promotes the specified data to an array as needed.
 export function arrayify(values) {
   if (values == null || values instanceof Array || values instanceof TypedArray) return values;
+  if (isArrowTable(values)) return arrowTableProxy(values);
   switch (values.type) {
     case "FeatureCollection":
       return values.features;
@@ -574,4 +575,36 @@ export function maybeClip(clip) {
   else if (clip === false) clip = null;
   else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
   return clip;
+}
+
+// Duck typing Apache Arrow tables
+function isArrowTable(data) {
+  return typeof data?.getChild === "function" && typeof data.numRows === "number" && typeof data.slice === "function";
+}
+
+// Extract columnar data
+function columnar(data, name, type) {
+  if (isArrowTable(data)) {
+    const column = maybeTypedArrayify(data.getChild(name), type);
+    if (Array.isArray(column) && String(data.schema?.fields?.find((d) => d.name === name)).endsWith("<MILLISECOND>"))
+      column.find((d, i) => d != null && (column[i] = new Date(d)));
+    return column;
+  }
+  return maybeTypedMap(data, field(name), type);
+}
+
+// Arrayify arrow tables. We try to avoid materializing the values, but the
+// Proxy might be used by the group reducer to construct groupData.
+function arrowTableProxy(data) {
+  return new Proxy(data, {
+    get(target, prop) {
+      return prop === "length"
+        ? target.numRows
+        : prop === "constructor" // for take/map
+        ? Array
+        : typeof prop === "string" && !isNaN(prop)
+        ? target.get(prop)
+        : target[prop]; // pass all other properties
+    }
+  });
 }
