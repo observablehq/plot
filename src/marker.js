@@ -167,7 +167,7 @@ function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, st
   }
 
   if (markerStart) path.each(applyMarker("marker-start", markerStart, orient && ((i) => orient(i) & START)));
-  if (markerMid && orient) path.each(applyMarker("marker-start", markerMid, (i) => orient(i) ^ START));
+  if (markerMid && orient) path.each(applyMarker("marker-start", markerMid, (i) => !(orient(i) & START)));
   if (markerMid) path.each(applyMarker("marker-mid", markerMid));
   if (markerEnd) path.each(applyMarker("marker-end", markerEnd, orient && ((i) => orient(i) & END)));
 }
