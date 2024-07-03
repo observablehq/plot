@@ -1,19 +1,13 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "lib": ["esnext", "dom"],
-    "strict": true,
-    "stripInternal": true,
-    "outDir": "build",
     "allowJs": true,
-    "declaration": true,
-    "declarationDir": "types",
-    "resolveJsonModule": true,
-    "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitAny": false,
+    "module": "Node16",
+    "baseUrl": "./src",
     "paths": {
-      "@observablehq/plot": ["./src/index.js"]
+      "@observablehq/plot": ["index"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "test/**/*.js", "test/**/*.ts"]
 }

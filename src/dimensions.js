@@ -1,36 +1,22 @@
+import {extent} from "d3";
 import {projectionAspectRatio} from "./projection.js";
 import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
 
-export function Dimensions(scales, geometry, axes, options = {}) {
-  // The default margins depend on the presence and orientation of axes. If the
-  // corresponding scale is not present, the axis is necessarily null.
-  const {x: {axis: x} = {}, y: {axis: y} = {}, fx: {axis: fx} = {}, fy: {axis: fy} = {}} = axes;
+export function createDimensions(scales, marks, options = {}) {
+  // Compute the default margins: the maximum of the marks’ margins. While not
+  // always used, they may be needed to compute the default height of the plot.
+  let marginTopDefault = 0.5 - offset,
+    marginRightDefault = 0.5 + offset,
+    marginBottomDefault = 0.5 + offset,
+    marginLeftDefault = 0.5 - offset;
 
-  // Compute the default facet margins. When faceting is not present (and hence
-  // the fx and fy axis are null), these will all be zero.
-  let {
-    facet: {
-      margin: facetMargin,
-      marginTop: facetMarginTop = facetMargin !== undefined ? facetMargin : fx === "top" ? 30 : 0,
-      marginRight: facetMarginRight = facetMargin !== undefined ? facetMargin : fy === "right" ? 40 : 0,
-      marginBottom: facetMarginBottom = facetMargin !== undefined ? facetMargin : fx === "bottom" ? 30 : 0,
-      marginLeft: facetMarginLeft = facetMargin !== undefined ? facetMargin : fy === "left" ? 40 : 0
-    } = {}
-  } = options;
-
-  // Coerce the facet margin options to numbers.
-  facetMarginTop = +facetMarginTop;
-  facetMarginRight = +facetMarginRight;
-  facetMarginBottom = +facetMarginBottom;
-  facetMarginLeft = +facetMarginLeft;
-
-  // Compute the default margins; while not always used, they may be needed to
-  // compute the default height of the plot.
-  const marginTopDefault = Math.max((x === "top" ? 30 : 0) + facetMarginTop, y || fy ? 20 : 0.5 - offset);
-  const marginBottomDefault = Math.max((x === "bottom" ? 30 : 0) + facetMarginBottom, y || fy ? 20 : 0.5 + offset);
-  const marginRightDefault = Math.max((y === "right" ? 40 : 0) + facetMarginRight, x || fx ? 20 : 0.5 + offset);
-  const marginLeftDefault = Math.max((y === "left" ? 40 : 0) + facetMarginLeft, x || fx ? 20 : 0.5 - offset);
+  for (const {marginTop, marginRight, marginBottom, marginLeft} of marks) {
+    if (marginTop > marginTopDefault) marginTopDefault = marginTop;
+    if (marginRight > marginRightDefault) marginRightDefault = marginRight;
+    if (marginBottom > marginBottomDefault) marginBottomDefault = marginBottom;
+    if (marginLeft > marginLeftDefault) marginLeftDefault = marginLeft;
+  }
 
   // Compute the actual margins. The order of precedence is: the side-specific
   // margin options, then the global margin option, then the defaults.
@@ -52,11 +38,11 @@ export function Dimensions(scales, geometry, axes, options = {}) {
   // specified explicitly, adjust the automatic height accordingly.
   let {
     width = 640,
-    height = autoHeight(scales, geometry, options, {
+    height = autoHeight(scales, options, {
       width,
       marginTopDefault,
-      marginBottomDefault,
       marginRightDefault,
+      marginBottomDefault,
       marginLeftDefault
     }) + Math.max(0, marginTop - marginTopDefault + marginBottom - marginBottomDefault)
   } = options;
@@ -65,30 +51,51 @@ export function Dimensions(scales, geometry, axes, options = {}) {
   width = +width;
   height = +height;
 
-  return {
+  const dimensions = {
     width,
     height,
     marginTop,
     marginRight,
     marginBottom,
-    marginLeft,
-    facetMarginTop,
-    facetMarginRight,
-    facetMarginBottom,
-    facetMarginLeft
+    marginLeft
   };
+
+  // Compute the facet margins.
+  if (scales.fx || scales.fy) {
+    let {
+      margin: facetMargin,
+      marginTop: facetMarginTop = facetMargin !== undefined ? facetMargin : marginTop,
+      marginRight: facetMarginRight = facetMargin !== undefined ? facetMargin : marginRight,
+      marginBottom: facetMarginBottom = facetMargin !== undefined ? facetMargin : marginBottom,
+      marginLeft: facetMarginLeft = facetMargin !== undefined ? facetMargin : marginLeft
+    } = options.facet ?? {};
+
+    // Coerce the facet margin options to numbers.
+    facetMarginTop = +facetMarginTop;
+    facetMarginRight = +facetMarginRight;
+    facetMarginBottom = +facetMarginBottom;
+    facetMarginLeft = +facetMarginLeft;
+
+    dimensions.facet = {
+      marginTop: facetMarginTop,
+      marginRight: facetMarginRight,
+      marginBottom: facetMarginBottom,
+      marginLeft: facetMarginLeft
+    };
+  }
+
+  return dimensions;
 }
 
 function autoHeight(
-  {y, fy, fx},
-  geometry,
-  {projection},
-  {width, marginTopDefault, marginBottomDefault, marginRightDefault, marginLeftDefault}
+  {x, y, fy, fx},
+  {projection, aspectRatio},
+  {width, marginTopDefault, marginRightDefault, marginBottomDefault, marginLeftDefault}
 ) {
   const nfy = fy ? fy.scale.domain().length : 1;
 
   // If a projection is specified, use its natural aspect ratio (if known).
-  const ar = projectionAspectRatio(projection, geometry);
+  const ar = projectionAspectRatio(projection);
   if (ar) {
     const nfx = fx ? fx.scale.domain().length : 1;
     const far = ((1.1 * nfy - 0.1) / (1.1 * nfx - 0.1)) * ar; // 0.1 is default facet padding
@@ -97,5 +104,45 @@ function autoHeight(
   }
 
   const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
+
+  // If a desired aspect ratio is given, compute a default height to match.
+  if (aspectRatio != null) {
+    aspectRatio = +aspectRatio;
+    if (!(isFinite(aspectRatio) && aspectRatio > 0)) throw new Error(`invalid aspectRatio: ${aspectRatio}`);
+    const ratio = aspectRatioLength("y", y) / (aspectRatioLength("x", x) * aspectRatio);
+    const fxb = fx ? fx.scale.bandwidth() : 1;
+    const fyb = fy ? fy.scale.bandwidth() : 1;
+    const w = fxb * (width - marginLeftDefault - marginRightDefault) - x.insetLeft - x.insetRight;
+    return (ratio * w + y.insetTop + y.insetBottom) / fyb + marginTopDefault + marginBottomDefault;
+  }
+
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
+}
+
+function aspectRatioLength(k, scale) {
+  if (!scale) throw new Error(`aspectRatio requires ${k} scale`);
+  const {type, domain} = scale;
+  let transform;
+  switch (type) {
+    case "linear":
+    case "utc":
+    case "time":
+      transform = Number;
+      break;
+    case "pow": {
+      const exponent = scale.scale.exponent();
+      transform = (x) => Math.pow(x, exponent);
+      break;
+    }
+    case "log":
+      transform = Math.log;
+      break;
+    case "point":
+    case "band":
+      return domain.length;
+    default:
+      throw new Error(`unsupported ${k} scale for aspectRatio: ${type}`);
+  }
+  const [min, max] = extent(domain);
+  return Math.abs(transform(max) - transform(min));
 }

@@ -1,18 +1,37 @@
 import {create} from "../context.js";
-import {number} from "../options.js";
-import {Mark} from "../plot.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {Mark} from "../mark.js";
+import {maybeKeyword, number, singleton} from "../options.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 const defaults = {
   ariaLabel: "frame",
   fill: "none",
-  stroke: "currentColor"
+  stroke: "currentColor",
+  clip: false
+};
+
+const lineDefaults = {
+  ariaLabel: "frame",
+  fill: null,
+  stroke: "currentColor",
+  strokeLinecap: "square",
+  clip: false
 };
 
 export class Frame extends Mark {
   constructor(options = {}) {
-    const {inset = 0, insetTop = inset, insetRight = inset, insetBottom = inset, insetLeft = inset, rx, ry} = options;
-    super(undefined, undefined, options, defaults);
+    const {
+      anchor = null,
+      inset = 0,
+      insetTop = inset,
+      insetRight = inset,
+      insetBottom = inset,
+      insetLeft = inset,
+      rx,
+      ry
+    } = options;
+    super(singleton, undefined, options, anchor == null ? defaults : lineDefaults);
+    this.anchor = maybeKeyword(anchor, "anchor", ["top", "right", "bottom", "left"]);
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
@@ -22,22 +41,39 @@ export class Frame extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
-    const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
-    return create("svg:rect", context)
+    const {anchor, insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
+    const x1 = marginLeft + insetLeft;
+    const x2 = width - marginRight - insetRight;
+    const y1 = marginTop + insetTop;
+    const y2 = height - marginBottom - insetBottom;
+    return create(anchor ? "svg:line" : "svg:rect", context)
+      .datum(0)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyDirectStyles, this)
+      .call(applyChannelStyles, this, channels)
       .call(applyTransform, this, {})
-      .attr("x", marginLeft + insetLeft)
-      .attr("y", marginTop + insetTop)
-      .attr("width", width - marginLeft - marginRight - insetLeft - insetRight)
-      .attr("height", height - marginTop - marginBottom - insetTop - insetBottom)
-      .attr("rx", rx)
-      .attr("ry", ry)
+      .call(
+        anchor === "left"
+          ? (line) => line.attr("x1", x1).attr("x2", x1).attr("y1", y1).attr("y2", y2)
+          : anchor === "right"
+          ? (line) => line.attr("x1", x2).attr("x2", x2).attr("y1", y1).attr("y2", y2)
+          : anchor === "top"
+          ? (line) => line.attr("x1", x1).attr("x2", x2).attr("y1", y1).attr("y2", y1)
+          : anchor === "bottom"
+          ? (line) => line.attr("x1", x1).attr("x2", x2).attr("y1", y2).attr("y2", y2)
+          : (rect) =>
+              rect
+                .attr("x", x1)
+                .attr("y", y1)
+                .attr("width", x2 - x1)
+                .attr("height", y2 - y1)
+                .attr("rx", rx)
+                .attr("ry", ry)
+      )
       .node();
   }
 }
 
-/** @jsdoc frame */
 export function frame(options) {
   return new Frame(options);
 }

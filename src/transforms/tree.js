@@ -3,30 +3,30 @@ import {ascendingDefined} from "../defined.js";
 import {column, identity, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
-/** @jsdoc treeNode */
-export function treeNode(options = {}) {
-  let {
-    path = identity, // the delimited path
-    delimiter, // how the path is separated
-    frameAnchor,
-    treeLayout = tree,
-    treeSort,
-    treeSeparation,
-    treeAnchor,
-    ...remainingOptions
-  } = options;
+export function treeNode({
+  path = identity, // the delimited path
+  delimiter, // how the path is separated
+  frameAnchor,
+  treeLayout = tree,
+  treeSort,
+  treeSeparation,
+  treeAnchor,
+  treeFilter,
+  ...options
+} = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
   treeSort = maybeTreeSort(treeSort);
+  if (treeFilter != null) treeFilter = maybeNodeValue(treeFilter);
   if (frameAnchor === undefined) frameAnchor = treeAnchor.frameAnchor;
   const normalize = normalizer(delimiter);
-  const outputs = treeOutputs(remainingOptions, maybeNodeValue);
+  const outputs = treeOutputs(options, maybeNodeValue);
   const [X, setX] = column();
   const [Y, setY] = column();
   return {
     x: X,
     y: Y,
     frameAnchor,
-    ...basic(remainingOptions, (data, facets) => {
+    ...basic(options, (data, facets) => {
       const P = normalize(valueof(data, path));
       const X = setX([]);
       const Y = setY([]);
@@ -44,6 +44,7 @@ export function treeNode(options = {}) {
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.descendants()) {
+          if (treeFilter != null && !treeFilter(node)) continue;
           treeFacet.push(++treeIndex);
           treeData[treeIndex] = node.data;
           treeAnchor.position(node, treeIndex, X, Y);
@@ -57,26 +58,26 @@ export function treeNode(options = {}) {
   };
 }
 
-/** @jsdoc treeLink */
-export function treeLink(options = {}) {
-  let {
-    path = identity, // the delimited path
-    delimiter, // how the path is separated
-    curve = "bump-x",
-    stroke = "#555",
-    strokeWidth = 1.5,
-    strokeOpacity = 0.5,
-    treeLayout = tree,
-    treeSort,
-    treeSeparation,
-    treeAnchor,
-    ...remainingOptions
-  } = options;
+export function treeLink({
+  path = identity, // the delimited path
+  delimiter, // how the path is separated
+  curve = "bump-x",
+  stroke = "#555",
+  strokeWidth = 1.5,
+  strokeOpacity = 0.5,
+  treeLayout = tree,
+  treeSort,
+  treeSeparation,
+  treeAnchor,
+  treeFilter,
+  ...options
+} = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
   treeSort = maybeTreeSort(treeSort);
-  remainingOptions = {curve, stroke, strokeWidth, strokeOpacity, ...remainingOptions};
+  if (treeFilter != null) treeFilter = maybeLinkValue(treeFilter);
+  options = {curve, stroke, strokeWidth, strokeOpacity, ...options};
   const normalize = normalizer(delimiter);
-  const outputs = treeOutputs(remainingOptions, maybeLinkValue);
+  const outputs = treeOutputs(options, maybeLinkValue);
   const [X1, setX1] = column();
   const [X2, setX2] = column();
   const [Y1, setY1] = column();
@@ -86,7 +87,7 @@ export function treeLink(options = {}) {
     x2: X2,
     y1: Y1,
     y2: Y2,
-    ...basic(remainingOptions, (data, facets) => {
+    ...basic(options, (data, facets) => {
       const P = normalize(valueof(data, path));
       const X1 = setX1([]);
       const X2 = setX2([]);
@@ -106,6 +107,7 @@ export function treeLink(options = {}) {
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const {source, target} of root.links()) {
+          if (treeFilter != null && !treeFilter(target, source)) continue;
           treeFacet.push(++treeIndex);
           treeData[treeIndex] = target.data;
           treeAnchor.position(source, treeIndex, X1, Y1);
@@ -165,18 +167,66 @@ function nodeData(field) {
 }
 
 function normalizer(delimiter = "/") {
-  return `${delimiter}` === "/"
-    ? (P) => P // paths are already slash-separated
-    : (P) => P.map(replaceAll(delimiter, "/")); // TODO string.replaceAll when supported
+  delimiter = `${delimiter}`;
+  if (delimiter === "/") return (P) => P; // paths are already slash-separated
+  if (delimiter.length !== 1) throw new Error("delimiter must be exactly one character");
+  const delimiterCode = delimiter.charCodeAt(0);
+  return (P) => P.map((p) => slashDelimiter(p, delimiterCode));
 }
 
-function replaceAll(search, replace) {
-  search = new RegExp(regexEscape(search), "g");
-  return (value) => (value == null ? null : `${value}`.replace(search, replace));
+const CODE_BACKSLASH = 92;
+const CODE_SLASH = 47;
+
+function slashDelimiter(input, delimiterCode) {
+  if (delimiterCode === CODE_BACKSLASH) throw new Error("delimiter cannot be backslash");
+  let afterBackslash = false;
+  for (let i = 0, n = input.length; i < n; ++i) {
+    switch (input.charCodeAt(i)) {
+      case CODE_BACKSLASH:
+        if (!afterBackslash) {
+          afterBackslash = true;
+          continue;
+        }
+        break;
+      case delimiterCode:
+        if (afterBackslash) {
+          (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
+        } else {
+          input = input.slice(0, i) + "/" + input.slice(i + 1); // replace delimiter with slash
+        }
+        break;
+      case CODE_SLASH:
+        if (afterBackslash) {
+          (input = input.slice(0, i) + "\\\\" + input.slice(i)), (i += 2), (n += 2); // add two backslashes
+        } else {
+          (input = input.slice(0, i) + "\\" + input.slice(i)), ++i, ++n; // add backslash
+        }
+        break;
+    }
+    afterBackslash = false;
+  }
+  return input;
 }
 
-function regexEscape(string) {
-  return `${string}`.replace(/[\\^$*+?.()|[\]{}]/g, "\\$&");
+function slashUnescape(input) {
+  let afterBackslash = false;
+  for (let i = 0, n = input.length; i < n; ++i) {
+    switch (input.charCodeAt(i)) {
+      case CODE_BACKSLASH:
+        if (!afterBackslash) {
+          afterBackslash = true;
+          continue;
+        }
+      // eslint-disable-next-line no-fallthrough
+      case CODE_SLASH:
+        if (afterBackslash) {
+          (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
+        }
+        break;
+    }
+    afterBackslash = false;
+  }
+  return input;
 }
 
 function isNodeValue(option) {
@@ -198,6 +248,8 @@ function maybeNodeValue(value) {
       return nodePath;
     case "node:internal":
       return nodeInternal;
+    case "node:external":
+      return nodeExternal;
     case "node:depth":
       return nodeDepth;
     case "node:height":
@@ -226,6 +278,8 @@ function maybeLinkValue(value) {
       return nodePath;
     case "node:internal":
       return nodeInternal;
+    case "node:external":
+      return nodeExternal;
     case "node:depth":
       return nodeDepth;
     case "node:height":
@@ -254,6 +308,10 @@ function nodeInternal(node) {
   return !!node.children;
 }
 
+function nodeExternal(node) {
+  return !node.children;
+}
+
 function parentValue(evaluate) {
   return (child, parent) => (parent == null ? undefined : evaluate(parent));
 }
@@ -262,7 +320,7 @@ function parentValue(evaluate) {
 function nameof(path) {
   let i = path.length;
   while (--i > 0) if (slash(path, i)) break;
-  return path.slice(i + 1);
+  return slashUnescape(path.slice(i + 1));
 }
 
 // Slashes can be escaped; to determine whether a slash is a path delimiter, we

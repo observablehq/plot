@@ -1,16 +1,18 @@
 import {create} from "../context.js";
 import {positive} from "../defined.js";
+import {Mark} from "../mark.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
-import {Mark} from "../plot.js";
 import {
+  applyAttr,
   applyChannelStyles,
   applyDirectStyles,
-  applyIndirectStyles,
-  applyAttr,
-  impliedString,
   applyFrameAnchor,
-  applyTransform
+  applyIndirectStyles,
+  applyTransform,
+  impliedString
 } from "../style.js";
+import {withDefaultSort} from "./dot.js";
+import {template} from "../template.js";
 
 const defaults = {
   ariaLabel: "image",
@@ -40,34 +42,44 @@ function maybePathChannel(value) {
 
 export class Image extends Mark {
   constructor(data, options = {}) {
-    let {x, y, width, height, src, preserveAspectRatio, crossOrigin, frameAnchor} = options;
-    if (width === undefined && height !== undefined) width = height;
+    let {x, y, r, width, height, rotate, src, preserveAspectRatio, crossOrigin, frameAnchor, imageRendering} = options;
+    if (r == null) r = undefined;
+    if (r === undefined && width === undefined && height === undefined) width = height = 16;
+    else if (width === undefined && height !== undefined) width = height;
     else if (height === undefined && width !== undefined) height = width;
     const [vs, cs] = maybePathChannel(src);
-    const [vw, cw] = maybeNumberChannel(width, 16);
-    const [vh, ch] = maybeNumberChannel(height, 16);
+    const [vr, cr] = maybeNumberChannel(r);
+    const [vw, cw] = maybeNumberChannel(width, cr !== undefined ? cr * 2 : undefined);
+    const [vh, ch] = maybeNumberChannel(height, cr !== undefined ? cr * 2 : undefined);
+    const [va, ca] = maybeNumberChannel(rotate, 0);
     super(
       data,
       {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},
+        r: {value: vr, scale: "r", filter: positive, optional: true},
         width: {value: vw, filter: positive, optional: true},
         height: {value: vh, filter: positive, optional: true},
+        rotate: {value: va, optional: true},
         src: {value: vs, optional: true}
       },
-      options,
+      withDefaultSort(options),
       defaults
     );
     this.src = cs;
     this.width = cw;
+    this.rotate = ca;
     this.height = ch;
+    this.r = cr;
     this.preserveAspectRatio = impliedString(preserveAspectRatio, "xMidYMid");
     this.crossOrigin = string(crossOrigin);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
+    this.imageRendering = impliedString(imageRendering, "auto");
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {x: X, y: Y, width: W, height: H, src: S} = channels;
+    const {x: X, y: Y, width: W, height: H, r: R, rotate: A, src: S} = channels;
+    const {r, width, height, rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
@@ -79,40 +91,43 @@ export class Image extends Mark {
           .enter()
           .append("image")
           .call(applyDirectStyles, this)
-          .attr(
-            "x",
-            W && X
-              ? (i) => X[i] - W[i] / 2
-              : W
-              ? (i) => cx - W[i] / 2
-              : X
-              ? (i) => X[i] - this.width / 2
-              : cx - this.width / 2
-          )
-          .attr(
-            "y",
-            H && Y
-              ? (i) => Y[i] - H[i] / 2
-              : H
-              ? (i) => cy - H[i] / 2
-              : Y
-              ? (i) => Y[i] - this.height / 2
-              : cy - this.height / 2
-          )
-          .attr("width", W ? (i) => W[i] : this.width)
-          .attr("height", H ? (i) => H[i] : this.height)
+          .attr("x", position(X, W, R, cx, width, r))
+          .attr("y", position(Y, H, R, cy, height, r))
+          .attr("width", W ? (i) => W[i] : width !== undefined ? width : R ? (i) => R[i] * 2 : r * 2)
+          .attr("height", H ? (i) => H[i] : height !== undefined ? height : R ? (i) => R[i] * 2 : r * 2)
+          // TODO: combine x, y, rotate and transform-origin into a single transform
+          .attr("transform", A ? (i) => `rotate(${A[i]})` : rotate ? `rotate(${rotate})` : null)
+          .attr("transform-origin", A || rotate ? template`${X ? (i) => X[i] : cx}px ${Y ? (i) => Y[i] : cy}px` : null)
           .call(applyAttr, "href", S ? (i) => S[i] : this.src)
           .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
           .call(applyAttr, "crossorigin", this.crossOrigin)
+          .call(applyAttr, "image-rendering", this.imageRendering)
+          .call(applyAttr, "clip-path", R ? (i) => `circle(${R[i]}px)` : r !== undefined ? `circle(${r}px)` : null)
           .call(applyChannelStyles, this, channels)
       )
       .node();
   }
 }
 
-/** @jsdoc image */
-export function image(data, options = {}) {
-  let {x, y, ...remainingOptions} = options;
+function position(X, W, R, x, w, r) {
+  return W && X
+    ? (i) => X[i] - W[i] / 2
+    : W
+    ? (i) => x - W[i] / 2
+    : X && w !== undefined
+    ? (i) => X[i] - w / 2
+    : w !== undefined
+    ? x - w / 2
+    : R && X
+    ? (i) => X[i] - R[i]
+    : R
+    ? (i) => x - R[i]
+    : X
+    ? (i) => X[i] - r
+    : x - r;
+}
+
+export function image(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
-  return new Image(data, {...remainingOptions, x, y});
+  return new Image(data, {...options, x, y});
 }

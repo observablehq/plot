@@ -7,26 +7,27 @@ import {
   interpolateNumber,
   interpolateRgb,
   interpolateRound,
-  min,
   max,
   median,
+  min,
+  piecewise,
   quantile,
   quantize,
   reverse as reverseof,
-  pairs,
+  scaleIdentity,
   scaleLinear,
   scaleLog,
   scalePow,
   scaleQuantile,
   scaleSymlog,
   scaleThreshold,
-  scaleIdentity,
   ticks
 } from "d3";
-import {positive, negative, finite} from "../defined.js";
-import {arrayify, constant, order, slice, maybeInterval} from "../options.js";
+import {finite, negative, positive} from "../defined.js";
+import {arrayify, constant, maybeNiceInterval, maybeRangeInterval, slice} from "../options.js";
+import {orderof} from "../order.js";
+import {color, length, opacity, radius, registry, hasNumericRange} from "./index.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
-import {registry, radius, opacity, color, length} from "./index.js";
 
 export const flip = (i) => (t) => i(1 - t);
 const unit = [0, 1];
@@ -42,13 +43,13 @@ const interpolators = new Map([
   ["lab", interpolateLab]
 ]);
 
-export function Interpolator(interpolate) {
+export function maybeInterpolator(interpolate) {
   const i = `${interpolate}`.toLowerCase();
   if (!interpolators.has(i)) throw new Error(`unknown interpolator: ${i}`);
   return interpolators.get(i);
 }
 
-export function ScaleQ(
+export function createScaleQ(
   key,
   scale,
   channels,
@@ -79,18 +80,26 @@ export function ScaleQ(
     reverse
   }
 ) {
-  interval = maybeInterval(interval);
+  interval = maybeRangeInterval(interval, type);
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
+  if (typeof interpolate !== "function") interpolate = maybeInterpolator(interpolate); // named interpolator
   reverse = !!reverse;
 
-  // Sometimes interpolate is a named interpolator, such as "lab" for Lab color
-  // space. Other times interpolate is a function that takes two arguments and
-  // is used in conjunction with the range. And other times the interpolate
-  // function is a “fixed” interpolator on the [0, 1] interval, as when a
-  // color scheme such as interpolateRdBu is used.
-  if (typeof interpolate !== "function") {
-    interpolate = Interpolator(interpolate);
+  // If an explicit range is specified, and it has a different length than the
+  // domain, then redistribute the range using a piecewise interpolator.
+  if (range !== undefined) {
+    const n = (domain = arrayify(domain)).length;
+    const m = (range = arrayify(range)).length;
+    if (n !== m) {
+      if (interpolate.length === 1) throw new Error("invalid piecewise interpolator"); // e.g., turbo
+      interpolate = piecewise(interpolate, range);
+      range = undefined;
+    }
   }
+
+  // Disambiguate between a two-argument interpolator that is used in
+  // conjunction with the range, and a one-argument “fixed” interpolator on the
+  // [0, 1] interval as with the RdBu color scheme.
   if (interpolate.length === 1) {
     if (reverse) {
       interpolate = flip(interpolate);
@@ -114,41 +123,45 @@ export function ScaleQ(
     const [min, max] = extent(domain);
     if (min > 0 || max < 0) {
       domain = slice(domain);
-      if (order(domain) !== Math.sign(min)) domain[domain.length - 1] = 0;
-      // [2, 1] or [-2, -1]
-      else domain[0] = 0; // [1, 2] or [-1, -2]
+      const o = orderof(domain) || 1; // treat degenerate as ascending
+      if (o === Math.sign(min)) domain[0] = 0; // [1, 2] or [-1, -2]
+      else domain[domain.length - 1] = 0; // [2, 1] or [-2, -1]
     }
   }
 
   if (reverse) domain = reverseof(domain);
   scale.domain(domain).unknown(unknown);
-  if (nice) scale.nice(nice === true ? undefined : nice), (domain = scale.domain());
+  if (nice) scale.nice(maybeNice(nice, type)), (domain = scale.domain());
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
   return {type, domain, range, scale, interpolate, interval};
 }
 
-export function ScaleLinear(key, channels, options) {
-  return ScaleQ(key, scaleLinear(), channels, options);
+function maybeNice(nice, type) {
+  return nice === true ? undefined : typeof nice === "number" ? nice : maybeNiceInterval(nice, type);
 }
 
-export function ScaleSqrt(key, channels, options) {
-  return ScalePow(key, channels, {...options, exponent: 0.5});
+export function createScaleLinear(key, channels, options) {
+  return createScaleQ(key, scaleLinear(), channels, options);
 }
 
-export function ScalePow(key, channels, {exponent = 1, ...options}) {
-  return ScaleQ(key, scalePow().exponent(exponent), channels, {...options, type: "pow"});
+export function createScaleSqrt(key, channels, options) {
+  return createScalePow(key, channels, {...options, exponent: 0.5});
 }
 
-export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(channels), ...options}) {
-  return ScaleQ(key, scaleLog().base(base), channels, {...options, domain});
+export function createScalePow(key, channels, {exponent = 1, ...options}) {
+  return createScaleQ(key, scalePow().exponent(exponent), channels, {...options, type: "pow"});
 }
 
-export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
-  return ScaleQ(key, scaleSymlog().constant(constant), channels, options);
+export function createScaleLog(key, channels, {base = 10, domain = inferLogDomain(channels), ...options}) {
+  return createScaleQ(key, scaleLog().base(base), channels, {...options, domain});
 }
 
-export function ScaleQuantile(
+export function createScaleSymlog(key, channels, {constant = 1, ...options}) {
+  return createScaleQ(key, scaleSymlog().constant(constant), channels, options);
+}
+
+export function createScaleQuantile(
   key,
   channels,
   {
@@ -157,6 +170,7 @@ export function ScaleQuantile(
     n = quantiles,
     scheme = "rdylbu",
     domain = inferQuantileDomain(channels),
+    unknown,
     interpolate,
     reverse
   }
@@ -172,10 +186,10 @@ export function ScaleQuantile(
   if (domain.length > 0) {
     domain = scaleQuantile(domain, range === undefined ? {length: n} : range).quantiles();
   }
-  return ScaleThreshold(key, channels, {domain, range, reverse});
+  return createScaleThreshold(key, channels, {domain, range, reverse, unknown});
 }
 
-export function ScaleQuantize(
+export function createScaleQuantize(
   key,
   channels,
   {
@@ -205,11 +219,11 @@ export function ScaleQuantize(
     thresholds = quantize(interpolateNumber(min, max), n + 1).slice(1, -1); // exactly n - 1 thresholds to match range
     if (min instanceof Date) thresholds = thresholds.map((x) => new Date(x)); // preserve date types
   }
-  if (order(arrayify(domain)) < 0) thresholds.reverse(); // preserve descending domain
-  return ScaleThreshold(key, channels, {domain: thresholds, range, reverse, unknown});
+  if (orderof(arrayify(domain)) < 0) thresholds.reverse(); // preserve descending domain
+  return createScaleThreshold(key, channels, {domain: thresholds, range, reverse, unknown});
 }
 
-export function ScaleThreshold(
+export function createScaleThreshold(
   key,
   channels,
   {
@@ -225,9 +239,9 @@ export function ScaleThreshold(
     reverse
   }
 ) {
-  const sign = order(arrayify(domain)); // preserve descending domain
-  if (!pairs(domain).every(([a, b]) => isOrdered(a, b, sign)))
-    throw new Error(`the ${key} scale has a non-monotonic domain`);
+  domain = arrayify(domain);
+  const sign = orderof(domain); // preserve descending domain
+  if (!isNaN(sign) && !isOrdered(domain, sign)) throw new Error(`the ${key} scale has a non-monotonic domain`);
   if (reverse) range = reverseof(range); // domain ascending, so reverse range
   return {
     type: "threshold",
@@ -237,13 +251,20 @@ export function ScaleThreshold(
   };
 }
 
-function isOrdered(a, b, sign) {
-  const s = descending(a, b);
-  return s === 0 || s === sign;
+function isOrdered(domain, sign) {
+  for (let i = 1, n = domain.length, d = domain[0]; i < n; ++i) {
+    const s = descending(d, (d = domain[i]));
+    if (s !== 0 && s !== sign) return false;
+  }
+  return true;
 }
 
-export function ScaleIdentity() {
-  return {type: "identity", scale: scaleIdentity()};
+// For non-numeric identity scales such as color and symbol, we can’t use D3’s
+// identity scale because it coerces to number; and we can’t compute the domain
+// (and equivalently range) since we can’t know whether the values are
+// continuous or discrete.
+export function createScaleIdentity(key) {
+  return {type: "identity", scale: hasNumericRange(registry.get(key)) ? scaleIdentity() : (d) => d};
 }
 
 export function inferDomain(channels, f = finite) {
@@ -290,7 +311,6 @@ function inferLogDomain(channels) {
   for (const {value} of channels) {
     if (value !== undefined) {
       for (let v of value) {
-        v = +v;
         if (v > 0) return inferDomain(channels, positive);
         if (v < 0) return inferDomain(channels, negative);
       }

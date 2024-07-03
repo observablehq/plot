@@ -1,9 +1,9 @@
-import {curveLinear, geoPath, line as shapeLine} from "d3";
+import {geoPath, line as shapeLine} from "d3";
 import {create} from "../context.js";
-import {Curve} from "../curve.js";
-import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
-import {Mark} from "../plot.js";
-import {coerceNumbers} from "../scales.js";
+import {curveAuto, maybeCurveAuto} from "../curve.js";
+import {Mark} from "../mark.js";
+import {applyGroupedMarkers, markers} from "../marker.js";
+import {coerceNumbers, indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {
   applyDirectStyles,
   applyIndirectStyles,
@@ -12,7 +12,6 @@ import {
   groupIndex
 } from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
-import {applyGroupedMarkers, markers} from "./marker.js";
 
 const defaults = {
   ariaLabel: "line",
@@ -24,22 +23,9 @@ const defaults = {
   strokeMiterlimit: 1
 };
 
-// This is a special built-in curve that will use d3.geoPath when there is a
-// projection, and the linear curve when there is not. You can explicitly
-// opt-out of d3.geoPath and instead use d3.line with the "linear" curve.
-function curveAuto(context) {
-  return curveLinear(context);
-}
-
-// For the “auto” curve, return a symbol instead of a curve implementation;
-// we’ll use d3.geoPath instead of d3.line to render if there’s a projection.
-function LineCurve({curve = curveAuto, tension}) {
-  return typeof curve !== "function" && `${curve}`.toLowerCase() === "auto" ? curveAuto : Curve(curve, tension);
-}
-
 export class Line extends Mark {
   constructor(data, options = {}) {
-    const {x, y, z} = options;
+    const {x, y, z, curve, tension} = options;
     super(
       data,
       {
@@ -51,7 +37,7 @@ export class Line extends Mark {
       defaults
     );
     this.z = z;
-    this.curve = LineCurve(options);
+    this.curve = maybeCurveAuto(curve, tension);
     markers(this, options);
   }
   filter(index) {
@@ -77,7 +63,7 @@ export class Line extends Mark {
           .append("path")
           .call(applyDirectStyles, this)
           .call(applyGroupedChannelStyles, this, channels)
-          .call(applyGroupedMarkers, this, channels)
+          .call(applyGroupedMarkers, this, channels, context)
           .attr(
             "d",
             curve === curveAuto && context.projection
@@ -113,21 +99,15 @@ function sphereLine(projection, X, Y) {
   };
 }
 
-/** @jsdoc line */
-export function line(data, options = {}) {
-  let {x, y, ...remainingOptions} = options;
+export function line(data, {x, y, ...options} = {}) {
   [x, y] = maybeTuple(x, y);
-  return new Line(data, {...remainingOptions, x, y});
+  return new Line(data, {...options, x, y});
 }
 
-/** @jsdoc lineX */
-export function lineX(data, options = {}) {
-  const {x = identity, y = indexOf, ...remainingOptions} = options;
-  return new Line(data, maybeDenseIntervalY({...remainingOptions, x, y}));
+export function lineX(data, {x = identity, y = indexOf, ...options} = {}) {
+  return new Line(data, maybeDenseIntervalY({...options, x, y}));
 }
 
-/** @jsdoc lineY */
-export function lineY(data, options = {}) {
-  const {x = indexOf, y = identity, ...remainingOptions} = options;
-  return new Line(data, maybeDenseIntervalX({...remainingOptions, x, y}));
+export function lineY(data, {x = indexOf, y = identity, ...options} = {}) {
+  return new Line(data, maybeDenseIntervalX({...options, x, y}));
 }

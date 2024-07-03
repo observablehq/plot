@@ -1,5 +1,5 @@
 import {rgb} from "d3";
-import {Context} from "./context.js";
+import {createContext} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
 import {legendSwatches, legendSymbols} from "./legends/swatches.js";
 import {inherit, isScaleOptions} from "./options.js";
@@ -11,13 +11,12 @@ const legendRegistry = new Map([
   ["opacity", legendOpacity]
 ]);
 
-/** @jsdoc legend */
 export function legend(options = {}) {
   for (const [key, value] of legendRegistry) {
     const scale = options[key];
     if (isScaleOptions(scale)) {
       // e.g., ignore {color: "red"}
-      const context = Context(options);
+      const context = createContext(options);
       let hint;
       // For symbol legends, pass a hint to the symbol scale.
       if (key === "symbol") {
@@ -40,13 +39,13 @@ export function exposeLegends(scales, context, defaults = {}) {
   };
 }
 
-function legendOptions(context, {label, ticks, tickFormat} = {}, options) {
-  return inherit(options, context, {label, ticks, tickFormat});
+function legendOptions({className, ...context}, {label, ticks, tickFormat} = {}, options) {
+  return inherit(options, {className, ...context}, {label, ticks, tickFormat});
 }
 
 function legendColor(color, {legend = true, ...options}) {
   if (legend === true) legend = color.type === "ordinal" ? "swatches" : "ramp";
-  if (color.domain === undefined) return;
+  if (color.domain === undefined) return; // no identity legend
   switch (`${legend}`.toLowerCase()) {
     case "swatches":
       return legendSwatches(color, options);
@@ -69,7 +68,7 @@ function interpolateOpacity(color) {
   return (t) => `rgba(${r},${g},${b},${t})`;
 }
 
-export function Legends(scales, context, options) {
+export function createLegends(scales, context, options) {
   const legends = [];
   for (const [key, value] of legendRegistry) {
     const o = options[key];

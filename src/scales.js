@@ -1,46 +1,44 @@
-import {parse as isoParse} from "isoformat";
 import {
-  isColor,
-  isEvery,
   isOrdinal,
-  isFirst,
   isTemporal,
   isTemporalString,
   isNumericString,
   isScaleOptions,
-  isTypedArray,
   map,
-  order,
-  slice
+  slice,
+  coerceNumbers,
+  coerceDates
 } from "./options.js";
+import {orderof} from "./order.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
-  ScaleLinear,
-  ScaleSqrt,
-  ScalePow,
-  ScaleLog,
-  ScaleSymlog,
-  ScaleQuantile,
-  ScaleQuantize,
-  ScaleThreshold,
-  ScaleIdentity
+  createScaleLinear,
+  createScaleSqrt,
+  createScalePow,
+  createScaleLog,
+  createScaleSymlog,
+  createScaleQuantile,
+  createScaleQuantize,
+  createScaleThreshold,
+  createScaleIdentity
 } from "./scales/quantitative.js";
 import {
-  ScaleDiverging,
-  ScaleDivergingSqrt,
-  ScaleDivergingPow,
-  ScaleDivergingLog,
-  ScaleDivergingSymlog
+  createScaleDiverging,
+  createScaleDivergingSqrt,
+  createScaleDivergingPow,
+  createScaleDivergingLog,
+  createScaleDivergingSymlog
 } from "./scales/diverging.js";
-import {isDivergingScheme} from "./scales/schemes.js";
-import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
-import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
-import {isSymbol, maybeSymbol} from "./symbols.js";
+import {isCategoricalScheme, isDivergingScheme} from "./scales/schemes.js";
+import {createScaleTime, createScaleUtc} from "./scales/temporal.js";
+import {createScaleOrdinal, createScalePoint, createScaleBand, ordinalImplicit} from "./scales/ordinal.js";
+import {maybeSymbol} from "./symbol.js";
 import {warn} from "./warnings.js";
 
-export function Scales(
+export function createScales(
   channelsByScale,
   {
+    label: globalLabel,
     inset: globalInset = 0,
     insetTop: globalInsetTop = globalInset,
     insetRight: globalInsetRight = globalInset,
@@ -53,13 +51,14 @@ export function Scales(
     align,
     padding,
     projection,
+    facet: {label: facetLabel = globalLabel} = {},
     ...options
   } = {}
 ) {
   const scales = {};
   for (const [key, channels] of channelsByScale) {
     const scaleOptions = options[key];
-    const scale = Scale(key, channels, {
+    const scale = createScale(key, channels, {
       round: registry.get(key) === position ? round : undefined, // only for position
       nice,
       clamp,
@@ -72,6 +71,7 @@ export function Scales(
     if (scale) {
       // populate generic scale options (percent, transform, insets)
       let {
+        label = key === "fx" || key === "fy" ? facetLabel : globalLabel,
         percent,
         transform,
         inset,
@@ -83,6 +83,7 @@ export function Scales(
       if (transform == null) transform = undefined;
       else if (typeof transform !== "function") throw new Error("invalid scale transform; not a function");
       scale.percent = !!percent;
+      scale.label = label === undefined ? inferScaleLabel(channels, scale) : label;
       scale.transform = transform;
       if (key === "x" || key === "fx") {
         scale.insetLeft = +insetLeft;
@@ -97,16 +98,97 @@ export function Scales(
   return scales;
 }
 
-export function ScaleFunctions(scales) {
-  return Object.fromEntries(Object.entries(scales).map(([name, {scale}]) => [name, scale]));
+export function createScaleFunctions(descriptors) {
+  const scales = {};
+  const scaleFunctions = {scales};
+  for (const [key, descriptor] of Object.entries(descriptors)) {
+    const {scale, type, interval, label} = descriptor;
+    scales[key] = exposeScale(descriptor);
+    scaleFunctions[key] = scale;
+    // TODO: pass these properties, which are needed for axes, in the descriptor.
+    scale.type = type;
+    if (interval != null) scale.interval = interval;
+    if (label != null) scale.label = label;
+  }
+  return scaleFunctions;
 }
 
 // Mutates scale.range!
-export function autoScaleRange({x, y, fx, fy}, dimensions) {
-  if (fx) autoScaleRangeX(fx, dimensions);
-  if (fy) autoScaleRangeY(fy, dimensions);
-  if (x) autoScaleRangeX(x, fx ? {width: fx.scale.bandwidth()} : dimensions);
-  if (y) autoScaleRangeY(y, fy ? {height: fy.scale.bandwidth()} : dimensions);
+export function autoScaleRange(scales, dimensions) {
+  const {x, y, fx, fy} = scales;
+  const superdimensions = fx || fy ? outerDimensions(dimensions) : dimensions;
+  if (fx) autoScaleRangeX(fx, superdimensions);
+  if (fy) autoScaleRangeY(fy, superdimensions);
+  const subdimensions = fx || fy ? innerDimensions(scales, dimensions) : dimensions;
+  if (x) autoScaleRangeX(x, subdimensions);
+  if (y) autoScaleRangeY(y, subdimensions);
+}
+
+// Channels can have labels; if all the channels for a given scale are
+// consistently labeled (i.e., have the same value if not undefined), and the
+// corresponding scale doesn’t already have an explicit label, then the
+// channels’ label is promoted to the scale. This inferred label should have an
+// orientation-appropriate arrow added when used as an axis, but we don’t want
+// to add the arrow when the label is set explicitly as an option; so, the
+// inferred label is distinguished as an object with an “inferred” property.
+function inferScaleLabel(channels = [], scale) {
+  let label;
+  for (const {label: l} of channels) {
+    if (l === undefined) continue;
+    if (label === undefined) label = l;
+    else if (label !== l) return;
+  }
+  if (label === undefined) return;
+  if (!isOrdinalScale(scale) && scale.percent) label = `${label} (%)`;
+  return {inferred: true, toString: () => label};
+}
+
+// Determines whether the scale points in the “positive” (right or down) or
+// “negative” (left or up) direction; if the scale order cannot be determined,
+// returns NaN; used to assign an appropriate label arrow.
+export function inferScaleOrder(scale) {
+  return Math.sign(orderof(scale.domain())) * Math.sign(orderof(scale.range()));
+}
+
+// Returns the dimensions of the outer frame; this is subdivided into facets
+// with the margins of each facet collapsing into the outer margins.
+export function outerDimensions(dimensions) {
+  const {
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    width,
+    height,
+    facet: {
+      marginTop: facetMarginTop,
+      marginRight: facetMarginRight,
+      marginBottom: facetMarginBottom,
+      marginLeft: facetMarginLeft
+    }
+  } = dimensions;
+  return {
+    marginTop: Math.max(marginTop, facetMarginTop),
+    marginRight: Math.max(marginRight, facetMarginRight),
+    marginBottom: Math.max(marginBottom, facetMarginBottom),
+    marginLeft: Math.max(marginLeft, facetMarginLeft),
+    width,
+    height
+  };
+}
+
+// Returns the dimensions of each facet.
+export function innerDimensions({fx, fy}, dimensions) {
+  const {marginTop, marginRight, marginBottom, marginLeft, width, height} = outerDimensions(dimensions);
+  return {
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    width: fx ? fx.scale.bandwidth() + marginLeft + marginRight : width,
+    height: fy ? fy.scale.bandwidth() + marginTop + marginBottom : height,
+    facet: {width, height}
+  };
 }
 
 function autoScaleRangeX(scale, dimensions) {
@@ -164,10 +246,10 @@ function piecewiseRange(scale) {
 }
 
 export function normalizeScale(key, scale, hint) {
-  return Scale(key, hint === undefined ? undefined : [{hint}], {...scale});
+  return createScale(key, hint === undefined ? undefined : [{hint}], {...scale});
 }
 
-function Scale(key, channels = [], options = {}) {
+function createScale(key, channels = [], options = {}) {
   const type = inferScaleType(key, channels, options);
 
   // Warn for common misuses of implicit ordinal scales. We disable this test if
@@ -250,47 +332,47 @@ function Scale(key, channels = [], options = {}) {
 
   switch (type) {
     case "diverging":
-      return ScaleDiverging(key, channels, options);
+      return createScaleDiverging(key, channels, options);
     case "diverging-sqrt":
-      return ScaleDivergingSqrt(key, channels, options);
+      return createScaleDivergingSqrt(key, channels, options);
     case "diverging-pow":
-      return ScaleDivergingPow(key, channels, options);
+      return createScaleDivergingPow(key, channels, options);
     case "diverging-log":
-      return ScaleDivergingLog(key, channels, options);
+      return createScaleDivergingLog(key, channels, options);
     case "diverging-symlog":
-      return ScaleDivergingSymlog(key, channels, options);
+      return createScaleDivergingSymlog(key, channels, options);
     case "categorical":
     case "ordinal":
     case ordinalImplicit:
-      return ScaleOrdinal(key, channels, options);
+      return createScaleOrdinal(key, channels, options);
     case "cyclical":
     case "sequential":
     case "linear":
-      return ScaleLinear(key, channels, options);
+      return createScaleLinear(key, channels, options);
     case "sqrt":
-      return ScaleSqrt(key, channels, options);
+      return createScaleSqrt(key, channels, options);
     case "threshold":
-      return ScaleThreshold(key, channels, options);
+      return createScaleThreshold(key, channels, options);
     case "quantile":
-      return ScaleQuantile(key, channels, options);
+      return createScaleQuantile(key, channels, options);
     case "quantize":
-      return ScaleQuantize(key, channels, options);
+      return createScaleQuantize(key, channels, options);
     case "pow":
-      return ScalePow(key, channels, options);
+      return createScalePow(key, channels, options);
     case "log":
-      return ScaleLog(key, channels, options);
+      return createScaleLog(key, channels, options);
     case "symlog":
-      return ScaleSymlog(key, channels, options);
+      return createScaleSymlog(key, channels, options);
     case "utc":
-      return ScaleUtc(key, channels, options);
+      return createScaleUtc(key, channels, options);
     case "time":
-      return ScaleTime(key, channels, options);
+      return createScaleTime(key, channels, options);
     case "point":
-      return ScalePoint(key, channels, options);
+      return createScalePoint(key, channels, options);
     case "band":
-      return ScaleBand(key, channels, options);
+      return createScaleBand(key, channels, options);
     case "identity":
-      return registry.get(key) === position ? ScaleIdentity() : {type: "identity"};
+      return createScaleIdentity(key);
     case undefined:
       return;
     default:
@@ -302,10 +384,16 @@ function formatScaleType(type) {
   return typeof type === "symbol" ? type.description : type;
 }
 
+function maybeScaleType(type) {
+  return typeof type === "string" ? `${type}`.toLowerCase() : type;
+}
+
 // A special type symbol when the x and y scales are replaced with a projection.
 const typeProjection = {toString: () => "projection"};
 
 function inferScaleType(key, channels, {type, domain, range, scheme, pivot, projection}) {
+  type = maybeScaleType(type);
+
   // The facet scales are always band scales; this cannot be changed.
   if (key === "fx" || key === "fy") return "band";
 
@@ -317,7 +405,8 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   // If a channel dictates a scale type, make sure that it is consistent with
   // the user-specified scale type (if any) and all other channels. For example,
   // barY requires x to be a band scale and disallows any other scale type.
-  for (const {type: t} of channels) {
+  for (const channel of channels) {
+    const t = maybeScaleType(channel.type);
     if (t === undefined) continue;
     else if (type === undefined) type = t;
     else if (type !== t) throw new Error(`scale incompatible with channel: ${type} !== ${t}`);
@@ -330,20 +419,8 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   // If there’s no data (and no type) associated with this scale, don’t create a scale.
   if (domain === undefined && !channels.some(({value}) => value !== undefined)) return;
 
-  const kind = registry.get(key);
-
-  // For color scales, if no range or scheme is specified and all associated
-  // defined values (from the domain if present, and otherwise from channels)
-  // are valid colors, then default to the identity scale. This allows, for
-  // example, a fill channel to return literal colors; without this, the colors
-  // would be remapped to a categorical scheme!
-  if (kind === color && range === undefined && scheme === undefined && isAll(domain, channels, isColor))
-    return "identity";
-
-  // Similarly for symbols…
-  if (kind === symbol && range === undefined && isAll(domain, channels, isSymbol)) return "identity";
-
   // Some scales have default types.
+  const kind = registry.get(key);
   if (kind === radius) return "sqrt";
   if (kind === opacity || kind === length) return "linear";
   if (kind === symbol) return "ordinal";
@@ -361,15 +438,18 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   if (domain !== undefined) {
     if (isOrdinal(domain)) return asOrdinalType(kind);
     if (isTemporal(domain)) return "utc";
-    if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
-    return "linear";
+  } else {
+    const values = channels.map(({value}) => value).filter((value) => value !== undefined);
+    if (values.some(isOrdinal)) return asOrdinalType(kind);
+    if (values.some(isTemporal)) return "utc";
   }
 
-  // If any channel is ordinal or temporal, it takes priority.
-  const values = channels.map(({value}) => value).filter((value) => value !== undefined);
-  if (values.some(isOrdinal)) return asOrdinalType(kind);
-  if (values.some(isTemporal)) return "utc";
-  if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
+  // For color scales, take a hint from the color scheme and pivot option.
+  if (kind === color) {
+    if (pivot != null || isDivergingScheme(scheme)) return "diverging";
+    if (isCategoricalScheme(scheme)) return "categorical";
+  }
+
   return "linear";
 }
 
@@ -383,13 +463,6 @@ function asOrdinalType(kind) {
     default:
       return "ordinal";
   }
-}
-
-function isAll(domain, channels, is) {
-  return domain !== undefined
-    ? isFirst(domain, is) && isEvery(domain, is)
-    : channels.some(({value}) => value !== undefined && isFirst(value, is)) &&
-        channels.every(({value}) => value === undefined || isEvery(value, is));
 }
 
 export function isTemporalScale({type}) {
@@ -412,11 +485,6 @@ export function isDivergingScale({type}) {
   return /^diverging($|-)/.test(type);
 }
 
-// If the domain is undefined, we assume an identity scale.
-export function scaleOrder({range, domain = range}) {
-  return Math.sign(order(domain)) * Math.sign(order(range));
-}
-
 // Certain marks have special behavior if a scale is collapsed, i.e. if the
 // domain is degenerate and represents only a single value such as [3, 3]; for
 // example, a rect will span the full extent of the chart along a collapsed
@@ -437,6 +505,7 @@ export function isCollapsed(scale) {
 function coerceType(channels, {domain, ...options}, coerceValues) {
   for (const c of channels) {
     if (c.value !== undefined) {
+      if (domain === undefined) domain = c.value?.domain; // promote channel domain
       c.value = coerceValues(c.value);
     }
   }
@@ -450,39 +519,6 @@ function coerceSymbols(values) {
   return map(values, maybeSymbol);
 }
 
-function coerceDates(values) {
-  return map(values, coerceDate);
-}
-
-// If the values are specified as a typed array, no coercion is required.
-export function coerceNumbers(values) {
-  return isTypedArray(values) ? values : map(values, coerceNumber, Float64Array);
-}
-
-// Unlike Mark’s number, here we want to convert null and undefined to NaN,
-// since the result will be stored in a Float64Array and we don’t want null to
-// be coerced to zero.
-export function coerceNumber(x) {
-  return x == null ? NaN : +x;
-}
-
-// When coercing strings to dates, we only want to allow the ISO 8601 format
-// since the built-in string parsing of the Date constructor varies across
-// browsers. (In the future, this could be made more liberal if desired, though
-// it is still generally preferable to do date parsing yourself explicitly,
-// rather than rely on Plot.) Any non-string values are coerced to number first
-// and treated as milliseconds since UNIX epoch.
-export function coerceDate(x) {
-  return x instanceof Date && !isNaN(x)
-    ? x
-    : typeof x === "string"
-    ? isoParse(x)
-    : x == null || isNaN((x = +x))
-    ? undefined
-    : new Date(x);
-}
-
-/** @jsdoc scale */
 export function scale(options = {}) {
   let scale;
   for (const key in options) {
@@ -495,14 +531,16 @@ export function scale(options = {}) {
   return scale;
 }
 
-export function exposeScales(scaleDescriptors) {
+export function exposeScales(scales) {
   return (key) => {
     if (!registry.has((key = `${key}`))) throw new Error(`unknown scale: ${key}`);
-    return key in scaleDescriptors ? exposeScale(scaleDescriptors[key]) : undefined;
+    return scales[key];
   };
 }
 
-function exposeScale({scale, type, domain, range, label, interpolate, interval, transform, percent, pivot}) {
+// Note: axis- and legend-related properties (such as label, ticks and
+// tickFormat) are not included here as they do not affect the scale’s behavior.
+function exposeScale({scale, type, domain, range, interpolate, interval, transform, percent, pivot}) {
   if (type === "identity") return {type: "identity", apply: (d) => d, invert: (d) => d};
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
@@ -511,7 +549,6 @@ function exposeScale({scale, type, domain, range, label, interpolate, interval, 
     ...(range !== undefined && {range: slice(range)}), // defensive copy
     ...(transform !== undefined && {transform}),
     ...(percent && {percent}), // only exposed if truthy
-    ...(label !== undefined && {label}),
     ...(unknown !== undefined && {unknown}),
     ...(interval !== undefined && {interval}),
 

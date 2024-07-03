@@ -2,24 +2,15 @@ import {geoPath, group, namespaces} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
-import {
-  string,
-  number,
-  maybeColorChannel,
-  maybeNumberChannel,
-  maybeKeyword,
-  isNoneish,
-  isNone,
-  isRound,
-  keyof
-} from "./options.js";
+import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
+import {keyof, number, string} from "./options.js";
 import {warn} from "./warnings.js";
 
-export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
+export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
 
 let nextClipId = 0;
 
-function getClipId() {
+export function getClipId() {
   return `plot-clip-${++nextClipId}`;
 }
 
@@ -44,9 +35,11 @@ export function styles(
     strokeDashoffset,
     opacity,
     mixBlendMode,
+    imageFilter,
     paintOrder,
     pointerEvents,
-    shapeRendering
+    shapeRendering,
+    channels
   },
   {
     ariaLabel: cariaLabel,
@@ -80,9 +73,9 @@ export function styles(
   // default fill becomes none. Similarly for marks that stroke by stroke, the
   // default stroke only applies if the fill is (constant) none.
   if (isNoneish(defaultFill)) {
-    if (!isNoneish(defaultStroke) && !isNoneish(fill)) defaultStroke = "none";
+    if (!isNoneish(defaultStroke) && (!isNoneish(fill) || channels?.fill)) defaultStroke = "none";
   } else {
-    if (isNoneish(defaultStroke) && !isNoneish(stroke)) defaultFill = "none";
+    if (isNoneish(defaultStroke) && (!isNoneish(stroke) || channels?.stroke)) defaultFill = "none";
   }
 
   const [vfill, cfill] = maybeColorChannel(fill, defaultFill);
@@ -135,20 +128,21 @@ export function styles(
   mark.ariaHidden = string(ariaHidden);
   mark.opacity = impliedNumber(copacity, 1);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
+  mark.imageFilter = impliedString(imageFilter, "none");
   mark.paintOrder = impliedString(paintOrder, "normal");
   mark.pointerEvents = impliedString(pointerEvents, "auto");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
 
   return {
-    title: {value: title, optional: true},
-    href: {value: href, optional: true},
-    ariaLabel: {value: variaLabel, optional: true},
-    fill: {value: vfill, scale: "color", optional: true},
-    fillOpacity: {value: vfillOpacity, scale: "opacity", optional: true},
-    stroke: {value: vstroke, scale: "color", optional: true},
-    strokeOpacity: {value: vstrokeOpacity, scale: "opacity", optional: true},
+    title: {value: title, optional: true, filter: null},
+    href: {value: href, optional: true, filter: null},
+    ariaLabel: {value: variaLabel, optional: true, filter: null},
+    fill: {value: vfill, scale: "auto", optional: true},
+    fillOpacity: {value: vfillOpacity, scale: "auto", optional: true},
+    stroke: {value: vstroke, scale: "auto", optional: true},
+    strokeOpacity: {value: vstrokeOpacity, scale: "auto", optional: true},
     strokeWidth: {value: vstrokeWidth, optional: true},
-    opacity: {value: vopacity, scale: "opacity", optional: true}
+    opacity: {value: vopacity, scale: "auto", optional: true}
   };
 }
 
@@ -180,7 +174,7 @@ export function applyTextGroup(selection, T) {
 
 export function applyChannelStyles(
   selection,
-  {target},
+  {target, tip},
   {
     ariaLabel: AL,
     title: T,
@@ -201,12 +195,12 @@ export function applyChannelStyles(
   if (SW) applyAttr(selection, "stroke-width", (i) => SW[i]);
   if (O) applyAttr(selection, "opacity", (i) => O[i]);
   if (H) applyHref(selection, (i) => H[i], target);
-  applyTitle(selection, T);
+  if (!tip) applyTitle(selection, T);
 }
 
 export function applyGroupedChannelStyles(
   selection,
-  {target},
+  {target, tip},
   {
     ariaLabel: AL,
     title: T,
@@ -227,26 +221,29 @@ export function applyGroupedChannelStyles(
   if (SW) applyAttr(selection, "stroke-width", ([i]) => SW[i]);
   if (O) applyAttr(selection, "opacity", ([i]) => O[i]);
   if (H) applyHref(selection, ([i]) => H[i], target);
-  applyTitleGroup(selection, T);
+  if (!tip) applyTitleGroup(selection, T);
 }
 
-function groupAesthetics({
-  ariaLabel: AL,
-  title: T,
-  fill: F,
-  fillOpacity: FO,
-  stroke: S,
-  strokeOpacity: SO,
-  strokeWidth: SW,
-  opacity: O,
-  href: H
-}) {
-  return [AL, T, F, FO, S, SO, SW, O, H].filter((c) => c !== undefined);
+function groupAesthetics(
+  {
+    ariaLabel: AL,
+    title: T,
+    fill: F,
+    fillOpacity: FO,
+    stroke: S,
+    strokeOpacity: SO,
+    strokeWidth: SW,
+    opacity: O,
+    href: H
+  },
+  {tip}
+) {
+  return [AL, tip ? undefined : T, F, FO, S, SO, SW, O, H].filter((c) => c !== undefined);
 }
 
 export function groupZ(I, Z, z) {
   const G = group(I, (i) => Z[i]);
-  if (z === undefined && G.size > I.length >> 1) {
+  if (z === undefined && G.size > (1 + I.length) >> 1) {
     warn(
       `Warning: the implicit z channel has high cardinality. This may occur when the fill or stroke channel is associated with quantitative data rather than ordinal or categorical data. You can suppress this warning by setting the z option explicitly; if this data represents a single series, set z to null.`
     );
@@ -254,9 +251,10 @@ export function groupZ(I, Z, z) {
   return G.values();
 }
 
-export function* groupIndex(I, position, {z}, channels) {
+export function* groupIndex(I, position, mark, channels) {
+  const {z} = mark;
   const {z: Z} = channels; // group channel
-  const A = groupAesthetics(channels); // aesthetic channels
+  const A = groupAesthetics(channels, mark); // aesthetic channels
   const C = [...position, ...A]; // all channels
 
   // Group the current index by Z (if any).
@@ -299,18 +297,11 @@ export function* groupIndex(I, position, {z}, channels) {
   }
 }
 
-// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
-// https://github.com/observablehq/plot/issues/181
-export function maybeClip(clip) {
-  if (clip === true) clip = "frame";
-  else if (clip === false) clip = null;
-  return maybeKeyword(clip, "clip", ["frame", "sphere"]);
-}
-
 // Note: may mutate selection.node!
 function applyClip(selection, mark, dimensions, context) {
   let clipUrl;
-  switch (mark.clip) {
+  const {clip = context.clip} = mark;
+  switch (clip) {
     case "frame": {
       const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
       const id = getClipId();
@@ -369,8 +360,10 @@ export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
   applyAttr(selection, "stroke-dashoffset", mark.strokeDashoffset);
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
+  applyAttr(selection, "filter", mark.imageFilter);
   applyAttr(selection, "paint-order", mark.paintOrder);
-  applyAttr(selection, "pointer-events", mark.pointerEvents);
+  const {pointerEvents = context.pointerSticky === false ? "none" : undefined} = mark;
+  applyAttr(selection, "pointer-events", pointerEvents);
 }
 
 export function applyDirectStyles(selection, mark) {
@@ -415,11 +408,14 @@ export function impliedNumber(value, impliedValue) {
   if ((value = number(value)) !== impliedValue) return value;
 }
 
+// https://www.w3.org/TR/CSS21/grammar.html
 const validClassName =
-  /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/;
+  /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/i;
 
 export function maybeClassName(name, provide) {
-  if (name === undefined) return provide ? `plot-${Math.random().toString(16).slice(2)}` : undefined;
+  // The default should be changed whenever the default styles are changed, so
+  // as to avoid conflict when multiple versions of Plot are on the page.
+  if (name === undefined) return provide ? "plot-d6a7b5" : undefined;
   name = `${name}`;
   if (!validClassName.test(name)) throw new Error(`invalid class name: ${name}`);
   return name;

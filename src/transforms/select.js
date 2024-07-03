@@ -2,7 +2,6 @@ import {greatest, group, least} from "d3";
 import {maybeZ, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
-/** @jsdoc select */
 export function select(selector, options = {}) {
   // If specified selector is a string or function, it’s a selector without an
   // input channel such as first or last.
@@ -40,32 +39,26 @@ function maybeSelector(selector) {
   throw new Error(`unknown selector: ${selector}`);
 }
 
-/** @jsdoc selectFirst */
 export function selectFirst(options) {
   return selectChannel(null, selectorFirst, options);
 }
 
-/** @jsdoc selectLast */
 export function selectLast(options) {
   return selectChannel(null, selectorLast, options);
 }
 
-/** @jsdoc selectMinX */
 export function selectMinX(options) {
   return selectChannel("x", selectorMin, options);
 }
 
-/** @jsdoc selectMinY */
 export function selectMinY(options) {
   return selectChannel("y", selectorMin, options);
 }
 
-/** @jsdoc selectMaxX */
 export function selectMaxX(options) {
   return selectChannel("x", selectorMax, options);
 }
 
-/** @jsdoc selectMaxY */
 export function selectMaxY(options) {
   return selectChannel("y", selectorMax, options);
 }

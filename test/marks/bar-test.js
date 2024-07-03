@@ -62,7 +62,7 @@ it("barX(data, {fill}) allows fill to be a variable color", () => {
   assert.strictEqual(bar.fill, undefined);
   const {fill} = bar.channels;
   assert.strictEqual(fill.value, "x");
-  assert.strictEqual(fill.scale, "color");
+  assert.strictEqual(fill.scale, "auto");
 });
 
 it("barX(data, {stroke}) allows stroke to be a constant color", () => {
@@ -80,7 +80,7 @@ it("barX(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(bar.stroke, undefined);
   const {stroke} = bar.channels;
   assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });
 
 it("barX(data, {x, y}) defaults x1 to zero and x2 to x", () => {
@@ -162,7 +162,7 @@ it("barY(data, {fill}) allows fill to be a variable color", () => {
   assert.strictEqual(bar.fill, undefined);
   const {fill} = bar.channels;
   assert.strictEqual(fill.value, "x");
-  assert.strictEqual(fill.scale, "color");
+  assert.strictEqual(fill.scale, "auto");
 });
 
 it("barY(data, {stroke}) allows stroke to be a constant color", () => {
@@ -180,7 +180,7 @@ it("barY(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(bar.stroke, undefined);
   const {stroke} = bar.channels;
   assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });
 
 it("barY(data, {x, y}) defaults y1 to zero and y2 to y", () => {

@@ -67,7 +67,7 @@ it("cell(data, {fill}) allows fill to be a variable color", () => {
   assert.strictEqual(cell.fill, undefined);
   const {fill} = cell.channels;
   assert.strictEqual(fill.value, "x");
-  assert.strictEqual(fill.scale, "color");
+  assert.strictEqual(fill.scale, "auto");
 });
 
 it("cell(data, {stroke}) allows stroke to be a constant color", () => {
@@ -85,7 +85,7 @@ it("cell(data, {stroke}) allows stroke to be a variable color", () => {
   assert.strictEqual(cell.stroke, undefined);
   const {stroke} = cell.channels;
   assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.scale, "auto");
 });
 
 it("cellX() defaults x to identity and y to null", () => {
@@ -95,14 +95,11 @@ it("cellX() defaults x to identity and y to null", () => {
   assert.deepStrictEqual(Object.keys(cell.channels), ["fill", "x"]);
   assert.deepStrictEqual(
     Object.values(cell.channels).map((c) => Plot.valueof([1, 2, 3], c.value)),
-    [
-      [1, 2, 3],
-      [0, 1, 2]
-    ]
+    [[1, 2, 3], Uint32Array.of(0, 1, 2)]
   );
   assert.deepStrictEqual(
     Object.values(cell.channels).map((c) => c.scale),
-    ["color", "x"]
+    ["auto", "x"]
   );
   assert.strictEqual(cell.channels.x.type, "band");
 });
@@ -114,14 +111,11 @@ it("cellY() defaults y to identity and x to null", () => {
   assert.deepStrictEqual(Object.keys(cell.channels), ["fill", "y"]);
   assert.deepStrictEqual(
     Object.values(cell.channels).map((c) => Plot.valueof([1, 2, 3], c.value)),
-    [
-      [1, 2, 3],
-      [0, 1, 2]
-    ]
+    [[1, 2, 3], Uint32Array.of(0, 1, 2)]
   );
   assert.deepStrictEqual(
     Object.values(cell.channels).map((c) => c.scale),
-    ["color", "y"]
+    ["auto", "y"]
   );
   assert.strictEqual(cell.channels.y.type, "band");
 });

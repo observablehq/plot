@@ -1,9 +1,9 @@
 .DS_Store
-build/
+coverage/
 dist/
-types/
+docs/.vitepress/cache
+docs/.vitepress/dist
 node_modules/
 test/output/*-changed.svg
 test/output/*-changed.html
-tsconfig.tsbuildinfo
 yarn-error.log

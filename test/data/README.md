@@ -39,6 +39,9 @@ Geonames
 https://www.geonames.org/about.html
 https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/
 
+## civilizations.csv
+unknown
+
 ## covid-ihme-projected-deaths.csv
 Institute for Health Metrics and Evaluation
 https://covid19.healthdata.org/
@@ -63,6 +66,10 @@ https://github.com/hemanrobinson/preattentive/blob/a58dd4795d0ee063a38a2d7bf3381
 ggplot2 “diamonds” dataset (carat and price columns only)
 https://github.com/tidyverse/ggplot2/blob/master/data-raw/diamonds.csv
 
+## dji.csv
+Dow Jones Industrial Average daily data
+Yahoo! Finance
+
 ## driving.csv
 Based on Hannah Fairfield’s Driving Shifts Into Reverse
 https://archive.nytimes.com/www.nytimes.com/imagepages/2010/05/02/business/02metrics.html
@@ -71,9 +78,17 @@ https://archive.nytimes.com/www.nytimes.com/imagepages/2010/05/02/business/02met
 Daily downloads of the npm “@observablehq/cars” package
 https://observablehq.com/@mbostock/npm-daily-downloads?name=@observablehq/cars
 
+## electricity-demand.csv
+Hourly electricity demand for California from the U.S. Energy Information Administration, Jan. 2021
+https://www.eia.gov/opendata/
+
 ## energy-production.csv
 U.S. Energy Information Administration; monthly energy review, primary energy production by source, Jan. 2022
 https://www.eia.gov/totalenergy/data/monthly/index.php
+
+## federal-funds.csv
+U.S. Federal Reserve, Jan. 2023
+https://www.federalreserve.gov/releases/h15/
 
 ## flare.csv
 Flare visualization toolkit package hierarchy
@@ -87,9 +102,34 @@ https://data.giss.nasa.gov/gistemp/
 Met Office Hadley Centre
 https://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/series_format.html
 
+## ilc_lvps08.csv
+“Share of young adults aged 18-34 living with their parents”, Eurostat
+https://ec.europa.eu/eurostat/databrowser/view/ILC_LVPS08__custom_7530569/default/table?lang=en
+
+## ipos.csv
+“The Facebook Offering: How It Compares”, The New York Times
+https://archive.nytimes.com/www.nytimes.com/interactive/2012/05/17/business/dealbook/how-the-facebook-offering-compares.html?hp
+
+## libor.csv
+CBO
+https://www.cbo.gov/topics/budget/accuracy-projections
+https://observablehq.com/@tophtucker/examples-of-bitemporal-charts
+
+## london.json
+giCentre, City University of London
+https://github.com/gicentre/data
+
+## london-car-access.csv
+Derived by Jo Wood from UK Census data
+https://github.com/observablehq/plot/pull/2086
+
 ## metros.csv
 The New York Times
 https://www.nytimes.com/2019/12/02/upshot/wealth-poverty-divide-american-cities.html
+
+## miserables.json
+Character interactions in the chapters of “Les Miserables”, Donald Knuth, Stanford Graph Base
+https://www-cs-faculty.stanford.edu/~knuth/sgb.html
 
 ## mtcars.csv
 1974 *Motor Trend* US magazine
@@ -107,12 +147,20 @@ https://github.com/vincentarelbundock/Rdatasets/blob/master/csv/datasets/morley.
 Vega
 https://github.com/vega/vega-datasets/blob/master/SOURCES.md#moviesjson
 
+## MYDAL2_M_SKY_WV_2022-11-01_rgb_360x180.csv
+Aqua/MODIS water vapor, NASA Earth Observations
+https://neo.gsfc.nasa.gov/view.php?datasetId=MYDAL2_M_SKY_WV
+
 ## nc-absentee-votes.csv
 unknown
 
 ## penguins.csv
 Dr. Kristen Gorman
 https://github.com/allisonhorst/palmerpenguins
+
+## povcalnet.csv
+Our World in Data
+https://ourworldindata.org/poverty-minimum-growth-needed
 
 ## seattle-weather.csv
 NOAA/Vega
@@ -122,6 +170,10 @@ https://github.com/vega/vega-datasets/blob/master/scripts/weather.py
 National Climatic Data Center
 https://www.ncdc.noaa.gov/
 
+## sf-sj-temperatures.csv
+National Climatic Data Center - Climatic Data Online
+https://www.ncei.noaa.gov/cdo-web/
+
 ## simpsons.csv
 IMDb/Todd W. Schneider
 https://data.world/data-society/the-simpsons-by-the-data
@@ -130,13 +182,25 @@ https://data.world/data-society/the-simpsons-by-the-data
 Eitan Lees
 https://talk.observablehq.com/t/diverging-stacked-bar-chart-in-plot/6028
 
+## tdf-stage-8-2017.csv
+2017 Tour de France Stage 8 elevation profile
+Unknown
+
 ## traffic.csv
-Moritz Klack
-https://observablehq.com/@moklick
+Christopher Möller
+https://gist.github.com/chrtze/c74efb46cadb6a908bbbf5227934bfea
 
 ## travelers.csv
 TSA
 https://www.tsa.gov/coronavirus/passenger-throughput
+
+## tsa.csv
+TSA
+https://www.tsa.gov/travel/passenger-volumes
+
+## us-congress-2023.csv
+Members of U.S. Congress, April 2023
+https://github.com/unitedstates/congress-legislators
 
 ## us-counties-10m.json
 U.S. Atlas TopoJSON 3.0.0
@@ -183,3 +247,12 @@ U.K. Office for National Statistics
 A recreation of “Who owns Britain?” by Richard Speigal; proportion plot chart type by Stephanie Evergreen
 https://www.linkedin.com/feed/update/urn:li:activity:6758306750174138368/
 https://stephanieevergreen.com/proportion-plots/
+
+## westport-house.json
+Second floor of the Westport House in Dundee, Ireland
+https://github.com/wrld3d/wrld-indoor-maps-api
+
+## wind.csv
+Gridded wind data
+https://github.com/gicentre/litvis/blob/main/examples/windVectors.md
+https://www.remss.com/measurements/ccmp/

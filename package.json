@@ -1,78 +1,93 @@
 {
   "name": "@observablehq/plot",
   "description": "A JavaScript library for exploratory data visualization.",
-  "version": "0.6.1",
+  "version": "0.6.15",
   "author": {
     "name": "Observable, Inc.",
     "url": "https://observablehq.com"
   },
   "license": "ISC",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "jsdelivr": "dist/plot.umd.min.js",
   "unpkg": "dist/plot.umd.min.js",
   "exports": {
-    "mocha": "./src/index.js",
     "umd": "./dist/plot.umd.min.js",
-    "default": "./dist/index.js"
+    "default": "./src/index.js"
   },
+  "types": "src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/observablehq/plot.git"
   },
   "files": [
     "dist/**/*.js",
-    "src/**/*.js",
-    "src/**/*.ts",
-    "types/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/**/*.js"
   ],
   "scripts": {
-    "test": "yarn test:mocha && yarn test:typecheck && yarn test:lint",
-    "test:mocha": "mkdir -p test/output && mocha --conditions=mocha 'test/**/*-test.*' 'test/plot.js'",
+    "test": "yarn test:mocha && yarn test:tsc && yarn test:lint && yarn test:prettier",
+    "test:coverage": "c8 yarn test:mocha",
+    "test:mocha": "mkdir -p test/output && TZ=America/Los_Angeles tsx node_modules/.bin/mocha 'test/**/*-test.*' 'test/plot.*'",
     "test:lint": "eslint src test",
-    "test:typecheck": "tsc --noEmit",
-    "prepublishOnly": "rm -rf build dist && tsc && tsx scripts/readme-to-jsdoc.ts && rollup -c",
-    "postpublish": "git push && git push --tags",
-    "dev": "vite"
+    "test:prettier": "prettier --check src test",
+    "test:tsc": "tsc",
+    "prepublishOnly": "rm -rf dist && rollup -c",
+    "dev": "vite",
+    "docs:dev": "node --experimental-network-imports node_modules/vitepress/dist/node/cli.js dev docs",
+    "docs:build": "node --experimental-network-imports node_modules/vitepress/dist/node/cli.js build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "_moduleAliases": {
     "@observablehq/plot": "./src/index.js"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "./src/index.js"
+  ],
   "devDependencies": {
-    "@esbuild-kit/core-utils": "^2.0.2",
-    "@rollup/plugin-commonjs": "^23.0.4",
-    "@rollup/plugin-json": "^5.0.2",
+    "@observablehq/runtime": "^5.7.3",
+    "@rollup/plugin-commonjs": "^25.0.2",
+    "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-terser": "^0.1.0",
+    "@rollup/plugin-terser": "^0.4.0",
     "@types/d3": "^7.4.0",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.11.13",
-    "@typescript-eslint/eslint-plugin": "^5.25.0",
-    "@typescript-eslint/parser": "^5.25.0",
+    "@types/node": "^20.5.0",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "c8": "^9.1.0",
     "canvas": "^2.0.0",
     "d3-geo-projection": "^4.0.0",
     "eslint": "^8.16.0",
-    "eslint-config-prettier": "^8.5.0",
-    "get-tsconfig": "^4.1.0",
-    "glob": "^8.0.3",
+    "eslint-config-prettier": "^9.1.0",
     "htl": "^0.3.0",
     "js-beautify": "1",
-    "jsdom": "^20.0.3",
-    "mkdirp": "^1.0.4",
+    "jsdom": "^24.0.0",
+    "markdown-it-container": "^4.0.0",
     "mocha": "^10.0.0",
     "module-alias": "^2.0.0",
-    "prettier": "^2.7.1",
-    "rollup": "^3.7.0",
+    "prettier": "~3.0.0",
+    "rollup": "^4.9.1",
     "topojson-client": "^3.1.0",
-    "tsx": "^3.8.0",
-    "typescript": "^4.6.4",
-    "typescript-module-alias": "^2.2.9",
-    "vite": "^4.0.0"
+    "ts-morph": "^22.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.0.2",
+    "vite": "^5.0.10",
+    "vitepress": "^1.0.0-rc.12"
+  },
+  "c8": {
+    "all": true,
+    "include": [
+      "src/**/*.js"
+    ],
+    "reporter": [
+      "text",
+      "lcov"
+    ]
   },
   "dependencies": {
-    "d3": "^7.8.0",
+    "d3": "^7.9.0",
     "interval-tree-1d": "^1.0.0",
     "isoformat": "^0.2.0"
   },

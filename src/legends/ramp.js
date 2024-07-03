@@ -1,7 +1,7 @@
 import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {inferFontVariant} from "../axes.js";
-import {Context, create} from "../context.js";
-import {map} from "../options.js";
+import {createContext, create} from "../context.js";
+import {map, maybeNumberChannel} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
@@ -20,33 +20,35 @@ export function legendRamp(color, options) {
     tickFormat,
     fontVariant = inferFontVariant(color),
     round = true,
+    opacity,
     className
   } = options;
-  const context = Context(options);
+  const context = createContext(options);
   className = maybeClassName(className, true);
+  opacity = maybeNumberChannel(opacity)[1];
   if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg", context)
-    .attr("class", className)
+    .attr("class", `${className}-ramp`)
     .attr("font-family", "system-ui, sans-serif")
     .attr("font-size", 10)
     .attr("width", width)
     .attr("height", height)
     .attr("viewBox", `0 0 ${width} ${height}`)
     .call((svg) =>
-      svg.append("style").text(`
-        .${className} {
-          display: block;
-          background: white;
-          height: auto;
-          height: intrinsic;
-          max-width: 100%;
-          overflow: visible;
-        }
-        .${className} text {
-          white-space: pre;
-        }
-      `)
+      // Warning: if you edit this, change defaultClassName.
+      svg.append("style").text(
+        `:where(.${className}-ramp) {
+  display: block;
+  height: auto;
+  height: intrinsic;
+  max-width: 100%;
+  overflow: visible;
+}
+:where(.${className}-ramp text) {
+  white-space: pre;
+}`
+      )
     )
     .call(applyInlineStyles, style);
 
@@ -96,6 +98,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("image")
+      .attr("opacity", opacity)
       .attr("x", marginLeft)
       .attr("y", marginTop)
       .attr("width", width - marginLeft - marginRight)
@@ -117,6 +120,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("g")
+      .attr("fill-opacity", opacity)
       .selectAll()
       .data(range)
       .enter()
@@ -137,6 +141,7 @@ export function legendRamp(color, options) {
 
     svg
       .append("g")
+      .attr("fill-opacity", opacity)
       .selectAll()
       .data(domain)
       .enter()

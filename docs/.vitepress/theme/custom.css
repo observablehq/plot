@@ -1,0 +1,183 @@
+:root {
+  --vp-c-purple-1: #7135be;
+  --vp-c-purple-2: #7f42cd;
+  --vp-c-purple-3: #9555e2;
+  --vp-c-purple-soft: rgba(155, 91, 233, 0.14);
+}
+
+.dark {
+  --vp-c-purple-1: #db96ff;
+  --vp-c-purple-2: #9a5ae8;
+  --vp-c-purple-3: #884ad6;
+  --vp-c-purple-soft: rgba(155, 91, 233, 0.16);
+}
+
+:root {
+  --vp-c-red: #f43f5e;
+  --vp-c-green: #10b981;
+  --vp-c-blue: #0092ff;
+  --vp-c-purple: #a463f2;
+  --vp-c-brand-1: var(--vp-c-purple-1);
+  --vp-c-brand-2: var(--vp-c-purple-2);
+  --vp-c-brand-3: var(--vp-c-purple-3);
+  --vp-c-brand-soft: var(--vp-c-purple-soft);
+  --vp-font-family-base: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+}
+
+.vp-doc figcaption {
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+}
+
+.VPMenuGroup .title {
+  line-height: 28px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc .plot,
+.vp-doc .plot-ramp {
+  --plot-background: var(--vp-c-bg);
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+.vp-doc .plot [aria-label="tip"] {
+  --plot-background: var(--vp-c-bg-alt);
+}
+
+.vp-doc .plot-figure {
+  margin: 16px 0 0;
+}
+
+.vp-doc .plot-figure h2,
+.vp-doc .plot-figure h3 {
+  all: unset;
+  display: block;
+}
+
+.vp-doc .plot-figure h2 {
+  line-height: 28px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.vp-doc .plot a {
+  text-decoration: none;
+}
+
+.vp-doc .plot a:hover {
+  text-decoration: initial;
+}
+
+.vp-doc :not(pre) > code {
+  line-height: 1.5;
+}
+
+.label-input {
+  font-size: smaller;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1em;
+}
+
+.label-input > label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.label-input > input,
+.label-input > select {
+  all: revert;
+  margin: 0 0.5em !important;
+  accent-color: var(--vp-c-brand);
+}
+
+.vp-doc td {
+  white-space: nowrap;
+}
+
+a.plot-fork {
+  font-size: 12px;
+  position: absolute;
+  left: 100%;
+  margin-left: 8px;
+  margin-top: 18px;
+  color: var(--vp-c-text-2);
+  text-decoration: none;
+}
+
+a.plot-fork::after {
+  content: " ↗︎";
+  opacity: 0.5;
+}
+
+a.plot-fork:hover {
+  color: var(--vp-c-brand);
+  text-decoration: none;
+}
+
+@media (max-width: 820px) {
+  a.plot-fork {
+    display: none;
+  }
+}
+
+.vp-doc p:hover .header-anchor {
+  opacity: 1;
+}
+
+.bg-alt {
+  background: var(--vp-c-bg-alt);
+}
+
+.lh-normal {
+  line-height: normal;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.ma4 {
+  margin: 2rem;
+}
+
+.ml1 {
+  margin-left: 1rem;
+}
+
+.mb2 {
+  margin-bottom: 0.5rem;
+}
+
+.f12 {
+  font-size: 12px;
+}
+
+.f14 {
+  font-size: 14px;
+}
+
+.fw6 {
+  font-weight: 600;
+}
+
+.fb6 {
+  flex-basis: 10rem;
+}
+
+@media screen and (min-width: 960px) {
+  .flex-l {
+    display: flex;
+  }
+}

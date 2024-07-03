@@ -1,6 +1,6 @@
 Name,Very Favorable %,Somewhat Favorable %,Somewhat Unfavorable %,Very Unfavorable %,Don’t know %,Have not heard of them %,First Inauguration Date,Portrait URL
 George Washington,44,26,6,4,18,3,1789-04-30,https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/160px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg
-John Adams,16,30,7,4,37,5,1797-03-04,https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg/160px-John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg
+John Adams,16,30,7,4,37,5,1797-03-04,https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/John_Adams_A18236.jpg/320px-John_Adams_A18236.jpg
 Thomas Jefferson,28,34,10,5,23,1,1801-03-04,https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg/160px-Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg
 James Madison,12,27,5,4,43,9,1809-03-04,https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/James_Madison.jpg/160px-James_Madison.jpg
 James Monroe,8,21,8,4,49,10,1817-03-04,https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/James_Monroe_White_House_portrait_1819.jpg/160px-James_Monroe_White_House_portrait_1819.jpg
@@ -23,7 +23,7 @@ Chester A. Arthur,3,10,8,5,48,27,1881-09-19,https://upload.wikimedia.org/wikiped
 Grover Cleveland,4,17,12,6,47,14,1885-03-04,https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Grover_Cleveland_-_NARA_-_518139_%28cropped%29.jpg/160px-Grover_Cleveland_-_NARA_-_518139_%28cropped%29.jpg
 Benjamin Harrison,3,13,10,4,54,15,1889-03-04,https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Benjamin_Harrison%2C_head_and_shoulders_bw_photo%2C_1896.jpg/160px-Benjamin_Harrison%2C_head_and_shoulders_bw_photo%2C_1896.jpg
 William McKinley,2,16,11,4,53,14,1897-03-04,https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Mckinley.jpg/160px-Mckinley.jpg
-Theodore Roosevelt,25,37,8,4,23,3,1901-09-14,https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/President_Roosevelt_-_Pach_Bros.jpg/160px-President_Roosevelt_-_Pach_Bros.jpg
+Theodore Roosevelt,25,37,8,4,23,3,1901-09-14,https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Theodore_Roosevelt_by_the_Pach_Bros.jpg/101px-Theodore_Roosevelt_by_the_Pach_Bros.jpg
 William Howard Taft,3,18,13,6,52,8,1909-03-04,https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/William_Howard_Taft_-_Harris_and_Ewing.jpg/160px-William_Howard_Taft_-_Harris_and_Ewing.jpg
 Woodrow Wilson,7,25,14,11,39,4,1913-03-04,https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Thomas_Woodrow_Wilson%2C_Harris_%26_Ewing_bw_photo_portrait%2C_1919.jpg/160px-Thomas_Woodrow_Wilson%2C_Harris_%26_Ewing_bw_photo_portrait%2C_1919.jpg
 Warren G. Harding,3,12,12,11,46,16,1921-03-04,https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Warren_G_Harding-Harris_%26_Ewing.jpg/160px-Warren_G_Harding-Harris_%26_Ewing.jpg

@@ -1,8 +1,9 @@
 import {group, pathRound as path, select, Delaunay} from "d3";
 import {create} from "../context.js";
-import {Curve} from "../curve.js";
+import {maybeCurve} from "../curve.js";
+import {Mark} from "../mark.js";
+import {markers, applyMarkers} from "../marker.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
-import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
   applyDirectStyles,
@@ -10,7 +11,6 @@ import {
   applyIndirectStyles,
   applyTransform
 } from "../style.js";
-import {markers, applyMarkers} from "./marker.js";
 
 const delaunayLinkDefaults = {
   ariaLabel: "delaunay link",
@@ -61,7 +61,7 @@ class DelaunayLink extends Mark {
       options,
       delaunayLinkDefaults
     );
-    this.curve = Curve(curve, tension);
+    this.curve = maybeCurve(curve, tension);
     markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {
@@ -108,7 +108,8 @@ class DelaunayLink extends Mark {
       select(this)
         .selectAll()
         .data(newIndex)
-        .join("path")
+        .enter()
+        .append("path")
         .call(applyDirectStyles, mark)
         .attr("d", (i) => {
           const p = path();
@@ -120,7 +121,7 @@ class DelaunayLink extends Mark {
           return p;
         })
         .call(applyChannelStyles, mark, newChannels)
-        .call(applyMarkers, mark, newChannels);
+        .call(applyMarkers, mark, newChannels, context);
     }
 
     return create("svg:g", context)
@@ -230,6 +231,7 @@ class Voronoi extends Mark {
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? (i) => X[i] : constant(cx);
     const yi = Y ? (i) => Y[i] : constant(cy);
+    const mark = this;
 
     function cells(index) {
       const delaunay = Delaunay.from(index, xi, yi);
@@ -239,9 +241,9 @@ class Voronoi extends Mark {
         .data(index)
         .enter()
         .append("path")
-        .call(applyDirectStyles, this)
+        .call(applyDirectStyles, mark)
         .attr("d", (_, i) => voronoi.renderCell(i))
-        .call(applyChannelStyles, this, channels);
+        .call(applyChannelStyles, mark, channels);
     }
 
     return create("svg:g", context)
@@ -282,27 +284,22 @@ function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
   return new DelaunayMark(data, {...options, x, y});
 }
 
-/** @jsdoc delaunayLink */
 export function delaunayLink(data, options) {
   return delaunayMark(DelaunayLink, data, options);
 }
 
-/** @jsdoc delaunayMesh */
 export function delaunayMesh(data, options) {
   return delaunayMark(DelaunayMesh, data, options);
 }
 
-/** @jsdoc hull */
 export function hull(data, options) {
   return delaunayMark(Hull, data, options);
 }
 
-/** @jsdoc voronoi */
 export function voronoi(data, options) {
   return delaunayMark(Voronoi, data, options);
 }
 
-/** @jsdoc voronoiMesh */
 export function voronoiMesh(data, options) {
   return delaunayMark(VoronoiMesh, data, options);
 }

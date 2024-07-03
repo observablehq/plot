@@ -1,2 +1,2 @@
 export {version} from "./package.json";
-export * from "./dist/index.js";
+export * from "./src/index.js";

@@ -1,15 +1,60 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import assert from "assert";
+import assert from "../assert.js";
 import it from "../jsdom.js";
+
+// TODO Expose as d3.schemeObservable10, or Plot.scheme("observable10")?
+const schemeObservable10 = [
+  "#4269d0",
+  "#efb118",
+  "#ff725c",
+  "#6cc5b0",
+  "#3ca951",
+  "#ff8ab7",
+  "#a463f2",
+  "#97bbf5",
+  "#9c6b4e",
+  "#9498a0"
+];
 
 it("Plot throws an error if an ordinal position scale has a huge inferred domain", () => {
   assert.ok(Plot.cellX({length: 10000}, {x: d3.randomLcg(42)}).plot());
-  assert.throws(() => Plot.cellX({length: 10001}, {x: d3.randomLcg(42)}).plot());
+  assert.throws(() => Plot.cellX({length: 10001}, {x: d3.randomLcg(42)}).plot(), /implicit ordinal domain of x scale/);
+});
+
+it("Plot throws an error if scale.unknown is set to d3.scaleImplicit", () => {
+  assert.throws(
+    () => Plot.plot({color: {type: "ordinal", unknown: d3.scaleImplicit}}),
+    /implicit unknown on color scale/
+  );
 });
 
 it("Plot does not throw an error if an ordinal color scale has a huge inferred domain", () => {
   assert.ok(Plot.dotX({length: 10001}, {x: 0, fill: d3.randomLcg(42)}).plot({color: {type: "ordinal"}}));
+});
+
+it("Plot throws an error if a threshold scale has a non-monotonic domain", () => {
+  assert.throws(
+    () => Plot.frame().plot({color: {type: "threshold", domain: [1, 0, 1]}}),
+    /the color scale has a non-monotonic domain/
+  );
+});
+
+it("Plot does not throw an error if a quantile scale has a non-monotonic domain", () => {
+  const plot = Plot.frame().plot({
+    color: {type: "quantile", n: 4, domain: Array.from({length: 10001}, d3.randomLcg(42))}
+  });
+  scaleEqual(plot.scale("color"), {
+    domain: [0.250974579481408, 0.5048853259067982, 0.7546474279370159],
+    range: ["#d7191c", "#fdae61", "#abd9e9", "#2c7bb6"],
+    type: "threshold"
+  });
+});
+
+it("Scale types are lowercased", () => {
+  assert.strictEqual(Plot.scale({x: {type: "UTC"}}).type, "utc");
+  assert.strictEqual(Plot.scale({color: {type: "OrDiNaL"}}).type, "ordinal");
+  assert.strictEqual(Plot.scale({fx: {type: "BAND"}}).type, "band");
 });
 
 it("Plot.scale(description) returns a standalone scale", () => {
@@ -60,8 +105,7 @@ it("plot(…).scale('x') returns the expected linear scale for penguins", async 
     domain: [2700, 6300],
     range: [20, 620],
     interpolate: d3.interpolateNumber,
-    clamp: false,
-    label: "body_mass_g →"
+    clamp: false
   });
 });
 
@@ -71,8 +115,7 @@ it("plot(…).scale('x') returns the expected sqrt scale given explicit options"
       type: "sqrt",
       domain: [3500, 4000],
       range: [30, 610],
-      clamp: true,
-      label: "Body mass"
+      clamp: true
     }
   });
   scaleEqual(plot.scale("x"), {
@@ -81,8 +124,7 @@ it("plot(…).scale('x') returns the expected sqrt scale given explicit options"
     domain: [3500, 4000],
     range: [30, 610],
     interpolate: d3.interpolateNumber,
-    clamp: true,
-    label: "Body mass"
+    clamp: true
   });
 });
 
@@ -311,8 +353,7 @@ it("plot(…).scale(name).unknown reflects the given unknown option for an ordin
     type: "ordinal",
     domain: ["Dream"],
     unknown: "#ccc",
-    range: d3.schemeTableau10,
-    label: "island"
+    range: schemeObservable10
   });
 });
 
@@ -325,8 +366,7 @@ it("plot(…).scale(name).unknown reflects the given unknown option for a contin
     range: [0, 1],
     clamp: false,
     unknown: "black",
-    interpolate: d3.interpolateTurbo,
-    label: "body_mass_g"
+    interpolate: d3.interpolateTurbo
   });
 });
 
@@ -339,8 +379,7 @@ it("plot(…).scale(name).unknown reflects the given unknown option for a thresh
     type: "threshold",
     domain: [3000],
     unknown: "black",
-    range: [d3.schemeRdYlBu[3][0], d3.schemeRdYlBu[3][2]],
-    label: "body_mass_g"
+    range: [d3.schemeRdYlBu[3][0], d3.schemeRdYlBu[3][2]]
   });
 });
 
@@ -356,8 +395,7 @@ it("plot(…).scale(name).unknown reflects the given unknown option for a diverg
     pivot: 0,
     clamp: false,
     unknown: "black",
-    interpolate: d3.interpolateRdBu,
-    label: "Anomaly"
+    interpolate: d3.interpolateRdBu
   });
 });
 
@@ -392,6 +430,23 @@ it("plot(…).scale(name) handles a reversed diverging scale with a descending d
   });
 });
 
+it("plot(…).scale(name) ignores extra domain elements with a diverging scale", async () => {
+  const plot = assert.warns(
+    () => Plot.plot({color: {type: "diverging", domain: [-5, 5, 10]}}),
+    /domain contains extra/
+  );
+  const {interpolate, ...color} = plot.scale("color");
+  scaleEqual(color, {
+    type: "diverging",
+    symmetric: false,
+    domain: [-5, 5],
+    pivot: 0,
+    clamp: false
+  });
+  const expected = d3.scaleDiverging([-5, 0, 5], d3.interpolateRdBu);
+  for (const t of d3.range(-5, 6)) assert.strictEqual(color.apply(t), expected(t), t);
+});
+
 it("plot(…).scale(name) promotes the given zero option to the domain", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {zero: true}});
@@ -400,8 +455,7 @@ it("plot(…).scale(name) promotes the given zero option to the domain", async (
     domain: [0, 6300],
     range: [20, 620],
     interpolate: d3.interpolateNumber,
-    clamp: false,
-    label: "body_mass_g →"
+    clamp: false
   });
 });
 
@@ -413,8 +467,7 @@ it("plot(…).scale(name) promotes the given global zero option to the domain", 
     domain: [0, 6300],
     range: [20, 620],
     interpolate: d3.interpolateNumber,
-    clamp: false,
-    label: "body_mass_g →"
+    clamp: false
   });
 });
 
@@ -426,8 +479,7 @@ it("plot(…).scale(name) handles the zero option correctly for descending domai
     domain: [4000, 0],
     range: [20, 620],
     interpolate: d3.interpolateNumber,
-    clamp: false,
-    label: "← body_mass_g"
+    clamp: false
   });
 });
 
@@ -441,8 +493,7 @@ it("plot(…).scale(name) handles the zero option correctly for polylinear domai
     domain: [0, 2000, 4000],
     range: [20, 320, 620],
     interpolate: d3.interpolateNumber,
-    clamp: false,
-    label: "body_mass_g →"
+    clamp: false
   });
 });
 
@@ -456,8 +507,7 @@ it("plot(…).scale(name) handles the zero option correctly for descending polyl
     domain: [4000, 2000, 0],
     range: [20, 320, 620],
     interpolate: d3.interpolateNumber,
-    clamp: false,
-    label: "← body_mass_g"
+    clamp: false
   });
 });
 
@@ -509,8 +559,7 @@ it("plot(…).scale('color') can return an asymmetric diverging scale", async ()
     domain: [-0.78, 1.35],
     pivot: 0,
     interpolate: d3.interpolateRdBu,
-    clamp: false,
-    label: "Anomaly"
+    clamp: false
   });
 });
 
@@ -523,8 +572,7 @@ it("plot(…).scale('color') can return a symmetric diverging scale", async () =
     domain: [-1.35, 1.35],
     interpolate: d3.interpolateRdBu,
     pivot: 0,
-    clamp: false,
-    label: "Anomaly"
+    clamp: false
   });
 });
 
@@ -539,8 +587,7 @@ it("plot(…).scale('color') can return a diverging scale with an explicit range
     symmetric: false,
     domain: [-0.78, 1.35],
     pivot: 0,
-    clamp: false,
-    label: "Anomaly"
+    clamp: false
   });
   const interpolateColors = d3.piecewise(d3.interpolateRgb, ["red", "white", "blue"]);
   for (const t of d3.ticks(0, 1, 100)) {
@@ -559,8 +606,7 @@ it("plot(…).scale('color') can return a diverging scale with an explicit schem
     symmetric: false,
     domain: [-0.78, 1.35],
     pivot: 0,
-    clamp: false,
-    label: "Anomaly"
+    clamp: false
   });
   for (const t of d3.ticks(0, 1, 100)) {
     assert.strictEqual(interpolate(t), d3.interpolateRdBu(t / 2));
@@ -580,8 +626,7 @@ it("plot(…).scale('color') can return a transformed diverging scale", async ()
     pivot: 0,
     transform,
     interpolate: d3.interpolateRdBu,
-    clamp: false,
-    label: "Anomaly"
+    clamp: false
   });
 });
 
@@ -596,8 +641,7 @@ it("plot(…).scale('color') can return a transformed symmetric diverging scale"
     pivot: 0,
     transform,
     interpolate: d3.interpolateRdBu,
-    clamp: false,
-    label: "Anomaly"
+    clamp: false
   });
 });
 
@@ -613,8 +657,7 @@ it("plot(…).scale('color') can return an asymmetric diverging pow scale with a
     domain: [-0.78, 1.35],
     pivot: 0,
     interpolate: d3.interpolatePiYG,
-    clamp: false,
-    label: "Anomaly"
+    clamp: false
   });
 });
 
@@ -630,8 +673,7 @@ it("plot(…).scale('color') can return an asymmetric diverging pow scale with a
     domain: [-0.78, 1.35],
     pivot: 0,
     interpolate: d3.interpolatePiYG,
-    clamp: false,
-    label: "Anomaly"
+    clamp: false
   });
 });
 
@@ -647,8 +689,7 @@ it("plot(…).scale('color') can return an asymmetric diverging symlog scale wit
     domain: [-0.78, 1.35],
     pivot: 0,
     interpolate: d3.interpolatePiYG,
-    clamp: false,
-    label: "Anomaly"
+    clamp: false
   });
 });
 
@@ -664,8 +705,7 @@ it("plot(…).scale('color') can return an asymmetric diverging log scale with a
     domain: [11475900, 266380800],
     pivot: 100000000,
     interpolate: d3.interpolatePiYG,
-    clamp: false,
-    label: "Volume"
+    clamp: false
   });
 });
 
@@ -683,8 +723,7 @@ it("plot(…).scale('color') can return an asymmetric diverging log scale with a
     pivot: -100000000,
     transform,
     interpolate: d3.interpolatePiYG,
-    clamp: false,
-    label: "Volume"
+    clamp: false
   });
 });
 
@@ -703,6 +742,74 @@ it("plot(…).scale('color') can return a “polylinear” piecewise linear scal
     interpolate: d3.interpolateRgb,
     clamp: false
   });
+});
+
+it("plot(…).scale('color') distributes an explicit range equally across more domain elements", () => {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"]}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
+    type: "linear",
+    domain: [0, 100, 200],
+    range: [0, 0.5, 1],
+    interpolate: color.interpolate,
+    clamp: false
+  });
+  assert.strictEqual(color.interpolate(0), "rgb(255, 0, 0)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(128, 0, 128)");
+  assert.strictEqual(color.interpolate(1), "rgb(0, 0, 255)");
+});
+
+it("plot(…).scale('color') distributes an explicit range equally across fewer domain elements", () => {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"]}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
+    type: "linear",
+    domain: [0, 100],
+    range: [0, 1],
+    interpolate: color.interpolate,
+    clamp: false
+  });
+  assert.strictEqual(color.interpolate(0), "rgb(255, 0, 0)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(0, 0, 255)");
+  assert.strictEqual(color.interpolate(1), "rgb(0, 128, 0)");
+});
+
+it("plot(…).scale('color') ignores extra domain elements with an explicit range when reversed", () => {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100, 200], range: ["red", "blue"], reverse: true}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
+    type: "linear",
+    domain: [0, 100, 200],
+    range: [0, 0.5, 1],
+    interpolate: color.interpolate,
+    clamp: false
+  });
+  assert.strictEqual(color.interpolate(0), "rgb(0, 0, 255)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(128, 0, 128)");
+  assert.strictEqual(color.interpolate(1), "rgb(255, 0, 0)");
+});
+
+it("plot(…).scale('color') ignores extra range elements with an explicit range when reversed", () => {
+  const plot = Plot.cellX([100, 200, 300, 400], {fill: Plot.identity}).plot({
+    color: {type: "linear", domain: [0, 100], range: ["red", "blue", "green"], reverse: true}
+  });
+  const color = plot.scale("color");
+  scaleEqual(color, {
+    type: "linear",
+    domain: [0, 100],
+    range: [0, 1],
+    interpolate: color.interpolate,
+    clamp: false
+  });
+  assert.strictEqual(color.interpolate(0), "rgb(0, 128, 0)");
+  assert.strictEqual(color.interpolate(0.5), "rgb(0, 0, 255)");
+  assert.strictEqual(color.interpolate(1), "rgb(255, 0, 0)");
 });
 
 it("plot(…).scale('color') can return a polylinear piecewise linear scale with an explicit scheme", () => {
@@ -822,8 +929,7 @@ it("plot(…).scale('color') can return a threshold scale with the default domai
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [0],
-    range: [d3.schemeRdYlBu[3][0], d3.schemeRdYlBu[3][2]],
-    label: "body_mass_g"
+    range: [d3.schemeRdYlBu[3][0], d3.schemeRdYlBu[3][2]]
   });
 });
 
@@ -834,8 +940,7 @@ it("plot(…).scale('color') can return a threshold scale with an explicit domai
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3000, 4000, 5000, 6000],
-    range: d3.schemeRdYlBu[5],
-    label: "body_mass_g"
+    range: d3.schemeRdYlBu[5]
   });
 });
 
@@ -847,8 +952,7 @@ it("plot(…).scale('color') can return a threshold scale with an explicit schem
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [0],
-    range: [d3.schemeBlues[3][1], d3.schemeBlues[3][2]],
-    label: "body_mass_g"
+    range: [d3.schemeBlues[3][1], d3.schemeBlues[3][2]]
   });
 });
 
@@ -860,8 +964,7 @@ it("plot(…).scale('color') can return a threshold scale with an explicit inter
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [0],
-    range: d3.quantize(d3.interpolateReds, 2),
-    label: "body_mass_g"
+    range: d3.quantize(d3.interpolateReds, 2)
   });
 });
 
@@ -871,8 +974,7 @@ it("plot(…).scale('color') can promote a quantile scale to a threshold scale",
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3475, 3800, 4300, 4950],
-    range: d3.schemeRdYlBu[5],
-    label: "body_mass_g"
+    range: d3.schemeRdYlBu[5]
   });
 });
 
@@ -884,8 +986,7 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit discr
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3475, 3800, 4300, 4950],
-    range: d3.schemeSpectral[5],
-    label: "body_mass_g"
+    range: d3.schemeSpectral[5]
   });
 });
 
@@ -897,8 +998,7 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit conti
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3475, 3800, 4300, 4950],
-    range: d3.quantize(d3.interpolateWarm, 5),
-    label: "body_mass_g"
+    range: d3.quantize(d3.interpolateWarm, 5)
   });
 });
 
@@ -910,8 +1010,7 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit conti
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3475, 3800, 4300, 4950],
-    range: d3.quantize(d3.interpolateRainbow, 5),
-    label: "body_mass_g"
+    range: d3.quantize(d3.interpolateRainbow, 5)
   });
 });
 
@@ -921,8 +1020,7 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit numbe
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3300, 3475, 3650, 3800, 4050, 4300, 4650, 4950, 5400],
-    range: d3.schemeRdYlBu[10],
-    label: "body_mass_g"
+    range: d3.schemeRdYlBu[10]
   });
 });
 
@@ -933,8 +1031,7 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit range
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3550, 4050, 4750],
-    range,
-    label: "body_mass_g"
+    range
   });
 });
 
@@ -946,8 +1043,7 @@ it("plot(…).scale('color') can promote a reversed quantile scale to a threshol
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3475, 3800, 4300, 4950],
-    range: d3.reverse(d3.schemeRdYlBu[5]),
-    label: "body_mass_g"
+    range: d3.reverse(d3.schemeRdYlBu[5])
   });
 });
 
@@ -957,8 +1053,7 @@ it("plot(…).scale('color') can promote a quantized scale to a threshold scale"
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3000, 4000, 5000, 6000],
-    range: d3.schemeRdYlBu[5],
-    label: "body_mass_g"
+    range: d3.schemeRdYlBu[5]
   });
 });
 
@@ -970,8 +1065,7 @@ it("plot(…).scale('color') can promote a quantized scale to a threshold scale 
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3000, 3500, 4000, 4500, 5000, 5500, 6000],
-    range: d3.schemeBlues[8],
-    label: "body_mass_g"
+    range: d3.schemeBlues[8]
   });
 });
 
@@ -983,8 +1077,7 @@ it("plot(…).scale('color') can promote a reversed quantized scale to a thresho
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3000, 4000, 5000, 6000],
-    range: d3.reverse(d3.schemeRdYlBu[5]),
-    label: "body_mass_g"
+    range: d3.reverse(d3.schemeRdYlBu[5])
   });
 });
 
@@ -996,8 +1089,7 @@ it("plot(…).scale('color') can promote a descending quantized scale to a thres
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [6000, 5000, 4000, 3000],
-    range: d3.schemeRdYlBu[5],
-    label: "body_mass_g"
+    range: d3.schemeRdYlBu[5]
   });
 });
 
@@ -1009,8 +1101,7 @@ it("plot(…).scale('color') can promote a reverse and descending quantized scal
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [6000, 5000, 4000, 3000],
-    range: d3.reverse(d3.schemeRdYlBu[5]),
-    label: "body_mass_g"
+    range: d3.reverse(d3.schemeRdYlBu[5])
   });
 });
 
@@ -1123,8 +1214,7 @@ it("plot(…).scale('color') can return an ordinal scale", async () => {
   scaleEqual(plot.scale("color"), {
     type: "ordinal",
     domain: ["Biscoe", "Dream", "Torgersen"],
-    range: d3.schemeTableau10,
-    label: "island"
+    range: schemeObservable10
   });
 });
 
@@ -1136,8 +1226,7 @@ it("plot(…).scale('color') can return an ordinal scale with a transform", asyn
     type: "ordinal",
     domain: ["BISCOE", "DREAM", "TORGERSEN"],
     transform,
-    range: d3.schemeTableau10,
-    label: "island"
+    range: schemeObservable10
   });
 });
 
@@ -1147,8 +1236,7 @@ it("plot(…).scale('color') can promote a reversed categorical scale to an ordi
   scaleEqual(plot.scale("color"), {
     type: "ordinal",
     domain: ["Torgersen", "Dream", "Biscoe"],
-    range: d3.schemeTableau10,
-    label: "island"
+    range: schemeObservable10
   });
 });
 
@@ -1158,8 +1246,7 @@ it("plot(…).scale('color') can promotes an explicitly categorical scale to an 
   scaleEqual(plot.scale("color"), {
     type: "ordinal",
     domain: ["Biscoe", "Dream", "Torgersen"],
-    range: d3.schemeTableau10,
-    label: "island"
+    range: schemeObservable10
   });
 });
 
@@ -1169,8 +1256,7 @@ it("plot(…).scale('color') can return an explicitly ordinal scale", async () =
   scaleEqual(plot.scale("color"), {
     type: "ordinal",
     domain: ["Biscoe", "Dream", "Torgersen"],
-    range: d3.quantize(d3.interpolateTurbo, 3),
-    label: "island"
+    range: d3.quantize(d3.interpolateTurbo, 3)
   });
 });
 
@@ -1180,8 +1266,7 @@ it("plot(…).scale('color') promotes a reversed ordinal scale to an ordinal sca
   scaleEqual(plot.scale("color"), {
     type: "ordinal",
     domain: ["Torgersen", "Dream", "Biscoe"],
-    range: d3.quantize(d3.interpolateTurbo, 3),
-    label: "island"
+    range: d3.quantize(d3.interpolateTurbo, 3)
   });
 });
 
@@ -1192,8 +1277,7 @@ it("plot(…).scale('color') can return a ordinal scale with an explicit range",
   scaleEqual(plot.scale("color"), {
     type: "ordinal",
     domain: ["Biscoe", "Dream", "Torgersen"],
-    range,
-    label: "island"
+    range
   });
 });
 
@@ -1204,8 +1288,7 @@ it("plot(…).scale('color') can return an ordinal scale with an explicit range"
   scaleEqual(plot.scale("color"), {
     type: "ordinal",
     domain: ["Biscoe", "Dream", "Torgersen"],
-    range,
-    label: "island"
+    range
   });
 });
 
@@ -1286,14 +1369,16 @@ it("plot(…).scale('opacity') can return a linear scale for penguins", async ()
     domain: [0, 40],
     range: [0, 1],
     interpolate: d3.interpolateNumber,
-    clamp: false,
-    label: "Frequency"
+    clamp: false
   });
 });
 
-it("plot(…).scale('opacity') respects the percent option, affecting domain and label", async () => {
+it("plot(…).scale('opacity') respects the percent option, affecting domain", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.rectX(penguins, Plot.binX({fillOpacity: "proportion"}, {x: "body_mass_g", thresholds: 20})).plot({
+  const plot = Plot.rectX(
+    penguins,
+    Plot.binX({fillOpacity: {reduce: "proportion", scale: true}}, {x: "body_mass_g", thresholds: 20})
+  ).plot({
     opacity: {percent: true}
   });
   scaleEqual(plot.scale("opacity"), {
@@ -1302,7 +1387,6 @@ it("plot(…).scale('opacity') respects the percent option, affecting domain and
     range: [0, 1],
     interpolate: d3.interpolateNumber,
     clamp: false,
-    label: "Frequency (%)",
     percent: true
   });
 });
@@ -1611,119 +1695,6 @@ it("plot({padding, …}).scale('x').padding reflects the given padding option fo
   );
 });
 
-it("plot(…).scale('x').label reflects the default label for named fields, possibly reversed", () => {
-  assert.strictEqual(
-    Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"})
-      .plot()
-      .scale("x").label,
-    "foo →"
-  );
-  assert.strictEqual(
-    Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"})
-      .plot({x: {reverse: true}})
-      .scale("x").label,
-    "← foo"
-  );
-});
-
-it("plot(…).scale('y').label reflects the default label for named fields, possibly reversed", () => {
-  assert.strictEqual(
-    Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {y: "foo"})
-      .plot()
-      .scale("y").label,
-    "↑ foo"
-  );
-  assert.strictEqual(
-    Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {y: "foo"})
-      .plot({y: {reverse: true}})
-      .scale("y").label,
-    "↓ foo"
-  );
-});
-
-it("plot(…).scale('x').label reflects the explicit label", () => {
-  assert.strictEqual(
-    Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"})
-      .plot({x: {label: "Foo"}})
-      .scale("x").label,
-    "Foo"
-  );
-  assert.strictEqual(
-    Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"})
-      .plot({x: {label: null}})
-      .scale("x").label,
-    null
-  );
-});
-
-it("plot(…).scale('x').label reflects a function label, if not overridden by an explicit label", () => {
-  const foo = Object.assign((d) => d.foo, {label: "Foo"});
-  assert.strictEqual(
-    Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo})
-      .plot()
-      .scale("x").label,
-    "Foo →"
-  );
-  assert.strictEqual(
-    Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo})
-      .plot({x: {label: null}})
-      .scale("x").label,
-    null
-  );
-});
-
-it("plot(…).scale('x').label reflects a channel transform label, if not overridden by an explicit label", () => {
-  const foo = {transform: (data) => data.map((d) => d.foo), label: "Foo"};
-  assert.strictEqual(
-    Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo})
-      .plot()
-      .scale("x").label,
-    "Foo →"
-  );
-  assert.strictEqual(
-    Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo})
-      .plot({x: {label: null}})
-      .scale("x").label,
-    null
-  );
-});
-
-it("plot(…).scale('color').label reflects the default label for named fields", () => {
-  assert.strictEqual(
-    Plot.dot([{x: 1}, {x: 2}, {x: 3}], {fill: "x"})
-      .plot()
-      .scale("color").label,
-    "x"
-  );
-  assert.strictEqual(
-    Plot.dot([{y: 1}, {y: 2}, {y: 3}], {fill: "y"})
-      .plot()
-      .scale("color").label,
-    "y"
-  );
-});
-
-it("plot(…).scale('r').label returns the expected label", () => {
-  assert.strictEqual(
-    Plot.dot([{x: 1}, {x: 2}, {x: 3}], {r: "x"})
-      .plot()
-      .scale("r").label,
-    "x"
-  );
-  assert.strictEqual(
-    Plot.dot([{y: 1}, {y: 2}, {y: 3}], {r: "y"})
-      .plot()
-      .scale("r").label,
-    "y"
-  );
-  assert.strictEqual(
-    Plot.dot([{y: 1}, {y: 2}, {y: 3}], {r: "y"})
-      .plot({r: {label: "radius"}})
-      .scale("r").label,
-    "radius"
-  );
-});
-
 it("plot(…).scale(name).exponent returns the expected exponent for pow and sqrt scales", () => {
   assert.strictEqual(
     Plot.dotX([1, 2, 3])
@@ -1967,8 +1938,7 @@ it("plot(…).scale(name) reflects the given custom interpolator", async () => {
     domain: [2700, 6300],
     range: [20, 620],
     interpolate,
-    clamp: false,
-    label: "body_mass_g →"
+    clamp: false
   });
 });
 
@@ -1993,7 +1963,6 @@ it("plot(…).scale(name).interval changes the domain and sets the transform opt
     bandwidth: 29,
     domain: d3.range(2002, 2020),
     interval: ["floor", "offset", "range"],
-    label: "0",
     paddingInner: 0.1,
     paddingOuter: 0.1,
     range: [40, 620],
@@ -2011,7 +1980,6 @@ it("plot(…).scale(name).interval reflects the interval option for quantitative
     domain: [2700, 6300],
     interpolate: d3.interpolateNumber,
     interval: ["floor", "offset", "range"],
-    label: "body_mass_g →",
     range: [20, 620],
     type: "linear"
   });
@@ -2047,8 +2015,7 @@ it("plot(…).scale('color') allows a range to be specified in conjunction with 
     domain: [-0.78, 1.35],
     range: [0, 0.5],
     interpolate: d3.interpolateCool,
-    clamp: false,
-    label: "Anomaly"
+    clamp: false
   });
 });
 
@@ -2062,8 +2029,7 @@ it("plot(…).scale('color') allows a range to be specified in conjunction with 
     domain: [-0.78, 1.35],
     range: [0, 0.5],
     interpolate: d3.interpolateCool,
-    clamp: false,
-    label: "Anomaly"
+    clamp: false
   });
 });
 
@@ -2085,12 +2051,12 @@ it("plot(…).scale('color') promotes the given scheme option to an interpolator
 
 it("plot(…).scale('color') promotes the given scheme option to a range for ordinal scales", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  assert.deepStrictEqual(Plot.dotX(penguins, {fill: "island"}).plot().scale("color").range, d3.schemeTableau10);
+  assert.deepStrictEqual(Plot.dotX(penguins, {fill: "island"}).plot().scale("color").range, schemeObservable10);
   assert.deepStrictEqual(
     Plot.dotX(penguins, {fill: "island"})
       .plot({color: {type: "categorical"}})
       .scale("color").range,
-    d3.schemeTableau10
+    schemeObservable10
   );
   assert.deepStrictEqual(
     Plot.dotX(penguins, {fill: "island"})
@@ -2128,8 +2094,7 @@ it("plot(…).scale(name) reflects the given transform", async () => {
     range: [20, 620],
     clamp: false,
     interpolate: d3.interpolateNumber,
-    transform,
-    label: "body_mass_g →"
+    transform
   });
 });
 
@@ -2155,6 +2120,144 @@ it("plot(…).scale(name).apply and invert return the expected functions", () =>
     [10, 10],
     [100, 100]
   ]);
+});
+
+it("Plot.plot passes render functions scale descriptors", async () => {
+  const seed = d3.randomLcg(42);
+  const x = d3.randomNormal.source(seed)();
+  Plot.plot({
+    marks: [
+      Plot.dotX({length: 10001}, {x, fill: seed}),
+      (index, {x, color, scales}) => {
+        assert.deepStrictEqual(Object.keys(scales), ["color", "x"]);
+        assert.strictEqual(x(0), 314.6324357568407);
+        assert.strictEqual(x(1), 400.26512486789505);
+        assert.strictEqual(color(0), "rgb(35, 23, 27)");
+        assert.strictEqual(color(1), "rgb(144, 12, 0)");
+        scaleEqual(scales.color, {
+          type: "linear",
+          domain: [0.0003394410014152527, 0.999856373295188],
+          range: [0, 1],
+          clamp: false,
+          interpolate: d3.interpolateTurbo
+        });
+        scaleEqual(scales.x, {
+          type: "linear",
+          domain: [-3.440653783215207, 3.5660162890264693],
+          range: [20, 620],
+          clamp: false,
+          interpolate: d3.interpolateNumber
+        });
+        return null;
+      }
+    ]
+  });
+});
+
+it("Plot.plot passes render functions re-initialized scale descriptors and functions", async () => {
+  const seed = d3.randomLcg(42);
+  const x = d3.randomNormal.source(seed)();
+  const y = d3.randomNormal.source(seed)();
+  Plot.plot({
+    marks: [
+      Plot.dot({length: 10001}, Plot.hexbin({fill: "count"}, {x, y})),
+      (index, {x, y, color, scales}) => {
+        assert.deepStrictEqual(Object.keys(scales), ["x", "y", "color"]);
+        assert.ok(Math.abs(x(0) - 351) < 1);
+        assert.ok(Math.abs(x(1) - 426) < 1);
+        assert.ok(Math.abs(y(0) - 196) < 1);
+        assert.ok(Math.abs(y(1) - 148) < 1);
+        assert.strictEqual(color(1), "rgb(35, 23, 27)");
+        assert.strictEqual(color(10), "rgb(72, 58, 164)");
+        scaleEqual(scales.color, {
+          type: "linear",
+          domain: [1, 161],
+          range: [0, 1],
+          clamp: false,
+          interpolate: d3.interpolateTurbo
+        });
+        return null;
+      }
+    ]
+  });
+});
+
+it("plot(…).scale(name) returns a deduplicated ordinal domain", () => {
+  const letters = "abbbcaabbcc";
+  const plot = Plot.dotX(letters).plot({x: {domain: letters}});
+  scaleEqual(plot.scale("x"), {
+    align: 0.5,
+    bandwidth: 0,
+    domain: ["a", "b", "c"],
+    padding: 0.5,
+    range: [20, 620],
+    round: true,
+    step: 200,
+    type: "point"
+  });
+});
+
+it("plot(…).scale(name) returns a deduplicated ordinal/temporal domain", () => {
+  const dates = ["2001", "2002", "2004", "2004"].map(d3.isoParse);
+  const plot = Plot.dotX(dates).plot({x: {type: "point", domain: dates}});
+  scaleEqual(plot.scale("x"), {
+    align: 0.5,
+    bandwidth: 0,
+    domain: dates.slice(0, 3),
+    padding: 0.5,
+    range: [20, 620],
+    round: true,
+    step: 200,
+    type: "point"
+  });
+});
+
+it("mark(data, {channels}) respects a scale set to undefined", () => {
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"]}}}).initialize().channels.fill.scale,
+    undefined
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"]}}}).initialize().channels.fill.scale,
+    undefined
+  );
+});
+
+it("mark(data, {channels}) respects a scale set to auto", () => {
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"], scale: "auto"}}}).initialize().channels.fill.scale,
+    null
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"], scale: "auto"}}}).initialize().channels.fill.scale,
+    "color"
+  );
+});
+
+it("mark(data, {channels}) respects a scale set to true or false", () => {
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"], scale: true}}}).initialize().channels.fill.scale,
+    "color"
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["red"], scale: false}}}).initialize().channels.fill.scale,
+    null
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"], scale: true}}}).initialize().channels.fill.scale,
+    "color"
+  );
+  assert.strictEqual(
+    Plot.dot({length: 1}, {channels: {fill: {value: ["foo"], scale: false}}}).initialize().channels.fill.scale,
+    null
+  );
+});
+
+it("mark(data, {channels}) rejects unknown scales", () => {
+  assert.throws(
+    () => Plot.dot([], {channels: {fill: {value: (d) => d, scale: "neo"}}}).initialize().channels.fill.scale,
+    /^Error: unknown scale: neo$/
+  );
 });
 
 // Given a plot specification (or, as shorthand, an array of marks or a single

@@ -1,8 +1,8 @@
-import {blur2, contours, geoPath, map, max, min, range, thresholdSturges} from "d3";
-import {Channels} from "../channel.js";
+import {blur2, contours, geoPath, max, min, nice, range, ticks, thresholdSturges} from "d3";
+import {createChannels} from "../channel.js";
 import {create} from "../context.js";
-import {labelof, identity} from "../options.js";
-import {Position} from "../projection.js";
+import {labelof, identity, arrayify, map} from "../options.js";
+import {applyPosition} from "../projection.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, styles} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import {maybeThresholds} from "../transforms/bin.js";
@@ -50,7 +50,7 @@ export class Contour extends AbstractRaster {
     // by the sampler initializer, and hence is not passed to super to avoid
     // computing it before there’s data.
     if (data == null) {
-      if (typeof value !== "function") throw new Error("invalid contour value");
+      if (value == null) throw new Error("missing contour value");
       options = sampler("value", {value, ...options});
       value = null;
     }
@@ -120,7 +120,7 @@ function contourGeometry({thresholds, interval, ...options}) {
 
     // Interpolate the raster grid, as needed.
     if (this.interpolate) {
-      const {x: X, y: Y} = Position(channels, scales, context);
+      const {x: X, y: Y} = applyPosition(channels, scales, context);
       // Convert scaled (screen) coordinates to grid (canvas) coordinates.
       const IX = map(X, (x) => (x - x1) * kx, Float64Array);
       const IY = map(Y, (y) => (y - y1) * ky, Float64Array);
@@ -148,23 +148,17 @@ function contourGeometry({thresholds, interval, ...options}) {
     // Blur the raster grid, if desired.
     if (this.blur > 0) for (const V of VV) blur2({data: V, width: w, height: h}, this.blur);
 
-    // Compute the contour thresholds; d3-contour unlike d3-array doesn’t pass
-    // the min and max automatically, so we do that here to normalize, and also
-    // so we can share consistent thresholds across facets. When an interval is
-    // used, note that the lowest threshold should be below (or equal) to the
-    // lowest value, or else some data will be missing.
-    const T =
-      typeof thresholds?.range === "function"
-        ? thresholds.range(...(([min, max]) => [thresholds.floor(min), max])(finiteExtent(VV)))
-        : typeof thresholds === "function"
-        ? thresholds(V, ...finiteExtent(VV))
-        : thresholds;
+    // Compute the contour thresholds.
+    const T = maybeTicks(thresholds, V, ...finiteExtent(VV));
+    if (T === null) throw new Error(`unsupported thresholds: ${thresholds}`);
 
     // Compute the (maybe faceted) contours.
-    const contour = contours().thresholds(T).size([w, h]).smooth(this.smooth);
+    const {contour} = contours().size([w, h]).smooth(this.smooth);
     const contourData = [];
     const contourFacets = [];
-    for (const V of VV) contourFacets.push(range(contourData.length, contourData.push(...contour(V))));
+    for (const V of VV) {
+      contourFacets.push(range(contourData.length, contourData.push(...map(T, (t) => contour(V, t)))));
+    }
 
     // Rescale the contour multipolygon from grid to screen coordinates.
     for (const {coordinates} of contourData) {
@@ -182,9 +176,25 @@ function contourGeometry({thresholds, interval, ...options}) {
     return {
       data: contourData,
       facets: contourFacets,
-      channels: Channels(this.contourChannels, contourData)
+      channels: createChannels(this.contourChannels, contourData)
     };
   });
+}
+
+// Apply the thresholds interval, function, or count, and return an array of
+// ticks. d3-contour unlike d3-array doesn’t pass the min and max automatically,
+// so we do that here to normalize, and also so we can share consistent
+// thresholds across facets. When an interval is used, note that the lowest
+// threshold should be below (or equal) to the lowest value, or else some data
+// will be missing.
+function maybeTicks(thresholds, V, min, max) {
+  if (typeof thresholds?.range === "function") return thresholds.range(thresholds.floor(min), max);
+  if (typeof thresholds === "function") thresholds = thresholds(V, min, max);
+  if (typeof thresholds !== "number") return arrayify(thresholds);
+  const tz = ticks(...nice(min, max, thresholds), thresholds);
+  while (tz[tz.length - 1] >= max) tz.pop();
+  while (tz[1] < min) tz.shift();
+  return tz;
 }
 
 export function contour() {
