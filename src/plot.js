@@ -23,7 +23,7 @@ export function plot(options = {}) {
   const {facet, style, title, subtitle, caption, ariaLabel, ariaDescription} = options;
 
   // className for inline styles
-  const className = maybeClassName(options.className, true);
+  const className = maybeClassName(options.className);
 
   // Flatten any nested marks.
   const marks = options.marks === undefined ? [] : flatMarks(options.marks);
