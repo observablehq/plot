@@ -482,6 +482,7 @@ All marks support the following style options:
 * **dx** - horizontal offset (in pixels; defaults to 0)
 * **dy** - vertical offset (in pixels; defaults to 0)
 * **target** - link target (e.g., “_blank” for a new window); for use with the **href** channel
+* **className** - the [class attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class), if any (defaults to null) <VersionBadge pr="1098" />
 * **ariaDescription** - a textual description of the mark’s contents
 * **ariaHidden** - if true, hide this content from the accessibility tree
 * **pointerEvents** - the [pointer events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) (*e.g.*, *none*)

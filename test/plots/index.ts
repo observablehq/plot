@@ -51,6 +51,7 @@ export * from "./cars-mpg.js";
 export * from "./cars-parcoords.js";
 export * from "./channel-domain.js";
 export * from "./clamp.js";
+export * from "./class-name.js";
 export * from "./collapsed-histogram.js";
 export * from "./color-piecewise.js";
 export * from "./country-centroids.js";
