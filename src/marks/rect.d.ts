@@ -9,7 +9,9 @@ export interface RectCornerOptions {
   /**
    * The rounded corner [*x*-radius][1], either in pixels or as a percentage of
    * the rect width. If **rx** is not specified, it defaults to **ry** if
-   * present, and otherwise draws square corners.
+   * present, and otherwise draws square corners. This option is ignored if a
+   * more specific corner radius (one of **rx1y1**, **rx2y1**, **rx1y2**, or
+   * **rx2y2**) is specified.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx
    */
@@ -18,11 +20,49 @@ export interface RectCornerOptions {
   /**
    * The rounded corner [*y*-radius][1], either in pixels or as a percentage of
    * the rect height. If **ry** is not specified, it defaults to **rx** if
-   * present, and otherwise draws square corners.
+   * present, and otherwise draws square corners. This option is ignored if a
+   * more specific corner radius (one of **rx1y1**, **rx2y1**, **rx1y2**, or
+   * **rx2y2**) is specified.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry
    */
   ry?: number | string;
+
+  /**
+   * The rounded radius for the **x1** corners, in pixels; shorthand for
+   * **rx1y1** and **rx1y2**.
+   */
+  rx1?: number;
+
+  /**
+   * The rounded radius for the **y1** corners, in pixels; shorthand for
+   * **rx1y1** and **rx2y1**.
+   */
+  ry1?: number;
+
+  /**
+   * The rounded radius for the **x2** corners, in pixels; shorthand for
+   * **rx2y1** and **rx2y2**.
+   */
+  rx2?: number;
+
+  /**
+   * The rounded radius for the **y2** corners, in pixels; shorthand for
+   * **rx1y2** and **rx2y2**.
+   */
+  ry2?: number;
+
+  /** The rounded radius for the **x1y1** corner, in pixels. */
+  rx1y1?: number;
+
+  /** The rounded radius for the **x1y2** corner, in pixels. */
+  rx1y2?: number;
+
+  /** The rounded radius for the **x2y1** corner, in pixels. */
+  rx2y1?: number;
+
+  /** The rounded radius for the **x2y2** corner, in pixels. */
+  rx2y2?: number;
 }
 
 /** Options for the rect mark. */
