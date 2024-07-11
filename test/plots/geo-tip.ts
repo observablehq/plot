@@ -60,6 +60,30 @@ export async function geoTipCentroid() {
   });
 }
 
+/** The geo mark with the tip option and the poi transform. */
+export async function geoTipPoi() {
+  const [london, boroughs] = await getLondonBoroughs();
+  const access = await getLondonAccess();
+  return Plot.plot({
+    width: 900,
+    projection: {type: "transverse-mercator", rotate: [2, 0, 0], domain: london},
+    color: {scheme: "RdYlBu", pivot: 0.5},
+    marks: [
+      Plot.geo(
+        access,
+        Plot.poi({
+          fx: "year",
+          geometry: (d) => boroughs.get(d.borough),
+          fill: "access",
+          stroke: "var(--plot-background)",
+          strokeWidth: 0.75,
+          channels: {borough: "borough"},
+          tip: true
+        })
+      )
+    ]
+  });
+}
 /** The geo mark with the tip option and the geoCentroid transform. */
 export async function geoTipGeoCentroid() {
   const [london, boroughs] = await getLondonBoroughs();

@@ -4,7 +4,7 @@ import {negative, positive} from "../defined.js";
 import {Mark} from "../mark.js";
 import {identity, maybeNumberChannel} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
-import {centroid} from "../transforms/centroid.js";
+import {poi} from "../transforms/centroid.js";
 import {withDefaultSort} from "./dot.js";
 
 const defaults = {
@@ -70,7 +70,7 @@ function scaleProjection({x: X, y: Y}) {
 }
 
 export function geo(data, options = {}) {
-  if (options.tip && options.x === undefined && options.y === undefined) options = centroid(options);
+  if (options.tip && options.x === undefined && options.y === undefined) options = poi(options);
   else if (options.geometry === undefined) options = {...options, geometry: identity};
   return new Geo(data, options);
 }

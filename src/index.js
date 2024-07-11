@@ -41,7 +41,7 @@ export {Vector, vector, vectorX, vectorY, spike} from "./marks/vector.js";
 export {valueof, column, identity, indexOf} from "./options.js";
 export {filter, reverse, sort, shuffle, basic as transform, initializer} from "./transforms/basic.js";
 export {bin, binX, binY} from "./transforms/bin.js";
-export {centroid, geoCentroid} from "./transforms/centroid.js";
+export {centroid, geoCentroid, poi} from "./transforms/centroid.js";
 export {dodgeX, dodgeY} from "./transforms/dodge.js";
 export {find, group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {hexbin} from "./transforms/hexbin.js";
