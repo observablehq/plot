@@ -153,11 +153,15 @@ export function applyRoundedRect(selection, mark, X1, Y1, X2, Y2) {
     const x2 = (ix ? x1i : x2i) - insetRight;
     const y1 = (iy ? y2i : y1i) + insetTop;
     const y2 = (iy ? y1i : y2i) - insetBottom;
-    const r = Math.min(x2 - x1, y2 - y1) / 2;
-    const rx1y1i = Math.min(r, ix ? (iy ? rx2y2 : rx2y1) : iy ? rx1y2 : rx1y1);
-    const rx2y1i = Math.min(r, ix ? (iy ? rx1y2 : rx1y1) : iy ? rx2y2 : rx2y1);
-    const rx2y2i = Math.min(r, ix ? (iy ? rx1y1 : rx1y2) : iy ? rx2y1 : rx2y2);
-    const rx1y2i = Math.min(r, ix ? (iy ? rx2y1 : rx2y2) : iy ? rx1y1 : rx1y2);
+    const k = Math.min(
+      1,
+      (x2 - x1) / Math.max(rx1y1 + rx2y1, rx1y2 + rx2y2),
+      (y2 - y1) / Math.max(rx1y1 + rx1y2, rx2y1 + rx2y2)
+    );
+    const rx1y1i = k * (ix ? (iy ? rx2y2 : rx2y1) : iy ? rx1y2 : rx1y1);
+    const rx2y1i = k * (ix ? (iy ? rx1y2 : rx1y1) : iy ? rx2y2 : rx2y1);
+    const rx2y2i = k * (ix ? (iy ? rx1y1 : rx1y2) : iy ? rx2y1 : rx2y2);
+    const rx1y2i = k * (ix ? (iy ? rx2y1 : rx2y2) : iy ? rx1y1 : rx1y2);
     return (
       `M${x1},${y1 + rx1y1i}A${rx1y1i},${rx1y1i} 0 0 1 ${x1 + rx1y1i},${y1}` +
       `H${x2 - rx2y1i}A${rx2y1i},${rx2y1i} 0 0 1 ${x2},${y1 + rx2y1i}` +
