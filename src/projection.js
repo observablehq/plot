@@ -167,8 +167,10 @@ function scaleProjection(createProjection, kx, ky) {
       if (precision != null) projection.precision?.(precision);
       if (rotate != null) projection.rotate?.(rotate);
       if (typeof clip === "number") projection.clipAngle?.(clip);
-      projection.scale(Math.min(width / kx, height / ky));
-      projection.translate([width / 2, height / 2]);
+      if (width && height) {
+        projection.scale(Math.min(width / kx, height / ky));
+        projection.translate([width / 2, height / 2]);
+      }
       return projection;
     },
     aspectRatio: ky / kx
@@ -183,7 +185,7 @@ function conicProjection(createProjection, kx, ky) {
       const projection = type(options);
       if (parallels != null) {
         projection.parallels(parallels);
-        if (domain === undefined) {
+        if (domain === undefined && width && height) {
           projection.fitSize([width, height], {type: "Sphere"});
         }
       }
@@ -243,7 +245,16 @@ export function hasProjection({projection} = {}) {
 // the logic of this function exactly matches createProjection above!
 export function projectionAspectRatio(projection) {
   if (typeof projection?.stream === "function") return defaultAspectRatio;
-  if (isObject(projection)) projection = projection.type;
+  if (isObject(projection)) {
+    let domain, options;
+    ({domain, type: projection, ...options} = projection);
+    if (domain != null && projection != null) {
+      const {type} = namedProjection(projection);
+      const [[x0, y0], [x1, y1]] = geoPath(type(options)).bounds(domain);
+      const r = (y1 - y0) / (x1 - x0);
+      return r && isFinite(r) ? (r < 0.2 ? 0.2 : r > 5 ? 5 : r) : defaultAspectRatio;
+    }
+  }
   if (projection == null) return;
   if (typeof projection !== "function") {
     const {aspectRatio} = namedProjection(projection);

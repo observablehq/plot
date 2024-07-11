@@ -228,6 +228,7 @@ export * from "./population-by-latitude.js";
 export * from "./population-by-longitude.js";
 export * from "./projection-bleed-edges.js";
 export * from "./projection-bleed-edges2.js";
+export * from "./projection-domain-ratio.js";
 export * from "./projection-clip-angle-frame.js";
 export * from "./projection-clip-angle.js";
 export * from "./projection-clip-berghaus.js";
