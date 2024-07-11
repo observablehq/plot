@@ -17,6 +17,16 @@ export async function projectionHeightGeometry() {
   });
 }
 
+export async function projectionHeightDegenerate() {
+  return Plot.plot({
+    style: "border: #777 1px solid;",
+    projection: "mercator",
+    height: 400,
+    inset: 199.5,
+    marks: [Plot.graticule(), Plot.sphere()]
+  });
+}
+
 export async function projectionHeightGeometryDomain() {
   return Plot.plot({
     projection: {type: "identity", domain: shape},

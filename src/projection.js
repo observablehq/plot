@@ -167,7 +167,7 @@ function scaleProjection(createProjection, kx, ky) {
       if (precision != null) projection.precision?.(precision);
       if (rotate != null) projection.rotate?.(rotate);
       if (typeof clip === "number") projection.clipAngle?.(clip);
-      if (width && height) {
+      if (width != null) {
         projection.scale(Math.min(width / kx, height / ky));
         projection.translate([width / 2, height / 2]);
       }
@@ -185,7 +185,7 @@ function conicProjection(createProjection, kx, ky) {
       const projection = type(options);
       if (parallels != null) {
         projection.parallels(parallels);
-        if (domain === undefined && width && height) {
+        if (domain === undefined && width != null) {
           projection.fitSize([width, height], {type: "Sphere"});
         }
       }
