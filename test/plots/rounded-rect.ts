@@ -26,6 +26,33 @@ export function roundedRect() {
   });
 }
 
+export function roundedRectBand() {
+  return Plot.plot({
+    x: {inset: 2},
+    y: {reverse: true},
+    padding: 0,
+    marks: [
+      Plot.frame(),
+      Plot.rect({length: 1}, {x: 1, y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2, ry1: 20}),
+      Plot.rect({length: 1}, {x: 2, y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2, ry1: 20}),
+      Plot.rect({length: 1}, {x: 3, y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2, ry1: 20})
+    ]
+  });
+}
+
+export function roundedRectCollapsedX() {
+  return Plot.plot({
+    y: {reverse: true},
+    marks: [Plot.frame(), Plot.rect({length: 1}, {x2: 1, y1: 0, y2: 1, inset: 4, ry1: 20})]
+  });
+}
+
+export function roundedRectCollapsedY() {
+  return Plot.plot({
+    marks: [Plot.frame(), Plot.rect({length: 1}, {x1: 0, x2: 1, y2: 1, inset: 4, ry1: 20})]
+  });
+}
+
 export function roundedRectSides() {
   return Plot.plot({
     y: {reverse: true},
