@@ -43,6 +43,7 @@ function getHref(name: string, path: string): string {
   switch (path) {
     case "features/curve":
     case "features/format":
+    case "features/interval":
     case "features/mark":
     case "features/marker":
     case "features/plot":
@@ -85,7 +86,8 @@ function getInterfaceName(name: string, path: string): string {
   name = name.toLowerCase();
   if (name === "curve auto") name = "curve";
   if (name === "plot facet") name = "plot";
-  if (path.startsWith("marks/")) name += " mark";
+  if (name === "bollinger window") name = "bollinger map method";
+  else if (path.startsWith("marks/")) name += " mark";
   else if (path.startsWith("transforms/")) name += " transform";
   return name;
 }

@@ -63,12 +63,40 @@ export interface TipOptions extends MarkOptions, TextStyles {
   anchor?: FrameAnchor;
 
   /**
+   * If an explicit tip anchor is not specified, an anchor is chosen
+   * automatically such that the tip fits within the plot’s frame; if the
+   * preferred anchor fits, it is chosen.
+   */
+  preferredAnchor?: FrameAnchor | null;
+
+  /**
    * How channel values are formatted for display. If a format is a string, it
    * is interpreted as a (UTC) time format for temporal channels, and otherwise
    * a number format.
    */
-  format?: {[name in ChannelName]?: boolean | string | ((d: any, i: number) => string)};
+  format?: {[name in ChannelName]?: null | boolean | TipFormat} | TipFormat;
+
+  /** The image filter for the tip’s box; defaults to a drop shadow. */
+  pathFilter?: string;
+
+  /** The size of the tip’s pointer in pixels; defaults to 12. */
+  pointerSize?: number;
+
+  /** The padding around the text in pixels; defaults to 8. */
+  textPadding?: number;
 }
+
+/**
+ * How to format channel values; one of:
+ *
+ * - a [d3-format][1] string for numeric scales
+ * - a [d3-time-format][2] string for temporal scales
+ * - a function passed a channel *value* and *index*, returning a string
+ *
+ * [1]: https://d3js.org/d3-time
+ * [2]: https://d3js.org/d3-time-format
+ */
+export type TipFormat = string | ((d: any, i: number) => string);
 
 /**
  * Returns a new tip mark for the given *data* and *options*.

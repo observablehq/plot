@@ -10,7 +10,7 @@ import type {ScaleFunctions} from "../scales.js";
  * the data, *facets*, and the plot’s *options*. The transform function returns
  * new mark data and facets; the returned **data** defaults to the passed
  * *data*, and the returned **facets** defaults to the passed *facets*. The mark
- * is the *this* context. Transform functions can also trigger side-effects, say
+ * is the *this* context. Transform functions can also trigger side effects, say
  * to populate lazily-derived columns; see also Plot.column.
  */
 export type TransformFunction = (

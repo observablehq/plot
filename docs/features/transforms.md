@@ -10,6 +10,8 @@ const olympians = shallowRef([]);
 const traffic = shallowRef(["Saarbrücken-Neuhaus", "Oldenburg (Holstein)", "Holz", "Göttelborn", "Riegelsberg", "Kastel", "Neustadt i. H.-Süd", "Nettersheim", "Hasborn", "Laufeld", "Otzenhausen", "Nonnweiler", "Kirschheck", "AS Eppelborn", "Bierfeld", "Von der Heydt", "Illingen", "Hetzerath", "Groß Ippener", "Bockel", "Ladbergen", "Dibbersen", "Euskirchen/Bliesheim", "Hürth", "Lotte", "Ascheberg", "Bad Schwartau", "Schloss Burg", "Uphusen", "HB-Silbersee", "Barsbüttel", "HB-Mahndorfer See", "Glüsingen", "HB-Weserbrücke", "Hengsen", "Köln-Nord", "Hagen-Vorhalle", "Unna"].map((location, i) => ({location, date: new Date(Date.UTC(2000, 0, 1, i)), vehicles: (10 + i) ** 2.382})));
 const bins = computed(() => d3.bin().thresholds(80).value((d) => d.weight)(olympians.value));
 
+const scheme = Plot.scale({color: {type: "categorical"}}).range;
+
 onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
   d3.csv("../data/bls-metro-unemployment.csv", d3.autoType).then((data) => (bls.value = data));
@@ -116,7 +118,7 @@ If a transform isn’t doing what you expect, try inspecting the options object 
 
 Transforms can derive channels (such as **y** above) as well as changing the default options. For example, the bin transform sets default insets for a one-pixel gap between adjacent rects.
 
-Transforms are composable: you can pass *options* through more than one transform before passing it to a mark. For example, above it’s a bit difficult to compare the weight distribution by sex because there are fewer <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">female</span> than <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">male</span> athletes in the data. We can remove this effect using the [normalize transform](../transforms/normalize.md) with the *sum* reducer.
+Transforms are composable: you can pass *options* through more than one transform before passing it to a mark. For example, above it’s a bit difficult to compare the weight distribution by sex because there are fewer <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">female</span> than <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">male</span> athletes in the data. We can remove this effect using the [normalize transform](../transforms/normalize.md) with the *sum* reducer.
 
 :::plot defer https://observablehq.com/@observablehq/plot-overlapping-relative-histogram
 ```js-vue
@@ -179,7 +181,7 @@ The **transform** function is passed three arguments, *data*, *facets*, and *opt
 
 If the **transform** option is specified, it supersedes any basic transforms (*i.e.*, the **filter**, **sort** and **reverse** options are ignored). However, the **transform** option is rarely used directly; instead one of Plot’s built-in transforms are used, and these transforms automatically compose with the basic **filter**, **sort** and **reverse** transforms.
 
-While transform functions often produce new *data* or *facets*, they may return the passed-in *data* and *facets* as-is, and often have a side-effect of constructing derived channels. For example, the count of elements in a [groupX transform](../transforms/group.md) might be returned as a new *y* channel. In this case, the transform is typically expressed as an options transform: a function that takes a mark *options* object and returns a new, transformed options object, where the returned options object implements the **transform** option. Transform functions should not mutate the input *data* or *facets*. Likewise options transforms should not mutate the input *options* object.
+While transform functions often produce new *data* or *facets*, they may return the passed-in *data* and *facets* as-is, and often have a side effect of constructing derived channels. For example, the count of elements in a [groupX transform](../transforms/group.md) might be returned as a new *y* channel. In this case, the transform is typically expressed as an options transform: a function that takes a mark *options* object and returns a new, transformed options object, where the returned options object implements the **transform** option. Transform functions should not mutate the input *data* or *facets*. Likewise options transforms should not mutate the input *options* object.
 
 When implementing a custom transform for generic usage, keep in mind that it needs to be compatible with Plot’s [faceting system](./facets.md), which partitions the original dataset into discrete subsets.
 

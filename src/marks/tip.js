@@ -14,7 +14,7 @@ import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
 
 const defaults = {
   ariaLabel: "tip",
-  fill: "white",
+  fill: "var(--plot-background)",
   stroke: "currentColor"
 };
 
@@ -33,6 +33,7 @@ export class Tip extends Mark {
       y1,
       y2,
       anchor,
+      preferredAnchor = "bottom",
       monospace,
       fontFamily = monospace ? "ui-monospace, monospace" : undefined,
       fontSize,
@@ -65,7 +66,7 @@ export class Tip extends Mark {
       defaults
     );
     this.anchor = maybeAnchor(anchor, "anchor");
-    this.previousAnchor = this.anchor ?? "top-left";
+    this.preferredAnchor = maybeAnchor(preferredAnchor, "preferredAnchor");
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.textAnchor = impliedString(textAnchor, "middle");
     this.textPadding = +textPadding;
@@ -83,7 +84,7 @@ export class Tip extends Mark {
     for (const key in defaults) if (key in this.channels) this[key] = defaults[key]; // apply default even if channel
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
-    this.format = {...format}; // defensive copy before mutate; also promote nullish to empty
+    this.format = typeof format === "string" || typeof format === "function" ? {title: format} : {...format}; // defensive copy before mutate; also promote nullish to empty
   }
   render(index, scales, values, dimensions, context) {
     const mark = this;
@@ -119,10 +120,10 @@ export class Tip extends Mark {
     // channels as name-value pairs.
     let sources, format;
     if ("title" in values) {
-      sources = values.channels;
+      sources = getSourceChannels.call(this, {title: values.channels.title}, scales);
       format = formatTitle;
     } else {
-      sources = getSourceChannels.call(this, values, scales);
+      sources = getSourceChannels.call(this, values.channels, scales);
       format = formatChannels;
     }
 
@@ -188,8 +189,8 @@ export class Tip extends Mark {
         const [k] = cut(value, w - widthof(label), widthof, ee);
         if (k >= 0) {
           // value is truncated
-          value = value.slice(0, k).trimEnd() + ellipsis;
           title = value.trim();
+          value = value.slice(0, k).trimEnd() + ellipsis;
         }
       }
       const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
@@ -208,16 +209,26 @@ export class Tip extends Mark {
         (w = Math.round(w)), (h = Math.round(h)); // crisp edges
         let a = anchor; // use the specified anchor, if any
         if (a === undefined) {
-          a = mark.previousAnchor; // favor the previous anchor, if it fits
           const x = px(i) + ox;
           const y = py(i) + oy;
-          const fitLeft = x + w + r * 2 < width;
-          const fitRight = x - w - r * 2 > 0;
-          const fitTop = y + h + m + r * 2 + 7 < height;
+          const fitLeft = x + w + m + r * 2 < width;
+          const fitRight = x - w - m - r * 2 > 0;
+          const fitTop = y + h + m + r * 2 < height;
           const fitBottom = y - h - m - r * 2 > 0;
-          const ax = (/-left$/.test(a) ? fitLeft || !fitRight : fitLeft && !fitRight) ? "left" : "right";
-          const ay = (/^top-/.test(a) ? fitTop || !fitBottom : fitTop && !fitBottom) ? "top" : "bottom";
-          a = mark.previousAnchor = `${ay}-${ax}`;
+          a =
+            fitLeft && fitRight
+              ? fitTop && fitBottom
+                ? mark.preferredAnchor
+                : fitBottom
+                ? "bottom"
+                : "top"
+              : fitTop && fitBottom
+              ? fitLeft
+                ? "left"
+                : "right"
+              : (fitLeft || fitRight) && (fitTop || fitBottom)
+              ? `${fitBottom ? "bottom" : "top"}-${fitLeft ? "left" : "right"}`
+              : mark.preferredAnchor;
         }
         const path = this.firstChild; // note: assumes exactly two children!
         const text = this.lastChild; // note: assumes exactly two children!
@@ -308,7 +319,7 @@ function getPath(anchor, m, r, width, height) {
 }
 
 // Note: mutates this.format!
-function getSourceChannels({channels}, scales) {
+function getSourceChannels(channels, scales) {
   const sources = {};
 
   // Promote x and y shorthand for paired channels (in order).
@@ -333,8 +344,13 @@ function getSourceChannels({channels}, scales) {
   // Then fallback to all other (non-ignored) channels.
   for (const key in channels) {
     if (key in sources || key in format || ignoreChannels.has(key)) continue;
+    if ((key === "x" || key === "y") && channels.geometry) continue; // ignore x & y on geo
     const source = getSource(channels, key);
-    if (source) sources[key] = source;
+    if (source) {
+      // Ignore color channels if the values are all literal colors.
+      if (source.scale == null && source.defaultScale === "color") continue;
+      sources[key] = source;
+    }
   }
 
   // And lastly facet channels, but only if this mark is faceted.
@@ -373,7 +389,7 @@ function maybeExpandPairedFormat(format, channels, key) {
 }
 
 function formatTitle(i, index, {title}) {
-  return formatDefault(title.value[i], i);
+  return this.format.title(title.value[i], i);
 }
 
 function* formatChannels(i, index, channels, scales, values) {

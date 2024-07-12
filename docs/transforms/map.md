@@ -5,16 +5,8 @@ import * as d3 from "d3";
 import {ref} from "vue";
 import aapl from "../data/aapl.ts";
 
-const N = ref(20);
-const K = ref(2);
-
-function bollingerBandY(N, K, options) {
-  return Plot.map({y1: bollinger(N, -K), y2: bollinger(N, K)}, options);
-}
-
-function bollinger(N, K) {
-  return Plot.window({k: N, reduce: (Y) => d3.mean(Y) + K * d3.deviation(Y), strict: true, anchor: "end"});
-}
+const n = ref(20);
+const k = ref(2);
 
 </script>
 
@@ -61,18 +53,18 @@ Is shorthand for this:
 Plot.map({y: "cumsum"}, {y: d3.randomNormal()})
 ```
 
-As a more practical example, we can use the map transform to construct [Bollinger bands](https://en.wikipedia.org/wiki/Bollinger_Bands), showing both the price and volatility of Apple stock.
+As a more practical example, we can use the map transform to construct [Bollinger bands](../marks/bollinger.md), showing both the price and volatility of Apple stock.
 
 <p>
   <label class="label-input">
-    <span>Periods (N):</span>
-    <input type="range" v-model.number="N" min="2" max="100" step="1">
-    <span style="font-variant-numeric: tabular-nums;">{{N.toLocaleString("en-US")}}</span>
+    <span>Window size (n):</span>
+    <input type="range" v-model.number="n" min="1" max="100" step="1" />
+    <span style="font-variant-numeric: tabular-nums;">{{n.toLocaleString("en-US")}}</span>
   </label>
   <label class="label-input">
-    <span>Deviations (K):</span>
-    <input type="range" v-model.number="K" min="0" max="10" step="0.1">
-    <span style="font-variant-numeric: tabular-nums;">{{K.toLocaleString("en-US", {minimumFractionDigits: 1})}}</span>
+    <span>Radius (k):</span>
+    <input type="range" v-model.number="k" min="0" max="10" step="0.1" />
+    <span style="font-variant-numeric: tabular-nums;">{{k.toLocaleString("en-US")}}</span>
   </label>
 </p>
 
@@ -83,26 +75,15 @@ Plot.plot({
     grid: true
   },
   marks: [
-    Plot.areaY(aapl, Plot.map({y1: bollinger(N, -K), y2: bollinger(N, K)}, {x: "Date", y: "Close", fillOpacity: 0.2})),
-    Plot.lineY(aapl, Plot.map({y: bollinger(N, 0)}, {x: "Date", y: "Close", stroke: "blue"})),
+    Plot.areaY(aapl, Plot.map({y1: Plot.bollinger({n, k: -k}), y2: Plot.bollinger({n, k})}, {x: "Date", y: "Close", fillOpacity: 0.2})),
+    Plot.lineY(aapl, Plot.map({y: Plot.bollinger({n})}, {x: "Date", y: "Close", stroke: "blue"})),
     Plot.lineY(aapl, {x: "Date", y: "Close", strokeWidth: 1})
   ]
 })
 ```
 :::
 
-```js
-function bollinger(N, K) {
-  return Plot.window({
-    k: N,
-    reduce: (V) => d3.mean(V) + K * d3.deviation(V),
-    strict: true,
-    anchor: "end"
-  });
-}
-```
-
-The `bollinger` map method above is implemented atop the [window transform](./window.md), computing the mean of values within the rolling window, and then offsetting the mean by a multiple of the rolling deviation.
+The [bollinger map method](../marks/bollinger.md#bollinger) is implemented atop the [window map method](./window.md#window), computing the mean of values within the rolling window, and then offsetting the mean by a multiple of the rolling deviation.
 
 The map transform is akin to running [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the input channel’s values with the given map method. However, the map transform is series-aware: the data are first grouped into series using the **z**, **fill**, or **stroke** channel in the same fashion as the [area](../marks/area.md) and [line](../marks/line.md) marks so that series are processed independently.
 

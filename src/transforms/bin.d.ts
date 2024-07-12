@@ -117,6 +117,7 @@ export interface BinOptions {
  * - *y* - the middle of the bin’s **y** extent (when binning on **y**)
  * - *y1* - the lower bound of the bin’s **y** extent (when binning on **y**)
  * - *y2* - the upper bound of the bin’s **y** extent (when binning on **y**)
+ * - *z* - the bin’s **z** value (when grouping on **z**, **fill**, or **stroke**)
  * - a function that takes an array of values and returns the reduced value
  * - an object that implements the *reduceIndex* method
  *
@@ -132,7 +133,8 @@ export type BinReducer =
   | "x2"
   | "y"
   | "y1"
-  | "y2";
+  | "y2"
+  | "z";
 
 /**
  * A shorthand functional bin reducer implementation: given an array of input
@@ -164,7 +166,7 @@ export type BinYInputs<T> = Omit<T, "y"> & {y?: ChannelValueBinSpec} & BinOption
 export type BinInputs<T> = Omit<T, "x" | "y"> & {x?: ChannelValueBinSpec; y?: ChannelValueBinSpec} & BinOptions;
 
 /** Output channels (and options) for the bin transform. */
-export type BinOutputs = ChannelReducers<BinReducer> & GroupOutputOptions<BinReducer> & BinOptions;
+export type BinOutputs = ChannelReducers<BinReducer> | (GroupOutputOptions<BinReducer> & BinOptions);
 
 /**
  * Bins on the **x** channel; then subdivides bins on the first channel of

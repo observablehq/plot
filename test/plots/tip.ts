@@ -27,7 +27,7 @@ export async function tipBin() {
 
 export async function tipBinStack() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", tip: true})).plot();
+  return Plot.rectY(olympians, Plot.binX({y: "count", sort: "z"}, {x: "weight", fill: "sex", tip: true})).plot();
 }
 
 export async function tipCell() {
@@ -171,9 +171,18 @@ export async function tipHexbinExplicit() {
   });
 }
 
-export async function tipLine() {
+export async function tipLineX() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.lineX(aapl, {y: "Date", x: "Close", tip: true}).plot();
+}
+
+export async function tipLineY() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
+}
+
+export async function tipLongText() {
+  return Plot.tip([{x: "Long sentence that gets cropped after a certain length"}], {x: "x"}).plot();
 }
 
 export async function tipNewLines() {
@@ -253,6 +262,21 @@ export async function tipFacetX() {
         ],
         {fy: "f", x: 90, y: "y", r: 30, fill: "f", fillOpacity: 0.1, stroke: "currentColor", strokeDasharray: 4}
       )
+    ]
+  });
+}
+
+export async function tipColorLiteral() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    grid: true,
+    marks: [
+      Plot.dot(penguins, {
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm",
+        fill: (d) => (d.species === "Adelie" ? "orange" : "steelblue"),
+        tip: true
+      })
     ]
   });
 }

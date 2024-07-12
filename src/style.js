@@ -3,14 +3,14 @@ import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
-import {keyof, keyword, number, string} from "./options.js";
+import {keyof, number, string} from "./options.js";
 import {warn} from "./warnings.js";
 
 export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
 
 let nextClipId = 0;
 
-function getClipId() {
+export function getClipId() {
   return `plot-clip-${++nextClipId}`;
 }
 
@@ -297,15 +297,6 @@ export function* groupIndex(I, position, mark, channels) {
   }
 }
 
-// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
-// https://github.com/observablehq/plot/issues/181
-export function maybeClip(clip) {
-  if (clip === true) clip = "frame";
-  else if (clip === false) clip = null;
-  else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
-  return clip;
-}
-
 // Note: may mutate selection.node!
 function applyClip(selection, mark, dimensions, context) {
   let clipUrl;
@@ -357,6 +348,7 @@ function applyClip(selection, mark, dimensions, context) {
 // Note: may mutate selection.node!
 export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyClip(selection, mark, dimensions, context);
+  applyAttr(selection, "class", mark.className);
   applyAttr(selection, "fill", mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);

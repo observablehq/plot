@@ -59,8 +59,8 @@ export interface DodgeYOptions extends DodgeOptions {
  *
  * If *dodgeOptions* is a string, it is shorthand for the dodge **anchor**.
  */
-export function dodgeX<T>(dodgeOptions?: DodgeXOptions | DodgeXOptions["anchor"], options?: T): Initialized<T>;
 export function dodgeX<T>(options?: T & DodgeXOptions): Initialized<T>;
+export function dodgeX<T>(dodgeOptions?: DodgeXOptions | DodgeXOptions["anchor"], options?: T): Initialized<T>;
 
 /**
  * Given an **x** position channel, derives a new **y** position channel that
@@ -71,5 +71,5 @@ export function dodgeX<T>(options?: T & DodgeXOptions): Initialized<T>;
  *
  * If *dodgeOptions* is a string, it is shorthand for the dodge **anchor**.
  */
-export function dodgeY<T>(dodgeOptions?: DodgeYOptions | DodgeYOptions["anchor"], options?: T): Initialized<T>;
 export function dodgeY<T>(options?: T & DodgeYOptions): Initialized<T>;
+export function dodgeY<T>(dodgeOptions?: DodgeYOptions | DodgeYOptions["anchor"], options?: T): Initialized<T>;

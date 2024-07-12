@@ -17,7 +17,8 @@ export async function mobyDickLetterPairs() {
             {
               text: "first",
               y: "first",
-              x: "distinct"
+              x: "distinct",
+              sort: "x"
             },
             {
               y: "letter",

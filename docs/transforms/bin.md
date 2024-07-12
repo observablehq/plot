@@ -274,13 +274,14 @@ The following named reducers are supported:
 * *y* - the middle of the bin’s *y* extent (when binning on *y*)
 * *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
 * *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
+* *z* <VersionBadge version="0.6.14" pr="1959" /> - the bin’s *z* value (*z*, *fill*, or *stroke*)
 
 In addition, a reducer may be specified as:
 
 * a function to be passed the array of values for each bin and the extent of the bin
 * an object with a **reduceIndex** method, and optionally a **scope**
 
-In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each bin (an array of integers), the input channel’s array of values, and the extent of the bin (an object {x1, x2, y1, y2}); it must then return the corresponding aggregate value for the bin.
+In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each bin (an array of integers), the input channel’s array of values, and the extent of the bin (an object {data, x1, x2, y1, y2}); it must then return the corresponding aggregate value for the bin.
 
 If the reducer object’s **scope** is *data*, then the **reduceIndex** method is first invoked for the full data; the return value of the **reduceIndex** method is then made available as a third argument (making the extent the fourth argument). Similarly if the **scope** is *facet*, then the **reduceIndex** method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s bins. (This optional **scope** is used by the *proportion* and *proportion-facet* reducers.)
 

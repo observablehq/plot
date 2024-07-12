@@ -28,6 +28,7 @@ type ColorSchemeCase =
   | "Accent"
   | "Category10"
   | "Dark2"
+  | "Observable10"
   | "Paired"
   | "Pastel1"
   | "Pastel2"
@@ -82,13 +83,14 @@ type ColorSchemeCase =
  * - *Accent* - eight colors
  * - *Category10* - ten colors
  * - *Dark2* - eight colors
+ * - *Observable10* (default) - ten colors
  * - *Paired* - twelve paired colors
  * - *Pastel1* - nine colors
  * - *Pastel2* - eight colors
  * - *Set1* - nine colors
  * - *Set2* - eight colors
  * - *Set3* - twelve colors
- * - *Tableau10* (default) - ten colors
+ * - *Tableau10* - ten colors
  *
  * For diverging data, one of:
  *
@@ -187,7 +189,7 @@ export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any} & {scale
  *
  * For color, one of:
  *
- * - *categorical* - equivalent to *ordinal*; defaults to *tableau10*
+ * - *categorical* - equivalent to *ordinal*; defaults to *observable10*
  * - *sequential* - equivalent to *linear*; defaults to *turbo*
  * - *cyclical* - equivalent to *linear*; defaults to *rainbow*
  * - *threshold* - encodes using discrete thresholds; defaults to *rdylbu*
@@ -586,7 +588,7 @@ export interface ScaleOptions extends ScaleDefaults {
    * [1]: https://d3js.org/d3-time
    * [2]: https://d3js.org/d3-time-format
    */
-  tickFormat?: string | ((t: any, i: number) => any) | null;
+  tickFormat?: string | ((d: any, i: number) => any) | null;
 
   /**
    * The rotation angle of axis tick labels in degrees clocksize; defaults to 0.

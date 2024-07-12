@@ -14,6 +14,7 @@ const order = computed(() => orders.value === "null" ? null : orders.value);
 const reverse = ref(true);
 const riaa = shallowRef([]);
 const survey = shallowRef([]);
+const scheme = Plot.scale({color: {type: "categorical"}}).range;
 
 onMounted(() => {
   d3.csv("../data/riaa-us-revenue.csv", d3.autoType).then((data) => (riaa.value = data));
@@ -53,7 +54,7 @@ const likert = Likert([
 
 The **stack transform** comes in two orientations: [stackY](#stackY) replaces **y** with **y1** and **y2** to form vertical↑ stacks grouped on **x**, while [stackX](#stackX) replaces **x** with **x1** and **x2** for horizontal→ stacks grouped on **y**.  In effect, stacking transforms a *length* into *lower* and *upper* positions: the upper position of each element equals the lower position of the next element in the stack. Stacking makes it easier to perceive a total while still showing its parts.
 
-For example, below is a stacked area chart of [deaths in the Crimean War](https://en.wikipedia.org/wiki/Florence_Nightingale#Crimean_War) — predominantly from <span :style="{borderBottom: `solid ${d3.schemeTableau10[0]} 3px`}">disease</span> — using Florence Nightingale’s data.
+For example, below is a stacked area chart of [deaths in the Crimean War](https://en.wikipedia.org/wiki/Florence_Nightingale#Crimean_War) — predominantly from <span :style="{borderBottom: `solid ${scheme[0]} 3px`}">disease</span> — using Florence Nightingale’s data.
 
 :::plot https://observablehq.com/@observablehq/plot-crimean-war-casualties
 ```js
@@ -128,7 +129,7 @@ Plot.plot({
 ```
 :::
 
-The **order** option controls the order in which the layers are stacked. It defaults to null, meaning to respect the input order of the data. The *appearance* order excels when each series has a prominent peak, as in the chart below of [recording industry](https://en.wikipedia.org/wiki/Recording_Industry_Association_of_America) revenue. <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">Compact disc</span> sales started declining well before the rise of <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">downloads</span> and <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[3]}`}">streaming</span>, suggesting that the industry was slow to provide a convenient digital product and hence lost revenue to piracy.
+The **order** option controls the order in which the layers are stacked. It defaults to null, meaning to respect the input order of the data. The *appearance* order excels when each series has a prominent peak, as in the chart below of [recording industry](https://en.wikipedia.org/wiki/Recording_Industry_Association_of_America) revenue. <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">Compact disc</span> sales started declining well before the rise of <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">downloads</span> and <span :style="{borderBottom: `solid 2px ${scheme[3]}`}">streaming</span>, suggesting that the industry was slow to provide a convenient digital product and hence lost revenue to piracy.
 
 <p>
   <label class="label-input">
@@ -245,7 +246,7 @@ Plot.plot({
 When **offset** is not null, the *y* axis is harder to use because there is no longer a shared baseline at *y* = 0, though it is still useful for eyeballing length.
 :::
 
-The *normalize* **offset** is again worth special mention: it scales stacks to fill the interval [0, 1], thereby showing the relative proportion of each layer. Sales of <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">compact discs</span> accounted for over 90% of revenue in the early 2000’s, but now most revenue comes from <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[3]}`}">streaming</span>.
+The *normalize* **offset** is again worth special mention: it scales stacks to fill the interval [0, 1], thereby showing the relative proportion of each layer. Sales of <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">compact discs</span> accounted for over 90% of revenue in the early 2000’s, but now most revenue comes from <span :style="{borderBottom: `solid 2px ${scheme[3]}`}">streaming</span>.
 
 :::plot defer https://observablehq.com/@observablehq/plot-normalized-stack
 ```js

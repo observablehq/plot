@@ -257,15 +257,15 @@ export function plot(options = {}) {
     .call((svg) =>
       // Warning: if you edit this, change defaultClassName.
       svg.append("style").text(
-        `.${className} {
+        `:where(.${className}) {
+  --plot-background: white;
   display: block;
-  background: white;
   height: auto;
   height: intrinsic;
   max-width: 100%;
 }
-.${className} text,
-.${className} tspan {
+:where(.${className} text),
+:where(.${className} tspan) {
   white-space: pre;
 }`
       )
@@ -332,6 +332,7 @@ export function plot(options = {}) {
     if (subtitle != null) figure.append(createTitleElement(document, subtitle, "h3"));
     figure.append(...legends, svg);
     if (caption != null) figure.append(createFigcaption(document, caption));
+    if ("value" in svg) (figure.value = svg.value), delete svg.value;
   }
 
   figure.scale = exposeScales(scales.scales);
@@ -366,13 +367,6 @@ function createFigcaption(document, caption) {
   e.append(caption);
   return e;
 }
-
-function plotThis({marks = [], ...options} = {}) {
-  return plot({...options, marks: [...marks, this]});
-}
-
-// Note: This side-effect avoids a circular dependency.
-Mark.prototype.plot = plotThis;
 
 function flatMarks(marks) {
   return marks
@@ -409,7 +403,7 @@ function applyScaleTransform(channel, options) {
     type,
     percent,
     interval,
-    transform = percent ? (x) => x * 100 : maybeIntervalTransform(interval, type)
+    transform = percent ? (x) => (x == null ? NaN : x * 100) : maybeIntervalTransform(interval, type)
   } = options[scale] ?? {};
   if (transform == null) return;
   channel.value = map(channel.value, transform);
@@ -527,10 +521,11 @@ function inferTips(marks) {
     if (tipOptions) {
       if (tipOptions === true) tipOptions = {};
       else if (typeof tipOptions === "string") tipOptions = {pointer: tipOptions};
-      let {pointer: p} = tipOptions;
+      let {pointer: p, preferredAnchor: a} = tipOptions;
       p = /^x$/i.test(p) ? pointerX : /^y$/i.test(p) ? pointerY : pointer; // TODO validate?
       tipOptions = p(derive(mark, tipOptions));
       tipOptions.title = null; // prevent implicit title for primitive data
+      if (a === undefined) tipOptions.preferredAnchor = p === pointerY ? "left" : "bottom";
       const t = tip(mark.data, tipOptions);
       t.facet = mark.facet; // inherit facet settings
       t.facetAnchor = mark.facetAnchor; // inherit facet settings

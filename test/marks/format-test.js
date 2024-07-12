@@ -1,14 +1,22 @@
 import * as Plot from "@observablehq/plot";
 import assert from "assert";
 
+it("formatNumber(locale) does the right thing", () => {
+  assert.strictEqual(Plot.formatNumber()(Math.PI), "3.142");
+  assert.strictEqual(Plot.formatNumber()(12345), "12,345");
+  assert.strictEqual(Plot.formatNumber("en")(Math.PI), "3.142");
+  assert.strictEqual(Plot.formatNumber("en")(12345), "12,345");
+  assert.strictEqual(Plot.formatNumber("fr")(Math.PI), "3,142");
+  assert.strictEqual(Plot.formatNumber("fr")(12345), "12\u202f345");
+});
+
 it("formatMonth(locale, format) does the right thing", () => {
   assert.strictEqual(Plot.formatMonth("en", "long")(0), "January");
   assert.strictEqual(Plot.formatMonth("en", "short")(0), "Jan");
   assert.strictEqual(Plot.formatMonth("en", "narrow")(0), "J");
 });
 
-// GitHub Actions does not support locales.
-it.skip("formatMonth('fr', format) does the right thing", () => {
+it("formatMonth('fr', format) does the right thing", () => {
   assert.strictEqual(Plot.formatMonth("fr", "long")(11), "décembre");
   assert.strictEqual(Plot.formatMonth("fr", "short")(11), "déc.");
   assert.strictEqual(Plot.formatMonth("fr", "narrow")(11), "D");
@@ -27,7 +35,7 @@ it("formatMonth(locale) has the expected default", () => {
   assert.strictEqual(Plot.formatMonth("en", undefined)(0), "Jan");
 });
 
-it.skip("formatMonth('fr') has the expected default", () => {
+it("formatMonth('fr') has the expected default", () => {
   assert.strictEqual(Plot.formatMonth("fr")(11), "déc.");
   assert.strictEqual(Plot.formatMonth("fr", undefined)(11), "déc.");
 });

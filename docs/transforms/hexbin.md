@@ -13,6 +13,8 @@ const us = shallowRef(null);
 const nation = computed(() => us.value ? topojson.feature(us.value, us.value.objects.nation) : {type: null});
 const statemesh = computed(() => us.value ? topojson.mesh(us.value, us.value.objects.states, (a, b) => a !== b) : {type: null});
 
+const scheme = Plot.scale({color: {type: "categorical"}}).range;
+
 onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
   d3.tsv("../data/walmarts.tsv", d3.autoType).then((data) => (walmarts.value = data));
@@ -69,7 +71,7 @@ Plot
 Setting a **stroke** ensures that the smallest hexagons are visible.
 :::
 
-Alternatively, the **fill** and **r** channels can encode independent (or “bivariate”) dimensions of data. Below, the **r** channel uses *count* as before, while the **fill** channel uses *mode* to show the most frequent sex of athletes in each hexagon. The larger athletes are more likely to be <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">male</span>, while the smaller athletes are more likely to be <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">female</span>.
+Alternatively, the **fill** and **r** channels can encode independent (or “bivariate”) dimensions of data. Below, the **r** channel uses *count* as before, while the **fill** channel uses *mode* to show the most frequent sex of athletes in each hexagon. The larger athletes are more likely to be <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">male</span>, while the smaller athletes are more likely to be <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">female</span>.
 
 :::plot defer https://observablehq.com/@observablehq/plot-bivariate-hexbin
 ```js
@@ -174,9 +176,9 @@ Plot.plot({
 
 The *options* must specify the **x** and **y** channels. The **binWidth** option (default 20) defines the distance between centers of neighboring hexagons in pixels. If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins.
 
-The *outputs* options are similar to the [bin transform](./bin.md); each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.
+The *outputs* options are similar to the [bin transform](./bin.md); for each hexagon, an output channel value is derived by reducing the corresponding binned input channel values. The *outputs* object specifies the reducer for each output channel.
 
-The following aggregation methods are supported:
+The following named reducers are supported:
 
 * *first* - the first value, in input order
 * *last* - the last value, in input order
@@ -195,8 +197,17 @@ The following aggregation methods are supported:
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *mode* - the value with the most occurrences
 * *identity* - the array of values
-* a function to be passed the array of values for each bin and the extent of the bin
+* *x* <VersionBadge version="0.6.12" pr="1916" /> - the hexagon’s *x* center
+* *y* <VersionBadge version="0.6.12" pr="1916" /> - the hexagon’s *y* center
+
+In addition, a reducer may be specified as:
+
+* a function to be passed the array of values for each bin and the center of the bin
 * an object with a *reduceIndex* method
+
+In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each bin (an array of integers), the input channel’s array of values, and the center of the bin (an object {data, x, y}); it must then return the corresponding aggregate value for the bin.
+
+Most reducers require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
 
 ## hexbin(*outputs*, *options*) {#hexbin}
 
@@ -204,4 +215,4 @@ The following aggregation methods are supported:
 Plot.dot(olympians, Plot.hexbin({fill: "count"}, {x: "weight", y: "height"}))
 ```
 
-Bins (hexagonally) on **x** and **y**. Also groups on the first channel of **z**, **fill**, or **stroke**, if any.
+Bins hexagonally on **x** and **y**. Also groups on the first channel of **z**, **fill**, or **stroke**, if any.

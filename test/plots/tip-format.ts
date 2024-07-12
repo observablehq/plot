@@ -104,8 +104,16 @@ export async function tipFormatTitleExplicit() {
   return tip({length: 1}, {title: [new Date("2010-01-01")]});
 }
 
-export async function tipFormatTitleIgnoreFormat() {
-  return tip({length: 1}, {title: [0], format: {title: ".2f"}});
+export async function tipFormatTitleFormat() {
+  return tip({length: 1}, {title: [0.009], format: {title: ".2f"}});
+}
+
+export async function tipFormatTitleFormatFunction() {
+  return tip({length: 1}, {title: [0.019], format: (d) => d.toFixed(2)});
+}
+
+export async function tipFormatTitleFormatShorthand() {
+  return tip({length: 1}, {title: [0.029], format: ".2f"});
 }
 
 export async function tipFormatTitlePrimitive() {

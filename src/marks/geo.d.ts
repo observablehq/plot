@@ -11,6 +11,20 @@ export interface GeoOptions extends MarkOptions {
   geometry?: ChannelValue;
 
   /**
+   * In conjunction with the tip option, the horizontal position channel
+   * specifying the tip’s anchor, typically bound to the *x* scale. If not
+   * specified, defaults to the centroid of the projected geometry.
+   */
+  x?: ChannelValue;
+
+  /**
+   * In conjunction with the tip option, the vertical position channel
+   * specifying the tip’s anchor, typically bound to the *y* scale. If not
+   * specified, defaults to the centroid of the projected geometry.
+   */
+  y?: ChannelValue;
+
+  /**
    * The size of Point and MultiPoint geometries, defaulting to a constant 3
    * pixels. If **r** is a number, it is interpreted as a constant radius in
    * pixels; otherwise it is interpreted as a channel and the effective radius

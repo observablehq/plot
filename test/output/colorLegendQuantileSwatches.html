@@ -1,24 +1,24 @@
 <div class="plot-swatches plot-swatches-wrap" style="font-variant: tabular-nums;">
   <style>
-    .plot-swatches {
+    :where(.plot-swatches) {
       font-family: system-ui, sans-serif;
       font-size: 10px;
       margin-bottom: 0.5em;
     }
 
-    .plot-swatch>svg {
+    :where(.plot-swatch > svg) {
       margin-right: 0.5em;
       overflow: visible;
     }
 
-    .plot-swatches-wrap {
+    :where(.plot-swatches-wrap) {
       display: flex;
       align-items: center;
       min-height: 33px;
       flex-wrap: wrap;
     }
 
-    .plot-swatches-wrap .plot-swatch {
+    :where(.plot-swatches-wrap .plot-swatch) {
       display: inline-flex;
       align-items: center;
       margin-right: 1em;

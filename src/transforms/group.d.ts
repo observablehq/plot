@@ -1,5 +1,5 @@
 import type {ChannelReducers, ChannelValue} from "../channel.js";
-import type {Reducer} from "../reducer.js";
+import type {Reducer, ReducerImplementation} from "../reducer.js";
 import type {Transformed} from "./basic.js";
 
 /** Options for outputs of the group (and bin) transform. */
@@ -38,8 +38,43 @@ export interface GroupOutputOptions<T = Reducer> {
   z?: ChannelValue;
 }
 
+/**
+ * How to reduce grouped values; one of:
+ *
+ * - a generic reducer name, such as *count* or *first*
+ * - *x* - the group’s **x** value (when grouping on **x**)
+ * - *y* - the group’s **y** value (when grouping on **y**)
+ * - *z* - the group’s **z** value (when grouping on **z**, **fill**, or **stroke**)
+ * - a function that takes an array of values and returns the reduced value
+ * - an object that implements the *reduceIndex* method
+ *
+ * When a reducer function or implementation is used with the group transform,
+ * it is passed the group extent {x, y} as an additional argument.
+ */
+export type GroupReducer = Reducer | GroupReducerFunction | GroupReducerImplementation | "x" | "y" | "z";
+
+/**
+ * A shorthand functional group reducer implementation: given an array of input
+ * channel *values*, and the current group’s *extent*, returns the corresponding
+ * reduced output value.
+ */
+export type GroupReducerFunction<S = any, T = S> = (values: S[], extent: {x: any; y: any}) => T;
+
+/** A group reducer implementation. */
+export interface GroupReducerImplementation<S = any, T = S> {
+  /**
+   * Given an *index* representing the contents of the current group, the input
+   * channel’s array of *values*, and the current group’s *extent*, returns the
+   * corresponding reduced output value. If no input channel is supplied (e.g.,
+   * as with the *count* reducer) then *values* may be undefined.
+   */
+  reduceIndex(index: number[], values: S[], extent: {x: any; y: any}): T;
+  // TODO scope
+  // TODO label
+}
+
 /** Output channels (and options) for the group transform. */
-export type GroupOutputs = ChannelReducers & GroupOutputOptions;
+export type GroupOutputs = ChannelReducers<GroupReducer> | GroupOutputOptions<GroupReducer>;
 
 /**
  * Groups on the first channel of **z**, **fill**, or **stroke**, if any, and
@@ -143,3 +178,10 @@ export function groupY<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
  * *options*.
  */
 export function group<T>(outputs?: GroupOutputs, options?: T): Transformed<T>;
+
+/**
+ * Given the specified *test* function, returns a corresponding reducer
+ * implementation for use with the group or bin transform. The reducer returns
+ * the first channel value for which the *test* function returns a truthy value.
+ */
+export function find<T = any>(test: (d: T, index: number, data: T[]) => unknown): ReducerImplementation;
