@@ -1,14 +1,15 @@
-import {extent, format, timeFormat, utcFormat} from "d3";
+import {InternSet, extent, format, utcFormat} from "d3";
 import {formatDefault} from "../format.js";
 import {marks} from "../mark.js";
 import {radians} from "../math.js";
 import {arrayify, constant, identity, keyword, number, range, valueof} from "../options.js";
-import {isIterable, isNoneish, isTemporal, orderof} from "../options.js";
+import {isIterable, isNoneish, isTemporal, isInterval} from "../options.js";
 import {maybeColorChannel, maybeNumberChannel, maybeRangeInterval} from "../options.js";
-import {isTemporalScale} from "../scales.js";
+import {inferScaleOrder} from "../scales.js";
 import {offset} from "../style.js";
-import {formatTimeTicks, isTimeYear, isUtcYear} from "../time.js";
+import {generalizeTimeInterval, inferTimeFormat, intervalDuration} from "../time.js";
 import {initializer} from "../transforms/basic.js";
+import {warn} from "../warnings.js";
 import {ruleX, ruleY} from "./rule.js";
 import {text, textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
@@ -277,19 +278,28 @@ function axisTickKy(
     ...options
   }
 ) {
-  return axisMark(vectorY, k, `${k}-axis tick`, data, {
-    strokeWidth,
-    strokeLinecap,
-    strokeLinejoin,
-    facetAnchor,
-    frameAnchor,
-    y,
-    ...options,
-    dx: anchor === "left" ? +dx - offset + +insetLeft : +dx + offset - insetRight,
-    anchor: "start",
-    length: tickSize,
-    shape: anchor === "left" ? shapeTickLeft : shapeTickRight
-  });
+  return axisMark(
+    vectorY,
+    k,
+    data,
+    {
+      ariaLabel: `${k}-axis tick`,
+      ariaHidden: true
+    },
+    {
+      strokeWidth,
+      strokeLinecap,
+      strokeLinejoin,
+      facetAnchor,
+      frameAnchor,
+      y,
+      ...options,
+      dx: anchor === "left" ? +dx - offset + +insetLeft : +dx + offset - insetRight,
+      anchor: "start",
+      length: tickSize,
+      shape: anchor === "left" ? shapeTickLeft : shapeTickRight
+    }
+  );
 }
 
 function axisTickKx(
@@ -311,19 +321,28 @@ function axisTickKx(
     ...options
   }
 ) {
-  return axisMark(vectorX, k, `${k}-axis tick`, data, {
-    strokeWidth,
-    strokeLinejoin,
-    strokeLinecap,
-    facetAnchor,
-    frameAnchor,
-    x,
-    ...options,
-    dy: anchor === "bottom" ? +dy - offset - insetBottom : +dy + offset + +insetTop,
-    anchor: "start",
-    length: tickSize,
-    shape: anchor === "bottom" ? shapeTickBottom : shapeTickTop
-  });
+  return axisMark(
+    vectorX,
+    k,
+    data,
+    {
+      ariaLabel: `${k}-axis tick`,
+      ariaHidden: true
+    },
+    {
+      strokeWidth,
+      strokeLinejoin,
+      strokeLinecap,
+      facetAnchor,
+      frameAnchor,
+      x,
+      ...options,
+      dy: anchor === "bottom" ? +dy - offset - insetBottom : +dy + offset + +insetTop,
+      anchor: "start",
+      length: tickSize,
+      shape: anchor === "bottom" ? shapeTickBottom : shapeTickTop
+    }
+  );
 }
 
 function axisTextKy(
@@ -336,8 +355,7 @@ function axisTextKy(
     tickSize,
     tickRotate = 0,
     tickPadding = Math.max(3, 9 - tickSize) + (Math.abs(tickRotate) > 60 ? 4 * Math.cos(tickRotate * radians) : 0),
-    tickFormat,
-    text = typeof tickFormat === "function" ? tickFormat : undefined,
+    text,
     textAnchor = Math.abs(tickRotate) > 60 ? "middle" : anchor === "left" ? "end" : "start",
     lineAnchor = tickRotate > 60 ? "top" : tickRotate < -60 ? "bottom" : "middle",
     fontVariant,
@@ -352,12 +370,12 @@ function axisTextKy(
   return axisMark(
     textY,
     k,
-    `${k}-axis tick label`,
     data,
+    {ariaLabel: `${k}-axis tick label`},
     {
       facetAnchor,
       frameAnchor,
-      text: text === undefined ? null : text,
+      text,
       textAnchor,
       lineAnchor,
       fontVariant,
@@ -366,7 +384,7 @@ function axisTextKy(
       ...options,
       dx: anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight
     },
-    function (scale, data, ticks, channels) {
+    function (scale, data, ticks, tickFormat, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
       if (text === undefined) channels.text = inferTextChannel(scale, data, ticks, tickFormat, anchor);
     }
@@ -383,8 +401,7 @@ function axisTextKx(
     tickSize,
     tickRotate = 0,
     tickPadding = Math.max(3, 9 - tickSize) + (Math.abs(tickRotate) >= 10 ? 4 * Math.cos(tickRotate * radians) : 0),
-    tickFormat,
-    text = typeof tickFormat === "function" ? tickFormat : undefined,
+    text,
     textAnchor = Math.abs(tickRotate) >= 10 ? ((tickRotate < 0) ^ (anchor === "bottom") ? "start" : "end") : "middle",
     lineAnchor = Math.abs(tickRotate) >= 10 ? "middle" : anchor === "bottom" ? "top" : "bottom",
     fontVariant,
@@ -399,8 +416,8 @@ function axisTextKx(
   return axisMark(
     textX,
     k,
-    `${k}-axis tick label`,
     data,
+    {ariaLabel: `${k}-axis tick label`},
     {
       facetAnchor,
       frameAnchor,
@@ -413,7 +430,7 @@ function axisTextKx(
       ...options,
       dy: anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop
     },
-    function (scale, data, ticks, channels) {
+    function (scale, data, ticks, tickFormat, channels) {
       if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
       if (text === undefined) channels.text = inferTextChannel(scale, data, ticks, tickFormat, anchor);
     }
@@ -452,7 +469,7 @@ function gridKy(
     ...options
   }
 ) {
-  return axisMark(ruleY, k, `${k}-grid`, data, {y, x1, x2, ...gridDefaults(options)});
+  return axisMark(ruleY, k, data, {ariaLabel: `${k}-grid`, ariaHidden: true}, {y, x1, x2, ...gridDefaults(options)});
 }
 
 function gridKx(
@@ -467,7 +484,7 @@ function gridKx(
     ...options
   }
 ) {
-  return axisMark(ruleX, k, `${k}-grid`, data, {x, y1, y2, ...gridDefaults(options)});
+  return axisMark(ruleX, k, data, {ariaLabel: `${k}-grid`, ariaHidden: true}, {x, y1, y2, ...gridDefaults(options)});
 }
 
 function gridDefaults({
@@ -482,7 +499,19 @@ function gridDefaults({
 }
 
 function labelOptions(
-  {fill, fillOpacity, fontFamily, fontSize, fontStyle, fontWeight, monospace, pointerEvents, shapeRendering},
+  {
+    fill,
+    fillOpacity,
+    fontFamily,
+    fontSize,
+    fontStyle,
+    fontVariant,
+    fontWeight,
+    monospace,
+    pointerEvents,
+    shapeRendering,
+    clip = false
+  },
   initializer
 ) {
   // Only propagate these options if constant.
@@ -497,46 +526,85 @@ function labelOptions(
     fontFamily,
     fontSize,
     fontStyle,
+    fontVariant,
     fontWeight,
     monospace,
     pointerEvents,
     shapeRendering,
+    clip,
     initializer
   };
 }
 
-function axisMark(mark, k, ariaLabel, data, options, initialize) {
+function axisMark(mark, k, data, properties, options, initialize) {
   let channels;
 
   function axisInitializer(data, facets, _channels, scales, dimensions, context) {
     const initializeFacets = data == null && (k === "fx" || k === "fy");
     const {[k]: scale} = scales;
     if (!scale) throw new Error(`missing scale: ${k}`);
-    let {ticks, tickSpacing, interval} = options;
-    if (isTemporalScale(scale) && typeof ticks === "string") (interval = ticks), (ticks = undefined);
+    const domain = scale.domain();
+    let {interval, ticks, tickFormat, tickSpacing = k === "x" ? 80 : 35} = options;
+    // For a scale with a temporal domain, also allow the ticks to be specified
+    // as a string which is promoted to a time interval. In the case of ordinal
+    // scales, the interval is interpreted as UTC.
+    if (typeof ticks === "string" && hasTemporalDomain(scale)) (interval = ticks), (ticks = undefined);
+    // The interval axis option is an alternative method of specifying ticks;
+    // for example, for a numeric scale, ticks = 5 means “about 5 ticks” whereas
+    // interval = 5 means “ticks every 5 units”. (This is not to be confused
+    // with the interval scale option, which affects the scale’s behavior!)
+    // Lastly use the tickSpacing option to infer the desired tick count.
+    if (ticks === undefined) ticks = maybeRangeInterval(interval, scale.type) ?? inferTickCount(scale, tickSpacing);
     if (data == null) {
       if (isIterable(ticks)) {
+        // Use explicit ticks, if specified.
         data = arrayify(ticks);
-      } else if (scale.ticks) {
-        if (ticks !== undefined) {
-          data = scale.ticks(ticks);
+      } else if (isInterval(ticks)) {
+        // Use the tick interval, if specified.
+        data = inclusiveRange(ticks, ...extent(domain));
+      } else if (scale.interval) {
+        // If the scale interval is a standard time interval such as "day", we
+        // may be able to generalize the scale interval it to a larger aligned
+        // time interval to create the desired number of ticks.
+        let interval = scale.interval;
+        if (scale.ticks) {
+          const [min, max] = extent(domain);
+          const n = (max - min) / interval[intervalDuration]; // current tick count
+          // We don’t explicitly check that given interval is a time interval;
+          // in that case the generalized interval will be undefined, just like
+          // a nonstandard interval. TODO Generalize integer intervals, too.
+          interval = generalizeTimeInterval(interval, n / ticks) ?? interval;
+          data = inclusiveRange(interval, min, max);
         } else {
-          interval = maybeRangeInterval(interval === undefined ? scale.interval : interval, scale.type);
-          if (interval !== undefined) {
-            // For time scales, we could pass the interval directly to
-            // scale.ticks because it’s supported by d3.utcTicks; but
-            // quantitative scales and d3.ticks do not support numeric
-            // intervals for scale.ticks, so we compute them here.
-            const [min, max] = extent(scale.domain());
-            data = interval.range(min, interval.offset(interval.floor(max))); // inclusive max
-          } else {
-            const [min, max] = extent(scale.range());
-            ticks = (max - min) / (tickSpacing === undefined ? (k === "x" ? 80 : 35) : tickSpacing);
-            data = scale.ticks(ticks);
-          }
+          data = domain;
+          const n = data.length; // current tick count
+          interval = generalizeTimeInterval(interval, n / ticks) ?? interval;
+          if (interval !== scale.interval) data = inclusiveRange(interval, ...extent(data));
         }
+        if (interval === scale.interval) {
+          // If we weren’t able to generalize the scale’s interval, compute the
+          // positive number n such that taking every nth value from the scale’s
+          // domain produces as close as possible to the desired number of
+          // ticks. For example, if the domain has 100 values and 5 ticks are
+          // desired, n = 20.
+          const n = Math.round(data.length / ticks);
+          if (n > 1) data = data.filter((d, i) => i % n === 0);
+        }
+      } else if (scale.ticks) {
+        data = scale.ticks(ticks);
       } else {
-        data = scale.domain();
+        // For ordinal scales, the domain will already be generated using the
+        // scale’s interval, if any.
+        data = domain;
+      }
+      if (!scale.ticks && data.length && data !== domain) {
+        // For ordinal scales, intersect the ticks with the scale domain since
+        // the scale is only defined on its domain. If all of the ticks are
+        // removed, then warn that the ticks and scale domain may be misaligned
+        // (e.g., "year" ticks and "4 weeks" interval).
+        const domainSet = new InternSet(domain);
+        data = data.filter((d) => domainSet.has(d));
+        if (!data.length) warn(`Warning: the ${k}-axis ticks appear to not align with the scale domain, resulting in no ticks. Try different ticks?`); // prettier-ignore
       }
       if (k === "y" || k === "x") {
         facets = [range(data)];
@@ -544,7 +612,7 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
         channels[k] = {scale: k, value: identity};
       }
     }
-    initialize?.call(this, scale, data, ticks, channels);
+    initialize?.call(this, scale, data, ticks, tickFormat, channels);
     const initializedChannels = Object.fromEntries(
       Object.entries(channels).map(([name, channel]) => {
         return [name, {...channel, value: valueof(data, channel.value)}];
@@ -563,8 +631,14 @@ function axisMark(mark, k, ariaLabel, data, options, initialize) {
   } else {
     channels = {};
   }
-  m.ariaLabel = ariaLabel;
+  if (properties !== undefined) Object.assign(m, properties);
+  if (m.clip === undefined) m.clip = false; // don’t clip axes by default
   return m;
+}
+
+function inferTickCount(scale, tickSpacing) {
+  const [min, max] = extent(scale.range());
+  return (max - min) / tickSpacing;
 }
 
 function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
@@ -573,21 +647,26 @@ function inferTextChannel(scale, data, ticks, tickFormat, anchor) {
 
 // D3’s ordinal scales simply use toString by default, but if the ordinal scale
 // domain (or ticks) are numbers or dates (say because we’re applying a time
-// interval to the ordinal scale), we want Plot’s default formatter.
+// interval to the ordinal scale), we want Plot’s default formatter. And for
+// time ticks, we want to use the multi-line time format (e.g., Jan 26) if
+// possible, or the default ISO format (2014-01-26). TODO We need a better way
+// to infer whether the ordinal scale is UTC or local time.
 export function inferTickFormat(scale, data, ticks, tickFormat, anchor) {
-  return tickFormat === undefined && isTemporalScale(scale)
-    ? formatTimeTicks(scale, data, ticks, anchor)
+  return typeof tickFormat === "function" && !(scale.type === "log" && scale.tickFormat)
+    ? tickFormat
+    : tickFormat === undefined && data && isTemporal(data)
+    ? inferTimeFormat(scale.type, data, anchor) ?? formatDefault
     : scale.tickFormat
-    ? scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)
+    ? scale.tickFormat(typeof ticks === "number" ? ticks : null, tickFormat)
     : tickFormat === undefined
-    ? isUtcYear(scale.interval)
-      ? utcFormat("%Y")
-      : isTimeYear(scale.interval)
-      ? timeFormat("%Y")
-      : formatDefault
+    ? formatDefault
     : typeof tickFormat === "string"
     ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
     : constant(tickFormat);
+}
+
+function inclusiveRange(interval, min, max) {
+  return interval.range(min, interval.offset(interval.floor(max)));
 }
 
 const shapeTickBottom = {
@@ -624,17 +703,10 @@ function inferFontVariant(scale) {
   return scale.bandwidth && !scale.interval ? undefined : "tabular-nums";
 }
 
-// Determines whether the scale points in the “positive” (right or down) or
-// “negative” (left or up) direction; if the scale order cannot be determined,
-// returns NaN; used to assign an appropriate label arrow.
-function inferScaleOrder(scale) {
-  return Math.sign(orderof(scale.domain())) * Math.sign(orderof(scale.range()));
-}
-
 // Takes the scale label, and if this is not an ordinal scale and the label was
 // inferred from an associated channel, adds an orientation-appropriate arrow.
 function formatAxisLabel(k, scale, {anchor, label = scale.label, labelAnchor, labelArrow} = {}) {
-  if (label == null || (label.inferred && isTemporalish(scale) && /^(date|time|year)$/i.test(label))) return;
+  if (label == null || (label.inferred && hasTemporalDomain(scale) && /^(date|time|year)$/i.test(label))) return;
   label = String(label); // coerce to a string after checking if inferred
   if (labelArrow === "auto") labelArrow = (!scale.bandwidth || scale.interval) && !/[↑↓→←]/.test(label);
   if (!labelArrow) return label;
@@ -671,6 +743,6 @@ function maybeLabelArrow(labelArrow = "auto") {
     : keyword(labelArrow, "labelArrow", ["auto", "up", "right", "down", "left"]);
 }
 
-function isTemporalish(scale) {
-  return isTemporalScale(scale) || scale.interval != null;
+function hasTemporalDomain(scale) {
+  return isTemporal(scale.domain());
 }

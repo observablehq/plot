@@ -29,6 +29,9 @@ export default defineConfig({
     ["script", {async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-9B88TP6PKQ"}],
     ["script", {}, "window.dataLayer=window.dataLayer||[];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js',new Date());\ngtag('config','G-9B88TP6PKQ');"]
   ],
+  sitemap: {
+    hostname: 'https://observablehq.com/plot/'
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     // Theme related configurations.
@@ -65,6 +68,7 @@ export default defineConfig({
           {text: "Legends", link: "/features/legends"},
           {text: "Curves", link: "/features/curves"},
           {text: "Formats", link: "/features/formats"},
+          {text: "Intervals", link: "/features/intervals"},
           {text: "Markers", link: "/features/markers"},
           {text: "Shorthand", link: "/features/shorthand"},
           {text: "Accessibility", link: "/features/accessibility"}
@@ -79,11 +83,13 @@ export default defineConfig({
           {text: "Auto", link: "/marks/auto"},
           {text: "Axis", link: "/marks/axis"},
           {text: "Bar", link: "/marks/bar"},
+          {text: "Bollinger", link: "/marks/bollinger"},
           {text: "Box", link: "/marks/box"},
           {text: "Cell", link: "/marks/cell"},
           {text: "Contour", link: "/marks/contour"},
           {text: "Delaunay", link: "/marks/delaunay"},
           {text: "Density", link: "/marks/density"},
+          {text: "Difference", link: "/marks/difference"},
           {text: "Dot", link: "/marks/dot"},
           {text: "Frame", link: "/marks/frame"},
           {text: "Geo", link: "/marks/geo"},
@@ -91,7 +97,7 @@ export default defineConfig({
           {text: "Hexgrid", link: "/marks/hexgrid"},
           {text: "Image", link: "/marks/image"},
           {text: "Line", link: "/marks/line"},
-          {text: "Linear Regression", link: "/marks/linear-regression"},
+          {text: "Linear regression", link: "/marks/linear-regression"},
           {text: "Link", link: "/marks/link"},
           {text: "Raster", link: "/marks/raster"},
           {text: "Rect", link: "/marks/rect"},
@@ -117,6 +123,7 @@ export default defineConfig({
           {text: "Map", link: "/transforms/map"},
           {text: "Normalize", link: "/transforms/normalize"},
           {text: "Select", link: "/transforms/select"},
+          {text: "Shift", link: "/transforms/shift"},
           {text: "Sort", link: "/transforms/sort"},
           {text: "Stack", link: "/transforms/stack"},
           {text: "Tree", link: "/transforms/tree"},
@@ -130,16 +137,16 @@ export default defineConfig({
           {text: "Crosshair", link: "/interactions/crosshair"},
           {text: "Pointer", link: "/interactions/pointer"}
         ]
-      }
+      },
+      {text: "API index", link: "/api"}
     ],
     search: {
       provider: "local"
     },
     socialLinks: [
       {icon: "github", link: "https://github.com/observablehq/plot"},
-      {icon: "twitter", link: "https://twitter.com/observablehq"},
-      {icon: "mastodon", link: "https://vis.social/@observablehq"},
-      {icon: "slack", link: "https://join.slack.com/t/observable-community/shared_invite/zt-1x7gs4fck-UHhEFxUXKHVE8Qt3XmJCig"},
+      {icon: "x", link: "https://twitter.com/observablehq"},
+      {icon: "slack", link: "https://observablehq.com/slack/join"},
       {icon: "linkedin", link: "https://www.linkedin.com/company/observable"},
       {icon: "youtube", link: "https://www.youtube.com/c/Observablehq"}
     ],

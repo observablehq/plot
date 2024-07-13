@@ -9,6 +9,7 @@ import {
   coerceNumbers,
   coerceDates
 } from "./options.js";
+import {orderof} from "./order.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
   createScaleLinear,
@@ -97,17 +98,19 @@ export function createScales(
   return scales;
 }
 
-export function createScaleFunctions(scales) {
-  return Object.fromEntries(
-    Object.entries(scales)
-      .filter(([, {scale}]) => scale) // drop identity scales
-      .map(([name, {scale, type, interval, label}]) => {
-        scale.type = type; // for axis
-        if (interval != null) scale.interval = interval; // for axis
-        if (label != null) scale.label = label; // for axis
-        return [name, scale];
-      })
-  );
+export function createScaleFunctions(descriptors) {
+  const scales = {};
+  const scaleFunctions = {scales};
+  for (const [key, descriptor] of Object.entries(descriptors)) {
+    const {scale, type, interval, label} = descriptor;
+    scales[key] = exposeScale(descriptor);
+    scaleFunctions[key] = scale;
+    // TODO: pass these properties, which are needed for axes, in the descriptor.
+    scale.type = type;
+    if (interval != null) scale.interval = interval;
+    if (label != null) scale.label = label;
+  }
+  return scaleFunctions;
 }
 
 // Mutates scale.range!
@@ -138,6 +141,13 @@ function inferScaleLabel(channels = [], scale) {
   if (label === undefined) return;
   if (!isOrdinalScale(scale) && scale.percent) label = `${label} (%)`;
   return {inferred: true, toString: () => label};
+}
+
+// Determines whether the scale points in the “positive” (right or down) or
+// “negative” (left or up) direction; if the scale order cannot be determined,
+// returns NaN; used to assign an appropriate label arrow.
+export function inferScaleOrder(scale) {
+  return Math.sign(orderof(scale.domain())) * Math.sign(orderof(scale.range()));
 }
 
 // Returns the dimensions of the outer frame; this is subdivided into facets
@@ -362,7 +372,7 @@ function createScale(key, channels = [], options = {}) {
     case "band":
       return createScaleBand(key, channels, options);
     case "identity":
-      return registry.get(key) === position ? createScaleIdentity() : {type: "identity"};
+      return createScaleIdentity(key);
     case undefined:
       return;
     default:
@@ -374,10 +384,16 @@ function formatScaleType(type) {
   return typeof type === "symbol" ? type.description : type;
 }
 
+function maybeScaleType(type) {
+  return typeof type === "string" ? `${type}`.toLowerCase() : type;
+}
+
 // A special type symbol when the x and y scales are replaced with a projection.
 const typeProjection = {toString: () => "projection"};
 
 function inferScaleType(key, channels, {type, domain, range, scheme, pivot, projection}) {
+  type = maybeScaleType(type);
+
   // The facet scales are always band scales; this cannot be changed.
   if (key === "fx" || key === "fy") return "band";
 
@@ -389,7 +405,8 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   // If a channel dictates a scale type, make sure that it is consistent with
   // the user-specified scale type (if any) and all other channels. For example,
   // barY requires x to be a band scale and disallows any other scale type.
-  for (const {type: t} of channels) {
+  for (const channel of channels) {
+    const t = maybeScaleType(channel.type);
     if (t === undefined) continue;
     else if (type === undefined) type = t;
     else if (type !== t) throw new Error(`scale incompatible with channel: ${type} !== ${t}`);
@@ -488,6 +505,7 @@ export function isCollapsed(scale) {
 function coerceType(channels, {domain, ...options}, coerceValues) {
   for (const c of channels) {
     if (c.value !== undefined) {
+      if (domain === undefined) domain = c.value?.domain; // promote channel domain
       c.value = coerceValues(c.value);
     }
   }
@@ -513,10 +531,10 @@ export function scale(options = {}) {
   return scale;
 }
 
-export function exposeScales(scaleDescriptors) {
+export function exposeScales(scales) {
   return (key) => {
     if (!registry.has((key = `${key}`))) throw new Error(`unknown scale: ${key}`);
-    return key in scaleDescriptors ? exposeScale(scaleDescriptors[key]) : undefined;
+    return scales[key];
   };
 }
 

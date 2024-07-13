@@ -4,15 +4,8 @@ import * as d3 from "d3";
 export async function bandClip() {
   return Plot.plot({
     y: {type: "band"},
-    marks: [
-      Plot.frame(),
-      Plot.text(["A", "B", "C"], {
-        x: (d) => d,
-        y: (d) => d,
-        clip: true,
-        fontSize: 50
-      })
-    ]
+    clip: true,
+    marks: [Plot.frame(), Plot.text(["A", "B", "C"], {x: (d) => d, y: (d) => d, fontSize: 50})]
   });
 }
 

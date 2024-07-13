@@ -15,9 +15,11 @@ import type {Map} from "./map.js";
  * - *max* - the maximum value
  * - *mean* - the mean (average) value
  * - *median* - the median value
- * - *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+ * - *variance* - the variance per [Welford’s algorithm][1]
  * - *mode* - the mode (most common occurrence)
  * - *pXX* - the percentile value, where XX is a number in [00,99]
+ *
+ * [1]: https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm
  */
 export type WindowReducerName =
   | "difference" // specific to window
@@ -106,8 +108,8 @@ export interface WindowOptions {
  *
  * If *windowOptions* is a number, it is shorthand for the window size **k**.
  */
-export function windowX<T>(windowOptions?: WindowOptions | WindowOptions["k"], options?: T): Transformed<T>;
 export function windowX<T>(options?: T & WindowOptions): Transformed<T>;
+export function windowX<T>(windowOptions?: WindowOptions | WindowOptions["k"], options?: T): Transformed<T>;
 
 /**
  * Groups data into series using the first channel of *z*, *fill*, or *stroke*
@@ -121,8 +123,8 @@ export function windowX<T>(options?: T & WindowOptions): Transformed<T>;
  *
  * If *windowOptions* is a number, it is shorthand for the window size **k**.
  */
-export function windowY<T>(windowOptions?: WindowOptions | WindowOptions["k"], options?: T): Transformed<T>;
 export function windowY<T>(options?: T & WindowOptions): Transformed<T>;
+export function windowY<T>(windowOptions?: WindowOptions | WindowOptions["k"], options?: T): Transformed<T>;
 
 /**
  * Given the specified window *options*, returns a corresponding map

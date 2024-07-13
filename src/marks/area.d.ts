@@ -125,7 +125,7 @@ export interface AreaYOptions extends Omit<AreaOptions, "x1" | "x2">, BinOptions
 }
 
 /**
- * Returns a new area with the given *data* and *options*. The area mark is
+ * Returns a new area mark with the given *data* and *options*. The area mark is
  * rarely used directly; it is only needed when the baseline and topline have
  * neither *x* nor *y* values in common. Use areaY for a horizontal orientation
  * where the baseline and topline share *x* values, or areaX for a vertical
@@ -134,9 +134,10 @@ export interface AreaYOptions extends Omit<AreaOptions, "x1" | "x2">, BinOptions
 export function area(data?: Data, options?: AreaOptions): Area;
 
 /**
- * Returns a new vertically-oriented area for the given *data* and *options*,
- * where the baseline and topline share **y** values, as in a time-series area
- * chart where time goes up↑. For example, to plot Apple’s daily stock price:
+ * Returns a new vertically-oriented area mark for the given *data* and
+ * *options*, where the baseline and topline share **y** values, as in a
+ * time-series area chart where time goes up↑. For example, to plot Apple’s
+ * daily stock price:
  *
  * ```js
  * Plot.areaX(aapl, {y: "Date", x: "Close"})
@@ -165,9 +166,10 @@ export function area(data?: Data, options?: AreaOptions): Area;
 export function areaX(data?: Data, options?: AreaXOptions): Area;
 
 /**
- * Returns a new horizontally-oriented area for the given *data* and *options*,
- * where the baseline and topline share **x** values, as in a time-series area
- * chart where time goes right→. For example, to plot Apple’s daily stock price:
+ * Returns a new horizontally-oriented area mark for the given *data* and
+ * *options*, where the baseline and topline share **x** values, as in a
+ * time-series area chart where time goes right→. For example, to plot Apple’s
+ * daily stock price:
  *
  * ```js
  * Plot.areaY(aapl, {x: "Date", y: "Close"})
@@ -179,8 +181,8 @@ export function areaX(data?: Data, options?: AreaXOptions): Area;
  * specified, the other defaults to **y**, which defaults to zero.
  *
  * If an **interval** is specified, **x** values are binned accordingly,
- * allowing zeroes for empty bins instead of interpolating across gaps. This
- * is recommended to “regularize” sampled data; for example, if your data
+ * allowing zeroes for empty bins instead of interpolating across gaps. This is
+ * recommended to “regularize” sampled data; for example, if your data
  * represents timestamped observations and you expect one observation per day,
  * use *day* as the **interval**.
  *

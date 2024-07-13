@@ -45,7 +45,7 @@ function legendOptions({className, ...context}, {label, ticks, tickFormat} = {},
 
 function legendColor(color, {legend = true, ...options}) {
   if (legend === true) legend = color.type === "ordinal" ? "swatches" : "ramp";
-  if (color.domain === undefined) return;
+  if (color.domain === undefined) return; // no identity legend
   switch (`${legend}`.toLowerCase()) {
     case "swatches":
       return legendSwatches(color, options);

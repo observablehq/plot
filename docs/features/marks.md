@@ -48,7 +48,7 @@ onMounted(() => {
 
 </script>
 
-# Marks
+# Marks {#Marks}
 
 :::tip
 If you aren’t yet up and running with Plot, please read our [getting started guide](../getting-started.md) first. Tinkering with the code below will give a better sense of how Plot works.
@@ -476,21 +476,22 @@ All marks support the following style options:
 * **strokeDashoffset** - the [stroke dash offset](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset) (typically in pixels)
 * **opacity** - object opacity (a number between 0 and 1)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
-* **imageFilter** - a CSS [filter](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) (*e.g.*, *blur(5px)*)
+* **imageFilter** - a CSS [filter](https://developer.mozilla.org/en-US/docs/Web/CSS/filter) (*e.g.*, *blur(5px)*) <VersionBadge version="0.6.7" />
 * **shapeRendering** - the [shape-rendering mode](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering) (*e.g.*, *crispEdges*)
 * **paintOrder** - the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order) (*e.g.*, *stroke*)
 * **dx** - horizontal offset (in pixels; defaults to 0)
 * **dy** - vertical offset (in pixels; defaults to 0)
 * **target** - link target (e.g., “_blank” for a new window); for use with the **href** channel
+* **className** - the [class attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class), if any (defaults to null) <VersionBadge pr="1098" />
 * **ariaDescription** - a textual description of the mark’s contents
 * **ariaHidden** - if true, hide this content from the accessibility tree
 * **pointerEvents** - the [pointer events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) (*e.g.*, *none*)
 * **clip** - whether and how to clip the mark
-* **tip** - whether to generate an implicit [pointer](../interactions/pointer.md) [tip](../marks/tip.md)
+* **tip** - whether to generate an implicit [pointer](../interactions/pointer.md) [tip](../marks/tip.md) <VersionBadge version="0.6.7" />
 
 If the **clip** option is *frame* (or equivalently true), the mark is clipped to the frame’s dimensions; if the **clip** option is null (or equivalently false), the mark is not clipped. If the **clip** option is *sphere*, then a [geographic projection](./projections.md) is required and the mark will be clipped to the projected sphere (_e.g._, the front hemisphere when using the orthographic projection).
 
-If the **tip** option is true, a [tip mark](../marks/tip.md) with the [pointer transform](../interactions/pointer.md) will be derived from this mark and placed atop all other marks, offering details on demand. If the **tip** option is set to *x*, *y*, or *xy*, [pointerX](../interactions/pointer.md#pointerx-options), [pointerY](../interactions/pointer.md#pointery-options), or [pointer](../interactions/pointer.md#pointer-options) will be used, respectively; otherwise the pointing mode will be chosen automatically. (If the **tip** mark option is truthy, the **title** channel is no longer applied using an SVG title element as this would conflict with the tip mark.)
+If the **tip** option is true, a [tip mark](../marks/tip.md) with the [pointer transform](../interactions/pointer.md) will be derived from this mark and placed atop all other marks, offering details on demand. If the **tip** option is set to an options object, these options will be passed to the derived tip mark. If the **tip** option (or, if an object, its **pointer** option) is set to *x*, *y*, or *xy*, [pointerX](../interactions/pointer.md#pointerX), [pointerY](../interactions/pointer.md#pointerY), or [pointer](../interactions/pointer.md#pointer) will be used, respectively; otherwise the pointing mode will be chosen automatically. (If the **tip** mark option is truthy, the **title** channel is no longer applied using an SVG title element as this would conflict with the tip mark.)
 
 For all marks except [text](../marks/text.md), the **dx** and **dy** options are rendered as a transform property, possibly including a 0.5px offset on low-density screens.
 
@@ -547,13 +548,13 @@ All marks support the following [transform](./transforms.md) options:
 
 * **filter** - apply the [filter transform](../transforms/filter.md)
 * **sort** - apply the [sort transform](../transforms/sort.md)
-* **reverse** - apply the [reverse transform](../transforms/sort.md#reverse-options)
+* **reverse** - apply the [reverse transform](../transforms/sort.md#reverse)
 * **transform** - apply a [custom transform](./transforms.md#custom-transforms)
 * **initializer** - apply a [custom initializer](./transforms.md#custom-initializers)
 
 The **sort** option, when not specified as a channel value (such as a field name or an accessor function), can also be used to [impute ordinal scale domains](./scales.md#sort-mark-option).
 
-## marks(...*marks*)
+## marks(...*marks*) <VersionBadge version="0.2.0" /> {#marks}
 
 ```js
 Plot.marks(

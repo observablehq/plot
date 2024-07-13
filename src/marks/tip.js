@@ -1,4 +1,4 @@
-import {select} from "d3";
+import {select, format as numberFormat, utcFormat} from "d3";
 import {getSource} from "../channel.js";
 import {create} from "../context.js";
 import {defined} from "../defined.js";
@@ -7,19 +7,19 @@ import {anchorX, anchorY} from "../interactions/pointer.js";
 import {Mark} from "../mark.js";
 import {maybeAnchor, maybeFrameAnchor, maybeTuple, number, string} from "../options.js";
 import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
-import {identity, isIterable, isTextual} from "../options.js";
+import {identity, isIterable, isTemporal, isTextual} from "../options.js";
 import {inferTickFormat} from "./axis.js";
 import {applyIndirectTextStyles, defaultWidth, ellipsis, monospaceWidth} from "./text.js";
 import {cut, clipper, splitter, maybeTextOverflow} from "./text.js";
 
 const defaults = {
   ariaLabel: "tip",
-  fill: "white",
+  fill: "var(--plot-background)",
   stroke: "currentColor"
 };
 
-// These channels are not displayed in the tip; TODO allow customization.
-const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel"]);
+// These channels are not displayed in the default tip; see formatChannels.
+const ignoreChannels = new Set(["geometry", "href", "src", "ariaLabel", "scales"]);
 
 export class Tip extends Mark {
   constructor(data, options = {}) {
@@ -33,6 +33,7 @@ export class Tip extends Mark {
       y1,
       y2,
       anchor,
+      preferredAnchor = "bottom",
       monospace,
       fontFamily = monospace ? "ui-monospace, monospace" : undefined,
       fontSize,
@@ -42,6 +43,7 @@ export class Tip extends Mark {
       lineHeight = 1,
       lineWidth = 20,
       frameAnchor,
+      format,
       textAnchor = "start",
       textOverflow,
       textPadding = 8,
@@ -64,7 +66,7 @@ export class Tip extends Mark {
       defaults
     );
     this.anchor = maybeAnchor(anchor, "anchor");
-    this.previousAnchor = this.anchor ?? "top-left";
+    this.preferredAnchor = maybeAnchor(preferredAnchor, "preferredAnchor");
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
     this.textAnchor = impliedString(textAnchor, "middle");
     this.textPadding = +textPadding;
@@ -82,6 +84,7 @@ export class Tip extends Mark {
     for (const key in defaults) if (key in this.channels) this[key] = defaults[key]; // apply default even if channel
     this.splitLines = splitter(this);
     this.clipLine = clipper(this);
+    this.format = typeof format === "string" || typeof format === "function" ? {title: format} : {...format}; // defensive copy before mutate; also promote nullish to empty
   }
   render(index, scales, values, dimensions, context) {
     const mark = this;
@@ -90,7 +93,6 @@ export class Tip extends Mark {
     const {anchor, monospace, lineHeight, lineWidth} = this;
     const {textPadding: r, pointerSize: m, pathFilter} = this;
     const {marginTop, marginLeft} = dimensions;
-    const sources = getSources(values);
 
     // The anchor position is the middle of x1 & y1 and x2 & y2, if available,
     // or x & y; the former is considered more specific because it’s how we
@@ -114,39 +116,15 @@ export class Tip extends Mark {
     const widthof = monospace ? monospaceWidth : defaultWidth;
     const ee = widthof(ellipsis);
 
-    // We borrow the scale’s tick format for facet channels; this is safe for
-    // ordinal scales (but not continuous scales where the display value may
-    // need higher precision), and generally better than the default format.
-    const formatFx = fx && inferTickFormat(fx);
-    const formatFy = fy && inferTickFormat(fy);
-
-    function* format(sources, i) {
-      if ("title" in sources) {
-        const text = sources.title.value[i];
-        for (const line of mark.splitLines(formatDefault(text))) {
-          yield {name: "", value: mark.clipLine(line)};
-        }
-        return;
-      }
-      for (const key in sources) {
-        if (key === "x1" && "x2" in sources) continue;
-        if (key === "y1" && "y2" in sources) continue;
-        const channel = sources[key];
-        const value = channel.value[i];
-        if (!defined(value) && channel.scale == null) continue;
-        if (key === "x2" && "x1" in sources) {
-          yield {name: formatLabel(scales, channel, "x"), value: formatPair(sources.x1, channel, i)};
-        } else if (key === "y2" && "y1" in sources) {
-          yield {name: formatLabel(scales, channel, "y"), value: formatPair(sources.y1, channel, i)};
-        } else {
-          const scale = channel.scale;
-          const line = {name: formatLabel(scales, channel, key), value: formatDefault(value)};
-          if (scale === "color" || scale === "opacity") line[scale] = values[key][i];
-          yield line;
-        }
-      }
-      if (index.fi != null && fx) yield {name: String(fx.label ?? "fx"), value: formatFx(index.fx)};
-      if (index.fi != null && fy) yield {name: String(fy.label ?? "fy"), value: formatFy(index.fy)};
+    // If there’s a title channel, display that as-is; otherwise, show multiple
+    // channels as name-value pairs.
+    let sources, format;
+    if ("title" in values) {
+      sources = getSourceChannels.call(this, {title: values.channels.title}, scales);
+      format = formatTitle;
+    } else {
+      sources = getSourceChannels.call(this, values.channels, scales);
+      format = formatChannels;
     }
 
     // We don’t call applyChannelStyles because we only use the channels to
@@ -172,12 +150,19 @@ export class Tip extends Mark {
               this.setAttribute("fill-opacity", 1);
               this.setAttribute("stroke", "none");
               // iteratively render each channel value
-              const names = new Set();
-              for (const line of format(sources, i)) {
-                const name = line.name;
-                if (name && names.has(name)) continue;
-                else names.add(name);
-                renderLine(that, line);
+              const lines = format.call(mark, i, index, sources, scales, values);
+              if (typeof lines === "string") {
+                for (const line of mark.splitLines(lines)) {
+                  renderLine(that, {value: mark.clipLine(line)});
+                }
+              } else {
+                const labels = new Set();
+                for (const line of lines) {
+                  const {label = ""} = line;
+                  if (label && labels.has(label)) continue;
+                  else labels.add(label);
+                  renderLine(that, line);
+                }
               }
             })
           )
@@ -188,27 +173,28 @@ export class Tip extends Mark {
     // just the initial layout of the text; in postrender we will compute the
     // exact text metrics and translate the text as needed once we know the
     // tip’s orientation (anchor).
-    function renderLine(selection, {name, value, color, opacity}) {
+    function renderLine(selection, {label, value, color, opacity}) {
+      (label ??= ""), (value ??= "");
       const swatch = color != null || opacity != null;
       let title;
       let w = lineWidth * 100;
-      const [j] = cut(name, w, widthof, ee);
+      const [j] = cut(label, w, widthof, ee);
       if (j >= 0) {
-        // name is truncated
-        name = name.slice(0, j).trimEnd() + ellipsis;
+        // label is truncated
+        label = label.slice(0, j).trimEnd() + ellipsis;
         title = value.trim();
         value = "";
       } else {
-        if (name || (!value && !swatch)) value = " " + value;
-        const [k] = cut(value, w - widthof(name), widthof, ee);
+        if (label || (!value && !swatch)) value = " " + value;
+        const [k] = cut(value, w - widthof(label), widthof, ee);
         if (k >= 0) {
           // value is truncated
-          value = value.slice(0, k).trimEnd() + ellipsis;
           title = value.trim();
+          value = value.slice(0, k).trimEnd() + ellipsis;
         }
       }
       const line = selection.append("tspan").attr("x", 0).attr("dy", `${lineHeight}em`).text("\u200b"); // zwsp for double-click
-      if (name) line.append("tspan").attr("font-weight", "bold").text(name);
+      if (label) line.append("tspan").attr("font-weight", "bold").text(label);
       if (value) line.append(() => document.createTextNode(value));
       if (swatch) line.append("tspan").text(" ■").attr("fill", color).attr("fill-opacity", opacity).style("user-select", "none"); // prettier-ignore
       if (title) line.append("title").text(title);
@@ -223,16 +209,26 @@ export class Tip extends Mark {
         (w = Math.round(w)), (h = Math.round(h)); // crisp edges
         let a = anchor; // use the specified anchor, if any
         if (a === undefined) {
-          a = mark.previousAnchor; // favor the previous anchor, if it fits
           const x = px(i) + ox;
           const y = py(i) + oy;
-          const fitLeft = x + w + r * 2 < width;
-          const fitRight = x - w - r * 2 > 0;
-          const fitTop = y + h + m + r * 2 + 7 < height;
+          const fitLeft = x + w + m + r * 2 < width;
+          const fitRight = x - w - m - r * 2 > 0;
+          const fitTop = y + h + m + r * 2 < height;
           const fitBottom = y - h - m - r * 2 > 0;
-          const ax = (/-left$/.test(a) ? fitLeft || !fitRight : fitLeft && !fitRight) ? "left" : "right";
-          const ay = (/^top-/.test(a) ? fitTop || !fitBottom : fitTop && !fitBottom) ? "top" : "bottom";
-          a = mark.previousAnchor = `${ay}-${ax}`;
+          a =
+            fitLeft && fitRight
+              ? fitTop && fitBottom
+                ? mark.preferredAnchor
+                : fitBottom
+                ? "bottom"
+                : "top"
+              : fitTop && fitBottom
+              ? fitLeft
+                ? "left"
+                : "right"
+              : (fitLeft || fitRight) && (fitTop || fitBottom)
+              ? `${fitBottom ? "bottom" : "top"}-${fitLeft ? "left" : "right"}`
+              : mark.preferredAnchor;
         }
         const path = this.firstChild; // note: assumes exactly two children!
         const text = this.lastChild; // note: assumes exactly two children!
@@ -241,6 +237,7 @@ export class Tip extends Mark {
         text.setAttribute("y", `${+getLineOffset(a, text.childNodes.length, lineHeight).toFixed(6)}em`);
         text.setAttribute("transform", `translate(${getTextTranslate(a, m, r, w, h)})`);
       });
+      g.attr("visibility", null);
     }
 
     // Wait until the plot is inserted into the page so that we can use getBBox
@@ -250,8 +247,11 @@ export class Tip extends Mark {
     // this step. Perhaps this could be done synchronously; getting the
     // dimensions of the SVG is easy, and although accurate text metrics are
     // hard, we could use approximate heuristics.
-    if (svg.isConnected) Promise.resolve().then(postrender);
-    else if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(postrender);
+    if (index.length) {
+      g.attr("visibility", "hidden"); // hide until postrender
+      if (svg.isConnected) Promise.resolve().then(postrender);
+      else if (typeof requestAnimationFrame !== "undefined") requestAnimationFrame(postrender);
+    }
 
     return g.node();
   }
@@ -318,22 +318,130 @@ function getPath(anchor, m, r, width, height) {
   }
 }
 
-function getSources({channels}) {
+// Note: mutates this.format!
+function getSourceChannels(channels, scales) {
   const sources = {};
-  for (const key in channels) {
-    if (ignoreChannels.has(key)) continue;
-    const source = getSource(channels, key);
-    if (source) sources[key] = source;
+
+  // Promote x and y shorthand for paired channels (in order).
+  let format = this.format;
+  format = maybeExpandPairedFormat(format, channels, "x");
+  format = maybeExpandPairedFormat(format, channels, "y");
+  this.format = format;
+
+  // Prioritize channels with explicit formats, in the given order.
+  for (const key in format) {
+    const value = format[key];
+    if (value === null || value === false) {
+      continue;
+    } else if (key === "fx" || key === "fy") {
+      sources[key] = true;
+    } else {
+      const source = getSource(channels, key);
+      if (source) sources[key] = source;
+    }
   }
+
+  // Then fallback to all other (non-ignored) channels.
+  for (const key in channels) {
+    if (key in sources || key in format || ignoreChannels.has(key)) continue;
+    if ((key === "x" || key === "y") && channels.geometry) continue; // ignore x & y on geo
+    const source = getSource(channels, key);
+    if (source) {
+      // Ignore color channels if the values are all literal colors.
+      if (source.scale == null && source.defaultScale === "color") continue;
+      sources[key] = source;
+    }
+  }
+
+  // And lastly facet channels, but only if this mark is faceted.
+  if (this.facet) {
+    if (scales.fx && !("fx" in format)) sources.fx = true;
+    if (scales.fy && !("fy" in format)) sources.fy = true;
+  }
+
+  // Promote shorthand string formats, and materialize default formats.
+  for (const key in sources) {
+    const format = this.format[key];
+    if (typeof format === "string") {
+      const value = sources[key]?.value ?? scales[key]?.domain() ?? [];
+      this.format[key] = (isTemporal(value) ? utcFormat : numberFormat)(format);
+    } else if (format === undefined || format === true) {
+      // For ordinal scales, the inferred tick format can be more concise, such
+      // as only showing the year for yearly data.
+      const scale = scales[key];
+      this.format[key] = scale?.bandwidth ? inferTickFormat(scale, scale.domain()) : formatDefault;
+    }
+  }
+
   return sources;
 }
 
-function formatPair(c1, c2, i) {
-  return c2.hint?.length // e.g., stackY’s y1 and y2
-    ? `${formatDefault(c2.value[i] - c1.value[i])}`
-    : `${formatDefault(c1.value[i])}–${formatDefault(c2.value[i])}`;
+// Promote x and y shorthand for paired channels, while preserving order.
+function maybeExpandPairedFormat(format, channels, key) {
+  if (!(key in format)) return format;
+  const key1 = `${key}1`;
+  const key2 = `${key}2`;
+  if ((key1 in format || !(key1 in channels)) && (key2 in format || !(key2 in channels))) return format;
+  const entries = Object.entries(format);
+  const value = format[key];
+  entries.splice(entries.findIndex(([name]) => name === key) + 1, 0, [key1, value], [key2, value]);
+  return Object.fromEntries(entries);
 }
 
-function formatLabel(scales, c, defaultLabel) {
-  return String(scales[c.scale]?.label ?? c?.label ?? defaultLabel);
+function formatTitle(i, index, {title}) {
+  return this.format.title(title.value[i], i);
+}
+
+function* formatChannels(i, index, channels, scales, values) {
+  for (const key in channels) {
+    if (key === "fx" || key === "fy") {
+      yield {
+        label: formatLabel(scales, channels, key),
+        value: this.format[key](index[key], i)
+      };
+      continue;
+    }
+    if (key === "x1" && "x2" in channels) continue;
+    if (key === "y1" && "y2" in channels) continue;
+    const channel = channels[key];
+    if (key === "x2" && "x1" in channels) {
+      yield {
+        label: formatPairLabel(scales, channels, "x"),
+        value: formatPair(this.format.x2, channels.x1, channel, i)
+      };
+    } else if (key === "y2" && "y1" in channels) {
+      yield {
+        label: formatPairLabel(scales, channels, "y"),
+        value: formatPair(this.format.y2, channels.y1, channel, i)
+      };
+    } else {
+      const value = channel.value[i];
+      const scale = channel.scale;
+      if (!defined(value) && scale == null) continue;
+      yield {
+        label: formatLabel(scales, channels, key),
+        value: this.format[key](value, i),
+        color: scale === "color" ? values[key][i] : null,
+        opacity: scale === "opacity" ? values[key][i] : null
+      };
+    }
+  }
+}
+
+function formatPair(formatValue, c1, c2, i) {
+  return c2.hint?.length // e.g., stackY’s y1 and y2
+    ? `${formatValue(c2.value[i] - c1.value[i], i)}`
+    : `${formatValue(c1.value[i], i)}–${formatValue(c2.value[i], i)}`;
+}
+
+function formatPairLabel(scales, channels, key) {
+  const l1 = formatLabel(scales, channels, `${key}1`, key);
+  const l2 = formatLabel(scales, channels, `${key}2`, key);
+  return l1 === l2 ? l1 : `${l1}–${l2}`;
+}
+
+function formatLabel(scales, channels, key, defaultLabel = key) {
+  const channel = channels[key];
+  const scale = scales[channel?.scale ?? key];
+  return String(scale?.label ?? channel?.label ?? defaultLabel);
 }

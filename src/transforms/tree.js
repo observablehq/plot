@@ -167,18 +167,66 @@ function nodeData(field) {
 }
 
 function normalizer(delimiter = "/") {
-  return `${delimiter}` === "/"
-    ? (P) => P // paths are already slash-separated
-    : (P) => P.map(replaceAll(delimiter, "/")); // TODO string.replaceAll when supported
+  delimiter = `${delimiter}`;
+  if (delimiter === "/") return (P) => P; // paths are already slash-separated
+  if (delimiter.length !== 1) throw new Error("delimiter must be exactly one character");
+  const delimiterCode = delimiter.charCodeAt(0);
+  return (P) => P.map((p) => slashDelimiter(p, delimiterCode));
 }
 
-function replaceAll(search, replace) {
-  search = new RegExp(regexEscape(search), "g");
-  return (value) => (value == null ? null : `${value}`.replace(search, replace));
+const CODE_BACKSLASH = 92;
+const CODE_SLASH = 47;
+
+function slashDelimiter(input, delimiterCode) {
+  if (delimiterCode === CODE_BACKSLASH) throw new Error("delimiter cannot be backslash");
+  let afterBackslash = false;
+  for (let i = 0, n = input.length; i < n; ++i) {
+    switch (input.charCodeAt(i)) {
+      case CODE_BACKSLASH:
+        if (!afterBackslash) {
+          afterBackslash = true;
+          continue;
+        }
+        break;
+      case delimiterCode:
+        if (afterBackslash) {
+          (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
+        } else {
+          input = input.slice(0, i) + "/" + input.slice(i + 1); // replace delimiter with slash
+        }
+        break;
+      case CODE_SLASH:
+        if (afterBackslash) {
+          (input = input.slice(0, i) + "\\\\" + input.slice(i)), (i += 2), (n += 2); // add two backslashes
+        } else {
+          (input = input.slice(0, i) + "\\" + input.slice(i)), ++i, ++n; // add backslash
+        }
+        break;
+    }
+    afterBackslash = false;
+  }
+  return input;
 }
 
-function regexEscape(string) {
-  return `${string}`.replace(/[\\^$*+?.()|[\]{}]/g, "\\$&");
+function slashUnescape(input) {
+  let afterBackslash = false;
+  for (let i = 0, n = input.length; i < n; ++i) {
+    switch (input.charCodeAt(i)) {
+      case CODE_BACKSLASH:
+        if (!afterBackslash) {
+          afterBackslash = true;
+          continue;
+        }
+      // eslint-disable-next-line no-fallthrough
+      case CODE_SLASH:
+        if (afterBackslash) {
+          (input = input.slice(0, i - 1) + input.slice(i)), --i, --n; // remove backslash
+        }
+        break;
+    }
+    afterBackslash = false;
+  }
+  return input;
 }
 
 function isNodeValue(option) {
@@ -272,7 +320,7 @@ function parentValue(evaluate) {
 function nameof(path) {
   let i = path.length;
   while (--i > 0) if (slash(path, i)) break;
-  return path.slice(i + 1);
+  return slashUnescape(path.slice(i + 1));
 }
 
 // Slashes can be escaped; to determine whether a slash is a path delimiter, we

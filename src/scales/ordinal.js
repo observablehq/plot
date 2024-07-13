@@ -17,7 +17,7 @@ function createScaleO(key, scale, channels, {type, interval, domain, range, reve
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
-  scale.domain(domain);
+  domain = scale.domain(domain).domain(); // deduplicate
   if (range !== undefined) {
     // If the range is specified as a function, pass it the domain.
     if (typeof range === "function") range = range(domain);
@@ -39,7 +39,7 @@ export function createScaleOrdinal(key, channels, {type, interval, domain, range
       if (range !== undefined) scheme = undefined; // Don’t re-apply scheme.
     }
     if (scheme === undefined && range === undefined) {
-      scheme = type === "ordinal" ? "turbo" : "tableau10";
+      scheme = type === "ordinal" ? "turbo" : "observable10";
     }
     if (scheme !== undefined) {
       if (range !== undefined) {
@@ -112,8 +112,7 @@ function inferHint(channels, key) {
   for (const {hint} of channels) {
     const candidate = hint?.[key];
     if (candidate === undefined) continue; // no hint here
-    if (value === undefined) value = candidate;
-    // first hint
+    if (value === undefined) value = candidate; // first hint
     else if (value !== candidate) return; // inconsistent hint
   }
   return value;

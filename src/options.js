@@ -1,11 +1,15 @@
-import {color, descending, quantile, range as rangei} from "d3";
+import {quantile, range as rangei} from "d3";
 import {parse as isoParse} from "isoformat";
 import {defined} from "./defined.js";
-import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
+import {timeInterval, utcInterval} from "./time.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
+
+// If a reindex is attached to the data, channel values expressed as arrays will
+// be reindexed when the channels are instantiated. See exclusiveFacets.
+export const reindex = Symbol("reindex");
 
 export function valueof(data, value, type) {
   const valueType = typeof value;
@@ -17,7 +21,11 @@ export function valueof(data, value, type) {
     ? map(data, constant(value), type)
     : typeof value?.transform === "function"
     ? maybeTypedArrayify(value.transform(data), type)
-    : maybeTypedArrayify(value, type);
+    : maybeTake(maybeTypedArrayify(value, type), data?.[reindex]);
+}
+
+function maybeTake(values, index) {
+  return values != null && index ? take(values, index) : values;
 }
 
 function maybeTypedMap(data, f, type) {
@@ -39,7 +47,7 @@ function floater(f) {
 }
 
 export const singleton = [null]; // for data-less decoration marks, e.g. frame
-export const field = (name) => (d) => d[name];
+export const field = (name) => (d) => { const v = d[name]; return v === undefined && d.type === "Feature" ? d.properties?.[name] : v; }; // prettier-ignore
 export const indexOf = {transform: range};
 export const identity = {transform: (d) => d};
 export const zero = () => 0;
@@ -123,8 +131,24 @@ export function keyword(input, name, allowed) {
 }
 
 // Promotes the specified data to an array as needed.
-export function arrayify(data) {
-  return data == null || data instanceof Array || data instanceof TypedArray ? data : Array.from(data);
+export function arrayify(values) {
+  if (values == null || values instanceof Array || values instanceof TypedArray) return values;
+  switch (values.type) {
+    case "FeatureCollection":
+      return values.features;
+    case "GeometryCollection":
+      return values.geometries;
+    case "Feature":
+    case "LineString":
+    case "MultiLineString":
+    case "MultiPoint":
+    case "MultiPolygon":
+    case "Point":
+    case "Polygon":
+    case "Sphere":
+      return [values];
+  }
+  return Array.from(values);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
@@ -170,6 +194,7 @@ export function isScaleOptions(option) {
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a channel value
 // definition expressed as a channel transform (e.g., {transform: …}).
+// TODO Check typeof option[Symbol.iterator] !== "function"?
 export function isOptions(option) {
   return isObject(option) && typeof option.transform !== "function";
 }
@@ -223,7 +248,7 @@ export function where(data, test) {
 
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
-  return map(index, (i) => values[i]);
+  return map(index, (i) => values[i], values.constructor);
 }
 
 // If f does not take exactly one argument, wraps it in a function that uses take.
@@ -313,25 +338,28 @@ export function maybeIntervalTransform(interval, type) {
 // range} object similar to a D3 time interval.
 export function maybeInterval(interval, type) {
   if (interval == null) return;
-  if (typeof interval === "number") {
-    if (0 < interval && interval < 1 && Number.isInteger(1 / interval)) interval = -1 / interval;
-    const n = Math.abs(interval);
-    return interval < 0
-      ? {
-          floor: (d) => Math.floor(d * n) / n,
-          offset: (d) => (d * n + 1) / n, // note: no optional step for simplicity
-          range: (lo, hi) => rangei(Math.ceil(lo * n), hi * n).map((x) => x / n)
-        }
-      : {
-          floor: (d) => Math.floor(d / n) * n,
-          offset: (d) => d + n, // note: no optional step for simplicity
-          range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => x * n)
-        };
-  }
-  if (typeof interval === "string") return (type === "time" ? maybeTimeInterval : maybeUtcInterval)(interval);
+  if (typeof interval === "number") return numberInterval(interval);
+  if (typeof interval === "string") return (type === "time" ? timeInterval : utcInterval)(interval);
   if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
   if (typeof interval.offset !== "function") throw new Error("invalid interval; missing offset method");
   return interval;
+}
+
+export function numberInterval(interval) {
+  interval = +interval;
+  if (0 < interval && interval < 1 && Number.isInteger(1 / interval)) interval = -1 / interval;
+  const n = Math.abs(interval);
+  return interval < 0
+    ? {
+        floor: (d) => Math.floor(d * n) / n,
+        offset: (d, s = 1) => (d * n + Math.floor(s)) / n,
+        range: (lo, hi) => rangei(Math.ceil(lo * n), hi * n).map((x) => x / n)
+      }
+    : {
+        floor: (d) => Math.floor(d / n) * n,
+        offset: (d, s = 1) => d + n * Math.floor(s),
+        range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => x * n)
+      };
 }
 
 // Like maybeInterval, but requires a range method too.
@@ -346,6 +374,14 @@ export function maybeNiceInterval(interval, type) {
   interval = maybeRangeInterval(interval, type);
   if (interval && typeof interval.ceil !== "function") throw new Error("invalid interval: missing ceil method");
   return interval;
+}
+
+export function isTimeInterval(t) {
+  return isInterval(t) && typeof t?.floor === "function" && t.floor() instanceof Date;
+}
+
+export function isInterval(t) {
+  return typeof t?.range === "function";
 }
 
 // This distinguishes between per-dimension options and a standalone value.
@@ -452,17 +488,21 @@ export function isPaint(value) {
 // strictly requires that the value be a string; we might want to apply string
 // coercion here, though note that d3-color instances would need to support
 // valueOf to work correctly with InternMap.
+const namedColors = new Set("none,currentcolor,transparent,aliceblue,antiquewhite,aqua,aquamarine,azure,beige,bisque,black,blanchedalmond,blue,blueviolet,brown,burlywood,cadetblue,chartreuse,chocolate,coral,cornflowerblue,cornsilk,crimson,cyan,darkblue,darkcyan,darkgoldenrod,darkgray,darkgreen,darkgrey,darkkhaki,darkmagenta,darkolivegreen,darkorange,darkorchid,darkred,darksalmon,darkseagreen,darkslateblue,darkslategray,darkslategrey,darkturquoise,darkviolet,deeppink,deepskyblue,dimgray,dimgrey,dodgerblue,firebrick,floralwhite,forestgreen,fuchsia,gainsboro,ghostwhite,gold,goldenrod,gray,green,greenyellow,grey,honeydew,hotpink,indianred,indigo,ivory,khaki,lavender,lavenderblush,lawngreen,lemonchiffon,lightblue,lightcoral,lightcyan,lightgoldenrodyellow,lightgray,lightgreen,lightgrey,lightpink,lightsalmon,lightseagreen,lightskyblue,lightslategray,lightslategrey,lightsteelblue,lightyellow,lime,limegreen,linen,magenta,maroon,mediumaquamarine,mediumblue,mediumorchid,mediumpurple,mediumseagreen,mediumslateblue,mediumspringgreen,mediumturquoise,mediumvioletred,midnightblue,mintcream,mistyrose,moccasin,navajowhite,navy,oldlace,olive,olivedrab,orange,orangered,orchid,palegoldenrod,palegreen,paleturquoise,palevioletred,papayawhip,peachpuff,peru,pink,plum,powderblue,purple,rebeccapurple,red,rosybrown,royalblue,saddlebrown,salmon,sandybrown,seagreen,seashell,sienna,silver,skyblue,slateblue,slategray,slategrey,snow,springgreen,steelblue,tan,teal,thistle,tomato,turquoise,violet,wheat,white,whitesmoke,yellow".split(",")); // prettier-ignore
+
+// Returns true if value is a valid CSS color string. This is intentionally lax
+// because the CSS color spec keeps growing, and we don’t need to parse these
+// colors—we just need to disambiguate them from column names.
 // https://www.w3.org/TR/SVG11/painting.html#SpecifyingPaint
+// https://www.w3.org/TR/css-color-5/
 export function isColor(value) {
   if (isPaint(value)) return true;
   if (typeof value !== "string") return false;
   value = value.toLowerCase().trim();
   return (
-    value === "none" ||
-    value === "currentcolor" ||
-    (value.startsWith("url(") && value.endsWith(")")) || // <funciri>, e.g. pattern or gradient
-    (value.startsWith("var(") && value.endsWith(")")) || // CSS variable
-    color(value) !== null
+    /^#[0-9a-f]{3,8}$/.test(value) || // hex rgb, rgba, rrggbb, rrggbbaa
+    /^(?:url|var|rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color|color-mix)\(.*\)$/.test(value) || // <funciri>, CSS variable, color, etc.
+    namedColors.has(value) // currentColor, red, etc.
   );
 }
 
@@ -498,16 +538,6 @@ export function maybeAnchor(value, name) {
 
 export function maybeFrameAnchor(value = "middle") {
   return maybeAnchor(value, "frameAnchor");
-}
-
-// Like a sort comparator, returns a positive value if the given array of values
-// is in ascending order, a negative value if the values are in descending
-// order. Assumes monotonicity; only tests the first and last values.
-export function orderof(values) {
-  if (values == null) return;
-  const first = values[0];
-  const last = values[values.length - 1];
-  return descending(first, last);
 }
 
 // Unlike {...defaults, ...options}, this ensures that any undefined (but
@@ -546,4 +576,13 @@ export function named(things) {
 
 export function maybeNamed(things) {
   return isIterable(things) ? named(things) : things;
+}
+
+// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
+// https://github.com/observablehq/plot/issues/181
+export function maybeClip(clip) {
+  if (clip === true) clip = "frame";
+  else if (clip === false) clip = null;
+  else if (clip != null) clip = keyword(clip, "clip", ["frame", "sphere"]);
+  return clip;
 }

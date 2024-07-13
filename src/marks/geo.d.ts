@@ -11,6 +11,20 @@ export interface GeoOptions extends MarkOptions {
   geometry?: ChannelValue;
 
   /**
+   * In conjunction with the tip option, the horizontal position channel
+   * specifying the tip’s anchor, typically bound to the *x* scale. If not
+   * specified, defaults to the centroid of the projected geometry.
+   */
+  x?: ChannelValue;
+
+  /**
+   * In conjunction with the tip option, the vertical position channel
+   * specifying the tip’s anchor, typically bound to the *y* scale. If not
+   * specified, defaults to the centroid of the projected geometry.
+   */
+  y?: ChannelValue;
+
+  /**
    * The size of Point and MultiPoint geometries, defaulting to a constant 3
    * pixels. If **r** is a number, it is interpreted as a constant radius in
    * pixels; otherwise it is interpreted as a channel and the effective radius
@@ -53,7 +67,7 @@ export function sphere(options?: GeoOptions): Geo;
  * a spherical **projection** only.) For more control, use [d3.geoGraticule][1]
  * with the geo mark.
  *
- * [1]: https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule
+ * [1]: https://d3js.org/d3-geo/shape#geoGraticule
  */
 export function graticule(options?: GeoOptions): Geo;
 

@@ -5,13 +5,13 @@ import {registry} from "./scales/index.js";
 import {isSymbol, maybeSymbol} from "./symbol.js";
 import {maybeReduce} from "./transforms/group.js";
 
-export function createChannel(data, {scale, type, value, filter, hint}, name) {
+export function createChannel(data, {scale, type, value, filter, hint, label = labelof(value)}, name) {
   if (hint === undefined && typeof value?.transform === "function") hint = value.hint;
   return inferChannelScale(name, {
     scale,
     type,
     value: valueof(data, value),
-    label: labelof(value),
+    label,
     filter,
     hint
   });
@@ -48,11 +48,13 @@ export function inferChannelScale(name, channel) {
       case "stroke":
       case "color":
         channel.scale = scale !== true && isEvery(value, isColor) ? null : "color";
+        channel.defaultScale = "color";
         break;
       case "fillOpacity":
       case "strokeOpacity":
       case "opacity":
         channel.scale = scale !== true && isEvery(value, isOpacity) ? null : "opacity";
+        channel.defaultScale = "opacity";
         break;
       case "symbol":
         if (scale !== true && isEvery(value, isSymbol)) {
@@ -61,6 +63,7 @@ export function inferChannelScale(name, channel) {
         } else {
           channel.scale = "symbol";
         }
+        channel.defaultScale = "symbol";
         break;
       default:
         channel.scale = registry.has(name) ? name : null;

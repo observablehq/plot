@@ -69,6 +69,11 @@ class Element {
   dispatchEvent() {
     // ignored; interaction needs real DOM
   }
+  append(...children) {
+    for (const child of children) {
+      this.appendChild(child?.ownerDocument ? child : this.ownerDocument.createTextNode(child));
+    }
+  }
   appendChild(child) {
     this.children.push(child);
     child.parentNode = this;
@@ -212,7 +217,10 @@ export default {
     }
     if (typeof document !== "undefined") {
       const plot = Plot[method](options);
-      const replace = (el) => el.firstChild.replaceWith(plot);
+      const replace = (el) => {
+        while (el.lastChild) el.lastChild.remove();
+        el.append(plot);
+      };
       return withDirectives(h("span", [toHyperScript(plot)]), [[{mounted: replace, updated: replace}]]);
     }
     return h("span", [Plot[method]({...options, document: new Document()}).toHyperScript()]);

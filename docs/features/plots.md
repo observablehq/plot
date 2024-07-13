@@ -26,7 +26,7 @@ onMounted(() => {
 
 # Plots
 
-To render a **plot** in Observable Plot, call [plot](#plot-options) (typically as `Plot.plot`), passing in the desired *options*. This function returns an SVG or HTML figure element.
+To render a **plot** in Observable Plot, call [plot](#plot) (typically as `Plot.plot`), passing in the desired *options*. This function returns an SVG or HTML figure element.
 
 :::plot https://observablehq.com/@observablehq/plot-hello-world
 ```js
@@ -218,7 +218,7 @@ The default **width** is 640. On Observable, the width can be set to the [standa
 Plot does not adjust margins automatically to make room for long tick labels. If your *y* axis labels are too long, you can increase the **marginLeft** to make more room. Also consider using a different **tickFormat** for short labels (*e.g.*, `s` for SI prefix notation), or a scale **transform** (say to convert units to millions or billions).
 :::
 
-The **aspectRatio** option<a id="aspectratio" class="header-anchor" href="#aspectratio" aria-label="Permalink to &quot;aspectRatio&quot;"></a>, if not null, computes a default **height** such that a variation of one unit in the *x* dimension is represented by the corresponding number of pixels as a variation in the *y* dimension of one unit.
+The **aspectRatio** option<a id="aspectRatio" class="header-anchor" href="#aspectRatio" aria-label="Permalink to &quot;aspectRatio&quot;"></a> <VersionBadge version="0.6.4" />, if not null, computes a default **height** such that a variation of one unit in the *x* dimension is represented by the corresponding number of pixels as a variation in the *y* dimension of one unit.
 
 <p>
   <label class="label-input">
@@ -248,21 +248,25 @@ When using facets, set the *fx* and *fy* scales’ **round** option to false if 
 
 ## Other options
 
-If a **caption** is specified, Plot.plot wraps the generated SVG element in an HTML figure element with a figcaption, returning the figure. To specify an HTML caption, the caption can be specified as an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed.
+By default, [plot](#plot) returns an SVG element; however, if the plot includes a title, subtitle, [legend](./legends.md), or caption, plot wraps the SVG element with an HTML figure element. You can also force Plot to generate a figure element by setting the **figure** option <VersionBadge version="0.6.10" pr="1761" /> to true.
+
+The **title** & **subtitle** options <VersionBadge version="0.6.10" pr="1761" /> and the **caption** option accept either a string or an HTML element. If given an HTML element, say using the [`html` tagged template literal](http://github.com/observablehq/htl), the title and subtitle are used as-is while the caption is wrapped in a figcaption element; otherwise, the specified text will be escaped and wrapped in an h2, h3, or figcaption, respectively.
 
 :::plot https://observablehq.com/@observablehq/plot-caption
 ```js
 Plot.plot({
-  caption: "Figure 1. A chart with a caption.",
+  title: "For charts, an informative title",
+  subtitle: "Subtitle to follow with additional context",
+  caption: "Figure 1. A chart with a title, subtitle, and caption.",
   marks: [
     Plot.frame(),
-    Plot.text(["Hello, world!"], {frameAnchor: "middle"})
+    Plot.text(["Titles, subtitles, captions, and annotations assist inter­pretation by telling the reader what’s interesting. Don’t make the reader work to find what you already know."], {lineWidth: 30, frameAnchor: "middle"})
   ]
 })
 ```
 :::
 
-The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion as assigning [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)) or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion as assigning [*element*.style properties](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)). By default, the returned plot has a white background, a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color.
+The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string of inline styles (*e.g.*, `"color: red;"`, in the same fashion as assigning [*element*.style](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style)) or an object of properties (*e.g.*, `{color: "red"}`, in the same fashion as assigning [*element*.style properties](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration)). By default, the returned plot has a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color.
 
 :::warning CAUTION
 Unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecated-quirky-length)) such as `{padding: 20}` are not supported by some browsers; you should instead specify a string with units such as `{padding: "20px"}`.
@@ -270,9 +274,11 @@ Unitless numbers ([quirky lengths](https://www.w3.org/TR/css-values-4/#deprecate
 
 The generated SVG element has a class name which applies a default stylesheet. Use the top-level **className** option to specify that class name.
 
+The **clip** option <VersionBadge version="0.6.10" pr="1792" /> determines the default clipping behavior if the [mark **clip** option](./marks.md#mark-options) is not specified; set it to true to enable clipping. This option does not affect [axis](../marks/axis.md), [grid](../marks/grid.md), and [frame](../marks/frame.md) marks, whose **clip** option defaults to false.
+
 The **document** option specifies the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create plot elements. It defaults to window.document, but can be changed to another document, say when using a virtual DOM implementation for server-side rendering in Node.
 
-## plot(*options*)
+## plot(*options*) {#plot}
 
 ```js
 Plot.plot({
@@ -285,15 +291,15 @@ Plot.plot({
 
 Renders a new plot with the specified *options*, returning a SVG or HTML figure element. This element can then be inserted into the page as described in the [getting started guide](../getting-started.md).
 
-## *mark*.plot(*options*)
+## *mark*.plot(*options*) {#mark_plot}
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot({height: 200})
 ```
 
-Given a [*mark*](./marks.md), this is a convenience shorthand for calling [plot](#plot-options) where the **marks** option includes this *mark*. Any additional **marks** in *options* are drawn on top of this *mark*.
+Given a [*mark*](./marks.md), this is a convenience shorthand for calling [plot](#plot) where the **marks** option includes this *mark*. Any additional **marks** in *options* are drawn on top of this *mark*.
 
-## *plot*.scale(*name*)
+## *plot*.scale(*name*) {#plot_scale}
 
 ```js
 const plot = Plot.plot(options); // render a plot
@@ -301,13 +307,13 @@ const color = plot.scale("color"); // get the color scale
 console.log(color.range); // inspect the scale’s range
 ```
 
-Returns the [scale object](./scales.md#scale-options) for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot-options). If the associated *plot* has no scale with the given *name*, returns undefined.
+Returns the [scale object](./scales.md#scale-options) for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot). If the associated *plot* has no scale with the given *name*, returns undefined.
 
-## *plot*.legend(*name*, *options*)
+## *plot*.legend(*name*, *options*) {#plot_legend}
 
 ```js
 const plot = Plot.plot(options); // render a plot
 const legend = plot.legend("color"); // render a color legend
 ```
 
-Renders a standalone legend for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot-options), returning a SVG or HTML figure element. This element can then be inserted into the page as described in the [getting started guide](../getting-started.md). If the associated *plot* has no scale with the given *name*, returns undefined. Legends are currently only supported for *color*, *opacity*, and *symbol* scales.
+Renders a standalone legend for the scale with the specified *name* (such as *x* or *color*) on the given *plot*, where *plot* is a rendered plot element returned by [plot](#plot), returning a SVG or HTML figure element. This element can then be inserted into the page as described in the [getting started guide](../getting-started.md). If the associated *plot* has no scale with the given *name*, returns undefined. Legends are currently only supported for *color*, *opacity*, and *symbol* scales.

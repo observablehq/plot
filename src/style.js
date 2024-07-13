@@ -2,15 +2,15 @@ import {geoPath, group, namespaces} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
-import {isNone, isNoneish, isPaint, isRound} from "./options.js";
-import {keyof, maybeColorChannel, maybeKeyword, maybeNumberChannel, number, string} from "./options.js";
+import {isNone, isNoneish, isPaint, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
+import {keyof, number, string} from "./options.js";
 import {warn} from "./warnings.js";
 
 export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
 
 let nextClipId = 0;
 
-function getClipId() {
+export function getClipId() {
   return `plot-clip-${++nextClipId}`;
 }
 
@@ -297,18 +297,11 @@ export function* groupIndex(I, position, mark, channels) {
   }
 }
 
-// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
-// https://github.com/observablehq/plot/issues/181
-export function maybeClip(clip) {
-  if (clip === true) clip = "frame";
-  else if (clip === false) clip = null;
-  return maybeKeyword(clip, "clip", ["frame", "sphere"]);
-}
-
 // Note: may mutate selection.node!
 function applyClip(selection, mark, dimensions, context) {
   let clipUrl;
-  switch (mark.clip) {
+  const {clip = context.clip} = mark;
+  switch (clip) {
     case "frame": {
       const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
       const id = getClipId();
@@ -355,14 +348,8 @@ function applyClip(selection, mark, dimensions, context) {
 // Note: may mutate selection.node!
 export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyClip(selection, mark, dimensions, context);
-  if (isPaint(mark.fill)) {
-    const paint = mark.fill.paint(context);
-    paint.setAttribute("id", "test-paint");
-    context.ownerSVGElement.append(paint);
-    selection.attr("fill", "url(#test-paint)");
-  } else {
-    applyAttr(selection, "fill", mark.fill);
-  }
+  applyAttr(selection, "class", mark.className);
+  applyAttr(selection, "fill", isPaint(mark.fill) ? mark.fill.paint(context) : mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);
   applyAttr(selection, "stroke-width", mark.strokeWidth);

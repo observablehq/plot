@@ -22,7 +22,7 @@ onMounted(() => {
 The rule mark is one of two marks in Plot for drawing horizontal or vertical lines; it should be used when the secondary position dimension, if any, is quantitative. When it is ordinal, use a [tick](./tick.md).
 :::
 
-The **rule mark** comes in two orientations: [ruleY](#ruley-data-options) draws a horizontal↔︎ line with a given *y* value, while [ruleX](#rulex-data-options) draws a vertical↕︎ line with a given *x* value. Rules are often used as annotations, say to mark the *y* = 0 baseline (in red below for emphasis) in a line chart.
+The **rule mark** comes in two orientations: [ruleY](#ruleY) draws a horizontal↔︎ line with a given *y* value, while [ruleX](#ruleX) draws a vertical↕︎ line with a given *x* value. Rules are often used as annotations, say to mark the *y* = 0 baseline (in red below for emphasis) in a line chart.
 
 :::plot https://observablehq.com/@observablehq/plot-rule-zero
 ```js
@@ -89,7 +89,7 @@ Plot.plot({
 ```
 :::
 
-In the dense [candlestick chart](https://observablehq.com/@observablehq/observable-plot-candlestick) below, three rules are drawn for each trading day: a gray rule spans the chart, showing gaps for weekends and holidays; a black rule spans the day’s low and high; and a green or red rule spans the day’s open and close.
+In the dense [candlestick chart](https://observablehq.com/@observablehq/observable-plot-candlestick) below, three rules are drawn for each trading day: a gray rule spans the chart, showing gaps for weekends and holidays; a <span style="border-bottom: solid 2px currentColor;">{{$dark ? "white" : "black"}}</span> rule spans the day’s low and high; and a <span style="border-bottom: solid 2px var(--vp-c-green);">green</span> or <span style="border-bottom: solid 2px var(--vp-c-red);">red</span> rule spans the day’s open and close.
 
 :::plot defer https://observablehq.com/@observablehq/plot-candlestick-chart
 ```js
@@ -97,7 +97,7 @@ Plot.plot({
   inset: 6,
   label: null,
   y: {grid: true, label: "Stock price ($)"},
-  color: {type: "threshold", range: ["#e41a1c", "#4daf4a"]},
+  color: {type: "threshold", range: ["red", "green"]},
   marks: [
     Plot.ruleX(aapl, {x: "Date", y1: "Low", y2: "High"}),
     Plot.ruleX(aapl, {x: "Date", y1: "Open", y2: "Close", stroke: (d) => d.Close - d.Open, strokeWidth: 4})
@@ -120,7 +120,23 @@ Plot.plot({
 ```
 :::
 
-Rules can also be a stylistic choice, as in the lollipop 🍭 chart below, serving the role of a skinny [bar](./bar.md) topped with a [dot](./dot.md).
+Rules can indicate uncertainty or error by setting the [**marker** option](../features/markers.md) to *tick*; this draws a small perpendicular line at the start and end of the rule. For example, to simulate ±10% error:
+
+:::plot
+```js
+Plot.plot({
+  x: {label: null},
+  y: {percent: true},
+  marks: [
+    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "blue"}),
+    Plot.ruleX(alphabet, {x: "letter", y1: (d) => d.frequency * 0.9, y2: (d) => d.frequency * 1.1, marker: "tick"}),
+    Plot.ruleY([0])
+  ]
+})
+```
+:::
+
+Rules can also be a stylistic choice, as in the lollipop 🍭 chart below, serving the role of a skinny [bar](./bar.md) topped with a [*dot* marker](../features/markers.md).
 
 :::plot https://observablehq.com/@observablehq/plot-lollipop
 ```js
@@ -128,8 +144,7 @@ Plot.plot({
   x: {label: null, tickPadding: 6, tickSize: 0},
   y: {percent: true},
   marks: [
-    Plot.ruleX(alphabet, {x: "letter", y: "frequency", strokeWidth: 2}),
-    Plot.dot(alphabet, {x: "letter", y: "frequency", fill: "currentColor", r: 4})
+    Plot.ruleX(alphabet, {x: "letter", y: "frequency", strokeWidth: 2, markerEnd: "dot"})
   ]
 })
 ```
@@ -139,9 +154,9 @@ Rules are also used by the [grid mark](./grid.md) to draw grid lines.
 
 ## Rule options
 
-For the required channels, see [ruleX](#rulex-data-options) and [ruleY](#ruley-data-options). The rule mark supports the [standard mark options](../features/marks.md#mark-options), including insets along its secondary dimension, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) to the start or end of the rule. The **stroke** defaults to *currentColor*.
+For the required channels, see [ruleX](#ruleX) and [ruleY](#ruleY). The rule mark supports the [standard mark options](../features/marks.md#mark-options), including insets along its secondary dimension, and [marker options](../features/markers.md) to add a marker (such as a dot or an arrowhead) to the start or end of the rule. The **stroke** defaults to *currentColor*.
 
-## ruleX(*data*, *options*)
+## ruleX(*data*, *options*) {#ruleX}
 
 ```js
 Plot.ruleX([0]) // as annotation
@@ -162,7 +177,7 @@ If **y** is specified, it is shorthand for **y2** with **y1** equal to zero; thi
 
 If an **interval** is specified, such as d3.utcDay, **y1** and **y2** can be derived from **y**: *interval*.floor(*y*) is invoked for each *y* to produce *y1*, and *interval*.offset(*y1*) is invoked for each *y1* to produce *y2*. If the interval is specified as a number *n*, *y1* and *y2* are taken as the two consecutive multiples of *n* that bracket *y*. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
-## ruleY(*data*, *options*)
+## ruleY(*data*, *options*) {#ruleY}
 
 ```js
 Plot.ruleY([0]) // as annotation

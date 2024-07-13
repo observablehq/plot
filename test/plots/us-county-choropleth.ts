@@ -23,7 +23,7 @@ export async function usCountyChoropleth() {
       label: "Unemployment (%)"
     },
     marks: [
-      Plot.geo(counties, {fill: (d) => unemployment.get(d.id), title: (d) => d.properties.name}),
+      Plot.geo(counties, {fill: (d) => unemployment.get(d.id), title: "name"}),
       Plot.geo(statemesh, {stroke: "white"})
     ]
   });

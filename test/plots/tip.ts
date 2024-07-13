@@ -2,6 +2,11 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
+export async function tipAreaBand() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.areaY(aapl, {x: "Date", y1: "Low", y2: "High", tip: true, curve: "step", stroke: "currentColor"}).plot();
+}
+
 export async function tipAreaStack() {
   const industries = await d3.csv<any>("data/bls-industry-unemployment.csv", d3.autoType);
   return Plot.areaY(industries, {x: "date", y: "unemployed", fill: "industry", tip: true}).plot({marginLeft: 50});
@@ -22,7 +27,7 @@ export async function tipBin() {
 
 export async function tipBinStack() {
   const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
-  return Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", tip: true})).plot();
+  return Plot.rectY(olympians, Plot.binX({y: "count", sort: "z"}, {x: "weight", fill: "sex", tip: true})).plot();
 }
 
 export async function tipCell() {
@@ -100,6 +105,24 @@ export async function tipDotFilter() {
   });
 }
 
+export async function tipGeoNoProjection() {
+  const counties = await d3.json<any>("data/us-counties-10m.json").then((us) => feature(us, us.objects.counties));
+  counties.features = counties.features.filter((d) => {
+    const [x, y] = d3.geoCentroid(d);
+    return x > -126 && x < -68 && y > 25 && y < 49;
+  });
+  return Plot.geo(counties, Plot.centroid({title: (d) => d.properties.name, tip: true})).plot();
+}
+
+export async function tipGeoProjection() {
+  const counties = await d3.json<any>("data/us-counties-10m.json").then((us) => feature(us, us.objects.counties));
+  counties.features = counties.features.filter((d) => {
+    const [x, y] = d3.geoCentroid(d);
+    return x > -126 && x < -68 && y > 25 && y < 49;
+  });
+  return Plot.geo(counties, Plot.centroid({title: (d) => d.properties.name, tip: true})).plot({projection: "albers"});
+}
+
 export async function tipGeoCentroid() {
   const [[counties, countymesh]] = await Promise.all([
     d3
@@ -148,9 +171,18 @@ export async function tipHexbinExplicit() {
   });
 }
 
-export async function tipLine() {
+export async function tipLineX() {
+  const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
+  return Plot.lineX(aapl, {y: "Date", x: "Close", tip: true}).plot();
+}
+
+export async function tipLineY() {
   const aapl = await d3.csv<any>("data/aapl.csv", d3.autoType);
   return Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot();
+}
+
+export async function tipLongText() {
+  return Plot.tip([{x: "Long sentence that gets cropped after a certain length"}], {x: "x"}).plot();
 }
 
 export async function tipNewLines() {
@@ -212,5 +244,39 @@ export async function tipTransform() {
     width: 245,
     color: {percent: true, legend: true},
     marks: [Plot.dotX([0, 0.1, 0.3, 1], {fill: Plot.identity, r: 10, frameAnchor: "middle", tip: true})]
+  });
+}
+
+export async function tipFacetX() {
+  const data = d3.range(100).map((i) => ({f: i > 60 || i % 2 ? "b" : "a", x: i, y: i / 10}));
+  return Plot.plot({
+    inset: 10,
+    y: {domain: [0, 7]},
+    marks: [
+      Plot.frame(),
+      Plot.dot(data, {fy: "f", x: "x", y: "y", tip: "x", fill: "f"}),
+      Plot.dot(
+        [
+          {f: "a", y: 3},
+          {f: "b", y: 1}
+        ],
+        {fy: "f", x: 90, y: "y", r: 30, fill: "f", fillOpacity: 0.1, stroke: "currentColor", strokeDasharray: 4}
+      )
+    ]
+  });
+}
+
+export async function tipColorLiteral() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    grid: true,
+    marks: [
+      Plot.dot(penguins, {
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm",
+        fill: (d) => (d.species === "Adelie" ? "orange" : "steelblue"),
+        tip: true
+      })
+    ]
   });
 }

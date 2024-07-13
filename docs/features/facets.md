@@ -13,6 +13,8 @@ const olympians = shallowRef([
   {weight: 170, height: 2.21, sex: "male"}
 ]);
 
+const scheme = Plot.scale({color: {type: "categorical"}}).range;
+
 onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
 });
@@ -23,7 +25,7 @@ onMounted(() => {
 
 Faceting partitions data by ordinal or categorical value and then repeats a plot for each partition (each **facet**), producing [small multiples](https://en.wikipedia.org/wiki/Small_multiple) for comparison. Faceting is typically enabled by declaring the horizontal↔︎ facet channel **fx**, the vertical↕︎ facet channel **fy**, or both for two-dimensional faceting.
 
-For example, below we recreate the Trellis display (“reminiscent of garden trelliswork”) of [Becker *et al.*](https://hci.stanford.edu/courses/cs448b/papers/becker-trellis-jcgs.pdf) using the dot’s **fy** channel to declare vertical↕︎ facets, showing the yields of several varieties of barley across several sites for the years <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">1931</span> and <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">1932</span>.
+For example, below we recreate the Trellis display (“reminiscent of garden trelliswork”) of [Becker *et al.*](https://hci.stanford.edu/courses/cs448b/papers/becker-trellis-jcgs.pdf) using the dot’s **fy** channel to declare vertical↕︎ facets, showing the yields of several varieties of barley across several sites for the years <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">1931</span> and <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">1932</span>.
 
 :::plot https://observablehq.com/@observablehq/plot-trellis
 ```js
@@ -57,7 +59,7 @@ This plot uses the [**sort** mark option](./scales.md#sort-mark-option) to order
 Use the [frame mark](../marks/frame.md) for stronger visual separation of facets.
 :::
 
-The chart above reveals a likely data collection error: the years appear to be reversed for the Morris site as it is the only site where the yields in <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[1]}`}">1932</span> were higher than in <span :style="{borderBottom: `solid 2px ${d3.schemeTableau10[0]}`}">1931</span>. The anomaly in Morris is more obvious if we use directed arrows to show the year-over-year change. The [group transform](../transforms/group.md) groups the observations by site and variety to compute the change.
+The chart above reveals a likely data collection error: the years appear to be reversed for the Morris site as it is the only site where the yields in <span :style="{borderBottom: `solid 2px ${scheme[1]}`}">1932</span> were higher than in <span :style="{borderBottom: `solid 2px ${scheme[0]}`}">1931</span>. The anomaly in Morris is more obvious if we use directed arrows to show the year-over-year change. The [group transform](../transforms/group.md) groups the observations by site and variety to compute the change.
 
 :::plot defer https://observablehq.com/@observablehq/plot-trellis-anomaly
 ```js
@@ -232,7 +234,7 @@ Plot.plot({
 
 ## Mark facet options
 
-Facets can be defined for each mark via the **fx** or **fy** channels. The **fx** and **fy** channels are computed prior to the [mark’s transform](./transforms.md), if any (*i.e.*, facet channels are not transformed). Alternatively, the [**facet** plot option](#plot-facet-options) allows top-level faceting based on data.
+Facets can be defined for each mark via the **fx** or **fy** channels. <VersionBadge version="0.6.1" /> The **fx** and **fy** channels are computed prior to the [mark’s transform](./transforms.md), if any (*i.e.*, facet channels are not transformed). Alternatively, the [**facet** plot option](#plot-facet-options) allows top-level faceting based on data.
 
 Faceting can be explicitly enabled or disabled on a mark with the **facet** option, which accepts the following values:
 
@@ -244,8 +246,7 @@ Faceting can be explicitly enabled or disabled on a mark with the **facet** opti
 
 When mark-level faceting is used, the default *auto* setting is equivalent to *include*: the mark will be faceted if either the **fx** or **fy** channel option (or both) is specified. The null or false option will disable faceting, while *exclude* draws the subset of the mark’s data *not* in the current facet. When a mark uses *super* faceting, it is not allowed to use position scales (*x*, *y*, *fx*, or *fy*); *super* faceting is intended for decorations, such as labels and legends.
 
-
-The **facetAnchor** option controls the placement of the mark with respect to the facets. Based on the value, the mark will be displayed on:
+The **facetAnchor** option<a id="facetAnchor" class="header-anchor" href="#facetAnchor" aria-label="Permalink to &quot;facetAnchor&quot;"></a> <VersionBadge version="0.6.3" /> controls the placement of the mark with respect to the facets. Based on the value, the mark will be displayed on:
 
 * null - non-empty facets
 * *top*, *right*, *bottom*, or *left* - the given side

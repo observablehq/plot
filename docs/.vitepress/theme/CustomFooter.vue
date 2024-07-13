@@ -14,9 +14,8 @@
           <div class="mb2 fw6 f14">Resources</div>
           <ul>
             <li class="mb2"><a target="_blank" href="https://talk.observablehq.com">Forum</a></li>
-            <li class="mb2"><a target="_blank" href="https://join.slack.com/t/observable-community/shared_invite/zt-1x7gs4fck-UHhEFxUXKHVE8Qt3XmJCig">Slack</a></li>
+            <li class="mb2"><a target="_blank" href="https://observablehq.com/slack/join">Slack</a></li>
             <li class="mb2"><a target="_blank" href="https://github.com/observablehq/plot/releases">Releases</a></li>
-            <li class="mb2"><a target="_blank" href="https://observablehq.com/@observablehq/plot-twist-newsletter-signup">Newsletter</a></li>
           </ul>
         </div>
         <div class="fb6 flex-grow-1">
@@ -39,10 +38,6 @@
 </template>
 
 <style>
-
-footer a:hover {
-  text-decoration: underline;
-}
 
 .has-sidebar ~ footer {
   display: none;

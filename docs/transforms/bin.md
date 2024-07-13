@@ -87,9 +87,9 @@ While the **mixBlendMode** option is useful for mitigating occlusion, it can be 
 
 The bin transform comes in three orientations:
 
-- [binX](#binx-outputs-options) bins on **x**, and often outputs **y** as in a histogram with vertical↑ rects;
-- [binY](#biny-outputs-options) bins on **y**, and often outputs **x** as in a histogram with horizontal→ rects; and
-- [bin](#bin-outputs-options) bins on both **x** and **y**, and often outputs to **fill** or **r** as in a heatmap.
+- [binX](#binX) bins on **x**, and often outputs **y** as in a histogram with vertical↑ rects;
+- [binY](#binY) bins on **y**, and often outputs **x** as in a histogram with horizontal→ rects; and
+- [bin](#bin) bins on both **x** and **y**, and often outputs to **fill** or **r** as in a heatmap.
 
 As you might guess, the binY transform with the rectX mark produces a histogram with horizontal→ rects.
 
@@ -274,13 +274,14 @@ The following named reducers are supported:
 * *y* - the middle of the bin’s *y* extent (when binning on *y*)
 * *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
 * *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
+* *z* <VersionBadge version="0.6.14" pr="1959" /> - the bin’s *z* value (*z*, *fill*, or *stroke*)
 
 In addition, a reducer may be specified as:
 
 * a function to be passed the array of values for each bin and the extent of the bin
 * an object with a **reduceIndex** method, and optionally a **scope**
 
-In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each bin (an array of integers), the input channel’s array of values, and the extent of the bin (an object {x1, x2, y1, y2}); it must then return the corresponding aggregate value for the bin.
+In the last case, the **reduceIndex** method is repeatedly passed three arguments: the index for each bin (an array of integers), the input channel’s array of values, and the extent of the bin (an object {data, x1, x2, y1, y2}); it must then return the corresponding aggregate value for the bin.
 
 If the reducer object’s **scope** is *data*, then the **reduceIndex** method is first invoked for the full data; the return value of the **reduceIndex** method is then made available as a third argument (making the extent the fourth argument). Similarly if the **scope** is *facet*, then the **reduceIndex** method is invoked for each facet, and the resulting reduce value is made available while reducing the facet’s bins. (This optional **scope** is used by the *proportion* and *proportion-facet* reducers.)
 
@@ -346,7 +347,7 @@ Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species"})
 
 Lastly, the bin transform changes the default [mark insets](../features/marks.md#mark-options): binX changes the defaults for **insetLeft** and **insetRight**; binY changes the defaults for **insetTop** and **insetBottom**; bin changes all four.
 
-## bin(*outputs*, *options*)
+## bin(*outputs*, *options*) {#bin}
 
 ```js
 Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
@@ -354,7 +355,7 @@ Plot.rect(olympians, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
 
 Bins on **x** and **y**. Also groups on the first channel of **z**, **fill**, or **stroke**, if any.
 
-## binX(*outputs*, *options*)
+## binX(*outputs*, *options*) {#binX}
 
 ```js
 Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))
@@ -362,7 +363,7 @@ Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight"}))
 
 Bins on **x**. Also groups on **y** and the first channel of **z**, **fill**, or **stroke**, if any.
 
-## binY(*outputs*, *options*)
+## binY(*outputs*, *options*) {#binY}
 
 ```js
 Plot.rectX(olympians, Plot.binY({x: "count"}, {y: "weight"}))

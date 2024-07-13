@@ -28,6 +28,7 @@ type ColorSchemeCase =
   | "Accent"
   | "Category10"
   | "Dark2"
+  | "Observable10"
   | "Paired"
   | "Pastel1"
   | "Pastel2"
@@ -82,13 +83,14 @@ type ColorSchemeCase =
  * - *Accent* - eight colors
  * - *Category10* - ten colors
  * - *Dark2* - eight colors
+ * - *Observable10* (default) - ten colors
  * - *Paired* - twelve paired colors
  * - *Pastel1* - nine colors
  * - *Pastel2* - eight colors
  * - *Set1* - nine colors
  * - *Set2* - eight colors
  * - *Set3* - twelve colors
- * - *Tableau10* (default) - ten colors
+ * - *Tableau10* - ten colors
  *
  * For diverging data, one of:
  *
@@ -161,9 +163,9 @@ export type ScaleName = "x" | "y" | "fx" | "fy" | "r" | "color" | "opacity" | "s
 
 /**
  * The instantiated scales’ apply functions; passed to marks and initializers
- * for rendering.
+ * for rendering. The scales property exposes all the scale definitions.
  */
-export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any};
+export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any} & {scales: {[key in ScaleName]?: Scale}};
 
 /**
  * The supported scale types. For quantitative data, one of:
@@ -187,7 +189,7 @@ export type ScaleFunctions = {[key in ScaleName]?: (value: any) => any};
  *
  * For color, one of:
  *
- * - *categorical* - equivalent to *ordinal*; defaults to *tableau10*
+ * - *categorical* - equivalent to *ordinal*; defaults to *observable10*
  * - *sequential* - equivalent to *linear*; defaults to *turbo*
  * - *cyclical* - equivalent to *linear*; defaults to *rainbow*
  * - *threshold* - encodes using discrete thresholds; defaults to *rdylbu*
@@ -579,11 +581,14 @@ export interface ScaleOptions extends ScaleDefaults {
   /**
    * How to format inputs (abstract values) for axis tick labels; one of:
    *
-   * - a [d3-format](https://github.com/d3/d3-format) string for numeric scales
-   * - a [d3-time-format](https://github.com/d3/d3-time-format) string for temporal scales
+   * - a [d3-format][1] string for numeric scales
+   * - a [d3-time-format][2] string for temporal scales
    * - a function passed a tick *value* and *index*, returning a string
+   *
+   * [1]: https://d3js.org/d3-time
+   * [2]: https://d3js.org/d3-time-format
    */
-  tickFormat?: string | ((t: any, i: number) => any) | null;
+  tickFormat?: string | ((d: any, i: number) => any) | null;
 
   /**
    * The rotation angle of axis tick labels in degrees clocksize; defaults to 0.

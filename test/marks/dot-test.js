@@ -111,3 +111,71 @@ it("dot(data, {stroke}) defaults strokeWidth to 1.5 if stroke is defined", () =>
   assert.strictEqual(Plot.dot(undefined, {stroke: "x"}).strokeWidth, 1.5);
   assert.strictEqual(Plot.dot(undefined, {stroke: null}).strokeWidth, undefined);
 });
+
+it("dot(data, {fill, symbol}) initializes the symbol hint for a constant fill", () => {
+  assert.deepStrictEqual(
+    Plot.dot([], {
+      fill: "currentColor",
+      symbol: Plot.indexOf
+    }).initialize().channels.symbol.hint,
+    {fill: "currentColor", stroke: "none"}
+  );
+  assert.deepStrictEqual(
+    Plot.dot([], {
+      fill: "red",
+      symbol: Plot.indexOf
+    }).initialize().channels.symbol.hint,
+    {fill: "red", stroke: "none"}
+  );
+});
+
+it("dot(data, {fill, symbol}) initializes the symbol hint for a channel fill", () => {
+  assert.deepStrictEqual(
+    Plot.dot([], {
+      fill: Plot.indexOf,
+      symbol: Plot.indexOf
+    }).initialize().channels.symbol.hint,
+    {fill: "color", stroke: "none"}
+  );
+  assert.deepStrictEqual(
+    Plot.dot([], {
+      fill: Plot.identity,
+      symbol: Plot.indexOf
+    }).initialize().channels.symbol.hint,
+    {fill: "currentColor", stroke: "none"}
+  );
+});
+
+it("dot(data, {stroke, symbol}) initializes the symbol hint for a constant stroke", () => {
+  assert.deepStrictEqual(
+    Plot.dot([], {
+      stroke: "currentColor",
+      symbol: Plot.indexOf
+    }).initialize().channels.symbol.hint,
+    {fill: "none", stroke: "currentColor"}
+  );
+  assert.deepStrictEqual(
+    Plot.dot([], {
+      stroke: "red",
+      symbol: Plot.indexOf
+    }).initialize().channels.symbol.hint,
+    {fill: "none", stroke: "red"}
+  );
+});
+
+it("dot(data, {stroke, symbol}) initializes the symbol hint for a channel stroke", () => {
+  assert.deepStrictEqual(
+    Plot.dot([], {
+      stroke: Plot.indexOf,
+      symbol: Plot.indexOf
+    }).initialize().channels.symbol.hint,
+    {fill: "none", stroke: "color"}
+  );
+  assert.deepStrictEqual(
+    Plot.dot([], {
+      stroke: Plot.identity,
+      symbol: Plot.indexOf
+    }).initialize().channels.symbol.hint,
+    {fill: "none", stroke: "currentColor"}
+  );
+});

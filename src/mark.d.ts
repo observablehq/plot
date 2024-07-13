@@ -1,6 +1,7 @@
 import type {Channel, ChannelDomainSort, ChannelValue, ChannelValues, ChannelValueSpec} from "./channel.js";
 import type {Context} from "./context.js";
 import type {Dimensions} from "./dimensions.js";
+import type {TipOptions} from "./marks/tip.js";
 import type {Paint} from "./paint.js";
 import type {plot} from "./plot.js";
 import type {ScaleFunctions} from "./scales.js";
@@ -23,6 +24,9 @@ export type FrameAnchor =
   | "bottom"
   | "bottom-left"
   | "left";
+
+/** The pointer mode for the tip; corresponds to pointerX, pointerY, and pointer. */
+export type TipPointer = "x" | "y" | "xy";
 
 /**
  * A mark’s data; one of:
@@ -237,6 +241,13 @@ export interface MarkOptions {
   marginLeft?: number;
 
   /**
+   * The [class attribute][1]; a constant string.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+   */
+  className?: string;
+
+  /**
    * The [aria-description][1]; a constant textual description.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-description
@@ -276,8 +287,8 @@ export interface MarkOptions {
    */
   title?: ChannelValue;
 
-  /** Whether to generate a tooltip for this mark. */
-  tip?: boolean | "x" | "y" | "xy";
+  /** Whether to generate a tooltip for this mark, and any tip options. */
+  tip?: boolean | TipPointer | (TipOptions & {pointer?: TipPointer});
 
   /**
    * How to clip the mark; one of:
@@ -478,5 +489,5 @@ export class RenderableMark extends Mark {
 /** A compound Mark, comprising other marks. */
 export type CompoundMark = Markish[] & Pick<Mark, "plot">;
 
-/** Given an array of marks, returns a compound mark; supports *mark.plot shorthand. */
+/** Given an array of marks, returns a compound mark; supports *mark*.plot shorthand. */
 export function marks(...marks: Markish[]): CompoundMark;
