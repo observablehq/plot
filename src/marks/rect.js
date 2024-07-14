@@ -23,18 +23,7 @@ export class Rect extends Mark {
       insetTop = inset,
       insetRight = inset,
       insetBottom = inset,
-      insetLeft = inset,
-      r,
-      rx, // for elliptic corners
-      ry, // for elliptic corners
-      rx1 = r,
-      ry1 = r,
-      rx2 = r,
-      ry2 = r,
-      rx1y1 = rx1 !== undefined ? +rx1 : ry1 !== undefined ? +ry1 : 0,
-      rx1y2 = rx1 !== undefined ? +rx1 : ry2 !== undefined ? +ry2 : 0,
-      rx2y1 = rx2 !== undefined ? +rx2 : ry1 !== undefined ? +ry1 : 0,
-      rx2y2 = rx2 !== undefined ? +rx2 : ry2 !== undefined ? +ry2 : 0
+      insetLeft = inset
     } = options;
     super(
       data,
@@ -51,15 +40,7 @@ export class Rect extends Mark {
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
-    if (rx1y1 || rx1y2 || rx2y1 || rx2y2) {
-      this.rx1y1 = Math.max(0, rx1y1);
-      this.rx1y2 = Math.max(0, rx1y2);
-      this.rx2y1 = Math.max(0, rx2y1);
-      this.rx2y2 = Math.max(0, rx2y2);
-    } else {
-      this.rx = impliedString(rx, "auto"); // number or percentage
-      this.ry = impliedString(ry, "auto");
-    }
+    corners(this, options);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
@@ -86,13 +67,14 @@ export class Rect extends Mark {
                   g
                     .append("path")
                     .call(applyDirectStyles, this)
-                    .call(
-                      applyRoundedRect,
-                      this,
-                      X1 ? (i) => X1[i] : () => marginLeft,
-                      Y1 ? (i) => Y1[i] : () => marginTop,
-                      X1 ? (X2 ? (i) => X2[i] : (i) => X1[i] + bx) : () => width - marginRight,
-                      Y1 ? (Y2 ? (i) => Y2[i] : (i) => Y1[i] + by) : () => height - marginBottom
+                    .attr("d", (i) =>
+                      pathRoundedRect(
+                        X1 ? X1[i] : marginLeft,
+                        Y1 ? Y1[i] : marginTop,
+                        X1 ? (X2 ? X2[i] : X1[i] + bx) : width - marginRight,
+                        Y1 ? (Y2 ? Y2[i] : Y1[i] + by) : height - marginBottom,
+                        this
+                      )
                     )
                     .call(applyChannelStyles, this, channels)
               : (g) =>
@@ -140,37 +122,58 @@ export class Rect extends Mark {
   }
 }
 
+export function corners(
+  mark,
+  {
+    r,
+    rx, // for elliptic corners
+    ry, // for elliptic corners
+    rx1 = r,
+    ry1 = r,
+    rx2 = r,
+    ry2 = r,
+    rx1y1 = rx1 !== undefined ? +rx1 : ry1 !== undefined ? +ry1 : 0,
+    rx1y2 = rx1 !== undefined ? +rx1 : ry2 !== undefined ? +ry2 : 0,
+    rx2y1 = rx2 !== undefined ? +rx2 : ry1 !== undefined ? +ry1 : 0,
+    rx2y2 = rx2 !== undefined ? +rx2 : ry2 !== undefined ? +ry2 : 0
+  } = {}
+) {
+  if (rx1y1 || rx1y2 || rx2y1 || rx2y2) {
+    mark.rx1y1 = Math.max(0, rx1y1);
+    mark.rx1y2 = Math.max(0, rx1y2);
+    mark.rx2y1 = Math.max(0, rx2y1);
+    mark.rx2y2 = Math.max(0, rx2y2);
+  } else {
+    mark.rx = impliedString(rx, "auto"); // number or percentage
+    mark.ry = impliedString(ry, "auto");
+  }
+}
+
 export function applyRoundedRect(selection, mark, X1, Y1, X2, Y2) {
+  selection.attr("d", (i) => pathRoundedRect(X1(i), Y1(i), X2(i), Y2(i), mark));
+}
+
+export function pathRoundedRect(x1, y1, x2, y2, mark) {
   const {insetTop, insetRight, insetBottom, insetLeft} = mark;
-  const {rx1y1, rx1y2, rx2y1, rx2y2} = mark;
-  selection.attr("d", (i) => {
-    const x1i = X1(i);
-    const y1i = Y1(i);
-    const x2i = X2(i);
-    const y2i = Y2(i);
-    const ix = x1i > x2i;
-    const iy = y1i > y2i;
-    const x1 = (ix ? x2i : x1i) + insetLeft;
-    const x2 = (ix ? x1i : x2i) - insetRight;
-    const y1 = (iy ? y2i : y1i) + insetTop;
-    const y2 = (iy ? y1i : y2i) - insetBottom;
-    const k = Math.min(
-      1,
-      (x2 - x1) / Math.max(rx1y1 + rx2y1, rx1y2 + rx2y2),
-      (y2 - y1) / Math.max(rx1y1 + rx1y2, rx2y1 + rx2y2)
-    );
-    const rx1y1i = k * (ix ? (iy ? rx2y2 : rx2y1) : iy ? rx1y2 : rx1y1);
-    const rx2y1i = k * (ix ? (iy ? rx1y2 : rx1y1) : iy ? rx2y2 : rx2y1);
-    const rx2y2i = k * (ix ? (iy ? rx1y1 : rx1y2) : iy ? rx2y1 : rx2y2);
-    const rx1y2i = k * (ix ? (iy ? rx2y1 : rx2y2) : iy ? rx1y1 : rx1y2);
-    return (
-      `M${x1},${y1 + rx1y1i}A${rx1y1i},${rx1y1i} 0 0 1 ${x1 + rx1y1i},${y1}` +
-      `H${x2 - rx2y1i}A${rx2y1i},${rx2y1i} 0 0 1 ${x2},${y1 + rx2y1i}` +
-      `V${y2 - rx2y2i}A${rx2y2i},${rx2y2i} 0 0 1 ${x2 - rx2y2i},${y2}` +
-      `H${x1 + rx1y2i}A${rx1y2i},${rx1y2i} 0 0 1 ${x1},${y2 - rx1y2i}` +
-      `Z`
-    );
-  });
+  const {rx1y1: r11, rx1y2: r12, rx2y1: r21, rx2y2: r22} = mark;
+  const ix = x1 > x2;
+  const iy = y1 > y2;
+  const l = (ix ? x2 : x1) + insetLeft;
+  const r = (ix ? x1 : x2) - insetRight;
+  const t = (iy ? y2 : y1) + insetTop;
+  const b = (iy ? y1 : y2) - insetBottom;
+  const k = Math.min(1, (r - l) / Math.max(r11 + r21, r12 + r22), (b - t) / Math.max(r11 + r12, r21 + r22));
+  const tl = k * (ix ? (iy ? r22 : r21) : iy ? r12 : r11);
+  const tr = k * (ix ? (iy ? r12 : r11) : iy ? r22 : r21);
+  const br = k * (ix ? (iy ? r11 : r12) : iy ? r21 : r22);
+  const bl = k * (ix ? (iy ? r21 : r22) : iy ? r11 : r12);
+  return (
+    `M${l},${t + tl}A${tl},${tl} 0 0 1 ${l + tl},${t}` +
+    `H${r - tr}A${tr},${tr} 0 0 1 ${r},${t + tr}` +
+    `V${b - br}A${br},${br} 0 0 1 ${r - br},${b}` +
+    `H${l + bl}A${bl},${bl} 0 0 1 ${l},${b - bl}` +
+    `Z`
+  );
 }
 
 export function rect(data, options) {
