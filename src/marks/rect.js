@@ -149,10 +149,6 @@ export function corners(
   }
 }
 
-export function applyRoundedRect(selection, mark, X1, Y1, X2, Y2) {
-  selection.attr("d", (i) => pathRoundedRect(X1(i), Y1(i), X2(i), Y2(i), mark));
-}
-
 export function pathRoundedRect(x1, y1, x2, y2, mark) {
   const {insetTop, insetRight, insetBottom, insetLeft} = mark;
   const {rx1y1: r11, rx1y2: r12, rx2y1: r21, rx2y2: r22} = mark;
