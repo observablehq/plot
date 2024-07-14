@@ -537,8 +537,10 @@ The rectangular marks ([bar](../marks/bar.md), [cell](../marks/cell.md), [frame]
 * **insetRight** - inset the right edge
 * **insetBottom** - inset the bottom edge
 * **insetLeft** - inset the left edge
-* **rx** - the [*x* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
-* **ry** - the [*y* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
+* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
+* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
+
+TODO The rounded corner options should move to the rect mark documentation, since they are ballooning into quite a few additional options. The inset options also apply to the rule and tick marks.
 
 Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](../transforms/bin.md) provides default insets, and that the [band scale padding](./scales.md#position-scale-options) defaults to 0.1, which also provides separation.
 

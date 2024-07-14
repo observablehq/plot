@@ -7,6 +7,76 @@ import type {StackOptions} from "../transforms/stack.js";
 /** Options for marks that render rectangles, including bar, cell, and rect. */
 export interface RectCornerOptions {
   /**
+   * The rounded radius for all corners, in pixels; shorthand for **rx1y1**,
+   * **rx2y1**, **rx2y2**, and **rx1y2**. If the combined corner radii for each
+   * side is greater than the corresponding length (width or height) of the
+   * rect, the corner radii will be shrunk proportionally to maintain circular
+   * corners. For elliptic corners, or to specify the corner radius as a
+   * proportion of the width or height, use **rx** and **ry** instead.
+   */
+  r?: number;
+
+  /**
+   * The rounded radius for the **x1** corners (typically left for positive
+   * *x*-values), in pixels; shorthand for **rx1y1** and **rx1y2**.
+   */
+  rx1?: number;
+
+  /**
+   * The rounded radius for the **y1** corners (typically bottom for positive
+   * *y*-values), in pixels; shorthand for **rx1y1** and **rx2y1**.
+   */
+  ry1?: number;
+
+  /**
+   * The rounded radius for the **x2** corners (typically right for positive
+   * *x*-values), in pixels; shorthand for **rx2y1** and **rx2y2**.
+   */
+  rx2?: number;
+
+  /**
+   * The rounded radius for the **y2** corners (typically top for positive
+   * *y*-values), in pixels; shorthand for **rx1y2** and **rx2y2**.
+   */
+  ry2?: number;
+
+  /**
+   * The rounded radius for the **x1y1** corner (typically bottom-left for
+   * positive values), in pixels. If **rx1y1** + **rx2y1** is greater than the
+   * width of the rect, or if **rx1y1** + **rx1y2** is greater than the height
+   * of the rect, the corner radii will be shrunk proportionally to maintain
+   * circular corners.
+   */
+  rx1y1?: number;
+
+  /**
+   * The rounded radius for the **x1y2** corner (typically top-left for positive
+   * values), in pixels. If **rx1y2** + **rx2y2** is greater than the
+   * width of the rect, or if **rx1y1** + **rx1y2** is greater than the height
+   * of the rect, the corner radii will be shrunk proportionally to maintain
+   * circular corners.
+   */
+  rx1y2?: number;
+
+  /**
+   * The rounded radius for the **x2y1** corner (typically bottom-right for
+   * positive values), in pixels. If **rx1y1** + **rx2y1** is greater than the
+   * width of the rect, or if **rx2y1** + **rx2y2** is greater than the height
+   * of the rect, the corner radii will be shrunk proportionally to maintain
+   * circular corners.
+   */
+  rx2y1?: number;
+
+  /**
+   * The rounded radius for the **x2y2** corner (typically top-right for
+   * positive values), in pixels. If **rx1y2** + **rx2y2** is greater than the
+   * width of the rect, or if **rx2y1** + **rx2y2** is greater than the height
+   * of the rect, the corner radii will be shrunk proportionally to maintain
+   * circular corners.
+   */
+  rx2y2?: number;
+
+  /**
    * The rounded corner [*x*-radius][1], either in pixels or as a percentage of
    * the rect width. If **rx** is not specified, it defaults to **ry** if
    * present, and otherwise draws square corners. This option is ignored if a
@@ -27,42 +97,6 @@ export interface RectCornerOptions {
    * [1]: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry
    */
   ry?: number | string;
-
-  /**
-   * The rounded radius for the **x1** corners, in pixels; shorthand for
-   * **rx1y1** and **rx1y2**.
-   */
-  rx1?: number;
-
-  /**
-   * The rounded radius for the **y1** corners, in pixels; shorthand for
-   * **rx1y1** and **rx2y1**.
-   */
-  ry1?: number;
-
-  /**
-   * The rounded radius for the **x2** corners, in pixels; shorthand for
-   * **rx2y1** and **rx2y2**.
-   */
-  rx2?: number;
-
-  /**
-   * The rounded radius for the **y2** corners, in pixels; shorthand for
-   * **rx1y2** and **rx2y2**.
-   */
-  ry2?: number;
-
-  /** The rounded radius for the **x1y1** corner, in pixels. */
-  rx1y1?: number;
-
-  /** The rounded radius for the **x1y2** corner, in pixels. */
-  rx1y2?: number;
-
-  /** The rounded radius for the **x2y1** corner, in pixels. */
-  rx2y1?: number;
-
-  /** The rounded radius for the **x2y2** corner, in pixels. */
-  rx2y2?: number;
 }
 
 /** Options for the rect mark. */

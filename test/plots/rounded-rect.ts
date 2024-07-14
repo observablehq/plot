@@ -1,5 +1,53 @@
 import * as Plot from "@observablehq/plot";
 
+export function roundedRectR() {
+  const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
+  return Plot.plot({
+    x: {inset: 2},
+    y: {reverse: true},
+    padding: 0,
+    marks: [
+      Plot.frame(),
+      Plot.rect({length: 1}, {x: 0, ...xy, r: 25}),
+      Plot.rect({length: 1}, {x: 1, ...xy, r: 50}),
+      Plot.rect({length: 1}, {x: 2, ...xy, r: 75}),
+      Plot.rect({length: 1}, {x: 3, ...xy, r: 100})
+    ]
+  });
+}
+
+export function roundedRectRx() {
+  const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
+  return Plot.plot({
+    x: {inset: 2},
+    y: {reverse: true},
+    padding: 0,
+    marks: [
+      Plot.frame(),
+      Plot.rect({length: 1}, {x: 0, ...xy, rx: 25}),
+      Plot.rect({length: 1}, {x: 1, ...xy, rx: 50}),
+      Plot.rect({length: 1}, {x: 2, ...xy, rx: 75}),
+      Plot.rect({length: 1}, {x: 3, ...xy, rx: 100})
+    ]
+  });
+}
+
+export function roundedRectRy() {
+  const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
+  return Plot.plot({
+    x: {inset: 2},
+    y: {reverse: true},
+    padding: 0,
+    marks: [
+      Plot.frame(),
+      Plot.rect({length: 1}, {x: 0, ...xy, ry: 25}),
+      Plot.rect({length: 1}, {x: 1, ...xy, ry: 50}),
+      Plot.rect({length: 1}, {x: 2, ...xy, ry: 75}),
+      Plot.rect({length: 1}, {x: 3, ...xy, ry: 100})
+    ]
+  });
+}
+
 export function roundedRectAsymmetricX() {
   const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
   return Plot.plot({
