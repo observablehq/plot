@@ -14,17 +14,7 @@ const defaults = {
 
 export class Rect extends Mark {
   constructor(data, options = {}) {
-    const {
-      x1,
-      y1,
-      x2,
-      y2,
-      inset = 0,
-      insetTop = inset,
-      insetRight = inset,
-      insetBottom = inset,
-      insetLeft = inset
-    } = options;
+    const {x1, y1, x2, y2} = options;
     super(
       data,
       {
@@ -36,11 +26,8 @@ export class Rect extends Mark {
       options,
       defaults
     );
-    this.insetTop = number(insetTop);
-    this.insetRight = number(insetRight);
-    this.insetBottom = number(insetBottom);
-    this.insetLeft = number(insetLeft);
-    corners(this, options);
+    rectInsets(this, options);
+    rectRadii(this, options);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
@@ -69,10 +56,18 @@ export class Rect extends Mark {
                     .call(applyDirectStyles, this)
                     .attr("d", (i) =>
                       pathRoundedRect(
-                        X1 ? X1[i] : marginLeft,
-                        Y1 ? Y1[i] : marginTop,
-                        X1 ? (X2 ? X2[i] : X1[i] + bx) : width - marginRight,
-                        Y1 ? (Y2 ? Y2[i] : Y1[i] + by) : height - marginBottom,
+                        X1 ? X1[i] + (X2 && X2[i] < X1[i] ? -insetRight : insetLeft) : marginLeft + insetLeft,
+                        Y1 ? Y1[i] + (Y2 && Y2[i] < Y1[i] ? -insetBottom : insetTop) : marginTop + insetTop,
+                        X1
+                          ? X2
+                            ? X2[i] - (X2[i] < X1[i] ? -insetLeft : insetRight)
+                            : X1[i] + bx - insetRight
+                          : width - marginRight - insetRight,
+                        Y1
+                          ? Y2
+                            ? Y2[i] - (Y2[i] < Y1[i] ? -insetTop : insetBottom)
+                            : Y1[i] + by - insetBottom
+                          : height - marginBottom - insetBottom,
                         this
                       )
                     )
@@ -122,7 +117,17 @@ export class Rect extends Mark {
   }
 }
 
-export function corners(
+export function rectInsets(
+  mark,
+  {inset = 0, insetTop = inset, insetRight = inset, insetBottom = inset, insetLeft = inset} = {}
+) {
+  mark.insetTop = number(insetTop);
+  mark.insetRight = number(insetRight);
+  mark.insetBottom = number(insetBottom);
+  mark.insetLeft = number(insetLeft);
+}
+
+export function rectRadii(
   mark,
   {
     r,
@@ -150,14 +155,13 @@ export function corners(
 }
 
 export function pathRoundedRect(x1, y1, x2, y2, mark) {
-  const {insetTop, insetRight, insetBottom, insetLeft} = mark;
   const {rx1y1: r11, rx1y2: r12, rx2y1: r21, rx2y2: r22} = mark;
   const ix = x1 > x2;
   const iy = y1 > y2;
-  const l = (ix ? x2 : x1) + insetLeft;
-  const r = (ix ? x1 : x2) - insetRight;
-  const t = (iy ? y2 : y1) + insetTop;
-  const b = (iy ? y1 : y2) - insetBottom;
+  const l = ix ? x2 : x1;
+  const r = ix ? x1 : x2;
+  const t = iy ? y2 : y1;
+  const b = iy ? y1 : y2;
   const k = Math.min(1, (r - l) / Math.max(r11 + r21, r12 + r22), (b - t) / Math.max(r11 + r12, r21 + r22));
   const tl = k * (ix ? (iy ? r22 : r21) : iy ? r12 : r11);
   const tr = k * (ix ? (iy ? r12 : r11) : iy ? r22 : r21);

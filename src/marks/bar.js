@@ -1,26 +1,29 @@
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
-import {hasXY, identity, indexOf, number} from "../options.js";
+import {constant, hasXY, identity, indexOf} from "../options.js";
 import {isCollapsed} from "../scales.js";
 import {applyAttr, applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
-import {impliedString} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
+import {pathRoundedRect, rectInsets, rectRadii} from "./rect.js";
 
 export class AbstractBar extends Mark {
   constructor(data, channels, options = {}, defaults) {
     super(data, channels, options, defaults);
-    const {inset = 0, insetTop = inset, insetRight = inset, insetBottom = inset, insetLeft = inset, rx, ry} = options;
-    this.insetTop = number(insetTop);
-    this.insetRight = number(insetRight);
-    this.insetBottom = number(insetBottom);
-    this.insetLeft = number(insetLeft);
-    this.rx = impliedString(rx, "auto"); // number or percentage
-    this.ry = impliedString(ry, "auto");
+    rectInsets(this, options);
+    rectRadii(this, options);
   }
   render(index, scales, channels, dimensions, context) {
-    const {rx, ry} = this;
+    const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
+    let x = this._x(scales, channels, dimensions);
+    let y = this._y(scales, channels, dimensions);
+    let w = this._width(scales, channels, dimensions);
+    let h = this._height(scales, channels, dimensions);
+    if (typeof x !== "function") x = constant(x); // TODO optimize
+    if (typeof y !== "function") y = constant(y); // TODO optimize
+    if (typeof w !== "function") w = constant(w); // TODO optimize
+    if (typeof h !== "function") h = constant(h); // TODO optimize
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(this._transform, this, scales)
@@ -29,15 +32,26 @@ export class AbstractBar extends Mark {
           .selectAll()
           .data(index)
           .enter()
-          .append("rect")
-          .call(applyDirectStyles, this)
-          .attr("x", this._x(scales, channels, dimensions))
-          .attr("width", this._width(scales, channels, dimensions))
-          .attr("y", this._y(scales, channels, dimensions))
-          .attr("height", this._height(scales, channels, dimensions))
-          .call(applyAttr, "rx", rx)
-          .call(applyAttr, "ry", ry)
-          .call(applyChannelStyles, this, channels)
+          .call(
+            rx1y1 || rx1y2 || rx2y1 || rx2y2
+              ? (g) =>
+                  g
+                    .append("path")
+                    .call(applyDirectStyles, this)
+                    .attr("d", (i) => pathRoundedRect(x(i), y(i), x(i) + w(i), y(i) + h(i), this))
+                    .call(applyChannelStyles, this, channels)
+              : (g) =>
+                  g
+                    .append("rect")
+                    .call(applyDirectStyles, this)
+                    .attr("x", x)
+                    .attr("width", w)
+                    .attr("y", y)
+                    .attr("height", h)
+                    .call(applyAttr, "rx", rx)
+                    .call(applyAttr, "ry", ry)
+                    .call(applyChannelStyles, this, channels)
+          )
       )
       .node();
   }

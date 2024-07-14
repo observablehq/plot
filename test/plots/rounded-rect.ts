@@ -1,5 +1,53 @@
 import * as Plot from "@observablehq/plot";
 
+export function roundedBarYR() {
+  const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
+  return Plot.plot({
+    x: {inset: 2},
+    y: {reverse: true},
+    padding: 0,
+    marks: [
+      Plot.frame(),
+      Plot.barY({length: 1}, {x: 0, ...xy, r: 25}),
+      Plot.barY({length: 1}, {x: 1, ...xy, r: 50}),
+      Plot.barY({length: 1}, {x: 2, ...xy, r: 75}),
+      Plot.barY({length: 1}, {x: 3, ...xy, r: 100})
+    ]
+  });
+}
+
+export function roundedBarYRx() {
+  const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
+  return Plot.plot({
+    x: {inset: 2},
+    y: {reverse: true},
+    padding: 0,
+    marks: [
+      Plot.frame(),
+      Plot.barY({length: 1}, {x: 0, ...xy, rx: 25}),
+      Plot.barY({length: 1}, {x: 1, ...xy, rx: 50}),
+      Plot.barY({length: 1}, {x: 2, ...xy, rx: 75}),
+      Plot.barY({length: 1}, {x: 3, ...xy, rx: 100})
+    ]
+  });
+}
+
+export function roundedBarYRy() {
+  const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
+  return Plot.plot({
+    x: {inset: 2},
+    y: {reverse: true},
+    padding: 0,
+    marks: [
+      Plot.frame(),
+      Plot.barY({length: 1}, {x: 0, ...xy, ry: 25}),
+      Plot.barY({length: 1}, {x: 1, ...xy, ry: 50}),
+      Plot.barY({length: 1}, {x: 2, ...xy, ry: 75}),
+      Plot.barY({length: 1}, {x: 3, ...xy, ry: 100})
+    ]
+  });
+}
+
 export function roundedRectR() {
   const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
   return Plot.plot({

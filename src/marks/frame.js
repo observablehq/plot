@@ -1,8 +1,8 @@
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
-import {maybeKeyword, number, singleton} from "../options.js";
+import {maybeKeyword, singleton} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
-import {corners, pathRoundedRect} from "./rect.js";
+import {rectInsets, rectRadii, pathRoundedRect} from "./rect.js";
 
 const defaults = {
   ariaLabel: "frame",
@@ -21,21 +21,11 @@ const lineDefaults = {
 
 export class Frame extends Mark {
   constructor(options = {}) {
-    const {
-      anchor = null,
-      inset = 0,
-      insetTop = inset,
-      insetRight = inset,
-      insetBottom = inset,
-      insetLeft = inset
-    } = options;
+    const {anchor = null} = options;
     super(singleton, undefined, options, anchor == null ? defaults : lineDefaults);
     this.anchor = maybeKeyword(anchor, "anchor", ["top", "right", "bottom", "left"]);
-    this.insetTop = number(insetTop);
-    this.insetRight = number(insetRight);
-    this.insetBottom = number(insetBottom);
-    this.insetLeft = number(insetLeft);
-    if (!anchor) corners(this, options);
+    rectInsets(this, options);
+    if (!anchor) rectRadii(this, options);
   }
   render(index, scales, channels, dimensions, context) {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
