@@ -1,6 +1,6 @@
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
-import {constant, hasXY, identity, indexOf} from "../options.js";
+import {hasXY, identity, indexOf} from "../options.js";
 import {isCollapsed} from "../scales.js";
 import {applyAttr, applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
