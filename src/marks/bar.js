@@ -16,14 +16,10 @@ export class AbstractBar extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {rx, ry, rx1y1, rx1y2, rx2y1, rx2y2} = this;
-    let x = this._x(scales, channels, dimensions);
-    let y = this._y(scales, channels, dimensions);
-    let w = this._width(scales, channels, dimensions);
-    let h = this._height(scales, channels, dimensions);
-    if (typeof x !== "function") x = constant(x); // TODO optimize
-    if (typeof y !== "function") y = constant(y); // TODO optimize
-    if (typeof w !== "function") w = constant(w); // TODO optimize
-    if (typeof h !== "function") h = constant(h); // TODO optimize
+    const x = this._x(scales, channels, dimensions);
+    const y = this._y(scales, channels, dimensions);
+    const w = this._width(scales, channels, dimensions);
+    const h = this._height(scales, channels, dimensions);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(this._transform, this, scales)
@@ -38,7 +34,13 @@ export class AbstractBar extends Mark {
                   g
                     .append("path")
                     .call(applyDirectStyles, this)
-                    .attr("d", (i) => pathRoundedRect(x(i), y(i), x(i) + w(i), y(i) + h(i), this))
+                    .attr("d", (i) => {
+                      const x1 = typeof x === "function" ? x(i) : x;
+                      const y1 = typeof y === "function" ? y(i) : y;
+                      const x2 = x1 + (typeof w === "function" ? w(i) : w);
+                      const y2 = y1 + (typeof h === "function" ? h(i) : h);
+                      return pathRoundedRect(x1, y1, x2, y2, this);
+                    })
                     .call(applyChannelStyles, this, channels)
               : (g) =>
                   g
