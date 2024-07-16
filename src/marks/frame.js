@@ -2,7 +2,7 @@ import {create} from "../context.js";
 import {Mark} from "../mark.js";
 import {maybeKeyword, singleton} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
-import {rectInsets, rectRadii, pathRoundedRect} from "./rect.js";
+import {applyRoundedRect, rectInsets, rectRadii} from "./rect.js";
 
 const defaults = {
   ariaLabel: "frame",
@@ -51,7 +51,7 @@ export class Frame extends Mark {
           : anchor === "bottom"
           ? (line) => line.attr("x1", x1).attr("x2", x2).attr("y1", y2).attr("y2", y2)
           : rx1y1 || rx1y2 || rx2y1 || rx2y2
-          ? (path) => path.attr("d", pathRoundedRect(x1, y1, x2, y2, this))
+          ? (path) => path.call(applyRoundedRect, x1, y1, x2, y2, this)
           : (rect) =>
               rect
                 .attr("x", x1)

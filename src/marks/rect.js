@@ -1,6 +1,6 @@
 import {create} from "../context.js";
 import {Mark} from "../mark.js";
-import {hasXY, identity, indexOf, number} from "../options.js";
+import {constant, hasXY, identity, indexOf, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
 import {applyAttr, applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {impliedString} from "../style.js";
@@ -54,22 +54,29 @@ export class Rect extends Mark {
                   g
                     .append("path")
                     .call(applyDirectStyles, this)
-                    .attr("d", (i) =>
-                      pathRoundedRect(
-                        X1 ? X1[i] + (X2 && X2[i] < X1[i] ? -insetRight : insetLeft) : marginLeft + insetLeft,
-                        Y1 ? Y1[i] + (Y2 && Y2[i] < Y1[i] ? -insetBottom : insetTop) : marginTop + insetTop,
-                        X1
-                          ? X2
-                            ? X2[i] - (X2[i] < X1[i] ? -insetLeft : insetRight)
-                            : X1[i] + bx - insetRight
-                          : width - marginRight - insetRight,
-                        Y1
-                          ? Y2
-                            ? Y2[i] - (Y2[i] < Y1[i] ? -insetTop : insetBottom)
-                            : Y1[i] + by - insetBottom
-                          : height - marginBottom - insetBottom,
-                        this
-                      )
+                    .call(
+                      applyRoundedRect,
+                      X1 && X2
+                        ? (i) => X1[i] + (X2[i] < X1[i] ? -insetRight : insetLeft)
+                        : X1
+                        ? (i) => X1[i] + insetLeft
+                        : marginLeft + insetLeft,
+                      Y1 && Y2
+                        ? (i) => Y1[i] + (Y2[i] < Y1[i] ? -insetBottom : insetTop)
+                        : Y1
+                        ? (i) => Y1[i] + insetTop
+                        : marginTop + insetTop,
+                      X1 && X2
+                        ? (i) => X2[i] - (X2[i] < X1[i] ? -insetLeft : insetRight)
+                        : X1
+                        ? (i) => X1[i] + bx - insetRight
+                        : width - marginRight - insetRight,
+                      Y1 && Y2
+                        ? (i) => Y2[i] - (Y2[i] < Y1[i] ? -insetTop : insetBottom)
+                        : Y1
+                        ? (i) => Y1[i] + by - insetBottom
+                        : height - marginBottom - insetBottom,
+                      this
                     )
                     .call(applyChannelStyles, this, channels)
               : (g) =>
@@ -154,26 +161,36 @@ export function rectRadii(
   }
 }
 
-export function pathRoundedRect(x1, y1, x2, y2, mark) {
+export function applyRoundedRect(selection, X1, Y1, X2, Y2, mark) {
   const {rx1y1: r11, rx1y2: r12, rx2y1: r21, rx2y2: r22} = mark;
-  const ix = x1 > x2;
-  const iy = y1 > y2;
-  const l = ix ? x2 : x1;
-  const r = ix ? x1 : x2;
-  const t = iy ? y2 : y1;
-  const b = iy ? y1 : y2;
-  const k = Math.min(1, (r - l) / Math.max(r11 + r21, r12 + r22), (b - t) / Math.max(r11 + r12, r21 + r22));
-  const tl = k * (ix ? (iy ? r22 : r21) : iy ? r12 : r11);
-  const tr = k * (ix ? (iy ? r12 : r11) : iy ? r22 : r21);
-  const br = k * (ix ? (iy ? r11 : r12) : iy ? r21 : r22);
-  const bl = k * (ix ? (iy ? r21 : r22) : iy ? r11 : r12);
-  return (
-    `M${l},${t + tl}A${tl},${tl} 0 0 1 ${l + tl},${t}` +
-    `H${r - tr}A${tr},${tr} 0 0 1 ${r},${t + tr}` +
-    `V${b - br}A${br},${br} 0 0 1 ${r - br},${b}` +
-    `H${l + bl}A${bl},${bl} 0 0 1 ${l},${b - bl}` +
-    `Z`
-  );
+  if (typeof X1 !== "function") X1 = constant(X1);
+  if (typeof Y1 !== "function") Y1 = constant(Y1);
+  if (typeof X2 !== "function") X2 = constant(X2);
+  if (typeof Y2 !== "function") Y2 = constant(Y2);
+  selection.attr("d", (i) => {
+    const x1 = X1(i);
+    const y1 = Y1(i);
+    const x2 = X2(i);
+    const y2 = Y2(i);
+    const ix = x1 > x2;
+    const iy = y1 > y2;
+    const l = ix ? x2 : x1;
+    const r = ix ? x1 : x2;
+    const t = iy ? y2 : y1;
+    const b = iy ? y1 : y2;
+    const k = Math.min(1, (r - l) / Math.max(r11 + r21, r12 + r22), (b - t) / Math.max(r11 + r12, r21 + r22));
+    const tl = k * (ix ? (iy ? r22 : r21) : iy ? r12 : r11);
+    const tr = k * (ix ? (iy ? r12 : r11) : iy ? r22 : r21);
+    const br = k * (ix ? (iy ? r11 : r12) : iy ? r21 : r22);
+    const bl = k * (ix ? (iy ? r21 : r22) : iy ? r11 : r12);
+    return (
+      `M${l},${t + tl}A${tl},${tl} 0 0 1 ${l + tl},${t}` +
+      `H${r - tr}A${tr},${tr} 0 0 1 ${r},${t + tr}` +
+      `V${b - br}A${br},${br} 0 0 1 ${r - br},${b}` +
+      `H${l + bl}A${bl},${bl} 0 0 1 ${l},${b - bl}` +
+      `Z`
+    );
+  });
 }
 
 export function rect(data, options) {

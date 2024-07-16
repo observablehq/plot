@@ -6,7 +6,7 @@ import {applyAttr, applyChannelStyles, applyDirectStyles, applyIndirectStyles, a
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
-import {pathRoundedRect, rectInsets, rectRadii} from "./rect.js";
+import {applyRoundedRect, rectInsets, rectRadii} from "./rect.js";
 
 export class AbstractBar extends Mark {
   constructor(data, channels, options = {}, defaults) {
@@ -34,13 +34,7 @@ export class AbstractBar extends Mark {
                   g
                     .append("path")
                     .call(applyDirectStyles, this)
-                    .attr("d", (i) => {
-                      const x1 = typeof x === "function" ? x(i) : x;
-                      const y1 = typeof y === "function" ? y(i) : y;
-                      const x2 = x1 + (typeof w === "function" ? w(i) : w);
-                      const y2 = y1 + (typeof h === "function" ? h(i) : h);
-                      return pathRoundedRect(x1, y1, x2, y2, this);
-                    })
+                    .call(applyRoundedRect, x, y, add(x, w), add(y, h), this)
                     .call(applyChannelStyles, this, channels)
               : (g) =>
                   g
@@ -75,6 +69,16 @@ export class AbstractBar extends Mark {
     const bandwidth = Y && y ? y.bandwidth() : height - marginTop - marginBottom;
     return Math.max(0, bandwidth - insetTop - insetBottom);
   }
+}
+
+function add(a, b) {
+  return typeof a === "function" && typeof b === "function"
+    ? (i) => a(i) + b(i)
+    : typeof a === "function"
+    ? (i) => a(i) + b
+    : typeof b === "function"
+    ? (i) => a + b(i)
+    : a + b;
 }
 
 const defaults = {
