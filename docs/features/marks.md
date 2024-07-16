@@ -531,18 +531,14 @@ Plot.dot(numbers, {x: {transform: (data) => data}})
 
 The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark’s associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
 
-The rectangular marks ([bar](../marks/bar.md), [cell](../marks/cell.md), [frame](../marks/frame.md), and [rect](../marks/rect.md)) support insets and rounded corner constant options:
+Marks with horizontal or vertical extents ([rects](../marks/rect.md), [bars](../marks/bar.md), [cells](../marks/cell.md), [frames](../marks/frame.md), [rules](../marks/rule.md), and [ticks](../marks/tick.md)), support insets to adjust position. Insets are specified in pixels using the following options:
 
 * **insetTop** - inset the top edge
 * **insetRight** - inset the right edge
 * **insetBottom** - inset the bottom edge
 * **insetLeft** - inset the left edge
-* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
-* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
 
-TODO The rounded corner options should move to the rect mark documentation, since they are ballooning into quite a few additional options. The inset options also apply to the rule and tick marks.
-
-Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](../transforms/bin.md) provides default insets, and that the [band scale padding](./scales.md#position-scale-options) defaults to 0.1, which also provides separation.
+Insets default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; the [bin transform](../transforms/bin.md) provides default insets. (Note that the [band scale padding](./scales.md#position-scale-options) defaults to 0.1 as an alternative to insets.)
 
 For marks that support the **frameAnchor** option, it may be specified as one of the four sides (*top*, *right*, *bottom*, *left*), one of the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the *middle* of the frame.
 

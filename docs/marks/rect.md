@@ -169,8 +169,7 @@ Plot.plot({
   aspectRatio: 1,
   y: {ticks: 12, tickFormat: Plot.formatMonth("en", "narrow")},
   marks: [
-    Plot.rect(seattle, {
-      filter: (d) => d.date.getUTCFullYear() === 2015,
+    Plot.rect(seattle.filter((d) => d.date.getUTCFullYear() === 2015), {
       x: (d) => d.date.getUTCDate(),
       y: (d) => d.date.getUTCMonth(),
       interval: 1,
@@ -199,7 +198,23 @@ If **x1** is specified but **x2** is not specified, then *x* must be a *band* sc
 
 If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each **x** to produce **x1**, and *interval*.offset(*x1*) is invoked for each **x1** to produce **x2**. The same is true for **y**, **y1**, and **y2**, respectively. If the interval is specified as a number *n*, **x1** and **x2** are taken as the two consecutive multiples of *n* that bracket **x**. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
-The rect mark supports the [standard mark options](../features/marks.md#mark-options), including insets and rounded corners. The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
+The rect mark supports rounded corners. Each corner (or side) is individually addressable using the following options <VersionBadge pr="2099" />:
+
+* **r** - the radius for all four corners
+* **rx1** - the radius for the **x1**-**y1** and **x1**-**y2** corners
+* **rx2** - the radius for the **x2**-**y1** and **x2**-**y2** corners
+* **ry1** - the radius for the **x1**-**y1** and **x2**-**y1** corners
+* **ry2** - the radius for the **x1**-**y2** and **x2**-**y2** corners
+* **rx1y1** - the radius for the **x1**-**y1** corner
+* **rx1y2** - the radius for the **x1**-**y2** corner
+* **rx2y1** - the radius for the **x2**-**y1** corner
+* **rx2y2** - the radius for the **x2**-**y2** corner
+* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for elliptical corners
+* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for elliptical corners
+
+Corner radii are specified in either pixels or, for **rx** and **ry**, as percentages (strings) or the keyword *auto*. If the corner radii are too big, they are reduced proportionally. TODO The rounded corner options also apply to the [bar](./bar.md), [cell](./cell.md), and [frame](./frame.md) marks.
+
+The rect mark supports the [standard mark options](../features/marks.md#mark-options). The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
 ## rect(*data*, *options*) {#rect}
 
