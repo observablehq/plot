@@ -151,10 +151,10 @@ export function rectRadii(
   } = {}
 ) {
   if (rx1y1 || rx1y2 || rx2y1 || rx2y2) {
-    mark.rx1y1 = Math.max(0, rx1y1);
-    mark.rx1y2 = Math.max(0, rx1y2);
-    mark.rx2y1 = Math.max(0, rx2y1);
-    mark.rx2y2 = Math.max(0, rx2y2);
+    mark.rx1y1 = rx1y1;
+    mark.rx1y2 = rx1y2;
+    mark.rx2y1 = rx2y1;
+    mark.rx2y2 = rx2y2;
   } else {
     mark.rx = impliedString(rx, "auto"); // number or percentage
     mark.ry = impliedString(ry, "auto");
@@ -167,6 +167,8 @@ export function applyRoundedRect(selection, X1, Y1, X2, Y2, mark) {
   if (typeof Y1 !== "function") Y1 = constant(Y1);
   if (typeof X2 !== "function") X2 = constant(X2);
   if (typeof Y2 !== "function") Y2 = constant(Y2);
+  const f1 = Math.sign(r11) !== Math.sign(r12) || Math.sign(r21) !== Math.sign(r22) ? Math.abs : Number;
+  const f2 = Math.sign(r11) !== Math.sign(r21) || Math.sign(r12) !== Math.sign(r22) ? Math.abs : Number;
   selection.attr("d", (i) => {
     const x1 = X1(i);
     const y1 = Y1(i);
@@ -178,16 +180,18 @@ export function applyRoundedRect(selection, X1, Y1, X2, Y2, mark) {
     const r = ix ? x1 : x2;
     const t = iy ? y2 : y1;
     const b = iy ? y1 : y2;
-    const k = Math.min(1, (r - l) / Math.max(r11 + r21, r12 + r22), (b - t) / Math.max(r11 + r12, r21 + r22));
+    const kx = (r - l) / Math.max(Math.abs(r11 + r21), Math.abs(r12 + r22));
+    const ky = (b - t) / Math.max(Math.abs(r11 + r12), Math.abs(r21 + r22));
+    const k = Math.min(1, kx, ky);
     const tl = k * (ix ? (iy ? r22 : r21) : iy ? r12 : r11);
     const tr = k * (ix ? (iy ? r12 : r11) : iy ? r22 : r21);
     const br = k * (ix ? (iy ? r11 : r12) : iy ? r21 : r22);
     const bl = k * (ix ? (iy ? r21 : r22) : iy ? r11 : r12);
     return (
-      `M${l},${t + tl}A${tl},${tl} 0 0 1 ${l + tl},${t}` +
-      `H${r - tr}A${tr},${tr} 0 0 1 ${r},${t + tr}` +
-      `V${b - br}A${br},${br} 0 0 1 ${r - br},${b}` +
-      `H${l + bl}A${bl},${bl} 0 0 1 ${l},${b - bl}` +
+      `M${l},${t + f2(tl)}A${tl},${tl} 0 0 ${tl < 0 ? 0 : 1} ${l + f1(tl)},${t}` +
+      `H${r - f1(tr)}A${tr},${tr} 0 0 ${tr < 0 ? 0 : 1} ${r},${t + f2(tr)}` +
+      `V${b - f2(br)}A${br},${br} 0 0 ${br < 0 ? 0 : 1} ${r - f1(br)},${b}` +
+      `H${l + f1(bl)}A${bl},${bl} 0 0 ${bl < 0 ? 0 : 1} ${l},${b - f2(bl)}` +
       `Z`
     );
   });

@@ -531,14 +531,14 @@ Plot.dot(numbers, {x: {transform: (data) => data}})
 
 The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark’s associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
 
-Marks with horizontal or vertical extents ([rects](../marks/rect.md), [bars](../marks/bar.md), [cells](../marks/cell.md), [frames](../marks/frame.md), [rules](../marks/rule.md), and [ticks](../marks/tick.md)), support insets to adjust position. Insets are specified in pixels using the following options:
+Marks with horizontal or vertical extents ([rects](../marks/rect.md), [bars](../marks/bar.md), [cells](../marks/cell.md), [frames](../marks/frame.md), [rules](../marks/rule.md), and [ticks](../marks/tick.md)), support insets to adjust position: a positive inset moves the respective side in, whereas a negative inset moves the side out. Insets are specified in pixels using the following options:
 
 * **insetTop** - inset the top edge
 * **insetRight** - inset the right edge
 * **insetBottom** - inset the bottom edge
 * **insetLeft** - inset the left edge
 
-Insets default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; the [bin transform](../transforms/bin.md) provides default insets. (Note that the [band scale padding](./scales.md#position-scale-options) defaults to 0.1 as an alternative to insets.)
+Insets default to zero. Insets are commonly used to create a one-pixel gap between adjacent bars in histograms; the [bin transform](../transforms/bin.md) provides default insets. (Note that the [band scale padding](./scales.md#position-scale-options) defaults to 0.1 as an alternative to insets.)
 
 For marks that support the **frameAnchor** option, it may be specified as one of the four sides (*top*, *right*, *bottom*, *left*), one of the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the *middle* of the frame.
 

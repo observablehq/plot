@@ -1,4 +1,5 @@
 import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
 
 export function roundedBarYR() {
   const xy = {y1: 0, y2: 1, inset: 4, insetLeft: 2, insetRight: 2};
@@ -203,6 +204,29 @@ export function roundedRectSides() {
       Plot.rect({length: 1}, {x1: 2, x2: 1, y1: 4, y2: 3, inset: 4, ry1: 20}),
       Plot.rect({length: 1}, {x1: 3, x2: 2, y1: 4, y2: 3, inset: 4, rx2: 20}),
       Plot.rect({length: 1}, {x1: 4, x2: 3, y1: 4, y2: 3, inset: 4, ry2: 20})
+    ]
+  });
+}
+
+export async function roundedRectNegativeX() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    color: {legend: true},
+    height: 640,
+    marks: [
+      Plot.rectX(olympians, Plot.binY({x: "count"}, {rx2: 4, rx1: -4, clip: "frame", y: "weight", fill: "sex"})),
+      Plot.ruleX([0])
+    ]
+  });
+}
+
+export async function roundedRectNegativeY() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    color: {legend: true},
+    marks: [
+      Plot.rectY(olympians, Plot.binX({y: "count"}, {ry2: 4, ry1: -4, clip: "frame", x: "weight", fill: "sex"})),
+      Plot.ruleY([0])
     ]
   });
 }
