@@ -70,6 +70,12 @@ export interface ProjectionOptions extends InsetOptions {
   type?: ProjectionName | ProjectionFactory | null;
 
   /**
+   * The projection’s name. If you pass a projection function, you can mention
+   * its name which will be passed through to the exposed *plot*.projection().
+   */
+  name?: string;
+
+  /**
    * A GeoJSON object to fit to the plot’s frame (minus insets); defaults to a
    * Sphere for spherical projections (outline of the the whole globe).
    */
@@ -111,4 +117,21 @@ export interface ProjectionOptions extends InsetOptions {
    * [2]: https://observablehq.com/@d3/berghaus-star
    */
   clip?: boolean | number | "frame" | null;
+}
+
+/**
+ * A materialized projection, as returned by *plot*.projection()
+ */
+export interface Projection {
+  /** The projection’s name, if specified. */
+  name?: string;
+  /** A function that projects a point coordinates. */
+  point: (point: [number, number]) => [x: number, y: number] | undefined;
+  /** The projection’s stream. */
+  stream: GeoStreamWrapper["stream"];
+  rotate: ProjectionOptions["rotate"];
+  /** The projection’s reference scale. */
+  scale: number;
+  parallels: ProjectionOptions["parallels"];
+  precision: ProjectionOptions["precision"];
 }
