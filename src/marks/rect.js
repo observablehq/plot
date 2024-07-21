@@ -167,8 +167,6 @@ export function applyRoundedRect(selection, X1, Y1, X2, Y2, mark) {
   if (typeof Y1 !== "function") Y1 = constant(Y1);
   if (typeof X2 !== "function") X2 = constant(X2);
   if (typeof Y2 !== "function") Y2 = constant(Y2);
-  const f1 = opposing(r11, r12) || opposing(r21, r22) ? Math.abs : Number;
-  const f2 = opposing(r11, r21) || opposing(r12, r22) ? Math.abs : Number;
   selection.attr("d", (i) => {
     const x1 = X1(i);
     const y1 = Y1(i);
@@ -188,17 +186,31 @@ export function applyRoundedRect(selection, X1, Y1, X2, Y2, mark) {
     const br = k * (ix ? (iy ? r11 : r12) : iy ? r21 : r22);
     const bl = k * (ix ? (iy ? r21 : r22) : iy ? r11 : r12);
     return (
-      `M${l},${t + f2(tl)}A${tl},${tl} 0 0 ${tl < 0 ? 0 : 1} ${l + f1(tl)},${t}` +
-      `H${r - f1(tr)}A${tr},${tr} 0 0 ${tr < 0 ? 0 : 1} ${r},${t + f2(tr)}` +
-      `V${b - f2(br)}A${br},${br} 0 0 ${br < 0 ? 0 : 1} ${r - f1(br)},${b}` +
-      `H${l + f1(bl)}A${bl},${bl} 0 0 ${bl < 0 ? 0 : 1} ${l},${b - f2(bl)}` +
+      `M${l},${t + biasY(tl, bl)}A${tl},${tl} 0 0 ${tl < 0 ? 0 : 1} ${l + biasX(tl, bl)},${t}` +
+      `H${r - biasX(tr, br)}A${tr},${tr} 0 0 ${tr < 0 ? 0 : 1} ${r},${t + biasY(tr, br)}` +
+      `V${b - biasY(br, tr)}A${br},${br} 0 0 ${br < 0 ? 0 : 1} ${r - biasX(br, tr)},${b}` +
+      `H${l + biasX(bl, tl)}A${bl},${bl} 0 0 ${bl < 0 ? 0 : 1} ${l},${b - biasY(bl, tl)}` +
       `Z`
     );
   });
 }
 
-function opposing(r1, r2) {
-  return r1 && r2 && Math.sign(r1) !== Math.sign(r2);
+/**
+ * If the opposing corner has a negative radius r2, if this corner has a
+ * negative radius r1, this corner’s “wing” will extend horizontally rather than
+ * vertically.
+ */
+function biasX(r1, r2) {
+  return r2 < 0 ? r1 : Math.abs(r1);
+}
+
+/**
+ * If the opposing corner has a negative radius r2, if this corner has a
+ * negative radius r1, this corner’s “wing” will extend horizontally rather than
+ * vertically.
+ */
+function biasY(r1, r2) {
+  return r2 < 0 ? Math.abs(r1) : r1;
 }
 
 export function rect(data, options) {

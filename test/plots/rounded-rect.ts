@@ -241,3 +241,31 @@ export async function roundedRectNegativeY1() {
     ]
   });
 }
+
+export function roundedRectOpposing() {
+  return Plot.plot({
+    height: 400,
+    padding: 0,
+    inset: 10,
+    round: false,
+    marks: [
+      Plot.frame(),
+      Plot.cell({length: 1}, {x: 0, y: 0, inset: 10, rx1y1: 20, rx2y1: 20, rx2y2: 20, rx1y2: 20}),
+      Plot.cell({length: 1}, {x: 1, y: 0, inset: 10, rx1y1: -20, rx2y1: 20, rx2y2: 20, rx1y2: 20}),
+      Plot.cell({length: 1}, {x: 2, y: 0, inset: 10, rx1y1: 20, rx2y1: -20, rx2y2: 20, rx1y2: 20}),
+      Plot.cell({length: 1}, {x: 3, y: 0, inset: 10, rx1y1: -20, rx2y1: -20, rx2y2: 20, rx1y2: 20, fill: "#5ca75b"}),
+      Plot.cell({length: 1}, {x: 0, y: 1, inset: 10, rx1y1: 20, rx2y1: 20, rx2y2: -20, rx1y2: 20}),
+      Plot.cell({length: 1}, {x: 1, y: 1, inset: 10, rx1y1: -20, rx2y1: 20, rx2y2: -20, rx1y2: 20}),
+      Plot.cell({length: 1}, {x: 2, y: 1, inset: 10, rx1y1: 20, rx2y1: -20, rx2y2: -20, rx1y2: 20, fill: "#5ca75b"}),
+      Plot.cell({length: 1}, {x: 3, y: 1, inset: 10, rx1y1: -20, rx2y1: -20, rx2y2: -20, rx1y2: 20}),
+      Plot.cell({length: 1}, {x: 0, y: 2, inset: 10, rx1y1: 20, rx2y1: 20, rx2y2: 20, rx1y2: -20}),
+      Plot.cell({length: 1}, {x: 1, y: 2, inset: 10, rx1y1: -20, rx2y1: 20, rx2y2: 20, rx1y2: -20, fill: "#5ca75b"}),
+      Plot.cell({length: 1}, {x: 2, y: 2, inset: 10, rx1y1: 20, rx2y1: -20, rx2y2: 20, rx1y2: -20}),
+      Plot.cell({length: 1}, {x: 3, y: 2, inset: 10, rx1y1: -20, rx2y1: -20, rx2y2: 20, rx1y2: -20}),
+      Plot.cell({length: 1}, {x: 0, y: 3, inset: 10, rx1y1: 20, rx2y1: 20, rx2y2: -20, rx1y2: -20, fill: "#5ca75b"}),
+      Plot.cell({length: 1}, {x: 1, y: 3, inset: 10, rx1y1: -20, rx2y1: 20, rx2y2: -20, rx1y2: -20}),
+      Plot.cell({length: 1}, {x: 2, y: 3, inset: 10, rx1y1: 20, rx2y1: -20, rx2y2: -20, rx1y2: -20}),
+      Plot.cell({length: 1}, {x: 3, y: 3, inset: 10, rx1y1: -20, rx2y1: -20, rx2y2: -20, rx1y2: -20})
+    ]
+  });
+}
