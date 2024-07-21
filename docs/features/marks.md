@@ -531,16 +531,6 @@ Plot.dot(numbers, {x: {transform: (data) => data}})
 
 The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark’s associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
 
-Marks with horizontal or vertical extents ([rects](../marks/rect.md), [bars](../marks/bar.md), [cells](../marks/cell.md), [frames](../marks/frame.md), [rules](../marks/rule.md), and [ticks](../marks/tick.md)), support insets<a id="insets" href="#insets" aria-label="Permalink to &quot;insets&quot;"></a>: a positive inset moves the respective side in (towards the opposing side), whereas a negative inset moves the respective side out (away from the opposing side). Insets are specified in pixels using the following options:
-
-* **inset** - shorthand for all four insets
-* **insetTop** - inset the top edge
-* **insetRight** - inset the right edge
-* **insetBottom** - inset the bottom edge
-* **insetLeft** - inset the left edge
-
-Insets default to zero. Insets are commonly used to create a one-pixel gap between adjacent bars in histograms; the [bin transform](../transforms/bin.md) provides default insets. (Note that the [band scale padding](./scales.md#position-scale-options) defaults to 0.1 as an alternative to insets.)
-
 For marks that support the **frameAnchor** option, it may be specified as one of the four sides (*top*, *right*, *bottom*, *left*), one of the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the *middle* of the frame.
 
 All marks support the following [transform](./transforms.md) options:
@@ -552,6 +542,36 @@ All marks support the following [transform](./transforms.md) options:
 * **initializer** - apply a [custom initializer](./transforms.md#custom-initializers)
 
 The **sort** option, when not specified as a channel value (such as a field name or an accessor function), can also be used to [impute ordinal scale domains](./scales.md#sort-mark-option).
+
+### Insets
+
+Rect-like marks support insets: a positive inset moves the respective side in (towards the opposing side), whereas a negative inset moves the respective side out (away from the opposing side). Insets are specified in pixels using the following options:
+
+* **inset** - shorthand for all four insets
+* **insetTop** - inset the top edge
+* **insetRight** - inset the right edge
+* **insetBottom** - inset the bottom edge
+* **insetLeft** - inset the left edge
+
+Insets default to zero. Insets are commonly used to create a one-pixel gap between adjacent bars in histograms; the [bin transform](../transforms/bin.md) provides default insets. (Note that the [band scale padding](./scales.md#position-scale-options) defaults to 0.1 as an alternative to insets.)
+
+### Rounded corners
+
+Rect-like marks support rounded corners. Each corner (or side) is individually addressable <VersionBadge pr="2099" /> using the following options:
+
+* **r** - the radius for all four corners
+* **rx1** - the radius for the **x1**-**y1** and **x1**-**y2** corners
+* **rx2** - the radius for the **x2**-**y1** and **x2**-**y2** corners
+* **ry1** - the radius for the **x1**-**y1** and **x2**-**y1** corners
+* **ry2** - the radius for the **x1**-**y2** and **x2**-**y2** corners
+* **rx1y1** - the radius for the **x1**-**y1** corner
+* **rx1y2** - the radius for the **x1**-**y2** corner
+* **rx2y1** - the radius for the **x2**-**y1** corner
+* **rx2y2** - the radius for the **x2**-**y2** corner
+* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for elliptical corners
+* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for elliptical corners
+
+Corner radii are specified in either pixels or, for **rx** and **ry**, as percentages (strings) or the keyword *auto*. If the corner radii are too big, they are reduced proportionally.
 
 ## marks(...*marks*) <VersionBadge version="0.2.0" /> {#marks}
 

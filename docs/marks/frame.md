@@ -111,7 +111,7 @@ Plot.plot({
 
 ## Frame options
 
-The frame mark supports the [standard mark options](../features/marks.md#mark-options). As a rect-like mark, the frame mark supports [insets](../features/marks.md#insets) and [rounded corners](./rect.md#rounded-corners). It does not accept any data. The default **stroke** is *currentColor*, and the default **fill** is *none*.
+The frame mark supports the [standard mark options](../features/marks.md#mark-options), including [insets](../features/marks.md#insets) and [rounded corners](../features/marks.md#rounded-corners). It does not accept any data. The default **stroke** is *currentColor*, and the default **fill** is *none*.
 
 If the **anchor** option is specified as one of *left*, *right*, *top*, or *bottom*, that side is rendered as a single line (and the **fill**, **fillOpacity**, **rx**, and **ry** options are ignored).
 
