@@ -186,7 +186,7 @@ Plot.plot({
 A similar chart could be made with the [cell mark](./cell.md) using ordinal *x* and *y* scales instead, or with the [dot mark](./dot.md) as a scatterplot.
 :::
 
-To round corners, use the **r** option.<a id="r" href="#r" aria-label="Permalink to &quot;r&quot;"></a> If the combined corner radii excede the width or height of the rect, the radii are proportionally reduced to produce a pill shape with circular caps. Try increasing the radii below.
+To round corners, use the **r** option.<a id="r" href="#r" aria-label="Permalink to &quot;r&quot;"></a> If the combined corner radii exceed the width or height of the rect, the radii are proportionally reduced to produce a pill shape with circular caps. Try increasing the radii below.
 
 <label class="label-input" style="display: flex;">
   <span style="display: inline-block; width: 7em;">r:</span>
