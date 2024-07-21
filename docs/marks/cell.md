@@ -149,12 +149,12 @@ When an ordinal scale domain has high cardinality, the **ticks** scale option ca
 
 ## Cell options
 
-In addition to the [standard mark options](../features/marks.md#mark-options), including insets and rounded corners, the following optional channels are supported:
+In addition to the [standard mark options](../features/marks.md#mark-options), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale, which must be *band*
 * **y** - the vertical position; bound to the *y* scale, which must be *band*
 
-If **x** is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if **y** is not specified, the cell will span the full vertical extent of the plot (or facet). Typically either **x**, **y**, or both are specified; use a [frame mark](./frame.md) to decorate the plot’s frame.
+If **x** is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if **y** is not specified, the cell will span the full vertical extent of the plot (or facet). Typically either **x**, **y**, or both are specified; use a [frame mark](./frame.md) to decorate the plot’s frame. As a rect-like mark, the cell mark supports [insets](../features/marks.md#insets) and [rounded corners](./rect.md#rounded-corners).
 
 The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 

@@ -186,13 +186,15 @@ Plot.plot({
 A similar chart could be made with the [cell mark](./cell.md) using ordinal *x* and *y* scales instead, or with the [dot mark](./dot.md) as a scatterplot.
 :::
 
-To round corners, use the **r** option.<a id="r" href="#r" aria-label="Permalink to &quot;r&quot;"></a> If the combined corner radii exceed the width or height of the rect, the radii are proportionally reduced to produce a pill shape with circular caps. Try increasing the radii below.
+To round corners, use the **r** option.<a id="rounded-corners" href="#rounded-corners" aria-label="Permalink to &quot;rounded corners&quot;"></a> If the combined corner radii exceed the width or height of the rect, the radii are proportionally reduced to produce a pill shape with circular caps. Try increasing the radii below.
 
-<label class="label-input" style="display: flex;">
-  <span style="display: inline-block; width: 7em;">r:</span>
-  <input type="range" v-model.number="r" min="0" max="25" step="0.2">
-  <span style="font-variant-numeric: tabular-nums;">{{r}}</span>
-</label>
+<p>
+  <label class="label-input" style="display: flex;">
+    <span style="display: inline-block; width: 7em;">r:</span>
+    <input type="range" v-model.number="r" min="0" max="25" step="0.2">
+    <span style="font-variant-numeric: tabular-nums;">{{r}}</span>
+  </label>
+</p>
 
 :::plot hidden defer
 ```js
@@ -214,7 +216,7 @@ Plot.plot({
 })
 ```
 
-To round corners on a specific side, use the **rx1**, **ry1**, **rx2**, or **ry2** options. When stacking rounded rects vertically, use a positive **ry2** and a corresponding negative **ry1**; likewise for stacking rounded rects horizontally, use a positive **rx2** and a negative **rx1**. Use the **clip** option to hide the “wings” below.
+To round corners on a specific side, use the **rx1**, **ry1**, **rx2**, or **ry2** options. When stacking rounded rects vertically, use a positive **ry2** and a corresponding negative **ry1**; likewise for stacking rounded rects horizontally, use a positive **rx2** and a negative **rx1**. Use the **clip** option to hide the “wings” below zero.
 
 :::plot defer
 ```js
@@ -255,7 +257,7 @@ If **x1** is specified but **x2** is not specified, then *x* must be a *band* sc
 
 If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each **x** to produce **x1**, and *interval*.offset(*x1*) is invoked for each **x1** to produce **x2**. The same is true for **y**, **y1**, and **y2**, respectively. If the interval is specified as a number *n*, **x1** and **x2** are taken as the two consecutive multiples of *n* that bracket **x**. Named UTC intervals such as *day* are also supported; see [scale options](../features/scales.md#scale-options).
 
-The rect mark supports rounded corners. Each corner (or side) is individually addressable using the following options <VersionBadge pr="2099" />:
+The rect mark supports rounded corners. Each corner (or side) is individually addressable <VersionBadge pr="2099" /> using the following options:
 
 * **r** - the radius for all four corners
 * **rx1** - the radius for the **x1**-**y1** and **x1**-**y2** corners
@@ -269,7 +271,7 @@ The rect mark supports rounded corners. Each corner (or side) is individually ad
 * **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for elliptical corners
 * **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for elliptical corners
 
-Corner radii are specified in either pixels or, for **rx** and **ry**, as percentages (strings) or the keyword *auto*. If the corner radii are too big, they are reduced proportionally. TODO The rounded corner options also apply to the [bar](./bar.md), [cell](./cell.md), and [frame](./frame.md) marks.
+Corner radii are specified in either pixels or, for **rx** and **ry**, as percentages (strings) or the keyword *auto*. If the corner radii are too big, they are reduced proportionally.
 
 The rect mark supports the [standard mark options](../features/marks.md#mark-options). The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
