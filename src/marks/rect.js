@@ -167,6 +167,8 @@ export function applyRoundedRect(selection, X1, Y1, X2, Y2, mark) {
   if (typeof Y1 !== "function") Y1 = constant(Y1);
   if (typeof X2 !== "function") X2 = constant(X2);
   if (typeof Y2 !== "function") Y2 = constant(Y2);
+  const rx = Math.max(Math.abs(r11 + r21), Math.abs(r12 + r22));
+  const ry = Math.max(Math.abs(r11 + r12), Math.abs(r21 + r22));
   selection.attr("d", (i) => {
     const x1 = X1(i);
     const y1 = Y1(i);
@@ -178,9 +180,7 @@ export function applyRoundedRect(selection, X1, Y1, X2, Y2, mark) {
     const r = ix ? x1 : x2;
     const t = iy ? y2 : y1;
     const b = iy ? y1 : y2;
-    const kx = (r - l) / Math.max(Math.abs(r11 + r21), Math.abs(r12 + r22));
-    const ky = (b - t) / Math.max(Math.abs(r11 + r12), Math.abs(r21 + r22));
-    const k = Math.min(1, kx, ky);
+    const k = Math.min(1, (r - l) / rx, (b - t) / ry);
     const tl = k * (ix ? (iy ? r22 : r21) : iy ? r12 : r11);
     const tr = k * (ix ? (iy ? r12 : r11) : iy ? r22 : r21);
     const br = k * (ix ? (iy ? r11 : r12) : iy ? r21 : r22);
