@@ -167,8 +167,8 @@ export function applyRoundedRect(selection, X1, Y1, X2, Y2, mark) {
   if (typeof Y1 !== "function") Y1 = constant(Y1);
   if (typeof X2 !== "function") X2 = constant(X2);
   if (typeof Y2 !== "function") Y2 = constant(Y2);
-  const f1 = Math.sign(r11) !== Math.sign(r12) || Math.sign(r21) !== Math.sign(r22) ? Math.abs : Number;
-  const f2 = Math.sign(r11) !== Math.sign(r21) || Math.sign(r12) !== Math.sign(r22) ? Math.abs : Number;
+  const f1 = opposing(r11, r12) || opposing(r21, r22) ? Math.abs : Number;
+  const f2 = opposing(r11, r21) || opposing(r12, r22) ? Math.abs : Number;
   selection.attr("d", (i) => {
     const x1 = X1(i);
     const y1 = Y1(i);
@@ -195,6 +195,10 @@ export function applyRoundedRect(selection, X1, Y1, X2, Y2, mark) {
       `Z`
     );
   });
+}
+
+function opposing(r1, r2) {
+  return r1 && r2 && Math.sign(r1) !== Math.sign(r2);
 }
 
 export function rect(data, options) {

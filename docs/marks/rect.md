@@ -3,8 +3,9 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
-import {computed, shallowRef, onMounted} from "vue";
+import {computed, ref, shallowRef, onMounted} from "vue";
 
+const r = ref(4);
 const diamonds = shallowRef([]);
 const seattle = shallowRef([]);
 const olympians = shallowRef([{weight: 31, height: 1.21, sex: "female"}, {weight: 170, height: 2.21, sex: "male"}]);
@@ -45,7 +46,7 @@ Plot.plot({
 ```
 :::
 
-More commonly, the rect mark is used to produce histograms or heatmaps of quantitative data. For example, given some binned observations computed by [d3.bin](https://d3js.org/d3-array/bin), we can produce a basic histogram with [rectY](#rectY) as follows:
+The rect mark is often used to produce histograms or heatmaps of quantitative data. For example, given some binned observations computed by [d3.bin](https://d3js.org/d3-array/bin), we can produce a basic histogram with [rectY](#rectY) as follows:
 
 :::plot https://observablehq.com/@observablehq/plot-rects-and-bins
 ```js
@@ -61,7 +62,7 @@ bins = d3.bin()(d3.range(1000).map(d3.randomNormal()))
 d3.bin uses *x0* and *x1* to represent the lower and upper bound of each bin, whereas the rect mark uses **x1** and **x2**. The *length* field is the count of values in each bin, which is encoded as **y**.
 :::
 
-Most often, the rect mark is paired with the [bin transform](../transforms/bin.md) to bin quantitative values as part of the plot itself. As an added bonus, this sets default [inset options](../features/marks.md#mark-options) for a 1px gap separating adjacent rects, improving readability.
+More commonly, the rect mark is paired with the [bin transform](../transforms/bin.md) to bin quantitative values automatically. As an added bonus, this sets default [inset options](../features/marks.md#mark-options) for a 1px gap separating adjacent rects, improving readability.
 
 :::plot https://observablehq.com/@observablehq/plot-rects-and-bins
 ```js
@@ -69,7 +70,7 @@ Plot.rectY(d3.range(1000).map(d3.randomNormal()), Plot.binX()).plot()
 ```
 :::
 
-Like the [bar mark](./bar.md), the rect mark has two convenience constructors for common orientations: [rectX](#rectX) is for horizontal→ rects and applies an implicit [stackX transform](../transforms/stack.md#stackX), while [rectY](#rectY) is for vertical↑ rects and applies an implicit [stackY transform](../transforms/stack.md#stackY).
+Like the [bar mark](./bar.md), the rect mark has two convenience constructors for common orientations: [rectX](#rectX) is for horizontal→ rects with an implicit [stackX transform](../transforms/stack.md#stackX), while [rectY](#rectY) is for vertical↑ rects with an implicit [stackY transform](../transforms/stack.md#stackY).
 
 :::plot defer https://observablehq.com/@observablehq/plot-vertical-histogram
 ```js
@@ -137,20 +138,6 @@ Plot.plot({
 A similar plot can be made with the [dot mark](./dot.md), if you’d prefer a size encoding.
 :::
 
-TODO Describe rounding.
-
-:::plot defer
-```js
-Plot.plot({
-  color: {legend: true},
-  marks: [
-    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", ry2: 4, ry1: -4, clip: "frame"})),
-    Plot.ruleY([0])
-  ]
-})
-```
-:::
-
 Below we recreate an uncommon [chart by Max Roser](https://ourworldindata.org/poverty-minimum-growth-needed) that visualizes global poverty. Each rect represents a country: *x* encodes the country’s population, while *y* encodes the proportion of that population living in poverty; hence area represents the number of people living in poverty. Rects are [stacked](../transforms/stack.md) along *x* in order of descending *y*.
 
 :::plot defer https://observablehq.com/@observablehq/plot-cumulative-distribution-of-poverty
@@ -175,7 +162,7 @@ Plot.plot({
 ```
 :::
 
-The [interval transform](../transforms/interval.md) may be used to convert a single value in **x** or **y** (or both) into an extent. For example, the chart below shows the observed daily maximum temperature in Seattle for the year 2015. The day-in-month and month-in-year numbers are expanded to unit intervals by setting the **interval** option to 1.
+The [interval transform](../transforms/interval.md) may be used to convert a single value in **x** or **y** (or both) into an extent. (Unlike the bin transform, the interval transform will produce overlapping rects if multiple points have the same position.) The chart below shows the observed daily maximum temperature in Seattle for the year 2015. The day-in-month and month-in-year numbers are expanded to unit intervals by setting the **interval** option to 1.
 
 :::plot defer https://observablehq.com/@observablehq/plot-seattle-heatmap-quantitative
 ```js
@@ -197,6 +184,62 @@ Plot.plot({
 
 :::tip
 A similar chart could be made with the [cell mark](./cell.md) using ordinal *x* and *y* scales instead, or with the [dot mark](./dot.md) as a scatterplot.
+:::
+
+To round corners, use the **r** option.<a id="r" href="#r" aria-label="Permalink to &quot;r&quot;"></a> If the combined corner radii excede the width or height of the rect, the radii are proportionally reduced to produce a pill shape with circular caps. Try increasing the radii below.
+
+<label class="label-input" style="display: flex;">
+  <span style="display: inline-block; width: 7em;">r:</span>
+  <input type="range" v-model.number="r" min="0" max="25" step="0.2">
+  <span style="font-variant-numeric: tabular-nums;">{{r}}</span>
+</label>
+
+:::plot hidden defer
+```js
+Plot.plot({
+  marks: [
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", r, thresholds: 10})),
+    Plot.ruleY([0])
+  ]
+})
+```
+:::
+
+```js-vue
+Plot.plot({
+  marks: [
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", r: {{r}}, thresholds: 10})),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+To round corners on a specific side, use the **rx1**, **ry1**, **rx2**, or **ry2** options. When stacking rounded rects vertically, use a positive **ry2** and a corresponding negative **ry1**; likewise for stacking rounded rects horizontally, use a positive **rx2** and a negative **rx1**. Use the **clip** option to hide the “wings” below.
+
+:::plot defer
+```js
+Plot.plot({
+  color: {legend: true},
+  marks: [
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", ry2: 4, ry1: -4, clip: "frame"})),
+    Plot.ruleY([0])
+  ]
+})
+```
+:::
+
+You can even round specific corners using the **rx1y1**, **rx2y1**, **rx2y2**, and **rx1y2** options.
+
+:::plot defer
+```js
+Plot.plot({
+  color: {legend: true},
+  marks: [
+    Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", rx1y2: 10, rx1y1: -10, clip: "frame"})),
+    Plot.ruleY([0])
+  ]
+})
+```
 :::
 
 ## Rect options

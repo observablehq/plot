@@ -230,3 +230,14 @@ export async function roundedRectNegativeY() {
     ]
   });
 }
+
+export async function roundedRectNegativeY1() {
+  const olympians = await d3.csv<any>("data/athletes.csv", d3.autoType);
+  return Plot.plot({
+    color: {legend: true},
+    marks: [
+      Plot.rectY(olympians, Plot.binX({y: "count"}, {rx1y2: 4, rx1y1: -4, clip: "frame", x: "weight", fill: "sex"})),
+      Plot.ruleY([0])
+    ]
+  });
+}
