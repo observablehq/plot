@@ -215,6 +215,10 @@ Plot.plot({x: {type: "pow", exponent: 1 / 3, domain: [0, 100], grid: true}})
 
 Continuous scales also support a **clamp** option, which if true, clamps input values to the scale’s domain before scaling. This is useful for preventing marks from escaping the chart area.
 
+Continuous scales support an **interpolate** option, as a function function that takes a parameter *t* in [0, 1] and returns a value in the **range**, or as a two-argument function that takes a pair of values [*start*, *end*] from the range, and returns an interpolator from [0, 1], typically mapping 0 to *start*, and 1 to *end*.
+
+Continuous scales support a piecewise **domain**, specified as an array of _n_ domain values (with _n_ greater than two), with a corresponding **range** having the same number of values; in that case, each segment of the domain is mapped to the matching segment of the range, using the scale’s interpolator. When the domain has *n*&nbsp;&gt;&nbsp;2 elements and the range has two elements (for example, when using the default range on a *x* or *y* scale), the latter is automatically split into _n_&nbsp;&minus;&nbsp;1  segments of equal size. Note that in addition to the domain, you must specify the scale’s continuous **type** (since a scale specified with a domain having more than two elements otherwise defaults to an ordinal scale). You will often have to specify the **ticks** manually, too. For a complete example, see the [Polylinear axis](https://observablehq.com/@observablehq/polylinear-axis) notebook.
+
 ## Discrete scales
 
 Sadly, not all data is continuous: some data is merely ordinal, such as t-shirt sizes; and some categorical (*a.k.a.* nominal), such as brands of clothing. To encode such data as position, a *point* or *band* scale is required.
