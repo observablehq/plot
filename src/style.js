@@ -2,7 +2,7 @@ import {geoPath, group, namespaces} from "d3";
 import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
-import {isNone, isNoneish, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
+import {isNone, isNoneish, isPaint, isRound, maybeColorChannel, maybeNumberChannel} from "./options.js";
 import {keyof, number, string} from "./options.js";
 import {warn} from "./warnings.js";
 
@@ -106,7 +106,7 @@ export function styles(
 
   // Some marks don’t support fill (e.g., tick and rule).
   if (defaultFill !== null) {
-    mark.fill = impliedString(cfill, "currentColor");
+    mark.fill = isPaint(cfill) ? cfill : impliedString(cfill, "currentColor");
     mark.fillOpacity = impliedNumber(cfillOpacity, 1);
   }
 
@@ -349,7 +349,7 @@ function applyClip(selection, mark, dimensions, context) {
 export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyClip(selection, mark, dimensions, context);
   applyAttr(selection, "class", mark.className);
-  applyAttr(selection, "fill", mark.fill);
+  applyAttr(selection, "fill", isPaint(mark.fill) ? mark.fill.paint(context) : mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);
   applyAttr(selection, "stroke-width", mark.strokeWidth);
