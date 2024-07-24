@@ -49,8 +49,6 @@ function getHref(name: string, path: string): string {
     case "features/plot":
     case "features/projection":
       return `${path}s`;
-    case "features/inset":
-      return "features/scales";
     case "features/options":
       return "features/transforms";
     case "marks/axis": {
@@ -85,8 +83,8 @@ function getInterfaceName(name: string, path: string): string {
   name = name.replace(/([a-z0-9])([A-Z])/, (_, a, b) => `${a} ${b}`); // camel case conversion
   name = name.toLowerCase();
   if (name === "curve auto") name = "curve";
-  if (name === "plot facet") name = "plot";
-  if (name === "bollinger window") name = "bollinger map method";
+  else if (name === "plot facet") name = "plot";
+  else if (name === "bollinger window") name = "bollinger map method";
   else if (path.startsWith("marks/")) name += " mark";
   else if (path.startsWith("transforms/")) name += " transform";
   return name;
@@ -105,10 +103,15 @@ export default {
         if (Node.isInterfaceDeclaration(declaration)) {
           if (isInternalInterface(name)) continue;
           for (const property of declaration.getProperties()) {
-            const path = index.getRelativePathTo(declaration.getSourceFile());
-            const href = getHref(name, path);
             if (property.getJsDocs().some((d) => d.getTags().some((d) => Node.isJSDocDeprecatedTag(d)))) continue;
-            allOptions.push({name: property.getName(), context: {name: getInterfaceName(name, path), href}});
+            if (name === "InsetOptions") {
+              allOptions.push({name: property.getName(), context: {name: "mark", href: "features/marks"}});
+              allOptions.push({name: property.getName(), context: {name: "scale", href: "features/scales"}});
+            } else {
+              const path = index.getRelativePathTo(declaration.getSourceFile());
+              const href = getHref(name, path);
+              allOptions.push({name: property.getName(), context: {name: getInterfaceName(name, path), href}});
+            }
           }
         } else if (Node.isFunctionDeclaration(declaration)) {
           const comment = getDescription(declaration);
@@ -141,7 +144,9 @@ export default {
         throw new Error(`anchor not found: ${href}#${name}`);
       }
     }
-    for (const {context: {href}} of allOptions) {
+    for (const {
+      context: {href}
+    } of allOptions) {
       if (!anchors.has(`/${href}.md`)) {
         throw new Error(`file not found: ${href}`);
       }
