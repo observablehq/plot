@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {feature, mesh} from "topojson-client";
 
-type Prj = {type: Plot.ProjectionName; parallels?: [number, number]; rotate?: [number, number]};
+type Prj = {type: Plot.ProjectionName | (() => any); parallels?: [number, number]; rotate?: [number, number]};
 
 async function stateMap(id: string, prj: Prj) {
   const us = await d3.json<any>("data/us-counties-10m.json");
@@ -28,4 +28,14 @@ export async function projectionDomainRatioMN() {
 
 export async function projectionDomainRatioNC() {
   return stateMap("37", {type: "conic-conformal", parallels: [34 + 20 / 60, 36 + 10 / 60], rotate: [79, 0]});
+}
+
+export async function projectionDomainRatioNCManual() {
+  return stateMap("37", {
+    type: () =>
+      d3
+        .geoConicConformal()
+        .parallels([34 + 20 / 60, 36 + 10 / 60])
+        .rotate([79, 0])
+  });
 }
