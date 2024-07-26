@@ -57,4 +57,4 @@ export {formatIsoDate, formatNumber, formatWeekday, formatMonth} from "./format.
 export {scale} from "./scales.js";
 export {legend} from "./legends.js";
 export {numberInterval} from "./options.js";
-export {timeInterval, utcInterval} from "./time.js";
+export {timeInterval, utcInterval, inferTimeFormat} from "./time.js";
