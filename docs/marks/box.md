@@ -121,6 +121,7 @@ The given *options* are passed through to these underlying marks, with the excep
 * **stroke** - the stroke color of the rule, tick, and dot; defaults to *currentColor*
 * **strokeOpacity** - the stroke opacity of the rule, tick, and dot; defaults to 1
 * **strokeWidth** - the stroke width of the tick; defaults to 1
+* **r** - the radius of the dot; defaults to 3
 
 ## boxX(*data*, *options*) {#boxX}
 

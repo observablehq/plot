@@ -4,7 +4,7 @@ import {maybeFacetAnchor} from "./facet.js";
 import {maybeClip, maybeNamed, maybeValue} from "./options.js";
 import {arrayify, isDomainSort, isObject, isOptions, keyword, range, singleton} from "./options.js";
 import {project} from "./projection.js";
-import {styles} from "./style.js";
+import {maybeClassName, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 
 export class Mark {
@@ -22,6 +22,7 @@ export class Mark {
       marginRight = margin,
       marginBottom = margin,
       marginLeft = margin,
+      className,
       clip = defaults?.clip,
       channels: extraChannels,
       tip,
@@ -71,6 +72,7 @@ export class Mark {
     this.marginLeft = +marginLeft;
     this.clip = maybeClip(clip);
     this.tip = maybeTip(tip);
+    this.className = className ? maybeClassName(className) : null;
     // Super-faceting currently disallow position channels; in the future, we
     // could allow position to be specified in fx and fy in addition to (or
     // instead of) x and y.
