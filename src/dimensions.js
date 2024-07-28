@@ -94,7 +94,8 @@ function autoHeight(
 ) {
   const nfy = fy ? fy.scale.domain().length || 1 : 1;
 
-  // If a projection is specified, use its natural aspect ratio (if known).
+  // If a projection is specified, compute an aspect ratio based on the domain,
+  // defaulting to the projection’s natural aspect ratio (if known).
   const ar = projectionAspectRatio(projection);
   if (ar) {
     const nfx = fx ? fx.scale.domain().length : 1;
