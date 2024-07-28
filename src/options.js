@@ -7,6 +7,10 @@ import {timeInterval, utcInterval} from "./time.js";
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
+function isArray(value) {
+  return value instanceof Array || value instanceof TypedArray;
+}
+
 function isNumberArray(value) {
   return value instanceof TypedArray && !isBigIntArray(value);
 }
@@ -150,7 +154,7 @@ export function keyword(input, name, allowed) {
 
 // Promotes the specified data to an array as needed.
 export function arrayify(values) {
-  if (values == null || values instanceof Array || values instanceof TypedArray) return values;
+  if (values == null || isArray(values)) return values;
   switch (values.type) {
     case "FeatureCollection":
       return values.features;
@@ -253,20 +257,15 @@ export function maybeZ({z, fill, stroke} = {}) {
 
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
 export function range(data) {
-  const n = data.length;
+  const n = isArray(data) ? data.length : data.numRows;
   const r = new Uint32Array(n);
   for (let i = 0; i < n; ++i) r[i] = i;
   return r;
 }
 
-// Returns a filtered range of data given the test function.
-export function where(data, test) {
-  return range(data).filter((i) => test(data[i], i, data));
-}
-
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
-  return map(index, (i) => values[i], values.constructor);
+  return isArray(values) ? map(index, (i) => values[i], values.constructor) : map(index, (i) => values.at(i));
 }
 
 // If f does not take exactly one argument, wraps it in a function that uses take.
