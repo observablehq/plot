@@ -35,7 +35,7 @@ export function valueof(data, value, type) {
   const valueType = typeof value;
   return valueType === "string"
     ? isArrowTable(data)
-      ? maybeTypedArrayify(data.getChild(value).toArray(), type) // TODO retain date/type hint?
+      ? maybeTypedArrowify(data.getChild(value), type)
       : maybeTypedMap(data, field(value), type)
     : valueType === "function"
     ? maybeTypedMap(data, value, type)
@@ -62,6 +62,12 @@ function maybeTypedArrayify(data, type) {
     : isNumberType(type) && !isNumberArray(data)
     ? type.from(data, coerceNumber)
     : type.from(data);
+}
+
+function maybeTypedArrowify(vector, type = Array) {
+  return type === Array && isArrowDateType(vector.type)
+    ? coerceDates(vector.toArray())
+    : maybeTypedArrayify(vector.toArray(), type);
 }
 
 function floater(f) {
@@ -117,7 +123,7 @@ export function coerceDate(x) {
     ? x
     : typeof x === "string"
     ? isoParse(x)
-    : x == null || isNaN((x = +x))
+    : x == null || isNaN((x = Number(x))) // allow conversion from BigInt
     ? undefined
     : new Date(x);
 }
@@ -601,5 +607,16 @@ export function isArrowTable(value) {
     typeof value.toArray === "function" &&
     value.schema &&
     Array.isArray(value.schema.fields)
+  );
+}
+
+// Apache Arrow now represents dates as numbers. We currently only support
+// implicit coercion to JavaScript Date objects when the numbers represent
+// milliseconds since Unix epoch.
+function isArrowDateType(type) {
+  return (
+    (type.typeId === 8 || // date
+      type.typeId === 10) && // timestamp
+    type.unit === 1 // millisecond
   );
 }
