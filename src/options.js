@@ -260,9 +260,13 @@ export function maybeZ({z, fill, stroke} = {}) {
   return z;
 }
 
+export function lengthof(data) {
+  return isArray(data) ? data.length : data.numRows;
+}
+
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
 export function range(data) {
-  const n = isArray(data) ? data.length : data.numRows;
+  const n = lengthof(data);
   const r = new Uint32Array(n);
   for (let i = 0; i < n; ++i) r[i] = i;
   return r;
