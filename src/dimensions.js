@@ -92,7 +92,7 @@ function autoHeight(
   {projection, aspectRatio},
   {width, marginTopDefault, marginRightDefault, marginBottomDefault, marginLeftDefault}
 ) {
-  const nfy = fy ? fy.scale.domain().length : 1;
+  const nfy = fy ? fy.scale.domain().length || 1 : 1;
 
   // If a projection is specified, compute an aspect ratio based on the domain,
   // defaulting to the projection’s natural aspect ratio (if known).
@@ -103,8 +103,7 @@ function autoHeight(
     const lar = Math.max(0.1, Math.min(10, far)); // clamp the aspect ratio to a “reasonable” value
     return Math.round((width - marginLeftDefault - marginRightDefault) * lar + marginTopDefault + marginBottomDefault);
   }
-
-  const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
+  const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length || 1 : Math.max(7, 17 / nfy)) : 1;
 
   // If a desired aspect ratio is given, compute a default height to match.
   if (aspectRatio != null) {
