@@ -7,6 +7,22 @@ import {timeInterval, utcInterval} from "./time.js";
 export const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
+function isNumberArray(value) {
+  return value instanceof TypedArray && !isBigIntArray(value);
+}
+
+function isNumberType(type) {
+  return type?.prototype instanceof TypedArray && !isBigIntType(type);
+}
+
+function isBigIntArray(value) {
+  return value instanceof BigInt64Array || value instanceof BigUint64Array;
+}
+
+function isBigIntType(type) {
+  return type === BigInt64Array || type === BigUint64Array;
+}
+
 // If a reindex is attached to the data, channel values expressed as arrays will
 // be reindexed when the channels are instantiated. See exclusiveFacets.
 export const reindex = Symbol("reindex");
@@ -14,7 +30,9 @@ export const reindex = Symbol("reindex");
 export function valueof(data, value, type) {
   const valueType = typeof value;
   return valueType === "string"
-    ? columnar(data, value, type)
+    ? isArrowTable(data)
+      ? maybeTypedArrayify(data.getChild(value).toArray(), type) // TODO retain date/type hint?
+      : maybeTypedMap(data, field(value), type)
     : valueType === "function"
     ? maybeTypedMap(data, value, type)
     : valueType === "number" || value instanceof Date || valueType === "boolean"
@@ -29,7 +47,7 @@ function maybeTake(values, index) {
 }
 
 function maybeTypedMap(data, f, type) {
-  return map(data, type?.prototype instanceof TypedArray ? floater(f) : f, type);
+  return map(data, isNumberType(type) ? floater(f) : f, type); // coerce maybe BigInt to Number to avoid error
 }
 
 function maybeTypedArrayify(data, type) {
@@ -37,7 +55,7 @@ function maybeTypedArrayify(data, type) {
     ? arrayify(data) // preserve undefined type
     : data instanceof type
     ? data
-    : type.prototype instanceof TypedArray && !(data instanceof TypedArray)
+    : isNumberType(type) && !isNumberArray(data)
     ? type.from(data, coerceNumber)
     : type.from(data);
 }
@@ -70,7 +88,7 @@ export function percentile(reduce) {
 
 // If the values are specified as a typed array, no coercion is required.
 export function coerceNumbers(values) {
-  return values instanceof TypedArray ? values : map(values, coerceNumber, Float64Array);
+  return isNumberArray(values) ? values : map(values, coerceNumber, Float64Array);
 }
 
 // Unlike Mark’s number, here we want to convert null and undefined to NaN since
@@ -133,7 +151,6 @@ export function keyword(input, name, allowed) {
 // Promotes the specified data to an array as needed.
 export function arrayify(values) {
   if (values == null || values instanceof Array || values instanceof TypedArray) return values;
-  if (isArrowTable(values)) return arrowTableProxy(values);
   switch (values.type) {
     case "FeatureCollection":
       return values.features;
@@ -577,34 +594,13 @@ export function maybeClip(clip) {
   return clip;
 }
 
-// Duck typing Apache Arrow tables
-function isArrowTable(data) {
-  return typeof data?.getChild === "function" && typeof data.numRows === "number" && typeof data.slice === "function";
-}
-
-// Extract columnar data
-function columnar(data, name, type) {
-  if (isArrowTable(data)) {
-    const column = maybeTypedArrayify(data.getChild(name), type);
-    if (Array.isArray(column) && String(data.schema?.fields?.find((d) => d.name === name)).endsWith("<MILLISECOND>"))
-      column.find((d, i) => d != null && (column[i] = new Date(d)));
-    return column;
-  }
-  return maybeTypedMap(data, field(name), type);
-}
-
-// Arrayify arrow tables. We try to avoid materializing the values, but the
-// Proxy might be used by the group reducer to construct groupData.
-function arrowTableProxy(data) {
-  return new Proxy(data, {
-    get(target, prop) {
-      return prop === "length"
-        ? target.numRows
-        : prop === "constructor" // for take/map
-        ? Array
-        : typeof prop === "string" && !isNaN(prop)
-        ? target.get(prop)
-        : target[prop]; // pass all other properties
-    }
-  });
+// https://github.com/observablehq/stdlib/blob/746ca2e69135df6178e4f3a17244def35d8d6b20/src/arrow.js#L4C1-L17C1
+export function isArrowTable(value) {
+  return (
+    value &&
+    typeof value.getChild === "function" &&
+    typeof value.toArray === "function" &&
+    value.schema &&
+    Array.isArray(value.schema.fields)
+  );
 }

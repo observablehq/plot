@@ -32,6 +32,7 @@ export type TipPointer = "x" | "y" | "xy";
  *
  * - an array, typed array, or other iterable
  * - an object with a length property and indexed values
+ * - an Apache Arrow Table
  */
 export type Data = Iterable<any> | ArrayLike<any>;
 
