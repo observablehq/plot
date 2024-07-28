@@ -156,6 +156,11 @@ export function keyword(input, name, allowed) {
   return i;
 }
 
+// Like arrayify, but also allows data to be an Apache Arrow Table.
+export function dataify(data) {
+  return isArrowTable(data) ? data : arrayify(data);
+}
+
 // Promotes the specified data to an array as needed.
 export function arrayify(values) {
   if (values == null || isArray(values)) return values;
@@ -261,7 +266,7 @@ export function maybeZ({z, fill, stroke} = {}) {
 }
 
 export function lengthof(data) {
-  return isArray(data) ? data.length : data.numRows;
+  return isArray(data) ? data.length : data?.numRows;
 }
 
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].

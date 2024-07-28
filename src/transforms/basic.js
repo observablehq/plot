@@ -1,6 +1,6 @@
 import {randomLcg} from "d3";
 import {ascendingDefined, descendingDefined} from "../defined.js";
-import {arrayify, isDomainSort, isOptions, maybeValue, valueof} from "../options.js";
+import {dataify, isDomainSort, isOptions, maybeValue, valueof} from "../options.js";
 
 export function basic({filter: f1, sort: s1, reverse: r1, transform: t1, initializer: i1, ...options} = {}, transform) {
   // If both t1 and t2 are defined, returns a composite transform that first
@@ -40,7 +40,7 @@ function composeTransform(t1, t2) {
   if (t2 == null) return t1 === null ? undefined : t1;
   return function (data, facets, plotOptions) {
     ({data, facets} = t1.call(this, data, facets, plotOptions));
-    return t2.call(this, arrayify(data), facets, plotOptions);
+    return t2.call(this, dataify(data), facets, plotOptions);
   };
 }
 

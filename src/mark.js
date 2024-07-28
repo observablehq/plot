@@ -2,7 +2,7 @@ import {channelDomain, createChannels, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {maybeFacetAnchor} from "./facet.js";
 import {maybeClip, maybeNamed, maybeValue} from "./options.js";
-import {arrayify, isArrowTable, isDomainSort, isObject, isOptions, keyword, range, singleton} from "./options.js";
+import {dataify, isDomainSort, isObject, isOptions, keyword, range, singleton} from "./options.js";
 import {project} from "./projection.js";
 import {styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
@@ -128,10 +128,6 @@ export class Mark {
     if (context.projection) this.project(channels, values, context);
     return values;
   }
-}
-
-function dataify(data) {
-  return isArrowTable(data) ? data : arrayify(data);
 }
 
 export function marks(...marks) {
