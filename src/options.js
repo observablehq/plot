@@ -51,7 +51,7 @@ function maybeTake(values, index) {
 }
 
 function maybeTypedMap(data, f, type) {
-  return map(data, isNumberType(type) ? floater(f) : f, type); // coerce maybe BigInt to Number to avoid error
+  return map(data, isNumberType(type) ? (d, i) => coerceNumber(f(d, i)) : f, type); // allow conversion from BigInt
 }
 
 function maybeTypedArrayify(data, type) {
@@ -68,10 +68,6 @@ function maybeTypedArrowify(vector, type = Array) {
   return type === Array && isArrowDateType(vector.type)
     ? coerceDates(vector.toArray())
     : maybeTypedArrayify(vector.toArray(), type);
-}
-
-function floater(f) {
-  return (d, i) => coerceNumber(f(d, i));
 }
 
 export const singleton = [null]; // for data-less decoration marks, e.g. frame
