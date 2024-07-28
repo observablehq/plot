@@ -59,9 +59,7 @@ function maybeTypedArrayify(data, type) {
     ? arrayify(data) // preserve undefined type
     : data instanceof type
     ? data
-    : isNumberType(type) && !isNumberArray(data)
-    ? type.from(data, coerceNumber)
-    : type.from(data);
+    : type.from(data, isNumberType(type) && !isNumberArray(data) ? coerceNumber : undefined);
 }
 
 function maybeTypedArrowify(vector, type = Array) {
