@@ -2,18 +2,33 @@ import {creator, select} from "d3";
 import {createChannel, inferChannelScale} from "./channel.js";
 import {createContext} from "./context.js";
 import {createDimensions} from "./dimensions.js";
-import {createFacets, recreateFacets, facetExclude, facetGroups, facetTranslator, facetFilter} from "./facet.js";
+import {createFacets, facetExclude, facetFilter, facetGroups, facetTranslator, recreateFacets} from "./facet.js";
 import {pointer, pointerX, pointerY} from "./interactions/pointer.js";
 import {createLegends, exposeLegends} from "./legends.js";
 import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY, gridFx, gridFy, gridX, gridY} from "./marks/axis.js";
 import {frame} from "./marks/frame.js";
 import {tip} from "./marks/tip.js";
-import {isColor, isIterable, isNone, isScaleOptions} from "./options.js";
-import {arrayify, map, yes, maybeIntervalTransform, subarray} from "./options.js";
+import {
+  arrayify,
+  isColor,
+  isIterable,
+  isNone,
+  isScaleOptions,
+  map,
+  maybeIntervalTransform,
+  subarray,
+  yes
+} from "./options.js";
 import {createProjection, getGeometryChannels, hasProjection} from "./projection.js";
-import {createScales, createScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
-import {innerDimensions, outerDimensions} from "./scales.js";
+import {
+  autoScaleRange,
+  createScaleFunctions,
+  createScales,
+  exposeScales,
+  innerDimensions,
+  outerDimensions
+} from "./scales.js";
 import {isPosition, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName} from "./style.js";
 import {initializer} from "./transforms/basic.js";
@@ -170,13 +185,6 @@ export function plot(options = {}) {
     const facetState = facetStateByMark.get(mark);
     return {...state, channels: {...state.channels, ...facetState?.channels}};
   };
-
-  class StickyEvent extends Event {
-    constructor(type, options) {
-      super(type, options);
-      this.sticky = options.sticky;
-    }
-  }
 
   // Allows e.g. the pointer transform to support viewof.
   context.dispatchValue = (value, sticky) => {
@@ -750,4 +758,11 @@ function outerRange(scale) {
   let x2 = scale(domain[domain.length - 1]);
   if (x2 < x1) [x1, x2] = [x2, x1];
   return [x1, x2 + scale.bandwidth()];
+}
+
+class StickyEvent extends Event {
+  constructor(type, options) {
+    super(type, options);
+    this.sticky = options.sticky;
+  }
 }
