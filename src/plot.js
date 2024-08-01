@@ -732,6 +732,7 @@ function actualDimensions({fx, fy}, dimensions) {
 
 function outerRange(scale) {
   const domain = scale.domain();
+  if (domain.length === 0) return [0, scale.bandwidth()];
   let x1 = scale(domain[0]);
   let x2 = scale(domain[domain.length - 1]);
   if (x2 < x1) [x1, x2] = [x2, x1];

@@ -1,4 +1,4 @@
-const unset = Symbol("unset");
+export const unset = Symbol("unset");
 
 export function memoize1(compute) {
   return (compute.length === 1 ? memoize1Arg : memoize1Args)(compute);

@@ -1,0 +1,58 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="643.1862703637397" viewBox="0 0 640 643.1862703637397" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="line" fill="none" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <path stroke="#4269d0" stroke-width="1" marker-mid="url(#plot-marker-1)" d="M343.88,304.827L351.71,300.597L360.755,297.992L370.722,297.24L381.279,298.518L392.067,301.951L402.706,307.601L412.805,315.473L421.973,325.503"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#4269d0" stroke="none" id="plot-marker-1">
+      <circle r="2.5"></circle>
+    </marker>
+    <path stroke="#4269d0" stroke-width="2" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" d="M421.973,325.503L429.827,337.569L436.002,351.484L440.162,367.003L442.007,383.825L441.282,401.601L437.785,419.939L431.374,438.415L421.969,456.575"></path>
+    <path stroke="#4269d0" stroke-width="3" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" d="M421.969,456.575L409.562,473.952L394.213,490.072L376.055,504.466L355.294,516.681L332.205,526.289L307.128,532.898L280.467,536.165L252.679,535.799"></path>
+    <path stroke="#4269d0" stroke-width="4" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" d="M252.679,535.799L224.267,531.575L195.774,523.338L167.77,511.01L140.842,494.593L115.585,474.174L92.584,449.926L72.407,422.105L55.593,391.052"></path>
+    <path stroke="#4269d0" stroke-width="5" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" d="M55.593,391.052L42.637,357.185L33.981,320.997L30,283.047"></path>
+    <path stroke="#efb118" stroke-width="1" marker-mid="url(#plot-marker-2)" d="M360.888,338.926L367.123,345.411L372.124,353.517L375.59,363.024L377.258,373.662L376.908,385.12L374.374,397.049L369.543,409.075L362.366,420.802"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#efb118" stroke="none" id="plot-marker-2">
+      <circle r="2.5"></circle>
+    </marker>
+    <path stroke="#efb118" stroke-width="2" marker-start="url(#plot-marker-2)" marker-mid="url(#plot-marker-2)" d="M362.366,420.802L352.855,431.827L341.088,441.747L327.206,450.169L311.415,456.719L293.98,461.054L275.222,462.869L255.511,461.907L235.26,457.965"></path>
+    <path stroke="#efb118" stroke-width="3" marker-start="url(#plot-marker-2)" marker-mid="url(#plot-marker-2)" d="M235.26,457.965L214.919,450.902L194.96,440.644L175.873,427.186L158.153,410.599L142.291,391.027L128.758,368.688L118.002,343.873L110.43,316.939"></path>
+    <path stroke="#efb118" stroke-width="4" marker-start="url(#plot-marker-2)" marker-mid="url(#plot-marker-2)" d="M110.43,316.939L106.403,288.31L106.222,258.463L110.126,227.926L118.278,197.266L130.761,167.078L147.577,137.976L168.64,110.581L193.773,85.507"></path>
+    <path stroke="#efb118" stroke-width="5" marker-start="url(#plot-marker-2)" marker-mid="url(#plot-marker-2)" d="M193.773,85.507L222.715,63.349L255.117,44.673L290.547,30"></path>
+    <path stroke="#ff725c" stroke-width="1" marker-mid="url(#plot-marker-3)" d="M331.657,366.175L327.025,374.003L320.488,381.087L312.176,387.075L302.273,391.639L291.02,394.48L278.704,395.342L265.656,394.011L252.243,390.329"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#ff725c" stroke="none" id="plot-marker-3">
+      <circle r="2.5"></circle>
+    </marker>
+    <path stroke="#ff725c" stroke-width="2" marker-start="url(#plot-marker-3)" marker-mid="url(#plot-marker-3)" d="M252.243,390.329L238.856,384.195L225.905,375.571L213.811,364.483L202.99,351.026L193.846,335.357L186.765,317.701L182.098,298.343L180.157,277.623"></path>
+    <path stroke="#ff725c" stroke-width="3" marker-start="url(#plot-marker-3)" marker-mid="url(#plot-marker-3)" d="M180.157,277.623L181.205,255.934L185.445,233.712L193.021,211.428L204.005,189.577L218.395,168.674L236.115,149.235L257.011,131.772L280.853,116.78"></path>
+    <path stroke="#ff725c" stroke-width="4" marker-start="url(#plot-marker-3)" marker-mid="url(#plot-marker-3)" d="M280.853,116.78L307.337,104.726L336.087,96.036L366.663,91.088L398.564,90.201L431.241,93.623L464.103,101.53L496.528,114.015L527.874,131.083"></path>
+    <path stroke="#ff725c" stroke-width="5" marker-start="url(#plot-marker-3)" marker-mid="url(#plot-marker-3)" d="M527.874,131.083L557.494,152.65L584.744,178.541L609,208.489"></path>
+    <path stroke="#6cc5b0" stroke-width="1" marker-mid="url(#plot-marker-4)" d="M295.632,344.936L286.75,342.544L278.062,338.107L269.942,331.654L262.757,323.27L256.862,313.104L252.586,301.36L250.225,288.3L250.034,274.23"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#6cc5b0" stroke="none" id="plot-marker-4">
+      <circle r="2.5"></circle>
+    </marker>
+    <path stroke="#6cc5b0" stroke-width="2" marker-start="url(#plot-marker-4)" marker-mid="url(#plot-marker-4)" d="M250.034,274.23L252.22,259.5L256.935,244.496L264.271,229.629L274.254,215.326L286.846,202.023L301.938,190.153L319.354,180.136L338.854,172.367"></path>
+    <path stroke="#6cc5b0" stroke-width="3" marker-start="url(#plot-marker-4)" marker-mid="url(#plot-marker-4)" d="M338.854,172.367L360.134,167.211L382.831,164.987L406.531,165.965L430.777,170.354L455.073,178.3L478.9,189.873L501.721,205.072L522.994,223.813"></path>
+    <path stroke="#6cc5b0" stroke-width="4" marker-start="url(#plot-marker-4)" marker-mid="url(#plot-marker-4)" d="M522.994,223.813L542.183,245.935L558.771,271.198L572.27,299.283L582.232,329.801L588.259,362.291L590.016,396.234L587.237,431.058L579.735,466.146"></path>
+    <path stroke="#6cc5b0" stroke-width="5" marker-start="url(#plot-marker-4)" marker-mid="url(#plot-marker-4)" d="M579.735,466.146L567.408,500.851L550.24,534.504L528.313,566.427"></path>
+    <path stroke="#3ca951" stroke-width="1" marker-mid="url(#plot-marker-5)" d="M306.219,302.562L306.14,293.258L308.088,283.578L312.141,273.889L318.318,264.57L326.574,256.003L336.804,248.561L348.841,242.604L362.459,238.463"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#3ca951" stroke="none" id="plot-marker-5">
+      <circle r="2.5"></circle>
+    </marker>
+    <path stroke="#3ca951" stroke-width="2" marker-start="url(#plot-marker-5)" marker-mid="url(#plot-marker-5)" d="M362.459,238.463L377.379,236.435L393.272,236.775L409.768,239.685L426.461,245.312L442.922,253.74L458.702,264.987L473.348,279.002L486.41,295.663"></path>
+    <path stroke="#3ca951" stroke-width="3" marker-start="url(#plot-marker-5)" marker-mid="url(#plot-marker-5)" d="M486.41,295.663L497.452,314.78L506.064,336.095L511.868,359.283L514.534,383.964L513.782,409.7L509.397,436.012L501.23,462.381L489.206,488.262"></path>
+    <path stroke="#3ca951" stroke-width="4" marker-start="url(#plot-marker-5)" marker-mid="url(#plot-marker-5)" d="M489.206,488.262L473.33,513.093L453.688,536.308L430.445,557.345L403.854,575.663L374.242,590.75L342.016,602.134L307.652,609.398L271.689,612.186"></path>
+    <path stroke="#3ca951" stroke-width="5" marker-start="url(#plot-marker-5)" marker-mid="url(#plot-marker-5)" d="M271.689,612.186L234.723,610.216L197.392,603.283L160.373,591.273"></path>
+  </g>
+</svg>
