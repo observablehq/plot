@@ -279,9 +279,9 @@ function voronoiof(delaunay, dimensions) {
   return delaunay.voronoi([marginLeft, marginTop, width - marginRight, height - marginBottom]);
 }
 
-function delaunayMark(DelaunayMark, data, {x, y, initializer, ...options} = {}) {
+function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
   [x, y] = maybeTuple(x, y);
-  return new DelaunayMark(data, {...basic({...options, x, y}, exclusiveFacets), initializer});
+  return new DelaunayMark(data, {...options, x, y});
 }
 
 export function delaunayLink(data, options) {
@@ -296,8 +296,8 @@ export function hull(data, options) {
   return delaunayMark(Hull, data, options);
 }
 
-export function voronoi(data, options) {
-  return delaunayMark(Voronoi, data, options);
+export function voronoi(data, {x, y, initializer, ...options} = {}) {
+  return delaunayMark(Voronoi, data, {...basic({...options, x, y}, exclusiveFacets), initializer});
 }
 
 export function voronoiMesh(data, options) {
