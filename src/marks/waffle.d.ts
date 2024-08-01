@@ -1,0 +1,45 @@
+import type {Data, RenderableMark} from "../mark.js";
+import type {BarYOptions} from "./bar.js";
+
+/** Options for the waffleY mark. */
+export interface WaffleYOptions extends BarYOptions {
+  /** The quantity each cell represents; defaults to 1. */
+  unit?: number;
+  /** The gap in pixels between cells; defaults to 1. */
+  gap?: number;
+}
+
+/**
+ * Returns a new vertical waffle mark for the given *data* and *options*; the
+ * required *y* values should be quantitative or temporal, and the optional *x*
+ * values should be ordinal. For example, for a vertical waffle chart of Olympic
+ * athletes by sport:
+ *
+ * ```js
+ * Plot.waffleY(olympians, Plot.groupX({y: "count"}, {x: "sport"}))
+ * ```
+ *
+ * If neither **y1** nor **y2** nor **interval** is specified, an implicit
+ * stackY transform is applied and **y** defaults to the identity function,
+ * assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. Otherwise if an **interval** is
+ * specified, then **y1** and **y2** are derived from **y**, representing the
+ * lower and upper bound of the containing interval, respectively. Otherwise, if
+ * only one of **y1** or **y2** is specified, the other defaults to **y**, which
+ * defaults to zero.
+ *
+ * The optional **x** ordinal channel specifies the horizontal position; it is
+ * typically bound to the *x* scale, which must be a *band* scale. If the **x**
+ * channel is not specified, the waffle will span the horizontal extent of the
+ * plot’s frame.
+ *
+ * If *options* is undefined, then **x** defaults to the zero-based index of
+ * *data* [0, 1, 2, …], allowing a quick waffle chart from an array of numbers:
+ *
+ * ```js
+ * Plot.waffleY([4, 9, 24, 46, 66, 7])
+ * ```
+ */
+export function waffleY(data?: Data, options?: WaffleYOptions): WaffleY;
+
+/** The waffleY mark. */
+export class WaffleY extends RenderableMark {}

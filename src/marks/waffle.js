@@ -8,48 +8,45 @@ import {BarY} from "./bar.js";
 let nextWaffleId = 0;
 
 export class WaffleY extends BarY {
-  constructor(data, options) {
+  constructor(data, {unit = 1, gap = 1, ...options} = {}) {
     super(data, {...options, stroke: "none"});
+    this.unit = Math.max(0, unit);
+    this.gap = +gap;
   }
   render(index, scales, channels, dimensions, context) {
+    const {unit, gap} = this;
     const {document} = context;
     const g = super.render(index, scales, channels, dimensions, context);
 
-    // The available bandwidth; we might not use all the available space if the
-    // waffle cells don’t fit evenly.
+    // We might not use all the available bandwidth if the cells don’t fit evenly.
     const bandwidth = this._width(scales, channels, dimensions);
 
     // The length of a unit along y in pixels.
-    // TODO multiples (e.g., each cell in the waffle represents one thousand)
-    const scale = Math.abs(scales.y(0) - scales.y(1));
+    const scale = Math.abs(scales.y(0) - scales.y(unit));
 
-    // The width of the waffle, in cells. This must be an integer.
+    // The number of cells on each row of the waffle.
     const columns = Math.floor(Math.sqrt(bandwidth / scale));
 
-    // The outer size of each square waffle cell, in pixels, including the gap.
+    // The outer size of each square cell, in pixels, including the gap.
     const cellsize = scale * columns;
 
-    // The gap between adjacent cells, in pixels.
-    const cellgap = 1;
-
-    // TODO rx, ry
-    // TODO insets?
+    // TODO rx, ry, insets?
     const Y1 = channels.channels.y1.value;
     const Y2 = channels.channels.y2.value;
     const ww = columns * cellsize;
     const wx = (bandwidth - ww) / 2;
     let rect = g.firstElementChild;
-    const y0 = scales.y(0) - cellgap;
+    const y0 = scales.y(0) - gap;
     const basePattern = document.createElementNS(namespaces.svg, "pattern");
     basePattern.setAttribute("width", cellsize);
     basePattern.setAttribute("height", cellsize);
     basePattern.setAttribute("patternUnits", "userSpaceOnUse");
     basePattern.setAttribute("y", y0);
     const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
-    basePatternRect.setAttribute("x", cellgap / 2);
-    basePatternRect.setAttribute("y", cellgap / 2);
-    basePatternRect.setAttribute("width", cellsize - cellgap);
-    basePatternRect.setAttribute("height", cellsize - cellgap);
+    basePatternRect.setAttribute("x", gap / 2);
+    basePatternRect.setAttribute("y", gap / 2);
+    basePatternRect.setAttribute("width", cellsize - gap);
+    basePatternRect.setAttribute("height", cellsize - gap);
     for (const i of index) {
       const x0 = +rect.getAttribute("x") + wx;
       const fill = rect.getAttribute("fill");
@@ -73,7 +70,7 @@ export class WaffleY extends BarY {
       }
       path.setAttribute(
         "d",
-        `M${wafflePoints(Y1[i], Y2[i], columns)
+        `M${wafflePoints(Y1[i] / unit, Y2[i] / unit, columns)
           .map(([x, y]) => [x * cellsize + x0, y0 - y * cellsize])
           .join("L")}Z`
       );
@@ -125,19 +122,31 @@ export class WaffleY extends BarY {
 // Waffles can also represent fractional intervals (e.g., 2.4–10.1).
 function wafflePoints(i1, i2, columns) {
   return [
-    [Math.ceil(columns - (i2 % columns)), Math.ceil(i2 / columns)],
-    [columns, Math.ceil(i2 / columns)],
-    [columns, Math.ceil(i1 / columns)],
-    [Math.ceil(columns - (i1 % columns)), Math.ceil(i1 / columns)],
-    [Math.ceil(columns - (i1 % columns)), Math.floor(i1 / columns) + (i1 % 1)],
-    [Math.floor(columns - (i1 % columns)), Math.floor(i1 / columns) + (i1 % 1)],
-    [Math.floor(columns - (i1 % columns)), Math.floor(i1 / columns)],
-    [0, Math.floor(i1 / columns)],
-    [0, Math.floor(i2 / columns)],
-    [Math.floor(columns - (i2 % columns)), Math.floor(i2 / columns)],
-    [Math.floor(columns - (i2 % columns)), Math.floor(i2 / columns) + (i2 % 1)],
-    [Math.ceil(columns - (i2 % columns)), Math.floor(i2 / columns) + (i2 % 1)]
+    [ceil(columns - (abs(i2) % columns)), ceil(i2 / columns)],
+    [columns, ceil(i2 / columns)],
+    [columns, ceil(i1 / columns)],
+    [ceil(columns - (abs(i1) % columns)), ceil(i1 / columns)],
+    [ceil(columns - (abs(i1) % columns)), floor(i1 / columns) + (i1 % 1)],
+    [floor(columns - (abs(i1) % columns)), floor(i1 / columns) + (i1 % 1)],
+    [floor(columns - (abs(i1) % columns)), floor(i1 / columns)],
+    [0, floor(i1 / columns)],
+    [0, floor(i2 / columns)],
+    [floor(columns - (abs(i2) % columns)), floor(i2 / columns)],
+    [floor(columns - (abs(i2) % columns)), floor(i2 / columns) + (i2 % 1)],
+    [ceil(columns - (abs(i2) % columns)), floor(i2 / columns) + (i2 % 1)]
   ];
+}
+
+function abs(x) {
+  return Math.abs(x);
+}
+
+function ceil(x) {
+  return (x < 0 ? Math.floor : Math.ceil)(x);
+}
+
+function floor(x) {
+  return (x < 0 ? Math.ceil : Math.floor)(x);
 }
 
 export function waffleY(data, options = {}) {
