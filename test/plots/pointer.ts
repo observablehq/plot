@@ -55,3 +55,25 @@ export async function pointerNonFaceted() {
     ]
   });
 }
+
+export async function pointerSticky() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {
+    x: "culmen_length_mm",
+    y: "culmen_depth_mm",
+    tip: true
+  }).plot();
+  let prevSticky = false;
+  const textarea = html`<textarea rows=10 style="width: 640px; resize: none;">`;
+  const oninput = (e) => {
+    // update the 'clicked' value if the pointer has just been stuck or un-stuck
+    if (e.sticky || (prevSticky && !e.sticky)) {
+      prevSticky = e.sticky;
+      const value = e.sticky ? plot.value : null;
+      textarea.value = JSON.stringify(value, null, 2);
+    }
+  };
+  textarea.value = JSON.stringify(null); // initialize the textarea to null
+  plot.oninput = oninput; // update during interaction
+  return html`<figure>${plot}${textarea}</figure>`;
+}
