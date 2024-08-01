@@ -12,10 +12,8 @@ Elderly 65+,65+,12456`,
     d3.autoType
   );
   return Plot.plot({
-    width: 500,
-    marginLeft: 20,
     marks: [
-      Plot.waffleY(data, {fill: "group", y: (d) => Math.round(d.freq / 1000)}),
+      Plot.waffleY(data, {x: "group", fill: "group", y: (d) => d.freq / 100}),
       Plot.ruleY([0])
     ]
   });
