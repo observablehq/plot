@@ -32,7 +32,7 @@ export class WaffleY extends BarY {
     // The gap between adjacent cells, in pixels.
     const cellgap = 1;
 
-    // TODO rx, ry
+    // TODO rx, ry, insets
     const Y1 = channels.channels.y1.value;
     const Y2 = channels.channels.y2.value;
     const ww = columns * cellsize;
@@ -122,14 +122,18 @@ export class WaffleY extends BarY {
 // Waffles can also represent fractional intervals (e.g., 2.4–10.1).
 function wafflePoints(i1, i2, columns) {
   return [
-    [columns - (i2 % columns), Math.ceil(i2 / columns)],
+    [Math.ceil(columns - (i2 % columns)), Math.ceil(i2 / columns)],
     [columns, Math.ceil(i2 / columns)],
     [columns, Math.ceil(i1 / columns)],
-    [columns - (i1 % columns), Math.ceil(i1 / columns)],
-    [columns - (i1 % columns), Math.floor(i1 / columns)],
+    [Math.ceil(columns - (i1 % columns)), Math.ceil(i1 / columns)],
+    [Math.ceil(columns - (i1 % columns)), Math.floor(i1 / columns) + (i1 % 1)],
+    [Math.floor(columns - (i1 % columns)), Math.floor(i1 / columns) + (i1 % 1)],
+    [Math.floor(columns - (i1 % columns)), Math.floor(i1 / columns)],
     [0, Math.floor(i1 / columns)],
     [0, Math.floor(i2 / columns)],
-    [columns - (i2 % columns), Math.floor(i2 / columns)]
+    [Math.floor(columns - (i2 % columns)), Math.floor(i2 / columns)],
+    [Math.floor(columns - (i2 % columns)), Math.floor(i2 / columns) + (i2 % 1)],
+    [Math.ceil(columns - (i2 % columns)), Math.floor(i2 / columns) + (i2 % 1)]
   ];
 }
 

@@ -12,8 +12,10 @@ Elderly 65+,65+,12456`,
     d3.autoType
   );
   return Plot.plot({
+    x: {label: null},
+    color: {scheme: "cool"},
     marks: [
-      Plot.waffleY(data, {x: "group", fill: "group", y: (d) => d.freq / 100}),
+      Plot.waffleY(data, {x: "group", fill: "group", y: (d) => d.freq / 100, sort: {x: null, color: null}}),
       Plot.ruleY([0])
     ]
   });
