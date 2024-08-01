@@ -297,6 +297,7 @@ export function* groupIndex(I, position, mark, channels) {
   }
 }
 
+// TODO avoid creating a new clip-path each time?
 // Note: may mutate selection.node!
 function applyClip(selection, mark, dimensions, context) {
   let clipUrl;
