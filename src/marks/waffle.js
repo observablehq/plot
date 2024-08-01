@@ -9,7 +9,7 @@ let nextWaffleId = 0;
 
 export class WaffleY extends BarY {
   constructor(data, options) {
-    super(data, options);
+    super(data, {...options, stroke: "none"});
   }
   render(index, scales, channels, dimensions, context) {
     const {document} = context;
@@ -32,30 +32,33 @@ export class WaffleY extends BarY {
     // The gap between adjacent cells, in pixels.
     const cellgap = 1;
 
-    // TODO rx, ry, insets
+    // TODO rx, ry
+    // TODO insets?
     const Y1 = channels.channels.y1.value;
     const Y2 = channels.channels.y2.value;
     const ww = columns * cellsize;
     const wx = (bandwidth - ww) / 2;
     let rect = g.firstElementChild;
     const y0 = scales.y(0) - cellgap;
+    const basePattern = document.createElementNS(namespaces.svg, "pattern");
+    basePattern.setAttribute("width", cellsize);
+    basePattern.setAttribute("height", cellsize);
+    basePattern.setAttribute("patternUnits", "userSpaceOnUse");
+    basePattern.setAttribute("y", y0);
+    const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
+    basePatternRect.setAttribute("x", cellgap / 2);
+    basePatternRect.setAttribute("y", cellgap / 2);
+    basePatternRect.setAttribute("width", cellsize - cellgap);
+    basePatternRect.setAttribute("height", cellsize - cellgap);
     for (const i of index) {
       const x0 = +rect.getAttribute("x") + wx;
       const fill = rect.getAttribute("fill");
       const patternId = `plot-waffle-${++nextWaffleId}`;
-      const pattern = g.insertBefore(document.createElementNS(namespaces.svg, "pattern"), rect);
+      const pattern = g.insertBefore(basePattern.cloneNode(true), rect);
+      const patternRect = pattern.firstChild;
       pattern.setAttribute("id", patternId);
-      pattern.setAttribute("width", cellsize);
-      pattern.setAttribute("height", cellsize);
-      pattern.setAttribute("patternUnits", "userSpaceOnUse");
       pattern.setAttribute("x", x0);
-      pattern.setAttribute("y", y0);
-      const patternRect = pattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
       patternRect.setAttribute("fill", fill);
-      patternRect.setAttribute("x", cellgap / 2);
-      patternRect.setAttribute("y", cellgap / 2);
-      patternRect.setAttribute("width", cellsize - cellgap);
-      patternRect.setAttribute("height", cellsize - cellgap);
       const path = document.createElementNS(namespaces.svg, "path");
       for (const a of rect.attributes) {
         switch (a.name) {

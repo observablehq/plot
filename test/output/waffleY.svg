@@ -1,0 +1,91 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,346.7426407070237)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,323.48528141404745)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,300.2279221210712)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,276.9705628280949)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,253.7132035351186)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,230.45584424214235)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,207.19848494916607)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,183.9411256561898)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,160.68376636321352)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,137.42640707023725)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,114.16904777726096)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,90.9116884842847)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,67.65432919130842)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,44.39696989833213)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,21.139610605355855)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,370)">0</text>
+    <text y="0.32em" transform="translate(40,346.7426407070237)">20</text>
+    <text y="0.32em" transform="translate(40,323.48528141404745)">40</text>
+    <text y="0.32em" transform="translate(40,300.2279221210712)">60</text>
+    <text y="0.32em" transform="translate(40,276.9705628280949)">80</text>
+    <text y="0.32em" transform="translate(40,253.7132035351186)">100</text>
+    <text y="0.32em" transform="translate(40,230.45584424214235)">120</text>
+    <text y="0.32em" transform="translate(40,207.19848494916607)">140</text>
+    <text y="0.32em" transform="translate(40,183.9411256561898)">160</text>
+    <text y="0.32em" transform="translate(40,160.68376636321352)">180</text>
+    <text y="0.32em" transform="translate(40,137.42640707023725)">200</text>
+    <text y="0.32em" transform="translate(40,114.16904777726096)">220</text>
+    <text y="0.32em" transform="translate(40,90.9116884842847)">240</text>
+    <text y="0.32em" transform="translate(40,67.65432919130842)">260</text>
+    <text y="0.32em" transform="translate(40,44.39696989833213)">280</text>
+    <text y="0.32em" transform="translate(40,21.139610605355855)">300</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(51.5,0)">
+    <path transform="translate(53,370)" d="M0,0L0,6"></path>
+    <path transform="translate(166,370)" d="M0,0L0,6"></path>
+    <path transform="translate(279,370)" d="M0,0L0,6"></path>
+    <path transform="translate(392,370)" d="M0,0L0,6"></path>
+    <path transform="translate(505,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(51.5,9.5)">
+    <text y="0.71em" transform="translate(53,370)">Infants &lt;1</text>
+    <text y="0.71em" transform="translate(166,370)">Children &lt;11</text>
+    <text y="0.71em" transform="translate(279,370)">Teens 12-17</text>
+    <text y="0.71em" transform="translate(392,370)">Adults 18+</text>
+    <text y="0.71em" transform="translate(505,370)">Elderly 65+</text>
+  </g>
+  <g aria-label="bar">
+    <pattern width="10.46581168183917" height="10.46581168183917" patternUnits="userSpaceOnUse" y="369" id="plot-waffle-1" x="56.90384743172373">
+      <rect x="0.5" y="0.5" width="9.46581168183917" height="9.46581168183917" fill="rgb(110, 64, 170)"></rect>
+    </pattern>
+    <path d="M130.16452920459793,170.14957804505576L151.09615256827627,170.14957804505576L151.09615256827627,369L151.09615256827627,369L151.09615256827627,369L151.09615256827627,369L151.09615256827627,369L56.90384743172373,369L56.90384743172373,180.61538972689493L119.69871752275876,180.61538972689493L119.69871752275876,173.60329590006282L130.16452920459793,173.60329590006282Z" fill="url(#plot-waffle-1)"></path>
+    <pattern width="10.46581168183917" height="10.46581168183917" patternUnits="userSpaceOnUse" y="369" id="plot-waffle-2" x="169.90384743172373">
+      <rect x="0.5" y="0.5" width="9.46581168183917" height="9.46581168183917" fill="rgb(65, 125, 224)"></rect>
+    </pattern>
+    <path d="M232.69871752275876,13.162402817468205L264.09615256827624,13.162402817468205L264.09615256827624,369L264.09615256827624,369L264.09615256827624,369L264.09615256827624,369L264.09615256827624,369L169.90384743172373,369L169.90384743172373,23.628214499307376L222.23290584091959,23.628214499307376L222.23290584091959,13.371719051104776L232.69871752275876,13.371719051104776Z" fill="url(#plot-waffle-2)"></path>
+    <pattern width="10.46581168183917" height="10.46581168183917" patternUnits="userSpaceOnUse" y="369" id="plot-waffle-3" x="282.90384743172376">
+      <rect x="0.5" y="0.5" width="9.46581168183917" height="9.46581168183917" fill="rgb(26, 199, 194)"></rect>
+    </pattern>
+    <path d="M324.76709415908044,128.28633131769908L377.0961525682763,128.28633131769908L377.0961525682763,369L377.0961525682763,369L377.0961525682763,369L377.0961525682763,369L377.0961525682763,369L282.90384743172376,369L282.90384743172376,138.75214299953825L314.3012824772413,138.75214299953825L314.3012824772413,133.10060469134518L324.76709415908044,133.10060469134518Z" fill="url(#plot-waffle-3)"></path>
+    <pattern width="10.46581168183917" height="10.46581168183917" patternUnits="userSpaceOnUse" y="369" id="plot-waffle-4" x="395.90384743172376">
+      <rect x="0.5" y="0.5" width="9.46581168183917" height="9.46581168183917" fill="rgb(64, 243, 115)"></rect>
+    </pattern>
+    <path d="M416.8354707954021,222.4786364542516L490.0961525682763,222.4786364542516L490.0961525682763,369L490.0961525682763,369L490.0961525682763,369L490.0961525682763,369L490.0961525682763,369L395.90384743172376,369L395.90384743172376,232.94444813609078L406.36965911356293,232.94444813609078L406.36965911356293,227.08359359426083L416.8354707954021,227.08359359426083Z" fill="url(#plot-waffle-4)"></path>
+    <pattern width="10.46581168183917" height="10.46581168183917" patternUnits="userSpaceOnUse" y="369" id="plot-waffle-5" x="508.90384743172376">
+      <rect x="0.5" y="0.5" width="9.46581168183917" height="9.46581168183917" fill="rgb(175, 240, 91)"></rect>
+    </pattern>
+    <path d="M529.8354707954021,222.4786364542516L603.0961525682762,222.4786364542516L603.0961525682762,369L603.0961525682762,369L603.0961525682762,369L603.0961525682762,369L603.0961525682762,369L508.90384743172376,369L508.90384743172376,232.94444813609078L519.3696591135629,232.94444813609078L519.3696591135629,227.08359359426083L529.8354707954021,227.08359359426083Z" fill="url(#plot-waffle-5)"></path>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+  </g>
+</svg>
