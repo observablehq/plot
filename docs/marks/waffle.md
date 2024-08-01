@@ -1,4 +1,20 @@
-# Waffle mark
+<script setup>
+
+import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
+import alphabet from "../data/alphabet.ts";
+
+</script>
+
+# Waffle mark <VersionBadge pr="2040" />
+
+The **waffle mark** is similar to the [bar mark](./bar.md), but subdivides each bar into discrete square cells that are more easily counted. It comes in two orientations: waffleY extends vertically↑, while waffleX extends horizontally→. For example, the waffle chart below shows TKTK.
+
+:::plot
+```js
+Plot.waffleY([1, 2, 32, 400, 5]).plot()
+```
+:::
 
 TODO
 

@@ -24,7 +24,7 @@ export class WaffleX extends BarX {
     const scale = Math.abs(scales.x(0) - scales.x(unit));
 
     // The number of cells on each row of the waffle.
-    const columns = Math.floor(Math.sqrt(bandwidth / scale));
+    const columns = Math.max(1, Math.floor(Math.sqrt(bandwidth / scale)));
 
     // The outer size of each square cell, in pixels, including the gap.
     const cellsize = scale * columns;
@@ -101,7 +101,7 @@ export class WaffleY extends BarY {
     const scale = Math.abs(scales.y(0) - scales.y(unit));
 
     // The number of cells on each row of the waffle.
-    const columns = Math.floor(Math.sqrt(bandwidth / scale));
+    const columns = Math.max(1, Math.floor(Math.sqrt(bandwidth / scale)));
 
     // The outer size of each square cell, in pixels, including the gap.
     const cellsize = scale * columns;
