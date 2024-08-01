@@ -240,6 +240,13 @@ export interface MarkOptions {
   marginLeft?: number;
 
   /**
+   * The [class attribute][1]; a constant string.
+   *
+   * [1]: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class
+   */
+  className?: string;
+
+  /**
    * The [aria-description][1]; a constant textual description.
    *
    * [1]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-description

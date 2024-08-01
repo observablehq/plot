@@ -1,16 +1,16 @@
 import {group, pathRound as path, select, Delaunay} from "d3";
 import {create} from "../context.js";
 import {maybeCurve} from "../curve.js";
+import {defined} from "../defined.js";
 import {Mark} from "../mark.js";
 import {markers, applyMarkers} from "../marker.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
-import {
-  applyChannelStyles,
-  applyDirectStyles,
-  applyFrameAnchor,
-  applyIndirectStyles,
-  applyTransform
-} from "../style.js";
+import {applyPosition} from "../projection.js";
+import {applyFrameAnchor, applyTransform} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles} from "../style.js";
+import {basic, initializer} from "../transforms/basic.js";
+import {exclusiveFacets} from "../transforms/exclusiveFacets.js";
+import {maybeGroup} from "../transforms/group.js";
 
 const delaunayLinkDefaults = {
   ariaLabel: "delaunay link",
@@ -221,45 +221,45 @@ class Voronoi extends Mark {
         y: {value: y, scale: "y", optional: true},
         z: {value: z, optional: true}
       },
-      options,
+      initializer(options, function (data, facets, channels, scales, dimensions, context) {
+        let {x: X, y: Y, z: Z} = channels;
+        ({x: X, y: Y} = applyPosition(channels, scales, context));
+        Z = Z?.value;
+        const C = new Array((X ?? Y).length).fill(null);
+        const [cx, cy] = applyFrameAnchor(this, dimensions);
+        const xi = X ? (i) => X[i] : constant(cx);
+        const yi = Y ? (i) => Y[i] : constant(cy);
+        for (let I of facets) {
+          if (X) I = I.filter((i) => defined(xi(i)));
+          if (Y) I = I.filter((i) => defined(yi(i)));
+          for (const [, J] of maybeGroup(I, Z)) {
+            const delaunay = Delaunay.from(J, xi, yi);
+            const voronoi = voronoiof(delaunay, dimensions);
+            for (let i = 0, n = J.length; i < n; ++i) {
+              C[J[i]] = voronoi.renderCell(i);
+            }
+          }
+        }
+        return {data, facets, channels: {cells: {value: C}}};
+      }),
       voronoiDefaults
     );
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {x: X, y: Y, z: Z} = channels;
-    const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const xi = X ? (i) => X[i] : constant(cx);
-    const yi = Y ? (i) => Y[i] : constant(cy);
-    const mark = this;
-
-    function cells(index) {
-      const delaunay = Delaunay.from(index, xi, yi);
-      const voronoi = voronoiof(delaunay, dimensions);
-      select(this)
-        .selectAll()
-        .data(index)
-        .enter()
-        .append("path")
-        .call(applyDirectStyles, mark)
-        .attr("d", (_, i) => voronoi.renderCell(i))
-        .call(applyChannelStyles, mark, channels);
-    }
-
+    const {x: X, y: Y, cells: C} = channels;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
-      .call(
-        Z
-          ? (g) =>
-              g
-                .selectAll()
-                .data(group(index, (i) => Z[i]).values())
-                .enter()
-                .append("g")
-                .each(cells)
-          : (g) => g.datum(index).each(cells)
-      )
+      .call((g) => {
+        g.selectAll()
+          .data(index)
+          .enter()
+          .append("path")
+          .call(applyDirectStyles, this)
+          .attr("d", (i) => C[i])
+          .call(applyChannelStyles, this, channels);
+      })
       .node();
   }
 }
@@ -296,8 +296,8 @@ export function hull(data, options) {
   return delaunayMark(Hull, data, options);
 }
 
-export function voronoi(data, options) {
-  return delaunayMark(Voronoi, data, options);
+export function voronoi(data, {x, y, initializer, ...options} = {}) {
+  return delaunayMark(Voronoi, data, {...basic({...options, x, y}, exclusiveFacets), initializer});
 }
 
 export function voronoiMesh(data, options) {

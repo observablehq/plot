@@ -588,7 +588,7 @@ export interface ScaleOptions extends ScaleDefaults {
    * [1]: https://d3js.org/d3-time
    * [2]: https://d3js.org/d3-time-format
    */
-  tickFormat?: string | ((t: any, i: number) => any) | null;
+  tickFormat?: string | ((d: any, i: number) => any) | null;
 
   /**
    * The rotation angle of axis tick labels in degrees clocksize; defaults to 0.

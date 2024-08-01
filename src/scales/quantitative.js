@@ -123,8 +123,9 @@ export function createScaleQ(
     const [min, max] = extent(domain);
     if (min > 0 || max < 0) {
       domain = slice(domain);
-      if (orderof(domain) !== Math.sign(min)) domain[domain.length - 1] = 0; // [2, 1] or [-2, -1]
-      else domain[0] = 0; // [1, 2] or [-1, -2]
+      const o = orderof(domain) || 1; // treat degenerate as ascending
+      if (o === Math.sign(min)) domain[0] = 0; // [1, 2] or [-1, -2]
+      else domain[domain.length - 1] = 0; // [2, 1] or [-2, -1]
     }
   }
 

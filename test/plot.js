@@ -19,7 +19,7 @@ for (const [name, plot] of Object.entries(plots)) {
     reindexMarker(root);
     reindexClip(root);
     let expected;
-    let actual = beautify.html(root.outerHTML, {
+    let actual = beautify.html(root.outerHTML.replaceAll("&nbsp;", "\xa0"), {
       indent_size: 2,
       inline: ["title", "tspan", "span", "svg", "a", "i"],
       indent_inner_html: false

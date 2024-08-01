@@ -2,6 +2,10 @@
 
 Year: **Current (2024)** · [2023](./CHANGELOG-2023.md) · [2022](./CHANGELOG-2022.md) · [2021](./CHANGELOG-2021.md)
 
+## 0.6.15
+
+[Released June 11, 2024.](https://github.com/observablehq/plot/releases/tag/v0.6.15)
+
 ## 0.6.14
 
 [Released March 12, 2024.](https://github.com/observablehq/plot/releases/tag/v0.6.14)

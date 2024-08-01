@@ -370,7 +370,7 @@ The following named reducers are supported:
 * *identity* - the array of values
 * *x* <VersionBadge version="0.6.12" pr="1916" /> - the group’s *x* value (when grouping on *x*)
 * *y* <VersionBadge version="0.6.12" pr="1916" /> - the group’s *y* value (when grouping on *y*)
-* *z* <VersionBadge pr="1959" /> - the group’s *z* value (*z*, *fill*, or *stroke*)
+* *z* <VersionBadge version="0.6.14" pr="1959" /> - the group’s *z* value (*z*, *fill*, or *stroke*)
 
 In addition, a reducer may be specified as:
 
@@ -441,7 +441,7 @@ Plot.groupZ({x: "proportion"}, {fill: "species"})
 
 Groups on the first channel of **z**, **fill**, or **stroke**, if any. If none of **z**, **fill**, or **stroke** are channels, then all data (within each facet) is placed into a single group.
 
-## find(*test*) {#find} <VersionBadge version="0.6.12" pr="1914" />
+## find(*test*) <VersionBadge version="0.6.12" pr="1914" /> {#find}
 
 ```js
 Plot.groupX(

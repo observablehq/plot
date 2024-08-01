@@ -183,11 +183,11 @@ export function parseTimeInterval(input) {
   return [name, period];
 }
 
-export function maybeTimeInterval(input) {
+export function timeInterval(input) {
   return asInterval(parseTimeInterval(input), "time");
 }
 
-export function maybeUtcInterval(input) {
+export function utcInterval(input) {
   return asInterval(parseTimeInterval(input), "utc");
 }
 
@@ -209,7 +209,7 @@ export function generalizeTimeInterval(interval, n) {
   if (!tickIntervals.some(([, d]) => d === duration)) return; // nonstandard or unknown interval
   if (duration % durationDay === 0 && durationDay < duration && duration < durationMonth) return; // not generalizable
   const [i] = tickIntervals[bisector(([, step]) => Math.log(step)).center(tickIntervals, Math.log(duration * n))];
-  return (interval[intervalType] === "time" ? maybeTimeInterval : maybeUtcInterval)(i);
+  return (interval[intervalType] === "time" ? timeInterval : utcInterval)(i);
 }
 
 function formatTimeInterval(name, type, anchor) {

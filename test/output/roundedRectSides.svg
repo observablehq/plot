@@ -1,0 +1,109 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,366)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,323.25)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,280.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,237.75)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,152.25)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,109.5)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,66.75)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,24)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
+    <text y="0.32em" transform="translate(40,366)">4.0</text>
+    <text y="0.32em" transform="translate(40,323.25)">3.5</text>
+    <text y="0.32em" transform="translate(40,280.5)">3.0</text>
+    <text y="0.32em" transform="translate(40,237.75)">2.5</text>
+    <text y="0.32em" transform="translate(40,195)">2.0</text>
+    <text y="0.32em" transform="translate(40,152.25)">1.5</text>
+    <text y="0.32em" transform="translate(40,109.5)">1.0</text>
+    <text y="0.32em" transform="translate(40,66.75)">0.5</text>
+    <text y="0.32em" transform="translate(40,24)">0.0</text>
+  </g>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(44,370)" d="M0,0L0,6"></path>
+    <path transform="translate(115.5,370)" d="M0,0L0,6"></path>
+    <path transform="translate(187,370)" d="M0,0L0,6"></path>
+    <path transform="translate(258.5,370)" d="M0,0L0,6"></path>
+    <path transform="translate(330,370)" d="M0,0L0,6"></path>
+    <path transform="translate(401.5,370)" d="M0,0L0,6"></path>
+    <path transform="translate(473,370)" d="M0,0L0,6"></path>
+    <path transform="translate(544.5,370)" d="M0,0L0,6"></path>
+    <path transform="translate(616,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(44,370)">0.0</text>
+    <text y="0.71em" transform="translate(115.5,370)">0.5</text>
+    <text y="0.71em" transform="translate(187,370)">1.0</text>
+    <text y="0.71em" transform="translate(258.5,370)">1.5</text>
+    <text y="0.71em" transform="translate(330,370)">2.0</text>
+    <text y="0.71em" transform="translate(401.5,370)">2.5</text>
+    <text y="0.71em" transform="translate(473,370)">3.0</text>
+    <text y="0.71em" transform="translate(544.5,370)">3.5</text>
+    <text y="0.71em" transform="translate(616,370)">4.0</text>
+  </g>
+  <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="20" width="580" height="350"></rect>
+  <g aria-label="rect">
+    <path d="M48,48A20,20 0 0 1 68,28H183A0,0 0 0 1 183,28V105.5A0,0 0 0 1 183,105.5H68A20,20 0 0 1 48,85.5Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M191,48A20,20 0 0 1 211,28H306A20,20 0 0 1 326,48V105.5A0,0 0 0 1 326,105.5H191A0,0 0 0 1 191,105.5Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M334,28A0,0 0 0 1 334,28H449A20,20 0 0 1 469,48V85.5A20,20 0 0 1 449,105.5H334A0,0 0 0 1 334,105.5Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M477,28A0,0 0 0 1 477,28H612A0,0 0 0 1 612,28V85.5A20,20 0 0 1 592,105.5H497A20,20 0 0 1 477,85.5Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M48,113.5A0,0 0 0 1 48,113.5H163A20,20 0 0 1 183,133.5V171A20,20 0 0 1 163,191H48A0,0 0 0 1 48,191Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M191,133.5A20,20 0 0 1 211,113.5H306A20,20 0 0 1 326,133.5V191A0,0 0 0 1 326,191H191A0,0 0 0 1 191,191Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M334,133.5A20,20 0 0 1 354,113.5H469A0,0 0 0 1 469,113.5V191A0,0 0 0 1 469,191H354A20,20 0 0 1 334,171Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M477,113.5A0,0 0 0 1 477,113.5H612A0,0 0 0 1 612,113.5V171A20,20 0 0 1 592,191H497A20,20 0 0 1 477,171Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M48,219A20,20 0 0 1 68,199H183A0,0 0 0 1 183,199V276.5A0,0 0 0 1 183,276.5H68A20,20 0 0 1 48,256.5Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M191,199A0,0 0 0 1 191,199H326A0,0 0 0 1 326,199V256.5A20,20 0 0 1 306,276.5H211A20,20 0 0 1 191,256.5Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M334,199A0,0 0 0 1 334,199H449A20,20 0 0 1 469,219V256.5A20,20 0 0 1 449,276.5H334A0,0 0 0 1 334,276.5Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M477,219A20,20 0 0 1 497,199H592A20,20 0 0 1 612,219V276.5A0,0 0 0 1 612,276.5H477A0,0 0 0 1 477,276.5Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M48,284.5A0,0 0 0 1 48,284.5H163A20,20 0 0 1 183,304.5V342A20,20 0 0 1 163,362H48A0,0 0 0 1 48,362Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M191,284.5A0,0 0 0 1 191,284.5H326A0,0 0 0 1 326,284.5V342A20,20 0 0 1 306,362H211A20,20 0 0 1 191,342Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M334,304.5A20,20 0 0 1 354,284.5H469A0,0 0 0 1 469,284.5V362A0,0 0 0 1 469,362H354A20,20 0 0 1 334,342Z"></path>
+  </g>
+  <g aria-label="rect">
+    <path d="M477,304.5A20,20 0 0 1 497,284.5H592A20,20 0 0 1 612,304.5V362A0,0 0 0 1 612,362H477A0,0 0 0 1 477,362Z"></path>
+  </g>
+</svg>

@@ -265,3 +265,18 @@ export async function tipFacetX() {
     ]
   });
 }
+
+export async function tipColorLiteral() {
+  const penguins = await d3.csv<any>("data/penguins.csv", d3.autoType);
+  return Plot.plot({
+    grid: true,
+    marks: [
+      Plot.dot(penguins, {
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm",
+        fill: (d) => (d.species === "Adelie" ? "orange" : "steelblue"),
+        tip: true
+      })
+    ]
+  });
+}
