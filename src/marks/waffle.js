@@ -1,11 +1,87 @@
 import {namespaces} from "d3";
 import {hasXY, identity, indexOf} from "../options.js";
-import {maybeIdentityY} from "../transforms/identity.js";
-import {maybeIntervalY} from "../transforms/interval.js";
-import {maybeStackY} from "../transforms/stack.js";
-import {BarY} from "./bar.js";
+import {getClipId} from "../style.js";
+import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
+import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
+import {maybeStackX, maybeStackY} from "../transforms/stack.js";
+import {BarX, BarY} from "./bar.js";
 
-let nextWaffleId = 0;
+export class WaffleX extends BarX {
+  constructor(data, {unit = 1, gap = 1, ...options} = {}) {
+    super(data, {...options, stroke: "none"});
+    this.unit = Math.max(0, unit);
+    this.gap = +gap;
+  }
+  render(index, scales, channels, dimensions, context) {
+    const {unit, gap} = this;
+    const {document} = context;
+    const g = super.render(index, scales, channels, dimensions, context);
+
+    // We might not use all the available bandwidth if the cells don’t fit evenly.
+    const bandwidth = this._height(scales, channels, dimensions);
+
+    // The length of a unit along x in pixels.
+    const scale = Math.abs(scales.x(0) - scales.x(unit));
+
+    // The number of cells on each row of the waffle.
+    const columns = Math.floor(Math.sqrt(bandwidth / scale));
+
+    // The outer size of each square cell, in pixels, including the gap.
+    const cellsize = scale * columns;
+
+    // TODO rx, ry, insets?
+    const X1 = channels.channels.x1.value;
+    const X2 = channels.channels.x2.value;
+    const ww = columns * cellsize;
+    const wy = (bandwidth - ww) / 2;
+    let rect = g.firstElementChild;
+    const x0 = scales.x(0) - gap;
+    const basePattern = document.createElementNS(namespaces.svg, "pattern");
+    basePattern.setAttribute("width", cellsize);
+    basePattern.setAttribute("height", cellsize);
+    basePattern.setAttribute("patternUnits", "userSpaceOnUse");
+    basePattern.setAttribute("x", x0);
+    const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
+    basePatternRect.setAttribute("x", gap / 2);
+    basePatternRect.setAttribute("y", gap / 2);
+    basePatternRect.setAttribute("width", cellsize - gap);
+    basePatternRect.setAttribute("height", cellsize - gap);
+    for (const i of index) {
+      const y0 = +rect.getAttribute("y") + wy;
+      const fill = rect.getAttribute("fill");
+      const patternId = getClipId(); // TODO lazy
+      const pattern = g.insertBefore(basePattern.cloneNode(true), rect);
+      const patternRect = pattern.firstChild;
+      pattern.setAttribute("id", patternId);
+      pattern.setAttribute("y", y0);
+      patternRect.setAttribute("fill", fill);
+      const path = document.createElementNS(namespaces.svg, "path");
+      for (const a of rect.attributes) {
+        switch (a.name) {
+          case "x":
+          case "y":
+          case "width":
+          case "height":
+          case "fill":
+            continue;
+        }
+        path.setAttribute(a.name, a.value);
+      }
+      path.setAttribute(
+        "d",
+        `M${wafflePoints(X1[i] / unit, X2[i] / unit, columns)
+          .map(([y, x]) => [x * cellsize + x0, y0 + y * cellsize])
+          .join("L")}Z`
+      );
+      path.setAttribute("fill", `url(#${patternId})`);
+      const nextRect = rect.nextElementSibling;
+      rect.replaceWith(path);
+      rect = nextRect;
+    }
+
+    return g;
+  }
+}
 
 export class WaffleY extends BarY {
   constructor(data, {unit = 1, gap = 1, ...options} = {}) {
@@ -50,7 +126,7 @@ export class WaffleY extends BarY {
     for (const i of index) {
       const x0 = +rect.getAttribute("x") + wx;
       const fill = rect.getAttribute("fill");
-      const patternId = `plot-waffle-${++nextWaffleId}`;
+      const patternId = getClipId(); // TODO lazy
       const pattern = g.insertBefore(basePattern.cloneNode(true), rect);
       const patternRect = pattern.firstChild;
       pattern.setAttribute("id", patternId);
@@ -147,6 +223,11 @@ function ceil(x) {
 
 function floor(x) {
   return (x < 0 ? Math.ceil : Math.floor)(x);
+}
+
+export function waffleX(data, options = {}) {
+  if (!hasXY(options)) options = {...options, y: indexOf, x2: identity};
+  return new WaffleX(data, maybeStackX(maybeIntervalX(maybeIdentityX(options))));
 }
 
 export function waffleY(data, options = {}) {

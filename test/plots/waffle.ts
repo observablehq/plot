@@ -19,6 +19,27 @@ export function waffleShorthandNegative() {
   return Plot.waffleY([-4, -9, -24, -46, -66, -7]).plot({x: {axis: "top"}});
 }
 
+export function waffleX() {
+  return Plot.plot({
+    marginLeft: 80,
+    x: {axis: "top"},
+    y: {label: null},
+    color: {scheme: "cool"},
+    marks: [
+      Plot.waffleX(demographics, {y: "group", fill: "group", x: (d) => d.freq / 100, sort: {y: null, color: null}}),
+      Plot.ruleX([0])
+    ]
+  });
+}
+
+export function waffleXStacked() {
+  return Plot.plot({
+    height: 240,
+    color: {scheme: "cool"},
+    marks: [Plot.waffleX(demographics, {fill: "group", x: (d) => d.freq / 100, sort: {color: null}}), Plot.ruleX([0])]
+  });
+}
+
 export function waffleY() {
   return Plot.plot({
     x: {label: null},
