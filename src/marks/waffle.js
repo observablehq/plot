@@ -1,4 +1,5 @@
 import {extent, namespaces} from "d3";
+import {composeRender} from "../mark.js";
 import {hasXY, identity, indexOf} from "../options.js";
 import {getPatternId} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
@@ -7,106 +8,35 @@ import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import {BarX, BarY} from "./bar.js";
 
 export class WaffleX extends BarX {
-  constructor(data, {unit = 1, gap = 1, round, ...options} = {}) {
-    super(data, options);
+  constructor(data, {unit = 1, gap = 1, round, render, ...options} = {}) {
+    super(data, {...options, render: composeRender(render, waffleRender("x"))});
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
-  }
-  render(index, scales, channels, dimensions, context) {
-    const {unit, gap, rx, ry, round} = this;
-    const {document} = context;
-    const g = super.render(index, scales, channels, dimensions, context);
-
-    // We might not use all the available bandwidth if the cells don’t fit evenly.
-    const bandwidth = this._height(scales, channels, dimensions);
-
-    // The length of a unit along x in pixels.
-    const scale = unit * scaleof(scales.scales.x);
-
-    // The number of cells on each row of the waffle.
-    const columns = Math.max(1, Math.floor(Math.sqrt(bandwidth / scale)));
-
-    // The outer size of each square cell, in pixels, including the gap.
-    const cellsize = scale * columns;
-
-    // TODO insets?
-    const X1 = channels.channels.x1.value;
-    const X2 = channels.channels.x2.value;
-    const ww = columns * cellsize;
-    const wy = (bandwidth - ww) / 2;
-    let rect = g.firstElementChild;
-    const x0 = scales.x(0);
-    const basePattern = document.createElementNS(namespaces.svg, "pattern");
-    basePattern.setAttribute("width", cellsize);
-    basePattern.setAttribute("height", cellsize);
-    basePattern.setAttribute("patternUnits", "userSpaceOnUse");
-    basePattern.setAttribute("x", x0);
-    const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
-    basePatternRect.setAttribute("x", gap / 2);
-    basePatternRect.setAttribute("y", gap / 2);
-    basePatternRect.setAttribute("width", cellsize - gap);
-    basePatternRect.setAttribute("height", cellsize - gap);
-    if (rx != null) basePatternRect.setAttribute("rx", rx);
-    if (ry != null) basePatternRect.setAttribute("ry", ry);
-    for (const i of index) {
-      const y0 = +rect.getAttribute("y") + wy;
-      const fill = rect.getAttribute("fill"); // TODO handle constant fill
-      const stroke = rect.getAttribute("stroke"); // TODO handle constant fill
-      const patternId = getPatternId(); // TODO reused shared patterns
-      const pattern = g.insertBefore(basePattern.cloneNode(true), rect);
-      const patternRect = pattern.firstChild;
-      pattern.setAttribute("id", patternId);
-      pattern.setAttribute("y", y0);
-      if (fill != null) patternRect.setAttribute("fill", fill);
-      if (stroke != null) patternRect.setAttribute("stroke", stroke);
-      const path = document.createElementNS(namespaces.svg, "path");
-      for (const a of rect.attributes) {
-        switch (a.name) {
-          case "x":
-          case "y":
-          case "width":
-          case "height":
-          case "fill":
-          case "stroke":
-            continue;
-        }
-        path.setAttribute(a.name, a.value);
-      }
-      path.setAttribute(
-        "d",
-        `M${wafflePoints(round(X1[i] / unit), round(X2[i] / unit), columns)
-          .map(([y, x]) => [x * cellsize + x0, y0 + y * cellsize])
-          .join("L")}Z`
-      );
-      if (stroke != null) path.setAttribute("stroke", `url(#${patternId})`); // TODO if necessary
-      path.setAttribute("fill", `url(#${patternId})`);
-      const nextRect = rect.nextElementSibling;
-      rect.replaceWith(path);
-      rect = nextRect;
-    }
-
-    return g;
   }
 }
 
 export class WaffleY extends BarY {
-  constructor(data, {unit = 1, gap = 1, round, ...options} = {}) {
-    super(data, options);
+  constructor(data, {unit = 1, gap = 1, round, render, ...options} = {}) {
+    super(data, {...options, render: composeRender(render, waffleRender("y"))});
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
   }
-  render(index, scales, channels, dimensions, context) {
+}
+
+function waffleRender(y) {
+  const x = y === "y" ? "x" : "y";
+  return function (index, scales, values, dimensions, context, next) {
     const {unit, gap, rx, ry, round} = this;
     const {document} = context;
-    const g = super.render(index, scales, channels, dimensions, context);
+    const g = next(index, scales, values, dimensions, context);
 
     // We might not use all the available bandwidth if the cells don’t fit evenly.
-    const bandwidth = this._width(scales, channels, dimensions);
+    const bandwidth = this[y === "y" ? "_width" : "_height"](scales, values, dimensions);
 
     // The length of a unit along y in pixels.
-    const scale = unit * scaleof(scales.scales.y);
+    const scale = unit * scaleof(scales.scales[y]);
 
     // The number of cells on each row of the waffle.
     const columns = Math.max(1, Math.floor(Math.sqrt(bandwidth / scale)));
@@ -115,17 +45,17 @@ export class WaffleY extends BarY {
     const cellsize = scale * columns;
 
     // TODO insets?
-    const Y1 = channels.channels.y1.value;
-    const Y2 = channels.channels.y2.value;
+    const Y1 = values.channels[`${y}1`].value;
+    const Y2 = values.channels[`${y}2`].value;
     const ww = columns * cellsize;
     const wx = (bandwidth - ww) / 2;
     let rect = g.firstElementChild;
-    const y0 = scales.y(0);
+    const y0 = scales[y](0);
     const basePattern = document.createElementNS(namespaces.svg, "pattern");
     basePattern.setAttribute("width", cellsize);
     basePattern.setAttribute("height", cellsize);
     basePattern.setAttribute("patternUnits", "userSpaceOnUse");
-    basePattern.setAttribute("y", y0);
+    basePattern.setAttribute(y, y0);
     const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
     basePatternRect.setAttribute("x", gap / 2);
     basePatternRect.setAttribute("y", gap / 2);
@@ -134,14 +64,14 @@ export class WaffleY extends BarY {
     if (rx != null) basePatternRect.setAttribute("rx", rx);
     if (ry != null) basePatternRect.setAttribute("ry", ry);
     for (const i of index) {
-      const x0 = +rect.getAttribute("x") + wx;
+      const x0 = +rect.getAttribute(x) + wx;
       const fill = rect.getAttribute("fill"); // TODO handle constant fill
       const stroke = rect.getAttribute("stroke"); // TODO handle constant fill
       const patternId = getPatternId(); // TODO reused shared patterns
       const pattern = g.insertBefore(basePattern.cloneNode(true), rect);
       const patternRect = pattern.firstChild;
       pattern.setAttribute("id", patternId);
-      pattern.setAttribute("x", x0);
+      pattern.setAttribute(x, x0);
       if (fill != null) patternRect.setAttribute("fill", fill);
       if (stroke != null) patternRect.setAttribute("stroke", stroke);
       const path = document.createElementNS(namespaces.svg, "path");
@@ -160,7 +90,11 @@ export class WaffleY extends BarY {
       path.setAttribute(
         "d",
         `M${wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), columns)
-          .map(([x, y]) => [x * cellsize + x0, y0 - y * cellsize])
+          .map(
+            y === "y"
+              ? ([x, y]) => [x * cellsize + x0, y0 - y * cellsize]
+              : ([x, y]) => [y * cellsize + y0, x0 + x * cellsize]
+          )
           .join("L")}Z`
       );
       if (stroke != null) path.setAttribute("stroke", `url(#${patternId})`); // TODO if necessary
@@ -171,7 +105,7 @@ export class WaffleY extends BarY {
     }
 
     return g;
-  }
+  };
 }
 
 // A waffle is a approximately rectangular shape, but may have one or two corner
