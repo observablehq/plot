@@ -30,7 +30,7 @@ The waffle mark is often used in conjunction with the group transform.
 
 :::plot
 ```js
-Plot.waffleY(olympians, Plot.groupX({y: "count"}, {x: (d) => Math.floor(d.date_of_birth?.getUTCFullYear() / 10) * 10, unit: 10})).plot({round: true, x: {tickFormat: ""}})
+Plot.waffleY(olympians, Plot.groupX({y: "count"}, {fill: "sex", x: (d) => Math.floor(d.date_of_birth?.getUTCFullYear() / 10) * 10, unit: 10, rx: 10})).plot({round: true, x: {tickFormat: ""}})
 ```
 :::
 

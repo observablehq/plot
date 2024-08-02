@@ -13,7 +13,7 @@ export class WaffleX extends BarX {
     this.gap = +gap;
   }
   render(index, scales, channels, dimensions, context) {
-    const {unit, gap} = this;
+    const {unit, gap, rx, ry} = this;
     const {document} = context;
     const g = super.render(index, scales, channels, dimensions, context);
 
@@ -29,7 +29,7 @@ export class WaffleX extends BarX {
     // The outer size of each square cell, in pixels, including the gap.
     const cellsize = scale * columns;
 
-    // TODO rx, ry, insets?
+    // TODO insets?
     const X1 = channels.channels.x1.value;
     const X2 = channels.channels.x2.value;
     const ww = columns * cellsize;
@@ -46,6 +46,8 @@ export class WaffleX extends BarX {
     basePatternRect.setAttribute("y", gap / 2);
     basePatternRect.setAttribute("width", cellsize - gap);
     basePatternRect.setAttribute("height", cellsize - gap);
+    if (rx != null) basePatternRect.setAttribute("rx", rx);
+    if (ry != null) basePatternRect.setAttribute("ry", ry);
     for (const i of index) {
       const y0 = +rect.getAttribute("y") + wy;
       const fill = rect.getAttribute("fill");
@@ -90,7 +92,7 @@ export class WaffleY extends BarY {
     this.gap = +gap;
   }
   render(index, scales, channels, dimensions, context) {
-    const {unit, gap} = this;
+    const {unit, gap, rx, ry} = this;
     const {document} = context;
     const g = super.render(index, scales, channels, dimensions, context);
 
@@ -106,7 +108,7 @@ export class WaffleY extends BarY {
     // The outer size of each square cell, in pixels, including the gap.
     const cellsize = scale * columns;
 
-    // TODO rx, ry, insets?
+    // TODO insets?
     const Y1 = channels.channels.y1.value;
     const Y2 = channels.channels.y2.value;
     const ww = columns * cellsize;
@@ -123,6 +125,8 @@ export class WaffleY extends BarY {
     basePatternRect.setAttribute("y", gap / 2);
     basePatternRect.setAttribute("width", cellsize - gap);
     basePatternRect.setAttribute("height", cellsize - gap);
+    if (rx != null) basePatternRect.setAttribute("rx", rx);
+    if (ry != null) basePatternRect.setAttribute("ry", ry);
     for (const i of index) {
       const x0 = +rect.getAttribute("x") + wx;
       const fill = rect.getAttribute("fill");
