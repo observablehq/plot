@@ -7,13 +7,14 @@ import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import {BarX, BarY} from "./bar.js";
 
 export class WaffleX extends BarX {
-  constructor(data, {unit = 1, gap = 1, ...options} = {}) {
+  constructor(data, {unit = 1, gap = 1, round, ...options} = {}) {
     super(data, {...options, stroke: "none"});
     this.unit = Math.max(0, unit);
     this.gap = +gap;
+    this.round = maybeRound(round);
   }
   render(index, scales, channels, dimensions, context) {
-    const {unit, gap, rx, ry} = this;
+    const {unit, gap, rx, ry, round} = this;
     const {document} = context;
     const g = super.render(index, scales, channels, dimensions, context);
 
@@ -71,7 +72,7 @@ export class WaffleX extends BarX {
       }
       path.setAttribute(
         "d",
-        `M${wafflePoints(X1[i] / unit, X2[i] / unit, columns)
+        `M${wafflePoints(round(X1[i] / unit), round(X2[i] / unit), columns)
           .map(([y, x]) => [x * cellsize + x0, y0 + y * cellsize])
           .join("L")}Z`
       );
@@ -86,13 +87,14 @@ export class WaffleX extends BarX {
 }
 
 export class WaffleY extends BarY {
-  constructor(data, {unit = 1, gap = 1, ...options} = {}) {
+  constructor(data, {unit = 1, gap = 1, round, ...options} = {}) {
     super(data, {...options, stroke: "none"});
     this.unit = Math.max(0, unit);
     this.gap = +gap;
+    this.round = maybeRound(round);
   }
   render(index, scales, channels, dimensions, context) {
-    const {unit, gap, rx, ry} = this;
+    const {unit, gap, rx, ry, round} = this;
     const {document} = context;
     const g = super.render(index, scales, channels, dimensions, context);
 
@@ -150,7 +152,7 @@ export class WaffleY extends BarY {
       }
       path.setAttribute(
         "d",
-        `M${wafflePoints(Y1[i] / unit, Y2[i] / unit, columns)
+        `M${wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), columns)
           .map(([x, y]) => [x * cellsize + x0, y0 - y * cellsize])
           .join("L")}Z`
       );
@@ -216,6 +218,13 @@ function wafflePoints(i1, i2, columns) {
     [ceil(abs(i2) % columns), floor(i2 / columns) + (i2 % 1)],
     [floor(abs(i2) % columns), floor(i2 / columns) + (i2 % 1)]
   ];
+}
+
+function maybeRound(round) {
+  if (round === undefined || round === false) return Number;
+  if (round === true) return Math.round;
+  if (typeof round !== "function") throw new Error(`invalid round: ${round}`);
+  return round;
 }
 
 function scaleof({domain, range}) {

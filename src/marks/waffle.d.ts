@@ -7,6 +7,8 @@ interface WaffleOptions {
   unit?: number;
   /** The gap in pixels between cells; defaults to 1. */
   gap?: number;
+  /** If true, round to integers to avoid partial cells. */
+  round?: boolean | ((value: number) => number);
 }
 
 /** Options for the waffleX mark. */

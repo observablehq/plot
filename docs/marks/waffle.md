@@ -2,7 +2,10 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import {shallowRef, onMounted} from "vue";
+import {ref, shallowRef, onMounted} from "vue";
+
+const apples = ref(512);
+const unit = ref(10);
 
 const olympians = shallowRef([
   {weight: 31, height: 1.21, sex: "female"},
@@ -24,41 +27,60 @@ onMounted(() => {
 
 # Waffle mark <VersionBadge pr="2040" />
 
-The **waffle mark** is similar to the [bar mark](./bar.md) in that it displays a quantity (or two) for a given category; but unlike a bar, a waffle is subdivided into many square cells that allow discrete values to be more easily counted.
+The **waffle mark** is similar to the [bar mark](./bar.md) in that it displays a quantity (or quantitative extent) for a given category; but unlike a bar, a waffle is subdivided into square cells that allow easier counting. Waffles are useful for reading and comparing exact quantities. How quickly can you count the pears 🍐 below? How many more apples 🍎 are there than bananas 🍌?
 
 :::plot
 ```js
-Plot.waffleY([1, 2, 32, 400, 5]).plot()
+Plot.waffleY([212, 207, 315, 11], {x: ["apples", "bananas", "oranges", "pears"]}).plot({height: 420})
 ```
 :::
 
-The waffle mark is often used in conjunction with the group transform.
+The waffle mark is often used in conjunction with the group transform to count things. The chart below compares the number of female and male athletes in the 2012 Olympics.
 
 :::plot
 ```js
-Plot.waffleY(olympians, Plot.groupX({y: "count"}, {fill: "sex", x: (d) => Math.floor(d.date_of_birth?.getUTCFullYear() / 10) * 10, unit: 10})).plot({round: true, x: {tickFormat: ""}})
+Plot.waffleY(olympians, Plot.groupX({y: "count"}, {x: "sex"})).plot({x: {label: null}})
 ```
 :::
 
-The waffle mark comes in two orientations: waffleY extends vertically↑, while waffleX extends horizontally→.
+:::info
+Waffles are rendered using SVG patterns, making them more performant than alternatives such as the [dot mark](./dot.md) for rendering many points.
+:::
 
-Waffles use patterns and thus are dramatically more performant when rendering many points.
+Use [faceting](../features/facets.md) as an alternative to supplying an ordinal channel (_i.e._, *fx* instead of *x* for a vertical waffleY). The facet scale’s **interval** option then allows grouping by a quantitative or temporal variable, such as the athlete’s year of birth in the chart below.
+
+The **unit** option determines the quantity each cell represents; it defaults to one. The unit may be set to a value greater than one for large quantities, or to a value less than one (but greater than zero) for small fractional quantities. Try changing the unit below to see its effect.
+
+<p>
+  <span class="label-input">
+    Unit:
+    <label style="margin-left: 0.5em;"><input type="radio" name="unit" value="1" v-model="unit" /> 1</label>
+    <label style="margin-left: 0.5em;"><input type="radio" name="unit" value="2" v-model="unit" /> 2</label>
+    <label style="margin-left: 0.5em;"><input type="radio" name="unit" value="5" v-model="unit" /> 5</label>
+    <label style="margin-left: 0.5em;"><input type="radio" name="unit" value="10" v-model="unit" /> 10</label>
+    <label style="margin-left: 0.5em;"><input type="radio" name="unit" value="25" v-model="unit" /> 25</label>
+    <label style="margin-left: 0.5em;"><input type="radio" name="unit" value="50" v-model="unit" /> 50</label>
+    <label style="margin-left: 0.5em;"><input type="radio" name="unit" value="100" v-model="unit" /> 100</label>
+  </span>
+</p>
 
 :::plot
 ```js
-Plot.waffleY(olympians, Plot.groupX({y: "count"}, {fill: "sex", x: "sex"})).plot()
+Plot.waffleY(olympians, Plot.groupZ({y: "count"}, {fx: "date_of_birth", unit})).plot({fx: {interval: "5 years", label: null}})
 ```
 :::
 
-Waffles typically used to represent countable integer values, such as people or days, though they can also encode fractional values with a partial first or last cell.
+While waffles typically represent integer quantities, say to count people or days, they can also encode fractional values with a partial first or last cell. Set the **round** option to true to disable partial cells, or to Math.ceil or Math.floor to round up or down.
+
+Like bars, waffles can be [stacked](../transforms/stack.md), and implicitly apply the stack transform when only a single quantitative channel is supplied.
 
 :::plot
 ```js
-Plot.waffleY([1.5, 2, 32, 400, 5]).plot()
+Plot.waffleY(olympians, Plot.groupZ({y: "count"}, {fill: "sex", sort: "sex", fx: "weight", unit: 10})).plot({fx: {interval: 10}, color: {legend: true}})
 ```
 :::
 
-Waffles representing proportion. Waffles with rounded corners.
+TODO Waffles representing proportion. Waffles with rounded corners using **rx** or **ry**. The chart below recreates a graphic of survey responses from [“Teens in Syria”](https://www.economist.com/graphic-detail/2015/08/19/teens-in-syria) by _The Economist_ (August 19, 2015).
 
 :::plot
 ```js
@@ -67,10 +89,9 @@ Plot.plot({
   label: null,
   height: 260,
   marginTop: 20,
-  marginBottom: 80,
+  marginBottom: 70,
   title: "Subdued",
   subtitle: "Of 120 surveyed Syrian teenagers:",
-  caption: "A recreation of a chart in “Teens in Syria” published by The Economist on August 19, 2015.",
   marks: [
     Plot.axisFx({lineWidth: 10, anchor: "bottom", dy: 20}),
     Plot.waffleY({length: 1}, {y: 120, fillOpacity: 0.4, rx: "100%"}),
@@ -81,7 +102,35 @@ Plot.plot({
 ```
 :::
 
-Waffles can be stacked.
+The waffle mark comes in two orientations: waffleY extends vertically↑, while waffleX extends horizontally→. The waffle mark automatically determines the appropriate number of cells per row or per column (depending on orientation) such that the cells are square, don’t overlap, and are consistent with position scales.
+
+<p>
+  <label class="label-input">
+    <span>Apples:</span>
+    <input type="range" v-model.number="apples" min="10" max="1028" step="1" />
+    <span style="font-variant-numeric: tabular-nums;">{{apples}}</span>
+  </label>
+</p>
+
+:::plot
+```js
+Plot.waffleX([apples], {y: ["apples"]}).plot({height: 240})
+```
+:::
+
+:::info
+The number of rows in the waffle above is guaranteed to be an integer, but it might not be a multiple or factor of the *x*-axis tick interval. For example, the waffle might have 15 rows while the *x*-axis shows ticks every 100 units.
+:::
+
+TODO The **gap** option.
+
+TODO Waffle shorthand.
+
+:::plot
+```js
+Plot.waffleY("AAAAGAGTGAAGATGCTGGAGACGAGTGAAGCATTCACTTTAGGGAAAGCGAGGCAAGAGCGTTTCAGAAGACGAAACCTGGTAGGTGCACTCACCACAG", Plot.groupX()).plot()
+```
+:::
 
 ## Waffle options
 
