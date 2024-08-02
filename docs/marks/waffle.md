@@ -2,13 +2,23 @@
 
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
+import {shallowRef, onMounted} from "vue";
 import alphabet from "../data/alphabet.ts";
+
+const olympians = shallowRef([
+  {weight: 31, height: 1.21, sex: "female"},
+  {weight: 170, height: 2.21, sex: "male"}
+]);
+
+onMounted(() => {
+  d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
+});
 
 </script>
 
 # Waffle mark <VersionBadge pr="2040" />
 
-The **waffle mark** is similar to the [bar mark](./bar.md), but subdivides each bar into discrete square cells that are more easily counted. It comes in two orientations: waffleY extends vertically↑, while waffleX extends horizontally→. For example, the waffle chart below shows TKTK.
+The **waffle mark** is similar to the [bar mark](./bar.md), but subdivides values into discrete square cells that are more easily counted.
 
 :::plot
 ```js
@@ -16,7 +26,25 @@ Plot.waffleY([1, 2, 32, 400, 5]).plot()
 ```
 :::
 
-TODO
+The waffle mark is often used in conjunction with the group transform.
+
+:::plot
+```js
+Plot.waffleY(olympians, Plot.groupX({y: "count"}, {x: (d) => Math.floor(d.date_of_birth?.getUTCFullYear() / 10) * 10, unit: 10})).plot({round: true, x: {tickFormat: ""}})
+```
+:::
+
+The waffle mark comes in two orientations: waffleY extends vertically↑, while waffleX extends horizontally→.
+
+Waffles typically used to represent countable integer values, such as people or days, though they can also encode fractional values with a partial first or last cell.
+
+:::plot
+```js
+Plot.waffleY([1.5, 2, 32, 400, 5]).plot()
+```
+:::
+
+Waffles can be stacked.
 
 ## Waffle options
 

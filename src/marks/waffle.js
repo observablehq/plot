@@ -1,4 +1,4 @@
-import {namespaces} from "d3";
+import {extent, namespaces} from "d3";
 import {hasXY, identity, indexOf} from "../options.js";
 import {getClipId} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
@@ -21,7 +21,7 @@ export class WaffleX extends BarX {
     const bandwidth = this._height(scales, channels, dimensions);
 
     // The length of a unit along x in pixels.
-    const scale = Math.abs(scales.x(0) - scales.x(unit));
+    const scale = unit * scaleof(scales.scales.x);
 
     // The number of cells on each row of the waffle.
     const columns = Math.max(1, Math.floor(Math.sqrt(bandwidth / scale)));
@@ -98,7 +98,7 @@ export class WaffleY extends BarY {
     const bandwidth = this._width(scales, channels, dimensions);
 
     // The length of a unit along y in pixels.
-    const scale = Math.abs(scales.y(0) - scales.y(unit));
+    const scale = unit * scaleof(scales.scales.y);
 
     // The number of cells on each row of the waffle.
     const columns = Math.max(1, Math.floor(Math.sqrt(bandwidth / scale)));
@@ -211,6 +211,15 @@ function wafflePoints(i1, i2, columns) {
     [floor(columns - (abs(i2) % columns)), floor(i2 / columns) + (i2 % 1)],
     [ceil(columns - (abs(i2) % columns)), floor(i2 / columns) + (i2 % 1)]
   ];
+}
+
+function scaleof({domain, range}) {
+  return spread(range) / spread(domain);
+}
+
+function spread(domain) {
+  const [min, max] = extent(domain);
+  return max - min;
 }
 
 function abs(x) {
