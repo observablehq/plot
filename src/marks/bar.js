@@ -8,8 +8,12 @@ import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import {applyRoundedRect, rectInsets, rectRadii} from "./rect.js";
 
+const barDefaults = {
+  ariaLabel: "bar"
+};
+
 export class AbstractBar extends Mark {
-  constructor(data, channels, options = {}, defaults) {
+  constructor(data, channels, options = {}, defaults = barDefaults) {
     super(data, channels, options, defaults);
     rectInsets(this, options);
     rectRadii(this, options);
@@ -81,12 +85,8 @@ function add(a, b) {
     : a + b;
 }
 
-const defaults = {
-  ariaLabel: "bar"
-};
-
 export class BarX extends AbstractBar {
-  constructor(data, options = {}) {
+  constructor(data, options = {}, defaults) {
     const {x1, x2, y} = options;
     super(
       data,
@@ -115,7 +115,7 @@ export class BarX extends AbstractBar {
 }
 
 export class BarY extends AbstractBar {
-  constructor(data, options = {}) {
+  constructor(data, options = {}, defaults) {
     const {x, y1, y2} = options;
     super(
       data,

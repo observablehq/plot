@@ -1,15 +1,21 @@
 import {extent, namespaces} from "d3";
+import {create} from "../context.js";
 import {composeRender} from "../mark.js";
 import {hasXY, identity, indexOf} from "../options.js";
-import {getPatternId} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, getPatternId} from "../style.js";
+import {template} from "../template.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 import {BarX, BarY} from "./bar.js";
 
+const waffleDefaults = {
+  ariaLabel: "waffle"
+};
+
 export class WaffleX extends BarX {
   constructor(data, {unit = 1, gap = 1, round, render, ...options} = {}) {
-    super(data, {...options, render: composeRender(render, waffleRender("x"))});
+    super(data, {...options, render: composeRender(render, waffleRender("x"))}, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
@@ -18,7 +24,7 @@ export class WaffleX extends BarX {
 
 export class WaffleY extends BarY {
   constructor(data, {unit = 1, gap = 1, round, render, ...options} = {}) {
-    super(data, {...options, render: composeRender(render, waffleRender("y"))});
+    super(data, {...options, render: composeRender(render, waffleRender("y"))}, waffleDefaults);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
@@ -26,36 +32,37 @@ export class WaffleY extends BarY {
 }
 
 function waffleRender(y) {
-  const x = y === "y" ? "x" : "y";
-  return function (index, scales, values, dimensions, context, next) {
+  return function (index, scales, values, dimensions, context) {
     const {unit, gap, rx, ry, round} = this;
     const {document} = context;
-    const g = next(index, scales, values, dimensions, context);
+    const Y1 = values.channels[`${y}1`].value;
+    const Y2 = values.channels[`${y}2`].value;
 
     // We might not use all the available bandwidth if the cells don’t fit evenly.
-    const bandwidth = this[y === "y" ? "_width" : "_height"](scales, values, dimensions);
+    const barwidth = this[y === "y" ? "_width" : "_height"](scales, values, dimensions);
+    const barx = this[y === "y" ? "_x" : "_y"](scales, values, dimensions);
 
     // The length of a unit along y in pixels.
     const scale = unit * scaleof(scales.scales[y]);
 
     // The number of cells on each row of the waffle.
-    const columns = Math.max(1, Math.floor(Math.sqrt(bandwidth / scale)));
+    const columns = Math.max(1, Math.floor(Math.sqrt(barwidth / scale)));
 
     // The outer size of each square cell, in pixels, including the gap.
     const cellsize = scale * columns;
 
     // TODO insets?
-    const Y1 = values.channels[`${y}1`].value;
-    const Y2 = values.channels[`${y}2`].value;
-    const ww = columns * cellsize;
-    const wx = (bandwidth - ww) / 2;
-    let rect = g.firstElementChild;
+    const transform = y === "y" ? ([x, y]) => [x * cellsize, -y * cellsize] : ([x, y]) => [y * cellsize, x * cellsize];
+    const tx = (barwidth - columns * cellsize) / 2;
+    const x0 = typeof barx === "function" ? (i) => barx(i) + tx : barx + tx;
     const y0 = scales[y](0);
+
+    // Create a base pattern with shared attributes for cloning.
+    const patternId = getPatternId();
     const basePattern = document.createElementNS(namespaces.svg, "pattern");
     basePattern.setAttribute("width", cellsize);
     basePattern.setAttribute("height", cellsize);
     basePattern.setAttribute("patternUnits", "userSpaceOnUse");
-    basePattern.setAttribute(y, y0);
     const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
     basePatternRect.setAttribute("x", gap / 2);
     basePatternRect.setAttribute("y", gap / 2);
@@ -63,48 +70,38 @@ function waffleRender(y) {
     basePatternRect.setAttribute("height", cellsize - gap);
     if (rx != null) basePatternRect.setAttribute("rx", rx);
     if (ry != null) basePatternRect.setAttribute("ry", ry);
-    for (const i of index) {
-      const x0 = +rect.getAttribute(x) + wx;
-      const fill = rect.getAttribute("fill"); // TODO handle constant fill
-      const stroke = rect.getAttribute("stroke"); // TODO handle constant fill
-      const patternId = getPatternId(); // TODO reused shared patterns
-      const pattern = g.insertBefore(basePattern.cloneNode(true), rect);
-      const patternRect = pattern.firstChild;
-      pattern.setAttribute("id", patternId);
-      pattern.setAttribute(x, x0);
-      if (fill != null) patternRect.setAttribute("fill", fill);
-      if (stroke != null) patternRect.setAttribute("stroke", stroke);
-      const path = document.createElementNS(namespaces.svg, "path");
-      for (const a of rect.attributes) {
-        switch (a.name) {
-          case "x":
-          case "y":
-          case "width":
-          case "height":
-          case "fill":
-          case "stroke":
-            continue;
-        }
-        path.setAttribute(a.name, a.value);
-      }
-      path.setAttribute(
-        "d",
-        `M${wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), columns)
-          .map(
-            y === "y"
-              ? ([x, y]) => [x * cellsize + x0, y0 - y * cellsize]
-              : ([x, y]) => [y * cellsize + y0, x0 + x * cellsize]
-          )
-          .join("L")}Z`
-      );
-      if (stroke != null) path.setAttribute("stroke", `url(#${patternId})`); // TODO if necessary
-      path.setAttribute("fill", `url(#${patternId})`);
-      const nextRect = rect.nextElementSibling;
-      rect.replaceWith(path);
-      rect = nextRect;
-    }
 
-    return g;
+    return create("svg:g", context)
+      .call(applyIndirectStyles, this, dimensions, context)
+      .call(this._transform, this, scales)
+      .call((g) =>
+        g
+          .selectAll()
+          .data(index)
+          .enter()
+          .append(() => basePattern.cloneNode(true))
+          .attr("id", (i) => `${patternId}-${i}`)
+          .select("rect")
+          .call(applyDirectStyles, this)
+          .call(applyChannelStyles, this, values)
+      )
+      .call((g) =>
+        g
+          .selectAll()
+          .data(index)
+          .enter()
+          .append("path")
+          .attr("transform", y === "y" ? template`translate(${x0},${y0})` : template`translate(${y0},${x0})`)
+          .attr(
+            "d",
+            (i) =>
+              `M${wafflePoints(round(Y1[i] / unit), round(Y2[i] / unit), columns)
+                .map(transform)
+                .join("L")}Z`
+          )
+          .attr("fill", (i) => `url(#${patternId}-${i})`)
+      )
+      .node();
   };
 }
 
