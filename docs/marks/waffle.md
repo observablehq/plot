@@ -3,12 +3,18 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {shallowRef, onMounted} from "vue";
-import alphabet from "../data/alphabet.ts";
 
 const olympians = shallowRef([
   {weight: 31, height: 1.21, sex: "female"},
   {weight: 170, height: 2.21, sex: "male"}
 ]);
+
+const survey = [
+  {question: "don’t go out after dark", yes: 96},
+  {question: "do no activities other than school", yes: 89},
+  {question: "engage in political discussion and social movements, including online", yes: 10},
+  {question: "would like to do activities but are prevented by safety concerns", yes: 73}
+];
 
 onMounted(() => {
   d3.csv("../data/athletes.csv", d3.autoType).then((data) => (olympians.value = data));
@@ -18,7 +24,7 @@ onMounted(() => {
 
 # Waffle mark <VersionBadge pr="2040" />
 
-The **waffle mark** is similar to the [bar mark](./bar.md), but subdivides values into discrete square cells that are more easily counted.
+The **waffle mark** is similar to the [bar mark](./bar.md) in that it displays a quantity (or two) for a given category; but unlike a bar, a waffle is subdivided into many square cells that allow discrete values to be more easily counted.
 
 :::plot
 ```js
@@ -30,17 +36,48 @@ The waffle mark is often used in conjunction with the group transform.
 
 :::plot
 ```js
-Plot.waffleY(olympians, Plot.groupX({y: "count"}, {fill: "sex", x: (d) => Math.floor(d.date_of_birth?.getUTCFullYear() / 10) * 10, unit: 10, rx: 10})).plot({round: true, x: {tickFormat: ""}})
+Plot.waffleY(olympians, Plot.groupX({y: "count"}, {fill: "sex", x: (d) => Math.floor(d.date_of_birth?.getUTCFullYear() / 10) * 10, unit: 10})).plot({round: true, x: {tickFormat: ""}})
 ```
 :::
 
 The waffle mark comes in two orientations: waffleY extends vertically↑, while waffleX extends horizontally→.
+
+Waffles use patterns and thus are dramatically more performant when rendering many points.
+
+:::plot
+```js
+Plot.waffleY(olympians, Plot.groupX({y: "count"}, {fill: "sex", x: "sex"})).plot()
+```
+:::
 
 Waffles typically used to represent countable integer values, such as people or days, though they can also encode fractional values with a partial first or last cell.
 
 :::plot
 ```js
 Plot.waffleY([1.5, 2, 32, 400, 5]).plot()
+```
+:::
+
+Waffles representing proportion. Waffles with rounded corners.
+
+:::plot
+```js
+Plot.plot({
+  axis: null,
+  label: null,
+  height: 260,
+  marginTop: 20,
+  marginBottom: 80,
+  title: "Subdued",
+  subtitle: "Of 120 surveyed Syrian teenagers:",
+  caption: "A recreation of a chart in “Teens in Syria” published by The Economist on August 19, 2015.",
+  marks: [
+    Plot.axisFx({lineWidth: 10, anchor: "bottom", dy: 20}),
+    Plot.waffleY({length: 1}, {y: 120, fillOpacity: 0.4, rx: "100%"}),
+    Plot.waffleY(survey, {fx: "question", y: "yes", rx: "100%", fill: "orange"}),
+    Plot.text(survey, {fx: "question", text: (d) => (d.yes / 120).toLocaleString("en-US", {style: "percent"}), frameAnchor: "bottom", lineAnchor: "top", dy: 6, fill: "orange", fontSize: 24, fontWeight: "bold"}),
+  ]
+})
 ```
 :::
 

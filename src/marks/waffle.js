@@ -164,56 +164,57 @@ export class WaffleY extends BarY {
   }
 }
 
-// A waffle is generally a rectangular shape, but may have one or two corner
-// cuts if the number of units in the starting or ending value of the waffle
-// is not an even multiple of the number of columns (the width of the waffle
-// in cells). We can represent any waffle by seven points. Below is a waffle
-// of five columns representing the interval 2–11:
+// A waffle is a approximately rectangular shape, but may have one or two corner
+// cuts if the starting or ending value is not an even multiple of the number of
+// columns (the width of the waffle in cells). We can represent any waffle by
+// 8 points; below is a waffle of five columns representing the interval 2–11:
 //
-//         0-1
-// 6-------7•|
+// 1-0
+// |•7-------6
 // |• • • • •|
-// |• • •3---2
-// 5-----4
+// 2---3• • •|
+//     4-----5
 //
-// Note that points 0 and 1 always have the same y-value, points 1 and 2
-// have the same x-value, and so on, so we don’t need to materialize the x-
-// and y-values of all points. Also note that we can’t use the already-
-// projected y-values because these assume that y-values are distributed
-// linearly along y rather than wrapping around in columns.
+// Note that points 0 and 1 always have the same y-value, points 1 and 2 have
+// the same x-value, and so on, so we don’t need to materialize the x- and y-
+// values of all points. Also note that we can’t use the already-projected y-
+// values because these assume that y-values are distributed linearly along y
+// rather than wrapping around in columns.
 //
-// The corner points may be coincident. If the ending value is an even
-// multiple of the number of columns, say representing the interval 2–10,
-// then points 6, 7, and 0 are the same.
+// The corner points may be coincident. If the ending value is an even multiple
+// of the number of columns, say representing the interval 2–10, then points 6,
+// 7, and 0 are the same.
 //
-// 6/7/0-----1
+// 1-----0/7/6
 // |• • • • •|
-// |• • •3---2
-// 5-----4
+// 2---3• • •|
+//     4-----5
 //
 // Likewise if the starting value is an even multiple, say representing the
 // interval 0–10, points 2–4 are coincident.
 //
-// 6/7/0-----1
+// 1-----0/7/6
 // |• • • • •|
 // |• • • • •|
-// 5-----2/3/4
+// 4/3/2-----5
 //
-// Waffles can also represent fractional intervals (e.g., 2.4–10.1).
+// Waffles can also represent fractional intervals (e.g., 2.4–10.1). These
+// require additional corner cuts, so the implementation below generates a few
+// more points.
 function wafflePoints(i1, i2, columns) {
   return [
-    [ceil(columns - (abs(i2) % columns)), ceil(i2 / columns)],
-    [columns, ceil(i2 / columns)],
-    [columns, ceil(i1 / columns)],
-    [ceil(columns - (abs(i1) % columns)), ceil(i1 / columns)],
-    [ceil(columns - (abs(i1) % columns)), floor(i1 / columns) + (i1 % 1)],
-    [floor(columns - (abs(i1) % columns)), floor(i1 / columns) + (i1 % 1)],
-    [floor(columns - (abs(i1) % columns)), floor(i1 / columns)],
-    [0, floor(i1 / columns)],
-    [0, floor(i2 / columns)],
-    [floor(columns - (abs(i2) % columns)), floor(i2 / columns)],
-    [floor(columns - (abs(i2) % columns)), floor(i2 / columns) + (i2 % 1)],
-    [ceil(columns - (abs(i2) % columns)), floor(i2 / columns) + (i2 % 1)]
+    [floor(abs(i2) % columns), ceil(i2 / columns)],
+    [0, ceil(i2 / columns)],
+    [0, ceil(i1 / columns)],
+    [floor(abs(i1) % columns), ceil(i1 / columns)],
+    [floor(abs(i1) % columns), floor(i1 / columns) + (i1 % 1)],
+    [ceil(abs(i1) % columns), floor(i1 / columns) + (i1 % 1)],
+    [ceil(abs(i1) % columns), floor(i1 / columns)],
+    [columns, floor(i1 / columns)],
+    [columns, floor(i2 / columns)],
+    [ceil(abs(i2) % columns), floor(i2 / columns)],
+    [ceil(abs(i2) % columns), floor(i2 / columns) + (i2 % 1)],
+    [floor(abs(i2) % columns), floor(i2 / columns) + (i2 % 1)]
   ];
 }
 
