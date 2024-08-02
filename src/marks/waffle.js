@@ -8,7 +8,7 @@ import {BarX, BarY} from "./bar.js";
 
 export class WaffleX extends BarX {
   constructor(data, {unit = 1, gap = 1, round, ...options} = {}) {
-    super(data, {...options, stroke: "none"});
+    super(data, options);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
@@ -36,7 +36,7 @@ export class WaffleX extends BarX {
     const ww = columns * cellsize;
     const wy = (bandwidth - ww) / 2;
     let rect = g.firstElementChild;
-    const x0 = scales.x(0) - gap;
+    const x0 = scales.x(0);
     const basePattern = document.createElementNS(namespaces.svg, "pattern");
     basePattern.setAttribute("width", cellsize);
     basePattern.setAttribute("height", cellsize);
@@ -51,13 +51,15 @@ export class WaffleX extends BarX {
     if (ry != null) basePatternRect.setAttribute("ry", ry);
     for (const i of index) {
       const y0 = +rect.getAttribute("y") + wy;
-      const fill = rect.getAttribute("fill");
+      const fill = rect.getAttribute("fill"); // TODO handle constant fill
+      const stroke = rect.getAttribute("stroke"); // TODO handle constant fill
       const patternId = getClipId(); // TODO lazy
       const pattern = g.insertBefore(basePattern.cloneNode(true), rect);
       const patternRect = pattern.firstChild;
       pattern.setAttribute("id", patternId);
       pattern.setAttribute("y", y0);
-      patternRect.setAttribute("fill", fill);
+      if (fill != null) patternRect.setAttribute("fill", fill);
+      if (stroke != null) patternRect.setAttribute("stroke", stroke);
       const path = document.createElementNS(namespaces.svg, "path");
       for (const a of rect.attributes) {
         switch (a.name) {
@@ -66,6 +68,7 @@ export class WaffleX extends BarX {
           case "width":
           case "height":
           case "fill":
+          case "stroke":
             continue;
         }
         path.setAttribute(a.name, a.value);
@@ -76,6 +79,7 @@ export class WaffleX extends BarX {
           .map(([y, x]) => [x * cellsize + x0, y0 + y * cellsize])
           .join("L")}Z`
       );
+      if (stroke != null) path.setAttribute("stroke", `url(#${patternId})`); // TODO if necessary
       path.setAttribute("fill", `url(#${patternId})`);
       const nextRect = rect.nextElementSibling;
       rect.replaceWith(path);
@@ -88,7 +92,7 @@ export class WaffleX extends BarX {
 
 export class WaffleY extends BarY {
   constructor(data, {unit = 1, gap = 1, round, ...options} = {}) {
-    super(data, {...options, stroke: "none"});
+    super(data, options);
     this.unit = Math.max(0, unit);
     this.gap = +gap;
     this.round = maybeRound(round);
@@ -116,7 +120,7 @@ export class WaffleY extends BarY {
     const ww = columns * cellsize;
     const wx = (bandwidth - ww) / 2;
     let rect = g.firstElementChild;
-    const y0 = scales.y(0) - gap;
+    const y0 = scales.y(0);
     const basePattern = document.createElementNS(namespaces.svg, "pattern");
     basePattern.setAttribute("width", cellsize);
     basePattern.setAttribute("height", cellsize);
@@ -131,13 +135,15 @@ export class WaffleY extends BarY {
     if (ry != null) basePatternRect.setAttribute("ry", ry);
     for (const i of index) {
       const x0 = +rect.getAttribute("x") + wx;
-      const fill = rect.getAttribute("fill");
+      const fill = rect.getAttribute("fill"); // TODO handle constant fill
+      const stroke = rect.getAttribute("stroke"); // TODO handle constant fill
       const patternId = getClipId(); // TODO lazy
       const pattern = g.insertBefore(basePattern.cloneNode(true), rect);
       const patternRect = pattern.firstChild;
       pattern.setAttribute("id", patternId);
       pattern.setAttribute("x", x0);
-      patternRect.setAttribute("fill", fill);
+      if (fill != null) patternRect.setAttribute("fill", fill);
+      if (stroke != null) patternRect.setAttribute("stroke", stroke);
       const path = document.createElementNS(namespaces.svg, "path");
       for (const a of rect.attributes) {
         switch (a.name) {
@@ -146,6 +152,7 @@ export class WaffleY extends BarY {
           case "width":
           case "height":
           case "fill":
+          case "stroke":
             continue;
         }
         path.setAttribute(a.name, a.value);
@@ -156,6 +163,7 @@ export class WaffleY extends BarY {
           .map(([x, y]) => [x * cellsize + x0, y0 - y * cellsize])
           .join("L")}Z`
       );
+      if (stroke != null) path.setAttribute("stroke", `url(#${patternId})`); // TODO if necessary
       path.setAttribute("fill", `url(#${patternId})`);
       const nextRect = rect.nextElementSibling;
       rect.replaceWith(path);

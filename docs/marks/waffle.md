@@ -27,7 +27,7 @@ onMounted(() => {
 
 # Waffle mark <VersionBadge pr="2040" />
 
-The **waffle mark** is similar to the [bar mark](./bar.md) in that it displays a quantity (or quantitative extent) for a given category; but unlike a bar, a waffle is subdivided into square cells that allow easier counting. Waffles are useful for reading and comparing exact quantities. How quickly can you count the pears 🍐 below? How many more apples 🍎 are there than bananas 🍌?
+The **waffle mark** is similar to the [bar mark](./bar.md) in that it displays a quantity (or quantitative extent) for a given category; but unlike a bar, a waffle is subdivided into square cells that allow easier counting. Waffles are useful for reading exact quantities. How quickly can you count the pears 🍐 below? How many more apples 🍎 are there than bananas 🍌?
 
 :::plot
 ```js
@@ -35,7 +35,7 @@ Plot.waffleY([212, 207, 315, 11], {x: ["apples", "bananas", "oranges", "pears"]}
 ```
 :::
 
-The waffle mark is often used in conjunction with the group transform to count things. The chart below compares the number of female and male athletes in the 2012 Olympics.
+The waffle mark is often used with the [group transform](../transforms/group.md) to compute counts. The chart below compares the number of female and male athletes in the 2012 Olympics.
 
 :::plot
 ```js
@@ -47,9 +47,7 @@ Plot.waffleY(olympians, Plot.groupX({y: "count"}, {x: "sex"})).plot({x: {label: 
 Waffles are rendered using SVG patterns, making them more performant than alternatives such as the [dot mark](./dot.md) for rendering many points.
 :::
 
-Use [faceting](../features/facets.md) as an alternative to supplying an ordinal channel (_i.e._, *fx* instead of *x* for a vertical waffleY). The facet scale’s **interval** option then allows grouping by a quantitative or temporal variable, such as the athlete’s year of birth in the chart below.
-
-The **unit** option determines the quantity each cell represents; it defaults to one. The unit may be set to a value greater than one for large quantities, or to a value less than one (but greater than zero) for small fractional quantities. Try changing the unit below to see its effect.
+The **unit** option determines the quantity each waffle cell represents; it defaults to one. The unit may be set to a value greater than one for large quantities, or less than one (but greater than zero) for small fractional quantities. Try changing the unit below to see its effect.
 
 <p>
   <span class="label-input">
@@ -70,6 +68,10 @@ Plot.waffleY(olympians, Plot.groupZ({y: "count"}, {fx: "date_of_birth", unit})).
 ```
 :::
 
+:::tip
+Use [faceting](../features/facets.md) as an alternative to supplying an ordinal channel (_i.e._, *fx* instead of *x* for a vertical waffleY). The facet scale’s **interval** option then allows grouping by a quantitative or temporal variable, such as the athlete’s year of birth in the chart below.
+:::
+
 While waffles typically represent integer quantities, say to count people or days, they can also encode fractional values with a partial first or last cell. Set the **round** option to true to disable partial cells, or to Math.ceil or Math.floor to round up or down.
 
 Like bars, waffles can be [stacked](../transforms/stack.md), and implicitly apply the stack transform when only a single quantitative channel is supplied.
@@ -80,7 +82,7 @@ Plot.waffleY(olympians, Plot.groupZ({y: "count"}, {fill: "sex", sort: "sex", fx:
 ```
 :::
 
-TODO Waffles representing proportion. Waffles with rounded corners using **rx** or **ry**. The chart below recreates a graphic of survey responses from [“Teens in Syria”](https://www.economist.com/graphic-detail/2015/08/19/teens-in-syria) by _The Economist_ (August 19, 2015).
+Waffles can also be used to highlight a proportion of the whole. The chart below recreates a graphic of survey responses from [“Teens in Syria”](https://www.economist.com/graphic-detail/2015/08/19/teens-in-syria) by _The Economist_ (August 19, 2015); positive responses are in orange, while negative responses are in gray. The **rx** option is used to produce circles instead of squares.
 
 :::plot
 ```js
@@ -96,7 +98,7 @@ Plot.plot({
     Plot.axisFx({lineWidth: 10, anchor: "bottom", dy: 20}),
     Plot.waffleY({length: 1}, {y: 120, fillOpacity: 0.4, rx: "100%"}),
     Plot.waffleY(survey, {fx: "question", y: "yes", rx: "100%", fill: "orange"}),
-    Plot.text(survey, {fx: "question", text: (d) => (d.yes / 120).toLocaleString("en-US", {style: "percent"}), frameAnchor: "bottom", lineAnchor: "top", dy: 6, fill: "orange", fontSize: 24, fontWeight: "bold"}),
+    Plot.text(survey, {fx: "question", text: (d) => (d.yes / 120).toLocaleString("en-US", {style: "percent"}), frameAnchor: "bottom", lineAnchor: "top", dy: 6, fill: "orange", fontSize: 24, fontWeight: "bold"})
   ]
 })
 ```
@@ -122,19 +124,9 @@ Plot.waffleX([apples], {y: ["apples"]}).plot({height: 240})
 The number of rows in the waffle above is guaranteed to be an integer, but it might not be a multiple or factor of the *x*-axis tick interval. For example, the waffle might have 15 rows while the *x*-axis shows ticks every 100 units.
 :::
 
-TODO The **gap** option.
-
-TODO Waffle shorthand.
-
-:::plot
-```js
-Plot.waffleY("AAAAGAGTGAAGATGCTGGAGACGAGTGAAGCATTCACTTTAGGGAAAGCGAGGCAAGAGCGTTTCAGAAGACGAAACCTGGTAGGTGCACTCACCACAG", Plot.groupX()).plot()
-```
-:::
-
 ## Waffle options
 
-For required channels, see the [bar mark](./bar.md). The waffle mark supports the [standard mark options](../features/marks.md). It does not support [insets](../features/marks.md#insets), [rounded corners](../features/marks.md#rounded-corners), or **stroke**. The **fill** defaults to *currentColor*.
+For required channels, see the [bar mark](./bar.md). The waffle mark supports the [standard mark options](../features/marks.md), including [insets](../features/marks.md#insets) and [rounded corners](../features/marks.md#rounded-corners). The **stroke** defaults to *none*. The **fill** defaults to *currentColor* if the stroke is *none*, and to *none* otherwise.
 
 ## waffleX(*data*, *options*) {#waffleX}
 

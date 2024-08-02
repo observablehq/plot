@@ -19,6 +19,14 @@ export function waffleShorthandNegative() {
   return Plot.waffleY([-4, -9, -24, -46, -66, -7]).plot({x: {axis: "top"}});
 }
 
+export function waffleStroke() {
+  return Plot.waffleY([4.5, 9, 24, 46, 66, 7], {fill: "#eee", stroke: "red", gap: 0}).plot();
+}
+
+export function waffleStrokeNegative() {
+  return Plot.waffleY([-4.5, -9, -24, -46, -66, -7], {fill: "#eee", stroke: "red", gap: 0}).plot({x: {axis: "top"}});
+}
+
 export function waffleX() {
   return Plot.plot({
     marginLeft: 80,
