@@ -1,6 +1,6 @@
 import {extent, namespaces} from "d3";
 import {hasXY, identity, indexOf} from "../options.js";
-import {getClipId} from "../style.js";
+import {getPatternId} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
@@ -53,7 +53,7 @@ export class WaffleX extends BarX {
       const y0 = +rect.getAttribute("y") + wy;
       const fill = rect.getAttribute("fill"); // TODO handle constant fill
       const stroke = rect.getAttribute("stroke"); // TODO handle constant fill
-      const patternId = getClipId(); // TODO lazy
+      const patternId = getPatternId(); // TODO reused shared patterns
       const pattern = g.insertBefore(basePattern.cloneNode(true), rect);
       const patternRect = pattern.firstChild;
       pattern.setAttribute("id", patternId);
@@ -137,7 +137,7 @@ export class WaffleY extends BarY {
       const x0 = +rect.getAttribute("x") + wx;
       const fill = rect.getAttribute("fill"); // TODO handle constant fill
       const stroke = rect.getAttribute("stroke"); // TODO handle constant fill
-      const patternId = getClipId(); // TODO lazy
+      const patternId = getPatternId(); // TODO reused shared patterns
       const pattern = g.insertBefore(basePattern.cloneNode(true), rect);
       const patternRect = pattern.firstChild;
       pattern.setAttribute("id", patternId);

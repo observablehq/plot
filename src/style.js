@@ -9,9 +9,14 @@ import {warn} from "./warnings.js";
 export const offset = (typeof window !== "undefined" ? window.devicePixelRatio > 1 : typeof it === "undefined") ? 0 : 0.5; // prettier-ignore
 
 let nextClipId = 0;
+let nextPatternId = 0;
 
 export function getClipId() {
   return `plot-clip-${++nextClipId}`;
+}
+
+export function getPatternId() {
+  return `plot-pattern-${++nextPatternId}`;
 }
 
 export function styles(
