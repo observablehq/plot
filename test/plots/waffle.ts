@@ -12,19 +12,167 @@ Elderly 65+,65+,12456`,
 );
 
 export function waffleShorthand() {
-  return Plot.waffleY([4, 9, 24, 46, 66, 7]).plot();
-}
-
-export function waffleShorthandNegative() {
-  return Plot.waffleY([-4, -9, -24, -46, -66, -7]).plot({x: {axis: "top"}});
+  return Plot.plot({
+    y: {inset: 12},
+    marks: [
+      Plot.waffleY([4, 9, 24, 46, 66, 7], {fill: "currentColor"}),
+      Plot.waffleY([-4, -9, -24, -46, -66, -7], {fill: "red"})
+    ]
+  });
 }
 
 export function waffleStroke() {
-  return Plot.waffleY([4.5, 9, 24, 46, 66, 7], {fill: "#eee", stroke: "red", gap: 0}).plot();
+  return Plot.plot({
+    y: {inset: 12},
+    marks: [
+      Plot.waffleY([4, 9, 24, 46, 66, 7], {fill: "currentColor", stroke: "red", gap: 0}),
+      Plot.waffleY([-4, -9, -24, -46, -66, -7], {fill: "red", stroke: "currentColor", gap: 0})
+    ]
+  });
+}
+
+export function waffleRound() {
+  return Plot.plot({
+    y: {inset: 12},
+    marks: [
+      Plot.waffleY([4, 9, 24, 46, 66, 7], {fill: "currentColor", rx: "100%"}),
+      Plot.waffleY([-4, -9, -24, -46, -66, -7], {fill: "red", rx: "100%"})
+    ]
+  });
+}
+
+export function waffleStrokeMixed() {
+  return Plot.plot({
+    y: {insetBottom: 16},
+    marks: [
+      Plot.waffleY(
+        {length: 6},
+        {
+          x: ["A", "B", "C", "D", "E", "F"],
+          y1: [-1.1, -2.2, -3.3, -4.4, -5.5, -6.6],
+          y2: [2.3, 4.5, 6.7, 7.8, 9.1, 10.2],
+          unit: 0.2,
+          fill: "currentColor",
+          stroke: "red"
+        }
+      ),
+      Plot.waffleY(
+        {length: 6},
+        {
+          x: ["A", "B", "C", "D", "E", "F"],
+          y1: [2.3, 4.5, 6.7, 7.8, 9.1, 10.2],
+          y2: [-1.1, -2.2, -3.3, -4.4, -5.5, -6.6],
+          unit: 0.2,
+          gap: 10,
+          fill: "red"
+        }
+      ),
+      Plot.ruleY([0])
+    ]
+  });
 }
 
 export function waffleStrokeNegative() {
-  return Plot.waffleY([-4.5, -9, -24, -46, -66, -7], {fill: "#eee", stroke: "red", gap: 0}).plot({x: {axis: "top"}});
+  return Plot.plot({
+    x: {axis: "top"},
+    marks: [
+      Plot.waffleY(
+        {length: 6},
+        {
+          x: ["A", "B", "C", "D", "E", "F"],
+          y1: 0,
+          y2: [-1.1, -2.2, -3.3, -4.4, -5.5, -6.6],
+          unit: 0.2,
+          fillOpacity: 0.4
+        }
+      ),
+      Plot.waffleY(
+        {length: 6},
+        {
+          x: ["A", "B", "C", "D", "E", "F"],
+          y1: [-1.1, -2.2, -3.3, -4.4, -5.5, -6.6],
+          y2: [-2.3, -4.5, -6.7, -7.8, -9.1, -10.2],
+          unit: 0.2,
+          fill: "currentColor",
+          stroke: "red"
+        }
+      ),
+      Plot.waffleY(
+        {length: 6},
+        {
+          x: ["A", "B", "C", "D", "E", "F"],
+          y1: [-1.1, -2.2, -3.3, -4.4, -5.5, -6.6],
+          y2: 0,
+          gap: 10,
+          unit: 0.2,
+          fillOpacity: 0.4
+        }
+      ),
+      Plot.waffleY(
+        {length: 6},
+        {
+          x: ["A", "B", "C", "D", "E", "F"],
+          y1: [-2.3, -4.5, -6.7, -7.8, -9.1, -10.2],
+          y2: [-1.1, -2.2, -3.3, -4.4, -5.5, -6.6],
+          unit: 0.2,
+          gap: 10,
+          fill: "red"
+        }
+      ),
+      Plot.ruleY([0])
+    ]
+  });
+}
+
+export function waffleStrokePositive() {
+  return Plot.plot({
+    marks: [
+      Plot.waffleY(
+        {length: 6},
+        {
+          x: ["A", "B", "C", "D", "E", "F"],
+          y1: 0,
+          y2: [1.1, 2.2, 3.3, 4.4, 5.5, 6.6],
+          unit: 0.2,
+          fillOpacity: 0.4
+        }
+      ),
+      Plot.waffleY(
+        {length: 6},
+        {
+          x: ["A", "B", "C", "D", "E", "F"],
+          y1: [1.1, 2.2, 3.3, 4.4, 5.5, 6.6],
+          y2: [2.3, 4.5, 6.7, 7.8, 9.1, 10.2],
+          unit: 0.2,
+          fill: "currentColor",
+          stroke: "red"
+        }
+      ),
+      Plot.waffleY(
+        {length: 6},
+        {
+          x: ["A", "B", "C", "D", "E", "F"],
+          y1: [1.1, 2.2, 3.3, 4.4, 5.5, 6.6],
+          y2: 0,
+          gap: 10,
+          unit: 0.2,
+          fillOpacity: 0.4
+        }
+      ),
+      Plot.waffleY(
+        {length: 6},
+        {
+          x: ["A", "B", "C", "D", "E", "F"],
+          y1: [2.3, 4.5, 6.7, 7.8, 9.1, 10.2],
+          y2: [1.1, 2.2, 3.3, 4.4, 5.5, 6.6],
+          unit: 0.2,
+          gap: 10,
+          fill: "red"
+        }
+      ),
+      Plot.ruleY([0])
+    ]
+  });
 }
 
 export function waffleX() {

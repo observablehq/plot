@@ -100,6 +100,7 @@ function waffleRender(y) {
                 .join("L")}Z`
           )
           .attr("fill", (i) => `url(#${patternId}-${i})`)
+          .attr("stroke", this.stroke == null ? null : (i) => `url(#${patternId}-${i})`)
       )
       .node();
   };
@@ -143,19 +144,34 @@ function waffleRender(y) {
 // require additional corner cuts, so the implementation below generates a few
 // more points.
 function wafflePoints(i1, i2, columns) {
+  if (i1 < 0 || i2 < 0) {
+    const k = Math.ceil(-Math.min(i1, i2) / columns); // shift negative to positive
+    return wafflePoints(i1 + k * columns, i2 + k * columns, columns).map(([x, y]) => [x, y - k]);
+  }
+  if (i2 < i1) {
+    return wafflePoints(i2, i1, columns);
+  }
   return [
-    [floor(abs(i2) % columns), ceil(i2 / columns)],
-    [0, ceil(i2 / columns)],
-    [0, ceil(i1 / columns)],
-    [floor(abs(i1) % columns), ceil(i1 / columns)],
-    [floor(abs(i1) % columns), floor(i1 / columns) + (i1 % 1)],
-    [ceil(abs(i1) % columns), floor(i1 / columns) + (i1 % 1)],
-    [ceil(abs(i1) % columns), floor(i1 / columns)],
-    [columns, floor(i1 / columns)],
-    [columns, floor(i2 / columns)],
-    [ceil(abs(i2) % columns), floor(i2 / columns)],
-    [ceil(abs(i2) % columns), floor(i2 / columns) + (i2 % 1)],
-    [floor(abs(i2) % columns), floor(i2 / columns) + (i2 % 1)]
+    [0, Math.ceil(i1 / columns)],
+    [Math.floor(i1 % columns), Math.ceil(i1 / columns)],
+    [Math.floor(i1 % columns), Math.floor(i1 / columns) + (i1 % 1)],
+    [Math.ceil(i1 % columns), Math.floor(i1 / columns) + (i1 % 1)],
+    ...(i1 % columns > columns - 1
+      ? []
+      : [
+          [Math.ceil(i1 % columns), Math.floor(i1 / columns)],
+          [columns, Math.floor(i1 / columns)]
+        ]),
+    [columns, Math.floor(i2 / columns)],
+    [Math.ceil(i2 % columns), Math.floor(i2 / columns)],
+    [Math.ceil(i2 % columns), Math.floor(i2 / columns) + (i2 % 1)],
+    [Math.floor(i2 % columns), Math.floor(i2 / columns) + (i2 % 1)],
+    ...(i2 % columns < 1
+      ? []
+      : [
+          [Math.floor(i2 % columns), Math.ceil(i2 / columns)],
+          [0, Math.ceil(i2 / columns)]
+        ])
   ];
 }
 
@@ -173,18 +189,6 @@ function scaleof({domain, range}) {
 function spread(domain) {
   const [min, max] = extent(domain);
   return max - min;
-}
-
-function abs(x) {
-  return Math.abs(x);
-}
-
-function ceil(x) {
-  return (x < 0 ? Math.floor : Math.ceil)(x);
-}
-
-function floor(x) {
-  return (x < 0 ? Math.ceil : Math.floor)(x);
 }
 
 export function waffleX(data, options = {}) {
