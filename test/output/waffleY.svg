@@ -13,6 +13,20 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(51.5,0)">
+    <path transform="translate(53,370)" d="M0,0L0,6"></path>
+    <path transform="translate(166,370)" d="M0,0L0,6"></path>
+    <path transform="translate(279,370)" d="M0,0L0,6"></path>
+    <path transform="translate(392,370)" d="M0,0L0,6"></path>
+    <path transform="translate(505,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" transform="translate(51.5,9.5)">
+    <text y="0.71em" transform="translate(53,370)">Infants &lt;1</text>
+    <text y="0.71em" transform="translate(166,370)">Children &lt;11</text>
+    <text y="0.71em" transform="translate(279,370)">Teens 12-17</text>
+    <text y="0.71em" transform="translate(392,370)">Adults 18+</text>
+    <text y="0.71em" transform="translate(505,370)">Elderly 65+</text>
+  </g>
   <g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,346.7426407070237)" d="M0,0L-6,0"></path>
@@ -33,35 +47,24 @@
   </g>
   <g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)">
     <text y="0.32em" transform="translate(40,370)">0</text>
-    <text y="0.32em" transform="translate(40,346.7426407070237)">20</text>
-    <text y="0.32em" transform="translate(40,323.48528141404745)">40</text>
-    <text y="0.32em" transform="translate(40,300.2279221210712)">60</text>
-    <text y="0.32em" transform="translate(40,276.9705628280949)">80</text>
-    <text y="0.32em" transform="translate(40,253.7132035351186)">100</text>
-    <text y="0.32em" transform="translate(40,230.45584424214235)">120</text>
-    <text y="0.32em" transform="translate(40,207.19848494916607)">140</text>
-    <text y="0.32em" transform="translate(40,183.9411256561898)">160</text>
-    <text y="0.32em" transform="translate(40,160.68376636321352)">180</text>
-    <text y="0.32em" transform="translate(40,137.42640707023725)">200</text>
-    <text y="0.32em" transform="translate(40,114.16904777726096)">220</text>
-    <text y="0.32em" transform="translate(40,90.9116884842847)">240</text>
-    <text y="0.32em" transform="translate(40,67.65432919130842)">260</text>
-    <text y="0.32em" transform="translate(40,44.39696989833213)">280</text>
-    <text y="0.32em" transform="translate(40,21.139610605355855)">300</text>
+    <text y="0.32em" transform="translate(40,346.7426407070237)">2</text>
+    <text y="0.32em" transform="translate(40,323.48528141404745)">4</text>
+    <text y="0.32em" transform="translate(40,300.2279221210712)">6</text>
+    <text y="0.32em" transform="translate(40,276.9705628280949)">8</text>
+    <text y="0.32em" transform="translate(40,253.7132035351186)">10</text>
+    <text y="0.32em" transform="translate(40,230.45584424214235)">12</text>
+    <text y="0.32em" transform="translate(40,207.19848494916607)">14</text>
+    <text y="0.32em" transform="translate(40,183.9411256561898)">16</text>
+    <text y="0.32em" transform="translate(40,160.68376636321352)">18</text>
+    <text y="0.32em" transform="translate(40,137.42640707023725)">20</text>
+    <text y="0.32em" transform="translate(40,114.16904777726096)">22</text>
+    <text y="0.32em" transform="translate(40,90.9116884842847)">24</text>
+    <text y="0.32em" transform="translate(40,67.65432919130842)">26</text>
+    <text y="0.32em" transform="translate(40,44.39696989833213)">28</text>
+    <text y="0.32em" transform="translate(40,21.139610605355855)">30</text>
   </g>
-  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(51.5,0)">
-    <path transform="translate(53,370)" d="M0,0L0,6"></path>
-    <path transform="translate(166,370)" d="M0,0L0,6"></path>
-    <path transform="translate(279,370)" d="M0,0L0,6"></path>
-    <path transform="translate(392,370)" d="M0,0L0,6"></path>
-    <path transform="translate(505,370)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick label" transform="translate(51.5,9.5)">
-    <text y="0.71em" transform="translate(53,370)">Infants &lt;1</text>
-    <text y="0.71em" transform="translate(166,370)">Children &lt;11</text>
-    <text y="0.71em" transform="translate(279,370)">Teens 12-17</text>
-    <text y="0.71em" transform="translate(392,370)">Adults 18+</text>
-    <text y="0.71em" transform="translate(505,370)">Elderly 65+</text>
+  <g aria-label="y-axis label" text-anchor="start" transform="translate(-36.5,-16.5)">
+    <text y="0.71em" transform="translate(40,20)">↑ Frequency (thousands)</text>
   </g>
   <g aria-label="waffle">
     <pattern width="10.465811681839325" height="10.465811681839325" patternUnits="userSpaceOnUse" id="plot-pattern-1">

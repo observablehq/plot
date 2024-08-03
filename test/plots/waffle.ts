@@ -178,11 +178,11 @@ export function waffleStrokePositive() {
 export function waffleX() {
   return Plot.plot({
     marginLeft: 80,
-    x: {axis: "top"},
     y: {label: null},
     color: {scheme: "cool"},
     marks: [
-      Plot.waffleX(demographics, {y: "group", fill: "group", x: (d) => d.freq / 100, sort: {y: null, color: null}}),
+      Plot.axisX({label: "Frequency (thousands)", tickFormat: (d) => d / 1000}),
+      Plot.waffleX(demographics, {y: "group", fill: "group", x: "freq", unit: 100, sort: {y: null, color: null}}),
       Plot.ruleX([0])
     ]
   });
@@ -192,7 +192,11 @@ export function waffleXStacked() {
   return Plot.plot({
     height: 240,
     color: {scheme: "cool"},
-    marks: [Plot.waffleX(demographics, {fill: "group", x: (d) => d.freq / 100, sort: {color: null}}), Plot.ruleX([0])]
+    marks: [
+      Plot.axisX({label: "Frequency (thousands)", tickFormat: (d) => d / 1000}),
+      Plot.waffleX(demographics, {fill: "group", x: "freq", unit: 100, sort: {color: null}}),
+      Plot.ruleX([0])
+    ]
   });
 }
 
@@ -201,7 +205,8 @@ export function waffleY() {
     x: {label: null},
     color: {scheme: "cool"},
     marks: [
-      Plot.waffleY(demographics, {x: "group", fill: "group", y: (d) => d.freq / 100, sort: {x: null, color: null}}),
+      Plot.axisY({label: "Frequency (thousands)", tickFormat: (d) => d / 1000}),
+      Plot.waffleY(demographics, {x: "group", fill: "group", y: "freq", unit: 100, sort: {x: null, color: null}}),
       Plot.ruleY([0])
     ]
   });
@@ -209,9 +214,13 @@ export function waffleY() {
 
 export function waffleYStacked() {
   return Plot.plot({
-    x: {label: null},
+    y: {insetTop: 10},
     color: {scheme: "cool", legend: true},
-    marks: [Plot.waffleY(demographics, {fill: "group", y: (d) => d.freq / 100, sort: {color: null}}), Plot.ruleY([0])]
+    marks: [
+      Plot.axisY({label: "Frequency (thousands)", tickFormat: (d) => d / 1000}),
+      Plot.waffleY(demographics, {fill: "group", y: "freq", unit: 100, sort: {color: null}}),
+      Plot.ruleY([0])
+    ]
   });
 }
 
