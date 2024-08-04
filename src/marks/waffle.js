@@ -49,25 +49,26 @@ function waffleRender(y) {
     const columns = Math.max(1, Math.floor(Math.sqrt(barwidth / scale)));
 
     // The outer size of each square cell, in pixels, including the gap.
-    const cellsize = scale * columns;
+    const cx = Math.min(barwidth, scale * columns);
+    const cy = scale * columns;
 
     // TODO insets?
-    const transform = y === "y" ? ([x, y]) => [x * cellsize, -y * cellsize] : ([x, y]) => [y * cellsize, x * cellsize];
-    const tx = (barwidth - columns * cellsize) / 2;
+    const transform = y === "y" ? ([x, y]) => [x * cx, -y * cy] : ([x, y]) => [y * cy, x * cx];
+    const tx = (barwidth - columns * cx) / 2;
     const x0 = typeof barx === "function" ? (i) => barx(i) + tx : barx + tx;
     const y0 = scales[y](0);
 
     // Create a base pattern with shared attributes for cloning.
     const patternId = getPatternId();
     const basePattern = document.createElementNS(namespaces.svg, "pattern");
-    basePattern.setAttribute("width", cellsize);
-    basePattern.setAttribute("height", cellsize);
+    basePattern.setAttribute("width", y === "y" ? cx : cy);
+    basePattern.setAttribute("height", y === "y" ? cy : cx);
     basePattern.setAttribute("patternUnits", "userSpaceOnUse");
     const basePatternRect = basePattern.appendChild(document.createElementNS(namespaces.svg, "rect"));
     basePatternRect.setAttribute("x", gap / 2);
     basePatternRect.setAttribute("y", gap / 2);
-    basePatternRect.setAttribute("width", cellsize - gap);
-    basePatternRect.setAttribute("height", cellsize - gap);
+    basePatternRect.setAttribute("width", (y === "y" ? cx : cy) - gap);
+    basePatternRect.setAttribute("height", (y === "y" ? cy : cx) - gap);
     if (rx != null) basePatternRect.setAttribute("rx", rx);
     if (ry != null) basePatternRect.setAttribute("ry", ry);
 

@@ -11,6 +11,10 @@ Elderly 65+,65+,12456`,
   d3.autoType
 );
 
+export function waffleSquished() {
+  return Plot.waffleX([10]).plot();
+}
+
 export function waffleShorthand() {
   return Plot.plot({
     y: {inset: 12},
