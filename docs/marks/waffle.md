@@ -123,6 +123,9 @@ Plot.waffleX([apples], {y: ["apples"]}).plot({height: 240})
 :::info
 The number of rows in the waffle above is guaranteed to be an integer, but it might not be a multiple or factor of the *x*-axis tick interval. For example, the waffle might have 15 rows while the *x*-axis shows ticks every 100 units.
 :::
+:::tip
+While you can’t control the number of rows (or columns) directly, you can affect it via the **padding** option on the corresponding band scale. Padding defaults to 0.1; a higher value may produce more rows, while a lower (or zero) value may produce fewer rows.
+:::
 
 ## Waffle options
 
