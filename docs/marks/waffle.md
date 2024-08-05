@@ -134,7 +134,7 @@ For required channels, see the [bar mark](./bar.md). The waffle mark supports th
 The waffle mark supports a few additional options to control the rendering of cells:
 
 * **unit** - the quantity each cell represents; defaults to 1
-* **multiple** - the number of cells per row (or column); defaults to undefine
+* **multiple** - the number of cells per row (or column); defaults to undefined
 * **gap** - the separation between adjacent cells, in pixels; defaults to 1
 * **round** - whether to round values to avoid partial cells; defaults to false
 
