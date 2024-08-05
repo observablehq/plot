@@ -219,6 +219,10 @@ linedata = [
 ]
 ```
 
+:::tip
+For larger datasets, you can more efficiently pass data using an [Apache Arrow](https://arrow.apache.org/docs/js/) table as a columnar data representation. <VersionBadge pr="2115" />
+:::
+
 Then you can pass the data to the line mark, and extract named columns from the data for the desired options:
 
 :::plot https://observablehq.com/@observablehq/plot-accessors
@@ -239,7 +243,7 @@ Plot.lineY(linedata, {
 ```
 :::
 
-For greater efficiency, Plot also supports columnar data: you can pass parallel arrays of values to each channel.
+For greater efficiency, Plot also supports columnar data: you can use an [Apache Arrow](https://arrow.apache.org/docs/js/) table as data instead of an array of objects. <VersionBadge pr="2115" /> You can even pass parallel arrays of values, or Apache Arrow vectors, to each channel.
 
 ```js
 Plot.lineY({length: linedata.length}, {
