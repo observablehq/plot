@@ -1,6 +1,6 @@
 import {stratify, tree} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {column, identity, isObject, one, valueof} from "../options.js";
+import {column, identity, isArray, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
 export function treeNode({
@@ -40,7 +40,9 @@ export function treeNode({
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet.filter((i) => P[i] != null)).each((node) => (node.data = data[node.data]));
+        const root = rootof(facet.filter((i) => P[i] != null)).each(
+          isArray(data) ? (node) => (node.data = data[node.data]) : (node) => (node.data = data.get(node.data))
+        );
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.descendants()) {

@@ -1,0 +1,50 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    :where(.plot) {
+      --plot-background: white;
+      display: block;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    :where(.plot text),
+    :where(.plot tspan) {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(20,30)" d="M0,0L0,6"></path>
+    <path transform="translate(77.14285714285714,30)" d="M0,0L0,6"></path>
+    <path transform="translate(134.28571428571428,30)" d="M0,0L0,6"></path>
+    <path transform="translate(191.42857142857142,30)" d="M0,0L0,6"></path>
+    <path transform="translate(248.57142857142856,30)" d="M0,0L0,6"></path>
+    <path transform="translate(305.7142857142857,30)" d="M0,0L0,6"></path>
+    <path transform="translate(362.85714285714283,30)" d="M0,0L0,6"></path>
+    <path transform="translate(420,30)" d="M0,0L0,6"></path>
+    <path transform="translate(477.1428571428571,30)" d="M0,0L0,6"></path>
+    <path transform="translate(534.2857142857143,30)" d="M0,0L0,6"></path>
+    <path transform="translate(591.4285714285714,30)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0.5,9.5)">
+    <text y="0.71em" transform="translate(20,30)">0</text>
+    <text y="0.71em" transform="translate(77.14285714285714,30)">10</text>
+    <text y="0.71em" transform="translate(134.28571428571428,30)">20</text>
+    <text y="0.71em" transform="translate(191.42857142857142,30)">30</text>
+    <text y="0.71em" transform="translate(248.57142857142856,30)">40</text>
+    <text y="0.71em" transform="translate(305.7142857142857,30)">50</text>
+    <text y="0.71em" transform="translate(362.85714285714283,30)">60</text>
+    <text y="0.71em" transform="translate(420,30)">70</text>
+    <text y="0.71em" transform="translate(477.1428571428571,30)">80</text>
+    <text y="0.71em" transform="translate(534.2857142857143,30)">90</text>
+    <text y="0.71em" transform="translate(591.4285714285714,30)">100</text>
+  </g>
+  <g aria-label="x-axis label" text-anchor="end" transform="translate(17.5,27.5)">
+    <text transform="translate(620,30)">age →</text>
+  </g>
+  <g aria-label="bar">
+    <rect x="20" width="257.14285714285717" y="0" height="30" fill="#ff725c"></rect>
+    <rect x="277.14285714285717" width="199.99999999999994" y="0" height="30" fill="#4269d0"></rect>
+    <rect x="477.1428571428571" width="142.8571428571429" y="0" height="30" fill="#efb118"></rect>
+  </g>
+</svg>
